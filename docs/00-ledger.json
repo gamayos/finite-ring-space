@@ -1,5 +1,5 @@
 {
- "generated": "15 October 2026",
+ "generated": "16 October 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -839,7 +839,7 @@
     "22-qm",
     "1-alg"
    ],
-   "witness": "22:p22_quantum.py",
+   "witness": null,
    "refs": [
     {
      "label": "D10",
@@ -857,7 +857,7 @@
    "sources": [
     "22-qm"
    ],
-   "witness": "22:p22_quantum.py",
+   "witness": null,
    "refs": [
     {
      "label": "D10",
@@ -1238,7 +1238,7 @@
     "22-qm",
     "21-grav"
    ],
-   "witness": "22:p22_quantum.py",
+   "witness": null,
    "refs": [],
    "statement": "A registration protocol samples one stratum of a drive-presented ensemble. Over complete joint recurrences the counts are forced exact tallies (22-qm Rem.~strata), on incomplete batches the largest-remainder gauge, shared by the quantum readout and the gravity crossover. Falsifier: outcome tallies over a complete joint recurrence that are not exact ratios, or a fixed-setting protocol sampling more than one stratum."
   },
@@ -1571,6 +1571,54 @@
    "statement": "\\textbf{The chart count}: a homogeneous chart on the $\\Om$ registrations, flat to the horizon radius in $d$ dimensions, holds the $\\mathbb Z^{d}$ ball of that radius; for $d\\ge2$ the ball exceeds $\\Om$, for $d=1$ it fits. The one chart flat to the horizon radius is the drive's scale-time direction (E11); a three-chart of curvature radius $\\sqrt\\Om$ needs $\\Om^{3/2}$ cells (A2)."
   },
   {
+   "label": "E13",
+   "name": "The strong-field wave operator (declared)",
+   "block": "E",
+   "key": "p00200",
+   "tag": "D",
+   "sources": [
+    "21-grav"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "E4",
+     "key": "p00055"
+    },
+    {
+     "label": "E5",
+     "key": "p00056"
+    },
+    {
+     "label": "E14",
+     "key": "p00201"
+    }
+   ],
+   "statement": "\\textbf{The strong-field wave operator} (declared): on the exponential reading (E4) the one wave operator is the chart's $\\Box_g$, 21-gravity's wave equation with the all-orders index $e^{2u}$ ($\\sqrt{-g}\\,g^{tt}=-e^{4u}$), acting on the cell's one phase. The chart is horizonless, continued to the floor $r_f=2M/\\ln\\Om$ where $e^{2u}=\\Om$ (E5) [chart]. The quoted ringdown is the eikonal limit (E14); the $(2,2,0)$ reading is open."
+  },
+  {
+   "label": "E14",
+   "name": "The eikonal pair and the phase mode",
+   "block": "E",
+   "key": "p00201",
+   "tag": "T",
+   "sources": [
+    "21-grav"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "E4",
+     "key": "p00055"
+    },
+    {
+     "label": "E13",
+     "key": "p00200"
+    }
+   ],
+   "statement": "\\textbf{The eikonal pair}: on the exponential reading (E4) the photon sphere sits at $r_c=2M$, $b_c=2eM$, and the orbital rate equals the Lyapunov rate, $\\Omega_c=\\lambda=1/(2eM)$, both $3\\sqrt3/(2e)$ of Schwarzschild's. The wave operator's $\\ell=2$ mode (E13) is $(0.4641-0.0923\\,i)/M$ [approx], $+24\\%$ against Kerr's $(2,2,0)$ [import] and $0.8\\%$ above the eikonal $(\\ell+\\tfrac12)/(2eM)$."
+  },
+  {
    "label": "F1",
    "name": "Quantum mechanics: the Born weighting on the Subject's ledger",
    "block": "F",
@@ -1605,7 +1653,7 @@
    "sources": [
     "22-qm"
    ],
-   "witness": "22:p22_quantum.py",
+   "witness": null,
    "refs": [
     {
      "label": "F1",
@@ -2232,19 +2280,6 @@
    "witness": null,
    "refs": [],
    "statement": "The master's rows are verdicted row by row, in exact arithmetic, on one instantiated Carrier, $\\Om=2{,}408{,}561$ (37-sim), at a dated snapshot. Those that hold there hold jointly in one finite structure: a consistency witness for the projection, not a proof of the physical case. Rows without an instance, or added or restated after the snapshot, are not exercised."
-  },
-  {
-   "label": "T5",
-   "name": "The physical ℓ=2 quasinormal spectrum and the O(J2) rotational",
-   "block": "T",
-   "key": "p00098",
-   "tag": "O",
-   "sources": [
-    "21-grav"
-   ],
-   "witness": null,
-   "refs": [],
-   "statement": "The physical $\\ell=2$ quasinormal spectrum and the $O(J^{2})$ rotational multipoles (Hartle--Thorne programme); the quoted ringdown is eikonal."
   },
   {
    "label": "Z1",

@@ -1772,7 +1772,8 @@ The readings of 21-gravity on the reals, moved from the paper module `FrcLedger/
 name as an alias), every numeral re-anchored to the ledger's scale import (00:A7: `ln Ω = 283.5`, `Ω = 1.3 × 10¹²³`;
 `Theme/Chart.lean`'s `ln_omega_ledger`). The strong field: the operational cut `e^{2M/r_f} = Ω` with the ordering
 `r_* < r_f < M` exactly when `M > (ln Ω/2)²` (21:C12, P7); the photon sphere at `r = 2Gm` with `b_c = 2e·Gm` as the
-minimum of `r e^{2Gm/r}` (21:C12, P1); the shadow `+4.6 %` and ringdown `−4.4 %` bracketed from `e` and `√3` (21:P1);
+minimum of `r e^{2Gm/r}` (21:C12, P1); the shadow `+4.6 %` and ringdown `−4.4 %` bracketed from `e` and `√3` (21:P1); the eikonal pair
+`Ω_c = λ = 1/(2eM)` from the derivatives of `r² e^{4M/r}` at `2M` (00:E14, 16 October 2026);
 the innermost stable orbit at `r = 3 + √5` and the efficiency `5.48 %` against Schwarzschild's `5.72 %` (21:P1); the
 capacity ratio `1/ln²Ω = 1.24 × 10⁻⁵` at `283.5` (21:C13); the redshift's linear form (21:C4). The crossover: the
 registration root `η` of `wη² − 2η + w = 0` in `(0, 1)`, the crossover squeezed between its deep and Newtonian
@@ -1874,6 +1875,67 @@ theorem shadow_bracket :
   · rw [div_lt_iff₀ (by positivity)]; nlinarith
   · rw [lt_div_iff₀ (by positivity)]; nlinarith
   · rw [div_lt_iff₀ (by positivity)]; nlinarith
+
+/-- 00:E14 — the eikonal pair of the exponential reading (`G = 1`, `M` the mass): with `h(r) = r² e^{4M/r} = b(r)²` the
+square of the impact function, `h′(r) = e^{4M/r}(2r − 4M)` for `r ≠ 0`, zero exactly at `r_c = 2M` (the photon sphere of
+`photon_sphere`), and `h″(2M) = 2e²`; the orbital rate squared `Ω_c² = 1/h(2M) = 1/(2eM)²` and the Lyapunov rate squared
+`λ² = e^{−4u} h″/(2h)` at `2M` coincide, and the pair is `3√3/(2e)` of Schwarzschild's `1/(3√3 M)` (`shadow_bracket`
+brackets that ratio). -/
+theorem eikonal_pair (M : ℝ) (hM : 0 < M) :
+    (∀ r : ℝ, r ≠ 0 →
+      HasDerivAt (fun r : ℝ => r ^ 2 * exp (4 * M / r)) (exp (4 * M / r) * (2 * r - 4 * M)) r) ∧
+    (∀ r : ℝ, exp (4 * M / r) * (2 * r - 4 * M) = 0 ↔ r = 2 * M) ∧
+    (∀ r : ℝ, r ≠ 0 →
+      HasDerivAt (fun r : ℝ => exp (4 * M / r) * (2 * r - 4 * M))
+        (exp (4 * M / r) * (2 - 4 * M * (2 * r - 4 * M) / r ^ 2)) r) ∧
+    exp (4 * M / (2 * M)) * (2 - 4 * M * (2 * (2 * M) - 4 * M) / (2 * M) ^ 2) = 2 * exp 2 ∧
+    (2 * M) ^ 2 * exp (4 * M / (2 * M)) = (2 * exp 1 * M) ^ 2 ∧
+    exp (-(4 * M / (2 * M))) * (2 * exp 2) / (2 * ((2 * M) ^ 2 * exp (4 * M / (2 * M)))) =
+      (1 / (2 * exp 1 * M)) ^ 2 ∧
+    (1 / (2 * exp 1 * M)) / (1 / (3 * √3 * M)) = 3 * √3 / (2 * exp 1) := by
+  have hM0 : M ≠ 0 := hM.ne'
+  have h42 : 4 * M / (2 * M) = 2 := by field_simp; ring
+  have he2 : exp 2 = exp 1 ^ 2 := by
+    calc exp 2 = exp (1 + 1) := by norm_num
+      _ = exp 1 * exp 1 := Real.exp_add 1 1
+      _ = exp 1 ^ 2 := by ring
+  have hs3 : (0 : ℝ) < √3 := Real.sqrt_pos.mpr (by norm_num)
+  -- the derivative of the exponent 4M/r
+  have hinner : ∀ r : ℝ, r ≠ 0 → HasDerivAt (fun r : ℝ => 4 * M / r) (-(4 * M) / r ^ 2) r := by
+    intro r hr
+    have := (hasDerivAt_inv hr).const_mul (4 * M)
+    refine this.congr_deriv ?_ |>.congr_of_eventuallyEq (Filter.Eventually.of_forall fun y => ?_)
+    · field_simp
+    · simp [div_eq_mul_inv]
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · intro r hr
+    have hexp := (hinner r hr).exp
+    have := (hasDerivAt_pow 2 r).mul hexp
+    refine this.congr_deriv ?_
+    field_simp
+    ring
+  · intro r
+    constructor
+    · intro h
+      rcases mul_eq_zero.mp h with h | h
+      · exact absurd h (Real.exp_pos _).ne'
+      · linarith
+    · intro h; subst h; ring
+  · intro r hr
+    have hexp := (hinner r hr).exp
+    have hlin : HasDerivAt (fun r : ℝ => 2 * r - 4 * M) 2 r := by
+      simpa using ((hasDerivAt_id r).const_mul (2 : ℝ)).sub_const (4 * M)
+    have := hexp.mul hlin
+    refine this.congr_deriv ?_
+    field_simp
+    ring
+  · rw [h42]; field_simp; ring
+  · rw [h42, he2]; ring
+  · have h1 : exp 1 ≠ 0 := (Real.exp_pos 1).ne'
+    rw [h42, Real.exp_neg, he2]
+    field_simp
+  · have h1 : exp 1 ≠ 0 := (Real.exp_pos 1).ne'
+    field_simp
 
 /-- 21:P1 — the innermost stable circular orbit of the exponential metric (`G = m = 1`, isotropic radius),
 with the circular-orbit relations of the paper's `prop:isco` taken as given and not formalised
@@ -2275,6 +2337,9 @@ theorem p00192 : (∀ (c H0 : ℝ), c = (299792458 : ℝ) → H0 = 674e2 / 30856
 /-- p00193 — 00:L3. \textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\dS/2$ chronons $=13.79$ Gyr ($(\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\Omega_\Lambda=\tanh^2(3\pi/8)=0.684$ (chart; $0.19\sigma$); on the stellar age $13.61\pm0.34$ Gyr, $H_0=68.2\pm1.7$ ($2.4\sigma$ from the ladder); $w=-1$ rigid --- a confirmed drift falsifies $\Lambda\sim1/\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\propto H(z)$ (Z7), the ladder bias. -/
 theorem p00193 : (∀ (S r c : ℝ), S ≠ (0 : ℝ) → S / (2 : ℝ) / ((4 : ℝ) * S) * ((2 : ℝ) * Real.pi * r / c) = Real.pi / (4 : ℝ) * r / c) ∧ (0.68368 < Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) ∧ Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) < 0.68369 ∧ 0.18 * 7e-3 < 0.685 - Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) ∧ 0.685 - Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) < 0.19 * 7e-3) ∧ (0.186 * 7e-3 < 0.685 - Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) ∧ 0.685 - Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) < 0.19 * 7e-3) ∧ (∀ (t H0 HΛ Ω : ℝ), t * HΛ = Real.pi / (4 : ℝ) → HΛ = H0 * √Ω → Ω = Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ))) ∧ (0.9498 < Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ∧ Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) < 0.9499) ∧ (FRC.Chart.lcdmAge (Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ)) = Real.pi / (4 : ℝ) ∧ ∀ (Ω : ℝ), (0 : ℝ) ≤ Ω → Ω < (1 : ℝ) → FRC.Chart.lcdmAge Ω = Real.pi / (4 : ℝ) → Ω = Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ)) ∧ (∀ (t H0 : ℝ), t = 1379e7 * (365.25 * (86400 : ℝ)) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) → 67.35 < H0 * 30856775814913673e3 ∧ H0 * 30856775814913673e3 < 67.36) ∧ ∀ (t H0 : ℝ), t = 1361e7 * (365.25 * (86400 : ℝ)) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) → 68.24 < H0 * 30856775814913673e3 ∧ H0 * 30856775814913673e3 < 68.25 ∧ 1.70 < H0 * 30856775814913673e3 * (0.34 / 13.61) ∧ H0 * 30856775814913673e3 * (0.34 / 13.61) < 1.71 ∧ 2.40 < (73.0 - H0 * 30856775814913673e3) / √(1.7 ^ (2 : ℕ) + 1.0 ^ (2 : ℕ)) ∧ (73.0 - H0 * 30856775814913673e3) / √(1.7 ^ (2 : ℕ) + 1.0 ^ (2 : ℕ)) < 2.42 :=
   And.intro @FRC.Chart.octant_chart (And.intro @FRC.Chart.landing_bracket (And.intro @FRC.Chart.landing_fine (And.intro @FRC.Chart.age_rate_locus (And.intro @FRC.Chart.locus_bracket (And.intro @FRC.Chart.octant_inversion (And.intro @FRC.Chart.hubble_landing (@FRC.Chart.hubble_stellar)))))))
+/-- p00201 — 00:E14. \textbf{The eikonal pair}: on the exponential reading (E4) the photon sphere sits at $r_c=2M$, $b_c=2eM$, and the orbital rate equals the Lyapunov rate, $\Omega_c=\lambda=1/(2eM)$, both $3\sqrt3/(2e)$ of Schwarzschild's. The wave operator's $\ell=2$ mode (E13) is $(0.4641-0.0923\,i)/M$ [approx], $+24\%$ against Kerr's $(2,2,0)$ [import] and $0.8\%$ above the eikonal $(\ell+\tfrac12)/(2eM)$. -/
+theorem p00201 : (∀ (M : ℝ), (0 : ℝ) < M → (∀ (r : ℝ), r ≠ (0 : ℝ) → HasDerivAt (fun r => r ^ (2 : ℕ) * Real.exp ((4 : ℝ) * M / r)) (Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) * r - (4 : ℝ) * M)) r) ∧ (∀ (r : ℝ), Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) * r - (4 : ℝ) * M) = (0 : ℝ) ↔ r = (2 : ℝ) * M) ∧ (∀ (r : ℝ), r ≠ (0 : ℝ) → HasDerivAt (fun r => Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) * r - (4 : ℝ) * M)) (Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) - (4 : ℝ) * M * ((2 : ℝ) * r - (4 : ℝ) * M) / r ^ (2 : ℕ))) r) ∧ Real.exp ((4 : ℝ) * M / ((2 : ℝ) * M)) * ((2 : ℝ) - (4 : ℝ) * M * ((2 : ℝ) * ((2 : ℝ) * M) - (4 : ℝ) * M) / ((2 : ℝ) * M) ^ (2 : ℕ)) = (2 : ℝ) * Real.exp (2 : ℝ) ∧ ((2 : ℝ) * M) ^ (2 : ℕ) * Real.exp ((4 : ℝ) * M / ((2 : ℝ) * M)) = ((2 : ℝ) * Real.exp (1 : ℝ) * M) ^ (2 : ℕ) ∧ Real.exp (-((4 : ℝ) * M / ((2 : ℝ) * M))) * ((2 : ℝ) * Real.exp (2 : ℝ)) / ((2 : ℝ) * (((2 : ℝ) * M) ^ (2 : ℕ) * Real.exp ((4 : ℝ) * M / ((2 : ℝ) * M)))) = ((1 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ) * M)) ^ (2 : ℕ) ∧ (1 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ) * M) / ((1 : ℝ) / ((3 : ℝ) * √(3 : ℝ) * M)) = (3 : ℝ) * √(3 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ))) ∧ 1.0462 < (2 : ℝ) * Real.exp (1 : ℝ) / ((3 : ℝ) * √(3 : ℝ)) ∧ (2 : ℝ) * Real.exp (1 : ℝ) / ((3 : ℝ) * √(3 : ℝ)) < 1.0463 ∧ 0.9557 < (3 : ℝ) * √(3 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ)) ∧ (3 : ℝ) * √(3 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ)) < 0.9558 ∧ 2.46 < ((4 : ℝ) * Real.exp (1 : ℝ) - (6 : ℝ) * √(3 : ℝ)) * 5.12 ∧ ((4 : ℝ) * Real.exp (1 : ℝ) - (6 : ℝ) * √(3 : ℝ)) * 5.12 < 2.47 :=
+  And.intro @FRC.Strong.eikonal_pair (@FRC.Strong.shadow_bracket)
 /-- p14038 — 14:P3. The age--rate locus $t_{\mathrm{age}}H_0=(\pi/4)/\tanh(3\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\pm0.34$ Gyr): $H_0=68.2\pm1.7$ km/s/Mpc \apx, $0.5\sigma$ from Planck, $0.65\sigma$ from TRGB, $2.4\sigma$ from the Cepheid ladder --- the framework favours the CMB/TRGB value at that significance, and forbids the $\Omega_\Lambda\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\Lambda$ it returns the channel-1 $H_0$ (to $0.1\%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\star H_0\ge1.0$ against $0.950$). -/
 theorem p14038 : (∀ (t H0 HΛ Ω : ℝ), t * HΛ = Real.pi / (4 : ℝ) → HΛ = H0 * √Ω → Ω = Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ))) ∧ 0.9498 < Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ∧ Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) < 0.9499 :=
   And.intro @FRC.Chart.age_rate_locus (@FRC.Chart.locus_bracket)
@@ -2326,7 +2391,7 @@ theorem p21042 : Filter.Tendsto (fun t => t / ((1 : ℝ) - Real.exp (-t))) (nhds
 /-- p21048 — 21:X8. \textbf{The weakness of gravity} is cardinality dilution, not a hierarchy to be tuned. -/
 theorem p21048 : ∀ (m Ω : ℝ), (0 : ℝ) < Ω → (m / √Ω) ^ (2 : ℕ) = m ^ (2 : ℕ) / Ω :=
   @FRC.Strong.dilution
-/-- p21049 — 21:P1. Strong-field signatures at or outside the photon sphere: shadow $+4.6\%$, ringdown $-4.4\%$, ISCO frequency $-6.9\%$ with accretion efficiency $5.48\%$ (against $5.72\%$): one origin, jointly falsifiable, conditional on Theorem~\ref{thm:branch}'s inputs alone. -/
+/-- p21049 — 21:P1. Strong-field signatures at or outside the photon sphere: shadow $+4.6\%$, eikonal ringdown $-4.4\%$ (the $(2,2,0)$ reading open, GW250114 the exposure; master E13, E14), ISCO frequency $-6.9\%$ with accretion efficiency $5.48\%$ (against $5.72\%$): one origin, jointly falsifiable, conditional on Theorem~\ref{thm:branch}'s inputs alone. -/
 theorem p21049 : (∀ (Gm r : ℝ), (0 : ℝ) < Gm → (0 : ℝ) < r → (2 : ℝ) * Real.exp (1 : ℝ) * Gm ≤ r * Real.exp ((2 : ℝ) * Gm / r) ∧ (r * Real.exp ((2 : ℝ) * Gm / r) = (2 : ℝ) * Real.exp (1 : ℝ) * Gm ↔ r = (2 : ℝ) * Gm)) ∧ (1.0462 < (2 : ℝ) * Real.exp (1 : ℝ) / ((3 : ℝ) * √(3 : ℝ)) ∧ (2 : ℝ) * Real.exp (1 : ℝ) / ((3 : ℝ) * √(3 : ℝ)) < 1.0463 ∧ 0.9557 < (3 : ℝ) * √(3 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ)) ∧ (3 : ℝ) * √(3 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ)) < 0.9558 ∧ 2.46 < ((4 : ℝ) * Real.exp (1 : ℝ) - (6 : ℝ) * √(3 : ℝ)) * 5.12 ∧ ((4 : ℝ) * Real.exp (1 : ℝ) - (6 : ℝ) * √(3 : ℝ)) * 5.12 < 2.47) ∧ (∀ (r : ℝ), (2 : ℝ) < r → HasDerivAt (fun r => (2 : ℝ) / r + (2 : ℝ) * Real.log r - Real.log (r - (2 : ℝ))) ((r ^ (2 : ℕ) - (6 : ℝ) * r + (4 : ℝ)) / (r ^ (2 : ℕ) * (r - (2 : ℝ)))) r ∧ ((3 : ℝ) + √(5 : ℝ)) ^ (2 : ℕ) - (6 : ℝ) * ((3 : ℝ) + √(5 : ℝ)) + (4 : ℝ) = (0 : ℝ) ∧ (2 : ℝ) < (3 : ℝ) + √(5 : ℝ) ∧ ((3 : ℝ) + √(5 : ℝ) - (1 : ℝ)) / ((3 : ℝ) + √(5 : ℝ) - (2 : ℝ)) = ((3 : ℝ) + √(5 : ℝ)) / (4 : ℝ)) ∧ 547e-4 < (1 : ℝ) - √(Real.exp (-((2 : ℝ) / ((3 : ℝ) + √(5 : ℝ)))) * ((3 : ℝ) + √(5 : ℝ)) / (4 : ℝ)) ∧ (1 : ℝ) - √(Real.exp (-((2 : ℝ) / ((3 : ℝ) + √(5 : ℝ)))) * ((3 : ℝ) + √(5 : ℝ)) / (4 : ℝ)) < 548e-4 ∧ 571e-4 < (1 : ℝ) - √(8 / 9 : ℝ) ∧ (1 : ℝ) - √(8 / 9 : ℝ) < 572e-4 :=
   And.intro @FRC.Strong.photon_sphere (And.intro @FRC.Strong.shadow_bracket (And.intro @FRC.Strong.isco (@FRC.Strong.isco_efficiency)))
 /-- p21050 — 21:P7. Floor-surface signatures: no prompt echoes (the exact profile horizonless with no reflecting surface, C12; the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\Omega$) and no evaporation bursts; a reported echo detection at the stated precision falsifies the construction. -/
@@ -2402,6 +2467,7 @@ end FRC.LedgerML
 #print axioms FRC.LedgerML.p00148
 #print axioms FRC.LedgerML.p00192
 #print axioms FRC.LedgerML.p00193
+#print axioms FRC.LedgerML.p00201
 #print axioms FRC.LedgerML.p14038
 #print axioms FRC.LedgerML.p20032
 #print axioms FRC.LedgerML.p20043

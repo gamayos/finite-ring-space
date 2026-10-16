@@ -834,7 +834,8 @@ The readings of 21-gravity on the reals, moved from the paper module `FrcLedger/
 name as an alias), every numeral re-anchored to the ledger's scale import (00:A7: `ln Ω = 283.5`, `Ω = 1.3 × 10¹²³`;
 `Theme/Chart.lean`'s `ln_omega_ledger`). The strong field: the operational cut `e^{2M/r_f} = Ω` with the ordering
 `r_* < r_f < M` exactly when `M > (ln Ω/2)²` (21:C12, P7); the photon sphere at `r = 2Gm` with `b_c = 2e·Gm` as the
-minimum of `r e^{2Gm/r}` (21:C12, P1); the shadow `+4.6 %` and ringdown `−4.4 %` bracketed from `e` and `√3` (21:P1);
+minimum of `r e^{2Gm/r}` (21:C12, P1); the shadow `+4.6 %` and ringdown `−4.4 %` bracketed from `e` and `√3` (21:P1); the eikonal pair
+`Ω_c = λ = 1/(2eM)` from the derivatives of `r² e^{4M/r}` at `2M` (00:E14, 16 October 2026);
 the innermost stable orbit at `r = 3 + √5` and the efficiency `5.48 %` against Schwarzschild's `5.72 %` (21:P1); the
 capacity ratio `1/ln²Ω = 1.24 × 10⁻⁵` at `283.5` (21:C13); the redshift's linear form (21:C4). The crossover: the
 registration root `η` of `wη² − 2η + w = 0` in `(0, 1)`, the crossover squeezed between its deep and Newtonian
@@ -936,6 +937,67 @@ theorem shadow_bracket :
   · rw [div_lt_iff₀ (by positivity)]; nlinarith
   · rw [lt_div_iff₀ (by positivity)]; nlinarith
   · rw [div_lt_iff₀ (by positivity)]; nlinarith
+
+/-- 00:E14 — the eikonal pair of the exponential reading (`G = 1`, `M` the mass): with `h(r) = r² e^{4M/r} = b(r)²` the
+square of the impact function, `h′(r) = e^{4M/r}(2r − 4M)` for `r ≠ 0`, zero exactly at `r_c = 2M` (the photon sphere of
+`photon_sphere`), and `h″(2M) = 2e²`; the orbital rate squared `Ω_c² = 1/h(2M) = 1/(2eM)²` and the Lyapunov rate squared
+`λ² = e^{−4u} h″/(2h)` at `2M` coincide, and the pair is `3√3/(2e)` of Schwarzschild's `1/(3√3 M)` (`shadow_bracket`
+brackets that ratio). -/
+theorem eikonal_pair (M : ℝ) (hM : 0 < M) :
+    (∀ r : ℝ, r ≠ 0 →
+      HasDerivAt (fun r : ℝ => r ^ 2 * exp (4 * M / r)) (exp (4 * M / r) * (2 * r - 4 * M)) r) ∧
+    (∀ r : ℝ, exp (4 * M / r) * (2 * r - 4 * M) = 0 ↔ r = 2 * M) ∧
+    (∀ r : ℝ, r ≠ 0 →
+      HasDerivAt (fun r : ℝ => exp (4 * M / r) * (2 * r - 4 * M))
+        (exp (4 * M / r) * (2 - 4 * M * (2 * r - 4 * M) / r ^ 2)) r) ∧
+    exp (4 * M / (2 * M)) * (2 - 4 * M * (2 * (2 * M) - 4 * M) / (2 * M) ^ 2) = 2 * exp 2 ∧
+    (2 * M) ^ 2 * exp (4 * M / (2 * M)) = (2 * exp 1 * M) ^ 2 ∧
+    exp (-(4 * M / (2 * M))) * (2 * exp 2) / (2 * ((2 * M) ^ 2 * exp (4 * M / (2 * M)))) =
+      (1 / (2 * exp 1 * M)) ^ 2 ∧
+    (1 / (2 * exp 1 * M)) / (1 / (3 * √3 * M)) = 3 * √3 / (2 * exp 1) := by
+  have hM0 : M ≠ 0 := hM.ne'
+  have h42 : 4 * M / (2 * M) = 2 := by field_simp; ring
+  have he2 : exp 2 = exp 1 ^ 2 := by
+    calc exp 2 = exp (1 + 1) := by norm_num
+      _ = exp 1 * exp 1 := Real.exp_add 1 1
+      _ = exp 1 ^ 2 := by ring
+  have hs3 : (0 : ℝ) < √3 := Real.sqrt_pos.mpr (by norm_num)
+  -- the derivative of the exponent 4M/r
+  have hinner : ∀ r : ℝ, r ≠ 0 → HasDerivAt (fun r : ℝ => 4 * M / r) (-(4 * M) / r ^ 2) r := by
+    intro r hr
+    have := (hasDerivAt_inv hr).const_mul (4 * M)
+    refine this.congr_deriv ?_ |>.congr_of_eventuallyEq (Filter.Eventually.of_forall fun y => ?_)
+    · field_simp
+    · simp [div_eq_mul_inv]
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · intro r hr
+    have hexp := (hinner r hr).exp
+    have := (hasDerivAt_pow 2 r).mul hexp
+    refine this.congr_deriv ?_
+    field_simp
+    ring
+  · intro r
+    constructor
+    · intro h
+      rcases mul_eq_zero.mp h with h | h
+      · exact absurd h (Real.exp_pos _).ne'
+      · linarith
+    · intro h; subst h; ring
+  · intro r hr
+    have hexp := (hinner r hr).exp
+    have hlin : HasDerivAt (fun r : ℝ => 2 * r - 4 * M) 2 r := by
+      simpa using ((hasDerivAt_id r).const_mul (2 : ℝ)).sub_const (4 * M)
+    have := hexp.mul hlin
+    refine this.congr_deriv ?_
+    field_simp
+    ring
+  · rw [h42]; field_simp; ring
+  · rw [h42, he2]; ring
+  · have h1 : exp 1 ≠ 0 := (Real.exp_pos 1).ne'
+    rw [h42, Real.exp_neg, he2]
+    field_simp
+  · have h1 : exp 1 ≠ 0 := (Real.exp_pos 1).ne'
+    field_simp
 
 /-- 21:P1 — the innermost stable circular orbit of the exponential metric (`G = m = 1`, isotropic radius),
 with the circular-orbit relations of the paper's `prop:isco` taken as given and not formalised

@@ -7,10 +7,12 @@ accretion efficiency, the operational cut and the capacity ratio, the echo facto
 and the crossover (the root η against e^{−√x}, the crossover's slopes, the Tully–Fisher deep limit, the RAR identity,
 the discriminant against the simple interpolant), the turnaround radius, the preferred-frame scale, the gravitomagnetic
 dipole's Lense–Thirring rate and the ergosurface, the radiative dispersion and the helicity, the two readings of the nonlinear completion, the
-2PN periastron excess of PSR J0737−3039, the tilt and the scale-path probe, and the seeded Kuramoto chain of the
-flux-conservation lemma. Floats are allowed here and nowhere in the exact tiers; the standard library only. The Lean
+2PN periastron excess of PSR J0737−3039, the tilt and the scale-path probe, the seeded Kuramoto chain of the
+flux-conservation lemma, and the ringdown of the exponential reading (the eikonal pair and the ℓ = 2 mode of the chart's wave
+operator by third-order WKB along the tortoise coordinate, a truncated power series doing the derivatives; 00:E14). Floats are allowed here and nowhere in the exact tiers; the standard library only. The Lean
 side is lean/FrcLedger/Theme/Strong.lean (Mathlib, the brackets). Every comparison with measured data is [data].
 """
+import cmath
 import math
 import random
 
@@ -438,3 +440,170 @@ def apsidal_bound(ln_omega=LN_OMEGA, mercury=8.0e-8):
     log10_mercury = math.log10(mercury)
     return {"log10_bound": log10_bound, "log10_mercury": log10_mercury, "orders_above": log10_mercury - log10_bound,
             "log10_omega": log10_omega}
+
+
+# ---- the ringdown of the exponential reading: the eikonal pair and the phase mode (00:E14; 16 October 2026) ----------
+class Series:
+    """A truncated power series Σ c_k t^k in floats (order N): the derivatives of a composition read as k! c_k. Used for
+    the tortoise coordinate s (ds = m dr) of a static spherical chart: r(s) about a point and a potential V(r(s))."""
+    N = 8
+
+    def __init__(self, c):
+        self.c = (list(map(float, c)) + [0.0] * self.N)[:self.N]
+
+    @classmethod
+    def const(cls, x): return cls([x])
+
+    @classmethod
+    def var(cls, x0): return cls([x0, 1.0])
+
+    def __add__(self, o):
+        o = o if isinstance(o, Series) else Series.const(o)
+        return Series([a + b for a, b in zip(self.c, o.c)])
+    __radd__ = __add__
+
+    def __neg__(self): return Series([-a for a in self.c])
+
+    def __sub__(self, o): return self + (-(o if isinstance(o, Series) else Series.const(o)))
+
+    def __rsub__(self, o): return Series.const(o) - self
+
+    def __mul__(self, o):
+        if not isinstance(o, Series): return Series([a * o for a in self.c])
+        out = [0.0] * self.N
+        for i, a in enumerate(self.c):
+            if a == 0.0: continue
+            for j in range(self.N - i): out[i + j] += a * o.c[j]
+        return Series(out)
+    __rmul__ = __mul__
+
+    def inv(self):
+        """1/f for f with f(0) ≠ 0, by the recurrence b_0 = 1/a_0, b_n = −(Σ_{k≥1} a_k b_{n−k})/a_0."""
+        a = self.c; b = [0.0] * self.N; b[0] = 1.0 / a[0]
+        for n in range(1, self.N): b[n] = -sum(a[k] * b[n - k] for k in range(1, n + 1)) / a[0]
+        return Series(b)
+
+    def __truediv__(self, o): return self * (o.inv() if isinstance(o, Series) else 1.0 / o)
+
+    def __rtruediv__(self, o): return Series.const(o) * self.inv()
+
+    def __pow__(self, k):
+        out = Series.const(1.0)
+        for _ in range(k): out = out * self
+        return out
+
+    def exp(self):
+        """e^f by the recurrence g' = f' g: n g_n = Σ_{k≥1} k a_k g_{n−k}."""
+        a = self.c; g = [0.0] * self.N; g[0] = math.exp(a[0])
+        for n in range(1, self.N): g[n] = sum(k * a[k] * g[n - k] for k in range(1, n + 1)) / n
+        return Series(g)
+
+    def deriv(self, k):
+        """The k-th derivative at the expansion point, k! c_k."""
+        return math.factorial(k) * self.c[k]
+
+
+def tortoise_series(r0, drds):
+    """r(s) about s₀ with r(s₀) = r₀ and dr/ds = drds(r): the coefficients a_{k+1} = [drds(r)]_k/(k + 1), pass by pass."""
+    a = [r0] + [0.0] * (Series.N - 1)
+    for k in range(Series.N - 1):
+        g = drds(Series(a))
+        a[k + 1] = g.c[k] / (k + 1)
+    return Series(a)
+
+
+def potential_derivatives(V, drds, r0):
+    """V_k = d^k V/ds^k at r₀ for k = 0..6, the potential V(r) read along the tortoise coordinate."""
+    return [V(tortoise_series(r0, drds)).deriv(k) for k in range(7)]
+
+
+def potential_peak(V, drds, lo, hi, it=200):
+    """The maximum of V along s between the radii lo and hi: the root of V₁ by bisection (V₁ changes sign once there)."""
+    f = lambda r: potential_derivatives(V, drds, r)[1]
+    a, b = lo, hi
+    fa = f(a)
+    for _ in range(it):
+        m = 0.5 * (a + b); fm = f(m)
+        if (fa > 0) == (fm > 0): a, fa = m, fm
+        else: b = m
+    return 0.5 * (a + b)
+
+
+def wkb3(V, drds, lo, hi, n=0):
+    """The fundamental quasinormal frequency by the third-order WKB formula of Iyer and Will [import], the potential's
+    tortoise derivatives exact to the series order: (r_peak, ω) with ω² = V₀ + Λ − i(n + ½)√(−2V₂)(1 + Ω)."""
+    r0 = potential_peak(V, drds, lo, hi)
+    V0, V1, V2, V3, V4, V5, V6 = potential_derivatives(V, drds, r0)
+    a = n + 0.5
+    Lam = (1 / 8) * (V4 / V2) * (0.25 + a * a) - (1 / 288) * (V3 / V2) ** 2 * (7 + 60 * a * a)
+    Om = (1 / (-2 * V2)) * ((5 / 6912) * (V3 / V2) ** 4 * (77 + 188 * a * a)
+                            - (1 / 384) * (V3 ** 2 * V4 / V2 ** 3) * (51 + 100 * a * a)
+                            + (1 / 2304) * (V4 / V2) ** 2 * (67 + 68 * a * a)
+                            + (1 / 288) * (V3 * V5 / V2 ** 2) * (19 + 28 * a * a)
+                            - (1 / 288) * (V6 / V2) * (5 + 4 * a * a))
+    om2 = complex(V0 + Lam) - 1j * a * (-2 * V2) ** 0.5 * (1 + Om)
+    return r0, cmath.sqrt(om2)
+
+
+def exponential_drds(M=1.0):
+    """dr/ds = e^{−2M/r} on the exponential reading (ds = e^{2u} dr, u = M/r)."""
+    return lambda r: (-2.0 * M / r).exp()
+
+
+def exponential_potential(l, M=1.0, coupling="index"):
+    """The ℓ-potential on the exponential reading: the chart's wave operator's, e^{−4u}[ℓ(ℓ+1)/r² + 2M/r³ − M²/r⁴] (the wave
+    equation with the all-orders index e^{2u}, the one wave operator of the chart), or the Regge–Wheeler-type coupling e^{−4u}[ℓ(ℓ+1)/r² − 6M/r³ + 3M²/r⁴] [import]."""
+    L = l * (l + 1)
+    if coupling == "index":
+        return lambda r: (-4.0 * M / r).exp() * (L / r ** 2 + 2.0 * M / r ** 3 - M * M / r ** 4)
+    return lambda r: (-4.0 * M / r).exp() * (L / r ** 2 - 6.0 * M / r ** 3 + 3.0 * M * M / r ** 4)
+
+
+def schwarzschild(l, M=1.0, spin=0):
+    """Schwarzschild's controls: dr/ds = f = 1 − 2M/r and V = f(ℓ(ℓ+1)/r² + 2M(1 − s²)/r³) for spin s = 0 (scalar) or 2
+    (axial, the Regge–Wheeler potential)."""
+    L = l * (l + 1); c = 2.0 * M * (1 - spin * spin)
+    f = lambda r: 1.0 - 2.0 * M / r
+    return (lambda r: f(r) * (L / r ** 2 + c / r ** 3)), f
+
+
+def eikonal_pair(M=1.0):
+    """The eikonal pair of the exponential reading read off the series: Ω_c² = V₀ and λ² = −V₂/(2V₀) for the potential
+    e^{−4u}/r² at its peak; both equal 1/(2eM) in closed form (r_c = 2M, b_c = 2eM)."""
+    V = lambda r: (-4.0 * M / r).exp() / r ** 2
+    r0 = potential_peak(V, exponential_drds(M), 1.5 * M, 3.0 * M)
+    V0, V1, V2 = potential_derivatives(V, exponential_drds(M), r0)[:3]
+    return r0, math.sqrt(V0), math.sqrt(-V2 / (2 * V0)), 1.0 / (2 * math.e * M)
+
+
+def impact_series(M=1.0):
+    """h(r) = r² e^{4M/r} = b(r)² about r = 2M: h′(2M) and h″(2M) (the closed forms 0 and 2e²)."""
+    h = (lambda r: r ** 2 * (4.0 * M / r).exp())(Series.var(2.0 * M))
+    return h.deriv(1), h.deriv(2), 2 * math.e ** 2
+
+
+def ringdown_table():
+    """The ringdown numbers of 00:E14 in one table (floats here, read as Fractions by the ledger file): the eikonal pair and
+    the impact function's derivatives at 2M; the WKB3 controls against Leaver's Schwarzschild ℓ = 2 modes [import]; the
+    exponential reading's ℓ = 2 mode in the two couplings against the time-domain values of 21 September 2026; the eikonal
+    value (ℓ + ½)/(2eM) at ℓ = 2; the (2,2,0) shifts against Kerr's 0.373672 [import] and GW250114's half-widths
+    (δf̂₂₂₀ = 0.02 ± 0.02 at 90 % [data])."""
+    r0, om_c, lam, closed = eikonal_pair()
+    h1, h2, h2c = impact_series()
+    leaver = {0: complex(0.483644, -0.096759), 2: complex(0.373672, -0.088962)}
+    ctrl = {}
+    for spin in (0, 2):
+        V, f = schwarzschild(2, spin=spin)
+        ctrl[spin] = wkb3(V, f, 2.5, 4.0)[1]
+    _, mode = wkb3(exponential_potential(2), exponential_drds(), 1.5, 3.0)
+    _, rw = wkb3(exponential_potential(2, coupling="rw"), exponential_drds(), 1.5, 3.0)
+    td, td_rw = complex(0.464149, -0.092253), complex(0.344778, -0.085086)
+    eik = 2.5 / (2 * E)
+    kerr = 0.373672
+    ratio = 3 * math.sqrt(3) / (2 * E)
+    shifts = {"phase": td.real / kerr - 1, "eikonal": ratio - 1, "rw": td_rw.real / kerr - 1}
+    half = {k: (v - 0.02) / 0.02 for k, v in shifts.items()}
+    return {"r_c": r0, "omega_c": om_c, "lambda": lam, "closed": closed, "h1": h1, "h2": h2, "h2_closed": h2c, "ratio": ratio,
+            "controls": ctrl, "control_error": max(abs(ctrl[s] - leaver[s]) for s in (0, 2)),
+            "mode": mode, "mode_error": abs(mode - td), "rw": rw, "rw_error": abs(rw - td_rw),
+            "mode_over_eikonal": mode.real / eik, "shifts": shifts, "half_widths": half}

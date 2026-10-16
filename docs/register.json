@@ -2,19 +2,19 @@
  "header": {
   "generated": "16 October 2026",
   "schema": "frc-register/2",
-  "rows": 991,
-  "theorems": 977,
+  "rows": 992,
+  "theorems": 978,
   "counts": {
-   "keys": 977,
-   "rows": 991,
+   "keys": 978,
+   "rows": 992,
    "shared": 14,
    "by_tag": {
-    "D": 133,
+    "D": 134,
     "G": 1,
     "I": 114,
-    "O": 11,
+    "O": 10,
     "R": 81,
-    "T": 609,
+    "T": 610,
     "Ω": 28
    }
   },
@@ -81,7 +81,7 @@
      }
     ],
     "legend": [],
-    "rows": 123
+    "rows": 124
    },
    {
     "key": "1-alg",
@@ -2226,9 +2226,9 @@
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22028",
-    "script": "p22_quantum.py",
-    "line": 1323,
+    "href": "frc/ledgers/master/extension.html#p22028",
+    "script": "frc/ledgers/master/extension.py",
+    "line": 213,
     "verdict": "pass"
    },
    "declarations": [
@@ -2680,9 +2680,7 @@
    "origin_row": "00:D10",
    "tag": "R",
    "tier": null,
-   "check": {
-    "script": "22:p22_quantum.py"
-   },
+   "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -2771,7 +2769,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00052",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 110,
+    "line": 118,
     "verdict": "pass"
    },
    "declarations": [
@@ -2797,7 +2795,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00154",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 145,
+    "line": 153,
     "verdict": "pass"
    },
    "declarations": [
@@ -2823,7 +2821,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00055",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 181,
+    "line": 189,
     "verdict": "pass"
    },
    "declarations": [
@@ -2848,7 +2846,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00056",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 220,
+    "line": 228,
     "verdict": "pass"
    },
    "declarations": [
@@ -2873,7 +2871,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00176",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 258,
+    "line": 266,
     "verdict": "pass"
    },
    "declarations": [
@@ -2899,7 +2897,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00058",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 296,
+    "line": 304,
     "verdict": "pass"
    },
    "declarations": [
@@ -2930,7 +2928,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00147",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 329,
+    "line": 337,
     "verdict": "pass"
    },
    "declarations": [
@@ -2970,7 +2968,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00199",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 392,
+    "line": 400,
     "verdict": "pass"
    },
    "declarations": [
@@ -2985,6 +2983,48 @@
     "00:E12"
    ],
    "realisations": []
+  },
+  {
+   "key": "p00200",
+   "origin": "00",
+   "statement": "\\textbf{The strong-field wave operator} (declared): on the exponential reading (E4) the one wave operator is the chart's $\\Box_g$, 21-gravity's wave equation with the all-orders index $e^{2u}$ ($\\sqrt{-g}\\,g^{tt}=-e^{4u}$), acting on the cell's one phase. The chart is horizonless, continued to the floor $r_f=2M/\\ln\\Om$ where $e^{2u}=\\Om$ (E5) [chart]. The quoted ringdown is the eikonal limit (E14); the $(2,2,0)$ reading is open.",
+   "origin_row": "00:E13",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "00:E13"
+   ]
+  },
+  {
+   "key": "p00201",
+   "origin": "00",
+   "statement": "\\textbf{The eikonal pair}: on the exponential reading (E4) the photon sphere sits at $r_c=2M$, $b_c=2eM$, and the orbital rate equals the Lyapunov rate, $\\Omega_c=\\lambda=1/(2eM)$, both $3\\sqrt3/(2e)$ of Schwarzschild's. The wave operator's $\\ell=2$ mode (E13) is $(0.4641-0.0923\\,i)/M$ [approx], $+24\\%$ against Kerr's $(2,2,0)$ [import] and $0.8\\%$ above the eikonal $(\\ell+\\tfrac12)/(2eM)$.",
+   "origin_row": "00:E14",
+   "tag": "T",
+   "tier": 2,
+   "check": {
+    "href": "frc/ledgers/master/gravity.html#p00201",
+    "script": "frc/ledgers/master/gravity.py",
+    "line": 482,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Keys/Chart",
+     "name": "FRC.LedgerML.p00201"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "00:E14"
+   ],
+   "realisations": [
+    "p00055"
+   ]
   },
   {
    "key": "p00059",
@@ -3661,9 +3701,7 @@
    "origin_row": "00:P2",
    "tag": "T",
    "tier": null,
-   "check": {
-    "script": "22:p22_quantum.py"
-   },
+   "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -3713,20 +3751,6 @@
    "realisations": [
     "p00047",
     "p27012"
-   ]
-  },
-  {
-   "key": "p00098",
-   "origin": "00",
-   "statement": "The physical $\\ell=2$ quasinormal spectrum and the $O(J^{2})$ rotational multipoles (Hartle--Thorne programme); the quoted ringdown is eikonal.",
-   "origin_row": "00:T5",
-   "tag": "O",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "00:T5"
    ]
   },
   {
@@ -16378,7 +16402,7 @@
   {
    "key": "p21049",
    "origin": "21",
-   "statement": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, ringdown $-4.4\\%$, ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
+   "statement": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, eikonal ringdown $-4.4\\%$ (the $(2,2,0)$ reading open, GW250114 the exposure; master E13, E14), ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
    "origin_row": "21:P1",
    "tag": "T",
    "tier": 2,
@@ -16853,12 +16877,7 @@
    "origin_row": "22:A2",
    "tag": "I",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22002",
-    "script": "p22_quantum.py",
-    "line": 436,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -16916,12 +16935,7 @@
    "origin_row": "22:A5",
    "tag": "Ω",
    "tier": 2,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22005",
-    "script": "p22_quantum.py",
-    "line": 1389,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcLedger",
@@ -17095,12 +17109,7 @@
    "origin_row": "22:C1",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22017",
-    "script": "p22_quantum.py",
-    "line": 179,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17131,12 +17140,7 @@
    "origin_row": "22:C2",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22018",
-    "script": "p22_quantum.py",
-    "line": 179,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17162,12 +17166,7 @@
    "origin_row": "22:C3",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22019",
-    "script": "p22_quantum.py",
-    "line": 202,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17203,12 +17202,7 @@
    "origin_row": "22:C4",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22020",
-    "script": "p22_quantum.py",
-    "line": 172,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17229,12 +17223,7 @@
    "origin_row": "22:C5",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22021",
-    "script": "p22_quantum.py",
-    "line": 234,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17255,12 +17244,7 @@
    "origin_row": "22:C6",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22022",
-    "script": "p22_quantum.py",
-    "line": 283,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17291,12 +17275,7 @@
    "origin_row": "22:C7",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22023",
-    "script": "p22_quantum.py",
-    "line": 218,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17337,12 +17316,7 @@
    "origin_row": "22:C8",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22024",
-    "script": "p22_quantum.py",
-    "line": 344,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17383,12 +17357,7 @@
    "origin_row": "22:C9",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22025",
-    "script": "p22_quantum.py",
-    "line": 222,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17419,12 +17388,7 @@
    "origin_row": "22:C10",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22026",
-    "script": "p22_quantum.py",
-    "line": 1162,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17477,12 +17441,7 @@
    "origin_row": "22:C11",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22027",
-    "script": "p22_quantum.py",
-    "line": 1181,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17526,12 +17485,7 @@
    "origin_row": "22:C13",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22029",
-    "script": "p22_quantum.py",
-    "line": 296,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17557,12 +17511,7 @@
    "origin_row": "22:C14",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22030",
-    "script": "p22_quantum.py",
-    "line": 1078,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17618,12 +17567,7 @@
    "origin_row": "22:C15",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22031",
-    "script": "p22_quantum.py",
-    "line": 749,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17666,12 +17610,7 @@
    "origin_row": "22:C16",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22032",
-    "script": "p22_quantum.py",
-    "line": 617,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17702,12 +17641,7 @@
    "origin_row": "22:C17",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22033",
-    "script": "p22_quantum.py",
-    "line": 635,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17758,12 +17692,7 @@
    "origin_row": "22:C18",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22034",
-    "script": "p22_quantum.py",
-    "line": 855,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17789,12 +17718,7 @@
    "origin_row": "22:C19",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22035",
-    "script": "p22_quantum.py",
-    "line": 924,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17830,12 +17754,7 @@
    "origin_row": "22:C20",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22036",
-    "script": "p22_quantum.py",
-    "line": 973,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17866,12 +17785,7 @@
    "origin_row": "22:C21",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22037",
-    "script": "p22_quantum.py",
-    "line": 1291,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17909,12 +17823,7 @@
    "origin_row": "22:C22",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22038",
-    "script": "p22_quantum.py",
-    "line": 1034,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17950,12 +17859,7 @@
    "origin_row": "22:C23",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22039",
-    "script": "p22_quantum.py",
-    "line": 1481,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17986,12 +17890,7 @@
    "origin_row": "22:C24",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22040",
-    "script": "p22_quantum.py",
-    "line": 261,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18022,12 +17921,7 @@
    "origin_row": "22:C25",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22041",
-    "script": "p22_quantum.py",
-    "line": 649,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18061,12 +17955,7 @@
    "origin_row": "22:C26",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22042",
-    "script": "p22_quantum.py",
-    "line": 677,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18107,12 +17996,7 @@
    "origin_row": "22:C27",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22043",
-    "script": "p22_quantum.py",
-    "line": 1554,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18138,12 +18022,7 @@
    "origin_row": "22:P1",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22052",
-    "script": "p22_quantum.py",
-    "line": 952,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18181,12 +18060,7 @@
    "origin_row": "22:P2",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22053",
-    "script": "p22_quantum.py",
-    "line": 353,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18219,12 +18093,7 @@
    "origin_row": "22:P3",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22054",
-    "script": "p22_quantum.py",
-    "line": 877,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18263,12 +18132,7 @@
    "origin_row": "22:P4",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22055",
-    "script": "p22_quantum.py",
-    "line": 571,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18301,12 +18165,7 @@
    "origin_row": "22:P5",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22056",
-    "script": "p22_quantum.py",
-    "line": 1096,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18347,12 +18206,7 @@
    "origin_row": "22:X1",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22044",
-    "script": "p22_quantum.py",
-    "line": 218,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18393,12 +18247,7 @@
    "origin_row": "22:X2",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22045",
-    "script": "p22_quantum.py",
-    "line": 296,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18424,12 +18273,7 @@
    "origin_row": "22:X3",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22046",
-    "script": "p22_quantum.py",
-    "line": 202,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18455,12 +18299,7 @@
    "origin_row": "22:X4",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22047",
-    "script": "p22_quantum.py",
-    "line": 1507,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18491,12 +18330,7 @@
    "origin_row": "22:X5",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22048",
-    "script": "p22_quantum.py",
-    "line": 261,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18527,12 +18361,7 @@
    "origin_row": "22:X6",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22049",
-    "script": "p22_quantum.py",
-    "line": 1181,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18568,12 +18397,7 @@
    "origin_row": "22:X7",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22050",
-    "script": "p22_quantum.py",
-    "line": 649,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18604,12 +18428,7 @@
    "origin_row": "22:X8",
    "tag": "T",
    "tier": 0,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22051",
-    "script": "p22_quantum.py",
-    "line": 344,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18654,12 +18473,7 @@
    "origin_row": "22:Z2",
    "tag": "Ω",
    "tier": 2,
-   "check": {
-    "href": "frc/ledgers/p22_quantum.html#p22061",
-    "script": "p22_quantum.py",
-    "line": 1400,
-    "verdict": "pass"
-   },
+   "check": null,
    "declarations": [
     {
      "lib": "FrcLedger",
@@ -26985,7 +26799,7 @@
    "source": "22-qm, 1-alg",
    "page": "00-ledger.html#C10",
    "witness": {
-    "script": "22:p22_quantum.py",
+    "script": null,
     "py": {
      "href": "frc/ledgers/master/extension.html#p00030",
      "script": "frc/ledgers/master/extension.py",
@@ -27010,7 +26824,7 @@
     "22-qm",
     "1-alg"
    ],
-   "text": "Two strata of probability: A registered probability is a framed rational; a structural weight is an element of the parity-even cyclotomic subring. The strata coincide exactly on the stationary core-valued $Q_4$ sector, joined by two proved reductions and the stratum-sampling clause (D10). On a single Object the weights are uniform over the fibres (22-qm Rem. borndomain); non-uniform statistics arrive through the engineered-core readout. 22-qm, 1-alg 22:p22_quantum.py"
+   "text": "Two strata of probability: A registered probability is a framed rational; a structural weight is an element of the parity-even cyclotomic subring. The strata coincide exactly on the stationary core-valued $Q_4$ sector, joined by two proved reductions and the stratum-sampling clause (D10). On a single Object the weights are uniform over the fibres (22-qm Rem. borndomain); non-uniform statistics arrive through the engineered-core readout. 22-qm, 1-alg"
   },
   {
    "paper": "00",
@@ -27025,7 +26839,7 @@
    "source": "22-qm",
    "page": "00-ledger.html#C11",
    "witness": {
-    "script": "22:p22_quantum.py",
+    "script": null,
     "py": {
      "href": "frc/ledgers/master/extension.html#p22028",
      "script": "frc/ledgers/master/extension.py",
@@ -27049,7 +26863,7 @@
    "sources": [
     "22-qm"
    ],
-   "text": "Pair-tally uniqueness: Pair-tally uniqueness (22-qm Prop. gleason, the uniqueness of the pair tally on the stationary $Q_4$ sector): on the stationary core-valued $Q_4$ sector, tally-valued, fibre-additive, drive-invariant, parity-even registration functionals form the character cone fixed by the pure windings; adding channel-selectivity (assumed, not derived; the sampling clause D10) picks the Born ray. The minimal degree is forced; proof shape: 22-qm. 22-qm 22:p22_quantum.py"
+   "text": "Pair-tally uniqueness: Pair-tally uniqueness (22-qm Prop. gleason, the uniqueness of the pair tally on the stationary $Q_4$ sector): on the stationary core-valued $Q_4$ sector, tally-valued, fibre-additive, drive-invariant, parity-even registration functionals form the character cone fixed by the pure windings; adding channel-selectivity (assumed, not derived; the sampling clause D10) picks the Born ray. The minimal degree is forced; proof shape: 22-qm. 22-qm"
   },
   {
    "paper": "00",
@@ -27685,7 +27499,7 @@
    "source": "22-qm, 21-grav",
    "page": "00-ledger.html#D10",
    "witness": {
-    "script": "22:p22_quantum.py",
+    "script": null,
     "py": null,
     "lean": []
    },
@@ -27694,7 +27508,7 @@
     "22-qm",
     "21-grav"
    ],
-   "text": "The unified sampling clause: A registration protocol samples one stratum of a drive-presented ensemble. Over complete joint recurrences the counts are forced exact tallies (22-qm Rem. strata), on incomplete batches the largest-remainder gauge, shared by the quantum readout and the gravity crossover. Falsifier: outcome tallies over a complete joint recurrence that are not exact ratios, or a fixed-setting protocol sampling more than one stratum. 22-qm, 21-grav 22:p22_quantum.py"
+   "text": "The unified sampling clause: A registration protocol samples one stratum of a drive-presented ensemble. Over complete joint recurrences the counts are forced exact tallies (22-qm Rem. strata), on incomplete batches the largest-remainder gauge, shared by the quantum readout and the gravity crossover. Falsifier: outcome tallies over a complete joint recurrence that are not exact ratios, or a fixed-setting protocol sampling more than one stratum. 22-qm, 21-grav"
   },
   {
    "paper": "00",
@@ -27860,7 +27674,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00052",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 110,
+     "line": 118,
      "verdict": "pass"
     },
     "lean": [
@@ -27898,7 +27712,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00154",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 145,
+     "line": 153,
      "verdict": "pass"
     },
     "lean": [
@@ -27938,7 +27752,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00055",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 181,
+     "line": 189,
      "verdict": "pass"
     },
     "lean": [
@@ -27977,7 +27791,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00056",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 220,
+     "line": 228,
      "verdict": "pass"
     },
     "lean": [
@@ -28015,7 +27829,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00176",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 258,
+     "line": 266,
      "verdict": "pass"
     },
     "lean": [
@@ -28057,7 +27871,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00058",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 296,
+     "line": 304,
      "verdict": "pass"
     },
     "lean": [
@@ -28100,7 +27914,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00147",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 329,
+     "line": 337,
      "verdict": "pass"
     },
     "lean": [
@@ -28165,7 +27979,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00199",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 392,
+     "line": 400,
      "verdict": "pass"
     },
     "lean": [
@@ -28187,6 +28001,73 @@
     "21-grav"
    ],
    "text": "The chart count: The chart count: a homogeneous chart on the $\\Om$ registrations, flat to the horizon radius in $d$ dimensions, holds the $\\mathbb Z^{d}$ ball of that radius; for $d\\ge2$ the ball exceeds $\\Om$, for $d=1$ it fits. The one chart flat to the horizon radius is the drive's scale-time direction (E11); a three-chart of curvature radius $\\sqrt\\Om$ needs $\\Om^{3/2}$ cells (A2). 21-grav"
+  },
+  {
+   "paper": "00",
+   "no": 0,
+   "rid": "00:E13",
+   "key": "p00200",
+   "label": "E13",
+   "block": "E",
+   "tag": "D",
+   "name": "The strong-field wave operator (declared)",
+   "statement": "\\textbf{The strong-field wave operator} (declared): on the exponential reading (E4) the one wave operator is the chart's $\\Box_g$, 21-gravity's wave equation with the all-orders index $e^{2u}$ ($\\sqrt{-g}\\,g^{tt}=-e^{4u}$), acting on the cell's one phase. The chart is horizonless, continued to the floor $r_f=2M/\\ln\\Om$ where $e^{2u}=\\Om$ (E5) [chart]. The quoted ringdown is the eikonal limit (E14); the $(2,2,0)$ reading is open.",
+   "source": "21-grav",
+   "page": "00-ledger.html#E13",
+   "witness": {
+    "script": null,
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00055",
+    "p00056",
+    "p00201"
+   ],
+   "sources": [
+    "21-grav"
+   ],
+   "text": "The strong-field wave operator (declared): The strong-field wave operator (declared): on the exponential reading (E4) the one wave operator is the chart's $\\Box_g$, 21-gravity's wave equation with the all-orders index $e^{2u}$ ($\\sqrt{-g} g^{tt}=-e^{4u}$), acting on the cell's one phase. The chart is horizonless, continued to the floor $r_f=2M/\\ln\\Om$ where $e^{2u}=\\Om$ (E5) [chart]. The quoted ringdown is the eikonal limit (E14); the $(2,2,0)$ reading is open. 21-grav"
+  },
+  {
+   "paper": "00",
+   "no": 0,
+   "rid": "00:E14",
+   "key": "p00201",
+   "label": "E14",
+   "block": "E",
+   "tag": "T",
+   "name": "The eikonal pair and the phase mode",
+   "statement": "\\textbf{The eikonal pair}: on the exponential reading (E4) the photon sphere sits at $r_c=2M$, $b_c=2eM$, and the orbital rate equals the Lyapunov rate, $\\Omega_c=\\lambda=1/(2eM)$, both $3\\sqrt3/(2e)$ of Schwarzschild's. The wave operator's $\\ell=2$ mode (E13) is $(0.4641-0.0923\\,i)/M$ [approx], $+24\\%$ against Kerr's $(2,2,0)$ [import] and $0.8\\%$ above the eikonal $(\\ell+\\tfrac12)/(2eM)$.",
+   "source": "21-grav",
+   "page": "00-ledger.html#E14",
+   "witness": {
+    "script": null,
+    "py": {
+     "href": "frc/ledgers/master/gravity.html#p00201",
+     "script": "frc/ledgers/master/gravity.py",
+     "line": 482,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Keys/Chart",
+      "name": "FRC.LedgerML.p00201",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00201"
+     }
+    ]
+   },
+   "refs": [
+    "p00055",
+    "p00200"
+   ],
+   "sources": [
+    "21-grav"
+   ],
+   "text": "The eikonal pair and the phase mode: The eikonal pair: on the exponential reading (E4) the photon sphere sits at $r_c=2M$, $b_c=2eM$, and the orbital rate equals the Lyapunov rate, $\\Omega_c=\\lambda=1/(2eM)$, both $3\\sqrt3/(2e)$ of Schwarzschild's. The wave operator's $\\ell=2$ mode (E13) is $(0.4641-0.0923 i)/M$ [approx], $+24%$ against Kerr's $(2,2,0)$ [import] and $0.8%$ above the eikonal $(\\ell+\\tfrac12)/(2eM)$. 21-grav"
   },
   {
    "paper": "00",
@@ -28229,7 +28110,7 @@
    "source": "22-qm",
    "page": "00-ledger.html#F2",
    "witness": {
-    "script": "22:p22_quantum.py",
+    "script": null,
     "py": {
      "href": "frc/ledgers/master/quantum.html#p00191",
      "script": "frc/ledgers/master/quantum.py",
@@ -28253,7 +28134,7 @@
    "sources": [
     "22-qm"
    ],
-   "text": "Multi-body registration: Multi-body registration: an unequal-cycle composite returning below $\\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over every joint recurrence below $\\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel). 22-qm 22:p22_quantum.py"
+   "text": "Multi-body registration: Multi-body registration: an unequal-cycle composite returning below $\\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over every joint recurrence below $\\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel). 22-qm"
   },
   {
    "paper": "00",
@@ -29231,7 +29112,7 @@
    "source": "22-qm (B8/C21)",
    "page": "predictions.html#P2",
    "witness": {
-    "script": "22:p22_quantum.py",
+    "script": null,
     "py": null,
     "lean": []
    },
@@ -29243,7 +29124,7 @@
    "sources": [
     "22-qm"
    ],
-   "text": "The coherent-fraction channel: Equal force, unequal entanglement (D5): sources gravitate by full masses; synchronised cross-source pairs carry the conditional phase $f_1f_2\\varphi_N$, spread pairs imprint which-branch data, the incoherent channel separable at generic geometry ($C=0$ at $f=0$); $f=m_c/m$ microscopic. The discriminator is the calibrated conditional phase rate at fixed centre-of-mass superposition. Falsifier: a calibrated conditional phase rate off $f_1f_2\\varphi_N$. Confrontation: none, filed before data. 22-qm (B8/C21) 22:p22_quantum.py"
+   "text": "The coherent-fraction channel: Equal force, unequal entanglement (D5): sources gravitate by full masses; synchronised cross-source pairs carry the conditional phase $f_1f_2\\varphi_N$, spread pairs imprint which-branch data, the incoherent channel separable at generic geometry ($C=0$ at $f=0$); $f=m_c/m$ microscopic. The discriminator is the calibrated conditional phase rate at fixed centre-of-mass superposition. Falsifier: a calibrated conditional phase rate off $f_1f_2\\varphi_N$. Confrontation: none, filed before data. 22-qm (B8/C21)"
   },
   {
    "paper": "00",
@@ -29305,29 +29186,6 @@
     "32-dark"
    ],
    "text": "Exclusion predictions: No fourth generation, no fifth force, an empty desert, no TeV supersymmetry, no new dark-matter particle, no beyond-SM $(g{-}2)_\\mu$, and the proton effectively stable ($\\tau_p\\gtrsim10^{45}$ yr; G9). Entailed by the closed ladder of the rank-five frame ($\\dim\\Lambda^{\\mathrm{even}}=16$, D6), given the role-to-matter realisation (27:B6, 27:C10) and completeness (A3). Falsifier: any excluded object observed. Confrontation: none observed. 27-fld (B6/C10), 32-dark 27:missing_rank.py"
-  },
-  {
-   "paper": "00",
-   "no": 0,
-   "rid": "00:T5",
-   "key": "p00098",
-   "label": "T5",
-   "block": "T",
-   "tag": "O",
-   "name": "The physical ℓ=2 quasinormal spectrum and the O(J2) rotational",
-   "statement": "The physical $\\ell=2$ quasinormal spectrum and the $O(J^{2})$ rotational multipoles (Hartle--Thorne programme); the quoted ringdown is eikonal.",
-   "source": "21-grav",
-   "page": "00-ledger.html#T5",
-   "witness": {
-    "script": null,
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "sources": [
-    "21-grav"
-   ],
-   "text": "The physical ℓ=2 quasinormal spectrum and the O(J2) rotational: The physical $\\ell=2$ quasinormal spectrum and the $O(J^{2})$ rotational multipoles (Hartle–Thorne programme); the quoted ringdown is eikonal. 21-grav"
   },
   {
    "paper": "00",
@@ -47429,7 +47287,7 @@
    "block": "P",
    "tag": "T",
    "name": null,
-   "statement": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, ringdown $-4.4\\%$, ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
+   "statement": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, eikonal ringdown $-4.4\\%$ (the $(2,2,0)$ reading open, GW250114 the exposure; master E13, E14), ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
    "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}\\newline \\pywit{gravity}{p21049}{P1}, \\leanwit{FrcLedger}{p21049}{P1}; rests on B2, C11, C12, 00:E4 \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
    "page": "21-gravity/index.html#P1",
    "witness": {
@@ -47476,11 +47334,12 @@
    },
    "refs": [
     "p00055",
+    "p00201",
     "p21011",
     "p21026",
     "p21027"
    ],
-   "text": "Strong-field signatures at or outside the photon sphere: shadow $+4.6%$, ringdown $-4.4%$, ISCO frequency $-6.9%$ with accretion efficiency $5.48%$ (against $5.72%$): one origin, jointly falsifiable, conditional on Theorem thm:branch's inputs alone. \\Ssub:strongdata, Prop. prop:shadow, prop:isco p21049, FrcLedger{P1}; rests on B2, C11, C12, 00:E4 Gravity.photon_sphere, Gravity.shadow_bracket, Gravity.isco, Gravity.isco_efficiency"
+   "text": "Strong-field signatures at or outside the photon sphere: shadow $+4.6%$, eikonal ringdown $-4.4%$ (the $(2,2,0)$ reading open, GW250114 the exposure; master E13, E14), ISCO frequency $-6.9%$ with accretion efficiency $5.48%$ (against $5.72%$): one origin, jointly falsifiable, conditional on Theorem thm:branch's inputs alone. \\Ssub:strongdata, Prop. prop:shadow, prop:isco p21049, FrcLedger{P1}; rests on B2, C11, C12, 00:E4 Gravity.photon_sphere, Gravity.shadow_bracket, Gravity.isco, Gravity.isco_efficiency"
   },
   {
    "paper": "21-grav",
@@ -48070,12 +47929,7 @@
    "source": "\\citep{akhtman2026dirac,lidl1997}\\newline \\pywit{quantum}{p22002}{A2}, \\leanwit{FrcCore}{p22002}{A2} \\lean{FRC.Subject.channel, FRC.Subject.horizon\\_generator, FRC.Observation.torus\\_conj\\_inv}",
    "page": "22-quantum/index.html#A2",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22002",
-     "script": "p22_quantum.py",
-     "line": 436,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -48159,12 +48013,7 @@
    "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22005}{A5}, \\leanwit{FrcLedger}{p22005}{A5} \\lean{Qm.omega\\_floors}",
    "page": "22-quantum/index.html#A5",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22005",
-     "script": "p22_quantum.py",
-     "line": 1389,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcLedger",
@@ -48424,12 +48273,7 @@
    "source": "Lem.~\\ref{lem:powermaps}\\newline \\pywit{quantum}{p22017}{C1}, \\leanwit{FrcCore}{p22017}{C1} \\lean{FRC.Observation.power\\_maps, FRC.Observation.roots\\_of\\_order, FRC.Observation.character\\_is\\_power\\_map}",
    "page": "22-quantum/index.html#C1",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22017",
-     "script": "p22_quantum.py",
-     "line": 179,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -48473,12 +48317,7 @@
    "source": "Prop.~\\ref{prop:stationary}\\newline \\pywit{quantum}{p22018}{C2}, \\leanwit{FrcCore}{p22018}{C2} \\lean{FRC.Observation.stationary, FRC.Observation.stationary\\_modes}",
    "page": "22-quantum/index.html#C2",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22018",
-     "script": "p22_quantum.py",
-     "line": 179,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -48514,12 +48353,7 @@
    "source": "Prop.~\\ref{prop:basis}\\newline \\pywit{quantum}{p22019}{C3}, \\leanwit{FrcCore}{p22019}{C3} \\lean{FRC.Observation.orthogonality, FRC.Observation.parseval, FRC.Extension.Tally.fourier\\_inversion, FRC.Extension.Tally.dft\\_det}",
    "page": "22-quantum/index.html#C3",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22019",
-     "script": "p22_quantum.py",
-     "line": 202,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -48571,12 +48405,7 @@
    "source": "Prop.~\\ref{prop:selection}\\newline \\pywit{quantum}{p22020}{C4}, \\leanwit{FrcCore}{p22020}{C4} \\lean{FRC.Observation.selection}",
    "page": "22-quantum/index.html#C4",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22020",
-     "script": "p22_quantum.py",
-     "line": 172,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -48604,12 +48433,7 @@
    "source": "Prop.~\\ref{prop:lueders}\\newline \\pywit{quantum}{p22021}{C5}, \\leanwit{FrcCore}{p22021}{C5} \\lean{FRC.Observation.lueders}",
    "page": "22-quantum/index.html#C5",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22021",
-     "script": "p22_quantum.py",
-     "line": 234,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -48637,12 +48461,7 @@
    "source": "Lem.~\\ref{lem:involution}, Prop.~\\ref{prop:reduction},~\\ref{prop:paircount}, \\citep{akhtman2026dirac}\\newline \\pywit{quantum}{p22022}{C6}, \\leanwit{FrcCore}{p22022}{C6} \\lean{FRC.Observation.frobenius\\_unique, FRC.Observation.torus\\_conj\\_inv, FRC.Observation.exponent\\_negation}",
    "page": "22-quantum/index.html#C6",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22022",
-     "script": "p22_quantum.py",
-     "line": 283,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -48686,12 +48505,7 @@
    "source": "Prop.~\\ref{prop:paircount}, Lem.~\\ref{lem:registered}\\newline \\pywit{quantum}{p22023}{C7}, \\leanwit{FrcCore}{p22023}{C7}, \\leanwit{FrcLedger}{p22023}{C7} \\lean{FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Observation.parseval, FRC.Quantum.dephasing, Qm.pair\\_count\\_tally}",
    "page": "22-quantum/index.html#C7",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22023",
-     "script": "p22_quantum.py",
-     "line": 218,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -48751,12 +48565,7 @@
    "source": "Cor.~\\ref{cor:sorkin}\\newline \\pywit{quantum}{p22024}{C8}, \\leanwit{FrcCore}{p22024}{C8}, \\leanwit{FrcLedger}{p22024}{C8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Interference.sorkin\\_second, FRC.Interference.sorkin\\_second\\_witness, Qm.sorkin\\_hierarchy, Qm.sorkin\\_second\\_witness}",
    "page": "22-quantum/index.html#C8",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22024",
-     "script": "p22_quantum.py",
-     "line": 344,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -48816,12 +48625,7 @@
    "source": "Prop.~\\ref{prop:reduction}\\newline \\pywit{quantum}{p22025}{C9}, \\leanwit{FrcCore}{p22025}{C9} \\lean{FRC.Observation.reduce\\_add, FRC.Observation.reduce\\_mul, FRC.Observation.reduce\\_wrap}",
    "page": "22-quantum/index.html#C9",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22025",
-     "script": "p22_quantum.py",
-     "line": 222,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -48865,12 +48669,7 @@
    "source": "Thm.~\\ref{thm:born}, Prop.~\\ref{prop:strata}, Def.~\\ref{def:registered}, Rem.~\\ref{rem:ergodic}\\newline \\pywit{quantum}{p22026}{C10}, \\leanwit{FrcCore}{p22026}{C10} \\lean{FRC.Extension.two\\_way\\_tally, FRC.Extension.core\\_weights, FRC.Extension.root\\_two\\_two\\_way, FRC.Extension.framed\\_readout, FRC.Observation.window\\_lift, FRC.Observation.pure\\_winding\\_weight, FRC.Quantum.joint\\_recurrence}",
    "page": "22-quantum/index.html#C10",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22026",
-     "script": "p22_quantum.py",
-     "line": 1162,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -48950,12 +48749,7 @@
    "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; rests on B4, C10, 00:D10\\newline \\pywit{quantum}{p22027}{C11}, \\leanwit{FrcCore}{p22027}{C11} \\lean{FRC.Extension.conjugate\\_pair\\_tally, FRC.Extension.trace\\_recurrence, FRC.Extension.dial\\_shift, FRC.Extension.dial\\_tally, FRC.Extension.framed\\_readout}",
    "page": "22-quantum/index.html#C11",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22027",
-     "script": "p22_quantum.py",
-     "line": 1181,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49020,12 +48814,7 @@
    "source": "Prop.~\\ref{prop:gleason}\\newline \\pywit{quantum}{p22028}{C12}, \\leanwit{FrcCore}{p22028}{C12} \\lean{FRC.Extension.Tally.winding\\_fixing, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.two\\_way, FRC.Extension.Tally.fourier\\_inversion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.Tally.dft\\_det, FRC.Extension.Tally.cone\\_boundary, FRC.Extension.Tally.linear\\_exclusion}",
    "page": "22-quantum/index.html#C12",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22028",
-     "script": "p22_quantum.py",
-     "line": 1323,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49112,12 +48901,7 @@
    "source": "Prop.~\\ref{prop:gaussian}\\newline \\pywit{quantum}{p22029}{C13}, \\leanwit{FrcCore}{p22029}{C13} \\lean{FRC.Observation.shared\\_core, FRC.Observation.no\\_quarter\\_turn}",
    "page": "22-quantum/index.html#C13",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22029",
-     "script": "p22_quantum.py",
-     "line": 296,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49153,12 +48937,7 @@
    "source": "Prop.~\\ref{prop:granularity}\\newline \\pywit{quantum}{p22030}{C14}, \\leanwit{FrcCore}{p22030}{C14}, \\leanwit{FrcLedger}{p22030}{C14} \\lean{FRC.Interference.hadamard\\_even, FRC.Interference.hadamard\\_odd, FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, Qm.gaussian\\_layers, Qm.gaussian\\_minimal, Qm.gaussian\\_norm, Qm.tally\\_norm\\_eq}",
    "page": "22-quantum/index.html#C14",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22030",
-     "script": "p22_quantum.py",
-     "line": 1078,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49242,12 +49021,7 @@
    "source": "Prop.~\\ref{prop:offset}, Lem.~\\ref{lem:mbody}\\newline \\pywit{quantum}{p22031}{C15}, \\leanwit{FrcCore}{p22031}{C15} \\lean{FRC.Composite.offset\\_invariant, FRC.Composite.cluster\\_offset, FRC.Composite.locked\\_norm, FRC.Composite.spread\\_average, FRC.Quantum.pair\\_offset}",
    "page": "22-quantum/index.html#C15",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22031",
-     "script": "p22_quantum.py",
-     "line": 749,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49310,12 +49084,7 @@
    "source": "Prop.~\\ref{prop:doublet},~\\ref{prop:sigmax}\\newline \\pywit{quantum}{p22032}{C16}, \\leanwit{FrcCore}{p22032}{C16} \\lean{FRC.Composite.half\\_turn\\_sixteen, FRC.Composite.doublet\\_readout, FRC.Composite.carrier\\_641}",
    "page": "22-quantum/index.html#C16",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22032",
-     "script": "p22_quantum.py",
-     "line": 617,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49359,12 +49128,7 @@
    "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{prop:boundary}\\newline \\pywit{quantum}{p22033}{C17}, \\leanwit{FrcCore}{p22033}{C17}, \\leanwit{FrcLedger}{p22033}{C17} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Composite.no\\_signalling, FRC.Observation.reduce\\_mul, FRC.Composite.carrier\\_641, Qm.tsirelson\\_real, Qm.singlet\\_law}",
    "page": "22-quantum/index.html#C17",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22033",
-     "script": "p22_quantum.py",
-     "line": 635,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49442,12 +49206,7 @@
    "source": "Prop.~\\ref{prop:bsm}, Thm.~\\ref{thm:table}\\newline \\pywit{quantum}{p22034}{C18}, \\leanwit{FrcCore}{p22034}{C18} \\lean{FRC.Quantum.pair\\_offset, FRC.Composite.cluster\\_offset}",
    "page": "22-quantum/index.html#C18",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22034",
-     "script": "p22_quantum.py",
-     "line": 855,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49483,12 +49242,7 @@
    "source": "Prop.~\\ref{prop:bmvmech}\\newline \\pywit{quantum}{p22035}{C19}, \\leanwit{FrcCore}{p22035}{C19}, \\leanwit{FrcLedger}{p22035}{C19} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.channel\\_product\\_at\\_zero, Qm.channel\\_chart, Qm.channel\\_entangles}",
    "page": "22-quantum/index.html#C19",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22035",
-     "script": "p22_quantum.py",
-     "line": 924,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49540,12 +49294,7 @@
    "source": "Prop.~\\ref{prop:nocollapse},~\\ref{prop:dilation}\\newline \\pywit{quantum}{p22036}{C20}, \\leanwit{FrcCore}{p22036}{C20} \\lean{FRC.Composite.drive\\_norm, FRC.Composite.revival, FRC.Quantum.joint\\_recurrence}",
    "page": "22-quantum/index.html#C20",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22036",
-     "script": "p22_quantum.py",
-     "line": 973,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49589,12 +49338,7 @@
    "source": "Prop.~\\ref{prop:fcoh}; rests on A4, C19, C22\\newline \\pywit{quantum}{p22037}{C21}, \\leanwit{FrcCore}{p22037}{C21} \\lean{FRC.Composite.branch\\_phase, FRC.Composite.pair\\_product, FRC.Composite.spread\\_cancels, FRC.Composite.channel\\_assembly}",
    "page": "22-quantum/index.html#C21",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22037",
-     "script": "p22_quantum.py",
-     "line": 1291,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49652,12 +49396,7 @@
    "source": "Prop.~\\ref{prop:scaling}\\newline \\pywit{quantum}{p22038}{C22}, \\leanwit{FrcCore}{p22038}{C22} \\lean{FRC.Composite.field\\_linear, FRC.Composite.eta\\_zero, FRC.Composite.locked\\_norm, FRC.Composite.spread\\_average}",
    "page": "22-quantum/index.html#C22",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22038",
-     "script": "p22_quantum.py",
-     "line": 1034,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49709,12 +49448,7 @@
    "source": "Prop.~\\ref{prop:intersubject}\\newline \\pywit{quantum}{p22039}{C23}, \\leanwit{FrcCore}{p22039}{C23} \\lean{FRC.Composite.joint\\_refinement, FRC.Composite.order\\_independence, FRC.Observation.selection}",
    "page": "22-quantum/index.html#C23",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22039",
-     "script": "p22_quantum.py",
-     "line": 1481,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49758,12 +49492,7 @@
    "source": "Cor.~\\ref{cor:carrier}\\newline \\pywit{quantum}{p22040}{C24}, \\leanwit{FrcCore}{p22040}{C24} \\lean{FRC.Observation.classicality\\_index, FRC.Observation.selection, FRC.Composite.carrier\\_421}",
    "page": "22-quantum/index.html#C24",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22040",
-     "script": "p22_quantum.py",
-     "line": 261,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49807,12 +49536,7 @@
    "source": "\\S\\ref{sec:dividends}; rests on A7, B3, B6, C17\\newline \\pywit{quantum}{p22041}{C25}, \\leanwit{FrcCore}{p22041}{C25}, \\leanwit{FrcLedger}{p22041}{C25} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Qm.tsirelson\\_real}",
    "page": "22-quantum/index.html#C25",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22041",
-     "script": "p22_quantum.py",
-     "line": 649,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49861,12 +49585,7 @@
    "source": "Prop.~\\ref{prop:unequal}\\newline \\pywit{quantum}{p22042}{C26}, \\leanwit{FrcCore}{p22042}{C26} \\lean{FRC.Quantum.joint\\_recurrence, FRC.Quantum.joint\\_least, FRC.Quantum.pair\\_offset, FRC.Quantum.dephasing, FRC.Composite.winding\\_period}",
    "page": "22-quantum/index.html#C26",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22042",
-     "script": "p22_quantum.py",
-     "line": 677,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49928,12 +49647,7 @@
    "source": "Lem.~\\ref{lem:transport}, \\citep{akhtman2026gravity}\\newline \\pywit{quantum}{p22043}{C27}, \\leanwit{FrcCore}{p22043}{C27} \\lean{FRC.Observation.transport\\_trichotomy, FRC.Observation.transport\\_cases}",
    "page": "22-quantum/index.html#C27",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22043",
-     "script": "p22_quantum.py",
-     "line": 1554,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -49969,12 +49683,7 @@
    "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcLedger}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Qm.channel\\_chart}",
    "page": "22-quantum/index.html#P1",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22052",
-     "script": "p22_quantum.py",
-     "line": 952,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50031,12 +49740,7 @@
    "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; rests on B1, C8\\newline \\pywit{quantum}{p22053}{P2}, \\leanwit{FrcCore}{p22053}{P2}, \\leanwit{FrcLedger}{p22053}{P2} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Qm.sorkin\\_hierarchy}",
    "page": "22-quantum/index.html#P2",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22053",
-     "script": "p22_quantum.py",
-     "line": 353,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50083,12 +49787,7 @@
    "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; rests on B2, B5, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcLedger}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Qm.tsirelson\\_real}",
    "page": "22-quantum/index.html#P3",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22054",
-     "script": "p22_quantum.py",
-     "line": 877,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50145,12 +49844,7 @@
    "source": "Rem.~\\ref{rem:doublecover}; rests on A2, B2\\newline \\pywit{quantum}{p22055}{P4}, \\leanwit{FrcCore}{p22055}{P4} \\lean{FRC.Subject.channel, FRC.Subject.horizon\\_generator, FRC.Observation.torus\\_conj\\_inv}",
    "page": "22-quantum/index.html#P4",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22055",
-     "script": "p22_quantum.py",
-     "line": 571,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50198,12 +49892,7 @@
    "source": "Prop.~\\ref{prop:granularity}; rests on A5, C14\\newline \\pywit{quantum}{p22056}{P5}, \\leanwit{FrcCore}{p22056}{P5}, \\leanwit{FrcLedger}{p22056}{P5} \\lean{FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, FRC.Interference.hadamard\\_even, Qm.ceiling\\_bracket, Qm.gaussian\\_minimal}",
    "page": "22-quantum/index.html#P5",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22056",
-     "script": "p22_quantum.py",
-     "line": 1096,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50266,12 +49955,7 @@
    "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}\\newline \\pywit{quantum}{p22044}{X1}, \\leanwit{FrcCore}{p22044}{X1}, \\leanwit{FrcLedger}{p22044}{X1} \\lean{FRC.Observation.window\\_lift, FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Extension.two\\_way\\_tally, Qm.pair\\_count\\_tally}",
    "page": "22-quantum/index.html#X1",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22044",
-     "script": "p22_quantum.py",
-     "line": 218,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50333,12 +50017,7 @@
    "source": "Prop.~\\ref{prop:gaussian}\\newline \\pywit{quantum}{p22045}{X2}, \\leanwit{FrcCore}{p22045}{X2} \\lean{FRC.Observation.shared\\_core, FRC.Observation.no\\_quarter\\_turn}",
    "page": "22-quantum/index.html#X2",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22045",
-     "script": "p22_quantum.py",
-     "line": 296,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50374,12 +50053,7 @@
    "source": "Prop.~\\ref{prop:basis}\\newline \\pywit{quantum}{p22046}{X3}, \\leanwit{FrcCore}{p22046}{X3} \\lean{FRC.Observation.orthogonality, FRC.Observation.selection}",
    "page": "22-quantum/index.html#X3",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22046",
-     "script": "p22_quantum.py",
-     "line": 202,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50415,12 +50089,7 @@
    "source": "Rem.~\\ref{rem:collapse}, Prop.~\\ref{prop:intersubject}\\newline \\pywit{quantum}{p22047}{X4}, \\leanwit{FrcCore}{p22047}{X4} \\lean{FRC.Composite.joint\\_refinement, FRC.Composite.order\\_independence, FRC.Observation.lueders}",
    "page": "22-quantum/index.html#X4",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22047",
-     "script": "p22_quantum.py",
-     "line": 1507,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50464,12 +50133,7 @@
    "source": "\\S\\ref{sec:regimes}\\newline \\pywit{quantum}{p22048}{X5}, \\leanwit{FrcCore}{p22048}{X5} \\lean{FRC.Observation.classicality\\_index, FRC.Observation.selection, FRC.Composite.carrier\\_421}",
    "page": "22-quantum/index.html#X5",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22048",
-     "script": "p22_quantum.py",
-     "line": 261,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50513,12 +50177,7 @@
    "source": "\\S\\ref{sec:ledger}\\newline \\pywit{quantum}{p22049}{X6}, \\leanwit{FrcCore}{p22049}{X6} \\lean{FRC.Observation.window\\_lift, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.framed\\_readout}",
    "page": "22-quantum/index.html#X6",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22049",
-     "script": "p22_quantum.py",
-     "line": 1181,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50570,12 +50229,7 @@
    "source": "Thm.~\\ref{thm:tsirelson}\\newline \\pywit{quantum}{p22050}{X7}, \\leanwit{FrcCore}{p22050}{X7}, \\leanwit{FrcLedger}{p22050}{X7} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Qm.tsirelson\\_real}",
    "page": "22-quantum/index.html#X7",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22050",
-     "script": "p22_quantum.py",
-     "line": 649,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50621,12 +50275,7 @@
    "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}\\newline \\pywit{quantum}{p22051}{X8}, \\leanwit{FrcCore}{p22051}{X8}, \\leanwit{FrcLedger}{p22051}{X8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Qm.sorkin\\_hierarchy}",
    "page": "22-quantum/index.html#X8",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22051",
-     "script": "p22_quantum.py",
-     "line": 344,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcCore",
@@ -50689,12 +50338,7 @@
    "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22061}{Z2}, \\leanwit{FrcLedger}{p22061}{Z2} \\lean{Qm.omega\\_floors}",
    "page": "22-quantum/index.html#Z2",
    "witness": {
-    "py": {
-     "href": "frc/ledgers/p22_quantum.html#p22061",
-     "script": "p22_quantum.py",
-     "line": 1400,
-     "verdict": "pass"
-    },
+    "py": null,
     "lean": [
      {
       "lib": "FrcLedger",

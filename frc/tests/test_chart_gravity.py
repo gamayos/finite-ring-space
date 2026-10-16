@@ -90,5 +90,30 @@ class ApsidalBoundTest(unittest.TestCase):
         self.assertGreater(ab["orders_above"], 50); self.assertNotIn("log10_p2", ab)      # no quantity above Ω is formed (15 October 2026)
 
 
+class RingdownTest(unittest.TestCase):
+    def test_series_arithmetic(self):
+        x = CG.Series.var(0.5)
+        e = x.exp()
+        for k in range(6): self.assertAlmostEqual(e.deriv(k), math.exp(0.5), places=10)      # every derivative of eˣ is eˣ
+        q = 1.0 / (1.0 + x)
+        self.assertAlmostEqual(q.deriv(2), 2 / 1.5 ** 3, places=10)                           # (1/(1+x))″ = 2/(1+x)³
+        self.assertAlmostEqual((x ** 3).deriv(3), 6.0, places=12)
+
+    def test_eikonal_pair_and_impact(self):
+        r0, om, lam, closed = CG.eikonal_pair()
+        self.assertAlmostEqual(r0, 2.0, places=9)
+        self.assertAlmostEqual(om, closed, places=10); self.assertAlmostEqual(lam, closed, places=10)
+        h1, h2, h2closed = CG.impact_series()
+        self.assertAlmostEqual(h1, 0.0, places=12); self.assertAlmostEqual(h2, h2closed, places=10)
+
+    def test_wkb3_against_leaver(self):
+        for spin, ref in ((0, 0.483644 - 0.096759j), (2, 0.373672 - 0.088962j)):        # Leaver's Schwarzschild ℓ = 2 modes [import]
+            V, f = CG.schwarzschild(2, spin=spin)
+            _, om = CG.wkb3(V, f, 2.5, 4.0)
+            self.assertLess(abs(om - ref), 1e-3)
+        _, om = CG.wkb3(CG.exponential_potential(2), CG.exponential_drds(), 1.5, 3.0)
+        self.assertLess(abs(om - (0.464149 - 0.092253j)), 1e-3)                        # the time-domain value of 21 September 2026
+
+
 if __name__ == "__main__":
     unittest.main()
