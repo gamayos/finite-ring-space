@@ -43,6 +43,7 @@ import FrcCore.Theme.Unitary
 import FrcCore.Theme.Interactions
 import FrcCore.Theme.Fields
 import FrcCore.Theme.Horizon
+import FrcCore.Theme.Zeros
 import FrcCore.Theme.Ladder
 import FrcCore.Keys.Frame
 import FrcCore.Keys.Extension

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Builds frc-20-rh.ipynb, the package's Colab notebook: one cell per python-witnessed predicate of the paper's ledger, each cell addressable
-from the ledger page by the predicate's accession key as its stable id (`p20037`: Colab opens the notebook at that cell with `#scrollTo=p20037`).
-A predicate cell states the predicate (its text, from the site's ledger JSON) and runs `predicate("20:E6")`: the blocks of the checks that
-cite the predicate run once per session, the deciding check's source is printed from its `# 20:E6 (p20037)` marker, and every record
+from the ledger page by the predicate's accession key as its stable id (`p20085`: Colab opens the notebook at that cell with `#scrollTo=p20085`).
+A predicate cell states the predicate (its text, from the site's ledger JSON) and runs `predicate("20:B12")`: the blocks of the checks that
+cite the predicate run once per session, the deciding check's source is printed from its `# 20:B12 (p20085)` marker, and every record
 citing the predicate is listed with its verdict. Run: python3 make_notebook.py  (then execute the notebook)."""
 import json, re, os
 import rh as dcommon
@@ -10,7 +10,7 @@ import rh as dcommon
 PKG = "20-rh"; NB = f"frc-{PKG}.ipynb"; PAPER = "20"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
 CITE = "Akhtman & Voether, Preprints 2026"; DOI = "https://doi.org/10.20944/preprints202606.0768.v1"                       # the heading's citation, linked to the article
-SCRIPT = "rh.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/)"; RUNTIME = "≈ 8 min on Colab; the 10⁸ comb of block C and the 8×10⁷ comb of block D are the slow parts"      # the one script, linked to its source page
+SCRIPT = "rh.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/)"; RUNTIME = "under a minute on Colab; the depth 10⁶ of block C is the slow part"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})
@@ -45,7 +45,7 @@ for r in witnessed:
 md("""## Summary
 
 The cells above are the paper's python-witnessed predicates; the whole script, block by block, is `python3 rh.py`
-(104 checks: 63 exact, 38 [approx], 3 [chart]; `results.json`), `python3 -m frc_20_rh` once installed.""", "summary")
+(96 checks: 80 exact, 5 [approx], 11 [chart]; `results.json`), `python3 -m frc_20_rh` once installed.""", "summary")
 code(f"""{INSTALL}
 from frc_20_rh import verify_all
 assert verify_all(), "a check failed"

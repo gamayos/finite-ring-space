@@ -2,13 +2,20 @@
 
 The chart theme holds the readings against the continuum, the only place where floats appear (frc/themes.py, rank 30).
 This file holds the floating-point computations of 20-rh's validation package (src/20-rh/rh.py) that the ledger file
-frc/ledgers/p20_rh.py reproduces: the complex characters of the cycle, the Lanczos matrix of a multiset, the
-Riemann–Siegel phase and the horizon-length main sum, Hardy's Z by Euler–Maclaurin, and the logarithmic weights of the
-resonance. The package used numpy, scipy, sympy and mpmath. This file uses `math` and `cmath` only, so the framework
-stays free of third-party imports. Each function returns numbers that the ledger file compares with the package's
-stated values; the exact parts (the Ramanujan sums, the resonance in rationals) come from frc/horizon.py.
+frc/ledgers/p20_rh.py reproduces. Since the rewrite of the paper (17 October 2026, reports/blueprint-20261017.md) the
+ledger file uses the exhibit's energy along the chart's height, the chart's characters and the discrete-logarithm
+loading; the earlier readings (the Lanczos matrix, the Riemann–Siegel phase and the horizon-length main sum, Hardy's Z by
+Euler–Maclaurin, the resonance's weights, the mode correlations) stay as the chart theme's library and are tested, but
+witness no row. This file uses `math` and `cmath` only, so the framework stays free of third-party imports. Each
+function returns numbers that the ledger file compares with the package's stated values; the exact parts come from
+frc/horizon.py.
 
     HEIGHTS                          the first thirty zero heights of ζ (Odlyzko's tables), validation markers only
+    window_labels(H)                 the prime-power labels n ≤ H with the chart's weight log ℓ
+    energy(H, gammas), peaks(H, lo, hi, step), five_peaks(H), resolution(H), energy_range(H, lo, hi, step)
+                                     the exhibit: |Σ Λ(n)(1 − log n/log H) n^{−1/2−iγ}| along the height, its peaks
+    characters_parseval(p, g, base)  the chart's characters on ℓ²(F_p^×): orthogonality, Parseval, inversion, the shift
+    dlog_loading(p, labels, lam)     the window's labels read in the discrete logarithm: the loadings of the nontrivial modes
     characters(p, g)                 the complex reading of the shell theorem on ℓ²(F_p^×): mean, orthonormality, shift
     lanczos(x)                       the Jacobi matrix (a, b) of the unit-weight measure Σ δ_{x_i}, and its eigenvalues
     theta(t), z_horizon(t)           the Riemann–Siegel phase and the main sum of length ⌊√(t/2π)⌋
@@ -252,3 +259,86 @@ def pearson(a, b):
 def ratio(x, y):
     """x / y in floating point (x, y rationals or floats)."""
     return float(x) / float(y)
+
+
+# ---- the exhibit (Obs. exhibit; row F9) and the cycle's own scale coordinate (row O9), 17 October 2026 --------------------
+def window_labels(H):
+    """The prime-power labels n ≤ H with the chart's weight Λ(n) = log ℓ, as (labels, logs), labels in the order of the sieve
+    (each prime with its powers), as the package lists them."""
+    sieve = [True] * (H + 1)
+    if H >= 0: sieve[0] = False
+    if H >= 1: sieve[1] = False
+    for i in range(2, int(math.isqrt(H)) + 1):
+        if sieve[i]:
+            for j in range(i * i, H + 1, i): sieve[j] = False
+    ns, ls = [], []
+    for q in range(2, H + 1):
+        if sieve[q]:
+            m = q
+            while m <= H:
+                ns.append(m); ls.append(math.log(q)); m *= q
+    return ns, ls
+
+
+def energy(H, gammas):
+    """The exhibit's energy |Σ_{n≤H} Λ(n)(1 − log n/log H) n^{−1/2−iγ}| at each height γ [chart]."""
+    ns, ls = window_labels(H)
+    w = [l * (1 - math.log(n) / math.log(H)) * n ** -0.5 for n, l in zip(ns, ls)]
+    ln = [math.log(n) for n in ns]
+    return [abs(sum(wi * cmath.exp(-1j * g * li) for wi, li in zip(w, ln))) for g in gammas]
+
+
+def peaks(H, lo, hi, step=0.02):
+    """The local maxima of the window's energy on [lo, hi] at the grid step, as (γ, energy), tallest first."""
+    gam = [lo + i * step for i in range(int(round((hi - lo) / step)) + 1)]
+    e = energy(H, gam)
+    pk = [(gam[i], e[i]) for i in range(1, len(gam) - 1) if e[i] > e[i - 1] and e[i] > e[i + 1]]
+    return sorted(pk, key=lambda t: -t[1])
+
+
+def five_peaks(H):
+    """The window's five peaks: the five tallest peaks on the range 10 to 36 of the chart's height, by height."""
+    return sorted(g for g, _ in peaks(H, 10, 36)[:5])
+
+
+def resolution(H):
+    """The window's resolution 2π/log H."""
+    return 2 * math.pi / math.log(H)
+
+
+def energy_range(H, lo, hi, step=0.02):
+    """max − min of the window's energy on [lo, hi]: zero for a flat energy."""
+    e = energy(H, [lo + i * step for i in range(int(round((hi - lo) / step)))])
+    return max(e) - min(e)
+
+
+def characters_parseval(p, g, base):
+    """The chart's characters χ_j(n) = ω^{jλ(n)} on ℓ²(F_p^×) (λ the discrete log to g, ω = e^{2πi/(p−1)}) against v = Λ:
+    (orthogonal with ‖χ_j‖² = p−1, Σ_j |v̂(j)|² = (p−1)Σ|v|², the dual inverts, S χ_j = ω^j χ_j, Σ|v̂|²/(p−1)); tolerance 10⁻⁹."""
+    n = p - 1
+    v = [vm_float(m, base(m)) for m in range(1, p)]
+    dlog = {}
+    x = 1
+    for m in range(n):
+        dlog[x] = m; x = x * g % p
+    w = cmath.exp(2j * math.pi / n)
+    chi = [[w ** (j * dlog[m]) for m in range(1, p)] for j in range(n)]
+    vc = [sum(chi[j][i] * v[i] for i in range(n)) for j in range(n)]
+    ok_orth = all(abs(sum(chi[j][i].conjugate() * chi[k][i] for i in range(n)) - (n if j == k else 0)) < 1e-9
+                  for j in range(n) for k in range(n))
+    par = sum(abs(c) ** 2 for c in vc)
+    ok_par = abs(par - n * sum(t * t for t in v)) < 1e-9
+    ok_inv = all(abs(sum(chi[j][i].conjugate() * vc[j] for j in range(n)).real / n - v[i]) < 1e-10 for i in range(n))
+    ok_c = all(abs(w ** (j * dlog[g * m % p]) - w ** j * chi[j][m - 1]) < 1e-10 for j in range(n) for m in range(1, p))
+    return ok_orth, ok_par, ok_inv, ok_c, par / n
+
+
+def dlog_loading(p, labels, lam):
+    """The window's labels read in the discrete logarithm λ: the loadings |Σ_{n} e^{2πi k λ(n)/(p−1)}|² of the nontrivial modes
+    k = 1..p−2, as (max, mean, |labels| log(p−1))."""
+    n = p - 1
+    ph = [lam[x] for x in labels]
+    loads = []
+    for k in range(1, n):
+        loads.append(abs(sum(cmath.exp(2j * math.pi * k * l / n) for l in ph)) ** 2)
+    return max(loads), sum(loads) / len(loads), len(labels) * math.log(n)

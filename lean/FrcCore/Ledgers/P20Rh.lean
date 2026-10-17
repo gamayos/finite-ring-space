@@ -49,11 +49,6 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 #guard_msgs in
 #print axioms FRC.Ledger.p20013
 
--- 20:B7 (p20014)
-/-- info: 'FRC.Ledger.p20014' does not depend on any axioms -/
-#guard_msgs in
-#print axioms FRC.Ledger.p20014
-
 -- 20:B8 (p20015)
 /-- info: 'FRC.Ledger.p20015' does not depend on any axioms -/
 #guard_msgs in
@@ -69,37 +64,37 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 #guard_msgs in
 #print axioms FRC.Ledger.p20017
 
--- 20:D5 (p20029)
-/-- info: 'FRC.Ledger.p20029' does not depend on any axioms -/
+-- 20:B12 (p20085)
+/-- info: 'FRC.Ledger.p20085' does not depend on any axioms -/
 #guard_msgs in
-#print axioms FRC.Ledger.p20029
+#print axioms FRC.Ledger.p20085
 
--- 20:D9 (p20083)
-/-- info: 'FRC.Ledger.p20083' does not depend on any axioms -/
+-- 20:B13 (p20086)
+/-- info: 'FRC.Ledger.p20086' does not depend on any axioms -/
 #guard_msgs in
-#print axioms FRC.Ledger.p20083
-
--- 20:E1 (p20032)
-/-- info: 'FRC.Ledger.p20032' does not depend on any axioms -/
-#guard_msgs in
-#print axioms FRC.Ledger.p20032
+#print axioms FRC.Ledger.p20086
 
 -- 20:E12 (p20043)
 /-- info: 'FRC.Ledger.p20043' does not depend on any axioms -/
 #guard_msgs in
 #print axioms FRC.Ledger.p20043
 
--- 20:F1 (p20047)
-/-- info: 'FRC.Ledger.p20047' does not depend on any axioms -/
+-- 20:E13 (p20044)
+/-- info: 'FRC.Ledger.p20044' does not depend on any axioms -/
 #guard_msgs in
-#print axioms FRC.Ledger.p20047
+#print axioms FRC.Ledger.p20044
 
--- 20:F2 (p20081)
-/-- info: 'FRC.Ledger.p20081' does not depend on any axioms -/
+-- 20:E14 (p20092)
+/-- info: 'FRC.Ledger.p20092' does not depend on any axioms -/
 #guard_msgs in
-#print axioms FRC.Ledger.p20081
+#print axioms FRC.Ledger.p20092
 
 -- 20:F7 (p20079)
 /-- info: 'FRC.Ledger.p20079' does not depend on any axioms -/
 #guard_msgs in
 #print axioms FRC.Ledger.p20079
+
+-- 20:F10 (p20093)
+/-- info: 'FRC.Ledger.p20093' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20093

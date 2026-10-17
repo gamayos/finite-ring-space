@@ -2550,20 +2550,11 @@ theorem p00201 : (∀ (M : ℝ), (0 : ℝ) < M → (∀ (r : ℝ), r ≠ (0 : �
 theorem p14038 : (∀ (t H0 HΛ Ω : ℝ), t * HΛ = Real.pi / (4 : ℝ) → HΛ = H0 * √Ω → Ω = Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ))) ∧ 0.9498 < Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ∧ Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) < 0.9499 :=
   And.intro @FRC.Chart.age_rate_locus (@FRC.Chart.locus_bracket)
 set_option linter.defProp false in
-/-- p20032 — 20:E1. The scale-evolution generator: on the shell the scale-shift $x\mapsto\gen^{\,r}x$ is a unitary permutation of $\Fx{\p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\Hh}$ has the self-adjoint generator $\Hh=-i(x\partial_x+\half)$ with generalised eigenfunctions $x^{-\bar\rho}$, $\rho=\half+i\gamma$, the symmetrizing $\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity. -/
-def p20032 := And.intro @FRC.HorizonML.scale_shift (And.intro @FRC.Chart.character_eigen (@FRC.Chart.chi_shift))
-set_option linter.defProp false in
-/-- p20043 — 20:E12, 00:Z10. \textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\Tr=1$, real part $2^{-1}=2\kp+1=-\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\pi j/(\p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included. -/
+/-- p20043 — 20:E12, 00:Z10. \textbf{The shell theorem.} On every shell, for every vector, in $\Fp$: (i) the dual $\hat v(k)=\sum v(x)x^{k}$ inverts exactly, $v(y)=-\sum\hat v(k)y^{-k}$, the constant mode the mean term; (ii) the energy identity (E13); (iii) every mode on the critical line, an eigenvector of the scale-shift; (iv) the parity and (v) the explicit formula along the meridian (E14). -/
 def p20043 := And.intro @FRC.Chart.chi_inversion (And.intro @FRC.Chart.chi_shift (And.intro @FRC.HorizonML.scale_shift (And.intro @FRC.HorizonML.readout_on_line (@FRC.HorizonML.readout_slot_index))))
-set_option linter.defProp false in
-/-- p20044 — 20:E13. Shell-basis completeness is not a clause of E12: the $\p-1$ complex characters are an orthogonal basis of $\mathbb C^{\Fx{\p}}$ ($\lVert\chi_j\rVert^{2}=\p-1$; finite Parseval), true of every vector, the trivial character carrying the mean $\psi(\p-1)/(\p-1)$; the $\Fp$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\zeta$ is D5, a different clause. -/
-def p20044 := And.intro @FRC.Chart.chi_orthogonal (And.intro @FRC.Chart.chi_parseval (And.intro @FRC.Chart.chi_inversion (@FRC.HorizonML.power_characters_not_orthonormal)))
-/-- p20047 — 20:F1. \textbf{Turing's count on the shell.} On every cell $C_y\le N^{\mathrm{crit}}_y\le\mathcal N_y$ (A7); the cell is clean when $\mathcal N_y=N^{\mathrm{crit}}_y$, and $C_y=\mathcal N_y$ certifies it, every zero simple. The shell estimates $\mathcal N$ by the comb count (Appendix~\ref{app:comb}; uncertified) and reads $C$ from the main sum's sign changes (A10), zeros on the line. An off-line zero is a phantom, $\mathcal N_y-N^{\mathrm{crit}}_y>0$. -/
-theorem p20047 : ∀ {a b : ℝ}, a < b → (completedRiemannZeta ((1 / 2 : ℂ) + ↑a * Complex.I)).re * (completedRiemannZeta ((1 / 2 : ℂ) + ↑b * Complex.I)).re < (0 : ℝ) → ∃ t, a < t ∧ t < b ∧ riemannZeta ((1 / 2 : ℂ) + ↑t * Complex.I) = (0 : ℂ) :=
-  @FRC.Chart.zero_of_sign_change
-set_option linter.defProp false in
-/-- p20080 — 20:D8. The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic. -/
-def p20080 := @FRC.Chart.zeros_in_strip
+/-- p20044 — 20:E13. The energy identity: $\sum_k\hat v(k)\hat v(-k)=-\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ in place of the complex norm; in the chart the $\p-1$ complex characters are an orthogonal basis with $\lVert\chi_j\rVert^{2}=\p-1$ and the same identity reads $\sum_j|\hat v_{\mathbb C}(j)|^{2}=(\p-1)\sum|v|^{2}$ [chart]. -/
+theorem p20044 : (∀ {n : ℕ} [NeZero n] (j k : ZMod n), ∑ m, FRC.Chart.chi j m * (starRingEnd ℂ) (FRC.Chart.chi k m) = if j = k then ↑n else (0 : ℂ)) ∧ (∀ {n : ℕ} [NeZero n] (v : ZMod n → ℂ), ∑ j, Complex.normSq (FRC.Chart.coef v j) = ↑n * ∑ m, Complex.normSq (v m)) ∧ ∀ {n : ℕ} [NeZero n] (v : ZMod n → ℂ), (∀ (m : ZMod n), v m = (↑n)⁻¹ * ∑ j, FRC.Chart.coef v j * FRC.Chart.chi j m) ∧ FRC.Chart.coef v (0 : ZMod n) = ∑ m, v m ∧ ∀ (m : ZMod n), v m - (↑n)⁻¹ * ∑ m', v m' = (↑n)⁻¹ * ∑ j ∈ Finset.univ.erase (0 : ZMod n), FRC.Chart.coef v j * FRC.Chart.chi j m :=
+  And.intro @FRC.Chart.chi_orthogonal (And.intro @FRC.Chart.chi_parseval (@FRC.Chart.chi_inversion))
 set_option linter.defProp false in
 /-- p21016 — 21:C1. The linearised dynamics is the gradient flow of a coherence free energy --- its current derived from the pair tally conditional on channel unity (Lemma~\ref{lem:pairtally}) --- and a locked cluster of cardinality $m$ couples with coefficient exactly $m$. -/
 def p21016 := @FRC.Strong.locked_sum
@@ -2705,11 +2696,8 @@ end FRC.LedgerML
 #print axioms FRC.LedgerML.p00193
 #print axioms FRC.LedgerML.p00201
 #print axioms FRC.LedgerML.p14038
-#print axioms FRC.LedgerML.p20032
 #print axioms FRC.LedgerML.p20043
 #print axioms FRC.LedgerML.p20044
-#print axioms FRC.LedgerML.p20047
-#print axioms FRC.LedgerML.p20080
 #print axioms FRC.LedgerML.p21016
 #print axioms FRC.LedgerML.p21019
 #print axioms FRC.LedgerML.p21020

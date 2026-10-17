@@ -27,6 +27,12 @@ Ramanujan sum (20:B7); the half-turn `ρ`, the Klein four-group, the critical li
 line in the quadratic extension, and the quarter-turn off the circle (20:B6, B8, B9); frame coincidence below the
 horizon (20:B2); and the values on `𝔽₁₃`, `𝔽₅₃` and the laboratory pair `(13, 233)` (20:B1). The theme imports the
 transform and the extension, not the orbits, so that its key file stays within the budget of gate G10. No axioms.
+
+Since the rewrite of 20-rh (17 October 2026) the theme's second file `Theme/Zeros.lean` holds the dual with its energy
+identity, the parity and the explicit formula (20:E12–E14), the critical line as the frequency domain (20:B12), the
+invariant lines (20:B9), frame coincidence on the line (20:B13) and the witnesses of no zero off the line (20:F10); the
+negative control, the cells and Turing's count (20:D9, D5, F1, retired) left the theme that day; their text is in this
+file's history (the commit of 16 October 2026, f623fab).
 -/
 
 namespace FRC.Horizon
@@ -66,7 +72,7 @@ theorem half_inverse (F : Frame p κ g) :
 
 /-! ## The modes: the finite zeta and the expansion (20:B4, 20:E12 (i)) -/
 
-/-- 20:B4, Z10 — the finite zeta on every shell: over the nonzero residues `x = l + 1`, `l < p − 1`,
+/-- 20:B4, 20:B13, Z10 — the finite zeta on every shell: over the nonzero residues `x = l + 1`, `l < p − 1`,
 `Σ x^k = 0` for every nonterminal exponent `0 < k < p − 1`, and `Σ x^{p−1} = −1` on the full cycle. -/
 theorem zero_slot (F : Frame p κ g) :
     (∀ k, 0 < k → k < p - 1 → sumRange (fun l => (ofNat (l + 1) : Shell p) ^ k) (p - 1) = 0) ∧
@@ -155,7 +161,7 @@ variable {ν : Shell p}
 `2⁻¹ = 2κ + 1`, in the quadratic extension `𝔽_p(η)`, `η² = ν`. -/
 def readout (ν : Shell p) (κ : Nat) (θ : Shell p) : Ext p ν := ⟨ofNat (2 * κ + 1), θ⟩
 
-/-- 20:E12 (ii), Z10 — every readout lies on the self-dual line `Tr z = 1`, its real part the half-turn
+/-- 20:E12 (iii), 20:B12 (i), 20:F10, Z10 — every readout lies on the self-dual line `Tr z = 1`, its real part the half-turn
 `2⁻¹ = 2κ + 1`, and `θ ↦ z(θ)` is injective: no off-line mode. -/
 theorem readout_on_line (F : Frame p κ g) (ν θ : Shell p) :
     Ext.trace (readout ν κ θ) = 1 ∧ (readout ν κ θ).re = ofNat (2 * κ + 1) ∧
@@ -164,7 +170,7 @@ theorem readout_on_line (F : Frame p κ g) (ν θ : Shell p) :
   show ofNat (2 * κ + 1) + ofNat (2 * κ + 1) = 1
   rw [← two_mul', (half_inverse F).1]
 
-/-- 20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` is neither
+/-- 20:E12, 20:B12 (i) — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` is neither
 `0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent), on every shell and with no axioms. -/
 theorem readout_slot_index (F : Frame p κ g) (k : Nat) (hk1 : 1 ≤ k) (hk2 : k ≤ p - 2) :
     -(g ^ k) ≠ 0 ∧ -(g ^ k) ≠ -1 := by
@@ -300,7 +306,7 @@ theorem klein_four (z : Ext p ν) :
   show 1 + -(1 + -z.re) = z.re
   rw [neg_add_rev, neg_neg, ← add_assoc, add_neg, zero_add]
 
-/-- 20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹ = 2κ + 1`; it is the fixed locus
+/-- 20:B8, 20:B9, 20:B13 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹ = 2κ + 1`; it is the fixed locus
 of `σ = ρ ∘ φ`; every `2⁻¹ + bη` lies on it, one point per residue `b` — `p` points. -/
 theorem critical_line (F : Frame p κ g) (z : Ext p ν) :
     (trace z = 1 ↔ z.re = ofNat (2 * κ + 1)) ∧ (sigma z = z ↔ z.re = ofNat (2 * κ + 1)) ∧
@@ -513,150 +519,5 @@ theorem closure_lab :
   · exact FRC.Nat.isPrime_of_bounded 2408561 1552 (by decide) (by decide) (by decide +kernel)
   · exact FRC.Nat.isPrime_of_bounded 17 4 (by decide) (by decide) (by decide +kernel)
   · exact FRC.Nat.isPrime_of_bounded 19 4 (by decide) (by decide) (by decide +kernel)
-
-/-! ## The finite negative control (20:D9; 13 October 2026) -/
-
-/-- 20:D9, the finite negative control: on `𝔽₁₃(√2)` (`η² = 2`, `2` a nonsquare, `2⁻¹ = 7`) the polynomial
-`P(X) = ((X − 2)² − 2)((X + 1)² − 2)` has exactly the four roots `2 ± η`, `−1 ± η`, of traces `4, 4, 11, 11` against the
-trace-one line's `1` (`Tr z = 1 ⟺ Re z = 7`), its root set closed under conjugation and under the half-turn `X ↦ 1 − X`:
-finitude, conjugation and the functional-equation reflection do not force roots onto the line. Decided by the kernel on
-all `169` elements. -/
-theorem negative_control13 :
-    (∀ k, k < 169 →
-      ((((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + -Ext.ofShell 2) * ((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + -Ext.ofShell 2) + -Ext.ofShell 2) *
-        (((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + Ext.ofShell 1) * ((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + Ext.ofShell 1) + -Ext.ofShell 2) = Ext.ofShell 0 ↔
-      (k = 2 * 13 + 1 ∨ k = 2 * 13 + 12 ∨ k = 12 * 13 + 1 ∨ k = 12 * 13 + 12))) ∧
-    (Ext.trace (⟨2, 1⟩ : Ext 13 2) = 4 ∧ Ext.trace (⟨2, 12⟩ : Ext 13 2) = 4 ∧
-      Ext.trace (⟨12, 1⟩ : Ext 13 2) = 11 ∧ Ext.trace (⟨12, 12⟩ : Ext 13 2) = 11) ∧
-    (∀ k, k < 169 → (Ext.trace (⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) = 1 ↔ k / 13 = 7)) ∧
-    (Ext.conj (⟨2, 1⟩ : Ext 13 2) = ⟨2, 12⟩ ∧ Ext.conj (⟨12, 1⟩ : Ext 13 2) = ⟨12, 12⟩) ∧
-    (Ext.ofShell 1 + -(⟨2, 1⟩ : Ext 13 2) = ⟨12, 12⟩ ∧ Ext.ofShell 1 + -(⟨2, 12⟩ : Ext 13 2) = ⟨12, 1⟩) ∧
-    (∀ x : Nat, x < 13 → 0 < x → (ofNat x : Shell 13) * ofNat x ≠ 2) := by
-  decide +kernel
-
-
-/-! ## The cells of the cycle (20:D5; 13 October 2026): the two finite lemmas of the count identity -/
-
-section cells
-
-open FRC.Shell.Frame (sumTo)
-
-/-- Monotonicity of the finite sum under a pointwise bound. -/
-theorem sumTo_le (c n : Nat → Nat) : ∀ m, (∀ y, y < m → c y ≤ n y) → sumTo c m ≤ sumTo n m
-  | 0, _ => Nat.le_refl _
-  | m + 1, h => Nat.add_le_add (sumTo_le c n m fun y hy => h y (Nat.lt_succ_of_lt hy)) (h m (Nat.lt_succ_self m))
-
-/-- 20:D5, the cells: with `c y ≤ n y` on every cell `y < m` (the on-line count of the cell against its count), every
-cell is clean, `c y = n y`, exactly when the two sums over the cycle agree — a sum of non-negative differences vanishes
-only term by term. -/
-theorem cells_clean_iff_cycle (c n : Nat → Nat) : ∀ m, (∀ y, y < m → c y ≤ n y) →
-    ((∀ y, y < m → c y = n y) ↔ sumTo c m = sumTo n m)
-  | 0, _ => ⟨fun _ => rfl, fun _ y hy => absurd hy (Nat.not_lt_zero y)⟩
-  | m + 1, h =>
-    have ih := cells_clean_iff_cycle c n m fun y hy => h y (Nat.lt_succ_of_lt hy)
-    ⟨fun hall => by
-      show sumTo c m + c m = sumTo n m + n m
-      rw [ih.1 (fun y hy => hall y (Nat.lt_succ_of_lt hy)), hall m (Nat.lt_succ_self m)],
-     fun hsum y hy =>
-      have hs : sumTo c m + c m = sumTo n m + n m := hsum
-      have h1 := sumTo_le c n m fun y hy => h y (Nat.lt_succ_of_lt hy)
-      have h2 := h m (Nat.lt_succ_self m)
-      have hm : c m = n m := match Nat.lt_or_ge (c m) (n m) with
-        | .inl hlt => absurd hs (Nat.ne_of_lt (Nat.add_lt_add_of_le_of_lt h1 hlt))
-        | .inr hge => Nat.le_antisymm h2 hge
-      have hr : sumTo c m = sumTo n m := Nat.add_right_cancel (hm ▸ hs)
-      match Nat.lt_or_ge y m with
-      | .inl hlt => ih.2 hr y hlt
-      | .inr hge => (Nat.le_antisymm (Nat.le_of_lt_succ hy) hge) ▸ hm⟩
-
-/-- 20:D5, the cells: the number of points of a finite list that the involution fixes (`fixed z = true`). -/
-def fixedCount {α : Type} (fixed : α → Bool) : List α → Nat
-  | [] => 0
-  | a :: l => fixedCount fixed l + (match fixed a with | true => 1 | false => 0)
-
-theorem fixedCount_le {α : Type} (fixed : α → Bool) : ∀ l : List α, fixedCount fixed l ≤ l.length
-  | [] => Nat.le_refl 0
-  | a :: l => by
-    show fixedCount fixed l + (match fixed a with | true => 1 | false => 0) ≤ l.length + 1
-    cases fixed a with
-    | true => exact Nat.add_le_add (fixedCount_le fixed l) (Nat.le_refl 1)
-    | false => exact Nat.add_le_add (fixedCount_le fixed l) (Nat.zero_le 1)
-
-/-- 20:D5, the cells: a finite list of points with an involution (the reflection `s ↦ 1 − s̄`, say) has every point
-fixed exactly when the count of fixed points equals the count. -/
-theorem clean_iff_count {α : Type} (fixed : α → Bool) : ∀ l : List α,
-    ((∀ z, z ∈ l → fixed z = true) ↔ fixedCount fixed l = l.length)
-  | [] => ⟨fun _ => rfl, fun _ z hz => nomatch hz⟩
-  | a :: l =>
-    have ih := clean_iff_count fixed l
-    ⟨fun hall => by
-      have ha : fixed a = true := hall a (List.Mem.head l)
-      show fixedCount fixed l + (match fixed a with | true => 1 | false => 0) = l.length + 1
-      rw [ha, ih.1 fun z hz => hall z (List.Mem.tail a hz)],
-     fun hlen z hz => by
-      have hle := fixedCount_le fixed l
-      have hlen' : fixedCount fixed l + (match fixed a with | true => 1 | false => 0) = l.length + 1 := hlen
-      cases hfa : fixed a with
-      | true =>
-        rw [hfa] at hlen'
-        have := ih.2 (Nat.succ.inj hlen')
-        cases hz with
-        | head => exact hfa
-        | tail _ hz' => exact this z hz'
-      | false =>
-        rw [hfa] at hlen'
-        have h0 : fixedCount fixed l = l.length + 1 := hlen'
-        exact absurd (h0 ▸ hle) (Nat.not_succ_le_self _)⟩
-
-end cells
-
-/-! ## Turing's count on the shell (20:F1; 15 October 2026): the chain `C_y ≤ N^crit_y ≤ N_y`, the certificate at
-equality, and the phantom -/
-
-section turing
-
-/-- 20:F1, Turing's count: `fixedCount` is monotone in the predicate — when every certified sign change of the list
-is a point of the line (`sc z = true → onLine z = true`), the certified count is at most the on-line count. -/
-theorem fixedCount_mono {α : Type} (sc onLine : α → Bool) : ∀ l : List α,
-    (∀ z, z ∈ l → sc z = true → onLine z = true) → fixedCount sc l ≤ fixedCount onLine l
-  | [], _ => Nat.le_refl 0
-  | a :: l, h => by
-    show fixedCount sc l + (match sc a with | true => 1 | false => 0) ≤
-      fixedCount onLine l + (match onLine a with | true => 1 | false => 0)
-    have ih := fixedCount_mono sc onLine l fun z hz => h z (List.Mem.tail a hz)
-    cases hsa : sc a with
-    | true =>
-      rw [h a (List.Mem.head l) hsa]
-      exact Nat.add_le_add ih (Nat.le_refl 1)
-    | false => exact Nat.add_le_add ih (Nat.zero_le _)
-
-/-- 20:F1, the chain `C_y ≤ N^crit_y ≤ N_y`: on the finite list of a cell's zeros, the certified sign changes (each a
-point of the line) count at most the on-line zeros, which count at most the zeros. -/
-theorem turing_chain {α : Type} (sc onLine : α → Bool) (l : List α)
-    (h : ∀ z, z ∈ l → sc z = true → onLine z = true) :
-    fixedCount sc l ≤ fixedCount onLine l ∧ fixedCount onLine l ≤ l.length :=
-  ⟨fixedCount_mono sc onLine l h, fixedCount_le onLine l⟩
-
-/-- 20:F1, the certificate: when the certified count reaches the count of the cell, every zero of the cell lies on
-the line and is certified (simple, as a sign change). -/
-theorem turing_equal {α : Type} (sc onLine : α → Bool) (l : List α)
-    (h : ∀ z, z ∈ l → sc z = true → onLine z = true) (hc : fixedCount sc l = l.length) :
-    ∀ z, z ∈ l → onLine z = true ∧ sc z = true := by
-  have hsc := (clean_iff_count sc l).2 hc
-  intro z hz
-  exact ⟨h z hz (hsc z hz), hsc z hz⟩
-
-/-- 20:F1, the phantom: a zero off the line makes the on-line count fall short of the count, `N_y − N^crit_y > 0`. -/
-theorem turing_phantom {α : Type} (onLine : α → Bool) (l : List α) (hz : ∃ z, z ∈ l ∧ onLine z = false) :
-    fixedCount onLine l < l.length :=
-  match Nat.lt_or_ge (fixedCount onLine l) l.length with
-  | .inl hlt => hlt
-  | .inr hge =>
-    have heq : fixedCount onLine l = l.length := Nat.le_antisymm (fixedCount_le onLine l) hge
-    have hall := (clean_iff_count onLine l).2 heq
-    match hz with
-    | ⟨z, hzl, hzf⟩ => absurd (hall z hzl) (by rw [hzf]; exact Bool.false_ne_true)
-
-end turing
 
 end FRC.Horizon

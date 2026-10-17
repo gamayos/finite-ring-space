@@ -30,6 +30,26 @@
   "kind": "EXACT"
  },
  {
+  "id": "A7",
+  "rows": "20:E12, 20:E14",
+  "block": "A",
+  "script": "rh",
+  "label": "the shell theorem on F_13: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "ok": true,
+  "detail": "three random vectors; W of order 12",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A14",
+  "rows": "20:E13",
+  "block": "A",
+  "script": "rh",
+  "label": "the energy identity on F_13: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "ok": true,
+  "detail": "prime-power indicator: 8 labels",
+  "kind": "EXACT"
+ },
+ {
   "id": "A2",
   "rows": "20:B5",
   "block": "A",
@@ -54,39 +74,19 @@
   "rows": "20:B9",
   "block": "A",
   "script": "rh",
-  "label": "Klein four-group on F_13\u00b2: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}, F_p \u2229 L_1/2 = {2\u207b\u00b9}",
+  "label": "the two agreement loci on F_13\u00b2: of the 182 affine lines, \u03c6 keeps 14, \u03c1 keeps 14, both keep exactly F_p and L_1/2; Klein four-group: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}",
   "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A9",
-  "rows": "20:B7",
-  "block": "A",
-  "script": "rh",
-  "label": "c_13(n) \u2261 \u22121 (mod 53) for n \u2260 0: \u03a3_a \u03c9^{an} in F_53, \u03c9 of order 13",
-  "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A7",
-  "rows": "20:E1, 20:E12, 20:E13",
-  "block": "A",
-  "script": "rh",
-  "label": "F_13: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p\u22121)[(p\u22121)|r]",
-  "ok": true,
-  "detail": "",
+  "detail": "both: [('H', 0), ('S', 0, 7)]",
   "kind": "EXACT"
  },
  {
   "id": "A7b",
-  "rows": "20:E1, 20:E12, 20:E13",
+  "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "\u2113\u00b2(F_13^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, \u03c7_j/\u221a(p\u22121) orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "the chart's characters on \u2113\u00b2(F_13^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; S\u03c7_j = \u03c9^j \u03c7_j",
   "ok": true,
-  "detail": "v\u0304 = 0.852492 (= log 27720/12 at p = 13)",
+  "detail": "\u03a3|v\u0302|\u00b2/(p\u22121) = 15.982015",
   "kind": "[approx]"
  },
  {
@@ -130,6 +130,26 @@
   "kind": "EXACT"
  },
  {
+  "id": "A7",
+  "rows": "20:E12, 20:E14",
+  "block": "A",
+  "script": "rh",
+  "label": "the shell theorem on F_17: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "ok": true,
+  "detail": "three random vectors; W of order 16",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A14",
+  "rows": "20:E13",
+  "block": "A",
+  "script": "rh",
+  "label": "the energy identity on F_17: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "ok": true,
+  "detail": "prime-power indicator: 10 labels",
+  "kind": "EXACT"
+ },
+ {
   "id": "A2",
   "rows": "20:B5",
   "block": "A",
@@ -154,39 +174,19 @@
   "rows": "20:B9",
   "block": "A",
   "script": "rh",
-  "label": "Klein four-group on F_17\u00b2: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}, F_p \u2229 L_1/2 = {2\u207b\u00b9}",
+  "label": "the two agreement loci on F_17\u00b2: of the 306 affine lines, \u03c6 keeps 18, \u03c1 keeps 18, both keep exactly F_p and L_1/2; Klein four-group: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}",
   "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A9",
-  "rows": "20:B7",
-  "block": "A",
-  "script": "rh",
-  "label": "c_17(n) \u2261 \u22121 (mod 103) for n \u2260 0: \u03a3_a \u03c9^{an} in F_103, \u03c9 of order 17",
-  "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A7",
-  "rows": "20:E1, 20:E12, 20:E13",
-  "block": "A",
-  "script": "rh",
-  "label": "F_17: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p\u22121)[(p\u22121)|r]",
-  "ok": true,
-  "detail": "",
+  "detail": "both: [('H', 0), ('S', 0, 9)]",
   "kind": "EXACT"
  },
  {
   "id": "A7b",
-  "rows": "20:E1, 20:E12, 20:E13",
+  "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "\u2113\u00b2(F_17^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, \u03c7_j/\u221a(p\u22121) orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "the chart's characters on \u2113\u00b2(F_17^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; S\u03c7_j = \u03c9^j \u03c7_j",
   "ok": true,
-  "detail": "",
+  "detail": "\u03a3|v\u0302|\u00b2/(p\u22121) = 23.041434",
   "kind": "[approx]"
  },
  {
@@ -230,6 +230,26 @@
   "kind": "EXACT"
  },
  {
+  "id": "A7",
+  "rows": "20:E12, 20:E14",
+  "block": "A",
+  "script": "rh",
+  "label": "the shell theorem on F_29: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "ok": true,
+  "detail": "three random vectors; W of order 28",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A14",
+  "rows": "20:E13",
+  "block": "A",
+  "script": "rh",
+  "label": "the energy identity on F_29: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "ok": true,
+  "detail": "prime-power indicator: 15 labels",
+  "kind": "EXACT"
+ },
+ {
   "id": "A2",
   "rows": "20:B5",
   "block": "A",
@@ -254,39 +274,19 @@
   "rows": "20:B9",
   "block": "A",
   "script": "rh",
-  "label": "Klein four-group on F_29\u00b2: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}, F_p \u2229 L_1/2 = {2\u207b\u00b9}",
+  "label": "the two agreement loci on F_29\u00b2: of the 870 affine lines, \u03c6 keeps 30, \u03c1 keeps 30, both keep exactly F_p and L_1/2; Klein four-group: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}",
   "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A9",
-  "rows": "20:B7",
-  "block": "A",
-  "script": "rh",
-  "label": "c_29(n) \u2261 \u22121 (mod 59) for n \u2260 0: \u03a3_a \u03c9^{an} in F_59, \u03c9 of order 29",
-  "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A7",
-  "rows": "20:E1, 20:E12, 20:E13",
-  "block": "A",
-  "script": "rh",
-  "label": "F_29: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p\u22121)[(p\u22121)|r]",
-  "ok": true,
-  "detail": "",
+  "detail": "both: [('H', 0), ('S', 0, 15)]",
   "kind": "EXACT"
  },
  {
   "id": "A7b",
-  "rows": "20:E1, 20:E12, 20:E13",
+  "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "\u2113\u00b2(F_29^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, \u03c7_j/\u221a(p\u22121) orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "the chart's characters on \u2113\u00b2(F_29^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; S\u03c7_j = \u03c9^j \u03c7_j",
   "ok": true,
-  "detail": "",
+  "detail": "\u03a3|v\u0302|\u00b2/(p\u22121) = 53.366816",
   "kind": "[approx]"
  },
  {
@@ -330,6 +330,26 @@
   "kind": "EXACT"
  },
  {
+  "id": "A7",
+  "rows": "20:E12, 20:E14",
+  "block": "A",
+  "script": "rh",
+  "label": "the shell theorem on F_37: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "ok": true,
+  "detail": "three random vectors; W of order 36",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A14",
+  "rows": "20:E13",
+  "block": "A",
+  "script": "rh",
+  "label": "the energy identity on F_37: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "ok": true,
+  "detail": "prime-power indicator: 18 labels",
+  "kind": "EXACT"
+ },
+ {
   "id": "A2",
   "rows": "20:B5",
   "block": "A",
@@ -354,39 +374,19 @@
   "rows": "20:B9",
   "block": "A",
   "script": "rh",
-  "label": "Klein four-group on F_37\u00b2: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}, F_p \u2229 L_1/2 = {2\u207b\u00b9}",
+  "label": "the two agreement loci on F_37\u00b2: of the 1406 affine lines, \u03c6 keeps 38, \u03c1 keeps 38, both keep exactly F_p and L_1/2; Klein four-group: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}",
   "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A9",
-  "rows": "20:B7",
-  "block": "A",
-  "script": "rh",
-  "label": "c_37(n) \u2261 \u22121 (mod 149) for n \u2260 0: \u03a3_a \u03c9^{an} in F_149, \u03c9 of order 37",
-  "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A7",
-  "rows": "20:E1, 20:E12, 20:E13",
-  "block": "A",
-  "script": "rh",
-  "label": "F_37: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p\u22121)[(p\u22121)|r]",
-  "ok": true,
-  "detail": "",
+  "detail": "both: [('H', 0), ('S', 0, 19)]",
   "kind": "EXACT"
  },
  {
   "id": "A7b",
-  "rows": "20:E1, 20:E12, 20:E13",
+  "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "\u2113\u00b2(F_37^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, \u03c7_j/\u221a(p\u22121) orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "the chart's characters on \u2113\u00b2(F_37^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; S\u03c7_j = \u03c9^j \u03c7_j",
   "ok": true,
-  "detail": "",
+  "detail": "\u03a3|v\u0302|\u00b2/(p\u22121) = 76.978218",
   "kind": "[approx]"
  },
  {
@@ -430,6 +430,26 @@
   "kind": "EXACT"
  },
  {
+  "id": "A7",
+  "rows": "20:E12, 20:E14",
+  "block": "A",
+  "script": "rh",
+  "label": "the shell theorem on F_41: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "ok": true,
+  "detail": "three random vectors; W of order 40",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A14",
+  "rows": "20:E13",
+  "block": "A",
+  "script": "rh",
+  "label": "the energy identity on F_41: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "ok": true,
+  "detail": "prime-power indicator: 19 labels",
+  "kind": "EXACT"
+ },
+ {
   "id": "A2",
   "rows": "20:B5",
   "block": "A",
@@ -454,39 +474,19 @@
   "rows": "20:B9",
   "block": "A",
   "script": "rh",
-  "label": "Klein four-group on F_41\u00b2: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}, F_p \u2229 L_1/2 = {2\u207b\u00b9}",
+  "label": "the two agreement loci on F_41\u00b2: of the 1722 affine lines, \u03c6 keeps 42, \u03c1 keeps 42, both keep exactly F_p and L_1/2; Klein four-group: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}",
   "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A9",
-  "rows": "20:B7",
-  "block": "A",
-  "script": "rh",
-  "label": "c_41(n) \u2261 \u22121 (mod 83) for n \u2260 0: \u03a3_a \u03c9^{an} in F_83, \u03c9 of order 41",
-  "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A7",
-  "rows": "20:E1, 20:E12, 20:E13",
-  "block": "A",
-  "script": "rh",
-  "label": "F_41: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p\u22121)[(p\u22121)|r]",
-  "ok": true,
-  "detail": "",
+  "detail": "both: [('H', 0), ('S', 0, 21)]",
   "kind": "EXACT"
  },
  {
   "id": "A7b",
-  "rows": "20:E1, 20:E12, 20:E13",
+  "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "\u2113\u00b2(F_41^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, \u03c7_j/\u221a(p\u22121) orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "the chart's characters on \u2113\u00b2(F_41^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; S\u03c7_j = \u03c9^j \u03c7_j",
   "ok": true,
-  "detail": "",
+  "detail": "\u03a3|v\u0302|\u00b2/(p\u22121) = 90.016946",
   "kind": "[approx]"
  },
  {
@@ -527,6 +527,26 @@
   "label": "finite critical line on F_173: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
   "ok": true,
   "detail": "\u03bd=2, 2\u207b\u00b9=87",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A7",
+  "rows": "20:E12, 20:E14",
+  "block": "A",
+  "script": "rh",
+  "label": "the shell theorem on F_173: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "ok": true,
+  "detail": "three random vectors; W of order 172",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A14",
+  "rows": "20:E13",
+  "block": "A",
+  "script": "rh",
+  "label": "the energy identity on F_173: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "ok": true,
+  "detail": "prime-power indicator: 53 labels",
   "kind": "EXACT"
  },
  {
@@ -610,21 +630,111 @@
   "kind": "EXACT"
  },
  {
-  "id": "A8",
-  "rows": "",
+  "id": "A15",
+  "rows": "20:B12",
   "block": "A",
   "script": "rh",
-  "label": "any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights, floating point)",
+  "label": "the critical line is the frequency domain on F_13: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_12 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
   "ok": true,
-  "detail": "max|eig(J) \u2212 height| = 1.4e-14",
-  "kind": "[approx]"
+  "detail": "g=2, \u03bd=2, \u03c0=6: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A15",
+  "rows": "20:B12",
+  "block": "A",
+  "script": "rh",
+  "label": "the critical line is the frequency domain on F_17: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_16 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "ok": true,
+  "detail": "g=3, \u03bd=3, \u03c0=8: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A15",
+  "rows": "20:B12",
+  "block": "A",
+  "script": "rh",
+  "label": "the critical line is the frequency domain on F_29: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_28 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "ok": true,
+  "detail": "g=2, \u03bd=2, \u03c0=14: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A15",
+  "rows": "20:B12",
+  "block": "A",
+  "script": "rh",
+  "label": "the critical line is the frequency domain on F_37: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_36 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "ok": true,
+  "detail": "g=2, \u03bd=2, \u03c0=18: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A15",
+  "rows": "20:B12",
+  "block": "A",
+  "script": "rh",
+  "label": "the critical line is the frequency domain on F_41: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_40 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "ok": true,
+  "detail": "g=6, \u03bd=3, \u03c0=20: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A15",
+  "rows": "20:B12",
+  "block": "A",
+  "script": "rh",
+  "label": "the critical line is the frequency domain on F_53: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_52 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "ok": true,
+  "detail": "g=2, \u03bd=2, \u03c0=26: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A15",
+  "rows": "20:B12",
+  "block": "A",
+  "script": "rh",
+  "label": "the critical line is the frequency domain on F_173: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_172 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "ok": true,
+  "detail": "g=2, \u03bd=2, \u03c0=86: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A16",
+  "rows": "20:B13",
+  "block": "A",
+  "script": "rh",
+  "label": "frame coincidence on the line, pair (13, 233): every label \u03b8 < 13 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 7 and 117; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 11 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 12 the Subject's constant mode and a Carrier zero; the labels from 13 on no Subject residue; at 4 the products disagree",
+  "ok": true,
+  "detail": "modes (k, k'): \u03b8=2: (7, 188), \u03b8=3: (10, 117); \u03b8=12: (0, 29)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A16",
+  "rows": "20:B13",
+  "block": "A",
+  "script": "rh",
+  "label": "frame coincidence on the line, pair (173, 30089): every label \u03b8 < 173 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 87 and 15045; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 171 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 172 the Subject's constant mode and a Carrier zero; the labels from 173 on no Subject residue; at 14 the products disagree",
+  "ok": true,
+  "detail": "modes (k, k'): \u03b8=2: (87, 5304), \u03b8=3: (113, 15045); \u03b8=172: (0, 13661)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A16",
+  "rows": "20:B13",
+  "block": "A",
+  "script": "rh",
+  "label": "frame coincidence on the line, pair (1549, 2408561): every label \u03b8 < 1549 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 775 and 1204281; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 1547 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 1548 the Subject's constant mode and a Carrier zero; the labels from 1549 on no Subject residue; at 40 the products disagree",
+  "ok": true,
+  "detail": "modes (k, k'): \u03b8=2: (775, 2308524), \u03b8=3: (24, 100037); \u03b8=1548: (0, 169665)",
+  "kind": "EXACT"
  },
  {
   "id": "A12",
   "rows": "20:A2, 20:A4, 20:F7",
   "block": "A",
   "script": "rh",
-  "label": "closure of the heights on \u03a9 = 233: the largest admissible Subject p* = 13 (13\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 15), the cycle's 233 cells, an embedded Subject reads 13 of them; readings into 13 and 232 records collide",
+  "label": "closure of the zeros on \u03a9 = 233: the largest admissible Subject p* = 13 (13\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 15), the cycle's 233 residues, an embedded Subject reads 13 of them; readings into 13 and 232 records collide",
   "ok": true,
   "detail": "collisions {13: (0, 13), 232: (0, 232)}; \u221a\u03a9 = 15, \u221ap* = 3",
   "kind": "EXACT"
@@ -634,7 +744,7 @@
   "rows": "20:A2, 20:A4, 20:F7",
   "block": "A",
   "script": "rh",
-  "label": "closure of the heights on \u03a9 = 30089: the largest admissible Subject p* = 173 (173\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 173), the cycle's 30089 cells, an embedded Subject reads 173 of them; readings into 173 and 30088 records collide",
+  "label": "closure of the zeros on \u03a9 = 30089: the largest admissible Subject p* = 173 (173\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 173), the cycle's 30089 residues, an embedded Subject reads 173 of them; readings into 173 and 30088 records collide",
   "ok": true,
   "detail": "collisions {173: (0, 173), 30088: (0, 30088)}; \u221a\u03a9 = 173, \u221ap* = 13",
   "kind": "EXACT"
@@ -644,7 +754,7 @@
   "rows": "20:A2, 20:A4, 20:F7",
   "block": "A",
   "script": "rh",
-  "label": "closure of the heights on \u03a9 = 2408561: the largest admissible Subject p* = 1549 (1549\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 1551), the cycle's 2408561 cells, an embedded Subject reads 1549 of them; readings into 1549 and 2408560 records collide",
+  "label": "closure of the zeros on \u03a9 = 2408561: the largest admissible Subject p* = 1549 (1549\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 1551), the cycle's 2408561 residues, an embedded Subject reads 1549 of them; readings into 1549 and 2408560 records collide",
   "ok": true,
   "detail": "collisions {1549: (0, 1549), 2408560: (0, 2408560)}; \u221a\u03a9 = 1551, \u221ap* = 39",
   "kind": "EXACT"
@@ -654,7 +764,7 @@
   "rows": "20:A3",
   "block": "A",
   "script": "rh",
-  "label": "completeness on the pair (13, 233): the registration of the cycle is onto its registered Universe (233 residues; 13 under the Subject's reading); F_13 registers within F_233, every reading of the 233 cells into 13 records collides, one count only both ways",
+  "label": "completeness on the pair (13, 233): the registration of the cycle is onto its registered Universe (233 residues; 13 under the Subject's reading); F_13 registers within F_233, every reading of the 233 residues into 13 records collides, one count only both ways",
   "ok": true,
   "detail": "collisions y mod p: (0, 13), 3y+5 mod p: (0, 13), y\u00b2 mod p: (6, 7)",
   "kind": "EXACT"
@@ -664,7 +774,7 @@
   "rows": "20:A3",
   "block": "A",
   "script": "rh",
-  "label": "completeness on the pair (173, 30089): the registration of the cycle is onto its registered Universe (30089 residues; 173 under the Subject's reading); F_173 registers within F_30089, every reading of the 30089 cells into 173 records collides, one count only both ways",
+  "label": "completeness on the pair (173, 30089): the registration of the cycle is onto its registered Universe (30089 residues; 173 under the Subject's reading); F_173 registers within F_30089, every reading of the 30089 residues into 173 records collides, one count only both ways",
   "ok": true,
   "detail": "collisions y mod p: (0, 173), 3y+5 mod p: (0, 173), y\u00b2 mod p: (86, 87)",
   "kind": "EXACT"
@@ -674,20 +784,70 @@
   "rows": "20:A3",
   "block": "A",
   "script": "rh",
-  "label": "completeness on the pair (1549, 2408561): the registration of the cycle is onto its registered Universe (2408561 residues; 1549 under the Subject's reading); F_1549 registers within F_2408561, every reading of the 2408561 cells into 1549 records collides, one count only both ways",
+  "label": "completeness on the pair (1549, 2408561): the registration of the cycle is onto its registered Universe (2408561 residues; 1549 under the Subject's reading); F_1549 registers within F_2408561, every reading of the 2408561 residues into 1549 records collides, one count only both ways",
   "ok": true,
   "detail": "collisions y mod p: (0, 1549), 3y+5 mod p: (0, 1549), y\u00b2 mod p: (774, 775)",
   "kind": "EXACT"
  },
  {
-  "id": "B1",
-  "rows": "",
-  "block": "B",
+  "id": "A17",
+  "rows": "20:O9",
+  "block": "A",
   "script": "rh",
-  "label": "smooth zero density at T = 2\u03c0p is (1/2\u03c0) log p",
+  "label": "F_13: of its 4 generators, 2 order the 2 primes of the window 2..3 by the discrete logarithm; the longest ordered run of primes is 2 of 2",
   "ok": true,
-  "detail": "p=50: 0.6226  p=500: 0.9891  p=5000: 1.3556  p=50000: 1.7220",
-  "kind": "[chart]"
+  "detail": "(generators, ordering, longest run, primes) = (4, 2, 2, 2)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A17",
+  "rows": "20:O9",
+  "block": "A",
+  "script": "rh",
+  "label": "F_173: of its 84 generators, 0 order the 6 primes of the window 2..13 by the discrete logarithm; the longest ordered run of primes is 5 of 6",
+  "ok": true,
+  "detail": "(generators, ordering, longest run, primes) = (84, 0, 5, 6)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A17",
+  "rows": "20:O9",
+  "block": "A",
+  "script": "rh",
+  "label": "F_1549: of its 504 generators, 0 order the 12 primes of the window 2..39 by the discrete logarithm; the longest ordered run of primes is 6 of 12",
+  "ok": true,
+  "detail": "(generators, ordering, longest run, primes) = (504, 0, 6, 12)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A17",
+  "rows": "20:O9",
+  "block": "A",
+  "script": "rh",
+  "label": "F_30089: of its 15040 generators, 0 order the 40 primes of the window 2..173 by the discrete logarithm; the longest ordered run of primes is 7 of 40",
+  "ok": true,
+  "detail": "(generators, ordering, longest run, primes) = (15040, 0, 7, 40)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A18",
+  "rows": "20:F10, 20:B9, 20:B13",
+  "block": "A",
+  "script": "rh",
+  "label": "no zero off the line, pair (13, 233): the lines kept by both involutions are F_p and L_1/2 and no other tested line (every line of F_13\u00b2, every line of F_233\u00b2); every label 1 \u2264 \u03b8 \u2264 11 of F_13 a nontrivial mode on the line in both frames, the Subject's 11 zeros; every point(s) off both lines on no line kept by both",
+  "ok": true,
+  "detail": "both-invariant lines of F_13\u00b2: [('H', 0), ('S', 0, 7)]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A18",
+  "rows": "20:F10, 20:B9, 20:B13",
+  "block": "A",
+  "script": "rh",
+  "label": "no zero off the line, pair (173, 30089): the lines kept by both involutions are F_p and L_1/2 and no other tested line (every line of F_173\u00b2, the two lines kept and 2000 sampled others not, on F_30089\u00b2); every label 1 \u2264 \u03b8 \u2264 171 of F_173 a nontrivial mode on the line in both frames, the Subject's 171 zeros; 200 sampled point(s) off both lines on no line kept by both",
+  "ok": true,
+  "detail": "both-invariant lines of F_173\u00b2: [('H', 0), ('S', 0, 87)]",
+  "kind": "EXACT"
  },
  {
   "id": "B3",
@@ -700,423 +860,103 @@
   "kind": "[chart]"
  },
  {
-  "id": "B4",
-  "rows": "",
+  "id": "B5",
+  "rows": "20:F9",
   "block": "B",
   "script": "rh",
-  "label": "the bare horizon-length main sum has one sign change per zero on [10,55], each within 0.5 of \u03b3_n",
+  "label": "the exhibit, window of depth 13 (9 prime-power labels): its five peaks [14.5, 20.5, 25.7, 29.0, 34.9] at the first five heights [14.1, 21.0, 25.0, 30.4, 32.9] within the resolution 2\u03c0/log 13 = 2.4",
   "ok": true,
-  "detail": "11 sign changes for 11 zeros; max deviation 0.40 (1\u20132 terms only at these heights)",
-  "kind": "[approx]"
- },
- {
-  "id": "B2",
-  "rows": "",
-  "block": "B",
-  "script": "rh",
-  "label": "reconstruction residue \u221d p^{-1/4}: fitted log-log slope in [\u22120.40, \u22120.10]",
-  "ok": true,
-  "detail": "slope = -0.242",
-  "kind": "[approx]"
- },
- {
-  "id": "C1",
-  "rows": "",
-  "block": "C",
-  "script": "rh",
-  "label": "scale-spectrum peaks at the stated 14.14 \u2026 37.57 (within 0.015) and at \u03b3_1..\u03b3_6 (within 0.05, the taper's width); each peak \u2265 4\u00d7 the baseline",
-  "ok": true,
-  "detail": "peaks 14.15, 21.02, 25.03, 30.40, 32.97, 37.58; max |peak \u2212 \u03b3| 0.030; min peak/baseline 6.2",
-  "kind": "[approx]"
- },
- {
-  "id": "C2",
-  "rows": "",
-  "block": "C",
-  "script": "rh",
-  "label": "raw secular condition: ten heights to mean 4.4e-5, max 1.5e-4 (\u03b3\u2081) at N = 10\u2076; 3.6e-4 at 10\u00b3, 6e-5 at 10\u2075",
-  "ok": true,
-  "detail": "N=1e+03: mean 3.62e-04 max 7.58e-04; N=1e+05: mean 6.00e-05 max 1.67e-04; N=1e+06: mean 4.40e-05 max 1.46e-04",
-  "kind": "[approx]"
- },
- {
-  "id": "C2b",
-  "rows": "",
-  "block": "C",
-  "script": "rh",
-  "label": "pole-corrected secular condition: mean 3.4e-5 (max 6.6e-5) at 10\u2076, 2.3e-5 at 10\u2077, 1.3e-5 (max 2.8e-5) at 10\u2078; falling with depth",
-  "ok": true,
-  "detail": "N=1e+06: mean 3.36e-05 max 6.56e-05 \u03b3\u2081 6.56e-05; N=1e+07: mean 2.30e-05 max 4.08e-05 \u03b3\u2081 4.08e-05; N=1e+08: mean 1.33e-05 max 2.75e-05 \u03b3\u2081 2.75e-05",
-  "kind": "[approx]"
- },
- {
-  "id": "C2c",
-  "rows": "",
-  "block": "C",
-  "script": "rh",
-  "label": "raw secular condition does not sharpen past 10\u2077: mean 2.7e-5 at 10\u2077, 4.2e-5 at 10\u2078; \u03b3\u2081 error 1.5e-4 (10\u2076) \u2192 2.6e-4 (10\u2078): the pole term",
-  "ok": true,
-  "detail": "N=1e+06: mean 4.40e-05 max 1.46e-04 \u03b3\u2081 1.46e-04; N=1e+07: mean 2.68e-05 max 7.46e-05 \u03b3\u2081 1.67e-05; N=1e+08: mean 4.16e-05 max 2.62e-04 \u03b3\u2081 2.62e-04",
-  "kind": "[approx]"
- },
- {
-  "id": "C4",
-  "rows": "",
-  "block": "C",
-  "script": "rh",
-  "label": "Jacobi matrix of the corrected roots: real-symmetric tridiagonal; eig = roots to 1e-12; a, b as stated; heights to 3.4e-5",
-  "ok": true,
-  "detail": "max|eig\u2212roots| = 1.8e-14; a[0..2] = 34.314, 31.021, 31.178; b[0] = 11.178",
-  "kind": "[approx]"
- },
- {
-  "id": "C3",
-  "rows": "",
-  "block": "C",
-  "script": "rh",
-  "label": "colleague matrix of cos(\u03c0 N\u0302_N) on [10,52], N = 10\u2076: mean error 4.8e-5 at dim 520, 3.5e-5 by 620 (the roots' own 3.4e-5)",
-  "ok": true,
-  "detail": "dim 180: 1.41e-02; dim 260: 3.62e-03; dim 340: 8.02e-04; dim 420: 2.74e-04; dim 520: 4.81e-05; dim 620: 3.45e-05",
-  "kind": "[approx]"
- },
- {
-  "id": "C5",
-  "rows": "",
-  "block": "C",
-  "script": "rh",
-  "label": "additive \u2212i d/du + V_comb has a uniform spectrum: spacing std 0.08 (0.11 of its mean) against 0.39 of the mean for the heights",
-  "ok": true,
-  "detail": "additive: std 0.078 on mean spacing 0.715 (ratio 0.109); heights: std 1.54 on mean 3.96 (ratio 0.389) \u2014 the paper's 0.08 is the absolute std, its 0.39 the ratio",
-  "kind": "[approx]"
- },
- {
-  "id": "C6",
-  "rows": "",
-  "block": "C",
-  "script": "rh",
-  "label": "unfolded spacings of the first 240 zeros: P(s<\u00bd) \u2248 0.05, variance \u2248 0.13 (repulsion; far from Poisson)",
-  "ok": true,
-  "detail": "P(s<\u00bd) = 0.050 (GUE 0.112, Poisson 0.393); var = 0.133 (GUE 0.178, Poisson 1)",
-  "kind": "[approx]"
- },
- {
-  "id": "C6b",
-  "rows": "",
-  "block": "C",
-  "script": "rh",
-  "label": "eigenvalue count N(T) within 1.5 of the Berry\u2013Keating smooth count on [10, \u03b3_240]",
-  "ok": true,
-  "detail": "max |N \u2212 N\u0304| = 0.91; mean = 0.30",
+  "detail": "peaks [14.5, 20.5, 25.7, 29.0, 34.9]",
   "kind": "[chart]"
  },
  {
-  "id": "C7a",
-  "rows": "",
+  "id": "B5",
+  "rows": "20:F9",
+  "block": "B",
+  "script": "rh",
+  "label": "the exhibit, window of depth 39 (19 prime-power labels): its five peaks [14.2, 20.8, 25.4, 30.0, 33.5] at the first five heights [14.1, 21.0, 25.0, 30.4, 32.9] within the resolution 2\u03c0/log 39 = 1.7",
+  "ok": true,
+  "detail": "peaks [14.2, 20.8, 25.4, 30.0, 33.5]",
+  "kind": "[chart]"
+ },
+ {
+  "id": "B5",
+  "rows": "20:F9",
+  "block": "B",
+  "script": "rh",
+  "label": "the exhibit, window of depth 173 (54 prime-power labels): its five peaks [14.2, 20.9, 25.1, 30.2, 33.2] at the first five heights [14.1, 21.0, 25.0, 30.4, 32.9] within the resolution 2\u03c0/log 173 = 1.2",
+  "ok": true,
+  "detail": "peaks [14.2, 20.9, 25.1, 30.2, 33.2]",
+  "kind": "[chart]"
+ },
+ {
+  "id": "B6",
+  "rows": "20:F9",
+  "block": "B",
+  "script": "rh",
+  "label": "pair agreement on (173, 30089): the Carrier's window 173 reads its five peaks [0.3, 0.4, 0.5, 1.1, 1.7] from the Subject's window 13, within the Subject's resolution 2.4",
+  "ok": true,
+  "detail": "Subject [14.5, 20.5, 25.7, 29.0, 34.9], Carrier [14.2, 20.9, 25.1, 30.2, 33.2], distances [0.3, 0.4, 0.5, 1.1, 1.7]",
+  "kind": "[chart]"
+ },
+ {
+  "id": "B6",
+  "rows": "20:F9",
+  "block": "B",
+  "script": "rh",
+  "label": "pair agreement on (1549, 2408561): the Carrier's window 1551 reads its five peaks [0.0, 0.2, 0.3, 0.4, 0.4] from the Subject's window 39, within the Subject's resolution 1.7",
+  "ok": true,
+  "detail": "Subject [14.2, 20.8, 25.4, 30.0, 33.5], Carrier [14.2, 21.0, 25.0, 30.3, 33.0], distances [0.0, 0.2, 0.3, 0.4, 0.4]",
+  "kind": "[chart]"
+ },
+ {
+  "id": "B6",
+  "rows": "20:F9",
+  "block": "B",
+  "script": "rh",
+  "label": "the pair (13, 233): the Subject's window, of depth 3, holds two prime-power labels, the taper leaves one, and the energy is flat: no height",
+  "ok": true,
+  "detail": "labels [2, 3]; the energy on [10, 36] varies by 5.6e-17",
+  "kind": "[chart]"
+ },
+ {
+  "id": "B8",
+  "rows": "20:O9",
+  "block": "B",
+  "script": "rh",
+  "label": "F_173: the 9 prime-power labels of the window read in the discrete logarithm load the 171 nontrivial modes at most 30, mean 9, a random-sum maximum about 46: no mode stands out",
+  "ok": true,
+  "detail": "(max, mean, random max) = (30.0, 8.6, 46)",
+  "kind": "[chart]"
+ },
+ {
+  "id": "B8",
+  "rows": "20:O9",
+  "block": "B",
+  "script": "rh",
+  "label": "F_1549: the 19 prime-power labels of the window read in the discrete logarithm load the 1547 nontrivial modes at most 108, mean 19, a random-sum maximum about 140: no mode stands out",
+  "ok": true,
+  "detail": "(max, mean, random max) = (108.5, 18.8, 140)",
+  "kind": "[chart]"
+ },
+ {
+  "id": "B8",
+  "rows": "20:O9",
+  "block": "B",
+  "script": "rh",
+  "label": "F_30089: the 54 prime-power labels of the window read in the discrete logarithm load the 30087 nontrivial modes at most 431, mean 54, a random-sum maximum about 557: no mode stands out",
+  "ok": true,
+  "detail": "(max, mean, random max) = (430.7, 53.9, 557)",
+  "kind": "[chart]"
+ },
+ {
+  "id": "C1",
+  "rows": "20:F9",
   "block": "C",
   "script": "rh",
-  "label": "N_\u03c7 at the first six zeros of L(s, \u03c7_{\u22124}) reads 0.4997 \u2026 5.4998 (completed L real on the line)",
+  "label": "the window of depth 10\u2076: its ten tallest peaks on the range 10 to 52 are the first ten heights, each within 0.05",
   "ok": true,
-  "detail": "zeros 6.0209, 10.2438, 12.9881, 16.3426, 18.2920, 21.4506; N_\u03c7 0.4997, 1.4998, 2.4999, 3.4999, 4.4999, 5.4998; max|Im \u039b| = 1.1e-21",
-  "kind": "[approx]"
- },
- {
-  "id": "C7b",
-  "rows": "",
-  "block": "C",
-  "script": "rh",
-  "label": "twisted secular condition, N = 10\u2076 comb, L never evaluated: six heights to mean error 8.6e-5",
-  "ok": true,
-  "detail": "roots 6.0211, 10.2439, 12.9882, 16.3427, 18.2921, 21.4507; mean error 8.60e-05, max 1.55e-04",
-  "kind": "[approx]"
- },
- {
-  "id": "C7c",
-  "rows": "",
-  "block": "C",
-  "script": "rh",
-  "label": "\u03c7 mod 5 complex: Z_\u03c7 real on the line; the twisted count reads 1 \u2026 14 between the fifteen zeros below 40; the secular condition (N = 10\u2076 comb, brackets from the count alone, L never evaluated) recovers the fifteen heights to mean error 8.0e-5 (max 2.0e-4)",
-  "ok": true,
-  "detail": "|W| = 1.000000000000000, max|Im Z_\u03c7| = 2.8e-21; 15 zeros 6.1836 \u2026 37.2720; count at midpoints 1.000, 2.000, 3.000, 4.000, 5.000, 6.000, 7.000, 8.000, 9.000, 10.000, 11.000, 12.000, 13.000, 14.000; roots 6.1838, 8.4573, 12.6750 \u2026 37.2719; mean error 7.99e-05, max 2.02e-04",
-  "kind": "[approx]"
- },
- {
-  "id": "D1",
-  "rows": "20:F1",
-  "block": "D",
-  "script": "rh",
-  "label": "\u00d1_N rounds to N = 1, 3, 10 at T = 15, 30, 50.3; sign changes of the main sum Z_M give C = 1, 3, 10 = N",
-  "ok": true,
-  "detail": "raw 1.0003, 2.9944, 10.0037; C_M = [1, 3, 10]",
-  "kind": "[approx]"
- },
- {
-  "id": "D2a",
-  "rows": "",
-  "block": "D",
-  "script": "rh",
-  "label": "the completed \u039b_f(\u00bd + it) is real on the line to 10\u207b\u00b2\u2070",
-  "ok": true,
-  "detail": "max |Im \u039b_f| = 5.8e-23 over 25 heights",
-  "kind": "[approx]"
- },
- {
-  "id": "D2b",
-  "rows": "",
-  "block": "D",
-  "script": "rh",
-  "label": "argument principle on [0,87]: f: 45 strip zeros vs 43 on-line, deficit 2 only in the band of the off-line pair; L(s,\u03c7): 45 = 45, deficit 0 everywhere",
-  "ok": true,
-  "detail": "f: N = 45, C = 43, deficit by band [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2]; L(s,\u03c7): N = 45, C = 45; |f(s_off)| = 6.1e-11; |Z_f| dips to 0.357 at t = 85.70",
-  "kind": "[approx]"
- },
- {
-  "id": "D2c",
-  "rows": "",
-  "block": "D",
-  "script": "rh",
-  "label": "the secular condition on the \u039b_f comb returns two 'on-line' roots at the phantom height: 85.63/85.76 (10\u2075), 85.65/85.75 (4\u00d710\u2075)",
-  "ok": true,
-  "detail": "10\u2075: [85.635, 85.764] (no other crossing in [84,87]; count excursion 42.55\u201345.45); 4\u00d710\u2075: [85.651, 85.747], plus the swing of the unsettled count through the levels [42.5, 45.5] (excursion 42.35\u201345.65; crossing pairs at [85.35, 85.52, 85.88, 86.05])",
-  "kind": "[approx]"
- },
- {
-  "id": "D2d",
-  "rows": "",
-  "block": "D",
-  "script": "rh",
-  "label": "raw DH comb count drifts monotonically at t = 85.9 (45.14 \u2192 45.73) and reads 42.66 \u2026 42.73 at 85.3 (interior depths dip to 42.64); stable at 60.3 (28.005 \u00b1 0.002) and 84.0 (43.00 \u00b1 0.01)",
-  "ok": true,
-  "detail": "t=85.9: 45.135, 45.269, 45.413, 45.567, 45.729; t=85.3: 42.659, 42.640, 42.645, 42.676, 42.734; t=60.3: 28.005, 28.006, 28.006, 28.005, 28.004; t=84.0: 42.991, 42.995, 43.005, 43.008, 43.001",
-  "kind": "[approx]"
- },
- {
-  "id": "D2e",
-  "rows": "",
-  "block": "D",
-  "script": "rh",
-  "label": "\u03b6 comb at the pole: t = 1 reads +0.09, \u22120.26, +0.36, \u22120.08, \u22120.81, \u22121.42, \u22121.46 with depth (exact 0); t = 5, 10 within \u00b10.02, \u00b10.003; t = 15 within 2e-3 of 1; t = 30 3.04 \u2192 2.998; t = 50.3 within 1e-2 of 10",
-  "ok": true,
-  "detail": "t=1: +0.09, -0.26, +0.36, -0.08, -0.81, -1.42, -1.46; t=5: max|\u00b7| 0.018; t=10: 0.0024; t=15: max dev 1.7e-03; t=30: 3.042 \u2192 2.998; t=50.3: max dev 8.0e-03",
-  "kind": "[approx]"
- },
- {
-  "id": "D2f",
-  "rows": "",
-  "block": "D",
-  "script": "rh",
-  "label": "pole-corrected \u03b6 count at t = 1: 0.0051, 0.0032, 0.0022, 0.0016, 0.0015, 0.0013, 0.0012 (exact 0), monotone; t = 5, 10 within 4e-4 from 10\u2076 on, falling",
-  "ok": true,
-  "detail": "t=1: +0.0051, +0.0032, +0.0022, +0.0016, +0.0014, +0.0013, +0.0012; t=5: -0.00078, -0.00050, -0.00035, -0.00026, -0.00023, -0.00022, -0.00020; t=10: -0.00047, -0.00027, -0.00021, -0.00014, -0.00014, -0.00012, -0.00012",
-  "kind": "[approx]"
- },
- {
-  "id": "D2g",
-  "rows": "",
-  "block": "D",
-  "script": "rh",
-  "label": "DH count corrected by the zero term of \u03c1\u2080 and its constant: 44.960 \u2192 44.972 at 85.9 (raw 45.14 \u2192 45.73; exact 45), 43.035 \u2192 43.022 at 85.3 (exact 43), monotone toward the exact count",
-  "ok": true,
-  "detail": "t=85.9: 44.9598, 44.9636, 44.9668, 44.9697, 44.9721; t=85.3: 43.0352, 43.0314, 43.0278, 43.0248, 43.0223",
-  "kind": "[approx]"
- },
- {
-  "id": "D3",
-  "rows": "",
-  "block": "D",
-  "script": "rh",
-  "label": "the identity's validation arm: Re(\u03a3_w \u2212 \u03a0_N \u2212 log((s\u22121)/s)) \u2192 log|\u03b6(\u00bd+it)| at t = 1, 5, 10, 15, 30, the error falling with depth (0.0049 at t = 1, 8\u00d710\u2077)",
-  "ok": true,
-  "detail": "t=1.0: 0.0189 \u2192 0.0063 \u2192 0.0049; t=5.0: 0.0004 \u2192 0.0001 \u2192 0.0001; t=10.0: 0.0026 \u2192 0.0009 \u2192 0.0007; t=15.0: 0.0342 \u2192 0.0120 \u2192 0.0105; t=30.0: 0.2660 \u2192 0.0589 \u2192 0.0369",
-  "kind": "[approx]"
- },
- {
-  "id": "D4",
-  "rows": "20:F1",
-  "block": "D",
-  "script": "rh",
-  "label": "frame-exact count on one shell: at p = 97, 1009, 4801 (T = 2\u03c0p) the depth-\u230a\u221ap\u230b comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.079, 0.107, 0.164 \u2014 within 0.08, 0.11, 0.17); the 10\u2076 comb within 0.002; the control \u03b8(t)/\u03c0 + 1 alone deviates by 0.27, 0.498, 0.52 and fails to round at one midpoint of p = 4801",
-  "ok": true,
-  "detail": "p=97 (depth 9, 8 midpoints): max dev 0.079 (10\u2076 comb 0.000; smooth term alone 0.268, rounds True); p=1009 (depth 31, 12 midpoints): max dev 0.107 (10\u2076 comb 0.001; smooth term alone 0.498, rounds True); p=4801 (depth 69, 15 midpoints): max dev 0.164 (10\u2076 comb 0.002; smooth term alone 0.523, rounds False)",
-  "kind": "[approx]"
- },
- {
-  "id": "D6a",
-  "rows": "20:D8",
-  "block": "D",
-  "script": "rh",
-  "label": "the strip: the DH zero \u03c1 = 0.8085 + 85.699 i has 0 < Re \u03c1 < 1 off the line, with f(1 \u2212 \u03c1) = f(\u03c1\u0304) = 0 (the Klein-four orbit); \u03b6 \u2260 0 on four points with Re s \u2265 1",
-  "ok": true,
-  "detail": "|f| at \u03c1, 1\u2212\u03c1, \u03c1\u0304 = [2.8142397537512867e-11, 1.035403082106132e-10, 2.8142397537512867e-11]; |\u03b6| on Re s \u2265 1: min 0.960",
-  "kind": "[approx]"
- },
- {
-  "id": "D6b",
-  "rows": "20:D8",
-  "block": "D",
-  "script": "rh",
-  "label": "the DH prime vector \u039b_f from the divisor recursion is supported outside the prime powers (6, 12, 14, 18, 21, 24, 26, 28, \u2026), and a(n) is not multiplicative: a(6) = 1 against a(2)a(3) = \u2212\u03ba\u00b2",
-  "ok": true,
-  "detail": "support outside prime powers below 40: [6, 12, 14, 18, 21, 24, 26, 28, 34, 36, 39]; a(6) = 1.000, a(2)a(3) = -0.081",
-  "kind": "[approx]"
- },
- {
-  "id": "D6c",
-  "rows": "20:D9",
-  "block": "D",
-  "script": "rh",
-  "label": "the finite negative control over F_13(\u221a2): ((X\u22122)\u00b2\u22122)((X+1)\u00b2\u22122) has exactly the roots 2 \u00b1 \u03b7, \u22121 \u00b1 \u03b7, traces 4, 4, 11, 11 against the line's 1, the root set closed under conjugation and under X \u21a6 1 \u2212 X; none on the line",
-  "ok": true,
-  "detail": "roots [(2, 1), (2, 12), (12, 1), (12, 12)], traces [4, 4, 11, 11], the line Re z = 7 (13 points)",
-  "kind": "EXACT"
- },
- {
-  "id": "D7a",
-  "rows": "20:D5",
-  "block": "D",
-  "script": "rh",
-  "label": "the cells of the cycle on \u03a9 = 13: N_y from the argument principle, C_y from the sign changes of Z on each cell; C_y \u2264 N_y and C_y = N_y on all 13 cells, \u03a3 N_y = N(2\u03c0\u03a9) = 21",
-  "ok": true,
-  "detail": "zeros per cell: max 3, last ten [2, 1, 2, 2, 2, 2, 2, 2, 2, 3] against log y \u2248 2.56; empty cells 2",
-  "kind": "[approx]"
- },
- {
-  "id": "D7b",
-  "rows": "20:D5",
-  "block": "D",
-  "script": "rh",
-  "label": "the cells of the cycle on \u03a9 = 233: N_y from the argument principle, C_y from the sign changes of Z on each cell; C_y \u2264 N_y and C_y = N_y on all 233 cells, \u03a3 N_y = N(2\u03c0\u03a9) = 1038",
-  "ok": true,
-  "detail": "zeros per cell: max 6, last ten [5, 5, 6, 5, 6, 5, 6, 5, 6, 5] against log y \u2248 5.45; empty cells 2",
-  "kind": "[approx]"
- },
- {
-  "id": "E1a",
-  "rows": "",
-  "block": "E",
-  "script": "rh",
-  "label": "\u039b = \u03bc \u2217 log: \u2212\u03a3_{d|n} \u03bc(d) log d = \u039b(n), symbolic for n \u2264 300, floating point for n \u2264 5000",
-  "ok": true,
-  "detail": "symbolic ok; max float deviation 3.6e-15",
-  "kind": "EXACT"
- },
- {
-  "id": "E1b",
-  "rows": "",
-  "block": "E",
-  "script": "rh",
-  "label": "Hardy: R_L(n) \u2192 (\u03c6(n)/n) \u039b(n) on prime powers, \u2192 0 off them; intertwiner (n/\u03c6(n)) R \u2192 \u039b = log \u2113",
-  "ok": true,
-  "detail": "R(2) = 0.3469 vs \u00bd log 2 = 0.3466; R(9) = 0.7337 vs \u2154 log 3 = 0.7324; (13/12) R(13) = 2.5720 vs log 13 = 2.5649; max |R| off prime powers 0.002",
-  "kind": "[approx]"
- },
- {
-  "id": "E1c",
-  "rows": "",
-  "block": "E",
-  "script": "rh",
-  "label": "\u03a8_L(N) \u2192 \u03c8(N) on N \u2264 30: maximal deviation falls monotonically over L = 15, 60, 240",
-  "ok": true,
-  "detail": "max |\u03a8_L \u2212 \u03c8| = 3.564, 2.076, 0.326",
-  "kind": "[approx]"
- },
- {
-  "id": "E2a",
-  "rows": "",
-  "block": "E",
-  "script": "rh",
-  "label": "per-mode energy \u03bc\u00b2(q)/\u03c6(q) = 1, \u00bd, \u00bc, \u2159 at q = 2, 3, 5, 7; unique maximum among the nonconstant modes at the antipode q = 2 (2 \u2264 q \u2264 2000)",
-  "ok": true,
-  "detail": "energies q=2: 1, q=3: 1/2, q=5: 1/4, q=7: 1/6, q=11: 1/10",
-  "kind": "EXACT"
- },
- {
-  "id": "E2b",
-  "rows": "",
-  "block": "E",
-  "script": "rh",
-  "label": "additive-transform band energy of the prime indicator on Z/10007 (Parseval-normalised, bins within 3 of a/q): 1153 > 592 > 301 > 205, the law 1/\u03c6(q)",
-  "ok": true,
-  "detail": "q=2: 1153 > q=3: 592 > q=5: 301 > q=7: 205; \u03c6(q)\u00b7E_q/E_2 = 1.03, 1.04, 1.06",
-  "kind": "[approx]"
- },
- {
-  "id": "E3",
-  "rows": "",
-  "block": "E",
-  "script": "rh",
-  "label": "resolving threshold L*(H) exists for H = 6..50 and tracks the horizon: L* < 6H \u226a H\u00b2",
-  "ok": true,
-  "detail": "L*/H in [1.15, 3.35]; L*(12) = 17, L*(20) = 23, L*(50) = 154",
-  "kind": "[approx]"
- },
- {
-  "id": "E4",
-  "rows": "",
-  "block": "E",
-  "script": "rh",
-  "label": "max chart-mode correlation with the primes is a small multiple of the 1/\u221a(p\u22122) floor: 0.077 vs 0.0315 (p = 1009, 2.4\u00d7), 0.0087 vs 0.0032 (p = 100049, 2.7\u00d7); resonance correlates 0.90",
-  "ok": true,
-  "detail": "p = 1009: max 0.0766, floor 0.0315, ratio 2.431; p = 100049: max 0.0087 over 50024 mode pairs, floor 0.0032, ratio 2.745; corr(1_\u03a0, R_80) on n \u2264 200 = 0.90",
-  "kind": "[approx]"
- },
- {
-  "id": "T1",
-  "rows": "20:F2",
-  "block": "T",
-  "script": "rh",
-  "label": "Turing's certificate over the cycle of \u03a9 = 233: N(g_1037) = 1038 by Lemma turing, 1038 certified sign changes; N(2\u03c0\u03a9) = 1038, every cell passes",
-  "ok": true,
-  "detail": "computed now; Gram points 803, good 94.6 %, open 0, blocks 759, longest 2, blocks short at the finest grid 0; the criterion after 2 Gram intervals (4.362425 > 2.49714), before 2 (4.426522 > 2.497048); 11800 points in ball arithmetic (0 fallback reads, 0 unresolved); tally 3359 points in double precision, 45239 main-sum terms; cells max 6, empty 2, last ten [5, 5, 6, 5, 6, 5, 6, 5, 6, 5]; 2.3 s",
-  "kind": "[approx]"
- },
- {
-  "id": "T2",
-  "rows": "20:F2",
-  "block": "T",
-  "script": "rh",
-  "label": "Turing's certificate over the cycle of \u03a9 = 30089: N(g_280187) = 280188 by Lemma turing, 280188 certified sign changes; N(2\u03c0\u03a9) = 280186, every cell passes",
-  "ok": true,
-  "detail": "computed now; Gram points 279953, good 88.0 %, open 0, blocks 246497, longest 5, blocks short at the finest grid 0; the criterion after 3 Gram intervals (3.284577 > 2.783838), before 2 (2.953741 > 2.783838); 11800 points in ball arithmetic (0 fallback reads, 0 unresolved); tally 700706 points in double precision, 84082697 main-sum terms; cells max 12, empty 2, last ten [12, 10, 10, 11, 10, 10, 10, 11, 10, 9]; 6.9 s",
-  "kind": "[approx]"
- },
- {
-  "id": "T4",
-  "rows": "",
-  "block": "T",
-  "script": "rh",
-  "label": "the bracket refinement keeps the zero of (x \u2212 1/5)((x \u2212 1/2)\u00b2 + 1/1000) on [0, 1] under an evaluation bound of 10\u207b\u00b3 (the midpoint open); the unverified move of the old rule loses it",
-  "ok": true,
-  "detail": "new rule: bracket [0.1850, 0.2775] in cell 0, 1 open midpoint(s), 0 read by the fallback; old rule: [0.9803, 1.0000] without the zero",
-  "kind": "EXACT"
- },
- {
-  "id": "T5",
-  "rows": "",
-  "block": "T",
-  "script": "rh",
-  "label": "the ball fallback with no sign resolved (four attempts exhausted) leaves the bracket [0, 1] of x \u2212 1/5 unchanged and the certificate open, the zero inside",
-  "ok": true,
-  "detail": "bracket [0.0, 1.0], unresolved 1, event (0.0, 1.0, 0.5, 0, False)",
-  "kind": "EXACT"
- },
- {
-  "id": "T6",
-  "rows": "",
-  "block": "T",
-  "script": "rh",
-  "label": "the ball fallback returning a certified sign at a point moved outside the bracket leaves [0, 1] unchanged and the certificate open",
-  "ok": true,
-  "detail": "bracket [0.0, 1.0], unresolved 1, event (0.0, 1.0, 1.1, 1, False)",
-  "kind": "EXACT"
- },
- {
-  "id": "T7",
-  "rows": "",
-  "block": "T",
-  "script": "rh",
-  "label": "the ball fallback returning the exact sign at the midpoint narrows [0, 1] to [0, 1/4] in cell 0 and keeps the zero",
-  "ok": true,
-  "detail": "bracket [0.0, 0.25], unresolved 0, 2 fallback read(s) accepted",
-  "kind": "EXACT"
+  "detail": "peaks [14.12, 21.0, 25.02, 30.41, 32.95, 37.58, 40.91, 43.35, 47.97, 49.8]; max deviation 0.035; 19 s",
+  "kind": "[chart]"
  }
 ]

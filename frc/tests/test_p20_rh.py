@@ -1,6 +1,7 @@
-"""20-rh's ledger file (frc/ledgers/p20_rh.py; task LM36): the horizon theme's resonance arithmetic and the chart file
-frc/chart_rh.py, each value computed two ways; the ledger file green, its markers on its deciding checks with the keys of
-the generated table, and its records those of the package's blocks A, B and E (src/20-rh/results.json)."""
+"""20-rh's ledger file (frc/ledgers/p20_rh.py; task LM36, rewritten with the paper on 17 October 2026): the horizon theme's
+resonance arithmetic and the chart file frc/chart_rh.py, each value computed two ways; the ledger file green, its markers on
+its deciding checks with the keys of the generated table, and its records those of the package's blocks A and B
+(src/20-rh/results.json)."""
 import cmath
 import io
 import json
@@ -69,6 +70,25 @@ class ChartTest(unittest.TestCase):
         for t in (20.0, 40.0, 100.0):                                         # the Riemann–Siegel main sum within its remainder
             self.assertLess(abs(CR.z_horizon(t) - CR.hardy_z(t)), 1.5 * (t / (2 * math.pi)) ** -0.25)
 
+    def test_exhibit_two_ways(self):
+        ns, ls = CR.window_labels(173)
+        self.assertEqual(sorted(ns), [n for n in range(2, 174) if H.prime_power_base(n)])
+        for n, l in zip(ns, ls): self.assertAlmostEqual(l, math.log(H.prime_power_base(n)), places=12)
+        gam = [14.1, 21.0, 30.0]
+        e = CR.energy(39, gam)
+        for g, v in zip(gam, e):                                              # the energy against the direct sum
+            direct = abs(sum(l * (1 - math.log(n) / math.log(39)) * n ** (-0.5 - 1j * g) for n, l in zip(*CR.window_labels(39))))
+            self.assertAlmostEqual(v, direct, places=12)
+        self.assertEqual([round(x, 1) for x in CR.five_peaks(13)], [14.5, 20.5, 25.7, 29.0, 34.9])
+        self.assertAlmostEqual(CR.resolution(173), 2 * math.pi / math.log(173), places=12)
+        self.assertLess(CR.energy_range(3, 10, 36), 1e-12)
+        self.assertTrue(all(CR.characters_parseval(13, 2, H.prime_power_base)[:4]))
+        lam = {}; x = 1
+        for m in range(12): lam[x] = m; x = x * 2 % 13
+        mx, mean, rnd = CR.dlog_loading(13, [2, 3, 4, 8, 9], lam)
+        self.assertAlmostEqual(mean, 5 - 5 * 4 / 11, places=9)                 # the exact mean |P| − |P|(|P|−1)/(p−2)
+        self.assertAlmostEqual(rnd, 5 * math.log(12), places=12)
+
     def test_characters_and_correlations(self):
         self.assertTrue(all(CR.characters(13, 2, H.prime_power_base)[:3]))
         g = arith.primitive_root(1009); dlog, x = {}, 1
@@ -108,7 +128,7 @@ class LedgerTest(unittest.TestCase):
         with redirect_stdout(io.StringIO()):
             L.R.verify_all()
         mine = L.R.results
-        self.assertEqual(len(records), 79)        # review 20261016-1: A12's Ω = 13 instance left (no admissible Subject)
+        self.assertEqual(len(records), 95)        # blocks A and B of the package of 17 October 2026 (block C, the depth 10⁶, is the package's alone)
         self.assertEqual([(r["id"], r["rows"], r["ok"], _ALIAS.get(r["kind"], r["kind"]), r["label"]) for r in records],
                          [(r["id"], r["rows"], r["ok"], r["kind"], r["label"]) for r in mine])
 

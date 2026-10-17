@@ -2,110 +2,95 @@
 
 Validation package of *Riemann Hypothesis over Finite Holographic Substrate* (Akhtman & Voether, 2026; the first version of the
 preprint, *Riemann Hypothesis over the Holographic Substrate: a Finite-Field Dictionary and the Screen Reading*), `20-rh` of the
-FRC corpus. One script, `rh.py` (since
-24 September 2026; the registry `rhcommon.py` and the seven block scripts merged), six blocks, 107 checks (63 EXACT, 41 [approx],
-3 [chart]), driven by `frc-20-rh.ipynb`
-(Google Colab: one cell per python-witnessed ledger predicate, any cell on its own, or *Runtime → Run all*, ≈ 8 min) or run whole;
-every numerical figure of the paper regenerated into `figures/` as the blocks run.
+FRC corpus. One script, `rh.py`, three blocks, 96 checks (80 EXACT, 5 [approx], 11 [chart]), driven by `frc-20-rh.ipynb`
+(Google Colab: one cell per python-witnessed ledger predicate, any cell on its own, or *Runtime → Run all*, under a minute) or run
+whole; the paper's two figures regenerated into `figures/paper/` as the blocks run.
 
-Every check names the predicate(s) of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine
-verification", predicates cited as `20:XN`; public copy `docs/20-rh/index.html`); the ledger's source column links, for each
+The package was rewritten with the paper on 17 October 2026 (`20-rh-20260608/reports/blueprint-20261017.md`). The chart-side
+blocks of the earlier versions — the de-framing dictionary's density and residue, the prime-side spectrum with its secular
+condition, the GUE statistic, the χ-twist, Turing's count and certificate over the laboratory cycles, the resonance — went with
+the rows they witnessed; the exact checks of the shell carry the paper, and the chart enters as one exhibit.
+
+Every check names the predicate(s) of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger, machine
+verification and formalisation", predicates cited as `20:XN`; public copy `docs/20-rh/index.html`); the ledger's source column links, for each
 machine-verified predicate, the script at the deciding check's marker (`src/20-rh/#<key>`) and the Lean module at the predicate's
-declaration. Where a predicate is proved in Lean (`lean/FrcCore/Rh.lean` with no axioms, or `lean/FrcLedger/Rh.lean` on
-Mathlib — B1, B2, B4–B10, C2, C5, E1, E12, E13), the check here is the instance the reader can run. Master-ledger predicates
-of the corpus reached through the paper predicates: `00:D11` (the shell theorem, 20:E12) and `00:D12` (the cells and the hosted
-theorem, 20:D5, 20:F2). Since the cut of 15 October 2026 (T05 of `reports/blueprint-20261013.md`) the checks of the retired rows
-(the zero density and the residue of block B, the prime-side spectrum, the GUE statistic and the χ-twist of block C, the
-staircase, the antipode, the horizon-scale resolution and the flatness of block E) still run, as illustrations marked
-`illustration: 20:XN retired 2026-10-15` in the script; they witness no row of the ledger.
+declaration. Where a predicate is proved in Lean (the predicate module `lean/FrcCore/Rh.lean` on the theme files
+`FrcCore/Theme/Horizon.lean` and `Theme/Zeros.lean`, with no axioms, or `lean/FrcLedger/Rh.lean` on Mathlib — A2–A4, B1, B2, B4–B6, B8–B10, B12, B13, E12–E14, F7, F10), the check here is the instance the reader can run.
+Master-ledger predicates of the corpus reached through the paper's rows: `00:A2` (Finitude, 20:A2), `00:A3` (Completeness,
+20:A3) and `00:A4` (Observation, 20:A4).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/frc-20-rh.ipynb)
 
 Discipline: `EXACT` checks are integer-exact finite computations (a pass is a proof on the tested instances); `[approx]` checks
-compare a floating-point observation with the value the paper states, to a stated tolerance; `[chart]` marks a continuum
-reading of a finite object. The construction's own discipline — *ζ never evaluated* — binds blocks A–C: every construction
-there uses only the sieved von Mangoldt comb, its logarithms, the raised-cosine taper and the archimedean phase from log Γ;
-the Riemann heights appear as validation markers only. The control arms of block D evaluate Hurwitz zeta functions, as the
-paper says they do.
+compare a floating-point observation with the value the paper states, to a stated tolerance; `[chart]` marks a continuum reading
+of a finite object. Nothing in blocks B and C is a shell operation: the window's prime-power labels are read with the chart's
+weight log ℓ, the taper, the scale n^{−1/2} and the height γ, and the classical heights enter as validation markers only — never
+as inputs. ζ is never evaluated.
 
 ## In-tree
 
 | block | checks | claims backed |
 |---|---|---|
-| `A` (`a_shell.py` until 24 September 2026) | A1–A12, A6b, A7b: 66 (60 EXACT, 6 [approx]) | predicates 20:A2, 20:A4, 20:B1–B10, 20:E1, 20:E9, 20:E12–E13, 20:F7; master `00:D11` (the shell theorem): the zero-slot (Thm `zeroslot`, A1), slot complementarity (Thm `compl`, A2), the Hermitian phase calculus on F_{p²} (Lem `K`, A3), the finite critical line Tr = 1 with 2⁻¹ = 2κ+1 = −π (Prop `critical`, A4), the Klein four-group and its fixed loci (Thm `agree`, A5), the Subject constants π = 2κ, i = g^{−κ}, e = g^i on the odd lift (§1.3, A6; the lift rule on every frame below 3000, Rem `frame`, A6b), Thm `hp` (iii) in the F_p reading with Tr S^r, integer arithmetic (A7, EXACT), and (i), (iii) in the complex-character reading on ℓ²(F_p^×) — the mean on the trivial mode, orthonormality, Sχ_j = ω^j χ_j (A7b, [approx]); Def `jacobi` — self-adjointness free, Lanczos in floating point (A8, [approx]); the flat ground state c_p ≡ −1 as a Ramanujan sum in F_q, q ≡ 1 (mod p) (Prop `ground`, A9, EXACT); the shared quarter-turn core Q₄ and the non-existence of C_{232} ↠ C_{12} on (13, 233) (Def `shells`, A10), frame coincidence below the horizon on (p, Ω) pairs to (10009, 100180109) (Prop `coincide`, A11); the closure of the heights on the laboratory Carriers Ω = 13, 233, 30089, 2408561 — the largest embedded Subject p* = 3, 13, 173, 1549 with p*² < Ω < p′², the cells of the cycle as its residues, the wrap of the height reading, the pigeonhole of the master's Finitude and Observation on the cells (Thm `closure`, A12, EXACT; rows 20:A2, 20:A4, 20:F7). Shells 13, 17, 29, 37, 41 in full; 173 for A1, A4, A6; 1009, 10009 for A11; the four laboratory Carriers for A12 |
-| `B` (`b_deframe.py`) | B1–B4: 4 ([chart], [approx]) | predicate 20:D4 (B1–B3 illustrations since 15 October 2026); the de-framing dictionary (Def `deframe`): zero density = shell scale-depth (Prop `density`, B1), the p^{−1/4} reconstruction residue (Obs `residue`, B2), the de-framing limit of the critical real part (B3), the horizon-length main sum tracks the zeros (B4) |
-| `C` (`c_primeside.py`, `c_gue.py`, `c_chi.py`, in sequence) | C1–C7c: 12 ([approx], [chart]) | predicate 20:E6 (C2, C2b, C2c; the other checks illustrations since 15 October 2026); the spectrum from the prime side, ζ never evaluated: the scale-spectrum peaks (Obs `primespec`, C1), the raw secular condition to 4.4×10⁻⁵ at 10⁶ (Obs `trace`, C2), the pole-corrected secular condition to 3.4×10⁻⁵ at 10⁶ and 1.3×10⁻⁵ at 10⁸, falling with depth (Prop `combformula`, Obs `trace`, C2b), the raw condition stalling past 10⁷ (C2c), the colleague matrix of the corrected count (Obs `matrix`, C3), the comb-built Jacobi matrix and its stated coefficients (Def/Obs `jacobi`, C4), the additive injection is gauge-trivial, spacing std 0.08 (Prop `gauge`, C5); GUE level repulsion of the target spectrum, P(s<½) = 0.05, variance 0.13 (Obs `gue`, C6) and the count on the Berry–Keating smooth count (Fig `hp`, C6b); the χ_{−4}-twisted comb (Def `chi`, Obs `chi`): N_χ at the six L-zeros 0.4997 … 5.4998 (C7a), the twisted secular condition to 8.6×10⁻⁵, L never evaluated (C7b), the complex character χ mod 5, χ(2) = i — the half-phase W(χ)^{−1/2}Λ real on the line, the twisted count reading 1 … 14 between the fifteen zeros below 40, the fifteen heights recovered to 8.0×10⁻⁵ with brackets from the count alone (C7c) |
-| `D` (`d_classification.py`) | D1–D4, D2a–D2g, D6a–D6c, D7a–D7b: 15 (one EXACT, the rest [approx]) | predicates 20:D5, 20:D8, 20:D9, 20:F1, 20:F3–F5, 20:F8; master `00:D12` (the cells): Turing's count read on the shell at T = 15, 30, 50.3 (Prop `turing`, D1); the Davenport–Heilbronn discriminator with positive and negative controls (Obs `dh`): reality of Λ_f (D2a), the argument-principle strip count 45 against 43 on-line sign changes with the deficit of 2 confined to the band of the off-line pair, control L(s,χ) 45 = 45 (D2b), the phantom secular roots 85.63/85.76 and 85.65/85.75 (D2c), the unsettled raw count near the pair (D2d), the ζ comb at the pole s = 1 to depth 8×10⁷ (D2e); the smoothed explicit formula (Prop `combformula`): the pole-corrected ζ count settling at t = 1, 5, 10 (D2f), the DH drift as the zero term of the off-line zero (D2g), the corrected sum against log ζ (D3); the frame-exact count on the shells p = 97, 1009, 4801 at their own ceilings, deviations 0.079, 0.107, 0.164 (Prop `turing`, D4); the strip (Thm `strip`): the DH zero ρ = 0.8085 + 85.699 i with f(1 − ρ) = f(ρ̄) = 0 and ζ ≠ 0 on Re s ≥ 1 (D6a), Λ_f supported outside the prime powers and a(n) not multiplicative (D6b); the finite negative control over F_13(√2), exact (Prop `control13`, D6c); the cells of the cycle on Ω = 13 and 233 — N_y from the argument principle, C_y from the sign changes of Z, C_y = N_y on every cell, the totals 21 and 1038 (Def./Prop. `cells`, D7a–D7b) |
-| `E` (`e_resonance.py`) | E1a–E1c, E2a–E2b, E3, E4: 7 (EXACT, [approx]) | predicate 20:C2 (E1a, E1b; the other checks illustrations since 15 October 2026); Λ = μ ∗ log, symbolic (Thm `resonance` (b), E1a); Hardy's limit and the intertwiner (Thm `resonance` (a), (c), E1b); the staircase from the modes (Def `resonance`, Fig `emergence`, E1c); the per-mode energy 1/φ(q) with its maximum at the antipode (Obs `antipode`, E2a) and the additive-transform band energies 1153 > 592 > 301 > 205 on Z/10007 (E2b); the resolving threshold at the horizon (Obs `horizon`, E3); the maximal chart-mode correlation within a small multiple of the exact 1/√(p−2) floor, 0.077 vs 0.0315 at p = 1009 and 0.0087 vs 0.0032 at p = 100049 (Prop/Obs `flat`, E4) |
-| `T` (15 October 2026) | T1–T3: 3 ([approx], double precision with explicit bounds) | predicate 20:F2 (Thm `hosted`): Turing's certificate over the cycle of each laboratory Carrier — Z by the Riemann–Siegel formula with the first correction term and Gabcke's remainder bound, an explicit rounding bound, a sign certified only where \|Z\| exceeds both; the Gram points by Newton, the Gram blocks between good Gram points, Rosser's rule by certified sign changes on grids refined to 4096 points per Gram interval, Turing's theorem at the last good Gram point above 2πΩ with Trudgian's constants; below 168π the host's count at twenty-five digits; every bracket confined to one cell by certified bisection. Ω = 233: N = C = 1038 (T1); Ω = 30089: N = C = 280188 at g_280187, 280186 zeros below 2πΩ (T2); Ω = 2408561: 32984135 zeros, read from the embedded record `CERT_2408561` of the run of 15 October 2026 unless `RH_CERT_FULL=1` recomputes it (about an hour on one core; T3). Every cell clean on the three cycles; the per-cell counts in `cells_<Ω>.npy` |
+| `A` | A1–A7, A7b, A6b, A10–A18: 85 (80 EXACT, 5 [approx]) | predicates 20:A2–A4, 20:B1, B2, B4–B6, B8–B10, B12, B13, 20:E12–E14, 20:F7, F10, 20:O9: the zero-slot (Thm `zeroslot`, A1), slot complementarity (Thm `compl`, A2), the Hermitian phase calculus on F_{p²} (Lem `K`, A3), the finite critical line Tr = 1 with 2⁻¹ = 2κ+1 = −π (Prop `critical`, A4), the two agreement loci among all p(p+1) affine lines and the Klein four-group's fixed loci (Thm `agree`, A5), the Subject constants π = 2κ, i = g^{−κ}, e = g^i on the odd lift (§1.3, A6; the lift rule on every frame below 3000, Rem `frame`, A6b), the shell theorem's clauses (i), (iii), (iv), (v) on random vectors in F_p — the dual inverts, the scale-shift, W² = −J and F⁴ = 1, the explicit formula along the meridian (Thm `hp`, A7, EXACT; rows 20:E12 and 20:E14) — and its chart reading on ℓ²(F_p^×), the complex characters orthogonal with ‖χ_j‖² = p−1 and the Parseval identity (Rem `parseval`, A7b, [approx]); the energy identity Σ v̂(k)v̂(−k) = −Σ v² (Thm `hp` (ii), A14); the shared quarter-turn core Q₄ and the non-existence of C_{232} ↠ C_{12} on (13, 233) (Def `shells`, A10); frame coincidence below the horizon on (p, Ω) pairs to (10009, 100180109) (Prop `coincide`, A11); the critical line as the frequency domain — z_k = 2⁻¹ − ηg^k, the drive, the half-turn and the conjugation as k ↦ k+π, the energy even — on 13, 17, 29, 37, 41, 53, 173 (Prop `line`, A15); frame coincidence on the line on the three laboratory pairs, at every label of the Subject (Prop `coincideline`, A16); no zero off the line on (13, 233) and (173, 30089) — the lines kept by both involutions are the meridian and the critical line and no other tested line, every Subject zero a nontrivial mode in both frames, points off both lines on no line kept by both (Thm `noline`, A18; row 20:F10); the closure of the zeros on the laboratory Carriers Ω = 233, 30089, 2408561 (Thm `closure`, A12; rows 20:A2, 20:A4, 20:F7); completeness on the laboratory pairs (row 20:A3, A13); the generators of F_13, F_173, F_1549, F_30089 that order the window's primes by the discrete logarithm — 2 of 4, then none; the longest ordered run 5 of 6, 6 of 12, 7 of 40 (§ order, A17; row 20:O9). Shells 13, 17, 29, 37, 41 in full; 173 for A1, A4, A6, A7, A14, A15; 1009, 10009 for A11; the laboratory pairs for A12, A13, A16 |
+| `B` | B3, B5, B6, B8: 10 ([chart]) | the de-framing limit (2κ+1)/p → ½ from above, in rationals (Prop `critical`, B3; row 20:B8); the exhibit (Obs `exhibit`; row 20:F9): the windows of depth 13, 39 and 173 put their five peaks (the five tallest on the range 10 to 36) at the first five classical heights within the resolution 2π/log H, the peaks to one decimal as the paper states them (B5); the pair agreement on (173, 30089) and (1549, 2408561), the Carrier's five peaks within the Subject's resolution of the Subject's, the distances as stated; the pair (13, 233) with a window of two labels and a flat energy (B6); the window's labels read in the cycle's own scale coordinate, the discrete logarithm, loading the modes like a random sum on F_173, F_1549, F_30089 — on F_1549 at most 108 against a mean of 19 and a random-sum maximum of about 140 (§ order, B8; row 20:O9) |
+| `C` | C1: 1 ([chart]) | the window of depth 10⁶: the ten tallest peaks on the range 10 to 52 are the first ten heights, each within 0.05 (Obs `exhibit`, row 20:F9); the figure `fig_primespec` |
 
-The registry (`LEDGER` check → predicates, `BLOCK`, `PREDICATES`, `check()`, `results.json`) and the shared primitives — the sieve,
-the tapered comb, θ(T) from log Γ, the raw and the pole-corrected count, the secular roots bracketed by the count itself, the
-colleague and Jacobi matrices, the first heights as validation markers — are the head of the script; each block sets the mpmath
-precision it runs at.
+The registry (`LEDGER` check → predicates, `BLOCK`, `PREDICATES`, `check()`, `results.json`), the shell's arithmetic (the least
+primitive root, the least nonresidue, F_{p²} = F_p(η) as pairs, the dual, the affine lines) and the chart's energy are the head of
+the script.
 
-Run: `python3 rh.py` (≈ 12 min on one core: A 1 s, B 6 s, C 5 min — the secular roots to 10⁸, raw and corrected, are most of it —
-D 3 min, E 15 s, T 3.5 min; exits nonzero on any failure; writes `results.json`; regenerates `figures/`), or the blocks named:
-`python3 rh.py A E`; installed, `python3 -m frc_20_rh`. `RH_FAST=1 python3 rh.py` runs the same 107 checks at reduced depths
-(the 10⁸ comb of C2b/C2c and the p = 4801 shell of D4 skipped; the records then differ from the paper's). Rebuild the notebook:
-`python3 make_notebook.py`. Dependencies: numpy, scipy, mpmath, sympy, matplotlib (`REQUIRES` in `__init__.py`; verified with
-numpy 2.4, scipy 1.17, mpmath 1.4, sympy 1.14, matplotlib 3.10).
+Run: `python3 rh.py` (≈ 100 s on one core: A 75 s, B 1 s, C 20 s; exits nonzero on any failure; writes `results.json`;
+regenerates `figures/paper/`), or the blocks named: `python3 rh.py A B`; installed, `python3 -m frc_20_rh`. Rebuild the
+notebook: `python3 make_notebook.py`. Dependencies: numpy, matplotlib (`REQUIRES` in `__init__.py`; verified with numpy 2.4,
+matplotlib 3.10); the exact checks are the standard library.
 
 ## Figures regenerated
 
 | figure | paper | block |
 |---|---|---|
-| `fig_deframing.pdf` | Fig `deframe` (§ de-framing) | B |
-| `fig_prime_spectrum.pdf` | Fig `primespec` | C |
-| `fig_operator_spectrum.pdf` | Fig `operator` | C |
-| `fig_hilbert_polya.pdf` | Fig `hp` | C |
-| `fig_dh.pdf` | Fig `dh` (with a third panel: the raw and the pole-corrected count against depth, D2d–D2f) | D |
-| `fig_obstruction.pdf` | Fig `obstruction` | E |
-| `fig_emergence_frc.pdf` | Fig `emergence` | E |
+| `figures/paper/fig_line_latitude.pdf` | Fig `line` (the critical line is the frequency latitude, on F_13) | A |
+| `figures/paper/fig_primespec.pdf` | Fig `primespec` (the exhibit) | C |
 
-The qualitative illustration `carrier-domains.png` (§1) is not a computation and is not regenerated.
+The qualitative illustration `subject-domains.png` (§1) is not a computation and is not regenerated.
 
 ## Predicate ledger
 
-The paper carries its predicate ledger as Appendix A (61 predicates in blocks A–F, Z: 12 imported, 12 declared, 34 theorems,
-3 Ω-hard). Every check of this package names the ledger predicate(s) it witnesses (`LEDGER` in `rh.py`; the `rows` field of
-each record in `results.json`, a machine field kept under that name; the check line prints it), and the ledger's source column
-links, for each python-witnessed predicate, the check that decides it (`PREDICATES`: the first check the source column named
-before the schema — B4 ← A1, E12 ← A7, F8 ← D2f, …); the other checks citing a predicate are corroboration, listed by
-`predicate()` from the records (20:E12, the shell theorem, is cited by A7 and A7b on five shells). The two master-ledger
-predicates of the corpus, 00:D11 and 00:D12, are 20:E12 and 20:F1–F2.
+The paper carries its predicate ledger as Appendix A (30 predicates in blocks A, B, D, E, F, Z, O: 3 imported, 7 declared, 18
+theorems, 1 Ω-hard, 1 open). Every check of this package names the ledger predicate(s) it witnesses (`LEDGER` in `rh.py`; the
+`rows` field of each record in `results.json`, a machine field kept under that name; the check line prints it), and the ledger's
+source column links, for each python-witnessed predicate, the check that decides it (`PREDICATES`: B4 ← A1, B12 ← A15, F9 ← B5, F10 ← A18,
+…); the other checks citing a predicate are corroboration, listed by `predicate()` from the records (20:F9 is cited by B5, B6
+and C1; 20:E13 by A14 and A7b; 20:E12 and 20:E14 both by A7). The master-ledger predicates of the corpus reached here are 00:A2, 00:A3 and 00:A4.
 
-## Four figures the package fixes to the digit
+## Numbers the package fixes
 
-1. **Prop `gauge` (C5).** On the paper's grid (U = 15, M = 2048, potential scale 5) the additive operator's spacing standard
-   deviation is 0.078 on a mean spacing 0.72, i.e. 0.11 of the mean, against the zeros' 0.39 (std 1.54 on mean 3.96, first ten
-   heights). The check fixes both numbers.
-2. **Obs `dh`, the 4×10⁵ secular roots (D2c).** At depth 4×10⁵ the unsettled count on [85.3, 86.1] swings below 42.5 and above
-   45.5 (excursion 42.35–45.65), adding two crossing pairs (85.35/85.52, 85.88/86.05) besides the roots 85.65/85.75; at 10⁵ the
-   excursion stays inside (42.5, 45.5) and the two roots are the only crossings. The paper names the roots as the upward
-   crossings of 43.5 and 44.5 and records the swing.
-3. **Obs `dh`, the count at 85.3 (D2d).** The depths read 42.64, 42.65, 42.68 and 42.73; the paper states 42.64 to 42.73.
-4. **Obs `antipode`, the band energies (E2b).** The band energy of the prime indicator on Z/10007, Parseval-normalised over the
-   bins within three of each a/q, reads 1153 > 592 > 301 > 205, the law E_q ∝ 1/φ(q). The check fixes these to ±2.
+1. **Obs `exhibit`, the windows' peaks (B5).** On the grid of step 0.02 the five peaks of the window of depth 13 are 14.48,
+   20.52, 25.68, 29.04, 34.94; of depth 39: 14.20, 20.82, 25.36, 29.98, 33.46; of depth 173: 14.20, 20.94, 25.14, 30.18, 33.22.
+   The paper states them to one decimal.
+2. **Obs `exhibit`, the pair agreement (B6).** The distances between the Subject's and the Carrier's five peaks, from the
+   unrounded positions: 0.3, 0.4, 0.5, 1.1, 1.7 on (173, 30089) and 0.0, 0.2, 0.3, 0.4, 0.4 on (1549, 2408561).
+3. **Obs `exhibit`, the depth 10⁶ (C1).** On the grid of step 0.01 the ten tallest peaks on the range 10 to 52 lie within 0.035
+   of the first ten heights; the paper states 0.05.
+4. **§ order, the discrete logarithm (B8).** On F_1549 the 19 prime-power labels of the window load the 1547 nontrivial modes at
+   most 108.5, mean 18.8 (exactly |P| − |P|(|P|−1)/(p−2)), against a random-sum maximum |P| log(p−1) ≈ 140.
 
 ## One cell per predicate
 
 `frc-20-rh.ipynb` (built by `make_notebook.py`, executed) carries one cell per python-witnessed ledger predicate, addressable by
-its stable id (the predicate's accession key, e.g. `p20037` for `20:E6`; the ledger page opens the notebook at the cell). Every
+its stable id (the predicate's accession key, e.g. `p20085` for `20:B12`; the ledger page opens the notebook at the cell). Every
 cell is self-contained: it installs the package from the site (`pip install frc-20-rh --find-links https://finitering.space/pkg/`
 — a named requirement, so pip reports it already satisfied once installed; the sdist `frc-20-rh-<version>.tar.gz`
 `src/make_pkg.py` writes under `docs/pkg/` at each site build; import name `frc_20_rh`, `__init__.py` exporting `predicate`),
-states the predicate and runs `predicate("20:E6")`: the blocks of the checks that cite the predicate run once per session (the
+states the predicate and runs `predicate("20:B12")`: the blocks of the checks that cite the predicate run once per session (the
 deciding check is `rh.PREDICATES`), the check that decides the predicate is printed from the script's own source — the line under
-its `# 20:E6 (p20037)` marker — and every record citing the predicate is listed with its verdict. The markers in `rh.py` are the
-lines the ledger page's source glyph opens (`docs/src/20-rh/#<key>`). The predicates' Lean counterparts are the
-declarations named by their keys (`p20037` has none; `p20011` for 20:B4) at the end of `lean/FrcCore/Rh.lean` and
-`lean/FrcLedger/Rh.lean` (`lean/make_predicates.py`), one per predicate, with the paper's module as one executable file for the
-web editor.
+its `# 20:B12 (p20085)` marker — and every record citing the predicate is listed with its verdict. The markers in `rh.py` are the
+lines the ledger page's source glyph opens (`docs/src/20-rh/#<key>`). The predicates' Lean counterparts are the declarations
+named by their keys (`p20089` has none; `p20085` for 20:B12) at the end of `lean/FrcCore/Rh.lean` and `lean/FrcLedger/Rh.lean`
+(`lean/make_predicates.py`), one per predicate, with the paper's module as one executable file for the web editor.
 
 ## External witnesses
 
-The corpus witness of 00:D11 is `00-ledger-20260816/validation/check_rh_shell.py`; the Lean witnesses of the shell predicates are
-`lean/FrcLedger/Rh.lean` (Mathlib) and `lean/FrcCore/Rh.lean` (no axioms), rendered at `docs/lean/Rh.html` and
-`docs/lean/core/Rh.html`. This package is the public reproduction of the paper's figures; the paper's Reproducibility section
-links here.
+The framework's ledger file `frc/ledgers/p20_rh.py` reproduces blocks A and B record for record in the standard library (the
+chart readings in `frc/chart_rh.py`); the Lean witnesses of the shell predicates are `lean/FrcLedger/Rh.lean` (Mathlib) and
+`lean/FrcCore/Rh.lean` (no axioms), rendered at `docs/lean/Rh.html` and `docs/lean/core/Rh.html`. This package is the public
+reproduction of the paper's checks and figures; the paper's ledger appendix links here.
