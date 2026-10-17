@@ -74,7 +74,7 @@
   </url>
   <url>
     <loc>https://finitering.space/38-s13/lab.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/4-representation/</loc>
@@ -98,7 +98,7 @@
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/carrier.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/chart.html</loc>
@@ -126,7 +126,7 @@
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/horizon.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/interactions.html</loc>
@@ -134,7 +134,7 @@
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/logic.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/projective.html</loc>
@@ -142,7 +142,7 @@
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/quantum.html</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/subject.html</loc>
@@ -290,7 +290,7 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Keys.Quantum.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Keys.Subject.html</loc>
@@ -370,7 +370,7 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Composite.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Dichotomy.html</loc>
@@ -462,7 +462,7 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Observation.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Pair.html</loc>
@@ -478,7 +478,7 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Quantum.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Rotations.html</loc>
@@ -498,7 +498,7 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Subject.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Symbol.html</loc>
@@ -629,8 +629,12 @@
     <lastmod>2026-10-16</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/releases/frc-20261017/</loc>
+    <lastmod>2026-10-17</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/releases/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/1-algebra/</loc>
@@ -638,7 +642,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/1-algebra/make_notebook.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/10-dimensions/</loc>
@@ -646,7 +650,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/10-dimensions/make_notebook.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/13-epi/</loc>
@@ -662,7 +666,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/14-entropy/make_notebook.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/2-geometry/</loc>
@@ -670,7 +674,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/2-geometry/make_notebook.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/20-rh/</loc>
@@ -898,7 +902,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/25-godel/make_notebook.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/26-pnp/chart_localization.html</loc>
@@ -1054,71 +1058,71 @@
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/alpha_probe.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/coupling_anchor.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/delta.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/exact_core.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/framed_koide.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/m10.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/neutrino.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/pmns_cp.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/quark_amp.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/revision_checks.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/run_all.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/scale_a.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/spurion.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/theta13.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/tier_b.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/tm2_jointfit.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/up_doubling.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/3-causality/</loc>
@@ -1126,131 +1130,131 @@
   </url>
   <url>
     <loc>https://finitering.space/src/3-causality/make_notebook.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/born_exact.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/cluster_coherent.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/deep_mond.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/deep_regime.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/deep_regime_fp.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/firstpassage_finite.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/flux_exact.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/interpolation.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/make_figures.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/meridian_walk.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/predictions.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/rar_scatter.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/rar_shape.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/32-dark/run_all.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/absolute_masses.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/carrier_residue.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/confinement_closure.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/confinement_completion.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/em_heavy_cmag.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/final_resolution.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/forward_eigenvalues.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/heavy_flavour.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/hyperfine_charsum.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/isospin_cottingham.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/make_figures.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/run_all.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/su3_singlet.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/su3f_relations.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/su3f_second_order.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/subhorizon_resolution.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/35-hadrons/vector_nonet.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/4-representation/</loc>
@@ -1258,7 +1262,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/4-representation/make_notebook.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/5-reductio/</loc>
@@ -1266,7 +1270,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/5-reductio/make_notebook.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/6-fourier/</loc>
@@ -1274,7 +1278,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/6-fourier/make_f13_C_figure.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/6-fourier/make_notebook.html</loc>
@@ -1286,6 +1290,6 @@
   </url>
   <url>
     <loc>https://finitering.space/src/8-dirac/make_notebook.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
 </urlset>
