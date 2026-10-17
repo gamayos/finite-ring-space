@@ -4081,7 +4081,7 @@ theorem quarter_pow_inj (hp : FRC.Nat.isPrime p) (h2 : 2 < p) {j : Shell p} (hj 
   | .inl hlt => exact (key (Nat.le_of_lt hlt) hr' e.symm).symm
   | .inr hge => exact key hge hr e
 
-/-- 38:A2 — **C16 (p00151), the spinor dichotomy**, on every frame (`p − 1 = 4κ`, `i = −g^κ`): `κ` is odd iff
+/-- 38:A2, 00:F4, 00:F6 — **C16 (p00151), the spinor dichotomy**, on every frame (`p − 1 = 4κ`, `i = −g^κ`): `κ` is odd iff
 `v₂(p − 1) = 2` (`8 ∤ p − 1`) iff the fold `(r, s) ↦ iʳ (g⁴)ˢ` is injective on `C₄ × C_κ`, and then onto `𝔽_p^×`, so
 `C_{p−1} ≅ C₄ × C_κ`; and iff `3κr + 4s ≡ 1 (mod 4κ)` is solvable. -/
 theorem spinor {κ : Nat} {g : Shell p} (F : Frame p κ g) :

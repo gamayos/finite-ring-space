@@ -4848,7 +4848,7 @@ theorem quarter_pow_inj (hp : FRC.Nat.isPrime p) (h2 : 2 < p) {j : Shell p} (hj 
   | .inl hlt => exact (key (Nat.le_of_lt hlt) hr' e.symm).symm
   | .inr hge => exact key hge hr e
 
-/-- 38:A2 — **C16 (p00151), the spinor dichotomy**, on every frame (`p − 1 = 4κ`, `i = −g^κ`): `κ` is odd iff
+/-- 38:A2, 00:F4, 00:F6 — **C16 (p00151), the spinor dichotomy**, on every frame (`p − 1 = 4κ`, `i = −g^κ`): `κ` is odd iff
 `v₂(p − 1) = 2` (`8 ∤ p − 1`) iff the fold `(r, s) ↦ iʳ (g⁴)ˢ` is injective on `C₄ × C_κ`, and then onto `𝔽_p^×`, so
 `C_{p−1} ≅ C₄ × C_κ`; and iff `3κr + 4s ≡ 1 (mod 4κ)` is solvable. -/
 theorem spinor {κ : Nat} {g : Shell p} (F : Frame p κ g) :
@@ -5498,7 +5498,7 @@ theorem mulIdx_spec (g w j₀ : Nat) (h : g * j₀ = w) : ∀ N, j₀ < N → g 
       have ih := mulIdx_spec g w j₀ h N hlt
       exact ⟨ih.1, Nat.lt_succ_of_lt ih.2⟩
 
-/-- 00:F2, 22:C26, 22:C15, 22:C18, 22:P3 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common
+/-- 00:F2, 00:F6, 22:C26, 22:C15, 22:C18, 22:P3 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common
 multiple below it): the number `g` with `g T = a b` divides both periods, and every common divisor divides it (`g` is
 the gcd); the joint drive carries `(x, y)` to `(x', y')` within one joint period exactly when the offsets agree modulo
 `g` — the conserved offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`. -/
@@ -5647,7 +5647,7 @@ theorem prodRange_one : ∀ m, prodRange (fun _ => (1 : Shell q)) m = 1
   | 0 => rfl
   | m + 1 => by show prodRange (fun _ => (1 : Shell q)) m * 1 = 1; rw [prodRange_one m, mul_one]
 
-/-- 00:F2, 22:C26, 22:C7 — dephasing is exact: on a prime shell `q`, a character `χ(x) = Π_j ζ_j^{x_j}` of the composite
+/-- 00:F2, 00:F6, 22:C26, 22:C7 — dephasing is exact: on a prime shell `q`, a character `χ(x) = Π_j ζ_j^{x_j}` of the composite
 (`ζ_j^{n_j} = 1`) that the drive moves (`χ(v) = Π_j ζ_j ≠ 1`) sums to zero along the drive, `Σ_{t<M} χ(t v) = 0`, over
 every joint recurrence `M`, the product of the periods among them. -/
 theorem dephasing (hq : FRC.Nat.isPrime q) (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m : Nat) (ζ : Nat → Shell q)
@@ -5668,6 +5668,96 @@ theorem dephasing (hq : FRC.Nat.isPrime q) (n : Nat → Nat) (hn : ∀ j, 0 < n 
 
 end dephasing
 
+
+/-! ## The binding lift (00:F6) -/
+
+/-- `1 % e = 0` with `0 < e` forces `e = 1`. -/
+theorem eq_one_of_one_mod {e : Nat} (he : 0 < e) (h : 1 % e = 0) : e = 1 :=
+  match e, he, h with
+  | 0, he, _ => absurd he (Nat.lt_irrefl 0)
+  | 1, _, _ => rfl
+  | k + 2, _, h => by
+    rw [FRC.Nat.mod_eq_of_lt (Nat.lt_of_lt_of_le (by decide : 1 < 2) (Nat.le_add_left 2 k))] at h
+    exact absurd h (by decide)
+
+/-- 00:F6, 39:C1 — **the binding lift**: two parts of periods `a`, `b` with joint period `T` (a common multiple, and
+no positive common multiple below it), unit windings, `b ≥ 2`. The pair fuses — the joint drive carries every pair
+`(x, y)` to every pair `(x', y')` within one joint period — exactly when the cycles are coprime (every common divisor is
+`1`), exactly when the joint period is the product `T = a b`; otherwise the offsets of 00:F2 stay drive-confined
+(the deuteron `(4, 4)`; the offsets' confinement is `pair_offset`'s). -/
+theorem fusion_iff {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T) (hTa : T % a = 0) (hTb : T % b = 0)
+    (hleast : ∀ t, 0 < t → t < T → ¬ (t % a = 0 ∧ t % b = 0)) (hb2 : 1 < b) :
+    ((∀ x y x' y', x < a → y < b → x' < a → y' < b → ∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔
+      (∀ e, 0 < e → a % e = 0 → b % e = 0 → e = 1)) ∧
+    ((∀ e, 0 < e → a % e = 0 → b % e = 0 → e = 1) ↔ T = a * b) := by
+  obtain ⟨g, -, hg0, hgT, hag, hbg, hdiv, hreach⟩ := pair_offset ha hb hT hTa hTb hleast
+  have hcop : g = 1 ↔ (∀ e, 0 < e → a % e = 0 → b % e = 0 → e = 1) :=
+    ⟨fun h1 e he hae hbe => eq_one_of_one_mod he (h1 ▸ hdiv e he hae hbe),
+     fun hc => hc g hg0 hag hbg⟩
+  have hprod : g = 1 ↔ T = a * b :=
+    ⟨fun h1 => by rw [← hgT, h1, Nat.one_mul],
+     fun hab => Nat.eq_of_mul_eq_mul_right hT (by rw [hgT, Nat.one_mul, hab])⟩
+  refine ⟨Iff.trans ⟨fun hall => ?_, fun h1 x y x' y' hx hy hx' hy' => ?_⟩ hcop, hcop.symm.trans hprod⟩
+  · have h01 := (hreach 0 0 0 1 ha hb ha hb2).mp (hall 0 0 0 1 ha hb ha hb2)
+    exact eq_one_of_one_mod hg0 h01
+  · exact (hreach x y x' y' hx hy hx' hy').mpr (by rw [h1, Nat.mod_one, Nat.mod_one])
+
+/-- 00:F6, the instances (39:C1, 39:E1), decided by the kernel: the deuteron's cycles `(4, 4)` share the divisor `4`;
+hydrogen's `(4, 3)` are coprime (every common divisor is `1`); the fused period of hydrogen's Object at `173` is
+`T' = 516`, the least common multiple of `172` and `3`, and `12 ∣ 516` — the core `C₁₂ = C₄ × C₃` with `κ = 3` odd
+(`12 % 8 ≠ 0`); on `C₁₂ = ⟨2⟩ ⊂ 𝔽₁₃` the rung of the division fold of `2^e` is `e % 3`; the three stations
+`{0, 58, 116}` of the rung `s < 3` divide `174 = 173 + 1 = 3 · 58`, the boost torus of the Subject `173`; the cubic
+character `ω = 3` of `𝔽₁₃` has order `3` (`ω³ = 1`, `ω ≠ 1`), dephases exactly, `1 + ω + ω² = 0`, and sums to zero
+over the fused period `516`. -/
+theorem binding_instances :
+    (4 % 4 = 0 ∧ 4 ≠ 1) ∧ (∀ e, 0 < e → 4 % e = 0 → 3 % e = 0 → e = 1) ∧
+    (516 % 172 = 0 ∧ 516 % 3 = 0 ∧ ∀ t, t < 516 → 0 < t → ¬ (t % 172 = 0 ∧ t % 3 = 0)) ∧
+    (516 % 12 = 0 ∧ 12 = 4 * 3 ∧ 12 % 8 ≠ 0) ∧
+    (∀ e, e < 12 → ∀ r, r < 4 → ∀ s, s < 3 → ((2 : Shell 13) ^ 9) ^ r * 2 ^ s = 2 ^ e → s = e % 3) ∧
+    (58 * 0 = 0 ∧ 58 * 1 = 58 ∧ 58 * 2 = 116 ∧ 3 * 58 = 174 ∧ 174 = 173 + 1 ∧ 174 % 3 = 0) ∧
+    ((3 : Shell 13) ^ 3 = 1 ∧ (3 : Shell 13) ≠ 1 ∧ FRC.Shell.Prime.HasOrder (3 : Shell 13) 3 ∧ 1 + 3 + (3 : Shell 13) ^ 2 = 0 ∧
+      sumRange (fun t => (3 : Shell 13) ^ t) 516 = 0) :=
+  ⟨by decide,
+   fun e he h4 h3 =>
+     have hb : e < 4 := match Nat.lt_or_ge e 4 with
+       | .inl h => h
+       | .inr h => absurd (by rw [FRC.Nat.mod_eq_of_lt (Nat.lt_of_lt_of_le (by decide : 3 < 4) h)] at h3; exact h3) (by decide : (3 : Nat) ≠ 0)
+     (@of_decide_eq_true _ (decForallLT (fun e => 0 < e → 4 % e = 0 → 3 % e = 0 → e = 1) 4) (by decide)) e hb he h4 h3,
+   ⟨by decide, by decide,
+    @of_decide_eq_true _ (decForallLT (fun t => 0 < t → ¬ (t % 172 = 0 ∧ t % 3 = 0)) 516) (by decide +kernel)⟩,
+   by decide,
+   @of_decide_eq_true _ (@decForallLT (fun e => ∀ r, r < 4 → ∀ s, s < 3 → ((2 : Shell 13) ^ 9) ^ r * 2 ^ s = 2 ^ e → s = e % 3)
+     (fun e => @decForallLT (fun r => ∀ s, s < 3 → ((2 : Shell 13) ^ 9) ^ r * 2 ^ s = 2 ^ e → s = e % 3)
+       (fun r => decForallLT (fun s => ((2 : Shell 13) ^ 9) ^ r * 2 ^ s = 2 ^ e → s = e % 3) 3) 4) 12) (by decide +kernel),
+   by decide,
+   ⟨by decide, by decide,
+    ⟨by decide, by decide, @of_decide_eq_true _ (decForallLT (fun l => 0 < l → (3 : Shell 13) ^ l ≠ 1) 3) (by decide)⟩,
+    by decide, by decide +kernel⟩⟩
+
+/-- The number of `t < n` with `P t`. -/
+def countBelow (P : Nat → Bool) : Nat → Nat
+  | 0 => 0
+  | n + 1 => countBelow P n + (if P n then 1 else 0)
+
+/-- The sign coincidence of the node `g^{−t₀}` at the chronon `t` on the rung `s`, in exponent form: `g^{−t₀} gᵗ ∈ {±1}`
+exactly when `t ≡ t₀` or `t ≡ t₀ + 86 (mod 172)` (`g^{86} = −1` on `𝔽₁₇₃`), and the rung `s` reads the chronon when
+`s t ≡ 0 (mod 3)`. -/
+def censusHit (t₀ s t : Nat) : Bool := (t % 172 == t₀ || t % 172 == (t₀ + 86) % 172) && (s * t) % 3 == 0
+
+/-- 00:F6, the census (39-s173, `th:census`, "ground first"), decided by the kernel: on `𝔽₁₇₃` the drive `2` has order
+`172` and `2^{86} = −1`, so a node `x₀ = 2^{−t₀}` meets `{±1}` at the chronons `t ≡ t₀` and `t ≡ t₀ + 86 (mod 172)`
+(`pow_inj_of_order`); over the fused period `T' = 516` the sign coincidences read on the rung `s` (`s t ≡ 0 (mod 3)`)
+number `6` on the ground rung `s = 0` and `2` on each lift `s = 1, 2`, for every node `t₀ < 172`: `W_s = 2 gcd(s, 3)`,
+the rates `3 : 1 : 1`, the ground rung first. -/
+theorem binding_census :
+    FRC.Shell.Prime.HasOrder (2 : Shell 173) 172 ∧ (2 : Shell 173) ^ 86 = -1 ∧
+    ∀ t₀, t₀ < 172 → countBelow (censusHit t₀ 0) 516 = 6 ∧ countBelow (censusHit t₀ 1) 516 = 2 ∧
+      countBelow (censusHit t₀ 2) 516 = 2 :=
+  ⟨⟨by decide, by decide +kernel,
+    @of_decide_eq_true _ (decForallLT (fun l => 0 < l → (2 : Shell 173) ^ l ≠ 1) 172) (by decide +kernel)⟩,
+   by decide +kernel,
+   @of_decide_eq_true _ (decForallLT (fun t₀ => countBelow (censusHit t₀ 0) 516 = 6 ∧ countBelow (censusHit t₀ 1) 516 = 2 ∧
+     countBelow (censusHit t₀ 2) 516 = 2) 172) (by decide +kernel)⟩
 
 /-! ## The graded registration law (00:F5; 39-s173, rows B1–B5)
 
@@ -6085,7 +6175,7 @@ theorem shift_mod {d r r' : Nat} (hr : r < d) (hr' : r' < d) : (r + (d - r')) % 
       exact Nat.le_antisymm (Nat.le_of_sub_eq_zero h) hge
   · intro h; rw [h, FRC.Nat.add_sub_of_le (Nat.le_of_lt hr'), FRC.Nat.mod_self d hd]
 
-/-- 22:C3, 22:X3 — orthogonality of the forced basis: for a core `C_d` generated by `ω`, the characters `η_r(j) = ω^{rj}`
+/-- 00:F4, 00:F6, 22:C3, 22:X3 — orthogonality of the forced basis: for a core `C_d` generated by `ω`, the characters `η_r(j) = ω^{rj}`
 satisfy `Σ_{j<d} η_r(j) η_{r'}(j)⁻¹ = d δ_{rr'}` (the inverse character is `ω^{(d−r')j}`). -/
 theorem orthogonality (hq : FRC.Nat.isPrime q) {ω : Shell q} {d : Nat} (hω : HasOrder ω d) {r r' : Nat} (hr : r < d)
     (hr' : r' < d) :
@@ -6097,7 +6187,7 @@ theorem orthogonality (hq : FRC.Nat.isPrime q) {ω : Shell q} {d : Nat} (hω : H
   | .isTrue h => rw [if_pos h, if_pos ((shift_mod hr hr').2 h)]
   | .isFalse h => rw [if_neg h, if_neg (fun h' => h ((shift_mod hr hr').1 h'))]
 
-/-- 22:C4, 22:C23, 22:X3, 22:C24, 22:X5 — the selection rule: a pointer channel `r < d` couples to the Object winding `k` over a fibre of the core
+/-- 00:F4, 00:F6, 22:C4, 22:C23, 22:X3, 22:C24, 22:X5 — the selection rule: a pointer channel `r < d` couples to the Object winding `k` over a fibre of the core
 exactly when their core phases agree, `k ≡ r (mod d)`: `Σ_{j<d} ω^{kj} ω^{(d−r)j} = d [k ≡ r]`. -/
 theorem selection (hq : FRC.Nat.isPrime q) {ω : Shell q} {d : Nat} (hω : HasOrder ω d) (k : Nat) {r : Nat}
     (hr : r < d) :
@@ -6106,7 +6196,7 @@ theorem selection (hq : FRC.Nat.isPrime q) {ω : Shell q} {d : Nat} (hω : HasOr
     rw [(pow_eq_pow_iff_mod hq hω (k * j) ((k % d) * j)).2 (FRC.Nat.mul_mod_left' k j d hω.1)]
   rw [sum_congr d (fun j _ => e1 j), orthogonality hq hω (Nat.mod_lt k hω.1) hr]
 
-/-- 22:C5, 22:X4 — the Lüders projector of the channel `r`, `Π_{jl} = ω^{rj} ω^{(d−r)l}`, is idempotent up to `d`: `Π² = d Π`,
+/-- 00:F4, 22:C5, 22:X4 — the Lüders projector of the channel `r`, `Π_{jl} = ω^{rj} ω^{(d−r)l}`, is idempotent up to `d`: `Π² = d Π`,
 so an immediately repeated registration returns the outcome. -/
 theorem lueders {ω : Shell q} {d : Nat} (hω : HasOrder ω d) {r : Nat} (hr : r < d) (j m : Nat) :
     sumRange (fun l => (ω ^ (r * j) * ω ^ ((d - r) * l)) * (ω ^ (r * l) * ω ^ ((d - r) * m))) d =
@@ -6167,7 +6257,7 @@ theorem cross_mod {d r j : Nat} (hr : r < d) (hj : j < d) (l : Nat) :
   refine mod_add_left_cancel (x := r * j) hd ?_
   rw [h1, h2, FRC.Nat.add_mul_mod_self_left _ _ _ hd, FRC.Nat.add_mul_mod_self_left _ _ _ hd, Nat.mul_comm r l]
 
-/-- 22:C3, 22:C7 — the bilinear Parseval identity on the core: for any two coefficient vectors `f, g` on the fibre,
+/-- 00:F4, 22:C3, 22:C7 — the bilinear Parseval identity on the core: for any two coefficient vectors `f, g` on the fibre,
 `Σ_{r<d} (Σ_j f_j ω^{(d−r)j}) (Σ_l g_l ω^{rl}) = d Σ_j f_j g_j` (with `g = f̄` the resolution of identity and the
 norm identity of the forced basis). -/
 theorem parseval (hq : FRC.Nat.isPrime q) {ω : Shell q} {d : Nat} (hω : HasOrder ω d) (f g : Nat → Shell q) :
@@ -6280,7 +6370,7 @@ theorem wrap_quantised (a : Nat) : (ofNat a : Shell q) = 0 ↔ ∃ k, a = q * k 
 
 /-! ## 22:C13 — the forced complex sector -/
 
-/-- 22:C13, 22:X2 — the shared core of two framed shells: an element of both cycles `C_{4κ}` and `C_{4κ'}` lies in `Q₄` when
+/-- 00:F4, 22:C13, 22:X2 — the shared core of two framed shells: an element of both cycles `C_{4κ}` and `C_{4κ'}` lies in `Q₄` when
 the capacities are coprime (`κ a = κ' b + 1` the Bezout witness), and `Q₄` lies in every such cycle. -/
 theorem shared_core {κ κ' a b : Nat} (hbez : κ * a = κ' * b + 1) (x : Shell q) (hx : x ^ (4 * κ) = 1)
     (hx' : x ^ (4 * κ') = 1) :
@@ -6327,7 +6417,7 @@ theorem no_quarter_turn (hq : FRC.Nat.isPrime q) (h3 : q % 4 = 3) : ¬ ∃ x : S
 
 /-! ## 22:C24 — classicality is the index of the core -/
 
-/-- 22:C24, 22:X5 — with the core `C_d` of index `k` in the Object cycle `C_n = C_{dk}`: the Object is absorbed (classical,
+/-- 00:F4, 22:C24, 22:X5 — with the core `C_d` of index `k` in the Object cycle `C_n = C_{dk}`: the Object is absorbed (classical,
 one outcome per channel) exactly when `k = 1`, that is when its cycle is the core, and resolved (quantum) exactly when
 `1 < k`, that is when the core is a proper subgroup. -/
 theorem classicality_index {d k : Nat} (hd : 0 < d) :
@@ -6445,6 +6535,100 @@ theorem transport_cases :
 /-- 22:C6 — exponent negation inverts the phase cycle: `ζ^{n−k}` is the inverse of `ζ^k` on a cycle of order `n`. -/
 theorem exponent_negation {ζ : Shell q} {n : Nat} (hζ : ζ ^ n = 1) {k : Nat} (hk : k ≤ n) :
     ζ ^ k * ζ ^ (n - k) = 1 := by rw [← pow_add, FRC.Nat.add_sub_of_le hk, hζ]
+
+/-! ## 00:F4 — the Q₄ quotient of the Object cycle: the division fold -/
+
+/-- The remainder of `3r` by `4` tells `r < 4` apart, `r = (3q) % 4` inverts `q = (3r) % 4` (`3 · 3 = 9 ≡ 1 (mod 4)`),
+and `(3l) % 4 ≠ 0` for `0 < l < 4`; decided by the kernel. -/
+theorem fold_quarter :
+    (∀ r, r < 4 → ∀ r', r' < 4 → (3 * r) % 4 = (3 * r') % 4 → r = r') ∧
+    (∀ e, e < 4 → (3 * ((3 * e) % 4)) % 4 = e) ∧
+    (∀ l, l < 4 → 0 < l → 0 < (3 * l) % 4) :=
+  ⟨@of_decide_eq_true _ (@decForallLT (fun r => ∀ r', r' < 4 → (3 * r) % 4 = (3 * r') % 4 → r = r')
+      (fun r => decForallLT (fun r' => (3 * r) % 4 = (3 * r') % 4 → r = r') 4) 4) (by decide +kernel),
+   @of_decide_eq_true _ (decForallLT (fun e => (3 * ((3 * e) % 4)) % 4 = e) 4) (by decide +kernel),
+   @of_decide_eq_true _ (decForallLT (fun l => 0 < l → 0 < (3 * l) % 4) 4) (by decide +kernel)⟩
+
+/-- 00:F4 — the exponent of the division fold: `(3κr + s) mod 4κ = κ·((3r) mod 4) + s` for `s < κ`. -/
+theorem fold_exp_mod {κ : Nat} (hκ : 0 < κ) (r s : Nat) (hs : s < κ) :
+    (3 * κ * r + s) % (4 * κ) = κ * ((3 * r) % 4) + s := by
+  have h4κ : 0 < 4 * κ := Nat.mul_pos (by decide) hκ
+  obtain ⟨c, hc⟩ := FRC.Nat.mod_spec 4 (by decide) (3 * r)
+  have e : 3 * κ * r + s = 4 * κ * c + (κ * ((3 * r) % 4) + s) := by
+    calc 3 * κ * r + s = κ * (3 * r) + s := by rw [Nat.mul_comm 3 κ, FRC.Nat.mul_assoc]
+      _ = κ * (4 * c + (3 * r) % 4) + s := by rw [← hc]
+      _ = 4 * κ * c + (κ * ((3 * r) % 4) + s) := by
+        rw [Nat.mul_add, Nat.add_assoc, FRC.Nat.mul_left_comm κ 4 c, ← FRC.Nat.mul_assoc]
+  have hb : κ * ((3 * r) % 4) + s < 4 * κ :=
+    calc κ * ((3 * r) % 4) + s ≤ κ * 3 + s :=
+          Nat.add_le_add_right (Nat.mul_le_mul_left κ (Nat.le_of_lt_succ (Nat.mod_lt _ (by decide)))) s
+      _ < κ * 3 + κ := Nat.add_lt_add_left hs _
+      _ = 4 * κ := by rw [Nat.mul_comm κ 3]; exact (Nat.succ_mul 3 κ).symm
+  rw [e, FRC.Nat.add_mul_mod_self_left _ _ _ h4κ, FRC.Nat.mod_eq_of_lt hb]
+
+/-- 00:F4 — **the division fold of the Object cycle by the core `Q₄`**: on a cycle `⟨g⟩` of order `n = 4κ`, with
+`i = g^{3κ}` (`fold_core`: `i² = −1`, `i` of order `4`), the fold `(r, s) ↦ iʳ gˢ` is `g^{3κr + s}`, it is injective on
+the class `r < 4` and the rung `s < κ` (division-unique on every capacity, odd or even), and it reaches every point
+`g^e`, `e < n`, of the cycle. Read on `s`, the injectivity clause is the partition into the fibres `gˢ · ⟨i⟩`, one
+per rung; the product form `C₄ × C_κ` is the odd-capacity case (`FRC.Subject.spinor`, 00:C16). -/
+theorem quotient_fold (hq : FRC.Nat.isPrime q) {g : Shell q} {κ : Nat} (hκ : 0 < κ) (hg : HasOrder g (4 * κ)) :
+    (∀ r s : Nat, (g ^ (3 * κ)) ^ r * g ^ s = g ^ (3 * κ * r + s)) ∧
+    (∀ r s r' s' : Nat, r < 4 → s < κ → r' < 4 → s' < κ →
+        (g ^ (3 * κ)) ^ r * g ^ s = (g ^ (3 * κ)) ^ r' * g ^ s' → r = r' ∧ s = s') ∧
+    (∀ e : Nat, e < 4 * κ → ∃ r s : Nat, r < 4 ∧ s < κ ∧ (g ^ (3 * κ)) ^ r * g ^ s = g ^ e) := by
+  have h4κ : 0 < 4 * κ := Nat.mul_pos (by decide) hκ
+  have fold : ∀ r s : Nat, (g ^ (3 * κ)) ^ r * g ^ s = g ^ (3 * κ * r + s) := fun r s => by
+    rw [← pow_mul, ← pow_add]
+  refine ⟨fold, fun r s r' s' hr hs hr' hs' e => ?_, fun e he => ?_⟩
+  · -- injective: reduce both exponents modulo the order, then divide by `κ`
+    rw [fold, fold, pow_mod_order hg, pow_mod_order hg (3 * κ * r' + s'), fold_exp_mod hκ r s hs,
+      fold_exp_mod hκ r' s' hs'] at e
+    have hlt : ∀ t u, u < κ → t < 4 → κ * t + u < 4 * κ := fun t u hu ht =>
+      calc κ * t + u < κ * t + κ := Nat.add_lt_add_left hu _
+        _ = κ * (t + 1) := (Nat.mul_succ κ t).symm
+        _ ≤ κ * 4 := Nat.mul_le_mul_left κ ht
+        _ = 4 * κ := Nat.mul_comm κ 4
+    have e2 := pow_inj_of_order hq hg (hlt _ _ hs (Nat.mod_lt _ (by decide))) (hlt _ _ hs' (Nat.mod_lt _ (by decide))) e
+    have hqq : (3 * r) % 4 = (3 * r') % 4 := FRC.Nat.quot_unique hs hs' e2
+    have hss : s = s' := by
+      have := FRC.Nat.mod_unique hs e2.symm      -- (κ q' + s') % κ = s
+      rw [FRC.Nat.add_mul_mod_self_left _ _ _ hκ, FRC.Nat.mod_eq_of_lt hs'] at this
+      exact this.symm
+    exact ⟨fold_quarter.1 r hr r' hr' hqq, hss⟩
+  · -- onto: `e = κ·t + s` with `t < 4`; the class `r = (3t) % 4` inverts `t = (3r) % 4`
+    obtain ⟨t, ht⟩ := FRC.Nat.mod_spec κ hκ e
+    have hs : e % κ < κ := Nat.mod_lt e hκ
+    have ht4 : t < 4 := by
+      have h1 : κ * t < κ * 4 := by
+        rw [Nat.mul_comm κ 4]
+        exact Nat.lt_of_le_of_lt (by rw [ht]; exact Nat.le_add_right _ _) he
+      exact lt_of_mul_lt_mul h1
+    refine ⟨(3 * t) % 4, e % κ, Nat.mod_lt _ (by decide), hs, ?_⟩
+    rw [fold, pow_mod_order hg, fold_exp_mod hκ _ _ hs, fold_quarter.2.1 t ht4, ← ht]
+
+/-- 00:F4 — **the core of the division fold is `Q₄`**: on a prime shell, for `g` of order `4κ`, `i = g^{3κ}` squares to
+`−1` and has order `4` (`g^{2κ} = −1` by `sq_eq_one`, the powers `g^{3κ}`, `g^{2κ}`, `g^κ` below the order). -/
+theorem fold_core (hq : FRC.Nat.isPrime q) {g : Shell q} {κ : Nat} (hκ : 0 < κ) (hg : HasOrder g (4 * κ)) :
+    g ^ (3 * κ) * g ^ (3 * κ) = -1 ∧ HasOrder (g ^ (3 * κ)) 4 := by
+  have h2 : g ^ (2 * κ) * g ^ (2 * κ) = 1 := by
+    rw [← pow_add, show 2 * κ + 2 * κ = 4 * κ by rw [← FRC.Nat.add_mul]]; exact hg.2.1
+  have hne : g ^ (2 * κ) ≠ 1 := hg.2.2 (2 * κ) (Nat.mul_lt_mul_of_pos_right (by decide) hκ) (Nat.mul_pos (by decide) hκ)
+  have hneg : g ^ (2 * κ) = -1 := match sq_eq_one hq h2 with
+    | .inl h => absurd h hne
+    | .inr h => h
+  have e : 3 * κ + 3 * κ = 4 * κ + 2 * κ := by rw [← FRC.Nat.add_mul, ← FRC.Nat.add_mul]
+  have hsq : g ^ (3 * κ) * g ^ (3 * κ) = -1 :=
+    calc g ^ (3 * κ) * g ^ (3 * κ) = g ^ (3 * κ + 3 * κ) := (pow_add g _ _).symm
+      _ = g ^ (4 * κ + 2 * κ) := by rw [e]
+      _ = g ^ (4 * κ) * g ^ (2 * κ) := pow_add g _ _
+      _ = -1 := by rw [hg.2.1, one_mul, hneg]
+  refine ⟨hsq, by decide, ?_, fun l hl hl0 => ?_⟩
+  · rw [← pow_mul, pow_mod_order hg, show 3 * κ * 4 = 3 * κ * 4 + 0 from rfl, fold_exp_mod hκ 4 0 hκ]
+    rfl
+  · -- `(g^{3κ})^l = g^{κ·((3l) % 4)}` with `0 < (3l) % 4 < 4`: a power below the order
+    rw [← pow_mul, pow_mod_order hg, show 3 * κ * l = 3 * κ * l + 0 from rfl, fold_exp_mod hκ l 0 hκ, Nat.add_zero]
+    exact hg.2.2 _ (by rw [Nat.mul_comm 4 κ]; exact Nat.mul_lt_mul_of_pos_left (Nat.mod_lt _ (by decide)) hκ)
+      (Nat.mul_pos hκ (fold_quarter.2.2 l hl hl0))
 
 section extension
 open FRC.Extension FRC.Extension.Ext
@@ -6771,7 +6955,7 @@ theorem offset_invariant {N : Nat} (hN : 0 < N) (t : Nat) (x : Nat → Nat) (j :
     (x j + (x 0 + t) % N) % N = ((x j + t) % N + x 0) % N := by
   rw [FRC.Nat.add_mod_mod _ _ _ hN, FRC.Nat.mod_add_mod _ _ _ hN, ← Nat.add_assoc, Nat.add_right_comm]
 
-/-- 22:C15, lem:mbody (i)–(ii), 22:C18 — the offset is the orbit label: two configurations `x, y` of the cluster `(ℤ/N)^m`
+/-- 00:F6, 22:C15, lem:mbody (i)–(ii), 22:C18 — the offset is the orbit label: two configurations `x, y` of the cluster `(ℤ/N)^m`
 (`0 < m`, `y` reduced) lie on one orbit of the diagonal drive exactly when their offset vectors agree,
 `x_j − x_0 ≡ y_j − y_0 (mod N)` for every cell `j`; the drive time `t` is a residue, `t < N`, and no drive evolution
 connects distinct offsets. -/
@@ -6800,7 +6984,7 @@ theorem cluster_offset {N m : Nat} (hN : 0 < N) (hm : 0 < m) (x y : Nat → Nat)
 
 /-! ## 22:C26 — the period of a winding -/
 
-/-- 22:C26 — the winding `s` on the cycle `C_n` has period `n/gcd(s, n)`: with `n = d n'`, `s = d s'` and `d` the gcd
+/-- 00:F6, 22:C26 — the winding `s` on the cycle `C_n` has period `n/gcd(s, n)`: with `n = d n'`, `s = d s'` and `d` the gcd
 (`s' u = n' v + 1` the Bezout witness of coprimality), the drive `x ↦ x + s` returns, `s t ≡ 0 (mod n)`, exactly when
 `n' ∣ t`; the joint recurrence of a composite is then the lcm of these periods (`FRC.Quantum.joint_recurrence`). -/
 theorem winding_period {n s d n' s' u v : Nat} (hd : 0 < d) (hn' : 0 < n') (hn : n = d * n') (hs : s = d * s')
@@ -6822,6 +7006,43 @@ theorem winding_period {n s d n' s' u v : Nat} (hd : 0 < d) (hn' : 0 < n') (hn :
     obtain ⟨c, hc⟩ := eq_mul_of_mod_zero hn' h
     refine mod_zero_of_eq_mul (q := s' * c) hn0 ?_
     rw [hc, hs, hn, FRC.Nat.mul_assoc, FRC.Nat.mul_assoc, FRC.Nat.mul_left_comm s']
+
+/-- 00:F6 — **a non-unit winding confines its part**: with the period `a = d a'` and the winding `u = d u'`, the drive
+`x ↦ x + u` keeps `x` in its class modulo `d`, so for `d > 1` the part never carries `0` to `1`; since fusion needs
+`(0, 0)` to reach `(1, y')`, the pair cannot fuse — the "windings unit" of "fuses iff coprime, windings unit"
+(`FRC.Quantum.fusion_iff` assumes unit windings). -/
+theorem winding_confined {a d a' u u' : Nat} (hd : 0 < d) (ha0 : 0 < a) (ha : a = d * a') (hu : u = d * u') :
+    (∀ x t, ((x + u * t) % a) % d = x % d) ∧ (1 < d → ∀ t, (u * t) % a ≠ 1) := by
+  have conf : ∀ x t, ((x + u * t) % a) % d = x % d := fun x t => by
+    rw [mod_mod_of_dvd hd ha0 (mod_zero_of_eq_mul hd ha), hu, FRC.Nat.mul_assoc, Nat.add_comm,
+      FRC.Nat.add_mul_mod_self_left _ _ _ hd]
+  refine ⟨conf, fun hd1 t h1 => ?_⟩
+  have h := conf 0 t
+  rw [Nat.zero_add, h1, Nat.zero_mod, FRC.Nat.mod_eq_of_lt hd1] at h
+  exact absurd h (by decide)
+
+/-- 00:F6 — the rung of the division fold is the exponent's residue modulo `κ`: `(3κr + s) mod 4κ ≡ s (mod κ)` for
+`s < κ`. -/
+theorem rung_is_offset {κ : Nat} (hκ : 0 < κ) (r s : Nat) (hs : s < κ) :
+    ((3 * κ * r + s) % (4 * κ)) % κ = s := by
+  rw [FRC.Observation.fold_exp_mod hκ r s hs, FRC.Nat.add_mul_mod_self_left _ _ _ hκ, FRC.Nat.mod_eq_of_lt hs]
+
+/-- 00:F6 — **fusion carries the offsets onto the rungs**: on the fused cycle `⟨g⟩` of order `4κ` (the pair `(4, κ)`,
+`C_4 × C_κ`), the state the joint drive reaches at time `t` from `(0, 0)` is `(t mod 4, t mod κ)`, and the point `g^t`
+folds as `iʳ gˢ` with the rung `s = t mod κ` — the second member's own coordinate, the offset class of the
+half-driven configuration. -/
+theorem fused_rung (hq : FRC.Nat.isPrime q) {g : Shell q} {κ : Nat} (hκ : 0 < κ) (hg : HasOrder g (4 * κ))
+    (t : Nat) (ht : t < 4 * κ) :
+    (0 + t) % 4 = t % 4 ∧ (0 + t) % κ = t % κ ∧
+    ∃ r s : Nat, r < 4 ∧ s < κ ∧ (g ^ (3 * κ)) ^ r * g ^ s = g ^ t ∧ s = t % κ := by
+  refine ⟨by rw [Nat.zero_add], by rw [Nat.zero_add], ?_⟩
+  obtain ⟨r, s, hr, hs, hfold⟩ := (FRC.Observation.quotient_fold hq hκ hg).2.2 t ht
+  refine ⟨r, s, hr, hs, hfold, ?_⟩
+  have h1 : g ^ (3 * κ * r + s) = g ^ t := by rw [← (FRC.Observation.quotient_fold hq hκ hg).1 r s]; exact hfold
+  have h4κ : 0 < 4 * κ := Nat.mul_pos (by decide) hκ
+  rw [FRC.Observation.pow_mod_order hg] at h1
+  have h2 := FRC.Observation.pow_inj_of_order hq hg (Nat.mod_lt _ h4κ) ht h1
+  rw [← h2, rung_is_offset hκ r s hs]
 
 /-! ## The locked cluster against the spread: `m²` against `m` -/
 
@@ -7389,6 +7610,12 @@ that every row carrying the key asserts, proved from the themes alone. The paper
 namespace FRC.Ledger
 
 -- Keys of the quantum theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+/-- p00062 — 00:F4. The Object cycle decomposes by the $Q_4$ quotient, $x=\im^{\,r}\gen^{\,s}$: the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index; the fold is division-unique, a product iff $\kap$ odd (C16). Fibres are the cosets $q_\alpha\cdot\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum (22-qm Def.~measvectors): observation resolves cosets, never points within one. -/
+theorem p00062 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {g : FRC.Shell q} {κ : Nat}, (0 : Nat) < κ → FRC.Shell.Prime.HasOrder g ((4 : Nat) * κ) → (∀ (r s : Nat), (g ^ ((3 : Nat) * κ)) ^ r * g ^ s = g ^ ((3 : Nat) * κ * r + s)) ∧ (∀ (r s r' s' : Nat), r < (4 : Nat) → s < κ → r' < (4 : Nat) → s' < κ → (g ^ ((3 : Nat) * κ)) ^ r * g ^ s = (g ^ ((3 : Nat) * κ)) ^ r' * g ^ s' → r = r' ∧ s = s') ∧ ∀ (e : Nat), e < (4 : Nat) * κ → ∃ r s, r < (4 : Nat) ∧ s < κ ∧ (g ^ ((3 : Nat) * κ)) ^ r * g ^ s = g ^ e) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {g : FRC.Shell q} {κ : Nat}, (0 : Nat) < κ → FRC.Shell.Prime.HasOrder g ((4 : Nat) * κ) → g ^ ((3 : Nat) * κ) * g ^ ((3 : Nat) * κ) = (-1 : FRC.Shell q) ∧ FRC.Shell.Prime.HasOrder (g ^ ((3 : Nat) * κ)) (4 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (κ % (2 : Nat) = (1 : Nat) ↔ (p - (1 : Nat)) % (8 : Nat) ≠ (0 : Nat)) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∀ (r s r' s' : Nat), r < (4 : Nat) → s < κ → r' < (4 : Nat) → s' < κ → FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = FRC.Shell.Frame.quarterTurn g κ ^ r' * (g ^ (4 : Nat)) ^ s' → r = r' ∧ s = s') ∧ (κ % (2 : Nat) = (1 : Nat) → ∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → ∃ r s, r < (4 : Nat) ∧ s < κ ∧ FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = x) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∃ r s, r < (4 : Nat) ∧ s < κ ∧ ((3 : Nat) * κ * r + (4 : Nat) * s) % ((4 : Nat) * κ) = (1 : Nat))) ∧ (∀ {q : Nat} [FRC.Pos q] {κ κ' a b : Nat}, κ * a = κ' * b + (1 : Nat) → ∀ (x : FRC.Shell q), x ^ ((4 : Nat) * κ) = (1 : FRC.Shell q) → x ^ ((4 : Nat) * κ') = (1 : FRC.Shell q) → x ^ (4 : Nat) = (1 : FRC.Shell q) ∧ ∀ (y : FRC.Shell q), y ^ (4 : Nat) = (1 : FRC.Shell q) → y ^ ((4 : Nat) * κ) = (1 : FRC.Shell q) ∧ y ^ ((4 : Nat) * κ') = (1 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ {r r' : Nat}, r < d → r' < d → FRC.Shell.sumRange (fun j => ω ^ (r * j) * ω ^ ((d - r') * j)) d = if r = r' then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ {r : Nat}, r < d → ∀ (j m : Nat), FRC.Shell.sumRange (fun l => ω ^ (r * j) * ω ^ ((d - r) * l) * (ω ^ (r * l) * ω ^ ((d - r) * m))) d = FRC.Shell.ofNat d * (ω ^ (r * j) * ω ^ ((d - r) * m))) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (f g : Nat → FRC.Shell q), FRC.Shell.sumRange (fun r => FRC.Shell.sumRange (fun j => f j * ω ^ ((d - r) * j)) d * FRC.Shell.sumRange (fun l => g l * ω ^ (r * l)) d) d = FRC.Shell.ofNat d * FRC.Shell.sumRange (fun j => f j * g j) d) ∧ ∀ {d k : Nat}, (0 : Nat) < d → (k = (1 : Nat) ↔ d * k = d) ∧ ((1 : Nat) < k ↔ d < d * k) :=
+  And.intro @FRC.Observation.quotient_fold (And.intro @FRC.Observation.fold_core (And.intro @FRC.Subject.spinor (And.intro @FRC.Observation.shared_core (And.intro @FRC.Observation.orthogonality (And.intro @FRC.Observation.selection (And.intro @FRC.Observation.lueders (And.intro @FRC.Observation.parseval (@FRC.Observation.classicality_index))))))))
+/-- p00064 — 00:F6. \textbf{The binding lift}: a pair fuses iff cycles coprime, windings unit; else the F2 offsets stay drive-confined (22-qm B5, C15) --- the deuteron, $(4,4)$, spectrumless. Fusion carries the half-driven offsets onto the F4 rungs; pointer channels forced, Born lands with exact dephasing ($1+\omega+\omega^{2}=0$, $T'=516$). Energies $E_{s}=s\,h/3$, stations $\{0,58,116\}$; cores odd$(\q-1)$: hydrogen $(4,3)\to C_{12}$, $\kap_{O}=3$, ground first. -/
+theorem p00064 : (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → (1 : Nat) < b → ((∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ ∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → e = (1 : Nat)) ∧ ((∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → e = (1 : Nat)) ↔ T = a * b)) ∧ (∀ {n s d n' s' u v : Nat}, (0 : Nat) < d → (0 : Nat) < n' → n = d * n' → s = d * s' → s' * u = n' * v + (1 : Nat) → ∀ (t : Nat), s * t % n = (0 : Nat) ↔ t % n' = (0 : Nat)) ∧ (∀ {a d a' u u' : Nat}, (0 : Nat) < d → (0 : Nat) < a → a = d * a' → u = d * u' → (∀ (x t : Nat), (x + u * t) % a % d = x % d) ∧ ((1 : Nat) < d → ∀ (t : Nat), u * t % a ≠ (1 : Nat))) ∧ (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g)) ∧ (∀ {N m : Nat}, (0 : Nat) < N → (0 : Nat) < m → ∀ (x y : Nat → Nat), (∀ (j : Nat), j < m → y j < N) → ((∃ t, t < N ∧ ∀ (j : Nat), j < m → (x j + t) % N = y j) ↔ ∀ (j : Nat), j < m → (x j + y (0 : Nat)) % N = (y j + x (0 : Nat)) % N)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {g : FRC.Shell q} {κ : Nat}, (0 : Nat) < κ → FRC.Shell.Prime.HasOrder g ((4 : Nat) * κ) → ∀ (t : Nat), t < (4 : Nat) * κ → ((0 : Nat) + t) % (4 : Nat) = t % (4 : Nat) ∧ ((0 : Nat) + t) % κ = t % κ ∧ ∃ r s, r < (4 : Nat) ∧ s < κ ∧ (g ^ ((3 : Nat) * κ)) ^ r * g ^ s = g ^ t ∧ s = t % κ) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ {r r' : Nat}, r < d → r' < d → FRC.Shell.sumRange (fun j => ω ^ (r * j) * ω ^ ((d - r') * j)) d = if r = r' then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m : Nat) (ζ : Nat → FRC.Shell q), (∀ (j : Nat), j < m → ζ j ^ n j = (1 : FRC.Shell q)) → FRC.Shell.prodRange ζ m ≠ (1 : FRC.Shell q) → ∀ (M : Nat), FRC.Quantum.Joint n m M → FRC.Shell.sumRange (fun t => FRC.Shell.prodRange (fun j => ζ j ^ t) m) M = (0 : FRC.Shell q)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (κ % (2 : Nat) = (1 : Nat) ↔ (p - (1 : Nat)) % (8 : Nat) ≠ (0 : Nat)) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∀ (r s r' s' : Nat), r < (4 : Nat) → s < κ → r' < (4 : Nat) → s' < κ → FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = FRC.Shell.Frame.quarterTurn g κ ^ r' * (g ^ (4 : Nat)) ^ s' → r = r' ∧ s = s') ∧ (κ % (2 : Nat) = (1 : Nat) → ∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → ∃ r s, r < (4 : Nat) ∧ s < κ ∧ FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = x) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∃ r s, r < (4 : Nat) ∧ s < κ ∧ ((3 : Nat) * κ * r + (4 : Nat) * s) % ((4 : Nat) * κ) = (1 : Nat))) ∧ (((4 : Nat) % (4 : Nat) = (0 : Nat) ∧ (4 : Nat) ≠ (1 : Nat)) ∧ (∀ (e : Nat), (0 : Nat) < e → (4 : Nat) % e = (0 : Nat) → (3 : Nat) % e = (0 : Nat) → e = (1 : Nat)) ∧ ((516 : Nat) % (172 : Nat) = (0 : Nat) ∧ (516 : Nat) % (3 : Nat) = (0 : Nat) ∧ ∀ (t : Nat), t < (516 : Nat) → (0 : Nat) < t → ¬(t % (172 : Nat) = (0 : Nat) ∧ t % (3 : Nat) = (0 : Nat))) ∧ ((516 : Nat) % (12 : Nat) = (0 : Nat) ∧ (12 : Nat) = (4 : Nat) * (3 : Nat) ∧ (12 : Nat) % (8 : Nat) ≠ (0 : Nat)) ∧ (∀ (e : Nat), e < (12 : Nat) → ∀ (r : Nat), r < (4 : Nat) → ∀ (s : Nat), s < (3 : Nat) → ((2 : FRC.Shell (13 : Nat)) ^ (9 : Nat)) ^ r * (2 : FRC.Shell (13 : Nat)) ^ s = (2 : FRC.Shell (13 : Nat)) ^ e → s = e % (3 : Nat)) ∧ ((58 : Nat) * (0 : Nat) = (0 : Nat) ∧ (58 : Nat) * (1 : Nat) = (58 : Nat) ∧ (58 : Nat) * (2 : Nat) = (116 : Nat) ∧ (3 : Nat) * (58 : Nat) = (174 : Nat) ∧ (174 : Nat) = (173 : Nat) + (1 : Nat) ∧ (174 : Nat) % (3 : Nat) = (0 : Nat)) ∧ (3 : FRC.Shell (13 : Nat)) ^ (3 : Nat) = (1 : FRC.Shell (13 : Nat)) ∧ (3 : FRC.Shell (13 : Nat)) ≠ (1 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Prime.HasOrder (3 : FRC.Shell (13 : Nat)) (3 : Nat) ∧ (1 : FRC.Shell (13 : Nat)) + (3 : FRC.Shell (13 : Nat)) + (3 : FRC.Shell (13 : Nat)) ^ (2 : Nat) = (0 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.sumRange (fun t => (3 : FRC.Shell (13 : Nat)) ^ t) (516 : Nat) = (0 : FRC.Shell (13 : Nat))) ∧ FRC.Shell.Prime.HasOrder (2 : FRC.Shell (173 : Nat)) (172 : Nat) ∧ (2 : FRC.Shell (173 : Nat)) ^ (86 : Nat) = (-1 : FRC.Shell (173 : Nat)) ∧ ∀ (t₀ : Nat), t₀ < (172 : Nat) → FRC.Quantum.countBelow (FRC.Quantum.censusHit t₀ (0 : Nat)) (516 : Nat) = (6 : Nat) ∧ FRC.Quantum.countBelow (FRC.Quantum.censusHit t₀ (1 : Nat)) (516 : Nat) = (2 : Nat) ∧ FRC.Quantum.countBelow (FRC.Quantum.censusHit t₀ (2 : Nat)) (516 : Nat) = (2 : Nat) :=
+  And.intro @FRC.Quantum.fusion_iff (And.intro @FRC.Composite.winding_period (And.intro @FRC.Composite.winding_confined (And.intro @FRC.Quantum.pair_offset (And.intro @FRC.Composite.cluster_offset (And.intro @FRC.Composite.fused_rung (And.intro @FRC.Observation.selection (And.intro @FRC.Observation.orthogonality (And.intro @FRC.Quantum.dephasing (And.intro @FRC.Subject.spinor (And.intro @FRC.Quantum.binding_instances (@FRC.Quantum.binding_census)))))))))))
 /-- p00191 — 00:F2. \textbf{Multi-body registration}: an unequal-cycle composite returning below $\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\gcd$ cycle (the quotient $A/\langle v\rangle$), and dephasing over every joint recurrence below $\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel). -/
 theorem p00191 : (∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m L : Nat), (0 : Nat) < L → FRC.Quantum.Joint n m L → ∃ T, T ≤ L ∧ (0 : Nat) < T ∧ FRC.Quantum.Joint n m T ∧ (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) ∧ L % T = (0 : Nat)) ∧ (∀ {n : Nat → Nat} {m T : Nat}, (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) → (0 : Nat) < T → ∀ (t : Nat), (0 : Nat) < t → FRC.Quantum.Joint n m t → T ≤ t) ∧ (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m : Nat) (ζ : Nat → FRC.Shell q), (∀ (j : Nat), j < m → ζ j ^ n j = (1 : FRC.Shell q)) → FRC.Shell.prodRange ζ m ≠ (1 : FRC.Shell q) → ∀ (M : Nat), FRC.Quantum.Joint n m M → FRC.Shell.sumRange (fun t => FRC.Shell.prodRange (fun j => ζ j ^ t) m) M = (0 : FRC.Shell q) :=
   And.intro @FRC.Quantum.joint_recurrence (And.intro @FRC.Quantum.joint_least (And.intro @FRC.Quantum.pair_offset (@FRC.Quantum.dephasing)))

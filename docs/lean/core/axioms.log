@@ -1398,6 +1398,12 @@
 'FRC.Quantum.prodRange_pow' does not depend on any axioms
 'FRC.Quantum.prodRange_one' does not depend on any axioms
 'FRC.Quantum.dephasing' does not depend on any axioms
+'FRC.Quantum.eq_one_of_one_mod' does not depend on any axioms
+'FRC.Quantum.fusion_iff' does not depend on any axioms
+'FRC.Quantum.binding_instances' does not depend on any axioms
+'FRC.Quantum.countBelow' does not depend on any axioms
+'FRC.Quantum.censusHit' does not depend on any axioms
+'FRC.Quantum.binding_census' does not depend on any axioms
 'FRC.Quantum.absorbed' does not depend on any axioms
 'FRC.Quantum.pow_mod_of_not_mod' does not depend on any axioms
 'FRC.Quantum.unique_home' does not depend on any axioms
@@ -1445,6 +1451,10 @@
 'FRC.Observation.transport_trichotomy' does not depend on any axioms
 'FRC.Observation.transport_cases' does not depend on any axioms
 'FRC.Observation.exponent_negation' does not depend on any axioms
+'FRC.Observation.fold_quarter' does not depend on any axioms
+'FRC.Observation.fold_exp_mod' does not depend on any axioms
+'FRC.Observation.quotient_fold' does not depend on any axioms
+'FRC.Observation.fold_core' does not depend on any axioms
 'FRC.Observation.inv_spec' does not depend on any axioms
 'FRC.Observation.eq_zero_of_norm_eq_zero' does not depend on any axioms
 'FRC.Observation.ext_mul_eq_zero' does not depend on any axioms
@@ -1474,6 +1484,9 @@
 'FRC.Composite.offset_invariant' does not depend on any axioms
 'FRC.Composite.cluster_offset' does not depend on any axioms
 'FRC.Composite.winding_period' does not depend on any axioms
+'FRC.Composite.winding_confined' does not depend on any axioms
+'FRC.Composite.rung_is_offset' does not depend on any axioms
+'FRC.Composite.fused_rung' does not depend on any axioms
 'FRC.Composite.locked_norm' does not depend on any axioms
 'FRC.Composite.tsum' does not depend on any axioms
 'FRC.Composite.tsum_zero' does not depend on any axioms
@@ -1796,6 +1809,7 @@
 'FRC.Ladder.distSum' does not depend on any axioms
 'FRC.Ladder.two_mul_distSum' does not depend on any axioms
 'FRC.Ladder.dist_le' does not depend on any axioms
+'FRC.Ladder.dist_max' does not depend on any axioms
 'FRC.Ladder.sqmulAux' does not depend on any axioms
 'FRC.Ladder.sqmul' does not depend on any axioms
 'FRC.Ladder.sqmulAux_spec' does not depend on any axioms
@@ -2002,6 +2016,8 @@
 'FRC.Ledger.p38029' does not depend on any axioms
 'FRC.Ledger.p38050' does not depend on any axioms
 'FRC.Ledger.p38053' does not depend on any axioms
+'FRC.Ledger.p00062' does not depend on any axioms
+'FRC.Ledger.p00064' does not depend on any axioms
 'FRC.Ledger.p00191' does not depend on any axioms
 'FRC.Ledger.p00194' does not depend on any axioms
 'FRC.Ledger.p22002' does not depend on any axioms

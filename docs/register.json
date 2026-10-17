@@ -2,19 +2,19 @@
  "header": {
   "generated": "17 October 2026",
   "schema": "frc-register/2",
-  "rows": 1048,
-  "theorems": 1034,
+  "rows": 1049,
+  "theorems": 1035,
   "counts": {
-   "keys": 1034,
-   "rows": 1048,
+   "keys": 1035,
+   "rows": 1049,
    "shared": 14,
    "by_tag": {
-    "D": 161,
+    "D": 160,
     "G": 1,
     "I": 122,
     "O": 10,
-    "R": 85,
-    "T": 639,
+    "R": 83,
+    "T": 629,
     "Ω": 30
    }
   },
@@ -799,7 +799,7 @@
       "text": "A value decided by the totality, in no embedded reader's window; a demarcation of where the value is read, not an open item and not a claim that no proof exists."
      }
     ],
-    "rows": 33
+    "rows": 34
    },
    {
     "key": "21-grav",
@@ -1496,7 +1496,7 @@
    "theorems": "one entry per key (LM12): its canonical statement (the row of its ledger of origin, the key's prefix), the origin, the tag, the Lean tier, the deciding check and declarations, the aliases that resolve to it, the rows that write it, and for a theorem the realisations its statement names (Q21)",
    "superseded": "the keys that left the public ledgers (corrected, split, merged or returned home), each with its live successor keys and nothing else (decision Q19)"
   },
-  "superseded": 127
+  "superseded": 130
  },
  "theorems": [
   {
@@ -3120,7 +3120,7 @@
    "check": {
     "href": "frc/ledgers/master/quantum.html#p00191",
     "script": "frc/ledgers/master/quantum.py",
-    "line": 69,
+    "line": 87,
     "verdict": "pass"
    },
    "declarations": [
@@ -3141,12 +3141,23 @@
   {
    "key": "p00062",
    "origin": "00",
-   "statement": "The Object cycle decomposes by the $Q_4$ quotient, $x=\\im^{\\,r}\\gen^{\\,s}$: the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index (10:G2); the fold is division-unique, a product iff $\\kap$ odd (C16). Fibres are the cosets $q_\\alpha\\cdot\\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum (22-qm Def.~measvectors): observation resolves cosets, never points within one.",
+   "statement": "The Object cycle decomposes by the $Q_4$ quotient, $x=\\im^{\\,r}\\gen^{\\,s}$: the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index; the fold is division-unique, a product iff $\\kap$ odd (C16). Fibres are the cosets $q_\\alpha\\cdot\\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum (22-qm Def.~measvectors): observation resolves cosets, never points within one.",
    "origin_row": "00:F4",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/quantum.html#p00062",
+    "script": "frc/ledgers/master/quantum.py",
+    "line": 196,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Quantum",
+     "name": "FRC.Ledger.p00062"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:F4"
@@ -3163,7 +3174,7 @@
    "check": {
     "href": "frc/ledgers/master/quantum.html#p00194",
     "script": "frc/ledgers/master/quantum.py",
-    "line": 123,
+    "line": 141,
     "verdict": "pass"
    },
    "declarations": [
@@ -3185,9 +3196,20 @@
    "statement": "\\textbf{The binding lift}: a pair fuses iff cycles coprime, windings unit; else the F2 offsets stay drive-confined (22-qm B5, C15) --- the deuteron, $(4,4)$, spectrumless. Fusion carries the half-driven offsets onto the F4 rungs; pointer channels forced, Born lands with exact dephasing ($1+\\omega+\\omega^{2}=0$, $T'=516$). Energies $E_{s}=s\\,h/3$, stations $\\{0,58,116\\}$; cores odd$(\\q-1)$: hydrogen $(4,3)\\to C_{12}$, $\\kap_{O}=3$, ground first.",
    "origin_row": "00:F6",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/quantum.html#p00064",
+    "script": "frc/ledgers/master/quantum.py",
+    "line": 284,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Quantum",
+     "name": "FRC.Ledger.p00064"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:F6"
@@ -4043,7 +4065,7 @@
    "check": {
     "href": "src/20-rh/#p20043",
     "script": "rh.py",
-    "line": 538,
+    "line": 568,
     "verdict": "pass"
    },
    "declarations": [
@@ -14638,7 +14660,7 @@
   {
    "key": "p20004",
    "origin": "20",
-   "statement": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple.",
+   "statement": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple. Turing's criterion at a good Gram point, with Trudgian's bound on the integral of $S$ above $168\\pi$.",
    "origin_row": "20:A7",
    "tag": "I",
    "tier": null,
@@ -14666,7 +14688,7 @@
   {
    "key": "p20006",
    "origin": "20",
-   "statement": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple and every cell below $4.8\\times10^{11}$ clean; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion; the self-adjoint realisations of the Berry--Keating operator.",
+   "statement": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple and every cell $y\\le477\\,464\\,829\\,274$ clean; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion; the self-adjoint realisations of the Berry--Keating operator.",
    "origin_row": "20:A9",
    "tag": "I",
    "tier": null,
@@ -14706,6 +14728,20 @@
    ]
   },
   {
+   "key": "p20084",
+   "origin": "20",
+   "statement": "Ball arithmetic: enclosures of $\\zeta$ and $\\log\\Gamma$ on the line whose radius carries every rounding and truncation (Arb), read at the points the double-precision certificate leaves open and below $t=200$; a ball that excludes $0$ certifies the sign.",
+   "origin_row": "20:A12",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "20:A12"
+   ]
+  },
+  {
    "key": "p20008",
    "origin": "20",
    "statement": "The two frames on one substrate: the Carrier chart $\\F_\\Omega$, held by no embedded observer, and the Subject $\\Fp$ embedded with $\\Omega\\gg \\p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else, on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\\nmid232$); hardness by register ($\\p$-hard, $\\Omega$-hard).",
@@ -14715,7 +14751,7 @@
    "check": {
     "href": "src/20-rh/#p20008",
     "script": "rh.py",
-    "line": 549,
+    "line": 579,
     "verdict": "pass"
    },
    "declarations": [
@@ -14750,7 +14786,7 @@
    "check": {
     "href": "src/20-rh/#p20009",
     "script": "rh.py",
-    "line": 564,
+    "line": 594,
     "verdict": "pass"
    },
    "declarations": [
@@ -14815,7 +14851,7 @@
    "check": {
     "href": "src/20-rh/#p20011",
     "script": "rh.py",
-    "line": 454,
+    "line": 484,
     "verdict": "pass"
    },
    "declarations": [
@@ -14846,7 +14882,7 @@
    "check": {
     "href": "src/20-rh/#p20012",
     "script": "rh.py",
-    "line": 482,
+    "line": 512,
     "verdict": "pass"
    },
    "declarations": [
@@ -14877,7 +14913,7 @@
    "check": {
     "href": "src/20-rh/#p20013",
     "script": "rh.py",
-    "line": 491,
+    "line": 521,
     "verdict": "pass"
    },
    "declarations": [
@@ -14938,7 +14974,7 @@
    "check": {
     "href": "src/20-rh/#p20014",
     "script": "rh.py",
-    "line": 509,
+    "line": 539,
     "verdict": "pass"
    },
    "declarations": [
@@ -14974,7 +15010,7 @@
    "check": {
     "href": "src/20-rh/#p20015",
     "script": "rh.py",
-    "line": 475,
+    "line": 505,
     "verdict": "pass"
    },
    "declarations": [
@@ -15030,7 +15066,7 @@
    "check": {
     "href": "src/20-rh/#p20016",
     "script": "rh.py",
-    "line": 501,
+    "line": 531,
     "verdict": "pass"
    },
    "declarations": [
@@ -15091,7 +15127,7 @@
    "check": {
     "href": "src/20-rh/#p20017",
     "script": "rh.py",
-    "line": 465,
+    "line": 495,
     "verdict": "pass"
    },
    "declarations": [
@@ -15151,7 +15187,7 @@
    "check": {
     "href": "src/20-rh/#p20029",
     "script": "rh.py",
-    "line": 1606,
+    "line": 1691,
     "verdict": "pass"
    },
    "declarations": [
@@ -15181,7 +15217,7 @@
    "check": {
     "href": "src/20-rh/#p20080",
     "script": "rh.py",
-    "line": 1546,
+    "line": 1631,
     "verdict": "pass"
    },
    "declarations": [
@@ -15207,7 +15243,7 @@
    "check": {
     "href": "src/20-rh/#p20083",
     "script": "rh.py",
-    "line": 1575,
+    "line": 1660,
     "verdict": "pass"
    },
    "declarations": [
@@ -15233,7 +15269,7 @@
    "check": {
     "href": "src/20-rh/#p20032",
     "script": "rh.py",
-    "line": 538,
+    "line": 568,
     "verdict": "pass"
    },
    "declarations": [
@@ -15279,7 +15315,7 @@
    "check": {
     "href": "src/20-rh/#p20044",
     "script": "rh.py",
-    "line": 540,
+    "line": 570,
     "verdict": "pass"
    },
    "declarations": [
@@ -15319,7 +15355,7 @@
    "check": {
     "href": "src/20-rh/#p20047",
     "script": "rh.py",
-    "line": 1347,
+    "line": 1411,
     "verdict": "pass"
    },
    "declarations": [
@@ -15353,14 +15389,14 @@
   {
    "key": "p20081",
    "origin": "20",
-   "statement": "\\textbf{The hypothesis on a hosted Carrier.} A cell is decided by the certificate of a shell reading it, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30\\,089$ and $2\\,408\\,561$ every cell of the cycle is clean, $1\\,038$, $280\\,186$ and $32\\,984\\,135$ zeros, all simple; the classical verification cleans every cell below $4.8\\times10^{11}$ (A9).",
+   "statement": "\\textbf{The hypothesis on a hosted Carrier.} A cell that passes is certified clean by the reading shell, a Subject below the largest one, the host above; on the laboratory Carriers $233$ and $30\\,089$ every cell passes, $1\\,038$ and $280\\,186$ zeros, all simple; the classical verification cleans every cell $y\\le477\\,464\\,829\\,274$ (A9), $2\\,408\\,561$ among them. The Lean declaration is the embedding arithmetic.",
    "origin_row": "20:F2",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "src/20-rh/#p20081",
     "script": "rh.py",
-    "line": 2255,
+    "line": 2309,
     "verdict": "pass"
    },
    "declarations": [
@@ -15386,7 +15422,7 @@
    "check": {
     "href": "src/20-rh/#p20079",
     "script": "rh.py",
-    "line": 610,
+    "line": 646,
     "verdict": "pass"
    },
    "declarations": [
@@ -15410,7 +15446,7 @@
   {
    "key": "p20059",
    "origin": "20",
-   "statement": "The physical Carrier: the cells from the largest embedded Subject up lie in no embedded cycle, the whole-state certificate of the hypothesis is a record no embedded reader holds, and its evaluation costs more than the totality counts; the predicate's value there is $\\Omega$-hard as a tally. Short derivations are neither claimed nor excluded; the laboratory cycles are its instances.",
+   "statement": "The physical Carrier: the cells from the largest embedded Subject up lie in no embedded cycle, the whole-state certificate is a record no embedded reader holds, and its evaluation reads more points than the totality has members [chart]; the predicate's value there is $\\Omega$-hard as a tally. Short derivations are neither claimed nor excluded; the laboratory cycles are its instances.",
    "origin_row": "20:Z1",
    "tag": "Ω",
    "tier": null,
@@ -16568,6 +16604,7 @@
    ],
    "realisations": [
     "p00055",
+    "p00201",
     "p21011"
    ]
   },
@@ -20421,6 +20458,11 @@
     {
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.dist_max"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
      "name": "FRC.Ladder.bits_bracket"
     }
    ],
@@ -20816,7 +20858,7 @@
   {
    "key": "p26044",
    "origin": "26",
-   "statement": "The power map $P_k$ is a bijection of $\\F_P^{\\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\\mapsto x^{a}$ with $ak\\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\\gcd(k,P-1)$, of exactly $(P-1)/d$ elements.",
+   "statement": "The power map $P_k$ is a bijection of $\\F_P^{\\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\\mapsto x^{a}$ with $ak\\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\\gcd(k,P-1)$ given as a Bezout witness $ak=b(P-1)+d$, of exactly $(P-1)/d$ elements.",
    "origin_row": "26:G5",
    "tag": "T",
    "tier": 0,
@@ -20904,7 +20946,7 @@
   {
    "key": "p26048",
    "origin": "26",
-   "statement": "Fourier-diagonalisable implies $\\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (the round trips on the sub-cycles $n=8$, $256$, $2^{16}$ over $\\F_{17}$, $\\F_{257}$, $\\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\\tfrac32n\\log_2n+n$ through the transform ($1\\,048\\,576$ against $16\\,384$ at $n=2^{10}$) [data].",
+   "statement": "Fourier-diagonalisable implies $\\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (round trips at $n=8$, a sub-cycle of $\\F_{17}$, and at $n=256$, $2^{16}$, the full cycles of $\\F_{257}$, $\\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\\tfrac32n\\log_2n+n$ through the transform ($1\\,048\\,576$ against $16\\,384$ at $n=2^{10}$) [data].",
    "origin_row": "26:H3",
    "tag": "T",
    "tier": 0,
@@ -21576,6 +21618,25 @@
     "27:C11"
    ],
    "realisations": []
+  },
+  {
+   "key": "p27049",
+   "origin": "27",
+   "statement": "The resolvable-window reconstruction: the low-curvature Yang--Mills kinetic operator with the coefficient $I_\\rho/(2d_\\rho)=1/(2n)$ and the residue $O(\\epsilon^4+1/\\Omega)$ (Theorem~\\ref{thm:corrYM}), and the uniform window expectation bound $O(H/\\Omega)$ (Theorem~\\ref{thm:corrwindow}, proof at sketch level) [chart]. \\emph{Falsifier:} a window observable of the finite action that departs from the Yang--Mills operator at the matched coupling beyond the stated residue.",
+   "origin_row": "27:C12",
+   "tag": "R",
+   "tier": null,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27049",
+    "script": "p27_fields.py",
+    "line": 377,
+    "verdict": "pass"
+   },
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "27:C12"
+   ]
   },
   {
    "key": "p27035",
@@ -26867,25 +26928,6 @@
     "38:X4"
    ],
    "realisations": []
-  },
-  {
-   "key": "p27049",
-   "origin": "27",
-   "statement": "The resolvable-window reconstruction: the low-curvature Yang--Mills kinetic operator with the coefficient $I_\\rho/(2d_\\rho)=1/(2n)$ and the residue $O(\\epsilon^4+1/\\Omega)$ (Theorem~\\ref{thm:corrYM}), and the uniform window expectation bound $O(H/\\Omega)$ (Theorem~\\ref{thm:corrwindow}, proof at sketch level) [chart]. \\emph{Falsifier:} a window observable of the finite action that departs from the Yang--Mills operator at the matched coupling beyond the stated residue.",
-   "origin_row": "27:C12",
-   "tag": "R",
-   "tier": null,
-   "check": {
-    "href": "frc/ledgers/p27_fields.html#p27049",
-    "script": "p27_fields.py",
-    "line": 377,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "27:C12"
-   ]
   }
  ],
  "superseded": [
@@ -30154,7 +30196,7 @@
     "py": {
      "href": "frc/ledgers/master/quantum.html#p00191",
      "script": "frc/ledgers/master/quantum.py",
-     "line": 69,
+     "line": 87,
      "verdict": "pass"
     },
     "lean": [
@@ -30185,23 +30227,36 @@
    "block": "F",
    "tag": "T",
    "name": "The wavefunction folds on x=i,rg,s",
-   "statement": "The Object cycle decomposes by the $Q_4$ quotient, $x=\\im^{\\,r}\\gen^{\\,s}$: the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index (10:G2); the fold is division-unique, a product iff $\\kap$ odd (C16). Fibres are the cosets $q_\\alpha\\cdot\\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum (22-qm Def.~measvectors): observation resolves cosets, never points within one.",
+   "statement": "The Object cycle decomposes by the $Q_4$ quotient, $x=\\im^{\\,r}\\gen^{\\,s}$: the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index; the fold is division-unique, a product iff $\\kap$ odd (C16). Fibres are the cosets $q_\\alpha\\cdot\\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum (22-qm Def.~measvectors): observation resolves cosets, never points within one.",
    "source": "22-qm",
    "page": "00-ledger.html#F4",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/quantum.html#p00062",
+     "script": "frc/ledgers/master/quantum.py",
+     "line": 196,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Quantum",
+      "name": "FRC.Ledger.p00062",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Quantum.html#FRC.Ledger.p00062"
+     }
+    ]
    },
    "refs": [
     "p00034",
-    "p00151",
-    "p10038"
+    "p00151"
    ],
    "sources": [
     "22-qm"
    ],
-   "text": "The wavefunction folds on x=i,rg,s: The Object cycle decomposes by the $Q_4$ quotient, $x=\\im^{ r}\\gen^{ s}$: the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index (10:G2); the fold is division-unique, a product iff $\\kap$ odd (C16). Fibres are the cosets $q_\\alpha\\cdot\\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum (22-qm Def. measvectors): observation resolves cosets, never points within one. 22-qm"
+   "text": "The wavefunction folds on x=i,rg,s: The Object cycle decomposes by the $Q_4$ quotient, $x=\\im^{ r}\\gen^{ s}$: the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index; the fold is division-unique, a product iff $\\kap$ odd (C16). Fibres are the cosets $q_\\alpha\\cdot\\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum (22-qm Def. measvectors): observation resolves cosets, never points within one. 22-qm"
   },
   {
    "paper": "00",
@@ -30220,7 +30275,7 @@
     "py": {
      "href": "frc/ledgers/master/quantum.html#p00194",
      "script": "frc/ledgers/master/quantum.py",
-     "line": 123,
+     "line": 141,
      "verdict": "pass"
     },
     "lean": [
@@ -30252,8 +30307,22 @@
    "page": "00-ledger.html#F6",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/quantum.html#p00064",
+     "script": "frc/ledgers/master/quantum.py",
+     "line": 284,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Quantum",
+      "name": "FRC.Ledger.p00064",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Quantum.html#FRC.Ledger.p00064"
+     }
+    ]
    },
    "refs": [
     "p00015",
@@ -46467,7 +46536,7 @@
     "py": {
      "href": "src/20-rh/#p00003",
      "script": "rh.py",
-     "line": 642,
+     "line": 678,
      "verdict": "pass"
     },
     "lean": [
@@ -46593,15 +46662,15 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple.",
-   "source": "\\citep{turing1953}",
+   "statement": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple. Turing's criterion at a good Gram point, with Trudgian's bound on the integral of $S$ above $168\\pi$.",
+   "source": "\\citep{turing1953,trudgian2011}; Lem.~\\ref{lem:turing}",
    "page": "20-rh/index.html#A7",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple. [turing1953]"
+   "text": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple. Turing's criterion at a good Gram point, with Trudgian's bound on the integral of $S$ above $168\\pi$. [turing1953,trudgian2011]; Lem. lem:turing"
   },
   {
    "paper": "20-rh",
@@ -46631,7 +46700,7 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple and every cell below $4.8\\times10^{11}$ clean; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion; the self-adjoint realisations of the Berry--Keating operator.",
+   "statement": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple and every cell $y\\le477\\,464\\,829\\,274$ clean; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion; the self-adjoint realisations of the Berry--Keating operator.",
    "source": "\\citep{platt2021,montgomery1973,odlyzko1987,main1998,berry1999,endres2010}",
    "page": "20-rh/index.html#A9",
    "witness": {
@@ -46639,7 +46708,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple and every cell below $4.8\\times10^{11}$ clean; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion; the self-adjoint realisations of the Berry–Keating operator. [platt2021,montgomery1973,odlyzko1987,main1998,berry1999,endres2010]"
+   "text": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple and every cell $y\\le477 464 829 274$ clean; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion; the self-adjoint realisations of the Berry–Keating operator. [platt2021,montgomery1973,odlyzko1987,main1998,berry1999,endres2010]"
   },
   {
    "paper": "20-rh",
@@ -46685,6 +46754,25 @@
   {
    "paper": "20-rh",
    "no": 20,
+   "rid": "20:A12",
+   "key": "p20084",
+   "label": "A12",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "statement": "Ball arithmetic: enclosures of $\\zeta$ and $\\log\\Gamma$ on the line whose radius carries every rounding and truncation (Arb), read at the points the double-precision certificate leaves open and below $t=200$; a ball that excludes $0$ certifies the sign.",
+   "source": "\\citep{johansson2017}; App.~\\ref{app:cert}",
+   "page": "20-rh/index.html#A12",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "Ball arithmetic: enclosures of $\\zeta$ and $\\log\\Gamma$ on the line whose radius carries every rounding and truncation (Arb), read at the points the double-precision certificate leaves open and below $t=200$; a ball that excludes $0$ certifies the sign. [johansson2017]; App. app:cert"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
    "rid": "20:B1",
    "key": "p20008",
    "label": "B1",
@@ -46698,7 +46786,7 @@
     "py": {
      "href": "src/20-rh/#p20008",
      "script": "rh.py",
-     "line": 549,
+     "line": 579,
      "verdict": "pass"
     },
     "lean": [
@@ -46749,7 +46837,7 @@
     "py": {
      "href": "src/20-rh/#p20009",
      "script": "rh.py",
-     "line": 564,
+     "line": 594,
      "verdict": "pass"
     },
     "lean": [
@@ -46841,7 +46929,7 @@
     "py": {
      "href": "src/20-rh/#p20011",
      "script": "rh.py",
-     "line": 454,
+     "line": 484,
      "verdict": "pass"
     },
     "lean": [
@@ -46882,7 +46970,7 @@
     "py": {
      "href": "src/20-rh/#p20012",
      "script": "rh.py",
-     "line": 482,
+     "line": 512,
      "verdict": "pass"
     },
     "lean": [
@@ -46923,7 +47011,7 @@
     "py": {
      "href": "src/20-rh/#p20013",
      "script": "rh.py",
-     "line": 491,
+     "line": 521,
      "verdict": "pass"
     },
     "lean": [
@@ -47012,7 +47100,7 @@
     "py": {
      "href": "src/20-rh/#p20014",
      "script": "rh.py",
-     "line": 509,
+     "line": 539,
      "verdict": "pass"
     },
     "lean": [
@@ -47061,7 +47149,7 @@
     "py": {
      "href": "src/20-rh/#p20015",
      "script": "rh.py",
-     "line": 475,
+     "line": 505,
      "verdict": "pass"
     },
     "lean": [
@@ -47142,7 +47230,7 @@
     "py": {
      "href": "src/20-rh/#p20016",
      "script": "rh.py",
-     "line": 501,
+     "line": 531,
      "verdict": "pass"
     },
     "lean": [
@@ -47231,7 +47319,7 @@
     "py": {
      "href": "src/20-rh/#p20017",
      "script": "rh.py",
-     "line": 465,
+     "line": 495,
      "verdict": "pass"
     },
     "lean": [
@@ -47315,7 +47403,7 @@
     "py": {
      "href": "src/20-rh/#p20029",
      "script": "rh.py",
-     "line": 1606,
+     "line": 1691,
      "verdict": "pass"
     },
     "lean": [
@@ -47358,7 +47446,7 @@
     "py": {
      "href": "src/20-rh/#p20080",
      "script": "rh.py",
-     "line": 1546,
+     "line": 1631,
      "verdict": "pass"
     },
     "lean": [
@@ -47391,7 +47479,7 @@
     "py": {
      "href": "src/20-rh/#p20083",
      "script": "rh.py",
-     "line": 1575,
+     "line": 1660,
      "verdict": "pass"
     },
     "lean": [
@@ -47424,7 +47512,7 @@
     "py": {
      "href": "src/20-rh/#p20032",
      "script": "rh.py",
-     "line": 538,
+     "line": 568,
      "verdict": "pass"
     },
     "lean": [
@@ -47491,7 +47579,7 @@
     "py": {
      "href": "src/20-rh/#p20043",
      "script": "rh.py",
-     "line": 538,
+     "line": 568,
      "verdict": "pass"
     },
     "lean": [
@@ -47590,7 +47678,7 @@
     "py": {
      "href": "src/20-rh/#p20044",
      "script": "rh.py",
-     "line": 540,
+     "line": 570,
      "verdict": "pass"
     },
     "lean": [
@@ -47650,7 +47738,7 @@
     "py": {
      "href": "src/20-rh/#p20047",
      "script": "rh.py",
-     "line": 1347,
+     "line": 1411,
      "verdict": "pass"
     },
     "lean": [
@@ -47704,14 +47792,14 @@
    "block": "F",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{The hypothesis on a hosted Carrier.} A cell is decided by the certificate of a shell reading it, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30\\,089$ and $2\\,408\\,561$ every cell of the cycle is clean, $1\\,038$, $280\\,186$ and $32\\,984\\,135$ zeros, all simple; the classical verification cleans every cell below $4.8\\times10^{11}$ (A9).",
-   "source": "Thm.~\\ref{thm:hosted} (the certificate analytic, with the package; the core decides the laboratory instances)\\newline \\pywit{rh}{p20081}{F2}, \\leanwit{FrcCore}{p20081}{F2} \\lean{FRC.Horizon.closure\\_lab}",
+   "statement": "\\textbf{The hypothesis on a hosted Carrier.} A cell that passes is certified clean by the reading shell, a Subject below the largest one, the host above; on the laboratory Carriers $233$ and $30\\,089$ every cell passes, $1\\,038$ and $280\\,186$ zeros, all simple; the classical verification cleans every cell $y\\le477\\,464\\,829\\,274$ (A9), $2\\,408\\,561$ among them. The Lean declaration is the embedding arithmetic.",
+   "source": "Thm.~\\ref{thm:hosted}, App.~\\ref{app:cert} (the certificate with the package; the core decides the embedding arithmetic)\\newline \\pywit{rh}{p20081}{F2}, \\leanwit{FrcCore}{p20081}{F2} \\lean{FRC.Horizon.closure\\_lab}",
    "page": "20-rh/index.html#F2",
    "witness": {
     "py": {
      "href": "src/20-rh/#p20081",
      "script": "rh.py",
-     "line": 2255,
+     "line": 2309,
      "verdict": "pass"
     },
     "lean": [
@@ -47729,7 +47817,7 @@
     "p00135",
     "p20006"
    ],
-   "text": "The hypothesis on a hosted Carrier. A cell is decided by the certificate of a shell reading it, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30 089$ and $2 408 561$ every cell of the cycle is clean, $1 038$, $280 186$ and $32 984 135$ zeros, all simple; the classical verification cleans every cell below $4.8\\times10^{11}$ (A9). Thm. thm:hosted (the certificate analytic, with the package; the core decides the laboratory instances) p20081, FrcCore{F2} FRC.Horizon.closure_lab"
+   "text": "The hypothesis on a hosted Carrier. A cell that passes is certified clean by the reading shell, a Subject below the largest one, the host above; on the laboratory Carriers $233$ and $30 089$ every cell passes, $1 038$ and $280 186$ zeros, all simple; the classical verification cleans every cell $y\\le477 464 829 274$ (A9), $2 408 561$ among them. The Lean declaration is the embedding arithmetic. Thm. thm:hosted, App. app:cert (the certificate with the package; the core decides the embedding arithmetic) p20081, FrcCore{F2} FRC.Horizon.closure_lab"
   },
   {
    "paper": "20-rh",
@@ -47747,7 +47835,7 @@
     "py": {
      "href": "src/20-rh/#p20079",
      "script": "rh.py",
-     "line": 610,
+     "line": 646,
      "verdict": "pass"
     },
     "lean": [
@@ -47784,7 +47872,7 @@
    "block": "Z",
    "tag": "Ω",
    "name": null,
-   "statement": "The physical Carrier: the cells from the largest embedded Subject up lie in no embedded cycle, the whole-state certificate of the hypothesis is a record no embedded reader holds, and its evaluation costs more than the totality counts; the predicate's value there is $\\Omega$-hard as a tally. Short derivations are neither claimed nor excluded; the laboratory cycles are its instances.",
+   "statement": "The physical Carrier: the cells from the largest embedded Subject up lie in no embedded cycle, the whole-state certificate is a record no embedded reader holds, and its evaluation reads more points than the totality has members [chart]; the predicate's value there is $\\Omega$-hard as a tally. Short derivations are neither claimed nor excluded; the laboratory cycles are its instances.",
    "source": "Rem.~\\ref{rem:physical}, \\S\\ref{sub:physical}, \\S\\ref{sec:closure}",
    "page": "20-rh/index.html#Z1",
    "witness": {
@@ -47792,7 +47880,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The physical Carrier: the cells from the largest embedded Subject up lie in no embedded cycle, the whole-state certificate of the hypothesis is a record no embedded reader holds, and its evaluation costs more than the totality counts; the predicate's value there is $\\Omega$-hard as a tally. Short derivations are neither claimed nor excluded; the laboratory cycles are its instances. Rem. rem:physical, \\Ssub:physical, \\Ssec:closure"
+   "text": "The physical Carrier: the cells from the largest embedded Subject up lie in no embedded cycle, the whole-state certificate is a record no embedded reader holds, and its evaluation reads more points than the totality has members [chart]; the predicate's value there is $\\Omega$-hard as a tally. Short derivations are neither claimed nor excluded; the laboratory cycles are its instances. Rem. rem:physical, \\Ssub:physical, \\Ssec:closure"
   },
   {
    "paper": "20-rh",
@@ -54847,7 +54935,7 @@
    "tag": "T",
    "name": null,
    "statement": "The counting distance of a unit along the orbit of $g$ is its index: $m\\mapsto g^{m}$ is a bijection of the index cycle onto the units, the distances $1,\\dots,P-1$ have mean $P/2$ and maximum $P-1$, between $2^{\\ell-1}$ and $2^{\\ell}$ for $\\ell$ the bit length.",
-   "source": "Rem.~\\ref{rem:lucky}; A6\\newline \\pywit{pnp}{p26027}{E10}, \\leanwit{FrcCore}{p26027}{E10} \\lean{FRC.Shell.Prime.exists\\_drive, FRC.Shell.Prime.primitive\\_pow\\_inj, FRC.Shell.Frame.generates, FRC.Ladder.two\\_mul\\_distSum, FRC.Ladder.dist\\_le, FRC.Ladder.bits\\_bracket}",
+   "source": "Rem.~\\ref{rem:lucky}; A6\\newline \\pywit{pnp}{p26027}{E10}, \\leanwit{FrcCore}{p26027}{E10} \\lean{FRC.Shell.Prime.exists\\_drive, FRC.Shell.Prime.primitive\\_pow\\_inj, FRC.Shell.Frame.generates, FRC.Ladder.two\\_mul\\_distSum, FRC.Ladder.dist\\_le, FRC.Ladder.dist\\_max, FRC.Ladder.bits\\_bracket}",
    "page": "26-pnp/index.html#E10",
    "witness": {
     "py": {
@@ -54900,6 +54988,14 @@
      {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.dist_max",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.dist_max"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
       "name": "FRC.Ladder.bits_bracket",
       "tier": 0,
       "ok": true,
@@ -54911,7 +55007,7 @@
     "p00164",
     "p26006"
    ],
-   "text": "The counting distance of a unit along the orbit of $g$ is its index: $m\\mapsto g^{m}$ is a bijection of the index cycle onto the units, the distances $1,\\dots,P-1$ have mean $P/2$ and maximum $P-1$, between $2^{\\ell-1}$ and $2^{\\ell}$ for $\\ell$ the bit length. Rem. rem:lucky; A6 p26027, FrcCore{E10} FRC.Shell.Prime.exists_drive, FRC.Shell.Prime.primitive_pow_inj, FRC.Shell.Frame.generates, FRC.Ladder.two_mul_distSum, FRC.Ladder.dist_le, FRC.Ladder.bits_bracket"
+   "text": "The counting distance of a unit along the orbit of $g$ is its index: $m\\mapsto g^{m}$ is a bijection of the index cycle onto the units, the distances $1,\\dots,P-1$ have mean $P/2$ and maximum $P-1$, between $2^{\\ell-1}$ and $2^{\\ell}$ for $\\ell$ the bit length. Rem. rem:lucky; A6 p26027, FrcCore{E10} FRC.Shell.Prime.exists_drive, FRC.Shell.Prime.primitive_pow_inj, FRC.Shell.Frame.generates, FRC.Ladder.two_mul_distSum, FRC.Ladder.dist_le, FRC.Ladder.dist_max, FRC.Ladder.bits_bracket"
   },
   {
    "paper": "26-pnp",
@@ -55493,7 +55589,7 @@
    "block": "G",
    "tag": "T",
    "name": null,
-   "statement": "The power map $P_k$ is a bijection of $\\F_P^{\\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\\mapsto x^{a}$ with $ak\\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\\gcd(k,P-1)$, of exactly $(P-1)/d$ elements.",
+   "statement": "The power map $P_k$ is a bijection of $\\F_P^{\\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\\mapsto x^{a}$ with $ak\\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\\gcd(k,P-1)$ given as a Bezout witness $ak=b(P-1)+d$, of exactly $(P-1)/d$ elements.",
    "source": "Rem.~\\ref{rem:closuretransform}; G3\\newline \\pywit{pnp}{p26044}{G5}, \\leanwit{FrcCore}{p26044}{G5} \\lean{FRC.Ladder.power\\_bijective\\_of\\_unit, FRC.Ladder.power\\_image, FRC.Ladder.power\\_image\\_index, FRC.Ladder.compressive\\_of\\_gcd, FRC.Ladder.powers13}",
    "page": "26-pnp/index.html#G5",
    "witness": {
@@ -55549,7 +55645,7 @@
    "refs": [
     "p26042"
    ],
-   "text": "The power map $P_k$ is a bijection of $\\F_P^{\\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\\mapsto x^{a}$ with $ak\\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\\gcd(k,P-1)$, of exactly $(P-1)/d$ elements. Rem. rem:closuretransform; G3 p26044, FrcCore{G5} FRC.Ladder.power_bijective_of_unit, FRC.Ladder.power_image, FRC.Ladder.power_image_index, FRC.Ladder.compressive_of_gcd, FRC.Ladder.powers13"
+   "text": "The power map $P_k$ is a bijection of $\\F_P^{\\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\\mapsto x^{a}$ with $ak\\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\\gcd(k,P-1)$ given as a Bezout witness $ak=b(P-1)+d$, of exactly $(P-1)/d$ elements. Rem. rem:closuretransform; G3 p26044, FrcCore{G5} FRC.Ladder.power_bijective_of_unit, FRC.Ladder.power_image, FRC.Ladder.power_image_index, FRC.Ladder.compressive_of_gcd, FRC.Ladder.powers13"
   },
   {
    "paper": "26-pnp",
@@ -55625,7 +55721,7 @@
    "block": "H",
    "tag": "T",
    "name": null,
-   "statement": "Fourier-diagonalisable implies $\\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (the round trips on the sub-cycles $n=8$, $256$, $2^{16}$ over $\\F_{17}$, $\\F_{257}$, $\\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\\tfrac32n\\log_2n+n$ through the transform ($1\\,048\\,576$ against $16\\,384$ at $n=2^{10}$) [data].",
+   "statement": "Fourier-diagonalisable implies $\\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (round trips at $n=8$, a sub-cycle of $\\F_{17}$, and at $n=256$, $2^{16}$, the full cycles of $\\F_{257}$, $\\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\\tfrac32n\\log_2n+n$ through the transform ($1\\,048\\,576$ against $16\\,384$ at $n=2^{10}$) [data].",
    "source": "Thm.~\\ref{thm:fft}; B2, D1, H2\\newline \\pywit{pnp}{p26048}{H3}, \\leanwit{FrcCore}{p26048}{H3} \\lean{FRC.Shell.Frame.dft\\_inverse, FRC.Shell.Frame.principal\\_root}",
    "page": "26-pnp/index.html#H3",
    "witness": {
@@ -55659,7 +55755,7 @@
     "p26014",
     "p26047"
    ],
-   "text": "Fourier-diagonalisable implies $\\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (the round trips on the sub-cycles $n=8$, $256$, $2^{16}$ over $\\F_{17}$, $\\F_{257}$, $\\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\\tfrac32n\\log_2n+n$ through the transform ($1 048 576$ against $16 384$ at $n=2^{10}$) [data]. Thm. thm:fft; B2, D1, H2 p26048, FrcCore{H3} FRC.Shell.Frame.dft_inverse, FRC.Shell.Frame.principal_root"
+   "text": "Fourier-diagonalisable implies $\\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (round trips at $n=8$, a sub-cycle of $\\F_{17}$, and at $n=256$, $2^{16}$, the full cycles of $\\F_{257}$, $\\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\\tfrac32n\\log_2n+n$ through the transform ($1 048 576$ against $16 384$ at $n=2^{10}$) [data]. Thm. thm:fft; B2, D1, H2 p26048, FrcCore{H3} FRC.Shell.Frame.dft_inverse, FRC.Shell.Frame.principal_root"
   },
   {
    "paper": "26-pnp",

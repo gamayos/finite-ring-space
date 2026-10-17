@@ -44,7 +44,7 @@ theorem offset_invariant {N : Nat} (hN : 0 < N) (t : Nat) (x : Nat → Nat) (j :
     (x j + (x 0 + t) % N) % N = ((x j + t) % N + x 0) % N := by
   rw [FRC.Nat.add_mod_mod _ _ _ hN, FRC.Nat.mod_add_mod _ _ _ hN, ← Nat.add_assoc, Nat.add_right_comm]
 
-/-- 22:C15, lem:mbody (i)–(ii), 22:C18 — the offset is the orbit label: two configurations `x, y` of the cluster `(ℤ/N)^m`
+/-- 00:F6, 22:C15, lem:mbody (i)–(ii), 22:C18 — the offset is the orbit label: two configurations `x, y` of the cluster `(ℤ/N)^m`
 (`0 < m`, `y` reduced) lie on one orbit of the diagonal drive exactly when their offset vectors agree,
 `x_j − x_0 ≡ y_j − y_0 (mod N)` for every cell `j`; the drive time `t` is a residue, `t < N`, and no drive evolution
 connects distinct offsets. -/
@@ -73,7 +73,7 @@ theorem cluster_offset {N m : Nat} (hN : 0 < N) (hm : 0 < m) (x y : Nat → Nat)
 
 /-! ## 22:C26 — the period of a winding -/
 
-/-- 22:C26 — the winding `s` on the cycle `C_n` has period `n/gcd(s, n)`: with `n = d n'`, `s = d s'` and `d` the gcd
+/-- 00:F6, 22:C26 — the winding `s` on the cycle `C_n` has period `n/gcd(s, n)`: with `n = d n'`, `s = d s'` and `d` the gcd
 (`s' u = n' v + 1` the Bezout witness of coprimality), the drive `x ↦ x + s` returns, `s t ≡ 0 (mod n)`, exactly when
 `n' ∣ t`; the joint recurrence of a composite is then the lcm of these periods (`FRC.Quantum.joint_recurrence`). -/
 theorem winding_period {n s d n' s' u v : Nat} (hd : 0 < d) (hn' : 0 < n') (hn : n = d * n') (hs : s = d * s')
@@ -95,6 +95,43 @@ theorem winding_period {n s d n' s' u v : Nat} (hd : 0 < d) (hn' : 0 < n') (hn :
     obtain ⟨c, hc⟩ := eq_mul_of_mod_zero hn' h
     refine mod_zero_of_eq_mul (q := s' * c) hn0 ?_
     rw [hc, hs, hn, FRC.Nat.mul_assoc, FRC.Nat.mul_assoc, FRC.Nat.mul_left_comm s']
+
+/-- 00:F6 — **a non-unit winding confines its part**: with the period `a = d a'` and the winding `u = d u'`, the drive
+`x ↦ x + u` keeps `x` in its class modulo `d`, so for `d > 1` the part never carries `0` to `1`; since fusion needs
+`(0, 0)` to reach `(1, y')`, the pair cannot fuse — the "windings unit" of "fuses iff coprime, windings unit"
+(`FRC.Quantum.fusion_iff` assumes unit windings). -/
+theorem winding_confined {a d a' u u' : Nat} (hd : 0 < d) (ha0 : 0 < a) (ha : a = d * a') (hu : u = d * u') :
+    (∀ x t, ((x + u * t) % a) % d = x % d) ∧ (1 < d → ∀ t, (u * t) % a ≠ 1) := by
+  have conf : ∀ x t, ((x + u * t) % a) % d = x % d := fun x t => by
+    rw [mod_mod_of_dvd hd ha0 (mod_zero_of_eq_mul hd ha), hu, FRC.Nat.mul_assoc, Nat.add_comm,
+      FRC.Nat.add_mul_mod_self_left _ _ _ hd]
+  refine ⟨conf, fun hd1 t h1 => ?_⟩
+  have h := conf 0 t
+  rw [Nat.zero_add, h1, Nat.zero_mod, FRC.Nat.mod_eq_of_lt hd1] at h
+  exact absurd h (by decide)
+
+/-- 00:F6 — the rung of the division fold is the exponent's residue modulo `κ`: `(3κr + s) mod 4κ ≡ s (mod κ)` for
+`s < κ`. -/
+theorem rung_is_offset {κ : Nat} (hκ : 0 < κ) (r s : Nat) (hs : s < κ) :
+    ((3 * κ * r + s) % (4 * κ)) % κ = s := by
+  rw [FRC.Observation.fold_exp_mod hκ r s hs, FRC.Nat.add_mul_mod_self_left _ _ _ hκ, FRC.Nat.mod_eq_of_lt hs]
+
+/-- 00:F6 — **fusion carries the offsets onto the rungs**: on the fused cycle `⟨g⟩` of order `4κ` (the pair `(4, κ)`,
+`C_4 × C_κ`), the state the joint drive reaches at time `t` from `(0, 0)` is `(t mod 4, t mod κ)`, and the point `g^t`
+folds as `iʳ gˢ` with the rung `s = t mod κ` — the second member's own coordinate, the offset class of the
+half-driven configuration. -/
+theorem fused_rung (hq : FRC.Nat.isPrime q) {g : Shell q} {κ : Nat} (hκ : 0 < κ) (hg : HasOrder g (4 * κ))
+    (t : Nat) (ht : t < 4 * κ) :
+    (0 + t) % 4 = t % 4 ∧ (0 + t) % κ = t % κ ∧
+    ∃ r s : Nat, r < 4 ∧ s < κ ∧ (g ^ (3 * κ)) ^ r * g ^ s = g ^ t ∧ s = t % κ := by
+  refine ⟨by rw [Nat.zero_add], by rw [Nat.zero_add], ?_⟩
+  obtain ⟨r, s, hr, hs, hfold⟩ := (FRC.Observation.quotient_fold hq hκ hg).2.2 t ht
+  refine ⟨r, s, hr, hs, hfold, ?_⟩
+  have h1 : g ^ (3 * κ * r + s) = g ^ t := by rw [← (FRC.Observation.quotient_fold hq hκ hg).1 r s]; exact hfold
+  have h4κ : 0 < 4 * κ := Nat.mul_pos (by decide) hκ
+  rw [FRC.Observation.pow_mod_order hg] at h1
+  have h2 := FRC.Observation.pow_inj_of_order hq hg (Nat.mod_lt _ h4κ) ht h1
+  rw [← h2, rung_is_offset hκ r s hs]
 
 /-! ## The locked cluster against the spread: `m²` against `m` -/
 

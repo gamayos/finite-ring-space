@@ -16,6 +16,12 @@ The first ledger to use it is the master's block file frc/ledgers/master/quantum
     home(n, p)                  where it registers: "absorbed" (n | p − 1), "torus" (n | p + 1), "quadratic" (n | p² − 1
                                 only) or "beyond"
 
+The division fold and the binding lift (00:F4, 00:F6; 17 October 2026):
+    cycle(q, g)                 the cycle ⟨g⟩ in 𝔽_q^×, by iteration: [1, g, g², …] up to the return to 1
+    division_fold(q, g)         00:F4 — {(r, s): iʳ gˢ} for r < 4, s < κ on the cycle ⟨g⟩ of order 4κ, i = g^{3κ}
+    core_cosets(q, g)           the κ fibres gˢ·Q₄ of the quotient of ⟨g⟩ by its core Q₄ = {1, i, −1, −i}, s < κ
+    fusion(a, b)                00:F6 — the joint drive with unit windings on ℤ/a × ℤ/b has one orbit
+
 The ledger of observation (task LM35, 7 October 2026), first used by 22-quantum's ledger file:
     cyclotomic_poly(n)          Φ_n as an integer coefficient list
     Cyclotomic(n)               the ring ℤ[ζ_n] ⊂ ℚ(ζ_n) = ℚ[x]/(Φ_n): elements are tuples of φ(n) coefficients
@@ -90,6 +96,39 @@ def home(n, p):
     if (p + 1) % n == 0: return "torus"
     if (p * p - 1) % n == 0: return "quadratic"
     return "beyond"
+
+
+def cycle(q, g):
+    """The cycle ⟨g⟩ in 𝔽_q^× by iteration: [1, g, g², …] up to the return to 1 (g a unit)."""
+    out, x = [], 1
+    while True:
+        out.append(x); x = x * g % q
+        if x == 1: return out
+
+
+def division_fold(q, g):
+    """00:F4 — the division fold of the cycle ⟨g⟩ of order n = 4κ in 𝔽_q: the dict {(r, s): iʳ gˢ} over the class r < 4
+    and the rung s < κ, with i = g^{3κ} (= −g^κ, the quarter-turn of a frame)."""
+    n = len(cycle(q, g))
+    if n % 4: raise ValueError(f"division_fold: the order {n} of {g} in F_{q} is not a multiple of 4")
+    k = n // 4
+    i = pow(g, 3 * k, q)
+    return {(r, s): pow(i, r, q) * pow(g, s, q) % q for r in range(4) for s in range(k)}
+
+
+def core_cosets(q, g):
+    """The fibres of the Q₄ quotient of the cycle ⟨g⟩ of order 4κ: the κ cosets gˢ·{1, i, −1, −i}, s < κ, as frozensets."""
+    n = len(cycle(q, g))
+    if n % 4: raise ValueError(f"core_cosets: the order {n} of {g} in F_{q} is not a multiple of 4")
+    k = n // 4
+    i = pow(g, 3 * k, q)
+    core = [pow(i, r, q) for r in range(4)]
+    return [frozenset(pow(g, s, q) * w % q for w in core) for s in range(k)]
+
+
+def fusion(a, b):
+    """00:F6 — the pair of cycles ℤ/a, ℤ/b fuses under the joint drive with unit windings: one orbit, by enumeration."""
+    return len(orbits(a, b)) == 1
 
 
 def _poly_divexact(a, b):

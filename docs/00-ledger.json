@@ -1,5 +1,5 @@
 {
- "generated": "16 October 2026",
+ "generated": "17 October 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -1682,7 +1682,7 @@
      "key": "p00151"
     }
    ],
-   "statement": "The Object cycle decomposes by the $Q_4$ quotient, $x=\\im^{\\,r}\\gen^{\\,s}$: the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index (10:G2); the fold is division-unique, a product iff $\\kap$ odd (C16). Fibres are the cosets $q_\\alpha\\cdot\\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum (22-qm Def.~measvectors): observation resolves cosets, never points within one."
+   "statement": "The Object cycle decomposes by the $Q_4$ quotient, $x=\\im^{\\,r}\\gen^{\\,s}$: the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index; the fold is division-unique, a product iff $\\kap$ odd (C16). Fibres are the cosets $q_\\alpha\\cdot\\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum (22-qm Def.~measvectors): observation resolves cosets, never points within one."
   },
   {
    "label": "F5",

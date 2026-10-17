@@ -500,6 +500,13 @@
    "status": "shared theorem",
    "lean": "FRC.Unitary.hermitian_det_real, FRC.Unitary.hermitian_det_shell",
    "note": "16 October 2026 (27-fields, T07 of its blueprint): one key (p27043): the Hermitian determinant is its own conjugate and its imaginary part is 2-torsion, so arg det M_q = 0 on every odd shell; the absence of a topological term is the realisation B4's (the G18 record §3)"
+  },
+  {
+   "master": "F4",
+   "paper": "38:A2",
+   "status": "shared theorem",
+   "lean": "FRC.Subject.spinor",
+   "note": "17 October 2026 (the binding of F4 and F6, block-f-f4-f6-execution-20261017.md): the spinor dichotomy is F4's clause 'a product iff κ odd (C16)' and 38:A2's; F4's key adds the division fold (FRC.Observation.quotient_fold) and its core (fold_core), the shared core, the forced basis and the classicality index, 38:A2's the 2-parts (two_part), the tower congruence's solvability (FRC.Pair.tower_solvable) and the instance; the same clause as C16's pair with 38:A2"
   }
  ]
 }

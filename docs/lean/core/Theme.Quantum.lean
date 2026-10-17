@@ -175,7 +175,7 @@ theorem mulIdx_spec (g w j₀ : Nat) (h : g * j₀ = w) : ∀ N, j₀ < N → g 
       have ih := mulIdx_spec g w j₀ h N hlt
       exact ⟨ih.1, Nat.lt_succ_of_lt ih.2⟩
 
-/-- 00:F2, 22:C26, 22:C15, 22:C18, 22:P3 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common
+/-- 00:F2, 00:F6, 22:C26, 22:C15, 22:C18, 22:P3 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common
 multiple below it): the number `g` with `g T = a b` divides both periods, and every common divisor divides it (`g` is
 the gcd); the joint drive carries `(x, y)` to `(x', y')` within one joint period exactly when the offsets agree modulo
 `g` — the conserved offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`. -/
@@ -324,7 +324,7 @@ theorem prodRange_one : ∀ m, prodRange (fun _ => (1 : Shell q)) m = 1
   | 0 => rfl
   | m + 1 => by show prodRange (fun _ => (1 : Shell q)) m * 1 = 1; rw [prodRange_one m, mul_one]
 
-/-- 00:F2, 22:C26, 22:C7 — dephasing is exact: on a prime shell `q`, a character `χ(x) = Π_j ζ_j^{x_j}` of the composite
+/-- 00:F2, 00:F6, 22:C26, 22:C7 — dephasing is exact: on a prime shell `q`, a character `χ(x) = Π_j ζ_j^{x_j}` of the composite
 (`ζ_j^{n_j} = 1`) that the drive moves (`χ(v) = Π_j ζ_j ≠ 1`) sums to zero along the drive, `Σ_{t<M} χ(t v) = 0`, over
 every joint recurrence `M`, the product of the periods among them. -/
 theorem dephasing (hq : FRC.Nat.isPrime q) (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m : Nat) (ζ : Nat → Shell q)
@@ -345,6 +345,96 @@ theorem dephasing (hq : FRC.Nat.isPrime q) (n : Nat → Nat) (hn : ∀ j, 0 < n 
 
 end dephasing
 
+
+/-! ## The binding lift (00:F6) -/
+
+/-- `1 % e = 0` with `0 < e` forces `e = 1`. -/
+theorem eq_one_of_one_mod {e : Nat} (he : 0 < e) (h : 1 % e = 0) : e = 1 :=
+  match e, he, h with
+  | 0, he, _ => absurd he (Nat.lt_irrefl 0)
+  | 1, _, _ => rfl
+  | k + 2, _, h => by
+    rw [FRC.Nat.mod_eq_of_lt (Nat.lt_of_lt_of_le (by decide : 1 < 2) (Nat.le_add_left 2 k))] at h
+    exact absurd h (by decide)
+
+/-- 00:F6, 39:C1 — **the binding lift**: two parts of periods `a`, `b` with joint period `T` (a common multiple, and
+no positive common multiple below it), unit windings, `b ≥ 2`. The pair fuses — the joint drive carries every pair
+`(x, y)` to every pair `(x', y')` within one joint period — exactly when the cycles are coprime (every common divisor is
+`1`), exactly when the joint period is the product `T = a b`; otherwise the offsets of 00:F2 stay drive-confined
+(the deuteron `(4, 4)`; the offsets' confinement is `pair_offset`'s). -/
+theorem fusion_iff {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T) (hTa : T % a = 0) (hTb : T % b = 0)
+    (hleast : ∀ t, 0 < t → t < T → ¬ (t % a = 0 ∧ t % b = 0)) (hb2 : 1 < b) :
+    ((∀ x y x' y', x < a → y < b → x' < a → y' < b → ∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔
+      (∀ e, 0 < e → a % e = 0 → b % e = 0 → e = 1)) ∧
+    ((∀ e, 0 < e → a % e = 0 → b % e = 0 → e = 1) ↔ T = a * b) := by
+  obtain ⟨g, -, hg0, hgT, hag, hbg, hdiv, hreach⟩ := pair_offset ha hb hT hTa hTb hleast
+  have hcop : g = 1 ↔ (∀ e, 0 < e → a % e = 0 → b % e = 0 → e = 1) :=
+    ⟨fun h1 e he hae hbe => eq_one_of_one_mod he (h1 ▸ hdiv e he hae hbe),
+     fun hc => hc g hg0 hag hbg⟩
+  have hprod : g = 1 ↔ T = a * b :=
+    ⟨fun h1 => by rw [← hgT, h1, Nat.one_mul],
+     fun hab => Nat.eq_of_mul_eq_mul_right hT (by rw [hgT, Nat.one_mul, hab])⟩
+  refine ⟨Iff.trans ⟨fun hall => ?_, fun h1 x y x' y' hx hy hx' hy' => ?_⟩ hcop, hcop.symm.trans hprod⟩
+  · have h01 := (hreach 0 0 0 1 ha hb ha hb2).mp (hall 0 0 0 1 ha hb ha hb2)
+    exact eq_one_of_one_mod hg0 h01
+  · exact (hreach x y x' y' hx hy hx' hy').mpr (by rw [h1, Nat.mod_one, Nat.mod_one])
+
+/-- 00:F6, the instances (39:C1, 39:E1), decided by the kernel: the deuteron's cycles `(4, 4)` share the divisor `4`;
+hydrogen's `(4, 3)` are coprime (every common divisor is `1`); the fused period of hydrogen's Object at `173` is
+`T' = 516`, the least common multiple of `172` and `3`, and `12 ∣ 516` — the core `C₁₂ = C₄ × C₃` with `κ = 3` odd
+(`12 % 8 ≠ 0`); on `C₁₂ = ⟨2⟩ ⊂ 𝔽₁₃` the rung of the division fold of `2^e` is `e % 3`; the three stations
+`{0, 58, 116}` of the rung `s < 3` divide `174 = 173 + 1 = 3 · 58`, the boost torus of the Subject `173`; the cubic
+character `ω = 3` of `𝔽₁₃` has order `3` (`ω³ = 1`, `ω ≠ 1`), dephases exactly, `1 + ω + ω² = 0`, and sums to zero
+over the fused period `516`. -/
+theorem binding_instances :
+    (4 % 4 = 0 ∧ 4 ≠ 1) ∧ (∀ e, 0 < e → 4 % e = 0 → 3 % e = 0 → e = 1) ∧
+    (516 % 172 = 0 ∧ 516 % 3 = 0 ∧ ∀ t, t < 516 → 0 < t → ¬ (t % 172 = 0 ∧ t % 3 = 0)) ∧
+    (516 % 12 = 0 ∧ 12 = 4 * 3 ∧ 12 % 8 ≠ 0) ∧
+    (∀ e, e < 12 → ∀ r, r < 4 → ∀ s, s < 3 → ((2 : Shell 13) ^ 9) ^ r * 2 ^ s = 2 ^ e → s = e % 3) ∧
+    (58 * 0 = 0 ∧ 58 * 1 = 58 ∧ 58 * 2 = 116 ∧ 3 * 58 = 174 ∧ 174 = 173 + 1 ∧ 174 % 3 = 0) ∧
+    ((3 : Shell 13) ^ 3 = 1 ∧ (3 : Shell 13) ≠ 1 ∧ FRC.Shell.Prime.HasOrder (3 : Shell 13) 3 ∧ 1 + 3 + (3 : Shell 13) ^ 2 = 0 ∧
+      sumRange (fun t => (3 : Shell 13) ^ t) 516 = 0) :=
+  ⟨by decide,
+   fun e he h4 h3 =>
+     have hb : e < 4 := match Nat.lt_or_ge e 4 with
+       | .inl h => h
+       | .inr h => absurd (by rw [FRC.Nat.mod_eq_of_lt (Nat.lt_of_lt_of_le (by decide : 3 < 4) h)] at h3; exact h3) (by decide : (3 : Nat) ≠ 0)
+     (@of_decide_eq_true _ (decForallLT (fun e => 0 < e → 4 % e = 0 → 3 % e = 0 → e = 1) 4) (by decide)) e hb he h4 h3,
+   ⟨by decide, by decide,
+    @of_decide_eq_true _ (decForallLT (fun t => 0 < t → ¬ (t % 172 = 0 ∧ t % 3 = 0)) 516) (by decide +kernel)⟩,
+   by decide,
+   @of_decide_eq_true _ (@decForallLT (fun e => ∀ r, r < 4 → ∀ s, s < 3 → ((2 : Shell 13) ^ 9) ^ r * 2 ^ s = 2 ^ e → s = e % 3)
+     (fun e => @decForallLT (fun r => ∀ s, s < 3 → ((2 : Shell 13) ^ 9) ^ r * 2 ^ s = 2 ^ e → s = e % 3)
+       (fun r => decForallLT (fun s => ((2 : Shell 13) ^ 9) ^ r * 2 ^ s = 2 ^ e → s = e % 3) 3) 4) 12) (by decide +kernel),
+   by decide,
+   ⟨by decide, by decide,
+    ⟨by decide, by decide, @of_decide_eq_true _ (decForallLT (fun l => 0 < l → (3 : Shell 13) ^ l ≠ 1) 3) (by decide)⟩,
+    by decide, by decide +kernel⟩⟩
+
+/-- The number of `t < n` with `P t`. -/
+def countBelow (P : Nat → Bool) : Nat → Nat
+  | 0 => 0
+  | n + 1 => countBelow P n + (if P n then 1 else 0)
+
+/-- The sign coincidence of the node `g^{−t₀}` at the chronon `t` on the rung `s`, in exponent form: `g^{−t₀} gᵗ ∈ {±1}`
+exactly when `t ≡ t₀` or `t ≡ t₀ + 86 (mod 172)` (`g^{86} = −1` on `𝔽₁₇₃`), and the rung `s` reads the chronon when
+`s t ≡ 0 (mod 3)`. -/
+def censusHit (t₀ s t : Nat) : Bool := (t % 172 == t₀ || t % 172 == (t₀ + 86) % 172) && (s * t) % 3 == 0
+
+/-- 00:F6, the census (39-s173, `th:census`, "ground first"), decided by the kernel: on `𝔽₁₇₃` the drive `2` has order
+`172` and `2^{86} = −1`, so a node `x₀ = 2^{−t₀}` meets `{±1}` at the chronons `t ≡ t₀` and `t ≡ t₀ + 86 (mod 172)`
+(`pow_inj_of_order`); over the fused period `T' = 516` the sign coincidences read on the rung `s` (`s t ≡ 0 (mod 3)`)
+number `6` on the ground rung `s = 0` and `2` on each lift `s = 1, 2`, for every node `t₀ < 172`: `W_s = 2 gcd(s, 3)`,
+the rates `3 : 1 : 1`, the ground rung first. -/
+theorem binding_census :
+    FRC.Shell.Prime.HasOrder (2 : Shell 173) 172 ∧ (2 : Shell 173) ^ 86 = -1 ∧
+    ∀ t₀, t₀ < 172 → countBelow (censusHit t₀ 0) 516 = 6 ∧ countBelow (censusHit t₀ 1) 516 = 2 ∧
+      countBelow (censusHit t₀ 2) 516 = 2 :=
+  ⟨⟨by decide, by decide +kernel,
+    @of_decide_eq_true _ (decForallLT (fun l => 0 < l → (2 : Shell 173) ^ l ≠ 1) 172) (by decide +kernel)⟩,
+   by decide +kernel,
+   @of_decide_eq_true _ (decForallLT (fun t₀ => countBelow (censusHit t₀ 0) 516 = 6 ∧ countBelow (censusHit t₀ 1) 516 = 2 ∧
+     countBelow (censusHit t₀ 2) 516 = 2) 172) (by decide +kernel)⟩
 
 /-! ## The graded registration law (00:F5; 39-s173, rows B1–B5)
 
