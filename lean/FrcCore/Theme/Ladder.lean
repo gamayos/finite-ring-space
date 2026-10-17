@@ -342,6 +342,10 @@ theorem two_mul_distSum : ∀ n : Nat, 2 * distSum n = n * (n + 1)
 /-- 26:E10 — the maximum of the distances `1, …, n` is `n`: every `k + 1` with `k < n` is at most `n`. -/
 theorem dist_le (n : Nat) : ∀ k, k < n → k + 1 ≤ n := fun _ hk => hk
 
+/-- 26:E10 — and the maximum is attained: the distance `n` is the one at `k = n − 1`. -/
+theorem dist_max {n : Nat} (hn : 0 < n) : ∃ k, k < n ∧ k + 1 = n :=
+  ⟨n - 1, Nat.sub_lt hn Nat.zero_lt_one, FRC.Nat.sub_add_cancel hn⟩
+
 /-! ## The ascent: square-and-multiply with its count (26:F2, G4) -/
 
 /-- Square-and-multiply, right to left, by fuel: the pair (accumulator, multiplications). -/

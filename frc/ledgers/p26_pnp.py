@@ -389,7 +389,7 @@ def block_R():
         Counted.ops = 0; mult = a * a; c3 = Counted.ops                     # multiplication: one
         Counted.ops = 0; asc = Counted(g, p) ** (p // 3); c4 = Counted.ops  # the ascent: at most 2ℓ
         ok &= (succ.v, add.v, mult.v, asc.v) == ((p // 7 + 1) % p, 2 * (p // 7) % p, (p // 7) ** 2 % p, pow(g, p // 3, p))
-        ok &= (c1, c2, c3) == (1, 1, 1) and c4 <= 2 * ell and c4 == LD.sqmul(g, p // 3, p)[1]
+        ok &= (c1, c2, c3) == (1, 1, 1) and c4 <= 2 * ell and c4 == LD.sqmul(g, p // 3, p)[1] == len(bin(p // 3)) - 3 + bin(p // 3).count("1")   # bits - 1 + popcount
         i, j, giant = LD.bsgs(g, asc.v, p)
         ok &= (j + (isqrt(n) + 1) * i) % n == p // 3 and giant <= isqrt(n) + 1
         det.append(f"P={p}: succession, addition, multiplication {c1}, {c2}, {c3} operations; ascent {c4} <= {2 * ell}; descent {isqrt(n) + 1 + giant} operations")
