@@ -3,7 +3,7 @@
  "tree": "28-flavour-20260626",
  "title": "Fermion Flavour Sector over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.2124.v1",
- "generated": "13 October 2026",
+ "generated": "17 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -20,7 +20,7 @@
      "label": "A2",
      "predicate": "One generation as the $\\mathbf{16}$ of $\\SO(10)$: field content, hypercharges, charges, anomaly freedom, $\\sin^2\\theta_W=3/8$, and the massless-photon / confining-gluon residues.",
      "tag": "I",
-     "source": "\\cite{akhtman2026fields}; \\src{flv.\\allowbreak alpha\\_\\allowbreak probe}",
+     "source": "\\cite{akhtman2026fields}",
      "key": "p28002"
     },
     {
@@ -75,14 +75,14 @@
      "label": "B3",
      "predicate": "The role depths $(0,1,2)$ of the closed ladder are the Froggatt--Nielsen flavour charges. Falsifier: a confirmed departure of the Wolfenstein hierarchy from the depth ladder $(0,1,2)$, e.g.\\ $V_{us}$ outside the band of the Gatto relation for every phase $\\varphi$.",
      "tag": "R",
-     "source": "\\cite{akhtman2026pnp}; \\src{flv.\\allowbreak up\\_\\allowbreak doubling}",
+     "source": "\\cite{akhtman2026pnp}",
      "key": "p28009"
     },
     {
      "label": "B4",
      "predicate": "The colour excess of the quark amplitudes is the Georgi--Jarlskog Clebsch $\\Nc=3$; the squared amplitude is the cyclotomic norm $N(1-\\zeta_n)$. Falsifier: a quark-to-lepton amplitude ratio departing from the $\\Nc=3$ Clebsch at improved precision.",
      "tag": "R",
-     "source": "\\cite{akhtman2026fields}; \\src{flv.\\allowbreak quark\\_\\allowbreak amp}",
+     "source": "\\cite{akhtman2026fields}",
      "key": "p28010"
     },
     {
@@ -109,91 +109,91 @@
      "label": "C1",
      "predicate": "Generation universality $\\Rightarrow$ the amplitude matrix is a $C_3$-circulant $\\Rightarrow$ the Koide functional form.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:circulant}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.m10}",
+     "source": "Prop.~\\ref{prop:circulant}\\newline \\pywit{flavour}{p28012}{C1}, \\leanwit{FrcCore}{p28012}{C1} \\lean{FRC.Flavour.circ\\_eigen, FRC.Flavour.eigen\\_sum, FRC.Flavour.eigen\\_sumsq, FRC.Interactions.koide\\_parseval}",
      "key": "p28012"
     },
     {
      "label": "C2",
      "predicate": "$Q=2/3\\Leftrightarrow r=\\sqrt2\\Leftrightarrow\\rho^2=\\tfrac12$ (the equivalence an identity); the value $\\rho^2=\\tfrac12$ is the realisation B5.",
      "tag": "T",
-     "source": "\\S\\ref{sec:koide}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak framed\\_\\allowbreak koide}, \\src{flv.tier\\_b}, \\src{flv.m10}; rests on C1",
+     "source": "\\S\\ref{sec:koide}\\newline \\pywit{flavour}{p28013}{C2}, \\leanwit{FrcCore}{p28013}{C2}; rests on C1 \\lean{FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Flavour.eigen\\_sumsq}",
      "key": "p28013"
     },
     {
      "label": "C3",
      "predicate": "The leading boundary phase is the framed-rational winding $\\delta_{\\mathrm{LO}}=\\tfrac38-\\tfrac13=\\tfrac1{24}$ cycle (split-torus boundary $\\tfrac38$ minus generation $\\tfrac13$; continuum $\\pi/12$ [approx]); massless lightest generation.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:pi12}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.m10}, \\src{flv.delta}, \\src{flv.\\allowbreak revision\\_\\allowbreak checks}",
+     "source": "Prop.~\\ref{prop:pi12}\\newline \\pywit{flavour}{p28014}{C3}, \\leanwit{FrcCore}{p28014}{C3}, \\leanwit{FrcLedger}{p28014}{C3} \\lean{FRC.Flavour.quarter\\_turn\\_boundary, FRC.Flavour.lo\\_eigen, FRC.Flavour.lo\\_ratio\\_sq, FRC.Flavour.delta\\_lo, Flavour.lo\\_ratio}",
      "key": "p28014"
     },
     {
      "label": "C4",
      "predicate": "The squared amplitudes are the cyclotomic norms $r_\\ell^2=N(1-i)=2$, $r_u^2=N(1-\\omega)=3$ (on B5), hence $Q_\\ell=\\tfrac23$, $Q_u=\\tfrac56$ in framed arithmetic ($Q_u=0.849$ in the working scheme, band $0.83$--$0.89$); the down sector is the GJ-dressed intermediate.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:23tori}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}; rests on B4",
+     "source": "Rem.~\\ref{rem:23tori}\\newline \\pywit{flavour}{p28015}{C4}, \\leanwit{FrcCore}{p28015}{C4}, \\leanwit{FrcLedger}{p28015}{C4}; rests on B4 \\lean{FRC.Flavour.norm\\_one\\_sub\\_i, FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
      "key": "p28015"
     },
     {
      "label": "C5",
-     "predicate": "The cross-sector phase lock $\\delta_\\ell:\\delta_d:\\delta_u=1:\\tfrac12:\\tfrac13$ in the $\\overline{\\mathrm{MS}}$ working scheme of Table~\\ref{tab:sectors} ($0.388$ for the up ratio with the pole charm mass).",
+     "predicate": "The cross-sector phase lock $\\delta_\\ell:\\delta_d:\\delta_u=1:\\tfrac12:\\tfrac13$ is the relation $c_\\ell=2c_d^{2}-1=4c_u^{3}-3c_u$ between the cube invariants $c=\\cos3\\delta$ of the sectors, each read from its masses through the circulant determinant; in the $\\overline{\\mathrm{MS}}$ working scheme of Table~\\ref{tab:sectors} the sectors satisfy it within the quark-mass uncertainty [chart] ($0.496$, $0.335$; $0.388$ for the up ratio with the pole charm mass).",
      "tag": "T",
-     "source": "\\S\\ref{sec:winding}; \\src{flv.delta}",
+     "source": "\\S\\ref{sec:winding}\\newline \\pywit{flavour}{p28016}{C5}, \\leanwit{FrcCore}{p28016}{C5} \\lean{FRC.Flavour.trace\\_double, FRC.Flavour.trace\\_triple, FRC.Flavour.circ\\_det}",
      "key": "p28016"
     },
     {
      "label": "C6",
      "predicate": "The Gatto Cabibbo relation $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$, the phase $\\varphi$ a kernel datum ($85^\\circ\\pm10^\\circ$ from the data).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:gatto}; \\src{flv.tier\\_b}, \\src{flv.spurion}",
+     "source": "Prop.~\\ref{prop:gatto}\\newline \\pywit{flavour}{p28017}{C6}, \\leanwit{FrcCore}{p28017}{C6}, \\leanwit{FrcLedger}{p28017}{C6} \\lean{FRC.Flavour.gst\\_relation, FRC.Flavour.cabibbo\\_modulus, Flavour.gatto\\_leading}",
      "key": "p28017"
     },
     {
      "label": "C7",
      "predicate": "Up-sector doubling $m^u_i\\sim(m^d_i)^2$ from the $\\mathbf{10}\\cdot\\mathbf{10}$ Yukawa.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:doubling}; \\src{flv.\\allowbreak up\\_\\allowbreak doubling}",
+     "source": "Prop.~\\ref{prop:doubling}\\newline \\pywit{flavour}{p28018}{C7}, \\leanwit{FrcCore}{p28018}{C7}, \\leanwit{FrcLedger}{p28018}{C7} \\lean{FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
      "key": "p28018"
     },
     {
      "label": "C8",
      "predicate": "Lopsided $M_e=M_d^{\\mathsf T}$ splits CKM (small) from PMNS (large); the CKM angle values reduce to the winding kernel and the shared $\\sigma$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:mixing}; \\src{flv.tier\\_b}",
+     "source": "\\S\\ref{sec:mixing}\\newline \\pywit{flavour}{p28019}{C8}, \\leanwit{FrcCore}{p28019}{C8} \\lean{FRC.Flavour.transpose\\_exchanges, FRC.Flavour.transpose\\_mul}",
      "key": "p28019"
     },
     {
      "label": "C9",
      "predicate": "The reactor angle at leading order, $\\sin\\theta_{13}=\\sin\\theta_C/\\sqrt2\\simeq\\delta_0/\\sqrt2$ (quark--lepton complementarity): $0.159$ against the measured $0.149$, $7\\%$, no correction derived.",
      "tag": "T",
-     "source": "\\S\\ref{sec:cp}; \\src{flv.theta13}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}",
+     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28020}{C9}, \\leanwit{FrcLedger}{p28020}{C9} \\lean{Flavour.theta13\\_estimate}",
      "key": "p28020"
     },
     {
      "label": "C10",
      "predicate": "TM2 selected: the trivial $C_3$ character $(1,1,1)/\\sqrt3$ is the protected column, so $\\cos\\delta_{\\mathrm{CP}}$ is locked to $\\theta_{23}$ by \\eqref{eq:tm2}; the magic Jarlskog $J=1/(6\\sqrt3)$ is maximal CP, the sign fixed by the drive.",
      "tag": "T",
-     "source": "\\S\\ref{sec:cp}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.pmns\\_cp}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}",
+     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28021}{C10}, \\leanwit{FrcCore}{p28021}{C10}, \\leanwit{FrcLedger}{p28021}{C10} \\lean{FRC.Flavour.protected\\_column, FRC.Flavour.trimaximal, FRC.Flavour.jarlskog\\_sq, Flavour.jarlskog, Flavour.tm2\\_at\\_maximal, Flavour.exact\\_tm2\\_solar}",
      "key": "p28021"
     },
     {
      "label": "C11",
      "predicate": "Seesaw of circulants $\\Rightarrow$ Koide-form (theorem); with $M_R\\propto m_D$ (Y1) the seesaw gives $m_\\nu=m_D^{\\mathsf T}$, $r_\\nu=\\sqrt2$ (transpose fixed point).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:seesaw},\\,\\ref{prop:transpose}; \\src{flv.neutrino}; rests on A5, B1, B5, C1",
+     "source": "Prop.~\\ref{prop:seesaw},\\,\\ref{prop:transpose}\\newline \\pywit{flavour}{p28022}{C11}, \\leanwit{FrcCore}{p28022}{C11}; rests on A5, B1, B5, C1 \\lean{FRC.Flavour.circ\\_mul, FRC.Flavour.circ\\_adj, FRC.Flavour.seesaw\\_circulant, FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.circ\\_transpose}",
      "key": "p28022"
     },
     {
      "label": "C11b",
      "predicate": "Both orderings solved: the signed $r_\\nu=\\sqrt2$ circulant solves both neutrino orderings exactly, so the boundary branch (B6) is the sole ordering assumption.",
      "tag": "T",
-     "source": "\\S\\ref{sec:neutrino}; \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.neutrino}; rests on B5, C11",
+     "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28050}{C11b}, \\leanwit{FrcCore}{p28050}{C11b}; rests on B5, C11 \\lean{FRC.Interactions.koide\\_two\\_thirds, FRC.Flavour.eigen\\_sumsq}",
      "key": "p28050"
     },
     {
      "label": "C12",
      "predicate": "The generation $\\mathbf{16}$ is the four-chart reflection algebra $\\Lambda^{\\bullet}(\\C^4)\\cong\\Lambda^{\\mathrm{even}}(\\C^5)$, the quarter-turn the fifth direction; projection anchored at $\\nu^c=\\Lambda^0$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:reflection}",
+     "source": "Prop.~\\ref{prop:reflection}\\newline \\pywit{flavour}{p28024}{C12}, \\leanwit{FrcCore}{p28024}{C12} \\lean{FRC.Interactions.reflection\\_algebra, FRC.Interactions.fifth\\_direction}",
      "key": "p28024"
     }
    ]
@@ -206,77 +206,77 @@
      "label": "X1",
      "predicate": "\\textbf{The Koide ratio} is exactly $2/3$ given the quarter-turn realisation B5, the cube-root generation orbit bisected at the quarter-turn ($\\rho^2=2^{-1}$), an exact value rather than an unexplained empirical coincidence.",
      "tag": "T",
-     "source": "Proposition~\\ref{prop:koide}; \\src{flv.\\allowbreak framed\\_\\allowbreak koide}",
+     "source": "Proposition~\\ref{prop:koide}\\newline \\pywit{flavour}{p28025}{X1}, \\leanwit{FrcCore}{p28025}{X1}, \\leanwit{FrcLedger}{p28025}{X1} \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half, Flavour.koide\\_measured}",
      "key": "p28025"
     },
     {
      "label": "X2",
      "predicate": "\\textbf{The up-quark Koide value} is $5/6$ in framed arithmetic ($0.849$ in the working scheme, $0.832$ with pole masses), the cube-root colour norm $r_u^2=N(1-\\omega)=3$ against the colourless $N(1-i)=2$, a ratio where the Standard Model carries no relation at all.",
      "tag": "T",
-     "source": "Remark~\\ref{rem:23tori}; \\src{flv.\\allowbreak quark\\_\\allowbreak amp}",
+     "source": "Remark~\\ref{rem:23tori}\\newline \\pywit{flavour}{p28026}{X2}, \\leanwit{FrcCore}{p28026}{X2}, \\leanwit{FrcLedger}{p28026}{X2} \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
      "key": "p28026"
     },
     {
      "label": "X3",
      "predicate": "\\textbf{The flavour charges} are the role depths $(0,1,2)$ of the closed primitive-role ladder, derived as the three generative roles rather than assigned to fit the hierarchy.",
      "tag": "T",
-     "source": "\\S\\ref{sec:texture}; \\src{flv.tier\\_b}",
+     "source": "\\S\\ref{sec:texture}\\newline \\pywit{flavour}{p28027}{X3}, \\leanwit{FrcCore}{p28027}{X3}, \\leanwit{FrcLedger}{p28027}{X3} \\lean{FRC.Ladder.tower\\_reduces, FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
      "key": "p28027"
     },
     {
      "label": "X4",
      "predicate": "\\textbf{The Cabibbo angle} is the Gatto relation $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$ following from the role-depth texture, the leading term at $0.3\\%$ and the phase $\\varphi$ a kernel datum, so two otherwise-independent observables are tied rather than measured apart.",
      "tag": "T",
-     "source": "Proposition~\\ref{prop:gatto}; \\src{flv.spurion}",
+     "source": "Proposition~\\ref{prop:gatto}\\newline \\pywit{flavour}{p28028}{X4}, \\leanwit{FrcCore}{p28028}{X4}, \\leanwit{FrcLedger}{p28028}{X4} \\lean{FRC.Flavour.gst\\_relation, FRC.Flavour.cabibbo\\_modulus, Flavour.gatto\\_leading}",
      "key": "p28028"
     },
     {
      "label": "X5",
      "predicate": "\\textbf{The Georgi--Jarlskog factor} is the colour count $N_c=3$, the $B\\!-\\!L$ Clebsch of the $\\overline{\\mathbf{126}}$, not a texture coefficient inserted by hand; its double ratio $9$ against the measured $10.4\\pm0.5$ is the open $15\\%$ excess of the minimal Clebsch.",
      "tag": "T",
-     "source": "\\S\\ref{sec:gj}; \\src{flv.tier\\_b}",
+     "source": "\\S\\ref{sec:gj}\\newline \\pywit{flavour}{p28029}{X5}, \\leanwit{FrcCore}{p28029}{X5}, \\leanwit{FrcLedger}{p28029}{X5} \\lean{FRC.Flavour.colour\\_count, Flavour.gj\\_ratio}",
      "key": "p28029"
     },
     {
      "label": "X6",
      "predicate": "\\textbf{The up-sector doubling} $m^u_i\\sim(m^d_i)^2$ is forced by the $\\mathbf{10}\\cdot\\mathbf{10}$ Yukawa, so the steeper up hierarchy is a consequence rather than a separate assumption.",
      "tag": "T",
-     "source": "Proposition~\\ref{prop:doubling}; \\src{flv.\\allowbreak up\\_\\allowbreak doubling}",
+     "source": "Proposition~\\ref{prop:doubling}\\newline \\pywit{flavour}{p28030}{X6}, \\leanwit{FrcCore}{p28030}{X6}, \\leanwit{FrcLedger}{p28030}{X6} \\lean{FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
      "key": "p28030"
     },
     {
      "label": "X7",
      "predicate": "\\textbf{The electron's extreme lightness} is the quarter-turn boundary: the lightest generation sits where the winding amplitude vanishes, massless at leading order, rather than an anomalously small Yukawa tuned by hand.",
      "tag": "T",
-     "source": "Proposition~\\ref{prop:pi12}; \\src{flv.m10}",
+     "source": "Proposition~\\ref{prop:pi12}\\newline \\pywit{flavour}{p28031}{X7}, \\leanwit{FrcCore}{p28031}{X7}, \\leanwit{FrcLedger}{p28031}{X7} \\lean{FRC.Flavour.quarter\\_turn\\_boundary, FRC.Flavour.lo\\_eigen, FRC.Flavour.lo\\_ratio\\_sq, Flavour.lo\\_ratio}",
      "key": "p28031"
     },
     {
      "label": "X8",
      "predicate": "\\textbf{The large-lepton, small-quark mixing split} is the lopsided $M_e=M_d^{\\mathsf T}$: one off-diagonal feeds the invisible right-handed quark rotation and, transposed, the visible left-handed lepton rotation, so the two mixing matrices are one structure rather than two unrelated ones.",
      "tag": "T",
-     "source": "\\S\\ref{sec:mixing}",
+     "source": "\\S\\ref{sec:mixing}\\newline \\pywit{flavour}{p28032}{X8}, \\leanwit{FrcCore}{p28032}{X8} \\lean{FRC.Flavour.transpose\\_exchanges, FRC.Flavour.transpose\\_mul}",
      "key": "p28032"
     },
     {
      "label": "X9",
      "predicate": "\\textbf{The reactor angle} is, at leading order, $\\sin\\theta_{13}=\\sin\\theta_C/\\sqrt2=0.159$, quark--lepton complementarity through the quarter-turn, $7\\%$ above the observed $0.149$ with no correction derived: a leading-order estimate of the mixing parameter, not a prediction.",
      "tag": "T",
-     "source": "\\S\\ref{sec:cp}; \\src{flv.theta13}",
+     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28033}{X9}, \\leanwit{FrcLedger}{p28033}{X9} \\lean{Flavour.theta13\\_estimate}",
      "key": "p28033"
     },
     {
      "label": "X10",
      "predicate": "\\textbf{Near-maximal leptonic CP} is the cube-root phase: $\\mathrm{Im}\\,\\omega=\\sqrt3/2$ gives the maximal Jarlskog $J=1/(6\\sqrt3)$, so the cubic reappears as CP violation rather than a free phase fitted to data.",
      "tag": "T",
-     "source": "\\S\\ref{sec:cp}; \\src{flv.pmns\\_cp}",
+     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28034}{X10}, \\leanwit{FrcCore}{p28034}{X10}, \\leanwit{FrcLedger}{p28034}{X10} \\lean{FRC.Flavour.trimaximal, FRC.Flavour.jarlskog\\_sq, Flavour.jarlskog}",
      "key": "p28034"
     },
     {
      "label": "X11",
      "predicate": "\\textbf{The neutrino spectrum} (a near-massless lightest state, $\\sum m_\\nu\\simeq59\\,$meV on the normal branch) follows from colourlessness fixing $Q_\\nu=2/3$, the transpose fixed point under the alignment $M_R\\propto m_D$ (Y1) and the boundary branch that selects the ordering (B6), rather than three independent neutrino masses.",
      "tag": "T",
-     "source": "Proposition~\\ref{prop:transpose}, \\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
+     "source": "Proposition~\\ref{prop:transpose}, \\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28035}{X11}, \\leanwit{FrcCore}{p28035}{X11}, \\leanwit{FrcLedger}{p28035}{X11} \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.seesaw\\_circulant, FRC.Flavour.circ\\_eigen, Flavour.neutrino\\_floor}",
      "key": "p28035"
     }
    ]
@@ -289,49 +289,49 @@
      "label": "P1",
      "predicate": "Charged-lepton Koide $Q_\\ell=2/3$ exact on B5 (measured $0.666661\\pm0.000007$); $m_e=0.5106$ vs $0.5110$ MeV. Falsifier: a lepton-mass shift of $Q_\\ell$ off $2/3$ beyond the $\\tau$-mass tolerance.",
      "tag": "T",
-     "source": "C2, B5; \\src{flv.tier\\_b}; rests on A6",
+     "source": "C2, B5\\newline \\pywit{flavour}{p28036}{P1}, \\leanwit{FrcCore}{p28036}{P1}, \\leanwit{FrcLedger}{p28036}{P1}; rests on A6 \\lean{FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, Flavour.koide\\_measured}",
      "key": "p28036"
     },
     {
      "label": "P2",
      "predicate": "Up-quark Koide $Q_u=5/6$ in framed arithmetic, $r_u^2=N(1-\\omega)=3$; continuum $0.849$ in the working scheme, $0.832$ with pole masses, band $0.83$--$0.89$. Falsifier: up/charm/top masses moving $Q_u$ outside the band in every standard scheme.",
      "tag": "T",
-     "source": "C4; \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}; rests on B4, B5",
+     "source": "C4\\newline \\pywit{flavour}{p28037}{P2}, \\leanwit{FrcCore}{p28037}{P2}, \\leanwit{FrcLedger}{p28037}{P2}; rests on B4, B5 \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
      "key": "p28037"
     },
     {
      "label": "P3",
      "predicate": "Cabibbo $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$: leading term $0.224^{+0.011}_{-0.004}$ vs $0.2243$ ($0.3\\%$), the up term $\\pm0.04$ with $\\varphi$ open. Falsifier: no $\\varphi$ satisfying the relation within the input band.",
      "tag": "T",
-     "source": "C6; rests on B3",
+     "source": "C6\\newline \\pywit{flavour}{p28038}{P3}, \\leanwit{FrcCore}{p28038}{P3}, \\leanwit{FrcLedger}{p28038}{P3}; rests on B3 \\lean{FRC.Flavour.cabibbo\\_modulus, FRC.Flavour.gst\\_relation, Flavour.gatto\\_leading}",
      "key": "p28038"
     },
     {
      "label": "P5",
      "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$, the two $\\Delta m^2$ and the boundary branch (B6); the signed circulant solves both orderings (C11b). Falsifier: inverted ordering.",
      "tag": "T",
-     "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}; rests on A6, B5, C11",
+     "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28039}{P5}, \\leanwit{FrcCore}{p28039}{P5}, \\leanwit{FrcLedger}{p28039}{P5}; rests on A6, B5, C11 \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.circ\\_transpose, Flavour.neutrino\\_floor}",
      "key": "p28039"
     },
     {
      "label": "P6",
-     "predicate": "Mass-sum floor $\\sum m_\\nu=58.7$ meV ($m_1{\\simeq}0$, $m_2{\\simeq}8.6$, $m_3{\\simeq}50$ meV; $58.8$ at NuFIT~6.0), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological $\\sum m_\\nu<0.058$ eV.",
+     "predicate": "Mass-sum floor $\\sum m_\\nu=58.8$ meV at NuFIT~6.0 ($m_1{=}0$, $m_2{=}8.65$, $m_3{=}50.13$ meV), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological $\\sum m_\\nu<0.058$ eV.",
      "tag": "T",
-     "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}; rests on A6, B5, B6, C11, Y1",
+     "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28040}{P6}, \\leanwit{FrcLedger}{p28040}{P6}; rests on A6, B5, B6, C11, Y1 \\lean{Flavour.neutrino\\_floor}",
      "key": "p28040"
     },
     {
      "label": "P7",
-     "predicate": "Effective Majorana mass $m_{\\beta\\beta}{\\simeq}1.5$--$3.7$ meV (NO, $m_1{\\simeq}0$, circulant phase). Falsifier: a $0\\nu\\beta\\beta$ signal at the inverted scale $15$--$50$ meV.",
+     "predicate": "Effective Majorana mass $m_{\\beta\\beta}{\\simeq}1.5$--$3.7$ meV (NO, at $m_1=0$, over the relative Majorana phase; $1.2$--$4.0$ meV with the fitted $m_1=0.36$ meV). Falsifier: a $0\\nu\\beta\\beta$ signal at the inverted scale $15$--$50$ meV.",
      "tag": "T",
-     "source": "C11; rests on B6, Y1",
+     "source": "C11\\newline \\pywit{flavour}{p28041}{P7}, \\leanwit{FrcLedger}{p28041}{P7}; rests on B6, Y1 \\lean{Flavour.majorana\\_band}",
      "key": "p28041"
     },
     {
      "label": "P8",
      "predicate": "Leptonic CP locked to the octant by \\eqref{eq:tm2}: $\\delta_{\\mathrm{CP}}\\in(204^\\circ,310^\\circ)$ over the $3\\sigma$ $\\theta_{23}$ range, $\\pm124^\\circ$/$\\pm74^\\circ$ at the NuFIT~6.0 best fits, $\\sin\\delta_{\\mathrm{CP}}{<}0$, $J=1/(6\\sqrt3)$. Falsifier: CP-conserving $\\delta_{\\mathrm{CP}}$, $\\sin\\delta_{\\mathrm{CP}}{>}0$, or $(\\theta_{23},\\delta_{\\mathrm{CP}})$ off the relation.",
      "tag": "T",
-     "source": "C10; \\src{flv.pmns\\_cp}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}; rests on B2",
+     "source": "C10\\newline \\pywit{flavour}{p28042}{P8}, \\leanwit{FrcCore}{p28042}{P8}, \\leanwit{FrcLedger}{p28042}{P8}; rests on B2 \\lean{FRC.Flavour.jarlskog\\_sq, FRC.Flavour.protected\\_column, FRC.Flavour.trimaximal, Flavour.jarlskog, Flavour.tm2\\_at\\_maximal}",
      "key": "p28042"
     }
    ]
@@ -342,24 +342,17 @@
    "rows": [
     {
      "label": "V1",
-     "predicate": "The validation package \\texttt{finite-ring-space/src/28-flavour}: the sixteen scripts as written --- \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak framed\\_\\allowbreak koide}, \\src{flv.tier\\_b}, \\src{flv.m10}, \\src{flv.delta}, \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}, \\src{flv.\\allowbreak up\\_\\allowbreak doubling}, \\src{flv.spurion}, \\src{flv.theta13}, \\src{flv.neutrino}, \\src{flv.pmns\\_cp}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}, \\src{flv.scale\\_a}, \\src{flv.\\allowbreak coupling\\_\\allowbreak anchor}, \\src{flv.\\allowbreak alpha\\_\\allowbreak probe} --- run through one registry, one family per script, its micro-checks the script's own verdict lines together with the registry's predicates on the script's namespace and output (four scripts print without asserting; every headline numeral is pinned by a labelled check in \\texttt{flvcommon.py}), each family naming the rows it witnesses; the notebook \\texttt{28-flavour-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
-     "tag": "T",
-     "source": "Sec.~\\ref{sec:repro}; \\src{run\\_all}",
+     "predicate": "The ledger file \\texttt{frc/ledgers/p28\\_flavour.py} of the \\texttt{finite-ring-space} framework decides the rows of blocks C, X, P and the readings of Z: thirty-one checks in eight blocks, each naming the rows it witnesses, the deciding check cited in each row's \\textsf{py} token; its notebook runs one predicate per cell.",
+     "tag": "D",
+     "source": "\\S\\ref{sec:repro}",
      "key": "p28043"
     },
     {
      "label": "V2",
-     "predicate": "The discipline, recorded per family as its class: \\textsf{EXACT} --- integer, $\\F_p$, $\\F_{p^2}$ or cyclotomic arithmetic throughout, no float in any asserted claim (\\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak framed\\_\\allowbreak koide}, the load-bearing identities of the mass sector); \\textsf{MIXED} --- an own exact check for at least one claim, the continuum confined to labelled [approx] comparisons (seven families); \\textsf{APPROX} --- continuum or numerical by construction, a numerical reconfirmation of an identity proven exactly in \\src{flv.\\allowbreak exact\\_\\allowbreak core}, a comparison with measured data, or an $\\Om$-hard reading (seven families).",
-     "tag": "T",
-     "source": "Sec.~\\ref{sec:repro}, Sec.~\\ref{sec:finitism}",
+     "predicate": "Two kinds per check: \\textsf{EXACT}, an identity decided in $\\F_p$, $\\F_{p^2}$, $\\Q(\\omega)$ or the rationals with no tolerance (thirteen checks), and \\textsf{CHART}, a reading of the measured masses, mixings and splittings against a rational bound (eighteen checks, labelled [chart]); the Lean declarations of each row are its \\textsf{lean} tokens.",
+     "tag": "D",
+     "source": "\\S\\ref{sec:repro}",
      "key": "p28044"
-    },
-    {
-     "label": "V3",
-     "predicate": "What the run does not decide: the $\\Om$-hard residues (Z1--Z4) enter only as labelled readings (the transmutation exponent, the coupling anchor, the one-loop fermion sum, $\\delta_0=Q/3$ as a confrontation); the joint mixing fit of \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit} is status, not a test (five parameters for four observables); the reactor angle is a leading-order estimate at $7\\,\\%$ (C9), not a prediction; the Georgi--Jarlskog double ratio is carried as the open $15\\,\\%$ excess; five of the scripts' own checks are statements, not decisions, and are recorded as such in the package README.",
-     "tag": "T",
-     "source": "Sec.~\\ref{sec:repro}",
-     "key": "p28045"
     }
    ]
   },
@@ -371,28 +364,28 @@
      "label": "Z1",
      "predicate": "The lepton winding phase $\\delta_0$: the one $\\Om$-hard drive-orientation residue. Neither a geometric nor a profinite derivation fixes it, the drive-orientation Gauss sum's phase taking no fixed value across the shells of the totality, equidistributed in its large-shell reading. Sub-horizon reading $\\delta_0=Q/3=2/9$ ($3\\delta_0=Q$); leading $\\delta_{\\mathrm{LO}}=\\tfrac38-\\tfrac13$ framed-rational (C3); phase residue carried by $\\mathrm{Re}(b^{3})$.",
      "tag": "Ω",
-     "source": "\\S\\ref{sec:winding},\\,\\S\\ref{sec:status}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.delta}, \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.spurion}",
+     "source": "\\S\\ref{sec:winding},\\,\\S\\ref{sec:status}",
      "key": "p28046"
     },
     {
      "label": "Z2",
      "predicate": "With the quark phases locked to $\\delta_0$ by C5 ($\\delta_d=\\delta_0/2$, $\\delta_u=\\delta_0/3$), the neutrino phase $\\delta_\\nu\\simeq0.48$, which the seesaw resets, and the quark CP phase are independent $\\Om$-hard residues.",
      "tag": "Ω",
-     "source": "C5,\\,C11; \\src{flv.delta}; rests on Z1",
+     "source": "C5,\\,C11; rests on Z1",
      "key": "p28047"
     },
     {
      "label": "Z3",
      "predicate": "The absolute masses and the electroweak scale $v$: $\\Om$-hard, the matter face of the scale operator (master ledger Z6).",
      "tag": "Ω",
-     "source": "\\cite{akhtman2026fields}; \\src{flv.scale\\_a}",
+     "source": "\\cite{akhtman2026fields}",
      "key": "p28048"
     },
     {
      "label": "Z4",
      "predicate": "$\\alpha^{-1}(0)$: the electromagnetic face of the scale operator, $\\Om$-hard (master ledger Z8).",
      "tag": "Ω",
-     "source": "App.~\\ref{app:status}, AL; \\src{flv.\\allowbreak coupling\\_\\allowbreak anchor}, \\src{flv.\\allowbreak alpha\\_\\allowbreak probe}",
+     "source": "App.~\\ref{app:status}, AL",
      "key": "p28049"
     }
    ]
@@ -430,7 +423,7 @@
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package."
+   "text": "Derived within this paper from the rows above it; where witness tokens are carried, its content is decided by the ledger file and declared in the Lean libraries."
   },
   {
    "tag": "O",
@@ -498,5 +491,1009 @@
    "P3"
   ]
  },
- "lean": {}
+ "lean": {
+  "C1": [
+   {
+    "name": "FRC.Flavour.circ_eigen",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 115,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C1, 28:X11 — on a cube root `ω² + ω + 1 = 0` the circulant has the eigenvectors `(1, ω, ω²)` and `(1, ω², ω)` with the eigenvalues `λ₁ = a + bω + cω²` and `λ₂ = a + bω² + cω` (the first row gives `λ_k` itself; the second and third rows give `ω^k λ_k` and `ω^{2k} λ_k`); the eigenvector `(1, 1, 1)` has `λ₀ = a + b + c`. Universality makes the amplitude matrix a circulant, and this is its spectrum: the Koide functional form."
+   },
+   {
+    "name": "FRC.Flavour.eigen_sum",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 124,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C1 — the eigenvalues sum to `3a`: `λ₀ + λ₁ + λ₂ = 3a`."
+   },
+   {
+    "name": "FRC.Flavour.eigen_sumsq",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 130,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C1, 28:C2, 28:C11b — the squares of the eigenvalues sum to `3a² + 6bc`: at `c = b̄` this is `3a² + 6 N(b)`, so `Q = Σλ²/(Σλ)² = 1/3 + (2/3) N(b)/a²`, the Koide form with `ρ² = N(b)/a²` (`koide_parseval`)."
+   },
+   {
+    "name": "FRC.Interactions.koide_parseval",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 151,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G16, 27:X10, 27:P8, 28:C1, 28:X1 — Parseval on the cube-root orbit `C₃`: for amplitudes `a₀, a₁, a₂` and `ω` with `ω² + ω + 1 = 0`, `3 Σ a_j² = â₀² + 2 â₁ â₂`, `â₀ = Σ a_j`, `â₁ = a₀ + a₁ω + a₂ω²`, `â₂ = a₀ + a₁ω² + a₂ω` — the Koide form `Q = Σ a_j² / (Σ a_j)² = 1/3 + (2/3)ρ²` with `ρ² = â₁â₂/â₀²`, exact on every shell carrying the root `ω`."
+   }
+  ],
+  "C2": [
+   {
+    "name": "FRC.Interactions.koide_two_thirds",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 162,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G16, 00:G15, 00:G17, 28:C2, 28:C11b, 28:X1, 28:P1, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`."
+   },
+   {
+    "name": "FRC.Interactions.koide_extension",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 193,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G16, 27:X10, 27:P8, 28:C2, 28:X1, 28:P1, on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so `â₁ â₂ = N(â₁)`; Parseval `3 Σ a_j² = â₀² + 2 N(â₁)`; and `Q = 2/3 ⟺ 2 N(â₁) = â₀²` (`ρ² = 1/2`)."
+   },
+   {
+    "name": "FRC.Flavour.eigen_sumsq",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 130,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C1, 28:C2, 28:C11b — the squares of the eigenvalues sum to `3a² + 6bc`: at `c = b̄` this is `3a² + 6 N(b)`, so `Q = Σλ²/(Σλ)² = 1/3 + (2/3) N(b)/a²`, the Koide form with `ρ² = N(b)/a²` (`koide_parseval`)."
+   }
+  ],
+  "C3": [
+   {
+    "name": "FRC.Flavour.quarter_turn_boundary",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 140,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C3, 28:X7 — the massless generation sits at the quarter-turn diagonal. With `i² = −1`, `ω² + ω + 1 = 0` and `h + h = 1`, the circulant `(a, b, c)` with `b = −h(1 + i) a ω²` and `c = −h(1 − i) a ω` (so `c = b̄` when `a, h` are real, `ī = −i`, `ω̄ = ω²`) has `λ₁ = a + bω + cω² = 0` and `2bc = a²`: the vanishing eigenvalue and the Koide value `Q = 2/3` (`2N(b) = a²`) at once."
+   },
+   {
+    "name": "FRC.Flavour.lo_eigen",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 149,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C3, 28:X7 — the leading-order spectrum. At the boundary of `quarter_turn_boundary` the two remaining eigenvalues are `λ₀ = a h (3 + s)` and `λ₂ = a h (3 − s)` with `s = i (ω − ω²)`, and `s² = 3`: the square-root masses `(0, 3 − √3, 3 + √3)·ah`, the ratios `m_e : m_μ : m_τ = 0 : (2 − √3)² : 1`."
+   },
+   {
+    "name": "FRC.Flavour.lo_ratio_sq",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 158,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C3, 28:X7 — with `s² = 3`, `(3 − s)² = (7 − 4s)(3 + s)²`: the leading-order ratio `(λ₂/λ₀)² = m_μ/m_τ` is `7 − 4√3 = (2 − √3)² ≈ 0.0718` (observed `0.0595`)."
+   },
+   {
+    "name": "FRC.Flavour.delta_lo",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 164,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C3 — the leading phase as a cycle fraction: `δ_LO = 3/8 − 1/3 = 1/24`, that is `9 − 8 = 1` over the common denominator `24 = 3 · 8`."
+   },
+   {
+    "name": "FRC.Flavour.lo_ratio",
+    "module": "FrcLedger/Flavour",
+    "line": 62,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C3, 28:X7 — the leading-order mass ratio 7 − 4√3 (`FlavourML.lo_ratio`)."
+   }
+  ],
+  "C4": [
+   {
+    "name": "FRC.Flavour.norm_one_sub_i",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 170,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C4, 28:X2, 28:P2, 00:G17 — the quarter-turn norm: `(1 − i)(1 + i) = 2` on every shell with `i² = −1`; the squared amplitude of a colourless sector, `r² = N(1 − i) = 2`, so `Q = 1/3 + r²/6 = 2/3`."
+   },
+   {
+    "name": "FRC.Flavour.norm_one_sub_omega",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 180,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C4, 28:X2, 28:P2, 00:G17 — the colour norm: `N(1 − ω) = 3` for the cube root `ω = −h + h w` of the extension at `ν = −3` (`h + h = 1`); the squared amplitude of a coloured sector, `r² = N(1 − ω) = 3`, so `Q = 1/3 + r²/6 = 5/6`."
+   },
+   {
+    "name": "FRC.Flavour.koide_five_sixths",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 193,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C4, 28:X2, 28:P2 — the up-quark Koide value: `Q = 5/6 ⟺ ρ² = 3/4`, that is `6 Σ a_j² = 5 â₀²` exactly when `4 â₁ â₂ = 3 â₀²` (beside `koide_two_thirds`, `Q = 2/3 ⟺ 2 â₁ â₂ = â₀²`); with `â₁ â₂ = N(b)` and `r² = 4N(b)/a²` this is `r² = 3`, the colour norm."
+   },
+   {
+    "name": "FRC.Flavour.koide_up_band",
+    "module": "FrcLedger/Flavour",
+    "line": 29,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C4, 28:X2, 28:P2 — the up-quark Koide value in three schemes (`FlavourML.koide_up_band`)."
+   }
+  ],
+  "C5": [
+   {
+    "name": "FRC.Flavour.trace_double",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 333,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C5, 00:G17 — the trace of the square of a unit: for `z z̄ = 1`, `z² + z̄² = (z + z̄)² − 2`; with `z = e^{iθ}` this is `2cos 2θ = (2cos θ)² − 2`. The lock `δ_d = δ₀/2` of 28:C5 is this relation between the cube invariants `c = cos 3δ` of the lepton and down sectors: `c_ℓ = 2 c_d² − 1`."
+   },
+   {
+    "name": "FRC.Flavour.trace_triple",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 341,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C5, 00:G17 — the trace of the cube of a unit: for `z z̄ = 1`, `z³ + z̄³ = (z + z̄)³ − 3(z + z̄)`; with `z = e^{iθ}`, `2cos 3θ = (2cos θ)³ − 3(2cos θ)`. The lock `δ_u = δ₀/3` of 28:C5 is `c_ℓ = 4 c_u³ − 3 c_u` between the lepton and up cube invariants."
+   },
+   {
+    "name": "FRC.Flavour.circ_det",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 107,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C1, 28:C5, 28:Z1 — the determinant of a circulant: `det (circ a b c) = a³ + b³ + c³ − 3abc`; at `c = b̄` this is the cube invariant `∏ √m_k = a³ + 2 Re(b³) − 3a N(b)`, whose phase part `Re(b³)` carries the winding residue (28:Z1)."
+   }
+  ],
+  "C6": [
+   {
+    "name": "FRC.Flavour.gst_relation",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 245,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C6, 28:X4, 28:P3 — the Gatto–Sartori–Tonin relation. A symmetric two-by-two texture `R D Rᵀ` with `R` the rotation `(c, −s; s, c)`, `c² + s² = 1`, and `D = diag(m₁, m₂)` has the `(1,1)` entry `m₁ c² + m₂ s²`; when that entry vanishes (the texture zero), `m₂ s² = −m₁ c²`, that is `tan²θ = −m₁/m₂`: the Cabibbo angle from the two light masses."
+   },
+   {
+    "name": "FRC.Flavour.cabibbo_modulus",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 254,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C6, 28:X4, 28:P3 — the full Cabibbo relation: for a unit `z` (`z z̄ = 1`, the relative winding phase `e^{iφ}`) the modulus `|s_d c_u − c_d s_u z|² = s_d² c_u² + c_d² s_u² − s_d c_u c_d s_u T(z)` with `T(z) = z + z̄ = 2 cos φ`; with `s_d = √(m_d/m_s)` and `s_u = √(m_u/m_c)` this is `V_us = |√(m_d/m_s) − e^{iφ} √(m_u/m_c)|`."
+   },
+   {
+    "name": "FRC.Flavour.gatto_leading",
+    "module": "FrcLedger/Flavour",
+    "line": 40,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C6, 28:X4, 28:P3 — the Gatto relation's leading term and its value at φ = π/2 (`FlavourML.gatto_leading`)."
+   }
+  ],
+  "C7": [
+   {
+    "name": "FRC.Flavour.texture_exponents",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 235,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C7, 28:X3, 28:X6, 00:G17 — the role depths `(2, 1, 0)` as flavour charges: the down and lepton masses carry the exponents `2n = (4, 2, 0)` (the charge-carrying `10` enters once), the up masses `4n = (8, 4, 0) = 2 · (4, 2, 0)` (the `10 · 10` Yukawa enters it twice), and every exponent matrix `n_i + n_j` is symmetric."
+   },
+   {
+    "name": "FRC.Flavour.texture_powers",
+    "module": "FrcLedger/Flavour",
+    "line": 47,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C7, 28:X3, 28:X6 — the effective Froggatt–Nielsen powers inside their integer brackets (`FlavourML.texture_powers`)."
+   }
+  ],
+  "C8": [
+   {
+    "name": "FRC.Flavour.transpose_exchanges",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 286,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C8, 28:X8 — the lopsided split: `(L D Rᵀ)ᵀ = R D Lᵀ` for a diagonal `D`. A mass matrix `M_d = L D Rᵀ` whose large off-diagonal entry sits in the right-handed rotation `R` (invisible to the quark mixing, which sees `L`) has the transpose `M_e = M_dᵀ = R D Lᵀ`, where the same rotation is the left-handed one the lepton mixing sees."
+   },
+   {
+    "name": "FRC.Flavour.transpose_mul",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 276,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C8, 28:X8 — `(A B)ᵀ = Bᵀ Aᵀ`."
+   }
+  ],
+  "C9": [
+   {
+    "name": "FRC.Flavour.theta13_estimate",
+    "module": "FrcLedger/Flavour",
+    "line": 67,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C9, 28:X9 — the reactor angle at leading order (`FlavourML.theta13_estimate`)."
+   }
+  ],
+  "C10": [
+   {
+    "name": "FRC.Flavour.protected_column",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 297,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C10, 28:P8 — the protected column. The shift `P` fixes the democratic vector `(1, 1, 1)`, the trivial `C₃` character; it fixes no multiple of `(2, −1, −1)` (the reducible TM1 column): `P (2, −1, −1) = (−1, −1, 2)`, and `(−1, −1, 2) = l · (2, −1, −1)` forces `−1 = 1 + 1`, that is `3 = 0`. So a `C₃` residual selects TM2."
+   },
+   {
+    "name": "FRC.Flavour.trimaximal",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 314,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C10, 28:X10, 28:P8, 00:G17 — the magic matrix is trimaximal: `N(ω) = 1` and `N(ω²) = 1` for the cube root `ω = −h + h w` at `ν = −3`, so every entry `ω^{jk}/√3` of the Fourier matrix has squared modulus `1/3`."
+   },
+   {
+    "name": "FRC.Flavour.jarlskog_sq",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 325,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C10, 28:X10, 28:P8, 00:G17 — the maximal Jarlskog invariant as a framed rational. The magic matrix's rephasing invariant is `F₀₀ F₁₁ F̄₀₁ F̄₁₀ = ω/9`, so `J = Im(ω)/9` and `J² = (Im ω)²/81` with `(Im ω)² = −ν h²` (the `w`-part `h` of `ω = −h + h w`, `w² = ν = −3`). Then `108 J² = 1` reads `4(−ν h²) = 3`, exact on every shell with `h + h = 1`, `ν + 3 = 0`: the continuum `J = 1/(6√3)`, `J² = 1/108`."
+   },
+   {
+    "name": "FRC.Flavour.jarlskog",
+    "module": "FrcLedger/Flavour",
+    "line": 72,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C10, 28:X10, 28:P8 — the maximal Jarlskog invariant (`FlavourML.jarlskog`)."
+   },
+   {
+    "name": "FRC.Flavour.tm2_at_maximal",
+    "module": "FrcLedger/Flavour",
+    "line": 76,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C10, 28:P8 — the TM2 relation at maximal atmospheric mixing (`FlavourML.tm2_at_maximal`)."
+   },
+   {
+    "name": "FRC.Flavour.exact_tm2_solar",
+    "module": "FrcLedger/Flavour",
+    "line": 82,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C10 — the exact-TM2 solar value (`FlavourML.exact_tm2_solar`)."
+   }
+  ],
+  "C11": [
+   {
+    "name": "FRC.Flavour.circ_mul",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 74,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C11 — circulants are closed under the product: `circ a b c · circ a' b' c' = circ (aa' + bc' + cb') (ab' + ba' + cc') (ac' + bb' + ca')`."
+   },
+   {
+    "name": "FRC.Flavour.circ_adj",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 92,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C11 — the adjugate of a circulant is a circulant: `adj (circ a b c) = circ (a² − bc) (c² − ab) (b² − ac)`."
+   },
+   {
+    "name": "FRC.Flavour.seesaw_circulant",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 416,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C11, 28:X11, 00:G15 — the seesaw of circulants is circulant: `m_D · adj(M_R) · m_Dᵀ` is a circulant whenever `m_D` and `M_R` are (the inverse `M_R⁻¹ = adj(M_R)/det M_R` differs from the adjugate by the scalar), so the light neutrinos are Koide-form."
+   },
+   {
+    "name": "FRC.Flavour.transpose_fixed_point",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 424,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C11, 28:X11, 28:P5, 00:G15 — the transpose fixed point. With `M_R = c · m_D` (the `126` alignment, 28:Y1) the seesaw collapses: `m_D · adj(c m_D) · m_Dᵀ = c² det(m_D) · m_Dᵀ`, a scalar multiple of the transpose, so the light neutrinos carry the Dirac eigenvalues (`circ_transpose`, `circ_eigen`: the transpose circulant has the eigenvalues `λ_{-k}`), the amplitude `r_ν = r_D` and the Koide value `Q_ν = Q_D = 2/3` of the colourless Dirac mass."
+   },
+   {
+    "name": "FRC.Flavour.circ_transpose",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 89,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C11, 28:P5 — the transpose of a circulant is the circulant of the reversed row: `(circ a b c)ᵀ = circ a c b`."
+   }
+  ],
+  "C11b": [
+   {
+    "name": "FRC.Interactions.koide_two_thirds",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 162,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G16, 00:G15, 00:G17, 28:C2, 28:C11b, 28:X1, 28:P1, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`."
+   },
+   {
+    "name": "FRC.Flavour.eigen_sumsq",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 130,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C1, 28:C2, 28:C11b — the squares of the eigenvalues sum to `3a² + 6bc`: at `c = b̄` this is `3a² + 6 N(b)`, so `Q = Σλ²/(Σλ)² = 1/3 + (2/3) N(b)/a²`, the Koide form with `ρ² = N(b)/a²` (`koide_parseval`)."
+   }
+  ],
+  "C12": [
+   {
+    "name": "FRC.Interactions.reflection_algebra",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 76,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G12, 28:C12 — the reflection algebra of four directions: the `16` basis elements `e_S`, `S ⊆ {0, 1, 2, 3}`, close under the product; the product is associative on the basis; distinct directions anticommute, `e_i e_j = −e_j e_i`, and each squares to zero."
+   },
+   {
+    "name": "FRC.Interactions.fifth_direction",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 88,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G12, 27:C9, 28:C12 — the quarter-turn as the fifth direction maps the sixteen `e_S` of four directions one-to-one onto the sixteen even subsets of five directions, the chiral spinor `16`; for `|S|` odd the image is the product `e_S e_4` with sign `+1`."
+   }
+  ],
+  "X1": [
+   {
+    "name": "FRC.Interactions.koide_parseval",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 151,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G16, 27:X10, 27:P8, 28:C1, 28:X1 — Parseval on the cube-root orbit `C₃`: for amplitudes `a₀, a₁, a₂` and `ω` with `ω² + ω + 1 = 0`, `3 Σ a_j² = â₀² + 2 â₁ â₂`, `â₀ = Σ a_j`, `â₁ = a₀ + a₁ω + a₂ω²`, `â₂ = a₀ + a₁ω² + a₂ω` — the Koide form `Q = Σ a_j² / (Σ a_j)² = 1/3 + (2/3)ρ²` with `ρ² = â₁â₂/â₀²`, exact on every shell carrying the root `ω`."
+   },
+   {
+    "name": "FRC.Interactions.koide_two_thirds",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 162,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G16, 00:G15, 00:G17, 28:C2, 28:C11b, 28:X1, 28:P1, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`."
+   },
+   {
+    "name": "FRC.Interactions.koide_extension",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 193,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G16, 27:X10, 27:P8, 28:C2, 28:X1, 28:P1, on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so `â₁ â₂ = N(â₁)`; Parseval `3 Σ a_j² = â₀² + 2 N(â₁)`; and `Q = 2/3 ⟺ 2 N(â₁) = â₀²` (`ρ² = 1/2`)."
+   },
+   {
+    "name": "FRC.Interactions.koide_half",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 218,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G16, 27:X10, 27:P8, 28:X1 — the hypotheses of `koide_extension` hold on every frame `p = 4κ + 1`, the Carrier included: `h = 2κ + 1` has `h + h = 1`, and `ν = −3` has `ν + 3 = 0`."
+   },
+   {
+    "name": "FRC.Flavour.koide_measured",
+    "module": "FrcLedger/Flavour",
+    "line": 24,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:P1, 28:X1 — the measured charged-lepton Koide value (`FlavourML.koide_measured`)."
+   }
+  ],
+  "X2": [
+   {
+    "name": "FRC.Flavour.norm_one_sub_omega",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 180,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C4, 28:X2, 28:P2, 00:G17 — the colour norm: `N(1 − ω) = 3` for the cube root `ω = −h + h w` of the extension at `ν = −3` (`h + h = 1`); the squared amplitude of a coloured sector, `r² = N(1 − ω) = 3`, so `Q = 1/3 + r²/6 = 5/6`."
+   },
+   {
+    "name": "FRC.Flavour.koide_five_sixths",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 193,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C4, 28:X2, 28:P2 — the up-quark Koide value: `Q = 5/6 ⟺ ρ² = 3/4`, that is `6 Σ a_j² = 5 â₀²` exactly when `4 â₁ â₂ = 3 â₀²` (beside `koide_two_thirds`, `Q = 2/3 ⟺ 2 â₁ â₂ = â₀²`); with `â₁ â₂ = N(b)` and `r² = 4N(b)/a²` this is `r² = 3`, the colour norm."
+   },
+   {
+    "name": "FRC.Flavour.koide_up_band",
+    "module": "FrcLedger/Flavour",
+    "line": 29,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C4, 28:X2, 28:P2 — the up-quark Koide value in three schemes (`FlavourML.koide_up_band`)."
+   }
+  ],
+  "X3": [
+   {
+    "name": "FRC.Ladder.tower_reduces",
+    "module": "FrcCore/Theme/Ladder",
+    "line": 65,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "26:G2, 27:C10, 27:X9, 27:P1, 28:X3, 00:G15 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes: the fifth step returns to counting, 27-fields' C10)."
+   },
+   {
+    "name": "FRC.Flavour.texture_exponents",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 235,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C7, 28:X3, 28:X6, 00:G17 — the role depths `(2, 1, 0)` as flavour charges: the down and lepton masses carry the exponents `2n = (4, 2, 0)` (the charge-carrying `10` enters once), the up masses `4n = (8, 4, 0) = 2 · (4, 2, 0)` (the `10 · 10` Yukawa enters it twice), and every exponent matrix `n_i + n_j` is symmetric."
+   },
+   {
+    "name": "FRC.Flavour.texture_powers",
+    "module": "FrcLedger/Flavour",
+    "line": 47,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C7, 28:X3, 28:X6 — the effective Froggatt–Nielsen powers inside their integer brackets (`FlavourML.texture_powers`)."
+   }
+  ],
+  "X4": [
+   {
+    "name": "FRC.Flavour.gst_relation",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 245,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C6, 28:X4, 28:P3 — the Gatto–Sartori–Tonin relation. A symmetric two-by-two texture `R D Rᵀ` with `R` the rotation `(c, −s; s, c)`, `c² + s² = 1`, and `D = diag(m₁, m₂)` has the `(1,1)` entry `m₁ c² + m₂ s²`; when that entry vanishes (the texture zero), `m₂ s² = −m₁ c²`, that is `tan²θ = −m₁/m₂`: the Cabibbo angle from the two light masses."
+   },
+   {
+    "name": "FRC.Flavour.cabibbo_modulus",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 254,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C6, 28:X4, 28:P3 — the full Cabibbo relation: for a unit `z` (`z z̄ = 1`, the relative winding phase `e^{iφ}`) the modulus `|s_d c_u − c_d s_u z|² = s_d² c_u² + c_d² s_u² − s_d c_u c_d s_u T(z)` with `T(z) = z + z̄ = 2 cos φ`; with `s_d = √(m_d/m_s)` and `s_u = √(m_u/m_c)` this is `V_us = |√(m_d/m_s) − e^{iφ} √(m_u/m_c)|`."
+   },
+   {
+    "name": "FRC.Flavour.gatto_leading",
+    "module": "FrcLedger/Flavour",
+    "line": 40,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C6, 28:X4, 28:P3 — the Gatto relation's leading term and its value at φ = π/2 (`FlavourML.gatto_leading`)."
+   }
+  ],
+  "X5": [
+   {
+    "name": "FRC.Flavour.colour_count",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 216,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:X5, 00:G17 — the Georgi–Jarlskog factor is the colour count: on the sixteen the down-type antiquarks `d^c` (colour indices `2`, weak indices `2`, `6Y = 2`) are three states and the charged antilepton `e^c` (`0`, `2`, `6Y = 6`) one, the colour triplet against the colour singlet, `N_c = 3`; the scale-robust double ratio is `N_c² = 9`."
+   },
+   {
+    "name": "FRC.Flavour.gj_ratio",
+    "module": "FrcLedger/Flavour",
+    "line": 56,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:X5, 00:P3 — the Georgi–Jarlskog double ratio (`FlavourML.gj_ratio`)."
+   }
+  ],
+  "X6": [
+   {
+    "name": "FRC.Flavour.texture_exponents",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 235,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C7, 28:X3, 28:X6, 00:G17 — the role depths `(2, 1, 0)` as flavour charges: the down and lepton masses carry the exponents `2n = (4, 2, 0)` (the charge-carrying `10` enters once), the up masses `4n = (8, 4, 0) = 2 · (4, 2, 0)` (the `10 · 10` Yukawa enters it twice), and every exponent matrix `n_i + n_j` is symmetric."
+   },
+   {
+    "name": "FRC.Flavour.texture_powers",
+    "module": "FrcLedger/Flavour",
+    "line": 47,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C7, 28:X3, 28:X6 — the effective Froggatt–Nielsen powers inside their integer brackets (`FlavourML.texture_powers`)."
+   }
+  ],
+  "X7": [
+   {
+    "name": "FRC.Flavour.quarter_turn_boundary",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 140,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C3, 28:X7 — the massless generation sits at the quarter-turn diagonal. With `i² = −1`, `ω² + ω + 1 = 0` and `h + h = 1`, the circulant `(a, b, c)` with `b = −h(1 + i) a ω²` and `c = −h(1 − i) a ω` (so `c = b̄` when `a, h` are real, `ī = −i`, `ω̄ = ω²`) has `λ₁ = a + bω + cω² = 0` and `2bc = a²`: the vanishing eigenvalue and the Koide value `Q = 2/3` (`2N(b) = a²`) at once."
+   },
+   {
+    "name": "FRC.Flavour.lo_eigen",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 149,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C3, 28:X7 — the leading-order spectrum. At the boundary of `quarter_turn_boundary` the two remaining eigenvalues are `λ₀ = a h (3 + s)` and `λ₂ = a h (3 − s)` with `s = i (ω − ω²)`, and `s² = 3`: the square-root masses `(0, 3 − √3, 3 + √3)·ah`, the ratios `m_e : m_μ : m_τ = 0 : (2 − √3)² : 1`."
+   },
+   {
+    "name": "FRC.Flavour.lo_ratio_sq",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 158,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C3, 28:X7 — with `s² = 3`, `(3 − s)² = (7 − 4s)(3 + s)²`: the leading-order ratio `(λ₂/λ₀)² = m_μ/m_τ` is `7 − 4√3 = (2 − √3)² ≈ 0.0718` (observed `0.0595`)."
+   },
+   {
+    "name": "FRC.Flavour.lo_ratio",
+    "module": "FrcLedger/Flavour",
+    "line": 62,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C3, 28:X7 — the leading-order mass ratio 7 − 4√3 (`FlavourML.lo_ratio`)."
+   }
+  ],
+  "X8": [
+   {
+    "name": "FRC.Flavour.transpose_exchanges",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 286,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C8, 28:X8 — the lopsided split: `(L D Rᵀ)ᵀ = R D Lᵀ` for a diagonal `D`. A mass matrix `M_d = L D Rᵀ` whose large off-diagonal entry sits in the right-handed rotation `R` (invisible to the quark mixing, which sees `L`) has the transpose `M_e = M_dᵀ = R D Lᵀ`, where the same rotation is the left-handed one the lepton mixing sees."
+   },
+   {
+    "name": "FRC.Flavour.transpose_mul",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 276,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C8, 28:X8 — `(A B)ᵀ = Bᵀ Aᵀ`."
+   }
+  ],
+  "X9": [
+   {
+    "name": "FRC.Flavour.theta13_estimate",
+    "module": "FrcLedger/Flavour",
+    "line": 67,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C9, 28:X9 — the reactor angle at leading order (`FlavourML.theta13_estimate`)."
+   }
+  ],
+  "X10": [
+   {
+    "name": "FRC.Flavour.trimaximal",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 314,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C10, 28:X10, 28:P8, 00:G17 — the magic matrix is trimaximal: `N(ω) = 1` and `N(ω²) = 1` for the cube root `ω = −h + h w` at `ν = −3`, so every entry `ω^{jk}/√3` of the Fourier matrix has squared modulus `1/3`."
+   },
+   {
+    "name": "FRC.Flavour.jarlskog_sq",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 325,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C10, 28:X10, 28:P8, 00:G17 — the maximal Jarlskog invariant as a framed rational. The magic matrix's rephasing invariant is `F₀₀ F₁₁ F̄₀₁ F̄₁₀ = ω/9`, so `J = Im(ω)/9` and `J² = (Im ω)²/81` with `(Im ω)² = −ν h²` (the `w`-part `h` of `ω = −h + h w`, `w² = ν = −3`). Then `108 J² = 1` reads `4(−ν h²) = 3`, exact on every shell with `h + h = 1`, `ν + 3 = 0`: the continuum `J = 1/(6√3)`, `J² = 1/108`."
+   },
+   {
+    "name": "FRC.Flavour.jarlskog",
+    "module": "FrcLedger/Flavour",
+    "line": 72,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C10, 28:X10, 28:P8 — the maximal Jarlskog invariant (`FlavourML.jarlskog`)."
+   }
+  ],
+  "X11": [
+   {
+    "name": "FRC.Flavour.transpose_fixed_point",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 424,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C11, 28:X11, 28:P5, 00:G15 — the transpose fixed point. With `M_R = c · m_D` (the `126` alignment, 28:Y1) the seesaw collapses: `m_D · adj(c m_D) · m_Dᵀ = c² det(m_D) · m_Dᵀ`, a scalar multiple of the transpose, so the light neutrinos carry the Dirac eigenvalues (`circ_transpose`, `circ_eigen`: the transpose circulant has the eigenvalues `λ_{-k}`), the amplitude `r_ν = r_D` and the Koide value `Q_ν = Q_D = 2/3` of the colourless Dirac mass."
+   },
+   {
+    "name": "FRC.Flavour.seesaw_circulant",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 416,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C11, 28:X11, 00:G15 — the seesaw of circulants is circulant: `m_D · adj(M_R) · m_Dᵀ` is a circulant whenever `m_D` and `M_R` are (the inverse `M_R⁻¹ = adj(M_R)/det M_R` differs from the adjugate by the scalar), so the light neutrinos are Koide-form."
+   },
+   {
+    "name": "FRC.Flavour.circ_eigen",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 115,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C1, 28:X11 — on a cube root `ω² + ω + 1 = 0` the circulant has the eigenvectors `(1, ω, ω²)` and `(1, ω², ω)` with the eigenvalues `λ₁ = a + bω + cω²` and `λ₂ = a + bω² + cω` (the first row gives `λ_k` itself; the second and third rows give `ω^k λ_k` and `ω^{2k} λ_k`); the eigenvector `(1, 1, 1)` has `λ₀ = a + b + c`. Universality makes the amplitude matrix a circulant, and this is its spectrum: the Koide functional form."
+   },
+   {
+    "name": "FRC.Flavour.neutrino_floor",
+    "module": "FrcLedger/Flavour",
+    "line": 87,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:P5, 28:P6, 28:X11, 00:P3 — the m₁ = 0 floor of the neutrino mass sum (`FlavourML.neutrino_floor`)."
+   }
+  ],
+  "P1": [
+   {
+    "name": "FRC.Interactions.koide_two_thirds",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 162,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G16, 00:G15, 00:G17, 28:C2, 28:C11b, 28:X1, 28:P1, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`."
+   },
+   {
+    "name": "FRC.Interactions.koide_extension",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 193,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G16, 27:X10, 27:P8, 28:C2, 28:X1, 28:P1, on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so `â₁ â₂ = N(â₁)`; Parseval `3 Σ a_j² = â₀² + 2 N(â₁)`; and `Q = 2/3 ⟺ 2 N(â₁) = â₀²` (`ρ² = 1/2`)."
+   },
+   {
+    "name": "FRC.Flavour.koide_measured",
+    "module": "FrcLedger/Flavour",
+    "line": 24,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:P1, 28:X1 — the measured charged-lepton Koide value (`FlavourML.koide_measured`)."
+   }
+  ],
+  "P2": [
+   {
+    "name": "FRC.Flavour.norm_one_sub_omega",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 180,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C4, 28:X2, 28:P2, 00:G17 — the colour norm: `N(1 − ω) = 3` for the cube root `ω = −h + h w` of the extension at `ν = −3` (`h + h = 1`); the squared amplitude of a coloured sector, `r² = N(1 − ω) = 3`, so `Q = 1/3 + r²/6 = 5/6`."
+   },
+   {
+    "name": "FRC.Flavour.koide_five_sixths",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 193,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C4, 28:X2, 28:P2 — the up-quark Koide value: `Q = 5/6 ⟺ ρ² = 3/4`, that is `6 Σ a_j² = 5 â₀²` exactly when `4 â₁ â₂ = 3 â₀²` (beside `koide_two_thirds`, `Q = 2/3 ⟺ 2 â₁ â₂ = â₀²`); with `â₁ â₂ = N(b)` and `r² = 4N(b)/a²` this is `r² = 3`, the colour norm."
+   },
+   {
+    "name": "FRC.Flavour.koide_up_band",
+    "module": "FrcLedger/Flavour",
+    "line": 29,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C4, 28:X2, 28:P2 — the up-quark Koide value in three schemes (`FlavourML.koide_up_band`)."
+   }
+  ],
+  "P3": [
+   {
+    "name": "FRC.Flavour.cabibbo_modulus",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 254,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C6, 28:X4, 28:P3 — the full Cabibbo relation: for a unit `z` (`z z̄ = 1`, the relative winding phase `e^{iφ}`) the modulus `|s_d c_u − c_d s_u z|² = s_d² c_u² + c_d² s_u² − s_d c_u c_d s_u T(z)` with `T(z) = z + z̄ = 2 cos φ`; with `s_d = √(m_d/m_s)` and `s_u = √(m_u/m_c)` this is `V_us = |√(m_d/m_s) − e^{iφ} √(m_u/m_c)|`."
+   },
+   {
+    "name": "FRC.Flavour.gst_relation",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 245,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C6, 28:X4, 28:P3 — the Gatto–Sartori–Tonin relation. A symmetric two-by-two texture `R D Rᵀ` with `R` the rotation `(c, −s; s, c)`, `c² + s² = 1`, and `D = diag(m₁, m₂)` has the `(1,1)` entry `m₁ c² + m₂ s²`; when that entry vanishes (the texture zero), `m₂ s² = −m₁ c²`, that is `tan²θ = −m₁/m₂`: the Cabibbo angle from the two light masses."
+   },
+   {
+    "name": "FRC.Flavour.gatto_leading",
+    "module": "FrcLedger/Flavour",
+    "line": 40,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C6, 28:X4, 28:P3 — the Gatto relation's leading term and its value at φ = π/2 (`FlavourML.gatto_leading`)."
+   }
+  ],
+  "P5": [
+   {
+    "name": "FRC.Flavour.transpose_fixed_point",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 424,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C11, 28:X11, 28:P5, 00:G15 — the transpose fixed point. With `M_R = c · m_D` (the `126` alignment, 28:Y1) the seesaw collapses: `m_D · adj(c m_D) · m_Dᵀ = c² det(m_D) · m_Dᵀ`, a scalar multiple of the transpose, so the light neutrinos carry the Dirac eigenvalues (`circ_transpose`, `circ_eigen`: the transpose circulant has the eigenvalues `λ_{-k}`), the amplitude `r_ν = r_D` and the Koide value `Q_ν = Q_D = 2/3` of the colourless Dirac mass."
+   },
+   {
+    "name": "FRC.Flavour.circ_transpose",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 89,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C11, 28:P5 — the transpose of a circulant is the circulant of the reversed row: `(circ a b c)ᵀ = circ a c b`."
+   },
+   {
+    "name": "FRC.Flavour.neutrino_floor",
+    "module": "FrcLedger/Flavour",
+    "line": 87,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:P5, 28:P6, 28:X11, 00:P3 — the m₁ = 0 floor of the neutrino mass sum (`FlavourML.neutrino_floor`)."
+   }
+  ],
+  "P6": [
+   {
+    "name": "FRC.Flavour.neutrino_floor",
+    "module": "FrcLedger/Flavour",
+    "line": 87,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:P5, 28:P6, 28:X11, 00:P3 — the m₁ = 0 floor of the neutrino mass sum (`FlavourML.neutrino_floor`)."
+   }
+  ],
+  "P7": [
+   {
+    "name": "FRC.Flavour.majorana_band",
+    "module": "FrcLedger/Flavour",
+    "line": 92,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:P7 — the effective Majorana mass band at m₁ = 0 (`FlavourML.majorana_band`)."
+   }
+  ],
+  "P8": [
+   {
+    "name": "FRC.Flavour.jarlskog_sq",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 325,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C10, 28:X10, 28:P8, 00:G17 — the maximal Jarlskog invariant as a framed rational. The magic matrix's rephasing invariant is `F₀₀ F₁₁ F̄₀₁ F̄₁₀ = ω/9`, so `J = Im(ω)/9` and `J² = (Im ω)²/81` with `(Im ω)² = −ν h²` (the `w`-part `h` of `ω = −h + h w`, `w² = ν = −3`). Then `108 J² = 1` reads `4(−ν h²) = 3`, exact on every shell with `h + h = 1`, `ν + 3 = 0`: the continuum `J = 1/(6√3)`, `J² = 1/108`."
+   },
+   {
+    "name": "FRC.Flavour.protected_column",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 297,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C10, 28:P8 — the protected column. The shift `P` fixes the democratic vector `(1, 1, 1)`, the trivial `C₃` character; it fixes no multiple of `(2, −1, −1)` (the reducible TM1 column): `P (2, −1, −1) = (−1, −1, 2)`, and `(−1, −1, 2) = l · (2, −1, −1)` forces `−1 = 1 + 1`, that is `3 = 0`. So a `C₃` residual selects TM2."
+   },
+   {
+    "name": "FRC.Flavour.trimaximal",
+    "module": "FrcCore/Theme/Flavour",
+    "line": 314,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "28:C10, 28:X10, 28:P8, 00:G17 — the magic matrix is trimaximal: `N(ω) = 1` and `N(ω²) = 1` for the cube root `ω = −h + h w` at `ν = −3`, so every entry `ω^{jk}/√3` of the Fourier matrix has squared modulus `1/3`."
+   },
+   {
+    "name": "FRC.Flavour.jarlskog",
+    "module": "FrcLedger/Flavour",
+    "line": 72,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C10, 28:X10, 28:P8 — the maximal Jarlskog invariant (`FlavourML.jarlskog`)."
+   },
+   {
+    "name": "FRC.Flavour.tm2_at_maximal",
+    "module": "FrcLedger/Flavour",
+    "line": 76,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "28:C10, 28:P8 — the TM2 relation at maximal atmospheric mixing (`FlavourML.tm2_at_maximal`)."
+   }
+  ]
+ }
 }

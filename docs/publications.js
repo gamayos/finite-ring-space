@@ -580,16 +580,25 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202606.2124.v1",
     "doiLabel": "pp202606.2124.v1",
     "ledger": "28-flavour/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "28-flavour/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p28_flavour.ipynb",
+        "label": "python",
+        "count": 34,
+        "title": "34 predicates checked, all passing: the notebook p28_flavour.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/28-flavour/28-flavour-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Flavour.lean",
+        "label": "lean",
+        "count": 27,
+        "title": "27 predicates proved in the core (no axioms), 19 of them also on Mathlib: the core module Flavour as one executable file (plain Lean, no Mathlib) in Lean Live"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Flavour.lean",
+        "label": "lean-mathlib",
+        "count": 23,
+        "title": "23 predicates proved on Mathlib (classical), 19 of them also in the core: the module Flavour as one file on Mathlib in Lean Live"
       }
     ]
   },

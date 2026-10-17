@@ -5717,7 +5717,7 @@ def fifth (S : Nat) : Nat := if cnt S 0 4 % 2 == 0 then S else S + 16
 
 /-! ## The reflection algebra of four directions (00:G12) -/
 
-/-- 00:G12 — the reflection algebra of four directions: the `16` basis elements `e_S`, `S ⊆ {0, 1, 2, 3}`, close under
+/-- 00:G12, 28:C12 — the reflection algebra of four directions: the `16` basis elements `e_S`, `S ⊆ {0, 1, 2, 3}`, close under
 the product; the product is associative on the basis; distinct directions anticommute, `e_i e_j = −e_j e_i`, and each
 squares to zero. -/
 theorem reflection_algebra :
@@ -5729,7 +5729,7 @@ theorem reflection_algebra :
       else emul (2 ^ i) (2 ^ j) == ((-(emul (2 ^ j) (2 ^ i)).1), (emul (2 ^ j) (2 ^ i)).2))) = true := by
   decide +kernel
 
-/-- 00:G12, 27:C9 — the quarter-turn as the fifth direction maps the sixteen `e_S` of four directions one-to-one onto the
+/-- 00:G12, 27:C9, 28:C12 — the quarter-turn as the fifth direction maps the sixteen `e_S` of four directions one-to-one onto the
 sixteen even subsets of five directions, the chiral spinor `16`; for `|S|` odd the image is the product `e_S e_4`
 with sign `+1`. -/
 theorem fifth_direction :
@@ -5792,7 +5792,7 @@ theorem two_eq : (2 : Shell p) = 1 + 1 := by
   show ofNat 2 = ofNat 1 + ofNat 1
   rw [ofNat_add]
 
-/-- 00:G16, 27:X10, 27:P8 — Parseval on the cube-root orbit `C₃`: for amplitudes `a₀, a₁, a₂` and `ω` with `ω² + ω + 1 = 0`,
+/-- 00:G16, 27:X10, 27:P8, 28:C1, 28:X1 — Parseval on the cube-root orbit `C₃`: for amplitudes `a₀, a₁, a₂` and `ω` with `ω² + ω + 1 = 0`,
 `3 Σ a_j² = â₀² + 2 â₁ â₂`, `â₀ = Σ a_j`, `â₁ = a₀ + a₁ω + a₂ω²`, `â₂ = a₀ + a₁ω² + a₂ω` — the Koide form
 `Q = Σ a_j² / (Σ a_j)² = 1/3 + (2/3)ρ²` with `ρ² = â₁â₂/â₀²`, exact on every shell carrying the root `ω`. -/
 theorem koide_parseval (a₀ a₁ a₂ ω : Shell p) (hω : ω * ω + ω + 1 = 0) :
@@ -5805,7 +5805,7 @@ theorem koide_parseval (a₀ a₁ a₂ ω : Shell p) (hω : ω * ω + ω + 1 = 0
     Shell.Frame.RE.sound (Shell.Frame.look [a₀, a₁, a₂, ω]) (.mul (.add (.add .one .one) .one) (.add (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.mul (.var 2) (.var 2)))) (.add (.add (.mul (.add (.add (.var 0) (.var 1)) (.var 2)) (.add (.add (.var 0) (.var 1)) (.var 2))) (.mul (.add .one .one) (.mul (.add (.add (.var 0) (.mul (.var 1) (.var 3))) (.mul (.var 2) (.mul (.var 3) (.var 3)))) (.add (.add (.var 0) (.mul (.var 1) (.mul (.var 3) (.var 3)))) (.mul (.var 2) (.var 3)))))) (.mul (.add (.add (.mul (.var 3) (.var 3)) (.var 3)) .one) (.add (.add (.add (.add (.add (.add (.add (.add (.neg (.mul (.mul (.add .one .one) (.var 0)) (.var 1))) (.neg (.mul (.mul (.add .one .one) (.var 0)) (.var 2)))) (.neg (.mul (.mul (.mul (.add .one .one) (.var 1)) (.var 1)) (.var 3)))) (.mul (.mul (.add .one .one) (.var 1)) (.var 1))) (.neg (.mul (.mul (.mul (.mul (.add .one .one) (.var 1)) (.var 2)) (.var 3)) (.var 3)))) (.mul (.mul (.mul (.add .one .one) (.var 1)) (.var 2)) (.var 3))) (.neg (.mul (.mul (.add .one .one) (.var 1)) (.var 2)))) (.neg (.mul (.mul (.mul (.add .one .one) (.var 2)) (.var 2)) (.var 3)))) (.mul (.mul (.add .one .one) (.var 2)) (.var 2))))) (by decide +kernel)
   rw [h, hω, zero_mul, add_zero]
 
-/-- 00:G16, 28:C2, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`. -/
+/-- 00:G16, 00:G15, 00:G17, 28:C2, 28:C11b, 28:X1, 28:P1, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`. -/
 theorem koide_two_thirds (a₀ a₁ a₂ ω : Shell p) (hω : ω * ω + ω + 1 = 0) :
     3 * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = 2 * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔
       2 * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω)) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) := by
@@ -5835,7 +5835,7 @@ def hat2 (ν h a₀ a₁ a₂ : Shell p) : Extension.Ext p ν :=
 theorem red2i {L R A B X Y : Shell p} (e : L = R + A * X + B * Y) (ha : A = 0) (hb : B = 0) : L = R := by
   rw [ha, hb, zero_mul, zero_mul, add_zero, add_zero] at e; exact e
 
-/-- 00:G16, 27:X10, 27:P8, on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so
+/-- 00:G16, 27:X10, 27:P8, 28:C2, 28:X1, 28:P1, on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so
 `â₁ â₂ = N(â₁)`; Parseval `3 Σ a_j² = â₀² + 2 N(â₁)`; and `Q = 2/3 ⟺ 2 N(â₁) = â₀²` (`ρ² = 1/2`). -/
 theorem koide_extension {ν h : Shell p} (hh : h + h = 1) (hν : ν + 1 + 1 + 1 = 0) (a₀ a₁ a₂ : Shell p) :
     omega3 ν h * omega3 ν h + omega3 ν h + 1 = 0 ∧ hat2 ν h a₀ a₁ a₂ = Extension.Ext.conj (hat1 ν h a₀ a₁ a₂) ∧
@@ -5860,7 +5860,7 @@ theorem koide_extension {ν h : Shell p} (hh : h + h = 1) (hν : ν + 1 + 1 + 1 
   · intro e
     rw [e]
 
-/-- 00:G16, 27:X10, 27:P8 — the hypotheses of `koide_extension` hold on every frame `p = 4κ + 1`, the Carrier included:
+/-- 00:G16, 27:X10, 27:P8, 28:X1 — the hypotheses of `koide_extension` hold on every frame `p = 4κ + 1`, the Carrier included:
 `h = 2κ + 1` has `h + h = 1`, and `ν = −3` has `ν + 3 = 0`. -/
 theorem koide_half {κ : Nat} (hκ : p = 4 * κ + 1) :
     (ofNat (2 * κ + 1) : Shell p) + ofNat (2 * κ + 1) = 1 ∧ (-3 : Shell p) + 1 + 1 + 1 = 0 := by
@@ -7604,7 +7604,7 @@ theorem phase_index (F : Frame p κ g) (k : Nat) : ∀ (r m : Nat),
 /-- 26:G3, 26:G4 — the ascent is counting along the orbit: `g^{j+1} = g^j · g`, one multiplication per step. -/
 theorem ascent_step (j : Nat) : g ^ (j + 1) = g ^ j * g := pow_succ g j
 
-/-- 26:G2, 27:C10, 27:X9, 27:P1 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is
+/-- 26:G2, 27:C10, 27:X9, 27:P1, 28:X3, 00:G15 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is
 exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes:
 the fifth step returns to counting, 27-fields' C10). -/
 theorem tower_reduces (F : Frame p κ g) (j : Nat) : g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - 1)) :=
@@ -8415,6 +8415,15 @@ theorem p27042 : (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), �
 /-- p27043 — 27:P9, 00:G7. \textbf{Strong} (CP): the vacuum angle vanishes, $\bar\theta=\theta+\arg\det M_q=0$, with no axion --- the colour action carries no substrate-native topological term and colour is drive-invariant ($\theta=0$), and the Hermitian quark mass matrices have real determinant ($\arg\det M_q=0$); the CP phase $\delta_{\mathrm{CP}}$ sits in the up--down misalignment. -/
 theorem p27043 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → FRC.Unitary.tr (FRC.Unitary.adj U) = (FRC.Unitary.tr U).conj ∧ FRC.Unitary.tr (FRC.Unitary.adj U) + (FRC.Unitary.tr (FRC.Unitary.adj U)).conj = FRC.Unitary.tr U + (FRC.Unitary.tr U).conj) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).conj = FRC.Unitary.det A) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) :=
   And.intro @FRC.Unitary.wilson_orientation_even (And.intro @FRC.Unitary.hermitian_det_real (@FRC.Unitary.hermitian_det_shell))
+/-- p28024 — 28:C12. The generation $\mathbf{16}$ is the four-chart reflection algebra $\Lambda^{\bullet}(\C^4)\cong\Lambda^{\mathrm{even}}(\C^5)$, the quarter-turn the fifth direction; projection anchored at $\nu^c=\Lambda^0$. -/
+theorem p28024 : (((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).all fun T => decide ((FRC.Interactions.emul S T).snd < (16 : Nat))) = true ∧ ((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).all fun T => (List.range (16 : Nat)).all fun U => FRC.Interactions.assocL S T U == FRC.Interactions.assocR S T U) = true ∧ ((List.range (4 : Nat)).all fun i => (List.range (4 : Nat)).all fun j => if (i == j) = true then FRC.Interactions.emul ((2 : Nat) ^ i) ((2 : Nat) ^ j) == ((0 : Int), (0 : Nat)) else FRC.Interactions.emul ((2 : Nat) ^ i) ((2 : Nat) ^ j) == (-(FRC.Interactions.emul ((2 : Nat) ^ j) ((2 : Nat) ^ i)).fst, (FRC.Interactions.emul ((2 : Nat) ^ j) ((2 : Nat) ^ i)).snd)) = true) ∧ FRC.Interactions.gen16.length = (16 : Nat) ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.gen16.contains (FRC.Interactions.fifth S)) = true ∧ ((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).all fun T => decide ((FRC.Interactions.fifth S == FRC.Interactions.fifth T) = true → (S == T) = true)) = true ∧ (FRC.Interactions.gen16.all fun R => (List.range (16 : Nat)).any fun S => FRC.Interactions.fifth S == R) = true ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.cnt S (0 : Nat) (4 : Nat) % (2 : Nat) == (0 : Nat) || FRC.Interactions.emul S (16 : Nat) == ((1 : Int), FRC.Interactions.fifth S)) = true :=
+  And.intro @FRC.Interactions.reflection_algebra (@FRC.Interactions.fifth_direction)
+/-- p28025 — 28:X1. \textbf{The Koide ratio} is exactly $2/3$ given the quarter-turn realisation B5, the cube-root generation orbit bisected at the quarter-turn ($\rho^2=2^{-1}$), an exact value rather than an unexplained empirical coincidence. -/
+theorem p28025 : (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω))) ∧ (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω)) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν h : FRC.Shell p}, h + h = (1 : FRC.Shell p) → ν + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ∀ (a₀ a₁ a₂ : FRC.Shell p), FRC.Interactions.omega3 ν h * FRC.Interactions.omega3 ν h + FRC.Interactions.omega3 ν h + (1 : FRC.Extension.Ext p ν) = (0 : FRC.Extension.Ext p ν) ∧ FRC.Interactions.hat2 ν h a₀ a₁ a₂ = (FRC.Interactions.hat1 ν h a₀ a₁ a₂).conj ∧ FRC.Interactions.hat1 ν h a₀ a₁ a₂ * FRC.Interactions.hat2 ν h a₀ a₁ a₂ = FRC.Extension.Ext.ofShell (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) + FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (1 : FRC.Shell p) ∧ (-3 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) :=
+  And.intro @FRC.Interactions.koide_parseval (And.intro @FRC.Interactions.koide_two_thirds (And.intro @FRC.Interactions.koide_extension (@FRC.Interactions.koide_half)))
+/-- p28036 — 28:P1. Charged-lepton Koide $Q_\ell=2/3$ exact on B5 (measured $0.666661\pm0.000007$); $m_e=0.5106$ vs $0.5110$ MeV. Falsifier: a lepton-mass shift of $Q_\ell$ off $2/3$ beyond the $\tau$-mass tolerance. -/
+theorem p28036 : (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω)) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ ∀ {p : Nat} [FRC.Pos p] {ν h : FRC.Shell p}, h + h = (1 : FRC.Shell p) → ν + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ∀ (a₀ a₁ a₂ : FRC.Shell p), FRC.Interactions.omega3 ν h * FRC.Interactions.omega3 ν h + FRC.Interactions.omega3 ν h + (1 : FRC.Extension.Ext p ν) = (0 : FRC.Extension.Ext p ν) ∧ FRC.Interactions.hat2 ν h a₀ a₁ a₂ = (FRC.Interactions.hat1 ν h a₀ a₁ a₂).conj ∧ FRC.Interactions.hat1 ν h a₀ a₁ a₂ * FRC.Interactions.hat2 ν h a₀ a₁ a₂ = FRC.Extension.Ext.ofShell (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) :=
+  And.intro @FRC.Interactions.koide_two_thirds (@FRC.Interactions.koide_extension)
 -- end keys
 
 end FRC.Ledger

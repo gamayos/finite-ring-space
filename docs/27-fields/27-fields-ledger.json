@@ -752,7 +752,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G12, 27:C9 — the quarter-turn as the fifth direction maps the sixteen `e_S` of four directions one-to-one onto the sixteen even subsets of five directions, the chiral spinor `16`; for `|S|` odd the image is the product `e_S e_4` with sign `+1`."
+    "doc": "00:G12, 27:C9, 28:C12 — the quarter-turn as the fifth direction maps the sixteen `e_S` of four directions one-to-one onto the sixteen even subsets of five directions, the chiral spinor `16`; for `|S|` odd the image is the product `e_S e_4` with sign `+1`."
    },
    {
     "name": "FRC.Interactions.offblock_automorphism",
@@ -781,7 +781,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "26:G2, 27:C10, 27:X9, 27:P1 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes: the fifth step returns to counting, 27-fields' C10)."
+    "doc": "26:G2, 27:C10, 27:X9, 27:P1, 28:X3, 00:G15 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes: the fifth step returns to counting, 27-fields' C10)."
    }
   ],
   "C11": [
@@ -1012,7 +1012,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "26:G2, 27:C10, 27:X9, 27:P1 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes: the fifth step returns to counting, 27-fields' C10)."
+    "doc": "26:G2, 27:C10, 27:X9, 27:P1, 28:X3, 00:G15 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes: the fifth step returns to counting, 27-fields' C10)."
    }
   ],
   "X10": [
@@ -1023,7 +1023,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G16, 27:X10, 27:P8 — Parseval on the cube-root orbit `C₃`: for amplitudes `a₀, a₁, a₂` and `ω` with `ω² + ω + 1 = 0`, `3 Σ a_j² = â₀² + 2 â₁ â₂`, `â₀ = Σ a_j`, `â₁ = a₀ + a₁ω + a₂ω²`, `â₂ = a₀ + a₁ω² + a₂ω` — the Koide form `Q = Σ a_j² / (Σ a_j)² = 1/3 + (2/3)ρ²` with `ρ² = â₁â₂/â₀²`, exact on every shell carrying the root `ω`."
+    "doc": "00:G16, 27:X10, 27:P8, 28:C1, 28:X1 — Parseval on the cube-root orbit `C₃`: for amplitudes `a₀, a₁, a₂` and `ω` with `ω² + ω + 1 = 0`, `3 Σ a_j² = â₀² + 2 â₁ â₂`, `â₀ = Σ a_j`, `â₁ = a₀ + a₁ω + a₂ω²`, `â₂ = a₀ + a₁ω² + a₂ω` — the Koide form `Q = Σ a_j² / (Σ a_j)² = 1/3 + (2/3)ρ²` with `ρ² = â₁â₂/â₀²`, exact on every shell carrying the root `ω`."
    },
    {
     "name": "FRC.Interactions.koide_two_thirds",
@@ -1032,7 +1032,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G16, 28:C2, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`."
+    "doc": "00:G16, 00:G15, 00:G17, 28:C2, 28:C11b, 28:X1, 28:P1, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`."
    },
    {
     "name": "FRC.Interactions.koide_extension",
@@ -1041,7 +1041,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G16, 27:X10, 27:P8, on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so `â₁ â₂ = N(â₁)`; Parseval `3 Σ a_j² = â₀² + 2 N(â₁)`; and `Q = 2/3 ⟺ 2 N(â₁) = â₀²` (`ρ² = 1/2`)."
+    "doc": "00:G16, 27:X10, 27:P8, 28:C2, 28:X1, 28:P1, on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so `â₁ â₂ = N(â₁)`; Parseval `3 Σ a_j² = â₀² + 2 N(â₁)`; and `Q = 2/3 ⟺ 2 N(â₁) = â₀²` (`ρ² = 1/2`)."
    },
    {
     "name": "FRC.Interactions.koide_half",
@@ -1050,7 +1050,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G16, 27:X10, 27:P8 — the hypotheses of `koide_extension` hold on every frame `p = 4κ + 1`, the Carrier included: `h = 2κ + 1` has `h + h = 1`, and `ν = −3` has `ν + 3 = 0`."
+    "doc": "00:G16, 27:X10, 27:P8, 28:X1 — the hypotheses of `koide_extension` hold on every frame `p = 4κ + 1`, the Carrier included: `h = 2κ + 1` has `h + h = 1`, and `ν = −3` has `ν + 3 = 0`."
    }
   ],
   "X11": [
@@ -1099,7 +1099,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "26:G2, 27:C10, 27:X9, 27:P1 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes: the fifth step returns to counting, 27-fields' C10)."
+    "doc": "26:G2, 27:C10, 27:X9, 27:P1, 28:X3, 00:G15 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes: the fifth step returns to counting, 27-fields' C10)."
    }
   ],
   "P2": [
@@ -1215,7 +1215,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G16, 27:X10, 27:P8 — Parseval on the cube-root orbit `C₃`: for amplitudes `a₀, a₁, a₂` and `ω` with `ω² + ω + 1 = 0`, `3 Σ a_j² = â₀² + 2 â₁ â₂`, `â₀ = Σ a_j`, `â₁ = a₀ + a₁ω + a₂ω²`, `â₂ = a₀ + a₁ω² + a₂ω` — the Koide form `Q = Σ a_j² / (Σ a_j)² = 1/3 + (2/3)ρ²` with `ρ² = â₁â₂/â₀²`, exact on every shell carrying the root `ω`."
+    "doc": "00:G16, 27:X10, 27:P8, 28:C1, 28:X1 — Parseval on the cube-root orbit `C₃`: for amplitudes `a₀, a₁, a₂` and `ω` with `ω² + ω + 1 = 0`, `3 Σ a_j² = â₀² + 2 â₁ â₂`, `â₀ = Σ a_j`, `â₁ = a₀ + a₁ω + a₂ω²`, `â₂ = a₀ + a₁ω² + a₂ω` — the Koide form `Q = Σ a_j² / (Σ a_j)² = 1/3 + (2/3)ρ²` with `ρ² = â₁â₂/â₀²`, exact on every shell carrying the root `ω`."
    },
    {
     "name": "FRC.Interactions.koide_two_thirds",
@@ -1224,7 +1224,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G16, 28:C2, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`."
+    "doc": "00:G16, 00:G15, 00:G17, 28:C2, 28:C11b, 28:X1, 28:P1, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`."
    },
    {
     "name": "FRC.Interactions.koide_extension",
@@ -1233,7 +1233,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G16, 27:X10, 27:P8, on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so `â₁ â₂ = N(â₁)`; Parseval `3 Σ a_j² = â₀² + 2 N(â₁)`; and `Q = 2/3 ⟺ 2 N(â₁) = â₀²` (`ρ² = 1/2`)."
+    "doc": "00:G16, 27:X10, 27:P8, 28:C2, 28:X1, 28:P1, on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so `â₁ â₂ = N(â₁)`; Parseval `3 Σ a_j² = â₀² + 2 N(â₁)`; and `Q = 2/3 ⟺ 2 N(â₁) = â₀²` (`ρ² = 1/2`)."
    },
    {
     "name": "FRC.Interactions.koide_half",
@@ -1242,7 +1242,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G16, 27:X10, 27:P8 — the hypotheses of `koide_extension` hold on every frame `p = 4κ + 1`, the Carrier included: `h = 2κ + 1` has `h + h = 1`, and `ν = −3` has `ν + 3 = 0`."
+    "doc": "00:G16, 27:X10, 27:P8, 28:X1 — the hypotheses of `koide_extension` hold on every frame `p = 4κ + 1`, the Carrier included: `h = 2κ + 1` has `h + h = 1`, and `ν = −3` has `ν + 3 = 0`."
    }
   ],
   "P9": [

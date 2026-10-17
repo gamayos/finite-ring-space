@@ -6785,7 +6785,7 @@ theorem phase_index (F : Frame p κ g) (k : Nat) : ∀ (r m : Nat),
 /-- 26:G3, 26:G4 — the ascent is counting along the orbit: `g^{j+1} = g^j · g`, one multiplication per step. -/
 theorem ascent_step (j : Nat) : g ^ (j + 1) = g ^ j * g := pow_succ g j
 
-/-- 26:G2, 27:C10, 27:X9, 27:P1 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is
+/-- 26:G2, 27:C10, 27:X9, 27:P1, 28:X3, 00:G15 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is
 exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes:
 the fifth step returns to counting, 27-fields' C10). -/
 theorem tower_reduces (F : Frame p κ g) (j : Nat) : g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - 1)) :=

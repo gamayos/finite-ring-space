@@ -70,7 +70,7 @@ def fifth (S : Nat) : Nat := if cnt S 0 4 % 2 == 0 then S else S + 16
 
 /-! ## The reflection algebra of four directions (00:G12) -/
 
-/-- 00:G12 — the reflection algebra of four directions: the `16` basis elements `e_S`, `S ⊆ {0, 1, 2, 3}`, close under
+/-- 00:G12, 28:C12 — the reflection algebra of four directions: the `16` basis elements `e_S`, `S ⊆ {0, 1, 2, 3}`, close under
 the product; the product is associative on the basis; distinct directions anticommute, `e_i e_j = −e_j e_i`, and each
 squares to zero. -/
 theorem reflection_algebra :
@@ -82,7 +82,7 @@ theorem reflection_algebra :
       else emul (2 ^ i) (2 ^ j) == ((-(emul (2 ^ j) (2 ^ i)).1), (emul (2 ^ j) (2 ^ i)).2))) = true := by
   decide +kernel
 
-/-- 00:G12, 27:C9 — the quarter-turn as the fifth direction maps the sixteen `e_S` of four directions one-to-one onto the
+/-- 00:G12, 27:C9, 28:C12 — the quarter-turn as the fifth direction maps the sixteen `e_S` of four directions one-to-one onto the
 sixteen even subsets of five directions, the chiral spinor `16`; for `|S|` odd the image is the product `e_S e_4`
 with sign `+1`. -/
 theorem fifth_direction :
@@ -145,7 +145,7 @@ theorem two_eq : (2 : Shell p) = 1 + 1 := by
   show ofNat 2 = ofNat 1 + ofNat 1
   rw [ofNat_add]
 
-/-- 00:G16, 27:X10, 27:P8 — Parseval on the cube-root orbit `C₃`: for amplitudes `a₀, a₁, a₂` and `ω` with `ω² + ω + 1 = 0`,
+/-- 00:G16, 27:X10, 27:P8, 28:C1, 28:X1 — Parseval on the cube-root orbit `C₃`: for amplitudes `a₀, a₁, a₂` and `ω` with `ω² + ω + 1 = 0`,
 `3 Σ a_j² = â₀² + 2 â₁ â₂`, `â₀ = Σ a_j`, `â₁ = a₀ + a₁ω + a₂ω²`, `â₂ = a₀ + a₁ω² + a₂ω` — the Koide form
 `Q = Σ a_j² / (Σ a_j)² = 1/3 + (2/3)ρ²` with `ρ² = â₁â₂/â₀²`, exact on every shell carrying the root `ω`. -/
 theorem koide_parseval (a₀ a₁ a₂ ω : Shell p) (hω : ω * ω + ω + 1 = 0) :
@@ -158,7 +158,7 @@ theorem koide_parseval (a₀ a₁ a₂ ω : Shell p) (hω : ω * ω + ω + 1 = 0
     Shell.Frame.RE.sound (Shell.Frame.look [a₀, a₁, a₂, ω]) (.mul (.add (.add .one .one) .one) (.add (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.mul (.var 2) (.var 2)))) (.add (.add (.mul (.add (.add (.var 0) (.var 1)) (.var 2)) (.add (.add (.var 0) (.var 1)) (.var 2))) (.mul (.add .one .one) (.mul (.add (.add (.var 0) (.mul (.var 1) (.var 3))) (.mul (.var 2) (.mul (.var 3) (.var 3)))) (.add (.add (.var 0) (.mul (.var 1) (.mul (.var 3) (.var 3)))) (.mul (.var 2) (.var 3)))))) (.mul (.add (.add (.mul (.var 3) (.var 3)) (.var 3)) .one) (.add (.add (.add (.add (.add (.add (.add (.add (.neg (.mul (.mul (.add .one .one) (.var 0)) (.var 1))) (.neg (.mul (.mul (.add .one .one) (.var 0)) (.var 2)))) (.neg (.mul (.mul (.mul (.add .one .one) (.var 1)) (.var 1)) (.var 3)))) (.mul (.mul (.add .one .one) (.var 1)) (.var 1))) (.neg (.mul (.mul (.mul (.mul (.add .one .one) (.var 1)) (.var 2)) (.var 3)) (.var 3)))) (.mul (.mul (.mul (.add .one .one) (.var 1)) (.var 2)) (.var 3))) (.neg (.mul (.mul (.add .one .one) (.var 1)) (.var 2)))) (.neg (.mul (.mul (.mul (.add .one .one) (.var 2)) (.var 2)) (.var 3)))) (.mul (.mul (.add .one .one) (.var 2)) (.var 2))))) (by decide +kernel)
   rw [h, hω, zero_mul, add_zero]
 
-/-- 00:G16, 28:C2, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`. -/
+/-- 00:G16, 00:G15, 00:G17, 28:C2, 28:C11b, 28:X1, 28:P1, 27:X10, 27:P8 — `Q = 2/3 ⟺ ρ² = 1/2`: `3 Σ a_j² = 2 â₀²` exactly when `2 â₁ â₂ = â₀²`. -/
 theorem koide_two_thirds (a₀ a₁ a₂ ω : Shell p) (hω : ω * ω + ω + 1 = 0) :
     3 * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = 2 * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔
       2 * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω)) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) := by
@@ -188,7 +188,7 @@ def hat2 (ν h a₀ a₁ a₂ : Shell p) : Extension.Ext p ν :=
 theorem red2i {L R A B X Y : Shell p} (e : L = R + A * X + B * Y) (ha : A = 0) (hb : B = 0) : L = R := by
   rw [ha, hb, zero_mul, zero_mul, add_zero, add_zero] at e; exact e
 
-/-- 00:G16, 27:X10, 27:P8, on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so
+/-- 00:G16, 27:X10, 27:P8, 28:C2, 28:X1, 28:P1, on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so
 `â₁ â₂ = N(â₁)`; Parseval `3 Σ a_j² = â₀² + 2 N(â₁)`; and `Q = 2/3 ⟺ 2 N(â₁) = â₀²` (`ρ² = 1/2`). -/
 theorem koide_extension {ν h : Shell p} (hh : h + h = 1) (hν : ν + 1 + 1 + 1 = 0) (a₀ a₁ a₂ : Shell p) :
     omega3 ν h * omega3 ν h + omega3 ν h + 1 = 0 ∧ hat2 ν h a₀ a₁ a₂ = Extension.Ext.conj (hat1 ν h a₀ a₁ a₂) ∧
@@ -213,7 +213,7 @@ theorem koide_extension {ν h : Shell p} (hh : h + h = 1) (hν : ν + 1 + 1 + 1 
   · intro e
     rw [e]
 
-/-- 00:G16, 27:X10, 27:P8 — the hypotheses of `koide_extension` hold on every frame `p = 4κ + 1`, the Carrier included:
+/-- 00:G16, 27:X10, 27:P8, 28:X1 — the hypotheses of `koide_extension` hold on every frame `p = 4κ + 1`, the Carrier included:
 `h = 2κ + 1` has `h + h = 1`, and `ν = −3` has `ν + 3 = 0`. -/
 theorem koide_half {κ : Nat} (hκ : p = 4 * κ + 1) :
     (ofNat (2 * κ + 1) : Shell p) + ofNat (2 * κ + 1) = 1 ∧ (-3 : Shell p) + 1 + 1 + 1 = 0 := by
