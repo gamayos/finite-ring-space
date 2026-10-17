@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "16 October 2026",
+  "generated": "17 October 2026",
   "schema": "frc-register/2",
   "rows": 1048,
   "theorems": 1034,
@@ -3299,14 +3299,14 @@
   {
    "key": "p27043",
    "origin": "27",
-   "statement": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
+   "statement": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the Wilson action class carries no orientation-odd term (B2) and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
    "origin_row": "27:P9",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "frc/ledgers/p27_fields.html#p27043",
     "script": "p27_fields.py",
-    "line": 981,
+    "line": 992,
     "verdict": "pass"
    },
    "declarations": [
@@ -3314,6 +3314,11 @@
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Interactions",
      "name": "FRC.Ledger.p27043"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Unitary",
+     "name": "FRC.Unitary.wilson_orientation_even"
     },
     {
      "lib": "FrcCore",
@@ -3334,6 +3339,7 @@
     "27:P9"
    ],
    "realisations": [
+    "p27008",
     "p27010"
    ]
   },
@@ -3920,7 +3926,7 @@
   {
    "key": "p27021",
    "origin": "27",
-   "statement": "Simple $\\SO(10)$ unification forced: the colour--isospin off-block reframings are gauge automorphisms, the $3+2$ torsion sitting at carrier scale above the coherence horizon $\\sqrt\\Omega$.",
+   "statement": "Simple $\\SO(10)$ unification forced: the colour--isospin off-block reframings are gauge automorphisms, and the torsion that distinguishes the blocks needs more coherent steps than any horizon count admits ($3s<\\Omega+1$ for $s^2\\le\\Omega$); the horizon itself is the master's (00:Z2--Z4).",
    "origin_row": "27:C9",
    "tag": "T",
    "tier": 0,
@@ -3945,6 +3951,11 @@
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Interactions",
      "name": "FRC.Interactions.offblock_automorphism"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.torsion_beyond_horizon"
     }
    ],
    "aliases": [
@@ -21626,17 +21637,28 @@
   {
    "key": "p27037",
    "origin": "27",
-   "statement": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The ${\\sim}13\\%$ three-coupling near-miss is closed by the $X,Y$ completion at the substrate scale, with the running carried by purely Standard-Model content; there are no superpartners enforcing exact low-scale unification. \\emph{Falsifier:} discovery of superpartners, or evidence that unification demands TeV-scale thresholds.",
+   "statement": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13}\\,$GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13\\%$. The content has no superpartner. Where the completion closes the miss is the $\\Omega$-hard running (Z1). \\emph{Falsifier:} superpartners.",
    "origin_row": "27:P3",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "frc/ledgers/p27_fields.html#p27037",
     "script": "p27_fields.py",
-    "line": 905,
+    "line": 916,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.one_generation"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Fields",
+     "name": "FRC.Fields.running_near_miss"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:P3"
@@ -21646,17 +21668,28 @@
   {
    "key": "p27038",
    "origin": "27",
-   "statement": "\\textbf{The proton is effectively stable, $\\tau_p\\gtrsim10^{45}\\,$yr} \\emph{[forced]}. The $X,Y$ leptoquarks acquire mass at the substrate scale, not at $\\sim10^{16}\\,$GeV, so $\\tau_p\\sim M_X^4/(\\al_{\\mathrm{GUT}}^2 m_p^5)$ reaches $10^{45}$--$10^{47}\\,$yr for $M_X$ near the Planck scale, orders beyond the $\\sim10^{36}\\,$yr of supersymmetric $\\SO(10)$ and the $\\sim10^{35}\\,$yr reach of Hyper-Kamiokande. \\emph{Falsifier:} observation of $p\\to e^+\\pi^0$ near $10^{34}$--$10^{35}\\,$yr in Hyper-Kamiokande, DUNE, or JUNO, against the current bound \\cite{superk2017}. The programme predicts these searches find nothing.",
+   "statement": "\\textbf{The proton is effectively stable} \\emph{[forced]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\\,$GeV it already exceeds the Super-Kamiokande bound. \\emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years.",
    "origin_row": "27:P4",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "frc/ledgers/p27_fields.html#p27038",
     "script": "p27_fields.py",
     "line": 812,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.unification_counts"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Fields",
+     "name": "FRC.Fields.proton_lifetime"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:P4"
@@ -21666,17 +21699,28 @@
   {
    "key": "p27039",
    "origin": "27",
-   "statement": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. The $\\nu^c$ is the gauge-singlet $\\Lam^0$ of the generation, so it takes a Majorana mass at unification and drives the seesaw, the three right-handed states sitting at $\\sim10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or evidence that the light neutrinos are Dirac. This diverges from Dirac-neutrino and sterile-neutrino interpretations and is consistent with $N_{\\mathrm{eff}}=3$.",
+   "statement": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass at the unification scale (A4), and the seesaw then places the light masses in the observed band for singlet masses of $10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or Dirac neutrinos.",
    "origin_row": "27:P5",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "frc/ledgers/p27_fields.html#p27039",
     "script": "p27_fields.py",
-    "line": 915,
+    "line": 926,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.one_generation"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Fields",
+     "name": "FRC.Fields.seesaw_band"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:P5"
@@ -21750,7 +21794,7 @@
    "check": {
     "href": "frc/ledgers/p27_fields.html#p27042",
     "script": "p27_fields.py",
-    "line": 963,
+    "line": 974,
     "verdict": "pass"
    },
    "declarations": [
@@ -22040,6 +22084,11 @@
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Interactions",
      "name": "FRC.Interactions.offblock_automorphism"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.torsion_beyond_horizon"
     }
    ],
    "aliases": [],
@@ -22086,7 +22135,7 @@
    "check": {
     "href": "frc/ledgers/p27_fields.html#p27033",
     "script": "p27_fields.py",
-    "line": 957,
+    "line": 968,
     "verdict": "pass"
    },
    "declarations": [
@@ -22120,17 +22169,22 @@
   {
    "key": "p27034",
    "origin": "27",
-   "statement": "\\textbf{The strong-CP angle} vanishes with no axion: no substrate-native topological term, and Hermitian quark masses with real determinant, give $\\bar\\theta=0$, so the problem does not arise rather than being tuned away.",
+   "statement": "\\textbf{The strong-CP angle} vanishes with no axion: the Wilson action class carries no orientation-odd term (B2), and Hermitian quark masses have real determinant, so $\\bar\\theta=0$ arises nowhere rather than being tuned away.",
    "origin_row": "27:X11",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "frc/ledgers/p27_fields.html#p27034",
     "script": "p27_fields.py",
-    "line": 981,
+    "line": 992,
     "verdict": "pass"
    },
    "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Unitary",
+     "name": "FRC.Unitary.wilson_orientation_even"
+    },
     {
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Unitary",
@@ -22151,7 +22205,9 @@
    "rows": [
     "27:X11"
    ],
-   "realisations": []
+   "realisations": [
+    "p27008"
+   ]
   },
   {
    "key": "p27048",
@@ -56505,8 +56561,8 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Simple $\\SO(10)$ unification forced: the colour--isospin off-block reframings are gauge automorphisms, the $3+2$ torsion sitting at carrier scale above the coherence horizon $\\sqrt\\Omega$.",
-   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27021}{C9}, \\leanwit{FrcCore}{p27021}{C9}; rests on B1, B5, B6, 00:D8 \\lean{FRC.Interactions.unification\\_counts, FRC.Interactions.fifth\\_direction, FRC.Interactions.offblock\\_automorphism}",
+   "statement": "Simple $\\SO(10)$ unification forced: the colour--isospin off-block reframings are gauge automorphisms, and the torsion that distinguishes the blocks needs more coherent steps than any horizon count admits ($3s<\\Omega+1$ for $s^2\\le\\Omega$); the horizon itself is the master's (00:Z2--Z4).",
+   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27021}{C9}, \\leanwit{FrcCore}{p27021}{C9}; rests on B1, B5, B6, 00:D8, 00:Z2, 00:Z3, 00:Z4 \\lean{FRC.Interactions.unification\\_counts, FRC.Interactions.fifth\\_direction, FRC.Interactions.offblock\\_automorphism, FRC.Interactions.torsion\\_beyond\\_horizon}",
    "page": "27-fields/index.html#C9",
    "witness": {
     "py": {
@@ -56539,17 +56595,28 @@
       "tier": 0,
       "ok": true,
       "page": "lean/core/Theme.html#FRC.Interactions.offblock_automorphism"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.torsion_beyond_horizon",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.torsion_beyond_horizon"
      }
     ]
    },
    "refs": [
     "p00049",
+    "p00110",
+    "p00111",
+    "p00112",
     "p27007",
     "p27011",
     "p27012",
     "p27021"
    ],
-   "text": "Simple $\\SO(10)$ unification forced: the colour–isospin off-block reframings are gauge automorphisms, the $3+2$ torsion sitting at carrier scale above the coherence horizon $\\sqrt\\Omega$. Prop. prop:unify p27021, FrcCore{C9}; rests on B1, B5, B6, 00:D8 FRC.Interactions.unification_counts, FRC.Interactions.fifth_direction, FRC.Interactions.offblock_automorphism"
+   "text": "Simple $\\SO(10)$ unification forced: the colour–isospin off-block reframings are gauge automorphisms, and the torsion that distinguishes the blocks needs more coherent steps than any horizon count admits ($3s<\\Omega+1$ for $s^2\\le\\Omega$); the horizon itself is the master's (00:Z2–Z4). Prop. prop:unify p27021, FrcCore{C9}; rests on B1, B5, B6, 00:D8, 00:Z2, 00:Z3, 00:Z4 FRC.Interactions.unification_counts, FRC.Interactions.fifth_direction, FRC.Interactions.offblock_automorphism, FRC.Interactions.torsion_beyond_horizon"
   },
   {
    "paper": "27-fld",
@@ -56746,25 +56813,43 @@
    "block": "P",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The ${\\sim}13\\%$ three-coupling near-miss is closed by the $X,Y$ completion at the substrate scale, with the running carried by purely Standard-Model content; there are no superpartners enforcing exact low-scale unification. \\emph{Falsifier:} discovery of superpartners, or evidence that unification demands TeV-scale thresholds.",
-   "source": "Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27037}{P3}; rests on A3, A6, C9",
+   "statement": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13}\\,$GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13\\%$. The content has no superpartner. Where the completion closes the miss is the $\\Omega$-hard running (Z1). \\emph{Falsifier:} superpartners.",
+   "source": "Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27037}{P3}, \\leanwit{FrcCore}{p27037}{P3}, \\leanwit{FrcLedger}{p27037}{P3}; rests on A3, A6, C8, Z1 \\lean{FRC.Interactions.one\\_generation, Fields.running\\_near\\_miss}",
    "page": "27-fields/index.html#P3",
    "witness": {
     "py": {
      "href": "frc/ledgers/p27_fields.html#p27037",
      "script": "p27_fields.py",
-     "line": 905,
+     "line": 916,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.one_generation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.one_generation"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Fields",
+      "name": "FRC.Fields.running_near_miss",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Fields.html#FRC.Fields.running_near_miss"
+     }
+    ]
    },
    "refs": [
     "p00091",
     "p27003",
     "p27006",
-    "p27021"
+    "p27020",
+    "p27047"
    ],
-   "text": "No TeV supersymmetry [forced]. The ${\\sim}13%$ three-coupling near-miss is closed by the $X,Y$ completion at the substrate scale, with the running carried by purely Standard-Model content; there are no superpartners enforcing exact low-scale unification. Falsifier: discovery of superpartners, or evidence that unification demands TeV-scale thresholds. Prop. prop:running p27037; rests on A3, A6, C9"
+   "text": "No TeV supersymmetry [forced]. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13} $GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13%$. The content has no superpartner. Where the completion closes the miss is the $\\Omega$-hard running (Z1). Falsifier: superpartners. Prop. prop:running p27037, FrcCore{P3}, FrcLedger{P3}; rests on A3, A6, C8, Z1 FRC.Interactions.one_generation, Fields.running_near_miss"
   },
   {
    "paper": "27-fld",
@@ -56775,8 +56860,8 @@
    "block": "P",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{The proton is effectively stable, $\\tau_p\\gtrsim10^{45}\\,$yr} \\emph{[forced]}. The $X,Y$ leptoquarks acquire mass at the substrate scale, not at $\\sim10^{16}\\,$GeV, so $\\tau_p\\sim M_X^4/(\\al_{\\mathrm{GUT}}^2 m_p^5)$ reaches $10^{45}$--$10^{47}\\,$yr for $M_X$ near the Planck scale, orders beyond the $\\sim10^{36}\\,$yr of supersymmetric $\\SO(10)$ and the $\\sim10^{35}\\,$yr reach of Hyper-Kamiokande. \\emph{Falsifier:} observation of $p\\to e^+\\pi^0$ near $10^{34}$--$10^{35}\\,$yr in Hyper-Kamiokande, DUNE, or JUNO, against the current bound \\cite{superk2017}. The programme predicts these searches find nothing.",
-   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27038}{P4}; rests on A3, A6, C9",
+   "statement": "\\textbf{The proton is effectively stable} \\emph{[forced]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\\,$GeV it already exceeds the Super-Kamiokande bound. \\emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years.",
+   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27038}{P4}, \\leanwit{FrcCore}{p27038}{P4}, \\leanwit{FrcLedger}{p27038}{P4}; rests on A3, A6, C9, Z1 \\lean{FRC.Interactions.unification\\_counts, Fields.proton\\_lifetime}",
    "page": "27-fields/index.html#P4",
    "witness": {
     "py": {
@@ -56785,15 +56870,33 @@
      "line": 812,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.unification_counts",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.unification_counts"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Fields",
+      "name": "FRC.Fields.proton_lifetime",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Fields.html#FRC.Fields.proton_lifetime"
+     }
+    ]
    },
    "refs": [
     "p00091",
     "p27003",
     "p27006",
-    "p27021"
+    "p27021",
+    "p27047"
    ],
-   "text": "The proton is effectively stable, $\\tau_p\\gtrsim10^{45 $yr} [forced]. The $X,Y$ leptoquarks acquire mass at the substrate scale, not at $\\sim10^{16} $GeV, so $\\tau_p\\sim M_X^4/(\\al_{\\mathrm{GUT}}^2 m_p^5)$ reaches $10^{45}$–$10^{47} $yr for $M_X$ near the Planck scale, orders beyond the $\\sim10^{36} $yr of supersymmetric $\\SO(10)$ and the $\\sim10^{35} $yr reach of Hyper-Kamiokande. Falsifier: observation of $p\\to e^+\\pi^0$ near $10^{34}$–$10^{35} $yr in Hyper-Kamiokande, DUNE, or JUNO, against the current bound [superk2017]. The programme predicts these searches find nothing. Prop. prop:unify p27038; rests on A3, A6, C9"
+   "text": "The proton is effectively stable [forced]. The $X,Y$ leptoquarks are the twelve colour–isospin off-block generators. With their mass at the substrate scale (the $\\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16} $GeV it already exceeds the Super-Kamiokande bound. Falsifier: an observed proton decay near $10^{34}$–$10^{35}$ years. Prop. prop:unify p27038, FrcCore{P4}, FrcLedger{P4}; rests on A3, A6, C9, Z1 FRC.Interactions.unification_counts, Fields.proton_lifetime"
   },
   {
    "paper": "27-fld",
@@ -56804,24 +56907,41 @@
    "block": "P",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. The $\\nu^c$ is the gauge-singlet $\\Lam^0$ of the generation, so it takes a Majorana mass at unification and drives the seesaw, the three right-handed states sitting at $\\sim10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or evidence that the light neutrinos are Dirac. This diverges from Dirac-neutrino and sterile-neutrino interpretations and is consistent with $N_{\\mathrm{eff}}=3$.",
-   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}\\newline \\pywit{fields}{p27039}{P5}; rests on A4, B5, C8",
+   "statement": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass at the unification scale (A4), and the seesaw then places the light masses in the observed band for singlet masses of $10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or Dirac neutrinos.",
+   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}\\newline \\pywit{fields}{p27039}{P5}, \\leanwit{FrcCore}{p27039}{P5}, \\leanwit{FrcLedger}{p27039}{P5}; rests on A4, B5, C8 \\lean{FRC.Interactions.one\\_generation, Fields.seesaw\\_band}",
    "page": "27-fields/index.html#P5",
    "witness": {
     "py": {
      "href": "frc/ledgers/p27_fields.html#p27039",
      "script": "p27_fields.py",
-     "line": 915,
+     "line": 926,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.one_generation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.one_generation"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Fields",
+      "name": "FRC.Fields.seesaw_band",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Fields.html#FRC.Fields.seesaw_band"
+     }
+    ]
    },
    "refs": [
     "p27004",
     "p27011",
     "p27020"
    ],
-   "text": "Majorana neutrinos, heavy singlets, no light sterile neutrino [sector]. The $\\nu^c$ is the gauge-singlet $\\Lam^0$ of the generation, so it takes a Majorana mass at unification and drives the seesaw, the three right-handed states sitting at $\\sim10^{14}$–$10^{15} $GeV. Falsifier: a confirmed eV-scale sterile neutrino, or evidence that the light neutrinos are Dirac. This diverges from Dirac-neutrino and sterile-neutrino interpretations and is consistent with $N_{\\mathrm{eff}}=3$. Thm. thm:gen, Prop. prop:mass p27039; rests on A4, B5, C8"
+   "text": "Majorana neutrinos, heavy singlets, no light sterile neutrino [sector]. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass at the unification scale (A4), and the seesaw then places the light masses in the observed band for singlet masses of $10^{14}$–$10^{15} $GeV. Falsifier: a confirmed eV-scale sterile neutrino, or Dirac neutrinos. Thm. thm:gen, Prop. prop:mass p27039, FrcCore{P5}, FrcLedger{P5}; rests on A4, B5, C8 FRC.Interactions.one_generation, Fields.seesaw_band"
   },
   {
    "paper": "27-fld",
@@ -56915,7 +57035,7 @@
     "py": {
      "href": "frc/ledgers/p27_fields.html#p27042",
      "script": "p27_fields.py",
-     "line": 963,
+     "line": 974,
      "verdict": "pass"
     },
     "lean": [
@@ -56970,17 +57090,25 @@
    "block": "P",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
-   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9}; rests on A6, B4, C7 \\lean{FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell}",
+   "statement": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the Wilson action class carries no orientation-odd term (B2) and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
+   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9}; rests on A6, B4, C7 \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell}",
    "page": "27-fields/index.html#P9",
    "witness": {
     "py": {
      "href": "frc/ledgers/p27_fields.html#p27043",
      "script": "p27_fields.py",
-     "line": 981,
+     "line": 992,
      "verdict": "pass"
     },
     "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Unitary",
+      "name": "FRC.Unitary.wilson_orientation_even",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.wilson_orientation_even"
+     },
      {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/Unitary",
@@ -57001,11 +57129,12 @@
    },
    "refs": [
     "p27006",
+    "p27008",
     "p27010",
     "p27019",
     "p27043"
    ],
-   "text": "Vanishing strong-CP angle without an axion [structural]. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo–Kobayashi–Maskawa phase sits in the up–down misalignment. Falsifier: a neutron electric dipole moment above the QCD floor, or a discovered axion. Prop. prop:strongcp p27043, FrcCore{P9}; rests on A6, B4, C7 FRC.Unitary.hermitian_det_real, FRC.Unitary.hermitian_det_shell"
+   "text": "Vanishing strong-CP angle without an axion [structural]. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the Wilson action class carries no orientation-odd term (B2) and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo–Kobayashi–Maskawa phase sits in the up–down misalignment. Falsifier: a neutron electric dipole moment above the QCD floor, or a discovered axion. Prop. prop:strongcp p27043, FrcCore{P9}; rests on A6, B4, C7 FRC.Unitary.wilson_orientation_even, FRC.Unitary.hermitian_det_real, FRC.Unitary.hermitian_det_shell"
   },
   {
    "paper": "27-fld",
@@ -57340,7 +57469,7 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{One complete generation} is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content.",
-   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27031}{X8}, \\leanwit{FrcCore}{p27031}{X8} \\lean{FRC.Interactions.one\\_generation, FRC.Interactions.offblock\\_automorphism}",
+   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27031}{X8}, \\leanwit{FrcCore}{p27031}{X8}; rests on 00:Z2, 00:Z3, 00:Z4 \\lean{FRC.Interactions.one\\_generation, FRC.Interactions.offblock\\_automorphism, FRC.Interactions.torsion\\_beyond\\_horizon}",
    "page": "27-fields/index.html#X8",
    "witness": {
     "py": {
@@ -57365,15 +57494,26 @@
       "tier": 0,
       "ok": true,
       "page": "lean/core/Theme.html#FRC.Interactions.offblock_automorphism"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.torsion_beyond_horizon",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.torsion_beyond_horizon"
      }
     ]
    },
    "refs": [
+    "p00110",
+    "p00111",
+    "p00112",
     "p00155",
     "p27004",
     "p27011"
    ],
-   "text": "One complete generation is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content. Thm. thm:gen, Prop. prop:unify p27031, FrcCore{X8} FRC.Interactions.one_generation, FRC.Interactions.offblock_automorphism"
+   "text": "One complete generation is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content. Thm. thm:gen, Prop. prop:unify p27031, FrcCore{X8}; rests on 00:Z2, 00:Z3, 00:Z4 FRC.Interactions.one_generation, FRC.Interactions.offblock_automorphism, FRC.Interactions.torsion_beyond_horizon"
   },
   {
    "paper": "27-fld",
@@ -57426,7 +57566,7 @@
     "py": {
      "href": "frc/ledgers/p27_fields.html#p27033",
      "script": "p27_fields.py",
-     "line": 957,
+     "line": 968,
      "verdict": "pass"
     },
     "lean": [
@@ -57478,17 +57618,25 @@
    "block": "X",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{The strong-CP angle} vanishes with no axion: no substrate-native topological term, and Hermitian quark masses with real determinant, give $\\bar\\theta=0$, so the problem does not arise rather than being tuned away.",
-   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11} \\lean{FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
+   "statement": "\\textbf{The strong-CP angle} vanishes with no axion: the Wilson action class carries no orientation-odd term (B2), and Hermitian quark masses have real determinant, so $\\bar\\theta=0$ arises nowhere rather than being tuned away.",
+   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11} \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
    "page": "27-fields/index.html#X11",
    "witness": {
     "py": {
      "href": "frc/ledgers/p27_fields.html#p27034",
      "script": "p27_fields.py",
-     "line": 981,
+     "line": 992,
      "verdict": "pass"
     },
     "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Unitary",
+      "name": "FRC.Unitary.wilson_orientation_even",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.wilson_orientation_even"
+     },
      {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/Unitary",
@@ -57515,8 +57663,10 @@
      }
     ]
    },
-   "refs": [],
-   "text": "The strong-CP angle vanishes with no axion: no substrate-native topological term, and Hermitian quark masses with real determinant, give $\\bar\\theta=0$, so the problem does not arise rather than being tuned away. Prop. prop:strongcp p27034, FrcCore{X11} FRC.Unitary.hermitian_det_real, FRC.Unitary.hermitian_det_shell, FRC.Interactions.ckm_free"
+   "refs": [
+    "p27008"
+   ],
+   "text": "The strong-CP angle vanishes with no axion: the Wilson action class carries no orientation-odd term (B2), and Hermitian quark masses have real determinant, so $\\bar\\theta=0$ arises nowhere rather than being tuned away. Prop. prop:strongcp p27034, FrcCore{X11} FRC.Unitary.wilson_orientation_even, FRC.Unitary.hermitian_det_real, FRC.Unitary.hermitian_det_shell, FRC.Interactions.ckm_free"
   },
   {
    "paper": "27-fld",

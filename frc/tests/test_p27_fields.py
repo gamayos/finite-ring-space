@@ -139,18 +139,19 @@ class LedgerTest(unittest.TestCase):
         self.assertTrue(L.R.verify_all())
         self.assertEqual(L.PAPER, "27-fields")
         # the Lean side: every row with a declaration has a deciding python check (gate G12; no Lean-only row), every
-        # T row of the paper has a core declaration, and the four Mathlib readings are C1, C6, C7, X7
+        # theorem row of the paper has a core declaration (17 October 2026: P3, P4, P5 included), and the Mathlib
+        # readings are C1, C6, C7, X7 and the three exclusion rows P3, P4, P5
         self.assertEqual(L.LEAN_ONLY, ())
         for lab in L.LEAN: self.assertIn(f"27:{lab}", L.PREDICATES, lab)
         for lab in L.R.predicates:                                          # "27:C1" -> C1
             lab = lab.split(":")[1]
-            if lab[0] in "CXP" and lab not in ("C12", "P3", "P4", "P5"):      # C12 is R (python only), P3-P5 python only
+            if lab[0] in "CXP" and lab != "C12":                              # C12 is R (python only)
                 self.assertEqual(L.LEAN[lab].split(", ")[0], "core", lab)
-        self.assertEqual({lab for lab, v in L.LEAN.items() if "ml" in v}, {"C1", "C6", "C7", "X7"})
+        self.assertEqual({lab for lab, v in L.LEAN.items() if "ml" in v}, {"C1", "C6", "C7", "X7", "P3", "P4", "P5"})
         self.assertEqual(sorted(L.FAMILY), sorted(L.LEDGER))
-        # the kinds: EXACT or CHART, one per check, 56 checks, the chart ones labelled [chart]
+        # the kinds: EXACT or CHART, one per check, 58 checks, the chart ones labelled [chart]
         kinds = {r["id"]: r["kind"] for r in L.R.results}
-        self.assertEqual(len(kinds), 56)
+        self.assertEqual(len(kinds), 58)
         self.assertEqual(sorted(kinds), sorted(L.LEDGER))
         self.assertEqual(set(kinds.values()), {"EXACT", "CHART"})
         self.assertEqual({pid for pid, k in kinds.items() if k == "CHART"}, CHART_CHECKS)

@@ -455,7 +455,7 @@
    "key": "p27031",
    "tag": "T",
    "predicate": "\\textbf{One complete generation} is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content.",
-   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27031}{X8}, \\leanwit{FrcCore}{p27031}{X8} \\lean{FRC.Interactions.one\\_generation, FRC.Interactions.offblock\\_automorphism}",
+   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27031}{X8}, \\leanwit{FrcCore}{p27031}{X8}; rests on 00:Z2, 00:Z3, 00:Z4 \\lean{FRC.Interactions.one\\_generation, FRC.Interactions.offblock\\_automorphism, FRC.Interactions.torsion\\_beyond\\_horizon}",
    "master": [
     "G12"
    ],
@@ -499,8 +499,8 @@
    "label": "X11",
    "key": "p27034",
    "tag": "T",
-   "predicate": "\\textbf{The strong-CP angle} vanishes with no axion: no substrate-native topological term, and Hermitian quark masses with real determinant, give $\\bar\\theta=0$, so the problem does not arise rather than being tuned away.",
-   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11} \\lean{FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
+   "predicate": "\\textbf{The strong-CP angle} vanishes with no axion: the Wilson action class carries no orientation-odd term (B2), and Hermitian quark masses have real determinant, so $\\bar\\theta=0$ arises nowhere rather than being tuned away.",
+   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11} \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
    "master": [],
    "restated": [],
    "witnessed": false,

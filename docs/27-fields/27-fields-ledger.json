@@ -3,7 +3,7 @@
  "tree": "27-fields-20260625",
  "title": "Standard-Model Interactions over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1328.v1",
- "generated": "16 October 2026",
+ "generated": "17 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -163,9 +163,9 @@
     },
     {
      "label": "C9",
-     "predicate": "Simple $\\SO(10)$ unification forced: the colour--isospin off-block reframings are gauge automorphisms, the $3+2$ torsion sitting at carrier scale above the coherence horizon $\\sqrt\\Omega$.",
+     "predicate": "Simple $\\SO(10)$ unification forced: the colour--isospin off-block reframings are gauge automorphisms, and the torsion that distinguishes the blocks needs more coherent steps than any horizon count admits ($3s<\\Omega+1$ for $s^2\\le\\Omega$); the horizon itself is the master's (00:Z2--Z4).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27021}{C9}, \\leanwit{FrcCore}{p27021}{C9}; rests on B1, B5, B6, 00:D8 \\lean{FRC.Interactions.unification\\_counts, FRC.Interactions.fifth\\_direction, FRC.Interactions.offblock\\_automorphism}",
+     "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27021}{C9}, \\leanwit{FrcCore}{p27021}{C9}; rests on B1, B5, B6, 00:D8, 00:Z2, 00:Z3, 00:Z4 \\lean{FRC.Interactions.unification\\_counts, FRC.Interactions.fifth\\_direction, FRC.Interactions.offblock\\_automorphism, FRC.Interactions.torsion\\_beyond\\_horizon}",
      "key": "p27021"
     },
     {
@@ -248,7 +248,7 @@
      "label": "X8",
      "predicate": "\\textbf{One complete generation} is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27031}{X8}, \\leanwit{FrcCore}{p27031}{X8} \\lean{FRC.Interactions.one\\_generation, FRC.Interactions.offblock\\_automorphism}",
+     "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27031}{X8}, \\leanwit{FrcCore}{p27031}{X8}; rests on 00:Z2, 00:Z3, 00:Z4 \\lean{FRC.Interactions.one\\_generation, FRC.Interactions.offblock\\_automorphism, FRC.Interactions.torsion\\_beyond\\_horizon}",
      "key": "p27031"
     },
     {
@@ -267,9 +267,9 @@
     },
     {
      "label": "X11",
-     "predicate": "\\textbf{The strong-CP angle} vanishes with no axion: no substrate-native topological term, and Hermitian quark masses with real determinant, give $\\bar\\theta=0$, so the problem does not arise rather than being tuned away.",
+     "predicate": "\\textbf{The strong-CP angle} vanishes with no axion: the Wilson action class carries no orientation-odd term (B2), and Hermitian quark masses have real determinant, so $\\bar\\theta=0$ arises nowhere rather than being tuned away.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11} \\lean{FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
+     "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11} \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
      "key": "p27034"
     }
    ]
@@ -294,23 +294,23 @@
     },
     {
      "label": "P3",
-     "predicate": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The ${\\sim}13\\%$ three-coupling near-miss is closed by the $X,Y$ completion at the substrate scale, with the running carried by purely Standard-Model content; there are no superpartners enforcing exact low-scale unification. \\emph{Falsifier:} discovery of superpartners, or evidence that unification demands TeV-scale thresholds.",
+     "predicate": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13}\\,$GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13\\%$. The content has no superpartner. Where the completion closes the miss is the $\\Omega$-hard running (Z1). \\emph{Falsifier:} superpartners.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27037}{P3}; rests on A3, A6, C9",
+     "source": "Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27037}{P3}, \\leanwit{FrcCore}{p27037}{P3}, \\leanwit{FrcLedger}{p27037}{P3}; rests on A3, A6, C8, Z1 \\lean{FRC.Interactions.one\\_generation, Fields.running\\_near\\_miss}",
      "key": "p27037"
     },
     {
      "label": "P4",
-     "predicate": "\\textbf{The proton is effectively stable, $\\tau_p\\gtrsim10^{45}\\,$yr} \\emph{[forced]}. The $X,Y$ leptoquarks acquire mass at the substrate scale, not at $\\sim10^{16}\\,$GeV, so $\\tau_p\\sim M_X^4/(\\al_{\\mathrm{GUT}}^2 m_p^5)$ reaches $10^{45}$--$10^{47}\\,$yr for $M_X$ near the Planck scale, orders beyond the $\\sim10^{36}\\,$yr of supersymmetric $\\SO(10)$ and the $\\sim10^{35}\\,$yr reach of Hyper-Kamiokande. \\emph{Falsifier:} observation of $p\\to e^+\\pi^0$ near $10^{34}$--$10^{35}\\,$yr in Hyper-Kamiokande, DUNE, or JUNO, against the current bound \\cite{superk2017}. The programme predicts these searches find nothing.",
+     "predicate": "\\textbf{The proton is effectively stable} \\emph{[forced]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\\,$GeV it already exceeds the Super-Kamiokande bound. \\emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27038}{P4}; rests on A3, A6, C9",
+     "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27038}{P4}, \\leanwit{FrcCore}{p27038}{P4}, \\leanwit{FrcLedger}{p27038}{P4}; rests on A3, A6, C9, Z1 \\lean{FRC.Interactions.unification\\_counts, Fields.proton\\_lifetime}",
      "key": "p27038"
     },
     {
      "label": "P5",
-     "predicate": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. The $\\nu^c$ is the gauge-singlet $\\Lam^0$ of the generation, so it takes a Majorana mass at unification and drives the seesaw, the three right-handed states sitting at $\\sim10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or evidence that the light neutrinos are Dirac. This diverges from Dirac-neutrino and sterile-neutrino interpretations and is consistent with $N_{\\mathrm{eff}}=3$.",
+     "predicate": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass at the unification scale (A4), and the seesaw then places the light masses in the observed band for singlet masses of $10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or Dirac neutrinos.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}\\newline \\pywit{fields}{p27039}{P5}; rests on A4, B5, C8",
+     "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}\\newline \\pywit{fields}{p27039}{P5}, \\leanwit{FrcCore}{p27039}{P5}, \\leanwit{FrcLedger}{p27039}{P5}; rests on A4, B5, C8 \\lean{FRC.Interactions.one\\_generation, Fields.seesaw\\_band}",
      "key": "p27039"
     },
     {
@@ -336,9 +336,9 @@
     },
     {
      "label": "P9",
-     "predicate": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
+     "predicate": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the Wilson action class carries no orientation-odd term (B2) and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9}; rests on A6, B4, C7 \\lean{FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell}",
+     "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9}; rests on A6, B4, C7 \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell}",
      "key": "p27043"
     }
    ]
@@ -500,7 +500,7 @@
    {
     "name": "FRC.Unitary.class_function",
     "module": "FrcCore/Theme/Unitary",
-    "line": 624,
+    "line": 663,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -537,7 +537,7 @@
    {
     "name": "FRC.Interactions.gauge_flux_invariant",
     "module": "FrcCore/Theme/Interactions",
-    "line": 411,
+    "line": 422,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -546,7 +546,7 @@
    {
     "name": "FRC.Interactions.projector_forced",
     "module": "FrcCore/Theme/Interactions",
-    "line": 384,
+    "line": 395,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -577,7 +577,7 @@
    {
     "name": "FRC.Interactions.drive_adjoint",
     "module": "FrcCore/Theme/Interactions",
-    "line": 479,
+    "line": 490,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -586,7 +586,7 @@
    {
     "name": "FRC.Interactions.va_cancel",
     "module": "FrcCore/Theme/Interactions",
-    "line": 424,
+    "line": 435,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -595,7 +595,7 @@
    {
     "name": "FRC.Interactions.orientation_flip",
     "module": "FrcCore/Theme/Interactions",
-    "line": 451,
+    "line": 462,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -613,7 +613,7 @@
    {
     "name": "FRC.Unitary.class_function",
     "module": "FrcCore/Theme/Unitary",
-    "line": 624,
+    "line": 663,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -624,7 +624,7 @@
    {
     "name": "FRC.Interactions.hessian_neutral",
     "module": "FrcCore/Theme/Interactions",
-    "line": 309,
+    "line": 320,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -633,7 +633,7 @@
    {
     "name": "FRC.Interactions.hessian_full",
     "module": "FrcCore/Theme/Interactions",
-    "line": 346,
+    "line": 357,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -642,7 +642,7 @@
    {
     "name": "FRC.Interactions.five_eighths",
     "module": "FrcCore/Theme/Interactions",
-    "line": 372,
+    "line": 383,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -666,7 +666,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
+    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P3, 27:P5, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
    },
    {
     "name": "FRC.Fields.fermi_constant",
@@ -704,7 +704,7 @@
    {
     "name": "FRC.Interactions.rank_tower",
     "module": "FrcCore/Theme/Interactions",
-    "line": 287,
+    "line": 298,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -732,7 +732,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
+    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P3, 27:P5, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
    }
   ],
   "C9": [
@@ -743,7 +743,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "27:C9 — the unification counts: `dim SU(5) − dim (SU(3) × SU(2) × U(1)) = 24 − (8 + 3 + 1) = 12 = 2 · (3 · 2)`, the colour–isospin off-block; the spinor `16 = 1 + 5 + 10`; `dim SO(10) = 10 · 9 / 2 = 45`."
+    "doc": "27:C9, 27:P4 — the unification counts: `dim SU(5) − dim (SU(3) × SU(2) × U(1)) = 24 − (8 + 3 + 1) = 12 = 2 · (3 · 2)`, the colour–isospin off-block, the twelve `X, Y` leptoquarks; the spinor `16 = 1 + 5 + 10`; `dim SO(10) = 10 · 9 / 2 = 45`."
    },
    {
     "name": "FRC.Interactions.fifth_direction",
@@ -757,11 +757,20 @@
    {
     "name": "FRC.Interactions.offblock_automorphism",
     "module": "FrcCore/Theme/Interactions",
-    "line": 510,
+    "line": 521,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "27:C9, 27:X8, 00:Z5 — each colour–isospin transposition is an automorphism of the reflection algebra of five directions up to the sign of the basis element: for all `S, T < 32`, `e_{τS} e_{τT}` vanishes exactly when `e_S e_T` does, and otherwise is `± e_{τ(S∪T)}`; the relabelling is a bijection of the `32` subsets."
+   },
+   {
+    "name": "FRC.Interactions.torsion_beyond_horizon",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 256,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C9, 27:X8 — the torsion period exceeds every horizon count: on every shell `Ω ≥ 7`, for every count `s` within the coherence horizon (`s² ≤ Ω`), `3 s < Ω + 1`. Aligning a frame to the `ℤ₃`-against-`ℤ₂` torsion of the order-`(Ω + 1)` torus needs `(Ω + 1)/3` coherent steps, more than any horizon count; that coherent reading caps at the horizon is the master's (00:Z2–Z4)."
    }
   ],
   "C10": [
@@ -779,7 +788,7 @@
    {
     "name": "FRC.Interactions.residue_five",
     "module": "FrcCore/Theme/Interactions",
-    "line": 268,
+    "line": 279,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -788,7 +797,7 @@
    {
     "name": "FRC.Interactions.residue_instances",
     "module": "FrcCore/Theme/Interactions",
-    "line": 279,
+    "line": 290,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -799,7 +808,7 @@
    {
     "name": "FRC.Interactions.gauge_flux_invariant",
     "module": "FrcCore/Theme/Interactions",
-    "line": 411,
+    "line": 422,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -808,7 +817,7 @@
    {
     "name": "FRC.Interactions.drive_adjoint",
     "module": "FrcCore/Theme/Interactions",
-    "line": 479,
+    "line": 490,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -828,7 +837,7 @@
    {
     "name": "FRC.Interactions.holonomy_stokes",
     "module": "FrcCore/Theme/Interactions",
-    "line": 404,
+    "line": 415,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -841,14 +850,14 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
+    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P3, 27:P5, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
    }
   ],
   "X3": [
    {
     "name": "FRC.Interactions.hessian_neutral",
     "module": "FrcCore/Theme/Interactions",
-    "line": 309,
+    "line": 320,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -857,7 +866,7 @@
    {
     "name": "FRC.Interactions.projector_forced",
     "module": "FrcCore/Theme/Interactions",
-    "line": 384,
+    "line": 395,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -888,7 +897,7 @@
    {
     "name": "FRC.Interactions.hessian_neutral",
     "module": "FrcCore/Theme/Interactions",
-    "line": 309,
+    "line": 320,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -897,7 +906,7 @@
    {
     "name": "FRC.Interactions.hessian_full",
     "module": "FrcCore/Theme/Interactions",
-    "line": 346,
+    "line": 357,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -908,7 +917,7 @@
    {
     "name": "FRC.Interactions.va_cancel",
     "module": "FrcCore/Theme/Interactions",
-    "line": 424,
+    "line": 435,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -917,7 +926,7 @@
    {
     "name": "FRC.Interactions.orientation_flip",
     "module": "FrcCore/Theme/Interactions",
-    "line": 451,
+    "line": 462,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -946,7 +955,7 @@
    {
     "name": "FRC.Interactions.rank_tower",
     "module": "FrcCore/Theme/Interactions",
-    "line": 287,
+    "line": 298,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -974,16 +983,25 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
+    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P3, 27:P5, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
    },
    {
     "name": "FRC.Interactions.offblock_automorphism",
     "module": "FrcCore/Theme/Interactions",
-    "line": 510,
+    "line": 521,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "27:C9, 27:X8, 00:Z5 — each colour–isospin transposition is an automorphism of the reflection algebra of five directions up to the sign of the basis element: for all `S, T < 32`, `e_{τS} e_{τT}` vanishes exactly when `e_S e_T` does, and otherwise is `± e_{τ(S∪T)}`; the relabelling is a bijection of the `32` subsets."
+   },
+   {
+    "name": "FRC.Interactions.torsion_beyond_horizon",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 256,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C9, 27:X8 — the torsion period exceeds every horizon count: on every shell `Ω ≥ 7`, for every count `s` within the coherence horizon (`s² ≤ Ω`), `3 s < Ω + 1`. Aligning a frame to the `ℤ₃`-against-`ℤ₂` torsion of the order-`(Ω + 1)` torus needs `(Ω + 1)/3` coherent steps, more than any horizon count; that coherent reading caps at the horizon is the master's (00:Z2–Z4)."
    }
   ],
   "X9": [
@@ -1037,6 +1055,15 @@
   ],
   "X11": [
    {
+    "name": "FRC.Unitary.wilson_orientation_even",
+    "module": "FrcCore/Theme/Unitary",
+    "line": 614,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:X11, 27:P9, 00:G7 — the Wilson plaquette term `tr U + conj (tr U)`, twice the real part of the trace, is unchanged when the plaquette's orientation is reversed, `U ↦ U⁻¹`: for `U ∈ SU(3)`, `U⁻¹ = U†` and `tr U† = conj (tr U)`. The term is orientation-even, so the Wilson action class (the realisation B2) carries no orientation-odd term, no topological term."
+   },
+   {
     "name": "FRC.Unitary.hermitian_det_real",
     "module": "FrcCore/Theme/Unitary",
     "line": 560,
@@ -1083,7 +1110,79 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
+    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P3, 27:P5, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
+   }
+  ],
+  "P3": [
+   {
+    "name": "FRC.Interactions.one_generation",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 120,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P3, 27:P5, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
+   },
+   {
+    "name": "FRC.Fields.running_near_miss",
+    "module": "FrcLedger/Fields",
+    "line": 44,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "27:P3 [chart] — the one-loop running's near-miss and meeting scale (`FieldsML.running_near_miss`)."
+   }
+  ],
+  "P4": [
+   {
+    "name": "FRC.Interactions.unification_counts",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 248,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C9, 27:P4 — the unification counts: `dim SU(5) − dim (SU(3) × SU(2) × U(1)) = 24 − (8 + 3 + 1) = 12 = 2 · (3 · 2)`, the colour–isospin off-block, the twelve `X, Y` leptoquarks; the spinor `16 = 1 + 5 + 10`; `dim SO(10) = 10 · 9 / 2 = 45`."
+   },
+   {
+    "name": "FRC.Fields.proton_lifetime",
+    "module": "FrcLedger/Fields",
+    "line": 52,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "27:P4 [chart] — the proton lifetime at the substrate and the GUT scales (`FieldsML.proton_lifetime`)."
+   }
+  ],
+  "P5": [
+   {
+    "name": "FRC.Interactions.one_generation",
+    "module": "FrcCore/Theme/Interactions",
+    "line": 120,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P3, 27:P5, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
+   },
+   {
+    "name": "FRC.Fields.seesaw_band",
+    "module": "FrcLedger/Fields",
+    "line": 61,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "27:P5 [chart] — the seesaw band and `m_b/m_τ` (`FieldsML.seesaw_band`)."
    }
   ],
   "P6": [
@@ -1094,7 +1193,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
+    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P3, 27:P5, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
    }
   ],
   "P7": [
@@ -1105,7 +1204,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
+    "doc": "00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P3, 27:P5, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3, that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets (Witten); and the right-handed neutrino, the state `∅`, neutral and a singlet; the charges `6Q` of the list give the proton's `6Q(uud) = 4 + 4 − 2 = 6 = 6Q(e⁺)` (27:X2)."
    }
   ],
   "P8": [
@@ -1147,6 +1246,15 @@
    }
   ],
   "P9": [
+   {
+    "name": "FRC.Unitary.wilson_orientation_even",
+    "module": "FrcCore/Theme/Unitary",
+    "line": 614,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:X11, 27:P9, 00:G7 — the Wilson plaquette term `tr U + conj (tr U)`, twice the real part of the trace, is unchanged when the plaquette's orientation is reversed, `U ↦ U⁻¹`: for `U ∈ SU(3)`, `U⁻¹ = U†` and `tr U† = conj (tr U)`. The term is orientation-even, so the Wilson action class (the realisation B2) carries no orientation-odd term, no topological term."
+   },
    {
     "name": "FRC.Unitary.hermitian_det_real",
     "module": "FrcCore/Theme/Unitary",

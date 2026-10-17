@@ -32,7 +32,7 @@ LEAN = {"G7": "core", "G11": "core", "G12": "core", "G16": "core"}       # the r
 # The Lean proofs of the rows' keys: the theorems of the themes that each key conjoins (lean/make_keys.py writes the keys
 # FRC.Ledger.p<key> from them). The master's block file is the binding's source, as a paper's \lean{} cells are its own.
 PROOFS = {
-    "G7": ["FRC.Unitary.hermitian_det_real", "FRC.Unitary.hermitian_det_shell"],        # 16 October 2026 (27-fields' migration): the key p27043 is 27:P9's, shared under LM13; the python check is 27:H3 (frc/ledgers/p27_fields.py)
+    "G7": ["FRC.Unitary.wilson_orientation_even", "FRC.Unitary.hermitian_det_real", "FRC.Unitary.hermitian_det_shell"],        # 16 October 2026 (27-fields' migration): the key p27043 is 27:P9's, shared under LM13; the python check is 27:H3 (frc/ledgers/p27_fields.py)
     "G11": ["FRC.Interactions.one_generation"],
     "G12": ["FRC.Interactions.reflection_algebra", "FRC.Interactions.fifth_direction"],
     "G16": ["FRC.Interactions.koide_parseval", "FRC.Interactions.koide_two_thirds", "FRC.Interactions.koide_extension",

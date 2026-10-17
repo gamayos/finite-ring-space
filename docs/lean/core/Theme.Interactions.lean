@@ -111,7 +111,7 @@ def q6 (S : Nat) : Int := 3 * t3h S + y6 S
 /-- The sum of a list of integers. -/
 def isum (l : List Int) : Int := l.foldl (· + ·) 0
 
-/-- 00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet
+/-- 00:G11, 27:C6, 27:C8, 27:X2, 27:X8, 27:P2, 27:P3, 27:P5, 27:P6, 27:P7 — one generation as the spinor `16` of the rank-five frame read `3 + 2`. The content by multiplet
 (colour indices, weak indices, `6Y`): `(0,0,0)`, `(2,0,−4)` ×3, `(1,1,1)` ×6, `(0,2,6)`, `(3,1,−3)` ×2, `(2,2,2)` ×3,
 that is `ν^c + u^c + Q + e^c + L + d^c`; the charges `6Q`; the anomaly sums `Σ Y = Σ Y³ = 0`, `SU(3)²Y = 0` (the colour
 triplets and antitriplets), `SU(2)²Y = 0` (the doublets); as many triplets as antitriplets; an even number of doublets
@@ -243,11 +243,22 @@ theorem weinberg_angle :
     72 * 8 = 192 * 3 := by
   decide +kernel
 
-/-- 27:C9 — the unification counts: `dim SU(5) − dim (SU(3) × SU(2) × U(1)) = 24 − (8 + 3 + 1) = 12 = 2 · (3 · 2)`, the
-colour–isospin off-block; the spinor `16 = 1 + 5 + 10`; `dim SO(10) = 10 · 9 / 2 = 45`. -/
+/-- 27:C9, 27:P4 — the unification counts: `dim SU(5) − dim (SU(3) × SU(2) × U(1)) = 24 − (8 + 3 + 1) = 12 = 2 · (3 · 2)`, the
+colour–isospin off-block, the twelve `X, Y` leptoquarks; the spinor `16 = 1 + 5 + 10`; `dim SO(10) = 10 · 9 / 2 = 45`. -/
 theorem unification_counts :
     24 - (8 + 3 + 1) = 12 ∧ 12 = 2 * (3 * 2) ∧ 1 + 5 + 10 = 16 ∧ 10 * 9 = 2 * 45 := by
   decide
+
+/-- 27:C9, 27:X8 — the torsion period exceeds every horizon count: on every shell `Ω ≥ 7`, for every count `s` within the
+coherence horizon (`s² ≤ Ω`), `3 s < Ω + 1`. Aligning a frame to the `ℤ₃`-against-`ℤ₂` torsion of the order-`(Ω + 1)` torus
+needs `(Ω + 1)/3` coherent steps, more than any horizon count; that coherent reading caps at the horizon is the master's
+(00:Z2–Z4). -/
+theorem torsion_beyond_horizon (Ω s : Nat) (h7 : 7 ≤ Ω) (hs : s * s ≤ Ω) : 3 * s < Ω + 1 := by
+  rcases Nat.lt_or_ge s 3 with h | h
+  · have : 3 * s ≤ 6 := Nat.mul_le_mul_left 3 (Nat.le_of_lt_succ h)
+    exact Nat.lt_of_le_of_lt this (Nat.lt_of_lt_of_le (by decide) (Nat.succ_le_succ h7))
+  · have : 3 * s ≤ s * s := Nat.mul_le_mul_right s h
+    exact Nat.lt_succ_of_le (Nat.le_trans this hs)
 
 /-- `(n + 12) % k = n % k` when `k` divides `12` (`12 % k = 0`), from the shell's own modular arithmetic. -/
 theorem mod_add_twelve (n k : Nat) (hk : 0 < k) (h12 : 12 % k = 0) : (n + 12) % k = n % k := by

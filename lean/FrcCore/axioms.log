@@ -1604,6 +1604,12 @@
 'FRC.Unitary.hermitian_det_real' does not depend on any axioms
 'FRC.Unitary.im_of_conj_fixed' does not depend on any axioms
 'FRC.Unitary.hermitian_det_shell' does not depend on any axioms
+'FRC.Unitary.tr' does not depend on any axioms
+'FRC.Unitary.tr_dag' does not depend on any axioms
+'FRC.Unitary.mone_mul' does not depend on any axioms
+'FRC.Unitary.mul_mone' does not depend on any axioms
+'FRC.Unitary.adj_eq_dag' does not depend on any axioms
+'FRC.Unitary.wilson_orientation_even' does not depend on any axioms
 'FRC.Unitary.mmul2' does not depend on any axioms
 'FRC.Unitary.dag2' does not depend on any axioms
 'FRC.Unitary.det2' does not depend on any axioms
@@ -1644,6 +1650,7 @@
 'FRC.Interactions.koide_half' does not depend on any axioms
 'FRC.Interactions.weinberg_angle' does not depend on any axioms
 'FRC.Interactions.unification_counts' does not depend on any axioms
+'FRC.Interactions.torsion_beyond_horizon' does not depend on any axioms
 'FRC.Interactions.mod_add_twelve' does not depend on any axioms
 'FRC.Interactions.twelve_periodic' does not depend on any axioms
 'FRC.Interactions.residue_five' does not depend on any axioms
@@ -2059,6 +2066,9 @@
 'FRC.Ledger.p27033' does not depend on any axioms
 'FRC.Ledger.p27034' does not depend on any axioms
 'FRC.Ledger.p27036' does not depend on any axioms
+'FRC.Ledger.p27037' does not depend on any axioms
+'FRC.Ledger.p27038' does not depend on any axioms
+'FRC.Ledger.p27039' does not depend on any axioms
 'FRC.Ledger.p27040' does not depend on any axioms
 'FRC.Ledger.p27041' does not depend on any axioms
 'FRC.Ledger.p27042' does not depend on any axioms
@@ -2972,6 +2982,9 @@
 'FRC.Fields.p27034' does not depend on any axioms
 'FRC.Fields.p27035' does not depend on any axioms
 'FRC.Fields.p27036' does not depend on any axioms
+'FRC.Fields.p27037' does not depend on any axioms
+'FRC.Fields.p27038' does not depend on any axioms
+'FRC.Fields.p27039' does not depend on any axioms
 'FRC.Fields.p27040' does not depend on any axioms
 'FRC.Fields.p27041' does not depend on any axioms
 'FRC.Fields.p27042' does not depend on any axioms

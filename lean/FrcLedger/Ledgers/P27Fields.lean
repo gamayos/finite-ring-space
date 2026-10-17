@@ -27,3 +27,18 @@ fails if a key's axioms change (the axioms of Mathlib's hierarchy at most). Noth
 /-- info: 'FRC.LedgerML.p27030' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms FRC.LedgerML.p27030
+
+-- 27:P3 (p27037)
+/-- info: 'FRC.LedgerML.p27037' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p27037
+
+-- 27:P4 (p27038)
+/-- info: 'FRC.LedgerML.p27038' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p27038
+
+-- 27:P5 (p27039)
+/-- info: 'FRC.LedgerML.p27039' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p27039

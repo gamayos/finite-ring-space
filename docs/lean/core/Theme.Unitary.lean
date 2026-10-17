@@ -578,6 +578,45 @@ it lies in the shell. -/
 theorem hermitian_det_shell (A : M3 p ν) (h : dag A = A) : (det A).im + (det A).im = 0 :=
   im_of_conj_fixed (hermitian_det_real A h)
 
+/-! ### The Wilson term under orientation reversal (27-fields, 17 October 2026) -/
+
+/-- The trace. -/
+def tr (A : M3 p ν) : Ext p ν := A.a00 + A.a11 + A.a22
+
+/-- The trace of the conjugate transpose is the conjugate of the trace. -/
+theorem tr_dag (A : M3 p ν) : tr (dag A) = Ext.conj (tr A) := by
+  show Ext.conj A.a00 + Ext.conj A.a11 + Ext.conj A.a22 = Ext.conj (A.a00 + A.a11 + A.a22)
+  rw [conj_add, conj_add]
+
+/-- `I₃ · A = A`. -/
+theorem mone_mul (A : M3 p ν) : mmul mone A = A := by
+  show mmul (scal 1) A = A
+  rw [scal_mul, one_smul]
+
+/-- `A · I₃ = A`. -/
+theorem mul_mone (A : M3 p ν) : mmul A mone = A := by
+  show mmul A (scal 1) = A
+  rw [mul_scal, one_smul]
+
+/-- A unitary matrix of determinant one has its adjugate, its inverse, equal to its conjugate transpose: `U⁻¹ = U†`. -/
+theorem adj_eq_dag (U : M3 p ν) (hU : SU mone U) : adj U = dag U := by
+  obtain ⟨h1, hd⟩ := hU
+  have h1' : mmul (dag U) U = mone := by rw [mul_mone] at h1; exact h1
+  calc adj U = mmul mone (adj U) := (mone_mul _).symm
+    _ = mmul (mmul (dag U) U) (adj U) := by rw [h1']
+    _ = mmul (dag U) (mmul U (adj U)) := mmul_assoc _ _ _
+    _ = mmul (dag U) (scal 1) := by rw [mul_adj, hd]
+    _ = dag U := by rw [mul_scal, one_smul]
+
+/-- 27:X11, 27:P9, 00:G7 — the Wilson plaquette term `tr U + conj (tr U)`, twice the real part of the trace, is unchanged
+when the plaquette's orientation is reversed, `U ↦ U⁻¹`: for `U ∈ SU(3)`, `U⁻¹ = U†` and `tr U† = conj (tr U)`. The term is
+orientation-even, so the Wilson action class (the realisation B2) carries no orientation-odd term, no topological term. -/
+theorem wilson_orientation_even (U : M3 p ν) (hU : SU mone U) :
+    tr (adj U) = Ext.conj (tr U) ∧ tr (adj U) + Ext.conj (tr (adj U)) = tr U + Ext.conj (tr U) := by
+  have e : tr (adj U) = Ext.conj (tr U) := by rw [adj_eq_dag U hU, tr_dag]
+  refine ⟨e, ?_⟩
+  rw [e, Ext.conj_conj, x_add_comm]
+
 /-! ### `2 × 2` matrices over the extension: the weak doublet's frame -/
 
 /-- A `2 × 2` matrix over the extension. -/

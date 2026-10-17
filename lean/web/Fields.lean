@@ -1514,7 +1514,7 @@ The clauses of 27-fields that read the continuum: the phase cycle `ℤ/M` inside
 (`roots_inclusion`, 27:C1), the Wilson weight `1 − Re ζ ≥ 0` on the unit circle, zero at the identity alone
 (`wilson_weight_nonneg`, 27:C1), the `2T` area-law coefficient `c₁ = (x⁴ + 4x³ − 4x − 1)/(x⁴ + 8x³ + 6x² + 8x + 1)` in
 `(0, 1)` for `x = e^{β/2} > 1` (`area_law_positive`, 27:C1, C7, X7), the Fermi constant `G_F = 1/(√2 v²)` from
-`G_F/√2 = g²/(8 M_W²)` and `M_W² = g² v²/4` (`fermi_constant`, 27:C6). Classical (tier 2) on Mathlib's hierarchy. The finite content of the same rows is
+`G_F/√2 = g²/(8 M_W²)` and `M_W² = g² v²/4` (`fermi_constant`, 27:C6); and, since 17 October 2026, the chart readings of the three exclusion rows: the one-loop running of the measured couplings to the meeting `α₁ = α₂` with the strong coupling's near-miss (`running_near_miss`, 27:P3), the proton lifetime `M_X⁴/(α² m_p⁵)` at the substrate and the GUT scales (`proton_lifetime`, 27:P4), the seesaw band and `m_b/m_τ` (`seesaw_band`, 27:P5). Classical (tier 2) on Mathlib's hierarchy. The finite content of the same rows is
 proved with no axioms in the core (`FrcCore/Theme/Interactions.lean`, `Theme/Unitary.lean`, `FrcCore/Fields.lean`).
 -/
 
@@ -1570,6 +1570,59 @@ theorem fermi_constant (g v G MW2 : ℝ) (hg : g ≠ 0) (hv : v ≠ 0) (hM : MW2
     _ = √2 * (1 / (2 * v ^ 2)) := by rw [e]
     _ = 1 / (√2 * v ^ 2) := by
         rw [mul_one_div, div_eq_div_iff (mul_ne_zero two_ne_zero hv2) (mul_ne_zero hs hv2), ← mul_assoc, h2, one_mul]
+
+/-- 27:P3 [chart] — the one-loop running of the measured couplings with the Standard-Model coefficients
+`b = (41/10, −19/6, −7)`: at the meeting `α₁ = α₂` the strong coupling misses by less than a fifth, and the meeting
+scale `M_Z e^{2πu}` lies in `[10¹², 10¹⁴]` GeV. The inputs are the measured `α⁻¹(M_Z) = 127.951`, `sin²θ_W = 0.23121`,
+`α_s = 0.1179` and `M_Z = 91.1876` GeV (the paper's A6). -/
+theorem running_near_miss (ainv s2 as b1 b2 b3 MZ : ℝ) (h1 : ainv = 127.951) (h2 : s2 = 0.23121)
+    (h3 : as = 0.1179) (hb1 : b1 = 41 / 10) (hb2 : b2 = -19 / 6) (hb3 : b3 = -7) (hZ : MZ = 91.1876) :
+    |1 / as - b3 * ((3 / 5 * (1 - s2) * ainv - s2 * ainv) / (b1 - b2)) - (s2 * ainv - b2 * ((3 / 5 * (1 - s2) * ainv - s2 * ainv) / (b1 - b2)))| / (s2 * ainv - b2 * ((3 / 5 * (1 - s2) * ainv - s2 * ainv) / (b1 - b2))) < 1 / 5 ∧
+    (10 : ℝ) ^ 12 < MZ * exp (2 * π * ((3 / 5 * (1 - s2) * ainv - s2 * ainv) / (b1 - b2))) ∧
+    MZ * exp (2 * π * ((3 / 5 * (1 - s2) * ainv - s2 * ainv) / (b1 - b2))) < (10 : ℝ) ^ 14 := by
+  set u : ℝ := ((3 / 5 * (1 - s2) * ainv - s2 * ainv) / (b1 - b2)) with hudef
+  have hu : u = (3 / 5 * (1 - 0.23121) * 127.951 - 0.23121 * 127.951) / (41 / 10 - -19 / 6) := by
+    rw [hudef, h1, h2, hb1, hb2]
+  have hu25 : 25 < 2 * π * u := by
+    rw [hu]; nlinarith [pi_gt_d2]
+  have hu26 : 2 * π * u < 26 := by
+    rw [hu]; nlinarith [pi_lt_d2]
+  have e25 : (2.7182818283 : ℝ) ^ 25 < exp (2 * π * u) := by
+    calc (2.7182818283 : ℝ) ^ 25 < exp 1 ^ 25 := by
+          exact pow_lt_pow_left₀ exp_one_gt_d9 (by norm_num) (by norm_num)
+      _ = exp 25 := by rw [← exp_nat_mul]; norm_num
+      _ < exp (2 * π * u) := exp_lt_exp.2 hu25
+  have e26 : exp (2 * π * u) < (2.7182818286 : ℝ) ^ 26 := by
+    calc exp (2 * π * u) < exp 26 := exp_lt_exp.2 hu26
+      _ = exp 1 ^ 26 := by rw [← exp_nat_mul]; norm_num
+      _ < (2.7182818286 : ℝ) ^ 26 := pow_lt_pow_left₀ exp_one_lt_d9 (exp_pos 1).le (by norm_num)
+  refine ⟨?_, ?_, ?_⟩
+  · rw [hu, h1, h2, h3, hb2, hb3]; norm_num [abs_lt]
+  · rw [hZ]; nlinarith [e25]
+  · rw [hZ]; nlinarith [e26]
+
+/-- 27:P4 [chart] — the proton lifetime `τ_p = M_X⁴/(α² m_p⁵)` in years, with `m_p = 0.938` GeV, `α_GUT = 1/40`,
+`ħ = 6.582 × 10⁻²⁵` GeV s and the year `3.156 × 10⁷` s: at the Planck scale `M_X = 1.22 × 10¹⁹` GeV it exceeds `10⁴⁵` yr,
+at `M_X = 10¹⁶` GeV it exceeds the Super-Kamiokande bound `10³⁴` yr, and two lifetimes stand in the ratio `(M′/M)⁴`. -/
+theorem proton_lifetime (mp a hbar yr : ℚ) (hm : mp = 0.938) (ha : a = 1 / 40) (hh : hbar = 6.582e-25)
+    (hy : yr = 3.156e7) :
+    (10 : ℚ) ^ 45 ≤ (1.22e19 : ℚ) ^ 4 / (a ^ 2 * mp ^ 5) * hbar / yr ∧
+    (10 : ℚ) ^ 34 < (1e16 : ℚ) ^ 4 / (a ^ 2 * mp ^ 5) * hbar / yr ∧
+    ∀ M M' : ℚ, 0 < M → 0 < M' →
+      (M' ^ 4 / (a ^ 2 * mp ^ 5) * hbar / yr) / (M ^ 4 / (a ^ 2 * mp ^ 5) * hbar / yr) = (M' / M) ^ 4 := by
+  subst hm ha hh hy
+  refine ⟨by norm_num, by norm_num, fun M M' hM hM' => ?_⟩
+  have hM0 : M ≠ 0 := hM.ne'
+  field_simp
+
+/-- 27:P5 [chart] — the seesaw `m_ν = y² v²/M_R` with `v = 174` GeV: for `y = 0.3` at `M_R = 10¹⁴` GeV and for `y = 1`
+at `M_R = 10¹⁵` GeV the light mass lies in `(0.01, 0.1)` eV; and `m_b/m_τ = 4.18/1.777` lies in `(2, 3)`. -/
+theorem seesaw_band (v mb mt : ℚ) (hv : v = 174) (hb : mb = 4.18) (ht : mt = 1.777) :
+    (0.01 : ℚ) < (0.3 : ℚ) ^ 2 * v ^ 2 / 1e14 * 1e9 ∧ (0.3 : ℚ) ^ 2 * v ^ 2 / 1e14 * 1e9 < 0.1 ∧
+    (0.01 : ℚ) < (1 : ℚ) ^ 2 * v ^ 2 / 1e15 * 1e9 ∧ (1 : ℚ) ^ 2 * v ^ 2 / 1e15 * 1e9 < 0.1 ∧
+    (2 : ℚ) < mb / mt ∧ mb / mt < 3 := by
+  subst hv hb ht
+  norm_num
 
 end FRC.FieldsML
 
@@ -2622,6 +2675,15 @@ theorem p27019 : ∀ (x : ℝ), (1 : ℝ) < x → (0 : ℝ) < (x ^ (4 : ℕ) + (
 /-- p27030 — 27:X7. \textbf{The colour sector} is fixed: three colours is the minimal triality-carrying frame, confinement is the compact-group area law from positivity, and asymptotic freedom is the gluon self-coupling, not $N_c=3$ supplemented by an assumed confining phase. -/
 theorem p27030 : ∀ (x : ℝ), (1 : ℝ) < x → (0 : ℝ) < (x ^ (4 : ℕ) + (4 : ℝ) * x ^ (3 : ℕ) - (4 : ℝ) * x - (1 : ℝ)) / (x ^ (4 : ℕ) + (8 : ℝ) * x ^ (3 : ℕ) + (6 : ℝ) * x ^ (2 : ℕ) + (8 : ℝ) * x + (1 : ℝ)) ∧ (x ^ (4 : ℕ) + (4 : ℝ) * x ^ (3 : ℕ) - (4 : ℝ) * x - (1 : ℝ)) / (x ^ (4 : ℕ) + (8 : ℝ) * x ^ (3 : ℕ) + (6 : ℝ) * x ^ (2 : ℕ) + (8 : ℝ) * x + (1 : ℝ)) < (1 : ℝ) :=
   @FRC.FieldsML.area_law_positive
+/-- p27037 — 27:P3. \textbf{No TeV supersymmetry} \emph{[forced]}. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13}\,$GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13\%$. The content has no superpartner. Where the completion closes the miss is the $\Omega$-hard running (Z1). \emph{Falsifier:} superpartners. -/
+theorem p27037 : ∀ (ainv s2 as b1 b2 b3 MZ : ℝ), ainv = 127.951 → s2 = 0.23121 → as = 0.1179 → b1 = (41 / 10 : ℝ) → b2 = (-19 / 6 : ℝ) → b3 = (-7 : ℝ) → MZ = 91.1876 → |(1 : ℝ) / as - b3 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2)) - (s2 * ainv - b2 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2)))| / (s2 * ainv - b2 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) < (1 / 5 : ℝ) ∧ (10 : ℝ) ^ (12 : ℕ) < MZ * Real.exp ((2 : ℝ) * Real.pi * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) ∧ MZ * Real.exp ((2 : ℝ) * Real.pi * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) < (10 : ℝ) ^ (14 : ℕ) :=
+  @FRC.FieldsML.running_near_miss
+/-- p27038 — 27:P4. \textbf{The proton is effectively stable} \emph{[forced]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\,$GeV it already exceeds the Super-Kamiokande bound. \emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years. -/
+theorem p27038 : ∀ (mp a hbar yr : ℚ), mp = 0.938 → a = (1 / 40 : ℚ) → hbar = 6582e-28 → yr = 3156e4 → (10 : ℚ) ^ (45 : ℕ) ≤ 122e17 ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr ∧ (10 : ℚ) ^ (34 : ℕ) < 1e16 ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr ∧ ∀ (M M' : ℚ), (0 : ℚ) < M → (0 : ℚ) < M' → M' ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr / (M ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr) = (M' / M) ^ (4 : ℕ) :=
+  @FRC.FieldsML.proton_lifetime
+/-- p27039 — 27:P5. \textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass at the unification scale (A4), and the seesaw then places the light masses in the observed band for singlet masses of $10^{14}$--$10^{15}\,$GeV. \emph{Falsifier:} a confirmed eV-scale sterile neutrino, or Dirac neutrinos. -/
+theorem p27039 : ∀ (v mb mt : ℚ), v = (174 : ℚ) → mb = 4.18 → mt = 1.777 → 1e-2 < 0.3 ^ (2 : ℕ) * v ^ (2 : ℕ) / 1e14 * 1e9 ∧ 0.3 ^ (2 : ℕ) * v ^ (2 : ℕ) / 1e14 * 1e9 < 0.1 ∧ 1e-2 < (1 : ℚ) ^ (2 : ℕ) * v ^ (2 : ℕ) / 1e15 * 1e9 ∧ (1 : ℚ) ^ (2 : ℕ) * v ^ (2 : ℕ) / 1e15 * 1e9 < 0.1 ∧ (2 : ℚ) < mb / mt ∧ mb / mt < (3 : ℚ) :=
+  @FRC.FieldsML.seesaw_band
 /-- p38010 — 38:B2. The radial ladder: shells at $R\sin(2a\pi/13)$ [chart]; capacity $4a<\p\Leftrightarrow a\le\kap$. -/
 theorem p38010 : ∀ (R : ℝ), (0 : ℝ) < R → (0 : ℝ) < R * Real.sin ((2 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((2 : ℝ) * Real.pi / (13 : ℝ)) < R * Real.sin ((4 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((4 : ℝ) * Real.pi / (13 : ℝ)) < R * Real.sin ((6 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((6 : ℝ) * Real.pi / (13 : ℝ)) < R :=
   @FRC.Chart.ladder_monotone
@@ -2642,7 +2704,7 @@ end FRC.LedgerML
 
 The paper module of *Gauge Interactions over Finite Holographic Substrate* (tree `27-fields-20260625`) on Mathlib: every
 declaration is the chart theme's (`FrcLedger/Theme/Fields.lean`), under the paper's name — the `M`-th roots of unity
-(27:C1), the Wilson weight (27:C1), the `2T` area law (27:C1, C7, X7) and the Fermi constant (27:C6). Classical (tier 2). The finite content is the core's (`FrcCore/Fields.lean`).
+(27:C1), the Wilson weight (27:C1), the `2T` area law (27:C1, C7, X7), the Fermi constant (27:C6), and the chart readings of the exclusion rows P3, P4, P5 (17 October 2026). Classical (tier 2). The finite content is the core's (`FrcCore/Fields.lean`).
 -/
 
 namespace FRC.Fields
@@ -2675,6 +2737,30 @@ theorem fermi_constant (g v G MW2 : ℝ) (hg : g ≠ 0) (hv : v ≠ 0) (hM : MW2
     (hG : G / √2 = g ^ 2 / (8 * MW2)) : G = 1 / (√2 * v ^ 2) :=
   FRC.FieldsML.fermi_constant g v G MW2 hg hv hM hG
 
+/-- 27:P3 [chart] — the one-loop running's near-miss and meeting scale (`FieldsML.running_near_miss`). -/
+theorem running_near_miss (ainv s2 as b1 b2 b3 MZ : ℝ) (h1 : ainv = 127.951) (h2 : s2 = 0.23121)
+    (h3 : as = 0.1179) (hb1 : b1 = 41 / 10) (hb2 : b2 = -19 / 6) (hb3 : b3 = -7) (hZ : MZ = 91.1876) :
+    |1 / as - b3 * ((3 / 5 * (1 - s2) * ainv - s2 * ainv) / (b1 - b2)) - (s2 * ainv - b2 * ((3 / 5 * (1 - s2) * ainv - s2 * ainv) / (b1 - b2)))| / (s2 * ainv - b2 * ((3 / 5 * (1 - s2) * ainv - s2 * ainv) / (b1 - b2))) < 1 / 5 ∧
+    (10 : ℝ) ^ 12 < MZ * Real.exp (2 * Real.pi * ((3 / 5 * (1 - s2) * ainv - s2 * ainv) / (b1 - b2))) ∧
+    MZ * Real.exp (2 * Real.pi * ((3 / 5 * (1 - s2) * ainv - s2 * ainv) / (b1 - b2))) < (10 : ℝ) ^ 14 :=
+  FRC.FieldsML.running_near_miss ainv s2 as b1 b2 b3 MZ h1 h2 h3 hb1 hb2 hb3 hZ
+
+/-- 27:P4 [chart] — the proton lifetime at the substrate and the GUT scales (`FieldsML.proton_lifetime`). -/
+theorem proton_lifetime (mp a hbar yr : ℚ) (hm : mp = 0.938) (ha : a = 1 / 40) (hh : hbar = 6.582e-25)
+    (hy : yr = 3.156e7) :
+    (10 : ℚ) ^ 45 ≤ (1.22e19 : ℚ) ^ 4 / (a ^ 2 * mp ^ 5) * hbar / yr ∧
+    (10 : ℚ) ^ 34 < (1e16 : ℚ) ^ 4 / (a ^ 2 * mp ^ 5) * hbar / yr ∧
+    ∀ M M' : ℚ, 0 < M → 0 < M' →
+      (M' ^ 4 / (a ^ 2 * mp ^ 5) * hbar / yr) / (M ^ 4 / (a ^ 2 * mp ^ 5) * hbar / yr) = (M' / M) ^ 4 :=
+  FRC.FieldsML.proton_lifetime mp a hbar yr hm ha hh hy
+
+/-- 27:P5 [chart] — the seesaw band and `m_b/m_τ` (`FieldsML.seesaw_band`). -/
+theorem seesaw_band (v mb mt : ℚ) (hv : v = 174) (hb : mb = 4.18) (ht : mt = 1.777) :
+    (0.01 : ℚ) < (0.3 : ℚ) ^ 2 * v ^ 2 / 1e14 * 1e9 ∧ (0.3 : ℚ) ^ 2 * v ^ 2 / 1e14 * 1e9 < 0.1 ∧
+    (0.01 : ℚ) < (1 : ℚ) ^ 2 * v ^ 2 / 1e15 * 1e9 ∧ (1 : ℚ) ^ 2 * v ^ 2 / 1e15 * 1e9 < 0.1 ∧
+    (2 : ℚ) < mb / mt ∧ mb / mt < 3 :=
+  FRC.FieldsML.seesaw_band v mb mt hv hb ht
+
 -- Ledger predicates of 27-fields (generated by make_predicates.py from docs/27-fields/27-fields-ledger.json; edit the ledger, not this section)
 /-- 27:C1 (p27013) — The finite gauge correspondence, its exact clauses: the abelian inclusion $\Z/M\hookrightarrow\U(1)$ as the $M$-th roots of unity, the positive cyclotomic action (the Wilson weight $1-\Re\zeta\ge0$), and the exact $q{=}3$ embedding $\SU(2,\F_3)\cong2T$ with the Wilson trace a class function (Theorems~\ref{thm:corrU1},~\ref{thm:corrpos},~\ref{thm:corr2T}); the resolvable-window reconstruction is C12 and the cross-scale running $\Omega$-hard (Z1). -/
 theorem p27013 : (∀ (M : ℕ), M ≠ (0 : ℕ) → IsPrimitiveRoot (Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M)) M ∧ (∀ (j k : ℕ), Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ (j + k) = Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ j * Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ k) ∧ (∀ (j k : ℕ), j < M → k < M → Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ j = Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ k → j = k) ∧ ∀ (k : ℕ), (Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ k) ^ M = (1 : ℂ)) ∧ ∀ (ζ : ℂ), ‖ζ‖ = (1 : ℝ) → (0 : ℝ) ≤ (1 : ℝ) - ζ.re ∧ ((1 : ℝ) - ζ.re = (0 : ℝ) ↔ ζ = (1 : ℂ)) :=
@@ -2688,6 +2774,15 @@ theorem p27019 : ∀ (x : ℝ), (1 : ℝ) < x → (0 : ℝ) < (x ^ (4 : ℕ) + (
 /-- 27:X7 (p27030) — \textbf{The colour sector} is fixed: three colours is the minimal triality-carrying frame, confinement is the compact-group area law from positivity, and asymptotic freedom is the gluon self-coupling, not $N_c=3$ supplemented by an assumed confining phase. -/
 theorem p27030 : ∀ (x : ℝ), (1 : ℝ) < x → (0 : ℝ) < (x ^ (4 : ℕ) + (4 : ℝ) * x ^ (3 : ℕ) - (4 : ℝ) * x - (1 : ℝ)) / (x ^ (4 : ℕ) + (8 : ℝ) * x ^ (3 : ℕ) + (6 : ℝ) * x ^ (2 : ℕ) + (8 : ℝ) * x + (1 : ℝ)) ∧ (x ^ (4 : ℕ) + (4 : ℝ) * x ^ (3 : ℕ) - (4 : ℝ) * x - (1 : ℝ)) / (x ^ (4 : ℕ) + (8 : ℝ) * x ^ (3 : ℕ) + (6 : ℝ) * x ^ (2 : ℕ) + (8 : ℝ) * x + (1 : ℝ)) < (1 : ℝ) :=
   @FRC.LedgerML.p27030
+/-- 27:P3 (p27037) — \textbf{No TeV supersymmetry} \emph{[forced]}. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13}\,$GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13\%$. The content has no superpartner. Where the completion closes the miss is the $\Omega$-hard running (Z1). \emph{Falsifier:} superpartners. -/
+theorem p27037 : ∀ (ainv s2 as b1 b2 b3 MZ : ℝ), ainv = 127.951 → s2 = 0.23121 → as = 0.1179 → b1 = (41 / 10 : ℝ) → b2 = (-19 / 6 : ℝ) → b3 = (-7 : ℝ) → MZ = 91.1876 → |(1 : ℝ) / as - b3 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2)) - (s2 * ainv - b2 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2)))| / (s2 * ainv - b2 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) < (1 / 5 : ℝ) ∧ (10 : ℝ) ^ (12 : ℕ) < MZ * Real.exp ((2 : ℝ) * Real.pi * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) ∧ MZ * Real.exp ((2 : ℝ) * Real.pi * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) < (10 : ℝ) ^ (14 : ℕ) :=
+  @FRC.LedgerML.p27037
+/-- 27:P4 (p27038) — \textbf{The proton is effectively stable} \emph{[forced]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\,$GeV it already exceeds the Super-Kamiokande bound. \emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years. -/
+theorem p27038 : ∀ (mp a hbar yr : ℚ), mp = 0.938 → a = (1 / 40 : ℚ) → hbar = 6582e-28 → yr = 3156e4 → (10 : ℚ) ^ (45 : ℕ) ≤ 122e17 ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr ∧ (10 : ℚ) ^ (34 : ℕ) < 1e16 ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr ∧ ∀ (M M' : ℚ), (0 : ℚ) < M → (0 : ℚ) < M' → M' ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr / (M ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr) = (M' / M) ^ (4 : ℕ) :=
+  @FRC.LedgerML.p27038
+/-- 27:P5 (p27039) — \textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass at the unification scale (A4), and the seesaw then places the light masses in the observed band for singlet masses of $10^{14}$--$10^{15}\,$GeV. \emph{Falsifier:} a confirmed eV-scale sterile neutrino, or Dirac neutrinos. -/
+theorem p27039 : ∀ (v mb mt : ℚ), v = (174 : ℚ) → mb = 4.18 → mt = 1.777 → 1e-2 < 0.3 ^ (2 : ℕ) * v ^ (2 : ℕ) / 1e14 * 1e9 ∧ 0.3 ^ (2 : ℕ) * v ^ (2 : ℕ) / 1e14 * 1e9 < 0.1 ∧ 1e-2 < (1 : ℚ) ^ (2 : ℕ) * v ^ (2 : ℕ) / 1e15 * 1e9 ∧ (1 : ℚ) ^ (2 : ℕ) * v ^ (2 : ℕ) / 1e15 * 1e9 < 0.1 ∧ (2 : ℚ) < mb / mt ∧ mb / mt < (3 : ℚ) :=
+  @FRC.LedgerML.p27039
 -- end ledger predicates
 
 end FRC.Fields
@@ -2697,3 +2792,6 @@ end FRC.Fields
 #print axioms FRC.Fields.p27018
 #print axioms FRC.Fields.p27019
 #print axioms FRC.Fields.p27030
+#print axioms FRC.Fields.p27037
+#print axioms FRC.Fields.p27038
+#print axioms FRC.Fields.p27039

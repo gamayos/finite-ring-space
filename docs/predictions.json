@@ -330,8 +330,8 @@
    "label": "P3",
    "key": "p27037",
    "tag": "T",
-   "predicate": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The ${\\sim}13\\%$ three-coupling near-miss is closed by the $X,Y$ completion at the substrate scale, with the running carried by purely Standard-Model content; there are no superpartners enforcing exact low-scale unification. \\emph{Falsifier:} discovery of superpartners, or evidence that unification demands TeV-scale thresholds.",
-   "source": "Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27037}{P3}; rests on A3, A6, C9",
+   "predicate": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13}\\,$GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13\\%$. The content has no superpartner. Where the completion closes the miss is the $\\Omega$-hard running (Z1). \\emph{Falsifier:} superpartners.",
+   "source": "Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27037}{P3}, \\leanwit{FrcCore}{p27037}{P3}, \\leanwit{FrcLedger}{p27037}{P3}; rests on A3, A6, C8, Z1 \\lean{FRC.Interactions.one\\_generation, Fields.running\\_near\\_miss}",
    "master": [
     "P4"
    ],
@@ -345,8 +345,8 @@
    "label": "P4",
    "key": "p27038",
    "tag": "T",
-   "predicate": "\\textbf{The proton is effectively stable, $\\tau_p\\gtrsim10^{45}\\,$yr} \\emph{[forced]}. The $X,Y$ leptoquarks acquire mass at the substrate scale, not at $\\sim10^{16}\\,$GeV, so $\\tau_p\\sim M_X^4/(\\al_{\\mathrm{GUT}}^2 m_p^5)$ reaches $10^{45}$--$10^{47}\\,$yr for $M_X$ near the Planck scale, orders beyond the $\\sim10^{36}\\,$yr of supersymmetric $\\SO(10)$ and the $\\sim10^{35}\\,$yr reach of Hyper-Kamiokande. \\emph{Falsifier:} observation of $p\\to e^+\\pi^0$ near $10^{34}$--$10^{35}\\,$yr in Hyper-Kamiokande, DUNE, or JUNO, against the current bound \\cite{superk2017}. The programme predicts these searches find nothing.",
-   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27038}{P4}; rests on A3, A6, C9",
+   "predicate": "\\textbf{The proton is effectively stable} \\emph{[forced]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\\,$GeV it already exceeds the Super-Kamiokande bound. \\emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years.",
+   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27038}{P4}, \\leanwit{FrcCore}{p27038}{P4}, \\leanwit{FrcLedger}{p27038}{P4}; rests on A3, A6, C9, Z1 \\lean{FRC.Interactions.unification\\_counts, Fields.proton\\_lifetime}",
    "master": [
     "P4"
    ],
@@ -362,8 +362,8 @@
    "label": "P5",
    "key": "p27039",
    "tag": "T",
-   "predicate": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. The $\\nu^c$ is the gauge-singlet $\\Lam^0$ of the generation, so it takes a Majorana mass at unification and drives the seesaw, the three right-handed states sitting at $\\sim10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or evidence that the light neutrinos are Dirac. This diverges from Dirac-neutrino and sterile-neutrino interpretations and is consistent with $N_{\\mathrm{eff}}=3$.",
-   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}\\newline \\pywit{fields}{p27039}{P5}; rests on A4, B5, C8",
+   "predicate": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass at the unification scale (A4), and the seesaw then places the light masses in the observed band for singlet masses of $10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or Dirac neutrinos.",
+   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}\\newline \\pywit{fields}{p27039}{P5}, \\leanwit{FrcCore}{p27039}{P5}, \\leanwit{FrcLedger}{p27039}{P5}; rests on A4, B5, C8 \\lean{FRC.Interactions.one\\_generation, Fields.seesaw\\_band}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -422,8 +422,8 @@
    "label": "P9",
    "key": "p27043",
    "tag": "T",
-   "predicate": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
-   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9}; rests on A6, B4, C7 \\lean{FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell}",
+   "predicate": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the Wilson action class carries no orientation-odd term (B2) and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
+   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9}; rests on A6, B4, C7 \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell}",
    "master": [
     "G7"
    ],

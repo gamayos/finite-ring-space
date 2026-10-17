@@ -559,14 +559,14 @@ const PUBLICATIONS = [
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Fields.lean",
         "label": "lean",
-        "count": 28,
-        "title": "28 predicates proved in the core (no axioms), 4 of them also on Mathlib: the core module Fields as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 31,
+        "title": "31 predicates proved in the core (no axioms), 7 of them also on Mathlib: the core module Fields as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Fields.lean",
         "label": "lean-mathlib",
-        "count": 4,
-        "title": "4 predicates proved on Mathlib (classical), 4 of them also in the core: the module Fields as one file on Mathlib in Lean Live"
+        "count": 7,
+        "title": "7 predicates proved on Mathlib (classical), 7 of them also in the core: the module Fields as one file on Mathlib in Lean Live"
       }
     ]
   },
