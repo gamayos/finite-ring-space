@@ -128,7 +128,7 @@ class LedgerTest(unittest.TestCase):
         with redirect_stdout(io.StringIO()):
             L.R.verify_all()
         mine = L.R.results
-        self.assertEqual(len(records), 95)        # blocks A and B of the package of 17 October 2026 (block C, the depth 10⁶, is the package's alone)
+        self.assertEqual(len(records), 106)       # blocks A and B of the package of 18 October 2026 (block C, the depth 10⁶, is the package's alone)
         self.assertEqual([(r["id"], r["rows"], r["ok"], _ALIAS.get(r["kind"], r["kind"]), r["label"]) for r in records],
                          [(r["id"], r["rows"], r["ok"], r["kind"], r["label"]) for r in mine])
 

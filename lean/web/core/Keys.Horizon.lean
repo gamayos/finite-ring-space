@@ -5495,11 +5495,12 @@ end FRC.Horizon
 /-! inlined: FrcCore/Theme/Zeros.lean -/
 
 /-!
-# FrcCore.Theme.Zeros — the horizon theme's second file: the zeros of the shell (20-rh's rewrite, 17 October 2026)
+# FrcCore.Theme.Zeros — the horizon theme's second file: the zeros of the shell (20-rh's rewrite, 17 October 2026; the
+drive theorem and the circle, 18 October 2026)
 
-The critical line as the frequency domain (20:B12): the readout of the mode `k` at `θ = −g^k`, the drive about the
-centre as the step `k ↦ k + 1`, the half-turn and the conjugation as the step `k ↦ k + π` across the line, the energy a
-function of `k` alone, even under the half-turn. The dual of a vector with the energy identity (20:E13, the finite
+The critical line as the energy domain (20:B12): the readout of the mode `k` at `θ = −g^k`, the drive about the
+centre as the step `k ↦ k + 1`, the half-turn and the conjugation as the step `k ↦ k + π` across the line, the norm a
+function of `k` alone, even under the half-turn. The dual of a vector with the Parseval identity (20:E13, the finite
 Parseval identity, self-pairing `−1`); the parity `W² = −J` and the explicit formula, on the cycle and along the
 meridian with the inversion on the residues (20:E14). The two agreement loci in the invariant-line form (20:B9): among
 the `p(p + 1)` affine lines of the extension, `H_b = {Im z = b}` and `S_{c,a} = {Re z = a + c·Im z}`, conjugation keeps
@@ -5508,7 +5509,11 @@ the `p(p + 1)` affine lines of the extension, `H_b = {Im z = b}` and `S_{c,a} = 
 `S_{0,2⁻¹}`. Frame coincidence on the critical line for every label of the Subject (20:B13): on two shells `p ≤ Ω` every
 label `1 ≤ θ ≤ p − 2` reads back as the integer `θ` in both frames and is the readout of a nontrivial mode on the critical
 line of each. These, with `readout_on_line` and `off_line_unregistered` (a point off both lines lies on no line kept by
-both involutions), are the witnesses of the paper's Theorem noline (20:F10). The declarations keep
+both involutions), are the witnesses of the paper's Theorem noline (20:F10). The drive as an operator (20:E15, the
+revision of 18 October 2026): orthogonal for the pairing of the cycle, its spectrum the `n` eigenvalues `g^k`, simple,
+the readout minus the eigenvalue, the half-turn its negation, the modes isotropic; and the energy domain as a circle
+(20:B14): the Cayley image `z/(1 − z)` of the critical line, where the norm does not vanish, of norm one, never `−1`,
+injective, the centre at `1`, the conjugation the inversion. The declarations keep
 the theme's namespace `FRC.Horizon`; the file is the theme's second core file, as `Theme/Ladder.lean` is its third,
 within the file budget of gate G10. No axioms.
 -/
@@ -5534,7 +5539,7 @@ theorem sum_mul_sum (a b : Nat → Shell p) (n m : Nat) :
   apply sum_congr; intro l _
   exact (sum_mul_left b (a l) m).symm
 
-/-- 20:E12 (ii), 20:E13 — the energy identity on the cycle: `Σ_{k<n} v̂(k) c_k = Σ_{l<n} v_l²` with `c_k = −v̂(−k)` the mode
+/-- 20:E12 (ii), 20:E13 — the Parseval identity on the cycle: `Σ_{k<n} v̂(k) c_k = Σ_{l<n} v_l²` with `c_k = −v̂(−k)` the mode
 coefficient, that is `Σ_k v̂(k) v̂(−k) = −Σ_l v_l²`: the finite Parseval identity of the cycle, the self-pairing `−1` of
 the power characters in place of the complex norm. -/
 theorem parseval_cycle (F : Frame p κ g) (v : Nat → Shell p) :
@@ -5622,8 +5627,8 @@ theorem reflection_on_line (F : Frame p κ g) (ν : Shell p) (k : Nat) :
   · show - -(g ^ k) = -(g ^ (k + 2 * κ))
     rw [hpow, neg_neg]
 
-/-- 20:B12 (iv) — the energy on the critical line is a function of the frequency coordinate alone and is even under
-the half-turn: `N(z_k) = N(z_{k+π})`. -/
+/-- 20:B12 (iv) — the norm on the critical line (the paper's `N(z)`, the Hermitian form) is a function of the frequency
+coordinate alone and is even under the half-turn: `N(z_k) = N(z_{k+π})`; the declaration keeps its name. -/
 theorem line_energy_even (F : Frame p κ g) (ν : Shell p) (k : Nat) :
     Ext.norm (readout ν κ (-(g ^ k))) = Ext.norm (readout ν κ (-(g ^ (k + 2 * κ)))) := by
   have hpow : g ^ (k + 2 * κ) = -(g ^ k) := by
@@ -5895,6 +5900,228 @@ theorem line_coincidence_all {Ω : Nat} [Pos Ω] {κ' : Nat} {h : Shell Ω} (F :
     mode_at_label F n1 m1, mode_at_label F' n2 m2⟩
 
 end rewrite20261017
+
+/-! ### The drive as an operator: the spectrum of the time evolution (20:E15), and the energy domain as a circle
+(20:B14; the revision of 18 October 2026, reports/blueprint-20261018.md) -/
+
+section drive20261018
+
+/-- 20:E15 (i) — the drive is orthogonal for the pairing `⟨v, w⟩ = Σ_{l<n} v_l w_l` of the cycle: with the vectors read on
+the phases (`v_l` the value at `g^l`), the drive `x ↦ g x` is `(Dv)_l = v_{l+1}` and its inverse `(D⁻¹w)_l = w_{l−1}`, and
+`⟨Dv, w⟩ = ⟨v, D⁻¹w⟩`; `n = p − 1`, the indices mod `n`. -/
+theorem drive_orthogonal (F : Frame p κ g) (v w : Nat → Shell p) :
+    sumRange (fun l => v ((l + 1) % (p - 1)) * w l) (p - 1)
+      = sumRange (fun l => v l * w ((l + (p - 2)) % (p - 1))) (p - 1) := by
+  have hp : p - 1 = (p - 2) + 1 := by
+    have := F.one_lt_p
+    match p, this with
+    | k + 2, _ => rfl
+  have hn : 0 < (p - 2) + 1 := Nat.succ_pos _
+  have e1 : ∀ l, l < p - 2 → (fun l => v ((l + 1) % (p - 2 + 1)) * w l) l = (fun l => v (l + 1) * w l) l := by
+    intro l hl
+    show v ((l + 1) % (p - 2 + 1)) * w l = v (l + 1) * w l
+    rw [FRC.Nat.mod_eq_of_lt (Nat.succ_lt_succ hl)]
+  have e2 : ∀ l, l < p - 2 → (fun l => v (l + 1) * w ((l + 1 + (p - 2)) % (p - 2 + 1))) l
+      = (fun l => v (l + 1) * w l) l := by
+    intro l hl
+    show v (l + 1) * w ((l + 1 + (p - 2)) % (p - 2 + 1)) = v (l + 1) * w l
+    rw [Nat.add_assoc, Nat.add_comm 1 (p - 2), FRC.Nat.mod_eq_sub_mod hn (Nat.le_add_left (p - 2 + 1) l),
+      FRC.Nat.add_sub_cancel, FRC.Nat.mod_eq_of_lt (Nat.lt_succ_of_lt hl)]
+  rw [hp, sumRange_succ, sumRange_succ']
+  show sumRange (fun l => v ((l + 1) % (p - 2 + 1)) * w l) (p - 2) + v ((p - 2 + 1) % (p - 2 + 1)) * w (p - 2)
+      = v 0 * w ((0 + (p - 2)) % (p - 2 + 1))
+        + sumRange (fun l => v (l + 1) * w ((l + 1 + (p - 2)) % (p - 2 + 1))) (p - 2)
+  rw [FRC.Nat.mod_self _ hn, Nat.zero_add, FRC.Nat.mod_eq_of_lt (Nat.lt_succ_self (p - 2)),
+    sum_congr (p - 2) e1, sum_congr (p - 2) e2, add_comm]
+
+/-- 20:E15 (ii) — the spectrum of the drive is simple: the eigenvalues `g^0, …, g^{n−1}` of the `n` modes are distinct
+(`pow_inj`, 26:B3); with `shift_power_character` (the modes are eigenvectors, `D x^k = g^k x^k`) the spectrum is the
+`n = p − 1` nonzero residues, each once. -/
+theorem spectrum_simple (F : Frame p κ g) {i j : Nat} (hi : i < p - 1) (hj : j < p - 1) (h : g ^ i = g ^ j) :
+    i = j :=
+  F.pow_inj hi hj h
+
+/-- 20:E15 (iv) — the readout is the spectral map: the mode `k` is read on the critical line at the label `−g^k`, minus
+its eigenvalue under the drive. -/
+theorem readout_eigen (ν : Shell p) (κ k : Nat) : (readout ν κ (-(g ^ k))).im = -(g ^ k) := rfl
+
+/-- 20:E15 (v), 20:B12 — the half-turn of the cycle negates the eigenvalue: `g^{k+π} = −g^k`, `π = 2κ`; the labels of the
+critical line are the time domain read from `−1 = g^π` (Proposition line (v)). -/
+theorem half_turn_negates (F : Frame p κ g) (k : Nat) : g ^ (k + 2 * κ) = -(g ^ k) := by
+  rw [FRC.Shell.pow_add, F.half_period, ← mul_neg, mul_one]
+
+/-- 20:E15 (iii) — a mode other than the constant mode `0` and the Legendre mode `π = 2κ` has `g^{2k} ≠ 1`. -/
+theorem mode_square_ne_one (F : Frame p κ g) {k : Nat} (hk : 0 < k) (hk2 : k < p - 1) (h2 : k ≠ 2 * κ) :
+    g ^ (2 * k) ≠ 1 := by
+  intro h1
+  have hn : p - 1 = 2 * (2 * κ) := by rw [F.cap, FRC.Nat.add_sub_cancel]; exact Nat.mul_assoc 2 2 κ
+  have h2pos : 0 < 2 := Nat.succ_pos 1
+  rcases Nat.lt_or_ge k (2 * κ) with hlt | hge
+  · have h2k : 2 * k < p - 1 := by rw [hn]; exact Nat.mul_lt_mul_of_pos_left hlt h2pos
+    have := F.pow_inj h2k F.n_pos (h1.trans (pow_zero g).symm)
+    exact Nat.ne_of_gt (Nat.mul_pos h2pos hk) this
+  · have hgt : 2 * κ < k := Nat.lt_of_le_of_ne hge (Ne.symm h2)
+    have hle : p - 1 ≤ 2 * k := by rw [hn]; exact Nat.mul_le_mul_left 2 hge
+    have hsplit : 2 * k = (p - 1) + (2 * k - (p - 1)) := (FRC.Nat.add_sub_of_le hle).symm
+    have hred : g ^ (2 * k) = g ^ (2 * k - (p - 1)) := by
+      rw [hsplit, FRC.Shell.pow_add, F.pow_n, one_mul, ← hsplit]
+    have hlt' : 2 * k - (p - 1) < p - 1 :=
+      FRC.Nat.sub_lt_of_lt_add (by rw [← Nat.two_mul]; exact Nat.mul_lt_mul_of_pos_left hk2 h2pos) hle
+    have hz := F.pow_inj hlt' F.n_pos ((hred.symm.trans h1).trans (pow_zero g).symm)
+    have hle' : 2 * k ≤ 2 * (2 * κ) := by rw [← hn]; exact Nat.le_of_sub_eq_zero hz
+    exact Nat.not_le_of_gt hgt (Nat.le_of_mul_le_mul_left hle' h2pos)
+
+/-- 20:E15 (iii) — the modes are isotropic for the pairing: the self-pairing of the mode `k`, `Σ_{l<n} (g^l)^k (g^l)^k =
+Σ_{l<n} (g^{2k})^l`, vanishes when `g^{2k} ≠ 1` (`mode_square_ne_one`: every mode but `0` and `π`); so the reality of
+the spectrum is not a consequence of the orthogonality, it is the drive being a scaling by a residue. -/
+theorem modes_isotropic (F : Frame p κ g) {k : Nat} (h : g ^ (2 * k) ≠ 1) :
+    sumRange (fun l => (g ^ l) ^ k * (g ^ l) ^ k) (p - 1) = 0 := by
+  have e : ∀ l, l < p - 1 → (fun l => (g ^ l) ^ k * (g ^ l) ^ k) l = (fun l => (g ^ (2 * k)) ^ l) l := by
+    intro l _
+    show (g ^ l) ^ k * (g ^ l) ^ k = (g ^ (2 * k)) ^ l
+    rw [← FRC.Shell.pow_add, Nat.two_mul, pow_mul_comm]
+  rw [sum_congr (p - 1) e, geom_sum_unit F (F.pow_ne_zero (2 * k)), ite_eq_right h]
+
+/-- 20:B14 — the Cayley image of a point of the framed plane, `w = z/(1 − z)` written without division: on the critical
+line `1 − z = z̄`, so `w = z/z̄ = z²/N(z)`, and `N(z)^{−1} = N(z)^{p−2}` (`pow_pred_inv`). -/
+def cayley (z : Ext p ν) : Ext p ν := Ext.ofShell ((Ext.norm z) ^ (p - 2)) * (z * z)
+
+/-- 20:B14 — on the critical line the half-turn is the conjugation: `Tr z = 1` gives `1 − z = z̄`. -/
+theorem rho_eq_conj_on_line (z : Ext p ν) (hz : Ext.trace z = 1) : rho z = Ext.conj z := by
+  refine Ext.ext ?_ rfl
+  show 1 + -z.re = z.re
+  have h2 : z.re + z.re = 1 := hz
+  calc (1 : Shell p) + -z.re = (z.re + z.re) + -z.re := by rw [h2]
+    _ = z.re := by rw [add_assoc, add_neg, add_zero]
+
+/-- 20:B14 — on the critical line the norm does not vanish when `ν` is a nonsquare: `N(z) = c² − ν θ²` with `c = 2⁻¹`,
+and `c² = ν θ²` forces `θ = c = 0` (`aniso_tx`), against `Tr z = 2c = 1`. -/
+theorem norm_ne_zero_on_line (F : Frame p κ g) (hν : ¬IsSquare ν) (z : Ext p ν) (hz : Ext.trace z = 1) :
+    Ext.norm z ≠ 0 := by
+  intro h0
+  have e : z.re * z.re = ν * (z.im * z.im) := by
+    have h : z.re * z.re + -(ν * (z.im * z.im)) = 0 := h0
+    calc z.re * z.re = z.re * z.re + -(ν * (z.im * z.im)) + ν * (z.im * z.im) := by
+          rw [add_assoc, neg_add, add_zero]
+      _ = ν * (z.im * z.im) := by rw [h, zero_add]
+  have hre : z.re = 0 := (F.aniso_tx hν e).2
+  have ht : z.re + z.re = 1 := hz
+  rw [hre, add_zero] at ht
+  exact F.one_ne_zero ht.symm
+
+/-- 20:B14 (i) — the Cayley image solves `w · (1 − z) = z` on the critical line, where the norm does not vanish
+(`norm_ne_zero_on_line` for a nonsquare `ν`): the map `z ↦ z/(1 − z)`, as the paper writes it. -/
+theorem cayley_spec (F : Frame p κ g) (z : Ext p ν) (hz : Ext.trace z = 1) (hN : Ext.norm z ≠ 0) :
+    cayley z * rho z = z := by
+  rw [rho_eq_conj_on_line z hz]
+  show Ext.ofShell ((Ext.norm z) ^ (p - 2)) * (z * z) * Ext.conj z = z
+  rw [Ext.mul_assoc, Ext.mul_assoc, Ext.mul_conj, Ext.mul_comm z, ← Ext.mul_assoc, Ext.ofShell_mul,
+    mul_comm, pow_pred_inv F hN]
+  exact Ext.one_mul z
+
+/-- 20:B14 — the Cayley map is injective on the critical line: two points with one image `w` satisfy
+`z · (1 − z') = w · (1 − z) · (1 − z') = z' · (1 − z)`, whose coordinates reduce to `z = z'`. -/
+theorem cayley_injective (F : Frame p κ g) (z z' : Ext p ν) (hz : Ext.trace z = 1) (hz' : Ext.trace z' = 1)
+    (hN : Ext.norm z ≠ 0) (hN' : Ext.norm z' ≠ 0) (h : cayley z = cayley z') : z = z' := by
+  have h1 := cayley_spec F z hz hN
+  have h2 := cayley_spec F z' hz' hN'
+  have e : z * rho z' = z' * rho z := by
+    calc z * rho z' = cayley z * rho z * rho z' := by rw [h1]
+      _ = cayley z' * rho z' * rho z := by rw [h, Ext.mul_assoc, Ext.mul_comm (rho z), ← Ext.mul_assoc]
+      _ = z' * rho z := by rw [h2]
+  have hre := Ext.re_congr e
+  have him := Ext.im_congr e
+  rw [Ext.mul_re, Ext.mul_re] at hre
+  rw [Ext.mul_im, Ext.mul_im] at him
+  change z.re * (1 + -z'.re) + ν * (z.im * -z'.im) = z'.re * (1 + -z.re) + ν * (z'.im * -z.im) at hre
+  change z.re * -z'.im + z.im * (1 + -z'.re) = z'.re * -z.im + z'.im * (1 + -z.re) at him
+  have lre : z.re * (1 + -z'.re) + ν * (z.im * -z'.im) = z.re + (-(z.re * z'.re) + -(ν * (z.im * z'.im))) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [z.re, z'.re, z.im, z'.im, ν])
+      (.add (.mul (.var 0) (.add .one (.neg (.var 1)))) (.mul (.var 4) (.mul (.var 2) (.neg (.var 3)))))
+      (.add (.var 0) (.add (.neg (.mul (.var 0) (.var 1))) (.neg (.mul (.var 4) (.mul (.var 2) (.var 3))))))
+      (by decide +kernel)
+  have rre : z'.re * (1 + -z.re) + ν * (z'.im * -z.im) = z'.re + (-(z.re * z'.re) + -(ν * (z.im * z'.im))) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [z.re, z'.re, z.im, z'.im, ν])
+      (.add (.mul (.var 1) (.add .one (.neg (.var 0)))) (.mul (.var 4) (.mul (.var 3) (.neg (.var 2)))))
+      (.add (.var 1) (.add (.neg (.mul (.var 0) (.var 1))) (.neg (.mul (.var 4) (.mul (.var 2) (.var 3))))))
+      (by decide +kernel)
+  have lim : z.re * -z'.im + z.im * (1 + -z'.re) = z.im + (-(z.re * z'.im) + -(z.im * z'.re)) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [z.re, z'.re, z.im, z'.im, ν])
+      (.add (.mul (.var 0) (.neg (.var 3))) (.mul (.var 2) (.add .one (.neg (.var 1)))))
+      (.add (.var 2) (.add (.neg (.mul (.var 0) (.var 3))) (.neg (.mul (.var 2) (.var 1)))))
+      (by decide +kernel)
+  have rim : z'.re * -z.im + z'.im * (1 + -z.re) = z'.im + (-(z.re * z'.im) + -(z.im * z'.re)) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [z.re, z'.re, z.im, z'.im, ν])
+      (.add (.mul (.var 1) (.neg (.var 2))) (.mul (.var 3) (.add .one (.neg (.var 0)))))
+      (.add (.var 3) (.add (.neg (.mul (.var 0) (.var 3))) (.neg (.mul (.var 2) (.var 1)))))
+      (by decide +kernel)
+  have hre' : z.re = z'.re := add_right_cancel (lre.symm.trans (hre.trans rre))
+  have him' : z.im = z'.im := add_right_cancel (lim.symm.trans (him.trans rim))
+  exact Ext.ext hre' him'
+
+/-- 20:B14 — the Cayley image of a point of the critical line is never `−1`: `w · (1 − z) = z` with `w = −1` reads
+`−1 + z = z`, so `−1 = 0`. -/
+theorem cayley_ne_neg_one (F : Frame p κ g) (z : Ext p ν) (hz : Ext.trace z = 1) (hN : Ext.norm z ≠ 0) :
+    cayley z ≠ -1 := by
+  intro hw
+  have h := cayley_spec F z hz hN
+  rw [hw] at h
+  have hre := Ext.re_congr h
+  have e : (-1 : Shell p) + z.re = z.re := by
+    have : (-(1 : Shell p)) * (1 + -z.re) + ν * (-0 * -z.im) = z.re := hre
+    rw [neg_zero, zero_mul, mul_zero, add_zero, neg_one_mul, neg_add_rev, neg_neg] at this
+    exact this
+  have h1 : (-1 : Shell p) = 0 := add_right_cancel (e.trans (zero_add z.re).symm)
+  have h2 : (1 : Shell p) = 0 := by rw [← neg_neg (1 : Shell p), h1, neg_zero]
+  exact F.one_ne_zero h2
+
+/-- 20:B14 (ii) — the Cayley image of a point of nonzero norm has norm one: `N(w) = N(z)^{2(p−2)} N(z)^2 = 1`; on the
+critical line every point has a Cayley image on the unit circle `U_{p+1}` (`norm_ne_zero_on_line`). -/
+theorem cayley_norm_one (F : Frame p κ g) (z : Ext p ν) (hN : Ext.norm z ≠ 0) : Ext.norm (cayley z) = 1 := by
+  show Ext.norm (Ext.ofShell ((Ext.norm z) ^ (p - 2)) * (z * z)) = 1
+  rw [Ext.norm_mul, Ext.norm_ofShell, Ext.norm_mul]
+  have e : (Ext.norm z) ^ (p - 2) * (Ext.norm z) ^ (p - 2) * (Ext.norm z * Ext.norm z)
+      = (Ext.norm z * (Ext.norm z) ^ (p - 2)) * (Ext.norm z * (Ext.norm z) ^ (p - 2)) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [Ext.norm z, (Ext.norm z) ^ (p - 2)])
+      (.mul (.mul (.var 1) (.var 1)) (.mul (.var 0) (.var 0)))
+      (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 1))) (by decide +kernel)
+  rw [e, pow_pred_inv F hN, mul_one]
+
+/-- 20:B14 (iii) — the centre `2⁻¹` goes to `1`: the readout of the label `0` is the real point `2⁻¹`, of norm `4⁻¹`,
+and its Cayley image is `N^{p−2} · N = 1`. -/
+theorem cayley_centre (F : Frame p κ g) (ν : Shell p) : cayley (readout ν κ 0) = 1 := by
+  have hc : (ofNat (2 * κ + 1) : Shell p) ≠ 0 := fun h0 => by
+    have h := (half_inverse F).1
+    rw [h0, mul_zero] at h
+    exact F.one_ne_zero h.symm
+  have hN : Ext.norm (readout ν κ 0) = ofNat (2 * κ + 1) * ofNat (2 * κ + 1) := by
+    show ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + -(ν * (0 * 0)) = ofNat (2 * κ + 1) * ofNat (2 * κ + 1)
+    rw [mul_zero, mul_zero, neg_zero, add_zero]
+  have hsq : readout ν κ 0 * readout ν κ 0 = Ext.ofShell (ofNat (2 * κ + 1) * ofNat (2 * κ + 1)) := by
+    refine Ext.ext ?_ ?_
+    · show ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + ν * (0 * 0) = ofNat (2 * κ + 1) * ofNat (2 * κ + 1)
+      rw [mul_zero, mul_zero, add_zero]
+    · show ofNat (2 * κ + 1) * 0 + 0 * ofNat (2 * κ + 1) = 0
+      rw [mul_zero, zero_mul, add_zero]
+  show Ext.ofShell ((Ext.norm (readout ν κ 0)) ^ (p - 2)) * (readout ν κ 0 * readout ν κ 0) = 1
+  rw [hsq, Ext.ofShell_mul, hN, mul_comm, pow_pred_inv F (mul_ne_zero F hc hc)]
+  rfl
+
+/-- 20:B14 (iv) — the conjugation becomes the inversion: the Cayley image of `z̄` is the conjugate of the Cayley image
+of `z`, and on the circle the conjugate is the inverse, `w · w̄ = 1`. -/
+theorem cayley_conj (F : Frame p κ g) (z : Ext p ν) (hN : Ext.norm z ≠ 0) :
+    cayley (Ext.conj z) = Ext.conj (cayley z) ∧ cayley z * Ext.conj (cayley z) = 1 := by
+  refine ⟨?_, Ext.conj_inv_of_norm_one _ (cayley_norm_one F z hN)⟩
+  have hNc : Ext.norm (Ext.conj z) = Ext.norm z := by
+    show z.re * z.re + -(ν * (-z.im * -z.im)) = z.re * z.re + -(ν * (z.im * z.im))
+    rw [neg_mul_neg]
+  show Ext.ofShell ((Ext.norm (Ext.conj z)) ^ (p - 2)) * (Ext.conj z * Ext.conj z)
+      = Ext.conj (Ext.ofShell ((Ext.norm z) ^ (p - 2)) * (z * z))
+  have hc : Ext.conj (Ext.ofShell ((Ext.norm z) ^ (p - 2)) : Ext p ν) = Ext.ofShell ((Ext.norm z) ^ (p - 2)) :=
+    Ext.ext rfl neg_zero
+  rw [hNc, Ext.conj_mul, Ext.conj_mul, hc]
+
+end drive20261018
 
 end FRC.Horizon
 
@@ -6594,7 +6821,7 @@ set_option linter.defProp false in
 /-- p20013 — 20:B6. Hermitian phase calculus on $K=\F_{\p^{2}}$: norm and trace $\Fp$-valued, the phase circle $U_{\p+1}$ of order $\p+1$ with Frobenius as inversion, the quarter-turn $\im$ Frobenius-fixed and off the circle ($\Nm(\im)=-1$), the trace-zero $\eta$ with $\eta^{2}=\nu$ a nonsquare, $\Tr(a+b\eta)=2a$, $\Nm=a^{2}-\nu b^{2}$. -/
 def p20013 := And.intro @FRC.Extension.Ext.mul_conj (And.intro @FRC.Extension.Ext.conj_inv_of_norm_one (And.intro @FRC.Horizon.quarter_turn_off_circle (@FRC.Horizon.circle13)))
 set_option linter.defProp false in
-/-- p20015 — 20:B8. The finite critical line: the half-turn $2^{-1}=2\kp+1=-\pi$; $\Tr(z)=1$ exactly on the $\p$ points $z=2^{-1}+\eta\theta$, with energy $\Nm(z)=\tfrac14-\nu\theta^{2}$; de-framed, $2^{-1}/\p=(2\kp+1)/\p\to\half$ from above [chart]. -/
+/-- p20015 — 20:B8. The finite critical line: the half-turn $2^{-1}=2\kp+1=-\pi$; $\Tr(z)=1$ exactly on the $\p$ points $z=2^{-1}+\eta\theta$, with norm $\Nm(z)=\tfrac14-\nu\theta^{2}$; de-framed, $2^{-1}/\p=(2\kp+1)/\p\to\half$ from above [chart]. -/
 def p20015 := And.intro @FRC.Horizon.half_inverse (And.intro @FRC.Horizon.critical_line (@FRC.Horizon.norm_on_line))
 set_option linter.defProp false in
 /-- p20016 — 20:B9. The two agreement loci: among the $\p(\p+1)$ affine lines of $K$ exactly two are invariant under both conjugation and the half-turn, the prime meridian and the critical line (conjugation keeps $\p+1$ lines, the half-turn the $\p+1$ lines through $2^{-1}$); as a corollary the Klein four-group fixes pointwise $\Fp$, $L_{1/2}$ and their meeting $\{2^{-1}\}$. -/
@@ -6605,15 +6832,15 @@ theorem p20017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p20043 — 20:E12, 00:Z10. On every shell $\F_\p\subset\F_{\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:B4). Every mode of every vector lies on the self-dual line $\Tr=1$, an eigenvector of the scale-shift with a $(\p-1)$-th root of unity as eigenvalue: no off-line mode, $\Om$-blind. -/
 theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p) {j : Nat}, j < p - (1 : Nat) → v j = FRC.Shell.sumRange (fun k => FRC.Horizon.modeCoeff g v k * (g ^ j) ^ k) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Horizon.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Horizon.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Horizon.readout ν κ θ = FRC.Horizon.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
   And.intro @FRC.Horizon.zero_slot (And.intro @FRC.Horizon.mode_expansion (And.intro @FRC.Horizon.shift_power_character (And.intro @FRC.Horizon.eigenphase (And.intro @FRC.Horizon.shift_trace (And.intro @FRC.Horizon.readout_on_line (@FRC.Horizon.readout_slot_index))))))
-/-- p20044 — 20:E13. The energy identity: $\sum_k\hat v(k)\hat v(-k)=-\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ in place of the complex norm; in the chart the $\p-1$ complex characters are an orthogonal basis with $\lVert\chi_j\rVert^{2}=\p-1$ and the same identity reads $\sum_j|\hat v_{\mathbb C}(j)|^{2}=(\p-1)\sum|v|^{2}$ [chart]. -/
+/-- p20044 — 20:E13. The Parseval identity: $\sum_k\hat v(k)\hat v(-k)=-\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ in place of the complex norm; in the chart the $\p-1$ complex characters are an orthogonal basis with $\lVert\chi_j\rVert^{2}=\p-1$ and the same identity reads $\sum_j|\hat v_{\mathbb C}(j)|^{2}=(\p-1)\sum|v|^{2}$ [chart]. -/
 theorem p20044 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p), FRC.Shell.sumRange (fun k => FRC.Horizon.dual g v k * FRC.Horizon.modeCoeff g v k) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => v l * v l) (p - (1 : Nat)) :=
   @FRC.Horizon.parseval_cycle
 set_option linter.defProp false in
 /-- p20079 — 20:F7. \textbf{The closure.} The zeros of a shell are its residues read on the critical line, and there are no others; the largest shell is the Carrier's, and ``all the zeros'' of the Carrier is one complete list, $\Omega-2$ nontrivial modes among $\Omega$ labels (A2); no embedded Subject holds it whole (A4): it reads below $\sqrt\p$, frame-exact (B2, B13). -/
 def p20079 := And.intro @FRC.Horizon.closure (@FRC.Horizon.closure_lab)
-/-- p20085 — 20:B12. The critical line is the frequency domain: $k\mapsto z_k=2^{-1}-\eta\gen^{k}$ bijects the frequency cycle onto the line without its centre and is the readout; the drive about the centre carries $z_k$ to $z_{k+1}$; the half-turn and the conjugation carry $z_k$ to $z_{k+\pi}$, fixing the centre alone; the energy depends on $k$ alone and is even. -/
-theorem p20085 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Horizon.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Horizon.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Horizon.readout ν κ θ = FRC.Horizon.readout ν κ θ' → θ = θ') ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (ν : FRC.Shell p) (κ k : Nat), { re := (FRC.Horizon.readout ν κ (-g ^ k)).re, im := g * (FRC.Horizon.readout ν κ (-g ^ k)).im } = FRC.Horizon.readout ν κ (-g ^ (k + (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν : FRC.Shell p) (k : Nat), FRC.Horizon.rho (FRC.Horizon.readout ν κ (-g ^ k)) = FRC.Horizon.readout ν κ (-g ^ (k + (2 : Nat) * κ)) ∧ (FRC.Horizon.readout ν κ (-g ^ k)).conj = FRC.Horizon.readout ν κ (-g ^ (k + (2 : Nat) * κ))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν : FRC.Shell p) (k : Nat), (FRC.Horizon.readout ν κ (-g ^ k)).norm = (FRC.Horizon.readout ν κ (-g ^ (k + (2 : Nat) * κ))).norm :=
-  And.intro @FRC.Horizon.readout_slot_index (And.intro @FRC.Horizon.readout_on_line (And.intro @FRC.Horizon.drive_on_line (And.intro @FRC.Horizon.reflection_on_line (@FRC.Horizon.line_energy_even))))
+/-- p20085 — 20:B12. The critical line is the energy domain: $k\mapsto z_k=2^{-1}-\eta\gen^{k}$ bijects the frequency cycle onto the line without its centre, one orbit of the drive about the centre, $z_k\mapsto z_{k+1}$, its labels $\theta_k=\gen^{k+\pi}$ the time domain read from $-1=\gen^{\pi}$; the half-turn and the conjugation carry $z_k$ to $z_{k+\pi}$, fixing the centre alone; the norm depends on $k$ alone and is even. -/
+theorem p20085 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Horizon.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Horizon.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Horizon.readout ν κ θ = FRC.Horizon.readout ν κ θ' → θ = θ') ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (ν : FRC.Shell p) (κ k : Nat), { re := (FRC.Horizon.readout ν κ (-g ^ k)).re, im := g * (FRC.Horizon.readout ν κ (-g ^ k)).im } = FRC.Horizon.readout ν κ (-g ^ (k + (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), g ^ (k + (2 : Nat) * κ) = -g ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν : FRC.Shell p) (k : Nat), FRC.Horizon.rho (FRC.Horizon.readout ν κ (-g ^ k)) = FRC.Horizon.readout ν κ (-g ^ (k + (2 : Nat) * κ)) ∧ (FRC.Horizon.readout ν κ (-g ^ k)).conj = FRC.Horizon.readout ν κ (-g ^ (k + (2 : Nat) * κ))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν : FRC.Shell p) (k : Nat), (FRC.Horizon.readout ν κ (-g ^ k)).norm = (FRC.Horizon.readout ν κ (-g ^ (k + (2 : Nat) * κ))).norm :=
+  And.intro @FRC.Horizon.readout_slot_index (And.intro @FRC.Horizon.readout_on_line (And.intro @FRC.Horizon.drive_on_line (And.intro @FRC.Horizon.half_turn_negates (And.intro @FRC.Horizon.reflection_on_line (@FRC.Horizon.line_energy_even)))))
 set_option linter.defProp false in
 /-- p20086 — 20:B13. Frame coincidence on the critical line: under B1, for every label $1\le\theta\le\p-2$ the Subject's zero and the Carrier's zero at that label are one zero: the label the same integer in both frames, the line the same registered line (B9, D11), the point a nontrivial mode in both (B4, B12); the Carrier's zeros from $\p-1$ on are not the Subject's. -/
 def p20086 := And.intro @FRC.Horizon.critical_line (And.intro @FRC.Horizon.zero_slot (And.intro @FRC.Horizon.mode_at_label (@FRC.Horizon.line_coincidence_all)))
@@ -6623,6 +6850,12 @@ def p20092 := And.intro @FRC.Horizon.transform_square (And.intro @FRC.Horizon.ge
 set_option linter.defProp false in
 /-- p20093 — 20:F10. \textbf{No zero off the line.} Under B1, D11, D12: the registered lines are the prime meridian and the critical line (B9); the Subject's zeros that exist are its nontrivial modes on the critical line, each the Carrier's zero at that label (B13); a point off both lines is on no registered line, and no embedded frame's reading of it exists. -/
 def p20093 := And.intro @FRC.Horizon.invariant_lines (And.intro @FRC.Horizon.off_line_unregistered (And.intro @FRC.Horizon.line_coincidence_all (And.intro @FRC.Horizon.mode_at_label (@FRC.Horizon.readout_on_line))))
+/-- p20094 — 20:E15. \textbf{The drive theorem.} The drive $(Dv)(x)=v(\gen x)$ permutes the residues, orthogonal for the pairing of E12 (i); its eigenvectors are the modes $x^{k}$ and their nonzero multiples, eigenvalue $\gen^{k}$, the spectrum $\Fx{\p}$, simple, in $\Fp$, the modes isotropic for $k\ne0,\pi$; the readout is minus the eigenvalue; the half-turn negates it; at a shared label both frames' modes have eigenvalue $-\theta$ (B13). -/
+theorem p20094 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v w : Nat → FRC.Shell p), FRC.Shell.sumRange (fun l => v ((l + (1 : Nat)) % (p - (1 : Nat))) * w l) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => v l * w ((l + (p - (2 : Nat))) % (p - (1 : Nat)))) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {i j : Nat}, i < p - (1 : Nat) → j < p - (1 : Nat) → g ^ i = g ^ j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (ν : FRC.Shell p) (κ k : Nat), (FRC.Horizon.readout ν κ (-g ^ k)).im = -g ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), g ^ (k + (2 : Nat) * κ) = -g ^ k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k : Nat}, g ^ ((2 : Nat) * k) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun l => (g ^ l) ^ k * (g ^ l) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p) :=
+  And.intro @FRC.Horizon.shift_power_character (And.intro @FRC.Horizon.drive_orthogonal (And.intro @FRC.Horizon.spectrum_simple (And.intro @FRC.Horizon.readout_eigen (And.intro @FRC.Horizon.half_turn_negates (@FRC.Horizon.modes_isotropic)))))
+/-- p20095 — 20:B14. The energy domain is a circle: $z\mapsto z/(1-z)$ carries the critical line (norm nonzero there) into $U_{\p+1}$, the centre to $1$, never to $-1$, the conjugation to the inversion; injectively, the $\p$ points filling $U_{\p+1}$ minus $-1$, the modes $U_{\p+1}\setminus\{\pm1\}$, the drive fixing $1$, no rotation, their exponents no affine function of $k$. The finite form of $|s/(1-s)|=1$ on $\Real s=\tfrac12$ [chart]. -/
+theorem p20095 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g ν : FRC.Shell p}, FRC.Shell.Frame p κ g → ¬FRC.Shell.Frame.IsSquare ν → ∀ (z : FRC.Extension.Ext p ν), z.trace = (1 : FRC.Shell p) → z.norm ≠ (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g ν : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Extension.Ext p ν), z.norm ≠ (0 : FRC.Shell p) → (FRC.Horizon.cayley z).norm = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν : FRC.Shell p), FRC.Horizon.cayley (FRC.Horizon.readout ν κ (0 : FRC.Shell p)) = (1 : FRC.Extension.Ext p ν)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g ν : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Extension.Ext p ν), z.trace = (1 : FRC.Shell p) → z.norm ≠ (0 : FRC.Shell p) → FRC.Horizon.cayley z ≠ (-1 : FRC.Extension.Ext p ν)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g ν : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z z' : FRC.Extension.Ext p ν), z.trace = (1 : FRC.Shell p) → z'.trace = (1 : FRC.Shell p) → z.norm ≠ (0 : FRC.Shell p) → z'.norm ≠ (0 : FRC.Shell p) → FRC.Horizon.cayley z = FRC.Horizon.cayley z' → z = z') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g ν : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Extension.Ext p ν), z.norm ≠ (0 : FRC.Shell p) → FRC.Horizon.cayley z.conj = (FRC.Horizon.cayley z).conj ∧ FRC.Horizon.cayley z * (FRC.Horizon.cayley z).conj = (1 : FRC.Extension.Ext p ν) :=
+  And.intro @FRC.Horizon.norm_ne_zero_on_line (And.intro @FRC.Horizon.cayley_norm_one (And.intro @FRC.Horizon.cayley_centre (And.intro @FRC.Horizon.cayley_ne_neg_one (And.intro @FRC.Horizon.cayley_injective (@FRC.Horizon.cayley_conj)))))
 /-- p26009 — 26:B3. The longitudinal turn on the shell: the multiplicative characters $\chi_\nu(g^t)=g^{\nu t}$ are eigenvectors of the scale shift $x\mapsto gx$, with the $(P-1)$-th roots of unity $g^{\nu}$ as distinct eigenvalues; the shift $x\mapsto g^{r}x$ fixes every unit when $(P-1)\mid r$ and none otherwise. -/
 theorem p26009 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {i j : Nat}, i < p - (1 : Nat) → j < p - (1 : Nat) → g ^ i = g ^ j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ ∀ (i : Nat), i < (12 : Nat) → ∀ (j : Nat), j < (12 : Nat) → (2 : FRC.Shell (13 : Nat)) ^ i = (2 : FRC.Shell (13 : Nat)) ^ j → i = j :=
   And.intro @FRC.Horizon.shift_power_character (And.intro @FRC.Horizon.eigenphase (And.intro @FRC.Shell.Frame.pow_inj (And.intro @FRC.Horizon.shift_trace (@FRC.Ladder.eigenvalues13))))
@@ -6682,6 +6915,8 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p20086
 #print axioms FRC.Ledger.p20092
 #print axioms FRC.Ledger.p20093
+#print axioms FRC.Ledger.p20094
+#print axioms FRC.Ledger.p20095
 #print axioms FRC.Ledger.p26009
 #print axioms FRC.Ledger.p26011
 #print axioms FRC.Ledger.p26025

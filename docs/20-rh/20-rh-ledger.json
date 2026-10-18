@@ -3,7 +3,7 @@
  "tree": "20-rh-20260608",
  "title": "Riemann Hypothesis over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0768.v1",
- "generated": "17 October 2026",
+ "generated": "18 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -11,7 +11,7 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The framed substrate: the Carrier $\\F_\\Omega$ with $\\Omega=4\\dS+1$, the Subject $\\Fp(\\chron;0,1,\\gen)$ with $\\p=4\\kp+1$ and its register $\\pi=2\\kp$, $\\im=\\gen^{-\\kp}$, $\\E=\\gen^{\\,\\im}$; the four lines of the shell, the orbital shell with its latitudes, the shell Fourier transform on the phase cycle; time as scale-dilation.",
+     "predicate": "The framed substrate: the Carrier $\\F_\\Omega$, $\\Omega=4\\dS+1$, the Subject $\\Fp(\\chron;0,1,\\gen)$, $\\p=4\\kp+1$, with $\\pi=2\\kp$, $\\im=\\gen^{-\\kp}$, $\\E=\\gen^{\\,\\im}$; the four cardinal domains, labelled in the Carrier register (space, time, momentum, energy) and read by the Subject as counts (wavenumber, frequency); the orbital sphere with its latitudes, the shell Fourier transform on the phase cycle; time as scale-dilation.",
      "tag": "I",
      "source": "\\citep{akhtman2025algebra,akhtman2026geometry,akhtman2026fourier,akhtman2025lorentzian,akhtman2026dimensions}",
      "key": "p20001"
@@ -46,9 +46,9 @@
     },
     {
      "label": "A6",
-     "predicate": "The classical apparatus, as the chart of Theorem~\\ref{thm:hp}: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$, the logarithmic derivative $-\\zeta'/\\zeta(s)=\\sum\\Lambda(n)n^{-s}$, the Riemann--Siegel length $\\sqrt{T/2\\pi}$ as the scale of the window; the first zeros to twelve digits from the primes alone by harmonic inversion [chart].",
+     "predicate": "The classical apparatus, as the chart of Theorem~\\ref{thm:hp}: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$, the logarithmic derivative $-\\zeta'/\\zeta(s)=\\sum\\Lambda(n)n^{-s}$, the Riemann--Siegel length $\\sqrt{T/2\\pi}$ as the scale of the window; the first zeros to twelve digits from the primes alone by harmonic inversion; the dilation generator $-i(x\\partial_x+\\tfrac12)$ of Berry--Keating with the heights as its generalised eigenvalues [chart].",
      "tag": "I",
-     "source": "\\citep{edwards1974,titchmarsh1986,main1998}; \\S\\ref{sec:dual}, \\S\\ref{sec:order}",
+     "source": "\\citep{edwards1974,titchmarsh1986,main1998,berry1999}; \\S\\ref{sec:dual}, \\S\\ref{sec:drive}, \\S\\ref{sec:order}",
      "key": "p20003"
     },
     {
@@ -62,7 +62,7 @@
   },
   {
    "letter": "B",
-   "title": "The shell: the frames, the primes, the modes, the critical line",
+   "title": "The shell: the frames, the primes, the modes, the critical line and its circle",
    "rows": [
     {
      "label": "B1",
@@ -108,7 +108,7 @@
     },
     {
      "label": "B8",
-     "predicate": "The finite critical line: the half-turn $2^{-1}=2\\kp+1=-\\pi$; $\\Tr(z)=1$ exactly on the $\\p$ points $z=2^{-1}+\\eta\\theta$, with energy $\\Nm(z)=\\tfrac14-\\nu\\theta^{2}$; de-framed, $2^{-1}/\\p=(2\\kp+1)/\\p\\to\\half$ from above [chart].",
+     "predicate": "The finite critical line: the half-turn $2^{-1}=2\\kp+1=-\\pi$; $\\Tr(z)=1$ exactly on the $\\p$ points $z=2^{-1}+\\eta\\theta$, with norm $\\Nm(z)=\\tfrac14-\\nu\\theta^{2}$; de-framed, $2^{-1}/\\p=(2\\kp+1)/\\p\\to\\half$ from above [chart].",
      "tag": "T",
      "source": "Prop.~\\ref{prop:critical}\\newline \\pywit{rh}{p20015}{B8}, \\leanwit{FrcCore}{p20015}{B8}, \\leanwit{FrcLedger}{p20015}{B8} \\lean{Rh.half\\_turn, Rh.trace\\_eq\\_one\\_iff, Rh.card\\_critical\\_line, Rh.norm\\_on\\_line, FRC.Rh.half\\_inverse, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.norm\\_on\\_line}",
      "key": "p20015"
@@ -129,9 +129,9 @@
     },
     {
      "label": "B12",
-     "predicate": "The critical line is the frequency domain: $k\\mapsto z_k=2^{-1}-\\eta\\gen^{k}$ bijects the frequency cycle onto the line without its centre and is the readout; the drive about the centre carries $z_k$ to $z_{k+1}$; the half-turn and the conjugation carry $z_k$ to $z_{k+\\pi}$, fixing the centre alone; the energy depends on $k$ alone and is even.",
+     "predicate": "The critical line is the energy domain: $k\\mapsto z_k=2^{-1}-\\eta\\gen^{k}$ bijects the frequency cycle onto the line without its centre, one orbit of the drive about the centre, $z_k\\mapsto z_{k+1}$, its labels $\\theta_k=\\gen^{k+\\pi}$ the time domain read from $-1=\\gen^{\\pi}$; the half-turn and the conjugation carry $z_k$ to $z_{k+\\pi}$, fixing the centre alone; the norm depends on $k$ alone and is even.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:line}, Fig.~\\ref{fig:line}\\newline \\pywit{rh}{p20085}{B12}, \\leanwit{FrcCore}{p20085}{B12} \\lean{FRC.Horizon.readout\\_slot\\_index, FRC.Horizon.readout\\_on\\_line, FRC.Horizon.drive\\_on\\_line, FRC.Horizon.reflection\\_on\\_line, FRC.Horizon.line\\_energy\\_even}",
+     "source": "Prop.~\\ref{prop:line}, Fig.~\\ref{fig:line}\\newline \\pywit{rh}{p20085}{B12}, \\leanwit{FrcCore}{p20085}{B12} \\lean{FRC.Horizon.readout\\_slot\\_index, FRC.Horizon.readout\\_on\\_line, FRC.Horizon.drive\\_on\\_line, FRC.Horizon.half\\_turn\\_negates, FRC.Horizon.reflection\\_on\\_line, FRC.Horizon.line\\_energy\\_even}",
      "key": "p20085"
     },
     {
@@ -140,6 +140,13 @@
      "tag": "T",
      "source": "Prop.~\\ref{prop:coincideline}\\newline \\pywit{rh}{p20086}{B13}, \\leanwit{FrcCore}{p20086}{B13} \\lean{FRC.Horizon.critical\\_line, FRC.Horizon.zero\\_slot, FRC.Horizon.mode\\_at\\_label, FRC.Horizon.line\\_coincidence\\_all}",
      "key": "p20086"
+    },
+    {
+     "label": "B14",
+     "predicate": "The energy domain is a circle: $z\\mapsto z/(1-z)$ carries the critical line (norm nonzero there) into $U_{\\p+1}$, the centre to $1$, never to $-1$, the conjugation to the inversion; injectively, the $\\p$ points filling $U_{\\p+1}$ minus $-1$, the modes $U_{\\p+1}\\setminus\\{\\pm1\\}$, the drive fixing $1$, no rotation, their exponents no affine function of $k$. The finite form of $|s/(1-s)|=1$ on $\\Real s=\\tfrac12$ [chart].",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:cayley}\\newline \\pywit{rh}{p20095}{B14}, \\leanwit{FrcCore}{p20095}{B14} \\lean{FRC.Horizon.norm\\_ne\\_zero\\_on\\_line, FRC.Horizon.cayley\\_norm\\_one, FRC.Horizon.cayley\\_centre, FRC.Horizon.cayley\\_ne\\_neg\\_one, FRC.Horizon.cayley\\_injective, FRC.Horizon.cayley\\_conj}",
+     "key": "p20095"
     }
    ]
   },
@@ -149,14 +156,14 @@
    "rows": [
     {
      "label": "D1",
-     "predicate": "The chart's scale [chart]: the window's labels read with the scale coordinate $\\log n$ and the weight $n^{-1/2}$ at the half-turn, the horizon $\\sqrt\\p$ the Riemann--Siegel length $\\sqrt{T/2\\pi}$ at $T=2\\pi\\p$, the half-turn $2^{-1}$ the exponent $-\\half$; the dual of a vector becomes its Dirichlet series on the line and its energy at a height the modulus squared.",
+     "predicate": "The chart's scale [chart]: the window's labels read with the scale coordinate $\\log n$ and the weight $n^{-1/2}$ at the half-turn, the horizon $\\sqrt\\p$ the Riemann--Siegel length $\\sqrt{T/2\\pi}$ at $T=2\\pi\\p$, the half-turn $2^{-1}$ the exponent $-\\half$; the dual of a vector becomes its Dirichlet series on the line and its intensity at a height the modulus squared.",
      "tag": "D",
      "source": "Def.~\\ref{def:deframe}",
      "key": "p20025"
     },
     {
      "label": "D10",
-     "predicate": "The energy of a vector at a mode, $e_v(k)=\\hat v(k)\\hat v(-k)$, a residue summing to $-\\sum v^{2}$ (E13); the zeros of a vector are its nontrivial modes, each with its energy; on the shell the energy is a label with no size, in the chart the complex characters give it a size [chart].",
+     "predicate": "The intensity of a vector at a mode, $e_v(k)=\\hat v(k)\\hat v(-k)$, a residue summing to $-\\sum v^{2}$ (E13); the zeros of a vector are its nontrivial modes, each with its intensity; on the shell the intensity is a label with no size, in the chart the complex characters give it a size [chart].",
      "tag": "D",
      "source": "Def.~\\ref{def:energy}, Rem.~\\ref{rem:parseval}",
      "key": "p20087"
@@ -179,18 +186,18 @@
   },
   {
    "letter": "E",
-   "title": "The dual: the shell theorem, the energy identity, the parity and the explicit formula",
+   "title": "The dual and the drive: the shell theorem, the parity, the explicit formula, the spectrum",
    "rows": [
     {
      "label": "E12",
-     "predicate": "\\textbf{The shell theorem.} On every shell, for every vector, in $\\Fp$: (i) the dual $\\hat v(k)=\\sum v(x)x^{k}$ inverts exactly, $v(y)=-\\sum\\hat v(k)y^{-k}$, the constant mode the mean term; (ii) the energy identity (E13); (iii) every mode on the critical line, an eigenvector of the scale-shift; (iv) the parity and (v) the explicit formula along the meridian (E14).",
+     "predicate": "\\textbf{The shell theorem.} On every shell, for every vector, in $\\Fp$: (i) the dual $\\hat v(k)=\\sum v(x)x^{k}$ inverts exactly, $v(y)=-\\sum\\hat v(k)y^{-k}$, the constant mode the mean term; (ii) the Parseval identity (E13); (iii) every mode on the critical line, an eigenvector of the drive (E15); (iv) the parity and (v) the explicit formula along the meridian (E14).",
      "tag": "T",
      "source": "Thm.~\\ref{thm:hp}\\newline \\pywit{rh}{p20043}{E12}, \\leanwit{FrcCore}{p20043}{E12}, \\leanwit{FrcLedger}{p20043}{E12} \\lean{Rh.chi\\_inversion, Rh.chi\\_shift, Rh.scale\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace, Rh.readout\\_on\\_line, Rh.readout\\_slot\\_index, FRC.Rh.Ext.readout\\_on\\_line, FRC.Rh.Ext.readout\\_slot\\_index, FRC.Horizon.mode\\_expansion, FRC.Horizon.inversion\\_res}",
      "key": "p20043"
     },
     {
      "label": "E13",
-     "predicate": "The energy identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ in place of the complex norm; in the chart the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity reads $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
+     "predicate": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ in place of the complex norm; in the chart the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity reads $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
      "tag": "T",
      "source": "Thm.~\\ref{thm:hp} (ii), Rem.~\\ref{rem:parseval}\\newline \\pywit{rh}{p20044}{E13}, \\leanwit{FrcCore}{p20044}{E13}, \\leanwit{FrcLedger}{p20044}{E13} \\lean{FRC.Horizon.parseval\\_cycle, Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion}",
      "key": "p20044"
@@ -201,6 +208,13 @@
      "tag": "T",
      "source": "Thm.~\\ref{thm:hp} (iv), (v)\\newline \\pywit{rh}{p20092}{E14}, \\leanwit{FrcCore}{p20092}{E14} \\lean{FRC.Horizon.transform\\_square, FRC.Horizon.geom\\_sum\\_unit, FRC.Horizon.inversion\\_res, FRC.Horizon.explicit\\_formula\\_meridian, FRC.Horizon.explicit\\_formula\\_cycle}",
      "key": "p20092"
+    },
+    {
+     "label": "E15",
+     "predicate": "\\textbf{The drive theorem.} The drive $(Dv)(x)=v(\\gen x)$ permutes the residues, orthogonal for the pairing of E12 (i); its eigenvectors are the modes $x^{k}$ and their nonzero multiples, eigenvalue $\\gen^{k}$, the spectrum $\\Fx{\\p}$, simple, in $\\Fp$, the modes isotropic for $k\\ne0,\\pi$; the readout is minus the eigenvalue; the half-turn negates it; at a shared label both frames' modes have eigenvalue $-\\theta$ (B13).",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:drive}\\newline \\pywit{rh}{p20094}{E15}, \\leanwit{FrcCore}{p20094}{E15} \\lean{FRC.Rh.shift\\_power\\_character, FRC.Horizon.drive\\_orthogonal, FRC.Horizon.spectrum\\_simple, FRC.Horizon.readout\\_eigen, FRC.Horizon.half\\_turn\\_negates, FRC.Horizon.modes\\_isotropic}",
+     "key": "p20094"
     }
    ]
   },
@@ -250,7 +264,7 @@
    "rows": [
     {
      "label": "O9",
-     "predicate": "The open target: a finite scale coordinate on the window, respecting its order and products, under which the energy of the prime vector's modes puts the classical heights first. Data: the chart's $\\log n$ puts the five tallest peaks on $10$ to $36$ at the first five heights [chart]; the discrete logarithm of $173$, $1549$, $30\\,089$ does not, under any generator.",
+     "predicate": "The open target: a finite scale coordinate on the window, respecting its order and products, under which the intensity of the prime vector's modes puts the classical heights first. Data: the chart's $\\log n$ puts the five tallest peaks on $10$ to $36$ at the first five heights [chart]; the discrete logarithm of $173$, $1549$, $30\\,089$ does not, under any generator.",
      "tag": "O",
      "source": "\\S\\ref{sec:order}\\newline \\pywit{rh}{p20090}{O9}",
      "key": "p20090"
@@ -794,7 +808,7 @@
    {
     "name": "FRC.Horizon.invariant_lines",
     "module": "FrcCore/Theme/Zeros",
-    "line": 146,
+    "line": 151,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -877,16 +891,25 @@
    {
     "name": "FRC.Horizon.drive_on_line",
     "module": "FrcCore/Theme/Zeros",
-    "line": 105,
+    "line": 110,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "20:B12 (ii) — the drive about the centre: on the critical line the dilation `z ↦ 2⁻¹ + g (z − 2⁻¹)` carries the readout of the mode `k` to the readout of the mode `k + 1`."
    },
    {
+    "name": "FRC.Horizon.half_turn_negates",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 456,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E15 (v), 20:B12 — the half-turn of the cycle negates the eigenvalue: `g^{k+π} = −g^k`, `π = 2κ`; the labels of the critical line are the time domain read from `−1 = g^π` (Proposition line (v))."
+   },
+   {
     "name": "FRC.Horizon.reflection_on_line",
     "module": "FrcCore/Theme/Zeros",
-    "line": 114,
+    "line": 119,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -895,11 +918,11 @@
    {
     "name": "FRC.Horizon.line_energy_even",
     "module": "FrcCore/Theme/Zeros",
-    "line": 133,
+    "line": 138,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B12 (iv) — the energy on the critical line is a function of the frequency coordinate alone and is even under the half-turn: `N(z_k) = N(z_{k+π})`."
+    "doc": "20:B12 (iv) — the norm on the critical line (the paper's `N(z)`, the Hermitian form) is a function of the frequency coordinate alone and is even under the half-turn: `N(z_k) = N(z_{k+π})`; the declaration keeps its name."
    }
   ],
   "B13": [
@@ -924,7 +947,7 @@
    {
     "name": "FRC.Horizon.mode_at_label",
     "module": "FrcCore/Theme/Zeros",
-    "line": 357,
+    "line": 362,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -933,11 +956,67 @@
    {
     "name": "FRC.Horizon.line_coincidence_all",
     "module": "FrcCore/Theme/Zeros",
-    "line": 375,
+    "line": 380,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "20:B13, 20:F10 — frame coincidence on the critical line for every zero of the Subject: on two shells `p ≤ Ω` (the Subject's residues the Carrier's residues below `p`), every label `1 ≤ θ ≤ p − 2` reads back as the integer `θ` in both frames, the point `2⁻¹ + ηθ` has trace one in both with the half-turn as its real part, and it is the readout of a nontrivial mode in both: the Subject's zero at `θ` and the Carrier's zero at `θ` are one zero."
+   }
+  ],
+  "B14": [
+   {
+    "name": "FRC.Horizon.norm_ne_zero_on_line",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 505,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B14 — on the critical line the norm does not vanish when `ν` is a nonsquare: `N(z) = c² − ν θ²` with `c = 2⁻¹`, and `c² = ν θ²` forces `θ = c = 0` (`aniso_tx`), against `Tr z = 2c = 1`."
+   },
+   {
+    "name": "FRC.Horizon.cayley_norm_one",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 586,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B14 (ii) — the Cayley image of a point of nonzero norm has norm one: `N(w) = N(z)^{2(p−2)} N(z)^2 = 1`; on the critical line every point has a Cayley image on the unit circle `U_{p+1}` (`norm_ne_zero_on_line`)."
+   },
+   {
+    "name": "FRC.Horizon.cayley_centre",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 598,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B14 (iii) — the centre `2⁻¹` goes to `1`: the readout of the label `0` is the real point `2⁻¹`, of norm `4⁻¹`, and its Cayley image is `N^{p−2} · N = 1`."
+   },
+   {
+    "name": "FRC.Horizon.cayley_ne_neg_one",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 570,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B14 — the Cayley image of a point of the critical line is never `−1`: `w · (1 − z) = z` with `w = −1` reads `−1 + z = z`, so `−1 = 0`."
+   },
+   {
+    "name": "FRC.Horizon.cayley_injective",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 530,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B14 — the Cayley map is injective on the critical line: two points with one image `w` satisfy `z · (1 − z') = w · (1 − z) · (1 − z') = z' · (1 − z)`, whose coordinates reduce to `z = z'`."
+   },
+   {
+    "name": "FRC.Horizon.cayley_conj",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 618,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B14 (iv) — the conjugation becomes the inversion: the Cayley image of `z̄` is the conjugate of the Cayley image of `z`, and on the circle the conjugate is the inverse, `w · w̄ = 1`."
    }
   ],
   "E12": [
@@ -987,7 +1066,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:E1, 20:E12 — the power characters under the scale-shift (20-rh's name; the theorem is `FRC.Horizon.shift_power_character`, LM26)."
+    "doc": "20:E12, 20:E15 — the power characters under the drive, the modes its eigenvectors with eigenvalue `g^k` (20-rh's name; the theorem is `FRC.Horizon.shift_power_character`, LM26; the row 20:E1 that first cited it is retired)."
    },
    {
     "name": "FRC.Rh.shift_trace",
@@ -1054,7 +1133,7 @@
    {
     "name": "FRC.Horizon.inversion_res",
     "module": "FrcCore/Theme/Zeros",
-    "line": 264,
+    "line": 269,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1065,11 +1144,11 @@
    {
     "name": "FRC.Horizon.parseval_cycle",
     "module": "FrcCore/Theme/Zeros",
-    "line": 46,
+    "line": 51,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:E12 (ii), 20:E13 — the energy identity on the cycle: `Σ_{k<n} v̂(k) c_k = Σ_{l<n} v_l²` with `c_k = −v̂(−k)` the mode coefficient, that is `Σ_k v̂(k) v̂(−k) = −Σ_l v_l²`: the finite Parseval identity of the cycle, the self-pairing `−1` of the power characters in place of the complex norm."
+    "doc": "20:E12 (ii), 20:E13 — the Parseval identity on the cycle: `Σ_{k<n} v̂(k) c_k = Σ_{l<n} v_l²` with `c_k = −v̂(−k)` the mode coefficient, that is `Σ_k v̂(k) v̂(−k) = −Σ_l v_l²`: the finite Parseval identity of the cycle, the self-pairing `−1` of the power characters in place of the complex norm."
    },
    {
     "name": "FRC.Rh.chi_orthogonal",
@@ -1115,7 +1194,7 @@
    {
     "name": "FRC.Horizon.transform_square",
     "module": "FrcCore/Theme/Zeros",
-    "line": 89,
+    "line": 94,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1124,7 +1203,7 @@
    {
     "name": "FRC.Horizon.geom_sum_unit",
     "module": "FrcCore/Theme/Zeros",
-    "line": 240,
+    "line": 245,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1133,7 +1212,7 @@
    {
     "name": "FRC.Horizon.inversion_res",
     "module": "FrcCore/Theme/Zeros",
-    "line": 264,
+    "line": 269,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1142,7 +1221,7 @@
    {
     "name": "FRC.Horizon.explicit_formula_meridian",
     "module": "FrcCore/Theme/Zeros",
-    "line": 334,
+    "line": 339,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1151,11 +1230,67 @@
    {
     "name": "FRC.Horizon.explicit_formula_cycle",
     "module": "FrcCore/Theme/Zeros",
-    "line": 75,
+    "line": 80,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "20:E14, 20:E12 (v) — the explicit formula on the cycle: the count of `v` over the first `x` points of the cycle is the mode sum, `Σ_{j<x} v_j = Σ_{k<n} c_k S_k(x)` with `S_k(x) = Σ_{j<x} (g^j)^k` the cumulative read of the mode `k`, and the constant mode's read is the main term, `S_0(x) = x`."
+   }
+  ],
+  "E15": [
+   {
+    "name": "FRC.Rh.shift_power_character",
+    "module": "FrcCore/Rh",
+    "line": 106,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E12, 20:E15 — the power characters under the drive, the modes its eigenvectors with eigenvalue `g^k` (20-rh's name; the theorem is `FRC.Horizon.shift_power_character`, LM26; the row 20:E1 that first cited it is retired)."
+   },
+   {
+    "name": "FRC.Horizon.drive_orthogonal",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 418,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E15 (i) — the drive is orthogonal for the pairing `⟨v, w⟩ = Σ_{l<n} v_l w_l` of the cycle: with the vectors read on the phases (`v_l` the value at `g^l`), the drive `x ↦ g x` is `(Dv)_l = v_{l+1}` and its inverse `(D⁻¹w)_l = w_{l−1}`, and `⟨Dv, w⟩ = ⟨v, D⁻¹w⟩`; `n = p − 1`, the indices mod `n`."
+   },
+   {
+    "name": "FRC.Horizon.spectrum_simple",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 446,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E15 (ii) — the spectrum of the drive is simple: the eigenvalues `g^0, …, g^{n−1}` of the `n` modes are distinct (`pow_inj`, 26:B3); with `shift_power_character` (the modes are eigenvectors, `D x^k = g^k x^k`) the spectrum is the `n = p − 1` nonzero residues, each once."
+   },
+   {
+    "name": "FRC.Horizon.readout_eigen",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 452,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E15 (iv) — the readout is the spectral map: the mode `k` is read on the critical line at the label `−g^k`, minus its eigenvalue under the drive."
+   },
+   {
+    "name": "FRC.Horizon.half_turn_negates",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 456,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E15 (v), 20:B12 — the half-turn of the cycle negates the eigenvalue: `g^{k+π} = −g^k`, `π = 2κ`; the labels of the critical line are the time domain read from `−1 = g^π` (Proposition line (v))."
+   },
+   {
+    "name": "FRC.Horizon.modes_isotropic",
+    "module": "FrcCore/Theme/Zeros",
+    "line": 483,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E15 (iii) — the modes are isotropic for the pairing: the self-pairing of the mode `k`, `Σ_{l<n} (g^l)^k (g^l)^k = Σ_{l<n} (g^{2k})^l`, vanishes when `g^{2k} ≠ 1` (`mode_square_ne_one`: every mode but `0` and `π`); so the reality of the spectrum is not a consequence of the orthogonality, it is the drive being a scaling by a residue."
    }
   ],
   "F7": [
@@ -1182,7 +1317,7 @@
    {
     "name": "FRC.Horizon.invariant_lines",
     "module": "FrcCore/Theme/Zeros",
-    "line": 146,
+    "line": 151,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1191,7 +1326,7 @@
    {
     "name": "FRC.Horizon.off_line_unregistered",
     "module": "FrcCore/Theme/Zeros",
-    "line": 211,
+    "line": 216,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1200,7 +1335,7 @@
    {
     "name": "FRC.Horizon.line_coincidence_all",
     "module": "FrcCore/Theme/Zeros",
-    "line": 375,
+    "line": 380,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1209,7 +1344,7 @@
    {
     "name": "FRC.Horizon.mode_at_label",
     "module": "FrcCore/Theme/Zeros",
-    "line": 357,
+    "line": 362,
     "axioms": [],
     "tier": 0,
     "ok": true,

@@ -7,19 +7,19 @@ Turing's count and certificate, the resonance) are gone with the rows they witne
 the paper.
 ========================================================================================================================
 
-Three blocks, 96 checks — 80 EXACT (integer-pinned: a pass is a proof on the tested instances), 5 [approx] (a floating-point
+Three blocks, 107 checks — 91 EXACT (integer-pinned: a pass is a proof on the tested instances), 5 [approx] (a floating-point
 reading of the chart's characters to a stated tolerance), 11 [chart] (a continuum reading of a finite object; notation.tex
-convention 6) — Python with numpy and matplotlib (the paper's two figures are redrawn into figures/paper/ as the blocks run).
+convention 6) — Python with numpy and matplotlib (the paper's two drawn figures are redrawn into figures/paper/ as the blocks run; Figure 1 is the dimensions paper's).
 Each check names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 20:XN), and the deciding
 check's `# 20:XN (<key>)` marker is what the ledger's source column links (PREDICATES; finitering.space/src/20-rh/#<key>).
 Master-ledger predicates reached through the paper's rows: 00:A2 (Finitude, 20:A2), 00:A3 (Completeness, 20:A3) and 00:A4
 (Observation, 20:A4).
 
-Block A  the shell, in exact arithmetic (EXACT, one [approx]; 20:A2, A3, A4, B1, B2, B4–B6, B8–B10, B12, B13, E12–E14, F7, F10, O9):
+Block A  the shell, in exact arithmetic (EXACT, one [approx]; 20:A2, A3, A4, B1, B2, B4–B6, B8–B10, B12–B14, E12–E15, F7, F10, O9):
          the zero-slot, slot complementarity, the Hermitian phase calculus, the critical line, the two agreement loci among all
-         affine lines, the Subject constants, the shell theorem's five clauses on random vectors, the energy identity, the
-         critical line as the frequency domain, frame coincidence below the horizon and on the line, no zero off the line, the
-         closure, completeness, and the generators that do not order the window
+         affine lines, the Subject constants, the shell theorem's five clauses on random vectors, the Parseval identity, the
+         critical line as the energy domain, frame coincidence below the horizon and on the line, no zero off the line, the
+         closure, completeness, the generators that do not order the window, the drive theorem and the circle
 Block B  the chart ([chart]; 20:B8, F9, O9): the de-framing limit, the exhibit on the windows of depth 13, 39 and 173, the
          pair agreement on (173, 30089) and (1549, 2408561), and the labels read in the cycle's own scale coordinate
 Block C  the chart at depth ([chart]; 20:F9): the window of depth 10⁶ and the first ten heights; the figure fig_primespec
@@ -50,12 +50,12 @@ RESULTS = []
 LEDGER = {
     "A1": "20:B4", "A2": "20:B5", "A3": "20:B6", "A4": "20:B8", "A5": "20:B9", "A6": "20:B10", "A6b": "20:B10",
     "A7": "20:E12, 20:E14", "A7b": "20:E13", "A10": "20:B1", "A11": "20:B2", "A12": "20:A2, 20:A4, 20:F7", "A13": "20:A3",
-    "A14": "20:E13", "A15": "20:B12", "A16": "20:B13", "A17": "20:O9", "A18": "20:F10, 20:B9, 20:B13",
+    "A14": "20:E13", "A15": "20:B12", "A16": "20:B13", "A17": "20:O9", "A18": "20:F10, 20:B9, 20:B13", "A19": "20:E15", "A20": "20:B14",
     "B3": "20:B8", "B5": "20:F9", "B6": "20:F9", "B8": "20:O9",
     "C1": "20:F9",
 }
 
-BLOCK = {"A": "the shell, in exact arithmetic: the zero-slot, the critical line, the agreement loci, the shell theorem, the energy identity, the frequency domain, frame coincidence, the closure, completeness, the window's order",
+BLOCK = {"A": "the shell, in exact arithmetic: the zero-slot, the critical line, the agreement loci, the shell theorem, the Parseval identity, the energy domain, frame coincidence, the closure, completeness, the window's order, the drive theorem, the circle",
          "B": "the chart: the de-framing limit, the exhibit on the windows 13, 39, 173, the pair agreement, the cycle's own scale coordinate",
          "C": "the chart at depth: the window of depth 10⁶ and the first ten heights; the figure fig_primespec"}
 
@@ -64,7 +64,7 @@ BLOCK = {"A": "the shell, in exact arithmetic: the zero-slot, the critical line,
 PREDICATES = {
     "20:B1": "A10", "20:B2": "A11", "20:B4": "A1", "20:B5": "A2", "20:B6": "A3", "20:B8": "A4", "20:B9": "A5", "20:B10": "A6",
     "20:B12": "A15", "20:B13": "A16", "20:A2": "A12", "20:A3": "A13", "20:A4": "A12", "20:F7": "A12",
-    "20:E12": "A7", "20:E13": "A14", "20:E14": "A7", "20:F9": "B5", "20:O9": "A17", "20:F10": "A18",
+    "20:E12": "A7", "20:E13": "A14", "20:E14": "A7", "20:F9": "B5", "20:O9": "A17", "20:F10": "A18", "20:E15": "A19", "20:B14": "A20",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
 
@@ -215,7 +215,7 @@ def mangoldt(N):
     return np.array(ns, dtype=float), np.array(ls)
 
 def energy(H, gammas):
-    """The exhibit's modulus |Σ_{n≤H} Λ(n)(1 − log n/log H) n^{−1/2−iγ}|, the square root of the energy, along the chart's height γ [chart]."""
+    """The exhibit's modulus |Σ_{n≤H} Λ(n)(1 − log n/log H) n^{−1/2−iγ}|, the square root of the intensity, along the chart's height γ [chart]."""
     n, lam = mangoldt(H)
     w = lam * (1 - np.log(n) / np.log(H)) * n ** -0.5
     ln = np.log(n)
@@ -225,7 +225,7 @@ def energy(H, gammas):
     return out
 
 def peaks(H, lo, hi, step=0.02):
-    """The local maxima of the window's energy on [lo, hi] at the grid step, as (γ, energy), tallest first."""
+    """The local maxima of the window's intensity on [lo, hi] at the grid step, as (γ, intensity), tallest first."""
     gam = np.arange(lo, hi + step / 2, step)
     e = energy(H, gam)
     pk = [(float(gam[i]), float(e[i])) for i in range(1, len(gam) - 1) if e[i] > e[i - 1] and e[i] > e[i + 1]]
@@ -258,7 +258,7 @@ def _save(fig, name):
     print(f"    wrote {FIGDIR}/paper/{name}.pdf")
 
 def figure_primespec():
-    """fig_primespec: (a) the energy of the windows 13, 39, 173 along the chart's scale; (b) depth 10⁶ (Obs. exhibit) [chart]."""
+    """fig_primespec: (a) the intensity of the windows 13, 39, 173 along the chart's scale; (b) depth 10⁶ (Obs. exhibit) [chart]."""
     gam = np.arange(10, 52, 0.02)
     with plt.rc_context(PAPER_RC):
         fig, axes = plt.subplots(2, 1, figsize=(TEXTWIDTH_IN, 4.2), gridspec_kw={"height_ratios": [1.2, 1]})
@@ -285,103 +285,85 @@ def figure_primespec():
         fig.tight_layout(h_pad=1.0)
         _save(fig, "fig_primespec")
 
-def figure_line_latitude():
-    """fig_line_latitude: the critical line is the frequency latitude, on F_13 (κ = 3, g = 2, η² = 2; Prop. line)."""
-    p, kap, g = 13, 3, 2
-    n, pi_ = p - 1, 6
-    theta = [(-pow(g, k, p)) % p for k in range(n)]          # the readout of the mode k
+def figure_plane():
+    """fig_plane: the critical line is the energy domain, on F_13 (κ = 3, g = 2, η² = 2; Prop. line, Thm. drive). (a) The framed
+    plane K as the 13×13 lattice a + bη with the real line and the critical line, the modes at their labels θ_k = −2^k, one
+    conjugation pair, the first steps of the drive about the centre, a point off both lines with its two images; (b) the time
+    domain as a cycle, the residues by scale, coloured by phase; (c) the critical line in the drive's order with the same
+    residues in the same colours, θ_k = L_1(k + π)."""
+    p, kap, g, nu = 13, 3, 2, 2
+    n, pi_, half = p - 1, 6, 7
+    theta = [(-pow(g, k, p)) % p for k in range(n)]              # the readout of the mode k: minus its eigenvalue
+    scales = [pow(g, m, p) for m in range(n)]                    # the time domain in the drive's order: 1, 2, 4, 8, 3, 6, 12, ...
+    assert all(theta[k] == scales[(k + pi_) % n] for k in range(n))
     with plt.rc_context(PAPER_RC):
-        _draw_line_latitude(p, kap, g, n, pi_, theta)
+        _draw_plane(p, g, nu, n, pi_, half, theta, scales)
 
-def _draw_line_latitude(p, kap, g, n, pi_, theta):
-    fig, axes = plt.subplots(1, 3, figsize=(TEXTWIDTH_IN, 2.35), gridspec_kw={"width_ratios": [1.05, 1.05, 0.9]})
-    plt.subplots_adjust(wspace=0.18, left=0.01, right=0.99, top=0.93, bottom=0.12)
-    F = {"big": 8, "mid": 7, "small": 6, "tiny": 5.2}
-    # (a) the orbital shell, orthographic, tilted toward the viewer
-    ax = axes[0]; ax.set_aspect("equal"); ax.axis("off")
-    tilt, az = np.radians(22), np.radians(-38)
-    def proj(x, y, z):
-        x, y = x * np.cos(az) - y * np.sin(az), x * np.sin(az) + y * np.cos(az)
-        y2 = y * np.cos(tilt) - z * np.sin(tilt)
-        z2 = y * np.sin(tilt) + z * np.cos(tilt)
-        return x, z2, y2
-    def draw_curve(pts, color, lw=2.2):
-        X, Y, D = proj(*pts)
-        vis = D >= 0
-        for mask, style, alpha in ((vis, "-", 1.0), (~vis, "--", 0.45)):
-            idx = np.where(mask)[0]
-            if len(idx) == 0: continue
-            for r in np.split(idx, np.where(np.diff(idx) > 1)[0] + 1):
-                ax.plot(X[r], Y[r], style, color=color, lw=lw, alpha=alpha, solid_capstyle="round")
-    t = np.linspace(0, 2 * np.pi, 400)
-    ax.add_patch(plt.Circle((0, 0), 1, fill=True, fc="#f4f7fb", ec="#c9ced6", lw=1.2))
-    for pa in np.radians([30, 60, 90, 120, 150]):
-        r = np.sin(pa); zc = np.cos(pa)
-        draw_curve((r * np.cos(t), r * np.sin(t), zc * np.ones_like(t)), "#d5d9e0", lw=0.7)
-    for lon in np.radians([30, 60, 120, 150]):
-        draw_curve((np.sin(t) * np.cos(lon), np.sin(t) * np.sin(lon), np.cos(t)), "#d5d9e0", lw=0.7)
-    draw_curve((np.sin(t), np.zeros_like(t), np.cos(t)), BLUE)
-    draw_curve((np.zeros_like(t), np.sin(t), np.cos(t)), RED)
-    for depth, color in ((1, GREEN), (kap + 1, PURPLE)):
-        pa = depth / pi_ * np.pi; r = np.sin(pa); zc = np.cos(pa)
-        draw_curve((r * np.cos(t), r * np.sin(t), zc * np.ones_like(t)), color, lw=2.6)
-    pa = (kap + 1) / pi_ * np.pi
+def _draw_plane(p, g, nu, n, pi_, half, theta, scales):
+    from matplotlib import cm
+    col = lambda m: cm.twilight(((m % n) + 0.5) / n)            # one colour per phase m on the time domain
+    dark = lambda m: 3 <= (m % n) <= 8
+    fig = plt.figure(figsize=(TEXTWIDTH_IN, 4.0))                     # (a) square at 0.6 text width, (b) and (c) stacked at its right
+    gs = fig.add_gridspec(2, 2, width_ratios=[1.55, 1], wspace=0.02, hspace=0.04, left=0.005, right=0.995, top=0.985, bottom=0.015)
+    axa, axb, axc = fig.add_subplot(gs[:, 0]), fig.add_subplot(gs[0, 1]), fig.add_subplot(gs[1, 1])
+    F = {"big": 8.5, "mid": 7.5, "small": 7, "tiny": 6.5}
+    box = dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.88)          # the annotations of (a) sit on the lattice
+    # (a) the framed plane K = F_13(η): the lattice, the real line with the window, the critical line with the modes
+    for a in range(p):
+        for b in range(p): axa.plot(a, b, "o", ms=2.0, color="#cfd4dc", zorder=1)
+    axa.plot([0, 0], [-0.3, p - 0.7], ls=(0, (2, 2)), color=GREY, lw=0.7, zorder=2)
+    axa.plot([-0.3, p - 0.7], [0, 0], color=BLUE, lw=1.6, zorder=3)
+    axa.plot([half, half], [-0.3, p - 0.7], color=PURPLE, lw=1.6, zorder=3)
+    for a in range(p): axa.plot(a, 0, "o", ms=3.6, color=BLUE, zorder=4)
+    axa.add_patch(plt.Rectangle((0.6, -0.42), 2.8, 0.84, color="#dbe7fb", zorder=0))
+    for q in (2, 3): axa.plot(q, 0, "o", ms=6, mfc="none", mec=BLUE, mew=1.1, zorder=5)
+    axa.text(2.0, -0.95, r"window $n\leq\sqrt{13}$: the primes 2, 3", color=BLUE, ha="center", fontsize=F["small"])
     for k in range(n):
-        ang = 2 * np.pi * k / n + np.pi / 2
-        X, Y, D = proj(np.sin(pa) * np.cos(ang), np.sin(pa) * np.sin(ang), np.cos(pa))
-        ax.plot(X, Y, "o", color=PURPLE, ms=6 if D >= 0 else 4, alpha=1 if D >= 0 else 0.4, zorder=5)
-        if D >= 0:
-            ax.annotate(str(k), (X, Y), xytext=(0, -8), textcoords="offset points", ha="center", fontsize=F["tiny"], color=PURPLE)
-    Xn, Yn, _ = proj(0, 0, 1); Xs, Ys, _ = proj(0, 0, -1)
-    ax.plot(Xn, Yn, "o", color=INK, ms=4, zorder=6); ax.plot(Xs, Ys, "o", color=INK, ms=4, zorder=6)
-    ax.annotate("0", (Xn, Yn), xytext=(0, 5), textcoords="offset points", ha="center", fontsize=F["big"], fontweight="bold")
-    ax.annotate(r"$2^{-1}=-\pi$", (Xs, Ys), xytext=(0, -11), textcoords="offset points", ha="center", fontsize=F["mid"], fontweight="bold")
-    ax.text(0.78, 0.45, "space", color=BLUE, fontsize=F["mid"], fontweight="bold")
-    ax.text(-0.5, 0.52, "wavenumber", color=RED, fontsize=F["mid"], fontweight="bold", ha="right")
-    ax.text(0.34, 0.9, "time", color=GREEN, fontsize=F["mid"], fontweight="bold")
-    ax.text(0.86, -0.78, "frequency\n" + r"$L_{\kappa+1}$", color=PURPLE, fontsize=F["mid"], fontweight="bold")
-    ax.set_xlim(-1.35, 1.35); ax.set_ylim(-1.3, 1.25)
-    panel_letter(ax, "(a)", x=0.06, y=0.97)
-    # (b) seen from the antipode: the centre and the twelve modes
-    ax = axes[1]; ax.set_aspect("equal"); ax.axis("off")
-    ax.add_patch(plt.Circle((0, 0), 1.0, fill=False, ec=PURPLE, lw=1.6))
-    ax.plot(0, 0, "o", color=INK, ms=5, zorder=6)
-    ax.annotate(r"$2^{-1}$: the centre, no mode", (0, 0), xytext=(-6, 5), textcoords="offset points", fontsize=F["small"], ha="right")
+        axa.plot(half, theta[k], "o", ms=4.8, color=PURPLE, zorder=5)
+        axa.text(half + 0.3, theta[k] - 0.1, f"$k={k}$", color=PURPLE, fontsize=F["small"], va="center")
+    axa.plot(half, 0, "o", ms=5.2, color=INK, zorder=6)
+    axa.text(half + 0.3, -0.85, r"$2^{-1}=7$, the centre", color=INK, fontsize=F["small"])
+    axa.text(half - 0.35, p - 0.45, r"$L_{1/2}=\{z: z+z^{13}=1\}$", color=PURPLE, ha="right", va="top", fontsize=F["small"], bbox=box, zorder=7)
+    axa.text(p - 0.6, 0.45, r"$\mathbb{F}_{13}$, the real line", color=BLUE, ha="right", fontsize=F["small"])
+    axa.text(-0.75, p - 0.6, r"$\eta\,\mathbb{F}_{13}$", color=GREY, fontsize=F["tiny"])
+    axa.add_patch(FancyArrowPatch((half - 0.2, theta[0]), (half - 0.2, theta[pi_]), connectionstyle="arc3,rad=0.14", arrowstyle="<->", mutation_scale=7, color=PURPLE, lw=0.8, zorder=6))
+    axa.text(3.0, 3.6, "the conjugation $z\\mapsto z^{13}$\nand the half-turn $z\\mapsto 1-z$:\n$k\\mapsto k+6$ on the line", color=PURPLE, fontsize=F["tiny"], ha="center", va="top", bbox=box, zorder=7)
+    for k in range(3):
+        axa.add_patch(FancyArrowPatch((half - 0.1, theta[k]), (half - 0.1, theta[k + 1]), connectionstyle="arc3,rad=0.22", arrowstyle="->", mutation_scale=6, color=PURPLE, lw=0.7, zorder=4))
+    axa.text(half + 2.1, 12.3, "the drive about the centre,\n$\\theta\\mapsto 2\\theta$: $k\\mapsto k+1$", color=PURPLE, fontsize=F["tiny"], va="top", bbox=box, zorder=7)
+    za = (1, 4); zc = (za[0], (-za[1]) % p); zh = ((1 - za[0]) % p, (-za[1]) % p)       # a point off both lines, its conjugate and its half-turn image
+    assert zc == (1, 9) and zh == (0, 9)
+    axa.plot(*za, "s", ms=4, color=GREY, zorder=5); axa.plot(*zc, "s", ms=4, mfc="none", mec=GREY, zorder=5); axa.plot(*zh, "s", ms=4, mfc="none", mec=GREY, zorder=5)
+    axa.add_patch(FancyArrowPatch((za[0], za[1] + 0.3), (zc[0], zc[1] - 0.3), arrowstyle="->", mutation_scale=6, color=GREY, lw=0.7, zorder=4))
+    axa.add_patch(FancyArrowPatch((za[0] - 0.15, za[1] + 0.25), (zh[0] + 0.1, zh[1] - 0.3), connectionstyle="arc3,rad=0.25", arrowstyle="->", mutation_scale=6, color=GREY, lw=0.7, zorder=4))
+    axa.text(0.3, 11.6, "a point off both lines,\nwith its conjugate and its\nhalf-turn image: on no\nline kept by both", color=GREY, fontsize=F["tiny"], va="top", bbox=box, zorder=7)
+    axa.set_xlim(-1.2, p + 0.2); axa.set_ylim(-1.4, p - 0.2); axa.set_aspect("equal"); axa.axis("off")
+    panel_letter(axa, "(a)", x=0.01, y=0.99)
+    # (b) the time domain as a cycle: the residues by scale, each with the colour of its phase m
+    ang = lambda m: np.pi / 2 - 2 * np.pi * m / n
+    axb.add_patch(plt.Circle((0, 0), 1, fill=False, color=GREEN, lw=1.3, zorder=2))
+    for m, x in enumerate(scales):
+        axb.plot(np.cos(ang(m)), np.sin(ang(m)), "o", ms=11, color=col(m), mec=INK, mew=0.5, zorder=5)
+        axb.text(np.cos(ang(m)), np.sin(ang(m)), str(x), ha="center", va="center", fontsize=F["small"], color="white" if dark(m) else INK, zorder=6)
+        axb.text(1.4 * np.cos(ang(m)), 1.4 * np.sin(ang(m)), f"$m={m}$", ha="center", va="center", fontsize=F["tiny"], color=GREY)
+    axb.plot(0, 0, "o", ms=3.5, color=INK, zorder=5); axb.text(0.1, 0.04, "0", fontsize=F["small"])
+    axb.annotate("", xy=(np.cos(ang(1)), np.sin(ang(1))), xytext=(np.cos(ang(0.4)), np.sin(ang(0.4))), arrowprops=dict(arrowstyle="->", color=GREEN, lw=1.2))
+    axb.text(0, 1.62, "the time domain $L_1=\\{2^m\\}$", color=GREEN, fontsize=F["tiny"], ha="center")
+    axb.set_xlim(-1.85, 1.85); axb.set_ylim(-1.7, 1.85); axb.set_aspect("equal"); axb.axis("off")
+    panel_letter(axb, "(b)", x=0.02, y=1.0)
+    # (c) the critical line in the drive's order: the same residues as labels, in the same colours, θ_k = L_1(k + π)
+    axc.add_patch(plt.Circle((0, 0), 1, fill=False, color=PURPLE, lw=1.3, zorder=2))
     for k in range(n):
-        ang = 2 * np.pi * k / n + np.pi / 2
-        x, y = np.cos(ang), np.sin(ang)
-        hi = k in (0, pi_)
-        ax.plot(x, y, "o", color=PURPLE, ms=5.5 if hi else 4.2, mec=INK if hi else PURPLE, zorder=5)
-        ax.text(1.22 * x, 1.22 * y, f"k={k}", ha="center", va="center", fontsize=F["small"], color=PURPLE)
-        ax.text(0.76 * x, 0.76 * y, rf"$\theta={theta[k]}$", ha="center", va="center", fontsize=F["tiny"], color=GREY)
-    a1, a2 = 2 * np.pi * 1 / n + np.pi / 2, 2 * np.pi * 2 / n + np.pi / 2
-    arc = np.linspace(a1 + 0.12, a2 - 0.12, 30)
-    ax.plot(1.08 * np.cos(arc), 1.08 * np.sin(arc), color=GREEN, lw=1.2)
-    ax.add_patch(FancyArrowPatch((1.08 * np.cos(arc[-2]), 1.08 * np.sin(arc[-2])), (1.08 * np.cos(arc[-1]), 1.08 * np.sin(arc[-1])),
-                                 arrowstyle="-|>", mutation_scale=9, color=GREEN, lw=1.2))
-    ax.text(-0.02, 1.4, r"drive $x\mapsto gx$: $k\mapsto k+1$", color=GREEN, fontsize=F["small"], ha="center")
-    ax.plot([0, 0], [1, -1], "--", color=RED, lw=1.0, alpha=0.8)
-    ax.text(0, -1.33, r"half-turn $1-z$ and conjugation $z^{p}$: $k\mapsto k+\pi$", color=RED, fontsize=F["small"], ha="center")
-    ax.text(0, -1.52, r"$L_{1/2}=\{2^{-1}+\eta\theta\}$: the centre and $p-1$ modes, $\theta=-g^{k}$", fontsize=F["small"], ha="center")
-    ax.set_xlim(-1.55, 1.55); ax.set_ylim(-1.65, 1.55)
-    panel_letter(ax, "(b)", x=0.04, y=0.97)
-    # (c) the chart
-    ax = axes[2]
-    ax.axvspan(0, 1, color="#f4f7fb")
-    ax.axvline(0.5, color=PURPLE, lw=2.2)
-    ax.axhline(0, color="#c9ced6", lw=0.8)
-    ax.plot(0.5, 0, "o", color=INK, ms=5, zorder=6)
-    ax.annotate(r"$2^{-1}/p$, read as $1/2$", (0.5, 0), xytext=(6, -3), textcoords="offset points", fontsize=F["small"])
-    for h in HEIGHTS[:5]:                       # the heights as ticks on the line (the chart's marks, not the shell's modes)
-        for s in (1, -1):
-            ax.hlines(s * h, 0.46, 0.54, color=PURPLE, lw=1.2, zorder=5)
-        ax.annotate(f"{h:.1f}", (0.5, h), xytext=(6, -2), textcoords="offset points", fontsize=F["small"], color=PURPLE)
-    ax.set_xlim(-0.2, 1.2); ax.set_ylim(-38, 38)
-    ax.set_xlabel(r"$\mathrm{Re}\,s$"); ax.set_ylabel(r"$\mathrm{Im}\,s=\gamma$")
-    ax.set_xticks([0, 0.5, 1]); ax.spines[["top", "right"]].set_visible(False)
-    ax.text(0.56, -35, "[chart]", fontsize=F["small"], color=GREY)
-    panel_letter(ax, "(c)", x=-0.12, y=1.0)
-    _save(fig, "fig_line_latitude")
+        m = (k + pi_) % n
+        axc.plot(np.cos(ang(k)), np.sin(ang(k)), "o", ms=11, color=col(m), mec=INK, mew=0.5, zorder=5)
+        axc.text(np.cos(ang(k)), np.sin(ang(k)), str(theta[k]), ha="center", va="center", fontsize=F["small"], color="white" if dark(m) else INK, zorder=6)
+        axc.text(1.4 * np.cos(ang(k)), 1.4 * np.sin(ang(k)), f"$k={k}$", ha="center", va="center", fontsize=F["tiny"], color=PURPLE)
+    axc.plot(0, 0, "o", ms=3.5, color=INK, zorder=5); axc.text(0.1, 0.04, "$2^{-1}$", fontsize=F["small"])
+    axc.annotate("", xy=(np.cos(ang(1)), np.sin(ang(1))), xytext=(np.cos(ang(0.4)), np.sin(ang(0.4))), arrowprops=dict(arrowstyle="->", color=PURPLE, lw=1.2))
+    axc.text(0, 1.62, "the labels $\\theta_k=-2^k=L_1(k+6)$", color=PURPLE, fontsize=F["tiny"], ha="center")
+    axc.set_xlim(-1.85, 1.85); axc.set_ylim(-1.7, 1.85); axc.set_aspect("equal"); axc.axis("off")
+    panel_letter(axc, "(c)", x=0.02, y=1.0)
+    _save(fig, "fig_plane")
 
 # ======================================================================================================================
 # block A — the shell, in exact arithmetic
@@ -389,7 +371,7 @@ def _draw_line_latitude(p, kap, g, n, pi_, theta):
 # (13, 233), (173, 30089), (1549, 2408561) for frame coincidence, the closure and completeness. The generator g is the least
 # primitive root, η² = ν the least nonresidue, as in the paper.
 def block_A():
-    """Block A — the shell, in exact arithmetic: 85 checks, 80 EXACT and 5 [approx] readings of the chart's characters (A7b, one per shell)."""
+    """Block A — the shell, in exact arithmetic: 96 checks, 91 EXACT and 5 [approx] readings of the chart's characters (A7b, one per shell)."""
     print("\n== block A: the shell ==")
     for p in SHELLS + [BIG]:
         g, nu = generator(p), nonresidue(p)
@@ -423,7 +405,7 @@ def block_A():
         check("A4", f"finite critical line on F_{p}: Tr z = 1 ⟺ z = 2⁻¹ + bη, |L| = p, N = ¼ − νb²", ok,
               f"ν={nu}, 2⁻¹={inv2}")
         # A7 the shell theorem (Thm. hp) on F_p, every clause in F_p: (i) the dual inverts, the constant mode the mean term;
-        # (iii) S x^k = g^k x^k on the power characters, Tr S^r = (p−1)[(p−1)|r]; (iv) W² = −J, F² = J, F⁴ = 1 for W_mk = g^mk,
+        # (iii) D x^k = g^k x^k on the power characters (the drive D : x ↦ g x), Tr D^r = (p−1)[(p−1)|r]; (iv) W² = −J, F² = J, F⁴ = 1 for W_mk = g^mk,
         # F = iW; (v) the explicit formula along the meridian, Σ_{y≤x} v(y) = −Σ_k v̂(k) S_k(x), S_0(x) = x; three random vectors
         vecs = random_vectors(p, 3, seed=20 * p)
         ok_i = ok_v = True
@@ -444,9 +426,9 @@ def block_A():
         F2 = (i_ * i_ * W2) % p                              # F = iW: F² = i² W²
         ok_iv = np.array_equal(W2, (-J) % p) and np.array_equal(F2, J) and np.array_equal((F2 @ F2) % p, np.eye(n_, dtype=np.int64))
         # 20:E12 (p20043), 20:E14 (p20092)
-        check("A7", f"the shell theorem on F_{p}: (i) the dual inverts, v(y) = −Σ v̂(k) y^−k, v̂(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p−1)[(p−1)|r]; (iv) W² = −J, F² = J, F⁴ = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+        check("A7", f"the shell theorem on F_{p}: (i) the dual inverts, v(y) = −Σ v̂(k) y^−k, v̂(0) the mean term; (iii) D x^k = g^k x^k, Tr D^r = (p−1)[(p−1)|r]; (iv) W² = −J, F² = J, F⁴ = 1; (v) the explicit formula along the meridian, S_0(x) = x",
               ok_i and ok_fp and ok_tr and ok_iv and ok_v, f"three random vectors; W of order {n_}")
-        # A14 the energy identity (Thm. hp (ii)): Σ_k v̂(k) v̂(−k) = −Σ_x v(x)² in F_p, on random vectors and on the prime-power
+        # A14 the Parseval identity (Thm. hp (ii)): Σ_k v̂(k) v̂(−k) = −Σ_x v(x)² in F_p, on random vectors and on the prime-power
         # indicator of the whole shell (the window's prime vector of Def. vector is its restriction below √p; the identity holds for every vector)
         prime_vec = [0] + [1 if is_prime(x) or (len(prime_factors(x)) == 1 and x > 1) else 0 for x in range(1, p)]
         ok = True
@@ -454,7 +436,7 @@ def block_A():
             vh = dual(v, p)
             ok &= sum(vh[k] * vh[(-k) % (p - 1)] for k in range(p - 1)) % p == (-sum(x * x for x in v)) % p
         # 20:E13 (p20044)
-        check("A14", f"the energy identity on F_{p}: Σ_k v̂(k) v̂(−k) = −Σ_x v(x)² for three random vectors and the prime-power indicator of the shell", ok,
+        check("A14", f"the Parseval identity on F_{p}: Σ_k v̂(k) v̂(−k) = −Σ_x v(x)² for three random vectors and the prime-power indicator of the shell", ok,
               f"prime-power indicator: {sum(prime_vec)} labels")
         if p == BIG:
             continue
@@ -492,8 +474,9 @@ def block_A():
         # 20:B9 (p20016)
         check("A5", f"the two agreement loci on F_{p}²: of the {p * (p + 1)} affine lines, φ keeps {p + 1}, ρ keeps {p + 1}, both keep exactly F_p and L_1/2; Klein four-group: Fix φ = F_p, Fix σ = L_1/2, Fix ρ = {{2⁻¹}}",
               ok_lines and ok_klein, f"both: {both}")
-        # A7b the chart's reading of the energy identity (Rem. parseval) [approx]: the complex characters χ_j(n) = ω^{jλ(n)} on
-        # ℓ²(F_p^×) are orthogonal with ‖χ_j‖² = p−1, the dual inverts, and Σ_j |v̂_C(j)|² = (p−1) Σ |v|²; S χ_j = ω^j χ_j
+        # A7b the chart's reading of the Parseval identity (Rem. parseval) [approx]: the complex characters χ_j(n) = ω^{jλ(n)} on
+        # ℓ²(F_p^×) are orthogonal with ‖χ_j‖² = p−1, the dual inverts, and Σ_j |v̂_C(j)|² = (p−1) Σ |v|²; D χ_j = ω^j χ_j, the
+        # drive's chart a unitary permutation matrix whose eigenvalues are the (p−1)-th roots of unity (Rem. chart-operator)
         lam = {}
         for n in range(1, p):
             base = prime_factors(n)
@@ -509,8 +492,11 @@ def block_A():
         ok_inv = np.allclose((chi.conj().T @ vc).real / (p - 1), v, atol=1e-10)
         shifted = lambda j: np.array([w ** (j * dlog[(g * n) % p]) for n in range(1, p)])   # (S χ_j)(n) = χ_j(g n)
         ok_c = all(np.allclose(shifted(j), w ** j * chi[j]) for j in range(p - 1))
-        check("A7b", f"the chart's characters on ℓ²(F_{p}^×): χ_j orthogonal with ‖χ_j‖² = p−1, Σ_j|v̂(j)|² = (p−1)Σ|v|² for v = Λ, the dual inverts; Sχ_j = ω^j χ_j",
-              ok_orth and ok_par and ok_inv and ok_c, f"Σ|v̂|²/(p−1) = {np.sum(np.abs(vc) ** 2) / (p - 1):.6f}", kind="[approx]")
+        Dm = np.zeros((p - 1, p - 1)); dl = dlog_table(p, g)
+        for n in range(1, p): Dm[n - 1, (g * n) % p - 1] = 1.0                       # (Dv)(n) = v(gn): a permutation matrix
+        ok_u = np.allclose(Dm @ Dm.T, np.eye(p - 1)) and np.allclose(sorted(np.angle(np.linalg.eigvals(Dm)) % (2 * np.pi)), sorted(2 * np.pi * np.arange(p - 1) / (p - 1)), atol=1e-9)
+        check("A7b", f"the chart's characters on ℓ²(F_{p}^×): χ_j orthogonal with ‖χ_j‖² = p−1, Σ_j|v̂(j)|² = (p−1)Σ|v|² for v = Λ, the dual inverts; Dχ_j = ω^j χ_j, the drive a unitary permutation with the (p−1)-th roots of unity as its eigenvalues",
+              ok_orth and ok_par and ok_inv and ok_c and ok_u, f"Σ|v̂|²/(p−1) = {np.sum(np.abs(vc) ** 2) / (p - 1):.6f}", kind="[approx]")
         # A10 the shared quarter-turn core; no cycle projection onto (13, 233)
         Om = 233
         q4 = {pow(i_, a, p) for a in range(4)}
@@ -549,10 +535,11 @@ def block_A():
     check("A6b", f"the odd-lift rule on all {len(frames)} frames p ≡ 1 (mod 4) below 3000: e^{{iπ}} ≡ −1 on the odd lift, ≡ +1 on the even member; F_17: g=3, i=4, lift 21, e=5", ok,
           f"frames {len(frames)}, failures {bad}; F_17 (i, e) = {f17}")
 
-    # A15 the critical line is the frequency domain (Prop. line; row B12): z_k = 2⁻¹ − ηg^k. (i) k ↦ z_k bijects Z_{p−1} onto the
+    # A15 the critical line is the energy domain (Prop. line; row B12): z_k = 2⁻¹ − ηg^k. (i) k ↦ z_k bijects Z_{p−1} onto the
     # line without its centre, z_k the readout of the mode k at θ = −g^k, k = 0 at θ = −1 and k = π at θ = 1; (ii) the dilation
     # about the centre, z ↦ 2⁻¹ + g(z − 2⁻¹), carries z_k to z_{k+1}; (iii) the half-turn and the conjugation both carry z_k to
-    # z_{k+π} and fix the centre alone; (iv) N(z_k) = ¼ − νg^{2k}, even under k ↦ k + π
+    # z_{k+π} and fix the centre alone; (iv) N(z_k) = ¼ − νg^{2k}, even under k ↦ k + π; (v) the labels along the drive are the
+    # latitude L_a = {a g^m} shifted by π − log_g a for every base point a, by 0 for a = −1: θ_k = −g^k = L_{−1}(k)
     for p in SHELLS + [53, BIG]:
         g, nu = generator(p), nonresidue(p)
         kappa = (p - 1) // 4; pi_ = 2 * kappa; inv2 = (2 * kappa + 1) % p; n_ = p - 1
@@ -567,8 +554,11 @@ def block_A():
                  and all(zk[(k + pi_) % n_] != zk[k] for k in range(n_)) and half_turn(centre, p) == centre == frob(centre, p)
         ok_iv = all(norm(zk[k], nu, p) == (quarter - nu * pow(g, 2 * k, p)) % p == norm(zk[(k + pi_) % n_], nu, p) for k in range(n_))
         # 20:B12 (p20085)
-        check("A15", f"the critical line is the frequency domain on F_{p}: k ↦ z_k = 2⁻¹ − ηg^k bijects Z_{n_} onto L_1/2 \\ {{2⁻¹}}; the drive z_k ↦ z_{{k+1}}; half-turn and conjugation z_k ↦ z_{{k+π}}, the centre their only fixed point; N(z_k) even under k ↦ k+π",
-              ok_i and ok_ii and ok_iii and ok_iv, f"g={g}, ν={nu}, π={pi_}: z_0 = 2⁻¹+η, z_π = 2⁻¹−η")
+        lam = dlog_table(p, g)
+        ok_v = all(zk[k][1] == (a * pow(g, (k + pi_ - lam[a]) % n_, p)) % p for a in range(1, p) for k in range(n_)) \
+               and all(zk[k][1] == ((p - 1) * pow(g, k, p)) % p for k in range(n_))      # (v): θ_k = L_a(k + π − log_g a); the shift 0 at a = −1
+        check("A15", f"the critical line is the energy domain on F_{p}: k ↦ z_k = 2⁻¹ − ηg^k bijects Z_{n_} onto L_1/2 \\ {{2⁻¹}}; the drive z_k ↦ z_{{k+1}}; half-turn and conjugation z_k ↦ z_{{k+π}}, the centre their only fixed point; N(z_k) even under k ↦ k+π; the labels along the drive are the latitude L_a shifted by π − log_g a, for every base point a, by 0 for a = −1",
+              ok_i and ok_ii and ok_iii and ok_iv and ok_v, f"g={g}, ν={nu}, π={pi_}: z_0 = 2⁻¹+η, z_π = 2⁻¹−η")
 
     # A16 frame coincidence on the critical line (Prop. coincideline; row B13), on the laboratory pairs: for every nonzero label
     # θ < p of the Subject, θ is the same integer in F_p and F_Ω (the Subject's residues are the Carrier's below p; B1); 2⁻¹ + ηθ
@@ -599,10 +589,14 @@ def block_A():
         slot_ok &= sum(pow(x, modes[firsts[0]][1], Om) for x in range(1, Om)) % Om == 0
         beyond = all(t % p != t for t in range(p, min(Om, p + 50))) and Om - 1 >= p
         above = ((H + 1) * (H + 1)) % p != (H + 1) * (H + 1) and ((H + 1) * (H + 1)) % Om == (H + 1) * (H + 1)
+        eig = all(pow(gp, modes[t][0], p) == (-t) % p and pow(gO, modes[t][1], Om) == (-t) % Om for t in range(1, p - 1))   # the eigenvalue −θ in both frames (Thm. drive (vi))
+        N_ = Om - 1; (k1, kp1), (k2, kp2) = modes[1], modes[2]
+        affine = [(a, (kp1 - a * k1) % N_) for a in range(N_) if (a * k2 + kp1 - a * k1) % N_ == kp2]   # the maps fitting the labels 1 and 2
+        affine = [(a, b) for a, b in affine if all((a * modes[t][0] + b) % N_ == modes[t][1] for t in range(1, p - 1))]   # no affine k ↦ k' fits every label
         # 20:B13 (p20086)
-        check("A16", f"frame coincidence on the line, pair ({p}, {Om}): every label θ < {p} the same integer in both; Tr(2⁻¹+ηθ) = 1 in both, centres {2 * kp + 1} and {2 * kO + 1}; the line kept by half-turn and conjugation in both; every 1 ≤ θ ≤ {p - 2} a nontrivial mode in both, the slot a zero-slot, θ = {p - 1} the Subject's constant mode and a Carrier zero; the labels from {p} on no Subject residue; at {H + 1} the products disagree",
-              same and tr and inv_p and inv_O and mode_ok and slot_ok and beyond and above,
-              "modes (k, k'): " + ", ".join(f"θ={t}: {modes[t]}" for t in firsts) + f"; θ={p - 1}: {modes[p - 1]}")
+        check("A16", f"frame coincidence on the line, pair ({p}, {Om}): every label θ < {p} the same integer in both; Tr(2⁻¹+ηθ) = 1 in both, centres {2 * kp + 1} and {2 * kO + 1}; the line kept by half-turn and conjugation in both; every 1 ≤ θ ≤ {p - 2} a nontrivial mode in both, the slot a zero-slot, θ = {p - 1} the Subject's constant mode and a Carrier zero; the labels from {p} on no Subject residue; at {H + 1} the products disagree; at every label the eigenvalue −θ under each frame's own drive, the indices k, k' each frame's own",
+              same and tr and inv_p and inv_O and mode_ok and slot_ok and beyond and above and eig and affine == [],
+              "modes (k, k'): " + ", ".join(f"θ={t}: {modes[t]}" for t in firsts) + f"; θ={p - 1}: {modes[p - 1]}; affine maps k ↦ k' fitting the labels: {len(affine)}")
 
     # A12 the closure of the zeros (Thm. closure; rows A2, A4, F7), on the four laboratory Carriers Ω = 13, 233, 30089,
     # 2408561: the largest embedded Subject p* with p*² < Ω < p'² (p' the next prime); the residues of a cycle are its labels
@@ -727,13 +721,73 @@ def block_A():
         # 20:F10 (p20093)
         check("A18", f"no zero off the line, pair ({p}, {Om}): the lines kept by both involutions are F_p and L_1/2 and no other tested line (every line of F_{p}², {carrier}); every label 1 ≤ θ ≤ {p - 2} of F_{p} a nontrivial mode on the line in both frames, the Subject's {p - 2} zeros; {'every' if p <= 20 else '200 sampled'} point(s) off both lines on no line kept by both",
               ok_i and ok_ii and ok_iii, f"both-invariant lines of F_{p}²: {both_p}")
-    figure_line_latitude()
+
+    # A19 the drive theorem (Thm. drive; row E15), on every shell: the drive acts on vectors over F_p^× by (Dv)(x) = v(gx), one
+    # chronon. (ii) D x^k = g^k x^k for every mode k (the eigenvector identity, FRC.Rh.shift_power_character) and the eigenvalues
+    # g^k are the p−1 nonzero residues, each once: the spectrum is F_p^×, simple; (i) D is orthogonal for the pairing
+    # ⟨v, w⟩ = Σ_x v(x) w(x), ⟨Dv, w⟩ = ⟨v, D⁻¹w⟩ on three random pairs, not symmetric, while D + D⁻¹ is symmetric; (iii) the
+    # spectrum is real — every eigenvalue a residue of F_p, Frobenius-fixed — and the modes are isotropic, ⟨x^k, x^k⟩ = Z(2k) = 0
+    # for k ≠ 0, π and −1 there; (iv) the readout θ_k = −g^k of A15 is minus the eigenvalue; (v) the half-turn negates the
+    # eigenvalue, g^{k+π} = −g^k
+    for p in SHELLS + [BIG]:
+        g = generator(p); n_ = p - 1; pi_ = n_ // 2; ginv = pow(g, p - 2, p); xs = range(1, p)
+        D = lambda v: {x: v[(g * x) % p] for x in xs}
+        Dinv = lambda v: {x: v[(ginv * x) % p] for x in xs}
+        pair = lambda v, w: sum(v[x] * w[x] for x in xs) % p
+        modes = {k: {x: pow(x, k, p) for x in xs} for k in range(n_)}
+        spec = [pow(g, k, p) for k in range(n_)]
+        ok_ii = all(D(modes[k]) == {x: spec[k] * modes[k][x] % p for x in xs} for k in range(n_)) and sorted(spec) == list(range(1, p))
+        rng = random.Random(2026 + p)
+        vs = [{x: rng.randrange(p) for x in xs} for _ in range(6)]
+        pairs3 = ((vs[0], vs[1]), (vs[2], vs[3]), (vs[4], vs[5]))
+        ok_i = all(pair(D(v), w) == pair(v, Dinv(w)) for v, w in pairs3)
+        symmetric = lambda T: all(pair(T(v), w) == pair(v, T(w)) for v, w in pairs3)
+        ok_sym = (not symmetric(D)) and symmetric(lambda v: {x: (D(v)[x] + Dinv(v)[x]) % p for x in xs})
+        ok_iii = all(0 < s < p for s in spec) and all(pair(modes[k], modes[k]) == (p - 1 if k in (0, pi_) else 0) for k in range(n_))
+        ok_iv = all(((-pow(g, k, p)) % p) == (-spec[k]) % p for k in range(n_)) and (-spec[0]) % p == p - 1
+        ok_v = all(pow(g, k + pi_, p) == (-spec[k]) % p for k in range(n_))
+        # 20:E15 (p20094)
+        check("A19", f"the drive theorem on F_{p}: D x^k = g^k x^k for every mode, the spectrum F_{p}^× simple; ⟨Dv, w⟩ = ⟨v, D⁻¹w⟩ on three random pairs, D not symmetric, D + D⁻¹ symmetric; the spectrum real and the modes isotropic (⟨x^k, x^k⟩ = 0 for k ≠ 0, π, −1 there); the readout minus the eigenvalue; the half-turn negates it",
+              ok_i and ok_ii and ok_sym and ok_iii and ok_iv and ok_v, f"g={g}, π={pi_}: eigenvalues g^k = {spec[:6]}…, labels −g^k = {[(-s) % p for s in spec[:6]]}…")
+
+    # A20 the energy domain is a circle (Rem. cayley; row B14), on the shells in full: w = z/(1 − z) carries the critical line
+    # {Tr z = 1} into the unit circle U_{p+1} = {N(w) = 1}, the centre 2⁻¹ to 1, injectively, missing −1 alone (the line's
+    # point at infinity); the conjugation becomes the inversion, w(z^p) = w(z)^{−1}; the drive about the centre, read on the
+    # circle, fixes 1 and is no rotation: its orbit through the modes has p−1 points, while a rotation w ↦ uw by a point u of
+    # U_{p+1} agrees with it on no mode set; the exponents a_k of the modes on a generator of U_{p+1} negate under k ↦ k + π
+    # (the conjugation is the inversion), so no affine function of k fits them (an affine a_k would take at most two values)
+    for p in SHELLS:
+        g, nu = generator(p), nonresidue(p); n_ = p - 1; inv2 = (p + 1) // 2; pi_ = n_ // 2
+        one, mone = (1, 0), (p - 1, 0)
+        inv = lambda z: zpow(z, p * p - 2, nu, p)                                   # z^{−1} in F_{p²}
+        cayley = lambda z: mul(z, inv(((1 - z[0]) % p, (-z[1]) % p)), nu, p)      # w = z · (1 − z)^{−1}
+        line = [(inv2, b) for b in range(p)]
+        ws = [cayley(z) for z in line]
+        circle = {z for z in ((a, b) for a in range(p) for b in range(p)) if norm(z, nu, p) == 1}
+        ok_circle = len(circle) == p + 1 and all(w in circle for w in ws) and len(set(ws)) == p and cayley((inv2, 0)) == one and mone not in ws
+        ok_conj = all(cayley(frob(z, p)) == inv(cayley(z)) == frob(cayley(z), p) for z in line)
+        dil = lambda z: (inv2, (g * z[1]) % p)                                        # 2⁻¹ + g(z − 2⁻¹) on the line
+        orbit = {cayley(z) for z in line if z[1] != 0}
+        ok_fix = cayley(dil((inv2, 0))) == one and len(orbit) == n_ and orbit == set(ws) - {one}
+        rotations = [u for u in circle if all(cayley(dil(z)) == mul(u, cayley(z), nu, p) for z in line if z[1] != 0)]
+        ok_rot = rotations == []
+        u = next(w for w in sorted(circle) if all(zpow(w, j, nu, p) != one for j in range(1, p + 1)))   # a generator of U_{p+1}
+        log_u = {zpow(u, j, nu, p): j for j in range(p + 1)}
+        a = [log_u[ws[(-pow(g, k, p)) % p]] for k in range(n_)]                     # the mode k sits at b = −g^k
+        ok_neg = all((a[(k + pi_) % n_] + a[k]) % (p + 1) == 0 for k in range(n_))
+        alpha, beta = (a[1] - a[0]) % (p + 1), a[0]                                   # the one affine candidate, from k = 0, 1
+        affine_fails = [k for k in range(n_) if a[k] != (alpha * k + beta) % (p + 1)]
+        ok_aff = len(set(a)) == n_ and affine_fails != []
+        # 20:B14 (p20095)
+        check("A20", f"the energy domain is a circle on F_{p}: z/(1 − z) carries the {p} points of the critical line injectively into U_{p + 1} ({p + 1} points), the centre to 1, −1 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_{p + 1} negate under k ↦ k + π and fit no affine function of k",
+              ok_circle and ok_conj and ok_fix and ok_rot and ok_neg and ok_aff, f"ν={nu}: the modes at the circle points {[ws[b] for b in range(1, 4)]}…; rotations matching the drive: {len(rotations)}; exponents {a[:6]}…, the affine fit from k = 0, 1 fails at k = {affine_fails[:3]}…")
+    figure_plane()
 
 # ======================================================================================================================
 # block B — the chart [chart]: the de-framing limit of the half-turn, the exhibit (Obs. exhibit; row F9) on the windows of the
 # laboratory Subjects, the pair agreement, and the labels read in the cycle's own scale coordinate (Section order; row O9).
 # Nothing here is a shell operation: the window's prime-power labels n ≤ H are read with the chart's weight Λ(n), the taper
-# 1 − log n/log H, the scale n^{−1/2} and the height γ, and the energy is |Σ Λ(n)(1 − log n/log H) n^{−1/2−iγ}| on a grid of
+# 1 − log n/log H, the scale n^{−1/2} and the height γ, and the intensity is |Σ Λ(n)(1 − log n/log H) n^{−1/2−iγ}|² on a grid of
 # step 0.02. A window's five peaks are the five tallest peaks on the range 10 to 36 of the height; its resolution is 2π/log H.
 def block_B():
     """Block B — the chart: 10 checks, all [chart]."""
@@ -760,7 +814,7 @@ def block_B():
     # B6 the pair agreement (row F9): the heights read from a Subject's window and from its Carrier's window agree within the
     # Subject's resolution — on (173, 30089) the Carrier's five peaks lie 0.3, 0.4, 0.5, 1.1, 1.7 from the Subject's, against
     # 2.4; on (1549, 2408561) they lie 0.0, 0.2, 0.3, 0.4, 0.4 apart, against 1.7; the Subject window of (13, 233), of depth 3,
-    # holds two prime-power labels, the taper leaves one, and the energy has no peak
+    # holds two prime-power labels, the taper leaves one, and the intensity has no peak
     stated = {(173, 30089): [0.3, 0.4, 0.5, 1.1, 1.7], (1549, 2408561): [0.0, 0.2, 0.3, 0.4, 0.4]}
     for (p, Om), d in stated.items():
         Hp, HO = math.isqrt(p), math.isqrt(Om)
@@ -771,8 +825,8 @@ def block_B():
               ok, f"Subject {[round(x, 1) for x in sub]}, Carrier {[round(x, 1) for x in car]}, distances {dist}", kind="[chart]")
     n13, _ = mangoldt(math.isqrt(13))
     e3 = energy(3, np.arange(10, 36, 0.02))
-    check("B6", "the pair (13, 233): the Subject's window, of depth 3, holds two prime-power labels, the taper leaves one, and the energy is flat: no height", len(n13) == 2 and e3.max() - e3.min() < 1e-9,
-          f"labels {[int(x) for x in n13]}; the energy on [10, 36] varies by {e3.max() - e3.min():.1e}", kind="[chart]")
+    check("B6", "the pair (13, 233): the Subject's window, of depth 3, holds two prime-power labels, the taper leaves one, and the intensity is flat: no height", len(n13) == 2 and e3.max() - e3.min() < 1e-9,
+          f"labels {[int(x) for x in n13]}; the intensity on [10, 36] varies by {e3.max() - e3.min():.1e}", kind="[chart]")
     # B8 the cycle's own scale coordinate (Section order; row O9): read in the discrete logarithm λ_p, the window's prime-power
     # labels load the nontrivial modes like a random sum — on F_1549 the largest loading |Σ_{n∈P} e^{2πi k λ(n)/(p−1)}|² is 108
     # against a mean of 19 (exactly |P| − |P|(|P|−1)/(p−2)) and a random-sum maximum of about |P| log(p−1) = 140 — and no mode

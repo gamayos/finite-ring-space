@@ -34,7 +34,7 @@
   "rows": "20:E12, 20:E14",
   "block": "A",
   "script": "rh",
-  "label": "the shell theorem on F_13: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "label": "the shell theorem on F_13: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) D x^k = g^k x^k, Tr D^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
   "ok": true,
   "detail": "three random vectors; W of order 12",
   "kind": "EXACT"
@@ -44,7 +44,7 @@
   "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "the energy identity on F_13: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "label": "the Parseval identity on F_13: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
   "ok": true,
   "detail": "prime-power indicator: 8 labels",
   "kind": "EXACT"
@@ -84,7 +84,7 @@
   "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "the chart's characters on \u2113\u00b2(F_13^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "the chart's characters on \u2113\u00b2(F_13^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; D\u03c7_j = \u03c9^j \u03c7_j, the drive a unitary permutation with the (p\u22121)-th roots of unity as its eigenvalues",
   "ok": true,
   "detail": "\u03a3|v\u0302|\u00b2/(p\u22121) = 15.982015",
   "kind": "[approx]"
@@ -134,7 +134,7 @@
   "rows": "20:E12, 20:E14",
   "block": "A",
   "script": "rh",
-  "label": "the shell theorem on F_17: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "label": "the shell theorem on F_17: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) D x^k = g^k x^k, Tr D^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
   "ok": true,
   "detail": "three random vectors; W of order 16",
   "kind": "EXACT"
@@ -144,7 +144,7 @@
   "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "the energy identity on F_17: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "label": "the Parseval identity on F_17: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
   "ok": true,
   "detail": "prime-power indicator: 10 labels",
   "kind": "EXACT"
@@ -184,7 +184,7 @@
   "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "the chart's characters on \u2113\u00b2(F_17^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "the chart's characters on \u2113\u00b2(F_17^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; D\u03c7_j = \u03c9^j \u03c7_j, the drive a unitary permutation with the (p\u22121)-th roots of unity as its eigenvalues",
   "ok": true,
   "detail": "\u03a3|v\u0302|\u00b2/(p\u22121) = 23.041434",
   "kind": "[approx]"
@@ -234,7 +234,7 @@
   "rows": "20:E12, 20:E14",
   "block": "A",
   "script": "rh",
-  "label": "the shell theorem on F_29: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "label": "the shell theorem on F_29: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) D x^k = g^k x^k, Tr D^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
   "ok": true,
   "detail": "three random vectors; W of order 28",
   "kind": "EXACT"
@@ -244,7 +244,7 @@
   "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "the energy identity on F_29: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "label": "the Parseval identity on F_29: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
   "ok": true,
   "detail": "prime-power indicator: 15 labels",
   "kind": "EXACT"
@@ -284,7 +284,7 @@
   "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "the chart's characters on \u2113\u00b2(F_29^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "the chart's characters on \u2113\u00b2(F_29^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; D\u03c7_j = \u03c9^j \u03c7_j, the drive a unitary permutation with the (p\u22121)-th roots of unity as its eigenvalues",
   "ok": true,
   "detail": "\u03a3|v\u0302|\u00b2/(p\u22121) = 53.366816",
   "kind": "[approx]"
@@ -334,7 +334,7 @@
   "rows": "20:E12, 20:E14",
   "block": "A",
   "script": "rh",
-  "label": "the shell theorem on F_37: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "label": "the shell theorem on F_37: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) D x^k = g^k x^k, Tr D^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
   "ok": true,
   "detail": "three random vectors; W of order 36",
   "kind": "EXACT"
@@ -344,7 +344,7 @@
   "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "the energy identity on F_37: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "label": "the Parseval identity on F_37: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
   "ok": true,
   "detail": "prime-power indicator: 18 labels",
   "kind": "EXACT"
@@ -384,7 +384,7 @@
   "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "the chart's characters on \u2113\u00b2(F_37^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "the chart's characters on \u2113\u00b2(F_37^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; D\u03c7_j = \u03c9^j \u03c7_j, the drive a unitary permutation with the (p\u22121)-th roots of unity as its eigenvalues",
   "ok": true,
   "detail": "\u03a3|v\u0302|\u00b2/(p\u22121) = 76.978218",
   "kind": "[approx]"
@@ -434,7 +434,7 @@
   "rows": "20:E12, 20:E14",
   "block": "A",
   "script": "rh",
-  "label": "the shell theorem on F_41: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "label": "the shell theorem on F_41: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) D x^k = g^k x^k, Tr D^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
   "ok": true,
   "detail": "three random vectors; W of order 40",
   "kind": "EXACT"
@@ -444,7 +444,7 @@
   "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "the energy identity on F_41: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "label": "the Parseval identity on F_41: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
   "ok": true,
   "detail": "prime-power indicator: 19 labels",
   "kind": "EXACT"
@@ -484,7 +484,7 @@
   "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "the chart's characters on \u2113\u00b2(F_41^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "the chart's characters on \u2113\u00b2(F_41^\u00d7): \u03c7_j orthogonal with \u2016\u03c7_j\u2016\u00b2 = p\u22121, \u03a3_j|v\u0302(j)|\u00b2 = (p\u22121)\u03a3|v|\u00b2 for v = \u039b, the dual inverts; D\u03c7_j = \u03c9^j \u03c7_j, the drive a unitary permutation with the (p\u22121)-th roots of unity as its eigenvalues",
   "ok": true,
   "detail": "\u03a3|v\u0302|\u00b2/(p\u22121) = 90.016946",
   "kind": "[approx]"
@@ -534,7 +534,7 @@
   "rows": "20:E12, 20:E14",
   "block": "A",
   "script": "rh",
-  "label": "the shell theorem on F_173: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) S x^k = g^k x^k, Tr S^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
+  "label": "the shell theorem on F_173: (i) the dual inverts, v(y) = \u2212\u03a3 v\u0302(k) y^\u2212k, v\u0302(0) the mean term; (iii) D x^k = g^k x^k, Tr D^r = (p\u22121)[(p\u22121)|r]; (iv) W\u00b2 = \u2212J, F\u00b2 = J, F\u2074 = 1; (v) the explicit formula along the meridian, S_0(x) = x",
   "ok": true,
   "detail": "three random vectors; W of order 172",
   "kind": "EXACT"
@@ -544,7 +544,7 @@
   "rows": "20:E13",
   "block": "A",
   "script": "rh",
-  "label": "the energy identity on F_173: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
+  "label": "the Parseval identity on F_173: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
   "ok": true,
   "detail": "prime-power indicator: 53 labels",
   "kind": "EXACT"
@@ -634,7 +634,7 @@
   "rows": "20:B12",
   "block": "A",
   "script": "rh",
-  "label": "the critical line is the frequency domain on F_13: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_12 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "label": "the critical line is the energy domain on F_13: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_12 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
   "ok": true,
   "detail": "g=2, \u03bd=2, \u03c0=6: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
   "kind": "EXACT"
@@ -644,7 +644,7 @@
   "rows": "20:B12",
   "block": "A",
   "script": "rh",
-  "label": "the critical line is the frequency domain on F_17: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_16 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "label": "the critical line is the energy domain on F_17: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_16 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
   "ok": true,
   "detail": "g=3, \u03bd=3, \u03c0=8: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
   "kind": "EXACT"
@@ -654,7 +654,7 @@
   "rows": "20:B12",
   "block": "A",
   "script": "rh",
-  "label": "the critical line is the frequency domain on F_29: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_28 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "label": "the critical line is the energy domain on F_29: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_28 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
   "ok": true,
   "detail": "g=2, \u03bd=2, \u03c0=14: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
   "kind": "EXACT"
@@ -664,7 +664,7 @@
   "rows": "20:B12",
   "block": "A",
   "script": "rh",
-  "label": "the critical line is the frequency domain on F_37: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_36 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "label": "the critical line is the energy domain on F_37: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_36 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
   "ok": true,
   "detail": "g=2, \u03bd=2, \u03c0=18: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
   "kind": "EXACT"
@@ -674,7 +674,7 @@
   "rows": "20:B12",
   "block": "A",
   "script": "rh",
-  "label": "the critical line is the frequency domain on F_41: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_40 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "label": "the critical line is the energy domain on F_41: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_40 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
   "ok": true,
   "detail": "g=6, \u03bd=3, \u03c0=20: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
   "kind": "EXACT"
@@ -684,7 +684,7 @@
   "rows": "20:B12",
   "block": "A",
   "script": "rh",
-  "label": "the critical line is the frequency domain on F_53: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_52 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "label": "the critical line is the energy domain on F_53: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_52 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
   "ok": true,
   "detail": "g=2, \u03bd=2, \u03c0=26: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
   "kind": "EXACT"
@@ -694,7 +694,7 @@
   "rows": "20:B12",
   "block": "A",
   "script": "rh",
-  "label": "the critical line is the frequency domain on F_173: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_172 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0",
+  "label": "the critical line is the energy domain on F_173: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_172 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
   "ok": true,
   "detail": "g=2, \u03bd=2, \u03c0=86: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
   "kind": "EXACT"
@@ -704,9 +704,9 @@
   "rows": "20:B13",
   "block": "A",
   "script": "rh",
-  "label": "frame coincidence on the line, pair (13, 233): every label \u03b8 < 13 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 7 and 117; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 11 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 12 the Subject's constant mode and a Carrier zero; the labels from 13 on no Subject residue; at 4 the products disagree",
+  "label": "frame coincidence on the line, pair (13, 233): every label \u03b8 < 13 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 7 and 117; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 11 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 12 the Subject's constant mode and a Carrier zero; the labels from 13 on no Subject residue; at 4 the products disagree; at every label the eigenvalue \u2212\u03b8 under each frame's own drive, the indices k, k' each frame's own",
   "ok": true,
-  "detail": "modes (k, k'): \u03b8=2: (7, 188), \u03b8=3: (10, 117); \u03b8=12: (0, 29)",
+  "detail": "modes (k, k'): \u03b8=2: (7, 188), \u03b8=3: (10, 117); \u03b8=12: (0, 29); affine maps k \u21a6 k' fitting the labels: 0",
   "kind": "EXACT"
  },
  {
@@ -714,9 +714,9 @@
   "rows": "20:B13",
   "block": "A",
   "script": "rh",
-  "label": "frame coincidence on the line, pair (173, 30089): every label \u03b8 < 173 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 87 and 15045; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 171 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 172 the Subject's constant mode and a Carrier zero; the labels from 173 on no Subject residue; at 14 the products disagree",
+  "label": "frame coincidence on the line, pair (173, 30089): every label \u03b8 < 173 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 87 and 15045; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 171 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 172 the Subject's constant mode and a Carrier zero; the labels from 173 on no Subject residue; at 14 the products disagree; at every label the eigenvalue \u2212\u03b8 under each frame's own drive, the indices k, k' each frame's own",
   "ok": true,
-  "detail": "modes (k, k'): \u03b8=2: (87, 5304), \u03b8=3: (113, 15045); \u03b8=172: (0, 13661)",
+  "detail": "modes (k, k'): \u03b8=2: (87, 5304), \u03b8=3: (113, 15045); \u03b8=172: (0, 13661); affine maps k \u21a6 k' fitting the labels: 0",
   "kind": "EXACT"
  },
  {
@@ -724,9 +724,9 @@
   "rows": "20:B13",
   "block": "A",
   "script": "rh",
-  "label": "frame coincidence on the line, pair (1549, 2408561): every label \u03b8 < 1549 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 775 and 1204281; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 1547 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 1548 the Subject's constant mode and a Carrier zero; the labels from 1549 on no Subject residue; at 40 the products disagree",
+  "label": "frame coincidence on the line, pair (1549, 2408561): every label \u03b8 < 1549 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 775 and 1204281; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 1547 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 1548 the Subject's constant mode and a Carrier zero; the labels from 1549 on no Subject residue; at 40 the products disagree; at every label the eigenvalue \u2212\u03b8 under each frame's own drive, the indices k, k' each frame's own",
   "ok": true,
-  "detail": "modes (k, k'): \u03b8=2: (775, 2308524), \u03b8=3: (24, 100037); \u03b8=1548: (0, 169665)",
+  "detail": "modes (k, k'): \u03b8=2: (775, 2308524), \u03b8=3: (24, 100037); \u03b8=1548: (0, 169665); affine maps k \u21a6 k' fitting the labels: 0",
   "kind": "EXACT"
  },
  {
@@ -850,6 +850,116 @@
   "kind": "EXACT"
  },
  {
+  "id": "A19",
+  "rows": "20:E15",
+  "block": "A",
+  "script": "rh",
+  "label": "the drive theorem on F_13: D x^k = g^k x^k for every mode, the spectrum F_13^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "ok": true,
+  "detail": "g=2, \u03c0=6: eigenvalues g^k = [1, 2, 4, 8, 3, 6]\u2026, labels \u2212g^k = [12, 11, 9, 5, 10, 7]\u2026",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A19",
+  "rows": "20:E15",
+  "block": "A",
+  "script": "rh",
+  "label": "the drive theorem on F_17: D x^k = g^k x^k for every mode, the spectrum F_17^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "ok": true,
+  "detail": "g=3, \u03c0=8: eigenvalues g^k = [1, 3, 9, 10, 13, 5]\u2026, labels \u2212g^k = [16, 14, 8, 7, 4, 12]\u2026",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A19",
+  "rows": "20:E15",
+  "block": "A",
+  "script": "rh",
+  "label": "the drive theorem on F_29: D x^k = g^k x^k for every mode, the spectrum F_29^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "ok": true,
+  "detail": "g=2, \u03c0=14: eigenvalues g^k = [1, 2, 4, 8, 16, 3]\u2026, labels \u2212g^k = [28, 27, 25, 21, 13, 26]\u2026",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A19",
+  "rows": "20:E15",
+  "block": "A",
+  "script": "rh",
+  "label": "the drive theorem on F_37: D x^k = g^k x^k for every mode, the spectrum F_37^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "ok": true,
+  "detail": "g=2, \u03c0=18: eigenvalues g^k = [1, 2, 4, 8, 16, 32]\u2026, labels \u2212g^k = [36, 35, 33, 29, 21, 5]\u2026",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A19",
+  "rows": "20:E15",
+  "block": "A",
+  "script": "rh",
+  "label": "the drive theorem on F_41: D x^k = g^k x^k for every mode, the spectrum F_41^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "ok": true,
+  "detail": "g=6, \u03c0=20: eigenvalues g^k = [1, 6, 36, 11, 25, 27]\u2026, labels \u2212g^k = [40, 35, 5, 30, 16, 14]\u2026",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A19",
+  "rows": "20:E15",
+  "block": "A",
+  "script": "rh",
+  "label": "the drive theorem on F_173: D x^k = g^k x^k for every mode, the spectrum F_173^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "ok": true,
+  "detail": "g=2, \u03c0=86: eigenvalues g^k = [1, 2, 4, 8, 16, 32]\u2026, labels \u2212g^k = [172, 171, 169, 165, 157, 141]\u2026",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A20",
+  "rows": "20:B14",
+  "block": "A",
+  "script": "rh",
+  "label": "the energy domain is a circle on F_13: z/(1 \u2212 z) carries the 13 points of the critical line injectively into U_14 (14 points), the centre to 1, \u22121 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_14 negate under k \u21a6 k + \u03c0 and fit no affine function of k",
+  "ok": true,
+  "detail": "\u03bd=2: the modes at the circle points [(8, 5), (9, 1), (3, 11)]\u2026; rotations matching the drive: 0; exponents [11, 5, 2, 10, 1, 8]\u2026, the affine fit from k = 0, 1 fails at k = [2, 3, 5]\u2026",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A20",
+  "rows": "20:B14",
+  "block": "A",
+  "script": "rh",
+  "label": "the energy domain is a circle on F_17: z/(1 \u2212 z) carries the 17 points of the critical line injectively into U_18 (18 points), the centre to 1, \u22121 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_18 negate under k \u21a6 k + \u03c0 and fit no affine function of k",
+  "ok": true,
+  "detail": "\u03bd=3: the modes at the circle points [(5, 12), (8, 2), (2, 1)]\u2026; rotations matching the drive: 0; exponents [5, 17, 8, 14, 16, 15]\u2026, the affine fit from k = 0, 1 fails at k = [2, 3, 4]\u2026",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A20",
+  "rows": "20:B14",
+  "block": "A",
+  "script": "rh",
+  "label": "the energy domain is a circle on F_29: z/(1 \u2212 z) carries the 29 points of the critical line injectively into U_30 (30 points), the centre to 1, \u22121 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_30 negate under k \u21a6 k + \u03c0 and fit no affine function of k",
+  "ok": true,
+  "detail": "\u03bd=2: the modes at the circle points [(7, 16), (27, 25), (10, 8)]\u2026; rotations matching the drive: 0; exponents [4, 17, 3, 5, 1, 22]\u2026, the affine fit from k = 0, 1 fails at k = [2, 3, 4]\u2026",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A20",
+  "rows": "20:B14",
+  "block": "A",
+  "script": "rh",
+  "label": "the energy domain is a circle on F_37: z/(1 \u2212 z) carries the 37 points of the critical line injectively into U_38 (38 points), the centre to 1, \u22121 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_38 negate under k \u21a6 k + \u03c0 and fit no affine function of k",
+  "ok": true,
+  "detail": "\u03bd=2: the modes at the circle points [(4, 10), (24, 26), (12, 4)]\u2026; rotations matching the drive: 0; exponents [24, 7, 4, 28, 30, 21]\u2026, the affine fit from k = 0, 1 fails at k = [2, 3, 4]\u2026",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A20",
+  "rows": "20:B14",
+  "block": "A",
+  "script": "rh",
+  "label": "the energy domain is a circle on F_41: z/(1 \u2212 z) carries the 41 points of the critical line injectively into U_42 (42 points), the centre to 1, \u22121 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_42 negate under k \u21a6 k + \u03c0 and fit no affine function of k",
+  "ok": true,
+  "detail": "\u03bd=3: the modes at the circle points [(10, 22), (26, 26), (35, 11)]\u2026; rotations matching the drive: 0; exponents [29, 20, 23, 4, 14, 3]\u2026, the affine fit from k = 0, 1 fails at k = [2, 3, 4]\u2026",
+  "kind": "EXACT"
+ },
+ {
   "id": "B3",
   "rows": "20:B8",
   "block": "B",
@@ -914,9 +1024,9 @@
   "rows": "20:F9",
   "block": "B",
   "script": "rh",
-  "label": "the pair (13, 233): the Subject's window, of depth 3, holds two prime-power labels, the taper leaves one, and the energy is flat: no height",
+  "label": "the pair (13, 233): the Subject's window, of depth 3, holds two prime-power labels, the taper leaves one, and the intensity is flat: no height",
   "ok": true,
-  "detail": "labels [2, 3]; the energy on [10, 36] varies by 5.6e-17",
+  "detail": "labels [2, 3]; the intensity on [10, 36] varies by 5.6e-17",
   "kind": "[chart]"
  },
  {
@@ -956,7 +1066,7 @@
   "script": "rh",
   "label": "the window of depth 10\u2076: its ten tallest peaks on the range 10 to 52 are the first ten heights, each within 0.05",
   "ok": true,
-  "detail": "peaks [14.12, 21.0, 25.02, 30.41, 32.95, 37.58, 40.91, 43.35, 47.97, 49.8]; max deviation 0.035; 19 s",
+  "detail": "peaks [14.12, 21.0, 25.02, 30.41, 32.95, 37.58, 40.91, 43.35, 47.97, 49.8]; max deviation 0.035; 11 s",
   "kind": "[chart]"
  }
 ]
