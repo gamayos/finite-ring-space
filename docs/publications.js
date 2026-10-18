@@ -638,16 +638,25 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202606.1689.v1",
     "doiLabel": "pp202606.1689.v1",
     "ledger": "32-dark/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "32-dark/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p32_dark.ipynb",
+        "label": "python",
+        "count": 29,
+        "title": "29 predicates checked, all passing: the notebook p32_dark.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/32-dark/32-dark-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Dark.lean",
+        "label": "lean",
+        "count": 13,
+        "title": "13 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Dark as one executable file (plain Lean, no Mathlib) in Lean Live"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Dark.lean",
+        "label": "lean-mathlib",
+        "count": 24,
+        "title": "24 predicates proved on Mathlib (classical), 9 of them also in the core: the module Dark as one file on Mathlib in Lean Live"
       }
     ]
   },

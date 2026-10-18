@@ -215,7 +215,7 @@ theorem tally_weight (z w : Shell p) : (1 + 1 + -z + -w) + (1 + 1 + z + w) = 1 +
 
 /-! ## 21:C1 — the locked sum; 21:C11 — the character composition -/
 
-/-- 21:C1 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient. -/
+/-- 21:C1, 32:C10, 32:X7, 32:P5 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient (a virialised clump's weight one). -/
 theorem locked_sum (z : Shell p) (m : Nat) : sumRange (fun _ => z) m = ofNat m * z := sum_const z m
 
 /-- 21:C11, 00:C21, 00:E4 — the exponential reading is the character: `g^{a+b} = g^a g^b`. -/
@@ -247,7 +247,7 @@ theorem antisymmetric_sum {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) 
   · exact absurd (by rw [two_eq_one_add_one]; exact h) F.two_ne_zero
   · exact h
 
-/-- 21:C11, 00:E3, 00:E4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence
+/-- 21:C11, 00:E3, 00:E4, 32:C1, 32:X1, 32:C4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence
 `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`:
 the interior links cancel in pairs. -/
 theorem gauss_law {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) (J : Nat → Nat → Shell p)

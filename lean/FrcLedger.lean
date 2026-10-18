@@ -10,6 +10,7 @@ import FrcLedger.Theme.Gravity
 import FrcLedger.Theme.Quantum
 import FrcLedger.Theme.Fields
 import FrcLedger.Theme.Flavour
+import FrcLedger.Theme.Dark
 import FrcLedger.Keys.Frame
 import FrcLedger.Keys.Extension
 import FrcLedger.Keys.Fourier
@@ -35,4 +36,5 @@ import FrcLedger.Qm
 import FrcLedger.Pnp
 import FrcLedger.Fields
 import FrcLedger.Flavour
+import FrcLedger.Dark
 import FrcLedger.Dirac

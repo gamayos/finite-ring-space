@@ -386,7 +386,7 @@
    {
     "name": "FRC.Shell.Frame.W_sq'",
     "module": "FrcCore/Transform",
-    "line": 220,
+    "line": 221,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -395,7 +395,7 @@
    {
     "name": "FRC.Shell.Frame.F_sq",
     "module": "FrcCore/Transform",
-    "line": 235,
+    "line": 236,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -404,7 +404,7 @@
    {
     "name": "FRC.Shell.Frame.J_sq",
     "module": "FrcCore/Transform",
-    "line": 224,
+    "line": 225,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -415,7 +415,7 @@
    {
     "name": "FRC.Shell.Frame.ofNat_n",
     "module": "FrcCore/Transform",
-    "line": 38,
+    "line": 39,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -457,7 +457,7 @@
    {
     "name": "FRC.Shell.Frame.W_J_comm",
     "module": "FrcCore/Transform",
-    "line": 243,
+    "line": 244,
     "axioms": [],
     "tier": 0,
     "ok": true,

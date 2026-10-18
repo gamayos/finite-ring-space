@@ -2474,7 +2474,7 @@
     "20-rh",
     "14-entr"
    ],
-   "witness": "32:predictions.py",
+   "witness": "32:p32_dark.py [chart]",
    "refs": [
     {
      "label": "P1",

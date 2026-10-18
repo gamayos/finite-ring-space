@@ -46,6 +46,7 @@ import FrcCore.Theme.Horizon
 import FrcCore.Theme.Zeros
 import FrcCore.Theme.Ladder
 import FrcCore.Theme.Flavour
+import FrcCore.Theme.Dark
 import FrcCore.Keys.Frame
 import FrcCore.Keys.Extension
 import FrcCore.Keys.Projective
@@ -60,6 +61,7 @@ import FrcCore.Keys.Quantum
 import FrcCore.Keys.Interactions
 import FrcCore.Keys.Horizon
 import FrcCore.Keys.Flavour
+import FrcCore.Keys.Dark
 import FrcCore.Meridian
 import FrcCore.Fourier
 import FrcCore.Algebra
@@ -84,3 +86,4 @@ import FrcCore.Pnp
 import FrcCore.Fields
 import FrcCore.Dirac
 import FrcCore.Flavour
+import FrcCore.Dark

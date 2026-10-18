@@ -784,5 +784,49 @@
    "28:X7": "Flavour",
    "28:X9": "Flavour"
   }
+ },
+ "32-dark": {
+  "module": "Dark",
+  "FrcCore": {
+   "32:C1": "Dark",
+   "32:C10": "Dark",
+   "32:C3": "Dark",
+   "32:C4": "Dark",
+   "32:C5": "Dark",
+   "32:C6": "Dark",
+   "32:C7": "Dark",
+   "32:P5": "Dark",
+   "32:X1": "Dark",
+   "32:X3": "Dark",
+   "32:X4": "Dark",
+   "32:X7": "Dark",
+   "32:X8": "Dark"
+  },
+  "FrcLedger": {
+   "32:C10": "Dark",
+   "32:C11": "Dark",
+   "32:C2": "Dark",
+   "32:C4": "Dark",
+   "32:C5": "Dark",
+   "32:C6": "Dark",
+   "32:C7": "Dark",
+   "32:C8": "Dark",
+   "32:C9": "Dark",
+   "32:P1": "Dark",
+   "32:P2": "Dark",
+   "32:P3": "Dark",
+   "32:P4": "Dark",
+   "32:P6": "Dark",
+   "32:X10": "Dark",
+   "32:X11": "Dark",
+   "32:X2": "Dark",
+   "32:X3": "Dark",
+   "32:X4": "Dark",
+   "32:X5": "Dark",
+   "32:X6": "Dark",
+   "32:X7": "Dark",
+   "32:X8": "Dark",
+   "32:X9": "Dark"
+  }
  }
 }

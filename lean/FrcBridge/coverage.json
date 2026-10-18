@@ -577,6 +577,20 @@
    "status": "no shared clause",
    "lean": null,
    "note": "17 October 2026 (28-flavour's migration, T09 of its blueprint): 28:C10's key states the protected column, trimaximality and 108 J² = 1; G15's key states the seesaw, the ladder and the Koide iff, naming the trimaximal column without a clause of its own (its clause is G17's, see G17 with 28:C10)"
+  },
+  {
+   "master": "E3",
+   "paper": "32:C1",
+   "status": "shared theorem",
+   "lean": "FRC.Drift.gauss_law",
+   "note": "18 October 2026: the Gauss law of the synchronisation flux (32-dark's migration); 32:C1's key adds the dark theme's enclosed flux, the source-free flux and the superposition, E3's the Coulomb clause"
+  },
+  {
+   "master": "E3",
+   "paper": "32:X1",
+   "status": "shared theorem",
+   "lean": "FRC.Drift.gauss_law",
+   "note": "18 October 2026: as 32:C1 (the explanation register's restatement: Newton's law and the equivalence principle from the discrete Gauss law)"
   }
  ]
 }

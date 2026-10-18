@@ -2000,7 +2000,8 @@ variable {p : Nat} [Pos p]
 namespace Frame
 variable {κ : Nat} {g : Shell p}
 
-/-- `Σ_{l<n} x^l = 0` when `x^n = 1` and `x ≠ 1` (the field has no zero divisors). -/
+/-- 32:C10, 32:X7 — `Σ_{l<n} x^l = 0` when `x^n = 1` and `x ≠ 1` (the field has no zero divisors): the phases of a full cycle
+sum to zero, the bulk-coherence weight of a shock-randomised component. -/
 theorem geom_sum_eq_zero (F : Frame p κ g) {x : Shell p} (n : Nat) (hn : x ^ n = 1) (hx : x ≠ 1) :
     sumRange (fun l => x ^ l) n = 0 := by
   have h := geom_sum_mul x n

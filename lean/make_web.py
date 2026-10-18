@@ -19,7 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 SRC, OUT = ROOT / "FrcLedger", ROOT / "web"
 IMPORT = re.compile(r"^import FrcLedger\.([\w.]+)\s*$", re.M)
-SERVED = ("Theme.Chart", "Theme.Strong", "Theme.Gravity", "Theme.Quantum", "Theme.Horizon", "Theme.Fields", "Theme.Flavour", "Keys.Chart", "Keys.Gravity", "Keys.Quantum", "Keys.Horizon")          # the theme and key files below FrcLedger/ that the site serves (LM30; Theme.Strong, Theme.Gravity and Keys.Gravity since 10 October 2026, 21-gravity; Theme.Quantum and Keys.Quantum since 15 October 2026, 22-quantum; Theme.Horizon and Keys.Horizon since 16 October 2026, 26-pnp; Theme.Fields since 16 October 2026, 27-fields; Theme.Flavour since 17 October 2026, 28-flavour)
+SERVED = ("Theme.Chart", "Theme.Strong", "Theme.Gravity", "Theme.Quantum", "Theme.Horizon", "Theme.Fields", "Theme.Flavour", "Theme.Dark", "Keys.Chart", "Keys.Gravity", "Keys.Quantum", "Keys.Horizon")          # the theme and key files below FrcLedger/ that the site serves (LM30; Theme.Strong, Theme.Gravity and Keys.Gravity since 10 October 2026, 21-gravity; Theme.Quantum and Keys.Quantum since 15 October 2026, 22-quantum; Theme.Horizon and Keys.Horizon since 16 October 2026, 26-pnp; Theme.Fields since 16 October 2026, 27-fields; Theme.Flavour since 17 October 2026, 28-flavour; Theme.Dark since 18 October 2026, 32-dark)
 
 def module(name):
     return (SRC / f"{name.replace('.', '/')}.lean").read_text(encoding="utf-8")   # Theme.Fourier: FrcLedger/Theme/Fourier.lean
