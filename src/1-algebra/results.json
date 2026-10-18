@@ -110,6 +110,16 @@
   "kind": "EXACT"
  },
  {
+  "id": "B7",
+  "rows": "1:Z3",
+  "block": "B",
+  "script": "algebra",
+  "label": "4s = 0 \u21d2 s = 0; every fraction at a quarter position of the additive cycle has value 0 and none of the window is there; the equator \u03ba+1/4 between L_\u03ba and L_{\u03ba+1}, \u03ba \u2261 \u22124\u207b\u00b9, \u03ba+1 \u2261 3\u00b74\u207b\u00b9",
+  "ok": true,
+  "detail": "p=5: 16 quarter-position fractions a/b, |a| \u2264 3p, b < 3p, all of value 0; p=13: 16 quarter-position fractions a/b, |a| \u2264 3p, b < 3p, all of value 0; p=17: 16 quarter-position fractions a/b, |a| \u2264 3p, b < 3p, all of value 0; p=29: 16 quarter-position fractions a/b, |a| \u2264 3p, b < 3p, all of value 0; p=37: 16 quarter-position fractions a/b, |a| \u2264 3p, b < 3p, all of value 0; p=41: 16 quarter-position fractions a/b, |a| \u2264 3p, b < 3p, all of value 0; p=173: 16 quarter-position fractions a/b, |a| \u2264 3p, b < 3p, all of value 0",
+  "kind": "EXACT"
+ },
+ {
   "id": "C1",
   "rows": "1:E3",
   "block": "C",

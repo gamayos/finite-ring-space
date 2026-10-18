@@ -1917,6 +1917,7 @@
 'FRC.Ledger.p01015' does not depend on any axioms
 'FRC.Ledger.p01019' does not depend on any axioms
 'FRC.Ledger.p01020' does not depend on any axioms
+'FRC.Ledger.p01034' does not depend on any axioms
 'FRC.Ledger.p02007' does not depend on any axioms
 'FRC.Ledger.p02013' does not depend on any axioms
 'FRC.Ledger.p02014' does not depend on any axioms
@@ -2263,6 +2264,7 @@
 'FRC.Algebra.p01019' does not depend on any axioms
 'FRC.Algebra.p01026' does not depend on any axioms
 'FRC.Algebra.p01020' does not depend on any axioms
+'FRC.Algebra.p01034' does not depend on any axioms
 'FRC.Epi.fact' does not depend on any axioms
 'FRC.Epi.dr' does not depend on any axioms
 'FRC.Epi.dr_zero' does not depend on any axioms
@@ -3293,6 +3295,10 @@
 'FRC.Shell.Frame.two_mul'' does not depend on any axioms
 'FRC.Shell.Frame.eq_zero_of_eq_neg' does not depend on any axioms
 'FRC.Shell.Frame.no_south_pole' does not depend on any axioms
+'FRC.Shell.Frame.no_equator' does not depend on any axioms
+'FRC.Shell.Frame.quarter_fold' does not depend on any axioms
+'FRC.Shell.Frame.quarter_position' does not depend on any axioms
+'FRC.Shell.Frame.equator_between' does not depend on any axioms
 'FRC.Shell.Frame.two_mul_mod' does not depend on any axioms
 'FRC.Shell.Frame.mod_two_of_mod_four_mul' does not depend on any axioms
 'FRC.Shell.Frame.mod_n_mod_two' does not depend on any axioms

@@ -1702,6 +1702,37 @@ theorem no_south_pole (F : Frame p κ g) (s : Shell p) (h : (2 : Shell p) * s = 
   | .inl e => absurd e F.two_ne_zero
   | .inr e => e
 
+/-- 1:Z3 (Theorem thm:no-equator) — `4s = 0 ⇒ s = 0`: the additive cycle has no element of order four; the quarter
+positions of the cycle (the equator crossings and the antipode) are no residues. -/
+theorem no_equator (F : Frame p κ g) (s : Shell p) (h : (4 : Shell p) * s = 0) : s = 0 := by
+  have h4 : (4 : Shell p) = 2 * 2 := Shell.ext (Nat.mul_mod 2 2 p Shell.hp)
+  rw [h4, Shell.mul_assoc] at h
+  exact F.no_south_pole _ (F.no_south_pole _ h)
+
+/-- 1:Z3 — the quarter fold: `4κ = −1` on the shell (`4κ = p − 1`), so the equator's depth `κ + 1/4 = p/4` has the
+value `0` and `κ = −4⁻¹`, `κ + 1 = 3·4⁻¹` (restated as 8:F2 `four_kappa` downstream). -/
+theorem quarter_fold (F : Frame p κ g) : (4 : Shell p) * ofNat κ = -1 := by
+  have e : (4 : Shell p) * ofNat κ = ofNat (2 * halfPeriod κ) := by
+    apply Shell.ext
+    show 4 % p * (κ % p) % p = 2 * halfPeriod κ % p
+    rw [← Nat.mul_mod _ _ _ Shell.hp]; unfold halfPeriod; rw [← Nat.mul_assoc]
+  rw [e]; exact F.two_pi
+
+/-- 1:Z3 — a fraction at a quarter position of the additive cycle: `4a = p·m` as naturals (the position `a/b` of a
+framed rational is `p(4n+j)/4` with `j ∈ {1,2,3}`, so `4a = p·b·(4n+j)`) forces the residue of `a`, hence the value
+`a b⁻¹`, to be `0`. -/
+theorem quarter_position (F : Frame p κ g) (a m : Nat) (h : 4 * a = p * m) : (ofNat a : Shell p) = 0 := by
+  apply F.no_equator
+  apply Shell.ext
+  show 4 % p * (a % p) % p = 0
+  rw [← Nat.mul_mod _ _ _ Shell.hp, h, ← Nat.add_zero (p * m), Nat.add_mul_mod_self_left _ _ _ Shell.hp]
+  rfl
+
+/-- 1:Z3 — the equator lies strictly between the latitudes `L_κ` and `L_{κ+1}`: `4κ < p < 4(κ + 1)`. -/
+theorem equator_between (F : Frame p κ g) : 4 * κ < p ∧ p < 4 * (κ + 1) := by
+  rw [F.cap, Nat.mul_add, Nat.mul_one]
+  exact ⟨Nat.lt_succ_self _, Nat.add_lt_add_left (by decide) _⟩
+
 end Frame
 end Shell
 end FRC

@@ -50,5 +50,8 @@ theorem p01026 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- 1:Z1 (p01020) — No element of additive order two (Thm.~\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$ (20-rh B8). -/
 theorem p01020 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (s : FRC.Shell p), (2 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p) :=
   @FRC.Ledger.p01020
+/-- 1:Z3 (p01034) — No latitude on the equator (Thm.~\ref{thm:no-equator}): $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle ($\p/4$, $\p/2$, $3\p/4$) has value $0$, and none of the window sits there; the equator, depth $\kap+\tfrac14$, lies strictly between $L_\kap$ and $L_{\kap+1}$, with $\kap\equiv-4^{-1}$, $\kap+1\equiv3\cdot4^{-1}$; no latitude is the equator [chart: $L_a$ drawn at colatitude $2\pi a/\p$]. -/
+theorem p01034 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (s : FRC.Shell p), (4 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (4 : FRC.Shell p) * FRC.Shell.ofNat κ = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (a m : Nat), (4 : Nat) * a = p * m → FRC.Shell.ofNat a = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (4 : Nat) * κ < p ∧ p < (4 : Nat) * (κ + (1 : Nat)) :=
+  @FRC.Ledger.p01034
 -- end ledger predicates
 end FRC.Algebra

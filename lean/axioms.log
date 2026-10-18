@@ -9,6 +9,10 @@
 'FRC.Algebra.scale_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Algebra.complex_chart_zero_divisor' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Algebra.no_south_pole' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Algebra.no_equator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Algebra.quarter_position' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Algebra.quarter_position_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Algebra.equator_between' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Algebra.s13_quarter_turn' depends on axioms: [propext, Quot.sound]
 'FRC.Algebra.euclidSteps' does not depend on any axioms
 'FRC.Algebra.euclid_step_count' does not depend on any axioms
@@ -46,6 +50,7 @@
 'FRC.Algebra.p01032' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Algebra.p01033' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Algebra.p01020' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Algebra.p01034' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Causality.no_causal_root' depends on axioms: [propext, Quot.sound]
 'FRC.Causality.neg_sq_is_square' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Causality.absorb' depends on axioms: [propext, Quot.sound]

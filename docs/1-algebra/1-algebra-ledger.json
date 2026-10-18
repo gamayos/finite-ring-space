@@ -3,7 +3,7 @@
  "tree": "1-algebra-axioms",
  "title": "Relativistic Algebra over Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/axioms14080636",
- "generated": "16 October 2026",
+ "generated": "18 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -234,6 +234,13 @@
      "tag": "D",
      "source": "Section~\\ref{sec:infinity}; 00:C25, 00:D13",
      "key": "p01021"
+    },
+    {
+     "label": "Z3",
+     "predicate": "No latitude on the equator (Thm.~\\ref{thm:no-equator}): $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle ($\\p/4$, $\\p/2$, $3\\p/4$) has value $0$, and none of the window sits there; the equator, depth $\\kap+\\tfrac14$, lies strictly between $L_\\kap$ and $L_{\\kap+1}$, with $\\kap\\equiv-4^{-1}$, $\\kap+1\\equiv3\\cdot4^{-1}$; no latitude is the equator [chart: $L_a$ drawn at colatitude $2\\pi a/\\p$].",
+     "tag": "T",
+     "source": "\\pywit{algebra}{p01034}{Z3}, \\leanwit{FrcCore}{p01034}{Z3}, \\leanwit{FrcLedger}{p01034}{Z3} \\lean{Algebra.no\\_equator, Algebra.quarter\\_position, Algebra.quarter\\_position\\_window, Algebra.equator\\_between, FRC.Shell.Frame.no\\_equator, FRC.Shell.Frame.quarter\\_fold, FRC.Shell.Frame.quarter\\_position, FRC.Shell.Frame.equator\\_between}",
+     "key": "p01034"
     }
    ]
   }
@@ -399,7 +406,7 @@
    {
     "name": "FRC.Algebra.s13_quarter_turn",
     "module": "FrcLedger/Algebra",
-    "line": 207,
+    "line": 263,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -574,7 +581,7 @@
    {
     "name": "FRC.Algebra.tower_density",
     "module": "FrcLedger/Algebra",
-    "line": 271,
+    "line": 327,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -613,7 +620,7 @@
    {
     "name": "FRC.Algebra.root_iff_not_coprime",
     "module": "FrcLedger/Algebra",
-    "line": 240,
+    "line": 296,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -655,7 +662,7 @@
    {
     "name": "FRC.Algebra.circle_net",
     "module": "FrcLedger/Algebra",
-    "line": 293,
+    "line": 349,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -668,7 +675,7 @@
    {
     "name": "FRC.Algebra.group_law_defect",
     "module": "FrcLedger/Algebra",
-    "line": 306,
+    "line": 362,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -748,7 +755,7 @@
    {
     "name": "FRC.Algebra.axis_group",
     "module": "FrcLedger/Algebra",
-    "line": 456,
+    "line": 512,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -761,7 +768,7 @@
    {
     "name": "FRC.Algebra.card_image_le_of_neg",
     "module": "FrcLedger/Algebra",
-    "line": 499,
+    "line": 555,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -830,7 +837,7 @@
    {
     "name": "FRC.Algebra.quat_pow_height",
     "module": "FrcLedger/Algebra",
-    "line": 523,
+    "line": 579,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -843,7 +850,7 @@
    {
     "name": "FRC.Algebra.readback_iff",
     "module": "FrcLedger/Algebra",
-    "line": 544,
+    "line": 600,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -876,6 +883,96 @@
     "tier": 0,
     "ok": true,
     "doc": "1:Z1 (Theorem 3) — `2s = 0 ⇒ s = 0`: the additive cycle has no element of order two; the antipode of the origin is not a residue."
+   }
+  ],
+  "Z3": [
+   {
+    "name": "FRC.Algebra.no_equator",
+    "module": "FrcLedger/Algebra",
+    "line": 205,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "1:Z3 (Theorem thm:no-equator): `4s = 0 ⇒ s = 0` in a field of characteristic `≠ 2`: the additive cycle has no element of order four; the quarter positions of the cycle are no residues."
+   },
+   {
+    "name": "FRC.Algebra.quarter_position",
+    "module": "FrcLedger/Algebra",
+    "line": 221,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "1:Z3 — a framed rational `a/b` at a quarter position of the additive cycle, `a/b = p(4n+j)/4` with `j ∈ {1, 2, 3}`, satisfies `4a = p·b·(4n+j)` as integers; on the shell this forces `a ≡ 0`, so its value `a b⁻¹` is `0`. Stated for every integer `m` in place of `4n + j`."
+   },
+   {
+    "name": "FRC.Algebra.quarter_position_window",
+    "module": "FrcLedger/Algebra",
+    "line": 231,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "1:Z3 — no framed rational of a window `W_H`, `2H < p`, sits at a quarter position: `4a = p·b·m` with `b, m ≠ 0` and `|a| ≤ H` is impossible, since `p ∣ a` and `|a| < p` force `a = 0`."
+   },
+   {
+    "name": "FRC.Algebra.equator_between",
+    "module": "FrcLedger/Algebra",
+    "line": 256,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "1:Z3 — the equator lies strictly between the latitudes `L_κ` and `L_{κ+1}`: `4κ < p < 4(κ + 1)` on `p = 4κ + 1`."
+   },
+   {
+    "name": "FRC.Shell.Frame.no_equator",
+    "module": "FrcCore/FrameCore",
+    "line": 361,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "1:Z3 (Theorem thm:no-equator) — `4s = 0 ⇒ s = 0`: the additive cycle has no element of order four; the quarter positions of the cycle (the equator crossings and the antipode) are no residues."
+   },
+   {
+    "name": "FRC.Shell.Frame.quarter_fold",
+    "module": "FrcCore/FrameCore",
+    "line": 368,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "1:Z3 — the quarter fold: `4κ = −1` on the shell (`4κ = p − 1`), so the equator's depth `κ + 1/4 = p/4` has the value `0` and `κ = −4⁻¹`, `κ + 1 = 3·4⁻¹` (restated as 8:F2 `four_kappa` downstream)."
+   },
+   {
+    "name": "FRC.Shell.Frame.quarter_position",
+    "module": "FrcCore/FrameCore",
+    "line": 378,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "1:Z3 — a fraction at a quarter position of the additive cycle: `4a = p·m` as naturals (the position `a/b` of a framed rational is `p(4n+j)/4` with `j ∈ {1,2,3}`, so `4a = p·b·(4n+j)`) forces the residue of `a`, hence the value `a b⁻¹`, to be `0`."
+   },
+   {
+    "name": "FRC.Shell.Frame.equator_between",
+    "module": "FrcCore/FrameCore",
+    "line": 386,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "1:Z3 — the equator lies strictly between the latitudes `L_κ` and `L_{κ+1}`: `4κ < p < 4(κ + 1)`."
    }
   ]
  }

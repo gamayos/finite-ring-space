@@ -2,7 +2,7 @@
 
 Validation package of *Relativistic Algebra over Finite Ring Continuum* (Akhtman, Axioms 2025, 14, 636,
 doi 10.3390/axioms14080636), `1-algebra` of the FRC corpus, added with the paper's predicate ledger
-(Appendix A, 16 September 2026; one script since 24 September 2026). One script, `algebra.py`, three blocks, eighteen checks, standard library only, driven by
+(Appendix A, 16 September 2026; one script since 24 September 2026). One script, `algebra.py`, three blocks, nineteen checks, standard library only, driven by
 `frc-1-algebra.ipynb` (Google Colab: one cell per ledger predicate, any cell on its own, or *Runtime → Run all*, ≈ 30 s) or run whole.
 
 Every check names the predicate of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine verification", 27 predicates in blocks A–G, Y,
@@ -26,6 +26,7 @@ Run: `python3 algebra.py` (python ≥ 3.8, no third-party packages; ≈ 30 s; `r
 | `B4` | B | EXACT | F_p[X]/(X²+1) has zero divisors on the shell; a field exactly when p ≡ 3 (mod 4) (exhaustive at 7, 11, 19, 23) | `1:E2` |
 | `B5` | B | EXACT | 2s = 0 ⇒ s = 0 for every odd prime < 200; 2⁻¹ = 2κ + 1 on the shell | `1:Z1` |
 | `B6` | B | EXACT | the Euclidean step count against ⌊log₂ p⌋+1: (55, 34) needs 7 > 6 at p = 59, (987, 610) needs 13 > 10 at p = 1009; F₄ = 3 < 4 | — (a check of the package, no ledger predicate) |
+| `B7` | B | EXACT | 4s = 0 ⇒ s = 0; every fraction a/b at a quarter position of the additive cycle (p/4, p/2, 3p/4 mod p) has value 0 and none of the window is there; the equator κ + 1/4 lies between L_κ and L_{κ+1}, κ ≡ −4⁻¹, κ + 1 ≡ 3·4⁻¹ — p ∈ {5, 13, 17, 29, 37, 41, 173} | `1:Z3` |
 | `C1` | C | EXACT | f ∈ F_p[X] has a root iff gcd(f, X^p − X) ≠ 1, and deg gcd = the number of distinct roots — every monic polynomial of degree ≤ 3 over F₁₃ and F₁₇ | `1:E3` |
 | `C2` | C | CHART | for r ∈ {π, e, √2, 33/10, 1/3} and ε = 10⁻²..10⁻⁸ a shell p = 4κ+1 carries x/2ⁿ, \|x\| ≤ 2κ, within ε of r (exact rationals) | `1:D7` |
 | `C3` | C | CHART | k(θ) = ⌊Nθ/2π + ½⌋, N = p−1: angle and chord error ≤ π/N, group-law defect ≤ 1, on every shell | `1:E4` |

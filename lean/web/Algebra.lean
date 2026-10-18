@@ -395,7 +395,63 @@ has no element of order two; the antipode of the origin is not a residue. -/
 theorem no_south_pole (hchar : (2 : F) ≠ 0) (s : F) (h : 2 * s = 0) : s = 0 :=
   (mul_eq_zero.1 h).resolve_left hchar
 
+omit [Fintype F] [DecidableEq F] in
+/-- 1:Z3 (Theorem thm:no-equator): `4s = 0 ⇒ s = 0` in a field of characteristic `≠ 2`: the additive cycle has
+no element of order four; the quarter positions of the cycle are no residues. -/
+theorem no_equator (hchar : (2 : F) ≠ 0) (s : F) (h : 4 * s = 0) : s = 0 := by
+  have h4 : (4 : F) = 2 * 2 := by norm_num
+  rw [h4, mul_assoc] at h
+  exact no_south_pole hchar s (no_south_pole hchar (2 * s) h)
+
 end shell
+
+/-! ## The equator on the prime shell `ZMod p` (1:Z3) -/
+
+section equator
+
+variable (p : ℕ) [Fact p.Prime]
+
+/-- 1:Z3 — a framed rational `a/b` at a quarter position of the additive cycle, `a/b = p(4n+j)/4` with
+`j ∈ {1, 2, 3}`, satisfies `4a = p·b·(4n+j)` as integers; on the shell this forces `a ≡ 0`, so its value `a b⁻¹`
+is `0`. Stated for every integer `m` in place of `4n + j`. -/
+theorem quarter_position (hp : (2 : ZMod p) ≠ 0) (a b m : ℤ) (h : 4 * a = (p : ℤ) * b * m) :
+    (a : ZMod p) * (b : ZMod p)⁻¹ = 0 := by
+  have h4 : (4 : ZMod p) * (a : ZMod p) = 0 := by
+    have := congrArg (Int.cast : ℤ → ZMod p) h
+    push_cast at this
+    rw [this, ZMod.natCast_self]; ring
+  rw [no_equator hp (a : ZMod p) h4, zero_mul]
+
+/-- 1:Z3 — no framed rational of a window `W_H`, `2H < p`, sits at a quarter position: `4a = p·b·m` with
+`b, m ≠ 0` and `|a| ≤ H` is impossible, since `p ∣ a` and `|a| < p` force `a = 0`. -/
+theorem quarter_position_window (a b m : ℤ) (H : ℕ) (hH : 2 * H < p) (ha : |a| ≤ H) (hb : b ≠ 0) (hm : m ≠ 0)
+    (h : 4 * a = (p : ℤ) * b * m) : False := by
+  have hp : Nat.Prime p := Fact.out
+  have ha0 : a = 0 := by
+    by_contra hne
+    have h4 : (p : ℤ) ∣ 4 * a := ⟨b * m, by rw [h]; ring⟩
+    rcases Int.Prime.dvd_mul' hp h4 with h1 | h1
+    · have h2 : p ∣ 4 := by exact_mod_cast h1
+      have hp2 : p = 2 :=
+        (Nat.prime_dvd_prime_iff_eq hp Nat.prime_two).1 (hp.dvd_of_dvd_pow (show p ∣ 2 ^ 2 by simpa using h2))
+      subst hp2
+      have hH0 : H = 0 := by omega
+      subst hH0
+      exact hne (abs_nonpos_iff.1 (by exact_mod_cast ha))
+    · exact hne (Int.eq_zero_of_abs_lt_dvd h1 (by omega))
+  subst ha0
+  have h0 : (p : ℤ) * b * m = 0 := by linarith
+  rcases mul_eq_zero.1 h0 with h1 | h1
+  · rcases mul_eq_zero.1 h1 with h2 | h2
+    · exact absurd h2 (by exact_mod_cast hp.ne_zero)
+    · exact hb h2
+  · exact hm h1
+
+omit [Fact p.Prime] in
+/-- 1:Z3 — the equator lies strictly between the latitudes `L_κ` and `L_{κ+1}`: `4κ < p < 4(κ + 1)` on `p = 4κ + 1`. -/
+theorem equator_between (κ : ℕ) (hκ : p = 4 * κ + 1) : 4 * κ < p ∧ p < 4 * (κ + 1) := by omega
+
+end equator
 
 /-! ## Instance predicates on the prime shell `ZMod p` -/
 
@@ -792,6 +848,9 @@ def p01033 := And.intro @FRC.Algebra.quat_pow_height (@FRC.Algebra.readback_iff)
 /-- 1:Z1 (p01020) — No element of additive order two (Thm.~\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$ (20-rh B8). -/
 theorem p01020 : ∀ {F : Type u_1} [Field F], (2 : F) ≠ (0 : F) → ∀ (s : F), (2 : F) * s = (0 : F) → s = (0 : F) :=
   @FRC.Algebra.no_south_pole
+/-- 1:Z3 (p01034) — No latitude on the equator (Thm.~\ref{thm:no-equator}): $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle ($\p/4$, $\p/2$, $3\p/4$) has value $0$, and none of the window sits there; the equator, depth $\kap+\tfrac14$, lies strictly between $L_\kap$ and $L_{\kap+1}$, with $\kap\equiv-4^{-1}$, $\kap+1\equiv3\cdot4^{-1}$; no latitude is the equator [chart: $L_a$ drawn at colatitude $2\pi a/\p$]. -/
+theorem p01034 : (∀ {F : Type u_1} [Field F], (2 : F) ≠ (0 : F) → ∀ (s : F), (4 : F) * s = (0 : F) → s = (0 : F)) ∧ (∀ (p : ℕ) [Fact (Nat.Prime p)], (2 : ZMod p) ≠ (0 : ZMod p) → ∀ (a b m : ℤ), (4 : ℤ) * a = ↑p * b * m → ↑a * (↑b)⁻¹ = (0 : ZMod p)) ∧ (∀ (p : ℕ) [Fact (Nat.Prime p)] (a b m : ℤ) (H : ℕ), (2 : ℕ) * H < p → |a| ≤ ↑H → b ≠ (0 : ℤ) → m ≠ (0 : ℤ) → (4 : ℤ) * a = ↑p * b * m → False) ∧ ∀ (p κ : ℕ), p = (4 : ℕ) * κ + (1 : ℕ) → (4 : ℕ) * κ < p ∧ p < (4 : ℕ) * (κ + (1 : ℕ)) :=
+  And.intro @FRC.Algebra.no_equator (And.intro @FRC.Algebra.quarter_position (And.intro @FRC.Algebra.quarter_position_window (@FRC.Algebra.equator_between)))
 -- end ledger predicates
 
 end FRC.Algebra
@@ -810,3 +869,4 @@ end FRC.Algebra
 #print axioms FRC.Algebra.p01032
 #print axioms FRC.Algebra.p01033
 #print axioms FRC.Algebra.p01020
+#print axioms FRC.Algebra.p01034

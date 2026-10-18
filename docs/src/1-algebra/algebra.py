@@ -15,7 +15,7 @@ predicates of the paper ledger that the master carries are listed in the site ge
     from frc_1_algebra import predicate; predicate("1:B2")     one predicate: its block runs once per session
 
 Blocks:  A  the shell, its frame and the orbital complex          EXACT          (1:B2–B4, C2, C4)
-         B  the framed numbers, the charts and the horizon         EXACT / CHART  (1:D2, D4, D6, E2, Z1; B6 decides no predicate)
+         B  the framed numbers, the charts and the horizon         EXACT / CHART  (1:D2, D4, D6, E2, Z1, Z3; B6 decides no predicate)
          C  the conjecture of the conclusion, clause by clause     EXACT / CHART  (1:E3, D7, E4–E8)
 
 Everything the blocks share:
@@ -43,7 +43,7 @@ RESULTS = []
 # The paper's predicate ledger (Appendix A, predicates cited as 1:XN): the predicate(s) each check witnesses.
 LEDGER = {
     "A1": "1:B2", "A2": "1:B3", "A3": "1:B4", "A4": "1:C2", "A5": "1:C4",
-    "B1": "1:D2", "B2": "1:D4", "B3": "1:D6", "B4": "1:E2", "B5": "1:Z1", "B6": "",          # B6 (the Euclidean step count) decides no predicate of the ledger
+    "B1": "1:D2", "B2": "1:D4", "B3": "1:D6", "B4": "1:E2", "B5": "1:Z1", "B6": "", "B7": "1:Z3",   # B6 (the Euclidean step count) decides no predicate of the ledger
     "C1": "1:E3", "C2": "1:D7", "C3": "1:E4", "C4": "1:E5", "C5": "1:E6", "C6": "1:E7", "C7": "1:E8",
 }
 
@@ -55,7 +55,7 @@ BLOCK = {"A": "the shell, its frame and the orbital complex",             # chec
 # touch it are corroboration, listed by predicate() from the records)
 PREDICATES = {
     "1:B2": "A1", "1:B3": "A2", "1:B4": "A3", "1:C2": "A4", "1:C4": "A5",
-    "1:D2": "B1", "1:D4": "B2", "1:E2": "B4", "1:Z1": "B5",                       # D6: B3 witnesses it in LEDGER but carries no marker (as before the merge)
+    "1:D2": "B1", "1:D4": "B2", "1:E2": "B4", "1:Z1": "B5", "1:Z3": "B7",         # D6: B3 witnesses it in LEDGER but carries no marker (as before the merge)
     "1:E3": "C1", "1:D7": "C2", "1:E4": "C3", "1:E5": "C4", "1:E6": "C5", "1:E7": "C6", "1:E8": "C7",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
@@ -268,7 +268,7 @@ def block_A():
 
 # ------------------------------------------------------------------------------------------------------------
 # block B: the framed numbers, the charts and the horizon (EXACT; B3 CHART in exact rationals)
-# Paper statements decided (Sections 4–5; ledger predicates 1:D2, 1:D4, 1:D6, 1:E2, 1:Z1; B6 decides no predicate):
+# Paper statements decided (Sections 4–5; ledger predicates 1:D2, 1:D4, 1:D6, 1:E2, 1:Z1, 1:Z3; B6 decides no predicate):
 #
 #   B1  def:integers (1:D2)          the window W_H = {|z| ≤ H}: z ↦ z mod p injective iff 2H < p; sums read back
 #                                    iff 4H < p; products read back whenever 2H² < p (sufficient; the product set is
@@ -283,6 +283,9 @@ def block_A():
 #   B5  thm:no-south-pole (1:Z1)     2s = 0 ⇒ s = 0 on every odd prime; 2·(2κ+1) = 1: the half-turn 2⁻¹ = 2κ+1
 #   B6  (no predicate)               the Euclidean step count against the bound k ≤ ⌊log₂ p⌋+1 (lem:euclid-bound):
 #                                    p = 59 (55, 34) needs 7 > 6; p = 1009 (987, 610) needs 13 > 10; first excess at 59
+#   B7  thm:no-equator (1:Z3)        4s = 0 ⇒ s = 0; a fraction a/b (b ≢ 0) at a quarter position of the additive cycle
+#                                    (p/4, p/2, 3p/4 mod p) has value 0, and none with a, b in a window 2H < p is there;
+#                                    the equator p/4 = κ + 1/4 lies between L_κ and L_{κ+1}; κ ≡ −4⁻¹, κ + 1 ≡ 3·4⁻¹
 def block_B():
     """Block B — the framed numbers, the charts and the horizon (EXACT; B3 CHART in exact rationals): B1–B6."""
     print("block B — the framed numbers, the charts and the horizon")
@@ -377,6 +380,28 @@ def block_B():
     ok &= (fib[3] == 3 and fib[3] < 2 ** 2)                               # F_4 = 3 < 2^{4−2}: the Fibonacci bound 2^{k−2} does not hold at k = 4
     check("B6", "the Euclidean step count against ⌊log₂p⌋+1: (55,34) needs 7 > ⌊log₂59⌋+1 = 6; (987,610) needs 13 > 10; first excess at p = 59; F_4 = 3 < 4",
           ok, "a ≥ b convention, consecutive Fibonacci pairs below p")
+
+    # B7 — no latitude on the equator: the quarter positions of the additive cycle carry only fractions of value 0
+    ok, det = True, []
+    for p in SHELLS:
+        k = kappa(p); inv4 = pow(4, p - 2, p)
+        ok &= ([s for s in range(p) if (4 * s) % p == 0] == [0])                                  # no element of additive order four
+        ok &= (Fraction(p, 4) == k + Fraction(1, 4)) and (k % p == (-inv4) % p) and ((k + 1) % p == (3 * inv4) % p)
+        H = (p - 1) // 2                                                                           # the widest window, 2H < p
+        hits = 0
+        for b in range(1, 3 * p):
+            if b % p == 0: continue
+            for a in range(-3 * p, 3 * p + 1):
+                q4 = 4 * Fraction(a, b)
+                if q4.denominator == 1 and q4 % p == 0 and (q4 // p) % 4 != 0:                     # a/b ≡ p/4, p/2 or 3p/4 (mod p)
+                    hits += 1
+                    ok &= (a % p == 0) and ((a * pow(b, p - 2, p)) % p == 0)                     # the fraction's value is 0
+                    ok &= not (abs(a) <= H and abs(b) <= H)                                       # and no window fraction sits there
+        ok &= hits > 0
+        det.append(f"p={p}: {hits} quarter-position fractions a/b, |a| ≤ 3p, b < 3p, all of value 0")
+    # 1:Z3 (p01034)
+    check("B7", "4s = 0 ⇒ s = 0; every fraction at a quarter position of the additive cycle has value 0 and none of the window is there; the equator κ+1/4 between L_κ and L_{κ+1}, κ ≡ −4⁻¹, κ+1 ≡ 3·4⁻¹",
+          ok, "; ".join(det))
 
 # ------------------------------------------------------------------------------------------------------------
 # block C: the conjecture of the conclusion, clause by clause (EXACT; C2–C4 CHART)
