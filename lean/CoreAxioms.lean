@@ -2188,6 +2188,7 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p38029
 #print axioms FRC.Ledger.p38050
 #print axioms FRC.Ledger.p38053
+#print axioms FRC.Ledger.p00061
 #print axioms FRC.Ledger.p00062
 #print axioms FRC.Ledger.p00064
 #print axioms FRC.Ledger.p00191
@@ -2231,8 +2232,12 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p22054
 #print axioms FRC.Ledger.p22055
 #print axioms FRC.Ledger.p22056
+#print axioms FRC.Ledger.p00067
+#print axioms FRC.Ledger.p00069
 #print axioms FRC.Ledger.p00081
+#print axioms FRC.Ledger.p00083
 #print axioms FRC.Ledger.p00155
+#print axioms FRC.Ledger.p00178
 #print axioms FRC.Ledger.p27013
 #print axioms FRC.Ledger.p27014
 #print axioms FRC.Ledger.p27015
@@ -2333,6 +2338,11 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p32034
 #print axioms FRC.Ledger.p32042
 #print axioms FRC.Ledger.p32050
+#print axioms FRC.Ledger.p00070
+#print axioms FRC.Ledger.p00073
+#print axioms FRC.Ledger.p00074
+#print axioms FRC.Ledger.p00075
+#print axioms FRC.Ledger.p00091
 #print axioms FRC.Ledger.p35015
 #print axioms FRC.Ledger.p35016
 #print axioms FRC.Ledger.p35017

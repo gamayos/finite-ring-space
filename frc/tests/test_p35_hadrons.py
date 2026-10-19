@@ -192,5 +192,20 @@ class HadronsTest(unittest.TestCase):
         self.assertEqual(missing, NOT_REPRODUCED)
 
 
+class MasterHadronsTest(unittest.TestCase):
+    def test_block_file(self):
+        """The master's hadrons block file (19 October 2026): G8, G9, G10 decided by marked checks, their keys core."""
+        from frc.ledgers.master import hadrons as M
+        self.assertTrue(M.R.verify_all())
+        marks = M.R.markers()
+        for lab in M.R.predicates: self.assertIn(lab, marks)
+        self.assertEqual(sorted(M.PROOFS), sorted(M.LEAN))
+        self.assertEqual(M.BLOCK, "G")
+        self.assertEqual(sorted(M.PREDICATES), ["00:G10", "00:G8", "00:G9"])
+        self.assertTrue(all(v == "core" for v in M.LEAN.values()))             # a T row of block G binds no chart key (G08)
+        kinds = {r["id"]: r["kind"] for r in M.R.results}
+        self.assertEqual(kinds["B1"], "CHART"); self.assertEqual(kinds["S1"], "EXACT")
+
+
 if __name__ == "__main__":
     unittest.main()

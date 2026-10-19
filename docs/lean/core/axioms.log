@@ -2177,6 +2177,7 @@
 'FRC.Ledger.p38029' does not depend on any axioms
 'FRC.Ledger.p38050' does not depend on any axioms
 'FRC.Ledger.p38053' does not depend on any axioms
+'FRC.Ledger.p00061' does not depend on any axioms
 'FRC.Ledger.p00062' does not depend on any axioms
 'FRC.Ledger.p00064' does not depend on any axioms
 'FRC.Ledger.p00191' does not depend on any axioms
@@ -2220,8 +2221,12 @@
 'FRC.Ledger.p22054' does not depend on any axioms
 'FRC.Ledger.p22055' does not depend on any axioms
 'FRC.Ledger.p22056' does not depend on any axioms
+'FRC.Ledger.p00067' does not depend on any axioms
+'FRC.Ledger.p00069' does not depend on any axioms
 'FRC.Ledger.p00081' does not depend on any axioms
+'FRC.Ledger.p00083' does not depend on any axioms
 'FRC.Ledger.p00155' does not depend on any axioms
+'FRC.Ledger.p00178' does not depend on any axioms
 'FRC.Ledger.p27013' does not depend on any axioms
 'FRC.Ledger.p27014' does not depend on any axioms
 'FRC.Ledger.p27015' does not depend on any axioms
@@ -2322,6 +2327,11 @@
 'FRC.Ledger.p32034' does not depend on any axioms
 'FRC.Ledger.p32042' does not depend on any axioms
 'FRC.Ledger.p32050' does not depend on any axioms
+'FRC.Ledger.p00070' does not depend on any axioms
+'FRC.Ledger.p00073' does not depend on any axioms
+'FRC.Ledger.p00074' does not depend on any axioms
+'FRC.Ledger.p00075' does not depend on any axioms
+'FRC.Ledger.p00091' does not depend on any axioms
 'FRC.Ledger.p35015' does not depend on any axioms
 'FRC.Ledger.p35016' does not depend on any axioms
 'FRC.Ledger.p35017' does not depend on any axioms

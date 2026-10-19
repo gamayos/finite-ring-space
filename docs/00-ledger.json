@@ -2070,7 +2070,7 @@
     "27-fld",
     "28-flav"
    ],
-   "witness": null,
+   "witness": "28:p28_flavour.py",
    "refs": [
     {
      "label": "G1",

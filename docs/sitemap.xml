@@ -129,12 +129,16 @@
     <lastmod>2026-10-16</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/frc/ledgers/master/hadrons.html</loc>
+    <lastmod>2026-10-19</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/frc/ledgers/master/horizon.html</loc>
     <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/interactions.html</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/logic.html</loc>
@@ -146,7 +150,7 @@
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/quantum.html</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/subject.html</loc>
@@ -630,7 +634,7 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/ml/Keys.Chart.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/lean/ml/Keys.Gravity.html</loc>

@@ -68,8 +68,8 @@ class MasterQuantumTest(unittest.TestCase):
         marks = Q.R.markers()
         for lab in Q.R.predicates: self.assertIn(lab, marks)
         self.assertEqual(sorted(Q.PROOFS), sorted(Q.LEAN))
-        self.assertEqual(Q.BLOCK, "F")
-        self.assertEqual(sorted(Q.PREDICATES), ["00:F2", "00:F4", "00:F5", "00:F6"])
+        self.assertEqual(Q.BLOCK, "FP")                                       # F and the prediction P2 (19 October 2026)
+        self.assertEqual(sorted(Q.PREDICATES), ["00:F2", "00:F4", "00:F5", "00:F6", "00:P2"])
 
     def _mutant(self, block, name, fake):
         """Run one block of a fresh copy of the block file with the theme function `name` replaced; the checks' verdicts."""

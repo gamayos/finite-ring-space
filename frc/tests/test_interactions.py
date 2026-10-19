@@ -121,8 +121,12 @@ class MasterInteractionsTest(unittest.TestCase):
         self.assertTrue(I.R.verify_all())
         marks = I.R.markers()
         for lab in I.R.predicates: self.assertIn(lab, marks)
-        self.assertEqual(sorted(I.PROOFS), sorted(I.LEAN))
-        self.assertEqual(I.BLOCK, "G")
+        self.assertEqual(sorted(set(I.PROOFS) | set(I.CHART)), sorted(I.LEAN))
+        self.assertEqual(I.BLOCK, "GPZ")                                      # G, the prediction P4 and the horizon row Z5 (19 October 2026)
+        self.assertEqual(sorted(I.PREDICATES), ["00:G1", "00:G11", "00:G12", "00:G16", "00:G18", "00:G2", "00:G4", "00:G5", "00:G7", "00:P4", "00:Z5"])
+        self.assertEqual(I.LEAN["P4"], "core, ml")                           # the prediction's chart clauses on Mathlib
+        self.assertEqual(I.PROOFS["Z5"], ["FRC.Interactions.unification_counts", "FRC.Interactions.fifth_direction",
+                                          "FRC.Interactions.offblock_automorphism", "FRC.Interactions.torsion_beyond_horizon"])   # 27:C9's binding, the shared key
 
 
 if __name__ == "__main__":

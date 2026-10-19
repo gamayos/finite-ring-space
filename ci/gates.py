@@ -275,6 +275,9 @@ def bridge_pairs():
     import json
     docs = ROOT / "docs"
     master = {r["label"]: r for r in json.loads((docs / "00-ledger.json").read_text(encoding="utf-8"))["rows"]}
+    if (docs / "predictions.json").exists():                                   # the master's prediction rows (block P) live in docs/predictions.json (LM30); a prediction bound to a core key pairs too (19 October 2026)
+        for r in json.loads((docs / "predictions.json").read_text(encoding="utf-8"))["rows"]:
+            if r["paper"] == "00": master.setdefault(r["label"], {"label": r["label"], "key": r["key"], "tag": r["tag"], "block": "P"})
     core = {}
     for f in sorted((ROOT / "frc" / "ledgers" / "master").glob("*.py")):
         m = re.search(r"^LEAN = (\{.*?\})", f.read_text(encoding="utf-8"), re.M)

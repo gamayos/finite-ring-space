@@ -591,6 +591,188 @@
    "status": "shared theorem",
    "lean": "FRC.Drift.gauss_law",
    "note": "18 October 2026: as 32:C1 (the explanation register's restatement: Newton's law and the equivalence principle from the discrete Gauss law)"
+  },
+  {
+   "master": "P2",
+   "paper": "22:C21",
+   "status": "shared theorem",
+   "lean": "FRC.Composite.branch_phase, FRC.Composite.pair_product, FRC.Composite.spread_cancels, FRC.Composite.channel_assembly",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): one key's content on both sides: the coherent-fraction channel's branch and pair phases, the vanishing spread and the factorised channel"
+  },
+  {
+   "master": "G1",
+   "paper": "27:C2",
+   "status": "shared theorem",
+   "lean": "FRC.Interactions.gauge_flux_invariant, FRC.Interactions.projector_forced, FRC.Interactions.admissible_two",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the plaquette flux's gauge invariance (charge as winding), the forced transverse projector (the massless photon, unique up to one coefficient) and the two admissible actions with Maxwell's among them; G1's key adds 27:C3's Coulomb table"
+  },
+  {
+   "master": "G2",
+   "paper": "27:C4",
+   "status": "shared theorem",
+   "lean": "FRC.Interactions.va_cancel, FRC.Interactions.orientation_flip",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the V − A cancellation and the orientation relabelling; 27:C4's key adds the drive's adjoint action, 2T and the class function, G2's key is the two"
+  },
+  {
+   "master": "G2",
+   "paper": "27:C6",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): G2's key is the V − A current (va_cancel, orientation_flip); 27:C6's key is the Weinberg angle, the generation's content and the Mathlib fermi_constant; the clause they share, G_F = 1/(√2 v²), is 27-fields' Mathlib theorem, a chart clause no T row of block G binds (G08), decided in the master's python check W2 as a polynomial identity"
+  },
+  {
+   "master": "G4",
+   "paper": "27:C7",
+   "status": "shared theorem",
+   "lean": "FRC.Interactions.su3_centre, FRC.Interactions.gluon_commutator, FRC.Interactions.rank_tower",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the colour centre Z_3, the gluon self-coupling and the rank tower; the area law's positivity is 27-fields' Mathlib area_law_positive, no core clause"
+  },
+  {
+   "master": "G5",
+   "paper": "27:C7",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): G5's key is 2T = SU(2, 𝔽₃) (tetrahedral_group) and the SU(3) Haar moments by the Weyl constant term (FRC.Hadrons.adjoint_channel), the data of the tension's closed form and series; 27:C7's key is the colour centre, the gluon commutator and the rank tower; the clause they share, σ = −ln c₁ > 0 from positivity, is 27-fields' Mathlib area_law_positive, no core clause in common"
+  },
+  {
+   "master": "Z5",
+   "paper": "27:C9",
+   "status": "shared theorem",
+   "lean": "FRC.Interactions.unification_counts, FRC.Interactions.fifth_direction, FRC.Interactions.offblock_automorphism, FRC.Interactions.torsion_beyond_horizon",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): one key (p27021): the master's Z5 and the paper's C9 are the forced simple unification — the off-block counts, the fifth direction, the colour–isospin transpositions as automorphisms, the torsion period beyond every horizon count"
+  },
+  {
+   "master": "G1",
+   "paper": "27:C3",
+   "status": "shared theorem",
+   "lean": "FRC.Interactions.green_torus",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the L = 4 Coulomb Green's function in exact rationals; G1's key adds 27:C2's three theorems"
+  },
+  {
+   "master": "G2",
+   "paper": "27:X6",
+   "status": "shared theorem",
+   "lean": "FRC.Interactions.va_cancel, FRC.Interactions.orientation_flip",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): the same two theorems: the V − A current derived from the Frobenius branch"
+  },
+  {
+   "master": "G4",
+   "paper": "27:X7",
+   "status": "shared theorem",
+   "lean": "FRC.Interactions.su3_centre, FRC.Interactions.gluon_commutator, FRC.Interactions.rank_tower",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): the same three theorems: the colour sector fixed"
+  },
+  {
+   "master": "G5",
+   "paper": "27:X7",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): as with 27:C7: G5's key is the tension's data (2T and the Weyl moments), 27:X7's the colour sector's structure; the shared positivity is 27-fields' Mathlib area_law_positive"
+  },
+  {
+   "master": "G18",
+   "paper": "28:C12",
+   "status": "shared theorem",
+   "lean": "FRC.Interactions.fifth_direction",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the quarter-turn as the fifth direction (the 16 as the even subsets); 28:C12's key adds the reflection algebra, G18's the generation's content with its one neutral singlet ν^c (one_generation)"
+  },
+  {
+   "master": "G8",
+   "paper": "35:C1",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.colour_group",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the colour group built exactly with its triality centre; G8's key adds the colourless content, the six relations and the colour–spin–charge arithmetic"
+  },
+  {
+   "master": "G8",
+   "paper": "35:C14",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.adjoint_channel",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the adjoint channel's Weyl moments; 35:C14's key adds its Mathlib reading character_coefficients"
+  },
+  {
+   "master": "G8",
+   "paper": "35:C2",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.gmo",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): Gell-Mann–Okubo as a ring identity, on both keys"
+  },
+  {
+   "master": "G8",
+   "paper": "35:C3",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.spacing",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): the decuplet's equal spacing as a ring identity, on both keys"
+  },
+  {
+   "master": "G8",
+   "paper": "35:C5",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.spin_pattern",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): the spin pattern with denominators cleared, on both keys"
+  },
+  {
+   "master": "G8",
+   "paper": "35:C6",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.adjoint_channel",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the adjoint channel's Weyl moments (the colour-magnetic curvature invariant); 35:C6's key adds its Mathlib readings (character_coefficients, a_light)"
+  },
+  {
+   "master": "G8",
+   "paper": "35:C7",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.coleman_glashow",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): Coleman–Glashow as a one-body identity, on both keys"
+  },
+  {
+   "master": "G8",
+   "paper": "35:C8",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.charge_structure",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the charge structure behind M_n > M_p; 35:C8's key adds its Mathlib reading cg_pdg"
+  },
+  {
+   "master": "G8",
+   "paper": "35:C9",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.sigma_lambda",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): the Σ–Λ fine structure, on both keys"
+  },
+  {
+   "master": "G9",
+   "paper": "35:C15",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.colourless_content",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the colourless content (1, 0, 0, 1): the baryon as the determinant, residue 1; G9's key adds the meson contraction"
+  },
+  {
+   "master": "G9",
+   "paper": "35:C18",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.meson_invariant",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the meson contraction (residue 1, triality 0); 35:C18's key adds the vector nonet's spacing, G9's the colourless content"
+  },
+  {
+   "master": "G10",
+   "paper": "35:C16",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.airy_sturm, FRC.Hadrons.lambda_n_gap, FRC.Hadrons.spin_split",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the three core theorems of the single scale: Sturm's count of the finite operator, the Λ–N gap, the spin split; 35:C16's key adds its Mathlib readings (single_scale, airy_ratio); G10's chart clauses are its python check's (a T row of block G binds no chart key, G08)"
+  },
+  {
+   "master": "G10",
+   "paper": "35:C17",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.spin_split",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the exact spin split; 35:C17's key adds the Mathlib reading of E₀ against the nucleon (baryon_scale), which G10's python check reproduces"
+  },
+  {
+   "master": "G10",
+   "paper": "35:C19",
+   "status": "shared theorem",
+   "lean": "FRC.Hadrons.spin_split",
+   "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the exact spin split; 35:C19's key adds the forward landing and the coupling bracket on Mathlib, which G10's python check reproduces"
   }
  ]
 }
