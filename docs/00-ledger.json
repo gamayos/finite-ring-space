@@ -2197,7 +2197,7 @@
    "name": "The registrable triangle",
    "block": "L",
    "key": "p00087",
-   "tag": "T",
+   "tag": "R",
    "sources": [
     "14-entr"
    ],
@@ -2212,7 +2212,7 @@
      "key": "p00085"
     }
    ],
-   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2)."
+   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). Falsifier: a single typical object of the condensed-density sequence heavier than the over-closure bound and not horizon-bound (14:X5)."
   },
   {
    "label": "L5",

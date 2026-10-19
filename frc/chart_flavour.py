@@ -1,7 +1,7 @@
 """frc.chart_flavour — the readings of 28-flavour against the continuum (the chart theme; 28-flavour's migration,
 17 October 2026).
 
-The chart theme holds the floats (frc/themes.py, rank 30). This file serves the continuum-comparison layer of the paper
+The chart theme holds the floats (frc/themes.py, rank 31 since 19 October 2026, the super theme at 30). This file serves the continuum-comparison layer of the paper
 28-flavour, whose ledger file frc/ledgers/p28_flavour.py decides every exact clause through frc/flavour.py and compares
 these readings with rational bounds (it converts each float exactly, with Fraction). Each function computes what one
 script of the paper's validation package (src/28-flavour) computes in floating point, with the same inputs: the

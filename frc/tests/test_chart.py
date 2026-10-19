@@ -50,6 +50,24 @@ class MasterChartTest(unittest.TestCase):
         self.assertEqual(sorted(L.CHART), sorted(L.LEAN))
         self.assertEqual(L.BLOCK, "ALP")                 # A7 (the scale import; A8 until the relabel of 9 October) bound since the push of 8 October 2026
         self.assertFalse(hasattr(L, "PROOFS"))           # the chart rows are not bound as theorem rows (gate G08)
+        self.assertIn("00:L4", L.PREDICATES)              # the registrable triangle (an R row since 19 October 2026), block T
+        self.assertEqual(L.CHART["L4"], ["FRC.Chart.count_face", "FRC.Chart.wall_exit"])
+        kinds = {r["id"]: r["kind"] for r in L.R.results}
+        self.assertTrue(all(k == "CHART" for k in kinds.values()))
+
+    def test_registrable_triangle(self):
+        """The chart of 00:L4 against 14-entropy's records and a second least-squares route (the normal equations solved by hand)."""
+        t = C.registrable_triangle()
+        self.assertAlmostEqual(t["width"], 61.01, places=2)
+        self.assertAlmostEqual(t["width"], t["width_face"], places=12)
+        pts = [(math.log10(float(C.OBJECTS[n][0])), math.log10(float(C.OBJECTS[n][1]))) for n in C.FIT]
+        mx, my = sum(x for x, _ in pts) / len(pts), sum(y for _, y in pts) / len(pts)
+        k = sum((x - mx) * (y - my) for x, y in pts) / sum((x - mx) ** 2 for x, _ in pts)
+        self.assertAlmostEqual(t["k_fit"], k, places=12); self.assertAlmostEqual(t["b_fit"], my - k * mx, places=12)
+        self.assertAlmostEqual(t["k_fit"], 3.032, places=2); self.assertAlmostEqual(t["k_full"], 3.007, places=2)
+        self.assertAlmostEqual(t["M_exit"] / 1.8e8, 1, places=1)
+        self.assertTrue(1.3e8 < t["band"][0] < t["band"][1] < 2.9e8)
+        self.assertAlmostEqual(t["closed_vs_fit"], 1, places=9)
 
 
 if __name__ == "__main__":

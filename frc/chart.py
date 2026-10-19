@@ -1,9 +1,9 @@
 """frc.chart — the chart theme: the readings against the continuum (ledger migration, task LM30, 6 October 2026).
 
-The chart theme is the one python theme with floats (frc/themes.py, rank 30): the readings of the finite results
+The chart theme is the one python theme with floats (frc/themes.py, rank 31): the readings of the finite results
 against the continuum. Its cosmology section serves the chart clauses of the master's rows A7 (the scale import's
-numerals S and Ω; the ledger's ln Ω for L8), L1 (the floor), L3 (the octant record depth and its outputs), L8 (the primordial tilt) and
-P1 (the running floor).
+numerals S and Ω; the ledger's ln Ω for L8), L1 (the floor), L3 (the octant record depth and its outputs), L4 (the
+registrable triangle, 19 October 2026), L8 (the primordial tilt) and P1 (the running floor).
 
 Each reading is computed twice: in floating point (`math`), and as a certified bracket in exact rational arithmetic,
 π from Machin's formula with the alternating-series remainder and e^x from its Taylor series with the tail bound. The
@@ -248,3 +248,62 @@ def ladder_pull_bracket(age_gyr=STELLAR_AGE[0]):
 def sigma_bracket(bracket, fit):
     """(value − fit)/error over a bracket of the value, the error positive."""
     return ((bracket[0] - fit[0]) / fit[1], (bracket[1] - fit[0]) / fit[1])
+
+
+# ---- the registrable triangle (00:L4; 14:C9, 14:X5; 19 October 2026) ------------------------------------------------------
+# The mass–radius chart between the Compton wall m R c = ħ and the Schwarzschild wall R = 2Gm/c², closed by the Planck apex
+# and the totality wall r_H: declared chart data, the constants (CODATA 2018) and the reference objects of 14-entropy's
+# figure (the package src/14-entropy/entropy.py, block tri), every radius and mass [approx] by construction.
+G_NEWTON = Q("6.67430e-11")               # m³ kg⁻¹ s⁻²
+HBAR = Q("1.054571817e-34")               # J s
+M_SUN = Q("1.989e30")                     # kg, the package's numeral
+OBJECTS = {                               # name: (R [m], m [kg]) — the typical-object marks, 14-entropy's figure
+    "electron": (Q("3.86e-13"), Q("9.109e-31")), "proton": (Q("8.4e-16"), Q("1.673e-27")), "H atom": (Q("5.29e-11"), Q("1.674e-27")),
+    "protein": (Q("5.0e-9"), Q("1e-22")), "virus": (Q("1.0e-7"), Q("1e-18")), "bacterium": (Q("1.0e-6"), Q("1e-15")),
+    "human cell": (Q("1.0e-5"), Q("1e-12")), "ant": (Q("4.0e-3"), Q("3e-6")), "human": (Q(1), Q(70)),
+    "blue whale": (Q(25), Q("1.5e5")), "comet": (Q("5.0e3"), Q("1e13")), "asteroid": (Q("2.6e5"), Q("2.6e20")),
+    "Moon": (Q("1.74e6"), Q("7.35e22")), "Earth": (Q("6.37e6"), Q("5.97e24")), "Sun": (Q("6.96e8"), Q("1.99e30")),
+    "white dwarf": (Q("7.0e6"), Q("1.2e30")), "solar system": (Q("6.0e12"), Q("2e30")), "neutron star": (Q("1.2e4"), Q("2.8e30")),
+    "10 Msun hole": (Q("2.95e4"), Q("1.99e31")), "Sgr A*": (Q("1.2e10"), Q("8.2e36")), "globular cluster": (Q("2.5e17"), Q("1e36")),
+    "galaxy": (Q("4.7e20"), Q("2e42")), "galaxy cluster": (Q("5.0e22"), Q("2e45")), "supercluster": (Q("4.0e24"), Q("5e47")),
+}
+FIT = ["H atom", "protein", "virus", "bacterium", "human cell", "ant", "human", "blue whale", "comet", "asteroid", "Moon", "Earth", "Sun"]
+FIT_FULL = FIT + ["electron", "Sgr A*"]   # the sensitivity population: the two wall residents included
+
+
+def ols(points, k=None):
+    """Ordinary least squares y = k x + b over the (x, y) pairs: (k, b); with k given, the constrained intercept."""
+    n = len(points)
+    if k is not None: return k, sum(y - k * x for x, y in points) / n
+    sx, sy = sum(x for x, _ in points), sum(y for _, y in points)
+    sxx, sxy = sum(x * x for x, _ in points), sum(x * y for x, y in points)
+    k = (n * sxy - sx * sy) / (n * sxx - sx * sx)
+    return k, (sy - k * sx) / n
+
+
+def registrable_triangle(lam=LAMBDA_FIT, lp=PLANCK_LENGTH):
+    """The chart of 00:L4 (14:C9, X5), floating point: the width log₁₀(r_H/ℓ_P) of the triangle from the chart theme's S
+    (the identity log₁₀(r_H/ℓ_P) = log₁₀ √(S/π), the solid angle the declared transport); the typical-object diagonal
+    log₁₀ m = k log₁₀ R + b over the thirteen mid-wedge objects (free k, and constrained k = 3), and over the fifteen with
+    the walls; the Compton entry and the Schwarzschild exit of the free fit (the exit capped at r_H), the exit mass in
+    M☉, the band of the exit over the four fit variants; the wall residents' distances from their walls in dex; and the
+    exit of the constrained fit read through the closed form M² = c⁶/(8 G³ ρ₀) at ρ₀ = 10^b (Chart.lean, wall_exit)."""
+    c, G, hb = float(C_LIGHT), float(G_NEWTON), float(HBAR)
+    S = entropy(lam, lp); r_h = math.sqrt(3 / float(lam))
+    width, width_face = math.log10(r_h / float(lp)), math.log10(math.sqrt(S / math.pi))
+    comp, schw = math.log10(hb / c), math.log10(2 * G / c ** 2)             # the walls: log m = comp − log R, log m = log R − schw
+    pos = {n: (math.log10(float(R)), math.log10(float(m))) for n, (R, m) in OBJECTS.items()}
+    k_fit, b_fit = ols([pos[n] for n in FIT]); k_full, b_full = ols([pos[n] for n in FIT_FULL])
+    _, b_c13 = ols([pos[n] for n in FIT], 3.0); _, b_c15 = ols([pos[n] for n in FIT_FULL], 3.0)
+    x_lo = (comp - b_fit) / (1 + k_fit)                                       # the Compton entry of the diagonal
+    exit_x = lambda k, b: (-schw - b) / (k - 1)                               # where the diagonal meets the Schwarzschild wall
+    x_hi = min(exit_x(k_fit, b_fit), math.log10(r_h))
+    m_exit = lambda x: 10 ** (x - schw) / float(M_SUN)
+    band = sorted(m_exit(exit_x(k, b)) for k, b in ((k_fit, b_fit), (k_full, b_full), (3.0, b_c13), (3.0, b_c15)))
+    walls = {"electron": pos["electron"][1] - (comp - pos["electron"][0]), "Sgr A*": pos["Sgr A*"][1] - (pos["Sgr A*"][0] - schw)}
+    closed = math.sqrt(c ** 6 / (8 * G ** 3 * 10 ** b_c13)) / float(M_SUN)   # M² = c⁶/(8G³ρ₀) at the constrained coefficient
+    return dict(width=width, width_face=width_face, k_fit=k_fit, b_fit=b_fit, k_full=k_full, b_full=b_full, b_c13=b_c13, b_c15=b_c15,
+                x_lo=x_lo, x_hi=x_hi, M_exit=m_exit(x_hi), band=(band[0], band[-1]), walls=walls, closed_exit=closed,
+                closed_vs_fit=closed / m_exit(exit_x(3.0, b_c13)), entry_m=10 ** x_lo, electron_beyond=x_lo - pos["electron"][0],
+                sgr_before=x_hi - pos["Sgr A*"][0], mean_c=sum(pos[n][1] - 3 * pos[n][0] for n in FIT) / len(FIT),
+                drift=(k_fit - 3) * (max(pos[n][0] for n in FIT) - min(pos[n][0] for n in FIT)))

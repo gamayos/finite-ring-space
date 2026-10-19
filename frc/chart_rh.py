@@ -1,6 +1,6 @@
 """frc.chart_rh — 20-rh's readings in floating point (chart tier; ledger migration, task LM36, 7 October 2026).
 
-The chart theme holds the readings against the continuum, the only place where floats appear (frc/themes.py, rank 30).
+The chart theme holds the readings against the continuum, the only place where floats appear (frc/themes.py, rank 31 since 19 October 2026, the super theme at 30).
 This file holds the floating-point computations of 20-rh's validation package (src/20-rh/rh.py) that the ledger file
 frc/ledgers/p20_rh.py reproduces. Since the rewrite of the paper (17 October 2026, reports/blueprint-20261017.md) the
 ledger file uses the exhibit's energy along the chart's height, the chart's characters and the discrete-logarithm

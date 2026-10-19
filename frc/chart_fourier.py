@@ -1,6 +1,6 @@
 """frc.chart_fourier — 6-fourier's observer readout in floating point (chart tier; ledger migration, task LM36, 7 October 2026).
 
-The chart theme holds the readings against the continuum, the only place where floats appear (frc/themes.py, rank 30).
+The chart theme holds the readings against the continuum, the only place where floats appear (frc/themes.py, rank 31 since 19 October 2026, the super theme at 30).
 This file holds the floating-point side of 6-fourier's validation package (src/6-fourier/fourier.py, block E): the
 readout of the fractional family on ℂ^n through the observer's chart X ↦ ζ_n^u, Y ↦ +√n (the canonical DFT projectors
 with the eigenvalue refinement g^{−ℓs} ↦ ζ_n^{−ℓs}), the Shannon entropy of a Born vector, and the entropy checks of the

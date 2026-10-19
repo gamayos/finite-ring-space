@@ -1,7 +1,7 @@
 """frc.chart_dark — the readings of 32-dark against the continuum and the SPARC tables (the chart theme; 32-dark's
 migration, 18 October 2026).
 
-The chart theme holds the floats (frc/themes.py, rank 30). This file serves the continuum-comparison layer of the paper
+The chart theme holds the floats (frc/themes.py, rank 31 since 19 October 2026, the super theme at 30). This file serves the continuum-comparison layer of the paper
 32-dark, whose ledger file frc/ledgers/p32_dark.py decides every exact clause through frc/dark.py and compares these
 readings with rational bounds (it converts each float exactly, with Fraction). Each function computes what one script
 of the paper's validation package (src/32-dark) computes in floating point, with the same inputs: the floor a₀ = cH₀/2π

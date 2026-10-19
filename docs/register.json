@@ -13,8 +13,8 @@
     "G": 1,
     "I": 117,
     "O": 11,
-    "R": 83,
-    "T": 623,
+    "R": 84,
+    "T": 622,
     "Ω": 29
    }
   },
@@ -1694,7 +1694,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00009",
     "script": "frc/ledgers/master/chart.py",
-    "line": 80,
+    "line": 84,
     "verdict": "pass"
    },
    "declarations": [
@@ -3696,9 +3696,20 @@
    "statement": "\\textbf{Superconductivity} (structure): superconductivity is split-torus confinement, the electric/phase dual of colour (G4), the charge-$2$ condensate a phase-singlet reducing $\\mathrm{U}(1)$ to a residual $\\Z_2$ (flux $h/2e$) and the Abrikosov vortex the dual colour string whose line tension vanishes at the Kramers--Wannier self-dual point $\\beta_*=\\tfrac12\\ln(1+\\sqrt2)$ that is $T_c$.",
    "origin_row": "00:G19",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/super.html#p00088",
+    "script": "frc/ledgers/master/super.py",
+    "line": 66,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Super",
+     "name": "FRC.Ledger.p00088"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:G19"
@@ -3711,9 +3722,20 @@
    "statement": "\\textbf{Superconductivity} (duality): the electric--magnetic duality is the $Q_4$ quarter-turn on the charge-flux lattice (charge$\\leftrightarrow$flux, Josephson$\\leftrightarrow$phase-slip), predicting an Airy vortex-core spectrum and a quantum current standard whose metrology triangle closes on $q_c^2=4$.",
    "origin_row": "00:G20",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/super.html#p00089",
+    "script": "frc/ledgers/master/super.py",
+    "line": 109,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Super",
+     "name": "FRC.Ledger.p00089"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:G20"
@@ -3744,7 +3766,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00192",
     "script": "frc/ledgers/master/chart.py",
-    "line": 112,
+    "line": 116,
     "verdict": "pass"
    },
    "declarations": [
@@ -3785,7 +3807,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00193",
     "script": "frc/ledgers/master/chart.py",
-    "line": 136,
+    "line": 140,
     "verdict": "pass"
    },
    "declarations": [
@@ -3803,19 +3825,27 @@
   {
    "key": "p00087",
    "origin": "00",
-   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2).",
+   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). Falsifier: a single typical object of the condensed-density sequence heavier than the over-closure bound and not horizon-bound (14:X5).",
    "origin_row": "00:L4",
-   "tag": "T",
-   "tier": null,
+   "tag": "R",
+   "tier": 2,
    "check": {
-    "script": "14:entropy.py [mixed]"
+    "href": "frc/ledgers/master/chart.html#p00087",
+    "script": "frc/ledgers/master/chart.py",
+    "line": 238,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Keys/Chart",
+     "name": "FRC.LedgerML.p00087"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:L4"
-   ],
-   "realisations": []
+   ]
   },
   {
    "key": "p00130",
@@ -3843,7 +3873,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00148",
     "script": "frc/ledgers/master/chart.py",
-    "line": 174,
+    "line": 178,
     "verdict": "pass"
    },
    "declarations": [
@@ -3898,7 +3928,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00133",
     "script": "frc/ledgers/master/chart.py",
-    "line": 201,
+    "line": 205,
     "verdict": "pass"
    },
    "declarations": [
@@ -14432,7 +14462,9 @@
    "rows": [
     "14:C9"
    ],
-   "realisations": []
+   "realisations": [
+    "p00087"
+   ]
   },
   {
    "key": "p14027",
@@ -30138,7 +30170,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00009",
      "script": "frc/ledgers/master/chart.py",
-     "line": 80,
+     "line": 84,
      "verdict": "pass"
     },
     "lean": [
@@ -33237,8 +33269,22 @@
    "page": "00-ledger.html#G19",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/super.html#p00088",
+     "script": "frc/ledgers/master/super.py",
+     "line": 66,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Super",
+      "name": "FRC.Ledger.p00088",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Super.html#FRC.Ledger.p00088"
+     }
+    ]
    },
    "refs": [
     "p00069"
@@ -33260,8 +33306,22 @@
    "page": "00-ledger.html#G20",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/super.html#p00089",
+     "script": "frc/ledgers/master/super.py",
+     "line": 109,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Super",
+      "name": "FRC.Ledger.p00089",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Super.html#FRC.Ledger.p00089"
+     }
+    ]
    },
    "refs": [],
    "sources": [],
@@ -33309,7 +33369,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00192",
      "script": "frc/ledgers/master/chart.py",
-     "line": 112,
+     "line": 116,
      "verdict": "pass"
     },
     "lean": [
@@ -33378,7 +33438,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00193",
      "script": "frc/ledgers/master/chart.py",
-     "line": 136,
+     "line": 140,
      "verdict": "pass"
     },
     "lean": [
@@ -33408,25 +33468,40 @@
    "key": "p00087",
    "label": "L4",
    "block": "L",
-   "tag": "T",
+   "tag": "R",
    "name": "The registrable triangle",
-   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2).",
+   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). Falsifier: a single typical object of the condensed-density sequence heavier than the over-closure bound and not horizon-bound (14:X5).",
    "source": "14-entr",
    "page": "00-ledger.html#L4",
    "witness": {
     "script": "14:entropy.py [mixed]",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/chart.html#p00087",
+     "script": "frc/ledgers/master/chart.py",
+     "line": 238,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Keys/Chart",
+      "name": "FRC.LedgerML.p00087",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00087"
+     }
+    ]
    },
    "refs": [
     "p00004",
     "p00085",
-    "p14026"
+    "p14026",
+    "p14032"
    ],
    "sources": [
     "14-entr"
    ],
-   "text": "The registrable triangle: The mass–radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). 14-entr 14:entropy.py [mixed]"
+   "text": "The registrable triangle: The mass–radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). Falsifier: a single typical object of the condensed-density sequence heavier than the over-closure bound and not horizon-bound (14:X5). 14-entr 14:entropy.py [mixed]"
   },
   {
    "paper": "00",
@@ -33470,7 +33545,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00148",
      "script": "frc/ledgers/master/chart.py",
-     "line": 174,
+     "line": 178,
      "verdict": "pass"
     },
     "lean": [
@@ -33557,7 +33632,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00133",
      "script": "frc/ledgers/master/chart.py",
-     "line": 201,
+     "line": 205,
      "verdict": "pass"
     },
     "lean": [

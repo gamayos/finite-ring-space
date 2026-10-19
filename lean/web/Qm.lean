@@ -724,10 +724,10 @@ end FRC.HorizonML
 # FrcLedger.Theme.Chart — the chart theme: the readings against the continuum (ledger migration, task LM30)
 
 The chart theme holds the readings of the finite results against the continuum, the only theme with the reals
-(`frc/themes.py`, rank 30). It serves the chart clauses of the master's scale import (00:A7, `scale_import`; the ledger's `ln Ω` for L8,
+(`frc/themes.py`, rank 31). It serves the chart clauses of the master's scale import (00:A7, `scale_import`; the ledger's `ln Ω` for L8,
 `ln_omega_ledger`), its cosmology and prediction rows: the
-floor `a₀ = cH₀/2π` (00:L1), the octant record depth and its outputs (00:L3), the primordial tilt (00:L8) and the
-running floor (00:P1). The chart's numerals — the speed of light, the megaparsec, the Julian year, the fitted
+floor `a₀ = cH₀/2π` (00:L1), the octant record depth and its outputs (00:L3), the registrable triangle (00:L4,
+restated from 14-entropy's module, 19 October 2026), the primordial tilt (00:L8) and the running floor (00:P1). The chart's numerals — the speed of light, the megaparsec, the Julian year, the fitted
 values and their errors — are declared data. The octant's theorems moved here from 14-entropy and the floor's
 from 21-gravity (6 October 2026); those modules keep the old names as aliases.
 
@@ -1608,6 +1608,49 @@ theorem zero_of_sign_change {a b : ℝ} (hab : a < b)
     exact ⟨t, hta, htb, key t hft⟩
 
 end turing
+
+/-! ## The registrable triangle (00:L4; 14:C9, 14:X5) -/
+section triangle
+
+/-- 00:L4 [chart] — the count face and its chart dress (14:C9): `S = π x²` with `x = r_H/ℓ_P > 0` gives `x = √(S/π)` and
+`√S = √π · x`, the solid angle `π` the declared transport between the count face `√S` and the drawn width
+`log₁₀(r_H/ℓ_P) = 61.0` dex (`frc/chart.py`, `registrable_triangle`). Restated from `FRC.Entropy.count_face` for the master's
+key (the paper module is legacy-mapped to this theme; 19 October 2026). -/
+theorem count_face (S x : ℝ) (hx : 0 < x) (h : S = π * x ^ 2) :
+    x = √(S / π) ∧ √S = √π * x := by
+  have hpi := Real.pi_pos
+  constructor
+  · rw [h, mul_div_cancel_left₀ _ hpi.ne', Real.sqrt_sq hx.le]
+  · rw [h, Real.sqrt_mul hpi.le, Real.sqrt_sq hx.le]
+
+/-- 00:L4 [chart] — the over-closure exit (14:X5): a cubic `M = ρ₀ R³` that sits on its own Schwarzschild radius
+`R = 2GM/c²` has `ρ₀ > 0` and `M² = c⁶/(8 G³ ρ₀)`, one positive mass — the exit of the typical-object diagonal read as a
+bound; its value `1.8 × 10⁸ M☉` at the constrained coefficient `ρ₀ = 0.97 × 10³ kg m⁻³` is the python witness's. Restated
+from `FRC.Entropy.wall_exit`. -/
+theorem wall_exit (M R G c ρ₀ : ℝ) (hc : 0 < c) (hG : 0 < G) (hM : 0 < M)
+    (hρ : M = ρ₀ * R ^ 3) (hR : R = 2 * G * M / c ^ 2) :
+    0 < ρ₀ ∧ M ^ 2 = c ^ 6 / (8 * G ^ 3 * ρ₀) := by
+  subst hR
+  have hc6 : (c ^ 6) ≠ 0 := by positivity
+  have h1 : ρ₀ * (2 * G * M / c ^ 2) ^ 3 = 8 * ρ₀ * G ^ 3 * M ^ 3 / c ^ 6 := by
+    field_simp; ring
+  have h2 : M * c ^ 6 = 8 * ρ₀ * G ^ 3 * M ^ 3 := by
+    have := hρ
+    rw [h1, eq_div_iff hc6] at this
+    exact this
+  have hρpos : 0 < ρ₀ := by
+    by_contra h
+    have h8 : 8 * ρ₀ ≤ 0 := by linarith [not_lt.1 h]
+    have : 8 * ρ₀ * G ^ 3 * M ^ 3 ≤ 0 :=
+      mul_nonpos_of_nonpos_of_nonneg (mul_nonpos_of_nonpos_of_nonneg h8 (pow_pos hG 3).le) (pow_pos hM 3).le
+    have : 0 < M * c ^ 6 := by positivity
+    linarith
+  refine ⟨hρpos, ?_⟩
+  rw [eq_div_iff (by positivity)]
+  have h3 : M * c ^ 6 = M * (M ^ 2 * (8 * G ^ 3 * ρ₀)) := by rw [h2]; ring
+  exact (mul_left_cancel₀ hM.ne' h3).symm
+
+end triangle
 
 end FRC.Chart
 
@@ -3186,6 +3229,9 @@ namespace FRC.LedgerML
 /-- p00009 — 00:A7. Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\Om=4\dS+1$. Its chart numeral is $\dS=\pi(r_H/\ell_P)^2=3.3\times10^{122}$ [chart] at $r_H=c/H_\Lambda$ (14-entr), so $\Om=1.3\times10^{123}$ [chart]. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2. -/
 theorem p00009 : ∀ (Λ ℓP r S Ω : ℝ), Λ = 1088e-55 → ℓP = 1616255e-41 → r ^ (2 : ℕ) = (3 : ℝ) / Λ → S = Real.pi * (r / ℓP) ^ (2 : ℕ) → Ω = (4 : ℝ) * S + (1 : ℝ) → 331e120 < S ∧ S < 332e120 ∧ 132e121 < Ω ∧ Ω < 133e121 :=
   @FRC.Chart.scale_import
+/-- p00087 — 00:L4. The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\sim}1.8\times10^{8}M_\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). -/
+theorem p00087 : (∀ (S x : ℝ), (0 : ℝ) < x → S = Real.pi * x ^ (2 : ℕ) → x = √(S / Real.pi) ∧ √S = √Real.pi * x) ∧ ∀ (M R G c ρ₀ : ℝ), (0 : ℝ) < c → (0 : ℝ) < G → (0 : ℝ) < M → M = ρ₀ * R ^ (3 : ℕ) → R = (2 : ℝ) * G * M / c ^ (2 : ℕ) → (0 : ℝ) < ρ₀ ∧ M ^ (2 : ℕ) = c ^ (6 : ℕ) / ((8 : ℝ) * G ^ (3 : ℕ) * ρ₀) :=
+  And.intro @FRC.Chart.count_face (@FRC.Chart.wall_exit)
 /-- p00091 — 00:P4. No fourth generation, no fifth force, an empty desert, no TeV supersymmetry, no new dark-matter particle, no beyond-SM $(g{-}2)_\mu$, and the proton effectively stable ($\tau_p\gtrsim10^{45}$ yr; G9). Entailed by the closed ladder of the rank-five frame ($\dim\Lambda^{\mathrm{even}}=16$, D6), given the role-to-matter realisation (27:B6, 27:C10) and completeness (A3). Falsifier: any excluded object observed. Confrontation: none observed. -/
 theorem p00091 : (∀ (ainv s2 as b1 b2 b3 MZ : ℝ), ainv = 127.951 → s2 = 0.23121 → as = 0.1179 → b1 = (41 / 10 : ℝ) → b2 = (-19 / 6 : ℝ) → b3 = (-7 : ℝ) → MZ = 91.1876 → |(1 : ℝ) / as - b3 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2)) - (s2 * ainv - b2 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2)))| / (s2 * ainv - b2 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) < (1 / 5 : ℝ) ∧ (10 : ℝ) ^ (12 : ℕ) < MZ * Real.exp ((2 : ℝ) * Real.pi * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) ∧ MZ * Real.exp ((2 : ℝ) * Real.pi * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) < (10 : ℝ) ^ (14 : ℕ)) ∧ (∀ (mp a hbar yr : ℚ), mp = 0.938 → a = (1 / 40 : ℚ) → hbar = 6582e-28 → yr = 3156e4 → (10 : ℚ) ^ (45 : ℕ) ≤ 122e17 ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr ∧ (10 : ℚ) ^ (34 : ℕ) < 1e16 ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr ∧ ∀ (M M' : ℚ), (0 : ℚ) < M → (0 : ℚ) < M' → M' ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr / (M ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr) = (M' / M) ^ (4 : ℕ)) ∧ StrictMonoOn (fun x => x / ((1 : ℝ) - Real.exp (-√x))) (Set.Ioi (0 : ℝ)) :=
   And.intro @FRC.FieldsML.running_near_miss (And.intro @FRC.FieldsML.proton_lifetime (@FRC.DarkML.rar_monotone))

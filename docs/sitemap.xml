@@ -102,7 +102,7 @@
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/chart.html</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/extension.html</loc>
@@ -155,6 +155,10 @@
   <url>
     <loc>https://finitering.space/frc/ledgers/master/subject.html</loc>
     <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/frc/ledgers/master/super.html</loc>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/p21_gravity.html</loc>
@@ -338,6 +342,10 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Keys.Subject.html</loc>
+    <lastmod>2026-10-19</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Keys.Super.html</loc>
     <lastmod>2026-10-19</lastmod>
   </url>
   <url>
@@ -557,6 +565,10 @@
     <lastmod>2026-10-19</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Theme.Super.html</loc>
+    <lastmod>2026-10-19</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Theme.Symbol.html</loc>
     <lastmod>2026-10-19</lastmod>
   </url>
@@ -666,7 +678,7 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/ml/Theme.Chart.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/lean/ml/Theme.Gravity.html</loc>

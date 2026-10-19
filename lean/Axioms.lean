@@ -1042,6 +1042,7 @@ import FrcLedger
 #print axioms FRC.Hadrons.p35060
 #print axioms FRC.Hadrons.p35061
 #print axioms FRC.LedgerML.p00009
+#print axioms FRC.LedgerML.p00087
 #print axioms FRC.LedgerML.p00091
 #print axioms FRC.LedgerML.p00133
 #print axioms FRC.LedgerML.p00148
@@ -1424,6 +1425,8 @@ import FrcLedger
 #print axioms FRC.Chart.completed_im_line
 #print axioms FRC.Chart.continuous_line_re
 #print axioms FRC.Chart.zero_of_sign_change
+#print axioms FRC.Chart.count_face
+#print axioms FRC.Chart.wall_exit
 #print axioms FRC.DarkML.passage_factor
 #print axioms FRC.DarkML.passage_reduction
 #print axioms FRC.DarkML.rar_from_count

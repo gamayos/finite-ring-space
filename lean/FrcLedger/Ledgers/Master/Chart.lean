@@ -23,6 +23,11 @@ fails if a key's axioms change (the axioms of Mathlib's hierarchy at most). Noth
 #guard_msgs in
 #print axioms FRC.LedgerML.p00193
 
+-- 00:L4 (p00087)
+/-- info: 'FRC.LedgerML.p00087' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p00087
+
 -- 00:L8 (p00148)
 /-- info: 'FRC.LedgerML.p00148' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

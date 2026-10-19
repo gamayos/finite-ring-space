@@ -1,7 +1,7 @@
 """frc.chart_quantum — the quantum readings against the continuum (chart tier; ledger migration, task LM35, 7 October
 2026; the exact sweep of 15 October 2026).
 
-The chart theme holds the readings against the continuum (frc/themes.py, rank 30). This file holds the continuum
+The chart theme holds the readings against the continuum (frc/themes.py, rank 31 since 19 October 2026, the super theme at 30). This file holds the continuum
 readings of 22-quantum: the CHSH sweep of the composite gate, decided exactly by certified rational brackets on
 cos(πk/40) (the alternating series on the chart's π bracket) against the bracket of 2√2, and the Gaussian envelope of
 the dilation dephasing, a floating-point reading the ledger file compares with a stated tolerance. The package's
