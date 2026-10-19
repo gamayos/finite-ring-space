@@ -1,5 +1,5 @@
 {
- "generated": "17 October 2026",
+ "generated": "19 October 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -1868,7 +1868,7 @@
     "35-hadr",
     "27-fld"
    ],
-   "witness": "35:su3f_relations.py [mixed]",
+   "witness": "35:p35_hadrons.py",
    "refs": [
     {
      "label": "G5",
@@ -1887,7 +1887,7 @@
     "35-hadr",
     "27-fld"
    ],
-   "witness": "35:carrier_residue.py",
+   "witness": "35:p35_hadrons.py",
    "refs": [
     {
      "label": "D9",
@@ -1909,7 +1909,7 @@
    "sources": [
     "35-hadr"
    ],
-   "witness": "35:confinement_closure.py [approx]",
+   "witness": "35:p35_hadrons.py [chart]",
    "refs": [
     {
      "label": "G6",

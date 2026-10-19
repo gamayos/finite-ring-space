@@ -3,7 +3,7 @@
  "tree": "27-fields-20260625",
  "title": "Standard-Model Interactions over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1328.v1",
- "generated": "17 October 2026",
+ "generated": "19 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -686,16 +686,16 @@
    {
     "name": "FRC.Interactions.su3_centre",
     "module": "FrcCore/Theme/Fields",
-    "line": 380,
+    "line": 381,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "27:C7, 27:X7 — the scalar centre of `SU(3, 2)` over `𝔽₄`: the scalars `x I` with `x x̄ = 1` and `x³ = 1` are the three cube roots of unity `1, w, w²` (`ℤ₃`, colour triality), `0` is not one, and each commutes with `U₁` and `U₂`; that the centre is no larger is the ledger file's check E1 (all `216²` products)."
+    "doc": "27:C7, 27:X7, 35:C1, 35:X2 — the scalar centre of `SU(3, 2)` over `𝔽₄`: the scalars `x I` with `x x̄ = 1` and `x³ = 1` are the three cube roots of unity `1, w, w²` (`ℤ₃`, colour triality), `0` is not one, and each commutes with `U₁` and `U₂`; that the centre is no larger is 27-fields' ledger check E1 (all `216²` products) and, in the kernel, the hadrons theme's `FRC.Hadrons.colour_group` (the commutant of `D₁` and `U₁` in the group built by frames is the three scalars)."
    },
    {
     "name": "FRC.Interactions.gluon_commutator",
     "module": "FrcCore/Theme/Fields",
-    "line": 391,
+    "line": 392,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -826,7 +826,7 @@
    {
     "name": "FRC.Interactions.gluon_commutator",
     "module": "FrcCore/Theme/Fields",
-    "line": 391,
+    "line": 392,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -937,16 +937,16 @@
    {
     "name": "FRC.Interactions.su3_centre",
     "module": "FrcCore/Theme/Fields",
-    "line": 380,
+    "line": 381,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "27:C7, 27:X7 — the scalar centre of `SU(3, 2)` over `𝔽₄`: the scalars `x I` with `x x̄ = 1` and `x³ = 1` are the three cube roots of unity `1, w, w²` (`ℤ₃`, colour triality), `0` is not one, and each commutes with `U₁` and `U₂`; that the centre is no larger is the ledger file's check E1 (all `216²` products)."
+    "doc": "27:C7, 27:X7, 35:C1, 35:X2 — the scalar centre of `SU(3, 2)` over `𝔽₄`: the scalars `x I` with `x x̄ = 1` and `x³ = 1` are the three cube roots of unity `1, w, w²` (`ℤ₃`, colour triality), `0` is not one, and each commutes with `U₁` and `U₂`; that the centre is no larger is 27-fields' ledger check E1 (all `216²` products) and, in the kernel, the hadrons theme's `FRC.Hadrons.colour_group` (the commutant of `D₁` and `U₁` in the group built by frames is the three scalars)."
    },
    {
     "name": "FRC.Interactions.gluon_commutator",
     "module": "FrcCore/Theme/Fields",
-    "line": 391,
+    "line": 392,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1084,7 +1084,7 @@
    {
     "name": "FRC.Interactions.ckm_free",
     "module": "FrcCore/Theme/Fields",
-    "line": 427,
+    "line": 428,
     "axioms": [],
     "tier": 0,
     "ok": true,

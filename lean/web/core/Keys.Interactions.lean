@@ -4364,9 +4364,10 @@ def scal (x : F4) : M := [x, z, z, z, x, z, z, z, x]
 end F4
 
 open F4 in
-/-- 27:C7, 27:X7 — the scalar centre of `SU(3, 2)` over `𝔽₄`: the scalars `x I` with `x x̄ = 1` and `x³ = 1` are the three
-cube roots of unity `1, w, w²` (`ℤ₃`, colour triality), `0` is not one, and each commutes with `U₁` and `U₂`; that the
-centre is no larger is the ledger file's check E1 (all `216²` products). -/
+/-- 27:C7, 27:X7, 35:C1, 35:X2 — the scalar centre of `SU(3, 2)` over `𝔽₄`: the scalars `x I` with `x x̄ = 1` and `x³ = 1` are
+the three cube roots of unity `1, w, w²` (`ℤ₃`, colour triality), `0` is not one, and each commutes with `U₁` and `U₂`; that
+the centre is no larger is 27-fields' ledger check E1 (all `216²` products) and, in the kernel, the hadrons theme's
+`FRC.Hadrons.colour_group` (the commutant of `D₁` and `U₁` in the group built by frames is the three scalars). -/
 theorem su3_centre :
     ([o, w, w2].all (fun x => x * conj x == o && x * x * x == o)) = true ∧
     (z * conj z == o) = false ∧ [o, w, w2].length = 3 ∧ 2 + 1 = 3 ∧

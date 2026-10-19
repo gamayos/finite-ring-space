@@ -3,7 +3,7 @@
  "tree": "26-pnp-20260614",
  "title": "P versus NP: Computation as Counting",
  "doi": "https://doi.org/10.20944/preprints202606.1781.v1",
- "generated": "17 October 2026",
+ "generated": "19 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -539,7 +539,7 @@
    {
     "name": "FRC.Horizon.shift_power_character",
     "module": "FrcCore/Theme/Horizon",
-    "line": 113,
+    "line": 119,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -548,7 +548,7 @@
    {
     "name": "FRC.Horizon.eigenphase",
     "module": "FrcCore/Theme/Horizon",
-    "line": 118,
+    "line": 124,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -566,7 +566,7 @@
    {
     "name": "FRC.Horizon.shift_trace",
     "module": "FrcCore/Theme/Horizon",
-    "line": 124,
+    "line": 130,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -601,7 +601,7 @@
    {
     "name": "FRC.Horizon.ramanujan_sum",
     "module": "FrcCore/Theme/Horizon",
-    "line": 251,
+    "line": 257,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -610,7 +610,7 @@
    {
     "name": "FRC.Horizon.ramanujan_zero",
     "module": "FrcCore/Theme/Horizon",
-    "line": 269,
+    "line": 275,
     "axioms": [],
     "tier": 0,
     "ok": true,

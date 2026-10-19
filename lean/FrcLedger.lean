@@ -11,6 +11,7 @@ import FrcLedger.Theme.Quantum
 import FrcLedger.Theme.Fields
 import FrcLedger.Theme.Flavour
 import FrcLedger.Theme.Dark
+import FrcLedger.Theme.Hadrons
 import FrcLedger.Keys.Frame
 import FrcLedger.Keys.Extension
 import FrcLedger.Keys.Fourier
@@ -18,6 +19,7 @@ import FrcLedger.Keys.Logic
 import FrcLedger.Keys.Gravity
 import FrcLedger.Keys.Quantum
 import FrcLedger.Keys.Horizon
+import FrcLedger.Keys.Hadrons
 import FrcLedger.Keys.Chart
 import FrcLedger.Fourier
 import FrcLedger.Algebra
@@ -37,4 +39,5 @@ import FrcLedger.Pnp
 import FrcLedger.Fields
 import FrcLedger.Flavour
 import FrcLedger.Dark
+import FrcLedger.Hadrons
 import FrcLedger.Dirac
