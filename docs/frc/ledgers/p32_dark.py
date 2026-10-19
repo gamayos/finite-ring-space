@@ -351,15 +351,15 @@ def block_D():
 
     # D2 [chart] the external-field effect: the registration reads the total field, g_obs = g_in ν((g_in + g_ext)/a₀), so a
     #    stronger environment uses up the deep enhancement; the outer speed (40 kpc) of the 6 × 10¹⁰ M_⊙ disk falls from 181 to
-    #    164, 143 and 113 km s⁻¹ as g_ext/a₀ runs through 0, 0.03, 0.1, 0.5 (the body's figure); ν decreasing in its argument
+    #    163, 143 and 113 km s⁻¹ as g_ext/a₀ runs through 0, 0.03, 0.1, 0.5 (the body's figure); ν decreasing in its argument
     v = CD.efe_speeds()
-    ok = all(_within(x, c, 1) for x, c in zip(v, (181, 164, 143, 113))) and all(Q(a) > Q(b) for a, b in zip(v[:-1], v[1:]))
+    ok = all(_within(x, c, "0.5") for x, c in zip(v, (181, 163, 143, 113))) and all(Q(a) > Q(b) for a, b in zip(v[:-1], v[1:]))
     ok &= _between(100 * (1 - Q(v[1]) / Q(v[0])), 9, 10) and _between(100 * (1 - Q(v[3]) / Q(v[0])), 37, 38)
     ok &= all(CD.nu(y1) > CD.nu(y2) for y1, y2 in ((Q(1, 10), Q(1, 5)), (Q(1, 2), 1), (1, 2), (2, 5)))
     # 32:C9 (p32024), 32:X6 (p32032)
     R.check("D2", "[chart] the external-field effect: the registration reads the total field, g_obs = g_in ν((g_in + g_ext)/a₀) with "
             "ν decreasing, so a stronger environment uses up the deep enhancement — the outer rotation speed of the fixed disk "
-            "(6 × 10¹⁰ M_⊙, R_d = 3 kpc, at 40 kpc) falls from 181 to 164, 143 and 113 km s⁻¹ as g_ext/a₀ increases through 0, "
+            "(6 × 10¹⁰ M_⊙, R_d = 3 kpc, at 40 kpc) falls from 181 to 163, 143 and 113 km s⁻¹ as g_ext/a₀ increases through 0, "
             "0.03, 0.1, 0.5 (a 9 % downturn at the Milky-Way-scale field, 37 % at 0.5); the acceleration scale stays global", ok,
             "speeds " + ", ".join(f"{x:.1f}" for x in v) + " km/s", kind="CHART")
 
