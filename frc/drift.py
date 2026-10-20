@@ -45,6 +45,15 @@ standard library only (gate G09). The ledger file that uses it: frc/ledgers/p21_
     brans_dicke(omega)               β = 1, γ = (1 + ω)/(2 + ω): 2γ − β − 1 = −2/(2 + ω), the deviation −4/(3(2 + ω)) (38:C8)
     registration_dictionary(k, S)    p_sl/r_g = 3S/κ from the temporal face; the angular face then κ/S (38:C12, C7)
     nesting_bound(p, Om)             (p − 1)²Ω < (Ω − p)² iff p² < Ω, with the exact difference (Ω − p²)(Ω − 1) (38:C13)
+
+The dilation rigidity theorem (00:C21; 20 October 2026; Theme/Drift.lean's character_composition, character_unique,
+ppn_defect, ppn_no_character; the cover through Theme/Subject.lean's horizon_generator):
+    quarter_channel(p, g)            gcd(p − 1, 2(p + 1)) = 4, i = g^{−κ}, i² = −1, N(i) = i^{p+1} = −1 with (p + 1)/2 odd
+    ppn_no_character(p)              the pairs (c, u) with c = 1 − 2u and c² = 1 − 4u: (1, 0) alone, exhaustively
+    ppn_defect(p, trials)            (1 − 2a)(1 − 2b) − (1 − 2(a + b)) = 4ab on 𝔽_p, exhaustive or sampled
+    composition_series(N)            the coefficients of the regular solution of R(a + b) = R(a)R(b), R = 1 − s + …: (−1)ⁿ/n!, the
+                                     two-variable check through total order N, and the GR form's defect {(1, 1): 4}
+    spinor_cover(p, nu)              on C_{2(p+1)} ⊂ 𝔽_{p²}^×: w^{2n} = (w²)ⁿ at every tick, w^{p+1} = −1, the base (w²)^{(p+1)/2} = −1
 """
 import random
 from fractions import Fraction
@@ -793,3 +802,75 @@ def nesting_bound(p, Om):
     diff = (Om - p) ** 2 - (p - 1) ** 2 * Om
     assert diff == (Om - p * p) * (Om - 1)
     return (p - 1) ** 2 * Om < (Om - p) ** 2, p * p < Om, diff
+
+
+# ---- the dilation rigidity theorem (00:C21) ----------------------------------------------------------------------------
+def quarter_channel(p, g):
+    """The Q₄ channel of the mass–energy sector (00:C20, 00:C21 (a)): gcd(p − 1, 2(p + 1)) = 4, the quarter i = g^{−κ} has
+    i² = −1 and N(i) = i^{p+1} = (−1)^{(p+1)/2} = −1 since (p + 1)/2 is odd. Returns (gcd, i, i² = −1, N(i) = −1, (p + 1)/2 odd)."""
+    kap = (p - 1) // 4
+    i = pow(pow(g, kap, p), p - 2, p)
+    return gcd(p - 1, 2 * (p + 1)), i, i * i % p == p - 1, pow(i, p + 1, p) == p - 1, ((p + 1) // 2) % 2 == 1
+
+
+def ppn_no_character(p):
+    """The PPN temporal form admits no register character: a character n ↦ cⁿ matching 1 − 2nu₁ at n = 1, 2 has c = 1 − 2u₁
+    and c² = 1 − 4u₁, whence 4u₁² = 0 and u₁ = 0; exhaustively over every c and u₁ of 𝔽_p the solutions are [(1, 0)]."""
+    return [(c, u) for c in range(1, p) for u in range(p) if c % p == (1 - 2 * u) % p and c * c % p == (1 - 4 * u) % p]
+
+
+def ppn_defect(p, trials=None, seed=21):
+    """(1 − 2a)(1 − 2b) − (1 − 2(a + b)) = 4ab on 𝔽_p for every a, b (exhaustive, or trials random pairs): the transitivity
+    defect of the PPN form is exactly 4ab."""
+    pairs = ((a, b) for a in range(p) for b in range(p)) if trials is None else \
+            ((rng.randrange(p), rng.randrange(p)) for rng in [random.Random(seed)] for _ in range(trials))
+    return all(((1 - 2 * a) * (1 - 2 * b) - (1 - 2 * (a + b))) % p == 4 * a * b % p for a, b in pairs)
+
+
+def composition_series(N=6):
+    """The functional equation R(a + b) = R(a)R(b) for a regular series R(s) = 1 − s + c₂s² + …, solved coefficientwise in
+    exact rationals (the coefficient of a^{n−1}b gives c_{n−1}c₁ = n c_n): the unique solution is e^{−s}, cₙ = (−1)ⁿ/n!; the
+    two-variable check of the composition law through total order N; and the GR form 1 − 2s, whose defect
+    (1 − 2a)(1 − 2b) − (1 − 2(a + b)) is exactly 4ab. Returns (coefficients, e-series coefficients, the law holds, the GR defect)."""
+    from math import comb
+    c = {0: Fraction(1), 1: Fraction(-1)}
+    for n in range(2, N + 1): c[n] = c[n - 1] * c[1] / n
+    fact = [1]
+    for n in range(1, N + 1): fact.append(fact[-1] * n)
+    efac = [Fraction((-1) ** n, fact[n]) for n in range(N + 1)]
+    def poly_mul(P, Q, N):
+        R = {}
+        for (i1, j1), v1 in P.items():
+            for (i2, j2), v2 in Q.items():
+                if i1 + i2 + j1 + j2 <= N: R[(i1 + i2, j1 + j2)] = R.get((i1 + i2, j1 + j2), Fraction(0)) + v1 * v2
+        return {k: v for k, v in R.items() if v != 0}
+    Ra = {(n, 0): c[n] for n in range(N + 1)}; Rb = {(0, n): c[n] for n in range(N + 1)}
+    Rab = {}
+    for n in range(N + 1):
+        for k in range(n + 1): Rab[(k, n - k)] = Rab.get((k, n - k), Fraction(0)) + c[n] * comb(n, k)
+    prod = poly_mul(Ra, Rb, N)
+    law = all(prod.get(k, Fraction(0)) == Rab.get(k, Fraction(0)) for k in set(prod) | set(Rab))
+    grA = {(0, 0): Fraction(1), (1, 0): Fraction(-2)}; grB = {(0, 0): Fraction(1), (0, 1): Fraction(-2)}
+    grAB = {(0, 0): Fraction(1), (1, 0): Fraction(-2), (0, 1): Fraction(-2)}
+    d = poly_mul(grA, grB, 2)
+    defect = {k: v for k, v in ((k, d.get(k, Fraction(0)) - grAB.get(k, Fraction(0))) for k in set(d) | set(grAB)) if v != 0}
+    return [c[n] for n in range(N + 1)], efac, law, defect
+
+
+def spinor_cover(p, nu):
+    """The two-face cover at every order (00:C21 (d), 00:C20): in 𝔽_{p²} = 𝔽_p(√ν) a generator w of the subgroup of order
+    2(p + 1) (the spinor cover C_{2(p+1)}) has base b = w² of order p + 1; the projection halves the angle at every tick,
+    w^{2n} = bⁿ for all n < 2(p + 1); the cover's half w^{p+1} = −1; the horizon station −1 is reached at exactly (p + 1)/2
+    base ticks, b^{(p+1)/2} = −1 (Theme/Subject.lean, horizon_generator); the base quarter (p + 1)/4 is no lattice point.
+    Returns (every tick halves, w^{p+1} = −1, the station, (p + 1) ≡ 2 (mod 4))."""
+    K = Ext(p, nu)
+    n2 = 2 * (p + 1); e = (p * p - 1) // n2
+    w = None
+    for za in range(1, p):
+        for zb in range(1, p):
+            cand = K.pow((za, zb), e)
+            if all(K.pow(cand, n2 // r) != (1, 0) for r in (2, p + 1)): w = cand; break
+        if w: break
+    b = K.mul(w, w); one, neg = (1, 0), (p - 1, 0)
+    every = all(K.pow(w, 2 * n) == K.pow(b, n) for n in range(n2))
+    return every, K.pow(w, p + 1) == neg, K.pow(b, (p + 1) // 2) == neg, (p + 1) % 4 == 2

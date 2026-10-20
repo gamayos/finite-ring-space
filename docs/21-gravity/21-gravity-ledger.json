@@ -3,7 +3,7 @@
  "tree": "21-gravity-20260623",
  "title": "Gravitation as Phase Synchronisation",
  "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
- "generated": "19 October 2026",
+ "generated": "20 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -505,6 +505,7 @@
    "E3"
   ],
   "C11": [
+   "C21",
    "E4"
   ],
   "C23": [
@@ -634,7 +635,7 @@
    {
     "name": "FRC.Drift.channel_q4",
     "module": "FrcCore/Theme/Drift",
-    "line": 54,
+    "line": 55,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -658,7 +659,7 @@
    {
     "name": "FRC.Drift.locked_sum",
     "module": "FrcCore/Theme/Drift",
-    "line": 219,
+    "line": 220,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -667,7 +668,7 @@
    {
     "name": "FRC.Drift.pair_tally",
     "module": "FrcCore/Theme/Drift",
-    "line": 199,
+    "line": 200,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -702,7 +703,7 @@
    {
     "name": "FRC.Drift.conj_branch",
     "module": "FrcCore/Theme/Drift",
-    "line": 335,
+    "line": 336,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -711,7 +712,7 @@
    {
     "name": "FRC.Drift.conj_pow",
     "module": "FrcCore/Theme/Drift",
-    "line": 326,
+    "line": 327,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -774,7 +775,7 @@
    {
     "name": "FRC.Drift.frobenius_trace",
     "module": "FrcCore/Theme/Drift",
-    "line": 286,
+    "line": 287,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -811,7 +812,7 @@
    {
     "name": "FRC.Drift.cover_triangle",
     "module": "FrcCore/Theme/Drift",
-    "line": 69,
+    "line": 70,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -848,7 +849,7 @@
    {
     "name": "FRC.Drift.cover_triangle",
     "module": "FrcCore/Theme/Drift",
-    "line": 69,
+    "line": 70,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -857,7 +858,7 @@
    {
     "name": "FRC.Drift.pn_coefficients",
     "module": "FrcCore/Theme/Drift",
-    "line": 278,
+    "line": 279,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -923,7 +924,7 @@
    {
     "name": "FRC.Drift.gauss_law",
     "module": "FrcCore/Theme/Drift",
-    "line": 253,
+    "line": 254,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -932,7 +933,7 @@
    {
     "name": "FRC.Drift.character_composition",
     "module": "FrcCore/Theme/Drift",
-    "line": 222,
+    "line": 223,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1164,7 +1165,7 @@
    {
     "name": "FRC.Drift.registration_root",
     "module": "FrcCore/Theme/Drift",
-    "line": 297,
+    "line": 298,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1208,7 +1209,7 @@
    {
     "name": "FRC.Drift.return_iff",
     "module": "FrcCore/Theme/Drift",
-    "line": 166,
+    "line": 167,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1217,7 +1218,7 @@
    {
     "name": "FRC.Drift.defect_instance",
     "module": "FrcCore/Theme/Drift",
-    "line": 191,
+    "line": 192,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1226,7 +1227,7 @@
    {
     "name": "FRC.Drift.pair_tally",
     "module": "FrcCore/Theme/Drift",
-    "line": 199,
+    "line": 200,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1250,7 +1251,7 @@
    {
     "name": "FRC.Drift.cover_triangle",
     "module": "FrcCore/Theme/Drift",
-    "line": 69,
+    "line": 70,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1259,7 +1260,7 @@
    {
     "name": "FRC.Drift.cover_deviation",
     "module": "FrcCore/Theme/Drift",
-    "line": 80,
+    "line": 81,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1296,7 +1297,7 @@
    {
     "name": "FRC.Drift.compression",
     "module": "FrcCore/Theme/Drift",
-    "line": 350,
+    "line": 351,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1527,7 +1528,7 @@
    {
     "name": "FRC.Drift.pn_coefficients",
     "module": "FrcCore/Theme/Drift",
-    "line": 278,
+    "line": 279,
     "axioms": [],
     "tier": 0,
     "ok": true,

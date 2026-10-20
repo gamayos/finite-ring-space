@@ -3,7 +3,7 @@
  "tree": "38-s13-20260801",
  "title": "Exact Quantum Dynamics on (13,233)",
  "doi": "https://doi.org/10.20944/preprints202608.0390.v1",
- "generated": "19 October 2026",
+ "generated": "20 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -1008,7 +1008,7 @@
    {
     "name": "FRC.Drift.nesting_bound",
     "module": "FrcCore/Theme/Drift",
-    "line": 389,
+    "line": 418,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1144,7 +1144,7 @@
    {
     "name": "FRC.Drift.channel_q4",
     "module": "FrcCore/Theme/Drift",
-    "line": 54,
+    "line": 55,
     "axioms": [],
     "tier": 0,
     "ok": true,

@@ -51,7 +51,25 @@ class MasterGravityTest(unittest.TestCase):
         marks = G.R.markers()
         for lab in G.R.predicates: self.assertIn(lab, marks)
         self.assertEqual(sorted(G.PROOFS), sorted(G.LEAN))
-        self.assertEqual(G.BLOCK, "E")
+        self.assertEqual(G.BLOCK, "CE")                   # C21, the dilation rigidity theorem, since 20 October 2026
+        self.assertIn("00:C21", G.PREDICATES)
+
+    def test_dilation_rigidity(self):
+        """The dilation rigidity theorem's exact pieces (frc/drift.py), each a second way."""
+        from frc import drift as D
+        from frc.foundation import drive
+        from fractions import Fraction
+        for p in (13, 29):
+            g = drive(p); q4, i, sq, nrm, odd = D.quarter_channel(p, g)
+            self.assertEqual((q4, sq, nrm, odd), (4, True, True, True))
+            self.assertEqual(i, pow(g, (p - 1) - (p - 1) // 4, p))          # g^{−κ} = g^{p−1−κ}
+            self.assertEqual(D.ppn_no_character(p), [(1, 0)])
+            self.assertTrue(D.ppn_defect(p))
+        c, efac, law, defect = D.composition_series(8)
+        self.assertEqual(c, efac); self.assertTrue(law); self.assertEqual(defect, {(1, 1): Fraction(4)})
+        self.assertEqual(c[3], Fraction(-1, 6))
+        every, half, station, quarter = D.spinor_cover(13, 2)
+        self.assertTrue(every and half and station and quarter)
 
 
 if __name__ == "__main__":

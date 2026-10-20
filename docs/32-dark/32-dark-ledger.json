@@ -3,7 +3,7 @@
  "tree": "32-dark-20260627",
  "title": "The Dark Sector over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1689.v1",
- "generated": "19 October 2026",
+ "generated": "20 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -467,7 +467,7 @@
    {
     "name": "FRC.Drift.gauss_law",
     "module": "FrcCore/Theme/Drift",
-    "line": 253,
+    "line": 254,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -580,7 +580,7 @@
    {
     "name": "FRC.Drift.gauss_law",
     "module": "FrcCore/Theme/Drift",
-    "line": 253,
+    "line": 254,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -820,7 +820,7 @@
    {
     "name": "FRC.Drift.locked_sum",
     "module": "FrcCore/Theme/Drift",
-    "line": 219,
+    "line": 220,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -886,7 +886,7 @@
    {
     "name": "FRC.Drift.gauss_law",
     "module": "FrcCore/Theme/Drift",
-    "line": 253,
+    "line": 254,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1065,7 +1065,7 @@
    {
     "name": "FRC.Drift.locked_sum",
     "module": "FrcCore/Theme/Drift",
-    "line": 219,
+    "line": 220,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1293,7 +1293,7 @@
    {
     "name": "FRC.Drift.locked_sum",
     "module": "FrcCore/Theme/Drift",
-    "line": 219,
+    "line": 220,
     "axioms": [],
     "tier": 0,
     "ok": true,

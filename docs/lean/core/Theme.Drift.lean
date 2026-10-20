@@ -22,7 +22,8 @@ no axioms:
   (`pair_tally`, `tally_weight`).
 * **The locked sum** (21:C1): `m` cells of one phase sum to `m·z` (`locked_sum`).
 * **The character composition** (21:C11, 00:C21): the exponential reading composes, `g^{a+b} = g^a g^b`
-  (`character_composition`).
+  (`character_composition`); the PPN form's defect `4ab` and its failure to be a character (`ppn_defect`,
+  `ppn_no_character`, 00:C21).
 * **The Gauss law from transfer antisymmetry** (21:C11): for antisymmetric link currents `J_xy = −J_yx` on `n` sites,
   the divergence summed over a region equals the flux through its boundary, the interior links cancelling in pairs
   (`gauss_law`; the double sum of an antisymmetric function vanishes, `antisymmetric_sum`).
@@ -372,6 +373,34 @@ theorem character_unique (f : Nat → Shell p) (h0 : f 0 = 1) (hf : ∀ a b, f (
     ∀ a, f a = (f 1) ^ a
   | 0 => h0
   | a + 1 => by rw [hf a 1, character_unique f h0 hf a, pow_succ]
+
+/-- 00:C21 — the PPN temporal form is no character: clock comparison composes as `R(a + b) = R(a) R(b)`, and the form
+`1 − 2u` fails it by exactly `4ab`: `(1 − 2a)(1 − 2b) − (1 − 2(a + b)) = 4ab` on every shell (the dilation rigidity
+theorem's transitivity defect; 20 October 2026). -/
+theorem ppn_defect (a b : Shell p) :
+    (1 + -((1 + 1) * a)) * (1 + -((1 + 1) * b)) + -(1 + -((1 + 1) * (a + b))) = (1 + 1 + 1 + 1) * a * b :=
+  RE.sound (look [a, b]) (.add (.mul (.add .one (.neg (.mul (.add .one .one) (.var 0)))) (.add .one (.neg (.mul (.add .one .one) (.var 1))))) (.neg (.add .one (.neg (.mul (.add .one .one) (.add (.var 0) (.var 1))))))) (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 1)) (by decide +kernel)
+
+/-- 00:C21 — no register character matches the PPN form beyond first order: a character `n ↦ cⁿ` with `c = 1 − 2u`
+(the match at `n = 1`) and `c² = 1 − 4u` (the match at `n = 2`) has `4u² = 0`, so `u = 0` on a frame (an odd prime
+shell): the strong-field dilation law is the exponential character alone, with zero coefficient freedom. -/
+theorem ppn_no_character {κ : Nat} {g : Shell p} (F : Frame p κ g) {u c : Shell p}
+    (h1 : c = 1 + -((1 + 1) * u)) (h2 : c * c = 1 + -((1 + 1 + 1 + 1) * u)) : u = 0 := by
+  have e : (1 + -((1 + 1) * u)) * (1 + -((1 + 1) * u)) + -(1 + -((1 + 1 + 1 + 1) * u)) = (1 + 1 + 1 + 1) * (u * u) :=
+    RE.sound (look [u]) (.add (.mul (.add .one (.neg (.mul (.add .one .one) (.var 0)))) (.add .one (.neg (.mul (.add .one .one) (.var 0))))) (.neg (.add .one (.neg (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)))))) (.mul (.add (.add (.add .one .one) .one) .one) (.mul (.var 0) (.var 0))) (by decide +kernel)
+  rw [← h1, h2, Shell.add_neg] at e
+  have h4 : (1 + 1 + 1 + 1 : Shell p) ≠ 0 := fun h0 => by
+    have e4 : (1 + 1 + 1 + 1 : Shell p) = (1 + 1) * (1 + 1) :=
+      RE.sound (look []) (.add (.add (.add .one .one) .one) .one) (.mul (.add .one .one) (.add .one .one)) (by decide +kernel)
+    rw [e4] at h0
+    exact match F.mul_eq_zero h0 with
+      | Or.inl h => F.two_ne_zero (by rw [two_eq_one_add_one]; exact h)
+      | Or.inr h => F.two_ne_zero (by rw [two_eq_one_add_one]; exact h)
+  exact match F.mul_eq_zero e.symm with
+    | Or.inl h => absurd h h4
+    | Or.inr h => match F.mul_eq_zero h with
+      | Or.inl h' => h'
+      | Or.inr h' => h'
 
 /-- 00:E5, 00:E10 — the operational cut sits between the slip core and the mass, `r_* < r_f < M`, in the chart's own
 numbers: with `r_* = √M`, `r_f = 2M/L` (`L = ln Ω`) and `M > (L/2)²`, that is `L² < 4M`, the squares order as

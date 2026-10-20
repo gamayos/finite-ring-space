@@ -9,6 +9,7 @@ import FrcCore.Orbit
 import FrcCore.Sum
 import FrcCore.Theme.Domain
 import FrcCore.Theme.Projective
+import FrcCore.Theme.Spin
 import FrcCore.Theme.Fourier
 import FrcCore.Theme.Shift
 import FrcCore.Theme.Fractional

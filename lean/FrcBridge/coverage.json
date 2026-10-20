@@ -773,6 +773,34 @@
    "status": "shared theorem",
    "lean": "FRC.Hadrons.spin_split",
    "note": "19 October 2026 (the master's witnesses, A + B of claude/00-ledger-unwitnessed-t-rows-20261019.md): both keys conjoin the exact spin split; 35:C19's key adds the forward landing and the coupling bracket on Mathlib, which G10's python check reproduces"
+  },
+  {
+   "master": "C22",
+   "paper": "38:A7",
+   "status": "shared theorem",
+   "lean": "FRC.Shell.Frame.sphere_det, FRC.Shell.Frame.frame_counts, FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts",
+   "note": "20 October 2026 (the master's witnesses, group C of claude/00-ledger-block-c-blueprint-20261019.md): both keys conjoin the norm-one sphere as SL₂ (the quaternion determinant), the frame counts and the Hopf section with its counts; the bijection of the quaternion map is 38:A7's Theme/Hopf.lean quat_bijective and C22's Theme/Spin.lean sphere_bijective, the same statement in the projective theme; C22's key adds the frame triple, the split fibration (unit_split) and the adjoint action PGL₂ → SO₃ (ad_preserves, ad_kernel)"
+  },
+  {
+   "master": "C22",
+   "paper": "38:A9",
+   "status": "shared theorem",
+   "lean": "FRC.Shell.Frame.frame_triple, FRC.Shell.Frame.unit_split, FRC.Shell.Frame.hopf_counts, FRC.Shell.Frame.frame_counts",
+   "note": "20 October 2026 (group C): 38:A9's key states the frame triple, the Hopf section and counts and the split fibration on every prime shell (the Prime.* forms of Theme/Hopf.lean) with the sphere-area rung and the conic count; C22's key states the same theorems in their Frame forms (Theme/Projective.lean), the shared clauses the triple, unit_split, the counts; C22 adds SO₃"
+  },
+  {
+   "master": "C22",
+   "paper": "38:X4",
+   "status": "shared theorem",
+   "lean": "FRC.Shell.Frame.frame_triple, FRC.Shell.Frame.unit_split, FRC.Shell.Frame.hopf_counts",
+   "note": "20 October 2026 (group C): 38:X4's key is exactly the frame triple, unit_split and the Hopf counts; C22's key conjoins the three and adds the sphere, the section and the adjoint action"
+  },
+  {
+   "master": "C21",
+   "paper": "21:C11",
+   "status": "shared theorem",
+   "lean": "FRC.Drift.character_composition",
+   "note": "20 October 2026 (group C; the pair recorded in counterparts.json the same day, D12): both keys conjoin the character composition g^{a+b} = g^a g^b; 21:C11's key adds the Gauss law, C21's the character's uniqueness, the PPN defect 4ab and its failure to be a character (ppn_defect, ppn_no_character) and the cover's horizon station (Subject.horizon_generator)"
   }
  ]
 }

@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "19 October 2026",
+  "generated": "20 October 2026",
   "schema": "frc-register/2",
   "rows": 1045,
   "theorems": 1031,
@@ -2457,7 +2457,7 @@
    "check": {
     "href": "frc/ledgers/master/projective.html#p00190",
     "script": "frc/ledgers/master/projective.py",
-    "line": 88,
+    "line": 101,
     "verdict": "pass"
    },
    "declarations": [
@@ -2507,9 +2507,20 @@
    "statement": "\\textbf{The dilation rigidity theorem}: static clock comparison is a register character $\\gen^{-\\Delta n}$; characters are rigid, so the strong-field dilation law is the unique exponential reading, zero coefficient freedom; the PPN temporal form admits no register character (transitivity defect exactly $4ab$); the cover halves the angle at every tick (C20).",
    "origin_row": "00:C21",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/gravity.html#p00041",
+    "script": "frc/ledgers/master/gravity.py",
+    "line": 525,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Gravity",
+     "name": "FRC.Ledger.p00041"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C21"
@@ -2522,11 +2533,20 @@
    "statement": "$\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$; the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of $\\mathrm{PSL}_2$, whose elements are frame moves, not registrations. For every $\\p=4\\kap+1$ of the totality each element is one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the variety: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19), split $C_{\\p -1}$ over $\\p (\\p +1)$ without.",
    "origin_row": "00:C22",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "38:p38_s13.py"
+    "href": "frc/ledgers/master/projective.html#p00152",
+    "script": "frc/ledgers/master/projective.py",
+    "line": 136,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Projective",
+     "name": "FRC.Ledger.p00152"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C22"
@@ -2614,9 +2634,20 @@
    "statement": "\\textbf{The frame group has one form}: on every shell $\\mathrm{SU}_2(\\F_{\\p^2}/\\F_\\p)=\\mathrm{SL}_2(\\F_\\p)$ for the Hermitian form $wJ$, $w^{\\p}=-w$, every element of finite order; the sphere $x^2+y^2+z^2+w^2=1$ and $ad-bc=1$ correspond point by point through the quarter-turn.",
    "origin_row": "00:C27",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/projective.html#p00183",
+    "script": "frc/ledgers/master/projective.py",
+    "line": 198,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Projective",
+     "name": "FRC.Ledger.p00183"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C27"
@@ -2851,7 +2882,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00052",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 118,
+    "line": 126,
     "verdict": "pass"
    },
    "declarations": [
@@ -2877,7 +2908,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00154",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 153,
+    "line": 161,
     "verdict": "pass"
    },
    "declarations": [
@@ -2903,7 +2934,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00055",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 189,
+    "line": 197,
     "verdict": "pass"
    },
    "declarations": [
@@ -2928,7 +2959,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00056",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 228,
+    "line": 236,
     "verdict": "pass"
    },
    "declarations": [
@@ -2953,7 +2984,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00176",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 266,
+    "line": 274,
     "verdict": "pass"
    },
    "declarations": [
@@ -2979,7 +3010,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00058",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 304,
+    "line": 312,
     "verdict": "pass"
    },
    "declarations": [
@@ -3010,7 +3041,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00147",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 337,
+    "line": 345,
     "verdict": "pass"
    },
    "declarations": [
@@ -3050,7 +3081,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00199",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 400,
+    "line": 408,
     "verdict": "pass"
    },
    "declarations": [
@@ -3090,7 +3121,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00201",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 482,
+    "line": 490,
     "verdict": "pass"
    },
    "declarations": [
@@ -31335,7 +31366,7 @@
     "py": {
      "href": "frc/ledgers/master/projective.html#p00190",
      "script": "frc/ledgers/master/projective.py",
-     "line": 88,
+     "line": 101,
      "verdict": "pass"
     },
     "lean": [
@@ -31412,8 +31443,22 @@
    "page": "00-ledger.html#C21",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/gravity.html#p00041",
+     "script": "frc/ledgers/master/gravity.py",
+     "line": 525,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Gravity",
+      "name": "FRC.Ledger.p00041",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00041"
+     }
+    ]
    },
    "refs": [
     "p00040"
@@ -31437,8 +31482,22 @@
    "page": "00-ledger.html#C22",
    "witness": {
     "script": "38:p38_s13.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/projective.html#p00152",
+     "script": "frc/ledgers/master/projective.py",
+     "line": 136,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Projective",
+      "name": "FRC.Ledger.p00152",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Projective.html#FRC.Ledger.p00152"
+     }
+    ]
    },
    "refs": [
     "p00190"
@@ -31580,8 +31639,22 @@
    "page": "00-ledger.html#C27",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/projective.html#p00183",
+     "script": "frc/ledgers/master/projective.py",
+     "line": 198,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Projective",
+      "name": "FRC.Ledger.p00183",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Projective.html#FRC.Ledger.p00183"
+     }
+    ]
    },
    "refs": [],
    "sources": [
@@ -32008,7 +32081,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00052",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 118,
+     "line": 126,
      "verdict": "pass"
     },
     "lean": [
@@ -32046,7 +32119,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00154",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 153,
+     "line": 161,
      "verdict": "pass"
     },
     "lean": [
@@ -32086,7 +32159,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00055",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 189,
+     "line": 197,
      "verdict": "pass"
     },
     "lean": [
@@ -32125,7 +32198,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00056",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 228,
+     "line": 236,
      "verdict": "pass"
     },
     "lean": [
@@ -32163,7 +32236,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00176",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 266,
+     "line": 274,
      "verdict": "pass"
     },
     "lean": [
@@ -32205,7 +32278,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00058",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 304,
+     "line": 312,
      "verdict": "pass"
     },
     "lean": [
@@ -32248,7 +32321,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00147",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 337,
+     "line": 345,
      "verdict": "pass"
     },
     "lean": [
@@ -32313,7 +32386,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00199",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 400,
+     "line": 408,
      "verdict": "pass"
     },
     "lean": [
@@ -32380,7 +32453,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00201",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 482,
+     "line": 490,
      "verdict": "pass"
     },
     "lean": [
@@ -51541,6 +51614,7 @@
     ]
    },
    "refs": [
+    "p00041",
     "p00055"
    ],
    "text": "The nonlinear completion forced: the exact cut-flux law (transfer antisymmetry) plus the winding grading forbid independent static self-sourcing, the clock-comparison cocycle makes the exponential reading unique (exactly the character $\\gen^{-\\Delta n}$, $e^{-u}$ its observer lift), and Deser's bootstrap does not apply because what gravitates is winding rate. Thm. thm:branch p21026, FrcCore{C11}, FrcLedger{C11} Gravity.exponential_reading, FRC.Drift.gauss_law, FRC.Drift.character_composition"
