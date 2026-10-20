@@ -465,16 +465,6 @@ const PUBLICATIONS = [
     ]
   },
   {
-    "key": "23-gold",
-    "n": 23,
-    "title": "Binary Goldbach over Finite Substrate",
-    "status": {
-      "kind": "preprint"
-    },
-    "doi": "https://doi.org/10.20944/preprints202606.1552.v1",
-    "doiLabel": "pp202606.1552.v1"
-  },
-  {
     "key": "25-göd",
     "n": 25,
     "title": "Incompleteness Without Infinity",

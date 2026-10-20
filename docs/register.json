@@ -33924,7 +33924,7 @@
    "tag": "D",
    "name": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive",
    "statement": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a short derivation exists.",
-   "source": "25-göd, 20-rh, 23-gold, 26-pnp, 13-epi",
+   "source": "25-göd, 20-rh, 26-pnp, 13-epi",
    "page": "00-ledger.html#Z2",
    "witness": {
     "script": null,
@@ -33941,11 +33941,10 @@
    "sources": [
     "25-göd",
     "20-rh",
-    "23-gold",
     "26-pnp",
     "13-epi"
    ],
-   "text": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive: RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a short derivation exists. 25-göd, 20-rh, 23-gold, 26-pnp, 13-epi"
+   "text": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive: RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a short derivation exists. 25-göd, 20-rh, 26-pnp, 13-epi"
   },
   {
    "paper": "00",
@@ -33957,7 +33956,7 @@
    "tag": "Ω",
    "name": "The bounded-observer certificate for each is Ω-hard (Z4)",
    "statement": "The bounded-observer certificate for each is $\\Om$-hard (Z4): the completed uniform check over all residues of the totality, in no embedded reader's window. $\\Om$-hardness is the absence of a host; on a hosted shell the same check is host-decided (37-sim; D8). Within capacity an embedded observer decides totality-level facts from internal state (two-record keystone): the horizon has two operational sides.",
-   "source": "20-rh, 23-gold, 26-pnp, 25-göd, 29-fin",
+   "source": "20-rh, 26-pnp, 25-göd, 29-fin",
    "page": "00-ledger.html#Z3",
    "witness": {
     "script": null,
@@ -33970,12 +33969,11 @@
    ],
    "sources": [
     "20-rh",
-    "23-gold",
     "26-pnp",
     "25-göd",
     "29-fin"
    ],
-   "text": "The bounded-observer certificate for each is Ω-hard (Z4): The bounded-observer certificate for each is $\\Om$-hard (Z4): the completed uniform check over all residues of the totality, in no embedded reader's window. $\\Om$-hardness is the absence of a host; on a hosted shell the same check is host-decided (37-sim; D8). Within capacity an embedded observer decides totality-level facts from internal state (two-record keystone): the horizon has two operational sides. 20-rh, 23-gold, 26-pnp, 25-göd, 29-fin"
+   "text": "The bounded-observer certificate for each is Ω-hard (Z4): The bounded-observer certificate for each is $\\Om$-hard (Z4): the completed uniform check over all residues of the totality, in no embedded reader's window. $\\Om$-hardness is the absence of a host; on a hosted shell the same check is host-decided (37-sim; D8). Within capacity an embedded observer decides totality-level facts from internal state (two-record keystone): the horizon has two operational sides. 20-rh, 26-pnp, 25-göd, 29-fin"
   },
   {
    "paper": "00",
@@ -33987,7 +33985,7 @@
    "tag": "Ω",
    "name": "The four certificates: RH = every cell of the cycle clean",
    "statement": "RH $=$ every cell of the cycle clean (20:D5); Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements frame-decided (Z10, Z11); the whole-state certificate $\\Om$-hard as a tally (20:Z1).",
-   "source": "20-rh, 23-gold, 26-pnp, 13-epi",
+   "source": "20-rh, 26-pnp, 13-epi",
    "page": "00-ledger.html#Z4",
    "witness": {
     "script": null,
@@ -34001,11 +33999,10 @@
    ],
    "sources": [
     "20-rh",
-    "23-gold",
     "26-pnp",
     "13-epi"
    ],
-   "text": "The four certificates: RH = every cell of the cycle clean: RH $=$ every cell of the cycle clean (20:D5); Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements frame-decided (Z10, Z11); the whole-state certificate $\\Om$-hard as a tally (20:Z1). 20-rh, 23-gold, 26-pnp, 13-epi"
+   "text": "The four certificates: RH = every cell of the cycle clean: RH $=$ every cell of the cycle clean (20:D5); Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements frame-decided (Z10, Z11); the whole-state certificate $\\Om$-hard as a tally (20:Z1). 20-rh, 26-pnp, 13-epi"
   },
   {
    "paper": "00",
