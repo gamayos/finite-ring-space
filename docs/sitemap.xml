@@ -142,7 +142,7 @@
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/logic.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/master/projective.html</loc>
@@ -167,6 +167,10 @@
   <url>
     <loc>https://finitering.space/frc/ledgers/p22_quantum.html</loc>
     <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/frc/ledgers/p25_godel.html</loc>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/frc/ledgers/p26_pnp.html</loc>
@@ -198,7 +202,7 @@
   </url>
   <url>
     <loc>https://finitering.space/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Algebra.html</loc>
@@ -429,6 +433,10 @@
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Theme.Diagonal.html</loc>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Theme.Dichotomy.html</loc>
     <lastmod>2026-10-20</lastmod>
   </url>
@@ -545,6 +553,10 @@
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Theme.Reach.html</loc>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Theme.Rotations.html</loc>
     <lastmod>2026-10-20</lastmod>
   </url>
@@ -578,6 +590,10 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Tally.html</loc>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Theme.Threshold.html</loc>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
@@ -638,7 +654,7 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/ml/Godel.html</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/lean/ml/Gravity.html</loc>
@@ -906,11 +922,11 @@
   </url>
   <url>
     <loc>https://finitering.space/src/25-godel/</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/25-godel/make_notebook.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/28-flavour/alpha_probe.html</loc>

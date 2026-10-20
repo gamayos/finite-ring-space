@@ -801,6 +801,76 @@
    "status": "shared theorem",
    "lean": "FRC.Drift.character_composition",
    "note": "20 October 2026 (group C; the pair recorded in counterparts.json the same day, D12): both keys conjoin the character composition g^{a+b} = g^a g^b; 21:C11's key adds the Gauss law, C21's the character's uniqueness, the PPN defect 4ab and its failure to be a character (ppn_defect, ppn_no_character) and the cover's horizon station (Subject.horizon_generator)"
+  },
+  {
+   "master": "A4",
+   "paper": "25:D3",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "20 October 2026 (25-gödel's migration): A4's key states the observer as a part (observer_part, complete_needs_whole, translation_torsor); 25:D3's key the aliasing of a reading into fewer states (FRC.Reach.alias_fibre, alias_two, alias_outside), which refines the clause the bridge A5_25D1 carries through 25:D1; no clause is conjoined by both"
+  },
+  {
+   "master": "Z1",
+   "paper": "25:C2",
+   "status": "shared theorem",
+   "lean": "FRC.Logic.fin_theory_decidable, FRC.Logic.fin_theory_complete, FRC.Logic.fin_theory_consistent",
+   "note": "20 October 2026 (25-gödel's migration, D3): both keys conjoin the finite theory's decidability, completeness and consistency; Z1's key adds no_finite_successor, no_finite_Q and no_interpretation, 25:C2's the Mathlib completeness (theory_complete, decTheory)"
+  },
+  {
+   "master": "Z1",
+   "paper": "25:C3",
+   "status": "shared theorem",
+   "lean": "FRC.Logic.no_finite_Q, FRC.Logic.no_interpretation, FRC.Logic.fin_theory_complete, FRC.Logic.fin_theory_consistent",
+   "note": "20 October 2026 (25-gödel's migration, D4): the consequence row's key conjoins the theorems of C1 and C2 it rests on; Z1's key conjoins the same four and adds no_finite_successor and fin_theory_decidable"
+  },
+  {
+   "master": "Z1",
+   "paper": "25:F6",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "20 October 2026 (25-gödel's migration): Z1 restates 'its diagonal confined below t(M)' citing Z9; the shared clause is carried by the pair Z9 with 25:F6 (shared theorem), Z1's own key being the finite theory and no Q"
+  },
+  {
+   "master": "Z1",
+   "paper": "25:G7",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "20 October 2026 (25-gödel's migration): Z1's decomposition clause restates G7's frame; G7's key conjoins the steps of the rows it rests on (reach_vanishes, length_horizon, part_collides, no_self_reading, template_size, threshold_lt), none of them in Z1's key; the shared clauses run through Z9 with 25:F2, 25:F3, 25:F6 and 25:G7"
+  },
+  {
+   "master": "Z9",
+   "paper": "25:F2",
+   "status": "shared theorem",
+   "lean": "FRC.Diagonal.template_size, FRC.Diagonal.no_template, FRC.Diagonal.split_scale",
+   "note": "20 October 2026 (25-gödel's migration): Z9's per-symbol clause is 25:F2; both keys conjoin the accounting of the diagonal formula, the scale and the split scales; Z9's key adds no_self_reading, the dense coding in digit form and the window's digit count, 25:F2's mention_cost"
+  },
+  {
+   "master": "Z9",
+   "paper": "25:F3",
+   "status": "shared theorem",
+   "lean": "FRC.Diagonal.no_self_reading",
+   "note": "20 October 2026 (25-gödel's migration): both keys conjoin the per-symbol impossibility of self-quotation; 25:F3's key adds arity_lt_size and mention_cost_lt"
+  },
+  {
+   "master": "Z9",
+   "paper": "25:F6",
+   "status": "shared theorem",
+   "lean": "FRC.Diagonal.admits_digits, FRC.Diagonal.kstar_max, FRC.Diagonal.threshold_digits",
+   "note": "20 October 2026 (25-gödel's migration, D2 and the ruling of 20 October): both keys conjoin the threshold in digit form (k*(M) < a^(⌊d/3⌋+4), the search's completeness, t(M) < a^(d−1)); 25:F6's key adds the name-cost bound, the one-scale bound, no instance below five digits or at the threshold and t(M) < m"
+  },
+  {
+   "master": "Z9",
+   "paper": "25:G6",
+   "status": "shared theorem",
+   "lean": "FRC.Diagonal.no_self_reading",
+   "note": "20 October 2026 (25-gödel's migration, D4): the consequence row's key conjoins F3's theorems (arity_lt_size, mention_cost_lt, no_self_reading); Z9's key conjoins no_self_reading"
+  },
+  {
+   "master": "Z9",
+   "paper": "25:G7",
+   "status": "shared theorem",
+   "lean": "FRC.Diagonal.template_size, FRC.Diagonal.no_self_reading",
+   "note": "20 October 2026 (25-gödel's migration, D4): G7's key conjoins the steps of the rows it rests on, among them F2's accounting and F3's self-quotation, both in Z9's key; Z9's key adds the dense coding and the threshold in digit form and the window's digit count, G7's reach_vanishes, length_horizon, part_collides and threshold_lt"
   }
  ]
 }

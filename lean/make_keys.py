@@ -71,7 +71,7 @@ def index(lib):
             if m: stack.append(m.group(1)); continue
             m = re.match(r"^end\s+(\S+)", l)
             if m and stack and stack[-1] == m.group(1): stack.pop(); continue
-            m = re.match(r"^(?:@\[reducible\] (?:noncomputable )?def|theorem|lemma) ([^\s:(\[{]+)", l) if old else None
+            m = re.match(r"^(?:@\[[^\]]*\] )?(?:noncomputable )?(?:def|abbrev|theorem|lemma) ([^\s:(\[{]+)", l) if old else None   # a def or abbrev alias too (25-godel's decTheory, nots, decideAllRelations; 20 October 2026)
             if m:
                 k = i
                 while ":=" not in lines[k]: k += 1

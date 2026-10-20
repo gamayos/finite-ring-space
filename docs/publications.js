@@ -477,22 +477,22 @@ const PUBLICATIONS = [
     "schema": true,
     "links": [
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/25-godel/frc-25-godel.ipynb",
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p25_godel.ipynb",
         "label": "python",
-        "count": 24,
-        "title": "24 predicates checked, all passing: the notebook frc-25-godel.ipynb on Google Colab, one cell per predicate"
+        "count": 28,
+        "title": "28 predicates checked, all passing: the notebook p25_godel.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Godel.lean",
         "label": "lean",
-        "count": 11,
-        "title": "11 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Godel as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 25,
+        "title": "25 predicates proved in the core (no axioms), 11 of them also on Mathlib: the core module Godel as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Godel.lean",
         "label": "lean-mathlib",
-        "count": 9,
-        "title": "9 predicates proved on Mathlib (classical), 6 of them also in the core: the module Godel as one file on Mathlib in Lean Live"
+        "count": 11,
+        "title": "11 predicates proved on Mathlib (classical), 11 of them also in the core: the module Godel as one file on Mathlib in Lean Live"
       }
     ]
   },

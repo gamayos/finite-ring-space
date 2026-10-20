@@ -451,27 +451,43 @@
   "module": "Godel",
   "FrcCore": {
    "25:C1": "Godel",
+   "25:C2": "Godel",
+   "25:C3": "Godel",
    "25:C5": "Godel",
    "25:D1": "Godel",
+   "25:D3": "Godel",
    "25:D4": "Godel",
    "25:E1": "Godel",
    "25:E2": "Godel",
+   "25:E4": "Godel",
    "25:F1": "Godel",
    "25:F2": "Godel",
    "25:F3": "Godel",
    "25:F4": "Godel",
-   "25:G4": "Godel"
+   "25:F6": "Godel",
+   "25:F7": "Godel",
+   "25:G1": "Godel",
+   "25:G2": "Godel",
+   "25:G4": "Godel",
+   "25:G6": "Godel",
+   "25:G7": "Godel",
+   "25:H2": "Godel",
+   "25:H4": "Godel",
+   "25:H5": "Godel",
+   "25:J2": "Godel"
   },
   "FrcLedger": {
    "25:C1": "Godel",
    "25:C2": "Godel",
+   "25:C3": "Godel",
    "25:C5": "Godel",
    "25:D1": "Godel",
    "25:D3": "Godel",
    "25:E1": "Godel",
    "25:E2": "Godel",
    "25:F4": "Godel",
-   "25:H2": "Godel"
+   "25:H2": "Godel",
+   "25:H4": "Godel"
   }
  },
  "29-finitism": {

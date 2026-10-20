@@ -25,6 +25,9 @@ import FrcCore.Theme.Numbers
 import FrcCore.Theme.Logic
 import FrcCore.Theme.SecondOrder
 import FrcCore.Theme.Formation
+import FrcCore.Theme.Reach
+import FrcCore.Theme.Diagonal
+import FrcCore.Theme.Threshold
 import FrcCore.Theme.Field
 import FrcCore.Theme.Foundation
 import FrcCore.Theme.Drive

@@ -27,6 +27,8 @@ ledger, the notebook beside the file (one cell per predicate, its id the key) an
 `p27_fields.py` (task LM35), whose readings against the continuum sit in the chart tier's `chart_quantum.py` and `chart_fields.py`.
 29-finitism, `p29_finitism.py` (9 October 2026), the first ledger file of a paper with no package under `src/`: its checks run
 from the ledger file alone, and the site's ledger-file page serves it (`docs/frc/ledgers/p29_finitism.html`).
+25-godel, `p25_godel.py` (20 October 2026): the package's twenty-four checks block for block, on the logic theme's `logic.py` and
+`diagonal.py`, every T row of the paper with a core Lean declaration.
 One ledger runs with `python3 -m frc.ledgers.p03_causality`.
 
 **Master blocks.** `frc/ledgers/master/<theme>.py` binds one block of the master ledger the same way. Its table is
@@ -39,7 +41,7 @@ Subject's, block C, `master/subject.py` (task LM24): `python3 -m frc.ledgers.mas
 file per theme whose key file proves its rows (task LM25): block C also by `master/fourier.py` (C2, C7),
 `master/projective.py` (C19) and `master/extension.py` (C10, the two strata of probability, on `frc/extension.py`'s
 quadratic ring; the push of 8 October 2026). Block Z is bound by `master/horizon.py` (Z10, the shell theorem) and `master/logic.py`
-(Z1, Gödel vacuous over a finite structure) (task LM26), on the themes' python `frc/horizon.py` and `frc/logic.py`.
+(Z1, Gödel vacuous over a finite structure; since 20 October 2026 Z9, no compression) (task LM26), on the themes' python `frc/horizon.py`, `frc/logic.py` and `frc/diagonal.py`.
 Block E is bound by `master/gravity.py` (E6, E7, the horizon's count) (task LM27), on `frc/gravity.py`, and block F by
 `master/quantum.py` (F2, the unequal-cycle composite) (task LM28), on `frc/quantum.py`, and block G by
 `master/interactions.py` (G11, G12, G16, one generation and the Koide form) (task LM29), on `frc/interactions.py`.
@@ -61,7 +63,7 @@ Generated from `frc/themes.py` (`python3 -m frc.themes`).
 | projective | structure | 12 | yes | `projective.py` | `Theme/Projective.lean`, `Theme/Spin.lean` | `Theme/Projective.lean` | PGL₂ and SL₂ by elements, the Borel subgroup, the split and non-split tori; the unitary form SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p), the finite order of every element and the adjoint action PGL₂ → SO₃ (Theme/Spin.lean, the master's C22 and C27, 20 October 2026) |
 | fourier | structure | 13 | yes | `fourier.py` | `Theme/Fourier.lean`, `Theme/Fractional.lean`, `Theme/Lifts.lean`, `Theme/Dichotomy.lean`, `Theme/Rotations.lean`, `Theme/Heisenberg.lean`, `Theme/Spectra.lean`, `Theme/Exclusivity.lean` | `Theme/Fourier.lean`, `Theme/Fractional.lean` | the shell DFT and its inversion, the fractional family, the meridians and the scale-shift |
 | numbers | structure | 14 | yes | `numbers.py` | `Poly.lean`, `Theme/Numbers.lean` | `Theme/Numbers.lean` | polynomials over the shell and the root criterion; the walls of π and e; the comb |
-| logic | structure | 15 | yes | `logic.py`, `formation.py` | `Theme/Logic.lean`, `Theme/SecondOrder.lean`, `Theme/Formation.lean` | `Theme/Logic.lean` | the bounded (Δ₀) language over a finite structure, evaluation, finite Gödel; the counting core of 5-reductio and 25-godel; the full second-order theory of a finite structure, and formation universes, traces and bounded certificates (29-finitism) |
+| logic | structure | 15 | yes | `logic.py`, `formation.py`, `diagonal.py` | `Theme/Logic.lean`, `Theme/SecondOrder.lean`, `Theme/Formation.lean`, `Theme/Reach.lean`, `Theme/Diagonal.lean`, `Theme/Threshold.lean` | `Theme/Logic.lean` | the bounded (Δ₀) language over a finite structure, evaluation, finite Gödel; the counting core of 5-reductio and 25-godel; the full second-order theory of a finite structure, and formation universes, traces and bounded certificates (29-finitism); the part and the reach bound, the diagonal under finitude and the threshold of the dense coding (25-godel, since 20 October 2026) |
 | foundation | programme | 20 | yes | `foundation.py` | `Theme/Field.lean`, `Theme/Foundation.lean`, `Theme/Drive.lean` | — | master block A: the ground, the pillars' formal shadows, the trusted base; completeness is primality; every prime carries a frame |
 | carrier | programme | 21 | yes | `carrier.py` | `Theme/Carrier.lean` | — | master block B: the Carrier and its constants; the window ladder; the octant |
 | subject | programme | 22 | yes | `subject.py`, `covering.py` | `Theme/Subject.lean`, `Theme/Pair.lean`, `Theme/Hopf.lean` | — | master block C: the Subject, the frame group, the registration; the pair (p, Ω): the resolvable window, the leak rate, the joint cycle, the tick arithmetic and the covering parity theorem; the Hopf section and the frame triple on every prime shell (38-s13) |

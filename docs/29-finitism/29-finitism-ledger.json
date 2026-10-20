@@ -286,7 +286,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "25:C2, Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
+    "doc": "25:C2, 25:C3, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
    },
    {
     "name": "FRC.Logic.fin_theory_decidable",
@@ -592,7 +592,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "5:C2, 29:C10 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters."
+    "doc": "5:C2, 29:C10, 25:E2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters."
    },
    {
     "name": "FRC.Logic.no_mirror",
@@ -650,7 +650,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "29:E4 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is decided by exhaustive evaluation, a formula holds exactly when its evaluation is `true`."
+    "doc": "29:E4, 25:H2, 25:H4 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is decided by exhaustive evaluation, a formula holds exactly when its evaluation is `true`."
    },
    {
     "name": "FRC.Logic.so_theory_complete",
@@ -659,7 +659,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "29:E4 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its negation holds, decided by the evaluation."
+    "doc": "29:E4, 25:H2, 25:H4 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its negation holds, decided by the evaluation."
    },
    {
     "name": "FRC.Logic.so_theory_consistent",

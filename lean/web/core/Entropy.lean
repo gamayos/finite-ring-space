@@ -3365,7 +3365,7 @@ def records (s : Nat) : Nat → Nat
   | 0 => 1
   | K + 1 => records s K + s ^ (K + 1)
 
-/-- 5:C2, 29:C10 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters. -/
+/-- 5:C2, 29:C10, 25:E2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters. -/
 theorem records_lt (s : Nat) (hs : 2 ≤ s) : ∀ K, records s K < s ^ (K + 1)
   | 0 => by
     show 1 < s ^ 1
@@ -3578,7 +3578,7 @@ theorem no_finite_successor (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S
   fun hmiss => match inj_onto n S hS hinj z hz with
     | ⟨x, hx, e⟩ => hmiss x hx e
 
-/-- 25:D1 (Theorem part) — an agent with `R` storage states in a structure of `m > R` elements has no injective
+/-- 25:D1, 25:G7 (Theorem part) — an agent with `R` storage states in a structure of `m > R` elements has no injective
 encoding: every reading `ρ : [0, m) → [0, R)` identifies two elements. -/
 theorem part_collides {m R : Nat} (hR : R < m) (ρ : Nat → Nat) (hρ : ∀ i, i < m → ρ i < R) :
     ¬ ∀ i j, i < m → j < m → ρ i = ρ j → i = j :=
@@ -3643,7 +3643,7 @@ theorem count_shift_by : ∀ (j : Nat) (f : Nat → Bool) (N : Nat), count (fun 
   | 0, _, _ => Nat.le_refl _
   | j + 1, f, N => Nat.le_trans (count_shift_by j (fun k => f (k + 1)) N) (count_shift f (N + j))
 
-/-- 25:F4 (Lemma density, the count) — an injective coding of the `a^n` strings of length `n` into `k`-tuples
+/-- 25:F4, 00:Z9 (Lemma density, the count) — an injective coding of the `a^n` strings of length `n` into `k`-tuples
 over `m` elements needs `a^n ≤ m^k`. -/
 theorem dense_coding {a n m k : Nat} (c : Nat → Nat) (hc : ∀ i, i < a ^ n → c i < m ^ k)
     (hinj : ∀ i j, i < a ^ n → j < a ^ n → c i = c j → i = j) : a ^ n ≤ m ^ k :=
@@ -3656,7 +3656,7 @@ theorem pow_lt_pow_base {m b : Nat} (h : m < b) : ∀ k : Nat, m ^ (k + 1) < b ^
   | 0 => show m ^ 0 * m < b ^ 0 * b from Nat.mul_lt_mul_of_le_of_lt (Nat.le_refl 1) h (Nat.zero_lt_succ 0)
   | k + 1 => show m ^ (k + 1) * m < b ^ (k + 1) * b from Nat.mul_lt_mul_of_lt_of_lt (pow_lt_pow_base h k) h
 
-/-- 25:F4 (Lemma density, the digit form) — if `m` has at most `d` digits in base `a` (`m < a^d`), a coding of
+/-- 25:F4, 00:Z9 (Lemma density, the digit form) — if `m` has at most `d` digits in base `a` (`m < a^d`), a coding of
 the strings of length `n` by tuples of `k+1` coordinates with `a^n ≤ m^(k+1)` has `n < d·(k+1)`: a tuple carries
 fewer letters than `d` times its coordinates. -/
 theorem digit_bound {a n m k d : Nat} (ha : 0 < a) (hm : m < a ^ d) (h : a ^ n ≤ m ^ (k + 1)) :
@@ -3793,7 +3793,7 @@ theorem fin_theory_decidable (M : FinStr) : ∀ (φ : FForm) (env : Nat → Nat)
     exact (allBelow_iff _ M.m).trans ⟨fun h x hx => (fin_theory_decidable M φ (cons x env)).1 (h x hx),
       fun h x hx => (fin_theory_decidable M φ (cons x env)).2 (h x hx)⟩
 
-/-- 25:C2, Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no
+/-- 25:C2, 25:C3, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no
 appeal to excluded middle. -/
 theorem fin_theory_complete (M : FinStr) (φ : FForm) (env : Nat → Nat) : Sat M env φ ∨ Sat M env (.neg φ) :=
   match h : fval M env φ with
@@ -3813,7 +3813,7 @@ def succOf (D : Nat → Bool) (Sg : Nat → Nat → Bool) (n x : Nat) : Nat :=
 theorem band_l {a b : Bool} (h : (a && b) = true) : a = true := by cases a <;> cases b <;> first | rfl | exact h
 theorem band_r {a b : Bool} (h : (a && b) = true) : b = true := by cases a <;> cases b <;> first | rfl | exact h
 
-/-- 00:Z1, 25:C1 — no finite structure carries Robinson's successor: on `[0, n)`, a domain `D`, a successor relation
+/-- 00:Z1, 25:C1, 25:C3 — no finite structure carries Robinson's successor: on `[0, n)`, a domain `D`, a successor relation
 `Sg` total on `D`, injective (Q2) and never reaching a zero `Z` of `D` (Q1) cannot exist. A `k`-dimensional
 interpretation is the case `n = mᵏ`, its tuples coded below `mᵏ`. -/
 theorem no_finite_Q (n : Nat) (D Z : Nat → Bool) (Sg : Nat → Nat → Bool)
@@ -3860,7 +3860,7 @@ theorem no_finite_Q (n : Nat) (D Z : Nat → Bool) (Sg : Nat → Nat → Bool)
       rw [e, hZz] at this; exact Bool.noConfusion this
     | false => rw [hoff x hD] at e; rw [e, hDz] at hD; exact Bool.noConfusion hD
 
-/-- 00:Z1, 25:C1 — a finite structure interprets no Robinson `Q`: for formulas `δ` (the domain, in variable `0`),
+/-- 00:Z1, 25:C1, 25:C3 — a finite structure interprets no Robinson `Q`: for formulas `δ` (the domain, in variable `0`),
 `σ` (the successor's graph, `x` in variable `1` and `y` in `0`) and `ζ` (zero), the relativised successor axioms —
 `S` total on the domain, Q2 (`S x = S x' → x = x'`), a zero in the domain, and Q1 (`S x ≠ 0`) — never all hold. -/
 theorem no_interpretation (M : FinStr) (env : Nat → Nat) (δ σ ζ : FForm) :
