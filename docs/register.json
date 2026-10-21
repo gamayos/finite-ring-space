@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "20 October 2026",
+  "generated": "21 October 2026",
   "schema": "frc-register/2",
   "rows": 1045,
   "theorems": 1031,
@@ -11,10 +11,10 @@
    "by_tag": {
     "D": 167,
     "G": 1,
-    "I": 121,
+    "I": 124,
     "O": 11,
     "R": 84,
-    "T": 618,
+    "T": 615,
     "Ω": 29
    }
   },
@@ -379,7 +379,7 @@
      {
       "tag": "I",
       "name": "Import",
-      "text": "A standard result, or a corpus result, used without reproof."
+      "text": "A standard result, or a corpus result, used without reproof; since 21 October 2026 also a theorem of the body that carries no Lean proof (B2, D4, D7), its python check kept as corroboration where one exists."
      },
      {
       "tag": "D",
@@ -7106,15 +7106,14 @@
    "origin": "05",
    "statement": "The bundle $\\{$Eff, Cns, Cmp, IR$\\}$ is inconsistent, with no soundness assumption: under Eff and IR the Rosser sentence is available, and Cmp decides it against plain consistency.",
    "origin_row": "5:B2",
-   "tag": "T",
+   "tag": "I",
    "tier": null,
    "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
     "5:B2"
-   ],
-   "realisations": []
+   ]
   },
   {
    "key": "p05007",
@@ -7122,11 +7121,11 @@
    "statement": "Witnessed independence: every three-element subset is satisfiable --- $Q$ itself ($\\neg$Cmp, consistent by finitary means, the superexponential cost exact); $\\mathrm{Th}(W_N)$ ($\\neg$IR: consistent, complete, decidable, singly axiomatised, interpreting no $Q$ since every model of $Q$ is infinite); the inconsistent extension ($\\neg$Cns); true arithmetic ($\\neg$Eff). Four legs, all load-bearing.",
    "origin_row": "5:B3",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05007",
-    "script": "reductio.py",
-    "line": 312,
+    "href": "frc/ledgers/p05_reductio.html#p05007",
+    "script": "p05_reductio.py",
+    "line": 158,
     "verdict": "pass"
    },
    "declarations": [
@@ -7139,6 +7138,31 @@
      "lib": "FrcMathlib",
      "module": "FrcMathlib/Reductio",
      "name": "FRC.Reductio.theory_complete"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.no_finite_Q"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.no_interpretation"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_decidable"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_complete"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_consistent"
     }
    ],
    "aliases": [],
@@ -7167,11 +7191,11 @@
    "statement": "Per-frame completeness: $\\mathrm{Th}(W_N)$ is consistent, complete and decidable, axiomatised by the categorical sentence $\\sigma_N$; truth in any finite structure is decided by evaluation, and the theory of any structure is complete.",
    "origin_row": "5:B5",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05009",
-    "script": "reductio.py",
-    "line": 300,
+    "href": "frc/ledgers/p05_reductio.html#p05009",
+    "script": "p05_reductio.py",
+    "line": 146,
     "verdict": "pass"
    },
    "declarations": [
@@ -7189,6 +7213,21 @@
      "lib": "FrcMathlib",
      "module": "FrcMathlib/Reductio",
      "name": "FRC.Reductio.decTheory"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_decidable"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_complete"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_consistent"
     }
    ],
    "aliases": [],
@@ -7205,9 +7244,9 @@
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05010",
-    "script": "reductio.py",
-    "line": 333,
+    "href": "frc/ledgers/p05_reductio.html#p05010",
+    "script": "p05_reductio.py",
+    "line": 179,
     "verdict": "pass"
    },
    "declarations": [
@@ -7240,7 +7279,12 @@
    "origin_row": "5:B7",
    "tag": "Ω",
    "tier": null,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p05_reductio.html#p05011",
+    "script": "p05_reductio.py",
+    "line": 505,
+    "verdict": "pass"
+   },
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -7269,9 +7313,9 @@
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05013",
-    "script": "reductio.py",
-    "line": 347,
+    "href": "frc/ledgers/p05_reductio.html#p05013",
+    "script": "p05_reductio.py",
+    "line": 198,
     "verdict": "pass"
    },
    "declarations": [
@@ -7316,21 +7360,31 @@
   {
    "key": "p05014",
    "origin": "05",
-   "statement": "Vanishing certified fraction: at least $c^{L}$ normal-form sentences of length $\\le L$, half of each cohort frame truths by completeness, fewer than $s^{K+1}$ certified, so the certified fraction is at most $s^{K+1}/\\lfloor c^{L}/2\\rfloor\\to0$.",
+   "statement": "Vanishing certified fraction: at least $c^{L}$ normal-form sentences of length $\\le L$, half of each cohort frame truths by completeness, fewer than $s^{K+1}$ certified, so the certified fraction is at most $s^{K+1}/\\lfloor c^{L}/2\\rfloor$, below $1/N$ as soon as $2s^{K+1}N\\le c^{L}$.",
    "origin_row": "5:C3",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05014",
-    "script": "reductio.py",
-    "line": 347,
+    "href": "frc/ledgers/p05_reductio.html#p05014",
+    "script": "p05_reductio.py",
+    "line": 198,
     "verdict": "pass"
    },
    "declarations": [
     {
-     "lib": "FrcMathlib",
-     "module": "FrcMathlib/Reductio",
-     "name": "FRC.Reductio.certified_fraction_tendsto"
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Reach",
+     "name": "FRC.Reach.certified_fraction_vanishes"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.records_lt"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_complete"
     }
    ],
    "aliases": [],
@@ -7361,9 +7415,9 @@
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05016",
-    "script": "reductio.py",
-    "line": 370,
+    "href": "frc/ledgers/p05_reductio.html#p05016",
+    "script": "p05_reductio.py",
+    "line": 221,
     "verdict": "pass"
    },
    "declarations": [
@@ -7404,14 +7458,45 @@
    "statement": "Antinomy normal form: Cns $+$ AT $+$ comprehension is inconsistent (Russell, Burali--Forti); the witness of Cns $+\\neg$AT is bounded comprehension --- every set $u$ has a subset not among its members and no universal set exists, decided on $V_4$.",
    "origin_row": "5:D2",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05018",
-    "script": "reductio.py",
-    "line": 401,
+    "href": "frc/ledgers/p05_reductio.html#p05018",
+    "script": "p05_reductio.py",
+    "line": 251,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.no_russell_class"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.no_universal_of_separation"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.russell_not_mem"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.not_mem_self"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.russell_not_mem_hf"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.no_universal"
+    }
+   ],
    "aliases": [],
    "rows": [
     "5:D2"
@@ -7426,9 +7511,9 @@
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05019",
-    "script": "reductio.py",
-    "line": 422,
+    "href": "frc/ledgers/p05_reductio.html#p05019",
+    "script": "p05_reductio.py",
+    "line": 272,
     "verdict": "pass"
    },
    "declarations": [
@@ -7459,20 +7544,19 @@
    "origin": "05",
    "statement": "Choice normal forms: Vitali (countably additive translation-invariant measure on all subsets $+$ AC$\\infty$ on $\\R/\\Q$, a countable amenable group) and Banach--Tarski (finitely additive isometry-invariant measure $+$ AC$\\infty$ $+$ a free non-amenable rotation subgroup) are inconsistent bundles with distinct mechanisms; the finite witness is counting measure with definable choice.",
    "origin_row": "5:D4",
-   "tag": "T",
+   "tag": "I",
    "tier": null,
    "check": {
-    "href": "src/5-reductio/#p05020",
-    "script": "reductio.py",
-    "line": 446,
+    "href": "frc/ledgers/p05_reductio.html#p05020",
+    "script": "p05_reductio.py",
+    "line": 296,
     "verdict": "pass"
    },
    "declarations": [],
    "aliases": [],
    "rows": [
     "5:D4"
-   ],
-   "realisations": []
+   ]
   },
   {
    "key": "p05021",
@@ -7480,9 +7564,70 @@
    "statement": "The reductio principle: for each normal form a baseline $B$ and one infinitary premise $I$ with $B+I$ contradictory and $B+\\neg I$ satisfiable by an explicit witness --- bounded ranks, $\\mathrm{Th}(W_N)$, counting measure (Solovay's model as classical corroboration); the rejection of $I$ is coherent and witnessed.",
    "origin_row": "5:D5",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p05_reductio.html#p05021",
+    "script": "p05_reductio.py",
+    "line": 146,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_decidable"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_complete"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_consistent"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.no_interpretation"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.no_russell_class"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.no_universal_of_separation"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.russell_not_mem_hf"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.no_universal"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.measure_add"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.measure_perm"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.no_doubling"
+    }
+   ],
    "aliases": [],
    "rows": [
     "5:D5"
@@ -7508,15 +7653,14 @@
    "origin": "05",
    "statement": "Forced exit: Det supplies Eff and Cmp, so $\\{$Cns, Det, IR$\\}$ is inconsistent and, Cns and Det being constitutive, the reductio is forced against IR --- no determinate totality internalises an unbounded registry; the four-clause bundle condenses to this triad. Conditional on Det.",
    "origin_row": "5:D7",
-   "tag": "T",
+   "tag": "I",
    "tier": null,
    "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
     "5:D7"
-   ],
-   "realisations": []
+   ]
   },
   {
    "key": "p05024",
@@ -7524,11 +7668,11 @@
    "statement": "Finiteness of determinate totalities: in ZF with every infinite set Dedekind-infinite, a structure satisfies Det iff it is finite --- finite: the full higher-order theory decided by exhaustive evaluation; infinite: a copy of $\\N$ inside gives an effective reduction of true second-order arithmetic, which is not arithmetical. The real field's first-order tameness is silence about its subsets.",
    "origin_row": "5:D8",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05024",
-    "script": "reductio.py",
-    "line": 659,
+    "href": "frc/ledgers/p05_reductio.html#p05024",
+    "script": "p05_reductio.py",
+    "line": 496,
     "verdict": "pass"
    },
    "declarations": [
@@ -7541,6 +7685,16 @@
      "lib": "FrcMathlib",
      "module": "FrcMathlib/Reductio",
      "name": "FRC.Reductio.nat_embeds"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/SecondOrder",
+     "name": "FRC.Logic.so_theory_decidable"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/SecondOrder",
+     "name": "FRC.Logic.so_theory_complete"
     }
    ],
    "aliases": [],
@@ -7555,14 +7709,40 @@
    "statement": "Corollaries: no absolute totality is determinate (a universal set is infinite by the iterated singletons); Meas is decided content --- a Det totality decides every measure question, trivially on a finite one (counting measure). The totalising conjuncts of two normal forms follow from D8.",
    "origin_row": "5:D9",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05025",
-    "script": "reductio.py",
-    "line": 459,
+    "href": "frc/ledgers/p05_reductio.html#p05025",
+    "script": "p05_reductio.py",
+    "line": 309,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.rank_chain"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.chain_injective"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.chain_not_mem"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.measure_le"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.measure_perm"
+    }
+   ],
    "aliases": [],
    "rows": [
     "5:D9"
@@ -7591,9 +7771,9 @@
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05027",
-    "script": "reductio.py",
-    "line": 491,
+    "href": "frc/ledgers/p05_reductio.html#p05027",
+    "script": "p05_reductio.py",
+    "line": 336,
     "verdict": "pass"
    },
    "declarations": [
@@ -7627,9 +7807,9 @@
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05028",
-    "script": "reductio.py",
-    "line": 501,
+    "href": "frc/ledgers/p05_reductio.html#p05028",
+    "script": "p05_reductio.py",
+    "line": 346,
     "verdict": "pass"
    },
    "declarations": [
@@ -7656,11 +7836,11 @@
    "statement": "Equivariant periodic choice: a $G$-equivariant section exists iff each stabiliser action $G_i\\curvearrowright A_i$ has a fixed point (one orbit at a time); the Fraenkel--Mostowski mechanism in positive form.",
    "origin_row": "5:E3",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05029",
-    "script": "reductio.py",
-    "line": 533,
+    "href": "frc/ledgers/p05_reductio.html#p05029",
+    "script": "p05_reductio.py",
+    "line": 378,
     "verdict": "pass"
    },
    "declarations": [
@@ -7668,6 +7848,16 @@
      "lib": "FrcMathlib",
      "module": "FrcMathlib/Reductio",
      "name": "FRC.Reductio.equivariant_section_iff"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Equivariant",
+     "name": "FRC.Equivariant.equivariant_section_iff"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Equivariant",
+     "name": "FRC.Equivariant.equivariant_section_orbits"
     }
    ],
    "aliases": [],
@@ -7684,9 +7874,9 @@
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05030",
-    "script": "reductio.py",
-    "line": 558,
+    "href": "frc/ledgers/p05_reductio.html#p05030",
+    "script": "p05_reductio.py",
+    "line": 403,
     "verdict": "pass"
    },
    "declarations": [
@@ -7715,9 +7905,9 @@
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05031",
-    "script": "reductio.py",
-    "line": 584,
+    "href": "frc/ledgers/p05_reductio.html#p05031",
+    "script": "p05_reductio.py",
+    "line": 429,
     "verdict": "pass"
    },
    "declarations": [
@@ -7744,14 +7934,30 @@
    "statement": "Periodic de~Bruijn--Erd\\H{o}s, dimension one: a $\\sigma$-periodic graph of bounded range whose finite subgraphs are $c$-colourable admits a definable $\\sigma^{m}$-periodic $c$-colouring (the transfer digraph $D_c$, its sub-digraph of vertices beginning walks of every length, E5).",
    "origin_row": "5:E6",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05032",
-    "script": "reductio.py",
-    "line": 618,
+    "href": "frc/ledgers/p05_reductio.html#p05032",
+    "script": "p05_reductio.py",
+    "line": 463,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Transfer",
+     "name": "FRC.Transfer.exists_allGood"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Transfer",
+     "name": "FRC.Transfer.allGood_successor"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Transfer",
+     "name": "FRC.Transfer.periodic_walk"
+    }
+   ],
    "aliases": [],
    "rows": [
     "5:E6"
@@ -7778,11 +7984,11 @@
    "statement": "The choice paradoxes vanish: on a finite set counting measure is complete and invariant, no decomposition doubles the set ($X\\sqcup X$ does not inject into $X$), and every ultrafilter is principal; periodic variants inherit this on one period.",
    "origin_row": "5:E8",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
-    "href": "src/5-reductio/#p05034",
-    "script": "reductio.py",
-    "line": 446,
+    "href": "frc/ledgers/p05_reductio.html#p05034",
+    "script": "p05_reductio.py",
+    "line": 296,
     "verdict": "pass"
    },
    "declarations": [
@@ -7795,6 +8001,36 @@
      "lib": "FrcMathlib",
      "module": "FrcMathlib/Reductio",
      "name": "FRC.Reductio.ultrafilter_principal"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.measure_le"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.measure_add"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.measure_compl"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.measure_perm"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.no_doubling"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Sets",
+     "name": "FRC.Sets.ultra_principal"
     }
    ],
    "aliases": [],
@@ -38423,7 +38659,7 @@
    "key": "p05006",
    "label": "B2",
    "block": "B",
-   "tag": "T",
+   "tag": "I",
    "name": null,
    "statement": "The bundle $\\{$Eff, Cns, Cmp, IR$\\}$ is inconsistent, with no soundness assumption: under Eff and IR the Rosser sentence is available, and Cmp decides it against plain consistency.",
    "source": "Prop.~\\ref{prop:triad}; Thm.~\\ref{thm:rosser}",
@@ -38445,13 +38681,13 @@
    "tag": "T",
    "name": null,
    "statement": "Witnessed independence: every three-element subset is satisfiable --- $Q$ itself ($\\neg$Cmp, consistent by finitary means, the superexponential cost exact); $\\mathrm{Th}(W_N)$ ($\\neg$IR: consistent, complete, decidable, singly axiomatised, interpreting no $Q$ since every model of $Q$ is infinite); the inconsistent extension ($\\neg$Cns); true arithmetic ($\\neg$Eff). Four legs, all load-bearing.",
-   "source": "Thm.~\\ref{thm:witnessed}\\newline \\pywit{reductio}{p05007}{B3}, \\leanwit{FrcMathlib}{p05007}{B3} \\lean{Reductio.infinite\\_of\\_succ, Reductio.theory\\_complete}",
+   "source": "Thm.~\\ref{thm:witnessed}\\newline \\pywit{reductio}{p05007}{B3}, \\leanwit{FrcCore}{p05007}{B3}, \\leanwit{FrcMathlib}{p05007}{B3} \\lean{Reductio.infinite\\_of\\_succ, Reductio.theory\\_complete, FRC.Logic.no\\_finite\\_Q, FRC.Logic.no\\_interpretation, FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
    "page": "5-reductio/index.html#B3",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05007",
-     "script": "reductio.py",
-     "line": 312,
+     "href": "frc/ledgers/p05_reductio.html#p05007",
+     "script": "p05_reductio.py",
+     "line": 158,
      "verdict": "pass"
     },
     "lean": [
@@ -38470,13 +38706,53 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Reductio.html#FRC.Reductio.theory_complete"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.no_finite_Q",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.no_finite_Q"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.no_interpretation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.no_interpretation"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_decidable",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_decidable"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_complete",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_complete"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_consistent",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_consistent"
      }
     ]
    },
    "refs": [
     "p00186"
    ],
-   "text": "Witnessed independence: every three-element subset is satisfiable — $Q$ itself ($\\neg$Cmp, consistent by finitary means, the superexponential cost exact); $\\mathrm{Th}(W_N)$ ($\\neg$IR: consistent, complete, decidable, singly axiomatised, interpreting no $Q$ since every model of $Q$ is infinite); the inconsistent extension ($\\neg$Cns); true arithmetic ($\\neg$Eff). Four legs, all load-bearing. Thm. thm:witnessed p05007, FrcMathlib{B3} Reductio.infinite_of_succ, Reductio.theory_complete"
+   "text": "Witnessed independence: every three-element subset is satisfiable — $Q$ itself ($\\neg$Cmp, consistent by finitary means, the superexponential cost exact); $\\mathrm{Th}(W_N)$ ($\\neg$IR: consistent, complete, decidable, singly axiomatised, interpreting no $Q$ since every model of $Q$ is infinite); the inconsistent extension ($\\neg$Cns); true arithmetic ($\\neg$Eff). Four legs, all load-bearing. Thm. thm:witnessed p05007, FrcCore{B3}, FrcMathlib{B3} Reductio.infinite_of_succ, Reductio.theory_complete, FRC.Logic.no_finite_Q, FRC.Logic.no_interpretation, FRC.Logic.fin_theory_decidable, FRC.Logic.fin_theory_complete, FRC.Logic.fin_theory_consistent"
   },
   {
    "paper": "5-red",
@@ -38507,13 +38783,13 @@
    "tag": "T",
    "name": null,
    "statement": "Per-frame completeness: $\\mathrm{Th}(W_N)$ is consistent, complete and decidable, axiomatised by the categorical sentence $\\sigma_N$; truth in any finite structure is decided by evaluation, and the theory of any structure is complete.",
-   "source": "Prop.~\\ref{prop:frame-complete}\\newline \\pywit{reductio}{p05009}{B5}, \\leanwit{FrcMathlib}{p05009}{B5} \\lean{Reductio.theory\\_complete, Reductio.decRealize, Reductio.decTheory}",
+   "source": "Prop.~\\ref{prop:frame-complete}\\newline \\pywit{reductio}{p05009}{B5}, \\leanwit{FrcCore}{p05009}{B5}, \\leanwit{FrcMathlib}{p05009}{B5} \\lean{Reductio.theory\\_complete, Reductio.decRealize, Reductio.decTheory, FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
    "page": "5-reductio/index.html#B5",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05009",
-     "script": "reductio.py",
-     "line": 300,
+     "href": "frc/ledgers/p05_reductio.html#p05009",
+     "script": "p05_reductio.py",
+     "line": 146,
      "verdict": "pass"
     },
     "lean": [
@@ -38540,13 +38816,37 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Reductio.html#FRC.Reductio.decTheory"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_decidable",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_decidable"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_complete",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_complete"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_consistent",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_consistent"
      }
     ]
    },
    "refs": [
     "p00186"
    ],
-   "text": "Per-frame completeness: $\\mathrm{Th}(W_N)$ is consistent, complete and decidable, axiomatised by the categorical sentence $\\sigma_N$; truth in any finite structure is decided by evaluation, and the theory of any structure is complete. Prop. prop:frame-complete p05009, FrcMathlib{B5} Reductio.theory_complete, Reductio.decRealize, Reductio.decTheory"
+   "text": "Per-frame completeness: $\\mathrm{Th}(W_N)$ is consistent, complete and decidable, axiomatised by the categorical sentence $\\sigma_N$; truth in any finite structure is decided by evaluation, and the theory of any structure is complete. Prop. prop:frame-complete p05009, FrcCore{B5}, FrcMathlib{B5} Reductio.theory_complete, Reductio.decRealize, Reductio.decTheory, FRC.Logic.fin_theory_decidable, FRC.Logic.fin_theory_complete, FRC.Logic.fin_theory_consistent"
   },
   {
    "paper": "5-red",
@@ -38562,9 +38862,9 @@
    "page": "5-reductio/index.html#B6",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05010",
-     "script": "reductio.py",
-     "line": 333,
+     "href": "frc/ledgers/p05_reductio.html#p05010",
+     "script": "p05_reductio.py",
+     "line": 179,
      "verdict": "pass"
     },
     "lean": [
@@ -38610,7 +38910,12 @@
    "source": "\\S\\ref{subsec:frame-completeness}; \\src{D2}; 00:Z3",
    "page": "5-reductio/index.html#B7",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p05_reductio.html#p05011",
+     "script": "p05_reductio.py",
+     "line": 505,
+     "verdict": "pass"
+    },
     "lean": []
    },
    "refs": [
@@ -38652,9 +38957,9 @@
    "page": "5-reductio/index.html#C2",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05013",
-     "script": "reductio.py",
-     "line": 347,
+     "href": "frc/ledgers/p05_reductio.html#p05013",
+     "script": "p05_reductio.py",
+     "line": 198,
      "verdict": "pass"
     },
     "lean": [
@@ -38706,29 +39011,45 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Vanishing certified fraction: at least $c^{L}$ normal-form sentences of length $\\le L$, half of each cohort frame truths by completeness, fewer than $s^{K+1}$ certified, so the certified fraction is at most $s^{K+1}/\\lfloor c^{L}/2\\rfloor\\to0$.",
-   "source": "Prop.~\\ref{prop:fraction}\\newline \\pywit{reductio}{p05014}{C3}, \\leanwit{FrcMathlib}{p05014}{C3} \\lean{Reductio.certified\\_fraction\\_tendsto}",
+   "statement": "Vanishing certified fraction: at least $c^{L}$ normal-form sentences of length $\\le L$, half of each cohort frame truths by completeness, fewer than $s^{K+1}$ certified, so the certified fraction is at most $s^{K+1}/\\lfloor c^{L}/2\\rfloor$, below $1/N$ as soon as $2s^{K+1}N\\le c^{L}$.",
+   "source": "Prop.~\\ref{prop:fraction}\\newline \\pywit{reductio}{p05014}{C3}, \\leanwit{FrcCore}{p05014}{C3} \\lean{FRC.Reach.certified\\_fraction\\_vanishes, FRC.Logic.records\\_lt, FRC.Logic.fin\\_theory\\_complete}",
    "page": "5-reductio/index.html#C3",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05014",
-     "script": "reductio.py",
-     "line": 347,
+     "href": "frc/ledgers/p05_reductio.html#p05014",
+     "script": "p05_reductio.py",
+     "line": 198,
      "verdict": "pass"
     },
     "lean": [
      {
-      "lib": "FrcMathlib",
-      "module": "FrcMathlib/Reductio",
-      "name": "FRC.Reductio.certified_fraction_tendsto",
-      "tier": 2,
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Reach",
+      "name": "FRC.Reach.certified_fraction_vanishes",
+      "tier": 0,
       "ok": true,
-      "page": "lean/ml/Reductio.html#FRC.Reductio.certified_fraction_tendsto"
+      "page": "lean/core/Theme.html#FRC.Reach.certified_fraction_vanishes"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.records_lt",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.records_lt"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_complete",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_complete"
      }
     ]
    },
    "refs": [],
-   "text": "Vanishing certified fraction: at least $c^{L}$ normal-form sentences of length $\\le L$, half of each cohort frame truths by completeness, fewer than $s^{K+1}$ certified, so the certified fraction is at most $s^{K+1}/\\lfloor c^{L}/2\\rfloor\\to0$. Prop. prop:fraction p05014, FrcMathlib{C3} Reductio.certified_fraction_tendsto"
+   "text": "Vanishing certified fraction: at least $c^{L}$ normal-form sentences of length $\\le L$, half of each cohort frame truths by completeness, fewer than $s^{K+1}$ certified, so the certified fraction is at most $s^{K+1}/\\lfloor c^{L}/2\\rfloor$, below $1/N$ as soon as $2s^{K+1}N\\le c^{L}$. Prop. prop:fraction p05014, FrcCore{C3} FRC.Reach.certified_fraction_vanishes, FRC.Logic.records_lt, FRC.Logic.fin_theory_complete"
   },
   {
    "paper": "5-red",
@@ -38765,9 +39086,9 @@
    "page": "5-reductio/index.html#C5",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05016",
-     "script": "reductio.py",
-     "line": 370,
+     "href": "frc/ledgers/p05_reductio.html#p05016",
+     "script": "p05_reductio.py",
+     "line": 221,
      "verdict": "pass"
     },
     "lean": [
@@ -38821,19 +39142,68 @@
    "tag": "T",
    "name": null,
    "statement": "Antinomy normal form: Cns $+$ AT $+$ comprehension is inconsistent (Russell, Burali--Forti); the witness of Cns $+\\neg$AT is bounded comprehension --- every set $u$ has a subset not among its members and no universal set exists, decided on $V_4$.",
-   "source": "Prop.~\\ref{prop:antinomy-NF}\\newline \\pywit{reductio}{p05018}{D2}",
+   "source": "Prop.~\\ref{prop:antinomy-NF}\\newline \\pywit{reductio}{p05018}{D2}, \\leanwit{FrcCore}{p05018}{D2} \\lean{FRC.Sets.no\\_russell\\_class, FRC.Sets.no\\_universal\\_of\\_separation, FRC.Sets.russell\\_not\\_mem, FRC.Sets.not\\_mem\\_self, FRC.Sets.russell\\_not\\_mem\\_hf, FRC.Sets.no\\_universal}",
    "page": "5-reductio/index.html#D2",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05018",
-     "script": "reductio.py",
-     "line": 401,
+     "href": "frc/ledgers/p05_reductio.html#p05018",
+     "script": "p05_reductio.py",
+     "line": 251,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.no_russell_class",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.no_russell_class"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.no_universal_of_separation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.no_universal_of_separation"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.russell_not_mem",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.russell_not_mem"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.not_mem_self",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.not_mem_self"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.russell_not_mem_hf",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.russell_not_mem_hf"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.no_universal",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.no_universal"
+     }
+    ]
    },
    "refs": [],
-   "text": "Antinomy normal form: Cns $+$ AT $+$ comprehension is inconsistent (Russell, Burali–Forti); the witness of Cns $+\\neg$AT is bounded comprehension — every set $u$ has a subset not among its members and no universal set exists, decided on $V_4$. Prop. prop:antinomy-NF p05018"
+   "text": "Antinomy normal form: Cns $+$ AT $+$ comprehension is inconsistent (Russell, Burali–Forti); the witness of Cns $+\\neg$AT is bounded comprehension — every set $u$ has a subset not among its members and no universal set exists, decided on $V_4$. Prop. prop:antinomy-NF p05018, FrcCore{D2} FRC.Sets.no_russell_class, FRC.Sets.no_universal_of_separation, FRC.Sets.russell_not_mem, FRC.Sets.not_mem_self, FRC.Sets.russell_not_mem_hf, FRC.Sets.no_universal"
   },
   {
    "paper": "5-red",
@@ -38849,9 +39219,9 @@
    "page": "5-reductio/index.html#D3",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05019",
-     "script": "reductio.py",
-     "line": 422,
+     "href": "frc/ledgers/p05_reductio.html#p05019",
+     "script": "p05_reductio.py",
+     "line": 272,
      "verdict": "pass"
     },
     "lean": [
@@ -38893,16 +39263,16 @@
    "key": "p05020",
    "label": "D4",
    "block": "D",
-   "tag": "T",
+   "tag": "I",
    "name": null,
    "statement": "Choice normal forms: Vitali (countably additive translation-invariant measure on all subsets $+$ AC$\\infty$ on $\\R/\\Q$, a countable amenable group) and Banach--Tarski (finitely additive isometry-invariant measure $+$ AC$\\infty$ $+$ a free non-amenable rotation subgroup) are inconsistent bundles with distinct mechanisms; the finite witness is counting measure with definable choice.",
    "source": "Prop.~\\ref{prop:choice-NF}\\newline \\pywit{reductio}{p05020}{D4}",
    "page": "5-reductio/index.html#D4",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05020",
-     "script": "reductio.py",
-     "line": 446,
+     "href": "frc/ledgers/p05_reductio.html#p05020",
+     "script": "p05_reductio.py",
+     "line": 296,
      "verdict": "pass"
     },
     "lean": []
@@ -38920,18 +39290,112 @@
    "tag": "T",
    "name": null,
    "statement": "The reductio principle: for each normal form a baseline $B$ and one infinitary premise $I$ with $B+I$ contradictory and $B+\\neg I$ satisfiable by an explicit witness --- bounded ranks, $\\mathrm{Th}(W_N)$, counting measure (Solovay's model as classical corroboration); the rejection of $I$ is coherent and witnessed.",
-   "source": "Thm.~\\ref{thm:reductio-principle}; Table~\\ref{tab:decision}; B3, D2, D4",
+   "source": "Thm.~\\ref{thm:reductio-principle}; Table~\\ref{tab:decision}; B3, D2, D4\\newline \\pywit{reductio}{p05021}{D5}, \\leanwit{FrcCore}{p05021}{D5} \\lean{FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent, FRC.Logic.no\\_interpretation, FRC.Sets.no\\_russell\\_class, FRC.Sets.no\\_universal\\_of\\_separation, FRC.Sets.russell\\_not\\_mem\\_hf, FRC.Sets.no\\_universal, FRC.Sets.measure\\_add, FRC.Sets.measure\\_perm, FRC.Sets.no\\_doubling}",
    "page": "5-reductio/index.html#D5",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p05_reductio.html#p05021",
+     "script": "p05_reductio.py",
+     "line": 146,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_decidable",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_decidable"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_complete",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_complete"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_consistent",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_consistent"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.no_interpretation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.no_interpretation"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.no_russell_class",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.no_russell_class"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.no_universal_of_separation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.no_universal_of_separation"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.russell_not_mem_hf",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.russell_not_mem_hf"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.no_universal",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.no_universal"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.measure_add",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.measure_add"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.measure_perm",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.measure_perm"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.no_doubling",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.no_doubling"
+     }
+    ]
    },
    "refs": [
     "p05007",
     "p05018",
     "p05020"
    ],
-   "text": "The reductio principle: for each normal form a baseline $B$ and one infinitary premise $I$ with $B+I$ contradictory and $B+\\neg I$ satisfiable by an explicit witness — bounded ranks, $\\mathrm{Th}(W_N)$, counting measure (Solovay's model as classical corroboration); the rejection of $I$ is coherent and witnessed. Thm. thm:reductio-principle; Table tab:decision; B3, D2, D4"
+   "text": "The reductio principle: for each normal form a baseline $B$ and one infinitary premise $I$ with $B+I$ contradictory and $B+\\neg I$ satisfiable by an explicit witness — bounded ranks, $\\mathrm{Th}(W_N)$, counting measure (Solovay's model as classical corroboration); the rejection of $I$ is coherent and witnessed. Thm. thm:reductio-principle; Table tab:decision; B3, D2, D4 p05021, FrcCore{D5} FRC.Logic.fin_theory_decidable, FRC.Logic.fin_theory_complete, FRC.Logic.fin_theory_consistent, FRC.Logic.no_interpretation, FRC.Sets.no_russell_class, FRC.Sets.no_universal_of_separation, FRC.Sets.russell_not_mem_hf, FRC.Sets.no_universal, FRC.Sets.measure_add, FRC.Sets.measure_perm, FRC.Sets.no_doubling"
   },
   {
    "paper": "5-red",
@@ -38959,7 +39423,7 @@
    "key": "p05023",
    "label": "D7",
    "block": "D",
-   "tag": "T",
+   "tag": "I",
    "name": null,
    "statement": "Forced exit: Det supplies Eff and Cmp, so $\\{$Cns, Det, IR$\\}$ is inconsistent and, Cns and Det being constitutive, the reductio is forced against IR --- no determinate totality internalises an unbounded registry; the four-clause bundle condenses to this triad. Conditional on Det.",
    "source": "Prop.~\\ref{prop:forced}; B2",
@@ -38983,13 +39447,13 @@
    "tag": "T",
    "name": null,
    "statement": "Finiteness of determinate totalities: in ZF with every infinite set Dedekind-infinite, a structure satisfies Det iff it is finite --- finite: the full higher-order theory decided by exhaustive evaluation; infinite: a copy of $\\N$ inside gives an effective reduction of true second-order arithmetic, which is not arithmetical. The real field's first-order tameness is silence about its subsets.",
-   "source": "Prop.~\\ref{prop:finiteness}\\newline \\pywit{reductio}{p05024}{D8}, \\leanwit{FrcMathlib}{p05024}{D8} \\lean{Reductio.decideAllSubsets, Reductio.nat\\_embeds}",
+   "source": "Prop.~\\ref{prop:finiteness}\\newline \\pywit{reductio}{p05024}{D8}, \\leanwit{FrcCore}{p05024}{D8}, \\leanwit{FrcMathlib}{p05024}{D8} \\lean{Reductio.decideAllSubsets, Reductio.nat\\_embeds, FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete}",
    "page": "5-reductio/index.html#D8",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05024",
-     "script": "reductio.py",
-     "line": 659,
+     "href": "frc/ledgers/p05_reductio.html#p05024",
+     "script": "p05_reductio.py",
+     "line": 496,
      "verdict": "pass"
     },
     "lean": [
@@ -39008,11 +39472,27 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Reductio.html#FRC.Reductio.nat_embeds"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/SecondOrder",
+      "name": "FRC.Logic.so_theory_decidable",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.so_theory_decidable"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/SecondOrder",
+      "name": "FRC.Logic.so_theory_complete",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.so_theory_complete"
      }
     ]
    },
    "refs": [],
-   "text": "Finiteness of determinate totalities: in ZF with every infinite set Dedekind-infinite, a structure satisfies Det iff it is finite — finite: the full higher-order theory decided by exhaustive evaluation; infinite: a copy of $\\N$ inside gives an effective reduction of true second-order arithmetic, which is not arithmetical. The real field's first-order tameness is silence about its subsets. Prop. prop:finiteness p05024, FrcMathlib{D8} Reductio.decideAllSubsets, Reductio.nat_embeds"
+   "text": "Finiteness of determinate totalities: in ZF with every infinite set Dedekind-infinite, a structure satisfies Det iff it is finite — finite: the full higher-order theory decided by exhaustive evaluation; infinite: a copy of $\\N$ inside gives an effective reduction of true second-order arithmetic, which is not arithmetical. The real field's first-order tameness is silence about its subsets. Prop. prop:finiteness p05024, FrcCore{D8}, FrcMathlib{D8} Reductio.decideAllSubsets, Reductio.nat_embeds, FRC.Logic.so_theory_decidable, FRC.Logic.so_theory_complete"
   },
   {
    "paper": "5-red",
@@ -39024,21 +39504,62 @@
    "tag": "T",
    "name": null,
    "statement": "Corollaries: no absolute totality is determinate (a universal set is infinite by the iterated singletons); Meas is decided content --- a Det totality decides every measure question, trivially on a finite one (counting measure). The totalising conjuncts of two normal forms follow from D8.",
-   "source": "Cor.~\\ref{cor:AT-det}; Cor.~\\ref{cor:meas-det}\\newline \\pywit{reductio}{p05025}{D9}",
+   "source": "Cor.~\\ref{cor:AT-det}; Cor.~\\ref{cor:meas-det}\\newline \\pywit{reductio}{p05025}{D9}, \\leanwit{FrcCore}{p05025}{D9} \\lean{FRC.Sets.rank\\_chain, FRC.Sets.chain\\_injective, FRC.Sets.chain\\_not\\_mem, FRC.Sets.measure\\_le, FRC.Sets.measure\\_perm}",
    "page": "5-reductio/index.html#D9",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05025",
-     "script": "reductio.py",
-     "line": 459,
+     "href": "frc/ledgers/p05_reductio.html#p05025",
+     "script": "p05_reductio.py",
+     "line": 309,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.rank_chain",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.rank_chain"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.chain_injective",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.chain_injective"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.chain_not_mem",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.chain_not_mem"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.measure_le",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.measure_le"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.measure_perm",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.measure_perm"
+     }
+    ]
    },
    "refs": [
     "p05024"
    ],
-   "text": "Corollaries: no absolute totality is determinate (a universal set is infinite by the iterated singletons); Meas is decided content — a Det totality decides every measure question, trivially on a finite one (counting measure). The totalising conjuncts of two normal forms follow from D8. Cor. cor:AT-det; Cor. cor:meas-det p05025"
+   "text": "Corollaries: no absolute totality is determinate (a universal set is infinite by the iterated singletons); Meas is decided content — a Det totality decides every measure question, trivially on a finite one (counting measure). The totalising conjuncts of two normal forms follow from D8. Cor. cor:AT-det; Cor. cor:meas-det p05025, FrcCore{D9} FRC.Sets.rank_chain, FRC.Sets.chain_injective, FRC.Sets.chain_not_mem, FRC.Sets.measure_le, FRC.Sets.measure_perm"
   },
   {
    "paper": "5-red",
@@ -39073,9 +39594,9 @@
    "page": "5-reductio/index.html#E1",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05027",
-     "script": "reductio.py",
-     "line": 491,
+     "href": "frc/ledgers/p05_reductio.html#p05027",
+     "script": "p05_reductio.py",
+     "line": 336,
      "verdict": "pass"
     },
     "lean": [
@@ -39122,9 +39643,9 @@
    "page": "5-reductio/index.html#E2",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05028",
-     "script": "reductio.py",
-     "line": 501,
+     "href": "frc/ledgers/p05_reductio.html#p05028",
+     "script": "p05_reductio.py",
+     "line": 346,
      "verdict": "pass"
     },
     "lean": [
@@ -39159,13 +39680,13 @@
    "tag": "T",
    "name": null,
    "statement": "Equivariant periodic choice: a $G$-equivariant section exists iff each stabiliser action $G_i\\curvearrowright A_i$ has a fixed point (one orbit at a time); the Fraenkel--Mostowski mechanism in positive form.",
-   "source": "Thm.~\\ref{thm:equivariant-choice}\\newline \\pywit{reductio}{p05029}{E3}, \\leanwit{FrcMathlib}{p05029}{E3} \\lean{Reductio.equivariant\\_section\\_iff}",
+   "source": "Thm.~\\ref{thm:equivariant-choice}\\newline \\pywit{reductio}{p05029}{E3}, \\leanwit{FrcCore}{p05029}{E3}, \\leanwit{FrcMathlib}{p05029}{E3} \\lean{Reductio.equivariant\\_section\\_iff, FRC.Equivariant.equivariant\\_section\\_iff, FRC.Equivariant.equivariant\\_section\\_orbits}",
    "page": "5-reductio/index.html#E3",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05029",
-     "script": "reductio.py",
-     "line": 533,
+     "href": "frc/ledgers/p05_reductio.html#p05029",
+     "script": "p05_reductio.py",
+     "line": 378,
      "verdict": "pass"
     },
     "lean": [
@@ -39176,11 +39697,27 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Reductio.html#FRC.Reductio.equivariant_section_iff"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Equivariant",
+      "name": "FRC.Equivariant.equivariant_section_iff",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Equivariant.equivariant_section_iff"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Equivariant",
+      "name": "FRC.Equivariant.equivariant_section_orbits",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Equivariant.equivariant_section_orbits"
      }
     ]
    },
    "refs": [],
-   "text": "Equivariant periodic choice: a $G$-equivariant section exists iff each stabiliser action $G_i\\curvearrowright A_i$ has a fixed point (one orbit at a time); the Fraenkel–Mostowski mechanism in positive form. Thm. thm:equivariant-choice p05029, FrcMathlib{E3} Reductio.equivariant_section_iff"
+   "text": "Equivariant periodic choice: a $G$-equivariant section exists iff each stabiliser action $G_i\\curvearrowright A_i$ has a fixed point (one orbit at a time); the Fraenkel–Mostowski mechanism in positive form. Thm. thm:equivariant-choice p05029, FrcCore{E3}, FrcMathlib{E3} Reductio.equivariant_section_iff, FRC.Equivariant.equivariant_section_iff, FRC.Equivariant.equivariant_section_orbits"
   },
   {
    "paper": "5-red",
@@ -39196,9 +39733,9 @@
    "page": "5-reductio/index.html#E4",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05030",
-     "script": "reductio.py",
-     "line": 558,
+     "href": "frc/ledgers/p05_reductio.html#p05030",
+     "script": "p05_reductio.py",
+     "line": 403,
      "verdict": "pass"
     },
     "lean": [
@@ -39237,9 +39774,9 @@
    "page": "5-reductio/index.html#E5",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05031",
-     "script": "reductio.py",
-     "line": 584,
+     "href": "frc/ledgers/p05_reductio.html#p05031",
+     "script": "p05_reductio.py",
+     "line": 429,
      "verdict": "pass"
     },
     "lean": [
@@ -39274,21 +39811,46 @@
    "tag": "T",
    "name": null,
    "statement": "Periodic de~Bruijn--Erd\\H{o}s, dimension one: a $\\sigma$-periodic graph of bounded range whose finite subgraphs are $c$-colourable admits a definable $\\sigma^{m}$-periodic $c$-colouring (the transfer digraph $D_c$, its sub-digraph of vertices beginning walks of every length, E5).",
-   "source": "Thm.~\\ref{thm:periodic-dbe}\\newline \\pywit{reductio}{p05032}{E6}",
+   "source": "Thm.~\\ref{thm:periodic-dbe}\\newline \\pywit{reductio}{p05032}{E6}, \\leanwit{FrcCore}{p05032}{E6} \\lean{FRC.Transfer.exists\\_allGood, FRC.Transfer.allGood\\_successor, FRC.Transfer.periodic\\_walk}",
    "page": "5-reductio/index.html#E6",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05032",
-     "script": "reductio.py",
-     "line": 618,
+     "href": "frc/ledgers/p05_reductio.html#p05032",
+     "script": "p05_reductio.py",
+     "line": 463,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Transfer",
+      "name": "FRC.Transfer.exists_allGood",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Transfer.exists_allGood"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Transfer",
+      "name": "FRC.Transfer.allGood_successor",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Transfer.allGood_successor"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Transfer",
+      "name": "FRC.Transfer.periodic_walk",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Transfer.periodic_walk"
+     }
+    ]
    },
    "refs": [
     "p05031"
    ],
-   "text": "Periodic de Bruijn–Erd\\H{o}s, dimension one: a $\\sigma$-periodic graph of bounded range whose finite subgraphs are $c$-colourable admits a definable $\\sigma^{m}$-periodic $c$-colouring (the transfer digraph $D_c$, its sub-digraph of vertices beginning walks of every length, E5). Thm. thm:periodic-dbe p05032"
+   "text": "Periodic de Bruijn–Erd\\H{o}s, dimension one: a $\\sigma$-periodic graph of bounded range whose finite subgraphs are $c$-colourable admits a definable $\\sigma^{m}$-periodic $c$-colouring (the transfer digraph $D_c$, its sub-digraph of vertices beginning walks of every length, E5). Thm. thm:periodic-dbe p05032, FrcCore{E6} FRC.Transfer.exists_allGood, FRC.Transfer.allGood_successor, FRC.Transfer.periodic_walk"
   },
   {
    "paper": "5-red",
@@ -39321,13 +39883,13 @@
    "tag": "T",
    "name": null,
    "statement": "The choice paradoxes vanish: on a finite set counting measure is complete and invariant, no decomposition doubles the set ($X\\sqcup X$ does not inject into $X$), and every ultrafilter is principal; periodic variants inherit this on one period.",
-   "source": "\\S\\ref{subsec:AC-consequences}\\newline \\pywit{reductio}{p05034}{E8}, \\leanwit{FrcMathlib}{p05034}{E8} \\lean{Reductio.no\\_doubling, Reductio.ultrafilter\\_principal}",
+   "source": "\\S\\ref{subsec:AC-consequences}\\newline \\pywit{reductio}{p05034}{E8}, \\leanwit{FrcCore}{p05034}{E8}, \\leanwit{FrcMathlib}{p05034}{E8} \\lean{Reductio.no\\_doubling, Reductio.ultrafilter\\_principal, FRC.Sets.measure\\_le, FRC.Sets.measure\\_add, FRC.Sets.measure\\_compl, FRC.Sets.measure\\_perm, FRC.Sets.no\\_doubling, FRC.Sets.ultra\\_principal}",
    "page": "5-reductio/index.html#E8",
    "witness": {
     "py": {
-     "href": "src/5-reductio/#p05034",
-     "script": "reductio.py",
-     "line": 446,
+     "href": "frc/ledgers/p05_reductio.html#p05034",
+     "script": "p05_reductio.py",
+     "line": 296,
      "verdict": "pass"
     },
     "lean": [
@@ -39346,11 +39908,59 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Reductio.html#FRC.Reductio.ultrafilter_principal"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.measure_le",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.measure_le"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.measure_add",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.measure_add"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.measure_compl",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.measure_compl"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.measure_perm",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.measure_perm"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.no_doubling",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.no_doubling"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Sets",
+      "name": "FRC.Sets.ultra_principal",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Sets.ultra_principal"
      }
     ]
    },
    "refs": [],
-   "text": "The choice paradoxes vanish: on a finite set counting measure is complete and invariant, no decomposition doubles the set ($X\\sqcup X$ does not inject into $X$), and every ultrafilter is principal; periodic variants inherit this on one period. \\Ssubsec:AC-consequences p05034, FrcMathlib{E8} Reductio.no_doubling, Reductio.ultrafilter_principal"
+   "text": "The choice paradoxes vanish: on a finite set counting measure is complete and invariant, no decomposition doubles the set ($X\\sqcup X$ does not inject into $X$), and every ultrafilter is principal; periodic variants inherit this on one period. \\Ssubsec:AC-consequences p05034, FrcCore{E8}, FrcMathlib{E8} Reductio.no_doubling, Reductio.ultrafilter_principal, FRC.Sets.measure_le, FRC.Sets.measure_add, FRC.Sets.measure_compl, FRC.Sets.measure_perm, FRC.Sets.no_doubling, FRC.Sets.ultra_principal"
   },
   {
    "paper": "5-red",

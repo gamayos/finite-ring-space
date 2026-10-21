@@ -1747,7 +1747,8 @@ mirror of a larger frame (5:C2; `no_mirror` is in the base's `Series.lean` since
 states repeats within `n` steps (5:C5, 5:E5); Cantor on the finite frame (5:D3); the least element (5:E1, 5:E2); on a
 finite carrier an injective map is onto, a part with fewer states identifies two elements, `m + 1` sentences outnumber
 `m` elements (25:C1, 25:C5, 25:D1); the count of a Boolean predicate; dense codings need `a^n ≤ m^k` (25:F4). Moved
-from 5-reductio and 25-godel, whose modules keep every old name. No axioms.
+from 5-reductio and 25-godel, whose modules keep every old name; the schema's worked instance (Goldbach below 10) since
+21 October 2026. No axioms.
 -/
 
 namespace FRC.Logic
@@ -1955,6 +1956,46 @@ theorem stable (N : Nat) : ∀ (φ : Form) (env : Nat → Nat), boundF env φ < 
     exact allBelow_congr (fun x hx =>
       stable N φ (cons x env) (Nat.lt_of_le_of_lt (le_maxBelow (fun x => boundF (cons x env) φ) hx) (lt_of_mx_lt_right h)))
 
+/-! ### 5:B6 — the worked instance: Goldbach below 10 in the frames (moved from the paper module, 21 October 2026) -/
+
+/-- The numeral `n` as a term, `((0 + 1) + 1) + …`. -/
+def num : Nat → Term
+  | 0 => Term.zero
+  | n + 1 => Term.add (num n) Term.one
+
+/-- `∃ x ≤ t, φ` as `¬∀ x ≤ t, ¬φ`. -/
+def bex (t : Term) (φ : Form) : Form := Form.neg (Form.ball t (Form.neg φ))
+
+/-- "variable `i` is prime": `1 < x ∧ ∀ d ≤ x, ∀ e ≤ x, ¬(d·e = x ∧ d ≠ 1 ∧ d ≠ x)`. -/
+def prime (i : Nat) : Form :=
+  Form.conj (Form.lt Term.one (Term.var i))
+    (Form.ball (Term.var i) (Form.ball (Term.var (i + 1))
+      (Form.neg (Form.conj (Form.eq (Term.mul (Term.var 1) (Term.var 0)) (Term.var (i + 2)))
+        (Form.conj (Form.neg (Form.eq (Term.var 1) Term.one)) (Form.neg (Form.eq (Term.var 1) (Term.var (i + 2)))))))))
+
+/-- "variable `0` is even": `∃ k ≤ m, k + k = m`. -/
+def even0 : Form := bex (Term.var 0) (Form.eq (Term.add (Term.var 0) (Term.var 0)) (Term.var 1))
+
+/-- Goldbach below `M`: every even `m ≤ M` with `4 ≤ m` is a sum of two primes `x, y ≤ m` — a `Δ₀` sentence. -/
+def goldbach (M : Nat) : Form :=
+  Form.ball (num M) (Form.neg (Form.conj (Form.conj even0 (Form.neg (Form.lt (Term.var 0) (num 4))))
+    (Form.neg (bex (Term.var 0) (bex (Term.var 1)
+      (Form.conj (prime 1) (Form.conj (prime 0) (Form.eq (Term.add (Term.var 1) (Term.var 0)) (Term.var 2)))))))))
+
+/-- 5:B6 (Example schema-instance) — Goldbach below `10` is true over `ℕ`, decided by the kernel. -/
+theorem goldbach_ten : evalF (fun _ => 0) (goldbach 10) = true := by decide +kernel
+
+/-- 5:B6 (Example schema-instance) — its bound: the evaluation touches `100 = 10·10` and nothing larger. -/
+theorem goldbach_ten_bound : boundF (fun _ => 0) (goldbach 10) = 100 := by decide +kernel
+
+/-- 5:B6 (Example schema-instance) — hence, by `stable`, every frame `W_N` with `N > 100` gives the sentence its
+standard value; `W_101` does so by direct evaluation as well. -/
+theorem goldbach_ten_frame : evalF? 101 (fun _ => 0) (goldbach 10) = true := by decide +kernel
+
+/-- 5:B6 — the schema instance `St(goldbach 10, M)` for every `M`: all frames `100 < N` agree with `ℕ`. -/
+theorem goldbach_ten_stable (N : Nat) (hN : 100 < N) : evalF? N (fun _ => 0) (goldbach 10) = true := by
+  rw [stable N (goldbach 10) (fun _ => 0) (goldbach_ten_bound ▸ hN)]; exact goldbach_ten
+
 /-! ### 5:C2 — records and the mirror -/
 
 /-- The number of strings of length at most `K` over `s` letters, `Σ_{i ≤ K} s^i`. -/
@@ -1962,7 +2003,7 @@ def records (s : Nat) : Nat → Nat
   | 0 => 1
   | K + 1 => records s K + s ^ (K + 1)
 
-/-- 5:C2, 29:C10, 25:E2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters. -/
+/-- 5:C2, 5:C3, 29:C10, 25:E2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters. -/
 theorem records_lt (s : Nat) (hs : 2 ≤ s) : ∀ K, records s K < s ^ (K + 1)
   | 0 => by
     show 1 < s ^ 1
@@ -2366,7 +2407,7 @@ theorem allBelow_iff (f : Nat → Bool) : ∀ n, allBelow f n = true ↔ ∀ x, 
         fun h => ih.2 (fun x hx => h x (Nat.lt_succ_of_lt hx))⟩
     | false => exact ⟨fun h => Bool.noConfusion h, fun h => Bool.noConfusion (hf ▸ h n (Nat.lt_succ_self n))⟩
 
-/-- 25:C2, Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its
+/-- 25:C2, 5:B5, 5:B3, 5:D5, 00:Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its
 evaluation is `true`. -/
 theorem fin_theory_decidable (M : FinStr) : ∀ (φ : FForm) (env : Nat → Nat), fval M env φ = true ↔ Sat M env φ
   | .rel _ _, _ => Iff.rfl
@@ -2390,14 +2431,14 @@ theorem fin_theory_decidable (M : FinStr) : ∀ (φ : FForm) (env : Nat → Nat)
     exact (allBelow_iff _ M.m).trans ⟨fun h x hx => (fin_theory_decidable M φ (cons x env)).1 (h x hx),
       fun h x hx => (fin_theory_decidable M φ (cons x env)).2 (h x hx)⟩
 
-/-- 25:C2, 25:C3, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no
+/-- 25:C2, 25:C3, 5:B5, 5:B3, 5:C3, 5:D5, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no
 appeal to excluded middle. -/
 theorem fin_theory_complete (M : FinStr) (φ : FForm) (env : Nat → Nat) : Sat M env φ ∨ Sat M env (.neg φ) :=
   match h : fval M env φ with
   | true => .inl ((fin_theory_decidable M φ env).1 h)
   | false => .inr (fun hs => Bool.noConfusion (h ▸ (fin_theory_decidable M φ env).2 hs))
 
-/-- 25:C2, 25:C3, Z1 — the theory is consistent: no formula holds together with its negation. -/
+/-- 25:C2, 25:C3, 5:B5, 5:B3, 5:D5, 00:Z1 — the theory is consistent: no formula holds together with its negation. -/
 theorem fin_theory_consistent (M : FinStr) (φ : FForm) (env : Nat → Nat) : ¬ (Sat M env φ ∧ Sat M env (.neg φ)) :=
   fun h => h.2 h.1
 
@@ -2410,7 +2451,7 @@ def succOf (D : Nat → Bool) (Sg : Nat → Nat → Bool) (n x : Nat) : Nat :=
 theorem band_l {a b : Bool} (h : (a && b) = true) : a = true := by cases a <;> cases b <;> first | rfl | exact h
 theorem band_r {a b : Bool} (h : (a && b) = true) : b = true := by cases a <;> cases b <;> first | rfl | exact h
 
-/-- 00:Z1, 25:C1, 25:C3 — no finite structure carries Robinson's successor: on `[0, n)`, a domain `D`, a successor relation
+/-- 00:Z1, 25:C1, 25:C3, 5:B3 — no finite structure carries Robinson's successor: on `[0, n)`, a domain `D`, a successor relation
 `Sg` total on `D`, injective (Q2) and never reaching a zero `Z` of `D` (Q1) cannot exist. A `k`-dimensional
 interpretation is the case `n = mᵏ`, its tuples coded below `mᵏ`. -/
 theorem no_finite_Q (n : Nat) (D Z : Nat → Bool) (Sg : Nat → Nat → Bool)
@@ -2457,7 +2498,7 @@ theorem no_finite_Q (n : Nat) (D Z : Nat → Bool) (Sg : Nat → Nat → Bool)
       rw [e, hZz] at this; exact Bool.noConfusion this
     | false => rw [hoff x hD] at e; rw [e, hDz] at hD; exact Bool.noConfusion hD
 
-/-- 00:Z1, 25:C1, 25:C3 — a finite structure interprets no Robinson `Q`: for formulas `δ` (the domain, in variable `0`),
+/-- 00:Z1, 25:C1, 25:C3, 5:B3, 5:D5 — a finite structure interprets no Robinson `Q`: for formulas `δ` (the domain, in variable `0`),
 `σ` (the successor's graph, `x` in variable `1` and `y` in `0`) and `ζ` (zero), the relativised successor axioms —
 `S` total on the domain, Q2 (`S x = S x' → x = x'`), a zero in the domain, and Q1 (`S x ≠ 0`) — never all hold. -/
 theorem no_interpretation (M : FinStr) (env : Nat → Nat) (δ σ ζ : FForm) :

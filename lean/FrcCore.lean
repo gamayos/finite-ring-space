@@ -28,6 +28,9 @@ import FrcCore.Theme.Formation
 import FrcCore.Theme.Reach
 import FrcCore.Theme.Diagonal
 import FrcCore.Theme.Threshold
+import FrcCore.Theme.Sets
+import FrcCore.Theme.Equivariant
+import FrcCore.Theme.Transfer
 import FrcCore.Theme.Field
 import FrcCore.Theme.Foundation
 import FrcCore.Theme.Drive

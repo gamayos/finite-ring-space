@@ -61,7 +61,7 @@ def sval2 (M : FinStr) : (Nat → Nat) → (Nat → Nat) → (Nat → Nat) → S
   | env, senv, renv, .allSet φ => allBelow (fun S => sval2 M env (cons S senv) renv φ) (2 ^ M.m)
   | env, senv, renv, .allRel a φ => allBelow (fun R => sval2 M env senv (cons R renv) φ) (2 ^ (M.m ^ a))
 
-/-- 29:E4, 25:H2, 25:H4 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is
+/-- 29:E4, 25:H2, 25:H4, 5:D8 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is
 decided by exhaustive evaluation, a formula holds exactly when its evaluation is `true`. -/
 theorem so_theory_decidable (M : FinStr) : ∀ (φ : SForm) (env senv renv : Nat → Nat),
     sval2 M env senv renv φ = true ↔ Sat2 M env senv renv φ
@@ -98,7 +98,7 @@ theorem so_theory_decidable (M : FinStr) : ∀ (φ : SForm) (env senv renv : Nat
     exact (allBelow_iff _ (2 ^ (M.m ^ a))).trans ⟨fun h R hR => (so_theory_decidable M φ env senv (cons R renv)).1 (h R hR),
       fun h R hR => (so_theory_decidable M φ env senv (cons R renv)).2 (h R hR)⟩
 
-/-- 29:E4, 25:H2, 25:H4 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its
+/-- 29:E4, 25:H2, 25:H4, 5:D8 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its
 negation holds, decided by the evaluation. -/
 theorem so_theory_complete (M : FinStr) (φ : SForm) (env senv renv : Nat → Nat) :
     Sat2 M env senv renv φ ∨ Sat2 M env senv renv (.neg φ) :=

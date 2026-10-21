@@ -12,7 +12,11 @@ theorem and its finite form; fewer than `s^(K+1)` records of length `≤ K`, and
 Moved from 5-reductio's module, which keeps every old name as an alias. Since 20 October 2026 (25-godel's migration) also
 the paper's Mathlib side: the pigeonhole on a finite carrier, the `m + 1` sentences `⊥, ¬⊥, …`, the storage encodings and
 aliasing, the Catalan bound of the abundance lemma, the dense coding, the second-order quantifier over a finite domain
-(25:C1, C3, C5, D1, D3, E1, F4, H2, H4); `FrcMathlib/Godel.lean` keeps the old names. Classical, on Mathlib's hierarchy.
+(25:C1, C3, C5, D1, D3, E1, F4, H2, H4); `FrcMathlib/Godel.lean` keeps the old names. Since 21 October 2026 (5-reductio's
+migration) the rest of that paper's Mathlib side: definable and periodic choice, the equivariant section criterion, the
+obstruction on `𝔽₅`, no doubling and principal ultrafilters, the second-order quantifier over a finite domain and Dedekind's
+embedding (5:D8, E1–E4, E8); `FrcMathlib/Reductio.lean` keeps the old names (and the paper's limit over the reals, which an
+exact theme does not admit). Classical, on Mathlib's hierarchy.
 -/
 
 open FirstOrder FirstOrder.Language
@@ -278,6 +282,91 @@ end finiteness
 
 end godel
 
+/-! ## 5-reductio's rows (moved from the paper module on 21 October 2026) -/
+
+section reductio
+
+section choice
+
+variable {U : Type*} [LinearOrder U]
+
+/-- 5:E1 (Proposition finite-choice): on a finite universe with a canonical order, `ch(A) = min A` is a member of
+every nonempty `A` — choice is a definable theorem, not a postulate. -/
+theorem finite_choice (A : Finset U) (hA : A.Nonempty) : A.min' hA ∈ A := Finset.min'_mem A hA
+
+/-- 5:E2 (Lemma periodic-equality): for an equality-periodic family `A (i + N) = A i` the choice `min A i` is
+periodic with the same period. -/
+theorem periodic_choice (A : ℤ → Finset U) (N : ℤ) (hN : ∀ i, A (i + N) = A i) (i : ℤ) :
+    (A (i + N)).min = (A i).min := by rw [hN]
+
+variable {G I A : Type*} [Group G] [MulAction G I] [MulAction G A]
+
+/-- 5:E3 (Theorem equivariant-choice, one orbit): for a `G`-family `π : A → I` over a transitive `G`-set `I`, an
+equivariant section exists iff the stabiliser of a base point `i₀` fixes some point of its fibre. -/
+theorem equivariant_section_iff [MulAction.IsPretransitive G I] (π : A → I)
+    (hπ : ∀ (g : G) (a : A), π (g • a) = g • π a) (i₀ : I) :
+    (∃ s : I → A, (∀ i, π (s i) = i) ∧ ∀ (g : G) (i : I), s (g • i) = g • s i) ↔
+      ∃ a, π a = i₀ ∧ ∀ g ∈ MulAction.stabilizer G i₀, g • a = a := by
+  constructor
+  · rintro ⟨s, hs, heq⟩
+    refine ⟨s i₀, hs i₀, fun g hg => ?_⟩
+    rw [← heq, MulAction.mem_stabilizer_iff.mp hg]
+  · rintro ⟨a, ha, hfix⟩
+    classical
+    choose g hg using fun i => MulAction.exists_smul_eq G i₀ i
+    -- `s i := g i • a`, where `g i • i₀ = i`; independence of the choice is the stabiliser condition
+    have key : ∀ (h : G) (i : I), h • i₀ = i → h • a = g i • a := by
+      intro h i hi
+      have hst : (g i)⁻¹ * h ∈ MulAction.stabilizer G i₀ := by
+        rw [MulAction.mem_stabilizer_iff, mul_smul, hi]
+        have e := inv_smul_smul (g i) i₀
+        rw [hg i] at e
+        exact e
+      have := hfix _ hst
+      rw [mul_smul] at this
+      calc h • a = g i • (g i)⁻¹ • h • a := (smul_inv_smul _ _).symm
+        _ = g i • a := by rw [this]
+    refine ⟨fun i => g i • a, fun i => ?_, fun h i => ?_⟩
+    · rw [hπ, ha, hg]
+    · show g (h • i) • a = h • (g i • a)
+      rw [← mul_smul]
+      exact (key (h * g i) (h • i) (by rw [mul_smul, hg])).symm
+
+/-- 5:E4 (Example basis-obstruction): on the line over `𝔽₅` the involution `v ↦ −v` fixes no basis — `−v ≠ v`
+for every `v ≠ 0` — while over `𝔽₂` it fixes `1`: the obstruction is arithmetic. -/
+theorem obstruction_five : (∀ v : ZMod 5, v ≠ 0 → -v ≠ v) ∧ (-(1 : ZMod 2) = 1) := by decide
+
+/-- 5:E8 (Banach–Tarski disappears): a finite nonempty set cannot be doubled — there is no injection
+`X ⊕ X ↪ X`, so no decomposition reassembles two copies of `X` from pieces of `X`. -/
+theorem no_doubling {X : Type*} [Fintype X] [Nonempty X] : IsEmpty (X ⊕ X ↪ X) := by
+  constructor
+  intro f
+  have h := Fintype.card_le_of_embedding f
+  rw [Fintype.card_sum] at h
+  have : 0 < Fintype.card X := Fintype.card_pos
+  omega
+
+/-- 5:E8 (ultrafilters): on a finite set every ultrafilter is principal. -/
+theorem ultrafilter_principal {X : Type*} [Finite X] (f : Ultrafilter X) : ∃ a, f = pure a :=
+  Ultrafilter.eq_pure_of_finite f
+
+end choice
+
+section determinacy
+
+/-- 5:D8 (Proposition finiteness, the finite direction): over a finite domain a second-order quantifier over all
+subsets is a finite conjunction — decided by exhaustive evaluation. -/
+def decideAllSubsets {M : Type*} [Fintype M] [DecidableEq M] (P : Finset M → Prop) [DecidablePred P] :
+    Decidable (∀ S : Finset M, P S) := Fintype.decidableForallFintype
+
+/-- 5:D8 (the infinite direction, its first step): an infinite domain carries a copy of `ℕ` — Dedekind's
+embedding, from which the reduction of true second-order arithmetic proceeds. -/
+theorem nat_embeds {M : Type*} [Infinite M] : Nonempty (ℕ ↪ M) := ⟨Infinite.natEmbedding M⟩
+
+end determinacy
+
+end reductio
+
 end FRC.Logic
 
 /-! inlined: FrcMathlib/Keys/Logic.lean (verbatim, minus its import lines) -/
@@ -305,6 +394,24 @@ theorem p05013 : (∀ (s K : ℕ), (2 : ℕ) ≤ s → ∑ i ∈ Finset.range (K
 /-- p05019 — 5:D3. Diagonal normal form: $\{$Eff, Cns, Cmp, IR$\}$ inconsistent (B2), Tarski a variant with the truth predicate for Cmp; the diagonal is a theorem when external --- Cantor's theorem, $n<2^{n}$ on every frame, uncountability, halting --- and a paradox engine only over an internalised registry with completeness demanded. -/
 theorem p05019 : (∀ (α : Type u_1) (f : α → Set α), ¬Function.Surjective f) ∧ ∀ (n : ℕ), n < (2 : ℕ) ^ n :=
   And.intro @FRC.Logic.cantor (@FRC.Logic.cantor_finite)
+/-- p05024 — 5:D8. Finiteness of determinate totalities: in ZF with every infinite set Dedekind-infinite, a structure satisfies Det iff it is finite --- finite: the full higher-order theory decided by exhaustive evaluation; infinite: a copy of $\N$ inside gives an effective reduction of true second-order arithmetic, which is not arithmetical. The real field's first-order tameness is silence about its subsets. Cited definitions (not proofs): FRC.Logic.decideAllSubsets. -/
+theorem p05024 : ∀ {M : Type u_1} [Infinite M], Nonempty (ℕ ↪ M) :=
+  @FRC.Logic.nat_embeds
+/-- p05027 — 5:E1. Global choice on a finite universe: with a canonical order, $\operatorname{ch}(A)=\min A$ is a uniform pointwise choice rule; over a fixed finite base AC is a definable theorem; finite products are nonempty without it. -/
+theorem p05027 : ∀ {U : Type u_1} [LinearOrder U] (A : Finset U) (hA : A.Nonempty), A.min' hA ∈ A :=
+  @FRC.Logic.finite_choice
+/-- p05028 — 5:E2. Periodic choice: an equality-periodic family $A_{i+N}=A_i$ has the choice $f(i)=\operatorname{ch}(A_i)$ of the same period; group-periodic families as equivariant surjections $\pi:A\to I$ with equivariant sections. -/
+theorem p05028 : ∀ {U : Type u_1} [LinearOrder U] (A : ℤ → Finset U) (N : ℤ), (∀ (i : ℤ), A (i + N) = A i) → ∀ (i : ℤ), (A (i + N)).min = (A i).min :=
+  @FRC.Logic.periodic_choice
+set_option linter.defProp false in
+/-- p05029 — 5:E3. Equivariant periodic choice: a $G$-equivariant section exists iff each stabiliser action $G_i\curvearrowright A_i$ has a fixed point (one orbit at a time); the Fraenkel--Mostowski mechanism in positive form. -/
+def p05029 := @FRC.Logic.equivariant_section_iff
+/-- p05030 — 5:E4. The definable basis: every subspace of a finite vector space has the greedy $\min$-basis, one definable function on all subspaces; the equivariant obstruction --- $\Z/2$ acting by $v\mapsto-v$ on the line over $\F_5$ fixes no basis ($-v\neq v$), over $\F_2$ it does: arithmetic, not formal. -/
+theorem p05030 : (∀ (v : ZMod (5 : ℕ)), v ≠ (0 : ZMod (5 : ℕ)) → -v ≠ v) ∧ (-1 : ZMod (2 : ℕ)) = (1 : ZMod (2 : ℕ)) :=
+  @FRC.Logic.obstruction_five
+/-- p05034 — 5:E8. The choice paradoxes vanish: on a finite set counting measure is complete and invariant, no decomposition doubles the set ($X\sqcup X$ does not inject into $X$), and every ultrafilter is principal; periodic variants inherit this on one period. -/
+theorem p05034 : (∀ {X : Type u_1} [Fintype X] [Nonempty X], IsEmpty (X ⊕ X ↪ X)) ∧ ∀ {X : Type u_2} [Finite X] (f : Ultrafilter X), ∃ a, f = pure a :=
+  And.intro @FRC.Logic.no_doubling (@FRC.Logic.ultrafilter_principal)
 /-- p25010 — 25:C1, 29:B5. No finite structure interprets $\mathsf{Q}$: a model of $\mathsf{Q}$ has an injective successor with $0$ outside its range, and on a finite set an injective map is onto. -/
 theorem p25010 : (∀ {A : Type u_1} [Finite A] (S : A → A), Function.Injective S → ∀ (z : A), ∃ x, S x = z) ∧ ∀ {A : Type u_2} (S : A → A) (z : A), Function.Injective S → (∀ (x : A), S x ≠ z) → Infinite A :=
   And.intro @FRC.Logic.finite_succ_onto (@FRC.Logic.infinite_of_succ)

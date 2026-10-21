@@ -1224,6 +1224,12 @@ import FrcMathlib
 #print axioms FRC.LedgerML.p05009
 #print axioms FRC.LedgerML.p05013
 #print axioms FRC.LedgerML.p05019
+#print axioms FRC.LedgerML.p05024
+#print axioms FRC.LedgerML.p05027
+#print axioms FRC.LedgerML.p05028
+#print axioms FRC.LedgerML.p05029
+#print axioms FRC.LedgerML.p05030
+#print axioms FRC.LedgerML.p05034
 #print axioms FRC.LedgerML.p25010
 #print axioms FRC.LedgerML.p25011
 #print axioms FRC.LedgerML.p25012
@@ -1296,7 +1302,6 @@ import FrcMathlib
 #print axioms FRC.Reductio.p05007
 #print axioms FRC.Reductio.p05009
 #print axioms FRC.Reductio.p05013
-#print axioms FRC.Reductio.p05014
 #print axioms FRC.Reductio.p05019
 #print axioms FRC.Reductio.p05024
 #print axioms FRC.Reductio.p05027
@@ -1797,6 +1802,14 @@ import FrcMathlib
 #print axioms FRC.Logic.dense_coding
 #print axioms FRC.Logic.decideAllRelations
 #print axioms FRC.Logic.card_relations
+#print axioms FRC.Logic.finite_choice
+#print axioms FRC.Logic.periodic_choice
+#print axioms FRC.Logic.equivariant_section_iff
+#print axioms FRC.Logic.obstruction_five
+#print axioms FRC.Logic.no_doubling
+#print axioms FRC.Logic.ultrafilter_principal
+#print axioms FRC.Logic.decideAllSubsets
+#print axioms FRC.Logic.nat_embeds
 #print axioms FRC.QuantumML.mixedDiff
 #print axioms FRC.QuantumML.sorkin_second
 #print axioms FRC.QuantumML.sorkin_hierarchy

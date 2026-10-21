@@ -3,7 +3,7 @@
  "tree": "5-reductio-20260706",
  "title": "Paradoxes of Infinity as Reductio ad Absurdum",
  "doi": "https://doi.org/10.20944/preprints202508.1744.v1",
- "generated": "20 October 2026",
+ "generated": "21 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -53,7 +53,7 @@
     {
      "label": "B2",
      "predicate": "The bundle $\\{$Eff, Cns, Cmp, IR$\\}$ is inconsistent, with no soundness assumption: under Eff and IR the Rosser sentence is available, and Cmp decides it against plain consistency.",
-     "tag": "T",
+     "tag": "I",
      "source": "Prop.~\\ref{prop:triad}; Thm.~\\ref{thm:rosser}",
      "key": "p05006"
     },
@@ -61,7 +61,7 @@
      "label": "B3",
      "predicate": "Witnessed independence: every three-element subset is satisfiable --- $Q$ itself ($\\neg$Cmp, consistent by finitary means, the superexponential cost exact); $\\mathrm{Th}(W_N)$ ($\\neg$IR: consistent, complete, decidable, singly axiomatised, interpreting no $Q$ since every model of $Q$ is infinite); the inconsistent extension ($\\neg$Cns); true arithmetic ($\\neg$Eff). Four legs, all load-bearing.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:witnessed}\\newline \\pywit{reductio}{p05007}{B3}, \\leanwit{FrcMathlib}{p05007}{B3} \\lean{Reductio.infinite\\_of\\_succ, Reductio.theory\\_complete}",
+     "source": "Thm.~\\ref{thm:witnessed}\\newline \\pywit{reductio}{p05007}{B3}, \\leanwit{FrcCore}{p05007}{B3}, \\leanwit{FrcMathlib}{p05007}{B3} \\lean{Reductio.infinite\\_of\\_succ, Reductio.theory\\_complete, FRC.Logic.no\\_finite\\_Q, FRC.Logic.no\\_interpretation, FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
      "key": "p05007"
     },
     {
@@ -75,7 +75,7 @@
      "label": "B5",
      "predicate": "Per-frame completeness: $\\mathrm{Th}(W_N)$ is consistent, complete and decidable, axiomatised by the categorical sentence $\\sigma_N$; truth in any finite structure is decided by evaluation, and the theory of any structure is complete.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:frame-complete}\\newline \\pywit{reductio}{p05009}{B5}, \\leanwit{FrcMathlib}{p05009}{B5} \\lean{Reductio.theory\\_complete, Reductio.decRealize, Reductio.decTheory}",
+     "source": "Prop.~\\ref{prop:frame-complete}\\newline \\pywit{reductio}{p05009}{B5}, \\leanwit{FrcCore}{p05009}{B5}, \\leanwit{FrcMathlib}{p05009}{B5} \\lean{Reductio.theory\\_complete, Reductio.decRealize, Reductio.decTheory, FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
      "key": "p05009"
     },
     {
@@ -114,9 +114,9 @@
     },
     {
      "label": "C3",
-     "predicate": "Vanishing certified fraction: at least $c^{L}$ normal-form sentences of length $\\le L$, half of each cohort frame truths by completeness, fewer than $s^{K+1}$ certified, so the certified fraction is at most $s^{K+1}/\\lfloor c^{L}/2\\rfloor\\to0$.",
+     "predicate": "Vanishing certified fraction: at least $c^{L}$ normal-form sentences of length $\\le L$, half of each cohort frame truths by completeness, fewer than $s^{K+1}$ certified, so the certified fraction is at most $s^{K+1}/\\lfloor c^{L}/2\\rfloor$, below $1/N$ as soon as $2s^{K+1}N\\le c^{L}$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:fraction}\\newline \\pywit{reductio}{p05014}{C3}, \\leanwit{FrcMathlib}{p05014}{C3} \\lean{Reductio.certified\\_fraction\\_tendsto}",
+     "source": "Prop.~\\ref{prop:fraction}\\newline \\pywit{reductio}{p05014}{C3}, \\leanwit{FrcCore}{p05014}{C3} \\lean{FRC.Reach.certified\\_fraction\\_vanishes, FRC.Logic.records\\_lt, FRC.Logic.fin\\_theory\\_complete}",
      "key": "p05014"
     },
     {
@@ -150,7 +150,7 @@
      "label": "D2",
      "predicate": "Antinomy normal form: Cns $+$ AT $+$ comprehension is inconsistent (Russell, Burali--Forti); the witness of Cns $+\\neg$AT is bounded comprehension --- every set $u$ has a subset not among its members and no universal set exists, decided on $V_4$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:antinomy-NF}\\newline \\pywit{reductio}{p05018}{D2}",
+     "source": "Prop.~\\ref{prop:antinomy-NF}\\newline \\pywit{reductio}{p05018}{D2}, \\leanwit{FrcCore}{p05018}{D2} \\lean{FRC.Sets.no\\_russell\\_class, FRC.Sets.no\\_universal\\_of\\_separation, FRC.Sets.russell\\_not\\_mem, FRC.Sets.not\\_mem\\_self, FRC.Sets.russell\\_not\\_mem\\_hf, FRC.Sets.no\\_universal}",
      "key": "p05018"
     },
     {
@@ -163,7 +163,7 @@
     {
      "label": "D4",
      "predicate": "Choice normal forms: Vitali (countably additive translation-invariant measure on all subsets $+$ AC$\\infty$ on $\\R/\\Q$, a countable amenable group) and Banach--Tarski (finitely additive isometry-invariant measure $+$ AC$\\infty$ $+$ a free non-amenable rotation subgroup) are inconsistent bundles with distinct mechanisms; the finite witness is counting measure with definable choice.",
-     "tag": "T",
+     "tag": "I",
      "source": "Prop.~\\ref{prop:choice-NF}\\newline \\pywit{reductio}{p05020}{D4}",
      "key": "p05020"
     },
@@ -171,7 +171,7 @@
      "label": "D5",
      "predicate": "The reductio principle: for each normal form a baseline $B$ and one infinitary premise $I$ with $B+I$ contradictory and $B+\\neg I$ satisfiable by an explicit witness --- bounded ranks, $\\mathrm{Th}(W_N)$, counting measure (Solovay's model as classical corroboration); the rejection of $I$ is coherent and witnessed.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:reductio-principle}; Table~\\ref{tab:decision}; B3, D2, D4",
+     "source": "Thm.~\\ref{thm:reductio-principle}; Table~\\ref{tab:decision}; B3, D2, D4\\newline \\pywit{reductio}{p05021}{D5}, \\leanwit{FrcCore}{p05021}{D5} \\lean{FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent, FRC.Logic.no\\_interpretation, FRC.Sets.no\\_russell\\_class, FRC.Sets.no\\_universal\\_of\\_separation, FRC.Sets.russell\\_not\\_mem\\_hf, FRC.Sets.no\\_universal, FRC.Sets.measure\\_add, FRC.Sets.measure\\_perm, FRC.Sets.no\\_doubling}",
      "key": "p05021"
     },
     {
@@ -184,7 +184,7 @@
     {
      "label": "D7",
      "predicate": "Forced exit: Det supplies Eff and Cmp, so $\\{$Cns, Det, IR$\\}$ is inconsistent and, Cns and Det being constitutive, the reductio is forced against IR --- no determinate totality internalises an unbounded registry; the four-clause bundle condenses to this triad. Conditional on Det.",
-     "tag": "T",
+     "tag": "I",
      "source": "Prop.~\\ref{prop:forced}; B2",
      "key": "p05023"
     },
@@ -192,14 +192,14 @@
      "label": "D8",
      "predicate": "Finiteness of determinate totalities: in ZF with every infinite set Dedekind-infinite, a structure satisfies Det iff it is finite --- finite: the full higher-order theory decided by exhaustive evaluation; infinite: a copy of $\\N$ inside gives an effective reduction of true second-order arithmetic, which is not arithmetical. The real field's first-order tameness is silence about its subsets.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:finiteness}\\newline \\pywit{reductio}{p05024}{D8}, \\leanwit{FrcMathlib}{p05024}{D8} \\lean{Reductio.decideAllSubsets, Reductio.nat\\_embeds}",
+     "source": "Prop.~\\ref{prop:finiteness}\\newline \\pywit{reductio}{p05024}{D8}, \\leanwit{FrcCore}{p05024}{D8}, \\leanwit{FrcMathlib}{p05024}{D8} \\lean{Reductio.decideAllSubsets, Reductio.nat\\_embeds, FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete}",
      "key": "p05024"
     },
     {
      "label": "D9",
      "predicate": "Corollaries: no absolute totality is determinate (a universal set is infinite by the iterated singletons); Meas is decided content --- a Det totality decides every measure question, trivially on a finite one (counting measure). The totalising conjuncts of two normal forms follow from D8.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:AT-det}; Cor.~\\ref{cor:meas-det}\\newline \\pywit{reductio}{p05025}{D9}",
+     "source": "Cor.~\\ref{cor:AT-det}; Cor.~\\ref{cor:meas-det}\\newline \\pywit{reductio}{p05025}{D9}, \\leanwit{FrcCore}{p05025}{D9} \\lean{FRC.Sets.rank\\_chain, FRC.Sets.chain\\_injective, FRC.Sets.chain\\_not\\_mem, FRC.Sets.measure\\_le, FRC.Sets.measure\\_perm}",
      "key": "p05025"
     },
     {
@@ -233,7 +233,7 @@
      "label": "E3",
      "predicate": "Equivariant periodic choice: a $G$-equivariant section exists iff each stabiliser action $G_i\\curvearrowright A_i$ has a fixed point (one orbit at a time); the Fraenkel--Mostowski mechanism in positive form.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:equivariant-choice}\\newline \\pywit{reductio}{p05029}{E3}, \\leanwit{FrcMathlib}{p05029}{E3} \\lean{Reductio.equivariant\\_section\\_iff}",
+     "source": "Thm.~\\ref{thm:equivariant-choice}\\newline \\pywit{reductio}{p05029}{E3}, \\leanwit{FrcCore}{p05029}{E3}, \\leanwit{FrcMathlib}{p05029}{E3} \\lean{Reductio.equivariant\\_section\\_iff, FRC.Equivariant.equivariant\\_section\\_iff, FRC.Equivariant.equivariant\\_section\\_orbits}",
      "key": "p05029"
     },
     {
@@ -254,7 +254,7 @@
      "label": "E6",
      "predicate": "Periodic de~Bruijn--Erd\\H{o}s, dimension one: a $\\sigma$-periodic graph of bounded range whose finite subgraphs are $c$-colourable admits a definable $\\sigma^{m}$-periodic $c$-colouring (the transfer digraph $D_c$, its sub-digraph of vertices beginning walks of every length, E5).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:periodic-dbe}\\newline \\pywit{reductio}{p05032}{E6}",
+     "source": "Thm.~\\ref{thm:periodic-dbe}\\newline \\pywit{reductio}{p05032}{E6}, \\leanwit{FrcCore}{p05032}{E6} \\lean{FRC.Transfer.exists\\_allGood, FRC.Transfer.allGood\\_successor, FRC.Transfer.periodic\\_walk}",
      "key": "p05032"
     },
     {
@@ -268,7 +268,7 @@
      "label": "E8",
      "predicate": "The choice paradoxes vanish: on a finite set counting measure is complete and invariant, no decomposition doubles the set ($X\\sqcup X$ does not inject into $X$), and every ultrafilter is principal; periodic variants inherit this on one period.",
      "tag": "T",
-     "source": "\\S\\ref{subsec:AC-consequences}\\newline \\pywit{reductio}{p05034}{E8}, \\leanwit{FrcMathlib}{p05034}{E8} \\lean{Reductio.no\\_doubling, Reductio.ultrafilter\\_principal}",
+     "source": "\\S\\ref{subsec:AC-consequences}\\newline \\pywit{reductio}{p05034}{E8}, \\leanwit{FrcCore}{p05034}{E8}, \\leanwit{FrcMathlib}{p05034}{E8} \\lean{Reductio.no\\_doubling, Reductio.ultrafilter\\_principal, FRC.Sets.measure\\_le, FRC.Sets.measure\\_add, FRC.Sets.measure\\_compl, FRC.Sets.measure\\_perm, FRC.Sets.no\\_doubling, FRC.Sets.ultra\\_principal}",
      "key": "p05034"
     }
    ]
@@ -318,7 +318,7 @@
   {
    "tag": "I",
    "name": "Import",
-   "text": "A standard result, or a corpus result, used without reproof."
+   "text": "A standard result, or a corpus result, used without reproof; since 21 October 2026 also a theorem of the body that carries no Lean proof (B2, D4, D7), its python check kept as corroboration where one exists."
   },
   {
    "tag": "D",
@@ -368,7 +368,7 @@
    {
     "name": "FRC.Reductio.infinite_of_succ",
     "module": "FrcMathlib/Reductio",
-    "line": 143,
+    "line": 121,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -381,7 +381,7 @@
    {
     "name": "FRC.Reductio.theory_complete",
     "module": "FrcMathlib/Reductio",
-    "line": 123,
+    "line": 101,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -390,13 +390,58 @@
     "tier": 2,
     "ok": true,
     "doc": "5:B5, 5:B3 (Proposition frame-complete, completeness): the theory of any structure — a finite frame `W_N` among them — is complete: every sentence or its negation is in it."
+   },
+   {
+    "name": "FRC.Logic.no_finite_Q",
+    "module": "FrcCore/Theme/Logic",
+    "line": 723,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:Z1, 25:C1, 25:C3, 5:B3 — no finite structure carries Robinson's successor: on `[0, n)`, a domain `D`, a successor relation `Sg` total on `D`, injective (Q2) and never reaching a zero `Z` of `D` (Q1) cannot exist. A `k`-dimensional interpretation is the case `n = mᵏ`, its tuples coded below `mᵏ`."
+   },
+   {
+    "name": "FRC.Logic.no_interpretation",
+    "module": "FrcCore/Theme/Logic",
+    "line": 770,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:Z1, 25:C1, 25:C3, 5:B3, 5:D5 — a finite structure interprets no Robinson `Q`: for formulas `δ` (the domain, in variable `0`), `σ` (the successor's graph, `x` in variable `1` and `y` in `0`) and `ζ` (zero), the relativised successor axioms — `S` total on the domain, Q2 (`S x = S x' → x = x'`), a zero in the domain, and Q1 (`S x ≠ 0`) — never all hold."
+   },
+   {
+    "name": "FRC.Logic.fin_theory_decidable",
+    "module": "FrcCore/Theme/Logic",
+    "line": 678,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, 5:B5, 5:B3, 5:D5, 00:Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its evaluation is `true`."
+   },
+   {
+    "name": "FRC.Logic.fin_theory_complete",
+    "module": "FrcCore/Theme/Logic",
+    "line": 702,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:C3, 5:D5, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
+   },
+   {
+    "name": "FRC.Logic.fin_theory_consistent",
+    "module": "FrcCore/Theme/Logic",
+    "line": 708,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:D5, 00:Z1 — the theory is consistent: no formula holds together with its negation."
    }
   ],
   "B5": [
    {
     "name": "FRC.Reductio.theory_complete",
     "module": "FrcMathlib/Reductio",
-    "line": 123,
+    "line": 101,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -409,7 +454,7 @@
    {
     "name": "FRC.Reductio.decRealize",
     "module": "FrcMathlib/Reductio",
-    "line": 128,
+    "line": 106,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -422,7 +467,7 @@
    {
     "name": "FRC.Reductio.decTheory",
     "module": "FrcMathlib/Reductio",
-    "line": 135,
+    "line": 113,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -431,13 +476,40 @@
     "tier": 2,
     "ok": true,
     "doc": "5:B5 (Proposition frame-complete, decidability): membership in the theory of a finite structure is decided by evaluating the sentence."
+   },
+   {
+    "name": "FRC.Logic.fin_theory_decidable",
+    "module": "FrcCore/Theme/Logic",
+    "line": 678,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, 5:B5, 5:B3, 5:D5, 00:Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its evaluation is `true`."
+   },
+   {
+    "name": "FRC.Logic.fin_theory_complete",
+    "module": "FrcCore/Theme/Logic",
+    "line": 702,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:C3, 5:D5, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
+   },
+   {
+    "name": "FRC.Logic.fin_theory_consistent",
+    "module": "FrcCore/Theme/Logic",
+    "line": 708,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:D5, 00:Z1 — the theory is consistent: no formula holds together with its negation."
    }
   ],
   "B6": [
    {
     "name": "FRC.Reductio.stable",
     "module": "FrcCore/Reductio",
-    "line": 159,
+    "line": 154,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -446,7 +518,7 @@
    {
     "name": "FRC.Reductio.evalT_frame",
     "module": "FrcCore/Reductio",
-    "line": 154,
+    "line": 149,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -455,7 +527,7 @@
    {
     "name": "FRC.Reductio.goldbach_ten_stable",
     "module": "FrcCore/Reductio",
-    "line": 69,
+    "line": 65,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -466,7 +538,7 @@
    {
     "name": "FRC.Reductio.records_lt",
     "module": "FrcMathlib/Reductio",
-    "line": 160,
+    "line": 138,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -479,7 +551,7 @@
    {
     "name": "FRC.Reductio.no_mirror",
     "module": "FrcMathlib/Reductio",
-    "line": 165,
+    "line": 143,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -492,7 +564,7 @@
    {
     "name": "FRC.Reductio.records_lt",
     "module": "FrcCore/Reductio",
-    "line": 167,
+    "line": 162,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -501,7 +573,7 @@
    {
     "name": "FRC.Reductio.no_mirror",
     "module": "FrcCore/Reductio",
-    "line": 172,
+    "line": 167,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -510,24 +582,38 @@
   ],
   "C3": [
    {
-    "name": "FRC.Reductio.certified_fraction_tendsto",
-    "module": "FrcMathlib/Reductio",
-    "line": 29,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
+    "name": "FRC.Reach.certified_fraction_vanishes",
+    "module": "FrcCore/Theme/Reach",
+    "line": 141,
+    "axioms": [],
+    "tier": 0,
     "ok": true,
-    "doc": "5:C3 (Proposition fraction): the certified fraction `s^(K+1) / ⌊c^L/2⌋` of a bounded agent tends to zero as the cohort length `L` grows, for any capacity and any `c > 1`."
+    "doc": "5:C3 (Proposition fraction, the vanishing certified fraction in finite form) — a cohort of `C` sentences of which at least half are frame truths (`C ≤ 2T`, by completeness: of a sentence and its negation one holds) outruns the records of length at most `K` over `s` letters: as soon as `2 s^(K+1) N ≤ C`, the records times `N` fall short of the truths, so the certified fraction is below `1/N`."
+   },
+   {
+    "name": "FRC.Logic.records_lt",
+    "module": "FrcCore/Theme/Logic",
+    "line": 273,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:C2, 5:C3, 29:C10, 25:E2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters."
+   },
+   {
+    "name": "FRC.Logic.fin_theory_complete",
+    "module": "FrcCore/Theme/Logic",
+    "line": 702,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:C3, 5:D5, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
    }
   ],
   "C5": [
    {
     "name": "FRC.Reductio.repeat_below",
     "module": "FrcCore/Reductio",
-    "line": 189,
+    "line": 184,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -536,18 +622,74 @@
    {
     "name": "FRC.Reductio.halts_iff_halts_below",
     "module": "FrcCore/Reductio",
-    "line": 203,
+    "line": 198,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "5:C5 (horizon separation) — a run on `n` states reaches a state `h` iff it reaches it within `n` steps: halting for bounded space is decided from above by `n` steps of simulation."
    }
   ],
+  "D2": [
+   {
+    "name": "FRC.Sets.no_russell_class",
+    "module": "FrcCore/Theme/Sets",
+    "line": 23,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D2, 5:D5 (Proposition antinomy-NF, the theorem) — for any membership relation `M`, no class `r` satisfies `x ∈ r ↔ x ∉ x` for every `x`: `r ∈ r ↔ r ∉ r` is contradictory. The antinomy is a theorem about the Russell class, and a paradox only where comprehension forms it."
+   },
+   {
+    "name": "FRC.Sets.no_universal_of_separation",
+    "module": "FrcCore/Theme/Sets",
+    "line": 31,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D2, 5:D5 (Proposition antinomy-NF, the inconsistent bundle) — with separation (`sep u` is `{x ∈ u | x ∉ x}` for every `u`) no set is universal: the Russell class of a universal set would be the class of all `x ∉ x`. This is Cns + AT + comprehension inconsistent, read on separation."
+   },
+   {
+    "name": "FRC.Sets.russell_not_mem",
+    "module": "FrcCore/Theme/Sets",
+    "line": 38,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D2, 5:D5 (Proposition antinomy-NF, the witness) — bounded comprehension has no antinomy: for every set `u` the class `r = {x ∈ u | x ∉ x}` is a set that is not a member of `u` (were `r ∈ u`, then `r ∈ r ↔ r ∉ r`)."
+   },
+   {
+    "name": "FRC.Sets.not_mem_self",
+    "module": "FrcCore/Theme/Sets",
+    "line": 87,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D2 (Proposition antinomy-NF, the witness on hereditarily finite sets) — no set is a member of itself."
+   },
+   {
+    "name": "FRC.Sets.russell_not_mem_hf",
+    "module": "FrcCore/Theme/Sets",
+    "line": 99,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D2, 5:D5 — every set `u` has a subset, its Russell class, that is not a member of `u`."
+   },
+   {
+    "name": "FRC.Sets.no_universal",
+    "module": "FrcCore/Theme/Sets",
+    "line": 103,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D2, 5:D5 — no hereditarily finite set is universal: `v` itself is not a member of `v`."
+   }
+  ],
   "D3": [
    {
     "name": "FRC.Reductio.cantor",
     "module": "FrcMathlib/Reductio",
-    "line": 151,
+    "line": 129,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -556,7 +698,7 @@
    {
     "name": "FRC.Reductio.cantor_finite",
     "module": "FrcMathlib/Reductio",
-    "line": 155,
+    "line": 133,
     "axioms": [
      "propext"
     ],
@@ -567,18 +709,119 @@
    {
     "name": "FRC.Reductio.cantor_finite",
     "module": "FrcCore/Reductio",
-    "line": 208,
+    "line": 203,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "5:D3 (Remark, the external diagonal) — Cantor's theorem holds in every finite frame: `n < 2^n`."
    }
   ],
+  "D5": [
+   {
+    "name": "FRC.Logic.fin_theory_decidable",
+    "module": "FrcCore/Theme/Logic",
+    "line": 678,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, 5:B5, 5:B3, 5:D5, 00:Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its evaluation is `true`."
+   },
+   {
+    "name": "FRC.Logic.fin_theory_complete",
+    "module": "FrcCore/Theme/Logic",
+    "line": 702,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:C3, 5:D5, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
+   },
+   {
+    "name": "FRC.Logic.fin_theory_consistent",
+    "module": "FrcCore/Theme/Logic",
+    "line": 708,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:D5, 00:Z1 — the theory is consistent: no formula holds together with its negation."
+   },
+   {
+    "name": "FRC.Logic.no_interpretation",
+    "module": "FrcCore/Theme/Logic",
+    "line": 770,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:Z1, 25:C1, 25:C3, 5:B3, 5:D5 — a finite structure interprets no Robinson `Q`: for formulas `δ` (the domain, in variable `0`), `σ` (the successor's graph, `x` in variable `1` and `y` in `0`) and `ζ` (zero), the relativised successor axioms — `S` total on the domain, Q2 (`S x = S x' → x = x'`), a zero in the domain, and Q1 (`S x ≠ 0`) — never all hold."
+   },
+   {
+    "name": "FRC.Sets.no_russell_class",
+    "module": "FrcCore/Theme/Sets",
+    "line": 23,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D2, 5:D5 (Proposition antinomy-NF, the theorem) — for any membership relation `M`, no class `r` satisfies `x ∈ r ↔ x ∉ x` for every `x`: `r ∈ r ↔ r ∉ r` is contradictory. The antinomy is a theorem about the Russell class, and a paradox only where comprehension forms it."
+   },
+   {
+    "name": "FRC.Sets.no_universal_of_separation",
+    "module": "FrcCore/Theme/Sets",
+    "line": 31,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D2, 5:D5 (Proposition antinomy-NF, the inconsistent bundle) — with separation (`sep u` is `{x ∈ u | x ∉ x}` for every `u`) no set is universal: the Russell class of a universal set would be the class of all `x ∉ x`. This is Cns + AT + comprehension inconsistent, read on separation."
+   },
+   {
+    "name": "FRC.Sets.russell_not_mem_hf",
+    "module": "FrcCore/Theme/Sets",
+    "line": 99,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D2, 5:D5 — every set `u` has a subset, its Russell class, that is not a member of `u`."
+   },
+   {
+    "name": "FRC.Sets.no_universal",
+    "module": "FrcCore/Theme/Sets",
+    "line": 103,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D2, 5:D5 — no hereditarily finite set is universal: `v` itself is not a member of `v`."
+   },
+   {
+    "name": "FRC.Sets.measure_add",
+    "module": "FrcCore/Theme/Sets",
+    "line": 157,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E8, 5:D5 (counting measure is finitely additive) — on disjoint subsets the measure of the union is the sum."
+   },
+   {
+    "name": "FRC.Sets.measure_perm",
+    "module": "FrcCore/Theme/Sets",
+    "line": 229,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E8, 5:D9, 5:D5 (counting measure is invariant) — a bijection `σ` of `[0, n)` (injective, with values below `n`) carries every subset to one of the same measure: `|σ⁻¹ A| = |A|`."
+   },
+   {
+    "name": "FRC.Sets.no_doubling",
+    "module": "FrcCore/Theme/Sets",
+    "line": 241,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E8, 5:D5 (no paradoxical decomposition) — `X ⊔ X` does not inject into `X`: no map from `[0, 2n)` into `[0, n)`, `n ≥ 1`, is injective. The restriction to `[0, n)` is onto (`inj_onto`), so `f n` already has a preimage below `n`."
+   }
+  ],
   "D8": [
    {
     "name": "FRC.Reductio.decideAllSubsets",
     "module": "FrcMathlib/Reductio",
-    "line": 105,
+    "line": 84,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -591,7 +834,7 @@
    {
     "name": "FRC.Reductio.nat_embeds",
     "module": "FrcMathlib/Reductio",
-    "line": 110,
+    "line": 89,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -600,13 +843,78 @@
     "tier": 2,
     "ok": true,
     "doc": "5:D8 (the infinite direction, its first step): an infinite domain carries a copy of `ℕ` — Dedekind's embedding, from which the reduction of true second-order arithmetic proceeds."
+   },
+   {
+    "name": "FRC.Logic.so_theory_decidable",
+    "module": "FrcCore/Theme/SecondOrder",
+    "line": 66,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:E4, 25:H2, 25:H4, 5:D8 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is decided by exhaustive evaluation, a formula holds exactly when its evaluation is `true`."
+   },
+   {
+    "name": "FRC.Logic.so_theory_complete",
+    "module": "FrcCore/Theme/SecondOrder",
+    "line": 103,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:E4, 25:H2, 25:H4, 5:D8 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its negation holds, decided by the evaluation."
+   }
+  ],
+  "D9": [
+   {
+    "name": "FRC.Sets.rank_chain",
+    "module": "FrcCore/Theme/Sets",
+    "line": 120,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D9 (Corollary AT-det) — the `n`-th iterated singleton has rank `n`."
+   },
+   {
+    "name": "FRC.Sets.chain_injective",
+    "module": "FrcCore/Theme/Sets",
+    "line": 125,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D9 (Corollary AT-det) — the iterated singletons are pairwise distinct."
+   },
+   {
+    "name": "FRC.Sets.chain_not_mem",
+    "module": "FrcCore/Theme/Sets",
+    "line": 130,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:D9 (Corollary AT-det, the finite form of \"a universal set is infinite\") — no set holds every iterated singleton: the one of its own rank is not among its members, since members have smaller rank."
+   },
+   {
+    "name": "FRC.Sets.measure_le",
+    "module": "FrcCore/Theme/Sets",
+    "line": 143,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E8, 5:D9 — counting measure is total: every subset has one, at most the size of the set."
+   },
+   {
+    "name": "FRC.Sets.measure_perm",
+    "module": "FrcCore/Theme/Sets",
+    "line": 229,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E8, 5:D9, 5:D5 (counting measure is invariant) — a bijection `σ` of `[0, n)` (injective, with values below `n`) carries every subset to one of the same measure: `|σ⁻¹ A| = |A|`."
    }
   ],
   "E1": [
    {
     "name": "FRC.Reductio.finite_choice",
     "module": "FrcMathlib/Reductio",
-    "line": 41,
+    "line": 48,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -619,7 +927,7 @@
    {
     "name": "FRC.Reductio.leastBelow_spec",
     "module": "FrcCore/Reductio",
-    "line": 220,
+    "line": 215,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -628,7 +936,7 @@
    {
     "name": "FRC.Reductio.leastBelow_some",
     "module": "FrcCore/Reductio",
-    "line": 216,
+    "line": 211,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -639,7 +947,7 @@
    {
     "name": "FRC.Reductio.periodic_choice",
     "module": "FrcMathlib/Reductio",
-    "line": 45,
+    "line": 52,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -652,7 +960,7 @@
    {
     "name": "FRC.Reductio.leastBelow_congr",
     "module": "FrcCore/Reductio",
-    "line": 226,
+    "line": 221,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -663,7 +971,7 @@
    {
     "name": "FRC.Reductio.equivariant_section_iff",
     "module": "FrcMathlib/Reductio",
-    "line": 52,
+    "line": 60,
     "axioms": [
      "Classical.choice",
      "propext"
@@ -671,13 +979,31 @@
     "tier": 2,
     "ok": true,
     "doc": "5:E3 (Theorem equivariant-choice, one orbit): for a `G`-family `π : A → I` over a transitive `G`-set `I`, an equivariant section exists iff the stabiliser of a base point `i₀` fixes some point of its fibre."
+   },
+   {
+    "name": "FRC.Equivariant.equivariant_section_iff",
+    "module": "FrcCore/Theme/Equivariant",
+    "line": 92,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E3 (Theorem equivariant-choice, one orbit) — on a transitive index set an equivariant section exists exactly when the stabiliser of the base point fixes a point of its fibre."
+   },
+   {
+    "name": "FRC.Equivariant.equivariant_section_orbits",
+    "module": "FrcCore/Theme/Equivariant",
+    "line": 101,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E3 (Theorem equivariant-choice, finitely many orbits) — with a representative `rep i` of every orbit, constant on orbits, and the transport `tr i • rep i = i`, an equivariant section exists exactly when every representative's stabiliser fixes a point of its fibre, the choice `a` of fixed points being itself constant on orbits."
    }
   ],
   "E4": [
    {
     "name": "FRC.Reductio.obstruction_five",
     "module": "FrcMathlib/Reductio",
-    "line": 83,
+    "line": 68,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -690,7 +1016,7 @@
    {
     "name": "FRC.Reductio.obstruction_five",
     "module": "FrcCore/Reductio",
-    "line": 76,
+    "line": 72,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -701,7 +1027,7 @@
    {
     "name": "FRC.Reductio.repeat_below",
     "module": "FrcCore/Reductio",
-    "line": 189,
+    "line": 184,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -710,18 +1036,47 @@
    {
     "name": "FRC.Reductio.eventually_periodic",
     "module": "FrcCore/Reductio",
-    "line": 198,
+    "line": 193,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "5:E5 — the walk is eventually periodic: from step `i` on, period `p = j − i` with `0 < p ≤ n`, `f^(i+k+p) x = f^(i+k) x` for every `k`."
    }
   ],
+  "E6": [
+   {
+    "name": "FRC.Transfer.exists_allGood",
+    "module": "FrcCore/Theme/Transfer",
+    "line": 170,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E6 (Theorem periodic-dbe, the sub-digraph is nonempty) — if walks of every length exist, some vertex begins walks of every length: the good sets decrease and stabilise, and a vertex of the stationary set is good for ever."
+   },
+   {
+    "name": "FRC.Transfer.allGood_successor",
+    "module": "FrcCore/Theme/Transfer",
+    "line": 177,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E6 (Theorem periodic-dbe, out-degree one in the sub-digraph) — a vertex good for every length has a successor good for every length."
+   },
+   {
+    "name": "FRC.Transfer.periodic_walk",
+    "module": "FrcCore/Theme/Transfer",
+    "line": 279,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E6 (Theorem periodic-dbe, the periodic walk) — if the digraph on `[0, n)` has walks of every length, it has an infinite walk `w` that is periodic with period `m`, `1 ≤ m ≤ n`: every step is an edge and `w (i + m) = w i`. The walk is the greedy walk in the sub-digraph of vertices good for every length, read from its first return."
+   }
+  ],
   "E8": [
    {
     "name": "FRC.Reductio.no_doubling",
     "module": "FrcMathlib/Reductio",
-    "line": 87,
+    "line": 72,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -734,7 +1089,7 @@
    {
     "name": "FRC.Reductio.ultrafilter_principal",
     "module": "FrcMathlib/Reductio",
-    "line": 96,
+    "line": 75,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -743,6 +1098,60 @@
     "tier": 2,
     "ok": true,
     "doc": "5:E8 (ultrafilters): on a finite set every ultrafilter is principal."
+   },
+   {
+    "name": "FRC.Sets.measure_le",
+    "module": "FrcCore/Theme/Sets",
+    "line": 143,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E8, 5:D9 — counting measure is total: every subset has one, at most the size of the set."
+   },
+   {
+    "name": "FRC.Sets.measure_add",
+    "module": "FrcCore/Theme/Sets",
+    "line": 157,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E8, 5:D5 (counting measure is finitely additive) — on disjoint subsets the measure of the union is the sum."
+   },
+   {
+    "name": "FRC.Sets.measure_compl",
+    "module": "FrcCore/Theme/Sets",
+    "line": 171,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E8 — a subset and its complement share the set: `|A| + |Aᶜ| = n`."
+   },
+   {
+    "name": "FRC.Sets.measure_perm",
+    "module": "FrcCore/Theme/Sets",
+    "line": 229,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E8, 5:D9, 5:D5 (counting measure is invariant) — a bijection `σ` of `[0, n)` (injective, with values below `n`) carries every subset to one of the same measure: `|σ⁻¹ A| = |A|`."
+   },
+   {
+    "name": "FRC.Sets.no_doubling",
+    "module": "FrcCore/Theme/Sets",
+    "line": 241,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E8, 5:D5 (no paradoxical decomposition) — `X ⊔ X` does not inject into `X`: no map from `[0, 2n)` into `[0, n)`, `n ≥ 1`, is injective. The restriction to `[0, n)` is onto (`inj_onto`), so `f n` already has a preimage below `n`."
+   },
+   {
+    "name": "FRC.Sets.ultra_principal",
+    "module": "FrcCore/Theme/Sets",
+    "line": 308,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E8 (every ultrafilter on a finite set is principal) — an ultrafilter on `[0, n)` holds a point `x`, and holds a subset exactly when the subset holds `x`."
    }
   ]
  }

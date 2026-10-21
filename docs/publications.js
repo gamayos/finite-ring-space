@@ -188,22 +188,22 @@ const PUBLICATIONS = [
     "schema": true,
     "links": [
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/5-reductio/frc-5-reductio.ipynb",
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p05_reductio.ipynb",
         "label": "python",
-        "count": 18,
-        "title": "18 predicates checked, all passing: the notebook frc-5-reductio.ipynb on Google Colab, one cell per predicate"
+        "count": 20,
+        "title": "20 predicates checked, all passing: the notebook p05_reductio.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Reductio.lean",
         "label": "lean",
-        "count": 8,
-        "title": "8 predicates proved in the core (no axioms), 5 of them also on Mathlib: the core module Reductio as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 18,
+        "title": "18 predicates proved in the core (no axioms), 10 of them also on Mathlib: the core module Reductio as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Reductio.lean",
         "label": "lean-mathlib",
-        "count": 11,
-        "title": "11 predicates proved on Mathlib (classical), 5 of them also in the core: the module Reductio as one file on Mathlib in Lean Live"
+        "count": 10,
+        "title": "10 predicates proved on Mathlib (classical), 10 of them also in the core: the module Reductio as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -801,4 +801,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "20 October 2026";
+const GENERATED = "21 October 2026";

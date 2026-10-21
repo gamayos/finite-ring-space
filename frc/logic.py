@@ -316,3 +316,61 @@ def commutative(S, op="+"):
 # as a sentence in every structure on 3 elements, holds exactly in the structures isomorphic to M, and in none of 1 or 2
 # elements or among the one-element extensions of M, each clause of σ_M with its control.  A3: the sentences outnumber the elements — m+1 sentences of length
 # at most m+1 admit no injective numbering into M — while truth is given externally by a finite table.
+
+
+# ======================================================================================================================
+# 5-reductio's arithmetic frame and Δ₀ constructors (moved from the package src/5-reductio/reductio.py at the migration of
+# 21 October 2026). The Δ₀ language is the core's (Theme/Logic.lean: Term, Form) in the encoding frc/formation.py evaluates
+# (d0_term, d0_eval, d0_term_frame, d0_eval_frame, d0_bound); here its constructors, the worked instance of 5:B6 (Goldbach
+# below M) and a random sentence, and the frame W_N as a relational structure for the first-order sample of 5:B5.
+# ======================================================================================================================
+class Frame:
+    """W_N: domain [0, N), constant 0, order <, and the graphs S, A, M of successor, sum and product restricted to
+    the domain (Definition frame).  An atomic relation with an argument outside the domain is false."""
+    def __init__(self, N):
+        self.N = N; self.dom = range(N)
+    def S(self, x, y): return 0 <= x < self.N and y == x + 1 and y < self.N
+    def A(self, x, y, z): return all(0 <= v < self.N for v in (x, y, z)) and z == x + y
+    def M(self, x, y, z): return all(0 <= v < self.N for v in (x, y, z)) and z == x * y
+    def lt(self, x, y): return 0 <= x < self.N and 0 <= y < self.N and x < y
+
+
+def num(n):
+    t = ('zero',)
+    for _ in range(n): t = ('add', t, ('one',))
+    return t
+
+def bex(t, phi): return ('neg', ('ball', t, ('neg', phi)))
+def disj(a, b): return ('neg', ('conj', ('neg', a), ('neg', b)))
+def impl(a, b): return ('neg', ('conj', a, ('neg', b)))
+
+def prime_form(i):
+    """'variable i is prime': 1 < x ∧ ∀ d ≤ x ∀ e ≤ x ¬(d·e = x ∧ d ≠ 1 ∧ d ≠ x)."""
+    v = lambda j: ('var', j)
+    return ('conj', ('lt', ('one',), v(i)),
+            ('ball', v(i), ('ball', v(i + 1), ('neg', ('conj', ('eq', ('mul', v(1), v(0)), v(i + 2)),
+                                                          ('conj', ('neg', ('eq', v(1), ('one',))), ('neg', ('eq', v(1), v(i + 2)))))))))
+
+def goldbach_form(M):
+    """Every even m ≤ M with 4 ≤ m is a sum of two primes x, y ≤ m (the worked instance of the paper, M = 20)."""
+    v = lambda j: ('var', j)
+    even0 = bex(v(0), ('eq', ('add', v(0), v(0)), v(1)))
+    body = bex(v(0), bex(v(1), ('conj', prime_form(1), ('conj', prime_form(0), ('eq', ('add', v(1), v(0)), v(2))))))
+    return ('ball', num(M), impl(('conj', even0, ('neg', ('lt', v(0), num(4)))), body))
+
+def random_form(rng, depth, nvars, maxnum=6):
+    """A random Δ₀ formula with the given quantifier depth."""
+    def term(d):
+        r = rng.randrange(20)
+        if d == 0 or r < 8:
+            return ('var', rng.randrange(nvars)) if nvars and rng.randrange(5) < 3 else num(rng.randrange(maxnum))
+        return (rng.choice(['add', 'mul']), term(d - 1), term(d - 1))
+    def form(d, nv):
+        r = rng.randrange(20)
+        if d == 0 or r < 6:
+            return (rng.choice(['eq', 'lt']), term(1), term(1)) if nv else (rng.choice(['eq', 'lt']), num(rng.randrange(maxnum)), num(rng.randrange(maxnum)))
+        if r < 9: return ('neg', form(d - 1, nv))
+        if r < 12: return ('conj', form(d - 1, nv), form(d - 1, nv))
+        return ('ball', num(rng.randrange(1, maxnum)) if not nv else (('var', rng.randrange(nv)) if rng.randrange(2) == 0 else num(rng.randrange(1, maxnum))), form(d - 1, nv + 1))
+    nvars = 0
+    return form(depth, nvars)

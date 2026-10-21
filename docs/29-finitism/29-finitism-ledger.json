@@ -3,7 +3,7 @@
  "tree": "29-finitism-20260708",
  "title": "The Undeclared Posit of Potential Infinity",
  "doi": "https://doi.org/10.20944/preprints202607.0670.v1",
- "generated": "20 October 2026",
+ "generated": "21 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -282,25 +282,25 @@
    {
     "name": "FRC.Logic.fin_theory_complete",
     "module": "FrcCore/Theme/Logic",
-    "line": 661,
+    "line": 702,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "25:C2, 25:C3, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:C3, 5:D5, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
    },
    {
     "name": "FRC.Logic.fin_theory_decidable",
     "module": "FrcCore/Theme/Logic",
-    "line": 637,
+    "line": 678,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "25:C2, Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its evaluation is `true`."
+    "doc": "25:C2, 5:B5, 5:B3, 5:D5, 00:Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its evaluation is `true`."
    },
    {
     "name": "FRC.Logic.no_finite_successor",
     "module": "FrcCore/Theme/Logic",
-    "line": 439,
+    "line": 480,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -338,7 +338,7 @@
    {
     "name": "FRC.Logic.inj_onto",
     "module": "FrcCore/Theme/Logic",
-    "line": 428,
+    "line": 469,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -347,7 +347,7 @@
    {
     "name": "FRC.Logic.no_finite_successor",
     "module": "FrcCore/Theme/Logic",
-    "line": 439,
+    "line": 480,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -358,7 +358,7 @@
    {
     "name": "FRC.Logic.leastBelow_some",
     "module": "FrcCore/Theme/Logic",
-    "line": 343,
+    "line": 384,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -367,7 +367,7 @@
    {
     "name": "FRC.Logic.leastBelow_spec",
     "module": "FrcCore/Theme/Logic",
-    "line": 367,
+    "line": 408,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -588,11 +588,11 @@
    {
     "name": "FRC.Logic.records_lt",
     "module": "FrcCore/Theme/Logic",
-    "line": 232,
+    "line": 273,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "5:C2, 29:C10, 25:E2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters."
+    "doc": "5:C2, 5:C3, 29:C10, 25:E2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters."
    },
    {
     "name": "FRC.Logic.no_mirror",
@@ -608,7 +608,7 @@
    {
     "name": "FRC.Logic.stable",
     "module": "FrcCore/Theme/Logic",
-    "line": 194,
+    "line": 195,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -617,11 +617,11 @@
    {
     "name": "FRC.Logic.fin_theory_decidable",
     "module": "FrcCore/Theme/Logic",
-    "line": 637,
+    "line": 678,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "25:C2, Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its evaluation is `true`."
+    "doc": "25:C2, 5:B5, 5:B3, 5:D5, 00:Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its evaluation is `true`."
    },
    {
     "name": "FRC.Formation.finite_induction",
@@ -635,7 +635,7 @@
    {
     "name": "FRC.Logic.leastBelow_spec",
     "module": "FrcCore/Theme/Logic",
-    "line": 367,
+    "line": 408,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -650,7 +650,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "29:E4, 25:H2, 25:H4 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is decided by exhaustive evaluation, a formula holds exactly when its evaluation is `true`."
+    "doc": "29:E4, 25:H2, 25:H4, 5:D8 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is decided by exhaustive evaluation, a formula holds exactly when its evaluation is `true`."
    },
    {
     "name": "FRC.Logic.so_theory_complete",
@@ -659,7 +659,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "29:E4, 25:H2, 25:H4 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its negation holds, decided by the evaluation."
+    "doc": "29:E4, 25:H2, 25:H4, 5:D8 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its negation holds, decided by the evaluation."
    },
    {
     "name": "FRC.Logic.so_theory_consistent",
@@ -713,7 +713,7 @@
    {
     "name": "FRC.Logic.stable",
     "module": "FrcCore/Theme/Logic",
-    "line": 194,
+    "line": 195,
     "axioms": [],
     "tier": 0,
     "ok": true,

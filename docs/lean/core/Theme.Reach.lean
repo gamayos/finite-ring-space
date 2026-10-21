@@ -134,6 +134,17 @@ theorem reach_vanishes (a : Nat) (ha : 2 ≤ a) (B N L : Nat) (h : a ^ (B + 1) *
     (Nat.le_trans (Nat.mul_le_mul_right N (Nat.le_of_lt (FRC.Logic.records_lt a ha B))) h)
     Nat.lt_two_pow_self
 
+/-- 5:C3 (Proposition fraction, the vanishing certified fraction in finite form) — a cohort of `C` sentences of which
+at least half are frame truths (`C ≤ 2T`, by completeness: of a sentence and its negation one holds) outruns the
+records of length at most `K` over `s` letters: as soon as `2 s^(K+1) N ≤ C`, the records times `N` fall short of the
+truths, so the certified fraction is below `1/N`. -/
+theorem certified_fraction_vanishes (s K N C T : Nat) (hs : 2 ≤ s) (hN : 0 < N)
+    (hhalf : C ≤ 2 * T) (hC : 2 * (s ^ (K + 1) * N) ≤ C) : FRC.Logic.records s K * N < T :=
+  have h1 : FRC.Logic.records s K * N < s ^ (K + 1) * N :=
+    Nat.mul_lt_mul_of_pos_right (FRC.Logic.records_lt s hs K) hN
+  have h2 : s ^ (K + 1) * N ≤ T := Nat.le_of_mul_le_mul_left (Nat.le_trans hC hhalf) (Nat.zero_lt_succ 1)
+  Nat.lt_of_lt_of_le h1 h2
+
 /-! ### sums over an initial segment, for the fibre and derivation counts -/
 
 /-- `g 0 + … + g (R − 1)`. -/

@@ -3,7 +3,7 @@
  "tree": "25-godel-20260614",
  "title": "Incompleteness Without Infinity",
  "doi": "https://doi.org/10.20944/preprints202607.0850.v1",
- "generated": "20 October 2026",
+ "generated": "21 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -499,7 +499,7 @@
    {
     "name": "FRC.Logic.inj_onto",
     "module": "FrcCore/Theme/Logic",
-    "line": 428,
+    "line": 469,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -508,7 +508,7 @@
    {
     "name": "FRC.Logic.no_finite_successor",
     "module": "FrcCore/Theme/Logic",
-    "line": 439,
+    "line": 480,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -545,29 +545,29 @@
    {
     "name": "FRC.Logic.fin_theory_decidable",
     "module": "FrcCore/Theme/Logic",
-    "line": 637,
+    "line": 678,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "25:C2, Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its evaluation is `true`."
+    "doc": "25:C2, 5:B5, 5:B3, 5:D5, 00:Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its evaluation is `true`."
    },
    {
     "name": "FRC.Logic.fin_theory_complete",
     "module": "FrcCore/Theme/Logic",
-    "line": 661,
+    "line": 702,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "25:C2, 25:C3, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:C3, 5:D5, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
    },
    {
     "name": "FRC.Logic.fin_theory_consistent",
     "module": "FrcCore/Theme/Logic",
-    "line": 667,
+    "line": 708,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "25:C2, 25:C3, Z1 — the theory is consistent: no formula holds together with its negation."
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:D5, 00:Z1 — the theory is consistent: no formula holds together with its negation."
    }
   ],
   "C3": [
@@ -600,38 +600,38 @@
    {
     "name": "FRC.Logic.no_finite_Q",
     "module": "FrcCore/Theme/Logic",
-    "line": 682,
+    "line": 723,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:Z1, 25:C1, 25:C3 — no finite structure carries Robinson's successor: on `[0, n)`, a domain `D`, a successor relation `Sg` total on `D`, injective (Q2) and never reaching a zero `Z` of `D` (Q1) cannot exist. A `k`-dimensional interpretation is the case `n = mᵏ`, its tuples coded below `mᵏ`."
+    "doc": "00:Z1, 25:C1, 25:C3, 5:B3 — no finite structure carries Robinson's successor: on `[0, n)`, a domain `D`, a successor relation `Sg` total on `D`, injective (Q2) and never reaching a zero `Z` of `D` (Q1) cannot exist. A `k`-dimensional interpretation is the case `n = mᵏ`, its tuples coded below `mᵏ`."
    },
    {
     "name": "FRC.Logic.no_interpretation",
     "module": "FrcCore/Theme/Logic",
-    "line": 729,
+    "line": 770,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:Z1, 25:C1, 25:C3 — a finite structure interprets no Robinson `Q`: for formulas `δ` (the domain, in variable `0`), `σ` (the successor's graph, `x` in variable `1` and `y` in `0`) and `ζ` (zero), the relativised successor axioms — `S` total on the domain, Q2 (`S x = S x' → x = x'`), a zero in the domain, and Q1 (`S x ≠ 0`) — never all hold."
+    "doc": "00:Z1, 25:C1, 25:C3, 5:B3, 5:D5 — a finite structure interprets no Robinson `Q`: for formulas `δ` (the domain, in variable `0`), `σ` (the successor's graph, `x` in variable `1` and `y` in `0`) and `ζ` (zero), the relativised successor axioms — `S` total on the domain, Q2 (`S x = S x' → x = x'`), a zero in the domain, and Q1 (`S x ≠ 0`) — never all hold."
    },
    {
     "name": "FRC.Logic.fin_theory_complete",
     "module": "FrcCore/Theme/Logic",
-    "line": 661,
+    "line": 702,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "25:C2, 25:C3, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:C3, 5:D5, 00:Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
    },
    {
     "name": "FRC.Logic.fin_theory_consistent",
     "module": "FrcCore/Theme/Logic",
-    "line": 667,
+    "line": 708,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "25:C2, 25:C3, Z1 — the theory is consistent: no formula holds together with its negation."
+    "doc": "25:C2, 25:C3, 5:B5, 5:B3, 5:D5, 00:Z1 — the theory is consistent: no formula holds together with its negation."
    }
   ],
   "C5": [
@@ -651,7 +651,7 @@
    {
     "name": "FRC.Logic.sentences_outnumber",
     "module": "FrcCore/Theme/Logic",
-    "line": 452,
+    "line": 493,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -675,7 +675,7 @@
    {
     "name": "FRC.Logic.part_collides",
     "module": "FrcCore/Theme/Logic",
-    "line": 446,
+    "line": 487,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -738,7 +738,7 @@
    {
     "name": "FRC.Reach.alias_fibre",
     "module": "FrcCore/Theme/Reach",
-    "line": 211,
+    "line": 222,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -747,7 +747,7 @@
    {
     "name": "FRC.Reach.alias_two",
     "module": "FrcCore/Theme/Reach",
-    "line": 220,
+    "line": 231,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -756,7 +756,7 @@
    {
     "name": "FRC.Reach.alias_outside",
     "module": "FrcCore/Theme/Reach",
-    "line": 245,
+    "line": 256,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -868,11 +868,11 @@
    {
     "name": "FRC.Logic.records_lt",
     "module": "FrcCore/Theme/Logic",
-    "line": 232,
+    "line": 273,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "5:C2, 29:C10, 25:E2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters."
+    "doc": "5:C2, 5:C3, 29:C10, 25:E2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters."
    },
    {
     "name": "FRC.Reach.reach_vanishes",
@@ -888,7 +888,7 @@
    {
     "name": "FRC.Reach.global_clause_length",
     "module": "FrcCore/Theme/Reach",
-    "line": 385,
+    "line": 396,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -897,7 +897,7 @@
    {
     "name": "FRC.Reach.global_clause_defeats_budget",
     "module": "FrcCore/Theme/Reach",
-    "line": 392,
+    "line": 403,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -906,7 +906,7 @@
    {
     "name": "FRC.Reach.bare_rule_sound",
     "module": "FrcCore/Theme/Reach",
-    "line": 399,
+    "line": 410,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1044,7 +1044,7 @@
    {
     "name": "FRC.Logic.dense_coding",
     "module": "FrcCore/Theme/Logic",
-    "line": 511,
+    "line": 552,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1053,7 +1053,7 @@
    {
     "name": "FRC.Logic.digit_bound",
     "module": "FrcCore/Theme/Logic",
-    "line": 525,
+    "line": 566,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1176,7 +1176,7 @@
    {
     "name": "FRC.Reach.length_horizon",
     "module": "FrcCore/Theme/Reach",
-    "line": 296,
+    "line": 307,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1185,7 +1185,7 @@
    {
     "name": "FRC.Reach.no_short_derivation",
     "module": "FrcCore/Theme/Reach",
-    "line": 301,
+    "line": 312,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1205,7 +1205,7 @@
    {
     "name": "FRC.Reach.dtt_sound_complete",
     "module": "FrcCore/Theme/Reach",
-    "line": 308,
+    "line": 319,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1214,7 +1214,7 @@
    {
     "name": "FRC.Reach.dtt_ceiling",
     "module": "FrcCore/Theme/Reach",
-    "line": 313,
+    "line": 324,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1223,7 +1223,7 @@
    {
     "name": "FRC.Reach.cost_allBlock",
     "module": "FrcCore/Theme/Reach",
-    "line": 333,
+    "line": 344,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1292,7 +1292,7 @@
    {
     "name": "FRC.Reach.length_horizon",
     "module": "FrcCore/Theme/Reach",
-    "line": 296,
+    "line": 307,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1301,7 +1301,7 @@
    {
     "name": "FRC.Logic.part_collides",
     "module": "FrcCore/Theme/Logic",
-    "line": 446,
+    "line": 487,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1369,7 +1369,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "29:E4, 25:H2, 25:H4 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is decided by exhaustive evaluation, a formula holds exactly when its evaluation is `true`."
+    "doc": "29:E4, 25:H2, 25:H4, 5:D8 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is decided by exhaustive evaluation, a formula holds exactly when its evaluation is `true`."
    },
    {
     "name": "FRC.Logic.so_theory_complete",
@@ -1378,7 +1378,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "29:E4, 25:H2, 25:H4 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its negation holds, decided by the evaluation."
+    "doc": "29:E4, 25:H2, 25:H4, 5:D8 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its negation holds, decided by the evaluation."
    }
   ],
   "H4": [
@@ -1402,7 +1402,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "29:E4, 25:H2, 25:H4 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is decided by exhaustive evaluation, a formula holds exactly when its evaluation is `true`."
+    "doc": "29:E4, 25:H2, 25:H4, 5:D8 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is decided by exhaustive evaluation, a formula holds exactly when its evaluation is `true`."
    },
    {
     "name": "FRC.Logic.so_theory_complete",
@@ -1411,14 +1411,14 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "29:E4, 25:H2, 25:H4 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its negation holds, decided by the evaluation."
+    "doc": "29:E4, 25:H2, 25:H4, 5:D8 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its negation holds, decided by the evaluation."
    }
   ],
   "H5": [
    {
     "name": "FRC.Reach.atLeast_of_le",
     "module": "FrcCore/Theme/Reach",
-    "line": 486,
+    "line": 497,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1427,7 +1427,7 @@
    {
     "name": "FRC.Reach.not_atLeast_succ",
     "module": "FrcCore/Theme/Reach",
-    "line": 513,
+    "line": 524,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1436,7 +1436,7 @@
    {
     "name": "FRC.Reach.middle_cell_undecided",
     "module": "FrcCore/Theme/Reach",
-    "line": 526,
+    "line": 537,
     "axioms": [],
     "tier": 0,
     "ok": true,

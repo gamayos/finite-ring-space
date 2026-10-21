@@ -23,6 +23,24 @@ theorem p05013 : (∀ (s K : ℕ), (2 : ℕ) ≤ s → ∑ i ∈ Finset.range (K
 /-- p05019 — 5:D3. Diagonal normal form: $\{$Eff, Cns, Cmp, IR$\}$ inconsistent (B2), Tarski a variant with the truth predicate for Cmp; the diagonal is a theorem when external --- Cantor's theorem, $n<2^{n}$ on every frame, uncountability, halting --- and a paradox engine only over an internalised registry with completeness demanded. -/
 theorem p05019 : (∀ (α : Type u_1) (f : α → Set α), ¬Function.Surjective f) ∧ ∀ (n : ℕ), n < (2 : ℕ) ^ n :=
   And.intro @FRC.Logic.cantor (@FRC.Logic.cantor_finite)
+/-- p05024 — 5:D8. Finiteness of determinate totalities: in ZF with every infinite set Dedekind-infinite, a structure satisfies Det iff it is finite --- finite: the full higher-order theory decided by exhaustive evaluation; infinite: a copy of $\N$ inside gives an effective reduction of true second-order arithmetic, which is not arithmetical. The real field's first-order tameness is silence about its subsets. Cited definitions (not proofs): FRC.Logic.decideAllSubsets. -/
+theorem p05024 : ∀ {M : Type u_1} [Infinite M], Nonempty (ℕ ↪ M) :=
+  @FRC.Logic.nat_embeds
+/-- p05027 — 5:E1. Global choice on a finite universe: with a canonical order, $\operatorname{ch}(A)=\min A$ is a uniform pointwise choice rule; over a fixed finite base AC is a definable theorem; finite products are nonempty without it. -/
+theorem p05027 : ∀ {U : Type u_1} [LinearOrder U] (A : Finset U) (hA : A.Nonempty), A.min' hA ∈ A :=
+  @FRC.Logic.finite_choice
+/-- p05028 — 5:E2. Periodic choice: an equality-periodic family $A_{i+N}=A_i$ has the choice $f(i)=\operatorname{ch}(A_i)$ of the same period; group-periodic families as equivariant surjections $\pi:A\to I$ with equivariant sections. -/
+theorem p05028 : ∀ {U : Type u_1} [LinearOrder U] (A : ℤ → Finset U) (N : ℤ), (∀ (i : ℤ), A (i + N) = A i) → ∀ (i : ℤ), (A (i + N)).min = (A i).min :=
+  @FRC.Logic.periodic_choice
+set_option linter.defProp false in
+/-- p05029 — 5:E3. Equivariant periodic choice: a $G$-equivariant section exists iff each stabiliser action $G_i\curvearrowright A_i$ has a fixed point (one orbit at a time); the Fraenkel--Mostowski mechanism in positive form. -/
+def p05029 := @FRC.Logic.equivariant_section_iff
+/-- p05030 — 5:E4. The definable basis: every subspace of a finite vector space has the greedy $\min$-basis, one definable function on all subspaces; the equivariant obstruction --- $\Z/2$ acting by $v\mapsto-v$ on the line over $\F_5$ fixes no basis ($-v\neq v$), over $\F_2$ it does: arithmetic, not formal. -/
+theorem p05030 : (∀ (v : ZMod (5 : ℕ)), v ≠ (0 : ZMod (5 : ℕ)) → -v ≠ v) ∧ (-1 : ZMod (2 : ℕ)) = (1 : ZMod (2 : ℕ)) :=
+  @FRC.Logic.obstruction_five
+/-- p05034 — 5:E8. The choice paradoxes vanish: on a finite set counting measure is complete and invariant, no decomposition doubles the set ($X\sqcup X$ does not inject into $X$), and every ultrafilter is principal; periodic variants inherit this on one period. -/
+theorem p05034 : (∀ {X : Type u_1} [Fintype X] [Nonempty X], IsEmpty (X ⊕ X ↪ X)) ∧ ∀ {X : Type u_2} [Finite X] (f : Ultrafilter X), ∃ a, f = pure a :=
+  And.intro @FRC.Logic.no_doubling (@FRC.Logic.ultrafilter_principal)
 /-- p25010 — 25:C1, 29:B5. No finite structure interprets $\mathsf{Q}$: a model of $\mathsf{Q}$ has an injective successor with $0$ outside its range, and on a finite set an injective map is onto. -/
 theorem p25010 : (∀ {A : Type u_1} [Finite A] (S : A → A), Function.Injective S → ∀ (z : A), ∃ x, S x = z) ∧ ∀ {A : Type u_2} (S : A → A) (z : A), Function.Injective S → (∀ (x : A), S x ≠ z) → Infinite A :=
   And.intro @FRC.Logic.finite_succ_onto (@FRC.Logic.infinite_of_succ)

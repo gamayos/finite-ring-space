@@ -825,6 +825,20 @@
   },
   {
    "master": "Z1",
+   "paper": "5:B3",
+   "status": "shared theorem",
+   "lean": "FRC.Logic.no_finite_Q, FRC.Logic.no_interpretation, FRC.Logic.fin_theory_decidable, FRC.Logic.fin_theory_complete, FRC.Logic.fin_theory_consistent",
+   "note": "21 October 2026 (5-reductio's migration, D2): B3's core key is the second exit — no finite structure interprets Q and the finite theory is decidable, complete and consistent; Z1's key conjoins the same five and adds no_finite_successor; B3's Mathlib side (infinite_of_succ, theory_complete) is its own"
+  },
+  {
+   "master": "Z1",
+   "paper": "5:B5",
+   "status": "shared theorem",
+   "lean": "FRC.Logic.fin_theory_decidable, FRC.Logic.fin_theory_complete, FRC.Logic.fin_theory_consistent",
+   "note": "21 October 2026 (5-reductio's migration, D1): both keys conjoin the finite theory's decidability, completeness and consistency; Z1's key adds no_finite_successor, no_finite_Q and no_interpretation, B5's the Mathlib completeness (theory_complete, decRealize, decTheory)"
+  },
+  {
+   "master": "Z1",
    "paper": "25:F6",
    "status": "no shared clause",
    "lean": null,

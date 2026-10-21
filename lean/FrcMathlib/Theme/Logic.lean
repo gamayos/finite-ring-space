@@ -9,7 +9,11 @@ theorem and its finite form; fewer than `s^(K+1)` records of length `≤ K`, and
 Moved from 5-reductio's module, which keeps every old name as an alias. Since 20 October 2026 (25-godel's migration) also
 the paper's Mathlib side: the pigeonhole on a finite carrier, the `m + 1` sentences `⊥, ¬⊥, …`, the storage encodings and
 aliasing, the Catalan bound of the abundance lemma, the dense coding, the second-order quantifier over a finite domain
-(25:C1, C3, C5, D1, D3, E1, F4, H2, H4); `FrcMathlib/Godel.lean` keeps the old names. Classical, on Mathlib's hierarchy.
+(25:C1, C3, C5, D1, D3, E1, F4, H2, H4); `FrcMathlib/Godel.lean` keeps the old names. Since 21 October 2026 (5-reductio's
+migration) the rest of that paper's Mathlib side: definable and periodic choice, the equivariant section criterion, the
+obstruction on `𝔽₅`, no doubling and principal ultrafilters, the second-order quantifier over a finite domain and Dedekind's
+embedding (5:D8, E1–E4, E8); `FrcMathlib/Reductio.lean` keeps the old names (and the paper's limit over the reals, which an
+exact theme does not admit). Classical, on Mathlib's hierarchy.
 -/
 
 open FirstOrder FirstOrder.Language
@@ -274,5 +278,90 @@ theorem card_relations (M : Type*) [Fintype M] [DecidableEq M] (k : ℕ) :
 end finiteness
 
 end godel
+
+/-! ## 5-reductio's rows (moved from the paper module on 21 October 2026) -/
+
+section reductio
+
+section choice
+
+variable {U : Type*} [LinearOrder U]
+
+/-- 5:E1 (Proposition finite-choice): on a finite universe with a canonical order, `ch(A) = min A` is a member of
+every nonempty `A` — choice is a definable theorem, not a postulate. -/
+theorem finite_choice (A : Finset U) (hA : A.Nonempty) : A.min' hA ∈ A := Finset.min'_mem A hA
+
+/-- 5:E2 (Lemma periodic-equality): for an equality-periodic family `A (i + N) = A i` the choice `min A i` is
+periodic with the same period. -/
+theorem periodic_choice (A : ℤ → Finset U) (N : ℤ) (hN : ∀ i, A (i + N) = A i) (i : ℤ) :
+    (A (i + N)).min = (A i).min := by rw [hN]
+
+variable {G I A : Type*} [Group G] [MulAction G I] [MulAction G A]
+
+/-- 5:E3 (Theorem equivariant-choice, one orbit): for a `G`-family `π : A → I` over a transitive `G`-set `I`, an
+equivariant section exists iff the stabiliser of a base point `i₀` fixes some point of its fibre. -/
+theorem equivariant_section_iff [MulAction.IsPretransitive G I] (π : A → I)
+    (hπ : ∀ (g : G) (a : A), π (g • a) = g • π a) (i₀ : I) :
+    (∃ s : I → A, (∀ i, π (s i) = i) ∧ ∀ (g : G) (i : I), s (g • i) = g • s i) ↔
+      ∃ a, π a = i₀ ∧ ∀ g ∈ MulAction.stabilizer G i₀, g • a = a := by
+  constructor
+  · rintro ⟨s, hs, heq⟩
+    refine ⟨s i₀, hs i₀, fun g hg => ?_⟩
+    rw [← heq, MulAction.mem_stabilizer_iff.mp hg]
+  · rintro ⟨a, ha, hfix⟩
+    classical
+    choose g hg using fun i => MulAction.exists_smul_eq G i₀ i
+    -- `s i := g i • a`, where `g i • i₀ = i`; independence of the choice is the stabiliser condition
+    have key : ∀ (h : G) (i : I), h • i₀ = i → h • a = g i • a := by
+      intro h i hi
+      have hst : (g i)⁻¹ * h ∈ MulAction.stabilizer G i₀ := by
+        rw [MulAction.mem_stabilizer_iff, mul_smul, hi]
+        have e := inv_smul_smul (g i) i₀
+        rw [hg i] at e
+        exact e
+      have := hfix _ hst
+      rw [mul_smul] at this
+      calc h • a = g i • (g i)⁻¹ • h • a := (smul_inv_smul _ _).symm
+        _ = g i • a := by rw [this]
+    refine ⟨fun i => g i • a, fun i => ?_, fun h i => ?_⟩
+    · rw [hπ, ha, hg]
+    · show g (h • i) • a = h • (g i • a)
+      rw [← mul_smul]
+      exact (key (h * g i) (h • i) (by rw [mul_smul, hg])).symm
+
+/-- 5:E4 (Example basis-obstruction): on the line over `𝔽₅` the involution `v ↦ −v` fixes no basis — `−v ≠ v`
+for every `v ≠ 0` — while over `𝔽₂` it fixes `1`: the obstruction is arithmetic. -/
+theorem obstruction_five : (∀ v : ZMod 5, v ≠ 0 → -v ≠ v) ∧ (-(1 : ZMod 2) = 1) := by decide
+
+/-- 5:E8 (Banach–Tarski disappears): a finite nonempty set cannot be doubled — there is no injection
+`X ⊕ X ↪ X`, so no decomposition reassembles two copies of `X` from pieces of `X`. -/
+theorem no_doubling {X : Type*} [Fintype X] [Nonempty X] : IsEmpty (X ⊕ X ↪ X) := by
+  constructor
+  intro f
+  have h := Fintype.card_le_of_embedding f
+  rw [Fintype.card_sum] at h
+  have : 0 < Fintype.card X := Fintype.card_pos
+  omega
+
+/-- 5:E8 (ultrafilters): on a finite set every ultrafilter is principal. -/
+theorem ultrafilter_principal {X : Type*} [Finite X] (f : Ultrafilter X) : ∃ a, f = pure a :=
+  Ultrafilter.eq_pure_of_finite f
+
+end choice
+
+section determinacy
+
+/-- 5:D8 (Proposition finiteness, the finite direction): over a finite domain a second-order quantifier over all
+subsets is a finite conjunction — decided by exhaustive evaluation. -/
+def decideAllSubsets {M : Type*} [Fintype M] [DecidableEq M] (P : Finset M → Prop) [DecidablePred P] :
+    Decidable (∀ S : Finset M, P S) := Fintype.decidableForallFintype
+
+/-- 5:D8 (the infinite direction, its first step): an infinite domain carries a copy of `ℕ` — Dedekind's
+embedding, from which the reduction of true second-order arithmetic proceeds. -/
+theorem nat_embeds {M : Type*} [Infinite M] : Nonempty (ℕ ↪ M) := ⟨Infinite.natEmbedding M⟩
+
+end determinacy
+
+end reductio
 
 end FRC.Logic
