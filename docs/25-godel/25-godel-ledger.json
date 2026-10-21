@@ -88,21 +88,21 @@
      "label": "C1",
      "predicate": "No finite structure interprets $\\mathsf{Q}$: a model of $\\mathsf{Q}$ has an injective successor with $0$ outside its range, and on a finite set an injective map is onto.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:noQ}\\newline \\pywit{godel}{p25010}{C1}, \\leanwit{FrcCore}{p25010}{C1}, \\leanwit{FrcLedger}{p25010}{C1} \\lean{Godel.finite\\_succ\\_onto, Godel.infinite\\_of\\_succ, FRC.Logic.inj\\_onto, FRC.Logic.no\\_finite\\_successor}",
+     "source": "Prop.~\\ref{prop:noQ}\\newline \\pywit{godel}{p25010}{C1}, \\leanwit{FrcCore}{p25010}{C1}, \\leanwit{FrcMathlib}{p25010}{C1} \\lean{Godel.finite\\_succ\\_onto, Godel.infinite\\_of\\_succ, FRC.Logic.inj\\_onto, FRC.Logic.no\\_finite\\_successor}",
      "key": "p25010"
     },
     {
      "label": "C2",
      "predicate": "Completeness and decidability: for finite $\\M$ the theory $\\Th(\\M)$ is complete, consistent and decidable by exhaustive evaluation. A sentence of quantifier depth $q$ takes at most $c\\,m^{q}$ atomic evaluations, $c$ depending on its length. One first-order sentence $\\sigma_{\\M}$ characterises $\\M$ up to isomorphism.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:complete}\\newline \\pywit{godel}{p25011}{C2}, \\leanwit{FrcCore}{p25011}{C2}, \\leanwit{FrcLedger}{p25011}{C2} \\lean{Godel.theory\\_complete, Godel.decTheory, FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
+     "source": "Prop.~\\ref{prop:complete}\\newline \\pywit{godel}{p25011}{C2}, \\leanwit{FrcCore}{p25011}{C2}, \\leanwit{FrcMathlib}{p25011}{C2} \\lean{Godel.theory\\_complete, Godel.decTheory, FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
      "key": "p25011"
     },
     {
      "label": "C3",
      "predicate": "Vacuity: over a fixed finite $\\M$ neither incompleteness theorem has an instance. $\\Th(\\M)$ is consistent, effectively axiomatisable and complete. The hypothesis that fails is the interpretation of $\\mathsf{Q}$ (C1). No sentence true in $\\M$ is undecided by $\\Th(\\M)$.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:vacuity}; C1, C2\\newline \\pywit{godel}{p25012}{C3}, \\leanwit{FrcCore}{p25012}{C3}, \\leanwit{FrcLedger}{p25012}{C3} \\lean{Godel.finite\\_succ\\_onto, Godel.theory\\_complete, FRC.Logic.no\\_finite\\_Q, FRC.Logic.no\\_interpretation, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
+     "source": "Cor.~\\ref{cor:vacuity}; C1, C2\\newline \\pywit{godel}{p25012}{C3}, \\leanwit{FrcCore}{p25012}{C3}, \\leanwit{FrcMathlib}{p25012}{C3} \\lean{Godel.finite\\_succ\\_onto, Godel.theory\\_complete, FRC.Logic.no\\_finite\\_Q, FRC.Logic.no\\_interpretation, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
      "key": "p25012"
     },
     {
@@ -116,7 +116,7 @@
      "label": "C5",
      "predicate": "Tarski scoped: the $m+1$ sentences $\\varphi,\\neg\\varphi,\\dots,\\neg^{m}\\varphi$ outnumber the $m$ elements of $\\M$, so every numbering of the sentences by elements of $\\M$ gives two of them the same number. Truth in $\\M$ is defined externally by a finite table with the evaluation procedure of C2. What fails is the internalisation of truth.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:tarski}; C2\\newline \\pywit{godel}{p25014}{C5}, \\leanwit{FrcCore}{p25014}{C5}, \\leanwit{FrcLedger}{p25014}{C5} \\lean{Godel.nots\\_collide, FRC.Logic.sentences\\_outnumber}",
+     "source": "Rem.~\\ref{rem:tarski}; C2\\newline \\pywit{godel}{p25014}{C5}, \\leanwit{FrcCore}{p25014}{C5}, \\leanwit{FrcMathlib}{p25014}{C5} \\lean{Godel.nots\\_collide, FRC.Logic.sentences\\_outnumber}",
      "key": "p25014"
     }
    ]
@@ -129,7 +129,7 @@
      "label": "D1",
      "predicate": "Relational diagonal: an agent of storage capacity $K$ with $a^{K}<m$ has no injective encoding of the elements of $\\M$ into its storage states. Every internal representation identifies distinct elements. A fortiori the agent holds no faithful model of $\\M$ that also represents the model's own encoding map.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:part}\\newline \\pywit{godel}{p25015}{D1}, \\leanwit{FrcCore}{p25015}{D1}, \\leanwit{FrcLedger}{p25015}{D1} \\lean{Godel.no\\_injective\\_encoding, FRC.Logic.part\\_collides}",
+     "source": "Thm.~\\ref{thm:part}\\newline \\pywit{godel}{p25015}{D1}, \\leanwit{FrcCore}{p25015}{D1}, \\leanwit{FrcMathlib}{p25015}{D1} \\lean{Godel.no\\_injective\\_encoding, FRC.Logic.part\\_collides}",
      "key": "p25015"
     },
     {
@@ -143,7 +143,7 @@
      "label": "D3",
      "predicate": "Wrap, aliasing: every total assignment of storage readings to the elements of $\\M$ identifies distinct elements when $a^{K}<m$. Some reading stands for at least $\\lceil m/a^{K}\\rceil\\ge2$ elements. Every element outside a maximal faithfully represented range is read as an alias of one inside it.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:wrap}(1)\\newline \\pywit{godel}{p25017}{D3}, \\leanwit{FrcCore}{p25017}{D3}, \\leanwit{FrcLedger}{p25017}{D3} \\lean{Godel.reading\\_identifies, Godel.alias\\_fibre, Godel.alias\\_two, Godel.alias\\_outside, FRC.Reach.alias\\_fibre, FRC.Reach.alias\\_two, FRC.Reach.alias\\_outside}",
+     "source": "Lem.~\\ref{lem:wrap}(1)\\newline \\pywit{godel}{p25017}{D3}, \\leanwit{FrcCore}{p25017}{D3}, \\leanwit{FrcMathlib}{p25017}{D3} \\lean{Godel.reading\\_identifies, Godel.alias\\_fibre, Godel.alias\\_two, Godel.alias\\_outside, FRC.Reach.alias\\_fibre, FRC.Reach.alias\\_two, FRC.Reach.alias\\_outside}",
      "key": "p25017"
     },
     {
@@ -163,14 +163,14 @@
      "label": "E1",
      "predicate": "Abundance: the closed terms over $\\{1,+\\}$ with $\\ell$ leaves are the full binary trees, $C_{\\ell-1}\\ge2^{\\ell-2}$ in number. In $\\M_p$ all have the value $\\ell\\bmod p$, so any two give a true equation of length $O(\\ell)$, at least $2^{\\ell}$ of them for $\\ell\\ge6$. The true sentences of length at most $L$ number at least $2^{\\alpha L}$ for large $L$, $\\alpha>0$ constant.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:abundance}\\newline \\pywit{godel}{p25019}{E1}, \\leanwit{FrcCore}{p25019}{E1}, \\leanwit{FrcLedger}{p25019}{E1} \\lean{Godel.two\\_pow\\_le\\_catalan, Godel.cohort\\_lower, Godel.abundance, FRC.Reach.value\\_leaves, FRC.Reach.equal\\_leaves\\_equal\\_value}",
+     "source": "Lem.~\\ref{lem:abundance}\\newline \\pywit{godel}{p25019}{E1}, \\leanwit{FrcCore}{p25019}{E1}, \\leanwit{FrcMathlib}{p25019}{E1} \\lean{Godel.two\\_pow\\_le\\_catalan, Godel.cohort\\_lower, Godel.abundance, FRC.Reach.value\\_leaves, FRC.Reach.equal\\_leaves\\_equal\\_value}",
      "key": "p25019"
     },
     {
      "label": "E2",
      "predicate": "Vanishing reach: an agent of capacity $(K,H)$ certifies at most $a^{B+1}$ sentences over all its runs, the records being strings of length at most $B$. The certified fraction of the truths of length at most $L$ (E1) is at most $a^{B+1}/2^{\\alpha L}$, below $1/N$ as soon as $\\alpha L>(B+1)\\log_2a+\\log_2N$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:reach}; E1\\newline \\pywit{godel}{p25020}{E2}, \\leanwit{FrcCore}{p25020}{E2}, \\leanwit{FrcLedger}{p25020}{E2} \\lean{Godel.records\\_lt, FRC.Logic.records\\_lt, FRC.Reach.reach\\_vanishes}",
+     "source": "Prop.~\\ref{prop:reach}; E1\\newline \\pywit{godel}{p25020}{E2}, \\leanwit{FrcCore}{p25020}{E2}, \\leanwit{FrcMathlib}{p25020}{E2} \\lean{Godel.records\\_lt, FRC.Logic.records\\_lt, FRC.Reach.reach\\_vanishes}",
      "key": "p25020"
     },
     {
@@ -218,7 +218,7 @@
      "label": "F4",
      "predicate": "Density: $m$ has $d$ base-$a$ digits. An injective coding of length-$n$ strings by $k$-tuples, $k\\ge1$, needs $m^{k}\\ge a^{n}$, so $n<dk$. In F2's $\\delta(u)=\\exists v\\,(\\mathrm{Diag}(u,v)\\wedge\\theta(v))$ let $v$ have $k$ coordinates and $u$ have $k_{1}$. Each coordinate of $v$ is named three times, each of $u$ once. So $\\lvert\\delta\\rvert\\ge2c(k)+c(k+k_{1})$, and $\\lambda=\\delta(\\ulcorner\\delta\\urcorner)$ has $\\lvert\\lambda\\rvert\\ge3c(k)+k_{1}$, $c(j)$ the total length of the $j$ shortest names.",
      "tag": "T",
-     "source": "Lem.~\\ref{rem:density}; F2\\newline \\pywit{godel}{p25048}{F4}, \\leanwit{FrcCore}{p25048}{F4}, \\leanwit{FrcLedger}{p25048}{F4} \\lean{Godel.dense\\_coding, FRC.Logic.dense\\_coding, FRC.Logic.digit\\_bound}",
+     "source": "Lem.~\\ref{rem:density}; F2\\newline \\pywit{godel}{p25048}{F4}, \\leanwit{FrcCore}{p25048}{F4}, \\leanwit{FrcMathlib}{p25048}{F4} \\lean{Godel.dense\\_coding, FRC.Logic.dense\\_coding, FRC.Logic.digit\\_bound}",
      "key": "p25048"
     },
     {
@@ -328,7 +328,7 @@
      "label": "H2",
      "predicate": "Finiteness, the finite direction: for finite $\\M$ the full second-order theory $\\ThSO(\\M)$ is decidable. A second-order quantifier over $k$-ary relations ranges over the $2^{m^{k}}$ subsets of $\\M^{k}$, and exhaustive evaluation decides every second-order sentence.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:finiteness}\\newline \\pywit{godel}{p25036}{H2}, \\leanwit{FrcCore}{p25036}{H2}, \\leanwit{FrcLedger}{p25036}{H2} \\lean{Godel.card\\_relations, Godel.decideAllRelations, FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete}",
+     "source": "Thm.~\\ref{thm:finiteness}\\newline \\pywit{godel}{p25036}{H2}, \\leanwit{FrcCore}{p25036}{H2}, \\leanwit{FrcMathlib}{p25036}{H2} \\lean{Godel.card\\_relations, Godel.decideAllRelations, FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete}",
      "key": "p25036"
     },
     {
@@ -342,7 +342,7 @@
      "label": "H4",
      "predicate": "Determinacy meets effectivity only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or effectivity over a fragment. Finitude delivers both, at grade (ii).",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:determinacy}; H2, H3\\newline \\pywit{godel}{p25038}{H4}, \\leanwit{FrcCore}{p25038}{H4}, \\leanwit{FrcLedger}{p25038}{H4} \\lean{Godel.card\\_relations, FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete}",
+     "source": "Cor.~\\ref{cor:determinacy}; H2, H3\\newline \\pywit{godel}{p25038}{H4}, \\leanwit{FrcCore}{p25038}{H4}, \\leanwit{FrcMathlib}{p25038}{H4} \\lean{Godel.card\\_relations, FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete}",
      "key": "p25038"
     },
     {
@@ -472,7 +472,7 @@
   "C1": [
    {
     "name": "FRC.Godel.finite_succ_onto",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 27,
     "axioms": [
      "Classical.choice",
@@ -485,7 +485,7 @@
    },
    {
     "name": "FRC.Godel.infinite_of_succ",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 30,
     "axioms": [
      "Classical.choice",
@@ -518,7 +518,7 @@
   "C2": [
    {
     "name": "FRC.Godel.theory_complete",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 33,
     "axioms": [
      "Classical.choice",
@@ -531,7 +531,7 @@
    },
    {
     "name": "FRC.Godel.decTheory",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 35,
     "axioms": [
      "Classical.choice",
@@ -573,7 +573,7 @@
   "C3": [
    {
     "name": "FRC.Godel.finite_succ_onto",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 27,
     "axioms": [
      "Classical.choice",
@@ -586,7 +586,7 @@
    },
    {
     "name": "FRC.Godel.theory_complete",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 33,
     "axioms": [
      "Classical.choice",
@@ -637,7 +637,7 @@
   "C5": [
    {
     "name": "FRC.Godel.nots_collide",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 43,
     "axioms": [
      "Classical.choice",
@@ -661,7 +661,7 @@
   "D1": [
    {
     "name": "FRC.Godel.no_injective_encoding",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 46,
     "axioms": [
      "Classical.choice",
@@ -685,7 +685,7 @@
   "D3": [
    {
     "name": "FRC.Godel.reading_identifies",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 50,
     "axioms": [
      "Classical.choice",
@@ -698,7 +698,7 @@
    },
    {
     "name": "FRC.Godel.alias_fibre",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 53,
     "axioms": [
      "Classical.choice",
@@ -711,7 +711,7 @@
    },
    {
     "name": "FRC.Godel.alias_two",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 56,
     "axioms": [
      "Classical.choice",
@@ -724,7 +724,7 @@
    },
    {
     "name": "FRC.Godel.alias_outside",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 59,
     "axioms": [
      "Classical.choice",
@@ -795,7 +795,7 @@
   "E1": [
    {
     "name": "FRC.Godel.two_pow_le_catalan",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 63,
     "axioms": [
      "Classical.choice",
@@ -808,7 +808,7 @@
    },
    {
     "name": "FRC.Godel.cohort_lower",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 65,
     "axioms": [
      "Classical.choice",
@@ -821,7 +821,7 @@
    },
    {
     "name": "FRC.Godel.abundance",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 67,
     "axioms": [
      "Classical.choice",
@@ -854,7 +854,7 @@
   "E2": [
    {
     "name": "FRC.Godel.records_lt",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 69,
     "axioms": [
      "Classical.choice",
@@ -1030,7 +1030,7 @@
   "F4": [
    {
     "name": "FRC.Godel.dense_coding",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 72,
     "axioms": [
      "Classical.choice",
@@ -1338,7 +1338,7 @@
   "H2": [
    {
     "name": "FRC.Godel.card_relations",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 78,
     "axioms": [
      "Classical.choice",
@@ -1351,7 +1351,7 @@
    },
    {
     "name": "FRC.Godel.decideAllRelations",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 75,
     "axioms": [
      "Classical.choice",
@@ -1384,7 +1384,7 @@
   "H4": [
    {
     "name": "FRC.Godel.card_relations",
-    "module": "FrcLedger/Godel",
+    "module": "FrcMathlib/Godel",
     "line": 78,
     "axioms": [
      "Classical.choice",

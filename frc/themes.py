@@ -4,7 +4,7 @@ The map is Part I §4 of the migration plan (`00-ledger-20260816/reports/ledger-
 Q05), frozen as data. `ci/gates.py` enforces it (gates G09, G10 and G19), and `frc/README.md` prints it.
 
 The framework has three layers, and each imports only the layer below it:
-  the themes (python `frc/<theme>.py`; Lean `FrcCore` and `FrcLedger`), shared by every ledger;
+  the themes (python `frc/<theme>.py`; Lean `FrcCore` and `FrcMathlib`), shared by every ledger;
   the ledger files (`frc/ledgers/`, `Ledgers/`), one per paper and one per master block, which bind predicates to themes;
   the presentation (one notebook per ledger, the ledger pages).
 
@@ -60,27 +60,27 @@ THEMES = {
     "frame": dict(tier="structure", rank=10, exact=True,
                   py=["frc/shell.py"],
                   core=["lean/FrcCore/FrameCore.lean", "lean/FrcCore/Frame.lean", "lean/FrcCore/Parity.lean", "lean/FrcCore/Transform.lean", "lean/FrcCore/Orbit.lean", "lean/FrcCore/Instances.lean", "lean/FrcCore/Sum.lean", "lean/FrcCore/Meridian.lean", "lean/FrcCore/Theme/Domain.lean"],
-                  ml=["lean/FrcLedger/Theme/Frame.lean"],
+                  ml=["lean/FrcMathlib/Theme/Frame.lean"],
                   content="the frame (τ; 0, 1, g), the drive and its orbit, the quarter-turn, the lift; finite sums; concrete shells; the unit-domain lattice on the frame's two charts (00:C12)"),
     "extension": dict(tier="structure", rank=11, exact=True,
-                      py=["frc/extension.py"], core=["lean/FrcCore/Theme/Quadratic.lean", "lean/FrcCore/Theme/Extension.lean", "lean/FrcCore/Theme/Tally.lean"], ml=["lean/FrcLedger/Theme/Extension.lean"],
+                      py=["frc/extension.py"], core=["lean/FrcCore/Theme/Quadratic.lean", "lean/FrcCore/Theme/Extension.lean", "lean/FrcCore/Theme/Tally.lean"], ml=["lean/FrcMathlib/Theme/Extension.lean"],
                       content="the quadratic extension F_{p²}, its norm and conjugation, the norm-one torus and the boost; the quaternion norm; the two strata of probability (00:C10); the pair tally on the Q₄ core (00:C11)"),
     "projective": dict(tier="structure", rank=12, exact=True,
-                       py=["frc/projective.py"], core=["lean/FrcCore/Theme/Projective.lean", "lean/FrcCore/Theme/Spin.lean"], ml=["lean/FrcLedger/Theme/Projective.lean"],
+                       py=["frc/projective.py"], core=["lean/FrcCore/Theme/Projective.lean", "lean/FrcCore/Theme/Spin.lean"], ml=["lean/FrcMathlib/Theme/Projective.lean"],
                        content="PGL₂ and SL₂ by elements, the Borel subgroup, the split and non-split tori; the unitary form SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p), the finite order of every element and the adjoint action PGL₂ → SO₃ (Theme/Spin.lean, the master's C22 and C27, 20 October 2026)"),
     "fourier": dict(tier="structure", rank=13, exact=True,
                     py=["frc/fourier.py"], core=["lean/FrcCore/Theme/Fourier.lean", "lean/FrcCore/Theme/Fractional.lean", "lean/FrcCore/Theme/Lifts.lean", "lean/FrcCore/Theme/Dichotomy.lean", "lean/FrcCore/Theme/Rotations.lean", "lean/FrcCore/Theme/Heisenberg.lean", "lean/FrcCore/Theme/Spectra.lean", "lean/FrcCore/Theme/Exclusivity.lean"],
-                    ml=["lean/FrcLedger/Theme/Fourier.lean", "lean/FrcLedger/Theme/Fractional.lean"],
+                    ml=["lean/FrcMathlib/Theme/Fourier.lean", "lean/FrcMathlib/Theme/Fractional.lean"],
                     content="the shell DFT and its inversion, the fractional family, the meridians and the scale-shift"),
     "numbers": dict(tier="structure", rank=14, exact=True,
                     py=["frc/numbers.py"], core=["lean/FrcCore/Poly.lean", "lean/FrcCore/Theme/Numbers.lean"],
-                    ml=["lean/FrcLedger/Theme/Numbers.lean"],
+                    ml=["lean/FrcMathlib/Theme/Numbers.lean"],
                     content="polynomials over the shell and the root criterion; the walls of π and e; the comb"),
     "logic": dict(tier="structure", rank=15, exact=True,
                   py=["frc/logic.py", "frc/formation.py", "frc/diagonal.py"],
                   core=["lean/FrcCore/Theme/Logic.lean", "lean/FrcCore/Theme/SecondOrder.lean", "lean/FrcCore/Theme/Formation.lean",
                         "lean/FrcCore/Theme/Reach.lean", "lean/FrcCore/Theme/Diagonal.lean", "lean/FrcCore/Theme/Threshold.lean"],
-                  ml=["lean/FrcLedger/Theme/Logic.lean"],
+                  ml=["lean/FrcMathlib/Theme/Logic.lean"],
                   content="the bounded (Δ₀) language over a finite structure, evaluation, finite Gödel; the counting core of 5-reductio and 25-godel; the full second-order theory of a finite structure, and formation universes, traces and bounded certificates (29-finitism); the part and the reach bound, the diagonal under finitude and the threshold of the dense coding (25-godel, since 20 October 2026)"),
     "foundation": dict(tier="programme", rank=20, exact=True,
                        py=["frc/foundation.py"], core=["lean/FrcCore/Theme/Field.lean", "lean/FrcCore/Theme/Foundation.lean", "lean/FrcCore/Theme/Drive.lean"], ml=[],
@@ -92,18 +92,18 @@ THEMES = {
                     py=["frc/subject.py", "frc/covering.py"], core=["lean/FrcCore/Theme/Subject.lean", "lean/FrcCore/Theme/Pair.lean", "lean/FrcCore/Theme/Hopf.lean"], ml=[],
                     content="master block C: the Subject, the frame group, the registration; the pair (p, Ω): the resolvable window, the leak rate, the joint cycle, the tick arithmetic and the covering parity theorem; the Hopf section and the frame triple on every prime shell (38-s13)"),
     "gravity": dict(tier="programme", rank=23, exact=True,
-                    py=["frc/gravity.py", "frc/drift.py", "frc/lattice.py"], core=["lean/FrcCore/Theme/Shift.lean", "lean/FrcCore/Theme/Symbol.lean", "lean/FrcCore/Theme/Gravity.lean", "lean/FrcCore/Theme/Lattice.lean", "lean/FrcCore/Theme/Drift.lean"], ml=["lean/FrcLedger/Theme/Gravity.lean"],
+                    py=["frc/gravity.py", "frc/drift.py", "frc/lattice.py"], core=["lean/FrcCore/Theme/Shift.lean", "lean/FrcCore/Theme/Symbol.lean", "lean/FrcCore/Theme/Gravity.lean", "lean/FrcCore/Theme/Lattice.lean", "lean/FrcCore/Theme/Drift.lean"], ml=["lean/FrcMathlib/Theme/Gravity.lean"],
                     content="master block E: gravity on the lattice; the count face; the register on every frame, the shift theorem on the cycle (21:C20), the difference operators on the cycle and the exact faces of frame drift (21-gravity)"),
     "quantum": dict(tier="programme", rank=24, exact=True,
                     py=["frc/quantum.py"],
                     core=["lean/FrcCore/Theme/Quantum.lean", "lean/FrcCore/Theme/Observation.lean", "lean/FrcCore/Theme/Interference.lean", "lean/FrcCore/Theme/Composite.lean"],
-                    ml=["lean/FrcLedger/Theme/Quantum.lean"],
+                    ml=["lean/FrcMathlib/Theme/Quantum.lean"],
                     content="master block F: the quantum rows; the observation formalism in the shadow, the interference hierarchy and the splitting depth, the composites, the correlations and the gravitational channel (22-quantum)"),
     "interactions": dict(tier="programme", rank=25, exact=True,
                          py=["frc/interactions.py"], core=["lean/FrcCore/Theme/Unitary.lean", "lean/FrcCore/Theme/Interactions.lean", "lean/FrcCore/Theme/Fields.lean"], ml=[],
                          content="master block G: electromagnetism, the weak and strong forces, matter, flavour"),
     "horizon": dict(tier="programme", rank=26, exact=True,
-                    py=["frc/horizon.py", "frc/ladder.py"], core=["lean/FrcCore/Theme/Horizon.lean", "lean/FrcCore/Theme/Zeros.lean", "lean/FrcCore/Theme/Ladder.lean"], ml=["lean/FrcLedger/Theme/Horizon.lean"],
+                    py=["frc/horizon.py", "frc/ladder.py"], core=["lean/FrcCore/Theme/Horizon.lean", "lean/FrcCore/Theme/Zeros.lean", "lean/FrcCore/Theme/Ladder.lean"], ml=["lean/FrcMathlib/Theme/Horizon.lean"],
                     content="master block Z: the horizon; the shell theorem; finite Gödel at the totality; the computational face of the horizon clause: the ladder of the four roles, the ascent's and the descent's counts (26-pnp)"),
     "flavour": dict(tier="programme", rank=27, exact=True,
                     py=["frc/flavour.py"], core=["lean/FrcCore/Theme/Flavour.lean"], ml=[],
@@ -112,22 +112,22 @@ THEMES = {
                  py=["frc/dark.py"], core=["lean/FrcCore/Theme/Dark.lean"], ml=[],
                  content="32-dark's exact content above the gravity theme's Gauss law: the first-passage recursion and its two-image solution on the cycle, Vieta for the first-passage quadratic, the Tully–Fisher identity, the parallelogram law of the extension norm and the incoherent mean over the sign patterns, the coherence sums, the enclosed flux (18 October 2026)"),
     "hadrons": dict(tier="programme", rank=29, exact=True,
-                    py=["frc/hadrons.py"], core=["lean/FrcCore/Theme/Hadrons.lean"], ml=["lean/FrcLedger/Theme/Hadrons.lean"],
+                    py=["frc/hadrons.py"], core=["lean/FrcCore/Theme/Hadrons.lean"], ml=["lean/FrcMathlib/Theme/Hadrons.lean"],
                     content="35-hadrons' exact content above the interactions theme's colour sector: the colour group SU(3, 𝔽₂) by frames with its centre, the colourless content of the exterior algebra, the Weyl constant terms of SU(3), the flavour and isospin relations as ring identities, the Casimir, spin and charge arithmetic, the admissible shells, the Sturm count of the finite confinement operator; on Mathlib the readings of the PDG masses and the baryon eigenvalue (19 October 2026)"),
     "super": dict(tier="programme", rank=30, exact=True,
                   py=["frc/super.py"], core=["lean/FrcCore/Theme/Super.lean"], ml=[],
                   content="superconductivity on the split torus, the master's G19 and G20, developed in the master (no paper ledger; 34-super unpublished): the winding kernel and the inverse pairs, the residual ℤ₂ of the charge-2 condensate, the self-dual point as a ring identity with √2, the symplectic quarter-turn on the charge–flux lattice, the metrology closure, the even and odd Airy ladders by Sturm's count (19 October 2026)"),
     "chart": dict(tier="chart", rank=31, exact=False,
-                  py=["frc/chart.py", "frc/chart_quantum.py", "frc/chart_fields.py", "frc/chart_rh.py", "frc/chart_fourier.py", "frc/chart_gravity.py", "frc/chart_flavour.py", "frc/chart_dark.py", "frc/chart_hadrons.py", "frc/chart_super.py"], core=[], ml=["lean/FrcLedger/Theme/Chart.lean", "lean/FrcLedger/Theme/Strong.lean", "lean/FrcLedger/Theme/Fields.lean", "lean/FrcLedger/Theme/Flavour.lean", "lean/FrcLedger/Theme/Dark.lean"],
+                  py=["frc/chart.py", "frc/chart_quantum.py", "frc/chart_fields.py", "frc/chart_rh.py", "frc/chart_fourier.py", "frc/chart_gravity.py", "frc/chart_flavour.py", "frc/chart_dark.py", "frc/chart_hadrons.py", "frc/chart_super.py"], core=[], ml=["lean/FrcMathlib/Theme/Chart.lean", "lean/FrcMathlib/Theme/Strong.lean", "lean/FrcMathlib/Theme/Fields.lean", "lean/FrcMathlib/Theme/Flavour.lean", "lean/FrcMathlib/Theme/Dark.lean"],
                   content="readings against the continuum: the cosmology section, the constants' charts; floats and ℝ allowed here only"),
 }
 
 # The generated and the binding files (tasks LM19 and LM20): their patterns, ranks above every theme. The key files are
 # written by lean/make_keys.py (LM19): a key whose cited theorems all live in themes, in the file of its highest theme.
-KEYS = dict(tier="keys", rank=40, core="lean/FrcCore/Keys/{theme}.lean", ml="lean/FrcLedger/Keys/{theme}.lean",
+KEYS = dict(tier="keys", rank=40, core="lean/FrcCore/Keys/{theme}.lean", ml="lean/FrcMathlib/Keys/{theme}.lean",
             names=("FRC.Ledger.p{key}", "FRC.LedgerML.p{key}"))
 LEDGERS = dict(tier="ledgers", rank=50, py_paper="frc/ledgers/p{nn}_{topic}.py", py_master="frc/ledgers/master/{theme}.py",
-               core="lean/FrcCore/Ledgers/{ledger}.lean", ml="lean/FrcLedger/Ledgers/{ledger}.lean")
+               core="lean/FrcCore/Ledgers/{ledger}.lean", ml="lean/FrcMathlib/Ledgers/{ledger}.lean")
 
 # The paper modules of today and where their generic content went (tasks LM17, LM18). They become ledger files when
 # their paper migrates (LM35, LM36). A paper module imports themes, key files and its own paper's modules only.
@@ -155,26 +155,26 @@ LEGACY = {
     "lean/FrcCore/Dark.lean": ("32-dark", ["dark", "gravity", "frame"]),
     "lean/FrcCore/Hadrons.lean": ("35-hadrons", ["hadrons", "interactions"]),
     "lean/FrcCore/Finitism.lean": ("29-finitism", ["logic"]),
-    "lean/FrcLedger/Algebra.lean": ("1-algebra", []),
-    "lean/FrcLedger/Geometry.lean": ("2-geometry", []),
-    "lean/FrcLedger/Causality.lean": ("3-causality", []),
-    "lean/FrcLedger/Representation.lean": ("4-representation", []),
-    "lean/FrcLedger/Reductio.lean": ("5-reductio", ["logic"]),
-    "lean/FrcLedger/Fourier.lean": ("6-fourier", ["fourier"]),
-    "lean/FrcLedger/Dirac.lean": ("8-dirac", ["extension"]),
-    "lean/FrcLedger/Dimensions.lean": ("10-dimensions", []),
-    "lean/FrcLedger/Epi.lean": ("13-epi", ["numbers"]),
-    "lean/FrcLedger/Entropy.lean": ("14-entropy", ["chart"]),
-    "lean/FrcLedger/Rh.lean": ("20-rh", ["extension"]),
-    "lean/FrcLedger/Gravity.lean": ("21-gravity", ["chart"]),
-    "lean/FrcLedger/S13.lean": ("38-s13", ["gravity", "chart"]),
-    "lean/FrcLedger/Qm.lean": ("22-quantum", ["quantum", "chart"]),
-    "lean/FrcLedger/Godel.lean": ("25-godel", ["logic"]),
-    "lean/FrcLedger/Pnp.lean": ("26-pnp", ["horizon", "chart"]),
-    "lean/FrcLedger/Fields.lean": ("27-fields", ["chart"]),
-    "lean/FrcLedger/Flavour.lean": ("28-flavour", ["chart"]),
-    "lean/FrcLedger/Dark.lean": ("32-dark", ["chart"]),
-    "lean/FrcLedger/Hadrons.lean": ("35-hadrons", ["hadrons"]),
+    "lean/FrcMathlib/Algebra.lean": ("1-algebra", []),
+    "lean/FrcMathlib/Geometry.lean": ("2-geometry", []),
+    "lean/FrcMathlib/Causality.lean": ("3-causality", []),
+    "lean/FrcMathlib/Representation.lean": ("4-representation", []),
+    "lean/FrcMathlib/Reductio.lean": ("5-reductio", ["logic"]),
+    "lean/FrcMathlib/Fourier.lean": ("6-fourier", ["fourier"]),
+    "lean/FrcMathlib/Dirac.lean": ("8-dirac", ["extension"]),
+    "lean/FrcMathlib/Dimensions.lean": ("10-dimensions", []),
+    "lean/FrcMathlib/Epi.lean": ("13-epi", ["numbers"]),
+    "lean/FrcMathlib/Entropy.lean": ("14-entropy", ["chart"]),
+    "lean/FrcMathlib/Rh.lean": ("20-rh", ["extension"]),
+    "lean/FrcMathlib/Gravity.lean": ("21-gravity", ["chart"]),
+    "lean/FrcMathlib/S13.lean": ("38-s13", ["gravity", "chart"]),
+    "lean/FrcMathlib/Qm.lean": ("22-quantum", ["quantum", "chart"]),
+    "lean/FrcMathlib/Godel.lean": ("25-godel", ["logic"]),
+    "lean/FrcMathlib/Pnp.lean": ("26-pnp", ["horizon", "chart"]),
+    "lean/FrcMathlib/Fields.lean": ("27-fields", ["chart"]),
+    "lean/FrcMathlib/Flavour.lean": ("28-flavour", ["chart"]),
+    "lean/FrcMathlib/Dark.lean": ("32-dark", ["chart"]),
+    "lean/FrcMathlib/Hadrons.lean": ("35-hadrons", ["hadrons"]),
 }
 LEGACY_IMPORTS_ENFORCED = True          # set by LM18 (5 October 2026): the paper modules import themes only
 
@@ -208,7 +208,7 @@ def markdown():
     short = lambda fs, pre: ", ".join(f"`{f[len(pre):] if f.startswith(pre) else f}`" for f in fs) or "—"
     for name, t in sorted(THEMES.items(), key=lambda kv: kv[1]["rank"]):
         rows.append(f"| {name} | {t['tier']} | {t['rank']} | {'yes' if t['exact'] else 'no'} | {short(t['py'], 'frc/')} | "
-                    f"{short(t['core'], 'lean/FrcCore/')} | {short(t['ml'], 'lean/FrcLedger/')} | {t['content']} |")
+                    f"{short(t['core'], 'lean/FrcCore/')} | {short(t['ml'], 'lean/FrcMathlib/')} | {t['content']} |")
     rows.append(f"| keys | keys | {KEYS['rank']} | yes | — | `Keys/<Theme>.lean` | `Keys/<Theme>.lean` | one declaration per key: "
                 f"`{KEYS['names'][0]}` and `{KEYS['names'][1]}` (generated) |")
     rows.append(f"| ledgers | ledgers | {LEDGERS['rank']} | yes | `ledgers/p<NN>_<topic>.py`, `ledgers/master/<theme>.py` | "

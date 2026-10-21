@@ -9,7 +9,7 @@ Every family check is a layer of block `dom` (A–H, the suite `verify_domains.p
 of the paper's ledger it witnesses (the paper's Appendix A "Predicate ledger, machine verification and formalisation", 48 predicates
 in blocks A–G, P, X, cited as `10:<label>`; public copy `docs/10-dimensions/10-dimensions-ledger.html`); the ledger's source
 column links the script at the deciding family's marker, `dimensions.py#<key>` (the family checks are listed on the public page from `results.json`). Where a predicate is proved in Lean (`lean/FrcCore/Dimensions.lean` with no axioms, or
-`lean/FrcLedger/Dimensions.lean` on Mathlib), the check here is the instance the reader can run. Master-ledger predicates of the corpus reached through the paper predicates: `00:D7`, `00:C12`,
+`lean/FrcMathlib/Dimensions.lean` on Mathlib), the check here is the instance the reader can run. Master-ledger predicates of the corpus reached through the paper predicates: `00:D7`, `00:C12`,
 `00:C13`, `00:C8`, `00:B10`.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/10-dimensions/frc-10-dimensions.ipynb)
@@ -36,7 +36,7 @@ it installs the package from the site (`pip install frc-10-dimensions --find-lin
 that decides the predicate is printed from the script's own source — the line under its `# 10:C5 (<key>)` marker — and every family
 record citing the predicate is listed with its verdict. The markers in `dimensions.py` are the lines the
 ledger page's source glyph opens (`docs/src/10-dimensions/#<key>`). The predicates' Lean counterparts are the
-declarations named by their keys (`p10015`) at the end of `lean/FrcCore/Dimensions.lean` and `lean/FrcLedger/Dimensions.lean`
+declarations named by their keys (`p10015`) at the end of `lean/FrcCore/Dimensions.lean` and `lean/FrcMathlib/Dimensions.lean`
 (`lean/make_predicates.py`), one per predicate, with the paper's module as one executable file for the web editor.
 
 ## Provenance

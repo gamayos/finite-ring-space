@@ -1,7 +1,7 @@
 import Mathlib
-import FrcLedger.Theme.Extension
-import FrcLedger.Theme.Frame
-import FrcLedger.Keys.Frame
+import FrcMathlib.Theme.Extension
+import FrcMathlib.Theme.Frame
+import FrcMathlib.Keys.Frame
 
 /-!
 # 8-dirac — Schrödinger and Dirac dynamics over the finite substrate: the ledger predicates in Lean (2026-09-20)

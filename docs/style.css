@@ -187,14 +187,16 @@ table.ledger td.pred .name { display: block; font-weight: 600; margin-bottom: 0.
 table.ledger td.src { font-size: 0.82rem; color: var(--ink-soft); }
 table.ledger td.src code, table.ledger td.src .wit { font-family: var(--mono); font-size: 0.78rem; }
 table.ledger tr.blockhead td { background: var(--rule-soft); padding: 0.55rem 0.6rem; font-size: 0.9rem; }
-table.ledger tr.blockhead td.bw { padding-left: .7rem; white-space: nowrap; }   /* the block head's glyphs and counts in their own cell, the Sources column (9 October 2026) */
-table.ledger tr.blockhead .bglyphs { display: flex; align-items: center; gap: 0; }   /* the block head's glyphs and counts (8 October 2026): the menu totals' form, left-aligned under the Sources header (9 October 2026) */
-.wrap table.ledger tr.blockhead .bglyphs a.sum:first-child { margin-left: -.14rem; }   /* the first glyph's left edge on the column's text edge (the pill's own .14rem padding taken off) */
-.wrap table.ledger tr.blockhead .bglyphs a.sum, .wrap table.ledger tr.blockhead .bglyphs a.sum:visited { display: inline-flex; align-items: center; gap: .2rem; height: 22px; padding: 0 .25rem 0 .14rem; margin: 0 0 0 .2rem; border: 0; border-radius: 4px; font-family: var(--mono); font-size: .85rem; text-decoration: none; }
-.wrap table.ledger tr.blockhead .bglyphs a.sum:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); border: 0; }
-table.ledger tr.blockhead .bglyphs .n { line-height: 1; color: #419457; font-weight: 400; } table.ledger tr.blockhead .bglyphs a.sum.py .n { color: #a27900; } table.ledger tr.blockhead .bglyphs a.sum.ml .n { color: #7974c6; } table.ledger tr.blockhead .bglyphs a.sum.fail .n { color: #c04a4a; }
-table.ledger tr.blockhead .bglyphs img.leanico, table.ledger tr.blockhead .bglyphs img.runico { width: 16px; height: 16px; display: block; }
-@media (prefers-color-scheme: dark) { table.ledger tr.blockhead .bglyphs img, table.ledger tr.blockhead .bglyphs .n { opacity: .85; } }
+/* the counts beside the search on the Ledger, Predictions and Explicability tabs (20 October 2026): the ledger glyph and the rows shown, then each witness glyph and the shown rows that carry it, in the menu totals' form */
+.tools .unit { display: inline-flex; align-items: center; gap: .3rem; }
+.tools .unit .sum { display: inline-flex; align-items: center; gap: .2rem; height: 22px; padding: 0 .25rem 0 .14rem; font-family: var(--mono); font-size: .85rem; }
+.tools .unit .n { line-height: 1; text-box: trim-both cap alphabetic; min-width: 2ch; color: #419457; }   /* the box from the figures' top to the baseline: centred on the glyph in any font (Chrome 133, Safari 18.2; elsewhere the line box); the widths fixed, so the search box keeps its width */
+.tools .unit .stmt .n { min-width: 3ch; color: var(--ink-faint); }
+.tools .unit .py .n { color: #a27900; } .tools .unit .ml .n { color: #7974c6; } .tools .unit .sum.fail .n { color: #c04a4a; }
+.tools .unit img.runico, .tools .unit img.leanico { width: 16px; height: 16px; display: block; }
+.tools .unit svg, .legend .unitico svg { width: 16px; height: 16px; display: block; stroke: var(--ink-faint); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }   /* the ledger glyph at the PNG glyphs' 16 px: whole pixels in the 22 px row */
+.legend .unitico svg { display: inline-block; vertical-align: -3px; }
+@media (prefers-color-scheme: dark) { .tools .unit img, .tools .unit .sum:not(.stmt) .n { opacity: .85; } }
 table.ledger tr.target td { background: var(--sub-bg); }
 .tag { display: inline-block; min-width: 1.4em; padding: 0.05rem 0.4rem; border-radius: 0.3rem; font-family: var(--mono); font-size: 0.78rem; font-weight: 600; text-align: center; }
 .tag.t { color: var(--pub); background: var(--pub-bg); }   .tag.d { color: var(--dra); background: var(--dra-bg); }
@@ -309,7 +311,6 @@ mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   table.ledger tr { grid-template-areas: "lab status" "pred pred" "src src"; }
   table.ledger tr.blockhead { display: block; padding: 0; }
   table.ledger tr.blockhead td { padding: .5rem .6rem; }
-  table.ledger tr.blockhead td.bw { display: block; padding: 0 .6rem .5rem; }
   table.ledger td.lab { grid-area: lab; white-space: normal; padding-bottom: .25rem; }
   table.ledger td.lab .key { display: inline; margin-left: .45rem; }
   table.ledger td.status { grid-area: status; text-align: right; }
@@ -344,10 +345,11 @@ nav .meta .totals { display: inline-flex; align-items: center; }   /* a paper pa
 nav .meta.totals { gap: 0; }   /* the corpus totals at the right end of the menu line of the five top-level pages (the slot of a paper page's badges): the same badges as the Publications rows, each opening Publications */
 .wrap nav .totals a.sum, .wrap nav .totals a.sum:visited { display: inline-flex; width: auto; height: 22px; align-items: center; gap: .2rem; padding: 0 .25rem 0 .14rem; margin: 0 0 0 .2rem; border: 0; border-radius: 4px; font-family: var(--mono); font-size: .78rem; font-weight: 400; text-decoration: none; color: #419457; }   /* width auto: the .ico rules fix 20px */
 .wrap nav .totals a.sum:hover { background: var(--rule-soft); border: 0; }
-nav .totals .n { line-height: 1; min-width: 1.4em; color: #419457; } nav .totals a.sum.py .n { color: #a27900; } nav .totals a.sum.ml .n { color: #7974c6; } nav .totals a.sum.fail .n { color: #c04a4a; } nav .totals a.sum.lab .n { color: var(--ink-soft); }
-nav .totals a.sum.lab svg { width: 17px; height: 17px; stroke: var(--ink-soft); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+nav .totals .n { line-height: 1; text-box: trim-both cap alphabetic; min-width: 1.4em; color: #419457; } nav .totals a.sum.py .n { color: #a27900; } nav .totals a.sum.ml .n { color: #7974c6; } nav .totals a.sum.fail .n { color: #c04a4a; } nav .totals a.sum.lab .n { color: var(--ink-soft); } nav .totals a.sum.pub .n { color: #2688c2; }
+nav .totals a.sum.lab svg { width: 16px; height: 16px; stroke: var(--ink-soft); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }   /* 16 px as the other glyphs, on whole pixels in the 22 px row (20 October 2026) */
+nav .totals a.sum.pub svg { width: 16px; height: 16px; display: block; stroke: #2688c2; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }   /* the publications glyph (20 October 2026) */
 nav .totals img.leanico, nav .totals img.runico { width: 16px; height: 16px; display: block; }
-@media (prefers-color-scheme: dark) { nav .totals img, nav .totals .n { opacity: .85; } .wrap nav .totals a.sum:hover { background: color-mix(in srgb, var(--ink) 13%, transparent); } .wrap td.links a.sum img, .wrap td.links a.sum .n, .wrap td.links a.sum:hover img, .wrap td.links a.sum:hover .n { opacity: .85; } .wrap td.links a.ico.sum:hover { background: color-mix(in srgb, var(--ink) 13%, transparent); } }   /* dark theme: the pill in ink at 13 % (rule-soft is 4 L* above the dark page, under the row's own hover tint it vanished); glyph and count stay at the theme's .85 under hover too (the run-glyph rule alone would brighten the python image): the hover highlights the badge, the pill behind glyph and count, nothing inside it */
+@media (prefers-color-scheme: dark) { nav .totals img, nav .totals .n, nav .totals a.sum.pub svg { opacity: .85; } .wrap nav .totals a.sum:hover { background: color-mix(in srgb, var(--ink) 13%, transparent); } .wrap td.links a.sum img, .wrap td.links a.sum .n, .wrap td.links a.sum:hover img, .wrap td.links a.sum:hover .n { opacity: .85; } .wrap td.links a.ico.sum:hover { background: color-mix(in srgb, var(--ink) 13%, transparent); } }   /* dark theme: the pill in ink at 13 % (rule-soft is 4 L* above the dark page, under the row's own hover tint it vanished); glyph and count stay at the theme's .85 under hover too (the run-glyph rule alone would brighten the python image): the hover highlights the badge, the pill behind glyph and count, nothing inside it */
 .srcbar.solo { position: static; border: 0; padding-left: 0; padding-right: 0; margin: 1.1rem 0 .2rem; }   /* the bar on its own (a package page): no frame, flush with the text */
 pre.lean .ln, pre.lean a.pred { scroll-margin-top: 2.8rem; }   /* a targeted line (or predicate anchor) lands below the sticky bar */
 .corpus { margin: 1.5rem 0 0; }   /* the Ledger page: the register's hits in the papers' ledgers, under the master's table */

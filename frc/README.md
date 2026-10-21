@@ -6,7 +6,7 @@ released, pinned in their dated archives, until their papers migrate.
 
 **Layers.** Each imports only the layer below it.
 
-1. The themes: `frc/<theme>.py`, mirrored in Lean by `lean/FrcCore` (no Mathlib, no axioms) and `lean/FrcLedger` (Mathlib).
+1. The themes: `frc/<theme>.py`, mirrored in Lean by `lean/FrcCore` (no Mathlib, no axioms) and `lean/FrcMathlib` (Mathlib).
 2. The ledger files: `frc/ledgers/` and `Ledgers/`, one per paper and one per master block. A ledger file binds each
    predicate to the check and the theorem that decide it.
 3. The presentation: one notebook per ledger, and the ledger pages of finitering.space.
@@ -23,7 +23,7 @@ cuts a release at a paper milestone and serves its archive, web copies and pinne
 **Ledger files.** `frc/ledgers/p<NN>_<topic>.py` binds one paper's ledger to the themes: the table of its keys, its
 shells and its checks, each check marked by the predicates it decides. `ci/make_ledgers.py` generates the table from the
 ledger, the notebook beside the file (one cell per predicate, its id the key) and the Lean certificates
-(`lean/FrcCore/Ledgers/`, `lean/FrcLedger/Ledgers/`). Migrated so far: 3-causality, `p03_causality.py` (task LM20); 22-quantum, `p22_quantum.py`, and 27-fields,
+(`lean/FrcCore/Ledgers/`, `lean/FrcMathlib/Ledgers/`). Migrated so far: 3-causality, `p03_causality.py` (task LM20); 22-quantum, `p22_quantum.py`, and 27-fields,
 `p27_fields.py` (task LM35), whose readings against the continuum sit in the chart tier's `chart_quantum.py` and `chart_fields.py`.
 29-finitism, `p29_finitism.py` (9 October 2026), the first ledger file of a paper with no package under `src/`: its checks run
 from the ledger file alone, and the site's ledger-file page serves it (`docs/frc/ledgers/p29_finitism.html`).
@@ -91,7 +91,7 @@ Since task LM26 the horizon theme's `Theme/Horizon` holds the shell theorem (fro
 name), and `Theme/Logic` the first-order theory of a finite structure. Since task LM27 the gravity theme's
 `Theme/Gravity` holds the horizon's count, with 21-gravity's `count_identity`, and since task LM28 the quantum theme's
 `Theme/Quantum` the unequal-cycle composite, and since task LM29 the interactions theme's `Theme/Interactions` one
-generation and the Koide form. Since task LM30 the chart theme's Mathlib file `FrcLedger/Theme/Chart.lean` holds the
+generation and the Koide form. Since task LM30 the chart theme's Mathlib file `FrcMathlib/Theme/Chart.lean` holds the
 octant's readings (from 14-entropy) and the floor's (from 21-gravity), with the tilt and the running floor. New theme files go under `Theme/`, since `FrcCore/Fourier.lean`
 and `FrcCore/Gravity.lean` hold the papers 6-fourier and 21-gravity. Since task LM18 the paper modules of today import
 themes only (and their own paper's modules), and gate G09 fails a cross-paper import. Since 9 October 2026 (29-finitism) the logic
@@ -99,5 +99,5 @@ theme also holds `Theme/SecondOrder` (the full second-order theory of a finite s
 (formation universes, traces and bounded certificates), with the python `frc/formation.py`. Since 15 October 2026
 (22-quantum's milestone) the quantum theme holds `Theme/Observation` (the single-system formalism in the shadow),
 `Theme/Interference` (the Sorkin hierarchy and the splitting depth) and `Theme/Composite` (the cluster's offset, the
-correlations, the channel and the worked carriers), with its first Mathlib file `FrcLedger/Theme/Quantum.lean` (the
+correlations, the channel and the worked carriers), with its first Mathlib file `FrcMathlib/Theme/Quantum.lean` (the
 ledger's identities and the continuum readings), under its own executable budget of 7,500 lines.

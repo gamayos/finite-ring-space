@@ -22,7 +22,7 @@ published witness until its release pins the framework.
 
 The Lean side: the theorems of the dark theme (lean/FrcCore/Theme/Dark.lean) over the gravity theme's Gauss law and
 locked sum (Theme/Drift.lean) and the transform theme's geometric sum, the readings on Mathlib
-(lean/FrcLedger/Theme/Dark.lean); the keys in Keys/Dark.lean (core) and Keys/Chart.lean (Mathlib), the certificates
+(lean/FrcMathlib/Theme/Dark.lean); the keys in Keys/Dark.lean (core) and Keys/Chart.lean (Mathlib), the certificates
 Ledgers/P32Dark.lean.
 
 No numeral above Ω ∼ 10¹²³ is formed: the entropy S = 3.3 × 10¹²² enters Λ = 3π/S and the Λ-face of the floor as a

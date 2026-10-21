@@ -11,7 +11,7 @@ Every family check is the labelled claim of a block (`fin.S1`, `o2.C3i`, `o8.X7`
 paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine verification", 43 predicates in blocks
 A–F, T, cited as `8:XN`; public copy `docs/8-dirac/index.html`), and the ledger's source column links, for each
 machine-verified predicate, the script at the check that decides it (`dirac.py#<key>`) and the Lean module at the
-predicate's declaration (`lean/FrcCore/Dirac.lean` with no axioms, or `lean/FrcLedger/Dirac.lean` on Mathlib); the check
+predicate's declaration (`lean/FrcCore/Dirac.lean` with no axioms, or `lean/FrcMathlib/Dirac.lean` on Mathlib); the check
 here is the instance the reader can run; the two witnesses decide the same statements at different generality.
 Master-ledger predicates of the corpus reached through the paper predicates: `00:C3` (8:B4), `00:C8` (8:B5, 8:B6),
 `00:B10` (8:B5).
@@ -100,7 +100,7 @@ deciding family is `dirac.PREDICATES`, the block the prefix of its id), the deci
 `# 8:D9 (<key>)` marker — and every record citing the predicate is listed with its verdict. The markers in `dirac.py`
 are the lines the ledger page's source glyph opens (`docs/src/8-dirac/#<key>`). The predicates'
 Lean counterparts are the declarations named by their keys (`p08029`) at the end of `lean/FrcCore/Dirac.lean` and
-`lean/FrcLedger/Dirac.lean` (`lean/make_predicates.py`), one per predicate, with the module as one executable file for the
+`lean/FrcMathlib/Dirac.lean` (`lean/make_predicates.py`), one per predicate, with the module as one executable file for the
 web editor (`lean/web/core/Dirac.lean`, `lean/web/Dirac.lean`).
 
 ## Provenance

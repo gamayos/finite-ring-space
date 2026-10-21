@@ -10,7 +10,7 @@ any cell on its own, or *Runtime → Run all*, ≈ 10 s) or run whole.
 Every check names the predicate(s) of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine
 verification", 39 predicates in blocks A–E, cited as `6:XN`; public copy `docs/6-fourier/index.html`), and the ledger's
 source column links, for each machine-verified predicate, the script at the check that decides it (`fourier.py#<key>`) and the
-Lean module at the predicate's declaration (`lean/FrcCore/Fourier.lean` with no axioms, or `lean/FrcLedger/Fourier.lean` on
+Lean module at the predicate's declaration (`lean/FrcCore/Fourier.lean` with no axioms, or `lean/FrcMathlib/Fourier.lean` on
 Mathlib); the check here is the instance the reader can run; the two witnesses decide the same statements at different
 generality. Three master-ledger predicates of the corpus are reached through the paper's (`00:C2`, `00:C14`, `00:C7`).
 
@@ -81,5 +81,5 @@ deciding check is `fourier.PREDICATES`, the block the letter of its id), that ch
 `# 6:C3 (<key>)` marker — and every record citing the predicate is listed with its verdict. The markers in `fourier.py`
 are the lines the ledger page's source glyph opens (`docs/src/6-fourier/#<key>`). The predicates'
 Lean counterparts are the declarations named by their keys (`p06017`) at the end of `lean/FrcCore/Fourier.lean` (twenty-six, no axioms:
-the twenty-five theorem rows and D1, conjunctions of theorems of the frame and fourier themes) and `lean/FrcLedger/Fourier.lean` (fifteen, Mathlib),
+the twenty-five theorem rows and D1, conjunctions of theorems of the frame and fourier themes) and `lean/FrcMathlib/Fourier.lean` (fifteen, Mathlib),
 one per predicate (`lean/make_predicates.py`), with the module as one executable file for Lean Live (`lean/web/core/Fourier.lean`, `lean/web/ml/Fourier.lean`).

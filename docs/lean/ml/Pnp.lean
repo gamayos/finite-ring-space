@@ -1,16 +1,16 @@
 import Mathlib
-import FrcLedger.Theme.Horizon
-import FrcLedger.Theme.Chart
-import FrcLedger.Keys.Chart
+import FrcMathlib.Theme.Horizon
+import FrcMathlib.Theme.Chart
+import FrcMathlib.Keys.Chart
 
 /-!
 # 26-pnp — the paper module on Mathlib: the Gauss-sum modulus and the chart rows under the paper's name (16 October 2026)
 
 Rows of the predicate ledger of *P versus NP: Computation as Counting over Finite Relational Substrate* (tree
 `26-pnp-20260614`) whose content is read on the Gauss sum or against the continuum: the Gauss-sum product `g(χ)·g(χ⁻¹, ψ⁻¹) = p`
-(B5) in `FrcLedger/Theme/Horizon.lean` (`FRC.HorizonML`) and its modulus `|g(χ)|² = p` over the complex numbers (B5) in `FrcLedger/Theme/Chart.lean`; the family's bit length and the decision
+(B5) in `FrcMathlib/Theme/Horizon.lean` (`FRC.HorizonML`) and its modulus `|g(χ)|² = p` over the complex numbers (B5) in `FrcMathlib/Theme/Chart.lean`; the family's bit length and the decision
 table beyond the absolute horizon at the scale import's anchor (C2) and the dilation generator's eigenfunction (B4) in
-`FrcLedger/Theme/Chart.lean` (`FRC.Chart`, the chart theme, where the reals live). Every name here is an alias; the
+`FrcMathlib/Theme/Chart.lean` (`FRC.Chart`, the chart theme, where the reals live). Every name here is an alias; the
 exact content of the paper is the core's (`FrcCore/Pnp.lean` and the themes it cites).
 -/
 

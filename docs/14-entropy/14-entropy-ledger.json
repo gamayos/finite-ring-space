@@ -13,14 +13,14 @@
      "label": "A1",
      "predicate": "The de Sitter entropy $\\dS$, the single quantitative import, fixing the cardinality exactly, $\\Om=4\\dS+1$.",
      "tag": "I",
-     "source": "\\citep{akhtman2026gravity}\\newline \\leanwit{FrcCore}{p14001}{A1}, \\leanwit{FrcLedger}{p14001}{A1} \\lean{Entropy.cardinality, FRC.Entropy.quarter\\_identity}",
+     "source": "\\citep{akhtman2026gravity}\\newline \\leanwit{FrcCore}{p14001}{A1}, \\leanwit{FrcMathlib}{p14001}{A1} \\lean{Entropy.cardinality, FRC.Entropy.quarter\\_identity}",
      "key": "p14001"
     },
     {
      "label": "A2",
      "predicate": "The Carrier congruences, relations certified by the realisations (the $c$-square $\\dS$ even, the triality centre $\\dS\\equiv1\\pmod3$, completeness $4\\dS+1$ prime); instantiated on the laboratory Carrier as host-decided values.",
      "tag": "I",
-     "source": "\\citep{akhtman2026geometry}\\newline \\pywit{entropy}{p14002}{A2}, \\leanwit{FrcCore}{p14002}{A2}, \\leanwit{FrcLedger}{p14002}{A2} \\lean{Entropy.carrierLab, FRC.Entropy.carrierLab\\_prime, Entropy.c\\_square, Entropy.triality\\_centre}",
+     "source": "\\citep{akhtman2026geometry}\\newline \\pywit{entropy}{p14002}{A2}, \\leanwit{FrcCore}{p14002}{A2}, \\leanwit{FrcMathlib}{p14002}{A2} \\lean{Entropy.carrierLab, FRC.Entropy.carrierLab\\_prime, Entropy.c\\_square, Entropy.triality\\_centre}",
      "key": "p14002"
     },
     {
@@ -82,7 +82,7 @@
      "label": "B2",
      "predicate": "The angle--count dictionary: $2\\pi$ the full cycle, $h=2\\pi\\hbar$; every angular numeral is the chart face of a count ($\\pi/4\\leftrightarrow\\dS/2$ chronons).",
      "tag": "D",
-     "source": "\\citep{akhtman2026dimensions}\\newline \\leanwit{FrcCore}{p14010}{B2}, \\leanwit{FrcLedger}{p14010}{B2} \\lean{Entropy.dictionary, FRC.Entropy.octant\\_count}",
+     "source": "\\citep{akhtman2026dimensions}\\newline \\leanwit{FrcCore}{p14010}{B2}, \\leanwit{FrcMathlib}{p14010}{B2} \\lean{Entropy.dictionary, FRC.Entropy.octant\\_count}",
      "key": "p14010"
     },
     {
@@ -124,42 +124,42 @@
      "label": "B8",
      "predicate": "The effective-fluid correspondence behind P4: the rival chart's continuity law $\\dot\\rho_\\Lambda+3H(\\rho_\\Lambda+p_\\Lambda)=0$ \\lcdm{} with $\\dot\\rho_\\Lambda=0$ gives $w=-1$; and the single-component clause --- the framework's dark sector is derived with no second dark-energy component available, so an observed $w_{\\mathrm{eff}}\\neq-1$ cannot be reassigned to an extra evolving fluid. The clause makes P4's falsifier total rather than escapable.",
      "tag": "R",
-     "source": "\\S\\ref{sec:import}\\newline \\leanwit{FrcLedger}{p14016}{B8} \\lean{Entropy.fluid\\_w}",
+     "source": "\\S\\ref{sec:import}\\newline \\leanwit{FrcMathlib}{p14016}{B8} \\lean{Entropy.fluid\\_w}",
      "key": "p14016"
     },
     {
      "label": "B9",
      "predicate": "The area law: the projected horizon area in Planck cells is the full phase cycle, $A=4\\dS$ \\apx{} at the horizon ($4\\pi n_A=4\\dS$, $n_A=(r_H/\\lP)^{2}$ \\apx); the Bekenstein--Hawking quarter $\\dS=A/4$ is the quarter-turn $Q_4$, the generative four of $\\Om=4\\dS+1$ and $\\p=4\\kap+1$; area is a Subject-projection property, the Carrier carrying none.",
      "tag": "D",
-     "source": "\\S\\ref{sec:registers}; rests on A1, A5\\newline \\pywit{entropy}{p14017}{B9}, \\leanwit{FrcCore}{p14017}{B9}, \\leanwit{FrcLedger}{p14017}{B9} \\lean{Entropy.quarter\\_turn, Entropy.area\\_law\\_chart, FRC.Entropy.quarter\\_identity}",
+     "source": "\\S\\ref{sec:registers}; rests on A1, A5\\newline \\pywit{entropy}{p14017}{B9}, \\leanwit{FrcCore}{p14017}{B9}, \\leanwit{FrcMathlib}{p14017}{B9} \\lean{Entropy.quarter\\_turn, Entropy.area\\_law\\_chart, FRC.Entropy.quarter\\_identity}",
      "key": "p14017"
     },
     {
      "label": "B10",
      "predicate": "The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \\apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (B11); a phase-locked composite of like units is an aggregate, never one shell (B12; a shell of capacity $3N$ exists only when $12N+1$ is prime, B13); the largest shell any Subject registers whole is the nesting bound $\\mathsf{q}<\\Om^{1/4}$ (00:B8), $N<(\\Om^{1/4}-1)/12$ units, $8\\times10^{2}$\\,kg at $\\dS=3.3\\times10^{122}$ \\apx{} ($\\Om^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count.",
      "tag": "D",
-     "source": "\\S\\ref{sec:wedge}; B11--B13, 00:B8\\newline \\leanwit{FrcCore}{p14044}{B10}, \\leanwit{FrcLedger}{p14044}{B10} \\lean{Entropy.hydrogen\\_units, Entropy.nesting\\_lab, FRC.Entropy.nesting\\_bound, FRC.Entropy.lab\\_nesting}",
+     "source": "\\S\\ref{sec:wedge}; B11--B13, 00:B8\\newline \\leanwit{FrcCore}{p14044}{B10}, \\leanwit{FrcMathlib}{p14044}{B10} \\lean{Entropy.hydrogen\\_units, Entropy.nesting\\_lab, FRC.Entropy.nesting\\_bound, FRC.Entropy.lab\\_nesting}",
      "key": "p14044"
     },
     {
      "label": "B11",
      "predicate": "The additive window: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total in the range occurring; the least register window resolving the total exactly is the capacity sum $\\sum_i\\kap_i$, $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite (B10).",
      "tag": "T",
-     "source": "\\S\\ref{sec:wedge}; 38:A8, B10\\newline \\pywit{entropy}{p14046}{B11}, \\leanwit{FrcCore}{p14046}{B11}, \\leanwit{FrcLedger}{p14046}{B11} \\lean{Entropy.additive\\_window, FRC.Entropy.additive\\_window, FRC.Entropy.additive\\_window\\_hydrogen}",
+     "source": "\\S\\ref{sec:wedge}; 38:A8, B10\\newline \\pywit{entropy}{p14046}{B11}, \\leanwit{FrcCore}{p14046}{B11}, \\leanwit{FrcMathlib}{p14046}{B11} \\lean{Entropy.additive\\_window, FRC.Entropy.additive\\_window, FRC.Entropy.additive\\_window\\_hydrogen}",
      "key": "p14046"
     },
     {
      "label": "B12",
      "predicate": "The lock of like units: $N$ like units never fuse (00:F6, $\\gcd(12,12)=12$): their joint registration (00:F2) recurs on $C_{12}$ with period $12$ for every $N$, one superselected $C_{12}$ offset per further unit --- an aggregate, never one shell. Instances: the diagonal drive on $C_{12}^{2}$ has $12$ orbits of length $12$, on $C_{12}^{3}$ $144$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:wedge}; 00:F6, 00:F2\\newline \\pywit{entropy}{p14047}{B12}, \\leanwit{FrcCore}{p14047}{B12}, \\leanwit{FrcLedger}{p14047}{B12} \\lean{Entropy.lock\\_recurrence, FRC.Entropy.lock\\_recurrence, FRC.Entropy.lock\\_orbits}",
+     "source": "\\S\\ref{sec:wedge}; 00:F6, 00:F2\\newline \\pywit{entropy}{p14047}{B12}, \\leanwit{FrcCore}{p14047}{B12}, \\leanwit{FrcMathlib}{p14047}{B12} \\lean{Entropy.lock\\_recurrence, FRC.Entropy.lock\\_recurrence, FRC.Entropy.lock\\_orbits}",
      "key": "p14047"
     },
     {
      "label": "B13",
      "predicate": "Shells of capacity $3N$ and fusion: the shell of capacity $3N$ is $\\F_{12N+1}$ and exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$ below $10$; none at $N=2$, $25=5^{2}$), never the lock's register (B12); fusion of coprime cycles is multiplicative, $\\kap=n_{1}n_{2}/4$: hydrogen $(4,3)\\to3$, one orbit of length $12$ (00:F6).",
      "tag": "T",
-     "source": "\\S\\ref{sec:wedge}; B12, 00:F6\\newline \\pywit{entropy}{p14048}{B13}, \\leanwit{FrcCore}{p14048}{B13}, \\leanwit{FrcLedger}{p14048}{B13} \\lean{Entropy.shells\\_of\\_capacity, Entropy.fusion\\_capacity, FRC.Entropy.shells\\_of\\_capacity, FRC.Entropy.fusion\\_capacity}",
+     "source": "\\S\\ref{sec:wedge}; B12, 00:F6\\newline \\pywit{entropy}{p14048}{B13}, \\leanwit{FrcCore}{p14048}{B13}, \\leanwit{FrcMathlib}{p14048}{B13} \\lean{Entropy.shells\\_of\\_capacity, Entropy.fusion\\_capacity, FRC.Entropy.shells\\_of\\_capacity, FRC.Entropy.fusion\\_capacity}",
      "key": "p14048"
     }
    ]
@@ -172,21 +172,21 @@
      "label": "C1",
      "predicate": "Two faces: a frame supplies one spatial and one temporal datum, so every instrument reading the size of the totality is one of exactly two faces, converted by $c$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:channels}\\newline \\pywit{entropy}{p14018}{C1}, \\leanwit{FrcLedger}{p14018}{C1} \\lean{Entropy.two\\_faces}",
+     "source": "\\S\\ref{sec:channels}\\newline \\pywit{entropy}{p14018}{C1}, \\leanwit{FrcMathlib}{p14018}{C1} \\lean{Entropy.two\\_faces}",
      "key": "p14018"
     },
     {
      "label": "C2",
      "predicate": "The non-channels: the constants correspondence carries no dimensional readout, the horizon-quarter closure is an internal consistency loop, the registered entropy budget is a floor eighteen orders below $\\dS$ \\apx.",
      "tag": "T",
-     "source": "\\S\\ref{sec:notchannels}\\newline \\pywit{entropy}{p14019}{C2}, \\leanwit{FrcCore}{p14019}{C2}, \\leanwit{FrcLedger}{p14019}{C2} \\lean{Entropy.horizon\\_quarter\\_closure, FRC.Entropy.quarter\\_identity}",
+     "source": "\\S\\ref{sec:notchannels}\\newline \\pywit{entropy}{p14019}{C2}, \\leanwit{FrcCore}{p14019}{C2}, \\leanwit{FrcMathlib}{p14019}{C2} \\lean{Entropy.horizon\\_quarter\\_closure, FRC.Entropy.quarter\\_identity}",
      "key": "p14019"
     },
     {
      "label": "C3",
      "predicate": "The same-channel demotion: $t_0H_\\Lambda=\\tfrac23\\artanh\\sqrt{\\Omega_\\Lambda}$ \\lcdm{} depends on the one fitted parameter, so the $0.2\\%$ landing on $\\pi/4$ restates the fit (by B5).",
      "tag": "T",
-     "source": "\\S\\ref{sec:audit}\\newline \\pywit{entropy}{p14020}{C3}, \\leanwit{FrcLedger}{p14020}{C3} \\lean{Entropy.lcdmAge, Entropy.lcdm\\_age, Entropy.age\\_bracket}",
+     "source": "\\S\\ref{sec:audit}\\newline \\pywit{entropy}{p14020}{C3}, \\leanwit{FrcMathlib}{p14020}{C3} \\lean{Entropy.lcdmAge, Entropy.lcdm\\_age, Entropy.age\\_bracket}",
      "key": "p14020"
     },
     {
@@ -200,42 +200,42 @@
      "label": "C5",
      "predicate": "The octant lemma: the measured age is $\\dS/2$ chronons, $(\\pi/4)\\,r_H/c$ in the chart \\apx; the halving and the sector are exact through the enumerated realisation set $B_{\\mathrm{oct}}=\\{$A4, A5, B2, B3, B6, B7$\\}$, the same class as the constants correspondence.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:octant}\\newline \\pywit{entropy}{p14022}{C5}, \\leanwit{FrcCore}{p14022}{C5}, \\leanwit{FrcLedger}{p14022}{C5} \\lean{Entropy.octant\\_chart, Entropy.closure\\_budget, FRC.Entropy.closure\\_count, FRC.Entropy.octant\\_count}",
+     "source": "Lem.~\\ref{lem:octant}\\newline \\pywit{entropy}{p14022}{C5}, \\leanwit{FrcCore}{p14022}{C5}, \\leanwit{FrcMathlib}{p14022}{C5} \\lean{Entropy.octant\\_chart, Entropy.closure\\_budget, FRC.Entropy.closure\\_count, FRC.Entropy.octant\\_count}",
      "key": "p14022"
     },
     {
      "label": "C6",
      "predicate": "The octant sector: $C_{8}\\subset C_{4\\dS}$ exists exactly when $\\dS$ is even, its character $\\zeta_8$ the residue the Tsirelson identity carries; the octant count $\\dS/2$ is an integer on every admissible Carrier.",
      "tag": "T",
-     "source": "\\S\\ref{sec:registers}, \\citep{akhtman2026quantum}\\newline \\pywit{entropy}{p14023}{C6}, \\leanwit{FrcCore}{p14023}{C6}, \\leanwit{FrcLedger}{p14023}{C6} \\lean{Entropy.octant\\_exists\\_iff, Entropy.octant\\_character, FRC.Entropy.tsirelson\\_square, FRC.Entropy.octant\\_iff, FRC.Entropy.lab\\_carrier}",
+     "source": "\\S\\ref{sec:registers}, \\citep{akhtman2026quantum}\\newline \\pywit{entropy}{p14023}{C6}, \\leanwit{FrcCore}{p14023}{C6}, \\leanwit{FrcMathlib}{p14023}{C6} \\lean{Entropy.octant\\_exists\\_iff, Entropy.octant\\_character, FRC.Entropy.tsirelson\\_square, FRC.Entropy.octant\\_iff, FRC.Entropy.lab\\_carrier}",
      "key": "p14023"
     },
     {
      "label": "C7",
      "predicate": "The dark-energy output: $\\Omega_\\Lambda=\\tanh^{2}(3\\pi/8)=0.6837$ \\lcdm{} against the fitted $0.685\\pm0.007$, a $0.19\\sigma$ landing --- a zero-freedom derivation, not an independent measurement (two-register separation, \\S\\ref{sec:audit}).",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:octant}; rests on A8, C5\\newline \\pywit{entropy}{p14024}{C7}, \\leanwit{FrcLedger}{p14024}{C7} \\lean{Entropy.octant\\_inversion, Entropy.landing\\_bracket}",
+     "source": "Lem.~\\ref{lem:octant}; rests on A8, C5\\newline \\pywit{entropy}{p14024}{C7}, \\leanwit{FrcMathlib}{p14024}{C7} \\lean{Entropy.octant\\_inversion, Entropy.landing\\_bracket}",
      "key": "p14024"
     },
     {
      "label": "C8",
      "predicate": "The entailed-rate consistency: with the channel-1 $\\Lambda$ the age--rate locus returns the channel-1 $H_0$ (to $0.1\\%$), same-channel by the definition $\\Lambda=3\\Omega_\\Lambda H_0^{2}/c^{2}$, a corollary of C7 and not a prediction --- the floor value itself consumed as import (A6) under the role realisation (B4), not derived here; the two-cluster ratio is the chart identity $(H_{\\mathrm{rate}}/H_0)^2/\\Omega_\\Lambda$, displayed, not claimed.",
      "tag": "T",
-     "source": "\\S\\ref{sec:open}; rests on A8\\newline \\pywit{entropy}{p14025}{C8}, \\leanwit{FrcLedger}{p14025}{C8} \\lean{Entropy.channel\\_one\\_consistency, Entropy.channel\\_one\\_numeral, Entropy.cluster\\_identity}",
+     "source": "\\S\\ref{sec:open}; rests on A8\\newline \\pywit{entropy}{p14025}{C8}, \\leanwit{FrcMathlib}{p14025}{C8} \\lean{Entropy.channel\\_one\\_consistency, Entropy.channel\\_one\\_numeral, Entropy.cluster\\_identity}",
      "key": "p14025"
     },
     {
      "label": "C9",
      "predicate": "The registrable triangle \\apx: width $\\log_{10}(r_H/\\lP)=61.0$ dex --- the count face $\\sqrt{\\dS}$ in its chart dress $\\sqrt{\\dS/\\pi}$, the solid angle the declared transport; the thirteen-object diagonal, slope $3.03$ (intercept $1.00\\times10^{3}$ at the metre pivot); the constrained $k=3$ cubic coefficient $\\tilde c=m/R^{3}=0.97\\times10^{3}\\,\\mathrm{kg\\,m^{-3}}$ (not a density: a sphere's is $0.62$ dex lower); the Compton entry returns its input, the Schwarzschild exit is the chart's one derived quantity, the over-closure bound $1.8\\times10^{8}M_\\odot$ within the $(1.4\\text{--}2.8)\\times10^{8}$ sensitivity band --- a bound, no observed scale predicted (X5); classified a consistency chart, not a channel.",
      "tag": "T",
-     "source": "\\S\\ref{sec:wedge}\\newline \\pywit{entropy}{p14026}{C9}, \\leanwit{FrcLedger}{p14026}{C9} \\lean{Entropy.count\\_face}",
+     "source": "\\S\\ref{sec:wedge}\\newline \\pywit{entropy}{p14026}{C9}, \\leanwit{FrcMathlib}{p14026}{C9} \\lean{Entropy.count\\_face}",
      "key": "p14026"
     },
     {
      "label": "C10",
      "predicate": "The capacity axis \\apx: holographic ring capacity $\\log_{10}\\kap_{q}$, zero at hydrogen ($\\kap_H=3$; $\\kap_{q}=2$ has no shell), one dex per chart dex, terminating at the count face $\\sqrt{\\dS}$ --- the triangle's own sixty dex; the one-gram horizontal lands on $N_A$ to $0.0035$ dex (the $1.008$\\,u offset), asserted before drawing.",
      "tag": "T",
-     "source": "\\S\\ref{sec:wedge}\\newline \\pywit{entropy}{p14027}{C10}, \\leanwit{FrcCore}{p14027}{C10}, \\leanwit{FrcLedger}{p14027}{C10} \\lean{Entropy.capacity\\_zero, FRC.Entropy.capacity\\_axis}",
+     "source": "\\S\\ref{sec:wedge}\\newline \\pywit{entropy}{p14027}{C10}, \\leanwit{FrcCore}{p14027}{C10}, \\leanwit{FrcMathlib}{p14027}{C10} \\lean{Entropy.capacity\\_zero, FRC.Entropy.capacity\\_axis}",
      "key": "p14027"
     }
    ]
@@ -248,56 +248,56 @@
      "label": "X1",
      "predicate": "\\textbf{The cosmological-constant problem} dissolves: $\\Lambda$ is the curvature face of the one cardinality, not a vacuum energy, so there is no mode sum to cancel and the $10^{120}$-order discrepancy does not arise.",
      "tag": "T",
-     "source": "\\S\\ref{sec:import}, \\citep{weinberg1989}\\newline \\pywit{entropy}{p14028}{X1}, \\leanwit{FrcLedger}{p14028}{X1} \\lean{Entropy.lambda\\_face}",
+     "source": "\\S\\ref{sec:import}, \\citep{weinberg1989}\\newline \\pywit{entropy}{p14028}{X1}, \\leanwit{FrcMathlib}{p14028}{X1} \\lean{Entropy.lambda\\_face}",
      "key": "p14028"
     },
     {
      "label": "X2",
      "predicate": "\\textbf{Milgrom's coincidence} $a_0\\approx cH_0/2\\pi$, on record since 1983, becomes a value with zero freedom: the $2\\pi$ is the fixed cycle convention, the reverse rebooking of $h=2\\pi\\hbar$, and the $H$ is the observer's registered rate.",
      "tag": "T",
-     "source": "\\S\\ref{sec:open}, \\citep{milgrom1983}; rests on A6, B2, B4\\newline \\pywit{entropy}{p14029}{X2}, \\leanwit{FrcLedger}{p14029}{X2} \\lean{Entropy.milgrom\\_rebooking}",
+     "source": "\\S\\ref{sec:open}, \\citep{milgrom1983}; rests on A6, B2, B4\\newline \\pywit{entropy}{p14029}{X2}, \\leanwit{FrcMathlib}{p14029}{X2} \\lean{Entropy.milgrom\\_rebooking}",
      "key": "p14029"
     },
     {
      "label": "X3",
      "predicate": "\\textbf{The age coincidence} $t_0H_\\Lambda\\approx\\pi/4$ becomes the octant: $\\Omega_\\Lambda=\\tanh^{2}(3\\pi/8)=0.6837$ \\lcdm{} is an output of the realisation set, landing at $0.19\\sigma$ on the fitted $0.685\\pm0.007$ --- never an independent measurement of $\\dS$ (same-channel, X6), a zero-freedom derivation in full standing; the $(\\Lambda,H_0)$ entailment at the channel-1 $\\Lambda$ is this same landing read on $H_0$, not a further prediction.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:octant}; rests on C5, C7, C8\\newline \\pywit{entropy}{p14030}{X3}, \\leanwit{FrcLedger}{p14030}{X3} \\lean{Entropy.octant\\_inversion, Entropy.landing\\_bracket}",
+     "source": "Lem.~\\ref{lem:octant}; rests on C5, C7, C8\\newline \\pywit{entropy}{p14030}{X3}, \\leanwit{FrcMathlib}{p14030}{X3} \\lean{Entropy.octant\\_inversion, Entropy.landing\\_bracket}",
      "key": "p14030"
     },
     {
      "label": "X4",
      "predicate": "\\textbf{The congruence $\\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:octant}(iv)\\newline \\pywit{entropy}{p14031}{X4}, \\leanwit{FrcCore}{p14031}{X4}, \\leanwit{FrcLedger}{p14031}{X4} \\lean{Entropy.octant\\_second\\_face, Entropy.octant\\_sector\\_iff, FRC.Entropy.two\\_is\\_square\\_iff}",
+     "source": "Lem.~\\ref{lem:octant}(iv)\\newline \\pywit{entropy}{p14031}{X4}, \\leanwit{FrcCore}{p14031}{X4}, \\leanwit{FrcMathlib}{p14031}{X4} \\lean{Entropy.octant\\_second\\_face, Entropy.octant\\_sector\\_iff, FRC.Entropy.two\\_is\\_square\\_iff}",
      "key": "p14031"
     },
     {
      "label": "X5",
      "predicate": "\\textbf{The termination of the single-object sequence} is a consistency of the wall structure, the exit of C9 read as a bound: the typical-density diagonal over-closes at $1.8\\times10^{8}M_\\odot$ \\apx{} (sensitivity band $(1.4\\text{--}2.8)\\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale.",
      "tag": "T",
-     "source": "\\S\\ref{sec:wedge}\\newline \\pywit{entropy}{p14032}{X5}, \\leanwit{FrcLedger}{p14032}{X5} \\lean{Entropy.wall\\_exit}",
+     "source": "\\S\\ref{sec:wedge}\\newline \\pywit{entropy}{p14032}{X5}, \\leanwit{FrcMathlib}{p14032}{X5} \\lean{Entropy.wall\\_exit}",
      "key": "p14032"
     },
     {
      "label": "X6",
      "predicate": "\\textbf{The celebrated sub-percent age agreement} is judged: same-channel by the circularity criterion, a restatement of the fitted dark-energy fraction --- consistency, not evidence --- and the criterion locates exactly which confrontations do carry weight.",
      "tag": "T",
-     "source": "\\S\\ref{sec:audit}\\newline \\pywit{entropy}{p14033}{X6}, \\leanwit{FrcLedger}{p14033}{X6} \\lean{Entropy.lcdm\\_age, Entropy.octant\\_inversion}",
+     "source": "\\S\\ref{sec:audit}\\newline \\pywit{entropy}{p14033}{X6}, \\leanwit{FrcMathlib}{p14033}{X6} \\lean{Entropy.lcdm\\_age, Entropy.octant\\_inversion}",
      "key": "p14033"
     },
     {
      "label": "X7",
      "predicate": "\\textbf{The universe-as-black-hole puzzle dissolves}: the Hubble radius sits on the black-hole line identically ($\\rho_{\\mathrm{BH}}(r_H)=\\rho_c$ \\lcdm), but the Schwarzschild reading consumes an exterior, and the containment argument (A3) makes an exterior incoherent --- the totality on its own horizon is the chart's closing point, not a hole in a background.",
      "tag": "T",
-     "source": "\\S\\ref{sec:wedge}, \\citep{lineweaver2023}\\newline \\pywit{entropy}{p14034}{X7}, \\leanwit{FrcLedger}{p14034}{X7} \\lean{Entropy.hubble\\_on\\_bh\\_line}",
+     "source": "\\S\\ref{sec:wedge}, \\citep{lineweaver2023}\\newline \\pywit{entropy}{p14034}{X7}, \\leanwit{FrcMathlib}{p14034}{X7} \\lean{Entropy.hubble\\_on\\_bh\\_line}",
      "key": "p14034"
     },
     {
      "label": "X8",
      "predicate": "\\textbf{The interior completions weighed}: black-hole cosmology keeps the same saturation identity by consuming a parent exterior and a singularity-replacing mechanism (torsion; exclusion pressure); the finite reading consumes neither: the containment argument (A3) closes the chart at $\\Om$, and no singularity is available over a finite totality. The registered record-depth bound separates the completions empirically (P2).",
      "tag": "T",
-     "source": "\\S\\ref{sec:wedge}, \\citep{pathria1972,poplawski2016,gaztanaga2025}\\newline \\pywit{entropy}{p14035}{X8}, \\leanwit{FrcLedger}{p14035}{X8} \\lean{Entropy.hubble\\_on\\_bh\\_line, Entropy.record\\_depth}",
+     "source": "\\S\\ref{sec:wedge}, \\citep{pathria1972,poplawski2016,gaztanaga2025}\\newline \\pywit{entropy}{p14035}{X8}, \\leanwit{FrcMathlib}{p14035}{X8} \\lean{Entropy.hubble\\_on\\_bh\\_line, Entropy.record\\_depth}",
      "key": "p14035"
     }
    ]
@@ -310,28 +310,28 @@
      "label": "P1",
      "predicate": "\\textbf{(Lead.)} The floor runs with the registered rate, $a_0(z)\\propto H(z)$, the role statement of the floor closure, against both a constant fundamental $a_0$ and feedback-emergent scaling. Status: the constant-floor branch is excluded --- four redshift bins rising from $1.99$ to $2.71\\times10^{-10}\\,\\mathrm{m/s^2}$ over $z=0.50$--$1.28$ \\citep{ciocan2026}, $\\Delta\\chi^2=23$ against $A\\,H(z)/H_0$ \\lcdm{} --- and the running form fits the bins at free amplitude ($A=1.39\\pm0.03$, $\\chi^2=5.4/3$); the binned rate sits on the $\\propto H(z)$ chord while the authors' global linear fit runs above it, so the shape waits on the likelihood refit of the resolved tracks, and the amplitude's $0.12$\\,dex excess over $cH_0/2\\pi$ lies inside the $0.2$\\,dex gas systematic. Falsifier: a likelihood refit or a wider-redshift sample excluding the $\\propto H(z)$ form after the baryonic-mass and pressure-support systematics close.",
      "tag": "T",
-     "source": "\\S\\ref{sec:open}; rests on A6, A8, B4\\newline \\pywit{entropy}{p14036}{P1}, \\leanwit{FrcLedger}{p14036}{P1} \\lean{Entropy.running\\_floor}",
+     "source": "\\S\\ref{sec:open}; rests on A6, A8, B4\\newline \\pywit{entropy}{p14036}{P1}, \\leanwit{FrcMathlib}{p14036}{P1} \\lean{Entropy.running\\_floor}",
      "key": "p14036"
     },
     {
      "label": "P2",
      "predicate": "The registered record depth is bounded by $(\\pi/4)\\,r_H/c=13.79$ Gyr \\apx{} (channel-1 anchor) at every observational frame chronon, against a $\\Lambda$CDM $t_0$ that grows with chart time: degenerate to $0.2\\%$ now, separating at ${\\sim}7\\%$ per Gyr; the octant carries zero parameter freedom at fixed $\\Lambda$. Status \\citep{valcin2026}: the oldest cluster population $0.5\\sigma$ below the bound, the inferred age straddling it within $0.1\\sigma$ (\\S\\ref{sec:open}). Falsifier: one well-dated object older than the octant value, in any frame --- fit-independent, fatal; the same bound excludes interior-bounce black-hole cosmology (X8).",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:octant}; rests on A8, B3, C5\\newline \\pywit{entropy}{p14037}{P2}, \\leanwit{FrcLedger}{p14037}{P2} \\lean{Entropy.record\\_depth}",
+     "source": "Lem.~\\ref{lem:octant}; rests on A8, B3, C5\\newline \\pywit{entropy}{p14037}{P2}, \\leanwit{FrcMathlib}{p14037}{P2} \\lean{Entropy.record\\_depth}",
      "key": "p14037"
     },
     {
      "label": "P3",
      "predicate": "The age--rate locus $t_{\\mathrm{age}}H_0=(\\pi/4)/\\tanh(3\\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\\pm0.34$ Gyr): $H_0=68.2\\pm1.7$ km/s/Mpc \\apx, $0.5\\sigma$ from Planck, $0.65\\sigma$ from TRGB, $2.4\\sigma$ from the Cepheid ladder --- the framework favours the CMB/TRGB value at that significance, and forbids the $\\Omega_\\Lambda\\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\\Lambda$ it returns the channel-1 $H_0$ (to $0.1\\%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\\star H_0\\ge1.0$ against $0.950$).",
      "tag": "T",
-     "source": "\\S\\ref{sec:open}; rests on A8, B3, C5, C7\\newline \\pywit{entropy}{p14038}{P3}, \\leanwit{FrcLedger}{p14038}{P3} \\lean{Entropy.age\\_rate\\_locus, Entropy.locus\\_bracket}",
+     "source": "\\S\\ref{sec:open}; rests on A8, B3, C5, C7\\newline \\pywit{entropy}{p14038}{P3}, \\leanwit{FrcMathlib}{p14038}{P3} \\lean{Entropy.age\\_rate\\_locus, Entropy.locus\\_bracket}",
      "key": "p14038"
     },
     {
      "label": "P4",
      "predicate": "\\textbf{(Lead.)} The dark-energy equation of state is rigid: $\\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8). Status: DESI-era combined fits prefer evolving dark energy at $3$--$4.2\\sigma$ \\citep{desi2025}, contested by reanalyses (\\S\\ref{sec:import}). Falsifier: confirmed evolution of $w$, which kills $\\Lambda\\sim1/\\Om$ outright and exposes P2 through $\\Lambda$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:import}; rests on A1, A8, B1\\newline \\pywit{entropy}{p14039}{P4}, \\leanwit{FrcLedger}{p14039}{P4} \\lean{Entropy.fluid\\_w}",
+     "source": "\\S\\ref{sec:import}; rests on A1, A8, B1\\newline \\pywit{entropy}{p14039}{P4}, \\leanwit{FrcMathlib}{p14039}{P4} \\lean{Entropy.fluid\\_w}",
      "key": "p14039"
     }
    ]
@@ -443,7 +443,7 @@
   "A1": [
    {
     "name": "FRC.Entropy.cardinality",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 47,
     "axioms": [
      "Quot.sound",
@@ -466,7 +466,7 @@
   "A2": [
    {
     "name": "FRC.Entropy.carrierLab",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 125,
     "axioms": [
      "Classical.choice",
@@ -488,7 +488,7 @@
    },
    {
     "name": "FRC.Entropy.c_square",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 104,
     "axioms": [
      "Classical.choice",
@@ -501,7 +501,7 @@
    },
    {
     "name": "FRC.Entropy.triality_centre",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 94,
     "axioms": [
      "Classical.choice",
@@ -516,7 +516,7 @@
   "B2": [
    {
     "name": "FRC.Entropy.dictionary",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 144,
     "axioms": [
      "Classical.choice",
@@ -540,7 +540,7 @@
   "B8": [
    {
     "name": "FRC.Entropy.fluid_w",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 270,
     "axioms": [
      "Classical.choice",
@@ -555,7 +555,7 @@
   "B9": [
    {
     "name": "FRC.Entropy.quarter_turn",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 64,
     "axioms": [
      "Classical.choice",
@@ -568,7 +568,7 @@
    },
    {
     "name": "FRC.Entropy.area_law_chart",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 87,
     "axioms": [
      "Classical.choice",
@@ -592,7 +592,7 @@
   "B10": [
    {
     "name": "FRC.Entropy.hydrogen_units",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 514,
     "axioms": [
      "Classical.choice",
@@ -605,7 +605,7 @@
    },
    {
     "name": "FRC.Entropy.nesting_lab",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 525,
     "axioms": [
      "Classical.choice",
@@ -638,7 +638,7 @@
   "B11": [
    {
     "name": "FRC.Entropy.additive_window",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 543,
     "axioms": [
      "Quot.sound",
@@ -670,7 +670,7 @@
   "B12": [
    {
     "name": "FRC.Entropy.lock_recurrence",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 599,
     "axioms": [
      "Quot.sound",
@@ -702,7 +702,7 @@
   "B13": [
    {
     "name": "FRC.Entropy.shells_of_capacity",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 613,
     "axioms": [
      "Classical.choice",
@@ -715,7 +715,7 @@
    },
    {
     "name": "FRC.Entropy.fusion_capacity",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 623,
     "axioms": [
      "Quot.sound",
@@ -747,7 +747,7 @@
   "C1": [
    {
     "name": "FRC.Entropy.two_faces",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 638,
     "axioms": [
      "Classical.choice",
@@ -762,7 +762,7 @@
   "C2": [
    {
     "name": "FRC.Entropy.horizon_quarter_closure",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 132,
     "axioms": [
      "Classical.choice",
@@ -786,7 +786,7 @@
   "C3": [
    {
     "name": "FRC.Entropy.lcdmAge",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 223,
     "axioms": [
      "Classical.choice",
@@ -799,7 +799,7 @@
    },
    {
     "name": "FRC.Entropy.lcdm_age",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 391,
     "axioms": [
      "Classical.choice",
@@ -812,7 +812,7 @@
    },
    {
     "name": "FRC.Entropy.age_bracket",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 459,
     "axioms": [
      "Classical.choice",
@@ -838,7 +838,7 @@
   "C5": [
    {
     "name": "FRC.Entropy.octant_chart",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 737,
     "axioms": [
      "Classical.choice",
@@ -851,7 +851,7 @@
    },
    {
     "name": "FRC.Entropy.closure_budget",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 171,
     "axioms": [
      "Classical.choice",
@@ -884,7 +884,7 @@
   "C6": [
    {
     "name": "FRC.Entropy.octant_exists_iff",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 192,
     "axioms": [
      "Classical.choice",
@@ -897,7 +897,7 @@
    },
    {
     "name": "FRC.Entropy.octant_character",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 178,
     "axioms": [
      "Classical.choice",
@@ -939,7 +939,7 @@
   "C7": [
    {
     "name": "FRC.Entropy.octant_inversion",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 227,
     "axioms": [
      "Classical.choice",
@@ -952,7 +952,7 @@
    },
    {
     "name": "FRC.Entropy.landing_bracket",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 772,
     "axioms": [
      "Classical.choice",
@@ -967,7 +967,7 @@
   "C8": [
    {
     "name": "FRC.Entropy.channel_one_consistency",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 235,
     "axioms": [
      "Classical.choice",
@@ -980,7 +980,7 @@
    },
    {
     "name": "FRC.Entropy.channel_one_numeral",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 285,
     "axioms": [
      "Classical.choice",
@@ -993,7 +993,7 @@
    },
    {
     "name": "FRC.Entropy.cluster_identity",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 255,
     "axioms": [
      "Classical.choice",
@@ -1008,7 +1008,7 @@
   "C9": [
    {
     "name": "FRC.Entropy.count_face",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 497,
     "axioms": [
      "Classical.choice",
@@ -1023,7 +1023,7 @@
   "C10": [
    {
     "name": "FRC.Entropy.capacity_zero",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 507,
     "axioms": [
      "Classical.choice",
@@ -1047,7 +1047,7 @@
   "X1": [
    {
     "name": "FRC.Entropy.lambda_face",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 648,
     "axioms": [
      "Classical.choice",
@@ -1062,7 +1062,7 @@
   "X2": [
    {
     "name": "FRC.Entropy.milgrom_rebooking",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 153,
     "axioms": [
      "Classical.choice",
@@ -1077,7 +1077,7 @@
   "X3": [
    {
     "name": "FRC.Entropy.octant_inversion",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 227,
     "axioms": [
      "Classical.choice",
@@ -1090,7 +1090,7 @@
    },
    {
     "name": "FRC.Entropy.landing_bracket",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 772,
     "axioms": [
      "Classical.choice",
@@ -1105,7 +1105,7 @@
   "X4": [
    {
     "name": "FRC.Entropy.octant_second_face",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 209,
     "axioms": [
      "Classical.choice",
@@ -1118,7 +1118,7 @@
    },
    {
     "name": "FRC.Entropy.octant_sector_iff",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 165,
     "axioms": [
      "Classical.choice",
@@ -1142,7 +1142,7 @@
   "X5": [
    {
     "name": "FRC.Entropy.wall_exit",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 658,
     "axioms": [
      "Classical.choice",
@@ -1157,7 +1157,7 @@
   "X6": [
    {
     "name": "FRC.Entropy.lcdm_age",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 391,
     "axioms": [
      "Classical.choice",
@@ -1170,7 +1170,7 @@
    },
    {
     "name": "FRC.Entropy.octant_inversion",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 227,
     "axioms": [
      "Classical.choice",
@@ -1185,7 +1185,7 @@
   "X7": [
    {
     "name": "FRC.Entropy.hubble_on_bh_line",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 686,
     "axioms": [
      "Classical.choice",
@@ -1200,7 +1200,7 @@
   "X8": [
    {
     "name": "FRC.Entropy.hubble_on_bh_line",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 686,
     "axioms": [
      "Classical.choice",
@@ -1213,7 +1213,7 @@
    },
    {
     "name": "FRC.Entropy.record_depth",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 725,
     "axioms": [
      "Classical.choice",
@@ -1228,7 +1228,7 @@
   "P1": [
    {
     "name": "FRC.Entropy.running_floor",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 708,
     "axioms": [
      "Classical.choice",
@@ -1243,7 +1243,7 @@
   "P2": [
    {
     "name": "FRC.Entropy.record_depth",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 725,
     "axioms": [
      "Classical.choice",
@@ -1258,7 +1258,7 @@
   "P3": [
    {
     "name": "FRC.Entropy.age_rate_locus",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 746,
     "axioms": [
      "Classical.choice",
@@ -1271,7 +1271,7 @@
    },
    {
     "name": "FRC.Entropy.locus_bracket",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 768,
     "axioms": [
      "Classical.choice",
@@ -1286,7 +1286,7 @@
   "P4": [
    {
     "name": "FRC.Entropy.fluid_w",
-    "module": "FrcLedger/Entropy",
+    "module": "FrcMathlib/Entropy",
     "line": 270,
     "axioms": [
      "Classical.choice",

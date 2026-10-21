@@ -7,9 +7,9 @@ the prediction row P3 (flavour, targets) from docs/predictions.json (BLOCK = "GP
 (generated from docs/00-ledger.json and docs/predictions.json by ci/make_ledgers.py), the Lean proofs each core key
 conjoins (PROOFS: G15, G17), the Mathlib theorems P3's key conjoins (CHART), and the checks, which call the flavour
 theme (frc/flavour.py), the horizon theme (frc/ladder.py) and the chart theme (frc/chart_flavour.py). The Lean side is
-lean/FrcCore/Theme/Flavour.lean and lean/FrcLedger/Theme/Flavour.lean, the key files lean/FrcCore/Keys/Flavour.lean and
-lean/FrcLedger/Keys/Chart.lean, the certificates lean/FrcCore/Ledgers/Master/Flavour.lean and
-lean/FrcLedger/Ledgers/Master/Flavour.lean. The paper's own checks are frc/ledgers/p28_flavour.py.
+lean/FrcCore/Theme/Flavour.lean and lean/FrcMathlib/Theme/Flavour.lean, the key files lean/FrcCore/Keys/Flavour.lean and
+lean/FrcMathlib/Keys/Chart.lean, the certificates lean/FrcCore/Ledgers/Master/Flavour.lean and
+lean/FrcMathlib/Ledgers/Master/Flavour.lean. The paper's own checks are frc/ledgers/p28_flavour.py.
 
     python3 -m frc.ledgers.master.flavour        every block, the census; exit 1 if a check fails
     python3 -m frc.ledgers.master.flavour F      one block (F, R or T)

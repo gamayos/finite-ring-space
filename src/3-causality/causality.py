@@ -9,7 +9,7 @@ One script, four blocks, sixteen checks, standard library only. Each check names
 witnesses (LEDGER below; predicates cited as 3:XN) under a `# 3:XN (<key>)` marker, the key the predicate's accession key,
 and the ledger's source column links the marker of the check that decides each predicate (PREDICATES below;
 finitering.space/src/3-causality/#<key>). Where a predicate is proved in Lean (lean/FrcCore/Causality.lean,
-no axioms; lean/FrcLedger/Causality.lean on Mathlib), the check here is the instance the reader can run.
+no axioms; lean/FrcMathlib/Causality.lean on Mathlib), the check here is the instance the reader can run.
 
     python3 causality.py          every block, results.json written; exit 1 if a check fails (≈ 10 s)
     python3 causality.py C        one block (A, B, C or D); no results.json

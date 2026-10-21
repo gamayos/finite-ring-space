@@ -8,7 +8,7 @@ frc/extension.py). Each check names the predicate(s) it witnesses (LEDGER) under
 check that decides it (PREDICATES). The checks are those of the paper's validation package (src/3-causality/causality.py
 of 24 September 2026) and compute what it computes, record for record; the package stays the paper's published
 witness until its release pins the framework (tasks LM33, LM36). The Lean side is the certificates
-lean/FrcCore/Ledgers/P03Causality.lean and lean/FrcLedger/Ledgers/P03Causality.lean, over the extension theme's keys.
+lean/FrcCore/Ledgers/P03Causality.lean and lean/FrcMathlib/Ledgers/P03Causality.lean, over the extension theme's keys.
 
     python3 -m frc.ledgers.p03_causality         every block, the census; exit 1 if a check fails (≈ 10 s)
     python3 -m frc.ledgers.p03_causality C       one block (A, B, C or D)

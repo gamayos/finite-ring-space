@@ -20,7 +20,7 @@ the checks beyond the package (A5 the flavour cube, F1 the exact brackets). The 
 package stays the paper's published witness until its release pins the framework.
 
 The Lean side: the theorems of the hadrons theme (lean/FrcCore/Theme/Hadrons.lean) over the interactions theme's colour
-sector (Theme/Fields.lean), the readings on Mathlib (lean/FrcLedger/Theme/Hadrons.lean); the keys in Keys/Hadrons.lean of
+sector (Theme/Fields.lean), the readings on Mathlib (lean/FrcMathlib/Theme/Hadrons.lean); the keys in Keys/Hadrons.lean of
 both libraries, the certificates Ledgers/P35Hadrons.lean.
 
 The one Ω-hard scale √σ = 440 MeV enters once, declared in the chart data, and only the chart readings use it; the

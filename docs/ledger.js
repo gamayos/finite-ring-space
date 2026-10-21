@@ -5,7 +5,7 @@ function initLedger(root) {
   var table = root.querySelector("table.ledger"); if (!table) return;
   var rows = Array.prototype.slice.call(table.querySelectorAll("tbody tr[data-tag]"));
   var heads = Array.prototype.slice.call(table.querySelectorAll("tbody tr.blockhead"));
-  var tally = root.querySelector(".tally"), q = root.querySelector("input[type=search]"), count = root.querySelector(".count"), empty = root.querySelector(".empty");
+  var tally = root.querySelector(".tally"), q = root.querySelector("input[type=search]"), count = root.querySelector(".count"), unit = root.querySelector(".unit"), empty = root.querySelector(".empty");
   var active = "all", query = "";
   var NAMES = {G:"ground", P:"pillar", T:"theorem", D:"definition", R:"realisation", I:"import", E:"prediction", "Ω":"Ω-hard", O:"open"};
   if (window.LEDGER_TAGS === "bypaper") {          /* the predictions page: the tally counts sources, not tags */
@@ -33,7 +33,11 @@ function initLedger(root) {
       r.hidden = !ok; if (ok) { shown++; visibleBlocks[r.dataset.block] = true; }
     });
     heads.forEach(function (h) { h.hidden = !visibleBlocks[h.dataset.block]; });
-    count.textContent = shown + " of " + rows.length; empty.hidden = shown > 0;
+    if (unit) {                                                     /* the statement glyph and count (21 October 2026); the hover names the total when the rows are narrowed */
+      unit.querySelector(".n").textContent = shown;
+      unit.querySelector(".sum").title = shown + " " + (unit.dataset.what || "predicates") + " shown" + (shown < rows.length ? ", of " + rows.length : "");
+    } else if (count) count.textContent = shown + " of " + rows.length;
+    empty.hidden = shown > 0;
   }
   /* the corpus register (window.REGISTER_URL, the Ledger page): the query is also run over every public paper ledger, the hits listed under the table as links to the predicates on their pages */
   var corpus = root.querySelector("#corpus"), hits = root.querySelector("#corpus-hits"), chead = root.querySelector("#corpus-head"), reg = null, regLoading = false;

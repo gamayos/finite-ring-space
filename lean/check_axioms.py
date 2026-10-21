@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """check_axioms.py — the axioms gate for the ledger's Lean witnesses (strict rule).
 
-1. Collects every `theorem`/`lemma`/`def`/`abbrev` declared in FrcLedger/*.lean (namespace-aware) and writes
+1. Collects every `theorem`/`lemma`/`def`/`abbrev` declared in FrcMathlib/*.lean (namespace-aware) and writes
    Axioms.lean: one `#print axioms` per declaration.
 2. Runs `lake env lean Axioms.lean`, writes the output to axioms.log (one line per declaration).
 3. Fails unless every declaration depends on a subset of {propext, Classical.choice, Quot.sound}.
@@ -44,8 +44,8 @@ def gate(log_text):
 
 def main():
     if "--log-only" not in sys.argv:
-        names = [d for f in sorted((ROOT / "FrcLedger").rglob("*.lean")) for d in declarations(f)]   # the themes under Theme/ too
-        (ROOT / "Axioms.lean").write_text("import FrcLedger\n" + "".join(f"#print axioms {n}\n" for n in names), encoding="utf-8")
+        names = [d for f in sorted((ROOT / "FrcMathlib").rglob("*.lean")) for d in declarations(f)]   # the themes under Theme/ too
+        (ROOT / "Axioms.lean").write_text("import FrcMathlib\n" + "".join(f"#print axioms {n}\n" for n in names), encoding="utf-8")
         print(f"Axioms.lean: {len(names)} declarations")
         r = subprocess.run(["lake", "env", "lean", "Axioms.lean"], cwd=ROOT, capture_output=True, text=True)
         (ROOT / "axioms.log").write_text(r.stdout, encoding="utf-8")

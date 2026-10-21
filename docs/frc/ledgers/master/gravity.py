@@ -69,7 +69,7 @@ PROOFS = {
     "C21": ["FRC.Drift.character_composition", "FRC.Drift.character_unique", "FRC.Drift.ppn_defect", "FRC.Drift.ppn_no_character",
             "FRC.Subject.horizon_generator"],    # the dilation rigidity theorem: the character and its uniqueness, the PPN defect 4ab, the cover's horizon station (20 October 2026)
 }
-# The Mathlib theorems of E14's key (lean/FrcLedger/Theme/Strong.lean): the eikonal pair of the exponential reading and the
+# The Mathlib theorems of E14's key (lean/FrcMathlib/Theme/Strong.lean): the eikonal pair of the exponential reading and the
 # shadow–ringdown bracket; the row's ℓ = 2 mode is the chart check M2 (master T5 ill-posed, 16 October 2026).
 CHART = {
     "E14": ["FRC.Strong.eikonal_pair", "FRC.Strong.shadow_bracket"],

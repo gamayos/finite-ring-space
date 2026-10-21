@@ -10,7 +10,7 @@ admits a finite check. Each check names the predicate(s) it witnesses (LEDGER), 
 check that decides it (PREDICATES). The Lean side is the horizon theme's Theme/Ladder.lean with 20-rh's
 Theme/Horizon.lean, the foundation theme's Theme/Drive.lean and the frame theme's Transform.lean, the key files
 Keys/Horizon.lean, Keys/Foundation.lean and Keys/Frame.lean (Mathlib: Keys/Chart.lean), and the certificates
-lean/FrcCore/Ledgers/P26Pnp.lean and lean/FrcLedger/Ledgers/P26Pnp.lean.
+lean/FrcCore/Ledgers/P26Pnp.lean and lean/FrcMathlib/Ledgers/P26Pnp.lean.
 
 The checks call the horizon theme (frc/ladder.py: the ascent and the descent with their counts, the index dynamics, the
 recentring, the Gauss sum in the cyclotomic ring, the number-theoretic transform, the affine systems over F_2;

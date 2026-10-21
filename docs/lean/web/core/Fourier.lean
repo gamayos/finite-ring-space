@@ -6538,7 +6538,7 @@ and the fourier theme's eight files for the rest: `Theme/Fourier` (the shell DFT
 6:E3, 6:E10), `Theme/Heisenberg` (the character sector and the Heisenberg pair: 6:E6, 6:E7), `Theme/Spectra`
 (the spectra and the spectral obstruction: 6:E5, 6:E9) and `Theme/Exclusivity` (cardinal exclusivity, 6:E8);
 6:C3 and 6:C9 are `Theme/Fourier`'s. The Mathlib statements of fifteen of these predicates, for every shell, are
-in `FrcLedger/Fourier.lean`; the paper's python witness checks them on six shells.
+in `FrcMathlib/Fourier.lean`; the paper's python witness checks them on six shells.
 -/
 
 namespace FRC.Fourier

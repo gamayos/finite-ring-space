@@ -101,11 +101,27 @@
     return (st.paper === "all" || paper === st.paper) && (st.block === "all" || block === st.block)
         && (st.tag === "all" || tr.dataset.tag.split("|").indexOf(st.tag) >= 0) && (!st.q || tr.textContent.toLowerCase().indexOf(st.q) >= 0);
   }
+  var unitEl = document.getElementById("unit");                             /* the counts beside the search (20 October 2026): the rows shown, and per witness the shown rows that carry it (data-wit) */
+  function unit(shown) {
+    if (!unitEl) { if (count_) count_.textContent = shown + " of " + trs.length; return; }
+    var n = {py: 0, core: 0, ml: 0}, bad = {py: false, core: false, ml: false}, what = unitEl.dataset.what;
+    trs.forEach(function (tr) {
+      if (tr.hidden) return;
+      (tr.dataset.wit || "").split(" ").forEach(function (w) { var k = w.replace("!", ""); if (k in n) { n[k]++; if (w !== k) bad[k] = true; } });
+    });
+    Array.prototype.forEach.call(unitEl.querySelectorAll(".sum"), function (s) {
+      var k = s.dataset.k, v = k ? n[k] : shown, img = s.querySelector("img");
+      s.querySelector(".n").textContent = v;
+      if (!k) { s.title = shown + " " + what + " shown" + (shown < trs.length ? ", of " + trs.length : ""); return; }
+      s.classList.toggle("fail", bad[k]); if (img) img.src = bad[k] ? img.dataset.fail : img.dataset.ok;
+      s.title = v + " of the " + what + " shown " + s.dataset.verb + (bad[k] ? " — " + s.dataset.why : "");
+    });
+  }
   function renderTab() {
     var shown = 0, vis = {};
     trs.forEach(function (tr) { var ok = inPlace(tr); tr.hidden = !ok; if (ok) { shown++; vis[tr.dataset.block] = true; } });
     heads.forEach(function (h) { h.hidden = !vis[h.dataset.block]; });
-    count_.textContent = shown + " of " + trs.length; empty.hidden = shown > 0;
+    unit(shown); empty.hidden = shown > 0;
     corpusSearch();
   }
   /* the Ledger tab: the search also runs over every public paper ledger, the hits listed under the table as links to the predicates on their pages */

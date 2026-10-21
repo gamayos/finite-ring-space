@@ -17,7 +17,7 @@ run by flvcommon.py); FAMILY names the package record (flv.<script>) each check 
 published witness until its release pins the framework (decision Q06).
 
 The Lean side: the theorems of the flavour theme (lean/FrcCore/Theme/Flavour.lean) and the interactions theme's Koide form
-(Theme/Interactions.lean), the chart readings on Mathlib (lean/FrcLedger/Theme/Flavour.lean); the keys in
+(Theme/Interactions.lean), the chart readings on Mathlib (lean/FrcMathlib/Theme/Flavour.lean); the keys in
 Keys/Flavour.lean (core) and Keys/Chart.lean (Mathlib), the certificates Ledgers/P28Flavour.lean.
 
 No numeral above Ω is formed: the one reading that names the Carrier's size (Z4's hierarchy α(m_P/m_p)² ≈ 10³⁶) is a ratio

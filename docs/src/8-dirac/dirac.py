@@ -11,7 +11,7 @@ block (fin.S1, o2.C3i, o8.X7, …), one check of the registry, identified as <bl
 the paper's ledger it witnesses (LEDGER; predicates cited as 8:<label>) — the deciding family's `# 8:<label> (<key>)`
 marker is what the ledger's source column links (PREDICATES; finitering.space/src/8-dirac/#<key>); the family
 checks are listed on the public page from results.json. Where a predicate is proved in Lean (lean/FrcCore/Dirac.lean with
-no axioms, lean/FrcLedger/Dirac.lean on Mathlib), the check here is the instance the reader can run. Master-ledger
+no axioms, lean/FrcMathlib/Dirac.lean on Mathlib), the check here is the instance the reader can run. Master-ledger
 predicates reached through the paper predicates: 00:C3 (8:B4), 00:C8 (8:B5, 8:B6), 00:B10 (8:B5).
 
     python3 dirac.py              every block, results.json written; exit 1 if a family check fails (≈ 1 min)

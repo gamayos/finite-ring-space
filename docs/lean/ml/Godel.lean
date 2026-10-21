@@ -1,13 +1,13 @@
 import Mathlib
-import FrcLedger.Theme.Logic
-import FrcLedger.Keys.Logic
+import FrcMathlib.Theme.Logic
+import FrcMathlib.Keys.Logic
 
 /-!
 # 25-göd — incompleteness without infinity: the paper module on Mathlib (migrated 20 October 2026)
 
 The predicate declarations of *Incompleteness Without Infinity* (tree `25-godel-20260614`) on Mathlib's hierarchy,
 `FRC.Godel.p25NNN`, each the conjunction of the theorems its ledger row cites, and the paper's old names as aliases. Since
-the migration of 20 October 2026 the theorems live in the logic theme's `FrcLedger/Theme/Logic.lean`: the pigeonhole on a
+the migration of 20 October 2026 the theorems live in the logic theme's `FrcMathlib/Theme/Logic.lean`: the pigeonhole on a
 finite carrier and every model of `Q` infinite (25:C1), completeness and decidability (25:C2), the `m + 1` sentences
 (25:C5), the storage encodings and aliasing (25:D1, D3), the Catalan bound of abundance (25:E1), the records (25:E2), the
 dense coding (25:F4), the second-order quantifier over a finite domain (25:H2). The axioms of each declaration are in

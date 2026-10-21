@@ -29,7 +29,7 @@ family check is one script's verdict (`grav.<stem>`), its micro-checks the scrip
 prints; each family names the row(s) of the paper's predicate ledger it witnesses (the paper's Section "Status", subsection
 "Predicate ledger", rows cited as `21:XN`; public copy at `docs/21-gravity/21-gravity-ledger.html`), and the ledger's source column
 cites the family ids in return. Where a row is proved in Lean (`lean/FrcCore/Gravity.lean` with no axioms, or
-`lean/FrcLedger/Gravity.lean` on Mathlib — the Carrier register, the count face and the merger law, the cover forcing, the operational
+`lean/FrcMathlib/Gravity.lean` on Mathlib — the Carrier register, the count face and the merger law, the cover forcing, the operational
 cut and the photon sphere, the registration root and the crossover's limits, the shift theorem, with the shadow, ringdown, efficiency,
 floor, tilt and interpolant numerals bracketed), the check here is the instance the reader can run. Master-ledger rows of the corpus
 reached through the paper rows: `00:A9`, `00:D1`, `00:D3`, `00:D5`, `00:B7`, `00:E1`, `00:D15`, `00:E3`–`00:E7`, `00:E10`, `00:L1`,

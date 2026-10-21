@@ -109,7 +109,7 @@
      "label": "C1",
      "predicate": "The finite gauge correspondence, its exact clauses: the abelian inclusion $\\Z/M\\hookrightarrow\\U(1)$ as the $M$-th roots of unity, the positive cyclotomic action (the Wilson weight $1-\\Re\\zeta\\ge0$), and the exact $q{=}3$ embedding $\\SU(2,\\F_3)\\cong2T$ with the Wilson trace a class function (Theorems~\\ref{thm:corrU1},~\\ref{thm:corrpos},~\\ref{thm:corr2T}); the resolvable-window reconstruction is C12 and the cross-scale running $\\Omega$-hard (Z1).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:corr}\\newline \\pywit{fields}{p27013}{C1}, \\leanwit{FrcCore}{p27013}{C1}, \\leanwit{FrcLedger}{p27013}{C1} \\lean{FRC.Interactions.tetrahedral\\_group, FRC.Unitary.class\\_function, Fields.roots\\_inclusion, Fields.wilson\\_weight\\_nonneg}",
+     "source": "Thm.~\\ref{thm:corr}\\newline \\pywit{fields}{p27013}{C1}, \\leanwit{FrcCore}{p27013}{C1}, \\leanwit{FrcMathlib}{p27013}{C1} \\lean{FRC.Interactions.tetrahedral\\_group, FRC.Unitary.class\\_function, Fields.roots\\_inclusion, Fields.wilson\\_weight\\_nonneg}",
      "key": "p27013"
     },
     {
@@ -144,14 +144,14 @@
      "label": "C6",
      "predicate": "The Weinberg trace formula $\\sin^2\\sW=\\Tr(T_3^2)/\\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\\sqrt2\\,v^2)$; the imported template (A4) evaluated on the realisations B3, B5.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:angle}, Cor.~\\ref{cor:fermi}\\newline \\pywit{fields}{p27018}{C6}, \\leanwit{FrcCore}{p27018}{C6}, \\leanwit{FrcLedger}{p27018}{C6} \\lean{FRC.Interactions.weinberg\\_angle, FRC.Interactions.one\\_generation, Fields.fermi\\_constant}",
+     "source": "Prop.~\\ref{prop:angle}, Cor.~\\ref{cor:fermi}\\newline \\pywit{fields}{p27018}{C6}, \\leanwit{FrcCore}{p27018}{C6}, \\leanwit{FrcMathlib}{p27018}{C6} \\lean{FRC.Interactions.weinberg\\_angle, FRC.Interactions.one\\_generation, Fields.fermi\\_constant}",
      "key": "p27018"
     },
     {
      "label": "C7",
      "predicate": "The strong sector: the colour $\\SU(3,\\Omega)$ frame forced as the minimal triality-carrying rank, the exact $\\Z_3$ centre, the gluon connection, and the confinement area law $\\sigma>0$ from positivity, with the string tension $\\sigma(\\beta)=-\\ln c_1(\\beta)$ computed in finite units (closed form on $2T$; $c_1^{\\SU(3)}=\\tfrac\\beta{18}+\\tfrac{\\beta^2}{216}+\\cdots$).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:su3}, Prop.~\\ref{prop:gluon}, Prop.~\\ref{prop:corrarea}\\newline \\pywit{fields}{p27019}{C7}, \\leanwit{FrcCore}{p27019}{C7}, \\leanwit{FrcLedger}{p27019}{C7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
+     "source": "Prop.~\\ref{prop:su3}, Prop.~\\ref{prop:gluon}, Prop.~\\ref{prop:corrarea}\\newline \\pywit{fields}{p27019}{C7}, \\leanwit{FrcCore}{p27019}{C7}, \\leanwit{FrcMathlib}{p27019}{C7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
      "key": "p27019"
     },
     {
@@ -241,7 +241,7 @@
      "label": "X7",
      "predicate": "\\textbf{The colour sector} is fixed: three colours is the minimal triality-carrying frame, confinement is the compact-group area law from positivity, and asymptotic freedom is the gluon self-coupling, not $N_c=3$ supplemented by an assumed confining phase.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea},~\\ref{prop:af}\\newline \\pywit{fields}{p27030}{X7}, \\leanwit{FrcCore}{p27030}{X7}, \\leanwit{FrcLedger}{p27030}{X7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
+     "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea},~\\ref{prop:af}\\newline \\pywit{fields}{p27030}{X7}, \\leanwit{FrcCore}{p27030}{X7}, \\leanwit{FrcMathlib}{p27030}{X7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
      "key": "p27030"
     },
     {
@@ -296,21 +296,21 @@
      "label": "P3",
      "predicate": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13}\\,$GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13\\%$. The content has no superpartner. Where the completion closes the miss is the $\\Omega$-hard running (Z1). \\emph{Falsifier:} superpartners.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27037}{P3}, \\leanwit{FrcCore}{p27037}{P3}, \\leanwit{FrcLedger}{p27037}{P3}; rests on A3, A6, C8, Z1 \\lean{FRC.Interactions.one\\_generation, Fields.running\\_near\\_miss}",
+     "source": "Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27037}{P3}, \\leanwit{FrcCore}{p27037}{P3}, \\leanwit{FrcMathlib}{p27037}{P3}; rests on A3, A6, C8, Z1 \\lean{FRC.Interactions.one\\_generation, Fields.running\\_near\\_miss}",
      "key": "p27037"
     },
     {
      "label": "P4",
      "predicate": "\\textbf{The proton is effectively stable} \\emph{[forced]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\\,$GeV it already exceeds the Super-Kamiokande bound. \\emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27038}{P4}, \\leanwit{FrcCore}{p27038}{P4}, \\leanwit{FrcLedger}{p27038}{P4}; rests on A3, A6, C9, Z1 \\lean{FRC.Interactions.unification\\_counts, Fields.proton\\_lifetime}",
+     "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27038}{P4}, \\leanwit{FrcCore}{p27038}{P4}, \\leanwit{FrcMathlib}{p27038}{P4}; rests on A3, A6, C9, Z1 \\lean{FRC.Interactions.unification\\_counts, Fields.proton\\_lifetime}",
      "key": "p27038"
     },
     {
      "label": "P5",
      "predicate": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass at the unification scale (A4), and the seesaw then places the light masses in the observed band for singlet masses of $10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or Dirac neutrinos.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}\\newline \\pywit{fields}{p27039}{P5}, \\leanwit{FrcCore}{p27039}{P5}, \\leanwit{FrcLedger}{p27039}{P5}; rests on A4, B5, C8 \\lean{FRC.Interactions.one\\_generation, Fields.seesaw\\_band}",
+     "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}\\newline \\pywit{fields}{p27039}{P5}, \\leanwit{FrcCore}{p27039}{P5}, \\leanwit{FrcMathlib}{p27039}{P5}; rests on A4, B5, C8 \\lean{FRC.Interactions.one\\_generation, Fields.seesaw\\_band}",
      "key": "p27039"
     },
     {
@@ -508,7 +508,7 @@
    },
    {
     "name": "FRC.Fields.roots_inclusion",
-    "module": "FrcLedger/Fields",
+    "module": "FrcMathlib/Fields",
     "line": 19,
     "axioms": [
      "Classical.choice",
@@ -521,7 +521,7 @@
    },
    {
     "name": "FRC.Fields.wilson_weight_nonneg",
-    "module": "FrcLedger/Fields",
+    "module": "FrcMathlib/Fields",
     "line": 29,
     "axioms": [
      "Classical.choice",
@@ -670,7 +670,7 @@
    },
    {
     "name": "FRC.Fields.fermi_constant",
-    "module": "FrcLedger/Fields",
+    "module": "FrcMathlib/Fields",
     "line": 39,
     "axioms": [
      "Classical.choice",
@@ -712,7 +712,7 @@
    },
    {
     "name": "FRC.Fields.area_law_positive",
-    "module": "FrcLedger/Fields",
+    "module": "FrcMathlib/Fields",
     "line": 33,
     "axioms": [
      "Classical.choice",
@@ -963,7 +963,7 @@
    },
    {
     "name": "FRC.Fields.area_law_positive",
-    "module": "FrcLedger/Fields",
+    "module": "FrcMathlib/Fields",
     "line": 33,
     "axioms": [
      "Classical.choice",
@@ -1125,7 +1125,7 @@
    },
    {
     "name": "FRC.Fields.running_near_miss",
-    "module": "FrcLedger/Fields",
+    "module": "FrcMathlib/Fields",
     "line": 44,
     "axioms": [
      "Classical.choice",
@@ -1149,7 +1149,7 @@
    },
    {
     "name": "FRC.Fields.proton_lifetime",
-    "module": "FrcLedger/Fields",
+    "module": "FrcMathlib/Fields",
     "line": 52,
     "axioms": [
      "Classical.choice",
@@ -1173,7 +1173,7 @@
    },
    {
     "name": "FRC.Fields.seesaw_band",
-    "module": "FrcLedger/Fields",
+    "module": "FrcMathlib/Fields",
     "line": 61,
     "axioms": [
      "Classical.choice",

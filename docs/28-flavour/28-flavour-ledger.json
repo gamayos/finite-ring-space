@@ -123,14 +123,14 @@
      "label": "C3",
      "predicate": "The leading boundary phase is the framed-rational winding $\\delta_{\\mathrm{LO}}=\\tfrac38-\\tfrac13=\\tfrac1{24}$ cycle (split-torus boundary $\\tfrac38$ minus generation $\\tfrac13$; continuum $\\pi/12$ [approx]); massless lightest generation.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:pi12}\\newline \\pywit{flavour}{p28014}{C3}, \\leanwit{FrcCore}{p28014}{C3}, \\leanwit{FrcLedger}{p28014}{C3} \\lean{FRC.Flavour.quarter\\_turn\\_boundary, FRC.Flavour.lo\\_eigen, FRC.Flavour.lo\\_ratio\\_sq, FRC.Flavour.delta\\_lo, Flavour.lo\\_ratio}",
+     "source": "Prop.~\\ref{prop:pi12}\\newline \\pywit{flavour}{p28014}{C3}, \\leanwit{FrcCore}{p28014}{C3}, \\leanwit{FrcMathlib}{p28014}{C3} \\lean{FRC.Flavour.quarter\\_turn\\_boundary, FRC.Flavour.lo\\_eigen, FRC.Flavour.lo\\_ratio\\_sq, FRC.Flavour.delta\\_lo, Flavour.lo\\_ratio}",
      "key": "p28014"
     },
     {
      "label": "C4",
      "predicate": "The squared amplitudes are the cyclotomic norms $r_\\ell^2=N(1-i)=2$, $r_u^2=N(1-\\omega)=3$ (on B5), hence $Q_\\ell=\\tfrac23$, $Q_u=\\tfrac56$ in framed arithmetic ($Q_u=0.849$ in the working scheme, band $0.83$--$0.89$); the down sector is the GJ-dressed intermediate.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:23tori}\\newline \\pywit{flavour}{p28015}{C4}, \\leanwit{FrcCore}{p28015}{C4}, \\leanwit{FrcLedger}{p28015}{C4}; rests on B4 \\lean{FRC.Flavour.norm\\_one\\_sub\\_i, FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
+     "source": "Rem.~\\ref{rem:23tori}\\newline \\pywit{flavour}{p28015}{C4}, \\leanwit{FrcCore}{p28015}{C4}, \\leanwit{FrcMathlib}{p28015}{C4}; rests on B4 \\lean{FRC.Flavour.norm\\_one\\_sub\\_i, FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
      "key": "p28015"
     },
     {
@@ -144,14 +144,14 @@
      "label": "C6",
      "predicate": "The Gatto Cabibbo relation $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$, the phase $\\varphi$ a kernel datum ($85^\\circ\\pm10^\\circ$ from the data).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:gatto}\\newline \\pywit{flavour}{p28017}{C6}, \\leanwit{FrcCore}{p28017}{C6}, \\leanwit{FrcLedger}{p28017}{C6} \\lean{FRC.Flavour.gst\\_relation, FRC.Flavour.cabibbo\\_modulus, Flavour.gatto\\_leading}",
+     "source": "Prop.~\\ref{prop:gatto}\\newline \\pywit{flavour}{p28017}{C6}, \\leanwit{FrcCore}{p28017}{C6}, \\leanwit{FrcMathlib}{p28017}{C6} \\lean{FRC.Flavour.gst\\_relation, FRC.Flavour.cabibbo\\_modulus, Flavour.gatto\\_leading}",
      "key": "p28017"
     },
     {
      "label": "C7",
      "predicate": "Up-sector doubling $m^u_i\\sim(m^d_i)^2$ from the $\\mathbf{10}\\cdot\\mathbf{10}$ Yukawa.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:doubling}\\newline \\pywit{flavour}{p28018}{C7}, \\leanwit{FrcCore}{p28018}{C7}, \\leanwit{FrcLedger}{p28018}{C7} \\lean{FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
+     "source": "Prop.~\\ref{prop:doubling}\\newline \\pywit{flavour}{p28018}{C7}, \\leanwit{FrcCore}{p28018}{C7}, \\leanwit{FrcMathlib}{p28018}{C7} \\lean{FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
      "key": "p28018"
     },
     {
@@ -165,14 +165,14 @@
      "label": "C9",
      "predicate": "The reactor angle at leading order, $\\sin\\theta_{13}=\\sin\\theta_C/\\sqrt2\\simeq\\delta_0/\\sqrt2$ (quark--lepton complementarity): $0.159$ against the measured $0.149$, $7\\%$, no correction derived.",
      "tag": "T",
-     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28020}{C9}, \\leanwit{FrcLedger}{p28020}{C9} \\lean{Flavour.theta13\\_estimate}",
+     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28020}{C9}, \\leanwit{FrcMathlib}{p28020}{C9} \\lean{Flavour.theta13\\_estimate}",
      "key": "p28020"
     },
     {
      "label": "C10",
      "predicate": "TM2 selected: the trivial $C_3$ character $(1,1,1)/\\sqrt3$ is the protected column, so $\\cos\\delta_{\\mathrm{CP}}$ is locked to $\\theta_{23}$ by \\eqref{eq:tm2}; the magic Jarlskog $J=1/(6\\sqrt3)$ is maximal CP, the sign fixed by the drive.",
      "tag": "T",
-     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28021}{C10}, \\leanwit{FrcCore}{p28021}{C10}, \\leanwit{FrcLedger}{p28021}{C10} \\lean{FRC.Flavour.protected\\_column, FRC.Flavour.trimaximal, FRC.Flavour.jarlskog\\_sq, Flavour.jarlskog, Flavour.tm2\\_at\\_maximal, Flavour.exact\\_tm2\\_solar}",
+     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28021}{C10}, \\leanwit{FrcCore}{p28021}{C10}, \\leanwit{FrcMathlib}{p28021}{C10} \\lean{FRC.Flavour.protected\\_column, FRC.Flavour.trimaximal, FRC.Flavour.jarlskog\\_sq, Flavour.jarlskog, Flavour.tm2\\_at\\_maximal, Flavour.exact\\_tm2\\_solar}",
      "key": "p28021"
     },
     {
@@ -206,49 +206,49 @@
      "label": "X1",
      "predicate": "\\textbf{The Koide ratio} is exactly $2/3$ given the quarter-turn realisation B5, the cube-root generation orbit bisected at the quarter-turn ($\\rho^2=2^{-1}$), an exact value rather than an unexplained empirical coincidence.",
      "tag": "T",
-     "source": "Proposition~\\ref{prop:koide}\\newline \\pywit{flavour}{p28025}{X1}, \\leanwit{FrcCore}{p28025}{X1}, \\leanwit{FrcLedger}{p28025}{X1} \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half, Flavour.koide\\_measured}",
+     "source": "Proposition~\\ref{prop:koide}\\newline \\pywit{flavour}{p28025}{X1}, \\leanwit{FrcCore}{p28025}{X1}, \\leanwit{FrcMathlib}{p28025}{X1} \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half, Flavour.koide\\_measured}",
      "key": "p28025"
     },
     {
      "label": "X2",
      "predicate": "\\textbf{The up-quark Koide value} is $5/6$ in framed arithmetic ($0.849$ in the working scheme, $0.832$ with pole masses), the cube-root colour norm $r_u^2=N(1-\\omega)=3$ against the colourless $N(1-i)=2$, a ratio where the Standard Model carries no relation at all.",
      "tag": "T",
-     "source": "Remark~\\ref{rem:23tori}\\newline \\pywit{flavour}{p28026}{X2}, \\leanwit{FrcCore}{p28026}{X2}, \\leanwit{FrcLedger}{p28026}{X2} \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
+     "source": "Remark~\\ref{rem:23tori}\\newline \\pywit{flavour}{p28026}{X2}, \\leanwit{FrcCore}{p28026}{X2}, \\leanwit{FrcMathlib}{p28026}{X2} \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
      "key": "p28026"
     },
     {
      "label": "X3",
      "predicate": "\\textbf{The flavour charges} are the role depths $(0,1,2)$ of the closed primitive-role ladder, derived as the three generative roles rather than assigned to fit the hierarchy.",
      "tag": "T",
-     "source": "\\S\\ref{sec:texture}\\newline \\pywit{flavour}{p28027}{X3}, \\leanwit{FrcCore}{p28027}{X3}, \\leanwit{FrcLedger}{p28027}{X3} \\lean{FRC.Ladder.tower\\_reduces, FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
+     "source": "\\S\\ref{sec:texture}\\newline \\pywit{flavour}{p28027}{X3}, \\leanwit{FrcCore}{p28027}{X3}, \\leanwit{FrcMathlib}{p28027}{X3} \\lean{FRC.Ladder.tower\\_reduces, FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
      "key": "p28027"
     },
     {
      "label": "X4",
      "predicate": "\\textbf{The Cabibbo angle} is the Gatto relation $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$ following from the role-depth texture, the leading term at $0.3\\%$ and the phase $\\varphi$ a kernel datum, so two otherwise-independent observables are tied rather than measured apart.",
      "tag": "T",
-     "source": "Proposition~\\ref{prop:gatto}\\newline \\pywit{flavour}{p28028}{X4}, \\leanwit{FrcCore}{p28028}{X4}, \\leanwit{FrcLedger}{p28028}{X4} \\lean{FRC.Flavour.gst\\_relation, FRC.Flavour.cabibbo\\_modulus, Flavour.gatto\\_leading}",
+     "source": "Proposition~\\ref{prop:gatto}\\newline \\pywit{flavour}{p28028}{X4}, \\leanwit{FrcCore}{p28028}{X4}, \\leanwit{FrcMathlib}{p28028}{X4} \\lean{FRC.Flavour.gst\\_relation, FRC.Flavour.cabibbo\\_modulus, Flavour.gatto\\_leading}",
      "key": "p28028"
     },
     {
      "label": "X5",
      "predicate": "\\textbf{The Georgi--Jarlskog factor} is the colour count $N_c=3$, the $B\\!-\\!L$ Clebsch of the $\\overline{\\mathbf{126}}$, not a texture coefficient inserted by hand; its double ratio $9$ against the measured $10.4\\pm0.5$ is the open $15\\%$ excess of the minimal Clebsch.",
      "tag": "T",
-     "source": "\\S\\ref{sec:gj}\\newline \\pywit{flavour}{p28029}{X5}, \\leanwit{FrcCore}{p28029}{X5}, \\leanwit{FrcLedger}{p28029}{X5} \\lean{FRC.Flavour.colour\\_count, Flavour.gj\\_ratio}",
+     "source": "\\S\\ref{sec:gj}\\newline \\pywit{flavour}{p28029}{X5}, \\leanwit{FrcCore}{p28029}{X5}, \\leanwit{FrcMathlib}{p28029}{X5} \\lean{FRC.Flavour.colour\\_count, Flavour.gj\\_ratio}",
      "key": "p28029"
     },
     {
      "label": "X6",
      "predicate": "\\textbf{The up-sector doubling} $m^u_i\\sim(m^d_i)^2$ is forced by the $\\mathbf{10}\\cdot\\mathbf{10}$ Yukawa, so the steeper up hierarchy is a consequence rather than a separate assumption.",
      "tag": "T",
-     "source": "Proposition~\\ref{prop:doubling}\\newline \\pywit{flavour}{p28030}{X6}, \\leanwit{FrcCore}{p28030}{X6}, \\leanwit{FrcLedger}{p28030}{X6} \\lean{FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
+     "source": "Proposition~\\ref{prop:doubling}\\newline \\pywit{flavour}{p28030}{X6}, \\leanwit{FrcCore}{p28030}{X6}, \\leanwit{FrcMathlib}{p28030}{X6} \\lean{FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
      "key": "p28030"
     },
     {
      "label": "X7",
      "predicate": "\\textbf{The electron's extreme lightness} is the quarter-turn boundary: the lightest generation sits where the winding amplitude vanishes, massless at leading order, rather than an anomalously small Yukawa tuned by hand.",
      "tag": "T",
-     "source": "Proposition~\\ref{prop:pi12}\\newline \\pywit{flavour}{p28031}{X7}, \\leanwit{FrcCore}{p28031}{X7}, \\leanwit{FrcLedger}{p28031}{X7} \\lean{FRC.Flavour.quarter\\_turn\\_boundary, FRC.Flavour.lo\\_eigen, FRC.Flavour.lo\\_ratio\\_sq, Flavour.lo\\_ratio}",
+     "source": "Proposition~\\ref{prop:pi12}\\newline \\pywit{flavour}{p28031}{X7}, \\leanwit{FrcCore}{p28031}{X7}, \\leanwit{FrcMathlib}{p28031}{X7} \\lean{FRC.Flavour.quarter\\_turn\\_boundary, FRC.Flavour.lo\\_eigen, FRC.Flavour.lo\\_ratio\\_sq, Flavour.lo\\_ratio}",
      "key": "p28031"
     },
     {
@@ -262,21 +262,21 @@
      "label": "X9",
      "predicate": "\\textbf{The reactor angle} is, at leading order, $\\sin\\theta_{13}=\\sin\\theta_C/\\sqrt2=0.159$, quark--lepton complementarity through the quarter-turn, $7\\%$ above the observed $0.149$ with no correction derived: a leading-order estimate of the mixing parameter, not a prediction.",
      "tag": "T",
-     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28033}{X9}, \\leanwit{FrcLedger}{p28033}{X9} \\lean{Flavour.theta13\\_estimate}",
+     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28033}{X9}, \\leanwit{FrcMathlib}{p28033}{X9} \\lean{Flavour.theta13\\_estimate}",
      "key": "p28033"
     },
     {
      "label": "X10",
      "predicate": "\\textbf{Near-maximal leptonic CP} is the cube-root phase: $\\mathrm{Im}\\,\\omega=\\sqrt3/2$ gives the maximal Jarlskog $J=1/(6\\sqrt3)$, so the cubic reappears as CP violation rather than a free phase fitted to data.",
      "tag": "T",
-     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28034}{X10}, \\leanwit{FrcCore}{p28034}{X10}, \\leanwit{FrcLedger}{p28034}{X10} \\lean{FRC.Flavour.trimaximal, FRC.Flavour.jarlskog\\_sq, Flavour.jarlskog}",
+     "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28034}{X10}, \\leanwit{FrcCore}{p28034}{X10}, \\leanwit{FrcMathlib}{p28034}{X10} \\lean{FRC.Flavour.trimaximal, FRC.Flavour.jarlskog\\_sq, Flavour.jarlskog}",
      "key": "p28034"
     },
     {
      "label": "X11",
      "predicate": "\\textbf{The neutrino spectrum} (a near-massless lightest state, $\\sum m_\\nu\\simeq59\\,$meV on the normal branch) follows from colourlessness fixing $Q_\\nu=2/3$, the transpose fixed point under the alignment $M_R\\propto m_D$ (Y1) and the boundary branch that selects the ordering (B6), rather than three independent neutrino masses.",
      "tag": "T",
-     "source": "Proposition~\\ref{prop:transpose}, \\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28035}{X11}, \\leanwit{FrcCore}{p28035}{X11}, \\leanwit{FrcLedger}{p28035}{X11} \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.seesaw\\_circulant, FRC.Flavour.circ\\_eigen, Flavour.neutrino\\_floor}",
+     "source": "Proposition~\\ref{prop:transpose}, \\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28035}{X11}, \\leanwit{FrcCore}{p28035}{X11}, \\leanwit{FrcMathlib}{p28035}{X11} \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.seesaw\\_circulant, FRC.Flavour.circ\\_eigen, Flavour.neutrino\\_floor}",
      "key": "p28035"
     }
    ]
@@ -289,49 +289,49 @@
      "label": "P1",
      "predicate": "Charged-lepton Koide $Q_\\ell=2/3$ exact on B5 (measured $0.666661\\pm0.000007$); $m_e=0.5106$ vs $0.5110$ MeV. Falsifier: a lepton-mass shift of $Q_\\ell$ off $2/3$ beyond the $\\tau$-mass tolerance.",
      "tag": "T",
-     "source": "C2, B5\\newline \\pywit{flavour}{p28036}{P1}, \\leanwit{FrcCore}{p28036}{P1}, \\leanwit{FrcLedger}{p28036}{P1}; rests on A6 \\lean{FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, Flavour.koide\\_measured}",
+     "source": "C2, B5\\newline \\pywit{flavour}{p28036}{P1}, \\leanwit{FrcCore}{p28036}{P1}, \\leanwit{FrcMathlib}{p28036}{P1}; rests on A6 \\lean{FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, Flavour.koide\\_measured}",
      "key": "p28036"
     },
     {
      "label": "P2",
      "predicate": "Up-quark Koide $Q_u=5/6$ in framed arithmetic, $r_u^2=N(1-\\omega)=3$; continuum $0.849$ in the working scheme, $0.832$ with pole masses, band $0.83$--$0.89$. Falsifier: up/charm/top masses moving $Q_u$ outside the band in every standard scheme.",
      "tag": "T",
-     "source": "C4\\newline \\pywit{flavour}{p28037}{P2}, \\leanwit{FrcCore}{p28037}{P2}, \\leanwit{FrcLedger}{p28037}{P2}; rests on B4, B5 \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
+     "source": "C4\\newline \\pywit{flavour}{p28037}{P2}, \\leanwit{FrcCore}{p28037}{P2}, \\leanwit{FrcMathlib}{p28037}{P2}; rests on B4, B5 \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
      "key": "p28037"
     },
     {
      "label": "P3",
      "predicate": "Cabibbo $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$: leading term $0.224^{+0.011}_{-0.004}$ vs $0.2243$ ($0.3\\%$), the up term $\\pm0.04$ with $\\varphi$ open. Falsifier: no $\\varphi$ satisfying the relation within the input band.",
      "tag": "T",
-     "source": "C6\\newline \\pywit{flavour}{p28038}{P3}, \\leanwit{FrcCore}{p28038}{P3}, \\leanwit{FrcLedger}{p28038}{P3}; rests on B3 \\lean{FRC.Flavour.cabibbo\\_modulus, FRC.Flavour.gst\\_relation, Flavour.gatto\\_leading}",
+     "source": "C6\\newline \\pywit{flavour}{p28038}{P3}, \\leanwit{FrcCore}{p28038}{P3}, \\leanwit{FrcMathlib}{p28038}{P3}; rests on B3 \\lean{FRC.Flavour.cabibbo\\_modulus, FRC.Flavour.gst\\_relation, Flavour.gatto\\_leading}",
      "key": "p28038"
     },
     {
      "label": "P5",
      "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$, the two $\\Delta m^2$ and the boundary branch (B6); the signed circulant solves both orderings (C11b). Falsifier: inverted ordering.",
      "tag": "T",
-     "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28039}{P5}, \\leanwit{FrcCore}{p28039}{P5}, \\leanwit{FrcLedger}{p28039}{P5}; rests on A6, B5, C11 \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.circ\\_transpose, Flavour.neutrino\\_floor}",
+     "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28039}{P5}, \\leanwit{FrcCore}{p28039}{P5}, \\leanwit{FrcMathlib}{p28039}{P5}; rests on A6, B5, C11 \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.circ\\_transpose, Flavour.neutrino\\_floor}",
      "key": "p28039"
     },
     {
      "label": "P6",
      "predicate": "Mass-sum floor $\\sum m_\\nu=58.8$ meV at NuFIT~6.0 ($m_1{=}0$, $m_2{=}8.65$, $m_3{=}50.13$ meV), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological $\\sum m_\\nu<0.058$ eV.",
      "tag": "T",
-     "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28040}{P6}, \\leanwit{FrcLedger}{p28040}{P6}; rests on A6, B5, B6, C11, Y1 \\lean{Flavour.neutrino\\_floor}",
+     "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28040}{P6}, \\leanwit{FrcMathlib}{p28040}{P6}; rests on A6, B5, B6, C11, Y1 \\lean{Flavour.neutrino\\_floor}",
      "key": "p28040"
     },
     {
      "label": "P7",
      "predicate": "Effective Majorana mass $m_{\\beta\\beta}{\\simeq}1.5$--$3.7$ meV (NO, at $m_1=0$, over the relative Majorana phase; $1.2$--$4.0$ meV with the fitted $m_1=0.36$ meV). Falsifier: a $0\\nu\\beta\\beta$ signal at the inverted scale $15$--$50$ meV.",
      "tag": "T",
-     "source": "C11\\newline \\pywit{flavour}{p28041}{P7}, \\leanwit{FrcLedger}{p28041}{P7}; rests on B6, Y1 \\lean{Flavour.majorana\\_band}",
+     "source": "C11\\newline \\pywit{flavour}{p28041}{P7}, \\leanwit{FrcMathlib}{p28041}{P7}; rests on B6, Y1 \\lean{Flavour.majorana\\_band}",
      "key": "p28041"
     },
     {
      "label": "P8",
      "predicate": "Leptonic CP locked to the octant by \\eqref{eq:tm2}: $\\delta_{\\mathrm{CP}}\\in(204^\\circ,310^\\circ)$ over the $3\\sigma$ $\\theta_{23}$ range, $\\pm124^\\circ$/$\\pm74^\\circ$ at the NuFIT~6.0 best fits, $\\sin\\delta_{\\mathrm{CP}}{<}0$, $J=1/(6\\sqrt3)$. Falsifier: CP-conserving $\\delta_{\\mathrm{CP}}$, $\\sin\\delta_{\\mathrm{CP}}{>}0$, or $(\\theta_{23},\\delta_{\\mathrm{CP}})$ off the relation.",
      "tag": "T",
-     "source": "C10\\newline \\pywit{flavour}{p28042}{P8}, \\leanwit{FrcCore}{p28042}{P8}, \\leanwit{FrcLedger}{p28042}{P8}; rests on B2 \\lean{FRC.Flavour.jarlskog\\_sq, FRC.Flavour.protected\\_column, FRC.Flavour.trimaximal, Flavour.jarlskog, Flavour.tm2\\_at\\_maximal}",
+     "source": "C10\\newline \\pywit{flavour}{p28042}{P8}, \\leanwit{FrcCore}{p28042}{P8}, \\leanwit{FrcMathlib}{p28042}{P8}; rests on B2 \\lean{FRC.Flavour.jarlskog\\_sq, FRC.Flavour.protected\\_column, FRC.Flavour.trimaximal, Flavour.jarlskog, Flavour.tm2\\_at\\_maximal}",
      "key": "p28042"
     }
    ]
@@ -598,7 +598,7 @@
    },
    {
     "name": "FRC.Flavour.lo_ratio",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 62,
     "axioms": [
      "Classical.choice",
@@ -640,7 +640,7 @@
    },
    {
     "name": "FRC.Flavour.koide_up_band",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 29,
     "axioms": [
      "Classical.choice",
@@ -702,7 +702,7 @@
    },
    {
     "name": "FRC.Flavour.gatto_leading",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 40,
     "axioms": [
      "Classical.choice",
@@ -726,7 +726,7 @@
    },
    {
     "name": "FRC.Flavour.texture_powers",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 47,
     "axioms": [
      "Classical.choice",
@@ -761,7 +761,7 @@
   "C9": [
    {
     "name": "FRC.Flavour.theta13_estimate",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 67,
     "axioms": [
      "Classical.choice",
@@ -803,7 +803,7 @@
    },
    {
     "name": "FRC.Flavour.jarlskog",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 72,
     "axioms": [
      "Classical.choice",
@@ -816,7 +816,7 @@
    },
    {
     "name": "FRC.Flavour.tm2_at_maximal",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 76,
     "axioms": [
      "Classical.choice",
@@ -829,7 +829,7 @@
    },
    {
     "name": "FRC.Flavour.exact_tm2_solar",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 82,
     "axioms": [
      "Classical.choice",
@@ -967,7 +967,7 @@
    },
    {
     "name": "FRC.Flavour.koide_measured",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 24,
     "axioms": [
      "Classical.choice",
@@ -1000,7 +1000,7 @@
    },
    {
     "name": "FRC.Flavour.koide_up_band",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 29,
     "axioms": [
      "Classical.choice",
@@ -1033,7 +1033,7 @@
    },
    {
     "name": "FRC.Flavour.texture_powers",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 47,
     "axioms": [
      "Classical.choice",
@@ -1066,7 +1066,7 @@
    },
    {
     "name": "FRC.Flavour.gatto_leading",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 40,
     "axioms": [
      "Classical.choice",
@@ -1090,7 +1090,7 @@
    },
    {
     "name": "FRC.Flavour.gj_ratio",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 56,
     "axioms": [
      "Classical.choice",
@@ -1114,7 +1114,7 @@
    },
    {
     "name": "FRC.Flavour.texture_powers",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 47,
     "axioms": [
      "Classical.choice",
@@ -1156,7 +1156,7 @@
    },
    {
     "name": "FRC.Flavour.lo_ratio",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 62,
     "axioms": [
      "Classical.choice",
@@ -1191,7 +1191,7 @@
   "X9": [
    {
     "name": "FRC.Flavour.theta13_estimate",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 67,
     "axioms": [
      "Classical.choice",
@@ -1224,7 +1224,7 @@
    },
    {
     "name": "FRC.Flavour.jarlskog",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 72,
     "axioms": [
      "Classical.choice",
@@ -1266,7 +1266,7 @@
    },
    {
     "name": "FRC.Flavour.neutrino_floor",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 87,
     "axioms": [
      "Classical.choice",
@@ -1299,7 +1299,7 @@
    },
    {
     "name": "FRC.Flavour.koide_measured",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 24,
     "axioms": [
      "Classical.choice",
@@ -1332,7 +1332,7 @@
    },
    {
     "name": "FRC.Flavour.koide_up_band",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 29,
     "axioms": [
      "Classical.choice",
@@ -1365,7 +1365,7 @@
    },
    {
     "name": "FRC.Flavour.gatto_leading",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 40,
     "axioms": [
      "Classical.choice",
@@ -1398,7 +1398,7 @@
    },
    {
     "name": "FRC.Flavour.neutrino_floor",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 87,
     "axioms": [
      "Classical.choice",
@@ -1413,7 +1413,7 @@
   "P6": [
    {
     "name": "FRC.Flavour.neutrino_floor",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 87,
     "axioms": [
      "Classical.choice",
@@ -1428,7 +1428,7 @@
   "P7": [
    {
     "name": "FRC.Flavour.majorana_band",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 92,
     "axioms": [
      "Classical.choice",
@@ -1470,7 +1470,7 @@
    },
    {
     "name": "FRC.Flavour.jarlskog",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 72,
     "axioms": [
      "Classical.choice",
@@ -1483,7 +1483,7 @@
    },
    {
     "name": "FRC.Flavour.tm2_at_maximal",
-    "module": "FrcLedger/Flavour",
+    "module": "FrcMathlib/Flavour",
     "line": 76,
     "axioms": [
      "Classical.choice",

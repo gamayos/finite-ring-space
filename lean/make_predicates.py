@@ -34,11 +34,11 @@ import argparse, json, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-LIBS = ("FrcCore", "FrcLedger")
+LIBS = ("FrcCore", "FrcMathlib")
 DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:noncomputable\s+|protected\s+|private\s+)*(theorem|lemma|def|abbrev|instance|structure|inductive)\s+([A-Za-z_][A-Za-z0-9_'.]*)")
 END = "-- end ledger predicates"                    # the section opens "-- Ledger predicates of <pkg> (generated …" and closes here
 
-KEYNS = {"FrcCore": "FRC.Ledger", "FrcLedger": "FRC.LedgerML"}   # the namespaces of the key files (decision Q13)
+KEYNS = {"FrcCore": "FRC.Ledger", "FrcMathlib": "FRC.LedgerML"}   # the namespaces of the key files (decision Q13)
 
 def keyed(lib):
     """The keys of the library's key files (make_keys.py): key -> the key file's module (Keys.Frame)."""

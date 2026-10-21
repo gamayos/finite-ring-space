@@ -7,8 +7,8 @@ Validation package of *Universal Latent Representation in Finite Ring Continuum*
 Every check names the predicate(s) of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine verification", 23 predicates in blocks A–E, Y, T, cited as
 `4:XN`; public copy `docs/4-representation/index.html`), and the ledger's source column links, for each
 machine-verified predicate, the script at the check that decides it (`representation.py#<key>`) and the Lean module at the predicate's declaration
-(`lean/FrcCore/Representation.lean` with no axioms, or `lean/FrcLedger/Representation.lean` on Mathlib). Where a predicate is proved in Lean (`lean/FrcCore/Representation.lean` with no axioms, or
-`lean/FrcLedger/Representation.lean` on Mathlib), the check here is the instance the reader can run.
+(`lean/FrcCore/Representation.lean` with no axioms, or `lean/FrcMathlib/Representation.lean` on Mathlib). Where a predicate is proved in Lean (`lean/FrcCore/Representation.lean` with no axioms, or
+`lean/FrcMathlib/Representation.lean` on Mathlib), the check here is the instance the reader can run.
 
 The package decides the paper's set theory by exhaustion: on every finite model with `|Z| ≤ 3`, `|X| ≤ 4` and
 `|W| = |Z|`, adequacy (`E ∘ g` a bijection `Z → W`) forces the observation map injective, two adequate representations
@@ -52,5 +52,5 @@ states the predicate and runs `predicate("4:C1")`: the block of the check that d
 deciding check is `representation.PREDICATES`, the block the letter of its id; A4 decides C1 and C2, A5 decides C3 and C4, each on one marker), that check is printed from the script's own source — the line under its
 `# 4:C1 (p04011)` marker — and every record citing the predicate is listed with its verdict. The markers in `representation.py`
 are the lines the ledger page's source glyph opens (`docs/src/4-representation/#<key>`). The predicates'
-Lean counterparts are the declarations named by their keys (`p04011`) at the end of `lean/FrcCore/Representation.lean` and `lean/FrcLedger/Representation.lean`
+Lean counterparts are the declarations named by their keys (`p04011`) at the end of `lean/FrcCore/Representation.lean` and `lean/FrcMathlib/Representation.lean`
 (`lean/make_predicates.py`), one per predicate, with the module as one executable file for the web editor (`lean/web/core/Representation.lean`, `lean/web/Representation.lean`).

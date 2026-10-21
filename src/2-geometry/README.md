@@ -10,7 +10,7 @@ Every check names the predicate(s) of the paper's ledger it witnesses (Appendix 
 verification", 32 predicates in blocks A–F, T, cited as `2:XN`; public copy `docs/2-geometry/2-geometry-ledger.html`), and
 the ledger's source column links, for each machine-verified predicate, the script at the check that decides it (`geometry.py#<key>`) and the Lean
 module at the predicate's declaration (`lean/FrcCore/Geometry.lean` with no axioms — B4, C2–C4's in `lean/FrcCore/Complex.lean`,
-which imports Geometry — or `lean/FrcLedger/Geometry.lean` on Mathlib); the check here is the instance the reader can
+which imports Geometry — or `lean/FrcMathlib/Geometry.lean` on Mathlib); the check here is the instance the reader can
 run; the two witnesses decide the same statements at different generality.
 
 Run: `python3 geometry.py` (python ≥ 3.8, no third-party packages; ≈ 3 s; `results.json` written), or one block: `python3 geometry.py C`; installed, `python3 -m frc_2_geometry`.
@@ -52,6 +52,6 @@ on one marker), that check is printed from the script's own source — the line 
 record citing the predicate is listed with its verdict (C2b corroborates E3). The markers in `geometry.py` are the
 lines the ledger page's source glyph opens (`docs/src/2-geometry/#<key>`). The predicates' Lean
 counterparts are the declarations named by their keys (`p02013`) at the end of `lean/FrcCore/Geometry.lean` (B4, C2, C3, C4's in
-`lean/FrcCore/Complex.lean`, which imports Geometry) and `lean/FrcLedger/Geometry.lean` (`lean/make_predicates.py`), one per
+`lean/FrcCore/Complex.lean`, which imports Geometry) and `lean/FrcMathlib/Geometry.lean` (`lean/make_predicates.py`), one per
 predicate, with the modules as executable files for the web editor (`lean/web/core/Geometry.lean`, `lean/web/core/Complex.lean`,
 `lean/web/Geometry.lean`).

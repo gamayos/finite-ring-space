@@ -4,7 +4,7 @@ The colour frame, the colourless content of the exterior algebra, the Weyl const
 relations as polynomial identities, the Casimir, spin and charge arithmetic, the admissible shells and the exact Sturm count
 of the finite confinement operator — the arithmetic that frc/ledgers/p35_hadrons.py decides with, every function integer,
 finite-field or rational (no float). The chart readings (the PDG masses, the Airy decimals, the baryon eigenvalue) live in
-frc/chart_hadrons.py. The Lean side is lean/FrcCore/Theme/Hadrons.lean; the Mathlib readings lean/FrcLedger/Theme/Hadrons.lean.
+frc/chart_hadrons.py. The Lean side is lean/FrcCore/Theme/Hadrons.lean; the Mathlib readings lean/FrcMathlib/Theme/Hadrons.lean.
 
     colour_group(), colour_scalars(F), centre(F, G), fixed_vectors(F, G, action), wedge2(F, g), colourless_content(F, G)
                                           SU(3, F_2) over F_4 by orthonormal frames (interactions.unitary_frames); its centre

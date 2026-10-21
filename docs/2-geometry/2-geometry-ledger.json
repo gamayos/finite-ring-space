@@ -61,7 +61,7 @@
      "label": "B3",
      "predicate": "Primitive generators form one orbit: every generator is $\\gen^{u}$ with $u\\in\\Zp^{\\times}$, a torsor for $\\operatorname{Aut}(C_{\\p-1})$ (Props.~\\ref{prop:primitive-orbit}, \\ref{prop:no-canonical-e}).",
      "tag": "T",
-     "source": "A1\\newline \\pywit{geometry}{p02007}{B3}, \\leanwit{FrcCore}{p02007}{B3}, \\leanwit{FrcLedger}{p02007}{B3} \\lean{Geometry.generator\\_orbit, FRC.Shell.Frame.generator\\_orbit, FRC.Shell.s13\\_orbit}",
+     "source": "A1\\newline \\pywit{geometry}{p02007}{B3}, \\leanwit{FrcCore}{p02007}{B3}, \\leanwit{FrcMathlib}{p02007}{B3} \\lean{Geometry.generator\\_orbit, FRC.Shell.Frame.generator\\_orbit, FRC.Shell.s13\\_orbit}",
      "key": "p02007"
     },
     {
@@ -88,7 +88,7 @@
      "label": "C2",
      "predicate": "Counts: $|V|=\\pi(\\p-1)+1$, $|E|=2\\pi(\\p-1)$, $|F|=\\pi(\\p-1)$, $\\chi(\\Sp)=1$; the completion has $(\\pi-1)(\\p-1)+2$ vertices, $(2\\pi-1)(\\p-1)$ edges, $\\pi(\\p-1)$ faces, $\\chi=2$ (Rem.~\\ref{rem:cell-counts}).",
      "tag": "T",
-     "source": "\\pywit{geometry}{p02010}{C2}, \\leanwitin{FrcCore}{Complex}{p02010}{C2}, \\leanwit{FrcLedger}{p02010}{C2} \\lean{Geometry.euler\\_characteristic, FRC.Geometry.euler\\_characteristic, FRC.Complex.counts13}",
+     "source": "\\pywit{geometry}{p02010}{C2}, \\leanwitin{FrcCore}{Complex}{p02010}{C2}, \\leanwit{FrcMathlib}{p02010}{C2} \\lean{Geometry.euler\\_characteristic, FRC.Geometry.euler\\_characteristic, FRC.Complex.counts13}",
      "key": "p02010"
     },
     {
@@ -115,14 +115,14 @@
      "label": "D1",
      "predicate": "The half-period: $\\gen^{\\pi}=-1$ for every primitive $\\gen$, $\\pi=2\\kap$ (Prop.~\\ref{prop:half-period}); $2\\pi\\equiv-1$ (00:C1).",
      "tag": "T",
-     "source": "\\pywit{geometry}{p02013}{D1}, \\leanwit{FrcCore}{p02013}{D1}, \\leanwit{FrcLedger}{p02013}{D1} \\lean{Geometry.half\\_period, FRC.Shell.Frame.half\\_period}",
+     "source": "\\pywit{geometry}{p02013}{D1}, \\leanwit{FrcCore}{p02013}{D1}, \\leanwit{FrcMathlib}{p02013}{D1} \\lean{Geometry.half\\_period, FRC.Shell.Frame.half\\_period}",
      "key": "p02013"
     },
     {
      "label": "D2",
      "predicate": "The quarter-turn subgroup $\\Qp=\\{x:x^{4}=1\\}$ is the unique subgroup of order four; $\\gen^{\\kap}$ has order four with $(\\gen^{\\kap})^{2}=-1$; $\\Qp=\\{\\pm1,\\pm\\im\\}$ (Def.~\\ref{def:quarter-turn-subgroup}, Prop.~\\ref{prop:quarter-turn}; 1:B2).",
      "tag": "T",
-     "source": "\\pywit{geometry}{p02014}{D2}, \\leanwit{FrcCore}{p02014}{D2}, \\leanwit{FrcLedger}{p02014}{D2} \\lean{Geometry.quarter\\_turn\\_order, FRC.Shell.Frame.quarter\\_turn\\_order}",
+     "source": "\\pywit{geometry}{p02014}{D2}, \\leanwit{FrcCore}{p02014}{D2}, \\leanwit{FrcMathlib}{p02014}{D2} \\lean{Geometry.quarter\\_turn\\_order, FRC.Shell.Frame.quarter\\_turn\\_order}",
      "key": "p02014"
     },
     {
@@ -143,14 +143,14 @@
      "label": "D5",
      "predicate": "Orientation classes: for $\\gen'=\\gen^{u}$, $\\im'=-\\gen'^{\\kap}$ equals $\\im$ when $u\\equiv1\\pmod4$ and $-\\im$ when $u\\equiv3\\pmod4$; the oriented quarter-turn is frame-covariant within one class of generators, not under every generator change.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:frame-transport}\\newline \\pywit{geometry}{p02017}{D5}, \\leanwit{FrcCore}{p02017}{D5}, \\leanwit{FrcLedger}{p02017}{D5} \\lean{Geometry.orientation\\_class, FRC.Shell.Frame.orientation\\_class}",
+     "source": "Rem.~\\ref{rem:frame-transport}\\newline \\pywit{geometry}{p02017}{D5}, \\leanwit{FrcCore}{p02017}{D5}, \\leanwit{FrcMathlib}{p02017}{D5} \\lean{Geometry.orientation\\_class, FRC.Shell.Frame.orientation\\_class}",
      "key": "p02017"
     },
     {
      "label": "D6",
      "predicate": "The Euler identity on the shell: $\\eu^{\\im\\pi}=\\gen^{2\\kap\\im^{2}}=(-1)^{\\im}$, equal to $-1$ exactly when the representative of $\\im$ is odd (00:C14); the oriented frames of a shell are those with $-\\gen^{\\kap}$ odd --- on $\\F_{13}$, $\\gen=2$ ($\\im=5$) is one, on $\\F_{17}$, $\\gen=3$ ($\\im=4$) is not.",
      "tag": "T",
-     "source": "Section~\\ref{sec:structural-data}; 00:C14\\newline \\pywit{geometry}{p02018}{D6}, \\leanwit{FrcCore}{p02018}{D6}, \\leanwit{FrcLedger}{p02018}{D6} \\lean{Geometry.euler\\_identity, FRC.Shell.Frame.euler\\_identity, FRC.Shell.s17\\_orientation}",
+     "source": "Section~\\ref{sec:structural-data}; 00:C14\\newline \\pywit{geometry}{p02018}{D6}, \\leanwit{FrcCore}{p02018}{D6}, \\leanwit{FrcMathlib}{p02018}{D6} \\lean{Geometry.euler\\_identity, FRC.Shell.Frame.euler\\_identity, FRC.Shell.s17\\_orientation}",
      "key": "p02018"
     },
     {
@@ -191,7 +191,7 @@
      "label": "E3",
      "predicate": "Fixed-shell refinement is bounded: with $m=\\lfloor\\log_{\\gen}(2\\kap+1)\\rfloor$ no point $x/\\gen^{n}$, $|x|\\le2\\kap$, lies in $(\\max(1-\\gen^{-m},2\\kap\\gen^{-m-1}),1)$ at any depth, so the covering radius of the scale grid in $[0,1]$ is $\\ge\\tfrac12\\min(\\gen^{-m},1-2\\kap\\gen^{-m-1})$ for every $N$: $1/8$ at $(13,2)$, $5/22$ at $(13,11)$.",
      "tag": "T",
-     "source": "Section~\\ref{sec:precision}\\newline \\pywit{geometry}{p02023}{E3}, \\leanwit{FrcCore}{p02023}{E3}, \\leanwit{FrcLedger}{p02023}{E3} \\lean{Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_gap}",
+     "source": "Section~\\ref{sec:precision}\\newline \\pywit{geometry}{p02023}{E3}, \\leanwit{FrcCore}{p02023}{E3}, \\leanwit{FrcMathlib}{p02023}{E3} \\lean{Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_gap}",
      "key": "p02023"
     },
     {
@@ -211,7 +211,7 @@
      "label": "F1",
      "predicate": "$\\gen$ is a principal $n$-th root of unity, $n=\\p-1$: $\\gen^{n}=1$, $\\sum_{j<n}\\gen^{jk}=0$ for $0<k<n$, and $n^{-1}=-1$ in $\\Fp$ (Prop.~\\ref{prop:principal-root}; $2\\pi\\equiv-1$).",
      "tag": "T",
-     "source": "\\pywit{geometry}{p02025}{F1}, \\leanwit{FrcCore}{p02025}{F1}, \\leanwit{FrcLedger}{p02025}{F1} \\lean{Geometry.principal\\_root, FRC.Shell.Frame.principal\\_root}",
+     "source": "\\pywit{geometry}{p02025}{F1}, \\leanwit{FrcCore}{p02025}{F1}, \\leanwit{FrcMathlib}{p02025}{F1} \\lean{Geometry.principal\\_root, FRC.Shell.Frame.principal\\_root}",
      "key": "p02025"
     },
     {
@@ -225,7 +225,7 @@
      "label": "F3",
      "predicate": "Inversion: $v_{j}=-\\sum_{k<n}\\mathcal F_{\\gen}(v)_{k}\\gen^{-jk}$, i.e.\\ $W_{\\gen}^{-1}=-(\\gen^{-jk})_{jk}=-W_{\\gen}J$ (Prop.~\\ref{prop:ring-dft-inverse}; 6:B5), exact on every shell.",
      "tag": "T",
-     "source": "\\pywit{geometry}{p02027}{F3}, \\leanwit{FrcCore}{p02027}{F3}, \\leanwit{FrcLedger}{p02027}{F3} \\lean{Geometry.dft\\_inverse, FRC.Shell.Frame.dft\\_inverse}",
+     "source": "\\pywit{geometry}{p02027}{F3}, \\leanwit{FrcCore}{p02027}{F3}, \\leanwit{FrcMathlib}{p02027}{F3} \\lean{Geometry.dft\\_inverse, FRC.Shell.Frame.dft\\_inverse}",
      "key": "p02027"
     },
     {
@@ -322,7 +322,7 @@
   "B3": [
    {
     "name": "FRC.Geometry.generator_orbit",
-    "module": "FrcLedger/Geometry",
+    "module": "FrcMathlib/Geometry",
     "line": 65,
     "axioms": [
      "Classical.choice",
@@ -375,7 +375,7 @@
   "C2": [
    {
     "name": "FRC.Geometry.euler_characteristic",
-    "module": "FrcLedger/Geometry",
+    "module": "FrcMathlib/Geometry",
     "line": 121,
     "axioms": [
      "Quot.sound",
@@ -465,7 +465,7 @@
   "D1": [
    {
     "name": "FRC.Geometry.half_period",
-    "module": "FrcLedger/Geometry",
+    "module": "FrcMathlib/Geometry",
     "line": 23,
     "axioms": [
      "Classical.choice",
@@ -489,7 +489,7 @@
   "D2": [
    {
     "name": "FRC.Geometry.quarter_turn_order",
-    "module": "FrcLedger/Geometry",
+    "module": "FrcMathlib/Geometry",
     "line": 30,
     "axioms": [
      "Classical.choice",
@@ -524,7 +524,7 @@
   "D5": [
    {
     "name": "FRC.Geometry.orientation_class",
-    "module": "FrcLedger/Geometry",
+    "module": "FrcMathlib/Geometry",
     "line": 40,
     "axioms": [
      "Classical.choice",
@@ -548,7 +548,7 @@
   "D6": [
    {
     "name": "FRC.Geometry.euler_identity",
-    "module": "FrcLedger/Geometry",
+    "module": "FrcMathlib/Geometry",
     "line": 54,
     "axioms": [
      "Classical.choice",
@@ -581,7 +581,7 @@
   "D7": [
    {
     "name": "FRC.Algebra.klein_orbit_four",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 52,
     "axioms": [
      "Classical.choice",
@@ -623,7 +623,7 @@
   "E3": [
    {
     "name": "FRC.Geometry.fixed_shell_bound",
-    "module": "FrcLedger/Geometry",
+    "module": "FrcMathlib/Geometry",
     "line": 154,
     "axioms": [
      "Classical.choice",
@@ -656,7 +656,7 @@
   "F1": [
    {
     "name": "FRC.Geometry.principal_root",
-    "module": "FrcLedger/Geometry",
+    "module": "FrcMathlib/Geometry",
     "line": 79,
     "axioms": [
      "Classical.choice",
@@ -680,7 +680,7 @@
   "F3": [
    {
     "name": "FRC.Geometry.dft_inverse",
-    "module": "FrcLedger/Geometry",
+    "module": "FrcMathlib/Geometry",
     "line": 94,
     "axioms": [
      "Classical.choice",

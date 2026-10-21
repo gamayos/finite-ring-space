@@ -1,12 +1,12 @@
 import Mathlib
-import FrcLedger.Theme.Hadrons
-import FrcLedger.Keys.Hadrons
+import FrcMathlib.Theme.Hadrons
+import FrcMathlib.Keys.Hadrons
 
 /-!
 # 35-hadrons — the readings on Mathlib (19 October 2026)
 
 The paper module of *Ground-State Light Hadron Spectroscopy over Finite Substrate* (tree `35-hadrons-20260629`) on Mathlib: every
-declaration is the hadrons theme's (`FRC.HadronsML`, `FrcLedger/Theme/Hadrons.lean`), under the paper's name — the flavour,
+declaration is the hadrons theme's (`FRC.HadronsML`, `FrcMathlib/Theme/Hadrons.lean`), under the paper's name — the flavour,
 isospin and spin identities over `ℚ`, the Casimir, spin and charge rationals, the PDG confrontations as rational brackets, the
 anchored spectrum, the single-scale readings at `√σ = 440 MeV`, the baryon eigenvalue read against the nucleon and the forward
 landing. Classical (tier 2). The finite content is the core's (`FrcCore/Theme/Hadrons.lean`, no axioms); the predicates

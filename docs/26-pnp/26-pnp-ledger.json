@@ -82,14 +82,14 @@
      "label": "B4",
      "predicate": "The continuum reading [chart]: the dilation generator $\\HH=-\\mathrm i(x\\partial_x+\\tfrac12)$ has $x^{-1/2+\\mathrm i\\nu}$ as eigenfunction of eigenvalue $\\nu$ on $x>0$, so the frequency index is the spectrum of $\\HH$ in the chart of the scale shift (20:E1).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:longturn}; B3\\newline \\pywit{pnp}{p26010}{B4}, \\leanwit{FrcLedger}{p26010}{B4} \\lean{Pnp.dilation\\_eigen}",
+     "source": "Prop.~\\ref{prop:longturn}; B3\\newline \\pywit{pnp}{p26010}{B4}, \\leanwit{FrcMathlib}{p26010}{B4} \\lean{Pnp.dilation\\_eigen}",
      "key": "p26010"
     },
     {
      "label": "B5",
      "predicate": "The Gauss sum couples the two turns: multiplication by a unit permutes the units; $\\sum_{t\\neq0}\\psi(tc)$ is $-1$ for $c\\neq0$ and $P-1$ for $c=0$; $\\sum_u\\chi(u)=0$ for $\\chi\\neq1$; hence $\\lvert g(\\chi)\\rvert^{2}=P$ for every nontrivial $\\chi$ on the shell ($\\Om$ on the Carrier).",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:gauss}; B3\\newline \\pywit{pnp}{p26011}{B5}, \\leanwit{FrcCore}{p26011}{B5}, \\leanwit{FrcLedger}{p26011}{B5} \\lean{FRC.Horizon.ramanujan\\_sum, FRC.Horizon.ramanujan\\_zero, FRC.Shell.Frame.principal\\_root, FRC.Ladder.mul\\_perm, Pnp.gauss\\_product, Pnp.gauss\\_modulus}",
+     "source": "Rem.~\\ref{rem:gauss}; B3\\newline \\pywit{pnp}{p26011}{B5}, \\leanwit{FrcCore}{p26011}{B5}, \\leanwit{FrcMathlib}{p26011}{B5} \\lean{FRC.Horizon.ramanujan\\_sum, FRC.Horizon.ramanujan\\_zero, FRC.Shell.Frame.principal\\_root, FRC.Ladder.mul\\_perm, Pnp.gauss\\_product, Pnp.gauss\\_modulus}",
      "key": "p26011"
     }
    ]
@@ -109,7 +109,7 @@
      "label": "C2",
      "predicate": "The family's size and the table beyond the horizon [chart]: at the anchor $2^{204}<\\sqrt\\Om<2^{205}$, so the shells of the family $P^{2}<\\Om$ have at most $205$ bits; $2^{102}<\\Om^{1/4}<2^{103}$, so a decision table with one entry per $204$-bit input exceeds the absolute horizon and lies below $\\sqrt\\Om$.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:bridge}; A6\\newline \\pywit{pnp}{p26013}{C2}, \\leanwit{FrcLedger}{p26013}{C2} \\lean{Pnp.family\\_bits}",
+     "source": "Rem.~\\ref{rem:bridge}; A6\\newline \\pywit{pnp}{p26013}{C2}, \\leanwit{FrcMathlib}{p26013}{C2} \\lean{Pnp.family\\_bits}",
      "key": "p26013"
     }
    ]
@@ -585,7 +585,7 @@
   "B4": [
    {
     "name": "FRC.Pnp.dilation_eigen",
-    "module": "FrcLedger/Pnp",
+    "module": "FrcMathlib/Pnp",
     "line": 44,
     "axioms": [
      "Classical.choice",
@@ -636,7 +636,7 @@
    },
    {
     "name": "FRC.Pnp.gauss_product",
-    "module": "FrcLedger/Pnp",
+    "module": "FrcMathlib/Pnp",
     "line": 26,
     "axioms": [
      "Classical.choice",
@@ -649,7 +649,7 @@
    },
    {
     "name": "FRC.Pnp.gauss_modulus",
-    "module": "FrcLedger/Pnp",
+    "module": "FrcMathlib/Pnp",
     "line": 32,
     "axioms": [
      "Classical.choice",
@@ -664,7 +664,7 @@
   "C2": [
    {
     "name": "FRC.Pnp.family_bits",
-    "module": "FrcLedger/Pnp",
+    "module": "FrcMathlib/Pnp",
     "line": 38,
     "axioms": [
      "Classical.choice",

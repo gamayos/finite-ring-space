@@ -1,16 +1,16 @@
 import Mathlib
-import FrcLedger.Theme.Chart
-import FrcLedger.Theme.Gravity
-import FrcLedger.Keys.Chart
-import FrcLedger.Keys.Gravity
+import FrcMathlib.Theme.Chart
+import FrcMathlib.Theme.Gravity
+import FrcMathlib.Keys.Chart
+import FrcMathlib.Keys.Gravity
 
 /-!
 # 38-s13 — the paper module on Mathlib: the chart rows' declarations under the paper's name (12 October 2026)
 
 Rows of the predicate ledger of *The Light Cone of the Minimal Pair* (tree `38-s13-20260801`) whose content is read
 against the continuum: the face-ratio identity and the Brans–Dicke exclusion over `ℚ` (C8), the registration
-dictionary (C12, C7) — both `FrcLedger/Theme/Gravity.lean` (`FRC.GravML.ppn_faces`, `registration_dictionary`) — and
-the floor and its running (P1, X3) and the radial ladder (B2) in `FrcLedger/Theme/Chart.lean` (`FRC.Chart.floor_value`,
+dictionary (C12, C7) — both `FrcMathlib/Theme/Gravity.lean` (`FRC.GravML.ppn_faces`, `registration_dictionary`) — and
+the floor and its running (P1, X3) and the radial ladder (B2) in `FrcMathlib/Theme/Chart.lean` (`FRC.Chart.floor_value`,
 `running_floor`, the master's L1 and P1; `ladder_monotone`). Every name here is an alias; the exact content of the paper is the core's (`FrcCore/S13.lean`
 and the themes it cites).
 -/

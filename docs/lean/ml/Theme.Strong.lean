@@ -1,10 +1,10 @@
 import Mathlib
-import FrcLedger.Theme.Chart
+import FrcMathlib.Theme.Chart
 
 /-!
-# FrcLedger.Theme.Strong — the chart theme's strong field, crossover and series (10 October 2026)
+# FrcMathlib.Theme.Strong — the chart theme's strong field, crossover and series (10 October 2026)
 
-The readings of 21-gravity on the reals, moved from the paper module `FrcLedger/Gravity.lean` (which keeps every old
+The readings of 21-gravity on the reals, moved from the paper module `FrcMathlib/Gravity.lean` (which keeps every old
 name as an alias), every numeral re-anchored to the ledger's scale import (00:A7: `ln Ω = 283.5`, `Ω = 1.3 × 10¹²³`;
 `Theme/Chart.lean`'s `ln_omega_ledger`). The strong field: the operational cut `e^{2M/r_f} = Ω` with the ordering
 `r_* < r_f < M` exactly when `M > (ln Ω/2)²` (21:C12, P7); the photon sphere at `r = 2Gm` with `b_c = 2e·Gm` as the

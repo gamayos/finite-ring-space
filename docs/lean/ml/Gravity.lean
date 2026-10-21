@@ -1,23 +1,23 @@
 import Mathlib
-import FrcLedger.Theme.Chart
-import FrcLedger.Theme.Strong
-import FrcLedger.Theme.Gravity
-import FrcLedger.Keys.Chart
-import FrcLedger.Keys.Gravity
+import FrcMathlib.Theme.Chart
+import FrcMathlib.Theme.Strong
+import FrcMathlib.Theme.Gravity
+import FrcMathlib.Keys.Chart
+import FrcMathlib.Keys.Gravity
 
 /-!
 # 21-gravity — the paper module on Mathlib: every row's declaration under the paper's name (10 October 2026)
 
 Rows of the predicate ledger of *Gravitation as Phase Synchronisation over Finite Holographic Substrate* (tree
 `21-gravity-20260623`). Since 10 October 2026 (the paper's migration to the framework, `reports/blueprint-20261010.md`)
-the theorems live in the themes and every name here is an alias: the exact faces in `FrcLedger/Theme/Gravity.lean`
+the theorems live in the themes and every name here is an alias: the exact faces in `FrcMathlib/Theme/Gravity.lean`
 (`FRC.GravML`: the Carrier register, the count face and the merger law, the cover forcing over `ℚ`, the channel, the
-central difference and the shift theorem on `ZMod N`), the chart readings in `FrcLedger/Theme/Strong.lean`
+central difference and the shift theorem on `ZMod N`), the chart readings in `FrcMathlib/Theme/Strong.lean`
 (`FRC.Strong`: the operational cut, the photon sphere, the shadow and the ringdown, the ISCO and its efficiency, the
 capacity ratio and the preferred-frame scale re-anchored to the scale import `ln Ω = 283.5`, `Ω = 1.3 × 10¹²³`, the
 redshift, the registration root and the crossover, the discriminant, the fixed point, the dispersion symbol, the
 locked sum, the exponential reading, the post-Newtonian brackets, dilution), and the floor and the tilt in
-`FrcLedger/Theme/Chart.lean` (`FRC.Chart.floor_value`, `FRC.Chart.tilt_ledger`; the tilt was bracketed at `281` here
+`FrcMathlib/Theme/Chart.lean` (`FRC.Chart.floor_value`, `FRC.Chart.tilt_ledger`; the tilt was bracketed at `281` here
 before 10 October 2026). Classical (tier 2) on Mathlib's hierarchy; the finite content — the register on every frame,
 the channel, the defect's recurrence, the pair tally, the Gauss law, the post-Newtonian coefficients, the central
 difference and the shift theorem — is proved with no axioms in the core (`FrcCore/Theme/Gravity.lean`,

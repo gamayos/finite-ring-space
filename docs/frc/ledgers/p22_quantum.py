@@ -10,7 +10,7 @@ checks compute what the suites compute, record for record, and since 15 October 
 paper (the rows C6, C13, C25, X1–X3, X5, X6 had no suite), the Ω rows on the master's anchor (block O, G4), and the
 sweep by certified brackets (C7). The Lean side is the quantum theme's Theme/Observation.lean, Theme/Interference.lean
 and Theme/Composite.lean, the key files Keys/Quantum.lean, Keys/Extension.lean, Keys/Subject.lean and the
-certificates lean/FrcCore/Ledgers/P22Qm.lean and lean/FrcLedger/Ledgers/P22Qm.lean.
+certificates lean/FrcCore/Ledgers/P22Qm.lean and lean/FrcMathlib/Ledgers/P22Qm.lean.
 
 The checks call the quantum theme (frc/quantum.py: the cyclotomic ring ℤ[ζ_n], the partial transpose, the
 characteristic polynomial), the extension theme (frc/extension.py: 𝔽_{p²}), the chart theme's certified brackets

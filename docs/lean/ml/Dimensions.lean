@@ -1,6 +1,6 @@
 import Mathlib
-import FrcLedger.Theme.Fourier
-import FrcLedger.Theme.Frame
+import FrcMathlib.Theme.Fourier
+import FrcMathlib.Theme.Frame
 
 /-!
 # 10-dimensions — the shell-domain calculus with the unit flag: the ledger predicates in Lean (2026-09-18)

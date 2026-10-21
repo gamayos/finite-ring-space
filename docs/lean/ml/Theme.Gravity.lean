@@ -1,9 +1,9 @@
 import Mathlib
 
 /-!
-# FrcLedger.Theme.Gravity — the gravity theme on Mathlib: the exact faces of 21-gravity (10 October 2026)
+# FrcMathlib.Theme.Gravity — the gravity theme on Mathlib: the exact faces of 21-gravity (10 October 2026)
 
-The exact Mathlib variants of 21-gravity's rows, moved from the paper module `FrcLedger/Gravity.lean` (which keeps
+The exact Mathlib variants of 21-gravity's rows, moved from the paper module `FrcMathlib/Gravity.lean` (which keeps
 every old name as an alias): the Carrier register on a field with `4S + 1 = 0` — the calibration congruence, the
 register value `G = 2S`, the action quantum as the quarter-turn pair (21:A1, C2, C5, C16); the count face of the area
 law and the merger law on `ℤ` (21:C13); the cover forcing and the PPN triangle over `ℚ` (21:A9, C7, C8, C25); the

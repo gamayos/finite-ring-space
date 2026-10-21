@@ -1,5 +1,5 @@
 import Mathlib
-import FrcLedger.Theme.Fourier
+import FrcMathlib.Theme.Fourier
 
 /-!
 # 1-algebra — the ledger predicates in Lean (2026-09-16)
@@ -89,7 +89,7 @@ theorem card_fourth_roots (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) :
 
 omit [DecidableEq F] in
 /-- 1:B3 (convention 4, the oriented quarter-turn): `i := −g^κ` satisfies `i² = −1`; and
-`g^(2κ) = −1`, the involution behind Definition 5. From `FrcLedger.Fourier`. -/
+`g^(2κ) = −1`, the involution behind Definition 5. From `FrcMathlib.Fourier`. -/
 theorem quarter_turn (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
     (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :
     (-(g ^ κ)) ^ 2 = -1 ∧ g ^ (2 * κ) = -1 := by

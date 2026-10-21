@@ -38,7 +38,7 @@ GATE_CASES = {
     "third-party import": ("frc/shell.py", "import numpy\n", "G09"),
     "a ledger imported": ("frc/shell.py", "from frc.ledgers import p99_toy\n", "G09"),
     "core theme imports a paper module": ("lean/FrcCore/Theme/Extension.lean", "import FrcCore.Rh\n", "G09"),
-    "the reals in an exact Mathlib theme": ("lean/FrcLedger/Theme/Extension.lean", "import Mathlib\ndef x : ℝ := 0\n", "G09"),
+    "the reals in an exact Mathlib theme": ("lean/FrcMathlib/Theme/Extension.lean", "import Mathlib\ndef x : ℝ := 0\n", "G09"),
     "oversized core file": ("lean/FrcCore/Theme/Logic.lean", "-- x\n" * 801, "G10"),
     "a python file off the map": ("frc/misc.py", "X = 1\n", "G09"),
     "a Lean theme file off the map": ("lean/FrcCore/Theme/Misc.lean", "def x := 1\n", "G09"),
@@ -56,7 +56,7 @@ class GateTest(unittest.TestCase):
         d = tempfile.mkdtemp()
         shutil.copytree(ROOT / "frc", Path(d) / "frc", ignore=shutil.ignore_patterns("tests", "__pycache__", "ledgers"))
         (Path(d) / "lean" / "FrcCore" / "Theme").mkdir(parents=True)
-        (Path(d) / "lean" / "FrcLedger" / "Theme").mkdir(parents=True)
+        (Path(d) / "lean" / "FrcMathlib" / "Theme").mkdir(parents=True)
         (Path(d) / "frc" / "ledgers").mkdir(exist_ok=True)
         (Path(d) / "frc" / "ledgers" / "p99_toy.py").write_text("from frc import arith\n")
         (Path(d) / "lean" / "FrcCore" / "Rh.lean").write_text("-- a paper module\n")

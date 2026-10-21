@@ -5209,7 +5209,7 @@ theorem three_pow_inj : ∀ b d : Nat, 3 ^ b = 3 ^ d → b = d
       congrArg Nat.succ (three_pow_inj b d (Nat.eq_of_mul_eq_mul_right (Nat.zero_lt_succ 2) h))
 
 /-- 4:E3 (Gödel encoding, two primes) — `2^a 3^b = 2^c 3^d` forces `a = c` and `b = d`: the code is injective, by
-parity and cancellation; the general case over `d` distinct primes is `FrcLedger.Representation.godel_injective`. -/
+parity and cancellation; the general case over `d` distinct primes is `FRC.Representation.godel_injective` (`FrcMathlib/Representation.lean`). -/
 theorem godel2_inj : ∀ a c b d : Nat, 2 ^ a * 3 ^ b = 2 ^ c * 3 ^ d → a = c ∧ b = d
   | 0, 0, b, d, h => ⟨rfl, three_pow_inj b d (by rw [Nat.pow_zero, Nat.one_mul, Nat.one_mul] at h; exact h)⟩
   | 0, c + 1, b, d, h => by

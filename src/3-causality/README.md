@@ -8,8 +8,8 @@ Entropy 2025, 27, 1098), `3-causality` of the FRC corpus, added with the paper's
 Every check names the predicate(s) of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine verification", 20 predicates in blocks A–E, Y,
 cited as `3:XN`; public copy `docs/3-causality/index.html`), and the ledger's source column links, for each
 machine-verified predicate, the script at the check that decides it (`causality.py#<key>`) and the Lean module at the predicate's declaration
-(`lean/FrcCore/Causality.lean` with no axioms, or `lean/FrcLedger/Causality.lean` on Mathlib). Where a predicate is proved in Lean (`lean/FrcCore/Causality.lean` with no axioms, or
-`lean/FrcLedger/Causality.lean` on Mathlib), the check here is the instance the reader can run.
+(`lean/FrcCore/Causality.lean` with no axioms, or `lean/FrcMathlib/Causality.lean` on Mathlib). Where a predicate is proved in Lean (`lean/FrcCore/Causality.lean` with no axioms, or
+`lean/FrcMathlib/Causality.lean` on Mathlib), the check here is the instance the reader can run.
 
 The package decides the dichotomy by counting: on the shell the form `Q_ν = −νt² + x² + y² + z²` has `p³ − p² + p`
 zeros for a nonsquare `ν` (the elliptic, Witt-index-one class, the Lorentzian one) and `p³ + p² − p` for a square `ν`
@@ -53,5 +53,5 @@ states the predicate and runs `predicate("3:B2")`: the block of the check that d
 deciding check is `causality.PREDICATES`, the block the letter of its id), that check is printed from the script's own source — the line under its
 `# 3:B2 (p03006)` marker — and every record citing the predicate is listed with its verdict (A4 corroborates B2, B5 corroborates B5, C2 corroborates C2, D2 corroborates D1). The markers in `causality.py`
 are the lines the ledger page's source glyph opens (`docs/src/3-causality/#<key>`). The predicates'
-Lean counterparts are the declarations named by their keys (`p03006`) at the end of `lean/FrcCore/Causality.lean` and `lean/FrcLedger/Causality.lean`
+Lean counterparts are the declarations named by their keys (`p03006`) at the end of `lean/FrcCore/Causality.lean` and `lean/FrcMathlib/Causality.lean`
 (`lean/make_predicates.py`), one per predicate, with the module as one executable file for the web editor (`lean/web/core/Causality.lean`, `lean/web/Causality.lean`).

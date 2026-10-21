@@ -10,7 +10,7 @@ with correctly rounded framed rationals. No floating-point reference value of ei
 Every family check is one labelled claim of a block and names the predicate(s) of the paper's predicate ledger it
 witnesses (Appendix A "Predicate ledger and machine verification", predicates cited as `13:XN`; public copy
 `docs/13-epi/index.html`); the ledger's source column links, for each machine-verified predicate, the script at the deciding family's marker (`epi.py#<key>`) and the Lean module at the predicate's declaration. Where a predicate is proved in
-Lean (`lean/FrcCore/Epi.lean` with no axioms, or `lean/FrcLedger/Epi.lean` on Mathlib), the check here is the instance
+Lean (`lean/FrcCore/Epi.lean` with no axioms, or `lean/FrcMathlib/Epi.lean` on Mathlib), the check here is the instance
 the reader can run. Master-ledger rows of
 the corpus reached through the paper rows: `00:B8`, `00:B9`, `00:C13`, `00:C14`, `00:B1`, `00:C24`, `00:C26`, and `00:Z4` through Z1, Kurepa's certificate (block Z since 12 October 2026: the former hypotheses Y1 and Y3 as the Ω-hard certificates Z1 and Z2, keys kept; Z2 has no master row).
 
@@ -71,5 +71,5 @@ it installs the package from the site (`pip install frc-13-epi --find-links http
 that decides the predicate is printed from the script's own source — the line under its `# 13:F2 (p13028)` marker — and every family
 record citing the predicate is listed with its verdict. The markers in `epi.py` are the lines the
 ledger page's source glyph opens (`docs/src/13-epi/#<key>`). The predicates' Lean counterparts are the
-declarations named by their keys (`p13028`) at the end of `lean/FrcCore/Epi.lean` and `lean/FrcLedger/Epi.lean`
+declarations named by their keys (`p13028`) at the end of `lean/FrcCore/Epi.lean` and `lean/FrcMathlib/Epi.lean`
 (`lean/make_predicates.py`), one per predicate, with the paper's module as one executable file for the web editor.

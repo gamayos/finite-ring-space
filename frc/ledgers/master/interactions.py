@@ -12,7 +12,7 @@ chart clauses of P4 on Mathlib, CHART), and the checks, which call the interacti
 horizon theme's tower (frc/ladder.py) and, for the exclusions' confrontations, the chart modules. The Lean side is
 lean/FrcCore/Theme/Interactions.lean, Theme/Unitary.lean and Theme/Fields.lean, the key files lean/FrcCore/Keys/Interactions.lean
 (and Keys/Hadrons.lean for the keys whose highest-ranked theorem is the hadrons theme's, G5 and P4) and the certificates
-lean/FrcCore/Ledgers/Master/Interactions.lean and lean/FrcLedger/Ledgers/Master/Interactions.lean (P4's chart clauses).
+lean/FrcCore/Ledgers/Master/Interactions.lean and lean/FrcMathlib/Ledgers/Master/Interactions.lean (P4's chart clauses).
 
     python3 -m frc.ledgers.master.interactions        every block, the census; exit 1 if a check fails (≈ 3 s)
 

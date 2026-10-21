@@ -8,7 +8,7 @@ checks (all exact), standard library only, driven by `frc-25-godel.ipynb` (Googl
 Every check names the predicate(s) of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger, machine verification and formalisation", 48 predicates in blocks A–H, J, cited as
 `25:XN`; public copy `docs/25-godel/index.html`), and the ledger's source column links, for each
 machine-verified predicate, the script at the check that decides it (`godel.py#<key>`) and the Lean module at the predicate's declaration
-(`lean/FrcCore/Godel.lean` with no axioms, `lean/FrcLedger/Godel.lean` on Mathlib). Where a predicate is proved in Lean, the check here is the instance the reader can run.
+(`lean/FrcCore/Godel.lean` with no axioms, `lean/FrcMathlib/Godel.lean` on Mathlib). Where a predicate is proved in Lean, the check here is the instance the reader can run.
 
 The package checks the paper's statements on the finite structures they are about.
 
@@ -95,5 +95,5 @@ states the predicate and runs `predicate("25:F1")`: the block of the check that 
 deciding check is `godel.PREDICATES`, the block the letter of its id), that check is printed from the script's own source — the line under its
 `# 25:F1 (p25023)` marker — and every record citing the predicate is listed with its verdict. The markers in `godel.py`
 are the lines the ledger page's source glyph opens (`docs/src/25-godel/#<key>`). The predicates'
-Lean counterparts are the declarations named by their keys (`p25023`) at the end of `lean/FrcCore/Godel.lean` and `lean/FrcLedger/Godel.lean`
+Lean counterparts are the declarations named by their keys (`p25023`) at the end of `lean/FrcCore/Godel.lean` and `lean/FrcMathlib/Godel.lean`
 (`lean/make_predicates.py`), one per predicate, with the module as one executable file for the web editor (`lean/web/core/Godel.lean`, `lean/web/Godel.lean`).

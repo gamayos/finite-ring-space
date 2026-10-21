@@ -1,8 +1,8 @@
 import Mathlib
-import FrcLedger.Theme.Quantum
-import FrcLedger.Theme.Chart
-import FrcLedger.Keys.Chart
-import FrcLedger.Keys.Quantum
+import FrcMathlib.Theme.Quantum
+import FrcMathlib.Theme.Chart
+import FrcMathlib.Keys.Chart
+import FrcMathlib.Keys.Quantum
 
 /-!
 # 22-quantum — the paper module on Mathlib: the ledger's identities and the chart rows under the paper's name (15 October 2026)
@@ -11,9 +11,9 @@ Rows of the predicate ledger of *Quantum Observation over Finite Holographic Sub
 whose content is read on the ledger itself or against the continuum: the Sorkin hierarchy on every commutative ring
 (C8, X8, P2), the weight of a Gaussian-integer amplitude as a nonnegative integer (C7, X1) and the Hadamard layers
 with the minimal denominator on the Gaussian integers (C14, P5) in
-`FrcLedger/Theme/Quantum.lean` (`FRC.QuantumML`, exact); the Tsirelson value `2√2` (C17, X7, P3, C25), the singlet law
+`FrcMathlib/Theme/Quantum.lean` (`FRC.QuantumML`, exact); the Tsirelson value `2√2` (C17, X7, P3, C25), the singlet law
 (C17), the channel's chart (C19, P1), the granularity ceiling and the Ω ledger's floors at the scale import's anchor
-(A5, C14, P5, Z2) in `FrcLedger/Theme/Chart.lean` (`FRC.Chart`, the chart theme, where the reals live). Every name
+(A5, C14, P5, Z2) in `FrcMathlib/Theme/Chart.lean` (`FRC.Chart`, the chart theme, where the reals live). Every name
 here is an alias; the exact content of the paper is the core's (`FrcCore/Qm.lean` and the themes it cites).
 -/
 

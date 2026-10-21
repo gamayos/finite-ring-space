@@ -1,12 +1,12 @@
 import Mathlib
-import FrcLedger.Theme.Flavour
-import FrcLedger.Keys.Chart
+import FrcMathlib.Theme.Flavour
+import FrcMathlib.Keys.Chart
 
 /-!
 # 28-flavour — the chart readings on Mathlib (17 October 2026)
 
 The paper module of *Fermion Flavour Sector over Finite Relational Substrate* (tree `28-flavour-20260626`) on Mathlib:
-every declaration is the chart theme's (`FrcLedger/Theme/Flavour.lean`), under the paper's name — the measured Koide
+every declaration is the chart theme's (`FrcMathlib/Theme/Flavour.lean`), under the paper's name — the measured Koide
 value, the up-quark band, the Gatto terms, the effective powers, the double ratio, the leading-order ratio, the reactor
 estimate, the Jarlskog invariant, the TM2 relation at maximal mixing, the exact-TM2 solar value, the neutrino floor and the
 Majorana band. Classical (tier 2). The finite content is the core's (`FrcCore/Theme/Flavour.lean`, no axioms); the
@@ -18,7 +18,7 @@ namespace FRC.Flavour
 open Real
 
 /-! ## Old names (17 October 2026): every declaration of this module is an alias of the chart theme's (`FRC.FlavourML`,
-`FrcLedger/Theme/Flavour.lean`), under the paper's name -/
+`FrcMathlib/Theme/Flavour.lean`), under the paper's name -/
 
 /-- 28:P1, 28:X1 — the measured charged-lepton Koide value (`FlavourML.koide_measured`). -/
 theorem koide_measured (me mmu mtau : ℝ) (h1 : me = 0.51099895) (h2 : mmu = 105.6583755) (h3 : mtau = 1776.86) :

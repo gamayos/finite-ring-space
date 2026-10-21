@@ -144,7 +144,7 @@
      "label": "C2",
      "predicate": "The acceleration floor $\\az=c\\Hzero/2\\pi$, parameter-free, $13\\%$ below the fitted value ($0.7\\sigma$ of its systematic band).",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:a0}\\newline \\pywit{dark}{p32017}{C2}, \\leanwit{FrcLedger}{p32017}{C2} \\lean{Dark.floor\\_value, Dark.floor\\_lambda\\_face}",
+     "source": "Eq.~\\eqref{eq:a0}\\newline \\pywit{dark}{p32017}{C2}, \\leanwit{FrcMathlib}{p32017}{C2} \\lean{Dark.floor\\_value, Dark.floor\\_lambda\\_face}",
      "key": "p32017"
     },
     {
@@ -158,56 +158,56 @@
      "label": "C4",
      "predicate": "The deep-regime geometric mean $\\geff=\\sqrt{\\gb\\az}$, given the amplitude reading B4; the mean force of the link is Newtonian at every noise level (exactly so in the stationary solution), so the law is registration, not force modification.",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:spectral}, \\S\\ref{sub:geomean}\\newline \\pywit{dark}{p32019}{C4}, \\leanwit{FrcCore}{p32019}{C4}, \\leanwit{FrcLedger}{p32019}{C4}; rests on A5, C3 \\lean{FRC.Dark.tully\\_fisher, FRC.Dark.source\\_free\\_flux, FRC.Drift.gauss\\_law, Dark.crossover\\_deep\\_limit, Dark.odd\\_linear\\_response}",
+     "source": "Eq.~\\eqref{eq:spectral}, \\S\\ref{sub:geomean}\\newline \\pywit{dark}{p32019}{C4}, \\leanwit{FrcCore}{p32019}{C4}, \\leanwit{FrcMathlib}{p32019}{C4}; rests on A5, C3 \\lean{FRC.Dark.tully\\_fisher, FRC.Dark.source\\_free\\_flux, FRC.Drift.gauss\\_law, Dark.crossover\\_deep\\_limit, Dark.odd\\_linear\\_response}",
      "key": "p32019"
     },
     {
      "label": "C5",
      "predicate": "Flat rotation curves and the baryonic Tully--Fisher relation $v^4=GM\\az$.",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:btfr}\\newline \\pywit{dark}{p32020}{C5}, \\leanwit{FrcCore}{p32020}{C5}, \\leanwit{FrcLedger}{p32020}{C5} \\lean{FRC.Dark.tully\\_fisher, Dark.crossover\\_limits}",
+     "source": "Eq.~\\eqref{eq:btfr}\\newline \\pywit{dark}{p32020}{C5}, \\leanwit{FrcCore}{p32020}{C5}, \\leanwit{FrcMathlib}{p32020}{C5} \\lean{FRC.Dark.tully\\_fisher, Dark.crossover\\_limits}",
      "key": "p32020"
     },
     {
      "label": "C6",
      "predicate": "The registration theorem: the finite coincidence count, its first-passage law, and flux conservation give the radial acceleration relation given B8; the fitting function of \\citet{mcgaugh2016} is this form with $g_\\dagger$ for $\\az$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:registration}, Eq.~\\eqref{eq:interp}\\newline \\pywit{dark}{p32021}{C6}, \\leanwit{FrcCore}{p32021}{C6}, \\leanwit{FrcLedger}{p32021}{C6}; rests on C3, C7 \\lean{FRC.Dark.passage\\_vieta, FRC.Dark.line\\_passage, Dark.registration\\_root, Dark.crossover\\_limits, Dark.interpolant\\_discriminant, Dark.rar\\_from\\_count}",
+     "source": "Thm.~\\ref{thm:registration}, Eq.~\\eqref{eq:interp}\\newline \\pywit{dark}{p32021}{C6}, \\leanwit{FrcCore}{p32021}{C6}, \\leanwit{FrcMathlib}{p32021}{C6}; rests on C3, C7 \\lean{FRC.Dark.passage\\_vieta, FRC.Dark.line\\_passage, Dark.registration\\_root, Dark.crossover\\_limits, Dark.interpolant\\_discriminant, Dark.rar\\_from\\_count}",
      "key": "p32021"
     },
     {
      "label": "C7",
      "predicate": "The finite-cycle first-passage law: $e^{-\\sqrt x}$ is carrier-exact (amplitude identity) and the resolvable reading of the exact transform, to $O(\\Om^{-1/2})$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:passage}, Eq.~\\eqref{eq:exactfp}\\newline \\pywit{dark}{p32022}{C7}, \\leanwit{FrcCore}{p32022}{C7}, \\leanwit{FrcLedger}{p32022}{C7} \\lean{FRC.Dark.passage\\_step, FRC.Dark.line\\_passage, FRC.Dark.cycle\\_passage, FRC.Dark.passage\\_vieta, Dark.passage\\_factor, Dark.passage\\_reduction}",
+     "source": "Prop.~\\ref{prop:passage}, Eq.~\\eqref{eq:exactfp}\\newline \\pywit{dark}{p32022}{C7}, \\leanwit{FrcCore}{p32022}{C7}, \\leanwit{FrcMathlib}{p32022}{C7} \\lean{FRC.Dark.passage\\_step, FRC.Dark.line\\_passage, FRC.Dark.cycle\\_passage, FRC.Dark.passage\\_vieta, Dark.passage\\_factor, Dark.passage\\_reduction}",
      "key": "p32022"
     },
     {
      "label": "C8",
      "predicate": "The intrinsic-scatter relation, smallest at high acceleration and rising as $x^{-1/4}$.",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:scatter}\\newline \\pywit{dark}{p32023}{C8}, \\leanwit{FrcLedger}{p32023}{C8} \\lean{Dark.scatter\\_deep}",
+     "source": "Eq.~\\eqref{eq:scatter}\\newline \\pywit{dark}{p32023}{C8}, \\leanwit{FrcMathlib}{p32023}{C8} \\lean{Dark.scatter\\_deep}",
      "key": "p32023"
     },
     {
      "label": "C9",
      "predicate": "The external-field effect from the total-field dependence of the registration.",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:efe}\\newline \\pywit{dark}{p32024}{C9}, \\leanwit{FrcLedger}{p32024}{C9} \\lean{Dark.nu\\_antitone, Dark.collinear\\_bound}",
+     "source": "Eq.~\\eqref{eq:efe}\\newline \\pywit{dark}{p32024}{C9}, \\leanwit{FrcMathlib}{p32024}{C9} \\lean{Dark.nu\\_antitone, Dark.collinear\\_bound}",
      "key": "p32024"
     },
     {
      "label": "C10",
      "predicate": "The merging-cluster lensing offset onto the coherent component, the enhancement sourced by $\\sum_c w_c\\Sigma_c$ (B6, B9).",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:cohweight}, \\S\\ref{sub:bullet}\\newline \\pywit{dark}{p32050}{C10}, \\leanwit{FrcCore}{p32050}{C10}, \\leanwit{FrcLedger}{p32050}{C10} \\lean{FRC.Drift.locked\\_sum, FRC.Shell.Frame.geom\\_sum\\_eq\\_zero, FRC.Dark.cohsum\\_three, FRC.Dark.coherent\\_stack, Dark.coherence\\_weight}",
+     "source": "Eq.~\\eqref{eq:cohweight}, \\S\\ref{sub:bullet}\\newline \\pywit{dark}{p32050}{C10}, \\leanwit{FrcCore}{p32050}{C10}, \\leanwit{FrcMathlib}{p32050}{C10} \\lean{FRC.Drift.locked\\_sum, FRC.Shell.Frame.geom\\_sum\\_eq\\_zero, FRC.Dark.cohsum\\_three, FRC.Dark.coherent\\_stack, Dark.coherence\\_weight}",
      "key": "p32050"
     },
     {
      "label": "C11",
      "predicate": "The cosmological constant $\\Lambda\\sim1/\\Om$, sign positive, $w=-1$ de Sitter section; no $120$-order cancellation.",
      "tag": "T",
-     "source": "\\S\\ref{sub:lambda}\\newline \\pywit{dark}{p32026}{C11}, \\leanwit{FrcLedger}{p32026}{C11}; rests on A1, B7 \\lean{Dark.lambda\\_positive}",
+     "source": "\\S\\ref{sub:lambda}\\newline \\pywit{dark}{p32026}{C11}, \\leanwit{FrcMathlib}{p32026}{C11}; rests on A1, B7 \\lean{Dark.lambda\\_positive}",
      "key": "p32026"
     }
    ]
@@ -227,70 +227,70 @@
      "label": "X2",
      "predicate": "\\textbf{The acceleration scale $\\az=c\\Hzero/2\\pi$} is the phase-coherence threshold, the acceleration whose winding frequency reaches the drive's cyclic rate, the $2\\pi$ the radian-to-cycle conversion of the angular Hubble rate, parameter-free, $13\\%$ below the fitted value at the entailed $\\Hzero$.",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:a0}\\newline \\pywit{dark}{p32028}{X2}, \\leanwit{FrcLedger}{p32028}{X2} \\lean{Dark.floor\\_value, Dark.floor\\_lambda\\_face}",
+     "source": "Eq.~\\eqref{eq:a0}\\newline \\pywit{dark}{p32028}{X2}, \\leanwit{FrcMathlib}{p32028}{X2} \\lean{Dark.floor\\_value, Dark.floor\\_lambda\\_face}",
      "key": "p32028"
     },
     {
      "label": "X3",
      "predicate": "\\textbf{Flat rotation curves and the baryonic Tully--Fisher relation} $v^{4}=GM\\az$ are the deep-regime geometric mean $\\geff=\\sqrt{\\gb\\az}$, the amplitude reading of the field below the floor.",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:btfr}\\newline \\pywit{dark}{p32029}{X3}, \\leanwit{FrcCore}{p32029}{X3}, \\leanwit{FrcLedger}{p32029}{X3} \\lean{FRC.Dark.tully\\_fisher, Dark.crossover\\_limits}",
+     "source": "Eq.~\\eqref{eq:btfr}\\newline \\pywit{dark}{p32029}{X3}, \\leanwit{FrcCore}{p32029}{X3}, \\leanwit{FrcMathlib}{p32029}{X3} \\lean{FRC.Dark.tully\\_fisher, Dark.crossover\\_limits}",
      "key": "p32029"
     },
     {
      "label": "X4",
      "predicate": "\\textbf{The radial acceleration relation carries no fitted function}: its interpolation is the finite first-passage registration given one declared identification, the amplitude barrier (B8), and it is the curve the data selected.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:registration}, Eq.~\\eqref{eq:interp}\\newline \\pywit{dark}{p32030}{X4}, \\leanwit{FrcCore}{p32030}{X4}, \\leanwit{FrcLedger}{p32030}{X4} \\lean{FRC.Dark.passage\\_vieta, FRC.Dark.line\\_passage, Dark.registration\\_root, Dark.interpolant\\_discriminant, Dark.rar\\_from\\_count}",
+     "source": "Thm.~\\ref{thm:registration}, Eq.~\\eqref{eq:interp}\\newline \\pywit{dark}{p32030}{X4}, \\leanwit{FrcCore}{p32030}{X4}, \\leanwit{FrcMathlib}{p32030}{X4} \\lean{FRC.Dark.passage\\_vieta, FRC.Dark.line\\_passage, Dark.registration\\_root, Dark.interpolant\\_discriminant, Dark.rar\\_from\\_count}",
      "key": "p32030"
     },
     {
      "label": "X5",
      "predicate": "\\textbf{The relation is tight}, its intrinsic scatter ($0.04$\\,dex at the knee, SPARC at fixed $\\az$) smallest at high acceleration and rising as $x^{-1/4}$ into the deep regime, the spread of the collective phase.",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:scatter}\\newline \\pywit{dark}{p32031}{X5}, \\leanwit{FrcLedger}{p32031}{X5} \\lean{Dark.scatter\\_deep}",
+     "source": "Eq.~\\eqref{eq:scatter}\\newline \\pywit{dark}{p32031}{X5}, \\leanwit{FrcMathlib}{p32031}{X5} \\lean{Dark.scatter\\_deep}",
      "key": "p32031"
     },
     {
      "label": "X6",
      "predicate": "\\textbf{The external-field effect breaks the strong equivalence principle}, the internal dynamics depending on the total field through the registration.",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:efe}\\newline \\pywit{dark}{p32032}{X6}, \\leanwit{FrcLedger}{p32032}{X6} \\lean{Dark.nu\\_antitone}",
+     "source": "Eq.~\\eqref{eq:efe}\\newline \\pywit{dark}{p32032}{X6}, \\leanwit{FrcMathlib}{p32032}{X6} \\lean{Dark.nu\\_antitone}",
      "key": "p32032"
     },
     {
      "label": "X7",
      "predicate": "\\textbf{The merging-cluster lensing offset} is a selection: the coherence-weighted enhancement follows the collisionless galaxies and drops the shock-decohered gas ($C_{ij}\\to0$), not a coincidence.",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:cohweight}, \\S\\ref{sub:bullet}\\newline \\pywit{dark}{p32033}{X7}, \\leanwit{FrcCore}{p32033}{X7}, \\leanwit{FrcLedger}{p32033}{X7} \\lean{FRC.Drift.locked\\_sum, FRC.Shell.Frame.geom\\_sum\\_eq\\_zero, FRC.Dark.cohsum\\_three, Dark.coherence\\_weight}",
+     "source": "Eq.~\\eqref{eq:cohweight}, \\S\\ref{sub:bullet}\\newline \\pywit{dark}{p32033}{X7}, \\leanwit{FrcCore}{p32033}{X7}, \\leanwit{FrcMathlib}{p32033}{X7} \\lean{FRC.Drift.locked\\_sum, FRC.Shell.Frame.geom\\_sum\\_eq\\_zero, FRC.Dark.cohsum\\_three, Dark.coherence\\_weight}",
      "key": "p32033"
     },
     {
      "label": "X8",
      "predicate": "\\textbf{The cluster-core residual} is referred to the coherent amplitude addition $\\sqrt{N_{\\mathrm{eff}}}$ over the core's separately virialised composites, the one law that also gives the merger selection (C10); the quantitative closure, with $N_{\\mathrm{eff}}$ uncomputed, is the conjecture Y1.",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sub:clustermag}, Y1\\newline \\pywit{dark}{p32034}{X8}, \\leanwit{FrcCore}{p32034}{X8}, \\leanwit{FrcLedger}{p32034}{X8} \\lean{FRC.Dark.cohsum\\_three, FRC.Dark.neff\\_equal, Dark.neff\\_bounds}",
+     "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sub:clustermag}, Y1\\newline \\pywit{dark}{p32034}{X8}, \\leanwit{FrcCore}{p32034}{X8}, \\leanwit{FrcMathlib}{p32034}{X8} \\lean{FRC.Dark.cohsum\\_three, FRC.Dark.neff\\_equal, Dark.neff\\_bounds}",
      "key": "p32034"
     },
     {
      "label": "X9",
      "predicate": "\\textbf{The cosmological constant is small}, $\\Lambda\\sim1/\\Om$, the curvature of the finite chart and a reading of the one cardinality rather than a mode-sum vacuum energy, so no $120$-order cancellation arises.",
      "tag": "T",
-     "source": "\\S\\ref{sub:lambda}\\newline \\pywit{dark}{p32035}{X9}, \\leanwit{FrcLedger}{p32035}{X9} \\lean{Dark.lambda\\_positive}",
+     "source": "\\S\\ref{sub:lambda}\\newline \\pywit{dark}{p32035}{X9}, \\leanwit{FrcMathlib}{p32035}{X9} \\lean{Dark.lambda\\_positive}",
      "key": "p32035"
     },
     {
      "label": "X10",
      "predicate": "\\textbf{The dark-matter and dark-energy scales coincide} because both are readings of the one cardinality $\\Om$, the floor $\\az=c\\Hzero/2\\pi$ and the curvature $\\Lambda\\sim1/\\Om$ fixed together.",
      "tag": "T",
-     "source": "\\S\\ref{sub:lambda}\\newline \\pywit{dark}{p32036}{X10}, \\leanwit{FrcLedger}{p32036}{X10} \\lean{Dark.floor\\_value, Dark.floor\\_lambda\\_face, Dark.lambda\\_positive}",
+     "source": "\\S\\ref{sub:lambda}\\newline \\pywit{dark}{p32036}{X10}, \\leanwit{FrcMathlib}{p32036}{X10} \\lean{Dark.floor\\_value, Dark.floor\\_lambda\\_face, Dark.lambda\\_positive}",
      "key": "p32036"
     },
     {
      "label": "X11",
      "predicate": "\\textbf{The dark sector adds no particle}: the registered acceleration is a strictly increasing function of the baryonic acceleration and the one global $\\az$, so one registered acceleration fixes one baryonic acceleration with no room for a second component; the galactic discrepancy is the amplitude reading of the baryonic field, the direct-detection and axion nulls are consistent, and no dark subhaloes exist.",
      "tag": "T",
-     "source": "\\S\\ref{sec:discussion}\\newline \\pywit{dark}{p32037}{X11}, \\leanwit{FrcLedger}{p32037}{X11} \\lean{Dark.rar\\_monotone}",
+     "source": "\\S\\ref{sec:discussion}\\newline \\pywit{dark}{p32037}{X11}, \\leanwit{FrcMathlib}{p32037}{X11} \\lean{Dark.rar\\_monotone}",
      "key": "p32037"
     }
    ]
@@ -303,28 +303,28 @@
      "label": "P1",
      "predicate": "The redshift law $\\az(z)=cH(z)/2\\pi$: the knee shifts and the Tully--Fisher zero-point evolves, $v_{\\mathrm{flat}}\\propto E(z)^{1/4}$ ($+7\\%$, $+16\\%$, $+32\\%$ at $z=0.5,1,2$ for $\\Omega_m=0.315$), parameter-free; shape resolvable, value in Z1. Falsifier: a high-$z$ knee away from $cH(z)/2\\pi$, or a non-evolving Tully--Fisher zero-point.",
      "tag": "T",
-     "source": "\\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32038}{P1}, \\leanwit{FrcLedger}{p32038}{P1}; rests on B2, B3, C2 \\lean{Dark.running\\_floor, Dark.ez\\_quarter\\_brackets}",
+     "source": "\\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32038}{P1}, \\leanwit{FrcMathlib}{p32038}{P1}; rests on B2, B3, C2 \\lean{Dark.running\\_floor, Dark.ez\\_quarter\\_brackets}",
      "key": "p32038"
     },
     {
      "label": "P2",
      "predicate": "The scatter is the two-variable form $\\sigma=(2\\tan\\alpha/\\ln10)\\,\\delta\\alpha$, vanishing for cold high-$x$ systems and rising as $x^{-1/4}$; SPARC at fixed $\\az$: intrinsic $0.038$\\,dex overall, $0.04$ at the knee, $0.13$ at $x\\simeq0.02$, bounding $\\delta\\alpha\\lesssim3.5^{\\circ}$. Falsifier: a deep-regime intrinsic scatter that does not rise, or a measured collective spread the scatter does not track.",
      "tag": "T",
-     "source": "\\S\\ref{sub:scatterderiv}, \\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32039}{P2}, \\leanwit{FrcLedger}{p32039}{P2}; rests on B5, C8 \\lean{Dark.scatter\\_deep}",
+     "source": "\\S\\ref{sub:scatterderiv}, \\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32039}{P2}, \\leanwit{FrcMathlib}{p32039}{P2}; rests on B5, C8 \\lean{Dark.scatter\\_deep}",
      "key": "p32039"
     },
     {
      "label": "P3",
      "predicate": "Wide binaries ($\\gtrsim10$\\,kAU) follow $\\gb/(1-e^{-\\sqrt{x}})$ with the global $\\az$ and the vector Galactic field $\\gext\\simeq1.8\\az$: a $10$--$30\\%$ velocity enhancement ($12$--$16\\%$ at $10$--$40$\\,kAU on the collinear estimate), the exponential knee distinct from Newtonian and rational forms. Falsifier: Newtonian wide-binary motion, or a knee of the wrong shape.",
      "tag": "T",
-     "source": "\\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32040}{P3}, \\leanwit{FrcLedger}{p32040}{P3}; rests on B4, B8, C6, C9 \\lean{Dark.wide\\_binary\\_band}",
+     "source": "\\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32040}{P3}, \\leanwit{FrcMathlib}{p32040}{P3}; rests on B4, B8, C6, C9 \\lean{Dark.wide\\_binary\\_band}",
      "key": "p32040"
     },
     {
      "label": "P4",
      "predicate": "Pressure-supported systems (ellipticals, dSphs, UDGs) lie below the cold-disk relation by the coherence factor $\\sqrt{w}$, $w=1/(1+(\\sigma_v/v)^{2})$, by $0.05$--$0.15$\\,dex for $\\sigma_v/v=0.5$--$1$, correlating with $\\sigma_v/v$. Falsifier: pressure-supported systems on the cold-disk relation.",
      "tag": "T",
-     "source": "\\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32041}{P4}, \\leanwit{FrcLedger}{p32041}{P4}; rests on B4, B6, C10 \\lean{Dark.coherence\\_offset}",
+     "source": "\\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32041}{P4}, \\leanwit{FrcMathlib}{p32041}{P4}; rests on B4, B6, C10 \\lean{Dark.coherence\\_offset}",
      "key": "p32041"
     },
     {
@@ -338,7 +338,7 @@
      "label": "P6",
      "predicate": "A global, isotropic scale and no dark substructure: the registered acceleration depends on the baryonic field and the one global $\\az$ alone, strictly increasing, with no direction or environment in the law once the external field is in its argument; no new dark-matter state and no dark subhaloes, so stream perturbations and the satellite abundance trace baryons alone. Falsifier: a directional or density dependence of $\\az$ beyond the external-field effect, or stream gaps and substructure lensing with no baryonic counterpart.",
      "tag": "T",
-     "source": "B1, B3; \\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32043}{P6}, \\leanwit{FrcLedger}{p32043}{P6}; rests on C9 \\lean{Dark.rar\\_monotone}",
+     "source": "B1, B3; \\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32043}{P6}, \\leanwit{FrcMathlib}{p32043}{P6}; rests on C9 \\lean{Dark.rar\\_monotone}",
      "key": "p32043"
     }
    ]
@@ -504,7 +504,7 @@
   "C2": [
    {
     "name": "FRC.Dark.floor_value",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 27,
     "axioms": [
      "Classical.choice",
@@ -517,7 +517,7 @@
    },
    {
     "name": "FRC.Dark.floor_lambda_face",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 152,
     "axioms": [
      "Classical.choice",
@@ -588,7 +588,7 @@
    },
    {
     "name": "FRC.Dark.crossover_deep_limit",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 59,
     "axioms": [
      "Classical.choice",
@@ -601,7 +601,7 @@
    },
    {
     "name": "FRC.Dark.odd_linear_response",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 122,
     "axioms": [
      "Classical.choice",
@@ -625,7 +625,7 @@
    },
    {
     "name": "FRC.Dark.crossover_limits",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 51,
     "axioms": [
      "Classical.choice",
@@ -658,7 +658,7 @@
    },
    {
     "name": "FRC.Dark.registration_root",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 42,
     "axioms": [
      "Classical.choice",
@@ -671,7 +671,7 @@
    },
    {
     "name": "FRC.Dark.crossover_limits",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 51,
     "axioms": [
      "Classical.choice",
@@ -684,7 +684,7 @@
    },
    {
     "name": "FRC.Dark.interpolant_discriminant",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 64,
     "axioms": [
      "Classical.choice",
@@ -697,7 +697,7 @@
    },
    {
     "name": "FRC.Dark.rar_from_count",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 85,
     "axioms": [
      "Classical.choice",
@@ -748,7 +748,7 @@
    },
    {
     "name": "FRC.Dark.passage_factor",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 72,
     "axioms": [
      "Classical.choice",
@@ -761,7 +761,7 @@
    },
    {
     "name": "FRC.Dark.passage_reduction",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 79,
     "axioms": [
      "Classical.choice",
@@ -776,7 +776,7 @@
   "C8": [
    {
     "name": "FRC.Dark.scatter_deep",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 106,
     "axioms": [
      "Classical.choice",
@@ -791,7 +791,7 @@
   "C9": [
    {
     "name": "FRC.Dark.nu_antitone",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 97,
     "axioms": [
      "Classical.choice",
@@ -804,7 +804,7 @@
    },
    {
     "name": "FRC.Dark.collinear_bound",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 102,
     "axioms": [
      "Classical.choice",
@@ -855,7 +855,7 @@
    },
    {
     "name": "FRC.Dark.coherence_weight",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 112,
     "axioms": [
      "Classical.choice",
@@ -870,7 +870,7 @@
   "C11": [
    {
     "name": "FRC.Dark.lambda_positive",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 128,
     "axioms": [
      "Classical.choice",
@@ -923,7 +923,7 @@
   "X2": [
    {
     "name": "FRC.Dark.floor_value",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 27,
     "axioms": [
      "Classical.choice",
@@ -936,7 +936,7 @@
    },
    {
     "name": "FRC.Dark.floor_lambda_face",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 152,
     "axioms": [
      "Classical.choice",
@@ -960,7 +960,7 @@
    },
    {
     "name": "FRC.Dark.crossover_limits",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 51,
     "axioms": [
      "Classical.choice",
@@ -993,7 +993,7 @@
    },
    {
     "name": "FRC.Dark.registration_root",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 42,
     "axioms": [
      "Classical.choice",
@@ -1006,7 +1006,7 @@
    },
    {
     "name": "FRC.Dark.interpolant_discriminant",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 64,
     "axioms": [
      "Classical.choice",
@@ -1019,7 +1019,7 @@
    },
    {
     "name": "FRC.Dark.rar_from_count",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 85,
     "axioms": [
      "Classical.choice",
@@ -1034,7 +1034,7 @@
   "X5": [
    {
     "name": "FRC.Dark.scatter_deep",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 106,
     "axioms": [
      "Classical.choice",
@@ -1049,7 +1049,7 @@
   "X6": [
    {
     "name": "FRC.Dark.nu_antitone",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 97,
     "axioms": [
      "Classical.choice",
@@ -1091,7 +1091,7 @@
    },
    {
     "name": "FRC.Dark.coherence_weight",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 112,
     "axioms": [
      "Classical.choice",
@@ -1124,7 +1124,7 @@
    },
    {
     "name": "FRC.Dark.neff_bounds",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 117,
     "axioms": [
      "Classical.choice",
@@ -1139,7 +1139,7 @@
   "X9": [
    {
     "name": "FRC.Dark.lambda_positive",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 128,
     "axioms": [
      "Classical.choice",
@@ -1154,7 +1154,7 @@
   "X10": [
    {
     "name": "FRC.Dark.floor_value",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 27,
     "axioms": [
      "Classical.choice",
@@ -1167,7 +1167,7 @@
    },
    {
     "name": "FRC.Dark.floor_lambda_face",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 152,
     "axioms": [
      "Classical.choice",
@@ -1180,7 +1180,7 @@
    },
    {
     "name": "FRC.Dark.lambda_positive",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 128,
     "axioms": [
      "Classical.choice",
@@ -1195,7 +1195,7 @@
   "X11": [
    {
     "name": "FRC.Dark.rar_monotone",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 93,
     "axioms": [
      "Classical.choice",
@@ -1210,7 +1210,7 @@
   "P1": [
    {
     "name": "FRC.Dark.running_floor",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 35,
     "axioms": [
      "Classical.choice",
@@ -1223,7 +1223,7 @@
    },
    {
     "name": "FRC.Dark.ez_quarter_brackets",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 132,
     "axioms": [
      "Classical.choice",
@@ -1238,7 +1238,7 @@
   "P2": [
    {
     "name": "FRC.Dark.scatter_deep",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 106,
     "axioms": [
      "Classical.choice",
@@ -1253,7 +1253,7 @@
   "P3": [
    {
     "name": "FRC.Dark.wide_binary_band",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 139,
     "axioms": [
      "Classical.choice",
@@ -1268,7 +1268,7 @@
   "P4": [
    {
     "name": "FRC.Dark.coherence_offset",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 146,
     "axioms": [
      "Classical.choice",
@@ -1303,7 +1303,7 @@
   "P6": [
    {
     "name": "FRC.Dark.rar_monotone",
-    "module": "FrcLedger/Dark",
+    "module": "FrcMathlib/Dark",
     "line": 93,
     "axioms": [
      "Classical.choice",

@@ -8,7 +8,7 @@ checks (all exact), standard library only, driven by `frc-5-reductio.ipynb` (Goo
 Every check names the predicate(s) of the paper's predicate ledger it witnesses (Appendix B "Predicate ledger and machine verification", 38 predicates in blocks A–F, T, cited as
 `5:XN`; public copy `docs/5-reductio/index.html`), and the ledger's source column links, for each
 machine-verified predicate, the script at the check that decides it (`reductio.py#<key>`) and the Lean module at the predicate's declaration
-(`lean/FrcCore/Reductio.lean` with no axioms, or `lean/FrcLedger/Reductio.lean` on Mathlib). Where a predicate is proved in Lean (`lean/FrcCore/Reductio.lean` with no axioms, or `lean/FrcLedger/Reductio.lean`
+(`lean/FrcCore/Reductio.lean` with no axioms, or `lean/FrcMathlib/Reductio.lean` on Mathlib). Where a predicate is proved in Lean (`lean/FrcCore/Reductio.lean` with no axioms, or `lean/FrcMathlib/Reductio.lean`
 on Mathlib), the check here is the instance the reader can run.
 
 The package decides the paper's logic on the bounded universe it is about. The arithmetic frames `W_N` of
@@ -67,5 +67,5 @@ states the predicate and runs `predicate("5:E1")`: the block of the check that d
 deciding check is `reductio.PREDICATES`, the block the letter of its id; A4 decides C2 and C3, B3 decides D4 and E8, each on one marker), that check is printed from the script's own source — the line under its
 `# 5:E1 (p05027)` marker — and every record citing the predicate is listed with its verdict. The markers in `reductio.py`
 are the lines the ledger page's source glyph opens (`docs/src/5-reductio/#<key>`). The predicates'
-Lean counterparts are the declarations named by their keys (`p05027`) at the end of `lean/FrcCore/Reductio.lean` and `lean/FrcLedger/Reductio.lean`
+Lean counterparts are the declarations named by their keys (`p05027`) at the end of `lean/FrcCore/Reductio.lean` and `lean/FrcMathlib/Reductio.lean`
 (`lean/make_predicates.py`), one per predicate, with the module as one executable file for the web editor (`lean/web/core/Reductio.lean`, `lean/web/Reductio.lean`).

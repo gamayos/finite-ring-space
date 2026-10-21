@@ -1,6 +1,6 @@
 import Mathlib
-import FrcLedger.Theme.Extension
-import FrcLedger.Keys.Extension
+import FrcMathlib.Theme.Extension
+import FrcMathlib.Keys.Extension
 
 /-!
 # 3-causality — the Euclidean–Lorentzian dichotomy, Mathlib witnesses
@@ -9,7 +9,7 @@ Rows of the predicate ledger of *Euclidean–Lorentzian Dichotomy and Algebraic 
 (Entropy 2025, 27, 1098; tree `3-causality-20260510`), over an arbitrary finite
 field `F` with `card F ≢ 3 (mod 4)` (so `−1` is a square, the shells `p = 4κ + 1` among them).  Classical
 (tier 2) on Mathlib's hierarchy; the same rows are proved with no axioms in the core. Since the ledger migration
-(task LM20) the theorems live in the extension theme, `FrcLedger/Theme/Extension.lean`, as `FRC.Extension.*`; the
+(task LM20) the theorems live in the extension theme, `FrcMathlib/Theme/Extension.lean`, as `FRC.Extension.*`; the
 old names below are aliases, and the predicate declarations are the aliases of their keys.
 -/
 
@@ -18,7 +18,7 @@ namespace FRC.Causality
 variable {F : Type*} [Field F]
 
 /-! ## Old names (ledger migration, task LM20): the theorems moved to the extension theme (`FRC.Extension`,
-`FrcLedger/Theme/Extension.lean`), each under its old name -/
+`FrcMathlib/Theme/Extension.lean`), each under its old name -/
 
 /-- 3:B2 (Thm. nonexistence, first clause): `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root. -/
 theorem no_causal_root (ν c : F) (h : ¬IsSquare ν) : c ^ 2 ≠ ν :=

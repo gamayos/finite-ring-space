@@ -13,8 +13,8 @@ the milestone's release pin retires it.
 The exact checks call the gravity theme and stay exact (gate G09); the chart checks carry their tolerances in the
 verdict and every comparison with measured data is [data]. The Lean side is lean/FrcCore/Theme/Drift.lean,
 Theme/Lattice.lean, the register section of Theme/Gravity.lean and Theme/Shift.lean (core, no
-axioms), and lean/FrcLedger/Theme/Strong.lean (the reals) with FrcLedger/Theme/Gravity.lean (the exact Mathlib
-variants); the certificates are lean/FrcCore/Ledgers/P21Gravity.lean and lean/FrcLedger/Ledgers/P21Gravity.lean.
+axioms), and lean/FrcMathlib/Theme/Strong.lean (the reals) with FrcMathlib/Theme/Gravity.lean (the exact Mathlib
+variants); the certificates are lean/FrcCore/Ledgers/P21Gravity.lean and lean/FrcMathlib/Ledgers/P21Gravity.lean.
 
     python3 -m frc.ledgers.p21_gravity        every block, the census; exit 1 if a check fails (≈ 40 s)
     python3 -m frc.ledgers.p21_gravity E      one block (A to G)

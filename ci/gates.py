@@ -64,7 +64,7 @@ def framework(planned=False):
             if planned or (ROOT / f).exists(): out[f] = (kind, theme, rank, i, TM.THEMES[theme]["exact"])
     for p in (ROOT / "frc" / "ledgers").rglob("*.py") if (ROOT / "frc" / "ledgers").exists() else []:
         if p.name != "__init__.py": out[str(p.relative_to(ROOT))] = ("py", "ledgers", TM.LEDGERS["rank"], 0, True)
-    for lib, kind in (("FrcCore", "core"), ("FrcLedger", "ml")):
+    for lib, kind in (("FrcCore", "core"), ("FrcMathlib", "ml")):
         for sub, key in (("Keys", "keys"), ("Ledgers", "ledgers")):
             d = ROOT / "lean" / lib / sub
             for p in sorted(d.rglob("*.lean")) if d.exists() else []:            # Ledgers/Master/<Theme>.lean: a master block's certificate (LM22)
@@ -84,7 +84,7 @@ def lean_imports(path):
 
 def lean_path(mod):
     """FrcCore.Theme.Fourier -> lean/FrcCore/Theme/Fourier.lean (None for Init, Mathlib and the like)."""
-    if not mod.startswith(("FrcCore", "FrcLedger")): return None
+    if not mod.startswith(("FrcCore", "FrcMathlib")): return None
     return "lean/" + mod.replace(".", "/") + ".lean"
 
 
@@ -168,7 +168,7 @@ def g09(fw):
     for q in sorted((ROOT / "frc").glob("*.py")):
         r = str(q.relative_to(ROOT))
         if r not in PLANNED and q.name not in ("__init__.py", "themes.py"): fail("G09", f"{r}: not in the theme map")
-    for lib in ("FrcCore", "FrcLedger"):
+    for lib in ("FrcCore", "FrcMathlib"):
         d = ROOT / "lean" / lib / "Theme"
         for q in sorted(d.glob("*.lean")) if d.exists() else []:
             r = str(q.relative_to(ROOT))

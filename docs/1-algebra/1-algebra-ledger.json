@@ -47,21 +47,21 @@
      "label": "B2",
      "predicate": "Symmetry completeness (Thm.~\\ref{thm:symmetric-completeness}): the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$; under the Klein four-group $\\langle x\\mapsto-x,\\,x\\mapsto x^{-1}\\rangle$, $Q_4$ is the union of the two size-two orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$, and $\\Fpx\\setminus Q_4$ splits into exactly $\\kap-1$ orbits of size four. For $\\p\\equiv3\\pmod4$ no $\\im$ exists.",
      "tag": "T",
-     "source": "\\pywit{algebra}{p01004}{B2}, \\leanwit{FrcCore}{p01004}{B2}, \\leanwit{FrcLedger}{p01004}{B2} \\lean{Algebra.quarter\\_turn\\_exists, Algebra.klein\\_orbit\\_four, Algebra.card\\_fourth\\_roots, FRC.Shell.Frame.quarter\\_turn\\_exists, FRC.Shell.Frame.fourth\\_roots, FRC.Shell.Frame.klein\\_orbit\\_four, FRC.Shell.Frame.orbit\\_rep, FRC.Shell.Frame.orbit\\_rep\\_unique, FRC.Shell.s13\\_klein}",
+     "source": "\\pywit{algebra}{p01004}{B2}, \\leanwit{FrcCore}{p01004}{B2}, \\leanwit{FrcMathlib}{p01004}{B2} \\lean{Algebra.quarter\\_turn\\_exists, Algebra.klein\\_orbit\\_four, Algebra.card\\_fourth\\_roots, FRC.Shell.Frame.quarter\\_turn\\_exists, FRC.Shell.Frame.fourth\\_roots, FRC.Shell.Frame.klein\\_orbit\\_four, FRC.Shell.Frame.orbit\\_rep, FRC.Shell.Frame.orbit\\_rep\\_unique, FRC.Shell.s13\\_klein}",
      "key": "p01004"
     },
     {
      "label": "B3",
      "predicate": "The oriented quarter-turn: $\\im=-\\gen^{\\kap}$ satisfies $\\im^{2}=-1$ for every primitive root $\\gen$; the two square roots of $-1$ are $\\{-\\gen^{\\kap},\\gen^{\\kap}\\}$, so the drive fixes which is $\\im$. On $\\F_{13}$, $\\gen=2$: $\\im=5$.",
      "tag": "T",
-     "source": "\\pywit{algebra}{p01005}{B3}, \\leanwit{FrcCore}{p01005}{B3}, \\leanwit{FrcLedger}{p01005}{B3} \\lean{Algebra.quarter\\_turn, Algebra.s13\\_quarter\\_turn, FRC.Shell.Frame.quarter\\_turn\\_sq, FRC.Shell.s13\\_datum}",
+     "source": "\\pywit{algebra}{p01005}{B3}, \\leanwit{FrcCore}{p01005}{B3}, \\leanwit{FrcMathlib}{p01005}{B3} \\lean{Algebra.quarter\\_turn, Algebra.s13\\_quarter\\_turn, FRC.Shell.Frame.quarter\\_turn\\_sq, FRC.Shell.s13\\_datum}",
      "key": "p01005"
     },
     {
      "label": "B4",
      "predicate": "Affine reframing (Def.~\\ref{def:framed-field}, Lemma~\\ref{lem:affine-invariance}): $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant.",
      "tag": "T",
-     "source": "\\pywit{algebra}{p01006}{B4}, \\leanwit{FrcCore}{p01006}{B4}, \\leanwit{FrcLedger}{p01006}{B4} \\lean{Algebra.affine\\_frame, FRC.Shell.Frame.affine\\_frame\\_unit}",
+     "source": "\\pywit{algebra}{p01006}{B4}, \\leanwit{FrcCore}{p01006}{B4}, \\leanwit{FrcMathlib}{p01006}{B4} \\lean{Algebra.affine\\_frame, FRC.Shell.Frame.affine\\_frame\\_unit}",
      "key": "p01006"
     },
     {
@@ -102,7 +102,7 @@
      "label": "C4",
      "predicate": "Involutions and counts (Def.~\\ref{def:orbit-sphere}\\,(a)--(c)): $M_n(a)=M_{n+2\\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\\kap)$ since $\\gen^{2\\kap}=-1$; $\\p-1$ distinct meridian lists in $2\\kap$ great circles; $2\\kap$ latitude pairs; one-sided vertex count $(\\p-1)^{2}/2+1$, the double cover $(\\p-1)^{2}$ (00:B11).",
      "tag": "T",
-     "source": "\\pywit{algebra}{p01011}{C4}, \\leanwit{FrcCore}{p01011}{C4}, \\leanwit{FrcLedger}{p01011}{C4} \\lean{Algebra.meridian\\_involution, FRC.Shell.Frame.meridian\\_involution}",
+     "source": "\\pywit{algebra}{p01011}{C4}, \\leanwit{FrcCore}{p01011}{C4}, \\leanwit{FrcMathlib}{p01011}{C4} \\lean{Algebra.meridian\\_involution, FRC.Shell.Frame.meridian\\_involution}",
      "key": "p01011"
     }
    ]
@@ -122,7 +122,7 @@
      "label": "D2",
      "predicate": "The window law: $z\\mapsto z\\bmod\\p$ is injective on $W_H$ when $2H<\\p$; for $x,y\\in W_H$ the residue of $x\\pm y$ reads back the integer when $4H<\\p$, and that of $xy$ when $2H^{2}<\\p$ (the same injectivity on the windows $2H$ and $H^{2}$).",
      "tag": "T",
-     "source": "\\pywit{algebra}{p01013}{D2}, \\leanwit{FrcCore}{p01013}{D2}, \\leanwit{FrcLedger}{p01013}{D2} \\lean{Algebra.framed\\_integer\\_window, FRC.Shell.Frame.window\\_injective, FRC.Shell.Frame.window\\_signed, FRC.Shell.Frame.window\\_add\\_readback, FRC.Shell.Frame.window\\_mul\\_readback}",
+     "source": "\\pywit{algebra}{p01013}{D2}, \\leanwit{FrcCore}{p01013}{D2}, \\leanwit{FrcMathlib}{p01013}{D2} \\lean{Algebra.framed\\_integer\\_window, FRC.Shell.Frame.window\\_injective, FRC.Shell.Frame.window\\_signed, FRC.Shell.Frame.window\\_add\\_readback, FRC.Shell.Frame.window\\_mul\\_readback}",
      "key": "p01013"
     },
     {
@@ -136,7 +136,7 @@
      "label": "D4",
      "predicate": "Scale-periodicity (Lemma~\\ref{thm:scale-periodicity}, in the field): $S_n(x)=x\\gen^{-n}$ satisfies $S_{n+(\\p-1)}=S_n$; the grids $G_n$ are $(\\p-1)$-periodic as ordered lists; the zoom $[x,n]\\mapsto[x,n+1]$ has order $\\p-1$. As lists of rationals $x/\\gen^{n}$ ($\\gen$ lifted to $\\Z$) the grids are not periodic: the periodicity is a relation of the field.",
      "tag": "T",
-     "source": "6:D4\\newline \\pywit{algebra}{p01015}{D4}, \\leanwit{FrcCore}{p01015}{D4}, \\leanwit{FrcLedger}{p01015}{D4} \\lean{Algebra.scale\\_periodic, FRC.Shell.Frame.scale\\_periodic}",
+     "source": "6:D4\\newline \\pywit{algebra}{p01015}{D4}, \\leanwit{FrcCore}{p01015}{D4}, \\leanwit{FrcMathlib}{p01015}{D4} \\lean{Algebra.scale\\_periodic, FRC.Shell.Frame.scale\\_periodic}",
      "key": "p01015"
     },
     {
@@ -150,7 +150,7 @@
      "label": "D7",
      "predicate": "Limit-like approximation (second clause), across the tower: for every real $r$ and $\\varepsilon>0$ some shell $\\p=4\\kap+1$ carries a framed rational $x/2^{n}$, $|x|\\le2\\kap$, within $\\varepsilon$ of $r$ (primes $\\equiv1\\pmod4$ beyond every bound). One shell trades range for resolution; the limit is the tower, not a completion.",
      "tag": "T",
-     "source": "\\pywit{algebra}{p01027}{D7}, \\leanwit{FrcLedger}{p01027}{D7} \\lean{Algebra.tower\\_density}",
+     "source": "\\pywit{algebra}{p01027}{D7}, \\leanwit{FrcMathlib}{p01027}{D7} \\lean{Algebra.tower\\_density}",
      "key": "p01027"
     }
    ]
@@ -170,21 +170,21 @@
      "label": "E2",
      "predicate": "The extension by $X^{2}+1$ is trivial (Prop.~\\ref{prop:Cp-field} reversed): on the shell $\\Fp[X]/(X^{2}+1)\\cong\\Fp\\times\\Fp$ has zero divisors, $(X+\\im)(X-\\im)=0$, so it is not a field; $\\Fp[X]/(X^{2}+1)$ is a field exactly when $\\p\\equiv3\\pmod4$; the quadratic extension of the shell is $\\Fp[\\eta]$, $\\eta^{2}=\\nu$ a non-square (8-dirac B6).",
      "tag": "T",
-     "source": "\\pywit{algebra}{p01019}{E2}, \\leanwit{FrcCore}{p01019}{E2}, \\leanwit{FrcLedger}{p01019}{E2} \\lean{Algebra.complex\\_chart\\_zero\\_divisor, FRC.Shell.Frame.complex\\_chart\\_zero\\_divisor}",
+     "source": "\\pywit{algebra}{p01019}{E2}, \\leanwit{FrcCore}{p01019}{E2}, \\leanwit{FrcMathlib}{p01019}{E2} \\lean{Algebra.complex\\_chart\\_zero\\_divisor, FRC.Shell.Frame.complex\\_chart\\_zero\\_divisor}",
      "key": "p01019"
     },
     {
      "label": "E3",
      "predicate": "Solving in the substrate (first clause): $f\\in\\Fp[X]$ has a root in $\\Fp$ iff $f$ and $X^{\\p}-X=\\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\\Fp$ is recognised, not extended (E2).",
      "tag": "T",
-     "source": "\\pywit{algebra}{p01026}{E3}, \\leanwit{FrcCore}{p01026}{E3}, \\leanwit{FrcLedger}{p01026}{E3} \\lean{Algebra.root\\_iff\\_not\\_coprime, FRC.Shell.Poly.Frame.root\\_iff\\_common\\_factor, FRC.Shell.Poly.Frame.root\\_bound, FRC.Shell.Frame.fermat}",
+     "source": "\\pywit{algebra}{p01026}{E3}, \\leanwit{FrcCore}{p01026}{E3}, \\leanwit{FrcMathlib}{p01026}{E3} \\lean{Algebra.root\\_iff\\_not\\_coprime, FRC.Shell.Poly.Frame.root\\_iff\\_common\\_factor, FRC.Shell.Poly.Frame.root\\_bound, FRC.Shell.Frame.fermat}",
      "key": "p01026"
     },
     {
      "label": "E4",
      "predicate": "Continuous symmetry, the abelian case (third clause): $\\Fpx\\simeq C_{\\p-1}\\simeq SO(2,\\Fp)$ (6:E2) is a $\\pi/(\\p-1)$-net of $U(1)$ under $k\\mapsto e^{2\\pi\\im k/(\\p-1)}$; the rounding $k(\\theta)=\\lfloor(\\p-1)\\theta/2\\pi+\\tfrac12\\rfloor$ has angle and chord error $\\le\\pi/(\\p-1)$ and group-law defect at most one step.",
      "tag": "T",
-     "source": "6:E2\\newline \\pywit{algebra}{p01028}{E4}, \\leanwit{FrcLedger}{p01028}{E4} \\lean{Algebra.circle\\_net, Algebra.group\\_law\\_defect}",
+     "source": "6:E2\\newline \\pywit{algebra}{p01028}{E4}, \\leanwit{FrcMathlib}{p01028}{E4} \\lean{Algebra.circle\\_net, Algebra.group\\_law\\_defect}",
      "key": "p01028"
     },
     {
@@ -205,14 +205,14 @@
      "label": "E7",
      "predicate": "The Lie-algebra layer, one axis: on a shell $\\p>8H^{2}$, for $q=a+v\\in W_H^{4}$ with $v\\ne0$, the rotation $\\rho_q\\colon x\\mapsto qxq^{-1}$ is the Cayley step (8:C3) of the self-adjoint $\\eta S_v$ (E2's $\\eta$, $S_vx=v\\times x$, $N(v)=v\\cdot v$) at $\\alpha=\\eta/(\\nu a)$, and the half-turn $U_\\infty=I+2N(v)^{-1}S_v^{2}$ at $a=0$. With $U_\\infty$ these steps form a cyclic group of order $\\p-\\bigl(\\tfrac{N(v)}{\\p}\\bigr)$ containing every iterate; at most $2H^{2}+2H$ of its elements are window rotations.",
      "tag": "T",
-     "source": "Section~\\ref{sec:conclusion}; 8:C3, 8:C5\\newline \\pywit{algebra}{p01032}{E7}, \\leanwitin{FrcCore}{Quaternion}{p01032}{E7}, \\leanwit{FrcLedger}{p01032}{E7} \\lean{FRC.Shell.Frame.rot\\_cayley, FRC.Shell.Frame.cayley\\_inj, FRC.Shell.Frame.half\\_turn, FRC.Shell.Frame.rot\\_trivial, FRC.Shell.Frame.rot\\_neg, Algebra.axis\\_group, Algebra.card\\_image\\_le\\_of\\_neg}",
+     "source": "Section~\\ref{sec:conclusion}; 8:C3, 8:C5\\newline \\pywit{algebra}{p01032}{E7}, \\leanwitin{FrcCore}{Quaternion}{p01032}{E7}, \\leanwit{FrcMathlib}{p01032}{E7} \\lean{FRC.Shell.Frame.rot\\_cayley, FRC.Shell.Frame.cayley\\_inj, FRC.Shell.Frame.half\\_turn, FRC.Shell.Frame.rot\\_trivial, FRC.Shell.Frame.rot\\_neg, Algebra.axis\\_group, Algebra.card\\_image\\_le\\_of\\_neg}",
      "key": "p01032"
     },
     {
      "label": "E8",
      "predicate": "The Lie-algebra layer, two axes and range: for pure quaternions $u,w$ with $1+N(u)$, $1+N(w)$ and $1-u\\cdot w$ nonzero, $\\rho_{1+u}\\rho_{1+w}=\\rho_{1+u\\circ w}$ with $u\\circ w=(u+w+u\\times w)/(1-u\\cdot w)$, the bracket being $[u,w]=2u\\times w$; at $u\\cdot w=1$ the product is the half-turn about $u+w+u\\times w$. The entries of $q^{m}$, $q\\in W_H^{4}$, are at most $(2H)^{m}$, and $q^{m}$ reads back from the shell iff $2\\|q^{m}\\|_\\infty<\\p$ (D2).",
      "tag": "T",
-     "source": "Section~\\ref{sec:conclusion}; D2\\newline \\pywit{algebra}{p01033}{E8}, \\leanwitin{FrcCore}{Quaternion}{p01033}{E8}, \\leanwit{FrcLedger}{p01033}{E8} \\lean{FRC.Shell.Frame.compose, FRC.Shell.Frame.one\\_add\\_mul, FRC.Shell.Frame.one\\_add\\_mul\\_half, FRC.Shell.Frame.bracket, FRC.Shell.Frame.rot\\_mul, FRC.Shell.Frame.nrm\\_mul, Algebra.quat\\_pow\\_height, Algebra.readback\\_iff}",
+     "source": "Section~\\ref{sec:conclusion}; D2\\newline \\pywit{algebra}{p01033}{E8}, \\leanwitin{FrcCore}{Quaternion}{p01033}{E8}, \\leanwit{FrcMathlib}{p01033}{E8} \\lean{FRC.Shell.Frame.compose, FRC.Shell.Frame.one\\_add\\_mul, FRC.Shell.Frame.one\\_add\\_mul\\_half, FRC.Shell.Frame.bracket, FRC.Shell.Frame.rot\\_mul, FRC.Shell.Frame.nrm\\_mul, Algebra.quat\\_pow\\_height, Algebra.readback\\_iff}",
      "key": "p01033"
     }
    ]
@@ -225,7 +225,7 @@
      "label": "Z1",
      "predicate": "No element of additive order two (Thm.~\\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\\kap=(\\p-1)/2$ and $2\\kap+1=(\\p+1)/2=2^{-1}$ (20-rh B8).",
      "tag": "T",
-     "source": "\\pywit{algebra}{p01020}{Z1}, \\leanwit{FrcCore}{p01020}{Z1}, \\leanwit{FrcLedger}{p01020}{Z1} \\lean{Algebra.no\\_south\\_pole, FRC.Shell.Frame.no\\_south\\_pole}",
+     "source": "\\pywit{algebra}{p01020}{Z1}, \\leanwit{FrcCore}{p01020}{Z1}, \\leanwit{FrcMathlib}{p01020}{Z1} \\lean{Algebra.no\\_south\\_pole, FRC.Shell.Frame.no\\_south\\_pole}",
      "key": "p01020"
     },
     {
@@ -239,7 +239,7 @@
      "label": "Z3",
      "predicate": "No latitude on the equator (Thm.~\\ref{thm:no-equator}): $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle ($\\p/4$, $\\p/2$, $3\\p/4$) has value $0$, and none of the window sits there; the equator, depth $\\kap+\\tfrac14$, lies strictly between $L_\\kap$ and $L_{\\kap+1}$, with $\\kap\\equiv-4^{-1}$, $\\kap+1\\equiv3\\cdot4^{-1}$; no latitude is the equator [chart: $L_a$ drawn at colatitude $2\\pi a/\\p$].",
      "tag": "T",
-     "source": "\\pywit{algebra}{p01034}{Z3}, \\leanwit{FrcCore}{p01034}{Z3}, \\leanwit{FrcLedger}{p01034}{Z3} \\lean{Algebra.no\\_equator, Algebra.quarter\\_position, Algebra.quarter\\_position\\_window, Algebra.equator\\_between, FRC.Shell.Frame.no\\_equator, FRC.Shell.Frame.quarter\\_fold, FRC.Shell.Frame.quarter\\_position, FRC.Shell.Frame.equator\\_between}",
+     "source": "\\pywit{algebra}{p01034}{Z3}, \\leanwit{FrcCore}{p01034}{Z3}, \\leanwit{FrcMathlib}{p01034}{Z3} \\lean{Algebra.no\\_equator, Algebra.quarter\\_position, Algebra.quarter\\_position\\_window, Algebra.equator\\_between, FRC.Shell.Frame.no\\_equator, FRC.Shell.Frame.quarter\\_fold, FRC.Shell.Frame.quarter\\_position, FRC.Shell.Frame.equator\\_between}",
      "key": "p01034"
     }
    ]
@@ -297,7 +297,7 @@
   "B2": [
    {
     "name": "FRC.Algebra.quarter_turn_exists",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 31,
     "axioms": [
      "Classical.choice",
@@ -310,7 +310,7 @@
    },
    {
     "name": "FRC.Algebra.klein_orbit_four",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 52,
     "axioms": [
      "Classical.choice",
@@ -323,7 +323,7 @@
    },
    {
     "name": "FRC.Algebra.card_fourth_roots",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 71,
     "axioms": [
      "Classical.choice",
@@ -392,7 +392,7 @@
   "B3": [
    {
     "name": "FRC.Algebra.quarter_turn",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 93,
     "axioms": [
      "Classical.choice",
@@ -401,11 +401,11 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "1:B3 (convention 4, the oriented quarter-turn): `i := −g^κ` satisfies `i² = −1`; and `g^(2κ) = −1`, the involution behind Definition 5. From `FrcLedger.Fourier`."
+    "doc": "1:B3 (convention 4, the oriented quarter-turn): `i := −g^κ` satisfies `i² = −1`; and `g^(2κ) = −1`, the involution behind Definition 5. From `FrcMathlib.Fourier`."
    },
    {
     "name": "FRC.Algebra.s13_quarter_turn",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 263,
     "axioms": [
      "Quot.sound",
@@ -437,7 +437,7 @@
   "B4": [
    {
     "name": "FRC.Algebra.affine_frame",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 104,
     "axioms": [
      "Classical.choice",
@@ -481,7 +481,7 @@
   "C4": [
    {
     "name": "FRC.Algebra.meridian_involution",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 131,
     "axioms": [
      "Classical.choice",
@@ -505,7 +505,7 @@
   "D2": [
    {
     "name": "FRC.Algebra.framed_integer_window",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 141,
     "axioms": [
      "Classical.choice",
@@ -556,7 +556,7 @@
   "D4": [
    {
     "name": "FRC.Algebra.scale_periodic",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 155,
     "axioms": [
      "Classical.choice",
@@ -580,7 +580,7 @@
   "D7": [
    {
     "name": "FRC.Algebra.tower_density",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 327,
     "axioms": [
      "Classical.choice",
@@ -595,7 +595,7 @@
   "E2": [
    {
     "name": "FRC.Algebra.complex_chart_zero_divisor",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 163,
     "axioms": [
      "Classical.choice",
@@ -619,7 +619,7 @@
   "E3": [
    {
     "name": "FRC.Algebra.root_iff_not_coprime",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 296,
     "axioms": [
      "Classical.choice",
@@ -661,7 +661,7 @@
   "E4": [
    {
     "name": "FRC.Algebra.circle_net",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 349,
     "axioms": [
      "Classical.choice",
@@ -674,7 +674,7 @@
    },
    {
     "name": "FRC.Algebra.group_law_defect",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 362,
     "axioms": [
      "Classical.choice",
@@ -754,7 +754,7 @@
    },
    {
     "name": "FRC.Algebra.axis_group",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 512,
     "axioms": [
      "Classical.choice",
@@ -767,7 +767,7 @@
    },
    {
     "name": "FRC.Algebra.card_image_le_of_neg",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 555,
     "axioms": [
      "Classical.choice",
@@ -836,7 +836,7 @@
    },
    {
     "name": "FRC.Algebra.quat_pow_height",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 579,
     "axioms": [
      "Classical.choice",
@@ -849,7 +849,7 @@
    },
    {
     "name": "FRC.Algebra.readback_iff",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 600,
     "axioms": [
      "Classical.choice",
@@ -864,7 +864,7 @@
   "Z1": [
    {
     "name": "FRC.Algebra.no_south_pole",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 199,
     "axioms": [
      "Classical.choice",
@@ -888,7 +888,7 @@
   "Z3": [
    {
     "name": "FRC.Algebra.no_equator",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 205,
     "axioms": [
      "Classical.choice",
@@ -901,7 +901,7 @@
    },
    {
     "name": "FRC.Algebra.quarter_position",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 221,
     "axioms": [
      "Classical.choice",
@@ -914,7 +914,7 @@
    },
    {
     "name": "FRC.Algebra.quarter_position_window",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 231,
     "axioms": [
      "Classical.choice",
@@ -927,7 +927,7 @@
    },
    {
     "name": "FRC.Algebra.equator_between",
-    "module": "FrcLedger/Algebra",
+    "module": "FrcMathlib/Algebra",
     "line": 256,
     "axioms": [
      "Classical.choice",

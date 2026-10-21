@@ -8,7 +8,7 @@ doi 10.3390/axioms14080636), `1-algebra` of the FRC corpus, added with the paper
 Every check names the predicate of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine verification", 27 predicates in blocks A–G, Y,
 cited as `1:XN`; public copy `docs/1-algebra/1-algebra-ledger.html`), and the ledger's source column links, for each
 machine-verified predicate, the script at the check that decides it (`algebra.py#<key>`) and the Lean module at the predicate's declaration
-(`lean/FrcCore/Algebra.lean` with no axioms — E6–E8's in `lean/FrcCore/Quaternion.lean` — or `lean/FrcLedger/Algebra.lean` on Mathlib);
+(`lean/FrcCore/Algebra.lean` with no axioms — E6–E8's in `lean/FrcCore/Quaternion.lean` — or `lean/FrcMathlib/Algebra.lean` on Mathlib);
 the check here is the instance the reader can run; the two witnesses decide the same statements at different generality.
 
 Run: `python3 algebra.py` (python ≥ 3.8, no third-party packages; ≈ 30 s; `results.json` written), or one block: `python3 algebra.py C`; installed, `python3 -m frc_1_algebra`.
@@ -50,5 +50,5 @@ deciding check is `algebra.PREDICATES`, the block the letter of its id), that ch
 `# 1:B2 (<key>)` marker — and every record citing the predicate is listed with its verdict. The markers in `algebra.py`
 are the lines the ledger page's source glyph opens (`docs/src/1-algebra/#<key>`). The predicates'
 Lean counterparts are the declarations named by their keys (`p01004`) at the end of `lean/FrcCore/Algebra.lean` (E6–E8's in
-`lean/FrcCore/Quaternion.lean`, which imports Algebra) and `lean/FrcLedger/Algebra.lean` (`lean/make_predicates.py`), one per
+`lean/FrcCore/Quaternion.lean`, which imports Algebra) and `lean/FrcMathlib/Algebra.lean` (`lean/make_predicates.py`), one per
 predicate, with the module as one executable file for the web editor (`lean/web/core/Algebra.lean`, `lean/web/Algebra.lean`).

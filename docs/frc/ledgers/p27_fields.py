@@ -22,7 +22,7 @@ rational function positive beyond x = 1), the rest CHART. FAMILY names the packa
 reproduces. The package stays the paper's published witness until its release pins the framework (tasks LM33, LM36).
 The Lean side (16 October 2026): the theorems of the interactions theme (Theme/Interactions.lean, Theme/Unitary.lean) and its
 kernel-decided certificates (Theme/Fields.lean), the paper module FrcCore/Fields.lean, and the chart readings on Mathlib
-(FrcLedger/Theme/Fields.lean); the keys in Keys/Interactions.lean, the certificates Ledgers/P27Fields.lean.
+(FrcMathlib/Theme/Fields.lean); the keys in Keys/Interactions.lean, the certificates Ledgers/P27Fields.lean.
 
 The anchor Ω = 4S + 1 at the scale import (ln Ω = 283.5) enters one check, B3, and is read from frc.chart (LN_OMEGA, the
 bracket of ln 10); no numeral above Ω is formed. The "Ω ≡ 5 (mod 12)" of E8 and F7 is the paper's residue clause on the

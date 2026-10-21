@@ -1,6 +1,6 @@
 import Mathlib
-import FrcLedger.Theme.Logic
-import FrcLedger.Keys.Logic
+import FrcMathlib.Theme.Logic
+import FrcMathlib.Keys.Logic
 
 /-!
 # 5-red — paradoxes of infinity as reductio: the ledger predicates in Lean (2026-09-17)

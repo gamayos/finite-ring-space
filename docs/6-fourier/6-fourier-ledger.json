@@ -89,7 +89,7 @@
      "label": "B5",
      "predicate": "$\\Wt^{2}=-J$, $\\Ft^{2}=J$, $\\Ft^{4}=I$: the normalized operator generates the four-cycle, on the six shells of Table~\\ref{tab:checks}.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:W-square}, Prop.~\\ref{prop:F-cycle}\\newline \\pywit{fourier}{p06012}{B5}, \\leanwit{FrcCore}{p06012}{B5}, \\leanwit{FrcLedger}{p06012}{B5} \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_sq', FRC.Shell.Frame.F\\_sq, FRC.Shell.Frame.J\\_sq}",
+     "source": "Lem.~\\ref{lem:W-square}, Prop.~\\ref{prop:F-cycle}\\newline \\pywit{fourier}{p06012}{B5}, \\leanwit{FrcCore}{p06012}{B5}, \\leanwit{FrcMathlib}{p06012}{B5} \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_sq', FRC.Shell.Frame.F\\_sq, FRC.Shell.Frame.J\\_sq}",
      "key": "p06012"
     },
     {
@@ -103,7 +103,7 @@
      "label": "B7",
      "predicate": "$\\Wt J=J\\Wt$, hence $\\Ft J=J\\Ft$; every $v$ is uniquely $v^{+}+v^{-}$ with $Jv^{\\pm}=\\pm v^{\\pm}$, a symmetric vector determined by its $2\\kap+1$ entries at $0,\\dots,2\\kap$ and an antisymmetric one by its $2\\kap-1$ entries at $1,\\dots,2\\kap-1$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:JF-decomp}\\newline \\pywit{fourier}{p06014}{B7}, \\leanwit{FrcCore}{p06014}{B7}, \\leanwit{FrcLedger}{p06014}{B7} \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_J\\_comm, FRC.Shell.Frame.symm\\_antisymm\\_decomp, FRC.Shell.Frame.symm\\_antisymm\\_unique, FRC.Shell.Frame.symm\\_determined, FRC.Shell.Frame.antisymm\\_determined}",
+     "source": "Lem.~\\ref{lem:JF-decomp}\\newline \\pywit{fourier}{p06014}{B7}, \\leanwit{FrcCore}{p06014}{B7}, \\leanwit{FrcMathlib}{p06014}{B7} \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_J\\_comm, FRC.Shell.Frame.symm\\_antisymm\\_decomp, FRC.Shell.Frame.symm\\_antisymm\\_unique, FRC.Shell.Frame.symm\\_determined, FRC.Shell.Frame.antisymm\\_determined}",
      "key": "p06014"
     }
    ]
@@ -123,28 +123,28 @@
      "label": "C2",
      "predicate": "$\\Pi_\\ell^{2}=\\Pi_\\ell$, $\\Pi_\\ell\\Pi_m=0$ for $\\ell\\neq m$, $\\sum_\\ell\\Pi_\\ell=I$, $\\Ft\\Pi_\\ell=\\im^{\\ell}\\Pi_\\ell$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:projectors}\\newline \\pywit{fourier}{p06016}{C2}, \\leanwit{FrcCore}{p06016}{C2}, \\leanwit{FrcLedger}{p06016}{C2} \\lean{Fourier.shell\\_proj, Fourier.proj\\_mul\\_proj, Fourier.sum\\_proj, FRC.Shell.Frame.proj\\_mul\\_self, FRC.Shell.Frame.proj\\_mul\\_ne, FRC.Shell.Frame.sum\\_proj, FRC.Shell.Frame.Fmat\\_proj}",
+     "source": "Lem.~\\ref{lem:projectors}\\newline \\pywit{fourier}{p06016}{C2}, \\leanwit{FrcCore}{p06016}{C2}, \\leanwit{FrcMathlib}{p06016}{C2} \\lean{Fourier.shell\\_proj, Fourier.proj\\_mul\\_proj, Fourier.sum\\_proj, FRC.Shell.Frame.proj\\_mul\\_self, FRC.Shell.Frame.proj\\_mul\\_ne, FRC.Shell.Frame.sum\\_proj, FRC.Shell.Frame.Fmat\\_proj}",
      "key": "p06016"
     },
     {
      "label": "C3",
      "predicate": "The exact finite-field FrFT: $s\\mapsto\\Ft^{[s]}$ is a representation of $\\Phit$, $\\Ft^{[s+r]}=\\Ft^{[s]}\\Ft^{[r]}$ for all $s,r$ (every pair on the six shells by the package), with the cardinal values $\\Ft^{[0]}=I$, $\\Ft^{[\\kap]}=\\Ft$, $\\Ft^{[2\\kap]}=J$, $\\Ft^{[3\\kap]}=\\Ft^{-1}$, and $(\\Ft^{[1]})^{\\kap}=\\Ft$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:FRC-FrFT}\\newline \\pywit{fourier}{p06017}{C3}, \\leanwit{FrcCore}{p06017}{C3}, \\leanwit{FrcLedger}{p06017}{C3} \\lean{Fourier.shell\\_frft\\_add, Fourier.shell\\_frft\\_cardinal, Fourier.shell\\_frft\\_values, FRC.Shell.Frame.frft\\_add, FRC.Shell.Frame.frft\\_cardinal, FRC.Shell.Frame.frft\\_period, FRC.Shell.Frame.frft\\_pow}",
+     "source": "Thm.~\\ref{thm:FRC-FrFT}\\newline \\pywit{fourier}{p06017}{C3}, \\leanwit{FrcCore}{p06017}{C3}, \\leanwit{FrcMathlib}{p06017}{C3} \\lean{Fourier.shell\\_frft\\_add, Fourier.shell\\_frft\\_cardinal, Fourier.shell\\_frft\\_values, FRC.Shell.Frame.frft\\_add, FRC.Shell.Frame.frft\\_cardinal, FRC.Shell.Frame.frft\\_period, FRC.Shell.Frame.frft\\_pow}",
      "key": "p06017"
     },
     {
      "label": "C4",
      "predicate": "Faithfulness: $s\\mapsto\\Ft^{[s]}$ is injective on $\\Z_{4\\kap}$ for every $\\kap\\ge1$; at $\\p=5$ the surviving odd projector carries the faithful character.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:faithful}\\newline \\pywit{fourier}{p06018}{C4}, \\leanwit{FrcCore}{p06018}{C4}, \\leanwit{FrcLedger}{p06018}{C4} \\lean{Fourier.shell\\_frft\\_injective, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.five\\_odd\\_proj}",
+     "source": "Thm.~\\ref{thm:faithful}\\newline \\pywit{fourier}{p06018}{C4}, \\leanwit{FrcCore}{p06018}{C4}, \\leanwit{FrcMathlib}{p06018}{C4} \\lean{Fourier.shell\\_frft\\_injective, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.five\\_odd\\_proj}",
      "key": "p06018"
     },
     {
      "label": "C5",
      "predicate": "The projector sums $\\Pi_0+\\Pi_2=\\tfrac12(I+J)$ and $\\Pi_1+\\Pi_3=\\tfrac12(I-J)$; $\\Pi_0,\\Pi_2\\neq0$ for every $\\kap\\ge1$ and $\\Pi_1,\\Pi_3\\neq0$ for $\\kap\\ge2$, each by one explicit entry; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:multiplicity}\\newline \\pywit{fourier}{p06019}{C5}, \\leanwit{FrcCore}{p06019}{C5}, \\leanwit{FrcLedger}{p06019}{C5} \\lean{Fourier.shell\\_odd\\_proj\\_ne\\_zero, Fourier.shell\\_even\\_proj\\_ne\\_zero, Fourier.shell\\_multiplicity\\_sums, FRC.Shell.Frame.proj\\_even\\_sum, FRC.Shell.Frame.proj\\_odd\\_sum, FRC.Shell.Frame.half, FRC.Shell.Frame.even\\_proj\\_ne\\_zero, FRC.Shell.Frame.odd\\_proj\\_ne\\_zero, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_odd\\_proj}",
+     "source": "Lem.~\\ref{lem:multiplicity}\\newline \\pywit{fourier}{p06019}{C5}, \\leanwit{FrcCore}{p06019}{C5}, \\leanwit{FrcMathlib}{p06019}{C5} \\lean{Fourier.shell\\_odd\\_proj\\_ne\\_zero, Fourier.shell\\_even\\_proj\\_ne\\_zero, Fourier.shell\\_multiplicity\\_sums, FRC.Shell.Frame.proj\\_even\\_sum, FRC.Shell.Frame.proj\\_odd\\_sum, FRC.Shell.Frame.half, FRC.Shell.Frame.even\\_proj\\_ne\\_zero, FRC.Shell.Frame.odd\\_proj\\_ne\\_zero, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_odd\\_proj}",
      "key": "p06019"
     },
     {
@@ -158,21 +158,21 @@
      "label": "C7",
      "predicate": "The multiplicity dichotomy in trace form: with $G=\\sum_{k}\\gen^{k^{2}}$ and $G^{*}=\\sum_k\\gen^{-k^{2}}$ the traces are $\\operatorname{Tr}\\Ft=\\im G$, $\\operatorname{Tr}\\Ft^{2}=2$, $\\operatorname{Tr}\\Ft^{3}=\\im G^{*}$ and $\\operatorname{Tr}\\Pi_\\ell=\\tfrac14\\sum_r\\im^{-\\ell r}\\operatorname{Tr}\\Ft^{r}$; $GG^{*}=-2$ and $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$; when $G=\\varepsilon(1+\\im)$ (A3) the tuple of traces is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$, read in $\\Fp$; the sign and the tuples on the six shells of Table~\\ref{tab:checks}. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06021}{C7}, \\leanwit{FrcCore}{p06021}{C7}, \\leanwit{FrcLedger}{p06021}{C7} \\lean{Fourier.gauss\\_mul\\_gauss\\_inv, Fourier.gauss\\_inv\\_of\\_sign, Fourier.shell\\_multiplicity\\_tuple, FRC.Shell.Frame.trace\\_powers, FRC.Shell.Frame.trace\\_proj, FRC.Shell.Frame.gauss\\_mul, FRC.Shell.Frame.gauss\\_conj, FRC.Shell.Frame.trace\\_tuples, FRC.Shell.Frame.six\\_signs, FRC.Shell.Frame.six\\_tuples}",
+     "source": "Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06021}{C7}, \\leanwit{FrcCore}{p06021}{C7}, \\leanwit{FrcMathlib}{p06021}{C7} \\lean{Fourier.gauss\\_mul\\_gauss\\_inv, Fourier.gauss\\_inv\\_of\\_sign, Fourier.shell\\_multiplicity\\_tuple, FRC.Shell.Frame.trace\\_powers, FRC.Shell.Frame.trace\\_proj, FRC.Shell.Frame.gauss\\_mul, FRC.Shell.Frame.gauss\\_conj, FRC.Shell.Frame.trace\\_tuples, FRC.Shell.Frame.six\\_signs, FRC.Shell.Frame.six\\_tuples}",
      "key": "p06021"
     },
     {
      "label": "C8",
      "predicate": "Exponent lifts: every lift $a_\\ell\\equiv\\ell\\pmod4$, $U^{(a)}_s=\\sum_\\ell\\gen^{-a_\\ell s}\\Pi_\\ell$, is additive with the same cardinal skeleton, $U^{(a)}_{s+r}=U^{(a)}_sU^{(a)}_r$ and $U^{(a)}_{m\\kap}=\\Ft^{m}$.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06022}{C8}, \\leanwit{FrcCore}{p06022}{C8}, \\leanwit{FrcLedger}{p06022}{C8} \\lean{Fourier.shell\\_frftLift, FRC.Shell.Frame.lift\\_add, FRC.Shell.Frame.lift\\_cardinal, FRC.Shell.Frame.lift\\_pow}",
+     "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06022}{C8}, \\leanwit{FrcCore}{p06022}{C8}, \\leanwit{FrcMathlib}{p06022}{C8} \\lean{Fourier.shell\\_frftLift, FRC.Shell.Frame.lift\\_add, FRC.Shell.Frame.lift\\_cardinal, FRC.Shell.Frame.lift\\_pow}",
      "key": "p06022"
     },
     {
      "label": "C9",
      "predicate": "The conjugate chart $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06023}{C9}, \\leanwit{FrcCore}{p06023}{C9}, \\leanwit{FrcLedger}{p06023}{C9} \\lean{Fourier.shell\\_conj, FRC.Shell.Frame.inv\\_frame, FRC.Shell.Frame.Fmat\\_conj, FRC.Shell.Frame.proj\\_conj}",
+     "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06023}{C9}, \\leanwit{FrcCore}{p06023}{C9}, \\leanwit{FrcMathlib}{p06023}{C9} \\lean{Fourier.shell\\_conj, FRC.Shell.Frame.inv\\_frame, FRC.Shell.Frame.Fmat\\_conj, FRC.Shell.Frame.proj\\_conj}",
      "key": "p06023"
     },
     {
@@ -199,7 +199,7 @@
      "label": "D2",
      "predicate": "The $4\\kap$ framed domains are pairwise distinct; read as unordered bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:faithful}, Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06025}{D2}, \\leanwit{FrcCore}{p06025}{D2}, \\leanwit{FrcLedger}{p06025}{D2} \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.frft\\_half\\_turn}",
+     "source": "Thm.~\\ref{thm:faithful}, Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06025}{D2}, \\leanwit{FrcCore}{p06025}{D2}, \\leanwit{FrcMathlib}{p06025}{D2} \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.frft\\_half\\_turn}",
      "key": "p06025"
     },
     {
@@ -247,14 +247,14 @@
      "label": "E2",
      "predicate": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the phase cycle.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:rotation-isom}\\newline \\pywit{fourier}{p06031}{E2}, \\leanwit{FrcCore}{p06031}{E2}, \\leanwit{FrcLedger}{p06031}{E2} \\lean{Fourier.circle, Fourier.rot\\_mul, Fourier.unitsEquivCircle, Fourier.card\\_circle, FRC.Shell.Frame.rot\\_circle, FRC.Shell.Frame.rot\\_hom, FRC.Shell.Frame.rot\\_inj, FRC.Shell.Frame.rot\\_surj, FRC.Shell.Frame.six\\_circles}",
+     "source": "Prop.~\\ref{prop:rotation-isom}\\newline \\pywit{fourier}{p06031}{E2}, \\leanwit{FrcCore}{p06031}{E2}, \\leanwit{FrcMathlib}{p06031}{E2} \\lean{Fourier.circle, Fourier.rot\\_mul, Fourier.unitsEquivCircle, Fourier.card\\_circle, FRC.Shell.Frame.rot\\_circle, FRC.Shell.Frame.rot\\_hom, FRC.Shell.Frame.rot\\_inj, FRC.Shell.Frame.rot\\_surj, FRC.Shell.Frame.six\\_circles}",
      "key": "p06031"
     },
     {
      "label": "E3",
      "predicate": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table~\\ref{tab:checks}), $z_\\kap=\\im$; the shell's family and the Weil family stand in cardinal Weil correspondence, the Weil side by the normalization of A2 (an import).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:Weil-equivalence} and the paragraph after it\\newline \\pywit{fourier}{p06032}{E3}, \\leanwit{FrcCore}{p06032}{E3}, \\leanwit{FrcLedger}{p06032}{E3} \\lean{Fourier.rot\\_cardinal, FRC.Shell.Frame.rot\\_cardinal}",
+     "source": "Thm.~\\ref{thm:Weil-equivalence} and the paragraph after it\\newline \\pywit{fourier}{p06032}{E3}, \\leanwit{FrcCore}{p06032}{E3}, \\leanwit{FrcMathlib}{p06032}{E3} \\lean{Fourier.rot\\_cardinal, FRC.Shell.Frame.rot\\_cardinal}",
      "key": "p06032"
     },
     {
@@ -268,21 +268,21 @@
      "label": "E5",
      "predicate": "Spectral obstruction: for $\\kap\\ge2$ no invertible $T$ on $\\Vt$ satisfies $T\\sigma T^{-1}=\\Ft^{[s]}$ for any $s$; the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$, each of order $4\\kap$ ($\\Ft^{[1]}$ by C4; $\\sigma$ permutes the $4\\kap$ labels cyclically), are not conjugate.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06034}{E5}, \\leanwit{FrcCore}{p06034}{E5}, \\leanwit{FrcLedger}{p06034}{E5} \\lean{Fourier.shell\\_spectral\\_obstruction, FRC.Shell.Frame.spectral\\_obstruction}",
+     "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06034}{E5}, \\leanwit{FrcCore}{p06034}{E5}, \\leanwit{FrcMathlib}{p06034}{E5} \\lean{Fourier.shell\\_spectral\\_obstruction, FRC.Shell.Frame.spectral\\_obstruction}",
      "key": "p06034"
     },
     {
      "label": "E6",
      "predicate": "Common character sector: $\\Ft^{[s]}\\Pi_1=\\gen^{-s}\\Pi_1$, so on $E_1=\\operatorname{im}\\Pi_1\\neq0$ ($\\kap\\ge2$) the family acts by the meridian character; the intertwiner $\\Ft^{[s]}T_v=T_vS_{-s}$ on every $x\\in\\Fp$ and $s$, and $R_s(1,-\\im)^{\\mathsf T}=\\gen^{-s}(1,-\\im)^{\\mathsf T}$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:charsector}\\newline \\pywit{fourier}{p06035}{E6}, \\leanwit{FrcCore}{p06035}{E6}, \\leanwit{FrcLedger}{p06035}{E6} \\lean{Fourier.frft\\_mul\\_proj\\_one, Fourier.rot\\_eigenline, FRC.Shell.Frame.frft\\_proj, FRC.Shell.Frame.frft\\_intertwine, FRC.Shell.Frame.rot\\_eigenline}",
+     "source": "Prop.~\\ref{prop:charsector}\\newline \\pywit{fourier}{p06035}{E6}, \\leanwit{FrcCore}{p06035}{E6}, \\leanwit{FrcMathlib}{p06035}{E6} \\lean{Fourier.frft\\_mul\\_proj\\_one, Fourier.rot\\_eigenline, FRC.Shell.Frame.frft\\_proj, FRC.Shell.Frame.frft\\_intertwine, FRC.Shell.Frame.rot\\_eigenline}",
      "key": "p06035"
     },
     {
      "label": "E7",
      "predicate": "Cardinal Heisenberg covariance: $\\Ft\\sigma\\Ft^{-1}=D_1$, $\\Ft D_1\\Ft^{-1}=\\sigma^{-1}$; $\\Ft^{r}\\sigma=\\sigma_r\\Ft^{r}$ with $(\\sigma,D_1,\\sigma^{-1},D_1^{-1})$; the expansion \\eqref{eq:conj-expansion}, $\\Ft^{[s]}=\\sum_r c_r(s)\\Ft^{r}$ with $c_r(s)=\\tfrac14\\sum_\\ell(\\gen^{r\\kap-s})^{\\ell}$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:heisenberg}, \\S\\ref{sub:operator-comparison}\\newline \\pywit{fourier}{p06036}{E7}, \\leanwit{FrcCore}{p06036}{E7}, \\leanwit{FrcLedger}{p06036}{E7} \\lean{Fourier.shell\\_heisenberg, FRC.Shell.Frame.shift\\_inverse, FRC.Shell.Frame.heisenberg, FRC.Shell.Frame.frft\\_eq, FRC.Shell.Frame.frft\\_coeff, FRC.Shell.Frame.w\\_eq\\_pow\\_kappa}",
+     "source": "Prop.~\\ref{prop:heisenberg}, \\S\\ref{sub:operator-comparison}\\newline \\pywit{fourier}{p06036}{E7}, \\leanwit{FrcCore}{p06036}{E7}, \\leanwit{FrcMathlib}{p06036}{E7} \\lean{Fourier.shell\\_heisenberg, FRC.Shell.Frame.shift\\_inverse, FRC.Shell.Frame.heisenberg, FRC.Shell.Frame.frft\\_eq, FRC.Shell.Frame.frft\\_coeff, FRC.Shell.Frame.w\\_eq\\_pow\\_kappa}",
      "key": "p06036"
     },
     {
@@ -372,7 +372,7 @@
   "B5": [
    {
     "name": "FRC.Fourier.shell_relations",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 98,
     "axioms": [
      "Classical.choice",
@@ -443,7 +443,7 @@
   "B7": [
    {
     "name": "FRC.Fourier.shell_relations",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 98,
     "axioms": [
      "Classical.choice",
@@ -503,7 +503,7 @@
   "C2": [
    {
     "name": "FRC.Fourier.shell_proj",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 227,
     "axioms": [
      "Classical.choice",
@@ -516,7 +516,7 @@
    },
    {
     "name": "FRC.Fourier.proj_mul_proj",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 137,
     "axioms": [
      "Classical.choice",
@@ -529,7 +529,7 @@
    },
    {
     "name": "FRC.Fourier.sum_proj",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 143,
     "axioms": [
      "Classical.choice",
@@ -580,7 +580,7 @@
   "C3": [
    {
     "name": "FRC.Fourier.shell_frft_add",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 234,
     "axioms": [
      "Classical.choice",
@@ -593,7 +593,7 @@
    },
    {
     "name": "FRC.Fourier.shell_frft_cardinal",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 239,
     "axioms": [
      "Classical.choice",
@@ -606,7 +606,7 @@
    },
    {
     "name": "FRC.Fourier.shell_frft_values",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 244,
     "axioms": [
      "Classical.choice",
@@ -657,7 +657,7 @@
   "C4": [
    {
     "name": "FRC.Fourier.shell_frft_injective",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 288,
     "axioms": [
      "Classical.choice",
@@ -708,7 +708,7 @@
   "C5": [
    {
     "name": "FRC.Fourier.shell_odd_proj_ne_zero",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 280,
     "axioms": [
      "Classical.choice",
@@ -721,7 +721,7 @@
    },
    {
     "name": "FRC.Fourier.shell_even_proj_ne_zero",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 284,
     "axioms": [
      "Classical.choice",
@@ -734,7 +734,7 @@
    },
    {
     "name": "FRC.Fourier.shell_multiplicity_sums",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 302,
     "axioms": [
      "Classical.choice",
@@ -832,7 +832,7 @@
   "C7": [
    {
     "name": "FRC.Fourier.gauss_mul_gauss_inv",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 206,
     "axioms": [
      "Classical.choice",
@@ -845,7 +845,7 @@
    },
    {
     "name": "FRC.Fourier.gauss_inv_of_sign",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 212,
     "axioms": [
      "Classical.choice",
@@ -858,7 +858,7 @@
    },
    {
     "name": "FRC.Fourier.shell_multiplicity_tuple",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 308,
     "axioms": [
      "Classical.choice",
@@ -936,7 +936,7 @@
   "C8": [
    {
     "name": "FRC.Fourier.shell_frftLift",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 251,
     "axioms": [
      "Classical.choice",
@@ -978,7 +978,7 @@
   "C9": [
    {
     "name": "FRC.Fourier.shell_conj",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 258,
     "axioms": [
      "Classical.choice",
@@ -1069,7 +1069,7 @@
   "D2": [
    {
     "name": "FRC.Fourier.shell_frft_injective",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 288,
     "axioms": [
      "Classical.choice",
@@ -1082,7 +1082,7 @@
    },
    {
     "name": "FRC.Fourier.shell_frft_add_two_kappa",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 264,
     "axioms": [
      "Classical.choice",
@@ -1095,7 +1095,7 @@
    },
    {
     "name": "FRC.Fourier.mul_J_apply",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 67,
     "axioms": [
      "Classical.choice",
@@ -1204,7 +1204,7 @@
   "E2": [
    {
     "name": "FRC.Fourier.circle",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 171,
     "axioms": [
      "Classical.choice",
@@ -1217,7 +1217,7 @@
    },
    {
     "name": "FRC.Fourier.rot_mul",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 175,
     "axioms": [
      "Classical.choice",
@@ -1230,7 +1230,7 @@
    },
    {
     "name": "FRC.Fourier.unitsEquivCircle",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 190,
     "axioms": [
      "Classical.choice",
@@ -1243,7 +1243,7 @@
    },
    {
     "name": "FRC.Fourier.card_circle",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 194,
     "axioms": [
      "Classical.choice",
@@ -1303,7 +1303,7 @@
   "E3": [
    {
     "name": "FRC.Fourier.rot_cardinal",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 180,
     "axioms": [
      "Classical.choice",
@@ -1327,7 +1327,7 @@
   "E5": [
    {
     "name": "FRC.Fourier.shell_spectral_obstruction",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 275,
     "axioms": [
      "Classical.choice",
@@ -1351,7 +1351,7 @@
   "E6": [
    {
     "name": "FRC.Fourier.frft_mul_proj_one",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 157,
     "axioms": [
      "Classical.choice",
@@ -1364,7 +1364,7 @@
    },
    {
     "name": "FRC.Fourier.rot_eigenline",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 185,
     "axioms": [
      "Classical.choice",
@@ -1406,7 +1406,7 @@
   "E7": [
    {
     "name": "FRC.Fourier.shell_heisenberg",
-    "module": "FrcLedger/Fourier",
+    "module": "FrcMathlib/Fourier",
     "line": 269,
     "axioms": [
      "Classical.choice",

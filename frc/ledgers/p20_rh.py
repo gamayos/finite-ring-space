@@ -12,7 +12,7 @@ The exact checks call the horizon, frame and extension themes (frc/horizon.py, f
 frc/arith.py; the chart readings call the chart file frc/chart_rh.py and are compared here with rational bounds, so this
 file stays exact (gate G09). The package's block C — the window of depth 10⁶ read along the chart's height, with numpy —
 is not reproduced; the row it corroborates (20:F9) is decided by block B here as in the package. The Lean side is the
-certificates lean/FrcCore/Ledgers/P20Rh.lean and lean/FrcLedger/Ledgers/P20Rh.lean, over the horizon theme's keys.
+certificates lean/FrcCore/Ledgers/P20Rh.lean and lean/FrcMathlib/Ledgers/P20Rh.lean, over the horizon theme's keys.
 
     python3 -m frc.ledgers.p20_rh         every block, the census; exit 1 if a check fails (≈ 40 s)
     python3 -m frc.ledgers.p20_rh B       one block (A or B)

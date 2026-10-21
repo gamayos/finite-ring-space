@@ -1,6 +1,6 @@
 import Mathlib
-import FrcLedger.Theme.Chart
-import FrcLedger.Keys.Chart
+import FrcMathlib.Theme.Chart
+import FrcMathlib.Keys.Chart
 
 /-!
 # 14-entropy — the de Sitter import, the octant and the age–rate locus: the ledger predicates in Lean (2026-09-19)
@@ -28,7 +28,7 @@ the nesting bound `q⁴ < Ω` with `N ≤ 3` on the laboratory Carrier (C10, B10
 hierarchy; the finite content — the congruences, the octant on every framed shell, the Carrier and the nesting
 decided by the kernel — is proved with no axioms in `FrcCore/Entropy.lean`. Since the ledger migration (task LM30) the
 octant's chart theorems — the conversion, the brackets of `tanh(3π/8)`, the landing and the locus — live in the
-chart theme, `FrcLedger/Theme/Chart.lean`, as `FRC.Chart.*`; the old names below are aliases. What is outside both modules: the
+chart theme, `FrcMathlib/Theme/Chart.lean`, as `FRC.Chart.*`; the old names below are aliases. What is outside both modules: the
 realisation premises of the octant lemma (A4 reciprocity, A5 the equatorial horizon, B6 the closure budget, B7
 the depth rule) — the modules decide the lemma's arithmetic, clause (iv) and the closure count, not its
 realisation content; and the chart identities marked [chart] or [ΛCDM] below are identities of the continuum
@@ -731,7 +731,7 @@ theorem record_depth :
 end channels
 
 /-! ## Old names (ledger migration, task LM30): the theorems moved to the chart theme (`FRC.Chart`,
-`FrcLedger/Theme/Chart.lean`), each under its old name -/
+`FrcMathlib/Theme/Chart.lean`), each under its old name -/
 
 /-- 14:C5 [chart] — the chart conversion of the octant: `(S/2)/(4S) · 2π r_H/c = (π/4) r_H/c`. -/
 theorem octant_chart (S r c : ℝ) (hS : S ≠ 0) :

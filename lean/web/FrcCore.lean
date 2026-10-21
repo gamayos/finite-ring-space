@@ -23555,7 +23555,7 @@ and the fourier theme's eight files for the rest: `Theme/Fourier` (the shell DFT
 6:E3, 6:E10), `Theme/Heisenberg` (the character sector and the Heisenberg pair: 6:E6, 6:E7), `Theme/Spectra`
 (the spectra and the spectral obstruction: 6:E5, 6:E9) and `Theme/Exclusivity` (cardinal exclusivity, 6:E8);
 6:C3 and 6:C9 are `Theme/Fourier`'s. The Mathlib statements of fifteen of these predicates, for every shell, are
-in `FrcLedger/Fourier.lean`; the paper's python witness checks them on six shells.
+in `FrcMathlib/Fourier.lean`; the paper's python witness checks them on six shells.
 -/
 
 namespace FRC.Fourier
@@ -26008,7 +26008,7 @@ theorem three_pow_inj : ∀ b d : Nat, 3 ^ b = 3 ^ d → b = d
       congrArg Nat.succ (three_pow_inj b d (Nat.eq_of_mul_eq_mul_right (Nat.zero_lt_succ 2) h))
 
 /-- 4:E3 (Gödel encoding, two primes) — `2^a 3^b = 2^c 3^d` forces `a = c` and `b = d`: the code is injective, by
-parity and cancellation; the general case over `d` distinct primes is `FrcLedger.Representation.godel_injective`. -/
+parity and cancellation; the general case over `d` distinct primes is `FRC.Representation.godel_injective` (`FrcMathlib/Representation.lean`). -/
 theorem godel2_inj : ∀ a c b d : Nat, 2 ^ a * 3 ^ b = 2 ^ c * 3 ^ d → a = c ∧ b = d
   | 0, 0, b, d, h => ⟨rfl, three_pow_inj b d (by rw [Nat.pow_zero, Nat.one_mul, Nat.one_mul] at h; exact h)⟩
   | 0, c + 1, b, d, h => by

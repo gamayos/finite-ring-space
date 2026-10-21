@@ -1,7 +1,7 @@
 import Mathlib
-import FrcLedger.Theme.Fourier
-import FrcLedger.Theme.Fractional
-import FrcLedger.Keys.Fourier
+import FrcMathlib.Theme.Fourier
+import FrcMathlib.Theme.Fractional
+import FrcMathlib.Keys.Fourier
 
 /-!
 # 6-fourier — the shell Fourier operator and its fractional family, for every shell (2026-09-15, extended 2026-09-17)
@@ -18,7 +18,7 @@ field with a quarter-turn. The paper's witness checks these on six shells. Class
 hierarchy; predicates B2, B3, B5–B7 are also in the core with no axioms.
 
 Since the ledger migration (task LM36, 7 October 2026) the theorems live in the fourier theme: the shell DFT in
-`FrcLedger/Theme/Fourier.lean` (`FRC.DFT`, task LM17) and the fractional family in `FrcLedger/Theme/Fractional.lean`
+`FrcMathlib/Theme/Fourier.lean` (`FRC.DFT`, task LM17) and the fractional family in `FrcMathlib/Theme/Fractional.lean`
 (`FRC.Fractional`). The old names below are aliases, and the predicate declarations are the aliases of their keys.
 -/
 

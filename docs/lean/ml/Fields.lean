@@ -1,19 +1,19 @@
 import Mathlib
-import FrcLedger.Theme.Fields
-import FrcLedger.Keys.Chart
+import FrcMathlib.Theme.Fields
+import FrcMathlib.Keys.Chart
 
 /-!
 # 27-fields — the chart readings on Mathlib (16 October 2026)
 
 The paper module of *Gauge Interactions over Finite Holographic Substrate* (tree `27-fields-20260625`) on Mathlib: every
-declaration is the chart theme's (`FrcLedger/Theme/Fields.lean`), under the paper's name — the `M`-th roots of unity
+declaration is the chart theme's (`FrcMathlib/Theme/Fields.lean`), under the paper's name — the `M`-th roots of unity
 (27:C1), the Wilson weight (27:C1), the `2T` area law (27:C1, C7, X7), the Fermi constant (27:C6), and the chart readings of the exclusion rows P3, P4, P5 (17 October 2026). Classical (tier 2). The finite content is the core's (`FrcCore/Fields.lean`).
 -/
 
 namespace FRC.Fields
 
 /-! ## Old names (16 October 2026): every declaration of this module is an alias of the chart theme's (`FRC.FieldsML`,
-`FrcLedger/Theme/Fields.lean`), under the paper's name -/
+`FrcMathlib/Theme/Fields.lean`), under the paper's name -/
 
 /-- 27:C1 — the phase cycle inside `U(1)` (`FieldsML.roots_inclusion`). -/
 theorem roots_inclusion (M : ℕ) (hM : M ≠ 0) :

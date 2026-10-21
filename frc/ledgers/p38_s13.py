@@ -16,9 +16,9 @@ The exact checks call the subject, projective and gravity themes and stay exact 
 their tolerances in the verdict and the comparison with Mercury is [data]. The Lean side is lean/FrcCore/Theme/Pair.lean
 (the window, the leak rate, the joint cycle, the tick arithmetic, the covering parity theorem), the frame triple and the
 split fibration in Theme/Projective.lean, the nesting bound in Theme/Drift.lean, the kernel-decided instances in
-lean/FrcCore/S13.lean (core, no axioms), and lean/FrcLedger/Theme/Gravity.lean (the PPN faces and the dictionary over ℚ)
-with FrcLedger/Theme/Chart.lean (the floor); the certificates are lean/FrcCore/Ledgers/P38S13.lean and
-lean/FrcLedger/Ledgers/P38S13.lean.
+lean/FrcCore/S13.lean (core, no axioms), and lean/FrcMathlib/Theme/Gravity.lean (the PPN faces and the dictionary over ℚ)
+with FrcMathlib/Theme/Chart.lean (the floor); the certificates are lean/FrcCore/Ledgers/P38S13.lean and
+lean/FrcMathlib/Ledgers/P38S13.lean.
 
     python3 -m frc.ledgers.p38_s13        every block, the census; exit 1 if a check fails (≈ 15 s)
     python3 -m frc.ledgers.p38_s13 E      one block (A to F)

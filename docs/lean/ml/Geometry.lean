@@ -1,5 +1,5 @@
 import Mathlib
-import FrcLedger.Theme.Fourier
+import FrcMathlib.Theme.Fourier
 
 /-!
 # 2-geometry — the ledger predicates in Lean (2026-09-17)
@@ -8,7 +8,7 @@ Predicates of the ledger of *Geometry and Constants in Finite Ring Continuum* (S
 tree `2-geometry-20260706`). Compiled 17 Sep 2026, standard axioms only (`axioms.log`). Every universal statement is over an
 arbitrary finite field `F` with `Fintype.card F = 4κ + 1` (the shell) and a primitive root `g`; the cell counts
 are integer identities; the fixed-shell bound is decided over `ℚ` (the `(13, 2)` instance over `ℕ`); the
-Fourier inversion is the matrix identity `W · (−W J) = 1` on `Fin (p − 1)`, from the relations of `FrcLedger.Fourier`.
+Fourier inversion is the matrix identity `W · (−W J) = 1` on `Fin (p − 1)`, from the relations of `FrcMathlib.Fourier`.
 -/
 
 namespace FRC.Geometry

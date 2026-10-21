@@ -10,7 +10,7 @@ sympy (mpmath); matplotlib for the figure scripts.
 Every family names the row(s) of the paper's predicate ledger it witnesses (the paper's Section "Status", subsection
 "Predicate ledger", 60 rows in blocks A, B, C, X, P, V, Z, cited as `21:XN`; public copy
 `docs/21-gravity/21-gravity-ledger.html`); the ledger's source column cites the family ids in return. Where a row is
-proved in Lean (`lean/FrcCore/Gravity.lean` with no axioms, or `lean/FrcLedger/Gravity.lean` on Mathlib — the Carrier
+proved in Lean (`lean/FrcCore/Gravity.lean` with no axioms, or `lean/FrcMathlib/Gravity.lean` on Mathlib — the Carrier
 register, the count face and the merger law, the cover forcing, the operational cut and the photon sphere, the
 registration root and the crossover's limits, the shift theorem, with the shadow, ringdown, efficiency, floor, tilt and
 interpolant numerals bracketed), the check here is the instance the reader can run. Master-ledger

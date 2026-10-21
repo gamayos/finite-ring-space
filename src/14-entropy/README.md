@@ -17,7 +17,7 @@ Every family check is one labelled claim of a block (`est.C1`, `tri.D`, `cap.K`,
 paper's ledger it witnesses (the paper's Section 5.3, "Predicate ledger", 41 predicates in blocks A, B, C, X, P, Z, cited
 as `14:<label>`; public copy `docs/14-entropy/14-entropy-ledger.html`); the ledger's source column links the script at
 the deciding family's marker, `entropy.py#<key>` (the family checks are listed on the public page from `results.json`).
-Where a predicate is proved in Lean (`lean/FrcCore/Entropy.lean` with no axioms, or `lean/FrcLedger/Entropy.lean` on
+Where a predicate is proved in Lean (`lean/FrcCore/Entropy.lean` with no axioms, or `lean/FrcMathlib/Entropy.lean` on
 Mathlib — the congruences and the laboratory Carrier, the octant sector and its character, the rival chart's age
 identity verified against its own Friedmann equation with its numerals bracketed, the locus), the check here is the
 instance the reader can run. Master-ledger predicates of the corpus reached through the paper predicates: `00:A7`,
@@ -56,7 +56,7 @@ session (the deciding family is `entropy.PREDICATES`), the check that decides th
 script's own source — the line under its `# 14:C5 (<key>)` marker — and every family record citing the predicate is
 listed with its verdict, the deciding one marked. The markers in `entropy.py` are the lines the ledger page's source
 glyph opens (`docs/src/14-entropy/#<key>`). The predicates' Lean counterparts are the declarations named by
-their keys (`p14022`) at the end of `lean/FrcCore/Entropy.lean` and `lean/FrcLedger/Entropy.lean`
+their keys (`p14022`) at the end of `lean/FrcCore/Entropy.lean` and `lean/FrcMathlib/Entropy.lean`
 (`lean/make_predicates.py`), one per predicate, with the paper's module as one executable file for the web editor.
 
 ## Provenance

@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parent
 REPO = "https://github.com/gamayos/finite-ring-space"
 NB = "frc-lean-main.ipynb"
 COLAB = f"https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/lean/{NB}"
-modules = sorted(p.stem for p in (ROOT / "FrcLedger").glob("*.lean"))
+modules = sorted(p.stem for p in (ROOT / "FrcMathlib").glob("*.lean"))
 
 def md(s): return {"cell_type": "markdown", "metadata": {}, "source": s.strip("\n").splitlines(keepends=True)}
 def code(s): return {"cell_type": "code", "metadata": {}, "execution_count": None, "outputs": [], "source": s.strip("\n").splitlines(keepends=True)}
@@ -23,7 +23,7 @@ md(f"""
 
 # FRC predicate ledgers — the Lean witnesses
 
-Each module under `lean/FrcLedger/` proves ledger predicates of one paper as Lean 4 theorems over Mathlib
+Each module under `lean/FrcMathlib/` proves ledger predicates of one paper as Lean 4 theorems over Mathlib
 ({', '.join(f'`{m}`' for m in modules)}). This notebook installs the pinned toolchain, fetches Mathlib's
 compiled cache and re-checks every module, then prints the axioms each theorem depends on and applies the
 strict gate (only `propext`, `Classical.choice`, `Quot.sound`; `sorryAx` and `native_decide` fail).
@@ -56,7 +56,7 @@ code("""
 ] + [
 code(f"""
 # --- {m}: re-check the module (0 errors expected; linter notes are not errors)
-!lake env lean FrcLedger/{m}.lean
+!lake env lean FrcMathlib/{m}.lean
 """) for m in modules
 ] + [
 code("""

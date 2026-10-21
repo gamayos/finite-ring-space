@@ -68,21 +68,21 @@
      "label": "B4",
      "predicate": "Adequacy makes the observation map injective on the latent domain: $g_m(z)=g_m(z')$ forces $z=z'$; $\\mathcal Z$ is the domain modality $m$ resolves completely.",
      "tag": "T",
-     "source": "Section~\\ref{sec:framework}\\newline \\pywit{representation}{p04008}{B4}, \\leanwit{FrcCore}{p04008}{B4}, \\leanwit{FrcLedger}{p04008}{B4} \\lean{Representation.adequate\\_inj, FRC.Representation.adequate\\_inj}",
+     "source": "Section~\\ref{sec:framework}\\newline \\pywit{representation}{p04008}{B4}, \\leanwit{FrcCore}{p04008}{B4}, \\leanwit{FrcMathlib}{p04008}{B4} \\lean{Representation.adequate\\_inj, FRC.Representation.adequate\\_inj}",
      "key": "p04008"
     },
     {
      "label": "B5",
      "predicate": "Uniqueness up to bijection: for adequate $E_1$, $E_2$ of one $g$, $\\psi=\\varphi_2\\circ\\varphi_1^{-1}:W_1\\to W_2$ is a bijection with $E_2\\circ g=\\psi\\circ E_1\\circ g$ --- $E_2=\\psi\\circ E_1$ on $g(\\mathcal Z)$, on all of $\\mathcal X$ when $\\mathcal X=g(\\mathcal Z)$; $\\psi$ is the unique map with this property.",
      "tag": "T",
-     "source": "Lemma~\\ref{lem:uniq_min_adequate}; Lemma~\\ref{lem:minimalUniqueBackground}\\newline \\pywit{representation}{p04009}{B5}, \\leanwit{FrcCore}{p04009}{B5}, \\leanwit{FrcLedger}{p04009}{B5} \\lean{Representation.transition\\_exists, Representation.transition\\_unique, FRC.Representation.transition\\_spec, FRC.Representation.transitionBij, FRC.Representation.transition\\_unique}",
+     "source": "Lemma~\\ref{lem:uniq_min_adequate}; Lemma~\\ref{lem:minimalUniqueBackground}\\newline \\pywit{representation}{p04009}{B5}, \\leanwit{FrcCore}{p04009}{B5}, \\leanwit{FrcMathlib}{p04009}{B5} \\lean{Representation.transition\\_exists, Representation.transition\\_unique, FRC.Representation.transition\\_spec, FRC.Representation.transitionBij, FRC.Representation.transition\\_unique}",
      "key": "p04009"
     },
     {
      "label": "B6",
      "predicate": "The embedding into the shell: $|W_m|=|\\mathcal Z|\\le\\p$, so an injection $\\iota_m:W_m\\hookrightarrow\\mathcal U_t$ exists --- the one place finiteness enters; canonically $\\iota_m=\\varphi_m^{-1}$ followed by the inclusion; $\\psi_m:=\\iota_m\\circ\\varphi_m:\\mathcal Z\\hookrightarrow\\mathcal U_t$ is modality $m$'s chart of $\\mathcal Z$.",
      "tag": "T",
-     "source": "Section~\\ref{sec:framework}\\newline \\pywit{representation}{p04010}{B6}, \\leanwit{FrcCore}{p04010}{B6}, \\leanwit{FrcLedger}{p04010}{B6} \\lean{Representation.embeds\\_in\\_shell, Representation.canonical\\_iota, FRC.Representation.iota\\_inj}",
+     "source": "Section~\\ref{sec:framework}\\newline \\pywit{representation}{p04010}{B6}, \\leanwit{FrcCore}{p04010}{B6}, \\leanwit{FrcMathlib}{p04010}{B6} \\lean{Representation.embeds\\_in\\_shell, Representation.canonical\\_iota, FRC.Representation.iota\\_inj}",
      "key": "p04010"
     }
    ]
@@ -95,28 +95,28 @@
      "label": "C1",
      "predicate": "Theorem~\\ref{thm:UST} (i), (ii): every chart $\\psi_m$ is injective, and $\\Psi_{m\\to n}:=\\psi_n\\circ\\psi_m^{-1}:\\psi_m(\\mathcal Z)\\to\\psi_n(\\mathcal Z)$ is a well-defined bijection, with $\\Psi_{n\\to k}\\circ\\Psi_{m\\to n}=\\Psi_{m\\to k}$ and $\\Psi_{m\\to m}$ the identity.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:UST}\\newline \\pywit{representation}{p04011}{C1}, \\leanwit{FrcCore}{p04011}{C1}, \\leanwit{FrcLedger}{p04011}{C1} \\lean{Representation.chart\\_injective, Representation.transition\\_images, FRC.Representation.chart\\_inj, FRC.Representation.transition\\_graph}",
+     "source": "Thm.~\\ref{thm:UST}\\newline \\pywit{representation}{p04011}{C1}, \\leanwit{FrcCore}{p04011}{C1}, \\leanwit{FrcMathlib}{p04011}{C1} \\lean{Representation.chart\\_injective, Representation.transition\\_images, FRC.Representation.chart\\_inj, FRC.Representation.transition\\_graph}",
      "key": "p04011"
     },
     {
      "label": "C2",
      "predicate": "Theorem~\\ref{thm:UST} (iii): with $\\iota_m=\\varphi_m^{-1}$ every chart is the inclusion $\\mathcal Z\\hookrightarrow\\mathcal U_t$ and $\\psi(\\mathcal Z)=\\mathcal Z$; canonical structurally (unique once $\\mathcal Z$ is fixed), not algorithmically; ``subspace'' means subset.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:UST}\\newline \\pywit{representation}{p04012}{C2}, \\leanwit{FrcCore}{p04012}{C2}, \\leanwit{FrcLedger}{p04012}{C2} \\lean{Representation.canonical\\_iota, FRC.Representation.canonical\\_chart}",
+     "source": "Thm.~\\ref{thm:UST}\\newline \\pywit{representation}{p04012}{C2}, \\leanwit{FrcCore}{p04012}{C2}, \\leanwit{FrcMathlib}{p04012}{C2} \\lean{Representation.canonical\\_iota, FRC.Representation.canonical\\_chart}",
      "key": "p04012"
     },
     {
      "label": "C3",
      "predicate": "The canonical lift $L_m:=\\varphi_m^{-1}\\circ E_m:\\mathcal X_m\\to\\mathcal Z$ satisfies $L_m\\circ g_m=\\mathrm{id}_{\\mathcal Z}$, and $L_m(x)$ is the unique $z$ with $E_m(x)=\\varphi_m(z)$.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:canonicalLift}\\newline \\pywit{representation}{p04013}{C3}, \\leanwit{FrcCore}{p04013}{C3}, \\leanwit{FrcLedger}{p04013}{C3} \\lean{Representation.lift, FRC.Representation.lift\\_g, FRC.Representation.lift\\_unique}",
+     "source": "Cor.~\\ref{cor:canonicalLift}\\newline \\pywit{representation}{p04013}{C3}, \\leanwit{FrcCore}{p04013}{C3}, \\leanwit{FrcMathlib}{p04013}{C3} \\lean{Representation.lift, FRC.Representation.lift\\_g, FRC.Representation.lift\\_unique}",
      "key": "p04013"
     },
     {
      "label": "C4",
      "predicate": "Cross-modal consistency: $\\psi\\circ L_m\\circ g_m=\\psi\\circ L_n\\circ g_n=\\psi$ --- observations of one latent state lift to one point --- and $\\iota_m(W_m)=\\iota_n(W_n)=\\psi(\\mathcal Z)=\\mathcal Z$.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:coordChange}\\newline \\pywit{representation}{p04014}{C4}, \\leanwit{FrcCore}{p04014}{C4}, \\leanwit{FrcLedger}{p04014}{C4} \\lean{Representation.consistency, FRC.Representation.consistency}",
+     "source": "Cor.~\\ref{cor:coordChange}\\newline \\pywit{representation}{p04014}{C4}, \\leanwit{FrcCore}{p04014}{C4}, \\leanwit{FrcMathlib}{p04014}{C4} \\lean{Representation.consistency, FRC.Representation.consistency}",
      "key": "p04014"
     },
     {
@@ -156,7 +156,7 @@
      "label": "E1",
      "predicate": "The hypersphere [chart]: a Euclidean chart $\\mathrm{Emb}:\\mathcal Z\\to\\R^{d}$ equivariant for a symmetry acting transitively on $\\mathcal Z$ and orthogonally on $\\R^{d}$ has constant norm --- $\\mathrm{Emb}(\\mathcal Z)\\subset S^{d-1}$. The shell's character chart $z\\mapsto(\\cos2\\pi kz/\\p,\\sin2\\pi kz/\\p)_{k}$ is such a chart under translation, $\\|\\mathrm{Emb}(z)\\|^{2}=\\p-1$; in the shell's arithmetic $\\sum_{k}\\g^{kz}\\g^{k(n-z)}=n$ for every $z$.",
      "tag": "T",
-     "source": "Section~\\ref{sec:hypersphere}\\newline \\pywit{representation}{p04018}{E1}, \\leanwit{FrcCore}{p04018}{E1}, \\leanwit{FrcLedger}{p04018}{E1} \\lean{Representation.sphere\\_of\\_equivariant, FRC.Representation.Shell.charChart\\_shift, FRC.Representation.Shell.charChart\\_norm}",
+     "source": "Section~\\ref{sec:hypersphere}\\newline \\pywit{representation}{p04018}{E1}, \\leanwit{FrcCore}{p04018}{E1}, \\leanwit{FrcMathlib}{p04018}{E1} \\lean{Representation.sphere\\_of\\_equivariant, FRC.Representation.Shell.charChart\\_shift, FRC.Representation.Shell.charChart\\_norm}",
      "key": "p04018"
     },
     {
@@ -170,7 +170,7 @@
      "label": "E3",
      "predicate": "Gödel collapse: for distinct primes $p_1,\\dots,p_d$ the code $G(x)=\\prod p_i^{x_i}$ is injective on $\\N^{d}$ (unique factorisation), and $G\\bmod q$ stays injective on a finite set once $q$ exceeds its maximum; instance $d=3$, $x_i\\le4$, primes $2,3,5$: $125$ codes, maximum $810\\,000$, $q=810\\,013$; signed coordinates are shifted first.",
      "tag": "T",
-     "source": "Section~\\ref{subsec:godel}\\newline \\pywit{representation}{p04020}{E3}, \\leanwit{FrcCore}{p04020}{E3}, \\leanwit{FrcLedger}{p04020}{E3} \\lean{Representation.godel\\_injective, Representation.mod\\_injective, Representation.godel\\_instance, FRC.Representation.godel2\\_inj, FRC.Representation.mod\\_injective}",
+     "source": "Section~\\ref{subsec:godel}\\newline \\pywit{representation}{p04020}{E3}, \\leanwit{FrcCore}{p04020}{E3}, \\leanwit{FrcMathlib}{p04020}{E3} \\lean{Representation.godel\\_injective, Representation.mod\\_injective, Representation.godel\\_instance, FRC.Representation.godel2\\_inj, FRC.Representation.mod\\_injective}",
      "key": "p04020"
     },
     {
@@ -253,7 +253,7 @@
   "B4": [
    {
     "name": "FRC.Representation.adequate_inj",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 25,
     "axioms": [],
     "tier": 0,
@@ -273,7 +273,7 @@
   "B5": [
    {
     "name": "FRC.Representation.transition_exists",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 29,
     "axioms": [
      "Classical.choice",
@@ -285,7 +285,7 @@
    },
    {
     "name": "FRC.Representation.transition_unique",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 37,
     "axioms": [
      "Quot.sound"
@@ -325,7 +325,7 @@
   "B6": [
    {
     "name": "FRC.Representation.embeds_in_shell",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 45,
     "axioms": [
      "Classical.choice",
@@ -338,7 +338,7 @@
    },
    {
     "name": "FRC.Representation.canonical_iota",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 50,
     "axioms": [
      "Classical.choice",
@@ -361,7 +361,7 @@
   "C1": [
    {
     "name": "FRC.Representation.chart_injective",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 59,
     "axioms": [],
     "tier": 0,
@@ -370,7 +370,7 @@
    },
    {
     "name": "FRC.Representation.transition_images",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 64,
     "axioms": [
      "Classical.choice",
@@ -403,7 +403,7 @@
   "C2": [
    {
     "name": "FRC.Representation.canonical_iota",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 50,
     "axioms": [
      "Classical.choice",
@@ -426,7 +426,7 @@
   "C3": [
    {
     "name": "FRC.Representation.lift",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 73,
     "axioms": [
      "Classical.choice",
@@ -458,7 +458,7 @@
   "C4": [
    {
     "name": "FRC.Representation.consistency",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 83,
     "axioms": [
      "Classical.choice",
@@ -501,7 +501,7 @@
   "E1": [
    {
     "name": "FRC.Representation.sphere_of_equivariant",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 97,
     "axioms": [
      "Classical.choice",
@@ -534,7 +534,7 @@
   "E3": [
    {
     "name": "FRC.Representation.godel_injective",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 108,
     "axioms": [
      "Classical.choice",
@@ -547,7 +547,7 @@
    },
    {
     "name": "FRC.Representation.mod_injective",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 127,
     "axioms": [
      "propext"
@@ -558,7 +558,7 @@
    },
    {
     "name": "FRC.Representation.godel_instance",
-    "module": "FrcLedger/Representation",
+    "module": "FrcMathlib/Representation",
     "line": 135,
     "axioms": [
      "Classical.choice",
@@ -576,7 +576,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "4:E3 (Gödel encoding, two primes) — `2^a 3^b = 2^c 3^d` forces `a = c` and `b = d`: the code is injective, by parity and cancellation; the general case over `d` distinct primes is `FrcLedger.Representation.godel_injective`."
+    "doc": "4:E3 (Gödel encoding, two primes) — `2^a 3^b = 2^c 3^d` forces `a = c` and `b = d`: the code is injective, by parity and cancellation; the general case over `d` distinct primes is `FRC.Representation.godel_injective` (`FrcMathlib/Representation.lean`)."
    },
    {
     "name": "FRC.Representation.mod_injective",

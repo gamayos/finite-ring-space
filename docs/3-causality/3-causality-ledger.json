@@ -54,14 +54,14 @@
      "label": "B2",
      "predicate": "Nonexistence of a causal square root: no $c\\in\\Fp$ has $c^{2}=\\nu$ for $\\nu\\in N$; for $c\\in\\Fpx$ every coefficient of $-c^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=\\im^{2}$), the form Euclidean with $\\p^{3}+\\p^{2}-\\p$ zeros; $c=0$ gives a degenerate form.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:nonexistence}\\newline \\pywit{causality}{p03006}{B2}, \\leanwit{FrcCore}{p03006}{B2}, \\leanwit{FrcLedger}{p03006}{B2} \\lean{Causality.no\\_causal\\_root, Causality.neg\\_sq\\_is\\_square, FRC.Shell.Frame.no\\_causal\\_root, FRC.Shell.Frame.neg\\_sq\\_is\\_square}",
+     "source": "Thm.~\\ref{thm:nonexistence}\\newline \\pywit{causality}{p03006}{B2}, \\leanwit{FrcCore}{p03006}{B2}, \\leanwit{FrcMathlib}{p03006}{B2} \\lean{Causality.no\\_causal\\_root, Causality.neg\\_sq\\_is\\_square, FRC.Shell.Frame.no\\_causal\\_root, FRC.Shell.Frame.neg\\_sq\\_is\\_square}",
      "key": "p03006"
     },
     {
      "label": "B3",
      "predicate": "Square-class absorption: if $a_{i}/a_{0}\\in S$ for all $\\im$ then $Q\\simeq a_{0}\\sum Y_{i}^{2}$ by $Y_{i}=w_{i}X_{i}$, $w_{i}^{2}=a_{i}/a_{0}$; no root of $a_{0}$ is needed, and none exists for $a_{0}\\in N$ ($-a_{0}$ is a nonsquare with it).",
      "tag": "T",
-     "source": "Lemma~\\ref{lem:square-class-absorption}\\newline \\pywit{causality}{p03007}{B3}, \\leanwit{FrcCore}{p03007}{B3}, \\leanwit{FrcLedger}{p03007}{B3} \\lean{Causality.absorb, FRC.Shell.Frame.absorb}",
+     "source": "Lemma~\\ref{lem:square-class-absorption}\\newline \\pywit{causality}{p03007}{B3}, \\leanwit{FrcCore}{p03007}{B3}, \\leanwit{FrcMathlib}{p03007}{B3} \\lean{Causality.absorb, FRC.Shell.Frame.absorb}",
      "key": "p03007"
     },
     {
@@ -75,7 +75,7 @@
      "label": "B5",
      "predicate": "The Witt decomposition: for $\\nu\\in N$ the plane $x^{2}-\\nu t^{2}$ (the norm of $\\Fpq$) is anisotropic and $y^{2}+z^{2}=(y+iz)(y-iz)$ hyperbolic, so $Q_{\\nu}=H\\perp\\langle1,-\\nu\\rangle$, index one; for $\\nu=w^{2}$ the $(t,x)$-plane is hyperbolic too, $H\\perp H$. Over $\\Fpq$, $\\nu=c^{2}$ and $Q_{\\nu}\\simeq\\sum X_{i}^{2}$: hyperbolic ($16\\,225$ zeros at $q=25$); the extension dissolves the split.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:min-ext}\\newline \\pywit{causality}{p03009}{B5}, \\leanwit{FrcCore}{p03009}{B5}, \\leanwit{FrcLedger}{p03009}{B5} \\lean{Causality.aniso\\_tx, FRC.Shell.Frame.aniso\\_tx, FRC.Shell.Frame.null\\_yz, FRC.Shell.Frame.null\\_tx\\_of\\_square}",
+     "source": "Cor.~\\ref{cor:min-ext}\\newline \\pywit{causality}{p03009}{B5}, \\leanwit{FrcCore}{p03009}{B5}, \\leanwit{FrcMathlib}{p03009}{B5} \\lean{Causality.aniso\\_tx, FRC.Shell.Frame.aniso\\_tx, FRC.Shell.Frame.null\\_yz, FRC.Shell.Frame.null\\_tx\\_of\\_square}",
      "key": "p03009"
     },
     {
@@ -109,14 +109,14 @@
      "label": "C2",
      "predicate": "$\\Lambda(\\gamma,b)$ preserves $-\\nu t^{2}+x^{2}$ exactly and $\\Lambda(z_{1})\\Lambda(z_{2})=\\Lambda(z_{1}z_{2})$: the boosts are the norm-one cycle $N^{1}\\simeq C_{\\p+1}$, the non-split torus, and exhaust $SO(Q_{\\nu},\\Fp)$ in dimension $1{+}1$ ($6$, $14$, $18$ at $5$, $13$, $17$); with $\\nu\\in S$ the same construction is the split torus $C_{\\p-1}$ --- the two tori are the two signatures (00:C3).",
      "tag": "T",
-     "source": "Section~\\ref{sec:lorentz}\\newline \\pywit{causality}{p03013}{C2}, \\leanwit{FrcCore}{p03013}{C2}, \\leanwit{FrcLedger}{p03013}{C2} \\lean{Causality.boost\\_preserves, Causality.boost\\_comp, Causality.boost\\_orthogonal, FRC.Shell.Frame.boost\\_preserves, FRC.Shell.Frame.boost\\_comp\\_t, FRC.Shell.Frame.boost\\_comp\\_x, FRC.Shell.Frame.norm\\_one\\_mul, FRC.Shell.Frame.normOne\\_values}",
+     "source": "Section~\\ref{sec:lorentz}\\newline \\pywit{causality}{p03013}{C2}, \\leanwit{FrcCore}{p03013}{C2}, \\leanwit{FrcMathlib}{p03013}{C2} \\lean{Causality.boost\\_preserves, Causality.boost\\_comp, Causality.boost\\_orthogonal, FRC.Shell.Frame.boost\\_preserves, FRC.Shell.Frame.boost\\_comp\\_t, FRC.Shell.Frame.boost\\_comp\\_x, FRC.Shell.Frame.norm\\_one\\_mul, FRC.Shell.Frame.normOne\\_values}",
      "key": "p03013"
     },
     {
      "label": "C3",
      "predicate": "Velocity: $\\gamma\\neq0$ on every boost; $v=-\\nu b/\\gamma\\in\\Fp$; $\\gamma^{2}(\\nu-v^{2})=\\nu$, the finite $\\gamma=1/\\sqrt{1-\\beta^{2}}$ with $\\beta^{2}=v^{2}/\\nu$ ($\\beta$ itself is no shell quantity, 8:B8); Einstein's law $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/\\nu)$ exact, the denominator never zero; $v$ is two-to-one on $N^{1}$.",
      "tag": "T",
-     "source": "Section~\\ref{sec:lorentz}\\newline \\pywit{causality}{p03014}{C3}, \\leanwit{FrcCore}{p03014}{C3}, \\leanwit{FrcLedger}{p03014}{C3} \\lean{Causality.gamma\\_ne\\_zero, Causality.gamma\\_velocity, Causality.velocity\\_addition, FRC.Shell.Frame.gamma\\_ne\\_zero, FRC.Shell.Frame.gamma\\_velocity, FRC.Shell.Frame.velocity\\_addition}",
+     "source": "Section~\\ref{sec:lorentz}\\newline \\pywit{causality}{p03014}{C3}, \\leanwit{FrcCore}{p03014}{C3}, \\leanwit{FrcMathlib}{p03014}{C3} \\lean{Causality.gamma\\_ne\\_zero, Causality.gamma\\_velocity, Causality.velocity\\_addition, FRC.Shell.Frame.gamma\\_ne\\_zero, FRC.Shell.Frame.gamma\\_velocity, FRC.Shell.Frame.velocity\\_addition}",
      "key": "p03014"
     },
     {
@@ -238,7 +238,7 @@
   "B2": [
    {
     "name": "FRC.Causality.no_causal_root",
-    "module": "FrcLedger/Causality",
+    "module": "FrcMathlib/Causality",
     "line": 24,
     "axioms": [
      "Quot.sound",
@@ -250,7 +250,7 @@
    },
    {
     "name": "FRC.Causality.neg_sq_is_square",
-    "module": "FrcLedger/Causality",
+    "module": "FrcMathlib/Causality",
     "line": 29,
     "axioms": [
      "Classical.choice",
@@ -283,7 +283,7 @@
   "B3": [
    {
     "name": "FRC.Causality.absorb",
-    "module": "FrcLedger/Causality",
+    "module": "FrcMathlib/Causality",
     "line": 33,
     "axioms": [
      "Quot.sound",
@@ -344,7 +344,7 @@
   "B5": [
    {
     "name": "FRC.Causality.aniso_tx",
-    "module": "FrcLedger/Causality",
+    "module": "FrcMathlib/Causality",
     "line": 40,
     "axioms": [
      "Classical.choice",
@@ -386,7 +386,7 @@
   "C2": [
    {
     "name": "FRC.Causality.boost_preserves",
-    "module": "FrcLedger/Causality",
+    "module": "FrcMathlib/Causality",
     "line": 44,
     "axioms": [
      "Quot.sound",
@@ -398,7 +398,7 @@
    },
    {
     "name": "FRC.Causality.boost_comp",
-    "module": "FrcLedger/Causality",
+    "module": "FrcMathlib/Causality",
     "line": 49,
     "axioms": [
      "Classical.choice",
@@ -411,7 +411,7 @@
    },
    {
     "name": "FRC.Causality.boost_orthogonal",
-    "module": "FrcLedger/Causality",
+    "module": "FrcMathlib/Causality",
     "line": 55,
     "axioms": [
      "Classical.choice",
@@ -471,7 +471,7 @@
   "C3": [
    {
     "name": "FRC.Causality.gamma_ne_zero",
-    "module": "FrcLedger/Causality",
+    "module": "FrcMathlib/Causality",
     "line": 60,
     "axioms": [
      "Classical.choice",
@@ -484,7 +484,7 @@
    },
    {
     "name": "FRC.Causality.gamma_velocity",
-    "module": "FrcLedger/Causality",
+    "module": "FrcMathlib/Causality",
     "line": 65,
     "axioms": [
      "Quot.sound",
@@ -496,7 +496,7 @@
    },
    {
     "name": "FRC.Causality.velocity_addition",
-    "module": "FrcLedger/Causality",
+    "module": "FrcMathlib/Causality",
     "line": 70,
     "axioms": [
      "Classical.choice",

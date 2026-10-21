@@ -36,9 +36,9 @@ jobs:
           lake-package-directory: lean
           use-mathlib-cache: "true"
           leanchecker: "true"
-          leanchecker-args: "FrcLedger"
+          leanchecker-args: "FrcMathlib"
           axiom-audit: "true"
-          axiom-audit-root: "FrcLedger"          # a module root: the tool imports it (the namespace FRC is no module); FrcCore has its own gate below
+          axiom-audit-root: "FrcMathlib"          # a module root: the tool imports it (the namespace FRC is no module); FrcCore has its own gate below
           axiom-audit-allow: "propext,Classical.choice,Quot.sound"
       - name: axioms.log current (one line per declaration, rendered on the ledger pages)
         working-directory: lean
@@ -57,7 +57,7 @@ jobs:
       - name: the migrated ledgers' certificates build (each key's axioms guarded)
         working-directory: lean
         run: |
-          for f in $(find FrcCore/Ledgers FrcLedger/Ledgers -name '*.lean' -not -path '*/_to_delete/*' 2>/dev/null | sort); do
+          for f in $(find FrcCore/Ledgers FrcMathlib/Ledgers -name '*.lean' -not -path '*/_to_delete/*' 2>/dev/null | sort); do
             m="${f%.lean}"; m="${m//\//.}"; echo "== $m"; ~/.elan/bin/lake build "$m"
           done
       - name: web copies current

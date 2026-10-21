@@ -17,7 +17,7 @@ Every check names the predicate(s) of the paper's predicate ledger it witnesses 
 verification and formalisation", predicates cited as `20:XN`; public copy `docs/20-rh/index.html`); the ledger's source column links, for each
 machine-verified predicate, the script at the deciding check's marker (`src/20-rh/#<key>`) and the Lean module at the predicate's
 declaration. Where a predicate is proved in Lean (the predicate module `lean/FrcCore/Rh.lean` on the theme files
-`FrcCore/Theme/Horizon.lean` and `Theme/Zeros.lean`, with no axioms, or `lean/FrcLedger/Rh.lean` on Mathlib — A2–A4, B1, B2, B4–B6, B8–B10, B12, B13, E12–E14, F7, F10), the check here is the instance the reader can run.
+`FrcCore/Theme/Horizon.lean` and `Theme/Zeros.lean`, with no axioms, or `lean/FrcMathlib/Rh.lean` on Mathlib — A2–A4, B1, B2, B4–B6, B8–B10, B12, B13, E12–E14, F7, F10), the check here is the instance the reader can run.
 Master-ledger predicates of the corpus reached through the paper's rows: `00:A2` (Finitude, 20:A2), `00:A3` (Completeness,
 20:A3) and `00:A4` (Observation, 20:A4).
 
@@ -87,12 +87,12 @@ states the predicate and runs `predicate("20:B12")`: the blocks of the checks th
 deciding check is `rh.PREDICATES`), the check that decides the predicate is printed from the script's own source — the line under
 its `# 20:B12 (p20085)` marker — and every record citing the predicate is listed with its verdict. The markers in `rh.py` are the
 lines the ledger page's source glyph opens (`docs/src/20-rh/#<key>`). The predicates' Lean counterparts are the declarations
-named by their keys (`p20089` has none; `p20085` for 20:B12) at the end of `lean/FrcCore/Rh.lean` and `lean/FrcLedger/Rh.lean`
+named by their keys (`p20089` has none; `p20085` for 20:B12) at the end of `lean/FrcCore/Rh.lean` and `lean/FrcMathlib/Rh.lean`
 (`lean/make_predicates.py`), one per predicate, with the paper's module as one executable file for the web editor.
 
 ## External witnesses
 
 The framework's ledger file `frc/ledgers/p20_rh.py` reproduces blocks A and B record for record in the standard library (the
-chart readings in `frc/chart_rh.py`); the Lean witnesses of the shell predicates are `lean/FrcLedger/Rh.lean` (Mathlib) and
+chart readings in `frc/chart_rh.py`); the Lean witnesses of the shell predicates are `lean/FrcMathlib/Rh.lean` (Mathlib) and
 `lean/FrcCore/Rh.lean` (no axioms), rendered at `docs/lean/Rh.html` and `docs/lean/core/Rh.html`. This package is the public
 reproduction of the paper's checks and figures; the paper's ledger appendix links here.

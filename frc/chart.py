@@ -7,7 +7,7 @@ registrable triangle, 19 October 2026), L8 (the primordial tilt) and P1 (the run
 
 Each reading is computed twice: in floating point (`math`), and as a certified bracket in exact rational arithmetic,
 π from Machin's formula with the alternating-series remainder and e^x from its Taylor series with the tail bound. The
-brackets follow the Lean theorems of lean/FrcLedger/Theme/Chart.lean, which certify the same numerals from π to six
+brackets follow the Lean theorems of lean/FrcMathlib/Theme/Chart.lean, which certify the same numerals from π to six
 places, e to nine and the Taylor tail. A bracket is a pair (lo, hi) of Fractions with lo < value < hi.
 
 The chart's numerals are declared data: the speed of light, the megaparsec, the Julian year, the octant depth of the

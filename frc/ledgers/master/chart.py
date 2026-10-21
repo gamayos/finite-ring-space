@@ -6,8 +6,8 @@ blocks, A, L and P (BLOCK = "ALP"). The rows are an import (A7), realisations (L
 datum is used without reproof and the file binds its chart numerals, S and Ω from the fit's Λ and the Planck length,
 and derives the ledger's ln Ω = 283.5, the numeral L8's tilt reads; each other row is staked by a chart computation, and the file binds that computation, not the realisation (L4, the registrable triangle, is the chart of 14-entropy's C9 and X5, its package the pinned public witness). It holds the table of keys (generated from docs/00-ledger.json and, for the
 prediction rows, docs/predictions.json by ci/make_ledgers.py), the Mathlib theorems each row's key conjoins (CHART), and
-the checks, which call the chart theme (frc/chart.py). The Lean side is lean/FrcLedger/Theme/Chart.lean, the key file
-lean/FrcLedger/Keys/Chart.lean and the certificate lean/FrcLedger/Ledgers/Master/Chart.lean (tier 2: Mathlib's reals).
+the checks, which call the chart theme (frc/chart.py). The Lean side is lean/FrcMathlib/Theme/Chart.lean, the key file
+lean/FrcMathlib/Keys/Chart.lean and the certificate lean/FrcMathlib/Ledgers/Master/Chart.lean (tier 2: Mathlib's reals).
 
     python3 -m frc.ledgers.master.chart        every block, the census; exit 1 if a check fails
     python3 -m frc.ledgers.master.chart B      one block (S, A, B, C, D or T)

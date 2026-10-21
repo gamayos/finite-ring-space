@@ -8,7 +8,7 @@ One script, seven blocks, twenty-four checks, standard library only. Each check 
 it witnesses (LEDGER below; predicates cited as 25:XN) under a `# 25:XN (<key>)` marker, the key the predicate's accession
 key, and the ledger's source column links the marker of the check that decides each predicate (PREDICATES below;
 finitering.space/src/25-godel/#<key>). Where a predicate is proved in Lean (lean/FrcCore/Godel.lean, no axioms;
-lean/FrcLedger/Godel.lean on Mathlib), the check here is the instance the reader can run.
+lean/FrcMathlib/Godel.lean on Mathlib), the check here is the instance the reader can run.
 
     python3 godel.py              every block, results.json written; exit 1 if a check fails (≈ 2 min)
     python3 godel.py D            one block (A–G); no results.json

@@ -24,7 +24,7 @@ SPLIT = ("A3c", "B1c", "B2c", "B3c", "C1c", "C2c", "C3c")             # D2c and 
 # the rows the ledger file decides or corroborates beyond the package's records, and the package rows left unwitnessed
 ADDED_ROWS = {"28:X8", "28:P3", "28:P7", "28:C12"}
 DROPPED_ROWS = {"28:A2", "28:B3", "28:B4"}
-# the rows with a Mathlib reading (the chart theme's FrcLedger/Theme/Flavour.lean)
+# the rows with a Mathlib reading (the chart theme's FrcMathlib/Theme/Flavour.lean)
 ML_ROWS = {"C3", "C4", "C6", "C7", "C9", "C10", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "X9", "X10", "X11", "P1", "P2", "P3",
            "P5", "P6", "P7", "P8"}
 

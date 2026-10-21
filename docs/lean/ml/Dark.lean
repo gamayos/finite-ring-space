@@ -1,6 +1,6 @@
 import Mathlib
-import FrcLedger.Theme.Dark
-import FrcLedger.Keys.Chart
+import FrcMathlib.Theme.Dark
+import FrcMathlib.Keys.Chart
 
 /-!
 # 32-dark — the chart readings on Mathlib (18 October 2026)
@@ -8,7 +8,7 @@ import FrcLedger.Keys.Chart
 The paper module of *The Dark Sector over Finite Relational Substrate* (tree `32-dark-20260627`) on Mathlib: every
 declaration is the chart theme's, under the paper's name — the floor value and the running floor (`FRC.Chart`), the
 registration root, the crossover squeeze with the Tully–Fisher algebra, the deep limit and the discriminant
-(`FRC.Strong`, shared with 21-gravity), and the dark readings of `FrcLedger/Theme/Dark.lean` (`FRC.DarkML`): the
+(`FRC.Strong`, shared with 21-gravity), and the dark readings of `FrcMathlib/Theme/Dark.lean` (`FRC.DarkML`): the
 first-passage factor and its reduction, the conditional count and the chart angle, the strictly increasing relation,
 the external field, the scatter's deep rise, the coherence weight and `N_eff`, the small-tilt response, the sign of Λ,
 the redshift zero-point, the wide binaries, the pressure-supported offset and the Λ-face floor. Classical (tier 2).

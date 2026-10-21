@@ -11,9 +11,9 @@ name: framework
 
 on:
   push:
-    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", "docs/*/*-ledger.json", "docs/00-ledger.json", ".github/workflows/framework.yml"]
+    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcMathlib/**", "docs/*/*-ledger.json", "docs/00-ledger.json", ".github/workflows/framework.yml"]
   pull_request:
-    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", "docs/*/*-ledger.json", "docs/00-ledger.json", ".github/workflows/framework.yml"]
+    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcMathlib/**", "docs/*/*-ledger.json", "docs/00-ledger.json", ".github/workflows/framework.yml"]
   workflow_dispatch:
 
 jobs:

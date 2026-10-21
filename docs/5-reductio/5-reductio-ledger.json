@@ -61,7 +61,7 @@
      "label": "B3",
      "predicate": "Witnessed independence: every three-element subset is satisfiable --- $Q$ itself ($\\neg$Cmp, consistent by finitary means, the superexponential cost exact); $\\mathrm{Th}(W_N)$ ($\\neg$IR: consistent, complete, decidable, singly axiomatised, interpreting no $Q$ since every model of $Q$ is infinite); the inconsistent extension ($\\neg$Cns); true arithmetic ($\\neg$Eff). Four legs, all load-bearing.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:witnessed}\\newline \\pywit{reductio}{p05007}{B3}, \\leanwit{FrcLedger}{p05007}{B3} \\lean{Reductio.infinite\\_of\\_succ, Reductio.theory\\_complete}",
+     "source": "Thm.~\\ref{thm:witnessed}\\newline \\pywit{reductio}{p05007}{B3}, \\leanwit{FrcMathlib}{p05007}{B3} \\lean{Reductio.infinite\\_of\\_succ, Reductio.theory\\_complete}",
      "key": "p05007"
     },
     {
@@ -75,7 +75,7 @@
      "label": "B5",
      "predicate": "Per-frame completeness: $\\mathrm{Th}(W_N)$ is consistent, complete and decidable, axiomatised by the categorical sentence $\\sigma_N$; truth in any finite structure is decided by evaluation, and the theory of any structure is complete.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:frame-complete}\\newline \\pywit{reductio}{p05009}{B5}, \\leanwit{FrcLedger}{p05009}{B5} \\lean{Reductio.theory\\_complete, Reductio.decRealize, Reductio.decTheory}",
+     "source": "Prop.~\\ref{prop:frame-complete}\\newline \\pywit{reductio}{p05009}{B5}, \\leanwit{FrcMathlib}{p05009}{B5} \\lean{Reductio.theory\\_complete, Reductio.decRealize, Reductio.decTheory}",
      "key": "p05009"
     },
     {
@@ -109,14 +109,14 @@
      "label": "C2",
      "predicate": "No internal mirror: fewer than $s^{K+1}$ records exist, so an agent with $s^{K+1}<N$ holds no injective representation of the domain of $W_N$ --- a proper part cannot mirror the whole (pigeonhole).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:mirror}\\newline \\pywit{reductio}{p05013}{C2}, \\leanwit{FrcCore}{p05013}{C2}, \\leanwit{FrcLedger}{p05013}{C2} \\lean{Reductio.records\\_lt, Reductio.no\\_mirror, FRC.Reductio.records\\_lt, FRC.Reductio.no\\_mirror}",
+     "source": "Prop.~\\ref{prop:mirror}\\newline \\pywit{reductio}{p05013}{C2}, \\leanwit{FrcCore}{p05013}{C2}, \\leanwit{FrcMathlib}{p05013}{C2} \\lean{Reductio.records\\_lt, Reductio.no\\_mirror, FRC.Reductio.records\\_lt, FRC.Reductio.no\\_mirror}",
      "key": "p05013"
     },
     {
      "label": "C3",
      "predicate": "Vanishing certified fraction: at least $c^{L}$ normal-form sentences of length $\\le L$, half of each cohort frame truths by completeness, fewer than $s^{K+1}$ certified, so the certified fraction is at most $s^{K+1}/\\lfloor c^{L}/2\\rfloor\\to0$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:fraction}\\newline \\pywit{reductio}{p05014}{C3}, \\leanwit{FrcLedger}{p05014}{C3} \\lean{Reductio.certified\\_fraction\\_tendsto}",
+     "source": "Prop.~\\ref{prop:fraction}\\newline \\pywit{reductio}{p05014}{C3}, \\leanwit{FrcMathlib}{p05014}{C3} \\lean{Reductio.certified\\_fraction\\_tendsto}",
      "key": "p05014"
     },
     {
@@ -157,7 +157,7 @@
      "label": "D3",
      "predicate": "Diagonal normal form: $\\{$Eff, Cns, Cmp, IR$\\}$ inconsistent (B2), Tarski a variant with the truth predicate for Cmp; the diagonal is a theorem when external --- Cantor's theorem, $n<2^{n}$ on every frame, uncountability, halting --- and a paradox engine only over an internalised registry with completeness demanded.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:diagonal-NF}; Rem.~\\ref{rem:cantor-diagonal}\\newline \\pywit{reductio}{p05019}{D3}, \\leanwit{FrcCore}{p05019}{D3}, \\leanwit{FrcLedger}{p05019}{D3} \\lean{Reductio.cantor, Reductio.cantor\\_finite, FRC.Reductio.cantor\\_finite}",
+     "source": "Prop.~\\ref{prop:diagonal-NF}; Rem.~\\ref{rem:cantor-diagonal}\\newline \\pywit{reductio}{p05019}{D3}, \\leanwit{FrcCore}{p05019}{D3}, \\leanwit{FrcMathlib}{p05019}{D3} \\lean{Reductio.cantor, Reductio.cantor\\_finite, FRC.Reductio.cantor\\_finite}",
      "key": "p05019"
     },
     {
@@ -192,7 +192,7 @@
      "label": "D8",
      "predicate": "Finiteness of determinate totalities: in ZF with every infinite set Dedekind-infinite, a structure satisfies Det iff it is finite --- finite: the full higher-order theory decided by exhaustive evaluation; infinite: a copy of $\\N$ inside gives an effective reduction of true second-order arithmetic, which is not arithmetical. The real field's first-order tameness is silence about its subsets.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:finiteness}\\newline \\pywit{reductio}{p05024}{D8}, \\leanwit{FrcLedger}{p05024}{D8} \\lean{Reductio.decideAllSubsets, Reductio.nat\\_embeds}",
+     "source": "Prop.~\\ref{prop:finiteness}\\newline \\pywit{reductio}{p05024}{D8}, \\leanwit{FrcMathlib}{p05024}{D8} \\lean{Reductio.decideAllSubsets, Reductio.nat\\_embeds}",
      "key": "p05024"
     },
     {
@@ -219,28 +219,28 @@
      "label": "E1",
      "predicate": "Global choice on a finite universe: with a canonical order, $\\operatorname{ch}(A)=\\min A$ is a uniform pointwise choice rule; over a fixed finite base AC is a definable theorem; finite products are nonempty without it.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:finite-choice}\\newline \\pywit{reductio}{p05027}{E1}, \\leanwit{FrcCore}{p05027}{E1}, \\leanwit{FrcLedger}{p05027}{E1} \\lean{Reductio.finite\\_choice, FRC.Reductio.leastBelow\\_spec, FRC.Reductio.leastBelow\\_some}",
+     "source": "Prop.~\\ref{prop:finite-choice}\\newline \\pywit{reductio}{p05027}{E1}, \\leanwit{FrcCore}{p05027}{E1}, \\leanwit{FrcMathlib}{p05027}{E1} \\lean{Reductio.finite\\_choice, FRC.Reductio.leastBelow\\_spec, FRC.Reductio.leastBelow\\_some}",
      "key": "p05027"
     },
     {
      "label": "E2",
      "predicate": "Periodic choice: an equality-periodic family $A_{i+N}=A_i$ has the choice $f(i)=\\operatorname{ch}(A_i)$ of the same period; group-periodic families as equivariant surjections $\\pi:A\\to I$ with equivariant sections.",
      "tag": "T",
-     "source": "Lemma~\\ref{lem:periodic-equality}; Def.~\\ref{def:group-periodic}\\newline \\pywit{reductio}{p05028}{E2}, \\leanwit{FrcCore}{p05028}{E2}, \\leanwit{FrcLedger}{p05028}{E2} \\lean{Reductio.periodic\\_choice, FRC.Reductio.leastBelow\\_congr}",
+     "source": "Lemma~\\ref{lem:periodic-equality}; Def.~\\ref{def:group-periodic}\\newline \\pywit{reductio}{p05028}{E2}, \\leanwit{FrcCore}{p05028}{E2}, \\leanwit{FrcMathlib}{p05028}{E2} \\lean{Reductio.periodic\\_choice, FRC.Reductio.leastBelow\\_congr}",
      "key": "p05028"
     },
     {
      "label": "E3",
      "predicate": "Equivariant periodic choice: a $G$-equivariant section exists iff each stabiliser action $G_i\\curvearrowright A_i$ has a fixed point (one orbit at a time); the Fraenkel--Mostowski mechanism in positive form.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:equivariant-choice}\\newline \\pywit{reductio}{p05029}{E3}, \\leanwit{FrcLedger}{p05029}{E3} \\lean{Reductio.equivariant\\_section\\_iff}",
+     "source": "Thm.~\\ref{thm:equivariant-choice}\\newline \\pywit{reductio}{p05029}{E3}, \\leanwit{FrcMathlib}{p05029}{E3} \\lean{Reductio.equivariant\\_section\\_iff}",
      "key": "p05029"
     },
     {
      "label": "E4",
      "predicate": "The definable basis: every subspace of a finite vector space has the greedy $\\min$-basis, one definable function on all subspaces; the equivariant obstruction --- $\\Z/2$ acting by $v\\mapsto-v$ on the line over $\\F_5$ fixes no basis ($-v\\neq v$), over $\\F_2$ it does: arithmetic, not formal.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:basis}; Ex.~\\ref{ex:basis-obstruction}\\newline \\pywit{reductio}{p05030}{E4}, \\leanwit{FrcCore}{p05030}{E4}, \\leanwit{FrcLedger}{p05030}{E4} \\lean{Reductio.obstruction\\_five, FRC.Reductio.obstruction\\_five}",
+     "source": "Thm.~\\ref{thm:basis}; Ex.~\\ref{ex:basis-obstruction}\\newline \\pywit{reductio}{p05030}{E4}, \\leanwit{FrcCore}{p05030}{E4}, \\leanwit{FrcMathlib}{p05030}{E4} \\lean{Reductio.obstruction\\_five, FRC.Reductio.obstruction\\_five}",
      "key": "p05030"
     },
     {
@@ -268,7 +268,7 @@
      "label": "E8",
      "predicate": "The choice paradoxes vanish: on a finite set counting measure is complete and invariant, no decomposition doubles the set ($X\\sqcup X$ does not inject into $X$), and every ultrafilter is principal; periodic variants inherit this on one period.",
      "tag": "T",
-     "source": "\\S\\ref{subsec:AC-consequences}\\newline \\pywit{reductio}{p05034}{E8}, \\leanwit{FrcLedger}{p05034}{E8} \\lean{Reductio.no\\_doubling, Reductio.ultrafilter\\_principal}",
+     "source": "\\S\\ref{subsec:AC-consequences}\\newline \\pywit{reductio}{p05034}{E8}, \\leanwit{FrcMathlib}{p05034}{E8} \\lean{Reductio.no\\_doubling, Reductio.ultrafilter\\_principal}",
      "key": "p05034"
     }
    ]
@@ -367,7 +367,7 @@
   "B3": [
    {
     "name": "FRC.Reductio.infinite_of_succ",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 143,
     "axioms": [
      "Classical.choice",
@@ -380,7 +380,7 @@
    },
    {
     "name": "FRC.Reductio.theory_complete",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 123,
     "axioms": [
      "Classical.choice",
@@ -395,7 +395,7 @@
   "B5": [
    {
     "name": "FRC.Reductio.theory_complete",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 123,
     "axioms": [
      "Classical.choice",
@@ -408,7 +408,7 @@
    },
    {
     "name": "FRC.Reductio.decRealize",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 128,
     "axioms": [
      "Classical.choice",
@@ -421,7 +421,7 @@
    },
    {
     "name": "FRC.Reductio.decTheory",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 135,
     "axioms": [
      "Classical.choice",
@@ -465,7 +465,7 @@
   "C2": [
    {
     "name": "FRC.Reductio.records_lt",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 160,
     "axioms": [
      "Classical.choice",
@@ -478,7 +478,7 @@
    },
    {
     "name": "FRC.Reductio.no_mirror",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 165,
     "axioms": [
      "Classical.choice",
@@ -511,7 +511,7 @@
   "C3": [
    {
     "name": "FRC.Reductio.certified_fraction_tendsto",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 29,
     "axioms": [
      "Classical.choice",
@@ -546,7 +546,7 @@
   "D3": [
    {
     "name": "FRC.Reductio.cantor",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 151,
     "axioms": [],
     "tier": 0,
@@ -555,7 +555,7 @@
    },
    {
     "name": "FRC.Reductio.cantor_finite",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 155,
     "axioms": [
      "propext"
@@ -577,7 +577,7 @@
   "D8": [
    {
     "name": "FRC.Reductio.decideAllSubsets",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 105,
     "axioms": [
      "Classical.choice",
@@ -590,7 +590,7 @@
    },
    {
     "name": "FRC.Reductio.nat_embeds",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 110,
     "axioms": [
      "Classical.choice",
@@ -605,7 +605,7 @@
   "E1": [
    {
     "name": "FRC.Reductio.finite_choice",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 41,
     "axioms": [
      "Classical.choice",
@@ -638,7 +638,7 @@
   "E2": [
    {
     "name": "FRC.Reductio.periodic_choice",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 45,
     "axioms": [
      "Classical.choice",
@@ -662,7 +662,7 @@
   "E3": [
    {
     "name": "FRC.Reductio.equivariant_section_iff",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 52,
     "axioms": [
      "Classical.choice",
@@ -676,7 +676,7 @@
   "E4": [
    {
     "name": "FRC.Reductio.obstruction_five",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 83,
     "axioms": [
      "Classical.choice",
@@ -720,7 +720,7 @@
   "E8": [
    {
     "name": "FRC.Reductio.no_doubling",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 87,
     "axioms": [
      "Classical.choice",
@@ -733,7 +733,7 @@
    },
    {
     "name": "FRC.Reductio.ultrafilter_principal",
-    "module": "FrcLedger/Reductio",
+    "module": "FrcMathlib/Reductio",
     "line": 96,
     "axioms": [
      "Classical.choice",

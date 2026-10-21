@@ -1,8 +1,8 @@
 import Mathlib
-import FrcLedger.Theme.Horizon
-import FrcLedger.Theme.Chart
-import FrcLedger.Keys.Chart
-import FrcLedger.Keys.Horizon
+import FrcMathlib.Theme.Horizon
+import FrcMathlib.Theme.Chart
+import FrcMathlib.Keys.Chart
+import FrcMathlib.Keys.Horizon
 
 /-!
 # 20-rh — Riemann Hypothesis over Finite Holographic Substrate: the shell predicates in Lean (2026-09-19)
@@ -15,8 +15,8 @@ the analytic identities, over any integral domain or over `ℂ`; the laboratory 
 Classical (tier 2) on Mathlib's hierarchy; the shell arithmetic is also in the core (`FrcCore/Rh.lean`) with no axioms.
 
 Since the ledger migration (task LM36, 7 October 2026) the theorems live in the themes: the exact shell arithmetic in
-the horizon theme (`FrcLedger/Theme/Horizon.lean`, `FRC.HorizonML`), and the complex characters of the cycle, the
-characters as eigenvectors and the von Mangoldt weight in the chart theme (`FrcLedger/Theme/Chart.lean`, `FRC.Chart`).
+the horizon theme (`FrcMathlib/Theme/Horizon.lean`, `FRC.HorizonML`), and the complex characters of the cycle, the
+characters as eigenvectors and the von Mangoldt weight in the chart theme (`FrcMathlib/Theme/Chart.lean`, `FRC.Chart`).
 The old names below are aliases, and the predicate declarations are the aliases of their keys.
 -/
 

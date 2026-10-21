@@ -68,14 +68,14 @@
      "label": "B1",
      "predicate": "The two frames and their alignment: the Carrier chart $\\F_\\Omega$, held by no embedded observer, and the Subject $\\Fp$, $\\p^{2}<\\Omega$; shared: the unit and the rules of arithmetic, agreeing on the window, the Subject's residues the Carrier's below $\\p$, whence the half-turn and the conjugation; not shared: generator, $\\eta$; the cycles share the core $Q_4$, not a clock ($12\\nmid232$).",
      "tag": "D",
-     "source": "Def.~\\ref{def:shells}, Def.~\\ref{def:alignment}\\newline \\pywit{rh}{p20008}{B1}, \\leanwit{FrcCore}{p20008}{B1}, \\leanwit{FrcLedger}{p20008}{B1} \\lean{Rh.lab\\_pair, Rh.no\\_cycle\\_projection, FRC.Rh.lab\\_pair}",
+     "source": "Def.~\\ref{def:shells}, Def.~\\ref{def:alignment}\\newline \\pywit{rh}{p20008}{B1}, \\leanwit{FrcCore}{p20008}{B1}, \\leanwit{FrcMathlib}{p20008}{B1} \\lean{Rh.lab\\_pair, Rh.no\\_cycle\\_projection, FRC.Rh.lab\\_pair}",
      "key": "p20008"
     },
     {
      "label": "B2",
      "predicate": "Frame coincidence below the horizon: for $n\\le\\sqrt \\p$ the residue $n$ is the same integer in $\\Fp$ and $\\F_\\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\\Pi_\\p$ are the primes to $\\sqrt \\p$. A prime is a label on the prime meridian below the horizon.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:coincide}\\newline \\pywit{rh}{p20009}{B2}, \\leanwit{FrcCore}{p20009}{B2}, \\leanwit{FrcLedger}{p20009}{B2} \\lean{Rh.window\\_readback, Rh.prime\\_iff\\_window\\_irreducible, Rh.sqrt\\_sq\\_lt\\_prime, FRC.Rh.window\\_readback, FRC.Rh.factorisation\\_iff, FRC.Rh.frame\\_coincidence}",
+     "source": "Prop.~\\ref{prop:coincide}\\newline \\pywit{rh}{p20009}{B2}, \\leanwit{FrcCore}{p20009}{B2}, \\leanwit{FrcMathlib}{p20009}{B2} \\lean{Rh.window\\_readback, Rh.prime\\_iff\\_window\\_irreducible, Rh.sqrt\\_sq\\_lt\\_prime, FRC.Rh.window\\_readback, FRC.Rh.factorisation\\_iff, FRC.Rh.frame\\_coincidence}",
      "key": "p20009"
     },
     {
@@ -89,42 +89,42 @@
      "label": "B4",
      "predicate": "Zero-slot: $Z_\\Omega(k)=\\sum_{x\\in\\Fx{\\Omega}}x^{k}$ vanishes on every nonterminal exponent $1\\le k\\le\\Omega-2$ and equals $-1$ on the full cycle; the nonterminal slots are the universal mode basis, and a zero of the shell is a mode read on the critical line.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:zeroslot}, Def.~\\ref{def:zero}\\newline \\pywit{rh}{p20011}{B4}, \\leanwit{FrcCore}{p20011}{B4}, \\leanwit{FrcLedger}{p20011}{B4} \\lean{Rh.zero\\_slot, FRC.Rh.zero\\_slot}",
+     "source": "Thm.~\\ref{thm:zeroslot}, Def.~\\ref{def:zero}\\newline \\pywit{rh}{p20011}{B4}, \\leanwit{FrcCore}{p20011}{B4}, \\leanwit{FrcMathlib}{p20011}{B4} \\lean{Rh.zero\\_slot, FRC.Rh.zero\\_slot}",
      "key": "p20011"
     },
     {
      "label": "B5",
      "predicate": "Slot complementarity: $\\Phi(k)=-\\gen^{\\,k}$ bijects the nontrivial spectral slots onto the nonterminal additive slots $\\Fx{\\Omega}\\setminus\\{-1\\}$, the two removed points being $\\mu_2$, the intertwiner the half-cycle element.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:compl}\\newline \\pywit{rh}{p20012}{B5}, \\leanwit{FrcCore}{p20012}{B5}, \\leanwit{FrcLedger}{p20012}{B5} \\lean{Rh.slot\\_complementarity, FRC.Rh.slot\\_complementarity}",
+     "source": "Thm.~\\ref{thm:compl}\\newline \\pywit{rh}{p20012}{B5}, \\leanwit{FrcCore}{p20012}{B5}, \\leanwit{FrcMathlib}{p20012}{B5} \\lean{Rh.slot\\_complementarity, FRC.Rh.slot\\_complementarity}",
      "key": "p20012"
     },
     {
      "label": "B6",
      "predicate": "Hermitian phase calculus on $K=\\F_{\\p^{2}}$: norm and trace $\\Fp$-valued, the phase circle $U_{\\p+1}$ of order $\\p+1$ with Frobenius as inversion, the quarter-turn $\\im$ Frobenius-fixed and off the circle ($\\Nm(\\im)=-1$), the trace-zero $\\eta$ with $\\eta^{2}=\\nu$ a nonsquare, $\\Tr(a+b\\eta)=2a$, $\\Nm=a^{2}-\\nu b^{2}$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:K}\\newline \\pywit{rh}{p20013}{B6}, \\leanwit{FrcCore}{p20013}{B6}, \\leanwit{FrcLedger}{p20013}{B6} \\lean{Rh.phase\\_circle, Rh.frobenius\\_eq\\_star, Rh.norm\\_eq\\_pow, Rh.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.mul\\_conj, FRC.Rh.Ext.conj\\_inv\\_of\\_norm\\_one, FRC.Rh.Ext.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.circle13}",
+     "source": "Lem.~\\ref{lem:K}\\newline \\pywit{rh}{p20013}{B6}, \\leanwit{FrcCore}{p20013}{B6}, \\leanwit{FrcMathlib}{p20013}{B6} \\lean{Rh.phase\\_circle, Rh.frobenius\\_eq\\_star, Rh.norm\\_eq\\_pow, Rh.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.mul\\_conj, FRC.Rh.Ext.conj\\_inv\\_of\\_norm\\_one, FRC.Rh.Ext.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.circle13}",
      "key": "p20013"
     },
     {
      "label": "B8",
      "predicate": "The finite critical line: the half-turn $2^{-1}=2\\kp+1=-\\pi$; $\\Tr(z)=1$ exactly on the $\\p$ points $z=2^{-1}+\\eta\\theta$, with norm $\\Nm(z)=\\tfrac14-\\nu\\theta^{2}$; de-framed, $2^{-1}/\\p=(2\\kp+1)/\\p\\to\\half$ from above [chart].",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:critical}\\newline \\pywit{rh}{p20015}{B8}, \\leanwit{FrcCore}{p20015}{B8}, \\leanwit{FrcLedger}{p20015}{B8} \\lean{Rh.half\\_turn, Rh.trace\\_eq\\_one\\_iff, Rh.card\\_critical\\_line, Rh.norm\\_on\\_line, FRC.Rh.half\\_inverse, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.norm\\_on\\_line}",
+     "source": "Prop.~\\ref{prop:critical}\\newline \\pywit{rh}{p20015}{B8}, \\leanwit{FrcCore}{p20015}{B8}, \\leanwit{FrcMathlib}{p20015}{B8} \\lean{Rh.half\\_turn, Rh.trace\\_eq\\_one\\_iff, Rh.card\\_critical\\_line, Rh.norm\\_on\\_line, FRC.Rh.half\\_inverse, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.norm\\_on\\_line}",
      "key": "p20015"
     },
     {
      "label": "B9",
      "predicate": "The two agreement loci: among the $\\p(\\p+1)$ affine lines of $K$ exactly two are invariant under both conjugation and the half-turn, the prime meridian and the critical line (conjugation keeps $\\p+1$ lines, the half-turn the $\\p+1$ lines through $2^{-1}$); as a corollary the Klein four-group fixes pointwise $\\Fp$, $L_{1/2}$ and their meeting $\\{2^{-1}\\}$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:agree}\\newline \\pywit{rh}{p20016}{B9}, \\leanwit{FrcCore}{p20016}{B9}, \\leanwit{FrcLedger}{p20016}{B9} \\lean{Rh.klein\\_four, Rh.fixed\\_frobenius, Rh.trace\\_eq\\_one\\_iff, Rh.fixed\\_half\\_turn, FRC.Rh.Ext.klein\\_four, FRC.Rh.Ext.fixed\\_conj, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.fixed\\_half\\_turn, FRC.Horizon.invariant\\_lines}",
+     "source": "Thm.~\\ref{thm:agree}\\newline \\pywit{rh}{p20016}{B9}, \\leanwit{FrcCore}{p20016}{B9}, \\leanwit{FrcMathlib}{p20016}{B9} \\lean{Rh.klein\\_four, Rh.fixed\\_frobenius, Rh.trace\\_eq\\_one\\_iff, Rh.fixed\\_half\\_turn, FRC.Rh.Ext.klein\\_four, FRC.Rh.Ext.fixed\\_conj, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.fixed\\_half\\_turn, FRC.Horizon.invariant\\_lines}",
      "key": "p20016"
     },
     {
      "label": "B10",
      "predicate": "The Subject constants on the shell: $\\pi=2\\kp$, $2\\pi\\equiv-1$, $\\im=\\gen^{-\\kp}$, $\\im^{2}\\equiv-1$, $\\E=\\gen^{\\,\\im}$ on the odd lift, $\\gen^{\\,\\pi}\\equiv-1$, $\\E^{\\,\\im\\pi}\\equiv-1$; on $\\F_{13}$: $\\gen=2$, $\\im=5$, $\\E=6$, $\\pi=6$.",
      "tag": "T",
-     "source": "\\S\\ref{sub:frc}, Rem.~\\ref{rem:frame}\\newline \\pywit{rh}{p20017}{B10}, \\leanwit{FrcCore}{p20017}{B10}, \\leanwit{FrcLedger}{p20017}{B10} \\lean{Rh.subject\\_constants, Rh.constants13, FRC.Rh.subject\\_constants, FRC.Rh.constants13, FRC.Shell.frame13}",
+     "source": "\\S\\ref{sub:frc}, Rem.~\\ref{rem:frame}\\newline \\pywit{rh}{p20017}{B10}, \\leanwit{FrcCore}{p20017}{B10}, \\leanwit{FrcMathlib}{p20017}{B10} \\lean{Rh.subject\\_constants, Rh.constants13, FRC.Rh.subject\\_constants, FRC.Rh.constants13, FRC.Shell.frame13}",
      "key": "p20017"
     },
     {
@@ -192,14 +192,14 @@
      "label": "E12",
      "predicate": "\\textbf{The shell theorem.} On every shell, for every vector, in $\\Fp$: (i) the dual $\\hat v(k)=\\sum v(x)x^{k}$ inverts exactly, $v(y)=-\\sum\\hat v(k)y^{-k}$, the constant mode the mean term; (ii) the Parseval identity (E13); (iii) every mode on the critical line, an eigenvector of the drive (E15); (iv) the parity and (v) the explicit formula along the meridian (E14).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hp}\\newline \\pywit{rh}{p20043}{E12}, \\leanwit{FrcCore}{p20043}{E12}, \\leanwit{FrcLedger}{p20043}{E12} \\lean{Rh.chi\\_inversion, Rh.chi\\_shift, Rh.scale\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace, Rh.readout\\_on\\_line, Rh.readout\\_slot\\_index, FRC.Rh.Ext.readout\\_on\\_line, FRC.Rh.Ext.readout\\_slot\\_index, FRC.Horizon.mode\\_expansion, FRC.Horizon.inversion\\_res}",
+     "source": "Thm.~\\ref{thm:hp}\\newline \\pywit{rh}{p20043}{E12}, \\leanwit{FrcCore}{p20043}{E12}, \\leanwit{FrcMathlib}{p20043}{E12} \\lean{Rh.chi\\_inversion, Rh.chi\\_shift, Rh.scale\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace, Rh.readout\\_on\\_line, Rh.readout\\_slot\\_index, FRC.Rh.Ext.readout\\_on\\_line, FRC.Rh.Ext.readout\\_slot\\_index, FRC.Horizon.mode\\_expansion, FRC.Horizon.inversion\\_res}",
      "key": "p20043"
     },
     {
      "label": "E13",
      "predicate": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ in place of the complex norm; in the chart the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity reads $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hp} (ii), Rem.~\\ref{rem:parseval}\\newline \\pywit{rh}{p20044}{E13}, \\leanwit{FrcCore}{p20044}{E13}, \\leanwit{FrcLedger}{p20044}{E13} \\lean{FRC.Horizon.parseval\\_cycle, Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion}",
+     "source": "Thm.~\\ref{thm:hp} (ii), Rem.~\\ref{rem:parseval}\\newline \\pywit{rh}{p20044}{E13}, \\leanwit{FrcCore}{p20044}{E13}, \\leanwit{FrcMathlib}{p20044}{E13} \\lean{FRC.Horizon.parseval\\_cycle, Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion}",
      "key": "p20044"
     },
     {
@@ -398,7 +398,7 @@
   "B1": [
    {
     "name": "FRC.Rh.lab_pair",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 287,
     "axioms": [
      "Quot.sound",
@@ -410,7 +410,7 @@
    },
    {
     "name": "FRC.Rh.no_cycle_projection",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 292,
     "axioms": [
      "Classical.choice",
@@ -434,7 +434,7 @@
   "B2": [
    {
     "name": "FRC.Rh.window_readback",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 267,
     "axioms": [
      "Quot.sound",
@@ -446,7 +446,7 @@
    },
    {
     "name": "FRC.Rh.prime_iff_window_irreducible",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 273,
     "axioms": [
      "Quot.sound",
@@ -458,7 +458,7 @@
    },
    {
     "name": "FRC.Rh.sqrt_sq_lt_prime",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 279,
     "axioms": [
      "Classical.choice",
@@ -500,7 +500,7 @@
   "B4": [
    {
     "name": "FRC.Rh.zero_slot",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 35,
     "axioms": [
      "Classical.choice",
@@ -524,7 +524,7 @@
   "B5": [
    {
     "name": "FRC.Rh.slot_complementarity",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 42,
     "axioms": [
      "Classical.choice",
@@ -548,7 +548,7 @@
   "B6": [
    {
     "name": "FRC.Rh.phase_circle",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 158,
     "axioms": [
      "Classical.choice",
@@ -561,7 +561,7 @@
    },
    {
     "name": "FRC.Rh.frobenius_eq_star",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 147,
     "axioms": [
      "Classical.choice",
@@ -574,7 +574,7 @@
    },
    {
     "name": "FRC.Rh.norm_eq_pow",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 153,
     "axioms": [
      "Classical.choice",
@@ -587,7 +587,7 @@
    },
    {
     "name": "FRC.Rh.quarter_turn_off_circle",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 166,
     "axioms": [
      "Classical.choice",
@@ -638,7 +638,7 @@
   "B8": [
    {
     "name": "FRC.Rh.half_turn",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 66,
     "axioms": [
      "Classical.choice",
@@ -651,7 +651,7 @@
    },
    {
     "name": "FRC.Rh.trace_eq_one_iff",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 102,
     "axioms": [
      "Classical.choice",
@@ -664,7 +664,7 @@
    },
    {
     "name": "FRC.Rh.card_critical_line",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 125,
     "axioms": [
      "Classical.choice",
@@ -677,7 +677,7 @@
    },
    {
     "name": "FRC.Rh.norm_on_line",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 112,
     "axioms": [
      "Classical.choice",
@@ -719,7 +719,7 @@
   "B9": [
    {
     "name": "FRC.Rh.klein_four",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 93,
     "axioms": [
      "Classical.choice",
@@ -732,7 +732,7 @@
    },
    {
     "name": "FRC.Rh.fixed_frobenius",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 98,
     "axioms": [
      "Classical.choice",
@@ -745,7 +745,7 @@
    },
    {
     "name": "FRC.Rh.trace_eq_one_iff",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 102,
     "axioms": [
      "Classical.choice",
@@ -758,7 +758,7 @@
    },
    {
     "name": "FRC.Rh.fixed_half_turn",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 107,
     "axioms": [
      "Classical.choice",
@@ -818,7 +818,7 @@
   "B10": [
    {
     "name": "FRC.Rh.subject_constants",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 72,
     "axioms": [
      "Classical.choice",
@@ -831,7 +831,7 @@
    },
    {
     "name": "FRC.Rh.constants13",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 79,
     "axioms": [
      "Quot.sound",
@@ -1022,7 +1022,7 @@
   "E12": [
    {
     "name": "FRC.Rh.chi_inversion",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 215,
     "axioms": [
      "Classical.choice",
@@ -1035,7 +1035,7 @@
    },
    {
     "name": "FRC.Rh.chi_shift",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 209,
     "axioms": [
      "Classical.choice",
@@ -1048,7 +1048,7 @@
    },
    {
     "name": "FRC.Rh.scale_shift",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 178,
     "axioms": [
      "Classical.choice",
@@ -1079,7 +1079,7 @@
    },
    {
     "name": "FRC.Rh.readout_on_line",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 117,
     "axioms": [
      "Classical.choice",
@@ -1092,7 +1092,7 @@
    },
    {
     "name": "FRC.Rh.readout_slot_index",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 131,
     "axioms": [
      "Classical.choice",
@@ -1152,7 +1152,7 @@
    },
    {
     "name": "FRC.Rh.chi_orthogonal",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 204,
     "axioms": [
      "Classical.choice",
@@ -1165,7 +1165,7 @@
    },
    {
     "name": "FRC.Rh.chi_parseval",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 221,
     "axioms": [
      "Classical.choice",
@@ -1178,7 +1178,7 @@
    },
    {
     "name": "FRC.Rh.chi_inversion",
-    "module": "FrcLedger/Rh",
+    "module": "FrcMathlib/Rh",
     "line": 215,
     "axioms": [
      "Classical.choice",

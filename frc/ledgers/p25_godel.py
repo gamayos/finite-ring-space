@@ -25,7 +25,7 @@ The Lean side, under the rule of this paper that every T row has a core proof: t
 (the finite theories, their decidability and completeness), Theme/Reach.lean (the certificate traces, the wrap, aliasing,
 the reach bound, the length horizon, the evaluation ceiling, the global clause, the trichotomy's middle cell),
 Theme/Diagonal.lean (the syntax with its mention cost, the template, the no-compression theorem, the decoders Int_J) and
-Theme/Threshold.lean (the name-cost bound, k*(M), t(M) < a^(d-1)); on Mathlib lean/FrcLedger/Theme/Logic.lean (the
+Theme/Threshold.lean (the name-cost bound, k*(M), t(M) < a^(d-1)); on Mathlib lean/FrcMathlib/Theme/Logic.lean (the
 cardinal forms); the keys in Keys/Logic.lean of both libraries, the certificates Ledgers/P25Godel.lean. The rows F8, G8,
 G5 and H3 of the paper carry no Lean theorem and are retagged I in the ledger of 20 October 2026; the checks G2, G3 and
 E2 here stay as their corroboration.

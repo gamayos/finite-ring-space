@@ -10,7 +10,7 @@ dipole's Lense–Thirring rate and the ergosurface, the radiative dispersion and
 2PN periastron excess of PSR J0737−3039, the tilt and the scale-path probe, the seeded Kuramoto chain of the
 flux-conservation lemma, and the ringdown of the exponential reading (the eikonal pair and the ℓ = 2 mode of the chart's wave
 operator by third-order WKB along the tortoise coordinate, a truncated power series doing the derivatives; 00:E14). Floats are allowed here and nowhere in the exact tiers; the standard library only. The Lean
-side is lean/FrcLedger/Theme/Strong.lean (Mathlib, the brackets). Every comparison with measured data is [data].
+side is lean/FrcMathlib/Theme/Strong.lean (Mathlib, the brackets). Every comparison with measured data is [data].
 """
 import cmath
 import math

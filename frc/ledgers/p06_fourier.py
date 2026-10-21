@@ -12,7 +12,7 @@ The exact checks call the fourier theme (frc/fourier.py: the transform, the proj
 over F_p) and frc/arith.py, so this file stays exact (gate G09). The entropy block of the paper's first version (its
 block E, the chart's readout on ℂ^n) retired with the revision of 9 October 2026 (the paper's reports/entropy-20261008.md;
 the pre-edit copy is _to_delete/p06_fourier-pre-rewrite-20261009.py). The Lean side is the certificates lean/FrcCore/Ledgers/P06Fourier.lean and
-lean/FrcLedger/Ledgers/P06Fourier.lean, over the frame and fourier themes' keys.
+lean/FrcMathlib/Ledgers/P06Fourier.lean, over the frame and fourier themes' keys.
 
     python3 -m frc.ledgers.p06_fourier        every block, the census; exit 1 if a check fails (≈ 1 min)
     python3 -m frc.ledgers.p06_fourier D      one block (A to D)

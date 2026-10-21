@@ -1,8 +1,8 @@
 import Mathlib
-import FrcLedger.Theme.Horizon
+import FrcMathlib.Theme.Horizon
 
 /-!
-# FrcLedger.Theme.Chart — the chart theme: the readings against the continuum (ledger migration, task LM30)
+# FrcMathlib.Theme.Chart — the chart theme: the readings against the continuum (ledger migration, task LM30)
 
 The chart theme holds the readings of the finite results against the continuum, the only theme with the reals
 (`frc/themes.py`, rank 31). It serves the chart clauses of the master's scale import (00:A7, `scale_import`; the ledger's `ln Ω` for L8,
@@ -573,7 +573,7 @@ end tilt
 /-! ## 20-rh: the complex characters of the cycle, the characters as eigenvectors of the scale-shift, and the von
 Mangoldt weight (20:E1, E12, E13, C5, C2; task LM36)
 
-Moved here from 20-rh's `FrcLedger/Rh.lean` under the same names; that module keeps the old names as aliases. The
+Moved here from 20-rh's `FrcMathlib/Rh.lean` under the same names; that module keeps the old names as aliases. The
 exact shell arithmetic of the same rows is the horizon theme's (`Theme/Horizon.lean`, `FRC.HorizonML`). -/
 
 section characters

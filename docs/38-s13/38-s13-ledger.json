@@ -96,7 +96,7 @@
      "label": "B2",
      "predicate": "The radial ladder: shells at $R\\sin(2a\\pi/13)$ [chart]; capacity $4a<\\p\\Leftrightarrow a\\le\\kap$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:sky}\\newline \\pywit{s13}{p38010}{B2}, \\leanwit{FrcCore}{p38010}{B2}, \\leanwit{FrcLedger}{p38010}{B2}; rests on A10 \\lean{FRC.Pair.window, FRC.Pair.window\\_instance, S13.ladder\\_monotone}",
+     "source": "\\S\\ref{sec:sky}\\newline \\pywit{s13}{p38010}{B2}, \\leanwit{FrcCore}{p38010}{B2}, \\leanwit{FrcMathlib}{p38010}{B2}; rests on A10 \\lean{FRC.Pair.window, FRC.Pair.window\\_instance, S13.ladder\\_monotone}",
      "key": "p38010"
     },
     {
@@ -186,14 +186,14 @@
      "label": "C7",
      "predicate": "The two faces of the leak: angular $\\kap/\\dS$ (the curl), temporal $\\kap/(2\\dS)$ (the ring, on $C_{464}$); ratio exactly $2$, the double cover.",
      "tag": "T",
-     "source": "Statement~\\ref{th:floors}\\newline \\pywit{s13}{p38022}{C7}, \\leanwit{FrcCore}{p38022}{C7}, \\leanwit{FrcLedger}{p38022}{C7} \\lean{FRC.Grav.two\\_face\\_count, FRC.Pair.leak\\_rate, FRC.Pair.two\\_faces, S13.registration\\_dictionary}",
+     "source": "Statement~\\ref{th:floors}\\newline \\pywit{s13}{p38022}{C7}, \\leanwit{FrcCore}{p38022}{C7}, \\leanwit{FrcMathlib}{p38022}{C7} \\lean{FRC.Grav.two\\_face\\_count, FRC.Pair.leak\\_rate, FRC.Pair.two\\_faces, S13.registration\\_dictionary}",
      "key": "p38022"
     },
     {
      "label": "C8",
      "predicate": "The face-ratio identity, orbit-free (both sides' scales cancel): the pair's two faces (C7) have ratio exactly $2$; read in the comparison chart of the laboratory dictionary (C12), the parametrised isotropic metric [approx: continuum chart], the identity forces $2\\gamma-\\beta=1$, a combination measured to $10^{-4}$ (Cassini, lunar laser ranging) and so discriminating no metric the data have not already selected; Brans--Dicke's $2\\gamma-\\beta-1=-2/(2+\\omega)$ is the same fact read in one family.",
      "tag": "T",
-     "source": "Statement~\\ref{th:floors}\\newline \\pywit{s13}{p38023}{C8}, \\leanwit{FrcLedger}{p38023}{C8}; rests on C7, C12 \\lean{S13.ppn\\_faces}",
+     "source": "Statement~\\ref{th:floors}\\newline \\pywit{s13}{p38023}{C8}, \\leanwit{FrcMathlib}{p38023}{C8}; rests on C7, C12 \\lean{S13.ppn\\_faces}",
      "key": "p38023"
     },
     {
@@ -352,7 +352,7 @@
      "label": "X3",
      "predicate": "\\textbf{The acceleration floor $a_{0}=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10; C11, the realisation); at the instance $a_{0}=c/(\\Om-1)$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:reality}\\newline \\pywit{s13}{p38048}{X3}, \\leanwit{FrcCore}{p38048}{X3}, \\leanwit{FrcLedger}{p38048}{X3}; rests on C10, C11 \\lean{FRC.Pair.leak\\_rate, S13.floor\\_value}",
+     "source": "\\S\\ref{sec:reality}\\newline \\pywit{s13}{p38048}{X3}, \\leanwit{FrcCore}{p38048}{X3}, \\leanwit{FrcMathlib}{p38048}{X3}; rests on C10, C11 \\lean{FRC.Pair.leak\\_rate, S13.floor\\_value}",
      "key": "p38048"
     },
     {
@@ -372,7 +372,7 @@
      "label": "P1",
      "predicate": "The registration floor $a_{0}=cH_{0}/2\\pi$, read from the pair's $\\kap$-free per-chronon leak rate (C11): parameter-free, tracking $H(z)$. Falsifier: a measured floor off $cH_{0}/2\\pi$ beyond the $H_{0}$ uncertainty, or one not tracking $H(z)$ (\\S\\ref{sec:predictions}, item 5; the dark sector's L1).",
      "tag": "T",
-     "source": "\\S\\ref{sec:predictions}\\newline \\pywit{s13}{p38049}{P1}, \\leanwit{FrcLedger}{p38049}{P1}; rests on C10, C11, 00:L1 \\lean{S13.floor\\_value, S13.running\\_floor}",
+     "source": "\\S\\ref{sec:predictions}\\newline \\pywit{s13}{p38049}{P1}, \\leanwit{FrcMathlib}{p38049}{P1}; rests on C10, C11, 00:L1 \\lean{S13.floor\\_value, S13.running\\_floor}",
      "key": "p38049"
     }
    ]
@@ -733,7 +733,7 @@
    },
    {
     "name": "FRC.S13.ladder_monotone",
-    "module": "FrcLedger/S13",
+    "module": "FrcMathlib/S13",
     "line": 64,
     "axioms": [
      "Classical.choice",
@@ -957,7 +957,7 @@
    },
    {
     "name": "FRC.S13.registration_dictionary",
-    "module": "FrcLedger/S13",
+    "module": "FrcMathlib/S13",
     "line": 39,
     "axioms": [
      "Classical.choice",
@@ -972,7 +972,7 @@
   "C8": [
    {
     "name": "FRC.S13.ppn_faces",
-    "module": "FrcLedger/S13",
+    "module": "FrcMathlib/S13",
     "line": 27,
     "axioms": [
      "Classical.choice",
@@ -1312,7 +1312,7 @@
    },
    {
     "name": "FRC.S13.floor_value",
-    "module": "FrcLedger/S13",
+    "module": "FrcMathlib/S13",
     "line": 47,
     "axioms": [
      "Classical.choice",
@@ -1356,7 +1356,7 @@
   "P1": [
    {
     "name": "FRC.S13.floor_value",
-    "module": "FrcLedger/S13",
+    "module": "FrcMathlib/S13",
     "line": 47,
     "axioms": [
      "Classical.choice",
@@ -1369,7 +1369,7 @@
    },
    {
     "name": "FRC.S13.running_floor",
-    "module": "FrcLedger/S13",
+    "module": "FrcMathlib/S13",
     "line": 56,
     "axioms": [
      "Classical.choice",
