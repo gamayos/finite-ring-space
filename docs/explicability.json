@@ -253,7 +253,7 @@
    "key": "p22044",
    "tag": "T",
    "predicate": "\\textbf{The Born rule} is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional --- on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11).",
-   "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}\\newline \\pywit{quantum}{p22044}{X1}, \\leanwit{FrcCore}{p22044}{X1}, \\leanwit{FrcMathlib}{p22044}{X1} \\lean{FRC.Observation.window\\_lift, FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Extension.two\\_way\\_tally, Qm.pair\\_count\\_tally}",
+   "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}\\newline \\pywit{quantum}{p22044}{X1}, \\leanwit{FrcCore}{p22044}{X1}, \\leanwit{FrcMathlib}{p22044}{X1} \\lean{FRC.Observation.window\\_lift, FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Extension.two\\_way\\_tally, Quantum.pair\\_count\\_tally}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -331,7 +331,7 @@
    "key": "p22050",
    "tag": "T",
    "predicate": "\\textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\\zeta_8+\\zeta_8^{-1})=2\\sqrt2$ [chart], so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary.",
-   "source": "Thm.~\\ref{thm:tsirelson}\\newline \\pywit{quantum}{p22050}{X7}, \\leanwit{FrcCore}{p22050}{X7}, \\leanwit{FrcMathlib}{p22050}{X7} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Qm.tsirelson\\_real}",
+   "source": "Thm.~\\ref{thm:tsirelson}\\newline \\pywit{quantum}{p22050}{X7}, \\leanwit{FrcCore}{p22050}{X7}, \\leanwit{FrcMathlib}{p22050}{X7} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Quantum.tsirelson\\_real}",
    "master": [
     "C8"
    ],
@@ -346,7 +346,7 @@
    "key": "p22051",
    "tag": "T",
    "predicate": "\\textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down.",
-   "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}\\newline \\pywit{quantum}{p22051}{X8}, \\leanwit{FrcCore}{p22051}{X8}, \\leanwit{FrcMathlib}{p22051}{X8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Qm.sorkin\\_hierarchy}",
+   "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}\\newline \\pywit{quantum}{p22051}{X8}, \\leanwit{FrcCore}{p22051}{X8}, \\leanwit{FrcMathlib}{p22051}{X8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Quantum.sorkin\\_hierarchy}",
    "master": [],
    "restated": [],
    "witnessed": false,

@@ -10,7 +10,7 @@ import rh as dcommon
 PKG = "20-rh"; NB = f"frc-{PKG}.ipynb"; PAPER = "20"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
 CITE = "Akhtman & Voether, Preprints 2026"; DOI = "https://doi.org/10.20944/preprints202606.0768.v1"                       # the heading's citation, linked to the article
-SCRIPT = "rh.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/)"; RUNTIME = "under a minute on Colab; the depth 10⁶ of block C is the slow part"      # the one script, linked to its source page
+SCRIPT = "rh.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/py/rh.html)"; RUNTIME = "under a minute on Colab; the depth 10⁶ of block C is the slow part"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})

@@ -1,5 +1,5 @@
 /-! FrcCore — the FRC substrate from first principles, one file for the live instance (no Mathlib,
-no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Cycle, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Fractional, Theme.Lifts, Theme.Dichotomy, Theme.Rotations, Theme.Heisenberg, Theme.Spectra, Theme.Exclusivity, Theme.Shift, Theme.Quadratic, Theme.Extension, Theme.Spin, Poly, Theme.Numbers, Theme.Logic, Theme.SecondOrder, Theme.Formation, Theme.Reach, Theme.Diagonal, Theme.Threshold, Theme.Sets, Theme.Equivariant, Theme.Transfer, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Carrier, Theme.Subject, Theme.Pair, Theme.Hopf, Theme.Symbol, Theme.Gravity, Theme.Lattice, Theme.Drift, Theme.Quantum, Theme.Observation, Theme.Interference, Theme.Composite, Theme.Unitary, Theme.Interactions, Theme.Fields, Theme.Horizon, Theme.Zeros, Theme.Ladder, Theme.Flavour, Theme.Dark, Theme.Hadrons, Theme.Super, Keys.Fourier, Instances, Theme.Domain, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Algebra, Epi, Dimensions, Quaternion, Theme.Tally, Keys.Extension, Causality, Representation, Keys.Logic, Reductio, Godel, Keys.Foundation, Finitism, Geometry, Complex, Keys.Horizon, Rh, Entropy, Keys.Gravity, Gravity, Dirac, Keys.Subject, S13, Keys.Quantum, Qm, Pnp, Keys.Interactions, Fields, Keys.Flavour, Flavour, Keys.Dark, Dark, Keys.Hadrons, Hadrons, Keys.Carrier, Keys.Super)
+no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Cycle, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Fractional, Theme.Lifts, Theme.Dichotomy, Theme.Rotations, Theme.Heisenberg, Theme.Spectra, Theme.Exclusivity, Theme.Shift, Theme.Quadratic, Theme.Extension, Theme.Spin, Poly, Theme.Numbers, Theme.Logic, Theme.SecondOrder, Theme.Formation, Theme.Reach, Theme.Diagonal, Theme.Threshold, Theme.Sets, Theme.Equivariant, Theme.Transfer, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Carrier, Theme.Subject, Theme.Pair, Theme.Hopf, Theme.Symbol, Theme.Gravity, Theme.Lattice, Theme.Drift, Theme.Quantum, Theme.Observation, Theme.Interference, Theme.Composite, Theme.Unitary, Theme.Interactions, Theme.Fields, Theme.Horizon, Theme.Zeros, Theme.Ladder, Theme.Flavour, Theme.Dark, Theme.Hadrons, Theme.Super, Keys.Fourier, Instances, Theme.Domain, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Algebra, Epi, Dimensions, Quaternion, Theme.Tally, Keys.Extension, Causality, Representation, Keys.Logic, Reductio, Godel, Keys.Foundation, Finitism, Geometry, Complex, Keys.Horizon, Rh, Entropy, Keys.Gravity, Gravity, Dirac, Keys.Subject, S13, Keys.Quantum, Quantum, Pnp, Keys.Interactions, Fields, Keys.Flavour, Flavour, Keys.Dark, Dark, Keys.Hadrons, Hadrons, Keys.Carrier, Keys.Super)
 by make_core_web.py; the modules' own headers follow. Check any declaration with `#print axioms`. -/
 
 /-! inlined: FrcCore/Nat.lean -/
@@ -30493,7 +30493,7 @@ theorem p22056 : (∀ {k k' : Nat}, k ≤ k' → FRC.Interference.tallyNorm k �
 
 end FRC.Ledger
 
-/-! inlined: FrcCore/Qm.lean -/
+/-! inlined: FrcCore/Quantum.lean -/
 
 /-!
 # 22-quantum — the paper module: every theorem of *Quantum Observation over Finite Holographic Substrate* lives in the themes (15 October 2026)
@@ -30510,11 +30510,11 @@ strata and the pair tally on `Q₄` in `Theme/Extension.lean` and `Theme/Tally.l
 C10 and C11); the Tsirelson square's root identity in `Theme/Field.lean` (`Prime.tsirelson`) and the spinor cover and
 the torus half-turn in `Theme/Subject.lean` (`Subject.channel`, `horizon_generator`, the master's C20 and C25). Every
 row of the paper's ledger is a key written by `make_keys.py` from those (`Keys/*.lean`), and this module carries the
-rows' declarations `FRC.Qm.p22NNN` as aliases of the keys (`make_predicates.py`). No theorem is stated here twice.
+rows' declarations `FRC.Quantum.p22NNN` as aliases of the keys (`make_predicates.py`). No theorem is stated here twice.
 Every declaration is checked to depend on no axiom (`check_core_axioms.py`).
 -/
 
-namespace FRC.Qm
+namespace FRC.Quantum
 
 open FRC.Shell
 
@@ -30644,7 +30644,7 @@ theorem p22056 : (∀ {k k' : Nat}, k ≤ k' → FRC.Interference.tallyNorm k �
   @FRC.Ledger.p22056
 -- end ledger predicates
 
-end FRC.Qm
+end FRC.Quantum
 
 /-! inlined: FrcCore/Pnp.lean -/
 

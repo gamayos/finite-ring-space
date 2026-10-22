@@ -146,7 +146,7 @@ def notebook(f, L, data):
     def code(s, cid): cells.append({"cell_type": "code", "id": cid, "metadata": {"id": cid}, "execution_count": None, "outputs": [], "source": s})
     if data.get("block"):
         md(f"## {data['title']}\n\n"
-           f"Each cell below verifies one row of the master predicate ledger ([{SITE[8:]}/00-ledger.html]({SITE}/00-ledger.html)), "
+           f"Each cell below verifies one row of the master predicate ledger ([{SITE[8:]}/ledger.html]({SITE}/ledger.html)), "
            f"{'blocks ' + ' and '.join(data['block']) if len(data['block']) > 1 else 'block ' + data['block']}, on the FRC framework: it runs the blocks of the ledger file `{rel}` whose checks cite the row, prints the check "
            "that decides it and lists every record that cites it with its verdict. The cell's id is the row's accession key. "
            + ("The row's chart clauses are proved in Lean on Mathlib's reals; the cells check them in exact rational arithmetic and in floating point. "

@@ -1,5 +1,5 @@
 {
- "generated": "21 October 2026",
+ "generated": "22 October 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -16,7 +16,7 @@
     "32:P1"
    ],
    "witnessed": false,
-   "page": "00-ledger.html"
+   "page": "ledger.html"
   },
   {
    "id": "00:P2",
@@ -29,7 +29,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "00-ledger.html"
+   "page": "ledger.html"
   },
   {
    "id": "00:P3",
@@ -42,7 +42,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "00-ledger.html"
+   "page": "ledger.html"
   },
   {
    "id": "00:P4",
@@ -55,7 +55,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "00-ledger.html"
+   "page": "ledger.html"
   },
   {
    "id": "10:P1",
@@ -234,7 +234,7 @@
    "key": "p22052",
    "tag": "T",
    "predicate": "Gravitationally induced entanglement at exactly the Newtonian rate [chart], $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction.",
-   "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Qm.channel\\_chart}",
+   "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Quantum.channel\\_chart}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -247,7 +247,7 @@
    "key": "p22053",
    "tag": "T",
    "predicate": "Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\\Omega$: a single confirmed small $I_3\\neq0$ falsifies outright.",
-   "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; rests on B1, C8\\newline \\pywit{quantum}{p22053}{P2}, \\leanwit{FrcCore}{p22053}{P2}, \\leanwit{FrcMathlib}{p22053}{P2} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Qm.sorkin\\_hierarchy}",
+   "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; rests on B1, C8\\newline \\pywit{quantum}{p22053}{P2}, \\leanwit{FrcCore}{p22053}{P2}, \\leanwit{FrcMathlib}{p22053}{P2} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Quantum.sorkin\\_hierarchy}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -260,7 +260,7 @@
    "key": "p22054",
    "tag": "T",
    "predicate": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
-   "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; rests on B2, B5, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcMathlib}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Qm.tsirelson\\_real}",
+   "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; rests on B2, B5, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcMathlib}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Quantum.tsirelson\\_real}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -288,7 +288,7 @@
    "key": "p22056",
    "tag": "T",
    "predicate": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\\sqrt\\Omega$) [chart], not gradual.",
-   "source": "Prop.~\\ref{prop:granularity}; rests on A5, C14\\newline \\pywit{quantum}{p22056}{P5}, \\leanwit{FrcCore}{p22056}{P5}, \\leanwit{FrcMathlib}{p22056}{P5} \\lean{FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, FRC.Interference.hadamard\\_even, Qm.ceiling\\_bracket, Qm.gaussian\\_minimal}",
+   "source": "Prop.~\\ref{prop:granularity}; rests on A5, C14\\newline \\pywit{quantum}{p22056}{P5}, \\leanwit{FrcCore}{p22056}{P5}, \\leanwit{FrcMathlib}{p22056}{P5} \\lean{FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, FRC.Interference.hadamard\\_even, Quantum.ceiling\\_bracket, Quantum.gaussian\\_minimal}",
    "master": [],
    "restated": [],
    "witnessed": false,

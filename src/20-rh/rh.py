@@ -11,7 +11,7 @@ Three blocks, 107 checks — 91 EXACT (integer-pinned: a pass is a proof on the 
 reading of the chart's characters to a stated tolerance), 11 [chart] (a continuum reading of a finite object; notation.tex
 convention 6) — Python with numpy and matplotlib (the paper's two drawn figures are redrawn into figures/paper/ as the blocks run; Figure 1 is the dimensions paper's).
 Each check names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 20:XN), and the deciding
-check's `# 20:XN (<key>)` marker is what the ledger's source column links (PREDICATES; finitering.space/src/20-rh/#<key>).
+check's `# 20:XN (<key>)` marker is what the ledger's source column links (PREDICATES; finitering.space/py/rh.html#<key>).
 Master-ledger predicates reached through the paper's rows: 00:A2 (Finitude, 20:A2), 00:A3 (Completeness, 20:A3) and 00:A4
 (Observation, 20:A4).
 

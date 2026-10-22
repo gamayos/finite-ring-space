@@ -41,7 +41,7 @@
      "label": "A5",
      "predicate": "The window discipline, committed: the coherence horizon $\\sqrt\\Omega$, the decidability horizon $\\Omega^{1/4}$, and the committed cardinality $\\Omega\\sim1.3\\times10^{123}$ [chart] (the corpus's scale import, master A7) --- declared inputs of the programme, their cost recorded in the $\\Omega$ ledger.",
      "tag": "Ω",
-     "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22005}{A5}, \\leanwit{FrcMathlib}{p22005}{A5} \\lean{Qm.omega\\_floors}",
+     "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22005}{A5}, \\leanwit{FrcMathlib}{p22005}{A5} \\lean{Quantum.omega\\_floors}",
      "key": "p22005"
     },
     {
@@ -179,14 +179,14 @@
      "label": "C7",
      "predicate": "Squared amplitudes are coincidence counts (the pair-count identity), realized tallies on $\\Z[\\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:paircount}, Lem.~\\ref{lem:registered}\\newline \\pywit{quantum}{p22023}{C7}, \\leanwit{FrcCore}{p22023}{C7}, \\leanwit{FrcMathlib}{p22023}{C7} \\lean{FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Observation.parseval, FRC.Quantum.dephasing, Qm.pair\\_count\\_tally}",
+     "source": "Prop.~\\ref{prop:paircount}, Lem.~\\ref{lem:registered}\\newline \\pywit{quantum}{p22023}{C7}, \\leanwit{FrcCore}{p22023}{C7}, \\leanwit{FrcMathlib}{p22023}{C7} \\lean{FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Observation.parseval, FRC.Quantum.dephasing, Quantum.pair\\_count\\_tally}",
      "key": "p22023"
     },
     {
      "label": "C8",
      "predicate": "Sorkin nullity: $I_k=0$ for every $k\\ge3$, exactly, on every channel and outcome, with $I_2$ generically nonzero.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:sorkin}\\newline \\pywit{quantum}{p22024}{C8}, \\leanwit{FrcCore}{p22024}{C8}, \\leanwit{FrcMathlib}{p22024}{C8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Interference.sorkin\\_second, FRC.Interference.sorkin\\_second\\_witness, Qm.sorkin\\_hierarchy, Qm.sorkin\\_second\\_witness}",
+     "source": "Cor.~\\ref{cor:sorkin}\\newline \\pywit{quantum}{p22024}{C8}, \\leanwit{FrcCore}{p22024}{C8}, \\leanwit{FrcMathlib}{p22024}{C8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Interference.sorkin\\_second, FRC.Interference.sorkin\\_second\\_witness, Quantum.sorkin\\_hierarchy, Quantum.sorkin\\_second\\_witness}",
      "key": "p22024"
     },
     {
@@ -228,7 +228,7 @@
      "label": "C14",
      "predicate": "The granularity ceiling: the representable coherent-splitting depth is the largest $k$ with $d\\,T(k)<\\Omega$, $T(k)=2^{k+[k\\text{ odd}]}$ the minimal tally norm, and resolution finer than $1/\\Omega$ lies outside the derived Born regime.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:granularity}\\newline \\pywit{quantum}{p22030}{C14}, \\leanwit{FrcCore}{p22030}{C14}, \\leanwit{FrcMathlib}{p22030}{C14} \\lean{FRC.Interference.hadamard\\_even, FRC.Interference.hadamard\\_odd, FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, Qm.gaussian\\_layers, Qm.gaussian\\_minimal, Qm.gaussian\\_norm, Qm.tally\\_norm\\_eq}",
+     "source": "Prop.~\\ref{prop:granularity}\\newline \\pywit{quantum}{p22030}{C14}, \\leanwit{FrcCore}{p22030}{C14}, \\leanwit{FrcMathlib}{p22030}{C14} \\lean{FRC.Interference.hadamard\\_even, FRC.Interference.hadamard\\_odd, FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, Quantum.gaussian\\_layers, Quantum.gaussian\\_minimal, Quantum.gaussian\\_norm, Quantum.tally\\_norm\\_eq}",
      "key": "p22030"
     },
     {
@@ -249,7 +249,7 @@
      "label": "C17",
      "predicate": "Exact Tsirelson saturation: the singlet law $E(\\Delta)=\\cos(\\pi\\Delta/40)$ [chart], $S=2(\\zeta_8+\\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it [chart]; no-signalling and the composite reduction commute.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{prop:boundary}\\newline \\pywit{quantum}{p22033}{C17}, \\leanwit{FrcCore}{p22033}{C17}, \\leanwit{FrcMathlib}{p22033}{C17} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Composite.no\\_signalling, FRC.Observation.reduce\\_mul, FRC.Composite.carrier\\_641, Qm.tsirelson\\_real, Qm.singlet\\_law}",
+     "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{prop:boundary}\\newline \\pywit{quantum}{p22033}{C17}, \\leanwit{FrcCore}{p22033}{C17}, \\leanwit{FrcMathlib}{p22033}{C17} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Composite.no\\_signalling, FRC.Observation.reduce\\_mul, FRC.Composite.carrier\\_641, Quantum.tsirelson\\_real, Quantum.singlet\\_law}",
      "key": "p22033"
     },
     {
@@ -263,7 +263,7 @@
      "label": "C19",
      "predicate": "The gravitational channel entangles exactly, $C^2=\\sin^2(\\varphi/2)$ [chart], with the pure-channel complementarity $V^2+C^2=1$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:bmvmech}\\newline \\pywit{quantum}{p22035}{C19}, \\leanwit{FrcCore}{p22035}{C19}, \\leanwit{FrcMathlib}{p22035}{C19} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.channel\\_product\\_at\\_zero, Qm.channel\\_chart, Qm.channel\\_entangles}",
+     "source": "Prop.~\\ref{prop:bmvmech}\\newline \\pywit{quantum}{p22035}{C19}, \\leanwit{FrcCore}{p22035}{C19}, \\leanwit{FrcMathlib}{p22035}{C19} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.channel\\_product\\_at\\_zero, Quantum.channel\\_chart, Quantum.channel\\_entangles}",
      "key": "p22035"
     },
     {
@@ -305,7 +305,7 @@
      "label": "C25",
      "predicate": "The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\\sqrt2$ [chart].",
      "tag": "T",
-     "source": "\\S\\ref{sec:dividends}; rests on A7, B3, B6, C17\\newline \\pywit{quantum}{p22041}{C25}, \\leanwit{FrcCore}{p22041}{C25}, \\leanwit{FrcMathlib}{p22041}{C25} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Qm.tsirelson\\_real}",
+     "source": "\\S\\ref{sec:dividends}; rests on A7, B3, B6, C17\\newline \\pywit{quantum}{p22041}{C25}, \\leanwit{FrcCore}{p22041}{C25}, \\leanwit{FrcMathlib}{p22041}{C25} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Quantum.tsirelson\\_real}",
      "key": "p22041"
     },
     {
@@ -332,7 +332,7 @@
      "label": "X1",
      "predicate": "\\textbf{The Born rule} is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional --- on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}\\newline \\pywit{quantum}{p22044}{X1}, \\leanwit{FrcCore}{p22044}{X1}, \\leanwit{FrcMathlib}{p22044}{X1} \\lean{FRC.Observation.window\\_lift, FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Extension.two\\_way\\_tally, Qm.pair\\_count\\_tally}",
+     "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}\\newline \\pywit{quantum}{p22044}{X1}, \\leanwit{FrcCore}{p22044}{X1}, \\leanwit{FrcMathlib}{p22044}{X1} \\lean{FRC.Observation.window\\_lift, FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Extension.two\\_way\\_tally, Quantum.pair\\_count\\_tally}",
      "key": "p22044"
     },
     {
@@ -374,14 +374,14 @@
      "label": "X7",
      "predicate": "\\textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\\zeta_8+\\zeta_8^{-1})=2\\sqrt2$ [chart], so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:tsirelson}\\newline \\pywit{quantum}{p22050}{X7}, \\leanwit{FrcCore}{p22050}{X7}, \\leanwit{FrcMathlib}{p22050}{X7} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Qm.tsirelson\\_real}",
+     "source": "Thm.~\\ref{thm:tsirelson}\\newline \\pywit{quantum}{p22050}{X7}, \\leanwit{FrcCore}{p22050}{X7}, \\leanwit{FrcMathlib}{p22050}{X7} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Quantum.tsirelson\\_real}",
      "key": "p22050"
     },
     {
      "label": "X8",
      "predicate": "\\textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}\\newline \\pywit{quantum}{p22051}{X8}, \\leanwit{FrcCore}{p22051}{X8}, \\leanwit{FrcMathlib}{p22051}{X8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Qm.sorkin\\_hierarchy}",
+     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}\\newline \\pywit{quantum}{p22051}{X8}, \\leanwit{FrcCore}{p22051}{X8}, \\leanwit{FrcMathlib}{p22051}{X8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Quantum.sorkin\\_hierarchy}",
      "key": "p22051"
     }
    ]
@@ -394,21 +394,21 @@
      "label": "P1",
      "predicate": "Gravitationally induced entanglement at exactly the Newtonian rate [chart], $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Qm.channel\\_chart}",
+     "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Quantum.channel\\_chart}",
      "key": "p22052"
     },
     {
      "label": "P2",
      "predicate": "Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\\Omega$: a single confirmed small $I_3\\neq0$ falsifies outright.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; rests on B1, C8\\newline \\pywit{quantum}{p22053}{P2}, \\leanwit{FrcCore}{p22053}{P2}, \\leanwit{FrcMathlib}{p22053}{P2} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Qm.sorkin\\_hierarchy}",
+     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; rests on B1, C8\\newline \\pywit{quantum}{p22053}{P2}, \\leanwit{FrcCore}{p22053}{P2}, \\leanwit{FrcMathlib}{p22053}{P2} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Quantum.sorkin\\_hierarchy}",
      "key": "p22053"
     },
     {
      "label": "P3",
      "predicate": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; rests on B2, B5, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcMathlib}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Qm.tsirelson\\_real}",
+     "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; rests on B2, B5, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcMathlib}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Quantum.tsirelson\\_real}",
      "key": "p22054"
     },
     {
@@ -422,7 +422,7 @@
      "label": "P5",
      "predicate": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\\sqrt\\Omega$) [chart], not gradual.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:granularity}; rests on A5, C14\\newline \\pywit{quantum}{p22056}{P5}, \\leanwit{FrcCore}{p22056}{P5}, \\leanwit{FrcMathlib}{p22056}{P5} \\lean{FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, FRC.Interference.hadamard\\_even, Qm.ceiling\\_bracket, Qm.gaussian\\_minimal}",
+     "source": "Prop.~\\ref{prop:granularity}; rests on A5, C14\\newline \\pywit{quantum}{p22056}{P5}, \\leanwit{FrcCore}{p22056}{P5}, \\leanwit{FrcMathlib}{p22056}{P5} \\lean{FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, FRC.Interference.hadamard\\_even, Quantum.ceiling\\_bracket, Quantum.gaussian\\_minimal}",
      "key": "p22056"
     }
    ]
@@ -442,7 +442,7 @@
      "label": "Z2",
      "predicate": "The committed $\\Omega$ anchor and the binding floor: the carrier scale is fixed by the verified Riemann height through $\\Omega^{1/4}$ [chart], and a single off-line zero below $\\Omega^{1/4}$ falsifies from a desk.",
      "tag": "Ω",
-     "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22061}{Z2}, \\leanwit{FrcMathlib}{p22061}{Z2} \\lean{Qm.omega\\_floors}",
+     "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22061}{Z2}, \\leanwit{FrcMathlib}{p22061}{Z2} \\lean{Quantum.omega\\_floors}",
      "key": "p22061"
     }
    ]
@@ -562,8 +562,8 @@
   ],
   "A5": [
    {
-    "name": "FRC.Qm.omega_floors",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.omega_floors",
+    "module": "FrcMathlib/Quantum",
     "line": 99,
     "axioms": [
      "Classical.choice",
@@ -751,8 +751,8 @@
     "doc": "00:F2, 00:F6, 22:C26, 22:C7 — dephasing is exact: on a prime shell `q`, a character `χ(x) = Π_j ζ_j^{x_j}` of the composite (`ζ_j^{n_j} = 1`) that the drive moves (`χ(v) = Π_j ζ_j ≠ 1`) sums to zero along the drive, `Σ_{t<M} χ(t v) = 0`, over every joint recurrence `M`, the product of the periods among them."
    },
    {
-    "name": "FRC.Qm.pair_count_tally",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.pair_count_tally",
+    "module": "FrcMathlib/Quantum",
     "line": 55,
     "axioms": [
      "Classical.choice",
@@ -793,8 +793,8 @@
     "doc": "22:C8 — `I₂` is generically nonzero: with `c` the identity and the paths `a = b = 1`, `I₂ = 2 ≠ 0` on every shell `q > 2`."
    },
    {
-    "name": "FRC.Qm.sorkin_hierarchy",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.sorkin_hierarchy",
+    "module": "FrcMathlib/Quantum",
     "line": 29,
     "axioms": [
      "propext"
@@ -804,8 +804,8 @@
     "doc": "22:C8, 22:X8, 22:P2 — the Sorkin hierarchy on every commutative ring with an additive conjugation (`FRC.QuantumML.sorkin_hierarchy`, `Theme/Quantum.lean`)."
    },
    {
-    "name": "FRC.Qm.sorkin_second_witness",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.sorkin_second_witness",
+    "module": "FrcMathlib/Quantum",
     "line": 60,
     "axioms": [
      "propext"
@@ -1088,8 +1088,8 @@
     "doc": "22:C14, 22:P5 — **the ceiling on the worked carrier** `Ω = 641`: the largest depth with `T(k) < Ω` is `k* = 8` for the unit core (`T(8) = 256`, `T(9) = 1024`), and with the Bell core `d = 8` it is `6` (`8 T(6) = 512`, `8 T(7) = 2048`)."
    },
    {
-    "name": "FRC.Qm.gaussian_layers",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.gaussian_layers",
+    "module": "FrcMathlib/Quantum",
     "line": 35,
     "axioms": [
      "propext"
@@ -1099,8 +1099,8 @@
     "doc": "22:C14 — the Hadamard layers on `ℤ[i]` and the minimal denominator (`FRC.QuantumML.gaussian_layers`, `gaussian_minimal`, `Theme/Quantum.lean`)."
    },
    {
-    "name": "FRC.Qm.gaussian_minimal",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.gaussian_minimal",
+    "module": "FrcMathlib/Quantum",
     "line": 76,
     "axioms": [
      "Quot.sound",
@@ -1111,8 +1111,8 @@
     "doc": "22:C14, 22:P5 — `2` does not divide `i^m (1 + i)`: the minimal denominator (`FRC.QuantumML.gaussian_minimal`, `Theme/Quantum.lean`)."
    },
    {
-    "name": "FRC.Qm.gaussian_norm",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.gaussian_norm",
+    "module": "FrcMathlib/Quantum",
     "line": 80,
     "axioms": [
      "Quot.sound",
@@ -1123,8 +1123,8 @@
     "doc": "22:C14 — the norm of `k` layers is `2^k` (`FRC.QuantumML.gaussian_norm`, `Theme/Quantum.lean`)."
    },
    {
-    "name": "FRC.Qm.tally_norm_eq",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.tally_norm_eq",
+    "module": "FrcMathlib/Quantum",
     "line": 66,
     "axioms": [
      "Quot.sound",
@@ -1258,8 +1258,8 @@
     "doc": "22:C16, 22:C17 — the worked carrier `𝔽₆₄₁` (`κ = 160`): `g = 3` is primitive; the Object generator `g_O = g⁴⁰ = 601` has order `16` and `g_O⁸ = −1` (the doublet's sign); the setting step `ζ₈₀ = g⁸ = 151` has order `80`; the octant `ζ₈ = g⁸⁰ = 318` has `ζ₈⁴ = −1`, `(ζ₈ + ζ₈⁷)² = 2` and `S² = 8`; the Bell core is `C₈` (`gcd(40, 16) = 8`)."
    },
    {
-    "name": "FRC.Qm.tsirelson_real",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.tsirelson_real",
+    "module": "FrcMathlib/Quantum",
     "line": 41,
     "axioms": [
      "Classical.choice",
@@ -1271,8 +1271,8 @@
     "doc": "22:C17, 22:X7, 22:C25, 22:P3 [chart] — the Tsirelson value `2√2` (`FRC.Chart.tsirelson_real`, `Theme/Chart.lean`)."
    },
    {
-    "name": "FRC.Qm.singlet_law",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.singlet_law",
+    "module": "FrcMathlib/Quantum",
     "line": 84,
     "axioms": [
      "Classical.choice",
@@ -1324,8 +1324,8 @@
     "doc": "22:C19 — at zero coupling the branch state is a product: the concurrence vanishes, `C = h (x − x)(−i) = 0`."
    },
    {
-    "name": "FRC.Qm.channel_chart",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.channel_chart",
+    "module": "FrcMathlib/Quantum",
     "line": 90,
     "axioms": [
      "Classical.choice",
@@ -1337,8 +1337,8 @@
     "doc": "22:C19, 22:P1 [chart] — the channel's chart: `V = cos(φ/2)`, `C = sin(φ/2)`, `V² + C² = 1` (`FRC.Chart.channel_chart`, `Theme/Chart.lean`)."
    },
    {
-    "name": "FRC.Qm.channel_entangles",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.channel_entangles",
+    "module": "FrcMathlib/Quantum",
     "line": 71,
     "axioms": [
      "Classical.choice",
@@ -1533,8 +1533,8 @@
     "doc": "22:C17, 22:X7, 22:C25, 22:P3 — the Tsirelson square: `S = 2(ζ + ζ⁷)` for `ζ⁴ = −1` has `S² = 8` on every shell, the shadow of the ring identity `S² = 8` in `ℤ[ζ₈]`."
    },
    {
-    "name": "FRC.Qm.tsirelson_real",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.tsirelson_real",
+    "module": "FrcMathlib/Quantum",
     "line": 41,
     "axioms": [
      "Classical.choice",
@@ -1651,8 +1651,8 @@
     "doc": "00:C10 (S1), 22:C10, 22:X1 — the part of the extension fixed by its conjugation is the tally line: a weight `z` is its own conjugate exactly when its `w`-component vanishes (the frame's odd prime), and the symmetrised weight `z + z̄` is the tally-line element `tr(z)`. For `ℤ[i]`, `ν = −1`, this is the paper's two-way subring."
    },
    {
-    "name": "FRC.Qm.pair_count_tally",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.pair_count_tally",
+    "module": "FrcMathlib/Quantum",
     "line": 55,
     "axioms": [
      "Classical.choice",
@@ -1820,8 +1820,8 @@
     "doc": "22:C17, 22:X7, 22:C25, 22:P3 — the Tsirelson square: `S = 2(ζ + ζ⁷)` for `ζ⁴ = −1` has `S² = 8` on every shell, the shadow of the ring identity `S² = 8` in `ℤ[ζ₈]`."
    },
    {
-    "name": "FRC.Qm.tsirelson_real",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.tsirelson_real",
+    "module": "FrcMathlib/Quantum",
     "line": 41,
     "axioms": [
      "Classical.choice",
@@ -1853,8 +1853,8 @@
     "doc": "22:X8, 22:P2 — the wrap is quantised: a tally whose shadow vanishes is a multiple of `Ω`, so a lift of the vanishing Sorkin sum above the window is `Ω` times an integer, never a small nonzero number."
    },
    {
-    "name": "FRC.Qm.sorkin_hierarchy",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.sorkin_hierarchy",
+    "module": "FrcMathlib/Quantum",
     "line": 29,
     "axioms": [
      "propext"
@@ -1893,8 +1893,8 @@
     "doc": "22:C21 (iii), 22:P1 — the reduced channel factorises: the offset distribution's partial sum times the coherent phase, `Σ_θ p_θ ζ^{θ + c} = (Σ_θ p_θ ζ^θ) ζ^c = χ_inc · ζ^{f φ}`."
    },
    {
-    "name": "FRC.Qm.channel_chart",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.channel_chart",
+    "module": "FrcMathlib/Quantum",
     "line": 90,
     "axioms": [
      "Classical.choice",
@@ -1926,8 +1926,8 @@
     "doc": "22:X8, 22:P2 — the wrap is quantised: a tally whose shadow vanishes is a multiple of `Ω`, so a lift of the vanishing Sorkin sum above the window is `Ω` times an integer, never a small nonzero number."
    },
    {
-    "name": "FRC.Qm.sorkin_hierarchy",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.sorkin_hierarchy",
+    "module": "FrcMathlib/Quantum",
     "line": 29,
     "axioms": [
      "propext"
@@ -1966,8 +1966,8 @@
     "doc": "00:F2, 00:F6, 22:C26, 22:C15, 22:C18, 22:P3 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common multiple below it): the number `g` with `g T = a b` divides both periods, and every common divisor divides it (`g` is the gcd); the joint drive carries `(x, y)` to `(x', y')` within one joint period exactly when the offsets agree modulo `g` — the conserved offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`."
    },
    {
-    "name": "FRC.Qm.tsirelson_real",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.tsirelson_real",
+    "module": "FrcMathlib/Quantum",
     "line": 41,
     "axioms": [
      "Classical.choice",
@@ -2037,8 +2037,8 @@
     "doc": "22:C14, 22:P5 — `2m` balanced layers give the amplitude `(1 + i)^{2m} = 2^m i^m`."
    },
    {
-    "name": "FRC.Qm.ceiling_bracket",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.ceiling_bracket",
+    "module": "FrcMathlib/Quantum",
     "line": 48,
     "axioms": [
      "Classical.choice",
@@ -2050,8 +2050,8 @@
     "doc": "22:C14, 22:P5 [chart] — the ceiling at the anchor (`FRC.Chart.ceiling_bracket`, `Theme/Chart.lean`)."
    },
    {
-    "name": "FRC.Qm.gaussian_minimal",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.gaussian_minimal",
+    "module": "FrcMathlib/Quantum",
     "line": 76,
     "axioms": [
      "Quot.sound",
@@ -2064,8 +2064,8 @@
   ],
   "Z2": [
    {
-    "name": "FRC.Qm.omega_floors",
-    "module": "FrcMathlib/Qm",
+    "name": "FRC.Quantum.omega_floors",
+    "module": "FrcMathlib/Quantum",
     "line": 99,
     "axioms": [
      "Classical.choice",

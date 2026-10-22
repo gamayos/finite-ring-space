@@ -92,7 +92,7 @@ import FrcCore.Rh
 import FrcCore.Entropy
 import FrcCore.Gravity
 import FrcCore.S13
-import FrcCore.Qm
+import FrcCore.Quantum
 import FrcCore.Pnp
 import FrcCore.Fields
 import FrcCore.Dirac

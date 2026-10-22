@@ -451,16 +451,16 @@ const PUBLICATIONS = [
         "title": "43 predicates checked, all passing: the notebook p22_quantum.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Qm.lean",
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Quantum.lean",
         "label": "lean",
         "count": 41,
-        "title": "41 predicates proved in the core (no axioms), 13 of them also on Mathlib: the core module Qm as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "title": "41 predicates proved in the core (no axioms), 13 of them also on Mathlib: the core module Quantum as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
-        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Qm.lean",
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Quantum.lean",
         "label": "lean-mathlib",
         "count": 15,
-        "title": "15 predicates proved on Mathlib (classical), 13 of them also in the core: the module Qm as one file on Mathlib in Lean Live"
+        "title": "15 predicates proved on Mathlib (classical), 13 of them also in the core: the module Quantum as one file on Mathlib in Lean Live"
       }
     ]
   },

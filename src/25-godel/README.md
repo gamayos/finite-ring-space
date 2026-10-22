@@ -94,6 +94,6 @@ writes under `docs/pkg/` at each site build; import name `frc_25_godel`, `__init
 states the predicate and runs `predicate("25:F1")`: the block of the check that decides the predicate runs once per session (the
 deciding check is `godel.PREDICATES`, the block the letter of its id), that check is printed from the script's own source — the line under its
 `# 25:F1 (p25023)` marker — and every record citing the predicate is listed with its verdict. The markers in `godel.py`
-are the lines the ledger page's source glyph opens (`docs/src/25-godel/#<key>`). The predicates'
+are the lines the ledger page's source glyph opens (`docs/py/godel.html#<key>`). The predicates'
 Lean counterparts are the declarations named by their keys (`p25023`) at the end of `lean/FrcCore/Godel.lean` and `lean/FrcMathlib/Godel.lean`
 (`lean/make_predicates.py`), one per predicate, with the module as one executable file for the web editor (`lean/web/core/Godel.lean`, `lean/web/Godel.lean`).

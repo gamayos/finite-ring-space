@@ -26,7 +26,7 @@ ledger, the notebook beside the file (one cell per predicate, its id the key) an
 (`lean/FrcCore/Ledgers/`, `lean/FrcMathlib/Ledgers/`). Migrated so far: 3-causality, `p03_causality.py` (task LM20); 22-quantum, `p22_quantum.py`, and 27-fields,
 `p27_fields.py` (task LM35), whose readings against the continuum sit in the chart tier's `chart_quantum.py` and `chart_fields.py`.
 29-finitism, `p29_finitism.py` (9 October 2026), the first ledger file of a paper with no package under `src/`: its checks run
-from the ledger file alone, and the site's ledger-file page serves it (`docs/frc/ledgers/p29_finitism.html`).
+from the ledger file alone, and the site's ledger-file page serves it (`docs/py/finitism.html`).
 25-godel, `p25_godel.py` (20 October 2026): the package's twenty-four checks block for block, on the logic theme's `logic.py` and
 `diagonal.py`, every T row of the paper with a core Lean declaration.
 One ledger runs with `python3 -m frc.ledgers.p03_causality`.

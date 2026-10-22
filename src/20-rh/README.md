@@ -86,7 +86,7 @@ cell is self-contained: it installs the package from the site (`pip install frc-
 states the predicate and runs `predicate("20:B12")`: the blocks of the checks that cite the predicate run once per session (the
 deciding check is `rh.PREDICATES`), the check that decides the predicate is printed from the script's own source — the line under
 its `# 20:B12 (p20085)` marker — and every record citing the predicate is listed with its verdict. The markers in `rh.py` are the
-lines the ledger page's source glyph opens (`docs/src/20-rh/#<key>`). The predicates' Lean counterparts are the declarations
+lines the ledger page's source glyph opens (`docs/py/rh.html#<key>`). The predicates' Lean counterparts are the declarations
 named by their keys (`p20089` has none; `p20085` for 20:B12) at the end of `lean/FrcCore/Rh.lean` and `lean/FrcMathlib/Rh.lean`
 (`lean/make_predicates.py`), one per predicate, with the paper's module as one executable file for the web editor.
 

@@ -34,7 +34,7 @@ import FrcMathlib.Rh
 import FrcMathlib.Entropy
 import FrcMathlib.Gravity
 import FrcMathlib.S13
-import FrcMathlib.Qm
+import FrcMathlib.Quantum
 import FrcMathlib.Pnp
 import FrcMathlib.Fields
 import FrcMathlib.Flavour
