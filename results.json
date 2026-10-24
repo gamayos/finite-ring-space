@@ -1,0 +1,192 @@
+[
+ {
+  "id": "A1",
+  "rows": "16:C1, 16:X3",
+  "block": "A",
+  "script": "octant",
+  "label": "the octant sector exists iff S is even; on the instantiated Carrier S = 7 522 is even and 8 | 4S",
+  "ok": true,
+  "detail": "S = 7522, S/2 = 3761, 8·(S/2) = 4S = 30088",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A2",
+  "rows": "16:C1",
+  "block": "A",
+  "script": "octant",
+  "label": "the octant character on the instantiated Carrier: ζ⁴ ≡ −1 and ζ⁸ ≡ 1, and (2(ζ + ζ⁻¹))² ≡ 8",
+  "ok": true,
+  "detail": "g = 3, ζ = 14004",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A3",
+  "rows": "16:B9, 16:C1, 16:A7",
+  "block": "A",
+  "script": "octant",
+  "label": "the instance clause: S ≡ 2 (mod 4), the 2-part of the cycle exactly C₈, Ω − 1 = 8·3761 with 3761 prime, p² < Ω ≤ (p+1)², κ odd; the octant mark ζ₈ = 14004, h = 22003, ħ = 8086 under the least primitive root 3, ζ₈² = h, ħ + h = Ω, the octant exponent odd and g·ζ₈⁻¹ in the even layer",
+  "ok": true,
+  "detail": "S = 7522, S/2 = 3761, v₂(Ω−1) = 3, GOM = 3, ζ₈ = 14004, h = 22003, ħ = 8086",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A4",
+  "rows": "16:C6, 16:X4",
+  "block": "A",
+  "script": "octant",
+  "label": "the exchange equivalence and the octant mark: {x ≤ S : 2x ≡ S (mod 4S)} = {S/2}; 3^(S/2) ≡ 14004 = ζ₈, 3^S ≡ 22003 = h, 3^(2S) ≡ −1, ζ₈² = h, ζ₈⁴ ≡ −1; 173² < Ω < 174² and 13⁴ < Ω < 14⁴",
+  "ok": true,
+  "detail": "S/2 = 3761: the one station whose exchange count is the quarter; 173² = 29929, 174² = 30276, 13⁴ = 28561, 14⁴ = 38416",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B1",
+  "rows": "16:C2",
+  "block": "B",
+  "script": "octant",
+  "label": "the exchange reading: 2x ≤ S iff x ≤ S/2 for every x below S, and the octant's count is the quarter, 2·(S/2) = S",
+  "ok": true,
+  "detail": "S = 7522, checked for every x ≤ S",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B2",
+  "rows": "16:C2",
+  "block": "B",
+  "script": "octant",
+  "label": "the dictionary: (S/2)/(4S) of the cycle 2π r_H/c is (π/4) r_H/c, as a ratio of counts 1/8 = (π/4)/(2π)",
+  "ok": true,
+  "detail": "the octant is one eighth of the cycle on the count face and on the chart face",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B3",
+  "rows": "16:C2, 16:A6",
+  "block": "B",
+  "script": "octant",
+  "label": "the station arithmetic at the instance: 4d < Ω iff d ≤ S on 0 ≤ d ≤ 2S+1; 4·(2x) < Ω iff x ≤ S/2 on 0 ≤ x ≤ S; the deepest x with a station for its count is S/2; two stations sum below the period, 2S < 4S",
+  "ok": true,
+  "detail": "S = 7522, S/2 = 3761, 2S = 15044 < 4S = 30088",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C1",
+  "rows": "16:C3, 16:X1, 16:X2",
+  "block": "C",
+  "script": "octant",
+  "label": "Ω_Λ = tanh²(3π/8) between 0.68368 and 0.68369; the Planck-only landing between 0.13σ and 0.15σ",
+  "ok": true,
+  "detail": "Ω_Λ = 0.683682, lands 0.139σ below Planck alone",
+  "kind": "CHART"
+ },
+ {
+  "id": "C2",
+  "rows": "16:P2",
+  "block": "C",
+  "script": "octant",
+  "label": "the locus (π/4)/tanh(3π/8) between 0.9498 and 0.9499; on t★ = 13.61 ± 0.34 Gyr, H₀ = 68.2 ± 1.7 (an upper limit), 0.5σ from Planck, 0.65σ from TRGB, 2.4σ from the Cepheid ladder; on the inferred age 13.81 ± 0.34 Gyr, 67.3 ± 1.7",
+  "ok": true,
+  "detail": "locus = 0.94987; H₀ = 68.24 ± 1.70; pulls Planck -0.49σ, TRGB +0.65σ, Cepheid +2.40σ; on the inferred age 67.25 ± 1.66",
+  "kind": "CHART"
+ },
+ {
+  "id": "C3",
+  "rows": "16:C4",
+  "block": "C",
+  "script": "octant",
+  "label": "the entailed-rate consistency: the Planck-only Λ (1/H_Λ = 17.54 Gyr, depth 13.78 Gyr) returns H₀ = 67.4 km s⁻¹ Mpc⁻¹ to 0.1 %",
+  "ok": true,
+  "detail": "1/H_Λ = 17.543 Gyr, H_Λ = 55.74, H₀ = H_Λ/tanh(3π/8) = 67.41; 13.80/17.54 = 0.7867",
+  "kind": "CHART"
+ },
+ {
+  "id": "C5",
+  "rows": "16:P2, 16:P1",
+  "block": "C",
+  "script": "octant",
+  "label": "the chart's own product t H₀ at the Planck-only Ω_Λ is 0.951; (13.61 Gyr, 73 km/s/Mpc) gives t★H₀ = 1.016, accommodated at Ω_Λ ≈ 0.75; the bound and the ΛCDM age separate at ≈ 7 % per Gyr",
+  "ok": true,
+  "detail": "t H₀(0.6847) = 0.9507; t★H₀ = 1.0161; Ω_Λ = 0.7520; 7.25 % per Gyr",
+  "kind": "CHART"
+ },
+ {
+  "id": "C4",
+  "rows": "16:P3",
+  "block": "C",
+  "script": "octant",
+  "label": "the effective fluid: ρ̇_Λ + 3H(ρ_Λ + p_Λ) = 0 with ρ̇_Λ = 0 forces p_Λ = −ρ_Λ, w = −1 exactly",
+  "ok": true,
+  "detail": "p = −ρ on every sampled (H, ρ)",
+  "kind": "CHART"
+ },
+ {
+  "id": "D1",
+  "rows": "16:C5",
+  "block": "D",
+  "script": "octant",
+  "label": "the four landings of 0.6837: Planck alone 0.14σ, Planck + BAO 0.93σ, DESI DR2 BAO alone 2.2σ, DESI DR2 BAO + CMB 3.8σ (each bracketed)",
+  "ok": true,
+  "detail": "Planck 2018 alone 0.139σ; Planck 2018 + BAO 0.932σ; DESI DR2 BAO alone 2.188σ; DESI DR2 BAO + CMB 3.783σ",
+  "kind": "CHART"
+ },
+ {
+  "id": "D2",
+  "rows": "16:C5, 16:X1",
+  "block": "D",
+  "script": "octant",
+  "label": "the age–de Sitter ratio exceeds π/4 at every determination: by 0.17 %, 0.85 %, 3.1 % and 2.2 %",
+  "ok": true,
+  "detail": "Planck 2018 alone +0.17 %; Planck 2018 + BAO +0.85 %; DESI DR2 BAO alone +3.13 %; DESI DR2 BAO + CMB +2.25 %",
+  "kind": "CHART"
+ },
+ {
+  "id": "D3",
+  "rows": "16:C5",
+  "block": "D",
+  "script": "octant",
+  "label": "with radiation Ω_r = 9.2 × 10⁻⁵ the root of t H_Λ = π/4 is 0.68388, a shift of +0.0002 above tanh²(3π/8); the flat matter fraction there is 0.3160 and the DESI-with-CMB landing 3.7σ",
+  "ok": true,
+  "detail": "root = 0.683878, shift = +0.000196; Ω_m = 0.31603; landing 3.728σ",
+  "kind": "CHART"
+ },
+ {
+  "id": "D4",
+  "rows": "16:C5",
+  "block": "D",
+  "script": "octant",
+  "label": "at the measured curvature Ω_K = 0.0007 ± 0.0019 the root of t H_Λ = π/4 moves by −0.0003 ± 0.0007 from the flat value, below every quoted error (the curved integrand at Ω_K = 0 returns the flat root)",
+  "ok": true,
+  "detail": "flat root 0.683682; at Ω_K = 0.0007: 0.683430 (-0.000252); at ±0.0019: -0.000937, +0.000432",
+  "kind": "CHART"
+ },
+ {
+  "id": "P1",
+  "rows": "16:P4",
+  "block": "P",
+  "script": "octant",
+  "label": "the matter fraction Ω_m = 1 − tanh²(3π/8) between 0.31631 and 0.31632; the DESI DR2 BAO + CMB value 0.3027 ± 0.0036 lies between 3.7σ and 3.9σ from it",
+  "ok": true,
+  "detail": "Ω_m = 0.316318, pull 3.783σ",
+  "kind": "CHART"
+ },
+ {
+  "id": "P2",
+  "rows": "16:P4",
+  "block": "P",
+  "script": "octant",
+  "label": "the octant bound at the DESI DR2 BAO + CMB pair between 13.48 and 13.50 Gyr (1/H_Λ = 17.18 Gyr); the oldest cluster population 13.61 ± 0.34 Gyr between 0.3σ and 0.4σ above it; the chart's own age there 13.79 Gyr, 2.2 % above the bound",
+  "ok": true,
+  "detail": "bound 13.491–13.491 Gyr; 1/H_Λ = 17.177 Gyr; t★ pull 0.35σ; chart age 13.794 Gyr, 2.25 % above",
+  "kind": "CHART"
+ },
+ {
+  "id": "P3",
+  "rows": "16:P1",
+  "block": "P",
+  "script": "octant",
+  "label": "the bound at the Planck-only pair, 13.78 Gyr: the oldest cluster population 0.5σ below it, the inferred cosmic age 0.03 Gyr above it, within 0.1σ",
+  "ok": true,
+  "detail": "bound 13.778 Gyr; pulls -0.49σ, +0.09σ; inferred age above by 0.032 Gyr",
+  "kind": "CHART"
+ }
+]
