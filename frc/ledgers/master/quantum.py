@@ -3,7 +3,7 @@ task LM28, 6 October 2026).
 
 The master's block F is bound by this file (the quantum theme). It binds F2, multi-body registration, and F5, the graded registration law (task LM42, 7 October 2026; its source 39-s173 is
 unpublished, named and not linked, Q04), since 17 October 2026 F4, the Q₄ quotient of the Object cycle, and F6, the
-binding lift (00-ledger-20260816/reports/block-f-f4-f6-glyphs-20261017.md, decisions D1–D5), and since 19 October 2026
+binding lift (00-master-20260816/reports/block-f-f4-f6-glyphs-20261017.md, decisions D1–D5), and since 19 October 2026
 the prediction P2, the coherent-fraction channel (block P, 22:C21's theorems): the table of keys (generated from
 docs/00-ledger.json and docs/predictions.json by ci/make_ledgers.py), the Lean proofs its key conjoins (PROOFS), the
 cycles, and the checks, which call the quantum theme (frc/quantum.py). The Lean side is lean/FrcCore/Theme/Quantum.lean

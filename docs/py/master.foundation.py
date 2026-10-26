@@ -1,6 +1,6 @@
 """master/foundation — the ledger file of the master's block A, the Foundation (ledger migration, task LM23, 5 October 2026).
 
-The master predicate ledger (00-ledger/predicates/index.md, published as docs/00-ledger.json) states block A. This file
+The master predicate ledger (00-master/predicates/index.md, published as docs/00-ledger.json) states block A. This file
 binds its theorem rows to the framework: the table of keys (generated from docs/00-ledger.json by ci/make_ledgers.py),
 the Lean proofs each key conjoins (PROOFS, written here), the shells, and the checks, which call the foundation theme
 (frc/foundation.py). Each check names the rows it decides or corroborates (LEDGER), under a `# 00:A5 (p00188)` marker on

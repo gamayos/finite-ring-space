@@ -1,6 +1,6 @@
 """master/subject — the ledger file of the master's block C, the Subject (ledger migration, task LM24, 5 October 2026).
 
-The master predicate ledger (00-ledger/predicates/index.md, published as docs/00-ledger.json) states block C. This file
+The master predicate ledger (00-master/predicates/index.md, published as docs/00-ledger.json) states block C. This file
 binds its theorem rows to the framework: the table of keys (generated from docs/00-ledger.json by ci/make_ledgers.py),
 the Lean proofs each key conjoins (PROOFS, written here), the shells, and the checks, which call the subject theme
 (frc/subject.py). Each check names the rows it decides or corroborates (LEDGER), under a `# 00:C1 (p00021)` marker on

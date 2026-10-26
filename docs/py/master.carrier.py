@@ -1,6 +1,6 @@
 """master/carrier — the ledger file of the master's block B, the Carrier (ledger migration, task LM22, 5 October 2026).
 
-The master predicate ledger (00-ledger/predicates/index.md, published as docs/00-ledger.json) states block B. This file
+The master predicate ledger (00-master/predicates/index.md, published as docs/00-ledger.json) states block B. This file
 binds its theorem rows to the framework: the table of keys (generated from docs/00-ledger.json by ci/make_ledgers.py),
 the Lean proofs each key conjoins (PROOFS, written here: the master has no Lean cells of its own), the shells, and the
 checks, which call the foundation and carrier themes (frc/foundation.py, frc/carrier.py). Each check names the rows it
