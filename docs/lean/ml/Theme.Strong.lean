@@ -11,7 +11,12 @@ name as an alias), every numeral re-anchored to the ledger's scale import (00:A7
 minimum of `r e^{2Gm/r}` (21:C12, P1); the shadow `+4.6 %` and ringdown `−4.4 %` bracketed from `e` and `√3` (21:P1); the eikonal pair
 `Ω_c = λ = 1/(2eM)` from the derivatives of `r² e^{4M/r}` at `2M` (00:E14, 16 October 2026);
 the innermost stable orbit at `r = 3 + √5` and the efficiency `5.48 %` against Schwarzschild's `5.72 %` (21:P1); the
-capacity ratio `1/ln²Ω = 1.24 × 10⁻⁵` at `283.5` (21:C13); the redshift's linear form (21:C4). The crossover: the
+capacity ratio `1/ln²Ω = 1.24 × 10⁻⁵` at `283.5` (21:C13); the redshift's linear form (21:C4); the curvature datum
+with `π` a symbol, `Λ = 3/r_H² = 3π/S` and `Λ(Ω − 1) = 12π` from `S = π r_H²`, `Ω = 4S + 1` (21:C14, X1; 27 October
+2026). The rotating solution (21:C17, 27 October 2026): the gravitomagnetic dipole `A = J × r/r³` divergence-free
+off the source with curl `2J/r³` on the axis (the Lense–Thirring rate), `g_tt = −e^{−2u}c² < 0` in the slow-rotation
+metric (no ergoregion at `O(a)`), and the `O(a²)` ergosurface `r⁴e^{−4/r} = 4a²` with one positive root for
+`0 < a < 1`, growing with the spin. The crossover: the
 registration root `η` of `wη² − 2η + w = 0` in `(0, 1)`, the crossover squeezed between its deep and Newtonian
 limits, the Tully–Fisher algebra (21:C19, P4, X2); the discriminant `0.051` at `g_N = 5a₀` against the simple
 interpolant (21:P4). The primordial fixed point `n_s = 1` (21:C18; the tilt at `283.5` is `Chart.tilt_ledger`).
@@ -274,7 +279,173 @@ theorem redshift_linear (u : ℝ) (h0 : 0 ≤ u) (h1 : u ≤ 1) : |1 - exp (-u) 
   rw [abs_le] at h ⊢
   constructor <;> nlinarith [sq_nonneg u]
 
+/-- 21:C14, 21:X1 — the curvature of the finite chart, `π` a symbol on the reals (Planck units): the de Sitter entropy
+`S = π r_H²` and the totality datum `Ω = 4S + 1` give `Λ = 3/r_H² = 3π/S`, `Λ(Ω − 1) = 12π` and `ΛS = 3π` exactly, so
+`Λ ∼ 1/Ω` is the chart's curvature and not a vacuum energy; the chronon `τ = 2π r_H/(4S)` has `τ² = π/(4S)` (the
+text's `(√π/2) t_P/√S`) and the horizon is `2S/π` chronons. The python check A7 computes the same over `ℚ` with `π` a
+formal symbol. -/
+theorem curvature_datum (S rH : ℝ) (hr : 0 < rH) (hS : S = π * rH ^ 2) :
+    3 / rH ^ 2 = 3 * π / S ∧ 3 / rH ^ 2 * (4 * S + 1 - 1) = 12 * π ∧ 3 / rH ^ 2 * S = 3 * π ∧
+    (2 * π * rH / (4 * S)) ^ 2 = π / (4 * S) ∧ (rH / (2 * π * rH / (4 * S))) ^ 2 = (2 * S / π) ^ 2 := by
+  have hr0 : rH ≠ 0 := hr.ne'
+  have hpi : π ≠ 0 := pi_ne_zero
+  subst hS
+  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> field_simp <;> ring
+
 end strongfield
+
+/-! ## The rotating solution (21:C17) -/
+section rotating
+
+/-- The derivative of `s ↦ k s/(√(s² + c))³`, a component of the dipole along its own coordinate. -/
+theorem hasDerivAt_dipole_lin (k c t : ℝ) (hc : 0 < t ^ 2 + c) :
+    HasDerivAt (fun s => k * s / (√(s ^ 2 + c)) ^ 3) (k * (c - 2 * t ^ 2) / (√(t ^ 2 + c)) ^ 5) t := by
+  have hpos : 0 < √(t ^ 2 + c) := Real.sqrt_pos.2 hc
+  have h1 : HasDerivAt (fun s : ℝ => s ^ 2 + c) (2 * t) t := by
+    simpa using ((hasDerivAt_pow 2 t).add_const c)
+  have h2 : HasDerivAt (fun s : ℝ => √(s ^ 2 + c)) (2 * t / (2 * √(t ^ 2 + c))) t := h1.sqrt hc.ne'
+  have h3 : HasDerivAt (fun s : ℝ => (√(s ^ 2 + c)) ^ 3)
+      ((3 : ℝ) * (√(t ^ 2 + c)) ^ 2 * (2 * t / (2 * √(t ^ 2 + c)))) t := by
+    simpa [Function.comp_def] using (hasDerivAt_pow 3 (√(t ^ 2 + c))).comp t h2
+  have h4 : HasDerivAt (fun s : ℝ => k * s) k t := by simpa using (hasDerivAt_id t).const_mul k
+  have h5 := h4.div h3 (by positivity)
+  convert h5 using 1
+  have hs : (√(t ^ 2 + c)) ^ 2 = t ^ 2 + c := Real.sq_sqrt hc.le
+  generalize √(t ^ 2 + c) = r at hpos hs ⊢
+  have hr0 : r ≠ 0 := hpos.ne'
+  have hc' : c = r ^ 2 - t ^ 2 := by linarith
+  subst hc'
+  field_simp
+  ring
+
+/-- The derivative of `s ↦ k/(√(s² + c))³`, a component of the dipole along a transverse coordinate. -/
+theorem hasDerivAt_dipole_inv (k c t : ℝ) (hc : 0 < t ^ 2 + c) :
+    HasDerivAt (fun s => k / (√(s ^ 2 + c)) ^ 3) (-3 * k * t / (√(t ^ 2 + c)) ^ 5) t := by
+  have hpos : 0 < √(t ^ 2 + c) := Real.sqrt_pos.2 hc
+  have h1 : HasDerivAt (fun s : ℝ => s ^ 2 + c) (2 * t) t := by
+    simpa using ((hasDerivAt_pow 2 t).add_const c)
+  have h2 : HasDerivAt (fun s : ℝ => √(s ^ 2 + c)) (2 * t / (2 * √(t ^ 2 + c))) t := h1.sqrt hc.ne'
+  have h3 : HasDerivAt (fun s : ℝ => (√(s ^ 2 + c)) ^ 3)
+      ((3 : ℝ) * (√(t ^ 2 + c)) ^ 2 * (2 * t / (2 * √(t ^ 2 + c)))) t := by
+    simpa [Function.comp_def] using (hasDerivAt_pow 3 (√(t ^ 2 + c))).comp t h2
+  have h5 := (hasDerivAt_const t k).div h3 (by positivity)
+  convert h5 using 1
+  have hs : (√(t ^ 2 + c)) ^ 2 = t ^ 2 + c := Real.sq_sqrt hc.le
+  generalize √(t ^ 2 + c) = r at hpos hs ⊢
+  have hr0 : r ≠ 0 := hpos.ne'
+  have hc' : c = r ^ 2 - t ^ 2 := by linarith
+  subst hc'
+  field_simp
+  ring
+
+/-- 21:C17 — the gravitomagnetic dipole `A = J × r/r³` of a spin `J` along the `z` axis, `A = J(−y, x, 0)/ρ³`
+with `ρ = √(x² + y² + z²)`, is divergence-free off the source: `∂ₓAₓ = 3Jxy/ρ⁵`, `∂ᵧAᵧ = −3Jxy/ρ⁵`, `∂_zA_z = 0`,
+and the three sum to zero (`prop:rotating`, the quarter-turn dual sourced by the momentum flux). Its harmonicity is
+the python check's (E7, central differences). -/
+theorem dipole_divergence_free (J x y z : ℝ) (h : 0 < x ^ 2 + y ^ 2 + z ^ 2) :
+    HasDerivAt (fun t => -J * y / (√(t ^ 2 + y ^ 2 + z ^ 2)) ^ 3)
+      (3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5) x ∧
+    HasDerivAt (fun t => J * x / (√(x ^ 2 + t ^ 2 + z ^ 2)) ^ 3)
+      (-(3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5)) y ∧
+    3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5 + -(3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5) = 0 := by
+  refine ⟨?_, ?_, by ring⟩
+  · have hc : 0 < x ^ 2 + (y ^ 2 + z ^ 2) := by linarith
+    have hd := hasDerivAt_dipole_inv (-J * y) (y ^ 2 + z ^ 2) x hc
+    have e : (fun t : ℝ => -J * y / (√(t ^ 2 + y ^ 2 + z ^ 2)) ^ 3) =
+        fun t => -J * y / (√(t ^ 2 + (y ^ 2 + z ^ 2))) ^ 3 := by
+      funext t; rw [add_assoc]
+    rw [e, show x ^ 2 + y ^ 2 + z ^ 2 = x ^ 2 + (y ^ 2 + z ^ 2) by ring]
+    convert hd using 1; ring
+  · have hc : 0 < y ^ 2 + (x ^ 2 + z ^ 2) := by linarith
+    have hd := hasDerivAt_dipole_inv (J * x) (x ^ 2 + z ^ 2) y hc
+    have e : (fun t : ℝ => J * x / (√(x ^ 2 + t ^ 2 + z ^ 2)) ^ 3) =
+        fun t => J * x / (√(t ^ 2 + (x ^ 2 + z ^ 2))) ^ 3 := by
+      funext t; rw [add_assoc, add_left_comm]
+    rw [e, show x ^ 2 + y ^ 2 + z ^ 2 = y ^ 2 + (x ^ 2 + z ^ 2) by ring]
+    convert hd using 1; ring
+
+/-- 21:C17 — the curl of the dipole on the axis: at `(0, 0, z)`, `z > 0`, `∂ₓAᵧ = J/z³` and `∂ᵧAₓ = −J/z³`, so
+`(∇ × A)_z = 2J/z³`, the Lense–Thirring rate `ω = 2GJ/c²r³` of `prop:dragging` in its observed form (`G = c = 1`). -/
+theorem lense_thirring_axis (J z : ℝ) (hz : 0 < z) :
+    HasDerivAt (fun t => J * t / (√(t ^ 2 + 0 ^ 2 + z ^ 2)) ^ 3) (J / z ^ 3) 0 ∧
+    HasDerivAt (fun t => -J * t / (√(0 ^ 2 + t ^ 2 + z ^ 2)) ^ 3) (-(J / z ^ 3)) 0 ∧
+    J / z ^ 3 - -(J / z ^ 3) = 2 * J / z ^ 3 := by
+  have hc : (0:ℝ) < 0 ^ 2 + z ^ 2 := by positivity
+  have hsz : √((0:ℝ) ^ 2 + z ^ 2) = z := by
+    rw [show (0:ℝ) ^ 2 + z ^ 2 = z ^ 2 by ring]; exact Real.sqrt_sq hz.le
+  refine ⟨?_, ?_, by ring⟩
+  · have hd := hasDerivAt_dipole_lin J (z ^ 2) 0 hc
+    rw [hsz] at hd
+    have e : (fun t : ℝ => J * t / (√(t ^ 2 + 0 ^ 2 + z ^ 2)) ^ 3) =
+        fun t => J * t / (√(t ^ 2 + z ^ 2)) ^ 3 := by
+      funext t; ring_nf
+    rw [e]; convert hd using 1; field_simp; ring
+  · have hd := hasDerivAt_dipole_lin (-J) (z ^ 2) 0 hc
+    rw [hsz] at hd
+    have e : (fun t : ℝ => -J * t / (√(0 ^ 2 + t ^ 2 + z ^ 2)) ^ 3) =
+        fun t => -J * t / (√(t ^ 2 + z ^ 2)) ^ 3 := by
+      funext t; ring_nf
+    rw [e]; convert hd using 1; field_simp; ring
+
+/-- 21:C17 — in the slow-rotation metric `g_tt = −e^{−2u}c² < 0` for every reading `u`, so `∂_t` stays timelike
+and there is no ergoregion at this order; `g_rr = e^{2u}` is a real number at every `r`, the object horizonless. -/
+theorem slow_rotation_timelike (u c : ℝ) (hc : c ≠ 0) : -exp (-2 * u) * c ^ 2 < 0 := by
+  rw [neg_mul, neg_lt_zero]; positivity
+
+/-- `r ↦ r⁴ e^{−4/r}` is strictly increasing on `r > 0`: both factors are. -/
+theorem ergo_strictMonoOn : StrictMonoOn (fun r : ℝ => r ^ 4 * exp (-4 / r)) (Set.Ioi 0) := by
+  intro r₁ h1 r₂ h2 hlt
+  simp only [Set.mem_Ioi] at h1 h2
+  have p1 : r₁ ^ 4 < r₂ ^ 4 := by gcongr
+  have e1 : exp (-4 / r₁) < exp (-4 / r₂) := by
+    apply exp_lt_exp.2
+    rw [neg_div, neg_div, neg_lt_neg_iff]
+    exact div_lt_div_of_pos_left (by norm_num) h1 hlt
+  exact mul_lt_mul'' p1 e1 (by positivity) (exp_pos _).le
+
+/-- 21:C17 — the `O(a²)` ergosurface of the horizonless body: on the equator, `G = c = M = 1`, the Killing vector's
+norm vanishes where `e^{−4/r} = 4a²/r⁴`, that is `r⁴ e^{−4/r} = 4a²`, and for `0 < a < 1` this has exactly one
+positive root (it lies in `[a, 4]` by the intermediate value theorem, and `r⁴ e^{−4/r}` is strictly increasing). The
+python check E8 finds the root numerically at four spins. -/
+theorem ergosurface (a : ℝ) (ha0 : 0 < a) (ha1 : a < 1) :
+    ∃! r, 0 < r ∧ r ^ 4 * exp (-4 / r) = 4 * a ^ 2 := by
+  have hne : ∀ x ∈ Set.Icc a 4, x ≠ 0 := fun x hx => (lt_of_lt_of_le ha0 hx.1).ne'
+  have hcont : ContinuousOn (fun r : ℝ => r ^ 4 * exp (-4 / r)) (Set.Icc a 4) := by
+    apply ContinuousOn.mul (by fun_prop)
+    exact continuous_exp.comp_continuousOn (continuousOn_const.div continuousOn_id hne)
+  have hfa : a ^ 4 * exp (-4 / a) ≤ 4 * a ^ 2 := by
+    have h1 : exp (-4 / a) ≤ 1 := by
+      have : 0 < 4 / a := by positivity
+      calc exp (-4 / a) ≤ exp 0 := exp_le_exp.2 (by rw [neg_div]; linarith)
+        _ = 1 := exp_zero
+    have ha2 : a ^ 2 < 1 := by nlinarith
+    have ha4 : a ^ 4 ≤ a ^ 2 := by nlinarith [mul_nonneg (sq_nonneg a) (sub_nonneg.2 ha2.le)]
+    calc a ^ 4 * exp (-4 / a) ≤ a ^ 4 * 1 := by gcongr
+      _ ≤ 4 * a ^ 2 := by nlinarith [sq_nonneg a]
+  have hf4 : 4 * a ^ 2 ≤ 4 ^ 4 * exp (-4 / 4) := by
+    have he : exp 1 < 3 := lt_trans Real.exp_one_lt_d9 (by norm_num)
+    have hpos := exp_pos (1:ℝ)
+    have e : exp (-4 / 4) = (exp 1)⁻¹ := by rw [show (-4 : ℝ) / 4 = -1 by norm_num, exp_neg]
+    rw [e]
+    have hinv : (3:ℝ)⁻¹ ≤ (exp 1)⁻¹ := inv_anti₀ hpos he.le
+    have : 4 * a ^ 2 < 4 := by nlinarith
+    norm_num at hinv ⊢
+    nlinarith
+  obtain ⟨r, hr, hfr⟩ := intermediate_value_Icc (by linarith : a ≤ 4) hcont ⟨hfa, hf4⟩
+  refine ⟨r, ⟨lt_of_lt_of_le ha0 hr.1, hfr⟩, ?_⟩
+  rintro r' ⟨hr', hfr'⟩
+  exact ergo_strictMonoOn.injOn hr' (lt_of_lt_of_le ha0 hr.1) (hfr'.trans hfr.symm)
+
+/-- 21:C17 — the ergosurface grows with the spin: roots `r₁`, `r₂` of `r⁴ e^{−4/r} = 4a²` at spins `0 < a₁ < a₂`
+satisfy `r₁ < r₂` (the ergoregion is an `O(a²)` feature that widens with `a`). -/
+theorem ergosurface_mono {a₁ a₂ r₁ r₂ : ℝ} (ha : 0 < a₁) (hab : a₁ < a₂) (h1 : 0 < r₁) (h2 : 0 < r₂)
+    (e1 : r₁ ^ 4 * exp (-4 / r₁) = 4 * a₁ ^ 2) (e2 : r₂ ^ 4 * exp (-4 / r₂) = 4 * a₂ ^ 2) : r₁ < r₂ := by
+  have hlt : 4 * a₁ ^ 2 < 4 * a₂ ^ 2 := by nlinarith
+  refine (ergo_strictMonoOn.lt_iff_lt h1 h2).1 ?_
+  show r₁ ^ 4 * exp (-4 / r₁) < r₂ ^ 4 * exp (-4 / r₂)
+  rw [e1, e2]; exact hlt
+
+end rotating
 
 /-! ## The floor and the crossover (21:C19, P4, X2) -/
 section floor

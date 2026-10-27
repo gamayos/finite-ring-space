@@ -78,7 +78,7 @@ def chi (n : Nat) (g : Shell p) (k : Nat) (i : Nat) : Shell p := g ^ (k * (i % n
 theorem chi_cyc (n : Nat) (hn : 0 < n) (g : Shell p) (k i : Nat) : cyc n (chi n g k) i = chi n g k i := by
   show g ^ (k * (i % n % n)) = g ^ (k * (i % n)); rw [FRC.Nat.mod_mod i n hn]
 
-/-- 21:C15 — on a character `g` with `gⁿ = 1`, the cycle Laplacian acts on `χ_k` as the symbol
+/-- 21:C15, 21:C10, 21:X5 — on a character `g` with `gⁿ = 1`, the cycle Laplacian acts on `χ_k` as the symbol
 `g^k + g^{k(n−1)} − 2` (`g^{k(n−1)} = g^{−k}` on the cycle): `(Δ_Φ χ_k)(i) = (g^k + g^{−k} − 2) χ_k(i)`,
 the dispersion relation `2 − g^k − g^{−k}` of 8:F4, whose chart is `2 − 2 cos k = 4 sin²(k/2)`. -/
 theorem laplacian_symbol (n : Nat) (hn : 0 < n) {g : Shell p} (hg : g ^ n = 1) (k i : Nat) :

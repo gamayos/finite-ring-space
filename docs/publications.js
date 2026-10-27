@@ -421,14 +421,14 @@ const PUBLICATIONS = [
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Gravity.lean",
         "label": "lean",
-        "count": 30,
-        "title": "30 predicates proved in the core (no axioms), 18 of them also on Mathlib: the core module Gravity as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 33,
+        "title": "33 predicates proved in the core (no axioms), 18 of them also on Mathlib: the core module Gravity as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Gravity.lean",
         "label": "lean-mathlib",
-        "count": 28,
-        "title": "28 predicates proved on Mathlib (classical), 18 of them also in the core: the module Gravity as one file on Mathlib in Lean Live"
+        "count": 30,
+        "title": "30 predicates proved on Mathlib (classical), 18 of them also in the core: the module Gravity as one file on Mathlib in Lean Live"
       }
     ]
   },

@@ -4338,7 +4338,7 @@ def chi (n : Nat) (g : Shell p) (k : Nat) (i : Nat) : Shell p := g ^ (k * (i % n
 theorem chi_cyc (n : Nat) (hn : 0 < n) (g : Shell p) (k i : Nat) : cyc n (chi n g k) i = chi n g k i := by
   show g ^ (k * (i % n % n)) = g ^ (k * (i % n)); rw [FRC.Nat.mod_mod i n hn]
 
-/-- 21:C15 — on a character `g` with `gⁿ = 1`, the cycle Laplacian acts on `χ_k` as the symbol
+/-- 21:C15, 21:C10, 21:X5 — on a character `g` with `gⁿ = 1`, the cycle Laplacian acts on `χ_k` as the symbol
 `g^k + g^{k(n−1)} − 2` (`g^{k(n−1)} = g^{−k}` on the cycle): `(Δ_Φ χ_k)(i) = (g^k + g^{−k} − 2) χ_k(i)`,
 the dispersion relation `2 − g^k − g^{−k}` of 8:F4, whose chart is `2 − 2 cos k = 4 sin²(k/2)`. -/
 theorem laplacian_symbol (n : Nat) (hn : 0 < n) {g : Shell p} (hg : g ^ n = 1) (k i : Nat) :
@@ -4627,7 +4627,7 @@ theorem gauss_law {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) (J : Nat
 
 /-! ## 21:C8, 21:P6 — the post-Newtonian coefficients, exact -/
 
-/-- 21:C8, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild
+/-- 21:C8, 21:C23, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild
 `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6`
 (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at
 `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients:
@@ -4636,6 +4636,24 @@ as `2` and `−3/2`. Exact integers, decided by the kernel. -/
 theorem pn_coefficients :
     (6 : Int) * (-4) / 3 - 6 * (-3) / 2 = 1 ∧ (2 : Int) * 2 - 3 = 1 ∧
     (3 : Int) + 4 + 1 = 8 ∧ (-4 : Int) - 6 - 2 = -12 ∧ (8 : Int) / 4 = 2 ∧ (-12 : Int) * 2 / 8 = -3 := by decide
+
+/-- 21:C23 — the 1PN equivalence lemma, the cross term: the two metrics share the coefficients `−2U` and `2U²` of `A` and `2U` of
+`B` (`pn_coefficients`), and on the superposed potential `U = U₁ + U₂` the shared `2U²` carries the cross term,
+`2(U₁ + U₂)² = 2U₁² + 4U₁U₂ + 2U₂²`, while the shared `2U` of `B` is `2U₁ + 2U₂`: through first post-Newtonian order the
+two-body coefficients coincide on the superposed potential, cross term included, on every shell. -/
+theorem two_body_1pn (u v : Shell p) :
+    (1 + 1) * ((u + v) * (u + v)) = (1 + 1) * (u * u) + (1 + 1 + 1 + 1) * (u * v) + (1 + 1) * (v * v) ∧
+    (1 + 1) * (u + v) = (1 + 1) * u + (1 + 1) * v :=
+  ⟨RE.sound (look [u, v])
+      (.mul (.add .one .one) (.mul (.add (.var 0) (.var 1)) (.add (.var 0) (.var 1))))
+      (.add (.add (.mul (.add .one .one) (.mul (.var 0) (.var 0)))
+                  (.mul (.add (.add (.add .one .one) .one) .one) (.mul (.var 0) (.var 1))))
+            (.mul (.add .one .one) (.mul (.var 1) (.var 1))))
+      (by decide +kernel),
+   RE.sound (look [u, v])
+      (.mul (.add .one .one) (.add (.var 0) (.var 1)))
+      (.add (.mul (.add .one .one) (.var 0)) (.mul (.add .one .one) (.var 1)))
+      (by decide +kernel)⟩
 
 /-! ## 21:C6 — the dust tensor's trace -/
 
@@ -4687,7 +4705,7 @@ theorem conj_pow (z : Ext p ν) : ∀ n : Nat, conj (z ^ n) = (conj z) ^ n
       show conj (z ^ n * z) = (conj z) ^ n * conj z
       rw [conj_mul, conj_pow z n]
 
-/-- 21:C3, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate
+/-- 21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate
 (Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock
 is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch. -/
 theorem conj_branch (z : Ext p ν) (hz : norm z = 1) : ∀ n : Nat, z ^ n * (conj z) ^ n = 1

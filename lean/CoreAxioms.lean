@@ -1705,6 +1705,7 @@ import FrcBridge.Subject
 #print axioms FRC.Drift.antisymmetric_sum
 #print axioms FRC.Drift.gauss_law
 #print axioms FRC.Drift.pn_coefficients
+#print axioms FRC.Drift.two_body_1pn
 #print axioms FRC.Drift.frobenius_trace
 #print axioms FRC.Drift.registration_root
 #print axioms FRC.Drift.conj_pow
@@ -2622,12 +2623,15 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p21020
 #print axioms FRC.Ledger.p21021
 #print axioms FRC.Ledger.p21023
+#print axioms FRC.Ledger.p21025
 #print axioms FRC.Ledger.p21030
 #print axioms FRC.Ledger.p21031
 #print axioms FRC.Ledger.p21035
+#print axioms FRC.Ledger.p21038
 #print axioms FRC.Ledger.p21040
 #print axioms FRC.Ledger.p21041
 #print axioms FRC.Ledger.p21043
+#print axioms FRC.Ledger.p21045
 #print axioms FRC.Ledger.p21055
 #print axioms FRC.Ledger.p21062
 #print axioms FRC.Ledger.p21064
@@ -3566,6 +3570,7 @@ import FrcBridge.Subject
 #print axioms FRC.Gravity.p21022
 #print axioms FRC.Gravity.p21023
 #print axioms FRC.Gravity.p21024
+#print axioms FRC.Gravity.p21025
 #print axioms FRC.Gravity.p21026
 #print axioms FRC.Gravity.p21027
 #print axioms FRC.Gravity.p21062
@@ -3575,6 +3580,7 @@ import FrcBridge.Subject
 #print axioms FRC.Gravity.p21035
 #print axioms FRC.Gravity.p21036
 #print axioms FRC.Gravity.p21037
+#print axioms FRC.Gravity.p21038
 #print axioms FRC.Gravity.p21040
 #print axioms FRC.Gravity.p21006
 #print axioms FRC.Gravity.p21066
@@ -3583,6 +3589,7 @@ import FrcBridge.Subject
 #print axioms FRC.Gravity.p21041
 #print axioms FRC.Gravity.p21043
 #print axioms FRC.Gravity.p21044
+#print axioms FRC.Gravity.p21045
 #print axioms FRC.Gravity.p21047
 #print axioms FRC.Gravity.p21055
 #print axioms FRC.S13.p38001

@@ -1694,6 +1694,7 @@
 'FRC.Drift.antisymmetric_sum' does not depend on any axioms
 'FRC.Drift.gauss_law' does not depend on any axioms
 'FRC.Drift.pn_coefficients' does not depend on any axioms
+'FRC.Drift.two_body_1pn' does not depend on any axioms
 'FRC.Drift.frobenius_trace' does not depend on any axioms
 'FRC.Drift.registration_root' does not depend on any axioms
 'FRC.Drift.conj_pow' does not depend on any axioms
@@ -2611,12 +2612,15 @@
 'FRC.Ledger.p21020' does not depend on any axioms
 'FRC.Ledger.p21021' does not depend on any axioms
 'FRC.Ledger.p21023' does not depend on any axioms
+'FRC.Ledger.p21025' does not depend on any axioms
 'FRC.Ledger.p21030' does not depend on any axioms
 'FRC.Ledger.p21031' does not depend on any axioms
 'FRC.Ledger.p21035' does not depend on any axioms
+'FRC.Ledger.p21038' does not depend on any axioms
 'FRC.Ledger.p21040' does not depend on any axioms
 'FRC.Ledger.p21041' does not depend on any axioms
 'FRC.Ledger.p21043' does not depend on any axioms
+'FRC.Ledger.p21045' does not depend on any axioms
 'FRC.Ledger.p21055' does not depend on any axioms
 'FRC.Ledger.p21062' does not depend on any axioms
 'FRC.Ledger.p21064' does not depend on any axioms
@@ -3555,6 +3559,7 @@
 'FRC.Gravity.p21022' does not depend on any axioms
 'FRC.Gravity.p21023' does not depend on any axioms
 'FRC.Gravity.p21024' does not depend on any axioms
+'FRC.Gravity.p21025' does not depend on any axioms
 'FRC.Gravity.p21026' does not depend on any axioms
 'FRC.Gravity.p21027' does not depend on any axioms
 'FRC.Gravity.p21062' does not depend on any axioms
@@ -3564,6 +3569,7 @@
 'FRC.Gravity.p21035' does not depend on any axioms
 'FRC.Gravity.p21036' does not depend on any axioms
 'FRC.Gravity.p21037' does not depend on any axioms
+'FRC.Gravity.p21038' does not depend on any axioms
 'FRC.Gravity.p21040' does not depend on any axioms
 'FRC.Gravity.p21006' does not depend on any axioms
 'FRC.Gravity.p21066' does not depend on any axioms
@@ -3572,6 +3578,7 @@
 'FRC.Gravity.p21041' does not depend on any axioms
 'FRC.Gravity.p21043' does not depend on any axioms
 'FRC.Gravity.p21044' does not depend on any axioms
+'FRC.Gravity.p21045' does not depend on any axioms
 'FRC.Gravity.p21047' does not depend on any axioms
 'FRC.Gravity.p21055' does not depend on any axioms
 'FRC.S13.p38001' does not depend on any axioms

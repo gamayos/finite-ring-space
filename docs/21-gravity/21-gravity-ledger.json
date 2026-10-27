@@ -205,9 +205,9 @@
     },
     {
      "label": "C10",
-     "predicate": "No preferred-frame leakage: the Lense--Thirring precession at its observed value, with $\\alpha_1,\\alpha_2=O(1/\\sqrt\\Omega)$.",
+     "predicate": "No preferred-frame leakage: the Lense--Thirring precession at its observed value [chart], with $\\alpha_1,\\alpha_2=O(1/\\sqrt\\Omega)$; the exact face, that transport over the complete norm-one cycle closes with no residual and the dispersion symbol is even, so no secular term and no $O(k)\\cdot n$ cross term.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:dragging}\\newline \\pywit{gravity}{p21025}{C10}",
+     "source": "Prop.~\\ref{prop:dragging}\\newline \\pywit{gravity}{p21025}{C10}, \\leanwit{FrcCore}{p21025}{C10}; rests on C3, C15 \\lean{FRC.Drift.conj\\_branch, FRC.Lattice.laplacian\\_symbol}",
      "key": "p21025"
     },
     {
@@ -235,7 +235,7 @@
      "label": "C14",
      "predicate": "The magnitude of dark energy, $\\Lambda\\sim1/\\Omega$ in Planck units, the curvature of the finite chart (B8), the fine-tuning problem unasked; the CMB large-angle anomaly the wrapped-chart signature (C18).",
      "tag": "T",
-     "source": "\\S\\ref{sec:discussion}, App.~\\ref{app:floor}\\newline \\pywit{gravity}{p21063}{C14}; rests on A1, A2, B8, C18",
+     "source": "\\S\\ref{sec:discussion}, App.~\\ref{app:floor}\\newline \\pywit{gravity}{p21063}{C14}, \\leanwit{FrcMathlib}{p21063}{C14}; rests on A1, A2, B8, C18 \\lean{Gravity.curvature\\_datum}",
      "key": "p21063"
     },
     {
@@ -256,7 +256,7 @@
      "label": "C17",
      "predicate": "The rotating solution as the gravitomagnetic (quarter-turn) dual: frame-dragging $=$ Lense--Thirring, horizonless, shadow split at $O(a)$; the ergoregion is an $O(a^2)$ feature of the rapid-rotation residue.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:rotating}\\newline \\pywit{gravity}{p21032}{C17}; rests on B6, C10, C11, C12",
+     "source": "Prop.~\\ref{prop:rotating}\\newline \\pywit{gravity}{p21032}{C17}, \\leanwit{FrcMathlib}{p21032}{C17}; rests on B6, C10, C11, C12 \\lean{Gravity.dipole\\_divergence\\_free, Gravity.lense\\_thirring\\_axis, Gravity.slow\\_rotation\\_timelike, Gravity.ergosurface, Gravity.ergosurface\\_mono}",
      "key": "p21032"
     },
     {
@@ -298,7 +298,7 @@
      "label": "C23",
      "predicate": "The 1PN equivalence lemma: through first post-Newtonian order the two-body metric coefficients coincide with general relativity's isotropic form on the superposed potential, cross term included, so the static part of the Einstein--Infeld--Hoffmann sector is shared exactly; the velocity-dependent 1PN potentials are not compared.",
      "tag": "T",
-     "source": "App.~\\ref{app:pn}\\newline \\pywit{gravity}{p21038}{C23}",
+     "source": "App.~\\ref{app:pn}\\newline \\pywit{gravity}{p21038}{C23}, \\leanwit{FrcCore}{p21038}{C23}; rests on C8 \\lean{FRC.Drift.two\\_body\\_1pn, FRC.Drift.pn\\_coefficients}",
      "key": "p21038"
     },
     {
@@ -374,13 +374,13 @@
      "label": "X5",
      "predicate": "\\textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise.",
      "tag": "T",
-     "source": "\\S\\ref{sub:radiative}\\newline \\pywit{gravity}{p21045}{X5}; rests on B1, C15",
+     "source": "\\S\\ref{sub:radiative}\\newline \\pywit{gravity}{p21045}{X5}, \\leanwit{FrcCore}{p21045}{X5}; rests on B1, C15 \\lean{FRC.Lattice.laplacian\\_symbol}",
      "key": "p21045"
     },
     {
      "label": "X6",
-     "predicate": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported.",
-     "tag": "T",
+     "predicate": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported. Falsifier: large-angle power at the unwrapped chart's value.",
+     "tag": "R",
      "source": "Prop.~\\ref{prop:primordial}; rests on A2, C14, C18",
      "key": "p21046"
     },
@@ -586,7 +586,7 @@
    {
     "name": "FRC.Gravity.calibration_congruence",
     "module": "FrcMathlib/Gravity",
-    "line": 40,
+    "line": 41,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -598,7 +598,7 @@
    {
     "name": "FRC.Gravity.hbar_register",
     "module": "FrcMathlib/Gravity",
-    "line": 58,
+    "line": 59,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -622,7 +622,7 @@
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcMathlib/Gravity",
-    "line": 99,
+    "line": 100,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -635,7 +635,7 @@
    {
     "name": "FRC.Gravity.channel_q4",
     "module": "FrcMathlib/Gravity",
-    "line": 108,
+    "line": 109,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -667,7 +667,7 @@
    {
     "name": "FRC.Gravity.locked_sum",
     "module": "FrcMathlib/Gravity",
-    "line": 234,
+    "line": 277,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -718,7 +718,7 @@
    {
     "name": "FRC.Gravity.newton_register",
     "module": "FrcMathlib/Gravity",
-    "line": 48,
+    "line": 49,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -760,16 +760,16 @@
    {
     "name": "FRC.Drift.conj_branch",
     "module": "FrcCore/Theme/Drift",
-    "line": 336,
+    "line": 354,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C3, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate (Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch."
+    "doc": "21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate (Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch."
    },
    {
     "name": "FRC.Drift.conj_pow",
     "module": "FrcCore/Theme/Drift",
-    "line": 327,
+    "line": 345,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -780,7 +780,7 @@
    {
     "name": "FRC.Gravity.redshift_linear",
     "module": "FrcMathlib/Gravity",
-    "line": 171,
+    "line": 172,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -804,7 +804,7 @@
    {
     "name": "FRC.Gravity.hbar_register",
     "module": "FrcMathlib/Gravity",
-    "line": 58,
+    "line": 59,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -817,7 +817,7 @@
    {
     "name": "FRC.Gravity.dilution",
     "module": "FrcMathlib/Gravity",
-    "line": 65,
+    "line": 66,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -841,7 +841,7 @@
    {
     "name": "FRC.Drift.frobenius_trace",
     "module": "FrcCore/Theme/Drift",
-    "line": 287,
+    "line": 305,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -852,7 +852,7 @@
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcMathlib/Gravity",
-    "line": 99,
+    "line": 100,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -865,7 +865,7 @@
    {
     "name": "FRC.Gravity.pn_series",
     "module": "FrcMathlib/Gravity",
-    "line": 251,
+    "line": 294,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -907,7 +907,7 @@
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcMathlib/Gravity",
-    "line": 99,
+    "line": 100,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -920,7 +920,7 @@
    {
     "name": "FRC.Gravity.pn_series",
     "module": "FrcMathlib/Gravity",
-    "line": 251,
+    "line": 294,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -946,7 +946,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C8, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6` (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients: `(1 − 2x + x²)(1 − 2x + 3x² − 4x³)` has `x²`-coefficient `8` and `x³`-coefficient `−12`, read at `x = U/2` as `2` and `−3/2`. Exact integers, decided by the kernel."
+    "doc": "21:C8, 21:C23, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6` (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients: `(1 − 2x + x²)(1 − 2x + 3x² − 4x³)` has `x²`-coefficient `8` and `x³`-coefficient `−12`, read at `x = U/2` as `2` and `−3/2`. Exact integers, decided by the kernel."
    },
    {
     "name": "FRC.Drift.character_composition",
@@ -962,7 +962,7 @@
    {
     "name": "FRC.Gravity.central_difference_adjoint",
     "module": "FrcMathlib/Gravity",
-    "line": 274,
+    "line": 317,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1036,11 +1036,31 @@
     "doc": "21:C9, 21:C22 — the adjoint composite of the forward difference is the cycle Laplacian, `∂̄ ∂ f = Δ f`: the leading contraction `C₁†C₁ = |α|² L` of thm:indrelax."
    }
   ],
+  "C10": [
+   {
+    "name": "FRC.Drift.conj_branch",
+    "module": "FrcCore/Theme/Drift",
+    "line": 354,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate (Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch."
+   },
+   {
+    "name": "FRC.Lattice.laplacian_symbol",
+    "module": "FrcCore/Theme/Lattice",
+    "line": 84,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C15, 21:C10, 21:X5 — on a character `g` with `gⁿ = 1`, the cycle Laplacian acts on `χ_k` as the symbol `g^k + g^{k(n−1)} − 2` (`g^{k(n−1)} = g^{−k}` on the cycle): `(Δ_Φ χ_k)(i) = (g^k + g^{−k} − 2) χ_k(i)`, the dispersion relation `2 − g^k − g^{−k}` of 8:F4, whose chart is `2 − 2 cos k = 4 sin²(k/2)`."
+   }
+  ],
   "C11": [
    {
     "name": "FRC.Gravity.exponential_reading",
     "module": "FrcMathlib/Gravity",
-    "line": 240,
+    "line": 283,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1071,7 +1091,7 @@
    {
     "name": "FRC.Drift.character_unique",
     "module": "FrcCore/Theme/Drift",
-    "line": 372,
+    "line": 390,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1109,7 +1129,7 @@
    {
     "name": "FRC.Gravity.operational_cut",
     "module": "FrcMathlib/Gravity",
-    "line": 114,
+    "line": 115,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1167,7 +1187,7 @@
    {
     "name": "FRC.Drift.cut_ordering",
     "module": "FrcCore/Theme/Drift",
-    "line": 408,
+    "line": 426,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1178,7 +1198,7 @@
    {
     "name": "FRC.Gravity.count_face",
     "module": "FrcMathlib/Gravity",
-    "line": 73,
+    "line": 74,
     "axioms": [
      "propext"
     ],
@@ -1189,7 +1209,7 @@
    {
     "name": "FRC.Gravity.merger_area_law",
     "module": "FrcMathlib/Gravity",
-    "line": 84,
+    "line": 85,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1202,7 +1222,7 @@
    {
     "name": "FRC.Gravity.capacity_ratio",
     "module": "FrcMathlib/Gravity",
-    "line": 161,
+    "line": 162,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1215,7 +1235,7 @@
    {
     "name": "FRC.Gravity.capacity_ratio_numeral",
     "module": "FrcMathlib/Gravity",
-    "line": 166,
+    "line": 167,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1253,11 +1273,26 @@
     "doc": "21:C13 — the merger law's instance on the count face `A = M(M + 1)`: `27 811 + 1 596 → 29 407` gives `ΔA = 2 · 27 811 · 1 596 = 88 772 712`."
    }
   ],
+  "C14": [
+   {
+    "name": "FRC.Gravity.curvature_datum",
+    "module": "FrcMathlib/Gravity",
+    "line": 178,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C14, 21:X1 — the curvature of the finite chart, `π` a symbol on the reals: from `S = π r_H²` and `Ω = 4S + 1`, `Λ = 3/r_H² = 3π/S`, `Λ(Ω − 1) = 12π`, `ΛS = 3π`, the chronon's `τ² = π/(4S)` and the horizon `2S/π` chronons. (`FRC.Strong.curvature_datum`, `Theme/Strong.lean`)."
+   }
+  ],
   "C15": [
    {
     "name": "FRC.Gravity.dispersion_symbol",
     "module": "FrcMathlib/Gravity",
-    "line": 228,
+    "line": 271,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1274,14 +1309,14 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C15 — on a character `g` with `gⁿ = 1`, the cycle Laplacian acts on `χ_k` as the symbol `g^k + g^{k(n−1)} − 2` (`g^{k(n−1)} = g^{−k}` on the cycle): `(Δ_Φ χ_k)(i) = (g^k + g^{−k} − 2) χ_k(i)`, the dispersion relation `2 − g^k − g^{−k}` of 8:F4, whose chart is `2 − 2 cos k = 4 sin²(k/2)`."
+    "doc": "21:C15, 21:C10, 21:X5 — on a character `g` with `gⁿ = 1`, the cycle Laplacian acts on `χ_k` as the symbol `g^k + g^{k(n−1)} − 2` (`g^{k(n−1)} = g^{−k}` on the cycle): `(Δ_Φ χ_k)(i) = (g^k + g^{−k} − 2) χ_k(i)`, the dispersion relation `2 − g^k − g^{−k}` of 8:F4, whose chart is `2 − 2 cos k = 4 sin²(k/2)`."
    }
   ],
   "C16": [
    {
     "name": "FRC.Gravity.calibration_congruence",
     "module": "FrcMathlib/Gravity",
-    "line": 40,
+    "line": 41,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -1293,7 +1328,7 @@
    {
     "name": "FRC.Gravity.newton_register",
     "module": "FrcMathlib/Gravity",
-    "line": 48,
+    "line": 49,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1322,11 +1357,78 @@
     "doc": "21:C2, 21:C5, 21:C16 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`), host-decided: `4S = 2 408 560 = −1` and `(4S)² = 1` (the calibration congruence); `G = 1 204 280 = 2S` with `2G = −1`, `(−2) G = 1` and the Gauss count `(2 · 4S) G = 1`; `ħ = 18 688` with `ħ² = −1`, `ħ = 2 · 9 344` and `9 344² = S`."
    }
   ],
+  "C17": [
+   {
+    "name": "FRC.Gravity.dipole_divergence_free",
+    "module": "FrcMathlib/Gravity",
+    "line": 185,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C17 — the gravitomagnetic dipole `A = J(−y, x, 0)/ρ³` is divergence-free off the source: `∂ₓAₓ = 3Jxy/ρ⁵`, `∂ᵧAᵧ = −3Jxy/ρ⁵`, `∂_zA_z = 0`, summing to zero. (`FRC.Strong.dipole_divergence_free`, `Theme/Strong.lean`)."
+   },
+   {
+    "name": "FRC.Gravity.lense_thirring_axis",
+    "module": "FrcMathlib/Gravity",
+    "line": 195,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C17 — the curl of the dipole on the axis is `2J/z³`, the Lense–Thirring rate in its observed form. (`FRC.Strong.lense_thirring_axis`, `Theme/Strong.lean`)."
+   },
+   {
+    "name": "FRC.Gravity.slow_rotation_timelike",
+    "module": "FrcMathlib/Gravity",
+    "line": 203,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C17 — `g_tt = −e^{−2u}c² < 0` in the slow-rotation metric: no ergoregion at this order. (`FRC.Strong.slow_rotation_timelike`, `Theme/Strong.lean`)."
+   },
+   {
+    "name": "FRC.Gravity.ergosurface",
+    "module": "FrcMathlib/Gravity",
+    "line": 208,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C17 — the `O(a²)` ergosurface `r⁴ e^{−4/r} = 4a²` has exactly one positive root for `0 < a < 1`. (`FRC.Strong.ergosurface`, `Theme/Strong.lean`)."
+   },
+   {
+    "name": "FRC.Gravity.ergosurface_mono",
+    "module": "FrcMathlib/Gravity",
+    "line": 213,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C17 — the ergosurface grows with the spin. (`FRC.Strong.ergosurface_mono`, `Theme/Strong.lean`)."
+   }
+  ],
   "C18": [
    {
     "name": "FRC.Gravity.scale_invariance_iff",
     "module": "FrcMathlib/Gravity",
-    "line": 221,
+    "line": 264,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1339,7 +1441,7 @@
    {
     "name": "FRC.Gravity.tilt_bracket",
     "module": "FrcMathlib/Gravity",
-    "line": 292,
+    "line": 335,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1354,7 +1456,7 @@
    {
     "name": "FRC.Gravity.registration_root",
     "module": "FrcMathlib/Gravity",
-    "line": 178,
+    "line": 221,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1367,7 +1469,7 @@
    {
     "name": "FRC.Gravity.crossover_limits",
     "module": "FrcMathlib/Gravity",
-    "line": 189,
+    "line": 232,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1380,7 +1482,7 @@
    {
     "name": "FRC.Gravity.crossover_deep_limit",
     "module": "FrcMathlib/Gravity",
-    "line": 198,
+    "line": 241,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1393,7 +1495,7 @@
    {
     "name": "FRC.Drift.registration_root",
     "module": "FrcCore/Theme/Drift",
-    "line": 298,
+    "line": 316,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1404,7 +1506,7 @@
    {
     "name": "FRC.Gravity.shift_theorem",
     "module": "FrcMathlib/Gravity",
-    "line": 282,
+    "line": 325,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1464,7 +1566,7 @@
    {
     "name": "FRC.Drift.compression",
     "module": "FrcCore/Theme/Drift",
-    "line": 351,
+    "line": 369,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1493,7 +1595,7 @@
    {
     "name": "FRC.Drift.compression",
     "module": "FrcCore/Theme/Drift",
-    "line": 351,
+    "line": 369,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1536,11 +1638,31 @@
     "doc": "21:C1, 21:C22, 21:C26 — the current is the centred drive-difference of the tally: with `h = g⁻¹` the one-chronon drive step, `W(zg) − W(zg⁻¹) = (g − g⁻¹)(z − z⁻¹)`. Exact on every shell; `sin` is the chart reading of the right-hand side (lem:pairtally)."
    }
   ],
+  "C23": [
+   {
+    "name": "FRC.Drift.two_body_1pn",
+    "module": "FrcCore/Theme/Drift",
+    "line": 287,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C23 — the 1PN equivalence lemma, the cross term: the two metrics share the coefficients `−2U` and `2U²` of `A` and `2U` of `B` (`pn_coefficients`), and on the superposed potential `U = U₁ + U₂` the shared `2U²` carries the cross term, `2(U₁ + U₂)² = 2U₁² + 4U₁U₂ + 2U₂²`, while the shared `2U` of `B` is `2U₁ + 2U₂`: through first post-Newtonian order the two-body coefficients coincide on the superposed potential, cross term included, on every shell."
+   },
+   {
+    "name": "FRC.Drift.pn_coefficients",
+    "module": "FrcCore/Theme/Drift",
+    "line": 279,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C8, 21:C23, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6` (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients: `(1 − 2x + x²)(1 − 2x + 3x² − 4x³)` has `x²`-coefficient `8` and `x³`-coefficient `−12`, read at `x = U/2` as `2` and `−3/2`. Exact integers, decided by the kernel."
+   }
+  ],
   "C25": [
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcMathlib/Gravity",
-    "line": 99,
+    "line": 100,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1718,7 +1840,7 @@
    {
     "name": "FRC.Gravity.crossover_deep_limit",
     "module": "FrcMathlib/Gravity",
-    "line": 198,
+    "line": 241,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1733,7 +1855,7 @@
    {
     "name": "FRC.Drift.compression",
     "module": "FrcCore/Theme/Drift",
-    "line": 351,
+    "line": 369,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1771,11 +1893,22 @@
    {
     "name": "FRC.Drift.character_unique",
     "module": "FrcCore/Theme/Drift",
-    "line": 372,
+    "line": 390,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "00:E4, 21:C11, 21:X4 — the exponential reading is the unique scale-covariant one: a function of the drive's steps with the composition law `f (a + b) = f a · f b` and `f 0 = 1` is the character `f a = (f 1)^a`."
+   }
+  ],
+  "X5": [
+   {
+    "name": "FRC.Lattice.laplacian_symbol",
+    "module": "FrcCore/Theme/Lattice",
+    "line": 84,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C15, 21:C10, 21:X5 — on a character `g` with `gⁿ = 1`, the cycle Laplacian acts on `χ_k` as the symbol `g^k + g^{k(n−1)} − 2` (`g^{k(n−1)} = g^{−k}` on the cycle): `(Δ_Φ χ_k)(i) = (g^k + g^{−k} − 2) χ_k(i)`, the dispersion relation `2 − g^k − g^{−k}` of 8:F4, whose chart is `2 − 2 cos k = 4 sin²(k/2)`."
    }
   ],
   "X7": [
@@ -1793,7 +1926,7 @@
    {
     "name": "FRC.Gravity.dilution",
     "module": "FrcMathlib/Gravity",
-    "line": 65,
+    "line": 66,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1808,7 +1941,7 @@
    {
     "name": "FRC.Gravity.photon_sphere",
     "module": "FrcMathlib/Gravity",
-    "line": 122,
+    "line": 123,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1821,7 +1954,7 @@
    {
     "name": "FRC.Gravity.shadow_bracket",
     "module": "FrcMathlib/Gravity",
-    "line": 131,
+    "line": 132,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1834,7 +1967,7 @@
    {
     "name": "FRC.Gravity.isco",
     "module": "FrcMathlib/Gravity",
-    "line": 142,
+    "line": 143,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1847,7 +1980,7 @@
    {
     "name": "FRC.Gravity.isco_efficiency",
     "module": "FrcMathlib/Gravity",
-    "line": 152,
+    "line": 153,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1862,7 +1995,7 @@
    {
     "name": "FRC.Gravity.operational_cut",
     "module": "FrcMathlib/Gravity",
-    "line": 114,
+    "line": 115,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1877,7 +2010,7 @@
    {
     "name": "FRC.Gravity.tilt_bracket",
     "module": "FrcMathlib/Gravity",
-    "line": 292,
+    "line": 335,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1892,7 +2025,7 @@
    {
     "name": "FRC.Gravity.preferred_frame_scale",
     "module": "FrcMathlib/Gravity",
-    "line": 259,
+    "line": 302,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1907,7 +2040,7 @@
    {
     "name": "FRC.Gravity.floor_value",
     "module": "FrcMathlib/Gravity",
-    "line": 300,
+    "line": 343,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1922,7 +2055,7 @@
    {
     "name": "FRC.Gravity.crossover_limits",
     "module": "FrcMathlib/Gravity",
-    "line": 189,
+    "line": 232,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1935,7 +2068,7 @@
    {
     "name": "FRC.Gravity.crossover_newton_limit",
     "module": "FrcMathlib/Gravity",
-    "line": 203,
+    "line": 246,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1948,7 +2081,7 @@
    {
     "name": "FRC.Gravity.registration_root",
     "module": "FrcMathlib/Gravity",
-    "line": 178,
+    "line": 221,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1961,7 +2094,7 @@
    {
     "name": "FRC.Gravity.interpolant_discriminant",
     "module": "FrcMathlib/Gravity",
-    "line": 211,
+    "line": 254,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1976,7 +2109,7 @@
    {
     "name": "FRC.Gravity.running_floor",
     "module": "FrcMathlib/Gravity",
-    "line": 311,
+    "line": 354,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1991,7 +2124,7 @@
    {
     "name": "FRC.Gravity.pn_series",
     "module": "FrcMathlib/Gravity",
-    "line": 251,
+    "line": 294,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -2008,7 +2141,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C8, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6` (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients: `(1 − 2x + x²)(1 − 2x + 3x² − 4x³)` has `x²`-coefficient `8` and `x³`-coefficient `−12`, read at `x = U/2` as `2` and `−3/2`. Exact integers, decided by the kernel."
+    "doc": "21:C8, 21:C23, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6` (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients: `(1 − 2x + x²)(1 − 2x + 3x² − 4x³)` has `x²`-coefficient `8` and `x³`-coefficient `−12`, read at `x = U/2` as `2` and `−3/2`. Exact integers, decided by the kernel."
    }
   ]
  }

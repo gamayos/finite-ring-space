@@ -99,6 +99,16 @@ fails if a key's axioms change (the axioms of Mathlib's hierarchy at most). Noth
 #guard_msgs in
 #print axioms FRC.LedgerML.p21055
 
+-- 21:C14 (p21063)
+/-- info: 'FRC.LedgerML.p21063' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p21063
+
+-- 21:C17 (p21032)
+/-- info: 'FRC.LedgerML.p21032' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p21032
+
 -- 21:C18 (p21033)
 /-- info: 'FRC.LedgerML.p21033' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

@@ -6746,7 +6746,7 @@ def chi (n : Nat) (g : Shell p) (k : Nat) (i : Nat) : Shell p := g ^ (k * (i % n
 theorem chi_cyc (n : Nat) (hn : 0 < n) (g : Shell p) (k i : Nat) : cyc n (chi n g k) i = chi n g k i := by
   show g ^ (k * (i % n % n)) = g ^ (k * (i % n)); rw [FRC.Nat.mod_mod i n hn]
 
-/-- 21:C15 — on a character `g` with `gⁿ = 1`, the cycle Laplacian acts on `χ_k` as the symbol
+/-- 21:C15, 21:C10, 21:X5 — on a character `g` with `gⁿ = 1`, the cycle Laplacian acts on `χ_k` as the symbol
 `g^k + g^{k(n−1)} − 2` (`g^{k(n−1)} = g^{−k}` on the cycle): `(Δ_Φ χ_k)(i) = (g^k + g^{−k} − 2) χ_k(i)`,
 the dispersion relation `2 − g^k − g^{−k}` of 8:F4, whose chart is `2 − 2 cos k = 4 sin²(k/2)`. -/
 theorem laplacian_symbol (n : Nat) (hn : 0 < n) {g : Shell p} (hg : g ^ n = 1) (k i : Nat) :
@@ -7035,7 +7035,7 @@ theorem gauss_law {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) (J : Nat
 
 /-! ## 21:C8, 21:P6 — the post-Newtonian coefficients, exact -/
 
-/-- 21:C8, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild
+/-- 21:C8, 21:C23, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild
 `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6`
 (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at
 `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients:
@@ -7044,6 +7044,24 @@ as `2` and `−3/2`. Exact integers, decided by the kernel. -/
 theorem pn_coefficients :
     (6 : Int) * (-4) / 3 - 6 * (-3) / 2 = 1 ∧ (2 : Int) * 2 - 3 = 1 ∧
     (3 : Int) + 4 + 1 = 8 ∧ (-4 : Int) - 6 - 2 = -12 ∧ (8 : Int) / 4 = 2 ∧ (-12 : Int) * 2 / 8 = -3 := by decide
+
+/-- 21:C23 — the 1PN equivalence lemma, the cross term: the two metrics share the coefficients `−2U` and `2U²` of `A` and `2U` of
+`B` (`pn_coefficients`), and on the superposed potential `U = U₁ + U₂` the shared `2U²` carries the cross term,
+`2(U₁ + U₂)² = 2U₁² + 4U₁U₂ + 2U₂²`, while the shared `2U` of `B` is `2U₁ + 2U₂`: through first post-Newtonian order the
+two-body coefficients coincide on the superposed potential, cross term included, on every shell. -/
+theorem two_body_1pn (u v : Shell p) :
+    (1 + 1) * ((u + v) * (u + v)) = (1 + 1) * (u * u) + (1 + 1 + 1 + 1) * (u * v) + (1 + 1) * (v * v) ∧
+    (1 + 1) * (u + v) = (1 + 1) * u + (1 + 1) * v :=
+  ⟨RE.sound (look [u, v])
+      (.mul (.add .one .one) (.mul (.add (.var 0) (.var 1)) (.add (.var 0) (.var 1))))
+      (.add (.add (.mul (.add .one .one) (.mul (.var 0) (.var 0)))
+                  (.mul (.add (.add (.add .one .one) .one) .one) (.mul (.var 0) (.var 1))))
+            (.mul (.add .one .one) (.mul (.var 1) (.var 1))))
+      (by decide +kernel),
+   RE.sound (look [u, v])
+      (.mul (.add .one .one) (.add (.var 0) (.var 1)))
+      (.add (.mul (.add .one .one) (.var 0)) (.mul (.add .one .one) (.var 1)))
+      (by decide +kernel)⟩
 
 /-! ## 21:C6 — the dust tensor's trace -/
 
@@ -7095,7 +7113,7 @@ theorem conj_pow (z : Ext p ν) : ∀ n : Nat, conj (z ^ n) = (conj z) ^ n
       show conj (z ^ n * z) = (conj z) ^ n * conj z
       rw [conj_mul, conj_pow z n]
 
-/-- 21:C3, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate
+/-- 21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate
 (Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock
 is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch. -/
 theorem conj_branch (z : Ext p ν) (hz : norm z = 1) : ∀ n : Nat, z ^ n * (conj z) ^ n = 1
@@ -7317,6 +7335,9 @@ theorem p21021 : ∀ {p : Nat} [FRC.Pos p] (m a b ν : FRC.Shell p), m * (a * a)
 /-- p21023 — 21:C8. The exponential isotropic metric by multiplicative composition (the character composition law $\gen^{a+b}=\gen^{a}\gen^{b}$ on the shell), with $\beta=\gamma=1$: deflection, Shapiro delay, and perihelion at their observed values [chart]. -/
 theorem p21023 : (∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) → β = (1 : FRC.Shell p)) ∧ ((6 : Int) * (-4 : Int) / (3 : Int) - (6 : Int) * (-3 : Int) / (2 : Int) = (1 : Int) ∧ (2 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (3 : Int) + (4 : Int) + (1 : Int) = (8 : Int) ∧ (-4 : Int) - (6 : Int) - (2 : Int) = (-12 : Int) ∧ (8 / 4 : Int) = (2 : Int) ∧ (-12 : Int) * (2 : Int) / (8 : Int) = (-3 : Int)) ∧ ∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (a b : Nat), g ^ (a + b) = g ^ a * g ^ b :=
   And.intro @FRC.Drift.cover_triangle (And.intro @FRC.Drift.pn_coefficients (@FRC.Drift.character_composition))
+/-- p21025 — 21:C10. No preferred-frame leakage: the Lense--Thirring precession at its observed value [chart], with $\alpha_1,\alpha_2=O(1/\sqrt\Omega)$; the exact face, that transport over the complete norm-one cycle closes with no residual and the dispersion symbol is even, so no secular term and no $O(k)\cdot n$ cross term. -/
+theorem p21025 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν), z.norm = (1 : FRC.Shell p) → ∀ (n : Nat), z ^ n * z.conj ^ n = (1 : FRC.Extension.Ext p ν)) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k i : Nat), FRC.Lattice.lap n (FRC.Lattice.chi n g k) i = (g ^ k + g ^ (k * (n - (1 : Nat))) + -((1 : FRC.Shell p) + (1 : FRC.Shell p))) * FRC.Lattice.chi n g k i :=
+  And.intro @FRC.Drift.conj_branch (@FRC.Lattice.laplacian_symbol)
 /-- p21030 — 21:C15. The radiative sector: the quarter-turn conjugate momentum makes the dynamics a wave equation: two helicity-$\pm2$ gravitons at speed $c$, quadrupole radiation; gauge leaves two polarisations. -/
 theorem p21030 : ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k i : Nat), FRC.Lattice.lap n (FRC.Lattice.chi n g k) i = (g ^ k + g ^ (k * (n - (1 : Nat))) + -((1 : FRC.Shell p) + (1 : FRC.Shell p))) * FRC.Lattice.chi n g k i :=
   @FRC.Lattice.laplacian_symbol
@@ -7326,6 +7347,9 @@ theorem p21031 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p21035 — 21:C20. The two-shift update law: kick (finite Fourier shift by the source character) composed with metaplectic transport gives $\Delta^{2}_{\tau}q=-\nabla u$ with $m$ cancelling --- registered inertia and the equivalence principle inside one derived law. -/
 theorem p21035 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {ζ : FRC.Shell p}, ζ ^ n = (1 : FRC.Shell p) → ∀ (f : Nat → FRC.Shell p) (a k : Nat), FRC.Cycle.dft n ζ (fun x => ζ ^ (a * x) * f x) k = FRC.Cycle.dft n ζ f (k + a)) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {ζ : FRC.Shell p}, ζ ^ n = (1 : FRC.Shell p) → ∀ (f : Nat → FRC.Shell p) (a k : Nat), a ≤ n → FRC.Cycle.dft n ζ (fun x => FRC.Cycle.cyc n f (x + (n - a))) k = ζ ^ (a * k) * FRC.Cycle.dft n ζ f k :=
   And.intro @FRC.Cycle.dft_kick (@FRC.Cycle.dft_shift)
+/-- p21038 — 21:C23. The 1PN equivalence lemma: through first post-Newtonian order the two-body metric coefficients coincide with general relativity's isotropic form on the superposed potential, cross term included, so the static part of the Einstein--Infeld--Hoffmann sector is shared exactly; the velocity-dependent 1PN potentials are not compared. -/
+theorem p21038 : (∀ {p : Nat} [FRC.Pos p] (u v : FRC.Shell p), ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * ((u + v) * (u + v)) = ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * (u * u) + ((1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p)) * (u * v) + ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * (v * v) ∧ ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * (u + v) = ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * u + ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * v) ∧ (6 : Int) * (-4 : Int) / (3 : Int) - (6 : Int) * (-3 : Int) / (2 : Int) = (1 : Int) ∧ (2 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (3 : Int) + (4 : Int) + (1 : Int) = (8 : Int) ∧ (-4 : Int) - (6 : Int) - (2 : Int) = (-12 : Int) ∧ (8 / 4 : Int) = (2 : Int) ∧ (-12 : Int) * (2 : Int) / (8 : Int) = (-3 : Int) :=
+  And.intro @FRC.Drift.two_body_1pn (@FRC.Drift.pn_coefficients)
 /-- p21040 — 21:C25. The PPN triangle closed by two routes: channel unity gives $\gamma=1$ (C7), the instance cover forces $2\gamma-\beta=1$ (A9), jointly $\beta=1$ --- Theorem~\ref{thm:ppn} reached independently, the deviation $\tfrac23(2\gamma-\beta-1)$ its falsifier. -/
 theorem p21040 : (∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) → β = (1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β + (-1 : FRC.Shell p) = (0 : FRC.Shell p) :=
   And.intro @FRC.Drift.cover_triangle (@FRC.Drift.cover_deviation)
@@ -7335,6 +7359,9 @@ theorem p21041 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p21043 — 21:X3. \textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \citep{quantum}: the theory never forfeits predictivity. -/
 theorem p21043 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (P f : Nat → FRC.Shell p), (∀ (x : Nat), P x * P x = P x) → FRC.Shell.sumRange (fun x => P x * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n)))) n + FRC.Shell.sumRange (fun x => ((1 : FRC.Shell p) + -P x) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n)))) n = FRC.Shell.sumRange (fun x => P x * (f x * f x)) n) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (f : Nat → FRC.Shell p) (i : Nat), FRC.Cycle.cyc n f (i + n) = FRC.Cycle.cyc n f i :=
   And.intro @FRC.Drift.compression (@FRC.Cycle.cyc_add_n)
+/-- p21045 — 21:X5. \textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise. -/
+theorem p21045 : ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k i : Nat), FRC.Lattice.lap n (FRC.Lattice.chi n g k) i = (g ^ k + g ^ (k * (n - (1 : Nat))) + -((1 : FRC.Shell p) + (1 : FRC.Shell p))) * FRC.Lattice.chi n g k i :=
+  @FRC.Lattice.laplacian_symbol
 /-- p21055 — 21:P6. The 2PN periastron excess for PSR~J0737$-$3039: $\delta\dot\omega/\dot\omega\approx1.5\times10^{-6}$ in the test-particle sector [approx], the comparable-mass terms ($\nu=0.250$) not yet reduced; today degenerate with the mass refit; decisive either way once that sector is reduced and an independent observable fixes $M_{\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \citep{quantum}; the ledger carries both. -/
 theorem p21055 : (6 : Int) * (-4 : Int) / (3 : Int) - (6 : Int) * (-3 : Int) / (2 : Int) = (1 : Int) ∧ (2 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (3 : Int) + (4 : Int) + (1 : Int) = (8 : Int) ∧ (-4 : Int) - (6 : Int) - (2 : Int) = (-12 : Int) ∧ (8 / 4 : Int) = (2 : Int) ∧ (-12 : Int) * (2 : Int) / (8 : Int) = (-3 : Int) :=
   @FRC.Drift.pn_coefficients
@@ -7383,12 +7410,15 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p21020
 #print axioms FRC.Ledger.p21021
 #print axioms FRC.Ledger.p21023
+#print axioms FRC.Ledger.p21025
 #print axioms FRC.Ledger.p21030
 #print axioms FRC.Ledger.p21031
 #print axioms FRC.Ledger.p21035
+#print axioms FRC.Ledger.p21038
 #print axioms FRC.Ledger.p21040
 #print axioms FRC.Ledger.p21041
 #print axioms FRC.Ledger.p21043
+#print axioms FRC.Ledger.p21045
 #print axioms FRC.Ledger.p21055
 #print axioms FRC.Ledger.p21062
 #print axioms FRC.Ledger.p21064

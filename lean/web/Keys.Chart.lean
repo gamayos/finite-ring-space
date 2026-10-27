@@ -1903,7 +1903,12 @@ name as an alias), every numeral re-anchored to the ledger's scale import (00:A7
 minimum of `r e^{2Gm/r}` (21:C12, P1); the shadow `+4.6 %` and ringdown `−4.4 %` bracketed from `e` and `√3` (21:P1); the eikonal pair
 `Ω_c = λ = 1/(2eM)` from the derivatives of `r² e^{4M/r}` at `2M` (00:E14, 16 October 2026);
 the innermost stable orbit at `r = 3 + √5` and the efficiency `5.48 %` against Schwarzschild's `5.72 %` (21:P1); the
-capacity ratio `1/ln²Ω = 1.24 × 10⁻⁵` at `283.5` (21:C13); the redshift's linear form (21:C4). The crossover: the
+capacity ratio `1/ln²Ω = 1.24 × 10⁻⁵` at `283.5` (21:C13); the redshift's linear form (21:C4); the curvature datum
+with `π` a symbol, `Λ = 3/r_H² = 3π/S` and `Λ(Ω − 1) = 12π` from `S = π r_H²`, `Ω = 4S + 1` (21:C14, X1; 27 October
+2026). The rotating solution (21:C17, 27 October 2026): the gravitomagnetic dipole `A = J × r/r³` divergence-free
+off the source with curl `2J/r³` on the axis (the Lense–Thirring rate), `g_tt = −e^{−2u}c² < 0` in the slow-rotation
+metric (no ergoregion at `O(a)`), and the `O(a²)` ergosurface `r⁴e^{−4/r} = 4a²` with one positive root for
+`0 < a < 1`, growing with the spin. The crossover: the
 registration root `η` of `wη² − 2η + w = 0` in `(0, 1)`, the crossover squeezed between its deep and Newtonian
 limits, the Tully–Fisher algebra (21:C19, P4, X2); the discriminant `0.051` at `g_N = 5a₀` against the simple
 interpolant (21:P4). The primordial fixed point `n_s = 1` (21:C18; the tilt at `283.5` is `Chart.tilt_ledger`).
@@ -2166,7 +2171,173 @@ theorem redshift_linear (u : ℝ) (h0 : 0 ≤ u) (h1 : u ≤ 1) : |1 - exp (-u) 
   rw [abs_le] at h ⊢
   constructor <;> nlinarith [sq_nonneg u]
 
+/-- 21:C14, 21:X1 — the curvature of the finite chart, `π` a symbol on the reals (Planck units): the de Sitter entropy
+`S = π r_H²` and the totality datum `Ω = 4S + 1` give `Λ = 3/r_H² = 3π/S`, `Λ(Ω − 1) = 12π` and `ΛS = 3π` exactly, so
+`Λ ∼ 1/Ω` is the chart's curvature and not a vacuum energy; the chronon `τ = 2π r_H/(4S)` has `τ² = π/(4S)` (the
+text's `(√π/2) t_P/√S`) and the horizon is `2S/π` chronons. The python check A7 computes the same over `ℚ` with `π` a
+formal symbol. -/
+theorem curvature_datum (S rH : ℝ) (hr : 0 < rH) (hS : S = π * rH ^ 2) :
+    3 / rH ^ 2 = 3 * π / S ∧ 3 / rH ^ 2 * (4 * S + 1 - 1) = 12 * π ∧ 3 / rH ^ 2 * S = 3 * π ∧
+    (2 * π * rH / (4 * S)) ^ 2 = π / (4 * S) ∧ (rH / (2 * π * rH / (4 * S))) ^ 2 = (2 * S / π) ^ 2 := by
+  have hr0 : rH ≠ 0 := hr.ne'
+  have hpi : π ≠ 0 := pi_ne_zero
+  subst hS
+  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> field_simp <;> ring
+
 end strongfield
+
+/-! ## The rotating solution (21:C17) -/
+section rotating
+
+/-- The derivative of `s ↦ k s/(√(s² + c))³`, a component of the dipole along its own coordinate. -/
+theorem hasDerivAt_dipole_lin (k c t : ℝ) (hc : 0 < t ^ 2 + c) :
+    HasDerivAt (fun s => k * s / (√(s ^ 2 + c)) ^ 3) (k * (c - 2 * t ^ 2) / (√(t ^ 2 + c)) ^ 5) t := by
+  have hpos : 0 < √(t ^ 2 + c) := Real.sqrt_pos.2 hc
+  have h1 : HasDerivAt (fun s : ℝ => s ^ 2 + c) (2 * t) t := by
+    simpa using ((hasDerivAt_pow 2 t).add_const c)
+  have h2 : HasDerivAt (fun s : ℝ => √(s ^ 2 + c)) (2 * t / (2 * √(t ^ 2 + c))) t := h1.sqrt hc.ne'
+  have h3 : HasDerivAt (fun s : ℝ => (√(s ^ 2 + c)) ^ 3)
+      ((3 : ℝ) * (√(t ^ 2 + c)) ^ 2 * (2 * t / (2 * √(t ^ 2 + c)))) t := by
+    simpa [Function.comp_def] using (hasDerivAt_pow 3 (√(t ^ 2 + c))).comp t h2
+  have h4 : HasDerivAt (fun s : ℝ => k * s) k t := by simpa using (hasDerivAt_id t).const_mul k
+  have h5 := h4.div h3 (by positivity)
+  convert h5 using 1
+  have hs : (√(t ^ 2 + c)) ^ 2 = t ^ 2 + c := Real.sq_sqrt hc.le
+  generalize √(t ^ 2 + c) = r at hpos hs ⊢
+  have hr0 : r ≠ 0 := hpos.ne'
+  have hc' : c = r ^ 2 - t ^ 2 := by linarith
+  subst hc'
+  field_simp
+  ring
+
+/-- The derivative of `s ↦ k/(√(s² + c))³`, a component of the dipole along a transverse coordinate. -/
+theorem hasDerivAt_dipole_inv (k c t : ℝ) (hc : 0 < t ^ 2 + c) :
+    HasDerivAt (fun s => k / (√(s ^ 2 + c)) ^ 3) (-3 * k * t / (√(t ^ 2 + c)) ^ 5) t := by
+  have hpos : 0 < √(t ^ 2 + c) := Real.sqrt_pos.2 hc
+  have h1 : HasDerivAt (fun s : ℝ => s ^ 2 + c) (2 * t) t := by
+    simpa using ((hasDerivAt_pow 2 t).add_const c)
+  have h2 : HasDerivAt (fun s : ℝ => √(s ^ 2 + c)) (2 * t / (2 * √(t ^ 2 + c))) t := h1.sqrt hc.ne'
+  have h3 : HasDerivAt (fun s : ℝ => (√(s ^ 2 + c)) ^ 3)
+      ((3 : ℝ) * (√(t ^ 2 + c)) ^ 2 * (2 * t / (2 * √(t ^ 2 + c)))) t := by
+    simpa [Function.comp_def] using (hasDerivAt_pow 3 (√(t ^ 2 + c))).comp t h2
+  have h5 := (hasDerivAt_const t k).div h3 (by positivity)
+  convert h5 using 1
+  have hs : (√(t ^ 2 + c)) ^ 2 = t ^ 2 + c := Real.sq_sqrt hc.le
+  generalize √(t ^ 2 + c) = r at hpos hs ⊢
+  have hr0 : r ≠ 0 := hpos.ne'
+  have hc' : c = r ^ 2 - t ^ 2 := by linarith
+  subst hc'
+  field_simp
+  ring
+
+/-- 21:C17 — the gravitomagnetic dipole `A = J × r/r³` of a spin `J` along the `z` axis, `A = J(−y, x, 0)/ρ³`
+with `ρ = √(x² + y² + z²)`, is divergence-free off the source: `∂ₓAₓ = 3Jxy/ρ⁵`, `∂ᵧAᵧ = −3Jxy/ρ⁵`, `∂_zA_z = 0`,
+and the three sum to zero (`prop:rotating`, the quarter-turn dual sourced by the momentum flux). Its harmonicity is
+the python check's (E7, central differences). -/
+theorem dipole_divergence_free (J x y z : ℝ) (h : 0 < x ^ 2 + y ^ 2 + z ^ 2) :
+    HasDerivAt (fun t => -J * y / (√(t ^ 2 + y ^ 2 + z ^ 2)) ^ 3)
+      (3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5) x ∧
+    HasDerivAt (fun t => J * x / (√(x ^ 2 + t ^ 2 + z ^ 2)) ^ 3)
+      (-(3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5)) y ∧
+    3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5 + -(3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5) = 0 := by
+  refine ⟨?_, ?_, by ring⟩
+  · have hc : 0 < x ^ 2 + (y ^ 2 + z ^ 2) := by linarith
+    have hd := hasDerivAt_dipole_inv (-J * y) (y ^ 2 + z ^ 2) x hc
+    have e : (fun t : ℝ => -J * y / (√(t ^ 2 + y ^ 2 + z ^ 2)) ^ 3) =
+        fun t => -J * y / (√(t ^ 2 + (y ^ 2 + z ^ 2))) ^ 3 := by
+      funext t; rw [add_assoc]
+    rw [e, show x ^ 2 + y ^ 2 + z ^ 2 = x ^ 2 + (y ^ 2 + z ^ 2) by ring]
+    convert hd using 1; ring
+  · have hc : 0 < y ^ 2 + (x ^ 2 + z ^ 2) := by linarith
+    have hd := hasDerivAt_dipole_inv (J * x) (x ^ 2 + z ^ 2) y hc
+    have e : (fun t : ℝ => J * x / (√(x ^ 2 + t ^ 2 + z ^ 2)) ^ 3) =
+        fun t => J * x / (√(t ^ 2 + (x ^ 2 + z ^ 2))) ^ 3 := by
+      funext t; rw [add_assoc, add_left_comm]
+    rw [e, show x ^ 2 + y ^ 2 + z ^ 2 = y ^ 2 + (x ^ 2 + z ^ 2) by ring]
+    convert hd using 1; ring
+
+/-- 21:C17 — the curl of the dipole on the axis: at `(0, 0, z)`, `z > 0`, `∂ₓAᵧ = J/z³` and `∂ᵧAₓ = −J/z³`, so
+`(∇ × A)_z = 2J/z³`, the Lense–Thirring rate `ω = 2GJ/c²r³` of `prop:dragging` in its observed form (`G = c = 1`). -/
+theorem lense_thirring_axis (J z : ℝ) (hz : 0 < z) :
+    HasDerivAt (fun t => J * t / (√(t ^ 2 + 0 ^ 2 + z ^ 2)) ^ 3) (J / z ^ 3) 0 ∧
+    HasDerivAt (fun t => -J * t / (√(0 ^ 2 + t ^ 2 + z ^ 2)) ^ 3) (-(J / z ^ 3)) 0 ∧
+    J / z ^ 3 - -(J / z ^ 3) = 2 * J / z ^ 3 := by
+  have hc : (0:ℝ) < 0 ^ 2 + z ^ 2 := by positivity
+  have hsz : √((0:ℝ) ^ 2 + z ^ 2) = z := by
+    rw [show (0:ℝ) ^ 2 + z ^ 2 = z ^ 2 by ring]; exact Real.sqrt_sq hz.le
+  refine ⟨?_, ?_, by ring⟩
+  · have hd := hasDerivAt_dipole_lin J (z ^ 2) 0 hc
+    rw [hsz] at hd
+    have e : (fun t : ℝ => J * t / (√(t ^ 2 + 0 ^ 2 + z ^ 2)) ^ 3) =
+        fun t => J * t / (√(t ^ 2 + z ^ 2)) ^ 3 := by
+      funext t; ring_nf
+    rw [e]; convert hd using 1; field_simp; ring
+  · have hd := hasDerivAt_dipole_lin (-J) (z ^ 2) 0 hc
+    rw [hsz] at hd
+    have e : (fun t : ℝ => -J * t / (√(0 ^ 2 + t ^ 2 + z ^ 2)) ^ 3) =
+        fun t => -J * t / (√(t ^ 2 + z ^ 2)) ^ 3 := by
+      funext t; ring_nf
+    rw [e]; convert hd using 1; field_simp; ring
+
+/-- 21:C17 — in the slow-rotation metric `g_tt = −e^{−2u}c² < 0` for every reading `u`, so `∂_t` stays timelike
+and there is no ergoregion at this order; `g_rr = e^{2u}` is a real number at every `r`, the object horizonless. -/
+theorem slow_rotation_timelike (u c : ℝ) (hc : c ≠ 0) : -exp (-2 * u) * c ^ 2 < 0 := by
+  rw [neg_mul, neg_lt_zero]; positivity
+
+/-- `r ↦ r⁴ e^{−4/r}` is strictly increasing on `r > 0`: both factors are. -/
+theorem ergo_strictMonoOn : StrictMonoOn (fun r : ℝ => r ^ 4 * exp (-4 / r)) (Set.Ioi 0) := by
+  intro r₁ h1 r₂ h2 hlt
+  simp only [Set.mem_Ioi] at h1 h2
+  have p1 : r₁ ^ 4 < r₂ ^ 4 := by gcongr
+  have e1 : exp (-4 / r₁) < exp (-4 / r₂) := by
+    apply exp_lt_exp.2
+    rw [neg_div, neg_div, neg_lt_neg_iff]
+    exact div_lt_div_of_pos_left (by norm_num) h1 hlt
+  exact mul_lt_mul'' p1 e1 (by positivity) (exp_pos _).le
+
+/-- 21:C17 — the `O(a²)` ergosurface of the horizonless body: on the equator, `G = c = M = 1`, the Killing vector's
+norm vanishes where `e^{−4/r} = 4a²/r⁴`, that is `r⁴ e^{−4/r} = 4a²`, and for `0 < a < 1` this has exactly one
+positive root (it lies in `[a, 4]` by the intermediate value theorem, and `r⁴ e^{−4/r}` is strictly increasing). The
+python check E8 finds the root numerically at four spins. -/
+theorem ergosurface (a : ℝ) (ha0 : 0 < a) (ha1 : a < 1) :
+    ∃! r, 0 < r ∧ r ^ 4 * exp (-4 / r) = 4 * a ^ 2 := by
+  have hne : ∀ x ∈ Set.Icc a 4, x ≠ 0 := fun x hx => (lt_of_lt_of_le ha0 hx.1).ne'
+  have hcont : ContinuousOn (fun r : ℝ => r ^ 4 * exp (-4 / r)) (Set.Icc a 4) := by
+    apply ContinuousOn.mul (by fun_prop)
+    exact continuous_exp.comp_continuousOn (continuousOn_const.div continuousOn_id hne)
+  have hfa : a ^ 4 * exp (-4 / a) ≤ 4 * a ^ 2 := by
+    have h1 : exp (-4 / a) ≤ 1 := by
+      have : 0 < 4 / a := by positivity
+      calc exp (-4 / a) ≤ exp 0 := exp_le_exp.2 (by rw [neg_div]; linarith)
+        _ = 1 := exp_zero
+    have ha2 : a ^ 2 < 1 := by nlinarith
+    have ha4 : a ^ 4 ≤ a ^ 2 := by nlinarith [mul_nonneg (sq_nonneg a) (sub_nonneg.2 ha2.le)]
+    calc a ^ 4 * exp (-4 / a) ≤ a ^ 4 * 1 := by gcongr
+      _ ≤ 4 * a ^ 2 := by nlinarith [sq_nonneg a]
+  have hf4 : 4 * a ^ 2 ≤ 4 ^ 4 * exp (-4 / 4) := by
+    have he : exp 1 < 3 := lt_trans Real.exp_one_lt_d9 (by norm_num)
+    have hpos := exp_pos (1:ℝ)
+    have e : exp (-4 / 4) = (exp 1)⁻¹ := by rw [show (-4 : ℝ) / 4 = -1 by norm_num, exp_neg]
+    rw [e]
+    have hinv : (3:ℝ)⁻¹ ≤ (exp 1)⁻¹ := inv_anti₀ hpos he.le
+    have : 4 * a ^ 2 < 4 := by nlinarith
+    norm_num at hinv ⊢
+    nlinarith
+  obtain ⟨r, hr, hfr⟩ := intermediate_value_Icc (by linarith : a ≤ 4) hcont ⟨hfa, hf4⟩
+  refine ⟨r, ⟨lt_of_lt_of_le ha0 hr.1, hfr⟩, ?_⟩
+  rintro r' ⟨hr', hfr'⟩
+  exact ergo_strictMonoOn.injOn hr' (lt_of_lt_of_le ha0 hr.1) (hfr'.trans hfr.symm)
+
+/-- 21:C17 — the ergosurface grows with the spin: roots `r₁`, `r₂` of `r⁴ e^{−4/r} = 4a²` at spins `0 < a₁ < a₂`
+satisfy `r₁ < r₂` (the ergoregion is an `O(a²)` feature that widens with `a`). -/
+theorem ergosurface_mono {a₁ a₂ r₁ r₂ : ℝ} (ha : 0 < a₁) (hab : a₁ < a₂) (h1 : 0 < r₁) (h2 : 0 < r₂)
+    (e1 : r₁ ^ 4 * exp (-4 / r₁) = 4 * a₁ ^ 2) (e2 : r₂ ^ 4 * exp (-4 / r₂) = 4 * a₂ ^ 2) : r₁ < r₂ := by
+  have hlt : 4 * a₁ ^ 2 < 4 * a₂ ^ 2 := by nlinarith
+  refine (ergo_strictMonoOn.lt_iff_lt h1 h2).1 ?_
+  show r₁ ^ 4 * exp (-4 / r₁) < r₂ ^ 4 * exp (-4 / r₂)
+  rw [e1, e2]; exact hlt
+
+end rotating
 
 /-! ## The floor and the crossover (21:C19, P4, X2) -/
 section floor
@@ -3286,6 +3457,9 @@ theorem p21027 : ∀ (M L Ω : ℝ), (0 : ℝ) < M → (0 : ℝ) < L → L = Rea
 /-- p21030 — 21:C15. The radiative sector: the quarter-turn conjugate momentum makes the dynamics a wave equation: two helicity-$\pm2$ gravitons at speed $c$, quadrupole radiation; gauge leaves two polarisations. -/
 theorem p21030 : ∀ (k : ℝ), (2 : ℝ) - (2 : ℝ) * Real.cos k = (4 : ℝ) * Real.sin (k / (2 : ℝ)) ^ (2 : ℕ) :=
   @FRC.Strong.dispersion_symbol
+/-- p21032 — 21:C17. The rotating solution as the gravitomagnetic (quarter-turn) dual: frame-dragging $=$ Lense--Thirring, horizonless, shadow split at $O(a)$; the ergoregion is an $O(a^2)$ feature of the rapid-rotation residue. -/
+theorem p21032 : (∀ (J x y z : ℝ), (0 : ℝ) < x ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ) → HasDerivAt (fun t => -J * y / √(t ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (3 : ℕ)) ((3 : ℝ) * J * x * y / √(x ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (5 : ℕ)) x ∧ HasDerivAt (fun t => J * x / √(x ^ (2 : ℕ) + t ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (3 : ℕ)) (-((3 : ℝ) * J * x * y / √(x ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (5 : ℕ))) y ∧ (3 : ℝ) * J * x * y / √(x ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (5 : ℕ) + -((3 : ℝ) * J * x * y / √(x ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (5 : ℕ)) = (0 : ℝ)) ∧ (∀ (J z : ℝ), (0 : ℝ) < z → HasDerivAt (fun t => J * t / √(t ^ (2 : ℕ) + (0 : ℝ) ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (3 : ℕ)) (J / z ^ (3 : ℕ)) (0 : ℝ) ∧ HasDerivAt (fun t => -J * t / √((0 : ℝ) ^ (2 : ℕ) + t ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (3 : ℕ)) (-(J / z ^ (3 : ℕ))) (0 : ℝ) ∧ J / z ^ (3 : ℕ) - -(J / z ^ (3 : ℕ)) = (2 : ℝ) * J / z ^ (3 : ℕ)) ∧ (∀ (u c : ℝ), c ≠ (0 : ℝ) → -Real.exp ((-2 : ℝ) * u) * c ^ (2 : ℕ) < (0 : ℝ)) ∧ (∀ (a : ℝ), (0 : ℝ) < a → a < (1 : ℝ) → ∃! r, (0 : ℝ) < r ∧ r ^ (4 : ℕ) * Real.exp ((-4 : ℝ) / r) = (4 : ℝ) * a ^ (2 : ℕ)) ∧ ∀ {a₁ a₂ r₁ r₂ : ℝ}, (0 : ℝ) < a₁ → a₁ < a₂ → (0 : ℝ) < r₁ → (0 : ℝ) < r₂ → r₁ ^ (4 : ℕ) * Real.exp ((-4 : ℝ) / r₁) = (4 : ℝ) * a₁ ^ (2 : ℕ) → r₂ ^ (4 : ℕ) * Real.exp ((-4 : ℝ) / r₂) = (4 : ℝ) * a₂ ^ (2 : ℕ) → r₁ < r₂ :=
+  And.intro @FRC.Strong.dipole_divergence_free (And.intro @FRC.Strong.lense_thirring_axis (And.intro @FRC.Strong.slow_rotation_timelike (And.intro @FRC.Strong.ergosurface (@FRC.Strong.ergosurface_mono))))
 /-- p21033 — 21:C18. The primordial spectrum: $n_s=1$ the scale-dilation fixed point; the tilt's committed form $-\pi^{2}/\ln\Omega$, $\ln\Omega$ the e-fold count of the frame's scale range, the realisation of master L8, with the measured tilt its falsifier ($\tfrac12\ln\Omega$ excluded at $8.2\sigma$; the linearity condition undefined on a shell); the wrapped chart fixing the low large-angle power. -/
 theorem p21033 : (∀ (n : ℝ), (∀ (k : ℝ), (0 : ℝ) < k → k ^ (3 : ℕ) * k ^ n = (1 : ℝ)) ↔ n = (-3 : ℝ)) ∧ 3481e-5 < Real.pi ^ (2 : ℕ) / 283.5 ∧ Real.pi ^ (2 : ℕ) / 283.5 < 3482e-5 ∧ 68e-3 * 42e-4 < 351e-4 - Real.pi ^ (2 : ℕ) / 283.5 ∧ 351e-4 - Real.pi ^ (2 : ℕ) / 283.5 < 69e-3 * 42e-4 ∧ 8.2 * 42e-4 < Real.pi ^ (2 : ℕ) / (283.5 / (2 : ℝ)) - 351e-4 ∧ Real.pi ^ (2 : ℕ) / (283.5 / (2 : ℝ)) - 351e-4 < 8.25 * 42e-4 :=
   And.intro @FRC.Strong.scale_invariance_iff (@FRC.Chart.tilt_ledger)
@@ -3322,6 +3496,9 @@ theorem p21060 : 3481e-5 < Real.pi ^ (2 : ℕ) / 283.5 ∧ Real.pi ^ (2 : ℕ) /
 /-- p21062 — 21:C13. Area-law entropy $S=c_S'A_f/\ell_P^2$: the $\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\kap/\p $ exactly), the Carrier identity $S=(\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count (master D15); an exact merger area law $\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip emission at the first-law temperature $T_{\mathrm S}=\ln^{2}\Omega\,T_H$, the Subject's registered value, luminosity $\ln^{6}\Omega$ times Hawking's, negligible. -/
 theorem p21062 : (∀ (κ : ℕ), (4 : ℕ) * (κ * ((4 : ℕ) * κ + (2 : ℕ))) + (1 : ℕ) = ((4 : ℕ) * κ + (1 : ℕ)) ^ (2 : ℕ) ∧ κ * ((4 : ℕ) * κ + (2 : ℕ)) * ((4 : ℕ) * κ + (1 : ℕ)) = κ * (((4 : ℕ) * κ + (1 : ℕ)) * ((4 : ℕ) * κ + (2 : ℕ))) ∧ (4 : ℕ) * (κ * ((4 : ℕ) * κ + (2 : ℕ))) * ((4 : ℕ) * κ + (1 : ℕ)) = ((4 : ℕ) * κ + (1 : ℕ)) * ((4 : ℕ) * κ + (2 : ℕ)) * ((4 : ℕ) * κ)) ∧ (∀ (M₁ M₂ δ : ℤ), (M₁ + M₂) * (M₁ + M₂ + (1 : ℤ)) - M₁ * (M₁ + (1 : ℤ)) - M₂ * (M₂ + (1 : ℤ)) = (2 : ℤ) * M₁ * M₂ ∧ (M₁ + M₂ - δ) * (M₁ + M₂ - δ + (1 : ℤ)) - M₁ * (M₁ + (1 : ℤ)) - M₂ * (M₂ + (1 : ℤ)) = (2 : ℤ) * M₁ * M₂ - ((2 : ℤ) * (M₁ + M₂) + (1 : ℤ)) * δ + δ ^ (2 : ℕ) ∧ ((0 : ℤ) ≤ δ → δ ≤ (2 : ℤ) * (M₁ + M₂) + (1 : ℤ) → (M₁ + M₂ - δ) * (M₁ + M₂ - δ + (1 : ℤ)) - M₁ * (M₁ + (1 : ℤ)) - M₂ * (M₂ + (1 : ℤ)) ≤ (2 : ℤ) * M₁ * M₂) ∧ ((27811 : ℤ) + (1596 : ℤ)) * ((27811 : ℤ) + (1596 : ℤ) + (1 : ℤ)) - (27811 : ℤ) * ((27811 : ℤ) + (1 : ℤ)) - (1596 : ℤ) * ((1596 : ℤ) + (1 : ℤ)) = (88772712 : ℤ)) ∧ (∀ (rs L : ℝ), rs ≠ (0 : ℝ) → L ≠ (0 : ℝ) → (rs / L / rs) ^ (2 : ℕ) = (1 : ℝ) / L ^ (2 : ℕ)) ∧ 124e-7 < (1 : ℝ) / 283.5 ^ (2 : ℕ) ∧ (1 : ℝ) / 283.5 ^ (2 : ℕ) < 125e-7 :=
   And.intro @FRC.GravML.count_face (And.intro @FRC.GravML.merger_area_law (And.intro @FRC.Strong.capacity_ratio (@FRC.Strong.capacity_ratio_numeral)))
+/-- p21063 — 21:C14. The magnitude of dark energy, $\Lambda\sim1/\Omega$ in Planck units, the curvature of the finite chart (B8), the fine-tuning problem unasked; the CMB large-angle anomaly the wrapped-chart signature (C18). -/
+theorem p21063 : ∀ (S rH : ℝ), (0 : ℝ) < rH → S = Real.pi * rH ^ (2 : ℕ) → (3 : ℝ) / rH ^ (2 : ℕ) = (3 : ℝ) * Real.pi / S ∧ (3 : ℝ) / rH ^ (2 : ℕ) * ((4 : ℝ) * S + (1 : ℝ) - (1 : ℝ)) = (12 : ℝ) * Real.pi ∧ (3 : ℝ) / rH ^ (2 : ℕ) * S = (3 : ℝ) * Real.pi ∧ ((2 : ℝ) * Real.pi * rH / ((4 : ℝ) * S)) ^ (2 : ℕ) = Real.pi / ((4 : ℝ) * S) ∧ (rH / ((2 : ℝ) * Real.pi * rH / ((4 : ℝ) * S))) ^ (2 : ℕ) = ((2 : ℝ) * S / Real.pi) ^ (2 : ℕ) :=
+  @FRC.Strong.curvature_datum
 /-- p21064 — 21:C19. The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\ref{thm:twoshift} with the registered-inertia identity); it rests on the masking barrier (B9) and the corpus's unified sampling clause (master D10), shared with \citep{quantum}. -/
 theorem p21064 : (∀ (w : ℝ), (0 : ℝ) < w → w < (1 : ℝ) → w * (((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w) ^ (2 : ℕ) - (2 : ℝ) * (((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w) + w = (0 : ℝ) ∧ (0 : ℝ) < ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w ∧ ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w < (1 : ℝ) ∧ (1 : ℝ) < ((1 : ℝ) + √((1 : ℝ) - w ^ (2 : ℕ))) / w ∧ ∀ (x : ℝ), w * x ^ (2 : ℕ) - (2 : ℝ) * x + w = (0 : ℝ) → x = ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w ∨ x = ((1 : ℝ) + √((1 : ℝ) - w ^ (2 : ℕ))) / w) ∧ (∀ (t : ℝ), (0 : ℝ) < t → (0 : ℝ) < (1 : ℝ) - Real.exp (-t) ∧ (1 : ℝ) ≤ t / ((1 : ℝ) - Real.exp (-t)) ∧ (t ≤ (1 : ℝ) → t / ((1 : ℝ) - Real.exp (-t)) ≤ (1 : ℝ) / ((1 : ℝ) - (3 : ℝ) * t / (4 : ℝ))) ∧ ∀ (G M r a₀ v : ℝ), (0 : ℝ) < r → (0 : ℝ) ≤ G * M → (0 : ℝ) ≤ a₀ → v ^ (2 : ℕ) = √(G * M / r ^ (2 : ℕ) * a₀) * r → v ^ (4 : ℕ) = G * M * a₀) ∧ Filter.Tendsto (fun t => t / ((1 : ℝ) - Real.exp (-t))) (nhdsWithin (0 : ℝ) (Set.Ioi (0 : ℝ))) (nhds (1 : ℝ)) :=
   And.intro @FRC.Strong.registration_root (And.intro @FRC.Strong.crossover_limits (@FRC.Strong.crossover_deep_limit))
@@ -3557,6 +3734,7 @@ end FRC.LedgerML
 #print axioms FRC.LedgerML.p21026
 #print axioms FRC.LedgerML.p21027
 #print axioms FRC.LedgerML.p21030
+#print axioms FRC.LedgerML.p21032
 #print axioms FRC.LedgerML.p21033
 #print axioms FRC.LedgerML.p21042
 #print axioms FRC.LedgerML.p21048
@@ -3569,6 +3747,7 @@ end FRC.LedgerML
 #print axioms FRC.LedgerML.p21055
 #print axioms FRC.LedgerML.p21060
 #print axioms FRC.LedgerML.p21062
+#print axioms FRC.LedgerML.p21063
 #print axioms FRC.LedgerML.p21064
 #print axioms FRC.LedgerML.p22005
 #print axioms FRC.LedgerML.p22033

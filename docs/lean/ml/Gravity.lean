@@ -16,7 +16,8 @@ central difference and the shift theorem on `ZMod N`), the chart readings in `Fr
 (`FRC.Strong`: the operational cut, the photon sphere, the shadow and the ringdown, the ISCO and its efficiency, the
 capacity ratio and the preferred-frame scale re-anchored to the scale import `ln Ω = 283.5`, `Ω = 1.3 × 10¹²³`, the
 redshift, the registration root and the crossover, the discriminant, the fixed point, the dispersion symbol, the
-locked sum, the exponential reading, the post-Newtonian brackets, dilution), and the floor and the tilt in
+locked sum, the exponential reading, the post-Newtonian brackets, dilution, and since 27 October 2026 the curvature
+datum with `π` a symbol and the rotating solution's dipole, slow-rotation signature and ergosurface), and the floor and the tilt in
 `FrcMathlib/Theme/Chart.lean` (`FRC.Chart.floor_value`, `FRC.Chart.tilt_ledger`; the tilt was bracketed at `281` here
 before 10 October 2026). Classical (tier 2) on Mathlib's hierarchy; the finite content — the register on every frame,
 the channel, the defect's recurrence, the pair tally, the Gauss law, the post-Newtonian coefficients, the central
@@ -170,6 +171,48 @@ theorem capacity_ratio_numeral : (1.24e-5 : ℝ) < 1 / 283.5 ^ 2 ∧ (1 / 283.5 
 `Δf/f = 1 − e^{−u} = u + O(u²)`, `|1 − e^{−u} − u| ≤ u²` on `0 ≤ u ≤ 1`. (`FRC.Strong.redshift_linear`, `Theme/Strong.lean`). -/
 theorem redshift_linear (u : ℝ) (h0 : 0 ≤ u) (h1 : u ≤ 1) : |1 - exp (-u) - u| ≤ u ^ 2 :=
   FRC.Strong.redshift_linear u h0 h1
+
+/-- 21:C14, 21:X1 — the curvature of the finite chart, `π` a symbol on the reals: from `S = π r_H²` and `Ω = 4S + 1`,
+`Λ = 3/r_H² = 3π/S`, `Λ(Ω − 1) = 12π`, `ΛS = 3π`, the chronon's `τ² = π/(4S)` and the horizon `2S/π` chronons.
+(`FRC.Strong.curvature_datum`, `Theme/Strong.lean`). -/
+theorem curvature_datum (S rH : ℝ) (hr : 0 < rH) (hS : S = π * rH ^ 2) :
+    3 / rH ^ 2 = 3 * π / S ∧ 3 / rH ^ 2 * (4 * S + 1 - 1) = 12 * π ∧ 3 / rH ^ 2 * S = 3 * π ∧
+    (2 * π * rH / (4 * S)) ^ 2 = π / (4 * S) ∧ (rH / (2 * π * rH / (4 * S))) ^ 2 = (2 * S / π) ^ 2 :=
+  FRC.Strong.curvature_datum S rH hr hS
+
+/-- 21:C17 — the gravitomagnetic dipole `A = J(−y, x, 0)/ρ³` is divergence-free off the source: `∂ₓAₓ = 3Jxy/ρ⁵`,
+`∂ᵧAᵧ = −3Jxy/ρ⁵`, `∂_zA_z = 0`, summing to zero. (`FRC.Strong.dipole_divergence_free`, `Theme/Strong.lean`). -/
+theorem dipole_divergence_free (J x y z : ℝ) (h : 0 < x ^ 2 + y ^ 2 + z ^ 2) :
+    HasDerivAt (fun t => -J * y / (√(t ^ 2 + y ^ 2 + z ^ 2)) ^ 3)
+      (3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5) x ∧
+    HasDerivAt (fun t => J * x / (√(x ^ 2 + t ^ 2 + z ^ 2)) ^ 3)
+      (-(3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5)) y ∧
+    3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5 + -(3 * J * x * y / (√(x ^ 2 + y ^ 2 + z ^ 2)) ^ 5) = 0 :=
+  FRC.Strong.dipole_divergence_free J x y z h
+
+/-- 21:C17 — the curl of the dipole on the axis is `2J/z³`, the Lense–Thirring rate in its observed form.
+(`FRC.Strong.lense_thirring_axis`, `Theme/Strong.lean`). -/
+theorem lense_thirring_axis (J z : ℝ) (hz : 0 < z) :
+    HasDerivAt (fun t => J * t / (√(t ^ 2 + 0 ^ 2 + z ^ 2)) ^ 3) (J / z ^ 3) 0 ∧
+    HasDerivAt (fun t => -J * t / (√(0 ^ 2 + t ^ 2 + z ^ 2)) ^ 3) (-(J / z ^ 3)) 0 ∧
+    J / z ^ 3 - -(J / z ^ 3) = 2 * J / z ^ 3 :=
+  FRC.Strong.lense_thirring_axis J z hz
+
+/-- 21:C17 — `g_tt = −e^{−2u}c² < 0` in the slow-rotation metric: no ergoregion at this order.
+(`FRC.Strong.slow_rotation_timelike`, `Theme/Strong.lean`). -/
+theorem slow_rotation_timelike (u c : ℝ) (hc : c ≠ 0) : -exp (-2 * u) * c ^ 2 < 0 :=
+  FRC.Strong.slow_rotation_timelike u c hc
+
+/-- 21:C17 — the `O(a²)` ergosurface `r⁴ e^{−4/r} = 4a²` has exactly one positive root for `0 < a < 1`.
+(`FRC.Strong.ergosurface`, `Theme/Strong.lean`). -/
+theorem ergosurface (a : ℝ) (ha0 : 0 < a) (ha1 : a < 1) :
+    ∃! r, 0 < r ∧ r ^ 4 * exp (-4 / r) = 4 * a ^ 2 :=
+  FRC.Strong.ergosurface a ha0 ha1
+
+/-- 21:C17 — the ergosurface grows with the spin. (`FRC.Strong.ergosurface_mono`, `Theme/Strong.lean`). -/
+theorem ergosurface_mono {a₁ a₂ r₁ r₂ : ℝ} (ha : 0 < a₁) (hab : a₁ < a₂) (h1 : 0 < r₁) (h2 : 0 < r₂)
+    (e1 : r₁ ^ 4 * exp (-4 / r₁) = 4 * a₁ ^ 2) (e2 : r₂ ^ 4 * exp (-4 / r₂) = 4 * a₂ ^ 2) : r₁ < r₂ :=
+  FRC.Strong.ergosurface_mono ha hab h1 h2 e1 e2
 
 /-- 21:C19, 21:P4 — the registration root: for `0 < w < 1` the quadratic `wη² − 2η + w = 0` (rational in the
 paper's `w`, here over `ℝ`) has
@@ -351,12 +394,18 @@ theorem p21027 : ∀ (M L Ω : ℝ), (0 : ℝ) < M → (0 : ℝ) < L → L = Rea
 /-- 21:C13 (p21062) — Area-law entropy $S=c_S'A_f/\ell_P^2$: the $\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\kap/\p $ exactly), the Carrier identity $S=(\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count (master D15); an exact merger area law $\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip emission at the first-law temperature $T_{\mathrm S}=\ln^{2}\Omega\,T_H$, the Subject's registered value, luminosity $\ln^{6}\Omega$ times Hawking's, negligible. -/
 theorem p21062 : (∀ (κ : ℕ), (4 : ℕ) * (κ * ((4 : ℕ) * κ + (2 : ℕ))) + (1 : ℕ) = ((4 : ℕ) * κ + (1 : ℕ)) ^ (2 : ℕ) ∧ κ * ((4 : ℕ) * κ + (2 : ℕ)) * ((4 : ℕ) * κ + (1 : ℕ)) = κ * (((4 : ℕ) * κ + (1 : ℕ)) * ((4 : ℕ) * κ + (2 : ℕ))) ∧ (4 : ℕ) * (κ * ((4 : ℕ) * κ + (2 : ℕ))) * ((4 : ℕ) * κ + (1 : ℕ)) = ((4 : ℕ) * κ + (1 : ℕ)) * ((4 : ℕ) * κ + (2 : ℕ)) * ((4 : ℕ) * κ)) ∧ (∀ (M₁ M₂ δ : ℤ), (M₁ + M₂) * (M₁ + M₂ + (1 : ℤ)) - M₁ * (M₁ + (1 : ℤ)) - M₂ * (M₂ + (1 : ℤ)) = (2 : ℤ) * M₁ * M₂ ∧ (M₁ + M₂ - δ) * (M₁ + M₂ - δ + (1 : ℤ)) - M₁ * (M₁ + (1 : ℤ)) - M₂ * (M₂ + (1 : ℤ)) = (2 : ℤ) * M₁ * M₂ - ((2 : ℤ) * (M₁ + M₂) + (1 : ℤ)) * δ + δ ^ (2 : ℕ) ∧ ((0 : ℤ) ≤ δ → δ ≤ (2 : ℤ) * (M₁ + M₂) + (1 : ℤ) → (M₁ + M₂ - δ) * (M₁ + M₂ - δ + (1 : ℤ)) - M₁ * (M₁ + (1 : ℤ)) - M₂ * (M₂ + (1 : ℤ)) ≤ (2 : ℤ) * M₁ * M₂) ∧ ((27811 : ℤ) + (1596 : ℤ)) * ((27811 : ℤ) + (1596 : ℤ) + (1 : ℤ)) - (27811 : ℤ) * ((27811 : ℤ) + (1 : ℤ)) - (1596 : ℤ) * ((1596 : ℤ) + (1 : ℤ)) = (88772712 : ℤ)) ∧ (∀ (rs L : ℝ), rs ≠ (0 : ℝ) → L ≠ (0 : ℝ) → (rs / L / rs) ^ (2 : ℕ) = (1 : ℝ) / L ^ (2 : ℕ)) ∧ 124e-7 < (1 : ℝ) / 283.5 ^ (2 : ℕ) ∧ (1 : ℝ) / 283.5 ^ (2 : ℕ) < 125e-7 :=
   @FRC.LedgerML.p21062
+/-- 21:C14 (p21063) — The magnitude of dark energy, $\Lambda\sim1/\Omega$ in Planck units, the curvature of the finite chart (B8), the fine-tuning problem unasked; the CMB large-angle anomaly the wrapped-chart signature (C18). -/
+theorem p21063 : ∀ (S rH : ℝ), (0 : ℝ) < rH → S = Real.pi * rH ^ (2 : ℕ) → (3 : ℝ) / rH ^ (2 : ℕ) = (3 : ℝ) * Real.pi / S ∧ (3 : ℝ) / rH ^ (2 : ℕ) * ((4 : ℝ) * S + (1 : ℝ) - (1 : ℝ)) = (12 : ℝ) * Real.pi ∧ (3 : ℝ) / rH ^ (2 : ℕ) * S = (3 : ℝ) * Real.pi ∧ ((2 : ℝ) * Real.pi * rH / ((4 : ℝ) * S)) ^ (2 : ℕ) = Real.pi / ((4 : ℝ) * S) ∧ (rH / ((2 : ℝ) * Real.pi * rH / ((4 : ℝ) * S))) ^ (2 : ℕ) = ((2 : ℝ) * S / Real.pi) ^ (2 : ℕ) :=
+  @FRC.LedgerML.p21063
 /-- 21:C15 (p21030) — The radiative sector: the quarter-turn conjugate momentum makes the dynamics a wave equation: two helicity-$\pm2$ gravitons at speed $c$, quadrupole radiation; gauge leaves two polarisations. -/
 theorem p21030 : ∀ (k : ℝ), (2 : ℝ) - (2 : ℝ) * Real.cos k = (4 : ℝ) * Real.sin (k / (2 : ℝ)) ^ (2 : ℕ) :=
   @FRC.LedgerML.p21030
 set_option linter.defProp false in
 /-- 21:C16 (p21031) — The order-one constants are determined: $c_S'=\tfrac14$ (the $Q_4$ gauge quotient, counted on an instantiated shell and carried by the Carrier identity), the floor's $2\pi$ the full cycle of the angle--count dictionary (14:B2), its threshold the realisation 32:B3, the recurring constant the solid angle $4\pi$, reducing in the Carrier register to the calibration congruence $(4S)^{2}\equiv1$ (one residue relation). -/
 def p21031 := @FRC.LedgerML.p21031
+/-- 21:C17 (p21032) — The rotating solution as the gravitomagnetic (quarter-turn) dual: frame-dragging $=$ Lense--Thirring, horizonless, shadow split at $O(a)$; the ergoregion is an $O(a^2)$ feature of the rapid-rotation residue. -/
+theorem p21032 : (∀ (J x y z : ℝ), (0 : ℝ) < x ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ) → HasDerivAt (fun t => -J * y / √(t ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (3 : ℕ)) ((3 : ℝ) * J * x * y / √(x ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (5 : ℕ)) x ∧ HasDerivAt (fun t => J * x / √(x ^ (2 : ℕ) + t ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (3 : ℕ)) (-((3 : ℝ) * J * x * y / √(x ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (5 : ℕ))) y ∧ (3 : ℝ) * J * x * y / √(x ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (5 : ℕ) + -((3 : ℝ) * J * x * y / √(x ^ (2 : ℕ) + y ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (5 : ℕ)) = (0 : ℝ)) ∧ (∀ (J z : ℝ), (0 : ℝ) < z → HasDerivAt (fun t => J * t / √(t ^ (2 : ℕ) + (0 : ℝ) ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (3 : ℕ)) (J / z ^ (3 : ℕ)) (0 : ℝ) ∧ HasDerivAt (fun t => -J * t / √((0 : ℝ) ^ (2 : ℕ) + t ^ (2 : ℕ) + z ^ (2 : ℕ)) ^ (3 : ℕ)) (-(J / z ^ (3 : ℕ))) (0 : ℝ) ∧ J / z ^ (3 : ℕ) - -(J / z ^ (3 : ℕ)) = (2 : ℝ) * J / z ^ (3 : ℕ)) ∧ (∀ (u c : ℝ), c ≠ (0 : ℝ) → -Real.exp ((-2 : ℝ) * u) * c ^ (2 : ℕ) < (0 : ℝ)) ∧ (∀ (a : ℝ), (0 : ℝ) < a → a < (1 : ℝ) → ∃! r, (0 : ℝ) < r ∧ r ^ (4 : ℕ) * Real.exp ((-4 : ℝ) / r) = (4 : ℝ) * a ^ (2 : ℕ)) ∧ ∀ {a₁ a₂ r₁ r₂ : ℝ}, (0 : ℝ) < a₁ → a₁ < a₂ → (0 : ℝ) < r₁ → (0 : ℝ) < r₂ → r₁ ^ (4 : ℕ) * Real.exp ((-4 : ℝ) / r₁) = (4 : ℝ) * a₁ ^ (2 : ℕ) → r₂ ^ (4 : ℕ) * Real.exp ((-4 : ℝ) / r₂) = (4 : ℝ) * a₂ ^ (2 : ℕ) → r₁ < r₂ :=
+  @FRC.LedgerML.p21032
 /-- 21:C18 (p21033) — The primordial spectrum: $n_s=1$ the scale-dilation fixed point; the tilt's committed form $-\pi^{2}/\ln\Omega$, $\ln\Omega$ the e-fold count of the frame's scale range, the realisation of master L8, with the measured tilt its falsifier ($\tfrac12\ln\Omega$ excluded at $8.2\sigma$; the linearity condition undefined on a shell); the wrapped chart fixing the low large-angle power. -/
 theorem p21033 : (∀ (n : ℝ), (∀ (k : ℝ), (0 : ℝ) < k → k ^ (3 : ℕ) * k ^ n = (1 : ℝ)) ↔ n = (-3 : ℝ)) ∧ 3481e-5 < Real.pi ^ (2 : ℕ) / 283.5 ∧ Real.pi ^ (2 : ℕ) / 283.5 < 3482e-5 ∧ 68e-3 * 42e-4 < 351e-4 - Real.pi ^ (2 : ℕ) / 283.5 ∧ 351e-4 - Real.pi ^ (2 : ℕ) / 283.5 < 69e-3 * 42e-4 ∧ 8.2 * 42e-4 < Real.pi ^ (2 : ℕ) / (283.5 / (2 : ℝ)) - 351e-4 ∧ Real.pi ^ (2 : ℕ) / (283.5 / (2 : ℝ)) - 351e-4 < 8.25 * 42e-4 :=
   @FRC.LedgerML.p21033

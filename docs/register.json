@@ -13,8 +13,8 @@
     "G": 1,
     "I": 123,
     "O": 11,
-    "R": 84,
-    "T": 619,
+    "R": 85,
+    "T": 618,
     "Ω": 29
    }
   },
@@ -16177,7 +16177,7 @@
    "check": {
     "href": "py/gravity.html#p21009",
     "script": "p21_gravity.py",
-    "line": 148,
+    "line": 145,
     "verdict": "pass"
    },
    "declarations": [
@@ -16345,7 +16345,7 @@
    "check": {
     "href": "py/gravity.html#p21016",
     "script": "p21_gravity.py",
-    "line": 215,
+    "line": 212,
     "verdict": "pass"
    },
    "declarations": [
@@ -16391,7 +16391,7 @@
    "check": {
     "href": "py/gravity.html#p21017",
     "script": "p21_gravity.py",
-    "line": 135,
+    "line": 132,
     "verdict": "pass"
    },
    "declarations": [
@@ -16432,7 +16432,7 @@
    "check": {
     "href": "py/gravity.html#p21018",
     "script": "p21_gravity.py",
-    "line": 321,
+    "line": 318,
     "verdict": "pass"
    },
    "declarations": [
@@ -16463,7 +16463,7 @@
    "check": {
     "href": "py/gravity.html#p21019",
     "script": "p21_gravity.py",
-    "line": 208,
+    "line": 205,
     "verdict": "pass"
    },
    "declarations": [
@@ -16494,7 +16494,7 @@
    "check": {
     "href": "py/gravity.html#p21020",
     "script": "p21_gravity.py",
-    "line": 143,
+    "line": 140,
     "verdict": "pass"
    },
    "declarations": [
@@ -16530,7 +16530,7 @@
    "check": {
     "href": "py/gravity.html#p21021",
     "script": "p21_gravity.py",
-    "line": 288,
+    "line": 285,
     "verdict": "pass"
    },
    "declarations": [
@@ -16556,7 +16556,7 @@
    "check": {
     "href": "py/gravity.html#p21022",
     "script": "p21_gravity.py",
-    "line": 396,
+    "line": 393,
     "verdict": "pass"
    },
    "declarations": [
@@ -16604,7 +16604,7 @@
    "check": {
     "href": "py/gravity.html#p21023",
     "script": "p21_gravity.py",
-    "line": 396,
+    "line": 393,
     "verdict": "pass"
    },
    "declarations": [
@@ -16650,7 +16650,7 @@
    "check": {
     "href": "py/gravity.html#p21024",
     "script": "p21_gravity.py",
-    "line": 183,
+    "line": 180,
     "verdict": "pass"
    },
    "declarations": [
@@ -16704,17 +16704,28 @@
   {
    "key": "p21025",
    "origin": "21",
-   "statement": "No preferred-frame leakage: the Lense--Thirring precession at its observed value, with $\\alpha_1,\\alpha_2=O(1/\\sqrt\\Omega)$.",
+   "statement": "No preferred-frame leakage: the Lense--Thirring precession at its observed value [chart], with $\\alpha_1,\\alpha_2=O(1/\\sqrt\\Omega)$; the exact face, that transport over the complete norm-one cycle closes with no residual and the dispersion symbol is even, so no secular term and no $O(k)\\cdot n$ cross term.",
    "origin_row": "21:C10",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "py/gravity.html#p21025",
     "script": "p21_gravity.py",
-    "line": 462,
+    "line": 461,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.conj_branch"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lattice",
+     "name": "FRC.Lattice.laplacian_symbol"
+    }
+   ],
    "aliases": [],
    "rows": [
     "21:C10"
@@ -16731,7 +16742,7 @@
    "check": {
     "href": "py/gravity.html#p21026",
     "script": "p21_gravity.py",
-    "line": 275,
+    "line": 272,
     "verdict": "pass"
    },
    "declarations": [
@@ -16790,7 +16801,7 @@
    "check": {
     "href": "py/gravity.html#p21027",
     "script": "p21_gravity.py",
-    "line": 409,
+    "line": 406,
     "verdict": "pass"
    },
    "declarations": [
@@ -16849,7 +16860,7 @@
    "check": {
     "href": "py/gravity.html#p21062",
     "script": "p21_gravity.py",
-    "line": 162,
+    "line": 159,
     "verdict": "pass"
    },
    "declarations": [
@@ -16905,14 +16916,20 @@
    "statement": "The magnitude of dark energy, $\\Lambda\\sim1/\\Omega$ in Planck units, the curvature of the finite chart (B8), the fine-tuning problem unasked; the CMB large-angle anomaly the wrapped-chart signature (C18).",
    "origin_row": "21:C14",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "py/gravity.html#p21063",
     "script": "p21_gravity.py",
-    "line": 172,
+    "line": 169,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/Gravity",
+     "name": "FRC.Gravity.curvature_datum"
+    }
+   ],
    "aliases": [],
    "rows": [
     "21:C14"
@@ -16931,7 +16948,7 @@
    "check": {
     "href": "py/gravity.html#p21030",
     "script": "p21_gravity.py",
-    "line": 223,
+    "line": 220,
     "verdict": "pass"
    },
    "declarations": [
@@ -17005,14 +17022,40 @@
    "statement": "The rotating solution as the gravitomagnetic (quarter-turn) dual: frame-dragging $=$ Lense--Thirring, horizonless, shadow split at $O(a)$; the ergoregion is an $O(a^2)$ feature of the rapid-rotation residue.",
    "origin_row": "21:C17",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "py/gravity.html#p21032",
     "script": "p21_gravity.py",
-    "line": 468,
+    "line": 467,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/Gravity",
+     "name": "FRC.Gravity.dipole_divergence_free"
+    },
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/Gravity",
+     "name": "FRC.Gravity.lense_thirring_axis"
+    },
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/Gravity",
+     "name": "FRC.Gravity.slow_rotation_timelike"
+    },
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/Gravity",
+     "name": "FRC.Gravity.ergosurface"
+    },
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/Gravity",
+     "name": "FRC.Gravity.ergosurface_mono"
+    }
+   ],
    "aliases": [],
    "rows": [
     "21:C17"
@@ -17032,7 +17075,7 @@
    "check": {
     "href": "py/gravity.html#p21033",
     "script": "p21_gravity.py",
-    "line": 414,
+    "line": 411,
     "verdict": "pass"
    },
    "declarations": [
@@ -17065,7 +17108,7 @@
    "check": {
     "href": "py/gravity.html#p21064",
     "script": "p21_gravity.py",
-    "line": 296,
+    "line": 293,
     "verdict": "pass"
    },
    "declarations": [
@@ -17110,7 +17153,7 @@
    "check": {
     "href": "py/gravity.html#p21035",
     "script": "p21_gravity.py",
-    "line": 205,
+    "line": 202,
     "verdict": "pass"
    },
    "declarations": [
@@ -17146,7 +17189,7 @@
    "check": {
     "href": "py/gravity.html#p21036",
     "script": "p21_gravity.py",
-    "line": 255,
+    "line": 252,
     "verdict": "pass"
    },
    "declarations": [
@@ -17197,7 +17240,7 @@
    "check": {
     "href": "py/gravity.html#p21037",
     "script": "p21_gravity.py",
-    "line": 259,
+    "line": 256,
     "verdict": "pass"
    },
    "declarations": [
@@ -17239,14 +17282,25 @@
    "statement": "The 1PN equivalence lemma: through first post-Newtonian order the two-body metric coefficients coincide with general relativity's isotropic form on the superposed potential, cross term included, so the static part of the Einstein--Infeld--Hoffmann sector is shared exactly; the velocity-dependent 1PN potentials are not compared.",
    "origin_row": "21:C23",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "py/gravity.html#p21038",
     "script": "p21_gravity.py",
-    "line": 400,
+    "line": 397,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.two_body_1pn"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.pn_coefficients"
+    }
+   ],
    "aliases": [],
    "rows": [
     "21:C23"
@@ -17265,7 +17319,7 @@
    "check": {
     "href": "py/gravity.html#p21040",
     "script": "p21_gravity.py",
-    "line": 280,
+    "line": 277,
     "verdict": "pass"
    },
    "declarations": [
@@ -17301,7 +17355,7 @@
    "check": {
     "href": "py/gravity.html#p21006",
     "script": "p21_gravity.py",
-    "line": 331,
+    "line": 328,
     "verdict": "pass"
    },
    "declarations": [
@@ -17339,7 +17393,7 @@
    "check": {
     "href": "py/gravity.html#p21066",
     "script": "p21_gravity.py",
-    "line": 336,
+    "line": 333,
     "verdict": "pass"
    },
    "declarations": [
@@ -17367,7 +17421,7 @@
    "check": {
     "href": "py/gravity.html#p21067",
     "script": "p21_gravity.py",
-    "line": 355,
+    "line": 352,
     "verdict": "pass"
    },
    "declarations": [
@@ -17421,7 +17475,7 @@
    "check": {
     "href": "py/gravity.html#p21068",
     "script": "p21_gravity.py",
-    "line": 369,
+    "line": 366,
     "verdict": "pass"
    },
    "declarations": [
@@ -17462,7 +17516,7 @@
    "check": {
     "href": "py/gravity.html#p21049",
     "script": "p21_gravity.py",
-    "line": 443,
+    "line": 442,
     "verdict": "pass"
    },
    "declarations": [
@@ -17507,7 +17561,7 @@
    "check": {
     "href": "py/gravity.html#p21051",
     "script": "p21_gravity.py",
-    "line": 462,
+    "line": 461,
     "verdict": "pass"
    },
    "declarations": [
@@ -17535,7 +17589,7 @@
    "check": {
     "href": "py/gravity.html#p21052",
     "script": "p21_gravity.py",
-    "line": 501,
+    "line": 500,
     "verdict": "pass"
    },
    "declarations": [
@@ -17566,7 +17620,7 @@
    "check": {
     "href": "py/gravity.html#p21053",
     "script": "p21_gravity.py",
-    "line": 515,
+    "line": 514,
     "verdict": "pass"
    },
    "declarations": [
@@ -17609,7 +17663,7 @@
    "check": {
     "href": "py/gravity.html#p21054",
     "script": "p21_gravity.py",
-    "line": 539,
+    "line": 538,
     "verdict": "pass"
    },
    "declarations": [
@@ -17639,7 +17693,7 @@
    "check": {
     "href": "py/gravity.html#p21055",
     "script": "p21_gravity.py",
-    "line": 404,
+    "line": 401,
     "verdict": "pass"
    },
    "declarations": [
@@ -17670,7 +17724,7 @@
    "check": {
     "href": "py/gravity.html#p21050",
     "script": "p21_gravity.py",
-    "line": 450,
+    "line": 449,
     "verdict": "pass"
    },
    "declarations": [
@@ -17698,7 +17752,7 @@
    "check": {
     "href": "py/gravity.html#p21060",
     "script": "p21_gravity.py",
-    "line": 531,
+    "line": 530,
     "verdict": "pass"
    },
    "declarations": [
@@ -17726,7 +17780,7 @@
    "check": {
     "href": "py/gravity.html#p21041",
     "script": "p21_gravity.py",
-    "line": 172,
+    "line": 169,
     "verdict": "pass"
    },
    "declarations": [
@@ -17756,7 +17810,7 @@
    "check": {
     "href": "py/gravity.html#p21042",
     "script": "p21_gravity.py",
-    "line": 509,
+    "line": 508,
     "verdict": "pass"
    },
    "declarations": [
@@ -17785,7 +17839,7 @@
    "check": {
     "href": "py/gravity.html#p21043",
     "script": "p21_gravity.py",
-    "line": 326,
+    "line": 323,
     "verdict": "pass"
    },
    "declarations": [
@@ -17818,7 +17872,7 @@
    "check": {
     "href": "py/gravity.html#p21044",
     "script": "p21_gravity.py",
-    "line": 275,
+    "line": 272,
     "verdict": "pass"
    },
    "declarations": [
@@ -17850,14 +17904,20 @@
    "statement": "\\textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise.",
    "origin_row": "21:X5",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "py/gravity.html#p21045",
     "script": "p21_gravity.py",
-    "line": 223,
+    "line": 220,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lattice",
+     "name": "FRC.Lattice.laplacian_symbol"
+    }
+   ],
    "aliases": [],
    "rows": [
     "21:X5"
@@ -17869,17 +17929,16 @@
   {
    "key": "p21046",
    "origin": "21",
-   "statement": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported.",
+   "statement": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported. Falsifier: large-angle power at the unwrapped chart's value.",
    "origin_row": "21:X6",
-   "tag": "T",
+   "tag": "R",
    "tier": null,
    "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
     "21:X6"
-   ],
-   "realisations": []
+   ]
   },
   {
    "key": "p21047",
@@ -17891,7 +17950,7 @@
    "check": {
     "href": "py/gravity.html#p21047",
     "script": "p21_gravity.py",
-    "line": 208,
+    "line": 205,
     "verdict": "pass"
    },
    "declarations": [
@@ -17917,7 +17976,7 @@
    "check": {
     "href": "py/gravity.html#p21048",
     "script": "p21_gravity.py",
-    "line": 166,
+    "line": 163,
     "verdict": "pass"
    },
    "declarations": [
@@ -52150,7 +52209,7 @@
     "py": {
      "href": "py/gravity.html#p21009",
      "script": "p21_gravity.py",
-     "line": 148,
+     "line": 145,
      "verdict": "pass"
     },
     "lean": [
@@ -52392,7 +52451,7 @@
     "py": {
      "href": "py/gravity.html#p21016",
      "script": "p21_gravity.py",
-     "line": 215,
+     "line": 212,
      "verdict": "pass"
     },
     "lean": [
@@ -52457,7 +52516,7 @@
     "py": {
      "href": "py/gravity.html#p21017",
      "script": "p21_gravity.py",
-     "line": 135,
+     "line": 132,
      "verdict": "pass"
     },
     "lean": [
@@ -52519,7 +52578,7 @@
     "py": {
      "href": "py/gravity.html#p21018",
      "script": "p21_gravity.py",
-     "line": 321,
+     "line": 318,
      "verdict": "pass"
     },
     "lean": [
@@ -52562,7 +52621,7 @@
     "py": {
      "href": "py/gravity.html#p21019",
      "script": "p21_gravity.py",
-     "line": 208,
+     "line": 205,
      "verdict": "pass"
     },
     "lean": [
@@ -52606,7 +52665,7 @@
     "py": {
      "href": "py/gravity.html#p21020",
      "script": "p21_gravity.py",
-     "line": 143,
+     "line": 140,
      "verdict": "pass"
     },
     "lean": [
@@ -52655,7 +52714,7 @@
     "py": {
      "href": "py/gravity.html#p21021",
      "script": "p21_gravity.py",
-     "line": 288,
+     "line": 285,
      "verdict": "pass"
     },
     "lean": [
@@ -52688,7 +52747,7 @@
     "py": {
      "href": "py/gravity.html#p21022",
      "script": "p21_gravity.py",
-     "line": 396,
+     "line": 393,
      "verdict": "pass"
     },
     "lean": [
@@ -52756,7 +52815,7 @@
     "py": {
      "href": "py/gravity.html#p21023",
      "script": "p21_gravity.py",
-     "line": 396,
+     "line": 393,
      "verdict": "pass"
     },
     "lean": [
@@ -52823,7 +52882,7 @@
     "py": {
      "href": "py/gravity.html#p21024",
      "script": "p21_gravity.py",
-     "line": 183,
+     "line": 180,
      "verdict": "pass"
     },
     "lean": [
@@ -52908,20 +52967,40 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "No preferred-frame leakage: the Lense--Thirring precession at its observed value, with $\\alpha_1,\\alpha_2=O(1/\\sqrt\\Omega)$.",
-   "source": "Prop.~\\ref{prop:dragging}\\newline \\pywit{gravity}{p21025}{C10}",
+   "statement": "No preferred-frame leakage: the Lense--Thirring precession at its observed value [chart], with $\\alpha_1,\\alpha_2=O(1/\\sqrt\\Omega)$; the exact face, that transport over the complete norm-one cycle closes with no residual and the dispersion symbol is even, so no secular term and no $O(k)\\cdot n$ cross term.",
+   "source": "Prop.~\\ref{prop:dragging}\\newline \\pywit{gravity}{p21025}{C10}, \\leanwit{FrcCore}{p21025}{C10}; rests on C3, C15 \\lean{FRC.Drift.conj\\_branch, FRC.Lattice.laplacian\\_symbol}",
    "page": "21-gravity/index.html#C10",
    "witness": {
     "py": {
      "href": "py/gravity.html#p21025",
      "script": "p21_gravity.py",
-     "line": 462,
+     "line": 461,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.conj_branch",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.conj_branch"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lattice",
+      "name": "FRC.Lattice.laplacian_symbol",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Lattice.laplacian_symbol"
+     }
+    ]
    },
-   "refs": [],
-   "text": "No preferred-frame leakage: the Lense–Thirring precession at its observed value, with $\\alpha_1,\\alpha_2=O(1/\\sqrt\\Omega)$. Prop. prop:dragging p21025"
+   "refs": [
+    "p21018",
+    "p21030"
+   ],
+   "text": "No preferred-frame leakage: the Lense–Thirring precession at its observed value [chart], with $\\alpha_1,\\alpha_2=O(1/\\sqrt\\Omega)$; the exact face, that transport over the complete norm-one cycle closes with no residual and the dispersion symbol is even, so no secular term and no $O(k)\\cdot n$ cross term. Prop. prop:dragging p21025, FrcCore{C10}; rests on C3, C15 FRC.Drift.conj_branch, FRC.Lattice.laplacian_symbol"
   },
   {
    "paper": "21-grav",
@@ -52939,7 +53018,7 @@
     "py": {
      "href": "py/gravity.html#p21026",
      "script": "p21_gravity.py",
-     "line": 275,
+     "line": 272,
      "verdict": "pass"
     },
     "lean": [
@@ -53026,7 +53105,7 @@
     "py": {
      "href": "py/gravity.html#p21027",
      "script": "p21_gravity.py",
-     "line": 409,
+     "line": 406,
      "verdict": "pass"
     },
     "lean": [
@@ -53112,7 +53191,7 @@
     "py": {
      "href": "py/gravity.html#p21062",
      "script": "p21_gravity.py",
-     "line": 162,
+     "line": 159,
      "verdict": "pass"
     },
     "lean": [
@@ -53195,16 +53274,25 @@
    "tag": "T",
    "name": null,
    "statement": "The magnitude of dark energy, $\\Lambda\\sim1/\\Omega$ in Planck units, the curvature of the finite chart (B8), the fine-tuning problem unasked; the CMB large-angle anomaly the wrapped-chart signature (C18).",
-   "source": "\\S\\ref{sec:discussion}, App.~\\ref{app:floor}\\newline \\pywit{gravity}{p21063}{C14}; rests on A1, A2, B8, C18",
+   "source": "\\S\\ref{sec:discussion}, App.~\\ref{app:floor}\\newline \\pywit{gravity}{p21063}{C14}, \\leanwit{FrcMathlib}{p21063}{C14}; rests on A1, A2, B8, C18 \\lean{Gravity.curvature\\_datum}",
    "page": "21-gravity/index.html#C14",
    "witness": {
     "py": {
      "href": "py/gravity.html#p21063",
      "script": "p21_gravity.py",
-     "line": 172,
+     "line": 169,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/Gravity",
+      "name": "FRC.Gravity.curvature_datum",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Gravity.html#FRC.Gravity.curvature_datum"
+     }
+    ]
    },
    "refs": [
     "p21001",
@@ -53212,7 +53300,7 @@
     "p21033",
     "p32014"
    ],
-   "text": "The magnitude of dark energy, $\\Lambda\\sim1/\\Omega$ in Planck units, the curvature of the finite chart (B8), the fine-tuning problem unasked; the CMB large-angle anomaly the wrapped-chart signature (C18). \\Ssec:discussion, App. app:floor p21063; rests on A1, A2, B8, C18"
+   "text": "The magnitude of dark energy, $\\Lambda\\sim1/\\Omega$ in Planck units, the curvature of the finite chart (B8), the fine-tuning problem unasked; the CMB large-angle anomaly the wrapped-chart signature (C18). \\Ssec:discussion, App. app:floor p21063, FrcMathlib{C14}; rests on A1, A2, B8, C18 Gravity.curvature_datum"
   },
   {
    "paper": "21-grav",
@@ -53230,7 +53318,7 @@
     "py": {
      "href": "py/gravity.html#p21030",
      "script": "p21_gravity.py",
-     "line": 223,
+     "line": 220,
      "verdict": "pass"
     },
     "lean": [
@@ -53335,16 +53423,57 @@
    "tag": "T",
    "name": null,
    "statement": "The rotating solution as the gravitomagnetic (quarter-turn) dual: frame-dragging $=$ Lense--Thirring, horizonless, shadow split at $O(a)$; the ergoregion is an $O(a^2)$ feature of the rapid-rotation residue.",
-   "source": "Prop.~\\ref{prop:rotating}\\newline \\pywit{gravity}{p21032}{C17}; rests on B6, C10, C11, C12",
+   "source": "Prop.~\\ref{prop:rotating}\\newline \\pywit{gravity}{p21032}{C17}, \\leanwit{FrcMathlib}{p21032}{C17}; rests on B6, C10, C11, C12 \\lean{Gravity.dipole\\_divergence\\_free, Gravity.lense\\_thirring\\_axis, Gravity.slow\\_rotation\\_timelike, Gravity.ergosurface, Gravity.ergosurface\\_mono}",
    "page": "21-gravity/index.html#C17",
    "witness": {
     "py": {
      "href": "py/gravity.html#p21032",
      "script": "p21_gravity.py",
-     "line": 468,
+     "line": 467,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/Gravity",
+      "name": "FRC.Gravity.dipole_divergence_free",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Gravity.html#FRC.Gravity.dipole_divergence_free"
+     },
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/Gravity",
+      "name": "FRC.Gravity.lense_thirring_axis",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Gravity.html#FRC.Gravity.lense_thirring_axis"
+     },
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/Gravity",
+      "name": "FRC.Gravity.slow_rotation_timelike",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Gravity.html#FRC.Gravity.slow_rotation_timelike"
+     },
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/Gravity",
+      "name": "FRC.Gravity.ergosurface",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Gravity.html#FRC.Gravity.ergosurface"
+     },
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/Gravity",
+      "name": "FRC.Gravity.ergosurface_mono",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Gravity.html#FRC.Gravity.ergosurface_mono"
+     }
+    ]
    },
    "refs": [
     "p00056",
@@ -53353,7 +53482,7 @@
     "p21026",
     "p21027"
    ],
-   "text": "The rotating solution as the gravitomagnetic (quarter-turn) dual: frame-dragging $=$ Lense–Thirring, horizonless, shadow split at $O(a)$; the ergoregion is an $O(a^2)$ feature of the rapid-rotation residue. Prop. prop:rotating p21032; rests on B6, C10, C11, C12"
+   "text": "The rotating solution as the gravitomagnetic (quarter-turn) dual: frame-dragging $=$ Lense–Thirring, horizonless, shadow split at $O(a)$; the ergoregion is an $O(a^2)$ feature of the rapid-rotation residue. Prop. prop:rotating p21032, FrcMathlib{C17}; rests on B6, C10, C11, C12 Gravity.dipole_divergence_free, Gravity.lense_thirring_axis, Gravity.slow_rotation_timelike, Gravity.ergosurface, Gravity.ergosurface_mono"
   },
   {
    "paper": "21-grav",
@@ -53371,7 +53500,7 @@
     "py": {
      "href": "py/gravity.html#p21033",
      "script": "p21_gravity.py",
-     "line": 414,
+     "line": 411,
      "verdict": "pass"
     },
     "lean": [
@@ -53415,7 +53544,7 @@
     "py": {
      "href": "py/gravity.html#p21064",
      "script": "p21_gravity.py",
-     "line": 296,
+     "line": 293,
      "verdict": "pass"
     },
     "lean": [
@@ -53478,7 +53607,7 @@
     "py": {
      "href": "py/gravity.html#p21035",
      "script": "p21_gravity.py",
-     "line": 205,
+     "line": 202,
      "verdict": "pass"
     },
     "lean": [
@@ -53527,7 +53656,7 @@
     "py": {
      "href": "py/gravity.html#p21036",
      "script": "p21_gravity.py",
-     "line": 255,
+     "line": 252,
      "verdict": "pass"
     },
     "lean": [
@@ -53600,7 +53729,7 @@
     "py": {
      "href": "py/gravity.html#p21037",
      "script": "p21_gravity.py",
-     "line": 259,
+     "line": 256,
      "verdict": "pass"
     },
     "lean": [
@@ -53665,21 +53794,39 @@
    "tag": "T",
    "name": null,
    "statement": "The 1PN equivalence lemma: through first post-Newtonian order the two-body metric coefficients coincide with general relativity's isotropic form on the superposed potential, cross term included, so the static part of the Einstein--Infeld--Hoffmann sector is shared exactly; the velocity-dependent 1PN potentials are not compared.",
-   "source": "App.~\\ref{app:pn}\\newline \\pywit{gravity}{p21038}{C23}",
+   "source": "App.~\\ref{app:pn}\\newline \\pywit{gravity}{p21038}{C23}, \\leanwit{FrcCore}{p21038}{C23}; rests on C8 \\lean{FRC.Drift.two\\_body\\_1pn, FRC.Drift.pn\\_coefficients}",
    "page": "21-gravity/index.html#C23",
    "witness": {
     "py": {
      "href": "py/gravity.html#p21038",
      "script": "p21_gravity.py",
-     "line": 400,
+     "line": 397,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.two_body_1pn",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.two_body_1pn"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.pn_coefficients",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.pn_coefficients"
+     }
+    ]
    },
    "refs": [
-    "p00055"
+    "p00055",
+    "p21023"
    ],
-   "text": "The 1PN equivalence lemma: through first post-Newtonian order the two-body metric coefficients coincide with general relativity's isotropic form on the superposed potential, cross term included, so the static part of the Einstein–Infeld–Hoffmann sector is shared exactly; the velocity-dependent 1PN potentials are not compared. App. app:pn p21038"
+   "text": "The 1PN equivalence lemma: through first post-Newtonian order the two-body metric coefficients coincide with general relativity's isotropic form on the superposed potential, cross term included, so the static part of the Einstein–Infeld–Hoffmann sector is shared exactly; the velocity-dependent 1PN potentials are not compared. App. app:pn p21038, FrcCore{C23}; rests on C8 FRC.Drift.two_body_1pn, FRC.Drift.pn_coefficients"
   },
   {
    "paper": "21-grav",
@@ -53697,7 +53844,7 @@
     "py": {
      "href": "py/gravity.html#p21040",
      "script": "p21_gravity.py",
-     "line": 280,
+     "line": 277,
      "verdict": "pass"
     },
     "lean": [
@@ -53749,7 +53896,7 @@
     "py": {
      "href": "py/gravity.html#p21006",
      "script": "p21_gravity.py",
-     "line": 331,
+     "line": 328,
      "verdict": "pass"
     },
     "lean": [
@@ -53802,7 +53949,7 @@
     "py": {
      "href": "py/gravity.html#p21066",
      "script": "p21_gravity.py",
-     "line": 336,
+     "line": 333,
      "verdict": "pass"
     },
     "lean": [
@@ -53837,7 +53984,7 @@
     "py": {
      "href": "py/gravity.html#p21067",
      "script": "p21_gravity.py",
-     "line": 355,
+     "line": 352,
      "verdict": "pass"
     },
     "lean": [
@@ -53915,7 +54062,7 @@
     "py": {
      "href": "py/gravity.html#p21068",
      "script": "p21_gravity.py",
-     "line": 369,
+     "line": 366,
      "verdict": "pass"
     },
     "lean": [
@@ -53975,7 +54122,7 @@
     "py": {
      "href": "py/gravity.html#p21049",
      "script": "p21_gravity.py",
-     "line": 443,
+     "line": 442,
      "verdict": "pass"
     },
     "lean": [
@@ -54038,7 +54185,7 @@
     "py": {
      "href": "py/gravity.html#p21051",
      "script": "p21_gravity.py",
-     "line": 462,
+     "line": 461,
      "verdict": "pass"
     },
     "lean": [
@@ -54075,7 +54222,7 @@
     "py": {
      "href": "py/gravity.html#p21052",
      "script": "p21_gravity.py",
-     "line": 501,
+     "line": 500,
      "verdict": "pass"
     },
     "lean": [
@@ -54115,7 +54262,7 @@
     "py": {
      "href": "py/gravity.html#p21053",
      "script": "p21_gravity.py",
-     "line": 515,
+     "line": 514,
      "verdict": "pass"
     },
     "lean": [
@@ -54177,7 +54324,7 @@
     "py": {
      "href": "py/gravity.html#p21054",
      "script": "p21_gravity.py",
-     "line": 539,
+     "line": 538,
      "verdict": "pass"
     },
     "lean": [
@@ -54215,7 +54362,7 @@
     "py": {
      "href": "py/gravity.html#p21055",
      "script": "p21_gravity.py",
-     "line": 404,
+     "line": 401,
      "verdict": "pass"
     },
     "lean": [
@@ -54260,7 +54407,7 @@
     "py": {
      "href": "py/gravity.html#p21050",
      "script": "p21_gravity.py",
-     "line": 450,
+     "line": 449,
      "verdict": "pass"
     },
     "lean": [
@@ -54297,7 +54444,7 @@
     "py": {
      "href": "py/gravity.html#p21060",
      "script": "p21_gravity.py",
-     "line": 531,
+     "line": 530,
      "verdict": "pass"
     },
     "lean": [
@@ -54334,7 +54481,7 @@
     "py": {
      "href": "py/gravity.html#p21041",
      "script": "p21_gravity.py",
-     "line": 172,
+     "line": 169,
      "verdict": "pass"
     },
     "lean": [
@@ -54371,7 +54518,7 @@
     "py": {
      "href": "py/gravity.html#p21042",
      "script": "p21_gravity.py",
-     "line": 509,
+     "line": 508,
      "verdict": "pass"
     },
     "lean": [
@@ -54409,7 +54556,7 @@
     "py": {
      "href": "py/gravity.html#p21043",
      "script": "p21_gravity.py",
-     "line": 326,
+     "line": 323,
      "verdict": "pass"
     },
     "lean": [
@@ -54454,7 +54601,7 @@
     "py": {
      "href": "py/gravity.html#p21044",
      "script": "p21_gravity.py",
-     "line": 275,
+     "line": 272,
      "verdict": "pass"
     },
     "lean": [
@@ -54500,22 +54647,31 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise.",
-   "source": "\\S\\ref{sub:radiative}\\newline \\pywit{gravity}{p21045}{X5}; rests on B1, C15",
+   "source": "\\S\\ref{sub:radiative}\\newline \\pywit{gravity}{p21045}{X5}, \\leanwit{FrcCore}{p21045}{X5}; rests on B1, C15 \\lean{FRC.Lattice.laplacian\\_symbol}",
    "page": "21-gravity/index.html#X5",
    "witness": {
     "py": {
      "href": "py/gravity.html#p21045",
      "script": "p21_gravity.py",
-     "line": 223,
+     "line": 220,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lattice",
+      "name": "FRC.Lattice.laplacian_symbol",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Lattice.laplacian_symbol"
+     }
+    ]
    },
    "refs": [
     "p21010",
     "p21030"
    ],
-   "text": "No graviton quantisation problem. The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise. \\Ssub:radiative p21045; rests on B1, C15"
+   "text": "No graviton quantisation problem. The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise. \\Ssub:radiative p21045, FrcCore{X5}; rests on B1, C15 FRC.Lattice.laplacian_symbol"
   },
   {
    "paper": "21-grav",
@@ -54524,9 +54680,9 @@
    "key": "p21046",
    "label": "X6",
    "block": "X",
-   "tag": "T",
+   "tag": "R",
    "name": null,
-   "statement": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported.",
+   "statement": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported. Falsifier: large-angle power at the unwrapped chart's value.",
    "source": "Prop.~\\ref{prop:primordial}; rests on A2, C14, C18",
    "page": "21-gravity/index.html#X6",
    "witness": {
@@ -54538,7 +54694,7 @@
     "p21033",
     "p21063"
    ],
-   "text": "The large-angle microwave anomaly. The anomalously low large-angle correlation ($p\\sim1%$ [schwarz]) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported. Prop. prop:primordial; rests on A2, C14, C18"
+   "text": "The large-angle microwave anomaly. The anomalously low large-angle correlation ($p\\sim1%$ [schwarz]) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported. Falsifier: large-angle power at the unwrapped chart's value. Prop. prop:primordial; rests on A2, C14, C18"
   },
   {
    "paper": "21-grav",
@@ -54556,7 +54712,7 @@
     "py": {
      "href": "py/gravity.html#p21047",
      "script": "p21_gravity.py",
-     "line": 208,
+     "line": 205,
      "verdict": "pass"
     },
     "lean": [
@@ -54592,7 +54748,7 @@
     "py": {
      "href": "py/gravity.html#p21048",
      "script": "p21_gravity.py",
-     "line": 166,
+     "line": 163,
      "verdict": "pass"
     },
     "lean": [
