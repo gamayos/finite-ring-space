@@ -216,10 +216,10 @@ theorem tally_weight (z w : Shell p) : (1 + 1 + -z + -w) + (1 + 1 + z + w) = 1 +
 
 /-! ## 21:C1 — the locked sum; 21:C11 — the character composition -/
 
-/-- 21:C1, 32:C10, 32:X7, 32:P5 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient (a virialised clump's weight one). -/
+/-- 21:C1, 21:C2, 32:C10, 32:X7, 32:P5 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient (a virialised clump's weight one). -/
 theorem locked_sum (z : Shell p) (m : Nat) : sumRange (fun _ => z) m = ofNat m * z := sum_const z m
 
-/-- 21:C11, 00:C21, 00:E4 — the exponential reading is the character: `g^{a+b} = g^a g^b`. -/
+/-- 21:C11, 21:C8, 00:C21, 00:E4 — the exponential reading is the character: `g^{a+b} = g^a g^b`. -/
 theorem character_composition (g : Shell p) (a b : Nat) : g ^ (a + b) = g ^ a * g ^ b := pow_add g a b
 
 /-! ## 21:C11 — the Gauss law from transfer antisymmetry -/
@@ -248,7 +248,7 @@ theorem antisymmetric_sum {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) 
   · exact absurd (by rw [two_eq_one_add_one]; exact h) F.two_ne_zero
   · exact h
 
-/-- 21:C11, 00:E3, 00:E4, 32:C1, 32:X1, 32:C4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence
+/-- 21:C11, 21:C2, 21:X4, 00:E3, 00:E4, 32:C1, 32:X1, 32:C4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence
 `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`:
 the interior links cancel in pairs. -/
 theorem gauss_law {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) (J : Nat → Nat → Shell p)
@@ -343,7 +343,7 @@ theorem conj_branch (z : Ext p ν) (hz : norm z = 1) : ∀ n : Nat, z ^ n * (con
 
 /-! ## The compression identity (21:X3, C21): the offset sector holds what the drive moves, exactly (11 October 2026) -/
 open FRC.Cycle in
-/-- 21:X3, 21:C21, 00:E5 — the compression identity on the cycle of `n` sites: for the drive step `U f (x) = f ((x + 1) mod n)`
+/-- 21:X3, 21:C21, 21:C22, 00:E5 — the compression identity on the cycle of `n` sites: for the drive step `U f (x) = f ((x + 1) mod n)`
 and a sector `P` with `P x · P x = P x`, the sector's weight `Σ P x · f x²` equals what the step keeps in the sector,
 `Σ P x · (U(Pf) x)²`, plus what it moves to the offset sector, `Σ (1 − P x) · (U(Pf) x)²`: relaxation is unresolved
 leakage held by the offset sector, and the drive, a permutation of the cycle, returns it after `n` steps (`cyc_add_n`).
@@ -367,7 +367,7 @@ theorem compression (n : Nat) (hn : 0 < n) (P f : Nat → Shell p) (hP : ∀ x, 
 
 /-! ## The master's block E: the completion, the floor's faces and the fold (00:E4, 00:E5, 00:E10; 12 October 2026) -/
 
-/-- 00:E4, 21:C11 — the exponential reading is the unique scale-covariant one: a function of the drive's steps with the
+/-- 00:E4, 21:C11, 21:X4 — the exponential reading is the unique scale-covariant one: a function of the drive's steps with the
 composition law `f (a + b) = f a · f b` and `f 0 = 1` is the character `f a = (f 1)^a`. -/
 theorem character_unique (f : Nat → Shell p) (h0 : f 0 = 1) (hf : ∀ a b, f (a + b) = f a * f b) :
     ∀ a, f a = (f 1) ^ a
@@ -402,7 +402,7 @@ theorem ppn_no_character {κ : Nat} {g : Shell p} (F : Frame p κ g) {u c : Shel
       | Or.inl h' => h'
       | Or.inr h' => h'
 
-/-- 00:E5, 00:E10 — the operational cut sits between the slip core and the mass, `r_* < r_f < M`, in the chart's own
+/-- 00:E5, 00:E10, 21:C12 — the operational cut sits between the slip core and the mass, `r_* < r_f < M`, in the chart's own
 numbers: with `r_* = √M`, `r_f = 2M/L` (`L = ln Ω`) and `M > (L/2)²`, that is `L² < 4M`, the squares order as
 `L² M < (2M)²`; and `r_f < M` reads `2M < L M` once `2 < L`. -/
 theorem cut_ordering (L M : Nat) (hM : L * L < 4 * M) (hL : 2 < L) (h0 : 0 < M) :

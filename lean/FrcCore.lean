@@ -42,6 +42,9 @@ import FrcCore.Theme.Symbol
 import FrcCore.Theme.Gravity
 import FrcCore.Theme.Lattice
 import FrcCore.Theme.Drift
+import FrcCore.Theme.Relaxation
+import FrcCore.Theme.Window
+import FrcCore.Theme.Static
 import FrcCore.Theme.Quantum
 import FrcCore.Theme.Observation
 import FrcCore.Theme.Interference
@@ -66,6 +69,7 @@ import FrcCore.Keys.Foundation
 import FrcCore.Keys.Carrier
 import FrcCore.Keys.Subject
 import FrcCore.Keys.Gravity
+import FrcCore.Keys.Relaxation
 import FrcCore.Keys.Quantum
 import FrcCore.Keys.Interactions
 import FrcCore.Keys.Horizon

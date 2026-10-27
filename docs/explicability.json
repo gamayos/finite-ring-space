@@ -1,5 +1,5 @@
 {
- "generated": "21 October 2026",
+ "generated": "27 October 2026",
  "rows": [
   {
    "id": "10:X1",
@@ -186,7 +186,7 @@
    "key": "p21044",
    "tag": "T",
    "predicate": "\\textbf{Misner's standing objection dissolves.} The exponential metric is derived, not posited as a self-coupled field equation, so the field-equation pathology Misner identified in exponential-metric gravity does not arise here.",
-   "source": "Rem.~\\ref{rem:exponential}",
+   "source": "Rem.~\\ref{rem:exponential}\\newline \\pywit{gravity}{p21044}{X4}, \\leanwit{FrcCore}{p21044}{X4}; rests on C8, C11 \\lean{FRC.Static.selection, FRC.Drift.gauss\\_law, FRC.Drift.character\\_unique}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -199,7 +199,7 @@
    "key": "p21045",
    "tag": "T",
    "predicate": "\\textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise.",
-   "source": "\\S\\ref{sub:radiative}; rests on B1, C15",
+   "source": "\\S\\ref{sub:radiative}\\newline \\pywit{gravity}{p21045}{X5}; rests on B1, C15",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -225,7 +225,7 @@
    "key": "p21047",
    "tag": "T",
    "predicate": "\\textbf{The equivalence principle} is an identity, not a postulate.",
-   "source": "Cor.~\\ref{cor:equiv}",
+   "source": "Cor.~\\ref{cor:equiv}\\newline \\pywit{gravity}{p21047}{X7}, \\leanwit{FrcCore}{p21047}{X7}; rests on C4, C20 \\lean{FRC.Relaxation.equivalence\\_cancel}",
    "master": [],
    "restated": [],
    "witnessed": false,

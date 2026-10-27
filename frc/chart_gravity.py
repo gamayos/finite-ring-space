@@ -17,12 +17,39 @@ import math
 import random
 
 from frc import chart as C
+from frc import relaxation as RX
 
 LN_OMEGA = float(C.LN_OMEGA)                       # the ledger's ln Ω (00:A7, 00:L8)
 OMEGA = math.exp(LN_OMEGA)                         # Ω on the chart, 1.3 × 10¹²³
 G_SI, MSUN, MPC_M = 6.674e-11, 1.989e30, float(C.MPC_KM) * 1e3
 A0_FIT, A0_SYST = float(C.A0_FIT[0]), float(C.A0_FIT[1])
 PI, E, TWO_E = math.pi, math.e, 2 * math.e                 # the chart's constants, for the ledger file (which carries no float)
+
+
+# ---- the registered relaxation against its Kuramoto chart (21:C28, [chart] readout) ------------------------------------------------
+def window_relaxation(N=60, B=81, mu0=None):
+    """One link on C_N relaxing under the re-registration rule (frc.relaxation.relax) with the readout replaced by the grid
+    floor ⌊B |sin(2πμ/N)|⌋ [chart] (the readout map is declared on the real-quadratic strata only): the exact accumulator
+    against the Kuramoto flow sampled at the quanta (Σ 1/sin over the levels passed) and the continuous flow
+    (N/2π) ln(tan(πμ₀/N)/tan(πμ/N)). Returns (the alignment chronon, the largest lag against the sampled flow, the largest
+    lag against the continuous flow, the pulses fired)."""
+    mu0 = N // 2 - 1 if mu0 is None else mu0
+    M = {mu: (int(B * abs(math.sin(2 * math.pi * mu / N))) if mu % (N // 2) else 0) for mu in range(-(N // 2), N // 2 + 1)}
+    traj, word, _ = RX.relax(N, mu0, M, B=B, chronons=20 * N)
+    first = {}
+    for t, mu in enumerate(traj): first.setdefault(mu, t)
+    sampled = lambda mu: sum(1 / math.sin(2 * math.pi * k / N) for k in range(mu + 1, mu0 + 1))
+    flow = lambda mu: (N / (2 * math.pi)) * math.log(math.tan(math.pi * mu0 / N) / math.tan(math.pi * mu / N))
+    lag_s = max(abs(first[mu] - sampled(mu)) for mu in range(1, mu0))
+    lag_f = max(abs(first[mu] - flow(mu)) for mu in range(1, mu0))
+    return first[0], lag_s, lag_f, sum(word[:first[0]])
+
+
+def count_vs_sine(N, B=81):
+    """[chart] the largest |M(μ) − B sin(2πμ/N)| over the mismatches of C_N, the window counts of frc.relaxation.current_counts
+    against the sine: the readout's grid bound times B plus the allocation's half unit."""
+    M = RX.current_counts(N, B)
+    return max(abs(M[mu] - B * abs(math.sin(2 * math.pi * mu / N))) for mu in range(0, N // 2 + 1))
 
 
 # ---- the Newtonian layer: the lattice Green's function (21:C2) ---------------------------------------------

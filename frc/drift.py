@@ -874,3 +874,13 @@ def spinor_cover(p, nu):
     b = K.mul(w, w); one, neg = (1, 0), (p - 1, 0)
     every = all(K.pow(w, 2 * n) == K.pow(b, n) for n in range(n2))
     return every, K.pow(w, p + 1) == neg, K.pow(b, (p + 1) // 2) == neg, (p + 1) % 4 == 2
+
+
+def embedded_drift(p, Om):
+    """The drift condition on the Subject–Carrier pair (Lemma relcycle, row B1): cycles n_A = p − 1 and n_B = Ω − 1 with unit
+    windings have a = L(p − Ω)/((Ω − 1)(p − 1)), a nonzero integer of magnitude below L, so a ≢ 0 (mod L): every proper
+    embedded shell drifts. Returns (L, a as defect() reduces it, the identity's value, closes)."""
+    L, q, a, T = defect(p - 1, Om - 1, 1, 1)
+    ident = L * (p - Om) // ((Om - 1) * (p - 1))
+    assert L * (p - Om) % ((Om - 1) * (p - 1)) == 0
+    return L, a, ident, a == 0

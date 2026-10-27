@@ -5631,7 +5631,7 @@ theorem dot_basis_ne (η : Nat → Shell p) (n : Nat) {i j : Nat} (hij : i ≠ j
     show η l * basis i l * basis j l = 0
     rw [mul_assoc, basis_mul_ne hij, mul_zero])
 
-/-- 00:E1 — spin 1 over all symbols: when the metric entry `η₀` is a unit (`n ≥ 1`), the forms gauge invariant at every
+/-- 00:E1, 21:C9 — spin 1 over all symbols: when the metric entry `η₀` is a unit (`n ≥ 1`), the forms gauge invariant at every
 symbol are exactly the line `a₁ + a₂ = 0`, Maxwell's `F²`. -/
 theorem maxwell_unique (η : Nat → Shell p) {n : Nat} {w : Shell p} (hn : 0 < n) (h₀ : η 0 * w = 1)
     (a₁ a₂ : Shell p) :
@@ -6454,7 +6454,7 @@ theorem smarr (κ : Nat) :
   ⟨nat_sound (nlook [κ]) (.mul (.add .one .one) (.mul (.var 0) (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.add .one .one)))) (.mul (.add (.mul (.add .one .one) (.var 0)) .one) (.mul (.add (.add (.add .one .one) .one) .one) (.var 0))) rfl rfl (by decide +kernel),
    nat_sound (nlook [κ]) (.mul (.mul (.add .one .one) (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.add .one .one))) (.mul (.var 0) (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.add .one .one)))) (.mul (.add (.mul (.add .one .one) (.var 0)) .one) (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.add .one .one)))) rfl rfl (by decide +kernel)⟩
 
-/-- 00:E6, 37:C20 — the merger law on the count face `A = M (M + 1)`: `ΔA = 2 M₁ M₂`. -/
+/-- 00:E6, 37:C20, 21:C13 — the merger law on the count face `A = M (M + 1)`: `ΔA = 2 M₁ M₂`. -/
 theorem merger_area (M₁ M₂ : Nat) :
     (M₁ + M₂) * (M₁ + M₂ + 1) = M₁ * (M₁ + 1) + M₂ * (M₂ + 1) + 2 * (M₁ * M₂) :=
   nat_sound (nlook [M₁, M₂]) (.mul (.add (.var 0) (.var 1)) (.add (.add (.var 0) (.var 1)) .one)) (.add (.add (.mul (.var 0) (.add (.var 0) .one)) (.mul (.var 1) (.add (.var 1) .one))) (.mul (.add .one .one) (.mul (.var 0) (.var 1)))) rfl rfl (by decide +kernel)
@@ -6981,10 +6981,10 @@ theorem tally_weight (z w : Shell p) : (1 + 1 + -z + -w) + (1 + 1 + z + w) = 1 +
 
 /-! ## 21:C1 — the locked sum; 21:C11 — the character composition -/
 
-/-- 21:C1, 32:C10, 32:X7, 32:P5 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient (a virialised clump's weight one). -/
+/-- 21:C1, 21:C2, 32:C10, 32:X7, 32:P5 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient (a virialised clump's weight one). -/
 theorem locked_sum (z : Shell p) (m : Nat) : sumRange (fun _ => z) m = ofNat m * z := sum_const z m
 
-/-- 21:C11, 00:C21, 00:E4 — the exponential reading is the character: `g^{a+b} = g^a g^b`. -/
+/-- 21:C11, 21:C8, 00:C21, 00:E4 — the exponential reading is the character: `g^{a+b} = g^a g^b`. -/
 theorem character_composition (g : Shell p) (a b : Nat) : g ^ (a + b) = g ^ a * g ^ b := pow_add g a b
 
 /-! ## 21:C11 — the Gauss law from transfer antisymmetry -/
@@ -7013,7 +7013,7 @@ theorem antisymmetric_sum {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) 
   · exact absurd (by rw [two_eq_one_add_one]; exact h) F.two_ne_zero
   · exact h
 
-/-- 21:C11, 00:E3, 00:E4, 32:C1, 32:X1, 32:C4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence
+/-- 21:C11, 21:C2, 21:X4, 00:E3, 00:E4, 32:C1, 32:X1, 32:C4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence
 `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`:
 the interior links cancel in pairs. -/
 theorem gauss_law {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) (J : Nat → Nat → Shell p)
@@ -7108,7 +7108,7 @@ theorem conj_branch (z : Ext p ν) (hz : norm z = 1) : ∀ n : Nat, z ^ n * (con
 
 /-! ## The compression identity (21:X3, C21): the offset sector holds what the drive moves, exactly (11 October 2026) -/
 open FRC.Cycle in
-/-- 21:X3, 21:C21, 00:E5 — the compression identity on the cycle of `n` sites: for the drive step `U f (x) = f ((x + 1) mod n)`
+/-- 21:X3, 21:C21, 21:C22, 00:E5 — the compression identity on the cycle of `n` sites: for the drive step `U f (x) = f ((x + 1) mod n)`
 and a sector `P` with `P x · P x = P x`, the sector's weight `Σ P x · f x²` equals what the step keeps in the sector,
 `Σ P x · (U(Pf) x)²`, plus what it moves to the offset sector, `Σ (1 − P x) · (U(Pf) x)²`: relaxation is unresolved
 leakage held by the offset sector, and the drive, a permutation of the cycle, returns it after `n` steps (`cyc_add_n`).
@@ -7132,7 +7132,7 @@ theorem compression (n : Nat) (hn : 0 < n) (P f : Nat → Shell p) (hP : ∀ x, 
 
 /-! ## The master's block E: the completion, the floor's faces and the fold (00:E4, 00:E5, 00:E10; 12 October 2026) -/
 
-/-- 00:E4, 21:C11 — the exponential reading is the unique scale-covariant one: a function of the drive's steps with the
+/-- 00:E4, 21:C11, 21:X4 — the exponential reading is the unique scale-covariant one: a function of the drive's steps with the
 composition law `f (a + b) = f a · f b` and `f 0 = 1` is the character `f a = (f 1)^a`. -/
 theorem character_unique (f : Nat → Shell p) (h0 : f 0 = 1) (hf : ∀ a b, f (a + b) = f a * f b) :
     ∀ a, f a = (f 1) ^ a
@@ -7167,7 +7167,7 @@ theorem ppn_no_character {κ : Nat} {g : Shell p} (F : Frame p κ g) {u c : Shel
       | Or.inl h' => h'
       | Or.inr h' => h'
 
-/-- 00:E5, 00:E10 — the operational cut sits between the slip core and the mass, `r_* < r_f < M`, in the chart's own
+/-- 00:E5, 00:E10, 21:C12 — the operational cut sits between the slip core and the mass, `r_* < r_f < M`, in the chart's own
 numbers: with `r_* = √M`, `r_f = 2M/L` (`L = ln Ω`) and `M > (L/2)²`, that is `L² < 4M`, the squares order as
 `L² M < (2M)²`; and `r_f < M` reads `2M < L M` once `2 < L`. -/
 theorem cut_ordering (L M : Nat) (hM : L * L < 4 * M) (hL : 2 < L) (h0 : 0 < M) :
@@ -7302,12 +7302,9 @@ theorem p21001 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p21009 — 21:A9. The minimal-instance results consumed: the two-face count of the drift (angular $\kap/S$, temporal $\kap/(2S)$, ratio $2$ the double cover), the registration dictionary $p_{\mathrm{sl}}=3(S/\kap)\,r_g$ with the forcing $2\gamma-\beta=1$, and the mass--energy channel $C_{\p-1}\cap C_{2(\p+1)}=Q_4$. -/
 theorem p21009 : (∀ (κ S : Nat), κ * ((2 : Nat) * S) = (2 : Nat) * (κ * S) ∧ (4 : Nat) * κ * ((4 : Nat) * S) = (4 : Nat) * ((4 : Nat) * (κ * S))) ∧ ∀ {p : Nat} [FRC.Pos p] (κ : Nat) (x : FRC.Shell p), x ^ ((4 : Nat) * κ) = (1 : FRC.Shell p) ∧ x ^ ((2 : Nat) * ((4 : Nat) * κ + (2 : Nat))) = (1 : FRC.Shell p) ↔ x ^ (4 : Nat) = (1 : FRC.Shell p) :=
   And.intro @FRC.Grav.two_face_count (@FRC.Drift.channel_q4)
-/-- p21016 — 21:C1. The linearised dynamics is the gradient flow of a coherence free energy --- its current derived from the pair tally conditional on channel unity (Lemma~\ref{lem:pairtally}) --- and a locked cluster of cardinality $m$ couples with coefficient exactly $m$. -/
-theorem p21016 : (∀ {p : Nat} [FRC.Pos p] (z : FRC.Shell p) (m : Nat), FRC.Shell.sumRange (fun x => z) m = FRC.Shell.ofNat m * z) ∧ ∀ {p : Nat} [FRC.Pos p] (z w : FRC.Shell p), z * w = (1 : FRC.Shell p) → (z + -w) * (z + -w) = -(((1 : FRC.Shell p) + (1 : FRC.Shell p) + -z + -w) * ((1 : FRC.Shell p) + (1 : FRC.Shell p) + z + w)) :=
-  And.intro @FRC.Drift.locked_sum (@FRC.Drift.pair_tally)
 set_option linter.defProp false in
-/-- p21017 — 21:C2. Newton's law $F=-Gm_1m_2/r^2$ with $G=1/4\pi\varkappa$ [chart] (register value $G=2S$): the $r^{-2}$ from harmonicity in the three frame freedoms, the product $m_1m_2$ from coherent additivity. -/
-def p21017 := @FRC.Grav.newton_residue
+/-- p21017 — 21:C2. Newton's law $F=-Gm_1m_2/r^2$ with $G=1/4\pi\varkappa$ [chart] (register value $G=2S$): the exact balance $\partial J+s=0$ on every closed region with the neutral return chain (the Gauss law), the product $m_1m_2$ from coherent additivity, the sign from the one drive; the $r^{-2}$ the chart's, the Coulomb asymptotics of the three frame freedoms in the decoherence distance (the isotropic inverse-correlation count, not the shortest-path count), the discrete Poisson equation solvable on the finite chart under the spanning-tree condition. -/
+def p21017 := And.intro @FRC.Grav.newton_residue (And.intro @FRC.Drift.gauss_law (@FRC.Drift.locked_sum))
 /-- p21018 — 21:C3. Universal attraction from the single arrow of the drive (a repulsive charge would need a time-reversed, Frobenius-branch clock). -/
 theorem p21018 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν), z.norm = (1 : FRC.Shell p) → ∀ (n : Nat), z ^ n * z.conj ^ n = (1 : FRC.Extension.Ext p ν)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν) (n : Nat), (z ^ n).conj = z.conj ^ n :=
   And.intro @FRC.Drift.conj_branch (@FRC.Drift.conj_pow)
@@ -7317,18 +7314,9 @@ theorem p21020 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p21021 — 21:C6. The conserved dust-tensor source as the Frobenius-symmetric square on the mass shell (cardinality conservation and torsor equivariance). -/
 theorem p21021 : ∀ {p : Nat} [FRC.Pos p] (m a b ν : FRC.Shell p), m * (a * a) + -(ν * (m * (b * b))) = m * (a * a + -(ν * (b * b))) :=
   @FRC.Drift.frobenius_trace
-/-- p21022 — 21:C7. Channel unity forces the spatial bias to equal the temporal one, $\gamma=1$, restoring the full light deflection $4Gm/c^2b$. -/
-theorem p21022 : ∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) → β = (1 : FRC.Shell p) :=
-  @FRC.Drift.cover_triangle
-/-- p21023 — 21:C8. The exponential isotropic metric by multiplicative composition, with $\beta=\gamma=1$: deflection, Shapiro delay, and perihelion at their observed values. -/
-theorem p21023 : (∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) → β = (1 : FRC.Shell p)) ∧ (6 : Int) * (-4 : Int) / (3 : Int) - (6 : Int) * (-3 : Int) / (2 : Int) = (1 : Int) ∧ (2 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (3 : Int) + (4 : Int) + (1 : Int) = (8 : Int) ∧ (-4 : Int) - (6 : Int) - (2 : Int) = (-12 : Int) ∧ (8 / 4 : Int) = (2 : Int) ∧ (-12 : Int) * (2 : Int) / (8 : Int) = (-3 : Int) :=
-  And.intro @FRC.Drift.cover_triangle (@FRC.Drift.pn_coefficients)
-/-- p21024 — 21:C9. The discrete Fierz--Pauli functional, exactly gauge-invariant and the unique adjacency-local stiffness on the shell (the spin-one case is unique-Maxwell). -/
-theorem p21024 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (f g : Nat → FRC.Shell p), FRC.Shell.sumRange (fun i => FRC.Lattice.cdiff n f i * FRC.Cycle.cyc n g i) n = -FRC.Shell.sumRange (fun i => FRC.Cycle.cyc n f i * FRC.Lattice.cdiff n g i) n) ∧ (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (f g : Nat → FRC.Shell p), FRC.Shell.sumRange (fun i => FRC.Lattice.fdiff n f i * FRC.Cycle.cyc n g i) n = -FRC.Shell.sumRange (fun i => FRC.Cycle.cyc n f i * FRC.Lattice.bdiff n g i) n) ∧ ∀ {p : Nat} [FRC.Pos p] (η : Nat → FRC.Shell p) {n : Nat} {w₀ w₁ t : FRC.Shell p}, (1 : Nat) < n → η (0 : Nat) * w₀ = (1 : FRC.Shell p) → η (1 : Nat) * w₁ = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * t = (1 : FRC.Shell p) → ∀ (a₁ a₂ a₃ a₄ : FRC.Shell p), (∀ (k ξ : Nat → FRC.Shell p) (h : Nat → Nat → FRC.Shell p), (∀ (μ ν : Nat), h μ ν = h ν μ) → FRC.Symbol.tensForm η n a₁ a₂ a₃ a₄ k (FRC.Symbol.gauge h k ξ) = FRC.Symbol.tensForm η n a₁ a₂ a₃ a₄ k h) ↔ ∃ c, a₁ = -c ∧ a₂ = ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * c ∧ a₃ = -(((1 : FRC.Shell p) + (1 : FRC.Shell p)) * c) ∧ a₄ = c :=
-  And.intro @FRC.Lattice.central_difference_adjoint (And.intro @FRC.Lattice.forward_difference_adjoint (@FRC.Symbol.fierz_pauli_unique))
-/-- p21026 — 21:C11. The nonlinear completion forced: the exact cut-flux law (transfer antisymmetry) plus the winding grading forbid independent static self-sourcing, the clock-comparison cocycle makes the exponential reading unique (exactly the character $\gen^{-\Delta n}$, $e^{-u}$ its observer lift), and Deser's bootstrap does not apply because what gravitates is winding rate. -/
-theorem p21026 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (n : Nat) (J : Nat → Nat → FRC.Shell p), (∀ (x y : Nat), J x y = -J y x) → ∀ (R : Nat → Bool), FRC.Shell.sumRange (fun x => FRC.Drift.ind R x * FRC.Shell.sumRange (fun y => J x y) n) n = FRC.Shell.sumRange (fun x => FRC.Drift.ind R x * FRC.Shell.sumRange (fun y => ((1 : FRC.Shell p) + -FRC.Drift.ind R y) * J x y) n) n) ∧ ∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (a b : Nat), g ^ (a + b) = g ^ a * g ^ b :=
-  And.intro @FRC.Drift.gauss_law (@FRC.Drift.character_composition)
+/-- p21023 — 21:C8. The exponential isotropic metric by multiplicative composition (the character composition law $\gen^{a+b}=\gen^{a}\gen^{b}$ on the shell), with $\beta=\gamma=1$: deflection, Shapiro delay, and perihelion at their observed values [chart]. -/
+theorem p21023 : (∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) → β = (1 : FRC.Shell p)) ∧ ((6 : Int) * (-4 : Int) / (3 : Int) - (6 : Int) * (-3 : Int) / (2 : Int) = (1 : Int) ∧ (2 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (3 : Int) + (4 : Int) + (1 : Int) = (8 : Int) ∧ (-4 : Int) - (6 : Int) - (2 : Int) = (-12 : Int) ∧ (8 / 4 : Int) = (2 : Int) ∧ (-12 : Int) * (2 : Int) / (8 : Int) = (-3 : Int)) ∧ ∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (a b : Nat), g ^ (a + b) = g ^ a * g ^ b :=
+  And.intro @FRC.Drift.cover_triangle (And.intro @FRC.Drift.pn_coefficients (@FRC.Drift.character_composition))
 /-- p21030 — 21:C15. The radiative sector: the quarter-turn conjugate momentum makes the dynamics a wave equation: two helicity-$\pm2$ gravitons at speed $c$, quadrupole radiation; gauge leaves two polarisations. -/
 theorem p21030 : ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k i : Nat), FRC.Lattice.lap n (FRC.Lattice.chi n g k) i = (g ^ k + g ^ (k * (n - (1 : Nat))) + -((1 : FRC.Shell p) + (1 : FRC.Shell p))) * FRC.Lattice.chi n g k i :=
   @FRC.Lattice.laplacian_symbol
@@ -7338,10 +7326,7 @@ theorem p21031 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p21035 — 21:C20. The two-shift update law: kick (finite Fourier shift by the source character) composed with metaplectic transport gives $\Delta^{2}_{\tau}q=-\nabla u$ with $m$ cancelling --- registered inertia and the equivalence principle inside one derived law. -/
 theorem p21035 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {ζ : FRC.Shell p}, ζ ^ n = (1 : FRC.Shell p) → ∀ (f : Nat → FRC.Shell p) (a k : Nat), FRC.Cycle.dft n ζ (fun x => ζ ^ (a * x) * f x) k = FRC.Cycle.dft n ζ f (k + a)) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {ζ : FRC.Shell p}, ζ ^ n = (1 : FRC.Shell p) → ∀ (f : Nat → FRC.Shell p) (a k : Nat), a ≤ n → FRC.Cycle.dft n ζ (fun x => FRC.Cycle.cyc n f (x + (n - a))) k = ζ ^ (a * k) * FRC.Cycle.dft n ζ f k :=
   And.intro @FRC.Cycle.dft_kick (@FRC.Cycle.dft_shift)
-/-- p21036 — 21:C21. The defect chain: relative-cycle defect with exact recurrence; the compression identity (relaxation $=$ unresolved leakage, recurrence retained); the pair-tally current (sine derived, conditional on channel unity); binding bookkeeping decided --- substrate winding sources the field, the defect registered-side, $\eta_{\mathrm{Nordtvedt}}=0$. -/
-theorem p21036 : (∀ (L a t : Nat), (0 : Nat) < L → (t * a % L = (0 : Nat) ↔ FRC.Drift.firstReturn L a ∣ t)) ∧ ((420 / 28 : Nat) = (15 : Nat) ∧ (420 / 60 : Nat) = (7 : Nat) ∧ (420 : Nat) % (28 : Nat) = (0 : Nat) ∧ (420 : Nat) % (60 : Nat) = (0 : Nat) ∧ (60 : Nat) % (4 : Nat) = (0 : Nat) ∧ (28 : Nat) % (4 : Nat) = (0 : Nat) ∧ ((15 : Nat) - (7 : Nat)) % (420 : Nat) = (8 : Nat) ∧ FRC.Drift.firstReturn (105 : Nat) (8 : Nat) = (105 : Nat) ∧ FRC.Drift.firstReturn (420 : Nat) (8 : Nat) = (105 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] (z w : FRC.Shell p), z * w = (1 : FRC.Shell p) → (z + -w) * (z + -w) = -(((1 : FRC.Shell p) + (1 : FRC.Shell p) + -z + -w) * ((1 : FRC.Shell p) + (1 : FRC.Shell p) + z + w)) :=
-  And.intro @FRC.Drift.return_iff (And.intro @FRC.Drift.defect_instance (@FRC.Drift.pair_tally))
-/-- p21040 — 21:C25. The PPN triangle closed by two routes: channel unity gives $\gamma=1$ (C7), the instance cover forces $2\gamma-\beta=1$ (A9), jointly $\beta=1$ --- Proposition~\ref{prop:ppn} reached independently, the deviation $\tfrac23(2\gamma-\beta-1)$ its falsifier. -/
+/-- p21040 — 21:C25. The PPN triangle closed by two routes: channel unity gives $\gamma=1$ (C7), the instance cover forces $2\gamma-\beta=1$ (A9), jointly $\beta=1$ --- Theorem~\ref{thm:ppn} reached independently, the deviation $\tfrac23(2\gamma-\beta-1)$ its falsifier. -/
 theorem p21040 : (∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) → β = (1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β + (-1 : FRC.Shell p) = (0 : FRC.Shell p) :=
   And.intro @FRC.Drift.cover_triangle (@FRC.Drift.cover_deviation)
 /-- p21041 — 21:X1. \textbf{The cosmological-constant magnitude.} $\Lambda\sim1/\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked. -/
@@ -7350,12 +7335,12 @@ theorem p21041 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p21043 — 21:X3. \textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \citep{quantum}: the theory never forfeits predictivity. -/
 theorem p21043 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (P f : Nat → FRC.Shell p), (∀ (x : Nat), P x * P x = P x) → FRC.Shell.sumRange (fun x => P x * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n)))) n + FRC.Shell.sumRange (fun x => ((1 : FRC.Shell p) + -P x) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n)))) n = FRC.Shell.sumRange (fun x => P x * (f x * f x)) n) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (f : Nat → FRC.Shell p) (i : Nat), FRC.Cycle.cyc n f (i + n) = FRC.Cycle.cyc n f i :=
   And.intro @FRC.Drift.compression (@FRC.Cycle.cyc_add_n)
-/-- p21055 — 21:P6. The 2PN periastron excess $\delta\dot\omega/\dot\omega\approx1.5\times10^{-6}$ for PSR~J0737$-$3039, today degenerate with the mass refit; decisive either way once an independent observable fixes $M_{\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \citep{quantum}; the ledger carries both. -/
+/-- p21055 — 21:P6. The 2PN periastron excess for PSR~J0737$-$3039: $\delta\dot\omega/\dot\omega\approx1.5\times10^{-6}$ in the test-particle sector [approx], the comparable-mass terms ($\nu=0.250$) not yet reduced; today degenerate with the mass refit; decisive either way once that sector is reduced and an independent observable fixes $M_{\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \citep{quantum}; the ledger carries both. -/
 theorem p21055 : (6 : Int) * (-4 : Int) / (3 : Int) - (6 : Int) * (-3 : Int) / (2 : Int) = (1 : Int) ∧ (2 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (3 : Int) + (4 : Int) + (1 : Int) = (8 : Int) ∧ (-4 : Int) - (6 : Int) - (2 : Int) = (-12 : Int) ∧ (8 / 4 : Int) = (2 : Int) ∧ (-12 : Int) * (2 : Int) / (8 : Int) = (-3 : Int) :=
   @FRC.Drift.pn_coefficients
-/-- p21062 — 21:C13. Area-law entropy $S=c_S'A_f/\ell_P^2$: the $\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\kap/\p $ exactly), the Carrier identity $S=(\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count (master D15); an exact merger area law $\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip (Hawking-scaling) emission suppressed below one quantum per Hubble time. -/
-theorem p21062 : (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ (29407 : Nat) * ((29407 : Nat) + (1 : Nat)) = (27811 : Nat) * ((27811 : Nat) + (1 : Nat)) + (1596 : Nat) * ((1596 : Nat) + (1 : Nat)) + (88772712 : Nat) ∧ (2 : Nat) * ((27811 : Nat) * (1596 : Nat)) = (88772712 : Nat) ∧ (27811 : Nat) + (1596 : Nat) = (29407 : Nat) :=
-  And.intro @FRC.Grav.count_identity (@FRC.Grav.merger_instance)
+/-- p21062 — 21:C13. Area-law entropy $S=c_S'A_f/\ell_P^2$: the $\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\kap/\p $ exactly), the Carrier identity $S=(\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count (master D15); an exact merger area law $\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip emission at the first-law temperature $T_{\mathrm S}=\ln^{2}\Omega\,T_H$, the Subject's registered value, luminosity $\ln^{6}\Omega$ times Hawking's, negligible. -/
+theorem p21062 : (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ (∀ (M₁ M₂ : Nat), (M₁ + M₂) * (M₁ + M₂ + (1 : Nat)) = M₁ * (M₁ + (1 : Nat)) + M₂ * (M₂ + (1 : Nat)) + (2 : Nat) * (M₁ * M₂)) ∧ (29407 : Nat) * ((29407 : Nat) + (1 : Nat)) = (27811 : Nat) * ((27811 : Nat) + (1 : Nat)) + (1596 : Nat) * ((1596 : Nat) + (1 : Nat)) + (88772712 : Nat) ∧ (2 : Nat) * ((27811 : Nat) * (1596 : Nat)) = (88772712 : Nat) ∧ (27811 : Nat) + (1596 : Nat) = (29407 : Nat) :=
+  And.intro @FRC.Grav.count_identity (And.intro @FRC.Grav.merger_area (@FRC.Grav.merger_instance))
 /-- p21064 — 21:C19. The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\ref{thm:twoshift} with the registered-inertia identity); it rests on the masking barrier (B9) and the corpus's unified sampling clause (master D10), shared with \citep{quantum}. -/
 theorem p21064 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {w s η : FRC.Shell p}, s * s = (1 : FRC.Shell p) + -(w * w) → w ≠ (0 : FRC.Shell p) → w * η = (1 : FRC.Shell p) + -s → w * (η * η) + -(((1 : FRC.Shell p) + (1 : FRC.Shell p)) * η) + w = (0 : FRC.Shell p) :=
   @FRC.Drift.registration_root
@@ -7393,19 +7378,14 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p00199
 #print axioms FRC.Ledger.p21001
 #print axioms FRC.Ledger.p21009
-#print axioms FRC.Ledger.p21016
 #print axioms FRC.Ledger.p21017
 #print axioms FRC.Ledger.p21018
 #print axioms FRC.Ledger.p21020
 #print axioms FRC.Ledger.p21021
-#print axioms FRC.Ledger.p21022
 #print axioms FRC.Ledger.p21023
-#print axioms FRC.Ledger.p21024
-#print axioms FRC.Ledger.p21026
 #print axioms FRC.Ledger.p21030
 #print axioms FRC.Ledger.p21031
 #print axioms FRC.Ledger.p21035
-#print axioms FRC.Ledger.p21036
 #print axioms FRC.Ledger.p21040
 #print axioms FRC.Ledger.p21041
 #print axioms FRC.Ledger.p21043

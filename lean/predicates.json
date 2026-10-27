@@ -525,6 +525,7 @@
    "21:A9": "Gravity",
    "21:C1": "Gravity",
    "21:C11": "Gravity",
+   "21:C12": "Gravity",
    "21:C13": "Gravity",
    "21:C15": "Gravity",
    "21:C16": "Gravity",
@@ -532,8 +533,14 @@
    "21:C2": "Gravity",
    "21:C20": "Gravity",
    "21:C21": "Gravity",
+   "21:C22": "Gravity",
    "21:C25": "Gravity",
+   "21:C26": "Gravity",
+   "21:C27": "Gravity",
+   "21:C28": "Gravity",
+   "21:C29": "Gravity",
    "21:C3": "Gravity",
+   "21:C4": "Gravity",
    "21:C5": "Gravity",
    "21:C6": "Gravity",
    "21:C7": "Gravity",
@@ -541,7 +548,9 @@
    "21:C9": "Gravity",
    "21:P6": "Gravity",
    "21:X1": "Gravity",
-   "21:X3": "Gravity"
+   "21:X3": "Gravity",
+   "21:X4": "Gravity",
+   "21:X7": "Gravity"
   },
   "FrcMathlib": {
    "21:A1": "Gravity",

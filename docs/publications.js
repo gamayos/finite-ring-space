@@ -415,20 +415,20 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p21_gravity.ipynb",
         "label": "python",
-        "count": 37,
-        "title": "37 predicates checked, all passing: the notebook p21_gravity.ipynb on Google Colab, one cell per predicate"
+        "count": 45,
+        "title": "45 predicates checked, all passing: the notebook p21_gravity.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Gravity.lean",
         "label": "lean",
-        "count": 21,
-        "title": "21 predicates proved in the core (no axioms), 16 of them also on Mathlib: the core module Gravity as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 30,
+        "title": "30 predicates proved in the core (no axioms), 18 of them also on Mathlib: the core module Gravity as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Gravity.lean",
         "label": "lean-mathlib",
         "count": 28,
-        "title": "28 predicates proved on Mathlib (classical), 16 of them also in the core: the module Gravity as one file on Mathlib in Lean Live"
+        "title": "28 predicates proved on Mathlib (classical), 18 of them also in the core: the module Gravity as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -801,4 +801,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "21 October 2026";
+const GENERATED = "27 October 2026";

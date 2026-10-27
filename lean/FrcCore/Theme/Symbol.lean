@@ -297,7 +297,7 @@ theorem dot_basis_ne (η : Nat → Shell p) (n : Nat) {i j : Nat} (hij : i ≠ j
     show η l * basis i l * basis j l = 0
     rw [mul_assoc, basis_mul_ne hij, mul_zero])
 
-/-- 00:E1 — spin 1 over all symbols: when the metric entry `η₀` is a unit (`n ≥ 1`), the forms gauge invariant at every
+/-- 00:E1, 21:C9 — spin 1 over all symbols: when the metric entry `η₀` is a unit (`n ≥ 1`), the forms gauge invariant at every
 symbol are exactly the line `a₁ + a₂ = 0`, Maxwell's `F²`. -/
 theorem maxwell_unique (η : Nat → Shell p) {n : Nat} {w : Shell p} (hn : 0 < n) (h₀ : η 0 * w = 1)
     (a₁ a₂ : Shell p) :

@@ -548,7 +548,7 @@ theorem smarr (κ : Nat) :
   ⟨nat_sound (nlook [κ]) (.mul (.add .one .one) (.mul (.var 0) (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.add .one .one)))) (.mul (.add (.mul (.add .one .one) (.var 0)) .one) (.mul (.add (.add (.add .one .one) .one) .one) (.var 0))) rfl rfl (by decide +kernel),
    nat_sound (nlook [κ]) (.mul (.mul (.add .one .one) (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.add .one .one))) (.mul (.var 0) (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.add .one .one)))) (.mul (.add (.mul (.add .one .one) (.var 0)) .one) (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.add .one .one)))) rfl rfl (by decide +kernel)⟩
 
-/-- 00:E6, 37:C20 — the merger law on the count face `A = M (M + 1)`: `ΔA = 2 M₁ M₂`. -/
+/-- 00:E6, 37:C20, 21:C13 — the merger law on the count face `A = M (M + 1)`: `ΔA = 2 M₁ M₂`. -/
 theorem merger_area (M₁ M₂ : Nat) :
     (M₁ + M₂) * (M₁ + M₂ + 1) = M₁ * (M₁ + 1) + M₂ * (M₂ + 1) + 2 * (M₁ * M₂) :=
   nat_sound (nlook [M₁, M₂]) (.mul (.add (.var 0) (.var 1)) (.add (.add (.var 0) (.var 1)) .one)) (.add (.add (.mul (.var 0) (.add (.var 0) .one)) (.mul (.var 1) (.add (.var 1) .one))) (.mul (.add .one .one) (.mul (.var 0) (.var 1)))) rfl rfl (by decide +kernel)

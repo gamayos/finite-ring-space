@@ -332,3 +332,28 @@ def two_shift_law(m=4, gradu=2, T=40):
     t = two_shift_run(m, gradu, T)
     sec = [t[i + 1] - 2 * t[i] + t[i - 1] for i in range(1, len(t) - 1)]
     return all(s == -gradu for s in sec) and two_shift_run(m, gradu, T) == two_shift_run(3 * m, gradu, T)
+
+
+def green_anisotropy(N=64, n=4):
+    """The cubic lattice Green's function (−ΔG = δ, Δ the graph Laplacian) at x = (3n, 0, 0) and y = (n, n, n), the same
+    shortest-path count 3n, from the periodic box sum G_N(x) = N⁻³ Σ_k cos(k·x)/(6 − 2 Σ cos k_i) over k ≠ 0, the box constant
+    fixed by Watson's value G(0) = 1.516386/6 at the origin. Returns (4π|x|₂ G(x), 4π|y|₂ G(y), G(y)/G(x)): the first two
+    near 1 (the Euclidean leading term, Lemma green), the ratio near √3 (the anisotropy at equal path count)."""
+    from math import cos, pi, sqrt
+    ks = [2 * pi * j / N for j in range(N)]
+    c = [cos(k) for k in ks]
+    pts = ((0, 0, 0), (3 * n, 0, 0), (n, n, n))
+    acc = [0.0, 0.0, 0.0]
+    for i in range(N):
+        for j in range(N):
+            cij = c[i] + c[j]
+            for l in range(N):
+                if i == 0 and j == 0 and l == 0:
+                    continue
+                w = 1.0 / (6.0 - 2.0 * (cij + c[l]))
+                for t, (x, y, z) in enumerate(pts):
+                    acc[t] += w * cos(ks[i] * x + ks[j] * y + ks[l] * z)
+    g0, gx, gy = (a / N ** 3 for a in acc)
+    shift = 1.516386059151978 / 6 - g0                       # G(0) = W₃/6, Watson's integral W₃ = 1.516386…
+    Gx, Gy = gx + shift, gy + shift
+    return 4 * pi * 3 * n * Gx, 4 * pi * sqrt(3) * n * Gy, Gy / Gx

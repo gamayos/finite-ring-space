@@ -3,7 +3,7 @@
  "tree": "32-dark-20260627",
  "title": "The Dark Sector over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1689.v1",
- "generated": "21 October 2026",
+ "generated": "27 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -471,7 +471,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C11, 00:E3, 00:E4, 32:C1, 32:X1, 32:C4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`: the interior links cancel in pairs."
+    "doc": "21:C11, 21:C2, 21:X4, 00:E3, 00:E4, 32:C1, 32:X1, 32:C4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`: the interior links cancel in pairs."
    },
    {
     "name": "FRC.Dark.enclosed_flux",
@@ -584,7 +584,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C11, 00:E3, 00:E4, 32:C1, 32:X1, 32:C4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`: the interior links cancel in pairs."
+    "doc": "21:C11, 21:C2, 21:X4, 00:E3, 00:E4, 32:C1, 32:X1, 32:C4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`: the interior links cancel in pairs."
    },
    {
     "name": "FRC.Dark.crossover_deep_limit",
@@ -824,7 +824,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C1, 32:C10, 32:X7, 32:P5 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient (a virialised clump's weight one)."
+    "doc": "21:C1, 21:C2, 32:C10, 32:X7, 32:P5 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient (a virialised clump's weight one)."
    },
    {
     "name": "FRC.Shell.Frame.geom_sum_eq_zero",
@@ -890,7 +890,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C11, 00:E3, 00:E4, 32:C1, 32:X1, 32:C4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`: the interior links cancel in pairs."
+    "doc": "21:C11, 21:C2, 21:X4, 00:E3, 00:E4, 32:C1, 32:X1, 32:C4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`: the interior links cancel in pairs."
    },
    {
     "name": "FRC.Dark.enclosed_flux",
@@ -1069,7 +1069,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C1, 32:C10, 32:X7, 32:P5 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient (a virialised clump's weight one)."
+    "doc": "21:C1, 21:C2, 32:C10, 32:X7, 32:P5 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient (a virialised clump's weight one)."
    },
    {
     "name": "FRC.Shell.Frame.geom_sum_eq_zero",
@@ -1297,7 +1297,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C1, 32:C10, 32:X7, 32:P5 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient (a virialised clump's weight one)."
+    "doc": "21:C1, 21:C2, 32:C10, 32:X7, 32:P5 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient (a virialised clump's weight one)."
    }
   ],
   "P6": [
