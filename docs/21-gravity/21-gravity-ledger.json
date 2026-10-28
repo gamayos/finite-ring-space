@@ -3,7 +3,7 @@
  "tree": "21-gravity-20260623",
  "title": "Gravitation as Phase Synchronisation",
  "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
- "generated": "27 October 2026",
+ "generated": "28 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -13,14 +13,14 @@
      "label": "A1",
      "predicate": "The finite substrate: the torsor Carrier, coordinatized by a frame as $\\F_\\Omega$, its cardinality the Carrier identity $\\Omega=4S+1$ with the measured $S\\sim10^{122}$ (Planck units) locating the coherence horizon, with the phase cycle $C_{\\Omega-1}$, the quarter-turn core $Q_4$, the drive (time is scale-dilation, each Subject's own), the coherence horizon $\\sqrt\\Omega$, and the resolution floor $1/\\sqrt\\Omega$.",
      "tag": "I",
-     "source": "\\citep{algebra,lorentzian,frcrh}\\newline \\pywit{gravity}{p21001}{A1}, \\leanwit{FrcCore}{p21001}{A1}, \\leanwit{FrcMathlib}{p21001}{A1} \\lean{Gravity.calibration\\_congruence, Gravity.hbar\\_register, FRC.Grav.calibration}",
+     "source": "\\citep{algebra,lorentzian,dimensions}\\newline \\pywit{gravity}{p21001}{A1}, \\leanwit{FrcCore}{p21001}{A1}, \\leanwit{FrcMathlib}{p21001}{A1} \\lean{Gravity.calibration\\_congruence, Gravity.hbar\\_register, FRC.Grav.calibration}",
      "key": "p21001"
     },
     {
      "label": "A2",
      "predicate": "The three frame freedoms: the frame space is a torsor under $\\mathrm{SL}_2(\\F_\\Omega)$, the spatial chart three-dimensional per frame, its continuum shadow the $3$-sphere.",
      "tag": "I",
-     "source": "\\citep[\\S9.6]{frcrh}",
+     "source": "\\citep{dickson}; declared in \\S\\ref{sec:primer}",
      "key": "p21002"
     },
     {
@@ -122,14 +122,14 @@
     },
     {
      "label": "B8",
-     "predicate": "The cosmological constant is the curvature of the wrapped finite chart (32:B7). Falsifier: $w\\neq-1$, or a negative or scale-varying $\\Lambda$.",
+     "predicate": "The cosmological constant is the curvature of the wrapped finite chart. Falsifier: $w\\neq-1$, or a negative or scale-varying $\\Lambda$.",
      "tag": "R",
      "source": "\\S\\ref{sec:discussion}, App.~\\ref{app:floor}",
      "key": "p32014"
     },
     {
      "label": "B9",
-     "predicate": "The masking barrier is the coincidence amplitude: registration fails when the killed noise walk first traverses the signal's amplitude $\\sqrt x$, coefficient one (32:B8). Falsifier: an approach to Newton departing from $1-e^{-\\sqrt x}$ beyond the binned-RAR uncertainty, or a knee displaced from $cH_0/2\\pi$.",
+     "predicate": "The masking barrier is the coincidence amplitude: registration fails when the killed noise walk first traverses the signal's amplitude $\\sqrt x$, coefficient one. Falsifier: an approach to Newton departing from $1-e^{-\\sqrt x}$ beyond the binned-RAR uncertainty, or a knee displaced from $cH_0/2\\pi$.",
      "tag": "R",
      "source": "Prop.~\\ref{prop:crossover}",
      "key": "p32015"
@@ -219,16 +219,16 @@
     },
     {
      "label": "C12",
-     "predicate": "The exact static profile in cut form: on an equitable radial partition a static locked exterior exists exactly where the enclosed demand is within the capacity of every cut, $Q_r\\le\\varkappa A_r$ (the condition necessary on every chart), and ends at the first cut that fails, the slip core ($\\sqrt{m/30}\\le r_*\\le\\lceil\\sqrt{m/12}\\,\\rceil$ on the graph balls at unit capacity, $r_*=\\sqrt{Gm}$ in the isotropic chart with $4\\pi r^{2}$ its [chart] reading); horizonless, operationally black at $r_f=r_s/\\ln\\Omega$ [chart]; the $r_f$-anchored claims stated in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Omega/2)^{2}$ Planck masses (master E10).",
+     "predicate": "The exact static profile in cut form: on an equitable radial partition a static locked exterior exists exactly where the enclosed demand is within the capacity of every cut, $Q_r\\le\\varkappa A_r$ (the condition necessary on every chart), and ends at the first cut that fails, the slip core ($\\sqrt{m/30}\\le r_*\\le\\lceil\\sqrt{m/12}\\,\\rceil$ on the graph balls at unit capacity, $r_*=\\sqrt{Gm}$ in the isotropic chart with $4\\pi r^{2}$ its [chart] reading); horizonless, operationally black at $r_f=r_s/\\ln\\Omega$ [chart]; the $r_f$-anchored claims stated in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Omega/2)^{2}$ Planck masses.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:exactprofile},~\\ref{prop:operational}\\newline \\pywit{gravity}{p21027}{C12}, \\leanwit{FrcCore}{p21027}{C12}, \\leanwit{FrcMathlib}{p21027}{C12}; rests on B4, C2 \\lean{Gravity.operational\\_cut, FRC.Static.static\\_iff, FRC.Static.slip\\_of\\_exceeds, FRC.Static.exterior\\_of\\_sq, FRC.Static.slip\\_of\\_sq, FRC.Static.slip\\_instance, FRC.Drift.cut\\_ordering}",
      "key": "p21027"
     },
     {
      "label": "C13",
-     "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count (master D15); an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip emission at the first-law temperature $T_{\\mathrm S}=\\ln^{2}\\Omega\\,T_H$, the Subject's registered value, luminosity $\\ln^{6}\\Omega$ times Hawking's, negligible.",
+     "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count \\citep{quantum}; an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip emission at the first-law temperature $T_{\\mathrm S}=\\ln^{2}\\Omega\\,T_H$, the Subject's registered value, luminosity $\\ln^{6}\\Omega$ times Hawking's, negligible.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:area}\\newline \\pywit{gravity}{p21062}{C13}, \\leanwit{FrcCore}{p21062}{C13}, \\leanwit{FrcMathlib}{p21062}{C13}; rests on A1, B2, C12, 00:D15 \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, Gravity.capacity\\_ratio\\_numeral, FRC.Grav.count\\_identity, FRC.Grav.merger\\_area, FRC.Grav.merger\\_instance}",
+     "source": "Thm.~\\ref{thm:area}, Rem.~\\ref{rem:entropy}, Prop.~\\ref{prop:capacity}\\newline \\pywit{gravity}{p21062}{C13}, \\leanwit{FrcCore}{p21062}{C13}, \\leanwit{FrcMathlib}{p21062}{C13}; rests on A1, B2, C12, 00:D15 \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, Gravity.capacity\\_ratio\\_numeral, FRC.Grav.count\\_identity, FRC.Grav.merger\\_area, FRC.Grav.merger\\_instance}",
      "key": "p21062"
     },
     {
@@ -247,9 +247,9 @@
     },
     {
      "label": "C16",
-     "predicate": "The order-one constants are determined: $c_S'=\\tfrac14$ (the $Q_4$ gauge quotient, counted on an instantiated shell and carried by the Carrier identity), the floor's $2\\pi$ the full cycle of the angle--count dictionary (14:B2), its threshold the realisation 32:B3, the recurring constant the solid angle $4\\pi$, reducing in the Carrier register to the calibration congruence $(4S)^{2}\\equiv1$ (one residue relation).",
+     "predicate": "The order-one constants are determined: $c_S'=\\tfrac14$ (the $Q_4$ gauge quotient, counted on an instantiated shell and carried by the Carrier identity), the floor's $2\\pi$ the full cycle of the angle--count dictionary \\citep{dimensions}, its threshold a realisation (Proposition~\\ref{prop:afloor}), the recurring constant the solid angle $4\\pi$, reducing in the Carrier register to the calibration congruence $(4S)^{2}\\equiv1$ (one residue relation).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:area}, Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21031}{C16}, \\leanwit{FrcCore}{p21031}{C16}, \\leanwit{FrcMathlib}{p21031}{C16}; rests on A1, C13, 00:L1, 00:N2 \\lean{Gravity.calibration\\_congruence, Gravity.newton\\_register, FRC.Grav.calibration, FRC.Grav.lab\\_register}",
+     "source": "Thm.~\\ref{thm:area}, Prop.~\\ref{prop:afloor}, App.~\\ref{app:face}\\newline \\pywit{gravity}{p21031}{C16}, \\leanwit{FrcCore}{p21031}{C16}, \\leanwit{FrcMathlib}{p21031}{C16}; rests on A1, C13, 00:L1, 00:N2 \\lean{Gravity.calibration\\_congruence, Gravity.newton\\_register, FRC.Grav.calibration, FRC.Grav.lab\\_register}",
      "key": "p21031"
     },
     {
@@ -261,14 +261,14 @@
     },
     {
      "label": "C18",
-     "predicate": "The primordial spectrum: $n_s=1$ the scale-dilation fixed point; the tilt's committed form $-\\pi^{2}/\\ln\\Omega$, $\\ln\\Omega$ the e-fold count of the frame's scale range, the realisation of master L8, with the measured tilt its falsifier ($\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$; the linearity condition undefined on a shell); the wrapped chart fixing the low large-angle power.",
+     "predicate": "The primordial spectrum: $n_s=1$ the scale-dilation fixed point; the tilt's committed form $-\\pi^{2}/\\ln\\Omega$, $\\ln\\Omega$ the e-fold count of the frame's scale range, a realisation with the measured tilt its falsifier ($\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$; the linearity condition undefined on a shell); the wrapped chart fixing the low large-angle power.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:primordial}\\newline \\pywit{gravity}{p21033}{C18}, \\leanwit{FrcMathlib}{p21033}{C18}; rests on A1, 00:L8 \\lean{Gravity.scale\\_invariance\\_iff, Gravity.tilt\\_bracket}",
      "key": "p21033"
     },
     {
      "label": "C19",
-     "predicate": "The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\\ref{thm:twoshift} with the registered-inertia identity); it rests on the masking barrier (B9) and the corpus's unified sampling clause (master D10), shared with \\citep{quantum}.",
+     "predicate": "The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\\ref{thm:twoshift} with the registered-inertia identity); it rests on the masking barrier (B9) and the unified sampling clause of \\citep{quantum}.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:crossover}; \\citep{quantum}\\newline \\pywit{gravity}{p21064}{C19}, \\leanwit{FrcCore}{p21064}{C19}, \\leanwit{FrcMathlib}{p21064}{C19}; rests on A4, C20, 00:D10 \\lean{Gravity.registration\\_root, Gravity.crossover\\_limits, Gravity.crossover\\_deep\\_limit, FRC.Drift.registration\\_root}",
      "key": "p21064"
@@ -282,14 +282,14 @@
     },
     {
      "label": "C21",
-     "predicate": "The defect chain: relative-cycle defect with exact recurrence; the compression identity (relaxation $=$ unresolved leakage, recurrence retained), the leakage over a window counted as the chronons off the return chain; the pair-tally current (the current $z-z^{-1}$ derived, the sine its chart, conditional on channel unity); binding bookkeeping decided --- substrate winding sources the field, the defect registered-side, $\\eta_{\\mathrm{Nordtvedt}}=0$ on that bookkeeping, the three coefficients of a bound composite not derived separately.",
+     "predicate": "The defect chain: relative-cycle defect with exact recurrence; the compression identity (relaxation $=$ unresolved leakage, recurrence retained), the leakage over a window counted as the chronons at which the registered outcome fails to close; the pair-tally current (the current $z-z^{-1}$ derived, the sine its chart, conditional on channel unity); binding bookkeeping decided --- substrate winding sources the field, the defect registered-side, $\\eta_{\\mathrm{Nordtvedt}}=0$ on that bookkeeping, the three coefficients of a bound composite not derived separately.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:relcycle}, Prop.~\\ref{prop:compression}, Lem.~\\ref{lem:pairtally}\\newline \\pywit{gravity}{p21036}{C21}, \\leanwit{FrcCore}{p21036}{C21} \\lean{FRC.Drift.return\\_iff, FRC.Drift.defect\\_instance, FRC.Drift.pair\\_tally, FRC.Drift.compression, FRC.Static.leakage\\_add\\_returns, FRC.Static.leakage\\_eq}",
      "key": "p21036"
     },
     {
      "label": "C22",
-     "predicate": "Induced relaxation: given the registered adjacency chart with unit capacity, the compressed evolution $K_{\\mathrm S}=P_{\\mathrm S}U_{\\mathrm C}P_{\\mathrm S}$ contracts by exactly the unresolved leakage, counted over a window as the chronons off the return chain; the leading odd leakage kernel is forced to the central difference and the incidence composite is the Laplacian; the constitutive current is the pair-tally current, its window count the readout of the sine on the strata $C_8$, $C_{12}$; under the re-registration rule the mismatch reaches alignment in finitely many chronons --- the Kuramoto gradient flow its weak-defect, short-memory chart, sampled at the quantum.",
+     "predicate": "Induced relaxation: given the registered adjacency chart with unit capacity, the compressed evolution $K_{\\mathrm S}=P_{\\mathrm S}U_{\\mathrm C}P_{\\mathrm S}$ contracts by exactly the unresolved leakage, counted over a window as the chronons at which the registered outcome fails to close; the leading odd leakage kernel is forced to the central difference and the incidence composite is the Laplacian; the constitutive current is the pair-tally current, its window count the readout of the sine on the strata $C_8$, $C_{12}$; under the re-registration rule the mismatch reaches alignment in finitely many chronons --- the Kuramoto gradient flow its weak-defect, short-memory chart, sampled at the quantum.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:indrelax}\\newline \\pywit{gravity}{p21037}{C22}, \\leanwit{FrcCore}{p21037}{C22}; rests on C21, C27, C28, C29, 00:E11 \\lean{FRC.Drift.compression, FRC.Relaxation.odd\\_kernel\\_is\\_cdiff, FRC.Relaxation.bdiff\\_fdiff, FRC.Relaxation.leakage\\_contraction, FRC.Relaxation.tally\\_gradient}",
      "key": "p21037"
@@ -406,7 +406,7 @@
    "rows": [
     {
      "label": "P1",
-     "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, eikonal ringdown $-4.4\\%$ (the $(2,2,0)$ reading open, GW250114 the exposure; master E13, E14), ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
+     "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, eikonal ringdown $-4.4\\%$ (the $(2,2,0)$ reading open, GW250114 the exposure), ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
      "tag": "T",
      "source": "App.~\\ref{app:strongfield}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}\\newline \\pywit{gravity}{p21049}{P1}, \\leanwit{FrcMathlib}{p21049}{P1}; rests on B2, C11, C12, 00:E4 \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
      "key": "p21049"
@@ -415,12 +415,12 @@
      "label": "P7",
      "predicate": "Floor-surface signatures: no prompt echoes (the exact profile horizonless with no reflecting surface, C12; the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; a reported echo detection at the stated precision falsifies the construction.",
      "tag": "T",
-     "source": "App.~\\ref{app:strongfield}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}\\newline \\pywit{gravity}{p21050}{P7}, \\leanwit{FrcMathlib}{p21050}{P7}; rests on C13, 00:E5 \\lean{Gravity.operational\\_cut}",
+     "source": "App.~\\ref{app:strongfield}, Rem.~\\ref{rem:fold},~\\ref{rem:hawking}\\newline \\pywit{gravity}{p21050}{P7}, \\leanwit{FrcMathlib}{p21050}{P7}; rests on C13, 00:E5 \\lean{Gravity.operational\\_cut}",
      "key": "p21050"
     },
     {
      "label": "P8",
-     "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$), ACT DR6 $-0.026\\pm0.003$ ($-2.9\\sigma$) and the SPT--Planck--ACT combination $-0.0321\\pm0.0033$ ($-0.8\\sigma$), under $\\Lambda$CDM; $0.24\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
+     "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the scale import from the measured $\\Lambda$ \\citep{planck}), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$), ACT DR6 $-0.026\\pm0.003$ ($-2.9\\sigma$) and the SPT--Planck--ACT combination $-0.0321\\pm0.0033$ ($-0.8\\sigma$), under $\\Lambda$CDM; $0.24\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:primordial}\\newline \\pywit{gravity}{p21060}{P8}, \\leanwit{FrcMathlib}{p21060}{P8}; rests on A8, C18, 00:L8 \\lean{Gravity.tilt\\_bracket}",
      "key": "p21060"
@@ -434,7 +434,7 @@
     },
     {
      "label": "P3",
-     "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the entailed $H_0=67.4$ \\cite{entropy}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle (14:B2), the one-cycle-per-period threshold the realisation 32:B3 with its discrete falsifier.",
+     "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the measured $H_0=67.4$ \\citep{planck}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle \\citep{dimensions}, the one-cycle-per-period threshold a realisation with its discrete falsifier.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21052}{P3}, \\leanwit{FrcMathlib}{p21052}{P3}; rests on A8, C16, 14:C8, 00:L1 \\lean{Gravity.floor\\_value}",
      "key": "p21052"
@@ -450,7 +450,7 @@
      "label": "P5",
      "predicate": "The floor tracks the expansion, $a_0(z)\\propto H(z)$ (BTFR zero-point $\\propto E(z)^{1/4}$); high-$z$ rotation curves decisive.",
      "tag": "T",
-     "source": "App.~\\ref{app:floor}, \\citep{dark}\\newline \\pywit{gravity}{p21054}{P5}, \\leanwit{FrcMathlib}{p21054}{P5}; rests on 14:B4, 32:B3, 00:L1 \\lean{Gravity.running\\_floor}",
+     "source": "App.~\\ref{app:floor}\\newline \\pywit{gravity}{p21054}{P5}, \\leanwit{FrcMathlib}{p21054}{P5}; rests on 14:B4, 32:B3, 00:L1 \\lean{Gravity.running\\_floor}",
      "key": "p21054"
     },
     {
@@ -468,9 +468,9 @@
    "rows": [
     {
      "label": "Z1",
-     "predicate": "The cross-scale running of $a_0$, the ratio $(\\Omega-1)/d$: reduces to the factorisation of $\\Omega-1$, the rate face of the Riemann scale operator.",
+     "predicate": "The cross-scale running of $a_0$, the ratio $(\\Omega-1)/d$: reduces to the factorisation of $\\Omega-1$.",
      "tag": "Ω",
-     "source": "App.~\\ref{app:floor}, \\citep{frcrh,dark}",
+     "source": "App.~\\ref{app:floor}",
      "key": "p21059"
     }
    ]

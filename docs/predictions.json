@@ -1,5 +1,5 @@
 {
- "generated": "27 October 2026",
+ "generated": "28 October 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -134,7 +134,7 @@
    "label": "P1",
    "key": "p21049",
    "tag": "T",
-   "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, eikonal ringdown $-4.4\\%$ (the $(2,2,0)$ reading open, GW250114 the exposure; master E13, E14), ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
+   "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, eikonal ringdown $-4.4\\%$ (the $(2,2,0)$ reading open, GW250114 the exposure), ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
    "source": "App.~\\ref{app:strongfield}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}\\newline \\pywit{gravity}{p21049}{P1}, \\leanwit{FrcMathlib}{p21049}{P1}; rests on B2, C11, C12, 00:E4 \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
    "master": [
     "E14"
@@ -162,7 +162,7 @@
    "label": "P3",
    "key": "p21052",
    "tag": "T",
-   "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the entailed $H_0=67.4$ \\cite{entropy}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle (14:B2), the one-cycle-per-period threshold the realisation 32:B3 with its discrete falsifier.",
+   "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the measured $H_0=67.4$ \\citep{planck}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle \\citep{dimensions}, the one-cycle-per-period threshold a realisation with its discrete falsifier.",
    "source": "Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21052}{P3}, \\leanwit{FrcMathlib}{p21052}{P3}; rests on A8, C16, 14:C8, 00:L1 \\lean{Gravity.floor\\_value}",
    "master": [
     "L1"
@@ -206,7 +206,7 @@
    "key": "p21050",
    "tag": "T",
    "predicate": "Floor-surface signatures: no prompt echoes (the exact profile horizonless with no reflecting surface, C12; the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; a reported echo detection at the stated precision falsifies the construction.",
-   "source": "App.~\\ref{app:strongfield}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}\\newline \\pywit{gravity}{p21050}{P7}, \\leanwit{FrcMathlib}{p21050}{P7}; rests on C13, 00:E5 \\lean{Gravity.operational\\_cut}",
+   "source": "App.~\\ref{app:strongfield}, Rem.~\\ref{rem:fold},~\\ref{rem:hawking}\\newline \\pywit{gravity}{p21050}{P7}, \\leanwit{FrcMathlib}{p21050}{P7}; rests on C13, 00:E5 \\lean{Gravity.operational\\_cut}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -218,7 +218,7 @@
    "label": "P8",
    "key": "p21060",
    "tag": "T",
-   "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$), ACT DR6 $-0.026\\pm0.003$ ($-2.9\\sigma$) and the SPT--Planck--ACT combination $-0.0321\\pm0.0033$ ($-0.8\\sigma$), under $\\Lambda$CDM; $0.24\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
+   "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the scale import from the measured $\\Lambda$ \\citep{planck}), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$), ACT DR6 $-0.026\\pm0.003$ ($-2.9\\sigma$) and the SPT--Planck--ACT combination $-0.0321\\pm0.0033$ ($-0.8\\sigma$), under $\\Lambda$CDM; $0.24\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
    "source": "Prop.~\\ref{prop:primordial}\\newline \\pywit{gravity}{p21060}{P8}, \\leanwit{FrcMathlib}{p21060}{P8}; rests on A8, C18, 00:L8 \\lean{Gravity.tilt\\_bracket}",
    "master": [
     "L8"
