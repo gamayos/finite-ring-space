@@ -50,7 +50,12 @@ class MasterGravityTest(unittest.TestCase):
         self.assertTrue(G.R.verify_all())
         marks = G.R.markers()
         for lab in G.R.predicates: self.assertIn(lab, marks)
-        self.assertEqual(sorted(G.PROOFS), sorted(G.LEAN))
+        self.assertEqual(sorted(set(G.PROOFS) | set(G.CHART)), sorted(G.LEAN))       # E14 is bound on Mathlib (CHART) since 16 October 2026
+        for lab, libs in G.LEAN.items():
+            self.assertEqual("core" in libs, lab in G.PROOFS, lab)
+            self.assertEqual("ml" in libs, lab in G.CHART, lab)
+        self.assertEqual(G.LEAN["E14"], "ml")
+        self.assertEqual(G.CHART["E14"], ["FRC.Strong.eikonal_pair", "FRC.Strong.shadow_bracket"])
         self.assertEqual(G.BLOCK, "CE")                   # C21, the dilation rigidity theorem, since 20 October 2026
         self.assertIn("00:C21", G.PREDICATES)
 
