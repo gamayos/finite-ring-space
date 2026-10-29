@@ -64,6 +64,13 @@
      "tag": "I",
      "source": "\\citep{sorkin1994,sinha2010,renou2021,bose2017,marletto2017,vasileiou2013,schumacher2012}",
      "key": "p22008"
+    },
+    {
+     "label": "A9",
+     "predicate": "The extended framed readout: a totally real weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element, decided by the integer polynomial that isolates it, in place of the integer square root; the two weights of a setting share the integer part, so their readouts sum exactly.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:readout}",
+     "key": "p22063"
     }
    ]
   },
@@ -101,7 +108,7 @@
     },
     {
      "label": "B5",
-     "predicate": "Composition is conservation, and composite states are kept on the product tally ring: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit, and joint tallies live on the rank-$n_An_B$ product ring (Definition~\\ref{def:compositeledger}). Falsifier: $S\\neq2\\sqrt2$, or network behaviour outside Theorem~\\ref{thm:table} (P3).",
+     "predicate": "Composition is conservation, and composite states live on the product tally ring of rank $n_An_B$: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, and a composite is a drive-confined synchronised orbit. Falsifier: a CHSH value significantly above $2\\sqrt2$, a Bell-state correlator off the singlet law, or network behaviour outside Proposition~\\ref{thm:table}.",
      "tag": "R",
      "source": "Prop.~\\ref{prop:offset}, Def.~\\ref{def:composite}, Prop.~\\ref{prop:unequal}(iii)",
      "key": "p22013"
@@ -126,6 +133,13 @@
      "tag": "R",
      "source": "\\S\\ref{sec:gravchannel}, Prop.~\\ref{prop:bmvmech}, Prop.~\\ref{prop:fcoh}",
      "key": "p22016"
+    },
+    {
+     "label": "B9",
+     "predicate": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers the grid point nearest the weight at the scale $B$ resolves, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies converging, at the protocol's resolution, to a value other than the structural weight.",
+     "tag": "R",
+     "source": "Rem.~\\ref{rem:strata}, Rem.~\\ref{rem:borndomain}, Def.~\\ref{def:readout}",
+     "key": "p22062"
     }
    ]
   },
@@ -170,7 +184,7 @@
     },
     {
      "label": "C6",
-     "predicate": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the tally ring the complex conjugation, the automorphism that reduces to inversion.",
+     "predicate": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the tally ring the complex conjugation, the one Galois involution that fixes the two-way subring pointwise and reduces to inversion.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:involution}, Prop.~\\ref{prop:reduction},~\\ref{prop:paircount}, \\citep{akhtman2025lorentzian}\\newline \\pywit{quantum}{p22022}{C6}, \\leanwit{FrcCore}{p22022}{C6} \\lean{FRC.Observation.frobenius\\_unique, FRC.Observation.torus\\_conj\\_inv, FRC.Observation.exponent\\_negation}",
      "key": "p22022"
@@ -205,9 +219,9 @@
     },
     {
      "label": "C11",
-     "predicate": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved, the conjugate-pair trace tally and the setting-ensemble Parseval tally (Remark~\\ref{rem:strata}), given the stratum-sampling hypothesis Y1.",
+     "predicate": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved, the conjugate-pair trace tally and the setting-ensemble Parseval tally (Remark~\\ref{rem:strata}), given the stratum-sampling realisation B9.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; rests on B4, C10, Y1\\newline \\pywit{quantum}{p22027}{C11}, \\leanwit{FrcCore}{p22027}{C11} \\lean{FRC.Extension.conjugate\\_pair\\_tally, FRC.Extension.trace\\_recurrence, FRC.Extension.dial\\_shift, FRC.Extension.dial\\_tally, FRC.Extension.framed\\_readout}",
+     "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; rests on B4, C10, B9\\newline \\pywit{quantum}{p22027}{C11}, \\leanwit{FrcCore}{p22027}{C11} \\lean{FRC.Extension.conjugate\\_pair\\_tally, FRC.Extension.trace\\_recurrence, FRC.Extension.dial\\_shift, FRC.Extension.dial\\_tally, FRC.Extension.framed\\_readout}",
      "key": "p22027"
     },
     {
@@ -247,7 +261,7 @@
     },
     {
      "label": "C17",
-     "predicate": "Exact Tsirelson saturation: the singlet law of Theorem~\\ref{thm:tsirelson} [chart], the ring identity $S^2=8$, the exhaustive $80^3$ sweep never exceeding the bound [chart]; no-signalling and the composite reduction commute.",
+     "predicate": "Exact Tsirelson saturation: the singlet law of Theorem~\\ref{thm:tsirelson} [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{prop:boundary}\\newline \\pywit{quantum}{p22033}{C17}, \\leanwit{FrcCore}{p22033}{C17}, \\leanwit{FrcMathlib}{p22033}{C17} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Composite.no\\_signalling, FRC.Observation.reduce\\_mul, FRC.Composite.carrier\\_641, Quantum.tsirelson\\_real, Quantum.singlet\\_law}",
      "key": "p22033"
@@ -289,7 +303,7 @@
     },
     {
      "label": "C23",
-     "predicate": "Inter-Subject consistency: two distinct Subjects reading one Object agree on the shared core $\\Qf$ , order-independent joint refinement, the same core character by the selection rule, and order-independence on the shared cell.",
+     "predicate": "Inter-Subject consistency: two distinct Subjects reading one Object agree on the shared core $\\Qf$, order-independent joint refinement, the same core character by the selection rule, and order-independence on the shared cell.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:intersubject}\\newline \\pywit{quantum}{p22039}{C23}, \\leanwit{FrcCore}{p22039}{C23} \\lean{FRC.Composite.joint\\_refinement, FRC.Composite.order\\_independence, FRC.Observation.selection}",
      "key": "p22039"
@@ -317,10 +331,24 @@
     },
     {
      "label": "C27",
-     "predicate": "Quarter-turn transport: the ambient quarter-turn aliases onto an embedded label iff $\\kap\\equiv\\pm\\kap_n\\pmod n$, the capacity residue mod~$4$ the coarsest invariant; the constants web is read per register (Remark~\\ref{rem:conceptual}).",
+     "predicate": "Quarter-turn transport: the ambient quarter-turn aliases onto an embedded label iff $\\kap\\equiv\\pm\\kap_n\\pmod n$, the capacity residue mod~$4$ the coarsest invariant; the constants correspondence is read per register (Remark~\\ref{rem:conceptual}).",
      "tag": "T",
      "source": "Lem.~\\ref{lem:transport}, \\citep{akhtman2026dimensions}\\newline \\pywit{quantum}{p22043}{C27}, \\leanwit{FrcCore}{p22043}{C27} \\lean{FRC.Observation.transport\\_trichotomy, FRC.Observation.transport\\_cases}",
      "key": "p22043"
+    },
+    {
+     "label": "C28",
+     "predicate": "Fixed-setting weights are not tallies: the Bell weight at a fixed setting is a realised tally exactly at the four classical settings, where the correlator is zero or unit; at a Tsirelson setting a registration string's weight is a tally only when the string is balanced, while its sum with the conjugate-setting string always is; the drive conserves the setting.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:notally}; rests on C10, C15, C17\\newline \\pywit{quantum}{p22065}{C28}, \\leanwit{FrcCore}{p22065}{C28} \\lean{FRC.Strata.Q2.pow\\_Wp\\_irrational, FRC.Strata.Q2.string\\_rational\\_iff\\_box, FRC.Strata.Q2.trace\\_rational, FRC.Strata.Q2.Wp\\_mul\\_Wm}",
+     "key": "p22065"
+    },
+    {
+     "label": "C29",
+     "predicate": "The readout law on the sweep: the extended readout lies within one grid step of its weight, is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings, and the largest-remainder counts of a protocol lie within one of the readout times the run count, at every setting and scale.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:readoutlaw}; rests on A9, C10, C17\\newline \\pywit{quantum}{p22066}{C29}, \\leanwit{FrcCore}{p22066}{C29} \\lean{FRC.Strata.Readout.cells\\_all\\_settings, FRC.Strata.Readout.cells\\_P20, FRC.Strata.Readout.pair\\_sum, FRC.Strata.hamilton\\_count, FRC.Strata.Readout.tsirelson\\_restriction, FRC.Strata.Readout.classical\\_exact}",
+     "key": "p22066"
     }
    ]
   },
@@ -392,9 +420,9 @@
    "rows": [
     {
      "label": "P1",
-     "predicate": "Gravitationally induced entanglement at exactly the Newtonian rate [chart], $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction.",
+     "predicate": "Gravitationally induced entanglement at the Newtonian rate for fully coherent sources and at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry the conditional phase, the incoherent channel separable at generic geometry. The one dated forward prediction.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Quantum.channel\\_chart}",
+     "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C11, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Quantum.channel\\_chart}",
      "key": "p22052"
     },
     {
@@ -406,9 +434,9 @@
     },
     {
      "label": "P3",
-     "predicate": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
+     "predicate": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; rests on B2, B5, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcMathlib}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Quantum.tsirelson\\_real}",
+     "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{thm:table}; rests on B2, B5, C11, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcMathlib}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Quantum.tsirelson\\_real}",
      "key": "p22054"
     },
     {
@@ -420,30 +448,10 @@
     },
     {
      "label": "P5",
-     "predicate": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\\sqrt\\Omega$) [chart], not gradual.",
+     "predicate": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\\sqrt\\Omega$), not gradual.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:granularity}; rests on Z3, C14\\newline \\pywit{quantum}{p22056}{P5}, \\leanwit{FrcCore}{p22056}{P5}, \\leanwit{FrcMathlib}{p22056}{P5} \\lean{FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, FRC.Interference.hadamard\\_even, Quantum.ceiling\\_bracket, Quantum.gaussian\\_minimal}",
      "key": "p22056"
-    }
-   ]
-  },
-  {
-   "letter": "Y",
-   "title": "Hypotheses: stated ahead of their derivation or test",
-   "rows": [
-    {
-     "label": "Y1",
-     "predicate": "The stratum-sampling hypothesis: a fixed-setting protocol samples one stratum of the setting ensemble, so that the registered frequencies at that setting read its structural weight through the framed readout. Test: a non-uniform registered statistic on a single Object outside the C11 reduction, or the product-ring counting statement of Remark~\\ref{rem:strata} proved.",
-     "tag": "O",
-     "source": "Rem.~\\ref{rem:strata}, Rem.~\\ref{rem:borndomain}; conditions C11",
-     "key": "p22062"
-    },
-    {
-     "label": "Y2",
-     "predicate": "The totally-real extension of the framed readout: Definition~\\ref{def:readout} extends from the real-quadratic strata to general totally real cyclotomic weights, the full $80$-setting sweep, with the same bounded-discrepancy law. Test: the extended map reproducing the sweep's exact weights on $\\Car_{641}$.",
-     "tag": "O",
-     "source": "Def.~\\ref{def:readout}",
-     "key": "p22063"
     }
    ]
   },
@@ -453,7 +461,7 @@
    "rows": [
     {
      "label": "Z1",
-     "predicate": "The coherence horizon: the Born rule is exact within $\\sqrt\\Omega$ and a frame artefact beyond it, the same boundary as the decidability window of Definition~\\ref{def:subhorizon} and the locality horizon of the gravitational sector.",
+     "predicate": "The coherence horizon: the Born rule is exact within $\\sqrt\\Omega$ and a frame artefact beyond it, the same boundary as the locality horizon of the gravitational sector.",
      "tag": "Ω",
      "source": "Rem.~\\ref{rem:horizon}, \\citep{akhtman2026gravity}",
      "key": "p22060"
@@ -467,7 +475,7 @@
     },
     {
      "label": "Z3",
-     "predicate": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega=1.3\\times10^{123}$ [chart], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table~\\ref{tab:omega} lies below it.",
+     "predicate": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega=1.3\\times10^{123}$ [approx], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table~\\ref{tab:omega} lies below it.",
      "tag": "Ω",
      "source": "\\S\\ref{sub:predictions}, Tab.~\\ref{tab:omega}, \\citep{gibbonshawking1977,planck2018}\\newline \\pywit{quantum}{p22005}{Z3}, \\leanwit{FrcMathlib}{p22005}{Z3} \\lean{Quantum.omega\\_floors}",
      "key": "p22005"
@@ -495,11 +503,6 @@
    "tag": "R",
    "name": "Realisation",
    "text": "States what a physical term denotes on the substrate: constitutive, not interpretive, and carrying its falsifier."
-  },
-  {
-   "tag": "O",
-   "name": "Open",
-   "text": "A hypothesis stated ahead of its derivation or test; a theorem conditioned on it names it by label."
   },
   {
    "tag": "Ω",
@@ -1599,6 +1602,100 @@
     "tier": 0,
     "ok": true,
     "doc": "22:C27 — the three cases read on the capacity, decided by the kernel on the worked labels `C_{40}`, `Q₄` and `C_{12}`: `3κ ≡ 3m`, `3κ ≡ m` and `6κ ≡ 0 (mod 4m)` are `κ ≡ m`, `κ + m ≡ 0` and `κ ≡ 0 (mod 2m)`, and on `C_{12}` (`m = 3`, the embedded capacities `κ = 3t`) the faithful case is `κ ≡ 3 (mod 12)`."
+   }
+  ],
+  "C28": [
+   {
+    "name": "FRC.Strata.Q2.pow_Wp_irrational",
+    "module": "FrcCore/Theme/Strata",
+    "line": 97,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C28 — `(2 + √2)^{m+1}` is irrational for every `m`: the agreeing Tsirelson weight raised to any positive power is no realised tally."
+   },
+   {
+    "name": "FRC.Strata.Q2.string_rational_iff_box",
+    "module": "FrcCore/Theme/Strata",
+    "line": 108,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C28 — on the box `a, b < 13` the string weight `W₊^a W₋^b` is a rational integer exactly when the string is balanced, `a = b`; the unbounded statement follows from `pow_Wp_irrational` and `W₊ W₋ = 2`."
+   },
+   {
+    "name": "FRC.Strata.Q2.trace_rational",
+    "module": "FrcCore/Theme/Strata",
+    "line": 127,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C28 — the Galois trace `x + x̄` is rational for every `x`: a string summed with its conjugate-setting string is a tally."
+   },
+   {
+    "name": "FRC.Strata.Q2.Wp_mul_Wm",
+    "module": "FrcCore/Theme/Strata",
+    "line": 71,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C28 — `W₊ W₋ = (2 + √2)(2 − √2) = 2`: an agreeing and a disagreeing pair cancel to the tally `2`."
+   }
+  ],
+  "C29": [
+   {
+    "name": "FRC.Strata.Readout.cells_all_settings",
+    "module": "FrcCore/Theme/Strata",
+    "line": 227,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C29 — at scale `n = 4` every setting's integer part is certified by its isolating polynomial: `s₄(Δ)` is the grid cell of the root `c_Δ` for all 80 settings, decided by the kernel on the homogenised integers."
+   },
+   {
+    "name": "FRC.Strata.Readout.cells_P20",
+    "module": "FrcCore/Theme/Strata",
+    "line": 231,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C29 — the cells of `P₂₀` on the grid of scale `81` over `[−2, 2]`: exactly the twenty integer parts of the odd settings, one cell per root and no cell holding two — the finite isolation of all twenty roots."
+   },
+   {
+    "name": "FRC.Strata.Readout.pair_sum",
+    "module": "FrcCore/Theme/Strata",
+    "line": 187,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C29 — the readout pair of a setting, numerators over the denominator `bG`: the two weights `(u ± c)/b` share the integer part `s` of `Gc`, so their readouts sum to `2u/b` exactly, on counts: `(uG + s) + (uG − s) = uG + uG`."
+   },
+   {
+    "name": "FRC.Strata.hamilton_count",
+    "module": "FrcCore/Theme/Strata",
+    "line": 159,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C29 — the bounded-discrepancy law: for a readout `a/D` and `B` runs the provisional count `f = ⌊B a / D⌋` exists with `B a = D f + (B a mod D)`, and with any residual unit `δ ≤ 1` the registered count `f + δ` lies within one of `B a/D`."
+   },
+   {
+    "name": "FRC.Strata.Readout.tsirelson_restriction",
+    "module": "FrcCore/Theme/Strata",
+    "line": 247,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C29 — restriction: at the Tsirelson setting the cell certificate of `X² − 2` is the two-sided bound of the integer square root of `2 · 81²`, `114² ≤ 2 · 81² < 115²` (`s₄ = 114`), and the readout numerators are `2 · 81 ± 114 = 276, 48` over `8 · 81 = 648`: the paper's `23/54` and `2/27`."
+   },
+   {
+    "name": "FRC.Strata.Readout.classical_exact",
+    "module": "FrcCore/Theme/Strata",
+    "line": 251,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C29 — the four classical settings read exactly: the cell is the exact point `Gc` (`hom = 0`), the readout is the weight."
    }
   ],
   "X1": [

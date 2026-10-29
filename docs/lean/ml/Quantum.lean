@@ -111,7 +111,7 @@ theorem p22024 : (∀ {R : Type u_1} [CommRing R] {c : R → R}, (∀ (x y : R),
 /-- 22:C14 (p22030) — The granularity ceiling: the representable coherent-splitting depth is the largest $k$ at which $d$ times the minimal tally norm of Proposition~\ref{prop:granularity} stays below $\Omega$, and resolution finer than $1/\Omega$ lies outside the derived Born regime. -/
 theorem p22030 : (∀ (m : ℕ), FRC.QuantumML.onePlusI ^ ((2 : ℕ) * m) = (2 : GaussianInt) ^ m * FRC.QuantumML.gi ^ m ∧ FRC.QuantumML.onePlusI ^ ((2 : ℕ) * m + (1 : ℕ)) = (2 : GaussianInt) ^ m * FRC.QuantumML.gi ^ m * FRC.QuantumML.onePlusI) ∧ (∀ (m : ℕ), ¬(2 : GaussianInt) ∣ FRC.QuantumML.gi ^ m * FRC.QuantumML.onePlusI) ∧ (∀ (k : ℕ), Zsqrtd.norm (FRC.QuantumML.onePlusI ^ k) = (2 : ℤ) ^ k) ∧ ∀ (k : ℕ), (2 : ℕ) ^ (k + k % (2 : ℕ)) = ((2 : ℕ) ^ ((k + (1 : ℕ)) / (2 : ℕ))) ^ (2 : ℕ) :=
   @FRC.LedgerML.p22030
-/-- 22:C17 (p22033) — Exact Tsirelson saturation: the singlet law of Theorem~\ref{thm:tsirelson} [chart], the ring identity $S^2=8$, the exhaustive $80^3$ sweep never exceeding the bound [chart]; no-signalling and the composite reduction commute. -/
+/-- 22:C17 (p22033) — Exact Tsirelson saturation: the singlet law of Theorem~\ref{thm:tsirelson} [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute. -/
 theorem p22033 : (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ)) ∧ ∀ (Δ : ℕ), (Complex.exp (↑((2 : ℝ) * Real.pi * ↑Δ / (80 : ℝ)) * Complex.I)).re = Real.cos (Real.pi * ↑Δ / (40 : ℝ)) :=
   @FRC.LedgerML.p22033
 /-- 22:C19 (p22035) — The gravitational channel entangles exactly, $C^2=\sin^2(\varphi/2)$ [chart], with the pure-channel complementarity $V^2+C^2=1$. -/
@@ -129,23 +129,23 @@ theorem p22050 : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2
 /-- 22:X8 (p22051) — \textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down. -/
 theorem p22051 : ∀ {R : Type u_1} [CommRing R] {c : R → R}, (∀ (x y : R), c (x + y) = c x + c y) → ∀ (a : ℕ → R) (k : ℕ) (x : R), FRC.QuantumML.mixedDiff a (fun x => x * c x) (k + (3 : ℕ)) x = (0 : R) :=
   @FRC.LedgerML.p22051
-/-- 22:P1 (p22052) — Gravitationally induced entanglement at exactly the Newtonian rate [chart], $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction. -/
+/-- 22:P1 (p22052) — Gravitationally induced entanglement at the Newtonian rate for fully coherent sources and at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry the conditional phase, the incoherent channel separable at generic geometry. The one dated forward prediction. -/
 theorem p22052 : ∀ (φ : ℝ), (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) + Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / (2 : ℂ) = ↑(Real.cos (φ / (2 : ℝ))) ∧ (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) - Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / ((2 : ℂ) * Complex.I) = ↑(Real.sin (φ / (2 : ℝ))) ∧ Real.cos (φ / (2 : ℝ)) ^ (2 : ℕ) + Real.sin (φ / (2 : ℝ)) ^ (2 : ℕ) = (1 : ℝ) ∧ Real.sin (0 / 2 : ℝ) = (0 : ℝ) :=
   @FRC.LedgerML.p22052
 /-- 22:P2 (p22053) — Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\Omega$: a single confirmed small $I_3\neq0$ falsifies outright. -/
 theorem p22053 : ∀ {R : Type u_1} [CommRing R] {c : R → R}, (∀ (x y : R), c (x + y) = c x + c y) → ∀ (a : ℕ → R) (k : ℕ) (x : R), FRC.QuantumML.mixedDiff a (fun x => x * c x) (k + (3 : ℕ)) x = (0 : R) :=
   @FRC.LedgerML.p22053
-/-- 22:P3 (p22054) — The Tsirelson value $S=2\sqrt2$ exact [chart] and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\neq2\sqrt2$, or non-quantum network behaviour each falsify. -/
+/-- 22:P3 (p22054) — The Tsirelson value $S=2\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: vacuum dispersion, $S\neq2\sqrt2$, or non-quantum network behaviour each falsify. -/
 theorem p22054 : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ) :=
   @FRC.LedgerML.p22054
-/-- 22:P5 (p22056) — Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\sqrt\Omega$) [chart], not gradual. -/
+/-- 22:P5 (p22056) — Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\sqrt\Omega$), not gradual. -/
 theorem p22056 : (∀ (Λ ℓP r S Ω : ℝ), Λ = 1088e-55 → ℓP = 1616255e-41 → r ^ (2 : ℕ) = (3 : ℝ) / Λ → S = Real.pi * (r / ℓP) ^ (2 : ℕ) → Ω = (4 : ℝ) * S + (1 : ℝ) → (2 : ℝ) ^ (408 : ℕ) < Ω ∧ Ω / (4 : ℝ) < (2 : ℝ) ^ (408 : ℕ) ∧ (2 : ℝ) ^ (204 : ℕ) < √Ω ∧ √Ω / (4 : ℝ) < (2 : ℝ) ^ (204 : ℕ)) ∧ ∀ (m : ℕ), ¬(2 : GaussianInt) ∣ FRC.QuantumML.gi ^ m * FRC.QuantumML.onePlusI :=
   @FRC.LedgerML.p22056
 set_option linter.defProp false in
 /-- 22:Z2 (p22061) — The anchor's exposure: the Born window and the interference wrap are read at the committed scale, so a Born anomaly or a quantised wrap at a scale the anchor excludes falsifies the commitment; every laboratory floor of Table~\ref{tab:omega} lies far below the anchor. -/
 def p22061 := @FRC.LedgerML.p22061
 set_option linter.defProp false in
-/-- 22:Z3 (p22005) — The committed cardinality: $\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\times10^{122}$ of the Planck cosmology, so $\Omega=1.3\times10^{123}$ [chart], with the coherence horizon $\sqrt\Omega\sim10^{61}$ and the decidability horizon $\Omega^{1/4}\sim10^{31}$; every floor of Table~\ref{tab:omega} lies below it. -/
+/-- 22:Z3 (p22005) — The committed cardinality: $\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\times10^{122}$ of the Planck cosmology, so $\Omega=1.3\times10^{123}$ [approx], with the coherence horizon $\sqrt\Omega\sim10^{61}$ and the decidability horizon $\Omega^{1/4}\sim10^{31}$; every floor of Table~\ref{tab:omega} lies below it. -/
 def p22005 := @FRC.LedgerML.p22005
 -- end ledger predicates
 
