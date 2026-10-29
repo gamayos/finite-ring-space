@@ -1,18 +1,18 @@
 {
  "header": {
-  "generated": "28 October 2026",
+  "generated": "29 October 2026",
   "schema": "frc-register/2",
-  "rows": 1048,
-  "theorems": 1034,
+  "rows": 1051,
+  "theorems": 1037,
   "counts": {
-   "keys": 1034,
-   "rows": 1048,
+   "keys": 1037,
+   "rows": 1051,
    "shared": 14,
    "by_tag": {
-    "D": 167,
+    "D": 168,
     "G": 1,
     "I": 123,
-    "O": 11,
+    "O": 13,
     "R": 85,
     "T": 618,
     "Ω": 29
@@ -905,6 +905,10 @@
       "title": "Falsifiable predictions: the exposures"
      },
      {
+      "letter": "Y",
+      "title": "Hypotheses: stated ahead of their derivation or test"
+     },
+     {
       "letter": "Z",
       "title": "Horizon: the residues beyond the bounded observer"
      }
@@ -913,30 +917,35 @@
      {
       "tag": "I",
       "name": "Import",
-      "text": "A standard result or measured datum imported without reproof."
-     },
-     {
-      "tag": "R",
-      "name": "Realisation",
-      "text": "A forced identification of a physical term with the substrate object it denotes: constitutive, not interpretive; defended by its registered consequences; killed by the falsifier stated in its row."
+      "text": "A standard result, a result of the framework published elsewhere, or a measured datum used here without reproof."
      },
      {
       "tag": "D",
       "name": "Definition",
-      "text": "A naming or set-up move, carrying no empirical content."
+      "text": "A naming, a declared dictionary, or a set-up move, carrying no empirical content."
      },
      {
       "tag": "T",
       "name": "Theorem",
-      "text": "Derived within this paper from the rows above it; where a \\textsf{py} token is named, its content is reproduced by the framework's ledger file; where a \\textsf{lean} token is named, proved in Lean. A continuum reading of a finite object is marked [chart]; its witness is a certified bracket or a Mathlib theorem on the reals."
+      "text": "Derived within this paper from the rows it names, machine-verified in exact arithmetic by the named witness where a witness is named."
+     },
+     {
+      "tag": "R",
+      "name": "Realisation",
+      "text": "States what a physical term denotes on the substrate: constitutive, not interpretive, and carrying its falsifier."
+     },
+     {
+      "tag": "O",
+      "name": "Open",
+      "text": "A hypothesis stated ahead of its derivation or test; a theorem conditioned on it names it by label."
      },
      {
       "tag": "Ω",
       "name": "$\\Omega$-hard",
-      "text": "Decided by the totality; not closeable by a bounded observer."
+      "text": "A value fixed by the totality, in no bounded observer's window; a demarcation of where the value is read, not an open item."
      }
     ],
-    "rows": 58
+    "rows": 61
    },
    {
     "key": "25-göd",
@@ -2308,7 +2317,7 @@
    "check": {
     "href": "py/quantum.html#p22028",
     "script": "p22_quantum.py",
-    "line": 1323,
+    "line": 1322,
     "verdict": "pass"
    },
    "declarations": [
@@ -18021,33 +18030,12 @@
   {
    "key": "p22002",
    "origin": "22",
-   "statement": "The Lorentzian split: the quadratic extension $\\F_{\\p^2}$, the Frobenius involution, the norm-one boost cycle of order $\\p+1$, and the spinor double cover (the Dirac layer).",
+   "statement": "The Lorentzian split: the quadratic extension $\\F_{\\p^2}$, the Frobenius involution, the norm-one boost cycle of order $\\p+1$ and the spinor double cover.",
    "origin_row": "22:A2",
    "tag": "I",
-   "tier": 0,
-   "check": {
-    "href": "py/quantum.html#p22002",
-    "script": "p22_quantum.py",
-    "line": 436,
-    "verdict": "pass"
-   },
-   "declarations": [
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Theme/Subject",
-     "name": "FRC.Subject.channel"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Theme/Subject",
-     "name": "FRC.Subject.horizon_generator"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Theme/Observation",
-     "name": "FRC.Observation.torus_conj_inv"
-    }
-   ],
+   "tier": null,
+   "check": null,
+   "declarations": [],
    "aliases": [],
    "rows": [
     "22:A2"
@@ -18056,7 +18044,7 @@
   {
    "key": "p22003",
    "origin": "22",
-   "statement": "The fractional Fourier rotation exchanging the coordinate and momentum charts on one cycle, with the chart conventions and the derived orientation.",
+   "statement": "The discrete fractional Fourier rotation exchanging the coordinate and momentum charts on one cycle, with the chart conventions and the derived orientation.",
    "origin_row": "22:A3",
    "tag": "I",
    "tier": null,
@@ -18070,7 +18058,7 @@
   {
    "key": "p22004",
    "origin": "22",
-   "statement": "The mass and capacity readings: mass is winding rate, rest energy is phase advance per chronon ($E=hf$ an identity), the unit channel capacity $\\varkappa=1$ in the place of $\\hbar$; distance is decoherence; the Newtonian potential.",
+   "statement": "The mass and capacity readings: mass is winding rate, rest energy is phase advance per chronon ($E=hf$ an identity), the unit channel capacity $\\varkappa=1$ in the place of $\\hbar$; distance is decoherence, and the Newtonian potential is the lattice Green's function.",
    "origin_row": "22:A4",
    "tag": "I",
    "tier": null,
@@ -18082,25 +18070,14 @@
    ]
   },
   {
-   "key": "p22005",
+   "key": "p22064",
    "origin": "22",
-   "statement": "The window discipline, committed: the coherence horizon $\\sqrt\\Omega$, the decidability horizon $\\Omega^{1/4}$, and the committed cardinality $\\Omega\\sim1.3\\times10^{123}$ [chart] (the corpus's scale import, master A7) --- declared inputs of the programme, their cost recorded in the $\\Omega$ ledger.",
+   "statement": "The window discipline: the tally window $\\Omega$, the coherence horizon $\\sqrt\\Omega$ and the decidability horizon $\\Omega^{1/4}$, the three windows named in Definition~\\ref{def:subhorizon}; the sub-horizon class they cut out is the class on which the Born readout is the unique lift of its chart shadow.",
    "origin_row": "22:A5",
-   "tag": "Ω",
-   "tier": 2,
-   "check": {
-    "href": "py/quantum.html#p22005",
-    "script": "p22_quantum.py",
-    "line": 1389,
-    "verdict": "pass"
-   },
-   "declarations": [
-    {
-     "lib": "FrcMathlib",
-     "module": "FrcMathlib/Quantum",
-     "name": "FRC.Quantum.omega_floors"
-    }
-   ],
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
    "aliases": [],
    "rows": [
     "22:A5"
@@ -18109,7 +18086,7 @@
   {
    "key": "p22006",
    "origin": "22",
-   "statement": "The finiteness of the substrate: a finite ring, with the continuum recovered only as a degenerate large-cardinality limit.",
+   "statement": "The finiteness of the substrate: a finite ring, with the continuum entering only as a labelled degenerate idealisation of the finite structure.",
    "origin_row": "22:A6",
    "tag": "I",
    "tier": null,
@@ -18193,7 +18170,7 @@
   {
    "key": "p22012",
    "origin": "22",
-   "statement": "Probability is a coincidence count, kept in the Subject's ledger $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio.",
+   "statement": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio.",
    "origin_row": "22:B4",
    "tag": "R",
    "tier": null,
@@ -18207,7 +18184,7 @@
   {
    "key": "p22013",
    "origin": "22",
-   "statement": "Composition is conservation, and composite states are kept on the product ledger: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit (offset-diagonal preparation declared, Prop.~\\ref{prop:unequal}(iii)), and the Subject's bookkeeping of joint tallies is the rank-$n_An_B$ product ledger (Definition~\\ref{def:compositeledger}) --- the declared composition rule, its lcm-join alternative visible and rejected, the ledger composing states while the carrier constrains dynamics. Falsifier: $S\\neq2\\sqrt2$, or network behaviour outside Theorem~\\ref{thm:table} (P3).",
+   "statement": "Composition is conservation, and composite states are kept on the product tally ring: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit, and joint tallies live on the rank-$n_An_B$ product ring (Definition~\\ref{def:compositeledger}). Falsifier: $S\\neq2\\sqrt2$, or network behaviour outside Theorem~\\ref{thm:table} (P3).",
    "origin_row": "22:B5",
    "tag": "R",
    "tier": null,
@@ -18249,7 +18226,7 @@
   {
    "key": "p22016",
    "origin": "22",
-   "statement": "Gravity is an entangling channel by \\emph{reciprocal synchronisation}, the declared interaction identification: the conserved offset turns the gravity paper's phase synchronisation into the conditional phase, and spread pairs imprint which-branch data on the source (row C21). Falsifier: gravitationally induced entanglement off the Newtonian rate, or force not by full mass (P1); $\\eta\\neq0$ (C22).",
+   "statement": "Gravity is an entangling channel by \\emph{reciprocal synchronisation}, the declared interaction identification: the conserved offset turns the gravitational relaxation of phase drift \\citep{akhtman2026gravity} into the conditional phase, and spread pairs imprint which-branch data on the source (C21). Falsifier: gravitationally induced entanglement off the Newtonian rate, or force not by full mass (P1); $\\eta\\neq0$ (C22).",
    "origin_row": "22:B8",
    "tag": "R",
    "tier": null,
@@ -18423,7 +18400,7 @@
   {
    "key": "p22022",
    "origin": "22",
-   "statement": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the ledger the complex conjugation, the automorphism that reduces to inversion.",
+   "statement": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the tally ring the complex conjugation, the automorphism that reduces to inversion.",
    "origin_row": "22:C6",
    "tag": "T",
    "tier": 0,
@@ -18551,7 +18528,7 @@
   {
    "key": "p22025",
    "origin": "22",
-   "statement": "Reduction: the Carrier-chart amplitude is the mod-$\\Omega$ shadow of the ledger ($\\zeta\\mapsto v$), exact as algebra and silent about magnitude.",
+   "statement": "Reduction: the Carrier-chart amplitude is the mod-$\\Omega$ shadow of the tally ring ($\\zeta\\mapsto v$), exact as algebra and silent about magnitude.",
    "origin_row": "22:C9",
    "tag": "T",
    "tier": 0,
@@ -18587,14 +18564,14 @@
   {
    "key": "p22026",
    "origin": "22",
-   "statement": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow and the probability a framed-rational ratio of coincidence counts, the frequency along the drive completed in finitely many chronons; the two probability strata and their $\\Qf$ coincidence; on a single Object the theorem's weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), every non-uniform statistic passing through C11.",
+   "statement": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow, the probability a framed-rational ratio of coincidence counts completed in finitely many chronons, and the two strata coincide on this sector; on a single Object the weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), and every non-uniform statistic passes through C11.",
    "origin_row": "22:C10",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22026",
     "script": "p22_quantum.py",
-    "line": 1162,
+    "line": 1161,
     "verdict": "pass"
    },
    "declarations": [
@@ -18645,14 +18622,14 @@
   {
    "key": "p22027",
    "origin": "22",
-   "statement": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved (the conjugate-pair trace tally and the setting-ensemble Parseval tally, Remark~\\ref{rem:strata}), given the stratum-sampling clause, the unified sampling clause of master D10.",
+   "statement": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved, the conjugate-pair trace tally and the setting-ensemble Parseval tally (Remark~\\ref{rem:strata}), given the stratum-sampling hypothesis Y1.",
    "origin_row": "22:C11",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22027",
     "script": "p22_quantum.py",
-    "line": 1181,
+    "line": 1180,
     "verdict": "pass"
    },
    "declarations": [
@@ -18694,7 +18671,7 @@
   {
    "key": "p22029",
    "origin": "22",
-   "statement": "Complex amplitudes are forced: the generic shared core of two framed shells is $\\Qf$, so the minimal ledger is $\\Z[\\im]$; shells of cardinality $\\equiv3\\pmod4$ (arising from no capacity) give a real-amplitude theory.",
+   "statement": "Complex amplitudes are forced: the generic shared core of two framed shells is $\\Qf$, so the minimal tally ring is $\\Z[\\im]$; shells of cardinality $\\equiv3\\pmod4$ (arising from no capacity) give a real-amplitude theory.",
    "origin_row": "22:C13",
    "tag": "T",
    "tier": 0,
@@ -18725,14 +18702,14 @@
   {
    "key": "p22030",
    "origin": "22",
-   "statement": "The granularity ceiling: the representable coherent-splitting depth is the largest $k$ with $d\\,T(k)<\\Omega$, $T(k)=2^{k+[k\\text{ odd}]}$ the minimal tally norm, and resolution finer than $1/\\Omega$ lies outside the derived Born regime.",
+   "statement": "The granularity ceiling: the representable coherent-splitting depth is the largest $k$ at which $d$ times the minimal tally norm of Proposition~\\ref{prop:granularity} stays below $\\Omega$, and resolution finer than $1/\\Omega$ lies outside the derived Born regime.",
    "origin_row": "22:C14",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22030",
     "script": "p22_quantum.py",
-    "line": 1078,
+    "line": 1077,
     "verdict": "pass"
    },
    "declarations": [
@@ -18786,14 +18763,14 @@
   {
    "key": "p22031",
    "origin": "22",
-   "statement": "The composite ledger and the conserved offset: synchronised orbits are the Bell states, the $m$-body locked cluster carries the offset as a conserved, drive-confined label (its ensemble diagonality a declared preparation clause).",
+   "statement": "The composite tally ring and the conserved offset: synchronised orbits are the Bell states, and the $m$-body locked cluster carries the offset as a conserved, drive-confined label (its ensemble diagonality a declared preparation clause).",
    "origin_row": "22:C15",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22031",
     "script": "p22_quantum.py",
-    "line": 749,
+    "line": 748,
     "verdict": "pass"
    },
    "declarations": [
@@ -18841,7 +18818,7 @@
    "check": {
     "href": "py/quantum.html#p22032",
     "script": "p22_quantum.py",
-    "line": 617,
+    "line": 616,
     "verdict": "pass"
    },
    "declarations": [
@@ -18870,14 +18847,14 @@
   {
    "key": "p22033",
    "origin": "22",
-   "statement": "Exact Tsirelson saturation: the singlet law $E(\\Delta)=\\cos(\\pi\\Delta/40)$ [chart], $S=2(\\zeta_8+\\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it [chart]; no-signalling and the composite reduction commute.",
+   "statement": "Exact Tsirelson saturation: the singlet law of Theorem~\\ref{thm:tsirelson} [chart], the ring identity $S^2=8$, the exhaustive $80^3$ sweep never exceeding the bound [chart]; no-signalling and the composite reduction commute.",
    "origin_row": "22:C17",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22033",
     "script": "p22_quantum.py",
-    "line": 635,
+    "line": 634,
     "verdict": "pass"
    },
    "declarations": [
@@ -18933,7 +18910,7 @@
    "check": {
     "href": "py/quantum.html#p22034",
     "script": "p22_quantum.py",
-    "line": 855,
+    "line": 854,
     "verdict": "pass"
    },
    "declarations": [
@@ -18964,7 +18941,7 @@
    "check": {
     "href": "py/quantum.html#p22035",
     "script": "p22_quantum.py",
-    "line": 924,
+    "line": 923,
     "verdict": "pass"
    },
    "declarations": [
@@ -19005,7 +18982,7 @@
    "check": {
     "href": "py/quantum.html#p22036",
     "script": "p22_quantum.py",
-    "line": 973,
+    "line": 972,
     "verdict": "pass"
    },
    "declarations": [
@@ -19041,7 +19018,7 @@
    "check": {
     "href": "py/quantum.html#p22037",
     "script": "p22_quantum.py",
-    "line": 1291,
+    "line": 1290,
     "verdict": "pass"
    },
    "declarations": [
@@ -19084,7 +19061,7 @@
    "check": {
     "href": "py/quantum.html#p22038",
     "script": "p22_quantum.py",
-    "line": 1034,
+    "line": 1033,
     "verdict": "pass"
    },
    "declarations": [
@@ -19154,7 +19131,7 @@
   {
    "key": "p22040",
    "origin": "22",
-   "statement": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\\PhiO:\\core]>1$, and classicality is the divisibility of the observer's frame --- one outcome per fixed channel, with the channel index still carrying the winding information (absorption is not the absence of information transfer).",
+   "statement": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\\PhiO:\\core]>1$, classicality is the divisibility of the observer's frame, and the channel index still carries the winding information.",
    "origin_row": "22:C24",
    "tag": "T",
    "tier": 0,
@@ -19197,7 +19174,7 @@
    "check": {
     "href": "py/quantum.html#p22041",
     "script": "p22_quantum.py",
-    "line": 649,
+    "line": 648,
     "verdict": "pass"
    },
    "declarations": [
@@ -19229,14 +19206,14 @@
   {
    "key": "p22042",
    "origin": "22",
-   "statement": "The unequal-cycle composite gate: joint recurrence $T'=\\operatorname{lcm}_j(n_j/\\gcd(s_j,n_j))$, conserved data the quotient $A/\\langle s\\rangle$ (unit-winding pair: the gcd cycle, generically $\\Qf$), and the counting Born rule verbatim with $T'$ as the recurrence; all orbit-nontrivial characters cancel.",
+   "statement": "The unequal-cycle composite gate: the joint recurrence of Proposition~\\ref{prop:unequal}, the conserved data the quotient $A/\\langle s\\rangle$ (for a unit-winding pair the gcd cycle, generically $\\Qf$), and the counting Born rule verbatim with the joint recurrence in place of the pair's; all orbit-nontrivial characters cancel.",
    "origin_row": "22:C26",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22042",
     "script": "p22_quantum.py",
-    "line": 677,
+    "line": 676,
     "verdict": "pass"
    },
    "declarations": [
@@ -19313,7 +19290,7 @@
    "check": {
     "href": "py/quantum.html#p22052",
     "script": "p22_quantum.py",
-    "line": 952,
+    "line": 951,
     "verdict": "pass"
    },
    "declarations": [
@@ -19394,7 +19371,7 @@
    "check": {
     "href": "py/quantum.html#p22054",
     "script": "p22_quantum.py",
-    "line": 877,
+    "line": 876,
     "verdict": "pass"
    },
    "declarations": [
@@ -19438,7 +19415,7 @@
    "check": {
     "href": "py/quantum.html#p22055",
     "script": "p22_quantum.py",
-    "line": 571,
+    "line": 570,
     "verdict": "pass"
    },
    "declarations": [
@@ -19476,7 +19453,7 @@
    "check": {
     "href": "py/quantum.html#p22056",
     "script": "p22_quantum.py",
-    "line": 1096,
+    "line": 1095,
     "verdict": "pass"
    },
    "declarations": [
@@ -19695,14 +19672,14 @@
   {
    "key": "p22049",
    "origin": "22",
-   "statement": "\\textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's ledger: a finite-relational provenance theorem for the Born calculus, in which the substrate determines the tally ring, the measurement family, and the readout (calibrated against the counting and cyclotomic precedents in Section~\\ref{sec:discussion}).",
+   "statement": "\\textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's tally ring, a finite-relational provenance theorem for the Born calculus in which the substrate determines the tally ring, the measurement family and the readout (calibrated against the counting and cyclotomic precedents of Section~\\ref{sec:intro}).",
    "origin_row": "22:X6",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22049",
     "script": "p22_quantum.py",
-    "line": 1181,
+    "line": 1180,
     "verdict": "pass"
    },
    "declarations": [
@@ -19743,7 +19720,7 @@
    "check": {
     "href": "py/quantum.html#p22050",
     "script": "p22_quantum.py",
-    "line": 649,
+    "line": 648,
     "verdict": "pass"
    },
    "declarations": [
@@ -19806,9 +19783,37 @@
    "realisations": []
   },
   {
+   "key": "p22062",
+   "origin": "22",
+   "statement": "The stratum-sampling hypothesis: a fixed-setting protocol samples one stratum of the setting ensemble, so that the registered frequencies at that setting read its structural weight through the framed readout. Test: a non-uniform registered statistic on a single Object outside the C11 reduction, or the product-ring counting statement of Remark~\\ref{rem:strata} proved.",
+   "origin_row": "22:Y1",
+   "tag": "O",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "22:Y1"
+   ]
+  },
+  {
+   "key": "p22063",
+   "origin": "22",
+   "statement": "The totally-real extension of the framed readout: Definition~\\ref{def:readout} extends from the real-quadratic strata to general totally real cyclotomic weights, the full $80$-setting sweep, with the same bounded-discrepancy law. Test: the extended map reproducing the sweep's exact weights on $\\Car_{641}$.",
+   "origin_row": "22:Y2",
+   "tag": "O",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "22:Y2"
+   ]
+  },
+  {
    "key": "p22060",
    "origin": "22",
-   "statement": "The coherence horizon: the Born rule is exact within $\\sqrt\\Omega$ and a frame artefact beyond it, the same boundary as the programme's decidability window and the gravity locality horizon $m_P=\\sqrt\\Omega$.",
+   "statement": "The coherence horizon: the Born rule is exact within $\\sqrt\\Omega$ and a frame artefact beyond it, the same boundary as the decidability window of Definition~\\ref{def:subhorizon} and the locality horizon of the gravitational sector.",
    "origin_row": "22:Z1",
    "tag": "Ω",
    "tier": null,
@@ -19822,14 +19827,14 @@
   {
    "key": "p22061",
    "origin": "22",
-   "statement": "The committed $\\Omega$ anchor and the binding floor: the carrier scale is fixed by the verified Riemann height through $\\Omega^{1/4}$ [chart], and a single off-line zero below $\\Omega^{1/4}$ falsifies from a desk.",
+   "statement": "The anchor's exposure: the Born window and the interference wrap are read at the committed scale, so a Born anomaly or a quantised wrap at a scale the anchor excludes falsifies the commitment; every laboratory floor of Table~\\ref{tab:omega} lies far below the anchor.",
    "origin_row": "22:Z2",
    "tag": "Ω",
    "tier": 2,
    "check": {
     "href": "py/quantum.html#p22061",
     "script": "p22_quantum.py",
-    "line": 1400,
+    "line": 1401,
     "verdict": "pass"
    },
    "declarations": [
@@ -19842,6 +19847,31 @@
    "aliases": [],
    "rows": [
     "22:Z2"
+   ]
+  },
+  {
+   "key": "p22005",
+   "origin": "22",
+   "statement": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega=1.3\\times10^{123}$ [chart], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table~\\ref{tab:omega} lies below it.",
+   "origin_row": "22:Z3",
+   "tag": "Ω",
+   "tier": 2,
+   "check": {
+    "href": "py/quantum.html#p22005",
+    "script": "p22_quantum.py",
+    "line": 1390,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/Quantum",
+     "name": "FRC.Quantum.omega_floors"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "22:Z3"
    ]
   },
   {
@@ -54807,47 +54837,17 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The Lorentzian split: the quadratic extension $\\F_{\\p^2}$, the Frobenius involution, the norm-one boost cycle of order $\\p+1$, and the spinor double cover (the Dirac layer).",
-   "source": "\\citep{akhtman2026dirac,lidl1997}\\newline \\pywit{quantum}{p22002}{A2}, \\leanwit{FrcCore}{p22002}{A2} \\lean{FRC.Subject.channel, FRC.Subject.horizon\\_generator, FRC.Observation.torus\\_conj\\_inv}",
+   "statement": "The Lorentzian split: the quadratic extension $\\F_{\\p^2}$, the Frobenius involution, the norm-one boost cycle of order $\\p+1$ and the spinor double cover.",
+   "source": "\\citep{akhtman2025lorentzian,lidl1997}",
    "page": "22-quantum/index.html#A2",
    "witness": {
-    "py": {
-     "href": "py/quantum.html#p22002",
-     "script": "p22_quantum.py",
-     "line": 436,
-     "verdict": "pass"
-    },
-    "lean": [
-     {
-      "lib": "FrcCore",
-      "module": "FrcCore/Theme/Subject",
-      "name": "FRC.Subject.channel",
-      "tier": 0,
-      "ok": true,
-      "page": "lean/core/Theme.html#FRC.Subject.channel"
-     },
-     {
-      "lib": "FrcCore",
-      "module": "FrcCore/Theme/Subject",
-      "name": "FRC.Subject.horizon_generator",
-      "tier": 0,
-      "ok": true,
-      "page": "lean/core/Theme.html#FRC.Subject.horizon_generator"
-     },
-     {
-      "lib": "FrcCore",
-      "module": "FrcCore/Theme/Observation",
-      "name": "FRC.Observation.torus_conj_inv",
-      "tier": 0,
-      "ok": true,
-      "page": "lean/core/Theme.html#FRC.Observation.torus_conj_inv"
-     }
-    ]
+    "py": null,
+    "lean": []
    },
    "refs": [
     "p00040"
    ],
-   "text": "The Lorentzian split: the quadratic extension $\\F_{\\p^2}$, the Frobenius involution, the norm-one boost cycle of order $\\p+1$, and the spinor double cover (the Dirac layer). [akhtman2026dirac,lidl1997] p22002, FrcCore{A2} FRC.Subject.channel, FRC.Subject.horizon_generator, FRC.Observation.torus_conj_inv"
+   "text": "The Lorentzian split: the quadratic extension $\\F_{\\p^2}$, the Frobenius involution, the norm-one boost cycle of order $\\p+1$ and the spinor double cover. [akhtman2025lorentzian,lidl1997]"
   },
   {
    "paper": "22-qm",
@@ -54858,15 +54858,15 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The fractional Fourier rotation exchanging the coordinate and momentum charts on one cycle, with the chart conventions and the derived orientation.",
-   "source": "\\citep{akhtman2026fourier}",
+   "statement": "The discrete fractional Fourier rotation exchanging the coordinate and momentum charts on one cycle, with the chart conventions and the derived orientation.",
+   "source": "\\citep{candan2000,akhtman2026dimensions}",
    "page": "22-quantum/index.html#A3",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The fractional Fourier rotation exchanging the coordinate and momentum charts on one cycle, with the chart conventions and the derived orientation. [akhtman2026fourier]"
+   "text": "The discrete fractional Fourier rotation exchanging the coordinate and momentum charts on one cycle, with the chart conventions and the derived orientation. [candan2000,akhtman2026dimensions]"
   },
   {
    "paper": "22-qm",
@@ -54877,50 +54877,34 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The mass and capacity readings: mass is winding rate, rest energy is phase advance per chronon ($E=hf$ an identity), the unit channel capacity $\\varkappa=1$ in the place of $\\hbar$; distance is decoherence; the Newtonian potential.",
-   "source": "\\citep{akhtman2026gravity}",
+   "statement": "The mass and capacity readings: mass is winding rate, rest energy is phase advance per chronon ($E=hf$ an identity), the unit channel capacity $\\varkappa=1$ in the place of $\\hbar$; distance is decoherence, and the Newtonian potential is the lattice Green's function.",
+   "source": "\\citep{akhtman2026dimensions,akhtman2026gravity}",
    "page": "22-quantum/index.html#A4",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The mass and capacity readings: mass is winding rate, rest energy is phase advance per chronon ($E=hf$ an identity), the unit channel capacity $\\varkappa=1$ in the place of $\\hbar$; distance is decoherence; the Newtonian potential. [akhtman2026gravity]"
+   "text": "The mass and capacity readings: mass is winding rate, rest energy is phase advance per chronon ($E=hf$ an identity), the unit channel capacity $\\varkappa=1$ in the place of $\\hbar$; distance is decoherence, and the Newtonian potential is the lattice Green's function. [akhtman2026dimensions,akhtman2026gravity]"
   },
   {
    "paper": "22-qm",
    "no": 22,
    "rid": "22:A5",
-   "key": "p22005",
+   "key": "p22064",
    "label": "A5",
    "block": "A",
-   "tag": "Ω",
+   "tag": "D",
    "name": null,
-   "statement": "The window discipline, committed: the coherence horizon $\\sqrt\\Omega$, the decidability horizon $\\Omega^{1/4}$, and the committed cardinality $\\Omega\\sim1.3\\times10^{123}$ [chart] (the corpus's scale import, master A7) --- declared inputs of the programme, their cost recorded in the $\\Omega$ ledger.",
-   "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22005}{A5}, \\leanwit{FrcMathlib}{p22005}{A5} \\lean{Quantum.omega\\_floors}",
+   "statement": "The window discipline: the tally window $\\Omega$, the coherence horizon $\\sqrt\\Omega$ and the decidability horizon $\\Omega^{1/4}$, the three windows named in Definition~\\ref{def:subhorizon}; the sub-horizon class they cut out is the class on which the Born readout is the unique lift of its chart shadow.",
+   "source": "Def.~\\ref{def:subhorizon}, Rem.~\\ref{rem:horizon}",
    "page": "22-quantum/index.html#A5",
    "witness": {
-    "py": {
-     "href": "py/quantum.html#p22005",
-     "script": "p22_quantum.py",
-     "line": 1389,
-     "verdict": "pass"
-    },
-    "lean": [
-     {
-      "lib": "FrcMathlib",
-      "module": "FrcMathlib/Quantum",
-      "name": "FRC.Quantum.omega_floors",
-      "tier": 2,
-      "ok": true,
-      "page": "lean/ml/Quantum.html#FRC.Quantum.omega_floors"
-     }
-    ]
+    "py": null,
+    "lean": []
    },
-   "refs": [
-    "p22007"
-   ],
-   "text": "The window discipline, committed: the coherence horizon $\\sqrt\\Omega$, the decidability horizon $\\Omega^{1/4}$, and the committed cardinality $\\Omega\\sim1.3\\times10^{123}$ [chart] (the corpus's scale import, master A7) — declared inputs of the programme, their cost recorded in the $\\Omega$ ledger. \\Ssec:omegaledger, Tab. tab:omega p22005, FrcMathlib{A5} Quantum.omega_floors"
+   "refs": [],
+   "text": "The window discipline: the tally window $\\Omega$, the coherence horizon $\\sqrt\\Omega$ and the decidability horizon $\\Omega^{1/4}$, the three windows named in Definition def:subhorizon; the sub-horizon class they cut out is the class on which the Born readout is the unique lift of its chart shadow. Def. def:subhorizon, Rem. rem:horizon"
   },
   {
    "paper": "22-qm",
@@ -54931,7 +54915,7 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The finiteness of the substrate: a finite ring, with the continuum recovered only as a degenerate large-cardinality limit.",
+   "statement": "The finiteness of the substrate: a finite ring, with the continuum entering only as a labelled degenerate idealisation of the finite structure.",
    "source": "\\citep{akhtman2025algebra}",
    "page": "22-quantum/index.html#A6",
    "witness": {
@@ -54939,7 +54923,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The finiteness of the substrate: a finite ring, with the continuum recovered only as a degenerate large-cardinality limit. [akhtman2025algebra]"
+   "text": "The finiteness of the substrate: a finite ring, with the continuum entering only as a labelled degenerate idealisation of the finite structure. [akhtman2025algebra]"
   },
   {
    "paper": "22-qm",
@@ -55056,7 +55040,7 @@
    "block": "B",
    "tag": "R",
    "name": null,
-   "statement": "Probability is a coincidence count, kept in the Subject's ledger $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio.",
+   "statement": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio.",
    "source": "Def.~\\ref{def:ledger}, Prop.~\\ref{prop:paircount}",
    "page": "22-quantum/index.html#B4",
    "witness": {
@@ -55064,7 +55048,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "Probability is a coincidence count, kept in the Subject's ledger $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio. Def. def:ledger, Prop. prop:paircount"
+   "text": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio. Def. def:ledger, Prop. prop:paircount"
   },
   {
    "paper": "22-qm",
@@ -55075,8 +55059,8 @@
    "block": "B",
    "tag": "R",
    "name": null,
-   "statement": "Composition is conservation, and composite states are kept on the product ledger: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit (offset-diagonal preparation declared, Prop.~\\ref{prop:unequal}(iii)), and the Subject's bookkeeping of joint tallies is the rank-$n_An_B$ product ledger (Definition~\\ref{def:compositeledger}) --- the declared composition rule, its lcm-join alternative visible and rejected, the ledger composing states while the carrier constrains dynamics. Falsifier: $S\\neq2\\sqrt2$, or network behaviour outside Theorem~\\ref{thm:table} (P3).",
-   "source": "Prop.~\\ref{prop:offset}, Def.~\\ref{def:composite}",
+   "statement": "Composition is conservation, and composite states are kept on the product tally ring: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit, and joint tallies live on the rank-$n_An_B$ product ring (Definition~\\ref{def:compositeledger}). Falsifier: $S\\neq2\\sqrt2$, or network behaviour outside Theorem~\\ref{thm:table} (P3).",
+   "source": "Prop.~\\ref{prop:offset}, Def.~\\ref{def:composite}, Prop.~\\ref{prop:unequal}(iii)",
    "page": "22-quantum/index.html#B5",
    "witness": {
     "py": null,
@@ -55085,7 +55069,7 @@
    "refs": [
     "p22054"
    ],
-   "text": "Composition is conservation, and composite states are kept on the product ledger: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit (offset-diagonal preparation declared, Prop. prop:unequal(iii)), and the Subject's bookkeeping of joint tallies is the rank-$n_An_B$ product ledger (Definition def:compositeledger) — the declared composition rule, its lcm-join alternative visible and rejected, the ledger composing states while the carrier constrains dynamics. Falsifier: $S\\neq2\\sqrt2$, or network behaviour outside Theorem thm:table (P3). Prop. prop:offset, Def. def:composite"
+   "text": "Composition is conservation, and composite states are kept on the product tally ring: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit, and joint tallies live on the rank-$n_An_B$ product ring (Definition def:compositeledger). Falsifier: $S\\neq2\\sqrt2$, or network behaviour outside Theorem thm:table (P3). Prop. prop:offset, Def. def:composite, Prop. prop:unequal(iii)"
   },
   {
    "paper": "22-qm",
@@ -55138,7 +55122,7 @@
    "block": "B",
    "tag": "R",
    "name": null,
-   "statement": "Gravity is an entangling channel by \\emph{reciprocal synchronisation}, the declared interaction identification: the conserved offset turns the gravity paper's phase synchronisation into the conditional phase, and spread pairs imprint which-branch data on the source (row C21). Falsifier: gravitationally induced entanglement off the Newtonian rate, or force not by full mass (P1); $\\eta\\neq0$ (C22).",
+   "statement": "Gravity is an entangling channel by \\emph{reciprocal synchronisation}, the declared interaction identification: the conserved offset turns the gravitational relaxation of phase drift \\citep{akhtman2026gravity} into the conditional phase, and spread pairs imprint which-branch data on the source (C21). Falsifier: gravitationally induced entanglement off the Newtonian rate, or force not by full mass (P1); $\\eta\\neq0$ (C22).",
    "source": "\\S\\ref{sec:gravchannel}, Prop.~\\ref{prop:bmvmech}, Prop.~\\ref{prop:fcoh}",
    "page": "22-quantum/index.html#B8",
    "witness": {
@@ -55150,7 +55134,7 @@
     "p22038",
     "p22052"
    ],
-   "text": "Gravity is an entangling channel by reciprocal synchronisation, the declared interaction identification: the conserved offset turns the gravity paper's phase synchronisation into the conditional phase, and spread pairs imprint which-branch data on the source (row C21). Falsifier: gravitationally induced entanglement off the Newtonian rate, or force not by full mass (P1); $\\eta\\neq0$ (C22). \\Ssec:gravchannel, Prop. prop:bmvmech, Prop. prop:fcoh"
+   "text": "Gravity is an entangling channel by reciprocal synchronisation, the declared interaction identification: the conserved offset turns the gravitational relaxation of phase drift [akhtman2026gravity] into the conditional phase, and spread pairs imprint which-branch data on the source (C21). Falsifier: gravitationally induced entanglement off the Newtonian rate, or force not by full mass (P1); $\\eta\\neq0$ (C22). \\Ssec:gravchannel, Prop. prop:bmvmech, Prop. prop:fcoh"
   },
   {
    "paper": "22-qm",
@@ -55374,8 +55358,8 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the ledger the complex conjugation, the automorphism that reduces to inversion.",
-   "source": "Lem.~\\ref{lem:involution}, Prop.~\\ref{prop:reduction},~\\ref{prop:paircount}, \\citep{akhtman2026dirac}\\newline \\pywit{quantum}{p22022}{C6}, \\leanwit{FrcCore}{p22022}{C6} \\lean{FRC.Observation.frobenius\\_unique, FRC.Observation.torus\\_conj\\_inv, FRC.Observation.exponent\\_negation}",
+   "statement": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the tally ring the complex conjugation, the automorphism that reduces to inversion.",
+   "source": "Lem.~\\ref{lem:involution}, Prop.~\\ref{prop:reduction},~\\ref{prop:paircount}, \\citep{akhtman2025lorentzian}\\newline \\pywit{quantum}{p22022}{C6}, \\leanwit{FrcCore}{p22022}{C6} \\lean{FRC.Observation.frobenius\\_unique, FRC.Observation.torus\\_conj\\_inv, FRC.Observation.exponent\\_negation}",
    "page": "22-quantum/index.html#C6",
    "witness": {
     "py": {
@@ -55412,7 +55396,7 @@
     ]
    },
    "refs": [],
-   "text": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the ledger the complex conjugation, the automorphism that reduces to inversion. Lem. lem:involution, Prop. prop:reduction, prop:paircount, [akhtman2026dirac] p22022, FrcCore{C6} FRC.Observation.frobenius_unique, FRC.Observation.torus_conj_inv, FRC.Observation.exponent_negation"
+   "text": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the tally ring the complex conjugation, the automorphism that reduces to inversion. Lem. lem:involution, Prop. prop:reduction, prop:paircount, [akhtman2025lorentzian] p22022, FrcCore{C6} FRC.Observation.frobenius_unique, FRC.Observation.torus_conj_inv, FRC.Observation.exponent_negation"
   },
   {
    "paper": "22-qm",
@@ -55553,7 +55537,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Reduction: the Carrier-chart amplitude is the mod-$\\Omega$ shadow of the ledger ($\\zeta\\mapsto v$), exact as algebra and silent about magnitude.",
+   "statement": "Reduction: the Carrier-chart amplitude is the mod-$\\Omega$ shadow of the tally ring ($\\zeta\\mapsto v$), exact as algebra and silent about magnitude.",
    "source": "Prop.~\\ref{prop:reduction}\\newline \\pywit{quantum}{p22025}{C9}, \\leanwit{FrcCore}{p22025}{C9} \\lean{FRC.Observation.reduce\\_add, FRC.Observation.reduce\\_mul, FRC.Observation.reduce\\_wrap}",
    "page": "22-quantum/index.html#C9",
    "witness": {
@@ -55591,7 +55575,7 @@
     ]
    },
    "refs": [],
-   "text": "Reduction: the Carrier-chart amplitude is the mod-$\\Omega$ shadow of the ledger ($\\zeta\\mapsto v$), exact as algebra and silent about magnitude. Prop. prop:reduction p22025, FrcCore{C9} FRC.Observation.reduce_add, FRC.Observation.reduce_mul, FRC.Observation.reduce_wrap"
+   "text": "Reduction: the Carrier-chart amplitude is the mod-$\\Omega$ shadow of the tally ring ($\\zeta\\mapsto v$), exact as algebra and silent about magnitude. Prop. prop:reduction p22025, FrcCore{C9} FRC.Observation.reduce_add, FRC.Observation.reduce_mul, FRC.Observation.reduce_wrap"
   },
   {
    "paper": "22-qm",
@@ -55602,14 +55586,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow and the probability a framed-rational ratio of coincidence counts, the frequency along the drive completed in finitely many chronons; the two probability strata and their $\\Qf$ coincidence; on a single Object the theorem's weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), every non-uniform statistic passing through C11.",
+   "statement": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow, the probability a framed-rational ratio of coincidence counts completed in finitely many chronons, and the two strata coincide on this sector; on a single Object the weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), and every non-uniform statistic passes through C11.",
    "source": "Thm.~\\ref{thm:born}, Prop.~\\ref{prop:strata}, Def.~\\ref{def:registered}, Rem.~\\ref{rem:ergodic}\\newline \\pywit{quantum}{p22026}{C10}, \\leanwit{FrcCore}{p22026}{C10} \\lean{FRC.Extension.two\\_way\\_tally, FRC.Extension.core\\_weights, FRC.Extension.root\\_two\\_two\\_way, FRC.Extension.framed\\_readout, FRC.Observation.window\\_lift, FRC.Observation.pure\\_winding\\_weight, FRC.Quantum.joint\\_recurrence}",
    "page": "22-quantum/index.html#C10",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22026",
      "script": "p22_quantum.py",
-     "line": 1162,
+     "line": 1161,
      "verdict": "pass"
     },
     "lean": [
@@ -55676,7 +55660,7 @@
     "p00059",
     "p22027"
    ],
-   "text": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow and the probability a framed-rational ratio of coincidence counts, the frequency along the drive completed in finitely many chronons; the two probability strata and their $\\Qf$ coincidence; on a single Object the theorem's weights are uniform over the fibres (Remark rem:borndomain), every non-uniform statistic passing through C11. Thm. thm:born, Prop. prop:strata, Def. def:registered, Rem. rem:ergodic p22026, FrcCore{C10} FRC.Extension.two_way_tally, FRC.Extension.core_weights, FRC.Extension.root_two_two_way, FRC.Extension.framed_readout, FRC.Observation.window_lift, FRC.Observation.pure_winding_weight, FRC.Quantum.joint_recurrence"
+   "text": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow, the probability a framed-rational ratio of coincidence counts completed in finitely many chronons, and the two strata coincide on this sector; on a single Object the weights are uniform over the fibres (Remark rem:borndomain), and every non-uniform statistic passes through C11. Thm. thm:born, Prop. prop:strata, Def. def:registered, Rem. rem:ergodic p22026, FrcCore{C10} FRC.Extension.two_way_tally, FRC.Extension.core_weights, FRC.Extension.root_two_two_way, FRC.Extension.framed_readout, FRC.Observation.window_lift, FRC.Observation.pure_winding_weight, FRC.Quantum.joint_recurrence"
   },
   {
    "paper": "22-qm",
@@ -55687,14 +55671,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved (the conjugate-pair trace tally and the setting-ensemble Parseval tally, Remark~\\ref{rem:strata}), given the stratum-sampling clause, the unified sampling clause of master D10.",
-   "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; rests on B4, C10, 00:D10\\newline \\pywit{quantum}{p22027}{C11}, \\leanwit{FrcCore}{p22027}{C11} \\lean{FRC.Extension.conjugate\\_pair\\_tally, FRC.Extension.trace\\_recurrence, FRC.Extension.dial\\_shift, FRC.Extension.dial\\_tally, FRC.Extension.framed\\_readout}",
+   "statement": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved, the conjugate-pair trace tally and the setting-ensemble Parseval tally (Remark~\\ref{rem:strata}), given the stratum-sampling hypothesis Y1.",
+   "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; rests on B4, C10, Y1\\newline \\pywit{quantum}{p22027}{C11}, \\leanwit{FrcCore}{p22027}{C11} \\lean{FRC.Extension.conjugate\\_pair\\_tally, FRC.Extension.trace\\_recurrence, FRC.Extension.dial\\_shift, FRC.Extension.dial\\_tally, FRC.Extension.framed\\_readout}",
    "page": "22-quantum/index.html#C11",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22027",
      "script": "p22_quantum.py",
-     "line": 1181,
+     "line": 1180,
      "verdict": "pass"
     },
     "lean": [
@@ -55744,9 +55728,10 @@
     "p00030",
     "p00051",
     "p22012",
-    "p22026"
+    "p22026",
+    "p22062"
    ],
-   "text": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition def:readout; two reductions are proved (the conjugate-pair trace tally and the setting-ensemble Parseval tally, Remark rem:strata), given the stratum-sampling clause, the unified sampling clause of master D10. Prop. prop:strata, Rem. rem:strata; rests on B4, C10, 00:D10 p22027, FrcCore{C11} FRC.Extension.conjugate_pair_tally, FRC.Extension.trace_recurrence, FRC.Extension.dial_shift, FRC.Extension.dial_tally, FRC.Extension.framed_readout"
+   "text": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition def:readout; two reductions are proved, the conjugate-pair trace tally and the setting-ensemble Parseval tally (Remark rem:strata), given the stratum-sampling hypothesis Y1. Prop. prop:strata, Rem. rem:strata; rests on B4, C10, Y1 p22027, FrcCore{C11} FRC.Extension.conjugate_pair_tally, FRC.Extension.trace_recurrence, FRC.Extension.dial_shift, FRC.Extension.dial_tally, FRC.Extension.framed_readout"
   },
   {
    "paper": "22-qm",
@@ -55764,7 +55749,7 @@
     "py": {
      "href": "py/quantum.html#p22028",
      "script": "p22_quantum.py",
-     "line": 1323,
+     "line": 1322,
      "verdict": "pass"
     },
     "lean": [
@@ -55849,7 +55834,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Complex amplitudes are forced: the generic shared core of two framed shells is $\\Qf$, so the minimal ledger is $\\Z[\\im]$; shells of cardinality $\\equiv3\\pmod4$ (arising from no capacity) give a real-amplitude theory.",
+   "statement": "Complex amplitudes are forced: the generic shared core of two framed shells is $\\Qf$, so the minimal tally ring is $\\Z[\\im]$; shells of cardinality $\\equiv3\\pmod4$ (arising from no capacity) give a real-amplitude theory.",
    "source": "Prop.~\\ref{prop:gaussian}\\newline \\pywit{quantum}{p22029}{C13}, \\leanwit{FrcCore}{p22029}{C13} \\lean{FRC.Observation.shared\\_core, FRC.Observation.no\\_quarter\\_turn}",
    "page": "22-quantum/index.html#C13",
    "witness": {
@@ -55879,7 +55864,7 @@
     ]
    },
    "refs": [],
-   "text": "Complex amplitudes are forced: the generic shared core of two framed shells is $\\Qf$, so the minimal ledger is $\\Z[\\im]$; shells of cardinality $\\equiv3\\pmod4$ (arising from no capacity) give a real-amplitude theory. Prop. prop:gaussian p22029, FrcCore{C13} FRC.Observation.shared_core, FRC.Observation.no_quarter_turn"
+   "text": "Complex amplitudes are forced: the generic shared core of two framed shells is $\\Qf$, so the minimal tally ring is $\\Z[\\im]$; shells of cardinality $\\equiv3\\pmod4$ (arising from no capacity) give a real-amplitude theory. Prop. prop:gaussian p22029, FrcCore{C13} FRC.Observation.shared_core, FRC.Observation.no_quarter_turn"
   },
   {
    "paper": "22-qm",
@@ -55890,14 +55875,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The granularity ceiling: the representable coherent-splitting depth is the largest $k$ with $d\\,T(k)<\\Omega$, $T(k)=2^{k+[k\\text{ odd}]}$ the minimal tally norm, and resolution finer than $1/\\Omega$ lies outside the derived Born regime.",
+   "statement": "The granularity ceiling: the representable coherent-splitting depth is the largest $k$ at which $d$ times the minimal tally norm of Proposition~\\ref{prop:granularity} stays below $\\Omega$, and resolution finer than $1/\\Omega$ lies outside the derived Born regime.",
    "source": "Prop.~\\ref{prop:granularity}\\newline \\pywit{quantum}{p22030}{C14}, \\leanwit{FrcCore}{p22030}{C14}, \\leanwit{FrcMathlib}{p22030}{C14} \\lean{FRC.Interference.hadamard\\_even, FRC.Interference.hadamard\\_odd, FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, Quantum.gaussian\\_layers, Quantum.gaussian\\_minimal, Quantum.gaussian\\_norm, Quantum.tally\\_norm\\_eq}",
    "page": "22-quantum/index.html#C14",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22030",
      "script": "p22_quantum.py",
-     "line": 1078,
+     "line": 1077,
      "verdict": "pass"
     },
     "lean": [
@@ -55968,7 +55953,7 @@
     ]
    },
    "refs": [],
-   "text": "The granularity ceiling: the representable coherent-splitting depth is the largest $k$ with $d T(k)<\\Omega$, $T(k)=2^{k+[k odd]}$ the minimal tally norm, and resolution finer than $1/\\Omega$ lies outside the derived Born regime. Prop. prop:granularity p22030, FrcCore{C14}, FrcMathlib{C14} FRC.Interference.hadamard_even, FRC.Interference.hadamard_odd, FRC.Interference.tally_norm_mono, FRC.Interference.ceiling_641, Quantum.gaussian_layers, Quantum.gaussian_minimal, Quantum.gaussian_norm, Quantum.tally_norm_eq"
+   "text": "The granularity ceiling: the representable coherent-splitting depth is the largest $k$ at which $d$ times the minimal tally norm of Proposition prop:granularity stays below $\\Omega$, and resolution finer than $1/\\Omega$ lies outside the derived Born regime. Prop. prop:granularity p22030, FrcCore{C14}, FrcMathlib{C14} FRC.Interference.hadamard_even, FRC.Interference.hadamard_odd, FRC.Interference.tally_norm_mono, FRC.Interference.ceiling_641, Quantum.gaussian_layers, Quantum.gaussian_minimal, Quantum.gaussian_norm, Quantum.tally_norm_eq"
   },
   {
    "paper": "22-qm",
@@ -55979,14 +55964,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The composite ledger and the conserved offset: synchronised orbits are the Bell states, the $m$-body locked cluster carries the offset as a conserved, drive-confined label (its ensemble diagonality a declared preparation clause).",
+   "statement": "The composite tally ring and the conserved offset: synchronised orbits are the Bell states, and the $m$-body locked cluster carries the offset as a conserved, drive-confined label (its ensemble diagonality a declared preparation clause).",
    "source": "Prop.~\\ref{prop:offset}, Lem.~\\ref{lem:mbody}\\newline \\pywit{quantum}{p22031}{C15}, \\leanwit{FrcCore}{p22031}{C15} \\lean{FRC.Composite.offset\\_invariant, FRC.Composite.cluster\\_offset, FRC.Composite.locked\\_norm, FRC.Composite.spread\\_average, FRC.Quantum.pair\\_offset}",
    "page": "22-quantum/index.html#C15",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22031",
      "script": "p22_quantum.py",
-     "line": 749,
+     "line": 748,
      "verdict": "pass"
     },
     "lean": [
@@ -56036,7 +56021,7 @@
     "p00153",
     "p00191"
    ],
-   "text": "The composite ledger and the conserved offset: synchronised orbits are the Bell states, the $m$-body locked cluster carries the offset as a conserved, drive-confined label (its ensemble diagonality a declared preparation clause). Prop. prop:offset, Lem. lem:mbody p22031, FrcCore{C15} FRC.Composite.offset_invariant, FRC.Composite.cluster_offset, FRC.Composite.locked_norm, FRC.Composite.spread_average, FRC.Quantum.pair_offset"
+   "text": "The composite tally ring and the conserved offset: synchronised orbits are the Bell states, and the $m$-body locked cluster carries the offset as a conserved, drive-confined label (its ensemble diagonality a declared preparation clause). Prop. prop:offset, Lem. lem:mbody p22031, FrcCore{C15} FRC.Composite.offset_invariant, FRC.Composite.cluster_offset, FRC.Composite.locked_norm, FRC.Composite.spread_average, FRC.Quantum.pair_offset"
   },
   {
    "paper": "22-qm",
@@ -56054,7 +56039,7 @@
     "py": {
      "href": "py/quantum.html#p22032",
      "script": "p22_quantum.py",
-     "line": 617,
+     "line": 616,
      "verdict": "pass"
     },
     "lean": [
@@ -56096,14 +56081,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Exact Tsirelson saturation: the singlet law $E(\\Delta)=\\cos(\\pi\\Delta/40)$ [chart], $S=2(\\zeta_8+\\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it [chart]; no-signalling and the composite reduction commute.",
+   "statement": "Exact Tsirelson saturation: the singlet law of Theorem~\\ref{thm:tsirelson} [chart], the ring identity $S^2=8$, the exhaustive $80^3$ sweep never exceeding the bound [chart]; no-signalling and the composite reduction commute.",
    "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{prop:boundary}\\newline \\pywit{quantum}{p22033}{C17}, \\leanwit{FrcCore}{p22033}{C17}, \\leanwit{FrcMathlib}{p22033}{C17} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Composite.no\\_signalling, FRC.Observation.reduce\\_mul, FRC.Composite.carrier\\_641, Quantum.tsirelson\\_real, Quantum.singlet\\_law}",
    "page": "22-quantum/index.html#C17",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22033",
      "script": "p22_quantum.py",
-     "line": 635,
+     "line": 634,
      "verdict": "pass"
     },
     "lean": [
@@ -56168,7 +56153,7 @@
    "refs": [
     "p00028"
    ],
-   "text": "Exact Tsirelson saturation: the singlet law $E(\\Delta)=\\cos(\\pi\\Delta/40)$ [chart], $S=2(\\zeta_8+\\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it [chart]; no-signalling and the composite reduction commute. Thm. thm:tsirelson, Prop. prop:boundary p22033, FrcCore{C17}, FrcMathlib{C17} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, FRC.Composite.no_signalling, FRC.Observation.reduce_mul, FRC.Composite.carrier_641, Quantum.tsirelson_real, Quantum.singlet_law"
+   "text": "Exact Tsirelson saturation: the singlet law of Theorem thm:tsirelson [chart], the ring identity $S^2=8$, the exhaustive $80^3$ sweep never exceeding the bound [chart]; no-signalling and the composite reduction commute. Thm. thm:tsirelson, Prop. prop:boundary p22033, FrcCore{C17}, FrcMathlib{C17} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, FRC.Composite.no_signalling, FRC.Observation.reduce_mul, FRC.Composite.carrier_641, Quantum.tsirelson_real, Quantum.singlet_law"
   },
   {
    "paper": "22-qm",
@@ -56186,7 +56171,7 @@
     "py": {
      "href": "py/quantum.html#p22034",
      "script": "p22_quantum.py",
-     "line": 855,
+     "line": 854,
      "verdict": "pass"
     },
     "lean": [
@@ -56227,7 +56212,7 @@
     "py": {
      "href": "py/quantum.html#p22035",
      "script": "p22_quantum.py",
-     "line": 924,
+     "line": 923,
      "verdict": "pass"
     },
     "lean": [
@@ -56284,7 +56269,7 @@
     "py": {
      "href": "py/quantum.html#p22036",
      "script": "p22_quantum.py",
-     "line": 973,
+     "line": 972,
      "verdict": "pass"
     },
     "lean": [
@@ -56333,7 +56318,7 @@
     "py": {
      "href": "py/quantum.html#p22037",
      "script": "p22_quantum.py",
-     "line": 1291,
+     "line": 1290,
      "verdict": "pass"
     },
     "lean": [
@@ -56396,7 +56381,7 @@
     "py": {
      "href": "py/quantum.html#p22038",
      "script": "p22_quantum.py",
-     "line": 1034,
+     "line": 1033,
      "verdict": "pass"
     },
     "lean": [
@@ -56495,7 +56480,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\\PhiO:\\core]>1$, and classicality is the divisibility of the observer's frame --- one outcome per fixed channel, with the channel index still carrying the winding information (absorption is not the absence of information transfer).",
+   "statement": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\\PhiO:\\core]>1$, classicality is the divisibility of the observer's frame, and the channel index still carries the winding information.",
    "source": "Cor.~\\ref{cor:carrier}\\newline \\pywit{quantum}{p22040}{C24}, \\leanwit{FrcCore}{p22040}{C24} \\lean{FRC.Observation.classicality\\_index, FRC.Observation.selection, FRC.Composite.carrier\\_421}",
    "page": "22-quantum/index.html#C24",
    "witness": {
@@ -56533,7 +56518,7 @@
     ]
    },
    "refs": [],
-   "text": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\\PhiO:\\core]>1$, and classicality is the divisibility of the observer's frame — one outcome per fixed channel, with the channel index still carrying the winding information (absorption is not the absence of information transfer). Cor. cor:carrier p22040, FrcCore{C24} FRC.Observation.classicality_index, FRC.Observation.selection, FRC.Composite.carrier_421"
+   "text": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\\PhiO:\\core]>1$, classicality is the divisibility of the observer's frame, and the channel index still carries the winding information. Cor. cor:carrier p22040, FrcCore{C24} FRC.Observation.classicality_index, FRC.Observation.selection, FRC.Composite.carrier_421"
   },
   {
    "paper": "22-qm",
@@ -56545,13 +56530,13 @@
    "tag": "T",
    "name": null,
    "statement": "The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\\sqrt2$ [chart].",
-   "source": "\\S\\ref{sec:dividends}; rests on A7, B3, B6, C17\\newline \\pywit{quantum}{p22041}{C25}, \\leanwit{FrcCore}{p22041}{C25}, \\leanwit{FrcMathlib}{p22041}{C25} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Quantum.tsirelson\\_real}",
+   "source": "\\S\\ref{sub:explicability}; rests on A7, B3, B6, C17\\newline \\pywit{quantum}{p22041}{C25}, \\leanwit{FrcCore}{p22041}{C25}, \\leanwit{FrcMathlib}{p22041}{C25} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Quantum.tsirelson\\_real}",
    "page": "22-quantum/index.html#C25",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22041",
      "script": "p22_quantum.py",
-     "line": 649,
+     "line": 648,
      "verdict": "pass"
     },
     "lean": [
@@ -56587,7 +56572,7 @@
     "p22014",
     "p22033"
    ],
-   "text": "The measurement problem dissolved: Kochen–Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\\sqrt2$ [chart]. \\Ssec:dividends; rests on A7, B3, B6, C17 p22041, FrcCore{C25}, FrcMathlib{C25} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, Quantum.tsirelson_real"
+   "text": "The measurement problem dissolved: Kochen–Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\\sqrt2$ [chart]. \\Ssub:explicability; rests on A7, B3, B6, C17 p22041, FrcCore{C25}, FrcMathlib{C25} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, Quantum.tsirelson_real"
   },
   {
    "paper": "22-qm",
@@ -56598,14 +56583,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The unequal-cycle composite gate: joint recurrence $T'=\\operatorname{lcm}_j(n_j/\\gcd(s_j,n_j))$, conserved data the quotient $A/\\langle s\\rangle$ (unit-winding pair: the gcd cycle, generically $\\Qf$), and the counting Born rule verbatim with $T'$ as the recurrence; all orbit-nontrivial characters cancel.",
+   "statement": "The unequal-cycle composite gate: the joint recurrence of Proposition~\\ref{prop:unequal}, the conserved data the quotient $A/\\langle s\\rangle$ (for a unit-winding pair the gcd cycle, generically $\\Qf$), and the counting Born rule verbatim with the joint recurrence in place of the pair's; all orbit-nontrivial characters cancel.",
    "source": "Prop.~\\ref{prop:unequal}\\newline \\pywit{quantum}{p22042}{C26}, \\leanwit{FrcCore}{p22042}{C26} \\lean{FRC.Quantum.joint\\_recurrence, FRC.Quantum.joint\\_least, FRC.Quantum.pair\\_offset, FRC.Quantum.dephasing, FRC.Composite.winding\\_period}",
    "page": "22-quantum/index.html#C26",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22042",
      "script": "p22_quantum.py",
-     "line": 677,
+     "line": 676,
      "verdict": "pass"
     },
     "lean": [
@@ -56654,7 +56639,7 @@
    "refs": [
     "p00191"
    ],
-   "text": "The unequal-cycle composite gate: joint recurrence $T'=\\operatorname{lcm}_j(n_j/\\gcd(s_j,n_j))$, conserved data the quotient $A/\\langle s\\rangle$ (unit-winding pair: the gcd cycle, generically $\\Qf$), and the counting Born rule verbatim with $T'$ as the recurrence; all orbit-nontrivial characters cancel. Prop. prop:unequal p22042, FrcCore{C26} FRC.Quantum.joint_recurrence, FRC.Quantum.joint_least, FRC.Quantum.pair_offset, FRC.Quantum.dephasing, FRC.Composite.winding_period"
+   "text": "The unequal-cycle composite gate: the joint recurrence of Proposition prop:unequal, the conserved data the quotient $A/\\langle s\\rangle$ (for a unit-winding pair the gcd cycle, generically $\\Qf$), and the counting Born rule verbatim with the joint recurrence in place of the pair's; all orbit-nontrivial characters cancel. Prop. prop:unequal p22042, FrcCore{C26} FRC.Quantum.joint_recurrence, FRC.Quantum.joint_least, FRC.Quantum.pair_offset, FRC.Quantum.dephasing, FRC.Composite.winding_period"
   },
   {
    "paper": "22-qm",
@@ -56666,7 +56651,7 @@
    "tag": "T",
    "name": null,
    "statement": "Quarter-turn transport: the ambient quarter-turn aliases onto an embedded label iff $\\kap\\equiv\\pm\\kap_n\\pmod n$, the capacity residue mod~$4$ the coarsest invariant; the constants web is read per register (Remark~\\ref{rem:conceptual}).",
-   "source": "Lem.~\\ref{lem:transport}, \\citep{akhtman2026gravity}\\newline \\pywit{quantum}{p22043}{C27}, \\leanwit{FrcCore}{p22043}{C27} \\lean{FRC.Observation.transport\\_trichotomy, FRC.Observation.transport\\_cases}",
+   "source": "Lem.~\\ref{lem:transport}, \\citep{akhtman2026dimensions}\\newline \\pywit{quantum}{p22043}{C27}, \\leanwit{FrcCore}{p22043}{C27} \\lean{FRC.Observation.transport\\_trichotomy, FRC.Observation.transport\\_cases}",
    "page": "22-quantum/index.html#C27",
    "witness": {
     "py": {
@@ -56695,7 +56680,7 @@
     ]
    },
    "refs": [],
-   "text": "Quarter-turn transport: the ambient quarter-turn aliases onto an embedded label iff $\\kap\\equiv\\pm\\kap_n\\pmod n$, the capacity residue mod $4$ the coarsest invariant; the constants web is read per register (Remark rem:conceptual). Lem. lem:transport, [akhtman2026gravity] p22043, FrcCore{C27} FRC.Observation.transport_trichotomy, FRC.Observation.transport_cases"
+   "text": "Quarter-turn transport: the ambient quarter-turn aliases onto an embedded label iff $\\kap\\equiv\\pm\\kap_n\\pmod n$, the capacity residue mod $4$ the coarsest invariant; the constants web is read per register (Remark rem:conceptual). Lem. lem:transport, [akhtman2026dimensions] p22043, FrcCore{C27} FRC.Observation.transport_trichotomy, FRC.Observation.transport_cases"
   },
   {
    "paper": "22-qm",
@@ -56713,7 +56698,7 @@
     "py": {
      "href": "py/quantum.html#p22052",
      "script": "p22_quantum.py",
-     "line": 952,
+     "line": 951,
      "verdict": "pass"
     },
     "lean": [
@@ -56827,7 +56812,7 @@
     "py": {
      "href": "py/quantum.html#p22054",
      "script": "p22_quantum.py",
-     "line": 877,
+     "line": 876,
      "verdict": "pass"
     },
     "lean": [
@@ -56889,7 +56874,7 @@
     "py": {
      "href": "py/quantum.html#p22055",
      "script": "p22_quantum.py",
-     "line": 571,
+     "line": 570,
      "verdict": "pass"
     },
     "lean": [
@@ -56936,13 +56921,13 @@
    "tag": "T",
    "name": null,
    "statement": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\\sqrt\\Omega$) [chart], not gradual.",
-   "source": "Prop.~\\ref{prop:granularity}; rests on A5, C14\\newline \\pywit{quantum}{p22056}{P5}, \\leanwit{FrcCore}{p22056}{P5}, \\leanwit{FrcMathlib}{p22056}{P5} \\lean{FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, FRC.Interference.hadamard\\_even, Quantum.ceiling\\_bracket, Quantum.gaussian\\_minimal}",
+   "source": "Prop.~\\ref{prop:granularity}; rests on Z3, C14\\newline \\pywit{quantum}{p22056}{P5}, \\leanwit{FrcCore}{p22056}{P5}, \\leanwit{FrcMathlib}{p22056}{P5} \\lean{FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, FRC.Interference.hadamard\\_even, Quantum.ceiling\\_bracket, Quantum.gaussian\\_minimal}",
    "page": "22-quantum/index.html#P5",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22056",
      "script": "p22_quantum.py",
-     "line": 1096,
+     "line": 1095,
      "verdict": "pass"
     },
     "lean": [
@@ -56992,7 +56977,7 @@
     "p22005",
     "p22030"
    ],
-   "text": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\\sqrt\\Omega$) [chart], not gradual. Prop. prop:granularity; rests on A5, C14 p22056, FrcCore{P5}, FrcMathlib{P5} FRC.Interference.tally_norm_mono, FRC.Interference.ceiling_641, FRC.Interference.hadamard_even, Quantum.ceiling_bracket, Quantum.gaussian_minimal"
+   "text": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\\sqrt\\Omega$) [chart], not gradual. Prop. prop:granularity; rests on Z3, C14 p22056, FrcCore{P5}, FrcMathlib{P5} FRC.Interference.tally_norm_mono, FRC.Interference.ceiling_641, FRC.Interference.hadamard_even, Quantum.ceiling_bracket, Quantum.gaussian_minimal"
   },
   {
    "paper": "22-qm",
@@ -57250,14 +57235,14 @@
    "block": "X",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's ledger: a finite-relational provenance theorem for the Born calculus, in which the substrate determines the tally ring, the measurement family, and the readout (calibrated against the counting and cyclotomic precedents in Section~\\ref{sec:discussion}).",
+   "statement": "\\textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's tally ring, a finite-relational provenance theorem for the Born calculus in which the substrate determines the tally ring, the measurement family and the readout (calibrated against the counting and cyclotomic precedents of Section~\\ref{sec:intro}).",
    "source": "\\S\\ref{sec:ledger}\\newline \\pywit{quantum}{p22049}{X6}, \\leanwit{FrcCore}{p22049}{X6} \\lean{FRC.Observation.window\\_lift, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.framed\\_readout}",
    "page": "22-quantum/index.html#X6",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22049",
      "script": "p22_quantum.py",
-     "line": 1181,
+     "line": 1180,
      "verdict": "pass"
     },
     "lean": [
@@ -57296,7 +57281,7 @@
     ]
    },
    "refs": [],
-   "text": "Native probability over a finite substrate: the unordered-field obstruction is cleared by keeping counts in the observer's ledger: a finite-relational provenance theorem for the Born calculus, in which the substrate determines the tally ring, the measurement family, and the readout (calibrated against the counting and cyclotomic precedents in Section sec:discussion). \\Ssec:ledger p22049, FrcCore{X6} FRC.Observation.window_lift, FRC.Extension.Tally.tally_criterion, FRC.Extension.Tally.channel_selectivity, FRC.Extension.framed_readout"
+   "text": "Native probability over a finite substrate: the unordered-field obstruction is cleared by keeping counts in the observer's tally ring, a finite-relational provenance theorem for the Born calculus in which the substrate determines the tally ring, the measurement family and the readout (calibrated against the counting and cyclotomic precedents of Section sec:intro). \\Ssec:ledger p22049, FrcCore{X6} FRC.Observation.window_lift, FRC.Extension.Tally.tally_criterion, FRC.Extension.Tally.channel_selectivity, FRC.Extension.framed_readout"
   },
   {
    "paper": "22-qm",
@@ -57314,7 +57299,7 @@
     "py": {
      "href": "py/quantum.html#p22050",
      "script": "p22_quantum.py",
-     "line": 649,
+     "line": 648,
      "verdict": "pass"
     },
     "lean": [
@@ -57401,13 +57386,53 @@
   {
    "paper": "22-qm",
    "no": 22,
+   "rid": "22:Y1",
+   "key": "p22062",
+   "label": "Y1",
+   "block": "Y",
+   "tag": "O",
+   "name": null,
+   "statement": "The stratum-sampling hypothesis: a fixed-setting protocol samples one stratum of the setting ensemble, so that the registered frequencies at that setting read its structural weight through the framed readout. Test: a non-uniform registered statistic on a single Object outside the C11 reduction, or the product-ring counting statement of Remark~\\ref{rem:strata} proved.",
+   "source": "Rem.~\\ref{rem:strata}, Rem.~\\ref{rem:borndomain}; conditions C11",
+   "page": "22-quantum/index.html#Y1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p22027"
+   ],
+   "text": "The stratum-sampling hypothesis: a fixed-setting protocol samples one stratum of the setting ensemble, so that the registered frequencies at that setting read its structural weight through the framed readout. Test: a non-uniform registered statistic on a single Object outside the C11 reduction, or the product-ring counting statement of Remark rem:strata proved. Rem. rem:strata, Rem. rem:borndomain; conditions C11"
+  },
+  {
+   "paper": "22-qm",
+   "no": 22,
+   "rid": "22:Y2",
+   "key": "p22063",
+   "label": "Y2",
+   "block": "Y",
+   "tag": "O",
+   "name": null,
+   "statement": "The totally-real extension of the framed readout: Definition~\\ref{def:readout} extends from the real-quadratic strata to general totally real cyclotomic weights, the full $80$-setting sweep, with the same bounded-discrepancy law. Test: the extended map reproducing the sweep's exact weights on $\\Car_{641}$.",
+   "source": "Def.~\\ref{def:readout}",
+   "page": "22-quantum/index.html#Y2",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The totally-real extension of the framed readout: Definition def:readout extends from the real-quadratic strata to general totally real cyclotomic weights, the full $80$-setting sweep, with the same bounded-discrepancy law. Test: the extended map reproducing the sweep's exact weights on $\\Car_{641}$. Def. def:readout"
+  },
+  {
+   "paper": "22-qm",
+   "no": 22,
    "rid": "22:Z1",
    "key": "p22060",
    "label": "Z1",
    "block": "Z",
    "tag": "Ω",
    "name": null,
-   "statement": "The coherence horizon: the Born rule is exact within $\\sqrt\\Omega$ and a frame artefact beyond it, the same boundary as the programme's decidability window and the gravity locality horizon $m_P=\\sqrt\\Omega$.",
+   "statement": "The coherence horizon: the Born rule is exact within $\\sqrt\\Omega$ and a frame artefact beyond it, the same boundary as the decidability window of Definition~\\ref{def:subhorizon} and the locality horizon of the gravitational sector.",
    "source": "Rem.~\\ref{rem:horizon}, \\citep{akhtman2026gravity}",
    "page": "22-quantum/index.html#Z1",
    "witness": {
@@ -57415,7 +57440,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The coherence horizon: the Born rule is exact within $\\sqrt\\Omega$ and a frame artefact beyond it, the same boundary as the programme's decidability window and the gravity locality horizon $m_P=\\sqrt\\Omega$. Rem. rem:horizon, [akhtman2026gravity]"
+   "text": "The coherence horizon: the Born rule is exact within $\\sqrt\\Omega$ and a frame artefact beyond it, the same boundary as the decidability window of Definition def:subhorizon and the locality horizon of the gravitational sector. Rem. rem:horizon, [akhtman2026gravity]"
   },
   {
    "paper": "22-qm",
@@ -57426,14 +57451,14 @@
    "block": "Z",
    "tag": "Ω",
    "name": null,
-   "statement": "The committed $\\Omega$ anchor and the binding floor: the carrier scale is fixed by the verified Riemann height through $\\Omega^{1/4}$ [chart], and a single off-line zero below $\\Omega^{1/4}$ falsifies from a desk.",
-   "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22061}{Z2}, \\leanwit{FrcMathlib}{p22061}{Z2} \\lean{Quantum.omega\\_floors}",
+   "statement": "The anchor's exposure: the Born window and the interference wrap are read at the committed scale, so a Born anomaly or a quantised wrap at a scale the anchor excludes falsifies the commitment; every laboratory floor of Table~\\ref{tab:omega} lies far below the anchor.",
+   "source": "\\S\\ref{sub:predictions}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22061}{Z2}, \\leanwit{FrcMathlib}{p22061}{Z2} \\lean{Quantum.omega\\_floors}",
    "page": "22-quantum/index.html#Z2",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22061",
      "script": "p22_quantum.py",
-     "line": 1400,
+     "line": 1401,
      "verdict": "pass"
     },
     "lean": [
@@ -57448,7 +57473,40 @@
     ]
    },
    "refs": [],
-   "text": "The committed $\\Omega$ anchor and the binding floor: the carrier scale is fixed by the verified Riemann height through $\\Omega^{1/4}$ [chart], and a single off-line zero below $\\Omega^{1/4}$ falsifies from a desk. \\Ssec:omegaledger, Tab. tab:omega p22061, FrcMathlib{Z2} Quantum.omega_floors"
+   "text": "The anchor's exposure: the Born window and the interference wrap are read at the committed scale, so a Born anomaly or a quantised wrap at a scale the anchor excludes falsifies the commitment; every laboratory floor of Table tab:omega lies far below the anchor. \\Ssub:predictions, Tab. tab:omega p22061, FrcMathlib{Z2} Quantum.omega_floors"
+  },
+  {
+   "paper": "22-qm",
+   "no": 22,
+   "rid": "22:Z3",
+   "key": "p22005",
+   "label": "Z3",
+   "block": "Z",
+   "tag": "Ω",
+   "name": null,
+   "statement": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega=1.3\\times10^{123}$ [chart], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table~\\ref{tab:omega} lies below it.",
+   "source": "\\S\\ref{sub:predictions}, Tab.~\\ref{tab:omega}, \\citep{gibbonshawking1977,planck2018}\\newline \\pywit{quantum}{p22005}{Z3}, \\leanwit{FrcMathlib}{p22005}{Z3} \\lean{Quantum.omega\\_floors}",
+   "page": "22-quantum/index.html#Z3",
+   "witness": {
+    "py": {
+     "href": "py/quantum.html#p22005",
+     "script": "p22_quantum.py",
+     "line": 1390,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/Quantum",
+      "name": "FRC.Quantum.omega_floors",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Quantum.html#FRC.Quantum.omega_floors"
+     }
+    ]
+   },
+   "refs": [],
+   "text": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega=1.3\\times10^{123}$ [chart], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table tab:omega lies below it. \\Ssub:predictions, Tab. tab:omega, [gibbonshawking1977,planck2018] p22005, FrcMathlib{Z3} Quantum.omega_floors"
   },
   {
    "paper": "25-göd",

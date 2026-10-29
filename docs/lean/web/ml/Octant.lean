@@ -739,9 +739,9 @@ theorem ceiling_bracket (Λ ℓP r S Ω : ℝ) (hΛ : Λ = 1.088e-52) (hℓ : �
         _ = ((2 : ℝ) ^ 204) ^ 2 := by norm_num
     exact lt_of_pow_lt_pow_left₀ 2 (by positivity) hsq
 
-/-- 22:A5, Z2 [chart] — **the Ω ledger's floors**: every null channel's floor lies below the anchor — the Riemann
-height `(3 × 10¹²)⁴ = 8.1 × 10⁴⁹` (the binding floor, through the decidability horizon `Ω^{1/4}`), the Sorkin and
-Born tallies `10²²` (one floor, cited twice by the paper's ledger file), the granularity `2⁶⁰` — with the same hypotheses
+/-- 22:Z2, Z3 [chart] — **the committed cardinality's floors**: every null channel's floor lies below the anchor — the Riemann
+height `(3 × 10¹²)⁴ = 8.1 × 10⁴⁹` (a clause the paper no longer states since 29 October 2026), the Sorkin and
+Born tallies `10²²` (one floor, cited twice by the paper's ledger file; the binding laboratory floor), the granularity `2⁶⁰` — with the same hypotheses
 as `scale_import`. -/
 theorem omega_floors (Λ ℓP r S Ω : ℝ) (hΛ : Λ = 1.088e-52) (hℓ : ℓP = 1.616255e-35)
     (hr2 : r ^ 2 = 3 / Λ) (hS : S = π * (r / ℓP) ^ 2) (hΩ : Ω = 4 * S + 1) :

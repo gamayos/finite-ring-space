@@ -784,7 +784,7 @@ theorem frobenius_unique (hq : FRC.Nat.isPrime q) (hν : ¬ ∃ y : Shell q, y *
         (by show 0 + (z.im * -1 + 0 * -0) = -z.im
             rw [← Shell.mul_neg, Shell.mul_one, Shell.zero_mul, Shell.add_zero, Shell.zero_add]))
 
-/-- 22:C6, 22:A2, 22:P4 — on the norm-one torus the conjugation is the inversion: `z · conj z = 1`. -/
+/-- 22:C6, 22:P4 — on the norm-one torus the conjugation is the inversion: `z · conj z = 1`. -/
 theorem torus_conj_inv (z : Ext q ν) (hz : norm z = 1) : z * conj z = 1 := conj_inv_of_norm_one z hz
 
 end extension

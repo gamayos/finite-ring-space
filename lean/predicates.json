@@ -640,7 +640,6 @@
  "22-quantum": {
   "module": "Quantum",
   "FrcCore": {
-   "22:A2": "Quantum",
    "22:C1": "Quantum",
    "22:C10": "Quantum",
    "22:C11": "Quantum",
@@ -683,7 +682,6 @@
    "22:X8": "Quantum"
   },
   "FrcMathlib": {
-   "22:A5": "Quantum",
    "22:C14": "Quantum",
    "22:C17": "Quantum",
    "22:C19": "Quantum",
@@ -697,7 +695,8 @@
    "22:X1": "Quantum",
    "22:X7": "Quantum",
    "22:X8": "Quantum",
-   "22:Z2": "Quantum"
+   "22:Z2": "Quantum",
+   "22:Z3": "Quantum"
   }
  },
  "26-pnp": {

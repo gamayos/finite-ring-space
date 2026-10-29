@@ -3,7 +3,7 @@
  "tree": "38-s13-20260801",
  "title": "Exact Quantum Dynamics on (13,233)",
  "doi": "https://doi.org/10.20944/preprints202608.0390.v1",
- "generated": "27 October 2026",
+ "generated": "29 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -499,7 +499,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A3, 22:A2, 22:P4 — **C20 (p00040), the mass–energy channel**, generator-free on a prime `p` with a quarter-turn `h² = −1`: inside `𝔽_{p²}^×`, `C_{p−1} = 𝔽_p^×` meets the boost torus `C_{p+1} = {z^{p+1} = 1}` in the sign `±1` alone, and the spinor cover `C_{2(p+1)}` in exactly `Q₄ = {±1, ±h}`; the quarter is spinorial, `N(h) = h^{p+1} = h² = −1`."
+    "doc": "38:A3, 22:P4 — **C20 (p00040), the mass–energy channel**, generator-free on a prime `p` with a quarter-turn `h² = −1`: inside `𝔽_{p²}^×`, `C_{p−1} = 𝔽_p^×` meets the boost torus `C_{p+1} = {z^{p+1} = 1}` in the sign `±1` alone, and the spinor cover `C_{2(p+1)}` in exactly `Q₄ = {±1, ±h}`; the quarter is spinorial, `N(h) = h^{p+1} = h² = −1`."
    },
    {
     "name": "FRC.Pair.channel_instance",
