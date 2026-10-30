@@ -1,5 +1,5 @@
 {
- "generated": "29 October 2026",
+ "generated": "30 October 2026",
  "rows": [
   {
    "id": "10:X1",
@@ -291,7 +291,7 @@
    "label": "X4",
    "key": "p22047",
    "tag": "T",
-   "predicate": "\\textbf{The dynamical measurement problem} dissolves: collapse is the re-metrisation of a relational chart, no disturbance propagates, and distinct Subjects never disagree on what they share.",
+   "predicate": "\\textbf{The dynamical measurement problem}: collapse is the L\\\"uders re-metrisation of a relational chart, the update propagates no disturbance, and distinct Subjects agree on the shared core with order-independent joint refinement; no collapse mechanism is needed.",
    "source": "Rem.~\\ref{rem:collapse}, Prop.~\\ref{prop:intersubject}\\newline \\pywit{quantum}{p22047}{X4}, \\leanwit{FrcCore}{p22047}{X4} \\lean{FRC.Composite.joint\\_refinement, FRC.Composite.order\\_independence, FRC.Observation.lueders}",
    "master": [],
    "restated": [],
@@ -317,7 +317,7 @@
    "label": "X6",
    "key": "p22049",
    "tag": "T",
-   "predicate": "\\textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's tally ring, a finite-relational provenance theorem for the Born calculus in which the substrate determines the tally ring, the measurement family and the readout (calibrated against the counting and cyclotomic precedents of Section~\\ref{sec:intro}).",
+   "predicate": "\\textbf{Native probability over a finite substrate}: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus, set against the counting and cyclotomic precedents of Section~\\ref{sec:intro}.",
    "source": "\\S\\ref{sec:ledger}\\newline \\pywit{quantum}{p22049}{X6}, \\leanwit{FrcCore}{p22049}{X6} \\lean{FRC.Observation.window\\_lift, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.framed\\_readout}",
    "master": [],
    "restated": [],
@@ -345,7 +345,7 @@
    "label": "X8",
    "key": "p22051",
    "tag": "T",
-   "predicate": "\\textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down.",
+   "predicate": "\\textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden band, any nonzero value a multiple of $\\Omega$, not a small number to be measured down.",
    "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}\\newline \\pywit{quantum}{p22051}{X8}, \\leanwit{FrcCore}{p22051}{X8}, \\leanwit{FrcMathlib}{p22051}{X8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Quantum.sorkin\\_hierarchy}",
    "master": [],
    "restated": [],

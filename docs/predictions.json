@@ -1,5 +1,5 @@
 {
- "generated": "29 October 2026",
+ "generated": "30 October 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -259,7 +259,7 @@
    "label": "P3",
    "key": "p22054",
    "tag": "T",
-   "predicate": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
+   "predicate": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S\\neq2\\sqrt2$ or non-quantum network behaviour each falsify.",
    "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{thm:table}; rests on B2, B5, C11, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcMathlib}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Quantum.tsirelson\\_real}",
    "master": [],
    "restated": [],

@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "29 October 2026",
+  "generated": "30 October 2026",
   "schema": "frc-register/2",
   "rows": 1053,
   "theorems": 1039,
@@ -2301,7 +2301,7 @@
   {
    "key": "p22028",
    "origin": "22",
-   "statement": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, drive-invariant, two-way registration functionals form the $d^2c$-realized character cone, the degree itself forced (Lemma~\\ref{lem:degree}); channel selectivity picks the Born ray.",
+   "statement": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, two-way registration functionals with a drive-covariant kernel form the $d^2c$-realised character cone, the degree itself forced (Lemma~\\ref{lem:degree}); channel selectivity picks the Born ray.",
    "origin_row": "22:C12",
    "tag": "T",
    "tier": 0,
@@ -18035,7 +18035,7 @@
   {
    "key": "p22003",
    "origin": "22",
-   "statement": "The discrete fractional Fourier rotation exchanging the coordinate and momentum charts on one cycle, with the chart conventions and the derived orientation.",
+   "statement": "The finite Fourier rotation, the quarter of the fractional family, exchanging the coordinate and momentum presentations of one cycle, with the chart conventions and the derived orientation.",
    "origin_row": "22:A3",
    "tag": "I",
    "tier": null,
@@ -18091,7 +18091,7 @@
   {
    "key": "p22007",
    "origin": "22",
-   "statement": "Imported mathematics used without reproof: cyclotomic rings $\\Z[\\zeta_d]$ and finite character orthogonality, the finite uncertainty principle, and the Kochen--Specker theorem.",
+   "statement": "Imported mathematics used without reproof: cyclotomic rings $\\Z[\\zeta_d]$ and finite character orthogonality, the finite uncertainty principle [chart], and the Kochen--Specker theorem.",
    "origin_row": "22:A7",
    "tag": "I",
    "tier": null,
@@ -18119,7 +18119,7 @@
   {
    "key": "p22063",
    "origin": "22",
-   "statement": "The extended framed readout: a totally real weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element, decided by the integer polynomial that isolates it, in place of the integer square root; the two weights of a setting share the integer part, so their readouts sum exactly.",
+   "statement": "The extended framed readout: a two-way weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element in the standard embedding [chart], decided by its minimal polynomial, in place of the integer square root; the two weights of a setting share the integer part, so their readouts sum exactly.",
    "origin_row": "22:A9",
    "tag": "D",
    "tier": null,
@@ -18245,7 +18245,7 @@
   {
    "key": "p22062",
    "origin": "22",
-   "statement": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers the grid point nearest the weight at the scale $B$ resolves, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies converging, at the protocol's resolution, to a value other than the structural weight.",
+   "statement": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers, at the resolution $B$ affords, the readout grid point of Definition~\\ref{def:readout}, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance.",
    "origin_row": "22:B9",
    "tag": "R",
    "tier": null,
@@ -18419,7 +18419,7 @@
   {
    "key": "p22022",
    "origin": "22",
-   "statement": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the tally ring the complex conjugation, the one Galois involution that fixes the two-way subring pointwise and reduces to inversion.",
+   "statement": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the tally ring the complex conjugation, the one Galois involution whose pairing stays in the two-way subring, and it reduces to inversion.",
    "origin_row": "22:C6",
    "tag": "T",
    "tier": 0,
@@ -18641,7 +18641,7 @@
   {
    "key": "p22027",
    "origin": "22",
-   "statement": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved, the conjugate-pair trace tally and the setting-ensemble Parseval tally (Remark~\\ref{rem:strata}), given the stratum-sampling realisation B9.",
+   "statement": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout} [chart]; two reductions are proved, the conjugate-pair trace tally and the setting-ensemble Parseval tally (Remark~\\ref{rem:strata}), given the stratum-sampling realisation B9.",
    "origin_row": "22:C11",
    "tag": "T",
    "tier": 0,
@@ -18923,7 +18923,7 @@
   {
    "key": "p22034",
    "origin": "22",
-   "statement": "The network table is the complex-quantum table, and the Bell-state measurement is the offset readout.",
+   "statement": "The network table is the complex-quantum table with the analyser families inserted, and the Bell-state measurement is the offset readout.",
    "origin_row": "22:C18",
    "tag": "T",
    "tier": 0,
@@ -18995,7 +18995,7 @@
   {
    "key": "p22036",
    "origin": "22",
-   "statement": "No spontaneous collapse; the dilation floor dephases with an exact revival $V(n)=1$.",
+   "statement": "No spontaneous collapse; the dilation floor dephases (Gaussian envelope [chart]) with an exact revival $V(n)=1$.",
    "origin_row": "22:C20",
    "tag": "T",
    "tier": 0,
@@ -19031,7 +19031,7 @@
   {
    "key": "p22037",
    "origin": "22",
-   "statement": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry.",
+   "statement": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions through the reduced channel [chart]; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry.",
    "origin_row": "22:C21",
    "tag": "T",
    "tier": 0,
@@ -19151,7 +19151,7 @@
   {
    "key": "p22040",
    "origin": "22",
-   "statement": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\\PhiO:\\core]>1$, classicality is the divisibility of the observer's frame, and the channel index still carries the winding information.",
+   "statement": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, $\\Omega$-hard: no embedded reader holds it); quantumness is the subgroup index $[\\PhiO:\\core]>1$, classicality is the divisibility of the observer's frame, and the channel index still carries the winding information.",
    "origin_row": "22:C24",
    "tag": "T",
    "tier": 0,
@@ -19187,7 +19187,7 @@
   {
    "key": "p22041",
    "origin": "22",
-   "statement": "The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\\sqrt2$ [chart].",
+   "statement": "Values exist only as Subject-relative quotient phases, and the construction attains the Tsirelson strength $2\\sqrt2$ [chart] as a ring identity; Kochen--Specker therefore poses no separate threat to a theory that denies frame-independent values while carrying full quantum correlation strength.",
    "origin_row": "22:C25",
    "tag": "T",
    "tier": 0,
@@ -19344,7 +19344,7 @@
   {
    "key": "p22066",
    "origin": "22",
-   "statement": "The readout law on the sweep: the extended readout lies within one grid step of its weight, is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings, and the largest-remainder counts of a protocol lie within one of the readout times the run count, at every setting and scale.",
+   "statement": "The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings [chart], and the grid allocation of a protocol lies within one of the readout times the run count, at every setting and scale.",
    "origin_row": "22:C29",
    "tag": "T",
    "tier": 0,
@@ -19476,7 +19476,7 @@
   {
    "key": "p22054",
    "origin": "22",
-   "statement": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
+   "statement": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S\\neq2\\sqrt2$ or non-quantum network behaviour each falsify.",
    "origin_row": "22:P3",
    "tag": "T",
    "tier": 0,
@@ -19712,7 +19712,7 @@
   {
    "key": "p22047",
    "origin": "22",
-   "statement": "\\textbf{The dynamical measurement problem} dissolves: collapse is the re-metrisation of a relational chart, no disturbance propagates, and distinct Subjects never disagree on what they share.",
+   "statement": "\\textbf{The dynamical measurement problem}: collapse is the L\\\"uders re-metrisation of a relational chart, the update propagates no disturbance, and distinct Subjects agree on the shared core with order-independent joint refinement; no collapse mechanism is needed.",
    "origin_row": "22:X4",
    "tag": "T",
    "tier": 0,
@@ -19784,7 +19784,7 @@
   {
    "key": "p22049",
    "origin": "22",
-   "statement": "\\textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's tally ring, a finite-relational provenance theorem for the Born calculus in which the substrate determines the tally ring, the measurement family and the readout (calibrated against the counting and cyclotomic precedents of Section~\\ref{sec:intro}).",
+   "statement": "\\textbf{Native probability over a finite substrate}: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus, set against the counting and cyclotomic precedents of Section~\\ref{sec:intro}.",
    "origin_row": "22:X6",
    "tag": "T",
    "tier": 0,
@@ -19861,7 +19861,7 @@
   {
    "key": "p22051",
    "origin": "22",
-   "statement": "\\textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down.",
+   "statement": "\\textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden band, any nonzero value a multiple of $\\Omega$, not a small number to be measured down.",
    "origin_row": "22:X8",
    "tag": "T",
    "tier": 0,
@@ -54942,7 +54942,7 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The discrete fractional Fourier rotation exchanging the coordinate and momentum charts on one cycle, with the chart conventions and the derived orientation.",
+   "statement": "The finite Fourier rotation, the quarter of the fractional family, exchanging the coordinate and momentum presentations of one cycle, with the chart conventions and the derived orientation.",
    "source": "\\citep{candan2000,akhtman2026dimensions}",
    "page": "22-quantum/index.html#A3",
    "witness": {
@@ -54950,7 +54950,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The discrete fractional Fourier rotation exchanging the coordinate and momentum charts on one cycle, with the chart conventions and the derived orientation. [candan2000,akhtman2026dimensions]"
+   "text": "The finite Fourier rotation, the quarter of the fractional family, exchanging the coordinate and momentum presentations of one cycle, with the chart conventions and the derived orientation. [candan2000,akhtman2026dimensions]"
   },
   {
    "paper": "22-qm",
@@ -55018,7 +55018,7 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "Imported mathematics used without reproof: cyclotomic rings $\\Z[\\zeta_d]$ and finite character orthogonality, the finite uncertainty principle, and the Kochen--Specker theorem.",
+   "statement": "Imported mathematics used without reproof: cyclotomic rings $\\Z[\\zeta_d]$ and finite character orthogonality, the finite uncertainty principle [chart], and the Kochen--Specker theorem.",
    "source": "\\citep{donoho1989,tao2005,kochen1967}",
    "page": "22-quantum/index.html#A7",
    "witness": {
@@ -55026,7 +55026,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "Imported mathematics used without reproof: cyclotomic rings $\\Z[\\zeta_d]$ and finite character orthogonality, the finite uncertainty principle, and the Kochen–Specker theorem. [donoho1989,tao2005,kochen1967]"
+   "text": "Imported mathematics used without reproof: cyclotomic rings $\\Z[\\zeta_d]$ and finite character orthogonality, the finite uncertainty principle [chart], and the Kochen–Specker theorem. [donoho1989,tao2005,kochen1967]"
   },
   {
    "paper": "22-qm",
@@ -55056,7 +55056,7 @@
    "block": "A",
    "tag": "D",
    "name": null,
-   "statement": "The extended framed readout: a totally real weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element, decided by the integer polynomial that isolates it, in place of the integer square root; the two weights of a setting share the integer part, so their readouts sum exactly.",
+   "statement": "The extended framed readout: a two-way weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element in the standard embedding [chart], decided by its minimal polynomial, in place of the integer square root; the two weights of a setting share the integer part, so their readouts sum exactly.",
    "source": "Def.~\\ref{def:readout}",
    "page": "22-quantum/index.html#A9",
    "witness": {
@@ -55064,7 +55064,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The extended framed readout: a totally real weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element, decided by the integer polynomial that isolates it, in place of the integer square root; the two weights of a setting share the integer part, so their readouts sum exactly. Def. def:readout"
+   "text": "The extended framed readout: a two-way weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element in the standard embedding [chart], decided by its minimal polynomial, in place of the integer square root; the two weights of a setting share the integer part, so their readouts sum exactly. Def. def:readout"
   },
   {
    "paper": "22-qm",
@@ -55246,7 +55246,7 @@
    "block": "B",
    "tag": "R",
    "name": null,
-   "statement": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers the grid point nearest the weight at the scale $B$ resolves, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies converging, at the protocol's resolution, to a value other than the structural weight.",
+   "statement": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers, at the resolution $B$ affords, the readout grid point of Definition~\\ref{def:readout}, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance.",
    "source": "Rem.~\\ref{rem:strata}, Rem.~\\ref{rem:borndomain}, Def.~\\ref{def:readout}",
    "page": "22-quantum/index.html#B9",
    "witness": {
@@ -55254,7 +55254,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers the grid point nearest the weight at the scale $B$ resolves, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies converging, at the protocol's resolution, to a value other than the structural weight. Rem. rem:strata, Rem. rem:borndomain, Def. def:readout"
+   "text": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers, at the resolution $B$ affords, the readout grid point of Definition def:readout, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance. Rem. rem:strata, Rem. rem:borndomain, Def. def:readout"
   },
   {
    "paper": "22-qm",
@@ -55478,7 +55478,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the tally ring the complex conjugation, the one Galois involution that fixes the two-way subring pointwise and reduces to inversion.",
+   "statement": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the tally ring the complex conjugation, the one Galois involution whose pairing stays in the two-way subring, and it reduces to inversion.",
    "source": "Lem.~\\ref{lem:involution}, Prop.~\\ref{prop:reduction},~\\ref{prop:paircount}, \\citep{akhtman2025lorentzian}\\newline \\pywit{quantum}{p22022}{C6}, \\leanwit{FrcCore}{p22022}{C6} \\lean{FRC.Observation.frobenius\\_unique, FRC.Observation.torus\\_conj\\_inv, FRC.Observation.exponent\\_negation}",
    "page": "22-quantum/index.html#C6",
    "witness": {
@@ -55516,7 +55516,7 @@
     ]
    },
    "refs": [],
-   "text": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the tally ring the complex conjugation, the one Galois involution that fixes the two-way subring pointwise and reduces to inversion. Lem. lem:involution, Prop. prop:reduction, prop:paircount, [akhtman2025lorentzian] p22022, FrcCore{C6} FRC.Observation.frobenius_unique, FRC.Observation.torus_conj_inv, FRC.Observation.exponent_negation"
+   "text": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the tally ring the complex conjugation, the one Galois involution whose pairing stays in the two-way subring, and it reduces to inversion. Lem. lem:involution, Prop. prop:reduction, prop:paircount, [akhtman2025lorentzian] p22022, FrcCore{C6} FRC.Observation.frobenius_unique, FRC.Observation.torus_conj_inv, FRC.Observation.exponent_negation"
   },
   {
    "paper": "22-qm",
@@ -55791,7 +55791,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved, the conjugate-pair trace tally and the setting-ensemble Parseval tally (Remark~\\ref{rem:strata}), given the stratum-sampling realisation B9.",
+   "statement": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout} [chart]; two reductions are proved, the conjugate-pair trace tally and the setting-ensemble Parseval tally (Remark~\\ref{rem:strata}), given the stratum-sampling realisation B9.",
    "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; rests on B4, C10, B9\\newline \\pywit{quantum}{p22027}{C11}, \\leanwit{FrcCore}{p22027}{C11} \\lean{FRC.Extension.conjugate\\_pair\\_tally, FRC.Extension.trace\\_recurrence, FRC.Extension.dial\\_shift, FRC.Extension.dial\\_tally, FRC.Extension.framed\\_readout}",
    "page": "22-quantum/index.html#C11",
    "witness": {
@@ -55851,7 +55851,7 @@
     "p22026",
     "p22062"
    ],
-   "text": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition def:readout; two reductions are proved, the conjugate-pair trace tally and the setting-ensemble Parseval tally (Remark rem:strata), given the stratum-sampling realisation B9. Prop. prop:strata, Rem. rem:strata; rests on B4, C10, B9 p22027, FrcCore{C11} FRC.Extension.conjugate_pair_tally, FRC.Extension.trace_recurrence, FRC.Extension.dial_shift, FRC.Extension.dial_tally, FRC.Extension.framed_readout"
+   "text": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition def:readout [chart]; two reductions are proved, the conjugate-pair trace tally and the setting-ensemble Parseval tally (Remark rem:strata), given the stratum-sampling realisation B9. Prop. prop:strata, Rem. rem:strata; rests on B4, C10, B9 p22027, FrcCore{C11} FRC.Extension.conjugate_pair_tally, FRC.Extension.trace_recurrence, FRC.Extension.dial_shift, FRC.Extension.dial_tally, FRC.Extension.framed_readout"
   },
   {
    "paper": "22-qm",
@@ -55862,7 +55862,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, drive-invariant, two-way registration functionals form the $d^2c$-realized character cone, the degree itself forced (Lemma~\\ref{lem:degree}); channel selectivity picks the Born ray.",
+   "statement": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, two-way registration functionals with a drive-covariant kernel form the $d^2c$-realised character cone, the degree itself forced (Lemma~\\ref{lem:degree}); channel selectivity picks the Born ray.",
    "source": "Prop.~\\ref{prop:gleason}\\newline \\pywit{quantum}{p22028}{C12}, \\leanwit{FrcCore}{p22028}{C12} \\lean{FRC.Extension.Tally.winding\\_fixing, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.two\\_way, FRC.Extension.Tally.fourier\\_inversion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.Tally.dft\\_det, FRC.Extension.Tally.cone\\_boundary, FRC.Extension.Tally.linear\\_exclusion}",
    "page": "22-quantum/index.html#C12",
    "witness": {
@@ -55943,7 +55943,7 @@
     "p00059",
     "p22028"
    ],
-   "text": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, drive-invariant, two-way registration functionals form the $d^2c$-realized character cone, the degree itself forced (Lemma lem:degree); channel selectivity picks the Born ray. Prop. prop:gleason p22028, FrcCore{C12} FRC.Extension.Tally.winding_fixing, FRC.Extension.Tally.tally_criterion, FRC.Extension.Tally.two_way, FRC.Extension.Tally.fourier_inversion, FRC.Extension.Tally.channel_selectivity, FRC.Extension.Tally.dft_det, FRC.Extension.Tally.cone_boundary, FRC.Extension.Tally.linear_exclusion"
+   "text": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, two-way registration functionals with a drive-covariant kernel form the $d^2c$-realised character cone, the degree itself forced (Lemma lem:degree); channel selectivity picks the Born ray. Prop. prop:gleason p22028, FrcCore{C12} FRC.Extension.Tally.winding_fixing, FRC.Extension.Tally.tally_criterion, FRC.Extension.Tally.two_way, FRC.Extension.Tally.fourier_inversion, FRC.Extension.Tally.channel_selectivity, FRC.Extension.Tally.dft_det, FRC.Extension.Tally.cone_boundary, FRC.Extension.Tally.linear_exclusion"
   },
   {
    "paper": "22-qm",
@@ -56202,7 +56202,7 @@
    "tag": "T",
    "name": null,
    "statement": "Exact Tsirelson saturation: the singlet law of Theorem~\\ref{thm:tsirelson} [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute.",
-   "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{prop:boundary}\\newline \\pywit{quantum}{p22033}{C17}, \\leanwit{FrcCore}{p22033}{C17}, \\leanwit{FrcMathlib}{p22033}{C17} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Composite.no\\_signalling, FRC.Observation.reduce\\_mul, FRC.Composite.carrier\\_641, Quantum.tsirelson\\_real, Quantum.singlet\\_law}",
+   "source": "Thm.~\\ref{thm:tsirelson}, Rem.~\\ref{prop:boundary}\\newline \\pywit{quantum}{p22033}{C17}, \\leanwit{FrcCore}{p22033}{C17}, \\leanwit{FrcMathlib}{p22033}{C17} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Composite.no\\_signalling, FRC.Observation.reduce\\_mul, FRC.Composite.carrier\\_641, Quantum.tsirelson\\_real, Quantum.singlet\\_law}",
    "page": "22-quantum/index.html#C17",
    "witness": {
     "py": {
@@ -56273,7 +56273,7 @@
    "refs": [
     "p00028"
    ],
-   "text": "Exact Tsirelson saturation: the singlet law of Theorem thm:tsirelson [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute. Thm. thm:tsirelson, Prop. prop:boundary p22033, FrcCore{C17}, FrcMathlib{C17} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, FRC.Composite.no_signalling, FRC.Observation.reduce_mul, FRC.Composite.carrier_641, Quantum.tsirelson_real, Quantum.singlet_law"
+   "text": "Exact Tsirelson saturation: the singlet law of Theorem thm:tsirelson [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute. Thm. thm:tsirelson, Rem. prop:boundary p22033, FrcCore{C17}, FrcMathlib{C17} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, FRC.Composite.no_signalling, FRC.Observation.reduce_mul, FRC.Composite.carrier_641, Quantum.tsirelson_real, Quantum.singlet_law"
   },
   {
    "paper": "22-qm",
@@ -56284,8 +56284,8 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The network table is the complex-quantum table, and the Bell-state measurement is the offset readout.",
-   "source": "Prop.~\\ref{prop:bsm}, Thm.~\\ref{thm:table}\\newline \\pywit{quantum}{p22034}{C18}, \\leanwit{FrcCore}{p22034}{C18} \\lean{FRC.Quantum.pair\\_offset, FRC.Composite.cluster\\_offset}",
+   "statement": "The network table is the complex-quantum table with the analyser families inserted, and the Bell-state measurement is the offset readout.",
+   "source": "Prop.~\\ref{prop:bsm}, Prop.~\\ref{thm:table}\\newline \\pywit{quantum}{p22034}{C18}, \\leanwit{FrcCore}{p22034}{C18} \\lean{FRC.Quantum.pair\\_offset, FRC.Composite.cluster\\_offset}",
    "page": "22-quantum/index.html#C18",
    "witness": {
     "py": {
@@ -56314,7 +56314,7 @@
     ]
    },
    "refs": [],
-   "text": "The network table is the complex-quantum table, and the Bell-state measurement is the offset readout. Prop. prop:bsm, Thm. thm:table p22034, FrcCore{C18} FRC.Quantum.pair_offset, FRC.Composite.cluster_offset"
+   "text": "The network table is the complex-quantum table with the analyser families inserted, and the Bell-state measurement is the offset readout. Prop. prop:bsm, Prop. thm:table p22034, FrcCore{C18} FRC.Quantum.pair_offset, FRC.Composite.cluster_offset"
   },
   {
    "paper": "22-qm",
@@ -56382,7 +56382,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "No spontaneous collapse; the dilation floor dephases with an exact revival $V(n)=1$.",
+   "statement": "No spontaneous collapse; the dilation floor dephases (Gaussian envelope [chart]) with an exact revival $V(n)=1$.",
    "source": "Prop.~\\ref{prop:nocollapse},~\\ref{prop:dilation}\\newline \\pywit{quantum}{p22036}{C20}, \\leanwit{FrcCore}{p22036}{C20} \\lean{FRC.Composite.drive\\_norm, FRC.Composite.revival, FRC.Quantum.joint\\_recurrence}",
    "page": "22-quantum/index.html#C20",
    "witness": {
@@ -56420,7 +56420,7 @@
     ]
    },
    "refs": [],
-   "text": "No spontaneous collapse; the dilation floor dephases with an exact revival $V(n)=1$. Prop. prop:nocollapse, prop:dilation p22036, FrcCore{C20} FRC.Composite.drive_norm, FRC.Composite.revival, FRC.Quantum.joint_recurrence"
+   "text": "No spontaneous collapse; the dilation floor dephases (Gaussian envelope [chart]) with an exact revival $V(n)=1$. Prop. prop:nocollapse, prop:dilation p22036, FrcCore{C20} FRC.Composite.drive_norm, FRC.Composite.revival, FRC.Quantum.joint_recurrence"
   },
   {
    "paper": "22-qm",
@@ -56431,7 +56431,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry.",
+   "statement": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions through the reduced channel [chart]; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry.",
    "source": "Prop.~\\ref{prop:fcoh}; rests on A4, C19, C22\\newline \\pywit{quantum}{p22037}{C21}, \\leanwit{FrcCore}{p22037}{C21} \\lean{FRC.Composite.branch\\_phase, FRC.Composite.pair\\_product, FRC.Composite.spread\\_cancels, FRC.Composite.channel\\_assembly}",
    "page": "22-quantum/index.html#C21",
    "witness": {
@@ -56483,7 +56483,7 @@
     "p22035",
     "p22038"
    ],
-   "text": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry. Prop. prop:fcoh; rests on A4, C19, C22 p22037, FrcCore{C21} FRC.Composite.branch_phase, FRC.Composite.pair_product, FRC.Composite.spread_cancels, FRC.Composite.channel_assembly"
+   "text": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions through the reduced channel [chart]; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry. Prop. prop:fcoh; rests on A4, C19, C22 p22037, FrcCore{C21} FRC.Composite.branch_phase, FRC.Composite.pair_product, FRC.Composite.spread_cancels, FRC.Composite.channel_assembly"
   },
   {
    "paper": "22-qm",
@@ -56495,7 +56495,7 @@
    "tag": "T",
    "name": null,
    "statement": "The two scaling laws and the exact equivalence-principle null: coherent $m^2$ against incoherent $m$, $\\eta=0$.",
-   "source": "Prop.~\\ref{prop:scaling}\\newline \\pywit{quantum}{p22038}{C22}, \\leanwit{FrcCore}{p22038}{C22} \\lean{FRC.Composite.field\\_linear, FRC.Composite.eta\\_zero, FRC.Composite.locked\\_norm, FRC.Composite.spread\\_average}",
+   "source": "Prop.~\\ref{prop:scaling}; rests on A4\\newline \\pywit{quantum}{p22038}{C22}, \\leanwit{FrcCore}{p22038}{C22} \\lean{FRC.Composite.field\\_linear, FRC.Composite.eta\\_zero, FRC.Composite.locked\\_norm, FRC.Composite.spread\\_average}",
    "page": "22-quantum/index.html#C22",
    "witness": {
     "py": {
@@ -56539,8 +56539,10 @@
      }
     ]
    },
-   "refs": [],
-   "text": "The two scaling laws and the exact equivalence-principle null: coherent $m^2$ against incoherent $m$, $\\eta=0$. Prop. prop:scaling p22038, FrcCore{C22} FRC.Composite.field_linear, FRC.Composite.eta_zero, FRC.Composite.locked_norm, FRC.Composite.spread_average"
+   "refs": [
+    "p22004"
+   ],
+   "text": "The two scaling laws and the exact equivalence-principle null: coherent $m^2$ against incoherent $m$, $\\eta=0$. Prop. prop:scaling; rests on A4 p22038, FrcCore{C22} FRC.Composite.field_linear, FRC.Composite.eta_zero, FRC.Composite.locked_norm, FRC.Composite.spread_average"
   },
   {
    "paper": "22-qm",
@@ -56600,7 +56602,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\\PhiO:\\core]>1$, classicality is the divisibility of the observer's frame, and the channel index still carries the winding information.",
+   "statement": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, $\\Omega$-hard: no embedded reader holds it); quantumness is the subgroup index $[\\PhiO:\\core]>1$, classicality is the divisibility of the observer's frame, and the channel index still carries the winding information.",
    "source": "Cor.~\\ref{cor:carrier}\\newline \\pywit{quantum}{p22040}{C24}, \\leanwit{FrcCore}{p22040}{C24} \\lean{FRC.Observation.classicality\\_index, FRC.Observation.selection, FRC.Composite.carrier\\_421}",
    "page": "22-quantum/index.html#C24",
    "witness": {
@@ -56638,7 +56640,7 @@
     ]
    },
    "refs": [],
-   "text": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\\PhiO:\\core]>1$, classicality is the divisibility of the observer's frame, and the channel index still carries the winding information. Cor. cor:carrier p22040, FrcCore{C24} FRC.Observation.classicality_index, FRC.Observation.selection, FRC.Composite.carrier_421"
+   "text": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, $\\Omega$-hard: no embedded reader holds it); quantumness is the subgroup index $[\\PhiO:\\core]>1$, classicality is the divisibility of the observer's frame, and the channel index still carries the winding information. Cor. cor:carrier p22040, FrcCore{C24} FRC.Observation.classicality_index, FRC.Observation.selection, FRC.Composite.carrier_421"
   },
   {
    "paper": "22-qm",
@@ -56649,7 +56651,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\\sqrt2$ [chart].",
+   "statement": "Values exist only as Subject-relative quotient phases, and the construction attains the Tsirelson strength $2\\sqrt2$ [chart] as a ring identity; Kochen--Specker therefore poses no separate threat to a theory that denies frame-independent values while carrying full quantum correlation strength.",
    "source": "\\S\\ref{sub:explicability}; rests on A7, B3, B6, C17\\newline \\pywit{quantum}{p22041}{C25}, \\leanwit{FrcCore}{p22041}{C25}, \\leanwit{FrcMathlib}{p22041}{C25} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Quantum.tsirelson\\_real}",
    "page": "22-quantum/index.html#C25",
    "witness": {
@@ -56692,7 +56694,7 @@
     "p22014",
     "p22033"
    ],
-   "text": "The measurement problem dissolved: Kochen–Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\\sqrt2$ [chart]. \\Ssub:explicability; rests on A7, B3, B6, C17 p22041, FrcCore{C25}, FrcMathlib{C25} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, Quantum.tsirelson_real"
+   "text": "Values exist only as Subject-relative quotient phases, and the construction attains the Tsirelson strength $2\\sqrt2$ [chart] as a ring identity; Kochen–Specker therefore poses no separate threat to a theory that denies frame-independent values while carrying full quantum correlation strength. \\Ssub:explicability; rests on A7, B3, B6, C17 p22041, FrcCore{C25}, FrcMathlib{C25} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, Quantum.tsirelson_real"
   },
   {
    "paper": "22-qm",
@@ -56872,7 +56874,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The readout law on the sweep: the extended readout lies within one grid step of its weight, is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings, and the largest-remainder counts of a protocol lie within one of the readout times the run count, at every setting and scale.",
+   "statement": "The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings [chart], and the grid allocation of a protocol lies within one of the readout times the run count, at every setting and scale.",
    "source": "Prop.~\\ref{prop:readoutlaw}; rests on A9, C10, C17\\newline \\pywit{quantum}{p22066}{C29}, \\leanwit{FrcCore}{p22066}{C29} \\lean{FRC.Strata.Readout.cells\\_all\\_settings, FRC.Strata.Readout.cells\\_P20, FRC.Strata.Readout.pair\\_sum, FRC.Strata.hamilton\\_count, FRC.Strata.Readout.tsirelson\\_restriction, FRC.Strata.Readout.classical\\_exact}",
    "page": "22-quantum/index.html#C29",
    "witness": {
@@ -56938,7 +56940,7 @@
     "p22033",
     "p22063"
    ],
-   "text": "The readout law on the sweep: the extended readout lies within one grid step of its weight, is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings, and the largest-remainder counts of a protocol lie within one of the readout times the run count, at every setting and scale. Prop. prop:readoutlaw; rests on A9, C10, C17 p22066, FrcCore{C29} FRC.Strata.Readout.cells_all_settings, FRC.Strata.Readout.cells_P20, FRC.Strata.Readout.pair_sum, FRC.Strata.hamilton_count, FRC.Strata.Readout.tsirelson_restriction, FRC.Strata.Readout.classical_exact"
+   "text": "The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings [chart], and the grid allocation of a protocol lies within one of the readout times the run count, at every setting and scale. Prop. prop:readoutlaw; rests on A9, C10, C17 p22066, FrcCore{C29} FRC.Strata.Readout.cells_all_settings, FRC.Strata.Readout.cells_P20, FRC.Strata.Readout.pair_sum, FRC.Strata.hamilton_count, FRC.Strata.Readout.tsirelson_restriction, FRC.Strata.Readout.classical_exact"
   },
   {
    "paper": "22-qm",
@@ -57064,7 +57066,7 @@
    "block": "P",
    "tag": "T",
    "name": null,
-   "statement": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
+   "statement": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S\\neq2\\sqrt2$ or non-quantum network behaviour each falsify.",
    "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{thm:table}; rests on B2, B5, C11, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcMathlib}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Quantum.tsirelson\\_real}",
    "page": "22-quantum/index.html#P3",
    "witness": {
@@ -57116,7 +57118,7 @@
     "p22033",
     "p22034"
    ],
-   "text": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify. Thm. thm:tsirelson, Prop. thm:table; rests on B2, B5, C11, C17, C18 p22054, FrcCore{P3}, FrcMathlib{P3} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, FRC.Quantum.pair_offset, Quantum.tsirelson_real"
+   "text": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S\\neq2\\sqrt2$ or non-quantum network behaviour each falsify. Thm. thm:tsirelson, Prop. thm:table; rests on B2, B5, C11, C17, C18 p22054, FrcCore{P3}, FrcMathlib{P3} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, FRC.Quantum.pair_offset, Quantum.tsirelson_real"
   },
   {
    "paper": "22-qm",
@@ -57397,7 +57399,7 @@
    "block": "X",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{The dynamical measurement problem} dissolves: collapse is the re-metrisation of a relational chart, no disturbance propagates, and distinct Subjects never disagree on what they share.",
+   "statement": "\\textbf{The dynamical measurement problem}: collapse is the L\\\"uders re-metrisation of a relational chart, the update propagates no disturbance, and distinct Subjects agree on the shared core with order-independent joint refinement; no collapse mechanism is needed.",
    "source": "Rem.~\\ref{rem:collapse}, Prop.~\\ref{prop:intersubject}\\newline \\pywit{quantum}{p22047}{X4}, \\leanwit{FrcCore}{p22047}{X4} \\lean{FRC.Composite.joint\\_refinement, FRC.Composite.order\\_independence, FRC.Observation.lueders}",
    "page": "22-quantum/index.html#X4",
    "witness": {
@@ -57435,7 +57437,7 @@
     ]
    },
    "refs": [],
-   "text": "The dynamical measurement problem dissolves: collapse is the re-metrisation of a relational chart, no disturbance propagates, and distinct Subjects never disagree on what they share. Rem. rem:collapse, Prop. prop:intersubject p22047, FrcCore{X4} FRC.Composite.joint_refinement, FRC.Composite.order_independence, FRC.Observation.lueders"
+   "text": "The dynamical measurement problem: collapse is the L\\\"uders re-metrisation of a relational chart, the update propagates no disturbance, and distinct Subjects agree on the shared core with order-independent joint refinement; no collapse mechanism is needed. Rem. rem:collapse, Prop. prop:intersubject p22047, FrcCore{X4} FRC.Composite.joint_refinement, FRC.Composite.order_independence, FRC.Observation.lueders"
   },
   {
    "paper": "22-qm",
@@ -57495,7 +57497,7 @@
    "block": "X",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's tally ring, a finite-relational provenance theorem for the Born calculus in which the substrate determines the tally ring, the measurement family and the readout (calibrated against the counting and cyclotomic precedents of Section~\\ref{sec:intro}).",
+   "statement": "\\textbf{Native probability over a finite substrate}: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus, set against the counting and cyclotomic precedents of Section~\\ref{sec:intro}.",
    "source": "\\S\\ref{sec:ledger}\\newline \\pywit{quantum}{p22049}{X6}, \\leanwit{FrcCore}{p22049}{X6} \\lean{FRC.Observation.window\\_lift, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.framed\\_readout}",
    "page": "22-quantum/index.html#X6",
    "witness": {
@@ -57541,7 +57543,7 @@
     ]
    },
    "refs": [],
-   "text": "Native probability over a finite substrate: the unordered-field obstruction is cleared by keeping counts in the observer's tally ring, a finite-relational provenance theorem for the Born calculus in which the substrate determines the tally ring, the measurement family and the readout (calibrated against the counting and cyclotomic precedents of Section sec:intro). \\Ssec:ledger p22049, FrcCore{X6} FRC.Observation.window_lift, FRC.Extension.Tally.tally_criterion, FRC.Extension.Tally.channel_selectivity, FRC.Extension.framed_readout"
+   "text": "Native probability over a finite substrate: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus, set against the counting and cyclotomic precedents of Section sec:intro. \\Ssec:ledger p22049, FrcCore{X6} FRC.Observation.window_lift, FRC.Extension.Tally.tally_criterion, FRC.Extension.Tally.channel_selectivity, FRC.Extension.framed_readout"
   },
   {
    "paper": "22-qm",
@@ -57603,7 +57605,7 @@
    "block": "X",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down.",
+   "statement": "\\textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden band, any nonzero value a multiple of $\\Omega$, not a small number to be measured down.",
    "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}\\newline \\pywit{quantum}{p22051}{X8}, \\leanwit{FrcCore}{p22051}{X8}, \\leanwit{FrcMathlib}{p22051}{X8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Quantum.sorkin\\_hierarchy}",
    "page": "22-quantum/index.html#X8",
    "witness": {
@@ -57641,7 +57643,7 @@
     ]
    },
    "refs": [],
-   "text": "Higher-order interference is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down. Cor. cor:sorkin, Rem. rem:horizon p22051, FrcCore{X8}, FrcMathlib{X8} FRC.Interference.sorkin_hierarchy, FRC.Observation.wrap_quantised, Quantum.sorkin_hierarchy"
+   "text": "Higher-order interference is forbidden exactly: the Sorkin hierarchy is zero with a forbidden band, any nonzero value a multiple of $\\Omega$, not a small number to be measured down. Cor. cor:sorkin, Rem. rem:horizon p22051, FrcCore{X8}, FrcMathlib{X8} FRC.Interference.sorkin_hierarchy, FRC.Observation.wrap_quantised, Quantum.sorkin_hierarchy"
   },
   {
    "paper": "22-qm",

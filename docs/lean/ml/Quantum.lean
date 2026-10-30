@@ -117,7 +117,7 @@ theorem p22033 : (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (
 /-- 22:C19 (p22035) — The gravitational channel entangles exactly, $C^2=\sin^2(\varphi/2)$ [chart], with the pure-channel complementarity $V^2+C^2=1$. -/
 theorem p22035 : (∀ (φ : ℝ), (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) + Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / (2 : ℂ) = ↑(Real.cos (φ / (2 : ℝ))) ∧ (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) - Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / ((2 : ℂ) * Complex.I) = ↑(Real.sin (φ / (2 : ℝ))) ∧ Real.cos (φ / (2 : ℝ)) ^ (2 : ℕ) + Real.sin (φ / (2 : ℝ)) ^ (2 : ℕ) = (1 : ℝ) ∧ Real.sin (0 / 2 : ℝ) = (0 : ℝ)) ∧ ∀ (φ : ℝ), (0 : ℝ) < φ → φ < (2 : ℝ) * Real.pi → Real.sin (φ / (2 : ℝ)) ≠ (0 : ℝ) :=
   @FRC.LedgerML.p22035
-/-- 22:C25 (p22041) — The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\sqrt2$ [chart]. -/
+/-- 22:C25 (p22041) — Values exist only as Subject-relative quotient phases, and the construction attains the Tsirelson strength $2\sqrt2$ [chart] as a ring identity; Kochen--Specker therefore poses no separate threat to a theory that denies frame-independent values while carrying full quantum correlation strength. -/
 theorem p22041 : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ) :=
   @FRC.LedgerML.p22041
 /-- 22:X1 (p22044) — \textbf{The Born rule} is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional --- on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11). -/
@@ -126,7 +126,7 @@ theorem p22044 : ∀ (z : GaussianInt), z * star z = ↑(Zsqrtd.norm z) ∧ (0 :
 /-- 22:X7 (p22050) — \textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\zeta_8+\zeta_8^{-1})=2\sqrt2$ [chart], so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary. -/
 theorem p22050 : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ) :=
   @FRC.LedgerML.p22050
-/-- 22:X8 (p22051) — \textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down. -/
+/-- 22:X8 (p22051) — \textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden band, any nonzero value a multiple of $\Omega$, not a small number to be measured down. -/
 theorem p22051 : ∀ {R : Type u_1} [CommRing R] {c : R → R}, (∀ (x y : R), c (x + y) = c x + c y) → ∀ (a : ℕ → R) (k : ℕ) (x : R), FRC.QuantumML.mixedDiff a (fun x => x * c x) (k + (3 : ℕ)) x = (0 : R) :=
   @FRC.LedgerML.p22051
 /-- 22:P1 (p22052) — Gravitationally induced entanglement at the Newtonian rate for fully coherent sources and at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry the conditional phase, the incoherent channel separable at generic geometry. The one dated forward prediction. -/
@@ -135,7 +135,7 @@ theorem p22052 : ∀ (φ : ℝ), (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) 
 /-- 22:P2 (p22053) — Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\Omega$: a single confirmed small $I_3\neq0$ falsifies outright. -/
 theorem p22053 : ∀ {R : Type u_1} [CommRing R] {c : R → R}, (∀ (x y : R), c (x + y) = c x + c y) → ∀ (a : ℕ → R) (k : ℕ) (x : R), FRC.QuantumML.mixedDiff a (fun x => x * c x) (k + (3 : ℕ)) x = (0 : R) :=
   @FRC.LedgerML.p22053
-/-- 22:P3 (p22054) — The Tsirelson value $S=2\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: vacuum dispersion, $S\neq2\sqrt2$, or non-quantum network behaviour each falsify. -/
+/-- 22:P3 (p22054) — The Tsirelson value $S=2\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S\neq2\sqrt2$ or non-quantum network behaviour each falsify. -/
 theorem p22054 : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ) :=
   @FRC.LedgerML.p22054
 /-- 22:P5 (p22056) — Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\sqrt\Omega$), not gradual. -/

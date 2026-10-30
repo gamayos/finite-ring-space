@@ -23,7 +23,7 @@ theorem p22030 : (∀ (m : ℕ), FRC.QuantumML.onePlusI ^ ((2 : ℕ) * m) = (2 :
 /-- p22044 — 22:X1. \textbf{The Born rule} is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional --- on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11). -/
 theorem p22044 : ∀ (z : GaussianInt), z * star z = ↑(Zsqrtd.norm z) ∧ (0 : ℤ) ≤ Zsqrtd.norm z :=
   @FRC.QuantumML.pair_count_tally
-/-- p22051 — 22:X8. \textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down. -/
+/-- p22051 — 22:X8. \textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden band, any nonzero value a multiple of $\Omega$, not a small number to be measured down. -/
 theorem p22051 : ∀ {R : Type u_1} [CommRing R] {c : R → R}, (∀ (x y : R), c (x + y) = c x + c y) → ∀ (a : ℕ → R) (k : ℕ) (x : R), FRC.QuantumML.mixedDiff a (fun x => x * c x) (k + (3 : ℕ)) x = (0 : R) :=
   @FRC.QuantumML.sorkin_hierarchy
 /-- p22053 — 22:P2. Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\Omega$: a single confirmed small $I_3\neq0$ falsifies outright. -/
