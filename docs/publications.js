@@ -447,14 +447,14 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p22_quantum.ipynb",
         "label": "python",
-        "count": 44,
-        "title": "44 predicates checked, all passing: the notebook p22_quantum.ipynb on Google Colab, one cell per predicate"
+        "count": 49,
+        "title": "49 predicates checked, all passing: the notebook p22_quantum.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Quantum.lean",
         "label": "lean",
-        "count": 42,
-        "title": "42 predicates proved in the core (no axioms), 13 of them also on Mathlib: the core module Quantum as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 46,
+        "title": "46 predicates proved in the core (no axioms), 13 of them also on Mathlib: the core module Quantum as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Quantum.lean",
@@ -801,4 +801,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "29 October 2026";
+const GENERATED = "31 October 2026";

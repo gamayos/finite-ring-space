@@ -3,7 +3,7 @@
  "tree": "22-quantum-20260625",
  "title": "Quantum Observation over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1160.v2",
- "generated": "30 October 2026",
+ "generated": "31 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -67,10 +67,17 @@
     },
     {
      "label": "A9",
-     "predicate": "The extended framed readout: a two-way weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element in the standard embedding [chart], decided by its minimal polynomial, in place of the integer square root; the two weights of a setting share the integer part, so their readouts sum exactly.",
+     "predicate": "The extended framed readout: a two-way weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element in the standard embedding [chart], decided by its minimal polynomial; the two weights of a setting share the integer part, so their readouts sum exactly.",
      "tag": "D",
      "source": "Def.~\\ref{def:readout}",
      "key": "p22063"
+    },
+    {
+     "label": "A10",
+     "predicate": "The operational coherent fraction: the normalised systematic conditional phase rate of a source's pair run against a spread-free reference of independently prepared cells, the full-mass rate as unit and the spread argument removed; a flat self-visibility certifies the reference under the clause of B8, exact at a unit tick and over the window within the protocol's resolution [chart].",
+     "tag": "D",
+     "source": "Def.~\\ref{def:fop}; rests on B8, C20, C21",
+     "key": "p22067"
     }
    ]
   },
@@ -101,14 +108,14 @@
     },
     {
      "label": "B4",
-     "predicate": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio.",
+     "predicate": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: a registered frequency on the stationary sector away from the uniform count, or a non-uniform frequency off the pair count (C7), beyond the protocol's statistical allowance.",
      "tag": "R",
      "source": "Def.~\\ref{def:ledger}, Prop.~\\ref{prop:paircount}",
      "key": "p22012"
     },
     {
      "label": "B5",
-     "predicate": "Composition is conservation, and composite states live on the product tally ring of rank $n_An_B$: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, and a composite is a drive-confined synchronised orbit. Falsifier: a CHSH value significantly above $2\\sqrt2$, a Bell-state correlator off the singlet law, or network behaviour outside Proposition~\\ref{thm:table}.",
+     "predicate": "Composition is conservation: one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit, and an incoherent ensemble of offsets, phase or winding, is prepared sector-diagonal (Proposition~\\ref{prop:unequal}(iii)). Falsifier: a CHSH value significantly above $2\\sqrt2$ [chart], a Bell-state correlator off the singlet law, or network behaviour outside Proposition~\\ref{thm:table}.",
      "tag": "R",
      "source": "Prop.~\\ref{prop:offset}, Def.~\\ref{def:composite}, Prop.~\\ref{prop:unequal}(iii)",
      "key": "p22013"
@@ -122,21 +129,21 @@
     },
     {
      "label": "B7",
-     "predicate": "Measurement settings are relational repositionings of the analyser along the carrier, $u\\mapsto \\gen^{-j}u$: shifts of the Object offset $\\dt$. Falsifier: a setting dependence of the CHSH correlator not expressible as an offset shift.",
+     "predicate": "Measurement settings are relational repositionings of the analyser along the Carrier, $u\\mapsto \\gen^{-j}u$: shifts of the Object offset $\\dt$. Falsifier: a setting dependence of the CHSH correlator not expressible as an offset shift.",
      "tag": "R",
      "source": "Def.~\\ref{def:chshsettings}",
      "key": "p22015"
     },
     {
      "label": "B8",
-     "predicate": "Gravity is an entangling channel by \\emph{reciprocal synchronisation}, the declared interaction identification: the conserved offset turns the gravitational relaxation of phase drift \\citep{akhtman2026gravity} into the conditional phase, and spread pairs imprint which-branch data on the source (C21). Falsifier: gravitationally induced entanglement off the Newtonian rate, or force not by full mass (P1); $\\eta\\neq0$ (C22).",
+     "predicate": "Gravity entangles by \\emph{reciprocal synchronisation}, phase-drift relaxation \\citep{akhtman2026gravity} as conditional phase. Spread is by winding, not phase, with no weight-one offset; every cell gravitates; a locked pair carries one step phase per coupling step per branch, a spread pair its offset times it (C21). Falsifier: entanglement of spread-free sources off the Newtonian rate, force not by full mass, $\\eta\\neq0$ (P1, C22).",
      "tag": "R",
      "source": "\\S\\ref{sec:gravchannel}, Prop.~\\ref{prop:bmvmech}, Prop.~\\ref{prop:fcoh}",
      "key": "p22016"
     },
     {
      "label": "B9",
-     "predicate": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers, at the resolution $B$ affords, the readout grid point of Definition~\\ref{def:readout}, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance.",
+     "predicate": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers the readout grid point of Definition~\\ref{def:readout}, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance.",
      "tag": "R",
      "source": "Rem.~\\ref{rem:strata}, Rem.~\\ref{rem:borndomain}, Def.~\\ref{def:readout}",
      "key": "p22062"
@@ -163,7 +170,7 @@
     },
     {
      "label": "C3",
-     "predicate": "The measurement vectors are a forced orthogonal basis: orthogonality $d\\,\\delta\\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is einselected by the algebra of the frames.",
+     "predicate": "The measurement vectors are a forced orthogonal basis: orthogonality $d\\,\\delta\\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is selected by the algebra of the frames.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:basis}\\newline \\pywit{quantum}{p22019}{C3}, \\leanwit{FrcCore}{p22019}{C3} \\lean{FRC.Observation.orthogonality, FRC.Observation.parseval, FRC.Extension.Tally.fourier\\_inversion, FRC.Extension.Tally.dft\\_det}",
      "key": "p22019"
@@ -191,7 +198,7 @@
     },
     {
      "label": "C7",
-     "predicate": "Squared amplitudes are coincidence counts (the pair-count identity), realized tallies on $\\Z[\\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$.",
+     "predicate": "Squared amplitudes are coincidence counts (the pair-count identity), realised tallies on $\\Z[\\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:paircount}, Lem.~\\ref{lem:registered}\\newline \\pywit{quantum}{p22023}{C7}, \\leanwit{FrcCore}{p22023}{C7}, \\leanwit{FrcMathlib}{p22023}{C7} \\lean{FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Observation.parseval, FRC.Quantum.dephasing, Quantum.pair\\_count\\_tally}",
      "key": "p22023"
@@ -212,7 +219,7 @@
     },
     {
      "label": "C10",
-     "predicate": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow, the probability a framed-rational ratio of coincidence counts completed in finitely many chronons, and the two strata coincide on this sector; on a single Object the weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), and every non-uniform statistic passes through C11.",
+     "predicate": "The uniform counting rule on stationary core-valued sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow, the probability a framed-rational ratio of coincidence counts, and the two strata coincide on this sector; on a single Object the weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), and every non-uniform statistic passes through C11.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:born}, Prop.~\\ref{prop:strata}, Def.~\\ref{def:registered}, Rem.~\\ref{rem:ergodic}\\newline \\pywit{quantum}{p22026}{C10}, \\leanwit{FrcCore}{p22026}{C10} \\lean{FRC.Extension.two\\_way\\_tally, FRC.Extension.core\\_weights, FRC.Extension.root\\_two\\_two\\_way, FRC.Extension.framed\\_readout, FRC.Observation.window\\_lift, FRC.Observation.pure\\_winding\\_weight, FRC.Quantum.joint\\_recurrence}",
      "key": "p22026"
@@ -226,7 +233,7 @@
     },
     {
      "label": "C12",
-     "predicate": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, two-way registration functionals with a drive-covariant kernel form the $d^2c$-realised character cone, the degree itself forced (Lemma~\\ref{lem:degree}); channel selectivity picks the Born ray.",
+     "predicate": "Classification of the fibre-local registration functionals on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-local, drive-covariant, two-way sesquilinear families have kernels that are class functions of the core with realised-tally coefficients, the degree itself forced (Lemma~\\ref{lem:degree}); the pair count is the only channel-selective member, up to a tally multiplier.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:gleason}\\newline \\pywit{quantum}{p22028}{C12}, \\leanwit{FrcCore}{p22028}{C12} \\lean{FRC.Extension.Tally.winding\\_fixing, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.two\\_way, FRC.Extension.Tally.fourier\\_inversion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.Tally.dft\\_det, FRC.Extension.Tally.cone\\_boundary, FRC.Extension.Tally.linear\\_exclusion}",
      "key": "p22028"
@@ -261,7 +268,7 @@
     },
     {
      "label": "C17",
-     "predicate": "Exact Tsirelson saturation: the singlet law of Theorem~\\ref{thm:tsirelson} [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute.",
+     "predicate": "Exact Tsirelson saturation: the singlet law of Theorem~\\ref{thm:tsirelson}, its cosine form [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:tsirelson}, Rem.~\\ref{prop:boundary}\\newline \\pywit{quantum}{p22033}{C17}, \\leanwit{FrcCore}{p22033}{C17}, \\leanwit{FrcMathlib}{p22033}{C17} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Composite.no\\_signalling, FRC.Observation.reduce\\_mul, FRC.Composite.carrier\\_641, Quantum.tsirelson\\_real, Quantum.singlet\\_law}",
      "key": "p22033"
@@ -289,9 +296,9 @@
     },
     {
      "label": "C21",
-     "predicate": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions through the reduced channel [chart]; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry.",
+     "predicate": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions through the reduced channel [chart]; the identification reciprocal synchronisation (B8), and the completely spread channel is separable at nondegenerate geometry (C34).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:fcoh}; rests on A4, C19, C22\\newline \\pywit{quantum}{p22037}{C21}, \\leanwit{FrcCore}{p22037}{C21} \\lean{FRC.Composite.branch\\_phase, FRC.Composite.pair\\_product, FRC.Composite.spread\\_cancels, FRC.Composite.channel\\_assembly}",
+     "source": "Prop.~\\ref{prop:fcoh}; rests on A4, B8, C19, C22\\newline \\pywit{quantum}{p22037}{C21}, \\leanwit{FrcCore}{p22037}{C21} \\lean{FRC.Composite.branch\\_phase, FRC.Composite.pair\\_product, FRC.Composite.spread\\_cancels, FRC.Composite.channel\\_assembly}",
      "key": "p22037"
     },
     {
@@ -345,10 +352,45 @@
     },
     {
      "label": "C29",
-     "predicate": "The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings [chart], and the grid allocation of a protocol lies within one of the readout times the run count, at every setting and scale.",
+     "predicate": "The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings with positive trace element [chart], and the grid allocation of a protocol lies within one of the readout times the run count.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:readoutlaw}; rests on A9, C10, C17\\newline \\pywit{quantum}{p22066}{C29}, \\leanwit{FrcCore}{p22066}{C29} \\lean{FRC.Strata.Readout.cells\\_all\\_settings, FRC.Strata.Readout.cells\\_P20, FRC.Strata.Readout.pair\\_sum, FRC.Strata.hamilton\\_count, FRC.Strata.Readout.tsirelson\\_restriction, FRC.Strata.Readout.classical\\_exact}",
      "key": "p22066"
+    },
+    {
+     "label": "C30",
+     "predicate": "The calibration law: the normalised rate of a pair run is the product of the two coherent fractions, against a spread-free reference of independent cells certified under the clause of B8 it is the source's own fraction, and the off-diagonal rate table is rank one, each nonzero fraction recovered from three runs; standard quantum mechanics is the table of ones.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:calibration}(i), (ii); rests on A10, B8, C21, C22\\newline \\pywit{quantum}{p22068}{C30}, \\leanwit{FrcCore}{p22068}{C30} \\lean{FRC.Calibration.reference\\_rate, FRC.Calibration.recover\\_sq, FRC.Calibration.quad\\_consistency, FRC.Calibration.unit\\_table}",
+     "key": "p22068"
+    },
+    {
+     "label": "C31",
+     "predicate": "Factorisation for independent preparation: with the pair phase additive in the cells' winding offsets, the spread characteristic of a two-source run is the product of the two sources' own spread characteristics, each at its own argument, so the pairwise characteristics of the channel follow from per-source data.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:calibration}(iii); rests on B8, C21\\newline \\pywit{quantum}{p22069}{C31}, \\leanwit{FrcCore}{p22069}{C31} \\lean{FRC.Calibration.dsum\\_eq}",
+     "key": "p22069"
+    },
+    {
+     "label": "C32",
+     "predicate": "Exact recovery over one recurrence: inversion on the cycle recovers the spread occupation from its characteristic function exactly, and with it the certificate and every fraction; a laboratory recurrence exceeds every proposed observation window \\citep{roadmap2022}, so a window reads the certificate and the normalised rates within the protocol's resolution [chart].",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:calibration}(iv); rests on C20, C30\\newline \\pywit{quantum}{p22070}{C32}",
+     "key": "p22070"
+    },
+    {
+     "label": "C33",
+     "predicate": "The domain of the normalised rate: $|\\Gamma_{ij}|=|\\chi_{ij}|$; a recurrence lies in it; a completely spread cell at a nontrivial character removes every other differential; a geometric law has $0<|\\chi|<1$ at every nontrivial argument; a two-point law on $\\Z_{12}$ vanishes at a non-recurrence argument; unit contrast at the unit tick forces a point occupation, under independence a locked source.",
+     "tag": "T",
+     "source": "Lemma~\\ref{lem:domain}; rests on C21, C30, C31\\newline \\pywit{quantum}{p22071}{C33}, \\leanwit{FrcCore}{p22071}{C33} \\lean{FRC.Calibration.complete\\_spread\\_zero, FRC.Calibration.two\\_point\\_zero}",
+     "key": "p22071"
+    },
+    {
+     "label": "C34",
+     "predicate": "Entanglement under spread: with a completely spread cell at nondegenerate geometry the registered state is the separable partition state whatever $f_1f_2$, in three classes, each positive under partial transposition; three equal separations entangle it, least partial-transpose eigenvalue $(1-\\sqrt3)/4$ [chart]; nonuniform laws entangle at some geometries and not at others; a locally additive spread phase alone never entangles.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:spreadent}; rests on B8, C21, C31\\newline \\pywit{quantum}{p22072}{C34}, \\leanwit{FrcCore}{p22072}{C34} \\lean{FRC.Calibration.pt\\_psd\\_classes, FRC.Calibration.three\\_equal\\_npt, FRC.Calibration.nondegenerate\\_classes}",
+     "key": "p22072"
     }
    ]
   },
@@ -358,7 +400,7 @@
    "rows": [
     {
      "label": "X1",
-     "predicate": "\\textbf{The Born rule} is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional --- on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11).",
+     "predicate": "\\textbf{The Born rule} is a coincidence count on its stationary domain, where it is uniform and is the unique window lift of its Carrier shadow; its quadratic form is the pair-count identity (C7), not a postulate, and the non-uniform statistics are read through the ninth realisation and the framed readout (C11).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}\\newline \\pywit{quantum}{p22044}{X1}, \\leanwit{FrcCore}{p22044}{X1}, \\leanwit{FrcMathlib}{p22044}{X1} \\lean{FRC.Observation.window\\_lift, FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Extension.two\\_way\\_tally, Quantum.pair\\_count\\_tally}",
      "key": "p22044"
@@ -372,7 +414,7 @@
     },
     {
      "label": "X3",
-     "predicate": "\\textbf{The preferred basis} is the Subject's own phase anatomy, einselected by the algebra of the frames rather than by a model of the environment.",
+     "predicate": "\\textbf{The preferred basis} is the Subject's own phase anatomy, selected by the algebra of the frames rather than by a model of the environment.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:basis}\\newline \\pywit{quantum}{p22046}{X3}, \\leanwit{FrcCore}{p22046}{X3} \\lean{FRC.Observation.orthogonality, FRC.Observation.selection}",
      "key": "p22046"
@@ -393,7 +435,7 @@
     },
     {
      "label": "X6",
-     "predicate": "\\textbf{Native probability over a finite substrate}: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus, set against the counting and cyclotomic precedents of Section~\\ref{sec:intro}.",
+     "predicate": "\\textbf{Native probability over a finite substrate}: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus.",
      "tag": "T",
      "source": "\\S\\ref{sec:ledger}\\newline \\pywit{quantum}{p22049}{X6}, \\leanwit{FrcCore}{p22049}{X6} \\lean{FRC.Observation.window\\_lift, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.framed\\_readout}",
      "key": "p22049"
@@ -416,13 +458,13 @@
   },
   {
    "letter": "P",
-   "title": "Falsifiable predictions: the exposures",
+   "title": "Falsifiable predictions: the exposures, each from the rows it rests on (P1: B8)",
    "rows": [
     {
      "label": "P1",
-     "predicate": "Gravitationally induced entanglement at the Newtonian rate for fully coherent sources and at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry the conditional phase, the incoherent channel separable at generic geometry. The one dated forward prediction.",
+     "predicate": "Gravitational entanglement at the Newtonian rate for fully coherent sources, and the systematic conditional phase at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry its systematic part; unconditional at $f_1=f_2=1$, conditional on the calibration (A10) below it.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C11, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Quantum.channel\\_chart}",
+     "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, A10, B8, C11, C19, C21, C30\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Quantum.channel\\_chart}",
      "key": "p22052"
     },
     {
@@ -434,7 +476,7 @@
     },
     {
      "label": "P3",
-     "predicate": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S\\neq2\\sqrt2$ or non-quantum network behaviour each falsify.",
+     "predicate": "$S^2=8$ exact, $S=2\\sqrt2$ under the standard embedding [chart], and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S^2\\neq8$, or non-quantum network behaviour once the analyser families are derived natively, each falsify.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{thm:table}; rests on B2, B5, C11, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcMathlib}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Quantum.tsirelson\\_real}",
      "key": "p22054"
@@ -475,7 +517,7 @@
     },
     {
      "label": "Z3",
-     "predicate": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega=1.3\\times10^{123}$ [approx], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table~\\ref{tab:omega} lies below it.",
+     "predicate": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega\\approx1.3\\times10^{123}$ [approx], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table~\\ref{tab:omega} lies below it.",
      "tag": "Ω",
      "source": "\\S\\ref{sub:predictions}, Tab.~\\ref{tab:omega}, \\citep{gibbonshawking1977,planck2018}\\newline \\pywit{quantum}{p22005}{Z3}, \\leanwit{FrcMathlib}{p22005}{Z3} \\lean{Quantum.omega\\_floors}",
      "key": "p22005"
@@ -1696,6 +1738,104 @@
     "tier": 0,
     "ok": true,
     "doc": "22:C29 — the four classical settings read exactly: the cell is the exact point `Gc` (`hom = 0`), the readout is the weight."
+   }
+  ],
+  "C30": [
+   {
+    "name": "FRC.Calibration.reference_rate",
+    "module": "FrcCore/Theme/Calibration",
+    "line": 46,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C30 — against a spread-free reference (`c = m`) the normalised rate of the pair run is the source's own fraction: `(c_i m) / (m_i m) = c_i / m_i`."
+   },
+   {
+    "name": "FRC.Calibration.recover_sq",
+    "module": "FrcCore/Theme/Calibration",
+    "line": 52,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C30 — recovery from three pair runs: `ρ_ij ρ_ik = ρ_jk (c_i/m_i)²` as fractions, so the square of each fraction is the product of its two rates over the third."
+   },
+   {
+    "name": "FRC.Calibration.quad_consistency",
+    "module": "FrcCore/Theme/Calibration",
+    "line": 58,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C30 — the rank-one table: `ρ_ij ρ_kl = ρ_ik ρ_jl` for four sources, every quadruple a consistency test of the law."
+   },
+   {
+    "name": "FRC.Calibration.unit_table",
+    "module": "FrcCore/Theme/Calibration",
+    "line": 64,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C30 — two spread-free sources give the unit entry: the standard theory is the table of ones."
+   }
+  ],
+  "C31": [
+   {
+    "name": "FRC.Calibration.dsum_eq",
+    "module": "FrcCore/Theme/Calibration",
+    "line": 100,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C31 — the product rule for independent ensembles: the double sum of the products of two weighted tables is the product of their sums, `Σᵢ Σⱼ (pᵢ qⱼ)(gᵢ hⱼ) = (Σᵢ pᵢ gᵢ)(Σⱼ qⱼ hⱼ)`; the pairwise spread characteristic of two independently prepared sources is the product of their own characteristics."
+   }
+  ],
+  "C33": [
+   {
+    "name": "FRC.Calibration.complete_spread_zero",
+    "module": "FrcCore/Theme/Calibration",
+    "line": 120,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C33 (ii) — a completely spread cell at a nontrivial character: on a prime shell the complete sum of a character of order dividing `n` vanishes, `Σ_{ξ<n} w^ξ = 0` for `w^n = 1`, `w ≠ 1` (the telescoping geometric sum, then no zero divisors). With `w = ζ^{mΔ}` this is the vanishing of the uniform law's characteristic at every nontrivial argument."
+   },
+   {
+    "name": "FRC.Calibration.two_point_zero",
+    "module": "FrcCore/Theme/Calibration",
+    "line": 130,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C33 (iv) — the two-point law `(δ₀ + δ₅)/2` on the cycle of order 12 vanishes at the argument 6: for `ζ` of order 12 on a prime shell, `ζ^6` squares to one and is not one, so it is `−1`, and `1 + ζ^{30} = 1 + ζ^6 = 0`."
+   }
+  ],
+  "C34": [
+   {
+    "name": "FRC.Calibration.pt_psd_classes",
+    "module": "FrcCore/Theme/Calibration",
+    "line": 197,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C34 (i) — the three nondegenerate classes are positive under partial transposition, hence separable (Peres–Horodecki for two qubits): every principal minor of the three integer forms is nonnegative."
+   },
+   {
+    "name": "FRC.Calibration.three_equal_npt",
+    "module": "FrcCore/Theme/Calibration",
+    "line": 201,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C34 (ii) — three equal separations: the partial transpose has a negative determinant, `−2` on the integer form, so an eigenvalue is negative and the complete-spread state is entangled."
+   },
+   {
+    "name": "FRC.Calibration.nondegenerate_classes",
+    "module": "FrcCore/Theme/Calibration",
+    "line": 240,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C34 (i) — the nondegenerate geometries fall into exactly three classes by block sizes, four distinct, one pair equal and two pairs equal: every nondegenerate labelling has one of the three block-size patterns, and each pattern occurs."
    }
   ],
   "X1": [

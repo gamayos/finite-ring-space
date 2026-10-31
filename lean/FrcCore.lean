@@ -50,6 +50,7 @@ import FrcCore.Theme.Observation
 import FrcCore.Theme.Interference
 import FrcCore.Theme.Composite
 import FrcCore.Theme.Strata
+import FrcCore.Theme.Calibration
 import FrcCore.Theme.Unitary
 import FrcCore.Theme.Interactions
 import FrcCore.Theme.Fields

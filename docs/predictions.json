@@ -1,5 +1,5 @@
 {
- "generated": "30 October 2026",
+ "generated": "31 October 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -233,8 +233,8 @@
    "label": "P1",
    "key": "p22052",
    "tag": "T",
-   "predicate": "Gravitationally induced entanglement at the Newtonian rate for fully coherent sources and at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry the conditional phase, the incoherent channel separable at generic geometry. The one dated forward prediction.",
-   "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C11, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Quantum.channel\\_chart}",
+   "predicate": "Gravitational entanglement at the Newtonian rate for fully coherent sources, and the systematic conditional phase at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry its systematic part; unconditional at $f_1=f_2=1$, conditional on the calibration (A10) below it.",
+   "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, A10, B8, C11, C19, C21, C30\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Quantum.channel\\_chart}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -259,7 +259,7 @@
    "label": "P3",
    "key": "p22054",
    "tag": "T",
-   "predicate": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S\\neq2\\sqrt2$ or non-quantum network behaviour each falsify.",
+   "predicate": "$S^2=8$ exact, $S=2\\sqrt2$ under the standard embedding [chart], and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S^2\\neq8$, or non-quantum network behaviour once the analyser families are derived natively, each falsify.",
    "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{thm:table}; rests on B2, B5, C11, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcMathlib}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Quantum.tsirelson\\_real}",
    "master": [],
    "restated": [],

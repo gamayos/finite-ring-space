@@ -28,6 +28,14 @@ The ledger of observation (task LM35, 7 October 2026), first used by 22-quantum'
     partial_transpose(rho)      the partial transpose on the second factor of a 2 ⊗ 2 matrix
     charpoly(M)                 the characteristic polynomial det(xI − M) of a square matrix, exactly
     nonneg_spectrum(M)          every eigenvalue of a real symmetric matrix is ≥ 0, from the signs of its charpoly
+
+Exact real-root isolation of integer polynomials (the framed readout on the sweep, 22:C29; moved here from the ledger
+file on 30 October 2026): coefficient lists low to high, rational arithmetic throughout.
+    peval(poly, x)              the value at a rational x (Horner)
+    padd(a, b)                  the sum of two coefficient lists
+    sturm(poly)                 the Sturm sequence
+    isolate(poly)               isolating intervals of every real root in (−2, 2), sorted decreasing
+    refine(poly, lo, hi, width) bisection of an isolating bracket to the width
 """
 from fractions import Fraction
 from math import gcd, lcm
@@ -247,3 +255,125 @@ def nonneg_spectrum(M):
     """True iff every eigenvalue of the real symmetric matrix M is ≥ 0. Its charpoly has real roots only, so they are all
     ≥ 0 exactly when the coefficients alternate in sign (Descartes' rule, exact for real-rooted polynomials)."""
     return all((-1) ** k * c >= 0 for k, c in enumerate(charpoly(M)))
+
+
+def padd(a, b):
+    """The sum of two coefficient lists (low to high)."""
+    n = max(len(a), len(b)); a = a + [0] * (n - len(a)); b = b + [0] * (n - len(b))
+    return [x + y for x, y in zip(a, b)]
+
+def peval(poly, x):
+    """The value of the polynomial at x, by Horner's rule (exact for rational x)."""
+    r = Fraction(0)
+    for cc in reversed(poly): r = r * x + cc
+    return r
+
+def ptrim(poly):
+    """The coefficient list without trailing zeros (the zero polynomial is [0])."""
+    while len(poly) > 1 and poly[-1] == 0: poly = poly[:-1]
+    return poly
+
+def pdivmod(a, b):
+    """The remainder of a modulo b over the rationals."""
+    a = [Fraction(x) for x in ptrim(a)]; b = [Fraction(x) for x in ptrim(b)]
+    while len(a) >= len(b) and any(a):
+        k = len(a) - len(b); cc = a[-1] / b[-1]
+        a = ptrim([a[i] - (cc * b[i - k] if i >= k else 0) for i in range(len(a))])
+        if len(a) < len(b): break
+    return a
+
+def sturm(poly):
+    """The Sturm sequence of poly: poly, its derivative, then the negated remainders."""
+    seq = [ptrim(poly), ptrim([i * cc for i, cc in enumerate(poly)][1:])]
+    while True:
+        r = ptrim([-x for x in pdivmod(seq[-2], seq[-1])])
+        if r == [0] or r == []: break
+        seq.append(r)
+    return seq
+
+def nroots(seq, a, b):
+    """The number of distinct real roots in (a, b] from the Sturm sequence seq, by sign changes."""
+    def changes(x):
+        v = [val for val in (peval(p, x) for p in seq) if val != 0]
+        return sum(1 for u, w in zip(v, v[1:]) if (u > 0) != (w > 0))
+    return changes(a) - changes(b)
+
+def isolate(poly):
+    """Isolating intervals (lo, hi) of every real root of poly in (−2, 2), sorted decreasing, by Sturm counts and bisection."""
+    seq = sturm(poly); boxes, out = [(Fraction(-2), Fraction(2))], []
+    while boxes:
+        lo, hi = boxes.pop(); k = nroots(seq, lo, hi)
+        if k == 0: continue
+        if k == 1 and peval(poly, lo) * peval(poly, hi) < 0: out.append((lo, hi)); continue
+        mid = (lo + hi) / 2
+        if peval(poly, mid) == 0:
+            eps = Fraction(1, 10 ** 6); out.append((mid - eps, mid + eps)); boxes += [(lo, mid - eps), (mid + eps, hi)]; continue
+        boxes += [(lo, mid), (mid, hi)]
+    return sorted(out, key=lambda t: -t[0])
+
+def refine(poly, lo, hi, width):
+    """Bisect the isolating bracket (lo, hi) of a simple root until its width is at most width; an exact hit returns (x, x)."""
+    flo = peval(poly, lo)
+    while hi - lo > width:
+        mid = (lo + hi) / 2; fm = peval(poly, mid)
+        if fm == 0: return mid, mid
+        if (fm > 0) == (flo > 0): lo, flo = mid, fm
+        else: hi = mid
+    return lo, hi
+
+
+# ---- the real subfield of ℚ(ζ_12) and Hermitian spectra over it (22:C33, C34) -------------------------------------------
+def real_q3(Z, x):
+    """A real element x of ℚ(ζ_12) as the pair (a, b) with x = a + b√3, where √3 = ζ_12 + ζ_12^{-1}; asserts reality."""
+    assert Z.n == 12, "the real subfield ℚ(√3) is that of ℚ(ζ_12)"
+    s3 = Z.add(Z.zeta(1), Z.zeta(-1))
+    k = next(i for i, c in enumerate(s3) if c and i)
+    b = Fraction(x[k]) / Fraction(s3[k]); a = Fraction(x[0]) - b * Fraction(s3[0])
+    assert Z.add(Z.scale(a, Z.one), Z.scale(b, s3)) == tuple(Fraction(c) for c in x), "not a real element"
+    return a, b
+
+def sign_q3(a, b):
+    """The sign of a + b√3, decided exactly on the rationals (a² against 3b² when the signs differ)."""
+    if a == 0 and b == 0: return 0
+    if a >= 0 and b >= 0: return 1
+    if a <= 0 and b <= 0: return -1
+    return (1 if a * a > 3 * b * b else -1) if a > 0 else (1 if 3 * b * b > a * a else -1)
+
+def herm_charpoly(Z, M):
+    """det(xI − M) for a Hermitian matrix over the cyclotomic ring Z, by Faddeev–LeVerrier: coefficients from x^n down."""
+    n = len(M); c, A = [Z.one], [[Z.zero] * n for _ in range(n)]
+    for k in range(1, n + 1):
+        A = [[Z.add(Z.sum(Z.mul(M[i][l], A[l][j]) for l in range(n)), c[-1] if i == j else Z.zero) for j in range(n)] for i in range(n)]
+        MA = [[Z.sum(Z.mul(M[i][l], A[l][j]) for l in range(n)) for j in range(n)] for i in range(n)]
+        c.append(Z.scale(Fraction(-1, k), Z.sum(MA[i][i] for i in range(n))))
+    return c
+
+def herm_nonneg_spectrum(Z, M):
+    """True iff every eigenvalue of the Hermitian matrix M over ℚ(ζ_12) is ≥ 0: its characteristic polynomial is real-rooted,
+    so (Descartes) the roots are all ≥ 0 exactly when its real coefficients alternate in sign, decided in ℚ(√3)."""
+    return all(sign_q3(*real_q3(Z, Z.scale((-1) ** k, cc))) >= 0 for k, cc in enumerate(herm_charpoly(Z, M)))
+
+
+# ---- the registered state of a pair run under spread laws (22:C33, C34) -------------------------------------------------------
+def spread_char(Z, q, s):
+    """The characteristic Σ_ξ q_ξ ζ^{ξ s} of a spread law q (a dict offset → weight) at argument s."""
+    return Z.from_exponents((e * s, w) for e, w in q.items())
+
+def pair_coherence(Z, q1, q2, m1, m2, c1, c2, N):
+    """The registered state ρ_{b,b'} = Γ_{b,b'}/4 of a pair run: sources of m1, m2 cells with c1, c2 locked and the spread laws
+    q1, q2 of their spread cells; Γ_{b,b'} = ζ^{c1 c2 Δ} Π_a χ_a(m2 Δ) Π_b χ_b(m1 Δ) at the step counts N of the four branches."""
+    def coh(D):
+        g = Z.zeta(c1 * c2 * D)
+        for q in q1: g = Z.mul(g, spread_char(Z, q, m2 * D))
+        for q in q2: g = Z.mul(g, spread_char(Z, q, m1 * D))
+        return Z.scale(Fraction(1, 4), g)
+    return [[coh(N[i] - N[j]) for j in range(4)] for i in range(4)]
+
+def canonical_partition(lab):
+    """The partition of the four branches by equal label, as the first-occurrence relabelling."""
+    seen = {}
+    return tuple(seen.setdefault(x, len(seen)) for x in lab)
+
+def partition_state(lab):
+    """The complete-spread state: 1/4 on the pairs of branches with equal separation label, 0 elsewhere."""
+    return [[Fraction(1, 4) if lab[a] == lab[b] else Fraction(0) for b in range(4)] for a in range(4)]

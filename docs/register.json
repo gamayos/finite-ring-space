@@ -1,20 +1,20 @@
 {
  "header": {
-  "generated": "30 October 2026",
+  "generated": "31 October 2026",
   "schema": "frc-register/2",
-  "rows": 1053,
-  "theorems": 1039,
+  "rows": 1059,
+  "theorems": 1045,
   "counts": {
-   "keys": 1039,
-   "rows": 1053,
+   "keys": 1045,
+   "rows": 1059,
    "shared": 14,
    "by_tag": {
-    "D": 169,
+    "D": 170,
     "G": 1,
     "I": 123,
     "O": 11,
     "R": 86,
-    "T": 620,
+    "T": 625,
     "Ω": 29
    }
   },
@@ -902,7 +902,7 @@
      },
      {
       "letter": "P",
-      "title": "Falsifiable predictions: the exposures"
+      "title": "Falsifiable predictions: the exposures, each from the rows it rests on (P1: B8)"
      },
      {
       "letter": "Z",
@@ -936,7 +936,7 @@
       "text": "A value fixed by the totality, in no bounded observer's window; a demarcation of where the value is read, not an open item."
      }
     ],
-    "rows": 63
+    "rows": 69
    },
    {
     "key": "25-göd",
@@ -2301,14 +2301,14 @@
   {
    "key": "p22028",
    "origin": "22",
-   "statement": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, two-way registration functionals with a drive-covariant kernel form the $d^2c$-realised character cone, the degree itself forced (Lemma~\\ref{lem:degree}); channel selectivity picks the Born ray.",
+   "statement": "Classification of the fibre-local registration functionals on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-local, drive-covariant, two-way sesquilinear families have kernels that are class functions of the core with realised-tally coefficients, the degree itself forced (Lemma~\\ref{lem:degree}); the pair count is the only channel-selective member, up to a tally multiplier.",
    "origin_row": "22:C12",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22028",
     "script": "p22_quantum.py",
-    "line": 1329,
+    "line": 1313,
     "verdict": "pass"
    },
    "declarations": [
@@ -18119,7 +18119,7 @@
   {
    "key": "p22063",
    "origin": "22",
-   "statement": "The extended framed readout: a two-way weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element in the standard embedding [chart], decided by its minimal polynomial, in place of the integer square root; the two weights of a setting share the integer part, so their readouts sum exactly.",
+   "statement": "The extended framed readout: a two-way weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element in the standard embedding [chart], decided by its minimal polynomial; the two weights of a setting share the integer part, so their readouts sum exactly.",
    "origin_row": "22:A9",
    "tag": "D",
    "tier": null,
@@ -18128,6 +18128,20 @@
    "aliases": [],
    "rows": [
     "22:A9"
+   ]
+  },
+  {
+   "key": "p22067",
+   "origin": "22",
+   "statement": "The operational coherent fraction: the normalised systematic conditional phase rate of a source's pair run against a spread-free reference of independently prepared cells, the full-mass rate as unit and the spread argument removed; a flat self-visibility certifies the reference under the clause of B8, exact at a unit tick and over the window within the protocol's resolution [chart].",
+   "origin_row": "22:A10",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "22:A10"
    ]
   },
   {
@@ -18175,7 +18189,7 @@
   {
    "key": "p22012",
    "origin": "22",
-   "statement": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio.",
+   "statement": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: a registered frequency on the stationary sector away from the uniform count, or a non-uniform frequency off the pair count (C7), beyond the protocol's statistical allowance.",
    "origin_row": "22:B4",
    "tag": "R",
    "tier": null,
@@ -18189,7 +18203,7 @@
   {
    "key": "p22013",
    "origin": "22",
-   "statement": "Composition is conservation, and composite states live on the product tally ring of rank $n_An_B$: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, and a composite is a drive-confined synchronised orbit. Falsifier: a CHSH value significantly above $2\\sqrt2$, a Bell-state correlator off the singlet law, or network behaviour outside Proposition~\\ref{thm:table}.",
+   "statement": "Composition is conservation: one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit, and an incoherent ensemble of offsets, phase or winding, is prepared sector-diagonal (Proposition~\\ref{prop:unequal}(iii)). Falsifier: a CHSH value significantly above $2\\sqrt2$ [chart], a Bell-state correlator off the singlet law, or network behaviour outside Proposition~\\ref{thm:table}.",
    "origin_row": "22:B5",
    "tag": "R",
    "tier": null,
@@ -18217,7 +18231,7 @@
   {
    "key": "p22015",
    "origin": "22",
-   "statement": "Measurement settings are relational repositionings of the analyser along the carrier, $u\\mapsto \\gen^{-j}u$: shifts of the Object offset $\\dt$. Falsifier: a setting dependence of the CHSH correlator not expressible as an offset shift.",
+   "statement": "Measurement settings are relational repositionings of the analyser along the Carrier, $u\\mapsto \\gen^{-j}u$: shifts of the Object offset $\\dt$. Falsifier: a setting dependence of the CHSH correlator not expressible as an offset shift.",
    "origin_row": "22:B7",
    "tag": "R",
    "tier": null,
@@ -18231,7 +18245,7 @@
   {
    "key": "p22016",
    "origin": "22",
-   "statement": "Gravity is an entangling channel by \\emph{reciprocal synchronisation}, the declared interaction identification: the conserved offset turns the gravitational relaxation of phase drift \\citep{akhtman2026gravity} into the conditional phase, and spread pairs imprint which-branch data on the source (C21). Falsifier: gravitationally induced entanglement off the Newtonian rate, or force not by full mass (P1); $\\eta\\neq0$ (C22).",
+   "statement": "Gravity entangles by \\emph{reciprocal synchronisation}, phase-drift relaxation \\citep{akhtman2026gravity} as conditional phase. Spread is by winding, not phase, with no weight-one offset; every cell gravitates; a locked pair carries one step phase per coupling step per branch, a spread pair its offset times it (C21). Falsifier: entanglement of spread-free sources off the Newtonian rate, force not by full mass, $\\eta\\neq0$ (P1, C22).",
    "origin_row": "22:B8",
    "tag": "R",
    "tier": null,
@@ -18245,7 +18259,7 @@
   {
    "key": "p22062",
    "origin": "22",
-   "statement": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers, at the resolution $B$ affords, the readout grid point of Definition~\\ref{def:readout}, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance.",
+   "statement": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers the readout grid point of Definition~\\ref{def:readout}, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance.",
    "origin_row": "22:B9",
    "tag": "R",
    "tier": null,
@@ -18266,7 +18280,7 @@
    "check": {
     "href": "py/quantum.html#p22017",
     "script": "p22_quantum.py",
-    "line": 186,
+    "line": 183,
     "verdict": "pass"
    },
    "declarations": [
@@ -18302,7 +18316,7 @@
    "check": {
     "href": "py/quantum.html#p22018",
     "script": "p22_quantum.py",
-    "line": 186,
+    "line": 183,
     "verdict": "pass"
    },
    "declarations": [
@@ -18326,14 +18340,14 @@
   {
    "key": "p22019",
    "origin": "22",
-   "statement": "The measurement vectors are a forced orthogonal basis: orthogonality $d\\,\\delta\\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is einselected by the algebra of the frames.",
+   "statement": "The measurement vectors are a forced orthogonal basis: orthogonality $d\\,\\delta\\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is selected by the algebra of the frames.",
    "origin_row": "22:C3",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22019",
     "script": "p22_quantum.py",
-    "line": 209,
+    "line": 206,
     "verdict": "pass"
    },
    "declarations": [
@@ -18374,7 +18388,7 @@
    "check": {
     "href": "py/quantum.html#p22020",
     "script": "p22_quantum.py",
-    "line": 179,
+    "line": 176,
     "verdict": "pass"
    },
    "declarations": [
@@ -18400,7 +18414,7 @@
    "check": {
     "href": "py/quantum.html#p22021",
     "script": "p22_quantum.py",
-    "line": 241,
+    "line": 238,
     "verdict": "pass"
    },
    "declarations": [
@@ -18426,7 +18440,7 @@
    "check": {
     "href": "py/quantum.html#p22022",
     "script": "p22_quantum.py",
-    "line": 290,
+    "line": 287,
     "verdict": "pass"
    },
    "declarations": [
@@ -18455,14 +18469,14 @@
   {
    "key": "p22023",
    "origin": "22",
-   "statement": "Squared amplitudes are coincidence counts (the pair-count identity), realized tallies on $\\Z[\\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$.",
+   "statement": "Squared amplitudes are coincidence counts (the pair-count identity), realised tallies on $\\Z[\\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$.",
    "origin_row": "22:C7",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22023",
     "script": "p22_quantum.py",
-    "line": 225,
+    "line": 222,
     "verdict": "pass"
    },
    "declarations": [
@@ -18508,7 +18522,7 @@
    "check": {
     "href": "py/quantum.html#p22024",
     "script": "p22_quantum.py",
-    "line": 351,
+    "line": 347,
     "verdict": "pass"
    },
    "declarations": [
@@ -18554,7 +18568,7 @@
    "check": {
     "href": "py/quantum.html#p22025",
     "script": "p22_quantum.py",
-    "line": 229,
+    "line": 226,
     "verdict": "pass"
    },
    "declarations": [
@@ -18583,14 +18597,14 @@
   {
    "key": "p22026",
    "origin": "22",
-   "statement": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow, the probability a framed-rational ratio of coincidence counts completed in finitely many chronons, and the two strata coincide on this sector; on a single Object the weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), and every non-uniform statistic passes through C11.",
+   "statement": "The uniform counting rule on stationary core-valued sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow, the probability a framed-rational ratio of coincidence counts, and the two strata coincide on this sector; on a single Object the weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), and every non-uniform statistic passes through C11.",
    "origin_row": "22:C10",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22026",
     "script": "p22_quantum.py",
-    "line": 1168,
+    "line": 1154,
     "verdict": "pass"
    },
    "declarations": [
@@ -18648,7 +18662,7 @@
    "check": {
     "href": "py/quantum.html#p22027",
     "script": "p22_quantum.py",
-    "line": 1187,
+    "line": 1173,
     "verdict": "pass"
    },
    "declarations": [
@@ -18698,7 +18712,7 @@
    "check": {
     "href": "py/quantum.html#p22029",
     "script": "p22_quantum.py",
-    "line": 303,
+    "line": 300,
     "verdict": "pass"
    },
    "declarations": [
@@ -18729,7 +18743,7 @@
    "check": {
     "href": "py/quantum.html#p22030",
     "script": "p22_quantum.py",
-    "line": 1084,
+    "line": 1071,
     "verdict": "pass"
    },
    "declarations": [
@@ -18790,7 +18804,7 @@
    "check": {
     "href": "py/quantum.html#p22031",
     "script": "p22_quantum.py",
-    "line": 755,
+    "line": 747,
     "verdict": "pass"
    },
    "declarations": [
@@ -18838,7 +18852,7 @@
    "check": {
     "href": "py/quantum.html#p22032",
     "script": "p22_quantum.py",
-    "line": 623,
+    "line": 617,
     "verdict": "pass"
    },
    "declarations": [
@@ -18867,14 +18881,14 @@
   {
    "key": "p22033",
    "origin": "22",
-   "statement": "Exact Tsirelson saturation: the singlet law of Theorem~\\ref{thm:tsirelson} [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute.",
+   "statement": "Exact Tsirelson saturation: the singlet law of Theorem~\\ref{thm:tsirelson}, its cosine form [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute.",
    "origin_row": "22:C17",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22033",
     "script": "p22_quantum.py",
-    "line": 641,
+    "line": 635,
     "verdict": "pass"
    },
    "declarations": [
@@ -18930,7 +18944,7 @@
    "check": {
     "href": "py/quantum.html#p22034",
     "script": "p22_quantum.py",
-    "line": 861,
+    "line": 852,
     "verdict": "pass"
    },
    "declarations": [
@@ -18961,7 +18975,7 @@
    "check": {
     "href": "py/quantum.html#p22035",
     "script": "p22_quantum.py",
-    "line": 930,
+    "line": 920,
     "verdict": "pass"
    },
    "declarations": [
@@ -19002,7 +19016,7 @@
    "check": {
     "href": "py/quantum.html#p22036",
     "script": "p22_quantum.py",
-    "line": 979,
+    "line": 968,
     "verdict": "pass"
    },
    "declarations": [
@@ -19031,14 +19045,14 @@
   {
    "key": "p22037",
    "origin": "22",
-   "statement": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions through the reduced channel [chart]; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry.",
+   "statement": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions through the reduced channel [chart]; the identification reciprocal synchronisation (B8), and the completely spread channel is separable at nondegenerate geometry (C34).",
    "origin_row": "22:C21",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22037",
     "script": "p22_quantum.py",
-    "line": 1297,
+    "line": 1282,
     "verdict": "pass"
    },
    "declarations": [
@@ -19081,7 +19095,7 @@
    "check": {
     "href": "py/quantum.html#p22038",
     "script": "p22_quantum.py",
-    "line": 1040,
+    "line": 1028,
     "verdict": "pass"
    },
    "declarations": [
@@ -19122,7 +19136,7 @@
    "check": {
     "href": "py/quantum.html#p22039",
     "script": "p22_quantum.py",
-    "line": 1488,
+    "line": 1470,
     "verdict": "pass"
    },
    "declarations": [
@@ -19158,7 +19172,7 @@
    "check": {
     "href": "py/quantum.html#p22040",
     "script": "p22_quantum.py",
-    "line": 268,
+    "line": 265,
     "verdict": "pass"
    },
    "declarations": [
@@ -19194,7 +19208,7 @@
    "check": {
     "href": "py/quantum.html#p22041",
     "script": "p22_quantum.py",
-    "line": 655,
+    "line": 649,
     "verdict": "pass"
    },
    "declarations": [
@@ -19233,7 +19247,7 @@
    "check": {
     "href": "py/quantum.html#p22042",
     "script": "p22_quantum.py",
-    "line": 683,
+    "line": 676,
     "verdict": "pass"
    },
    "declarations": [
@@ -19279,7 +19293,7 @@
    "check": {
     "href": "py/quantum.html#p22043",
     "script": "p22_quantum.py",
-    "line": 1561,
+    "line": 1542,
     "verdict": "pass"
    },
    "declarations": [
@@ -19310,7 +19324,7 @@
    "check": {
     "href": "py/quantum.html#p22065",
     "script": "p22_quantum.py",
-    "line": 1610,
+    "line": 1590,
     "verdict": "pass"
    },
    "declarations": [
@@ -19344,14 +19358,14 @@
   {
    "key": "p22066",
    "origin": "22",
-   "statement": "The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings [chart], and the grid allocation of a protocol lies within one of the readout times the run count, at every setting and scale.",
+   "statement": "The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings with positive trace element [chart], and the grid allocation of a protocol lies within one of the readout times the run count.",
    "origin_row": "22:C29",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22066",
     "script": "p22_quantum.py",
-    "line": 1755,
+    "line": 1686,
     "verdict": "pass"
    },
    "declarations": [
@@ -19393,16 +19407,176 @@
    "realisations": []
   },
   {
+   "key": "p22068",
+   "origin": "22",
+   "statement": "The calibration law: the normalised rate of a pair run is the product of the two coherent fractions, against a spread-free reference of independent cells certified under the clause of B8 it is the source's own fraction, and the off-diagonal rate table is rank one, each nonzero fraction recovered from three runs; standard quantum mechanics is the table of ones.",
+   "origin_row": "22:C30",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "py/quantum.html#p22068",
+    "script": "p22_quantum.py",
+    "line": 1739,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Calibration",
+     "name": "FRC.Calibration.reference_rate"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Calibration",
+     "name": "FRC.Calibration.recover_sq"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Calibration",
+     "name": "FRC.Calibration.quad_consistency"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Calibration",
+     "name": "FRC.Calibration.unit_table"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "22:C30"
+   ],
+   "realisations": [
+    "p22016"
+   ]
+  },
+  {
+   "key": "p22069",
+   "origin": "22",
+   "statement": "Factorisation for independent preparation: with the pair phase additive in the cells' winding offsets, the spread characteristic of a two-source run is the product of the two sources' own spread characteristics, each at its own argument, so the pairwise characteristics of the channel follow from per-source data.",
+   "origin_row": "22:C31",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "py/quantum.html#p22069",
+    "script": "p22_quantum.py",
+    "line": 1750,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Calibration",
+     "name": "FRC.Calibration.dsum_eq"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "22:C31"
+   ],
+   "realisations": [
+    "p22016"
+   ]
+  },
+  {
+   "key": "p22070",
+   "origin": "22",
+   "statement": "Exact recovery over one recurrence: inversion on the cycle recovers the spread occupation from its characteristic function exactly, and with it the certificate and every fraction; a laboratory recurrence exceeds every proposed observation window \\citep{roadmap2022}, so a window reads the certificate and the normalised rates within the protocol's resolution [chart].",
+   "origin_row": "22:C32",
+   "tag": "T",
+   "tier": null,
+   "check": {
+    "href": "py/quantum.html#p22070",
+    "script": "p22_quantum.py",
+    "line": 1753,
+    "verdict": "pass"
+   },
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "22:C32"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p22071",
+   "origin": "22",
+   "statement": "The domain of the normalised rate: $|\\Gamma_{ij}|=|\\chi_{ij}|$; a recurrence lies in it; a completely spread cell at a nontrivial character removes every other differential; a geometric law has $0<|\\chi|<1$ at every nontrivial argument; a two-point law on $\\Z_{12}$ vanishes at a non-recurrence argument; unit contrast at the unit tick forces a point occupation, under independence a locked source.",
+   "origin_row": "22:C33",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "py/quantum.html#p22071",
+    "script": "p22_quantum.py",
+    "line": 1776,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Calibration",
+     "name": "FRC.Calibration.complete_spread_zero"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Calibration",
+     "name": "FRC.Calibration.two_point_zero"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "22:C33"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p22072",
+   "origin": "22",
+   "statement": "Entanglement under spread: with a completely spread cell at nondegenerate geometry the registered state is the separable partition state whatever $f_1f_2$, in three classes, each positive under partial transposition; three equal separations entangle it, least partial-transpose eigenvalue $(1-\\sqrt3)/4$ [chart]; nonuniform laws entangle at some geometries and not at others; a locally additive spread phase alone never entangles.",
+   "origin_row": "22:C34",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "py/quantum.html#p22072",
+    "script": "p22_quantum.py",
+    "line": 1786,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Calibration",
+     "name": "FRC.Calibration.pt_psd_classes"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Calibration",
+     "name": "FRC.Calibration.three_equal_npt"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Calibration",
+     "name": "FRC.Calibration.nondegenerate_classes"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "22:C34"
+   ],
+   "realisations": [
+    "p22016"
+   ]
+  },
+  {
    "key": "p22052",
    "origin": "22",
-   "statement": "Gravitationally induced entanglement at the Newtonian rate for fully coherent sources and at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry the conditional phase, the incoherent channel separable at generic geometry. The one dated forward prediction.",
+   "statement": "Gravitational entanglement at the Newtonian rate for fully coherent sources, and the systematic conditional phase at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry its systematic part; unconditional at $f_1=f_2=1$, conditional on the calibration (A10) below it.",
    "origin_row": "22:P1",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22052",
     "script": "p22_quantum.py",
-    "line": 958,
+    "line": 948,
     "verdict": "pass"
    },
    "declarations": [
@@ -19445,7 +19619,7 @@
    "check": {
     "href": "py/quantum.html#p22053",
     "script": "p22_quantum.py",
-    "line": 360,
+    "line": 356,
     "verdict": "pass"
    },
    "declarations": [
@@ -19476,14 +19650,14 @@
   {
    "key": "p22054",
    "origin": "22",
-   "statement": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S\\neq2\\sqrt2$ or non-quantum network behaviour each falsify.",
+   "statement": "$S^2=8$ exact, $S=2\\sqrt2$ under the standard embedding [chart], and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S^2\\neq8$, or non-quantum network behaviour once the analyser families are derived natively, each falsify.",
    "origin_row": "22:P3",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22054",
     "script": "p22_quantum.py",
-    "line": 883,
+    "line": 874,
     "verdict": "pass"
    },
    "declarations": [
@@ -19527,7 +19701,7 @@
    "check": {
     "href": "py/quantum.html#p22055",
     "script": "p22_quantum.py",
-    "line": 577,
+    "line": 572,
     "verdict": "pass"
    },
    "declarations": [
@@ -19565,7 +19739,7 @@
    "check": {
     "href": "py/quantum.html#p22056",
     "script": "p22_quantum.py",
-    "line": 1102,
+    "line": 1089,
     "verdict": "pass"
    },
    "declarations": [
@@ -19604,14 +19778,14 @@
   {
    "key": "p22044",
    "origin": "22",
-   "statement": "\\textbf{The Born rule} is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional --- on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11).",
+   "statement": "\\textbf{The Born rule} is a coincidence count on its stationary domain, where it is uniform and is the unique window lift of its Carrier shadow; its quadratic form is the pair-count identity (C7), not a postulate, and the non-uniform statistics are read through the ninth realisation and the framed readout (C11).",
    "origin_row": "22:X1",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22044",
     "script": "p22_quantum.py",
-    "line": 225,
+    "line": 222,
     "verdict": "pass"
    },
    "declarations": [
@@ -19657,7 +19831,7 @@
    "check": {
     "href": "py/quantum.html#p22045",
     "script": "p22_quantum.py",
-    "line": 303,
+    "line": 300,
     "verdict": "pass"
    },
    "declarations": [
@@ -19681,14 +19855,14 @@
   {
    "key": "p22046",
    "origin": "22",
-   "statement": "\\textbf{The preferred basis} is the Subject's own phase anatomy, einselected by the algebra of the frames rather than by a model of the environment.",
+   "statement": "\\textbf{The preferred basis} is the Subject's own phase anatomy, selected by the algebra of the frames rather than by a model of the environment.",
    "origin_row": "22:X3",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22046",
     "script": "p22_quantum.py",
-    "line": 209,
+    "line": 206,
     "verdict": "pass"
    },
    "declarations": [
@@ -19719,7 +19893,7 @@
    "check": {
     "href": "py/quantum.html#p22047",
     "script": "p22_quantum.py",
-    "line": 1514,
+    "line": 1496,
     "verdict": "pass"
    },
    "declarations": [
@@ -19755,7 +19929,7 @@
    "check": {
     "href": "py/quantum.html#p22048",
     "script": "p22_quantum.py",
-    "line": 268,
+    "line": 265,
     "verdict": "pass"
    },
    "declarations": [
@@ -19784,14 +19958,14 @@
   {
    "key": "p22049",
    "origin": "22",
-   "statement": "\\textbf{Native probability over a finite substrate}: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus, set against the counting and cyclotomic precedents of Section~\\ref{sec:intro}.",
+   "statement": "\\textbf{Native probability over a finite substrate}: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus.",
    "origin_row": "22:X6",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/quantum.html#p22049",
     "script": "p22_quantum.py",
-    "line": 1187,
+    "line": 1173,
     "verdict": "pass"
    },
    "declarations": [
@@ -19832,7 +20006,7 @@
    "check": {
     "href": "py/quantum.html#p22050",
     "script": "p22_quantum.py",
-    "line": 655,
+    "line": 649,
     "verdict": "pass"
    },
    "declarations": [
@@ -19868,7 +20042,7 @@
    "check": {
     "href": "py/quantum.html#p22051",
     "script": "p22_quantum.py",
-    "line": 351,
+    "line": 347,
     "verdict": "pass"
    },
    "declarations": [
@@ -19918,7 +20092,7 @@
    "check": {
     "href": "py/quantum.html#p22061",
     "script": "p22_quantum.py",
-    "line": 1408,
+    "line": 1391,
     "verdict": "pass"
    },
    "declarations": [
@@ -19936,14 +20110,14 @@
   {
    "key": "p22005",
    "origin": "22",
-   "statement": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega=1.3\\times10^{123}$ [approx], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table~\\ref{tab:omega} lies below it.",
+   "statement": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega\\approx1.3\\times10^{123}$ [approx], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table~\\ref{tab:omega} lies below it.",
    "origin_row": "22:Z3",
    "tag": "Ω",
    "tier": 2,
    "check": {
     "href": "py/quantum.html#p22005",
     "script": "p22_quantum.py",
-    "line": 1397,
+    "line": 1380,
     "verdict": "pass"
    },
    "declarations": [
@@ -55056,7 +55230,7 @@
    "block": "A",
    "tag": "D",
    "name": null,
-   "statement": "The extended framed readout: a two-way weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element in the standard embedding [chart], decided by its minimal polynomial, in place of the integer square root; the two weights of a setting share the integer part, so their readouts sum exactly.",
+   "statement": "The extended framed readout: a two-way weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element in the standard embedding [chart], decided by its minimal polynomial; the two weights of a setting share the integer part, so their readouts sum exactly.",
    "source": "Def.~\\ref{def:readout}",
    "page": "22-quantum/index.html#A9",
    "witness": {
@@ -55064,7 +55238,30 @@
     "lean": []
    },
    "refs": [],
-   "text": "The extended framed readout: a two-way weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element in the standard embedding [chart], decided by its minimal polynomial, in place of the integer square root; the two weights of a setting share the integer part, so their readouts sum exactly. Def. def:readout"
+   "text": "The extended framed readout: a two-way weight of the sweep is read on the zoom grid by the exact integer part of its scaled trace element in the standard embedding [chart], decided by its minimal polynomial; the two weights of a setting share the integer part, so their readouts sum exactly. Def. def:readout"
+  },
+  {
+   "paper": "22-qm",
+   "no": 22,
+   "rid": "22:A10",
+   "key": "p22067",
+   "label": "A10",
+   "block": "A",
+   "tag": "D",
+   "name": null,
+   "statement": "The operational coherent fraction: the normalised systematic conditional phase rate of a source's pair run against a spread-free reference of independently prepared cells, the full-mass rate as unit and the spread argument removed; a flat self-visibility certifies the reference under the clause of B8, exact at a unit tick and over the window within the protocol's resolution [chart].",
+   "source": "Def.~\\ref{def:fop}; rests on B8, C20, C21",
+   "page": "22-quantum/index.html#A10",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p22016",
+    "p22036",
+    "p22037"
+   ],
+   "text": "The operational coherent fraction: the normalised systematic conditional phase rate of a source's pair run against a spread-free reference of independently prepared cells, the full-mass rate as unit and the spread argument removed; a flat self-visibility certifies the reference under the clause of B8, exact at a unit tick and over the window within the protocol's resolution [chart]. Def. def:fop; rests on B8, C20, C21"
   },
   {
    "paper": "22-qm",
@@ -55143,15 +55340,17 @@
    "block": "B",
    "tag": "R",
    "name": null,
-   "statement": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio.",
+   "statement": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: a registered frequency on the stationary sector away from the uniform count, or a non-uniform frequency off the pair count (C7), beyond the protocol's statistical allowance.",
    "source": "Def.~\\ref{def:ledger}, Prop.~\\ref{prop:paircount}",
    "page": "22-quantum/index.html#B4",
    "witness": {
     "py": null,
     "lean": []
    },
-   "refs": [],
-   "text": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio. Def. def:ledger, Prop. prop:paircount"
+   "refs": [
+    "p22023"
+   ],
+   "text": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: a registered frequency on the stationary sector away from the uniform count, or a non-uniform frequency off the pair count (C7), beyond the protocol's statistical allowance. Def. def:ledger, Prop. prop:paircount"
   },
   {
    "paper": "22-qm",
@@ -55162,7 +55361,7 @@
    "block": "B",
    "tag": "R",
    "name": null,
-   "statement": "Composition is conservation, and composite states live on the product tally ring of rank $n_An_B$: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, and a composite is a drive-confined synchronised orbit. Falsifier: a CHSH value significantly above $2\\sqrt2$, a Bell-state correlator off the singlet law, or network behaviour outside Proposition~\\ref{thm:table}.",
+   "statement": "Composition is conservation: one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit, and an incoherent ensemble of offsets, phase or winding, is prepared sector-diagonal (Proposition~\\ref{prop:unequal}(iii)). Falsifier: a CHSH value significantly above $2\\sqrt2$ [chart], a Bell-state correlator off the singlet law, or network behaviour outside Proposition~\\ref{thm:table}.",
    "source": "Prop.~\\ref{prop:offset}, Def.~\\ref{def:composite}, Prop.~\\ref{prop:unequal}(iii)",
    "page": "22-quantum/index.html#B5",
    "witness": {
@@ -55170,7 +55369,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "Composition is conservation, and composite states live on the product tally ring of rank $n_An_B$: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, and a composite is a drive-confined synchronised orbit. Falsifier: a CHSH value significantly above $2\\sqrt2$, a Bell-state correlator off the singlet law, or network behaviour outside Proposition thm:table. Prop. prop:offset, Def. def:composite, Prop. prop:unequal(iii)"
+   "text": "Composition is conservation: one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit, and an incoherent ensemble of offsets, phase or winding, is prepared sector-diagonal (Proposition prop:unequal(iii)). Falsifier: a CHSH value significantly above $2\\sqrt2$ [chart], a Bell-state correlator off the singlet law, or network behaviour outside Proposition thm:table. Prop. prop:offset, Def. def:composite, Prop. prop:unequal(iii)"
   },
   {
    "paper": "22-qm",
@@ -55204,7 +55403,7 @@
    "block": "B",
    "tag": "R",
    "name": null,
-   "statement": "Measurement settings are relational repositionings of the analyser along the carrier, $u\\mapsto \\gen^{-j}u$: shifts of the Object offset $\\dt$. Falsifier: a setting dependence of the CHSH correlator not expressible as an offset shift.",
+   "statement": "Measurement settings are relational repositionings of the analyser along the Carrier, $u\\mapsto \\gen^{-j}u$: shifts of the Object offset $\\dt$. Falsifier: a setting dependence of the CHSH correlator not expressible as an offset shift.",
    "source": "Def.~\\ref{def:chshsettings}",
    "page": "22-quantum/index.html#B7",
    "witness": {
@@ -55212,7 +55411,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "Measurement settings are relational repositionings of the analyser along the carrier, $u\\mapsto \\gen^{-j}u$: shifts of the Object offset $\\dt$. Falsifier: a setting dependence of the CHSH correlator not expressible as an offset shift. Def. def:chshsettings"
+   "text": "Measurement settings are relational repositionings of the analyser along the Carrier, $u\\mapsto \\gen^{-j}u$: shifts of the Object offset $\\dt$. Falsifier: a setting dependence of the CHSH correlator not expressible as an offset shift. Def. def:chshsettings"
   },
   {
    "paper": "22-qm",
@@ -55223,7 +55422,7 @@
    "block": "B",
    "tag": "R",
    "name": null,
-   "statement": "Gravity is an entangling channel by \\emph{reciprocal synchronisation}, the declared interaction identification: the conserved offset turns the gravitational relaxation of phase drift \\citep{akhtman2026gravity} into the conditional phase, and spread pairs imprint which-branch data on the source (C21). Falsifier: gravitationally induced entanglement off the Newtonian rate, or force not by full mass (P1); $\\eta\\neq0$ (C22).",
+   "statement": "Gravity entangles by \\emph{reciprocal synchronisation}, phase-drift relaxation \\citep{akhtman2026gravity} as conditional phase. Spread is by winding, not phase, with no weight-one offset; every cell gravitates; a locked pair carries one step phase per coupling step per branch, a spread pair its offset times it (C21). Falsifier: entanglement of spread-free sources off the Newtonian rate, force not by full mass, $\\eta\\neq0$ (P1, C22).",
    "source": "\\S\\ref{sec:gravchannel}, Prop.~\\ref{prop:bmvmech}, Prop.~\\ref{prop:fcoh}",
    "page": "22-quantum/index.html#B8",
    "witness": {
@@ -55235,7 +55434,7 @@
     "p22038",
     "p22052"
    ],
-   "text": "Gravity is an entangling channel by reciprocal synchronisation, the declared interaction identification: the conserved offset turns the gravitational relaxation of phase drift [akhtman2026gravity] into the conditional phase, and spread pairs imprint which-branch data on the source (C21). Falsifier: gravitationally induced entanglement off the Newtonian rate, or force not by full mass (P1); $\\eta\\neq0$ (C22). \\Ssec:gravchannel, Prop. prop:bmvmech, Prop. prop:fcoh"
+   "text": "Gravity entangles by reciprocal synchronisation, phase-drift relaxation [akhtman2026gravity] as conditional phase. Spread is by winding, not phase, with no weight-one offset; every cell gravitates; a locked pair carries one step phase per coupling step per branch, a spread pair its offset times it (C21). Falsifier: entanglement of spread-free sources off the Newtonian rate, force not by full mass, $\\eta\\neq0$ (P1, C22). \\Ssec:gravchannel, Prop. prop:bmvmech, Prop. prop:fcoh"
   },
   {
    "paper": "22-qm",
@@ -55246,7 +55445,7 @@
    "block": "B",
    "tag": "R",
    "name": null,
-   "statement": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers, at the resolution $B$ affords, the readout grid point of Definition~\\ref{def:readout}, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance.",
+   "statement": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers the readout grid point of Definition~\\ref{def:readout}, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance.",
    "source": "Rem.~\\ref{rem:strata}, Rem.~\\ref{rem:borndomain}, Def.~\\ref{def:readout}",
    "page": "22-quantum/index.html#B9",
    "witness": {
@@ -55254,7 +55453,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers, at the resolution $B$ affords, the readout grid point of Definition def:readout, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance. Rem. rem:strata, Rem. rem:borndomain, Def. def:readout"
+   "text": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers the readout grid point of Definition def:readout, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance. Rem. rem:strata, Rem. rem:borndomain, Def. def:readout"
   },
   {
    "paper": "22-qm",
@@ -55272,7 +55471,7 @@
     "py": {
      "href": "py/quantum.html#p22017",
      "script": "p22_quantum.py",
-     "line": 186,
+     "line": 183,
      "verdict": "pass"
     },
     "lean": [
@@ -55321,7 +55520,7 @@
     "py": {
      "href": "py/quantum.html#p22018",
      "script": "p22_quantum.py",
-     "line": 186,
+     "line": 183,
      "verdict": "pass"
     },
     "lean": [
@@ -55355,14 +55554,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The measurement vectors are a forced orthogonal basis: orthogonality $d\\,\\delta\\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is einselected by the algebra of the frames.",
+   "statement": "The measurement vectors are a forced orthogonal basis: orthogonality $d\\,\\delta\\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is selected by the algebra of the frames.",
    "source": "Prop.~\\ref{prop:basis}\\newline \\pywit{quantum}{p22019}{C3}, \\leanwit{FrcCore}{p22019}{C3} \\lean{FRC.Observation.orthogonality, FRC.Observation.parseval, FRC.Extension.Tally.fourier\\_inversion, FRC.Extension.Tally.dft\\_det}",
    "page": "22-quantum/index.html#C3",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22019",
      "script": "p22_quantum.py",
-     "line": 209,
+     "line": 206,
      "verdict": "pass"
     },
     "lean": [
@@ -55401,7 +55600,7 @@
     ]
    },
    "refs": [],
-   "text": "The measurement vectors are a forced orthogonal basis: orthogonality $d \\delta\\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is einselected by the algebra of the frames. Prop. prop:basis p22019, FrcCore{C3} FRC.Observation.orthogonality, FRC.Observation.parseval, FRC.Extension.Tally.fourier_inversion, FRC.Extension.Tally.dft_det"
+   "text": "The measurement vectors are a forced orthogonal basis: orthogonality $d \\delta\\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is selected by the algebra of the frames. Prop. prop:basis p22019, FrcCore{C3} FRC.Observation.orthogonality, FRC.Observation.parseval, FRC.Extension.Tally.fourier_inversion, FRC.Extension.Tally.dft_det"
   },
   {
    "paper": "22-qm",
@@ -55419,7 +55618,7 @@
     "py": {
      "href": "py/quantum.html#p22020",
      "script": "p22_quantum.py",
-     "line": 179,
+     "line": 176,
      "verdict": "pass"
     },
     "lean": [
@@ -55452,7 +55651,7 @@
     "py": {
      "href": "py/quantum.html#p22021",
      "script": "p22_quantum.py",
-     "line": 241,
+     "line": 238,
      "verdict": "pass"
     },
     "lean": [
@@ -55485,7 +55684,7 @@
     "py": {
      "href": "py/quantum.html#p22022",
      "script": "p22_quantum.py",
-     "line": 290,
+     "line": 287,
      "verdict": "pass"
     },
     "lean": [
@@ -55527,14 +55726,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Squared amplitudes are coincidence counts (the pair-count identity), realized tallies on $\\Z[\\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$.",
+   "statement": "Squared amplitudes are coincidence counts (the pair-count identity), realised tallies on $\\Z[\\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$.",
    "source": "Prop.~\\ref{prop:paircount}, Lem.~\\ref{lem:registered}\\newline \\pywit{quantum}{p22023}{C7}, \\leanwit{FrcCore}{p22023}{C7}, \\leanwit{FrcMathlib}{p22023}{C7} \\lean{FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Observation.parseval, FRC.Quantum.dephasing, Quantum.pair\\_count\\_tally}",
    "page": "22-quantum/index.html#C7",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22023",
      "script": "p22_quantum.py",
-     "line": 225,
+     "line": 222,
      "verdict": "pass"
     },
     "lean": [
@@ -55581,7 +55780,7 @@
     ]
    },
    "refs": [],
-   "text": "Squared amplitudes are coincidence counts (the pair-count identity), realized tallies on $\\Z[\\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$. Prop. prop:paircount, Lem. lem:registered p22023, FrcCore{C7}, FrcMathlib{C7} FRC.Observation.pair_count, FRC.Observation.pure_winding_weight, FRC.Observation.parseval, FRC.Quantum.dephasing, Quantum.pair_count_tally"
+   "text": "Squared amplitudes are coincidence counts (the pair-count identity), realised tallies on $\\Z[\\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$. Prop. prop:paircount, Lem. lem:registered p22023, FrcCore{C7}, FrcMathlib{C7} FRC.Observation.pair_count, FRC.Observation.pure_winding_weight, FRC.Observation.parseval, FRC.Quantum.dephasing, Quantum.pair_count_tally"
   },
   {
    "paper": "22-qm",
@@ -55599,7 +55798,7 @@
     "py": {
      "href": "py/quantum.html#p22024",
      "script": "p22_quantum.py",
-     "line": 351,
+     "line": 347,
      "verdict": "pass"
     },
     "lean": [
@@ -55664,7 +55863,7 @@
     "py": {
      "href": "py/quantum.html#p22025",
      "script": "p22_quantum.py",
-     "line": 229,
+     "line": 226,
      "verdict": "pass"
     },
     "lean": [
@@ -55706,14 +55905,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow, the probability a framed-rational ratio of coincidence counts completed in finitely many chronons, and the two strata coincide on this sector; on a single Object the weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), and every non-uniform statistic passes through C11.",
+   "statement": "The uniform counting rule on stationary core-valued sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow, the probability a framed-rational ratio of coincidence counts, and the two strata coincide on this sector; on a single Object the weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), and every non-uniform statistic passes through C11.",
    "source": "Thm.~\\ref{thm:born}, Prop.~\\ref{prop:strata}, Def.~\\ref{def:registered}, Rem.~\\ref{rem:ergodic}\\newline \\pywit{quantum}{p22026}{C10}, \\leanwit{FrcCore}{p22026}{C10} \\lean{FRC.Extension.two\\_way\\_tally, FRC.Extension.core\\_weights, FRC.Extension.root\\_two\\_two\\_way, FRC.Extension.framed\\_readout, FRC.Observation.window\\_lift, FRC.Observation.pure\\_winding\\_weight, FRC.Quantum.joint\\_recurrence}",
    "page": "22-quantum/index.html#C10",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22026",
      "script": "p22_quantum.py",
-     "line": 1168,
+     "line": 1154,
      "verdict": "pass"
     },
     "lean": [
@@ -55780,7 +55979,7 @@
     "p00059",
     "p22027"
    ],
-   "text": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow, the probability a framed-rational ratio of coincidence counts completed in finitely many chronons, and the two strata coincide on this sector; on a single Object the weights are uniform over the fibres (Remark rem:borndomain), and every non-uniform statistic passes through C11. Thm. thm:born, Prop. prop:strata, Def. def:registered, Rem. rem:ergodic p22026, FrcCore{C10} FRC.Extension.two_way_tally, FRC.Extension.core_weights, FRC.Extension.root_two_two_way, FRC.Extension.framed_readout, FRC.Observation.window_lift, FRC.Observation.pure_winding_weight, FRC.Quantum.joint_recurrence"
+   "text": "The uniform counting rule on stationary core-valued sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow, the probability a framed-rational ratio of coincidence counts, and the two strata coincide on this sector; on a single Object the weights are uniform over the fibres (Remark rem:borndomain), and every non-uniform statistic passes through C11. Thm. thm:born, Prop. prop:strata, Def. def:registered, Rem. rem:ergodic p22026, FrcCore{C10} FRC.Extension.two_way_tally, FRC.Extension.core_weights, FRC.Extension.root_two_two_way, FRC.Extension.framed_readout, FRC.Observation.window_lift, FRC.Observation.pure_winding_weight, FRC.Quantum.joint_recurrence"
   },
   {
    "paper": "22-qm",
@@ -55798,7 +55997,7 @@
     "py": {
      "href": "py/quantum.html#p22027",
      "script": "p22_quantum.py",
-     "line": 1187,
+     "line": 1173,
      "verdict": "pass"
     },
     "lean": [
@@ -55862,14 +56061,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, two-way registration functionals with a drive-covariant kernel form the $d^2c$-realised character cone, the degree itself forced (Lemma~\\ref{lem:degree}); channel selectivity picks the Born ray.",
+   "statement": "Classification of the fibre-local registration functionals on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-local, drive-covariant, two-way sesquilinear families have kernels that are class functions of the core with realised-tally coefficients, the degree itself forced (Lemma~\\ref{lem:degree}); the pair count is the only channel-selective member, up to a tally multiplier.",
    "source": "Prop.~\\ref{prop:gleason}\\newline \\pywit{quantum}{p22028}{C12}, \\leanwit{FrcCore}{p22028}{C12} \\lean{FRC.Extension.Tally.winding\\_fixing, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.two\\_way, FRC.Extension.Tally.fourier\\_inversion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.Tally.dft\\_det, FRC.Extension.Tally.cone\\_boundary, FRC.Extension.Tally.linear\\_exclusion}",
    "page": "22-quantum/index.html#C12",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22028",
      "script": "p22_quantum.py",
-     "line": 1329,
+     "line": 1313,
      "verdict": "pass"
     },
     "lean": [
@@ -55943,7 +56142,7 @@
     "p00059",
     "p22028"
    ],
-   "text": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, two-way registration functionals with a drive-covariant kernel form the $d^2c$-realised character cone, the degree itself forced (Lemma lem:degree); channel selectivity picks the Born ray. Prop. prop:gleason p22028, FrcCore{C12} FRC.Extension.Tally.winding_fixing, FRC.Extension.Tally.tally_criterion, FRC.Extension.Tally.two_way, FRC.Extension.Tally.fourier_inversion, FRC.Extension.Tally.channel_selectivity, FRC.Extension.Tally.dft_det, FRC.Extension.Tally.cone_boundary, FRC.Extension.Tally.linear_exclusion"
+   "text": "Classification of the fibre-local registration functionals on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-local, drive-covariant, two-way sesquilinear families have kernels that are class functions of the core with realised-tally coefficients, the degree itself forced (Lemma lem:degree); the pair count is the only channel-selective member, up to a tally multiplier. Prop. prop:gleason p22028, FrcCore{C12} FRC.Extension.Tally.winding_fixing, FRC.Extension.Tally.tally_criterion, FRC.Extension.Tally.two_way, FRC.Extension.Tally.fourier_inversion, FRC.Extension.Tally.channel_selectivity, FRC.Extension.Tally.dft_det, FRC.Extension.Tally.cone_boundary, FRC.Extension.Tally.linear_exclusion"
   },
   {
    "paper": "22-qm",
@@ -55961,7 +56160,7 @@
     "py": {
      "href": "py/quantum.html#p22029",
      "script": "p22_quantum.py",
-     "line": 303,
+     "line": 300,
      "verdict": "pass"
     },
     "lean": [
@@ -56002,7 +56201,7 @@
     "py": {
      "href": "py/quantum.html#p22030",
      "script": "p22_quantum.py",
-     "line": 1084,
+     "line": 1071,
      "verdict": "pass"
     },
     "lean": [
@@ -56091,7 +56290,7 @@
     "py": {
      "href": "py/quantum.html#p22031",
      "script": "p22_quantum.py",
-     "line": 755,
+     "line": 747,
      "verdict": "pass"
     },
     "lean": [
@@ -56159,7 +56358,7 @@
     "py": {
      "href": "py/quantum.html#p22032",
      "script": "p22_quantum.py",
-     "line": 623,
+     "line": 617,
      "verdict": "pass"
     },
     "lean": [
@@ -56201,14 +56400,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Exact Tsirelson saturation: the singlet law of Theorem~\\ref{thm:tsirelson} [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute.",
+   "statement": "Exact Tsirelson saturation: the singlet law of Theorem~\\ref{thm:tsirelson}, its cosine form [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute.",
    "source": "Thm.~\\ref{thm:tsirelson}, Rem.~\\ref{prop:boundary}\\newline \\pywit{quantum}{p22033}{C17}, \\leanwit{FrcCore}{p22033}{C17}, \\leanwit{FrcMathlib}{p22033}{C17} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Composite.no\\_signalling, FRC.Observation.reduce\\_mul, FRC.Composite.carrier\\_641, Quantum.tsirelson\\_real, Quantum.singlet\\_law}",
    "page": "22-quantum/index.html#C17",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22033",
      "script": "p22_quantum.py",
-     "line": 641,
+     "line": 635,
      "verdict": "pass"
     },
     "lean": [
@@ -56273,7 +56472,7 @@
    "refs": [
     "p00028"
    ],
-   "text": "Exact Tsirelson saturation: the singlet law of Theorem thm:tsirelson [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute. Thm. thm:tsirelson, Rem. prop:boundary p22033, FrcCore{C17}, FrcMathlib{C17} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, FRC.Composite.no_signalling, FRC.Observation.reduce_mul, FRC.Composite.carrier_641, Quantum.tsirelson_real, Quantum.singlet_law"
+   "text": "Exact Tsirelson saturation: the singlet law of Theorem thm:tsirelson, its cosine form [chart], the ring identity $S^2=8$, the sweep of all $80^3$ setting quadruples never exceeding the bound [chart]; no-signalling and the composite reduction commute. Thm. thm:tsirelson, Rem. prop:boundary p22033, FrcCore{C17}, FrcMathlib{C17} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, FRC.Composite.no_signalling, FRC.Observation.reduce_mul, FRC.Composite.carrier_641, Quantum.tsirelson_real, Quantum.singlet_law"
   },
   {
    "paper": "22-qm",
@@ -56291,7 +56490,7 @@
     "py": {
      "href": "py/quantum.html#p22034",
      "script": "p22_quantum.py",
-     "line": 861,
+     "line": 852,
      "verdict": "pass"
     },
     "lean": [
@@ -56332,7 +56531,7 @@
     "py": {
      "href": "py/quantum.html#p22035",
      "script": "p22_quantum.py",
-     "line": 930,
+     "line": 920,
      "verdict": "pass"
     },
     "lean": [
@@ -56389,7 +56588,7 @@
     "py": {
      "href": "py/quantum.html#p22036",
      "script": "p22_quantum.py",
-     "line": 979,
+     "line": 968,
      "verdict": "pass"
     },
     "lean": [
@@ -56431,14 +56630,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions through the reduced channel [chart]; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry.",
-   "source": "Prop.~\\ref{prop:fcoh}; rests on A4, C19, C22\\newline \\pywit{quantum}{p22037}{C21}, \\leanwit{FrcCore}{p22037}{C21} \\lean{FRC.Composite.branch\\_phase, FRC.Composite.pair\\_product, FRC.Composite.spread\\_cancels, FRC.Composite.channel\\_assembly}",
+   "statement": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions through the reduced channel [chart]; the identification reciprocal synchronisation (B8), and the completely spread channel is separable at nondegenerate geometry (C34).",
+   "source": "Prop.~\\ref{prop:fcoh}; rests on A4, B8, C19, C22\\newline \\pywit{quantum}{p22037}{C21}, \\leanwit{FrcCore}{p22037}{C21} \\lean{FRC.Composite.branch\\_phase, FRC.Composite.pair\\_product, FRC.Composite.spread\\_cancels, FRC.Composite.channel\\_assembly}",
    "page": "22-quantum/index.html#C21",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22037",
      "script": "p22_quantum.py",
-     "line": 1297,
+     "line": 1282,
      "verdict": "pass"
     },
     "lean": [
@@ -56481,9 +56680,10 @@
     "p22004",
     "p22016",
     "p22035",
-    "p22038"
+    "p22038",
+    "p22072"
    ],
-   "text": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions through the reduced channel [chart]; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry. Prop. prop:fcoh; rests on A4, C19, C22 p22037, FrcCore{C21} FRC.Composite.branch_phase, FRC.Composite.pair_product, FRC.Composite.spread_cancels, FRC.Composite.channel_assembly"
+   "text": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions through the reduced channel [chart]; the identification reciprocal synchronisation (B8), and the completely spread channel is separable at nondegenerate geometry (C34). Prop. prop:fcoh; rests on A4, B8, C19, C22 p22037, FrcCore{C21} FRC.Composite.branch_phase, FRC.Composite.pair_product, FRC.Composite.spread_cancels, FRC.Composite.channel_assembly"
   },
   {
    "paper": "22-qm",
@@ -56501,7 +56701,7 @@
     "py": {
      "href": "py/quantum.html#p22038",
      "script": "p22_quantum.py",
-     "line": 1040,
+     "line": 1028,
      "verdict": "pass"
     },
     "lean": [
@@ -56560,7 +56760,7 @@
     "py": {
      "href": "py/quantum.html#p22039",
      "script": "p22_quantum.py",
-     "line": 1488,
+     "line": 1470,
      "verdict": "pass"
     },
     "lean": [
@@ -56609,7 +56809,7 @@
     "py": {
      "href": "py/quantum.html#p22040",
      "script": "p22_quantum.py",
-     "line": 268,
+     "line": 265,
      "verdict": "pass"
     },
     "lean": [
@@ -56658,7 +56858,7 @@
     "py": {
      "href": "py/quantum.html#p22041",
      "script": "p22_quantum.py",
-     "line": 655,
+     "line": 649,
      "verdict": "pass"
     },
     "lean": [
@@ -56712,7 +56912,7 @@
     "py": {
      "href": "py/quantum.html#p22042",
      "script": "p22_quantum.py",
-     "line": 683,
+     "line": 676,
      "verdict": "pass"
     },
     "lean": [
@@ -56779,7 +56979,7 @@
     "py": {
      "href": "py/quantum.html#p22043",
      "script": "p22_quantum.py",
-     "line": 1561,
+     "line": 1542,
      "verdict": "pass"
     },
     "lean": [
@@ -56820,7 +57020,7 @@
     "py": {
      "href": "py/quantum.html#p22065",
      "script": "p22_quantum.py",
-     "line": 1610,
+     "line": 1590,
      "verdict": "pass"
     },
     "lean": [
@@ -56874,14 +57074,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings [chart], and the grid allocation of a protocol lies within one of the readout times the run count, at every setting and scale.",
+   "statement": "The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings with positive trace element [chart], and the grid allocation of a protocol lies within one of the readout times the run count.",
    "source": "Prop.~\\ref{prop:readoutlaw}; rests on A9, C10, C17\\newline \\pywit{quantum}{p22066}{C29}, \\leanwit{FrcCore}{p22066}{C29} \\lean{FRC.Strata.Readout.cells\\_all\\_settings, FRC.Strata.Readout.cells\\_P20, FRC.Strata.Readout.pair\\_sum, FRC.Strata.hamilton\\_count, FRC.Strata.Readout.tsirelson\\_restriction, FRC.Strata.Readout.classical\\_exact}",
    "page": "22-quantum/index.html#C29",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22066",
      "script": "p22_quantum.py",
-     "line": 1755,
+     "line": 1686,
      "verdict": "pass"
     },
     "lean": [
@@ -56940,7 +57140,230 @@
     "p22033",
     "p22063"
    ],
-   "text": "The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings [chart], and the grid allocation of a protocol lies within one of the readout times the run count, at every setting and scale. Prop. prop:readoutlaw; rests on A9, C10, C17 p22066, FrcCore{C29} FRC.Strata.Readout.cells_all_settings, FRC.Strata.Readout.cells_P20, FRC.Strata.Readout.pair_sum, FRC.Strata.hamilton_count, FRC.Strata.Readout.tsirelson_restriction, FRC.Strata.Readout.classical_exact"
+   "text": "The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings with positive trace element [chart], and the grid allocation of a protocol lies within one of the readout times the run count. Prop. prop:readoutlaw; rests on A9, C10, C17 p22066, FrcCore{C29} FRC.Strata.Readout.cells_all_settings, FRC.Strata.Readout.cells_P20, FRC.Strata.Readout.pair_sum, FRC.Strata.hamilton_count, FRC.Strata.Readout.tsirelson_restriction, FRC.Strata.Readout.classical_exact"
+  },
+  {
+   "paper": "22-qm",
+   "no": 22,
+   "rid": "22:C30",
+   "key": "p22068",
+   "label": "C30",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "The calibration law: the normalised rate of a pair run is the product of the two coherent fractions, against a spread-free reference of independent cells certified under the clause of B8 it is the source's own fraction, and the off-diagonal rate table is rank one, each nonzero fraction recovered from three runs; standard quantum mechanics is the table of ones.",
+   "source": "Prop.~\\ref{prop:calibration}(i), (ii); rests on A10, B8, C21, C22\\newline \\pywit{quantum}{p22068}{C30}, \\leanwit{FrcCore}{p22068}{C30} \\lean{FRC.Calibration.reference\\_rate, FRC.Calibration.recover\\_sq, FRC.Calibration.quad\\_consistency, FRC.Calibration.unit\\_table}",
+   "page": "22-quantum/index.html#C30",
+   "witness": {
+    "py": {
+     "href": "py/quantum.html#p22068",
+     "script": "p22_quantum.py",
+     "line": 1739,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Calibration",
+      "name": "FRC.Calibration.reference_rate",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Calibration.reference_rate"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Calibration",
+      "name": "FRC.Calibration.recover_sq",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Calibration.recover_sq"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Calibration",
+      "name": "FRC.Calibration.quad_consistency",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Calibration.quad_consistency"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Calibration",
+      "name": "FRC.Calibration.unit_table",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Calibration.unit_table"
+     }
+    ]
+   },
+   "refs": [
+    "p22016",
+    "p22037",
+    "p22038",
+    "p22067"
+   ],
+   "text": "The calibration law: the normalised rate of a pair run is the product of the two coherent fractions, against a spread-free reference of independent cells certified under the clause of B8 it is the source's own fraction, and the off-diagonal rate table is rank one, each nonzero fraction recovered from three runs; standard quantum mechanics is the table of ones. Prop. prop:calibration(i), (ii); rests on A10, B8, C21, C22 p22068, FrcCore{C30} FRC.Calibration.reference_rate, FRC.Calibration.recover_sq, FRC.Calibration.quad_consistency, FRC.Calibration.unit_table"
+  },
+  {
+   "paper": "22-qm",
+   "no": 22,
+   "rid": "22:C31",
+   "key": "p22069",
+   "label": "C31",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "Factorisation for independent preparation: with the pair phase additive in the cells' winding offsets, the spread characteristic of a two-source run is the product of the two sources' own spread characteristics, each at its own argument, so the pairwise characteristics of the channel follow from per-source data.",
+   "source": "Prop.~\\ref{prop:calibration}(iii); rests on B8, C21\\newline \\pywit{quantum}{p22069}{C31}, \\leanwit{FrcCore}{p22069}{C31} \\lean{FRC.Calibration.dsum\\_eq}",
+   "page": "22-quantum/index.html#C31",
+   "witness": {
+    "py": {
+     "href": "py/quantum.html#p22069",
+     "script": "p22_quantum.py",
+     "line": 1750,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Calibration",
+      "name": "FRC.Calibration.dsum_eq",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Calibration.dsum_eq"
+     }
+    ]
+   },
+   "refs": [
+    "p22016",
+    "p22037"
+   ],
+   "text": "Factorisation for independent preparation: with the pair phase additive in the cells' winding offsets, the spread characteristic of a two-source run is the product of the two sources' own spread characteristics, each at its own argument, so the pairwise characteristics of the channel follow from per-source data. Prop. prop:calibration(iii); rests on B8, C21 p22069, FrcCore{C31} FRC.Calibration.dsum_eq"
+  },
+  {
+   "paper": "22-qm",
+   "no": 22,
+   "rid": "22:C32",
+   "key": "p22070",
+   "label": "C32",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "Exact recovery over one recurrence: inversion on the cycle recovers the spread occupation from its characteristic function exactly, and with it the certificate and every fraction; a laboratory recurrence exceeds every proposed observation window \\citep{roadmap2022}, so a window reads the certificate and the normalised rates within the protocol's resolution [chart].",
+   "source": "Prop.~\\ref{prop:calibration}(iv); rests on C20, C30\\newline \\pywit{quantum}{p22070}{C32}",
+   "page": "22-quantum/index.html#C32",
+   "witness": {
+    "py": {
+     "href": "py/quantum.html#p22070",
+     "script": "p22_quantum.py",
+     "line": 1753,
+     "verdict": "pass"
+    },
+    "lean": []
+   },
+   "refs": [
+    "p22036",
+    "p22068"
+   ],
+   "text": "Exact recovery over one recurrence: inversion on the cycle recovers the spread occupation from its characteristic function exactly, and with it the certificate and every fraction; a laboratory recurrence exceeds every proposed observation window [roadmap2022], so a window reads the certificate and the normalised rates within the protocol's resolution [chart]. Prop. prop:calibration(iv); rests on C20, C30 p22070"
+  },
+  {
+   "paper": "22-qm",
+   "no": 22,
+   "rid": "22:C33",
+   "key": "p22071",
+   "label": "C33",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "The domain of the normalised rate: $|\\Gamma_{ij}|=|\\chi_{ij}|$; a recurrence lies in it; a completely spread cell at a nontrivial character removes every other differential; a geometric law has $0<|\\chi|<1$ at every nontrivial argument; a two-point law on $\\Z_{12}$ vanishes at a non-recurrence argument; unit contrast at the unit tick forces a point occupation, under independence a locked source.",
+   "source": "Lemma~\\ref{lem:domain}; rests on C21, C30, C31\\newline \\pywit{quantum}{p22071}{C33}, \\leanwit{FrcCore}{p22071}{C33} \\lean{FRC.Calibration.complete\\_spread\\_zero, FRC.Calibration.two\\_point\\_zero}",
+   "page": "22-quantum/index.html#C33",
+   "witness": {
+    "py": {
+     "href": "py/quantum.html#p22071",
+     "script": "p22_quantum.py",
+     "line": 1776,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Calibration",
+      "name": "FRC.Calibration.complete_spread_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Calibration.complete_spread_zero"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Calibration",
+      "name": "FRC.Calibration.two_point_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Calibration.two_point_zero"
+     }
+    ]
+   },
+   "refs": [
+    "p22037",
+    "p22068",
+    "p22069"
+   ],
+   "text": "The domain of the normalised rate: $|\\Gamma_{ij}|=|\\chi_{ij}|$; a recurrence lies in it; a completely spread cell at a nontrivial character removes every other differential; a geometric law has $0<|\\chi|<1$ at every nontrivial argument; a two-point law on $\\Z_{12}$ vanishes at a non-recurrence argument; unit contrast at the unit tick forces a point occupation, under independence a locked source. Lemma lem:domain; rests on C21, C30, C31 p22071, FrcCore{C33} FRC.Calibration.complete_spread_zero, FRC.Calibration.two_point_zero"
+  },
+  {
+   "paper": "22-qm",
+   "no": 22,
+   "rid": "22:C34",
+   "key": "p22072",
+   "label": "C34",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "Entanglement under spread: with a completely spread cell at nondegenerate geometry the registered state is the separable partition state whatever $f_1f_2$, in three classes, each positive under partial transposition; three equal separations entangle it, least partial-transpose eigenvalue $(1-\\sqrt3)/4$ [chart]; nonuniform laws entangle at some geometries and not at others; a locally additive spread phase alone never entangles.",
+   "source": "Prop.~\\ref{prop:spreadent}; rests on B8, C21, C31\\newline \\pywit{quantum}{p22072}{C34}, \\leanwit{FrcCore}{p22072}{C34} \\lean{FRC.Calibration.pt\\_psd\\_classes, FRC.Calibration.three\\_equal\\_npt, FRC.Calibration.nondegenerate\\_classes}",
+   "page": "22-quantum/index.html#C34",
+   "witness": {
+    "py": {
+     "href": "py/quantum.html#p22072",
+     "script": "p22_quantum.py",
+     "line": 1786,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Calibration",
+      "name": "FRC.Calibration.pt_psd_classes",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Calibration.pt_psd_classes"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Calibration",
+      "name": "FRC.Calibration.three_equal_npt",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Calibration.three_equal_npt"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Calibration",
+      "name": "FRC.Calibration.nondegenerate_classes",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Calibration.nondegenerate_classes"
+     }
+    ]
+   },
+   "refs": [
+    "p22016",
+    "p22037",
+    "p22069"
+   ],
+   "text": "Entanglement under spread: with a completely spread cell at nondegenerate geometry the registered state is the separable partition state whatever $f_1f_2$, in three classes, each positive under partial transposition; three equal separations entangle it, least partial-transpose eigenvalue $(1-\\sqrt3)/4$ [chart]; nonuniform laws entangle at some geometries and not at others; a locally additive spread phase alone never entangles. Prop. prop:spreadent; rests on B8, C21, C31 p22072, FrcCore{C34} FRC.Calibration.pt_psd_classes, FRC.Calibration.three_equal_npt, FRC.Calibration.nondegenerate_classes"
   },
   {
    "paper": "22-qm",
@@ -56951,14 +57374,14 @@
    "block": "P",
    "tag": "T",
    "name": null,
-   "statement": "Gravitationally induced entanglement at the Newtonian rate for fully coherent sources and at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry the conditional phase, the incoherent channel separable at generic geometry. The one dated forward prediction.",
-   "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C11, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Quantum.channel\\_chart}",
+   "statement": "Gravitational entanglement at the Newtonian rate for fully coherent sources, and the systematic conditional phase at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry its systematic part; unconditional at $f_1=f_2=1$, conditional on the calibration (A10) below it.",
+   "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, A10, B8, C11, C19, C21, C30\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcMathlib}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Quantum.channel\\_chart}",
    "page": "22-quantum/index.html#P1",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22052",
      "script": "p22_quantum.py",
-     "line": 958,
+     "line": 948,
      "verdict": "pass"
     },
     "lean": [
@@ -57001,9 +57424,11 @@
     "p22016",
     "p22027",
     "p22035",
-    "p22037"
+    "p22037",
+    "p22067",
+    "p22068"
    ],
-   "text": "Gravitationally induced entanglement at the Newtonian rate for fully coherent sources and at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry the conditional phase, the incoherent channel separable at generic geometry. The one dated forward prediction. Rem. rem:bmvpred; rests on A4, B8, C11, C19, C21 p22052, FrcCore{P1}, FrcMathlib{P1} FRC.Composite.channel_complementarity, FRC.Composite.branch_phase, FRC.Composite.channel_assembly, Quantum.channel_chart"
+   "text": "Gravitational entanglement at the Newtonian rate for fully coherent sources, and the systematic conditional phase at the fraction $f_1f_2$ of it otherwise [chart], with $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement, the source gravitating by its full mass while the coherent sectors alone carry its systematic part; unconditional at $f_1=f_2=1$, conditional on the calibration (A10) below it. Rem. rem:bmvpred; rests on A4, A10, B8, C11, C19, C21, C30 p22052, FrcCore{P1}, FrcMathlib{P1} FRC.Composite.channel_complementarity, FRC.Composite.branch_phase, FRC.Composite.channel_assembly, Quantum.channel_chart"
   },
   {
    "paper": "22-qm",
@@ -57021,7 +57446,7 @@
     "py": {
      "href": "py/quantum.html#p22053",
      "script": "p22_quantum.py",
-     "line": 360,
+     "line": 356,
      "verdict": "pass"
     },
     "lean": [
@@ -57066,14 +57491,14 @@
    "block": "P",
    "tag": "T",
    "name": null,
-   "statement": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S\\neq2\\sqrt2$ or non-quantum network behaviour each falsify.",
+   "statement": "$S^2=8$ exact, $S=2\\sqrt2$ under the standard embedding [chart], and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S^2\\neq8$, or non-quantum network behaviour once the analyser families are derived natively, each falsify.",
    "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{thm:table}; rests on B2, B5, C11, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcMathlib}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Quantum.tsirelson\\_real}",
    "page": "22-quantum/index.html#P3",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22054",
      "script": "p22_quantum.py",
-     "line": 883,
+     "line": 874,
      "verdict": "pass"
     },
     "lean": [
@@ -57118,7 +57543,7 @@
     "p22033",
     "p22034"
    ],
-   "text": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S\\neq2\\sqrt2$ or non-quantum network behaviour each falsify. Thm. thm:tsirelson, Prop. thm:table; rests on B2, B5, C11, C17, C18 p22054, FrcCore{P3}, FrcMathlib{P3} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, FRC.Quantum.pair_offset, Quantum.tsirelson_real"
+   "text": "$S^2=8$ exact, $S=2\\sqrt2$ under the standard embedding [chart], and compatibility with the network table of complex (not real) quantum theory, the analyser families inserted: $S^2\\neq8$, or non-quantum network behaviour once the analyser families are derived natively, each falsify. Thm. thm:tsirelson, Prop. thm:table; rests on B2, B5, C11, C17, C18 p22054, FrcCore{P3}, FrcMathlib{P3} FRC.Shell.Prime.tsirelson, FRC.Composite.singlet_square, FRC.Quantum.pair_offset, Quantum.tsirelson_real"
   },
   {
    "paper": "22-qm",
@@ -57136,7 +57561,7 @@
     "py": {
      "href": "py/quantum.html#p22055",
      "script": "p22_quantum.py",
-     "line": 577,
+     "line": 572,
      "verdict": "pass"
     },
     "lean": [
@@ -57189,7 +57614,7 @@
     "py": {
      "href": "py/quantum.html#p22056",
      "script": "p22_quantum.py",
-     "line": 1102,
+     "line": 1089,
      "verdict": "pass"
     },
     "lean": [
@@ -57250,14 +57675,14 @@
    "block": "X",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{The Born rule} is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional --- on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11).",
+   "statement": "\\textbf{The Born rule} is a coincidence count on its stationary domain, where it is uniform and is the unique window lift of its Carrier shadow; its quadratic form is the pair-count identity (C7), not a postulate, and the non-uniform statistics are read through the ninth realisation and the framed readout (C11).",
    "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}\\newline \\pywit{quantum}{p22044}{X1}, \\leanwit{FrcCore}{p22044}{X1}, \\leanwit{FrcMathlib}{p22044}{X1} \\lean{FRC.Observation.window\\_lift, FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Extension.two\\_way\\_tally, Quantum.pair\\_count\\_tally}",
    "page": "22-quantum/index.html#X1",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22044",
      "script": "p22_quantum.py",
-     "line": 225,
+     "line": 222,
      "verdict": "pass"
     },
     "lean": [
@@ -57304,9 +57729,10 @@
     ]
    },
    "refs": [
+    "p22023",
     "p22027"
    ],
-   "text": "The Born rule is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional — on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11). Prop. prop:paircount, Thm. thm:born, Rem. rem:borndomain p22044, FrcCore{X1}, FrcMathlib{X1} FRC.Observation.window_lift, FRC.Observation.pair_count, FRC.Observation.pure_winding_weight, FRC.Extension.two_way_tally, Quantum.pair_count_tally"
+   "text": "The Born rule is a coincidence count on its stationary domain, where it is uniform and is the unique window lift of its Carrier shadow; its quadratic form is the pair-count identity (C7), not a postulate, and the non-uniform statistics are read through the ninth realisation and the framed readout (C11). Prop. prop:paircount, Thm. thm:born, Rem. rem:borndomain p22044, FrcCore{X1}, FrcMathlib{X1} FRC.Observation.window_lift, FRC.Observation.pair_count, FRC.Observation.pure_winding_weight, FRC.Extension.two_way_tally, Quantum.pair_count_tally"
   },
   {
    "paper": "22-qm",
@@ -57324,7 +57750,7 @@
     "py": {
      "href": "py/quantum.html#p22045",
      "script": "p22_quantum.py",
-     "line": 303,
+     "line": 300,
      "verdict": "pass"
     },
     "lean": [
@@ -57358,14 +57784,14 @@
    "block": "X",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{The preferred basis} is the Subject's own phase anatomy, einselected by the algebra of the frames rather than by a model of the environment.",
+   "statement": "\\textbf{The preferred basis} is the Subject's own phase anatomy, selected by the algebra of the frames rather than by a model of the environment.",
    "source": "Prop.~\\ref{prop:basis}\\newline \\pywit{quantum}{p22046}{X3}, \\leanwit{FrcCore}{p22046}{X3} \\lean{FRC.Observation.orthogonality, FRC.Observation.selection}",
    "page": "22-quantum/index.html#X3",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22046",
      "script": "p22_quantum.py",
-     "line": 209,
+     "line": 206,
      "verdict": "pass"
     },
     "lean": [
@@ -57388,7 +57814,7 @@
     ]
    },
    "refs": [],
-   "text": "The preferred basis is the Subject's own phase anatomy, einselected by the algebra of the frames rather than by a model of the environment. Prop. prop:basis p22046, FrcCore{X3} FRC.Observation.orthogonality, FRC.Observation.selection"
+   "text": "The preferred basis is the Subject's own phase anatomy, selected by the algebra of the frames rather than by a model of the environment. Prop. prop:basis p22046, FrcCore{X3} FRC.Observation.orthogonality, FRC.Observation.selection"
   },
   {
    "paper": "22-qm",
@@ -57406,7 +57832,7 @@
     "py": {
      "href": "py/quantum.html#p22047",
      "script": "p22_quantum.py",
-     "line": 1514,
+     "line": 1496,
      "verdict": "pass"
     },
     "lean": [
@@ -57455,7 +57881,7 @@
     "py": {
      "href": "py/quantum.html#p22048",
      "script": "p22_quantum.py",
-     "line": 268,
+     "line": 265,
      "verdict": "pass"
     },
     "lean": [
@@ -57497,14 +57923,14 @@
    "block": "X",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{Native probability over a finite substrate}: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus, set against the counting and cyclotomic precedents of Section~\\ref{sec:intro}.",
+   "statement": "\\textbf{Native probability over a finite substrate}: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus.",
    "source": "\\S\\ref{sec:ledger}\\newline \\pywit{quantum}{p22049}{X6}, \\leanwit{FrcCore}{p22049}{X6} \\lean{FRC.Observation.window\\_lift, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.framed\\_readout}",
    "page": "22-quantum/index.html#X6",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22049",
      "script": "p22_quantum.py",
-     "line": 1187,
+     "line": 1173,
      "verdict": "pass"
     },
     "lean": [
@@ -57543,7 +57969,7 @@
     ]
    },
    "refs": [],
-   "text": "Native probability over a finite substrate: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus, set against the counting and cyclotomic precedents of Section sec:intro. \\Ssec:ledger p22049, FrcCore{X6} FRC.Observation.window_lift, FRC.Extension.Tally.tally_criterion, FRC.Extension.Tally.channel_selectivity, FRC.Extension.framed_readout"
+   "text": "Native probability over a finite substrate: counts live in the observer's tally ring, not in the unordered field, and the substrate fixes the window lift, the tally criterion with its channel selectivity and the framed readout; this is the provenance of the Born calculus. \\Ssec:ledger p22049, FrcCore{X6} FRC.Observation.window_lift, FRC.Extension.Tally.tally_criterion, FRC.Extension.Tally.channel_selectivity, FRC.Extension.framed_readout"
   },
   {
    "paper": "22-qm",
@@ -57561,7 +57987,7 @@
     "py": {
      "href": "py/quantum.html#p22050",
      "script": "p22_quantum.py",
-     "line": 655,
+     "line": 649,
      "verdict": "pass"
     },
     "lean": [
@@ -57612,7 +58038,7 @@
     "py": {
      "href": "py/quantum.html#p22051",
      "script": "p22_quantum.py",
-     "line": 351,
+     "line": 347,
      "verdict": "pass"
     },
     "lean": [
@@ -57680,7 +58106,7 @@
     "py": {
      "href": "py/quantum.html#p22061",
      "script": "p22_quantum.py",
-     "line": 1408,
+     "line": 1391,
      "verdict": "pass"
     },
     "lean": [
@@ -57706,14 +58132,14 @@
    "block": "Z",
    "tag": "Ω",
    "name": null,
-   "statement": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega=1.3\\times10^{123}$ [approx], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table~\\ref{tab:omega} lies below it.",
+   "statement": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega\\approx1.3\\times10^{123}$ [approx], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table~\\ref{tab:omega} lies below it.",
    "source": "\\S\\ref{sub:predictions}, Tab.~\\ref{tab:omega}, \\citep{gibbonshawking1977,planck2018}\\newline \\pywit{quantum}{p22005}{Z3}, \\leanwit{FrcMathlib}{p22005}{Z3} \\lean{Quantum.omega\\_floors}",
    "page": "22-quantum/index.html#Z3",
    "witness": {
     "py": {
      "href": "py/quantum.html#p22005",
      "script": "p22_quantum.py",
-     "line": 1397,
+     "line": 1380,
      "verdict": "pass"
     },
     "lean": [
@@ -57728,7 +58154,7 @@
     ]
    },
    "refs": [],
-   "text": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega=1.3\\times10^{123}$ [approx], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table tab:omega lies below it. \\Ssub:predictions, Tab. tab:omega, [gibbonshawking1977,planck2018] p22005, FrcMathlib{Z3} Quantum.omega_floors"
+   "text": "The committed cardinality: $\\Omega=4S+1$ at the measured de Sitter entropy $S=3.3\\times10^{122}$ of the Planck cosmology, so $\\Omega\\approx1.3\\times10^{123}$ [approx], with the coherence horizon $\\sqrt\\Omega\\sim10^{61}$ and the decidability horizon $\\Omega^{1/4}\\sim10^{31}$; every floor of Table tab:omega lies below it. \\Ssub:predictions, Tab. tab:omega, [gibbonshawking1977,planck2018] p22005, FrcMathlib{Z3} Quantum.omega_floors"
   },
   {
    "paper": "25-göd",
