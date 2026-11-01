@@ -1251,7 +1251,7 @@ import FrcMathlib
 #print axioms FRC.LedgerML.p25036
 #print axioms FRC.LedgerML.p25038
 #print axioms FRC.LedgerML.p25048
-#print axioms FRC.LedgerML.p17015
+#print axioms FRC.LedgerML.p07015
 #print axioms FRC.LedgerML.p22023
 #print axioms FRC.LedgerML.p22024
 #print axioms FRC.LedgerML.p22030
@@ -1414,7 +1414,7 @@ import FrcMathlib
 #print axioms FRC.S13.p38048
 #print axioms FRC.S13.p38049
 #print axioms FRC.Spacetime.isotropic_three
-#print axioms FRC.Spacetime.p17015
+#print axioms FRC.Spacetime.p07015
 #print axioms FRC.Chart.scale_import
 #print axioms FRC.Chart.ln_omega_ledger
 #print axioms FRC.Chart.ceiling_bracket

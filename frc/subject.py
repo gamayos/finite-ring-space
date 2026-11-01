@@ -32,7 +32,7 @@ The pair (p, Ω) of 38-s13 (12 October 2026; the python side of `lean/FrcCore/Th
     window(p)                the resolvable window: the heights k with 4k < p, i.e. k ≤ κ (38:A8, B2; Pair.window)
     pairwise_conservation(p) every pair of window heights sums within one period (38:A8; Pair.window_sum)
     leak_rate(p, Om)         (κ/S, (κ/S)/(p − 1), 1/(Ω − 1), 1/(2(Ω − 1))): the two faces per chronon (38:C10, C7; Pair.leak_rate)
-    drift_order(p, Om)       the hosted pair's joint period lcm(4κ, 4S) and the injectivity of the origin's chart count 4κn mod 4S for n < S/gcd(κ, S) (17:F4)
+    drift_order(p, Om)       the hosted pair's joint period lcm(4κ, 4S) and the injectivity of the origin's chart count 4κn mod 4S for n < S/gcd(κ, S) (7:F4)
     joint_cycle(p, Om)       (L, L/2, L/2 mod p − 1, L/2 mod Ω − 1): lcm(p − 1, Ω − 1) and the half event (38:C14, B5; Pair.joint_cycle)
     least_return(p, Om)      the least t ≥ 1 with t ≡ 0 mod p − 1 and mod Ω − 1, by search
     apsidal_bound(p, Om)     the root-free bound (p − 1)²Ω < (Ω − p)² and its equivalence with p² < Ω (38:C13; Drift.nesting_bound)
@@ -250,7 +250,7 @@ def least_return(p, Om):
 
 
 def drift_depth(p, Om):
-    """17:F4, 17:A17 — the drift is one-directional on the physical pair: with p = 4κ + 1 and Ω = 4S + 1, the registrable depth p²
+    """7:F4, 7:A17 — the drift is one-directional on the physical pair: with p = 4κ + 1 and Ω = 4S + 1, the registrable depth p²
     (the Subject's states across its lifetime, the count the nesting p² < Ω places in the Carrier) lies below the cycle, p² < Ω − 1,
     so the chart count n mod (Ω − 1) is n itself on every registered duration n ≤ p². Returns (p² < Ω − 1, the counts 0..p² all
     distinct, p², Ω − 1)."""
@@ -260,7 +260,7 @@ def drift_depth(p, Om):
 
 
 def drift_order(p, Om):
-    """17:F4 — the hosted pair's period: with p = 4κ + 1, Ω = 4S + 1, on a hosted Carrier run through its cycle the joint period is lcm(4κ, 4S) = 4κS when
+    """7:F4 — the hosted pair's period: with p = 4κ + 1, Ω = 4S + 1, on a hosted Carrier run through its cycle the joint period is lcm(4κ, 4S) = 4κS when
     gcd(κ, S) = 1, and the chart count of the shell's origin after n revolutions, 4κn mod 4S, is injective exactly on
     n < S/gcd(κ, S) (the Carrier distinguishes the revolutions that the shell alone cannot). Returns (gcd, joint period, period = 4κS,
     distinct phases over S/gcd revolutions, a repeat at S/gcd)."""

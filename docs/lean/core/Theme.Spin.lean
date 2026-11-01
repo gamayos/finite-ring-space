@@ -203,7 +203,7 @@ theorem ext_eq_zero_of_mul (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) {w
     | Or.inl e => absurd (nz w e) hw
     | Or.inr e => nz x e
 
-/-- 17:A14, 00:C27 — the form `wJ` is Hermitian: `(wJ)† = wJ`, because `conj w = −w` (`w^p = −w`) and `Jᵀ = −J`. -/
+/-- 7:A14, 00:C27 — the form `wJ` is Hermitian: `(wJ)† = wJ`, because `conj w = −w` (`w^p = −w`) and `Jᵀ = −J`. -/
 theorem hermitian_wJ {w : Ext p ν} (hw : Ext.conj w = -w) : (M2x.wJ w).dagger = M2x.wJ w := by
   have c0 : Ext.conj (0 : Ext p ν) = 0 := Ext.ext rfl Shell.neg_zero
   have cn : Ext.conj (-w) = w := by
@@ -211,7 +211,7 @@ theorem hermitian_wJ {w : Ext p ν} (hw : Ext.conj w = -w) : (M2x.wJ w).dagger =
     rw [e, hw]; exact Ext.ext (Shell.neg_neg w.re) (Shell.neg_neg w.im)
   exact M2x.ext' c0 cn (by show Ext.conj w = -w; exact hw) c0
 
-/-- 17:A14, 17:D1, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian
+/-- 7:A14, 7:D1, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian
 for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its
 entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`. -/
 theorem su2_eq_sl2 (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) {w : Ext p ν} (hw0 : w ≠ 0)
@@ -255,7 +255,7 @@ theorem su2_eq_sl2 (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) {w : Ext p
 
 /-! ## The sphere is `SL₂`, point by point (00:C27, 00:C22) -/
 
-/-- 17:A13, 17:A14, 00:C27, 00:C22 — the quaternion map is a bijection of `𝔽_p⁴` onto `M₂` on a field shell with `r² = −1` and `2h = 1`, the
+/-- 7:A13, 7:A14, 00:C27, 00:C22 — the quaternion map is a bijection of `𝔽_p⁴` onto `M₂` on a field shell with `r² = −1` and `2h = 1`, the
 inverse `M ↦ ((a + d) h, (a − d)(−r) h, (b − c) h, (b + c)(−r) h)`: with `sphere_det`, the norm-one sphere is the whole of
 `SL₂`, point by point through the quarter-turn. The projective theme's statement of `Theme/Hopf.lean`'s `quat_bijective`
 (38:A7, the subject theme), so that the master's keys of C22 and C27 ride on the projective theme (20 October 2026). -/
@@ -410,7 +410,7 @@ theorem collide (σ : Nat → Nat) (N : Nat) (hb : ∀ k, k ≤ N → σ k < N) 
     rw [imageList_length] at this
     exact absurd this (Nat.not_succ_le_self N)
 
-/-- 17:A14, 17:C9, 00:C27 — every element of `SL₂` has finite order: with `det M = 1` some positive `n ≤ p⁴` has `Mⁿ = I` — the `p⁴ + 1`
+/-- 7:A14, 7:C9, 00:C27 — every element of `SL₂` has finite order: with `det M = 1` some positive `n ≤ p⁴` has `Mⁿ = I` — the `p⁴ + 1`
 powers `M⁰, …, M^{p⁴}` cannot be distinct, and the adjugate cancels the common factor. -/
 theorem finite_order (M : M2 p) (hdet : M.det = 1) : ∃ n, 0 < n ∧ n ≤ p * (p * (p * p)) ∧ mpow M n = I := by
   match collide (fun k => code (mpow M k)) (p * (p * (p * p))) (fun k _ => code_lt (mpow M k)) with
@@ -432,7 +432,7 @@ theorem finite_order (M : M2 p) (hdet : M.det = 1) : ∃ n, 0 < n ∧ n ≤ p * 
 
 /-! ## The adjoint action of `PGL₂` (00:C22) -/
 
-/-- 17:A13, 17:D1, 00:C22 — conjugation `X ↦ M X adj(M)` multiplies the determinant by `det(M)²` and the trace by `det M`: on `SL₂`
+/-- 7:A13, 7:D1, 00:C22 — conjugation `X ↦ M X adj(M)` multiplies the determinant by `det(M)²` and the trace by `det M`: on `SL₂`
 it preserves `−det` on the trace-zero matrices — the map `PGL₂(𝔽_p) → SO₃(𝔽_p)` of the row. -/
 theorem ad_preserves (M X : M2 p) :
     ((M.mul X).mul M.adj).det = M.det * M.det * X.det ∧
@@ -444,7 +444,7 @@ theorem ad_preserves (M X : M2 p) :
 def J : M2 p := ⟨0, 1, -1, 0⟩
 def D : M2 p := ⟨1, 0, 0, -1⟩
 
-/-- 17:A13, 00:C22 — the kernel of the adjoint action is the centre: on a frame (an odd shell) a matrix commuting with `J` and
+/-- 7:A13, 00:C22 — the kernel of the adjoint action is the centre: on a frame (an odd shell) a matrix commuting with `J` and
 with `D` is scalar, `b = c = 0` and `a = d`; so `PGL₂ → SO₃` is injective. -/
 theorem ad_kernel {κ : Nat} {g : Shell p} (F : Frame p κ g) (M : M2 p) (hJ : M.mul J = J.mul M) (hD : M.mul D = D.mul M) :
     M.b = 0 ∧ M.c = 0 ∧ M.a = M.d := by

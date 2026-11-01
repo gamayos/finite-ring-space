@@ -3,7 +3,7 @@
  "tree": "3-causality-20260510",
  "title": "Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/e27111098",
- "generated": "31 October 2026",
+ "generated": "1 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -311,7 +311,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A8, 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type."
+    "doc": "7:A8, 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type."
    },
    {
     "name": "FRC.Shell.Frame.euclid13",
@@ -320,7 +320,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A8, 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type."
+    "doc": "7:A8, 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type."
    },
    {
     "name": "FRC.Shell.Frame.null5",
@@ -329,7 +329,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A8, 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`."
+    "doc": "7:A8, 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`."
    },
    {
     "name": "FRC.Shell.Frame.null17",
@@ -338,7 +338,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A8, 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points."
+    "doc": "7:A8, 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points."
    }
   ],
   "B5": [
@@ -429,7 +429,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A10, 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell."
+    "doc": "7:A10, 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell."
    },
    {
     "name": "FRC.Shell.Frame.boost_comp_t",
@@ -438,7 +438,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A10, 3:C2 — boosts compose as their parameters multiply in `K`: `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row."
+    "doc": "7:A10, 3:C2 — boosts compose as their parameters multiply in `K`: `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row."
    },
    {
     "name": "FRC.Shell.Frame.boost_comp_x",
@@ -447,7 +447,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A10, 3:C2 — the composition, the `x`-row."
+    "doc": "7:A10, 3:C2 — the composition, the `x`-row."
    },
    {
     "name": "FRC.Shell.Frame.norm_one_mul",
@@ -456,7 +456,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A10, 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
+    "doc": "7:A10, 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
    },
    {
     "name": "FRC.Shell.Frame.normOne_values",
@@ -465,7 +465,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A10, 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`."
+    "doc": "7:A10, 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`."
    }
   ],
   "C3": [
@@ -543,7 +543,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A8, 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type."
+    "doc": "7:A8, 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type."
    },
    {
     "name": "FRC.Shell.Frame.normOne_values",
@@ -552,7 +552,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A10, 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`."
+    "doc": "7:A10, 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`."
    }
   ]
  }

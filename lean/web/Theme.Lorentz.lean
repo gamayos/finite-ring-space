@@ -4,9 +4,9 @@ import Mathlib
 /-! FrcMathlib/Theme.Lorentz.lean -/
 
 /-!
-# FrcMathlib.Theme.Lorentz — no definite space (17:D5), on Mathlib
+# FrcMathlib.Theme.Lorentz — no definite space (7:D5), on Mathlib
 
-The projective theme's Mathlib file for 17-spacetime (31 October 2026). The register square of the shell carries the
+The projective theme's Mathlib file for 7-spacetime (31 October 2026). The register square of the shell carries the
 determinant form `Q_ν(x) = x₀² − x₁² − x₃² + ν x₂²` on `𝔽_p⁴`; every three-dimensional subspace contains a nonzero null
 vector, so no form on space is definite. The restriction of `Q_ν` to the span of three vectors `u, v, w` is a quadratic
 polynomial in the three coefficients, of total degree at most two in three variables, and the Chevalley–Warning theorem
@@ -62,7 +62,7 @@ theorem eval_restr (ν : ZMod p) (u v w : Fin 4 → ZMod p) (a : Fin 3 → ZMod 
   simp only [eval_add, eval_sub, eval_mul, eval_C, eval_lin, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
   ring
 
-/-- 17:D5 — **no definite space.** On every prime shell `p` and for every `ν`, any three vectors `u, v, w` of `𝔽_p⁴` admit
+/-- 7:D5 — **no definite space.** On every prime shell `p` and for every `ν`, any three vectors `u, v, w` of `𝔽_p⁴` admit
 coefficients `(a₀, a₁, a₂) ≠ 0` with `Q_ν(a₀ u + a₁ v + a₂ w) = 0`: a three-dimensional subspace of the register square
 contains a nonzero null vector (Chevalley–Warning: the restricted form has degree two in three variables, its zeros number a
 multiple of `p`, and the zero coefficients are one of them). -/

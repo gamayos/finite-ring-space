@@ -972,6 +972,7 @@
    "17:A14": "Spacetime",
    "17:A15": "Spacetime",
    "17:A16": "Spacetime",
+   "17:A17": "Spacetime",
    "17:A21": "Spacetime",
    "17:A23": "Spacetime",
    "17:A24": "Spacetime",
@@ -984,6 +985,7 @@
    "17:A9": "Spacetime",
    "17:B1": "Spacetime",
    "17:B4": "Spacetime",
+   "17:B5": "Spacetime",
    "17:C1": "Spacetime",
    "17:C2": "Spacetime",
    "17:C3": "Spacetime",
@@ -1009,6 +1011,57 @@
   },
   "FrcMathlib": {
    "17:D5": "Spacetime"
+  }
+ },
+ "7-spacetime": {
+  "module": "Spacetime",
+  "FrcCore": {
+   "7:A10": "Spacetime",
+   "7:A11": "Spacetime",
+   "7:A12": "Spacetime",
+   "7:A13": "Spacetime",
+   "7:A14": "Spacetime",
+   "7:A15": "Spacetime",
+   "7:A16": "Spacetime",
+   "7:A17": "Spacetime",
+   "7:A21": "Spacetime",
+   "7:A23": "Spacetime",
+   "7:A24": "Spacetime",
+   "7:A25": "Spacetime",
+   "7:A26": "Spacetime",
+   "7:A28": "Spacetime",
+   "7:A4": "Spacetime",
+   "7:A6": "Spacetime",
+   "7:A8": "Spacetime",
+   "7:A9": "Spacetime",
+   "7:B1": "Spacetime",
+   "7:B4": "Spacetime",
+   "7:B5": "Spacetime",
+   "7:C1": "Spacetime",
+   "7:C2": "Spacetime",
+   "7:C3": "Spacetime",
+   "7:C4": "Spacetime",
+   "7:C5": "Spacetime",
+   "7:C6": "Spacetime",
+   "7:C7": "Spacetime",
+   "7:C8": "Spacetime",
+   "7:C9": "Spacetime",
+   "7:D1": "Spacetime",
+   "7:D3": "Spacetime",
+   "7:D4": "Spacetime",
+   "7:D6": "Spacetime",
+   "7:F1": "Spacetime",
+   "7:F3": "Spacetime",
+   "7:F4": "Spacetime",
+   "7:P1": "Spacetime",
+   "7:X1": "Spacetime",
+   "7:X2": "Spacetime",
+   "7:X4": "Spacetime",
+   "7:X5": "Spacetime",
+   "7:X6": "Spacetime"
+  },
+  "FrcMathlib": {
+   "7:D5": "Spacetime"
   }
  }
 }

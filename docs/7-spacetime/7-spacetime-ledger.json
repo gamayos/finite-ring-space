@@ -1,6 +1,6 @@
 {
- "paper": "17-st",
- "tree": "17-spacetime-20261027",
+ "paper": "7-st",
+ "tree": "7-spacetime-20261027",
  "title": "Emergent Lorentzian Space-Time over Finite Holographic Substrate",
  "doi": null,
  "generated": "1 November 2026",
@@ -21,14 +21,14 @@
      "predicate": "$\\mathrm{PSL}_2(\\p^{2})\\cong\\mathrm{P}\\Omega^{-}_{4}(\\p)$; the spinor map on $2\\times2$ Hermitian matrices, the continuum counterpart.",
      "tag": "I",
      "source": "\\citep{taylor1992}; \\citep{penrose1984}",
-     "key": "p17001"
+     "key": "p07001"
     },
     {
      "label": "A3",
      "predicate": "The inverse-square law of gravitation holds to separations of $52\\,\\mu$m [data].",
      "tag": "I",
      "source": "\\citep{lee2020}",
-     "key": "p17002"
+     "key": "p07002"
     },
     {
      "label": "A4",
@@ -161,7 +161,7 @@
      "predicate": "The finite upper half-plane $H_{\\p}=\\mathbb{P}^{1}(\\F_{\\p^{2}})\\setminus\\mathbb{P}^{1}(\\Fp)$, $\\p(\\p-1)$ points, with $\\mathrm{GL}_2(\\Fp)$ transitive and the non-split torus as stabiliser.",
      "tag": "I",
      "source": "\\citep{terras1999}",
-     "key": "p17041"
+     "key": "p07041"
     },
     {
      "label": "A23",
@@ -222,36 +222,36 @@
      "label": "B1",
      "predicate": "Every frame move of $G=\\mathrm{PGL}_2(\\Fp)$ factors uniquely as scale, translation and rotation, on $C_{4\\kap}$, $C_{4\\kap+1}$ and $C_{4\\kap+2}$, of consecutive orders; on the spin cover the section obstructs at $-I$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:cycles}(i); rests on A11, A13\\newline \\pywit{spacetime}{p17003}{B1}, \\leanwit{FrcCore}{p17003}{B1} \\lean{FRC.Shell.Frame.Fld.hopf\\_section, FRC.Lorentz.consecutive\\_orders, FRC.Lorentz.minus\\_one\\_in\\_both}",
-     "key": "p17003"
+     "source": "Prop.~\\ref{prop:cycles}(i); rests on A11, A13\\newline \\pywit{spacetime}{p07003}{B1}, \\leanwit{FrcCore}{p07003}{B1} \\lean{FRC.Shell.Frame.Fld.hopf\\_section, FRC.Lorentz.consecutive\\_orders, FRC.Lorentz.minus\\_one\\_in\\_both}",
+     "key": "p07003"
     },
     {
      "label": "B2",
      "predicate": "Space has the three degrees of freedom of phase decoherence of the Subject's frame, the cycles $\\p-1$, $\\p$, $\\p+1$. Falsifier: P1's.",
      "tag": "R",
      "source": "\\S\\ref{sec:discussion}; rests on A18",
-     "key": "p17004"
+     "key": "p07004"
     },
     {
      "label": "B3",
      "predicate": "Registration: the Subject registers the orbits of its frame's action, of size moves over stabiliser; a move, a label or a coordinate is not registered, and a count of registrations is a count of orbits.",
      "tag": "D",
      "source": "\\S\\ref{sec:primer}",
-     "key": "p17038"
+     "key": "p07038"
     },
     {
      "label": "B4",
      "predicate": "The necessity chain: time's coefficient is the drive's generator $\\gen$, a nonsquare; the temporal plane $-\\gen t^{2}+x^{2}$ is anisotropic with norm-one group $C_{\\p+1}$, the third cycle, and the register square is elliptic; a square coefficient gives the split plane, the cycle $C_{\\p-1}$ again, and no time.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:shell}; rests on A4, A6, A7, A10, A16, A17\\newline \\pywit{spacetime}{p17042}{B4}, \\leanwit{FrcCore}{p17042}{B4} \\lean{FRC.Shell.Frame.Fld.norm\\_ne\\_zero, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
-     "key": "p17042"
+     "source": "Lem.~\\ref{lem:shell}; rests on A4, A6, A7, A10, A16, A17\\newline \\pywit{spacetime}{p07042}{B4}, \\leanwit{FrcCore}{p07042}{B4} \\lean{FRC.Shell.Frame.Fld.norm\\_ne\\_zero, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
+     "key": "p07042"
     },
     {
      "label": "B5",
      "predicate": "The registrable depth: the Subject's register pair takes $\\p^{2}$ values, the pair space of the nesting condition (A21), and registration distinguishes states only (B3), so a sequence of distinct registrations has at most $\\p^{2}$ entries and a registered duration at most $\\p^{2}$ chronons.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:arrow}(ii); rests on A21, B3\\newline \\pywit{spacetime}{p17049}{B5}, \\leanwit{FrcCore}{p17049}{B5} \\lean{FRC.Pigeonhole.length\\_le\\_of\\_nodup\\_lt, FRC.Lorentz.nesting\\_depth}",
-     "key": "p17049"
+     "source": "Thm.~\\ref{thm:arrow}(ii); rests on A21, B3\\newline \\pywit{spacetime}{p07049}{B5}, \\leanwit{FrcCore}{p07049}{B5} \\lean{FRC.Pigeonhole.length\\_le\\_of\\_nodup\\_lt, FRC.Lorentz.nesting\\_depth}",
+     "key": "p07049"
     }
    ]
   },
@@ -263,64 +263,64 @@
      "label": "C1",
      "predicate": "The register square $\\mathrm{Herm}_2(K)=\\mathrm{Sym}^{2}(V)\\oplus\\Fp\\,\\eta J$ with $\\det X=x_{0}^{2}-x_{1}^{2}-x_{3}^{2}+\\gen x_{2}^{2}$; the map $\\varphi$ is an isometry onto $Q_{\\gen}$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(i); rests on A7\\newline \\pywit{spacetime}{p17005}{C1}, \\leanwit{FrcCore}{p17005}{C1} \\lean{FRC.Lorentz.register\\_det, FRC.Lorentz.register\\_hermitian, FRC.Lorentz.time\\_vector}",
-     "key": "p17005"
+     "source": "Thm.~\\ref{thm:hopf}(i); rests on A7\\newline \\pywit{spacetime}{p07005}{C1}, \\leanwit{FrcCore}{p07005}{C1} \\lean{FRC.Lorentz.register\\_det, FRC.Lorentz.register\\_hermitian, FRC.Lorentz.time\\_vector}",
+     "key": "p07005"
     },
     {
      "label": "C2",
      "predicate": "The congruence $X\\mapsto AXA^{\\dagger}$ of $\\mathrm{SL}_2(K)$ preserves the register square and its determinant, has kernel $\\pm I$ and image of order $\\p^{2}(\\p^{4}-1)/2$, the finite Lorentz group.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(iii); rests on A2\\newline \\pywit{spacetime}{p17006}{C2}, \\leanwit{FrcCore}{p17006}{C2} \\lean{FRC.Lorentz.congruence\\_det, FRC.Lorentz.congruence\\_hermitian, FRC.Lorentz.congruence\\_preserves, FRC.Lorentz.kernel\\_pm}",
-     "key": "p17006"
+     "source": "Thm.~\\ref{thm:hopf}(iii); rests on A2\\newline \\pywit{spacetime}{p07006}{C2}, \\leanwit{FrcCore}{p07006}{C2} \\lean{FRC.Lorentz.congruence\\_det, FRC.Lorentz.congruence\\_hermitian, FRC.Lorentz.congruence\\_preserves, FRC.Lorentz.kernel\\_pm}",
+     "key": "p07006"
     },
     {
      "label": "C3",
      "predicate": "The cone is $\\mathbb{P}^{1}(K)$: $[v]\\mapsto[vv^{\\dagger}]$ is a bijection onto the null lines of the register square, $\\p^{2}+1$ directions.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(ii)\\newline \\pywit{spacetime}{p17007}{C3}, \\leanwit{FrcCore}{p17007}{C3} \\lean{FRC.Lorentz.cone\\_point, FRC.Lorentz.null\\_count\\_13}",
-     "key": "p17007"
+     "source": "Thm.~\\ref{thm:hopf}(ii)\\newline \\pywit{spacetime}{p07007}{C3}, \\leanwit{FrcCore}{p07007}{C3} \\lean{FRC.Lorentz.cone\\_point, FRC.Lorentz.null\\_count\\_13}",
+     "key": "p07007"
     },
     {
      "label": "C4",
      "predicate": "Space and the causal rays: the $\\p+1$ points of $\\mathbb{P}^{1}(\\Fp)$ are the null directions inside space; the $\\p(\\p-1)$ others, the finite upper half-plane, carry a time component and are the cone chart.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(ii); rests on A22\\newline \\pywit{spacetime}{p17008}{C4}, \\leanwit{FrcCore}{p17008}{C4} \\lean{FRC.Lorentz.cone\\_time, FRC.Lorentz.null\\_count\\_13, FRC.Lorentz.cone\\_count\\_13, FRC.Lorentz.cone\\_count\\_173, FRC.Lorentz.cone\\_count\\_1549}",
-     "key": "p17008"
+     "source": "Thm.~\\ref{thm:hopf}(ii); rests on A22\\newline \\pywit{spacetime}{p07008}{C4}, \\leanwit{FrcCore}{p07008}{C4} \\lean{FRC.Lorentz.cone\\_time, FRC.Lorentz.null\\_count\\_13, FRC.Lorentz.cone\\_count\\_13, FRC.Lorentz.cone\\_count\\_173, FRC.Lorentz.cone\\_count\\_1549}",
+     "key": "p07008"
     },
     {
      "label": "C5",
      "predicate": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(+++-)$ names the elliptic class by the index chart [chart].",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(i); rests on A1, A6, A8, A14\\newline \\pywit{spacetime}{p17009}{C5}, \\leanwit{FrcCore}{p17009}{C5} \\lean{FRC.Lorentz.rank\\_two\\_det, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
-     "key": "p17009"
+     "source": "Thm.~\\ref{thm:hopf}(i); rests on A1, A6, A8, A14\\newline \\pywit{spacetime}{p07009}{C5}, \\leanwit{FrcCore}{p07009}{C5} \\lean{FRC.Lorentz.rank\\_two\\_det, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
+     "key": "p07009"
     },
     {
      "label": "C6",
      "predicate": "No inertia: $\\langle1,1,1,\\gen\\rangle\\cong\\langle1,\\gen,\\gen,\\gen\\rangle$; a similitude of multiplier $\\gen$ exchanges the two non-null classes; the null cone is the invariant of a change of unit.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(i); rests on A9\\newline \\pywit{spacetime}{p17010}{C6}, \\leanwit{FrcCore}{p17010}{C6} \\lean{FRC.Lorentz.similitude, FRC.Lorentz.two\\_squares}",
-     "key": "p17010"
+     "source": "Thm.~\\ref{thm:hopf}(i); rests on A9\\newline \\pywit{spacetime}{p07010}{C6}, \\leanwit{FrcCore}{p07010}{C6} \\lean{FRC.Lorentz.similitude, FRC.Lorentz.two\\_squares}",
+     "key": "p07010"
     },
     {
      "label": "C7",
      "predicate": "The frame's orbits: on the cone, the $\\p+1$ null directions of space (Borel stabilisers) and the $\\p(\\p-1)$ causal rays (torus stabilisers); $\\mathrm{SL}_2(\\Fp)$ transitive on the rays with stabiliser $C_{\\p+1}$, the exact fibration; the Borel a section in $G$, none on the spin cover.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(iv); rests on A11, B3\\newline \\pywit{spacetime}{p17031}{C7}, \\leanwit{FrcCore}{p17031}{C7} \\lean{FRC.Lorentz.ray\\_stabiliser, FRC.Lorentz.minus\\_one\\_in\\_both, FRC.Shell.Frame.Fld.hopf\\_section}",
-     "key": "p17031"
+     "source": "Thm.~\\ref{thm:hopf}(iv); rests on A11, B3\\newline \\pywit{spacetime}{p07031}{C7}, \\leanwit{FrcCore}{p07031}{C7} \\lean{FRC.Lorentz.ray\\_stabiliser, FRC.Lorentz.minus\\_one\\_in\\_both, FRC.Shell.Frame.Fld.hopf\\_section}",
+     "key": "p07031"
     },
     {
      "label": "C8",
      "predicate": "The Hopf base is the set of oriented nonsquare axes of space: a causal ray's stabiliser fixes one nonsquare axis, whose roots are the ray and its conjugate; every direction of space is a root pair on $\\mathbb{P}^{1}(K)$; the fibration covers the causal rays only.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(iv); rests on C7\\newline \\pywit{spacetime}{p17032}{C8}, \\leanwit{FrcCore}{p17032}{C8} \\lean{FRC.Lorentz.axis\\_discriminant}",
-     "key": "p17032"
+     "source": "Thm.~\\ref{thm:hopf}(iv); rests on C7\\newline \\pywit{spacetime}{p07032}{C8}, \\leanwit{FrcCore}{p07032}{C8} \\lean{FRC.Lorentz.axis\\_discriminant}",
+     "key": "p07032"
     },
     {
      "label": "C9",
      "predicate": "The class equation: every element of $G$ has order dividing $\\p-1$, $\\p$ or $\\p+1$; the maximal cyclic subgroups are the split tori, the unipotent groups and the non-split tori, $\\p(\\p+1)/2$, $\\p+1$ and $\\p(\\p-1)/2$ of them, partitioning $G\\setminus\\{1\\}$; the three kinds of cycle are the three direction classes of space.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:cycles}(ii), (iii); rests on A13, C8\\newline \\pywit{spacetime}{p17040}{C9}, \\leanwit{FrcCore}{p17040}{C9} \\lean{FRC.Lorentz.class\\_partition\\_13, FRC.Lorentz.class\\_equation\\_13, FRC.Lorentz.class\\_equation\\_173, FRC.Lorentz.class\\_equation\\_1549, FRC.Spin.finite\\_order}",
-     "key": "p17040"
+     "source": "Prop.~\\ref{prop:cycles}(ii), (iii); rests on A13, C8\\newline \\pywit{spacetime}{p07040}{C9}, \\leanwit{FrcCore}{p07040}{C9} \\lean{FRC.Lorentz.class\\_partition\\_13, FRC.Lorentz.class\\_equation\\_13, FRC.Lorentz.class\\_equation\\_173, FRC.Lorentz.class\\_equation\\_1549, FRC.Spin.finite\\_order}",
+     "key": "p07040"
     }
    ]
   },
@@ -332,36 +332,36 @@
      "label": "D1",
      "predicate": "The stabiliser of the time vector $\\eta J$ in $\\mathrm{SL}_2(K)$ is exactly the spin cover $\\mathrm{SL}_2(\\Fp)$, which rotates $\\mathrm{Sym}^{2}(V)$; a frame move of odd drive parity fixes the line and scales the vector by $\\gen$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(iii), (v); rests on A14, A16\\newline \\pywit{spacetime}{p17011}{D1}, \\leanwit{FrcCore}{p17011}{D1} \\lean{FRC.Spin.su2\\_eq\\_sl2, FRC.Lorentz.time\\_vector, FRC.Spin.ad\\_preserves, FRC.Lorentz.drive\\_time}",
-     "key": "p17011"
+     "source": "Thm.~\\ref{thm:hopf}(iii), (v); rests on A14, A16\\newline \\pywit{spacetime}{p07011}{D1}, \\leanwit{FrcCore}{p07011}{D1} \\lean{FRC.Spin.su2\\_eq\\_sl2, FRC.Lorentz.time\\_vector, FRC.Spin.ad\\_preserves, FRC.Lorentz.drive\\_time}",
+     "key": "p07011"
     },
     {
      "label": "D3",
      "predicate": "The drive on the square: $\\mathrm{diag}(\\gen,1)$ carries $[z]$ to $[\\gen z]$ and $\\eta J$ to $\\gen\\,\\eta J$; its unimodular lift $\\mathrm{diag}(\\eta,\\eta^{-1})$ carries $\\eta J$ to $-\\eta J$; the even transport $\\mathrm{diag}(\\gen,\\gen^{-1})$ fixes $\\eta J$ and dilates the origin and the horizon by $\\gen^{-2}$ and $\\gen^{2}$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(v); rests on A4, A15, A16\\newline \\pywit{spacetime}{p17013}{D3}, \\leanwit{FrcCore}{p17013}{D3} \\lean{FRC.Lorentz.drive\\_time, FRC.Lorentz.lift\\_det, FRC.Lorentz.lift\\_time, FRC.Lorentz.even\\_transport}",
-     "key": "p17013"
+     "source": "Thm.~\\ref{thm:hopf}(v); rests on A4, A15, A16\\newline \\pywit{spacetime}{p07013}{D3}, \\leanwit{FrcCore}{p07013}{D3} \\lean{FRC.Lorentz.drive\\_time, FRC.Lorentz.lift\\_det, FRC.Lorentz.lift\\_time, FRC.Lorentz.even\\_transport}",
+     "key": "p07013"
     },
     {
      "label": "D4",
      "predicate": "$N^{1}$ and the non-split torus are conjugate in $\\mathrm{SL}_2(K)$; the spinor closes in two circuits, of order $\\p+1$ in $\\mathrm{SL}_2(K)$ and $(\\p+1)/2$ on the square.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(v); rests on A10\\newline \\pywit{spacetime}{p17014}{D4}, \\leanwit{FrcCore}{p17014}{D4} \\lean{FRC.Lorentz.neg\\_one\\_trivial, FRC.Lorentz.torus\\_conjugate}",
-     "key": "p17014"
+     "source": "Thm.~\\ref{thm:hopf}(v); rests on A10\\newline \\pywit{spacetime}{p07014}{D4}, \\leanwit{FrcCore}{p07014}{D4} \\lean{FRC.Lorentz.neg\\_one\\_trivial, FRC.Lorentz.torus\\_conjugate}",
+     "key": "p07014"
     },
     {
      "label": "D5",
      "predicate": "No definite space: every three-dimensional subspace of the register square contains a null vector.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(vi); rests on A1\\newline \\pywit{spacetime}{p17015}{D5}, \\leanwit{FrcMathlib}{p17015}{D5} \\lean{Spacetime.isotropic\\_three}",
-     "key": "p17015"
+     "source": "Thm.~\\ref{thm:hopf}(vi); rests on A1\\newline \\pywit{spacetime}{p07015}{D5}, \\leanwit{FrcMathlib}{p07015}{D5} \\lean{Spacetime.isotropic\\_three}",
+     "key": "p07015"
     },
     {
      "label": "D6",
      "predicate": "$K^{\\times}/\\Fpx$ is regular on $\\mathbb{P}^{1}(\\Fp)$; the horizon $[1:0]$ is its element of order two, reached from the origin at the half step $2\\kap+1$ by every generator; the unimodular torus reaches only the even steps.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hopf}(vi); rests on A15\\newline \\pywit{spacetime}{p17033}{D6}, \\leanwit{FrcCore}{p17033}{D6} \\lean{FRC.Lorentz.horizon\\_order\\_two, FRC.Lorentz.half\\_step\\_odd, FRC.Lorentz.even\\_never\\_horizon, FRC.Lorentz.horizon\\_half\\_step\\_13}",
-     "key": "p17033"
+     "source": "Thm.~\\ref{thm:hopf}(vi); rests on A15\\newline \\pywit{spacetime}{p07033}{D6}, \\leanwit{FrcCore}{p07033}{D6} \\lean{FRC.Lorentz.horizon\\_order\\_two, FRC.Lorentz.half\\_step\\_odd, FRC.Lorentz.even\\_never\\_horizon, FRC.Lorentz.horizon\\_half\\_step\\_13}",
+     "key": "p07033"
     }
    ]
   },
@@ -374,7 +374,7 @@
      "predicate": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, in the affine chart $(s_{12},s_{11})$ of the plane of binary forms, on the continuum Hopf picture [chart], and the laboratory's host view of the cone [chart]; no row rests on a figure.",
      "tag": "D",
      "source": "Figs.~\\ref{fig:register}--\\ref{fig:arrow}",
-     "key": "p17043"
+     "key": "p07043"
     }
    ]
   },
@@ -386,29 +386,29 @@
      "label": "F1",
      "predicate": "Every embedded shell drifts against the Carrier at one rate, $1/(\\Om-1)$ of the Carrier cycle per chronon and $\\kap/\\dS$ per revolution, below $1/(\\sqrt{\\Om}+1)$ exactly when $\\p^{2}<\\Om$ [chart]; the count of F4 advances at the same rate for every embedded observer.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:arrow}(iii); rests on A21, A23, A24, A25\\newline \\pywit{spacetime}{p17044}{F1}, \\leanwit{FrcCore}{p17044}{F1} \\lean{FRC.Pair.leak\\_rate}",
-     "key": "p17044"
+     "source": "Thm.~\\ref{thm:arrow}(iii); rests on A21, A23, A24, A25\\newline \\pywit{spacetime}{p07044}{F1}, \\leanwit{FrcCore}{p07044}{F1} \\lean{FRC.Pair.leak\\_rate}",
+     "key": "p07044"
     },
     {
      "label": "F2",
      "predicate": "Causal order between stations is the drift read through the cone chart: the cone gives the null directions and the drift the order along them, one chronon of depth per rung. Falsifier: a registered order of events on the cone that differs from the order of the chart count, or a registration that precedes the drift.",
      "tag": "R",
      "source": "Realisation~\\ref{real:leak}; rests on A26, A27, A28, F4",
-     "key": "p17045"
+     "key": "p07045"
     },
     {
      "label": "F3",
      "predicate": "The time reversal is not a Lorentz move: the congruence image is $\\Omega^{-}_{4}(\\p)$, of index four in $\\mathrm{O}^{-}_{4}(\\p)$; the time reversal is the Frobenius of $K$, and it, a spatial reflection and the total inversion lie outside the image.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:arrow}(i); rests on A2, C2, D1\\newline \\pywit{spacetime}{p17046}{F3}, \\leanwit{FrcCore}{p17046}{F3} \\lean{FRC.Lorentz.no\\_time\\_reversal, FRC.Lorentz.no\\_reflection, FRC.Lorentz.no\\_inversion, FRC.Lorentz.congruence\\_preserves}",
-     "key": "p17046"
+     "source": "Thm.~\\ref{thm:arrow}(i); rests on A2, C2, D1\\newline \\pywit{spacetime}{p07046}{F3}, \\leanwit{FrcCore}{p07046}{F3} \\lean{FRC.Lorentz.no\\_time\\_reversal, FRC.Lorentz.no\\_reflection, FRC.Lorentz.no\\_inversion, FRC.Lorentz.congruence\\_preserves}",
+     "key": "p07046"
     },
     {
      "label": "F4",
      "predicate": "The drift is one-directional: one chronon is one step of the Carrier's chart cycle, a registered duration has at most $\\p^{2}<\\Om-1$ chronons, so the chart count is injective on every registrable depth and no recurrence is registrable; on a hosted Carrier the pair returns after $\\mathrm{lcm}(4\\kap,4\\dS)$ chronons, the laboratory's period.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:arrow}(ii); rests on A21, A24, A25, B5\\newline \\pywit{spacetime}{p17047}{F4}, \\leanwit{FrcCore}{p17047}{F4} \\lean{FRC.Lorentz.drift\\_one\\_directional, FRC.Lorentz.nesting\\_depth, FRC.Lorentz.drift\\_instance\\_pairs, FRC.Lorentz.joint\\_period, FRC.Lorentz.drift\\_injective, FRC.Lorentz.drift\\_injective\\_gcd, FRC.Lorentz.drift\\_instance, FRC.Lorentz.drift\\_instance\\_gcd}",
-     "key": "p17047"
+     "source": "Thm.~\\ref{thm:arrow}(ii); rests on A21, A24, A25, B5\\newline \\pywit{spacetime}{p07047}{F4}, \\leanwit{FrcCore}{p07047}{F4} \\lean{FRC.Lorentz.drift\\_one\\_directional, FRC.Lorentz.nesting\\_depth, FRC.Lorentz.drift\\_instance\\_pairs, FRC.Lorentz.joint\\_period, FRC.Lorentz.drift\\_injective, FRC.Lorentz.drift\\_injective\\_gcd, FRC.Lorentz.drift\\_instance, FRC.Lorentz.drift\\_instance\\_gcd}",
+     "key": "p07047"
     }
    ]
   },
@@ -420,36 +420,36 @@
      "label": "X1",
      "predicate": "Why Lorentzian: a finite four-geometry is hyperbolic or elliptic, and the register square is elliptic because time's coefficient is the drive's generator, a nonsquare.",
      "tag": "T",
-     "source": "\\S\\ref{sec:discussion}; rests on B4, C5\\newline \\pywit{spacetime}{p17020}{X1}, \\leanwit{FrcCore}{p17020}{X1} \\lean{FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
-     "key": "p17020"
+     "source": "\\S\\ref{sec:discussion}; rests on B4, C5\\newline \\pywit{spacetime}{p07020}{X1}, \\leanwit{FrcCore}{p07020}{X1} \\lean{FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
+     "key": "p07020"
     },
     {
      "label": "X2",
      "predicate": "Why three spatial dimensions: space is $\\mathrm{Sym}^{2}(V)$, of dimension three, and the frame moves have exactly three cyclic symmetries, the three kinds of direction of that space.",
      "tag": "T",
-     "source": "\\S\\ref{sec:discussion}; rests on C9, C8\\newline \\pywit{spacetime}{p17021}{X2}, \\leanwit{FrcCore}{p17021}{X2} \\lean{FRC.Lorentz.class\\_partition\\_13, FRC.Lorentz.class\\_equation\\_13, FRC.Lorentz.class\\_equation\\_173, FRC.Lorentz.class\\_equation\\_1549, FRC.Lorentz.axis\\_discriminant}",
-     "key": "p17021"
+     "source": "\\S\\ref{sec:discussion}; rests on C9, C8\\newline \\pywit{spacetime}{p07021}{X2}, \\leanwit{FrcCore}{p07021}{X2} \\lean{FRC.Lorentz.class\\_partition\\_13, FRC.Lorentz.class\\_equation\\_13, FRC.Lorentz.class\\_equation\\_173, FRC.Lorentz.class\\_equation\\_1549, FRC.Lorentz.axis\\_discriminant}",
+     "key": "p07021"
     },
     {
      "label": "X4",
      "predicate": "Why spin one half: the kernel of the congruence is $\\pm I$ and the spinor closes in two circuits.",
      "tag": "T",
-     "source": "\\S\\ref{sec:discussion}; rests on C2, D4\\newline \\pywit{spacetime}{p17023}{X4}, \\leanwit{FrcCore}{p17023}{X4} \\lean{FRC.Lorentz.kernel\\_pm, FRC.Lorentz.neg\\_one\\_trivial}",
-     "key": "p17023"
+     "source": "\\S\\ref{sec:discussion}; rests on C2, D4\\newline \\pywit{spacetime}{p07023}{X4}, \\leanwit{FrcCore}{p07023}{X4} \\lean{FRC.Lorentz.kernel\\_pm, FRC.Lorentz.neg\\_one\\_trivial}",
+     "key": "p07023"
     },
     {
      "label": "X5",
      "predicate": "Why time is relational: there is no inertia, and a change of unit exchanges the label.",
      "tag": "T",
-     "source": "\\S\\ref{sec:discussion}; rests on C6\\newline \\pywit{spacetime}{p17024}{X5}, \\leanwit{FrcCore}{p17024}{X5} \\lean{FRC.Lorentz.similitude}",
-     "key": "p17024"
+     "source": "\\S\\ref{sec:discussion}; rests on C6\\newline \\pywit{spacetime}{p07024}{X5}, \\leanwit{FrcCore}{p07024}{X5} \\lean{FRC.Lorentz.similitude}",
+     "key": "p07024"
     },
     {
      "label": "X6",
      "predicate": "Why causality has an arrow: every embedded shell drifts at one rate, its chart count is a one-directional count that orders its revolutions, and the time reversal is not a Lorentz move.",
      "tag": "T",
-     "source": "\\S\\ref{sec:discussion}; rests on A17, F1, F3, F4\\newline \\pywit{spacetime}{p17048}{X6}, \\leanwit{FrcCore}{p17048}{X6} \\lean{FRC.Lorentz.no\\_time\\_reversal, FRC.Lorentz.no\\_reflection, FRC.Lorentz.no\\_inversion, FRC.Lorentz.drift\\_one\\_directional}",
-     "key": "p17048"
+     "source": "\\S\\ref{sec:discussion}; rests on A17, F1, F3, F4\\newline \\pywit{spacetime}{p07048}{X6}, \\leanwit{FrcCore}{p07048}{X6} \\lean{FRC.Lorentz.no\\_time\\_reversal, FRC.Lorentz.no\\_reflection, FRC.Lorentz.no\\_inversion, FRC.Lorentz.drift\\_one\\_directional}",
+     "key": "p07048"
     }
    ]
   },
@@ -461,8 +461,8 @@
      "label": "P1",
      "predicate": "Exactly three spatial dimensions at every scale the Subject registers, read through the declared metric chart. Falsifier: a short-range departure from the inverse-square law of the extra-dimension form; holds to $52\\,\\mu$m [data].",
      "tag": "T",
-     "source": "\\S\\ref{sec:discussion}; rests on A3, A20, B2, C9\\newline \\pywit{spacetime}{p17026}{P1}, \\leanwit{FrcCore}{p17026}{P1} \\lean{FRC.Shell.Frame.Fld.hopf\\_section, FRC.Lorentz.consecutive\\_orders}",
-     "key": "p17026"
+     "source": "\\S\\ref{sec:discussion}; rests on A3, A20, B2, C9\\newline \\pywit{spacetime}{p07026}{P1}, \\leanwit{FrcCore}{p07026}{P1} \\lean{FRC.Shell.Frame.Fld.hopf\\_section, FRC.Lorentz.consecutive\\_orders}",
+     "key": "p07026"
     }
    ]
   }
@@ -499,7 +499,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A4, 17:A17, **C1 (p00021), the frame's web.** On every frame, `π = 2κ` and `i = −g^κ`: `2π ≡ −1`, `g^π = −1`, `−π = 2⁻¹`, `i² = −1`; `0` and `1` are squares and the drive is not, the one nonsquare frame datum."
+    "doc": "7:A4, 7:A17, **C1 (p00021), the frame's web.** On every frame, `π = 2κ` and `i = −g^κ`: `2π ≡ −1`, `g^π = −1`, `−π = 2⁻¹`, `i² = −1`; `0` and `1` are squares and the drive is not, the one nonsquare frame datum."
    }
   ],
   "A6": [
@@ -510,7 +510,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A6, **C3 (p00150), the Euclidean–Lorentzian dichotomy.** On every frame the temporal coefficient `ν = g` is a nonsquare; the norm form `x² − ν t²` has a zero with `t ≠ 0` iff `ν` is a square (split torus) and none otherwise (non-split); `ν = 2⁻¹ · (2g)`, and the classes of `2⁻¹` and `2g` are fixed by the parity of `κ`."
+    "doc": "7:A6, **C3 (p00150), the Euclidean–Lorentzian dichotomy.** On every frame the temporal coefficient `ν = g` is a nonsquare; the norm form `x² − ν t²` has a zero with `t ≠ 0` iff `ν` is a square (split torus) and none otherwise (non-split); `ν = 2⁻¹ · (2g)`, and the classes of `2⁻¹` and `2g` are fixed by the parity of `κ`."
    },
    {
     "name": "FRC.Subject.half_class",
@@ -519,7 +519,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A6, 17:A16, The Carrier's class `[c²] = [2⁻¹]` (C3, C8): on a prime `p = 4S + 1`, the half `h` (`2h = 1`) is a square iff `S` is even; the half is `2S + 1` (`Prime.half_square_iff`)."
+    "doc": "7:A6, 7:A16, The Carrier's class `[c²] = [2⁻¹]` (C3, C8): on a prime `p = 4S + 1`, the half `h` (`2h = 1`) is a square iff `S` is even; the half is `2S + 1` (`Prime.half_square_iff`)."
    }
   ],
   "A8": [
@@ -530,7 +530,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A8, 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type."
+    "doc": "7:A8, 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type."
    },
    {
     "name": "FRC.Shell.Frame.euclid13",
@@ -539,7 +539,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A8, 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type."
+    "doc": "7:A8, 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type."
    },
    {
     "name": "FRC.Shell.Frame.null5",
@@ -548,7 +548,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A8, 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`."
+    "doc": "7:A8, 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`."
    },
    {
     "name": "FRC.Shell.Frame.null17",
@@ -557,7 +557,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A8, 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points."
+    "doc": "7:A8, 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points."
    }
   ],
   "A9": [
@@ -568,7 +568,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A9, 17:X5, 17:C6 — with `a² + b² = ν`, the map `(x₀, x₁, x₂, x₃) ↦ (ν x₂, a x₁ − b x₃, x₀, b x₁ + a x₃)` multiplies the form by `ν`: `⟨1, 1, 1, ν⟩ ≅ ⟨1, ν, ν, ν⟩`, a similitude of multiplier `ν` exchanging the two non-null classes."
+    "doc": "7:A9, 7:X5, 7:C6 — with `a² + b² = ν`, the map `(x₀, x₁, x₂, x₃) ↦ (ν x₂, a x₁ − b x₃, x₀, b x₁ + a x₃)` multiplies the form by `ν`: `⟨1, 1, 1, ν⟩ ≅ ⟨1, ν, ν, ν⟩`, a similitude of multiplier `ν` exchanging the two non-null classes."
    }
   ],
   "A10": [
@@ -579,7 +579,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A10, 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell."
+    "doc": "7:A10, 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell."
    },
    {
     "name": "FRC.Shell.Frame.boost_comp_t",
@@ -588,7 +588,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A10, 3:C2 — boosts compose as their parameters multiply in `K`: `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row."
+    "doc": "7:A10, 3:C2 — boosts compose as their parameters multiply in `K`: `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row."
    },
    {
     "name": "FRC.Shell.Frame.boost_comp_x",
@@ -597,7 +597,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A10, 3:C2 — the composition, the `x`-row."
+    "doc": "7:A10, 3:C2 — the composition, the `x`-row."
    },
    {
     "name": "FRC.Shell.Frame.norm_one_mul",
@@ -606,7 +606,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A10, 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
+    "doc": "7:A10, 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
    },
    {
     "name": "FRC.Shell.Frame.normOne_values",
@@ -615,7 +615,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A10, 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`."
+    "doc": "7:A10, 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`."
    }
   ],
   "A11": [
@@ -626,7 +626,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A11, 17:A13, 38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`."
+    "doc": "7:A11, 7:A13, 38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`."
    },
    {
     "name": "FRC.Shell.Frame.hopf_counts",
@@ -635,7 +635,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A11, 17:A13, 38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`."
+    "doc": "7:A11, 7:A13, 38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`."
    }
   ],
   "A12": [
@@ -646,7 +646,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A12, 38:A9 — the frame triple on every prime shell (`Fld.frame_triple` under primality)."
+    "doc": "7:A12, 38:A9 — the frame triple on every prime shell (`Fld.frame_triple` under primality)."
    },
    {
     "name": "FRC.Shell.Prime.hopf_section",
@@ -655,7 +655,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A12, 38:A9 — the Hopf section on every prime shell (`Fld.hopf_section` under primality, `ν` any nonsquare; on `𝔽₂` no nonsquare exists, and the rows quantify over the odd primes)."
+    "doc": "7:A12, 38:A9 — the Hopf section on every prime shell (`Fld.hopf_section` under primality, `ν` any nonsquare; on `𝔽₂` no nonsquare exists, and the rows quantify over the odd primes)."
    },
    {
     "name": "FRC.Shell.Prime.hopf_counts",
@@ -664,7 +664,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A12, 38:A9 — the frame counts on every prime shell: `Fld.hopf_counts` under primality."
+    "doc": "7:A12, 38:A9 — the frame counts on every prime shell: `Fld.hopf_counts` under primality."
    },
    {
     "name": "FRC.Shell.Frame.unit_split",
@@ -673,7 +673,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A12, 17:A13, 38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over one point differ by an element of the centraliser."
+    "doc": "7:A12, 7:A13, 38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over one point differ by an element of the centraliser."
    },
    {
     "name": "FRC.Grav.sphere_area_rung",
@@ -682,7 +682,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A12, 00:E6, 38:A9 — the area of the sphere at every nonzero square rung `a = b²`: `p(p + 1)`; the unit sphere's `p(p + 1)` points are the base of the split fibration (38-s13)."
+    "doc": "7:A12, 00:E6, 38:A9 — the area of the sphere at every nonzero square rung `a = b²`: `p(p + 1)`; the unit sphere's `p(p + 1)` points are the base of the split fibration (38-s13)."
    },
    {
     "name": "FRC.Grav.conic_count",
@@ -691,7 +691,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A12, 00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for `c = 0`; the circle `x² + y² = 1` is the drive torus of the split fibration (38-s13)."
+    "doc": "7:A12, 00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for `c = 0`; the circle `x² + y² = 1` is the drive torus of the split fibration (38-s13)."
    },
    {
     "name": "FRC.Shell.Frame.frame_counts",
@@ -700,7 +700,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A12, 17:A13, 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one."
+    "doc": "7:A12, 7:A13, 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one."
    }
   ],
   "A13": [
@@ -711,7 +711,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A13, 38:A9, 38:X4 — on a frame (`Frame.fld`): `Fld.frame_triple`."
+    "doc": "7:A13, 38:A9, 38:X4 — on a frame (`Frame.fld`): `Fld.frame_triple`."
    },
    {
     "name": "FRC.Shell.Frame.unit_split",
@@ -720,7 +720,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A12, 17:A13, 38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over one point differ by an element of the centraliser."
+    "doc": "7:A12, 7:A13, 38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over one point differ by an element of the centraliser."
    },
    {
     "name": "FRC.Shell.Frame.hopf_section",
@@ -729,7 +729,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A11, 17:A13, 38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`."
+    "doc": "7:A11, 7:A13, 38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`."
    },
    {
     "name": "FRC.Shell.Frame.hopf_counts",
@@ -738,7 +738,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A11, 17:A13, 38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`."
+    "doc": "7:A11, 7:A13, 38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`."
    },
    {
     "name": "FRC.Shell.Frame.sphere_det",
@@ -747,7 +747,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A13, 17:A14, 38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat` (`1, i, j, k ↦ I, diag(r, −r), [[0, 1], [−1, 0]], [[0, r], [r, 0]]`) and its norm is the determinant."
+    "doc": "7:A13, 7:A14, 38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat` (`1, i, j, k ↦ I, diag(r, −r), [[0, 1], [−1, 0]], [[0, r], [r, 0]]`) and its norm is the determinant."
    },
    {
     "name": "FRC.Spin.sphere_bijective",
@@ -756,7 +756,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A13, 17:A14, 00:C27, 00:C22 — the quaternion map is a bijection of `𝔽_p⁴` onto `M₂` on a field shell with `r² = −1` and `2h = 1`, the inverse `M ↦ ((a + d) h, (a − d)(−r) h, (b − c) h, (b + c)(−r) h)`: with `sphere_det`, the norm-one sphere is the whole of `SL₂`, point by point through the quarter-turn. The projective theme's statement of `Theme/Hopf.lean`'s `quat_bijective` (38:A7, the subject theme), so that the master's keys of C22 and C27 ride on the projective theme (20 October 2026)."
+    "doc": "7:A13, 7:A14, 00:C27, 00:C22 — the quaternion map is a bijection of `𝔽_p⁴` onto `M₂` on a field shell with `r² = −1` and `2h = 1`, the inverse `M ↦ ((a + d) h, (a − d)(−r) h, (b − c) h, (b + c)(−r) h)`: with `sphere_det`, the norm-one sphere is the whole of `SL₂`, point by point through the quarter-turn. The projective theme's statement of `Theme/Hopf.lean`'s `quat_bijective` (38:A7, the subject theme), so that the master's keys of C22 and C27 ride on the projective theme (20 October 2026)."
    },
    {
     "name": "FRC.Shell.Frame.frame_counts",
@@ -765,7 +765,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A12, 17:A13, 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one."
+    "doc": "7:A12, 7:A13, 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one."
    },
    {
     "name": "FRC.Spin.ad_preserves",
@@ -774,7 +774,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A13, 17:D1, 00:C22 — conjugation `X ↦ M X adj(M)` multiplies the determinant by `det(M)²` and the trace by `det M`: on `SL₂` it preserves `−det` on the trace-zero matrices — the map `PGL₂(𝔽_p) → SO₃(𝔽_p)` of the row."
+    "doc": "7:A13, 7:D1, 00:C22 — conjugation `X ↦ M X adj(M)` multiplies the determinant by `det(M)²` and the trace by `det M`: on `SL₂` it preserves `−det` on the trace-zero matrices — the map `PGL₂(𝔽_p) → SO₃(𝔽_p)` of the row."
    },
    {
     "name": "FRC.Spin.ad_kernel",
@@ -783,7 +783,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A13, 00:C22 — the kernel of the adjoint action is the centre: on a frame (an odd shell) a matrix commuting with `J` and with `D` is scalar, `b = c = 0` and `a = d`; so `PGL₂ → SO₃` is injective."
+    "doc": "7:A13, 00:C22 — the kernel of the adjoint action is the centre: on a frame (an odd shell) a matrix commuting with `J` and with `D` is scalar, `b = c = 0` and `a = d`; so `PGL₂ → SO₃` is injective."
    }
   ],
   "A14": [
@@ -794,7 +794,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A14, 00:C27 — the form `wJ` is Hermitian: `(wJ)† = wJ`, because `conj w = −w` (`w^p = −w`) and `Jᵀ = −J`."
+    "doc": "7:A14, 00:C27 — the form `wJ` is Hermitian: `(wJ)† = wJ`, because `conj w = −w` (`w^p = −w`) and `Jᵀ = −J`."
    },
    {
     "name": "FRC.Spin.su2_eq_sl2",
@@ -803,7 +803,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A14, 17:D1, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`."
+    "doc": "7:A14, 7:D1, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`."
    },
    {
     "name": "FRC.Spin.finite_order",
@@ -812,7 +812,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A14, 17:C9, 00:C27 — every element of `SL₂` has finite order: with `det M = 1` some positive `n ≤ p⁴` has `Mⁿ = I` — the `p⁴ + 1` powers `M⁰, …, M^{p⁴}` cannot be distinct, and the adjugate cancels the common factor."
+    "doc": "7:A14, 7:C9, 00:C27 — every element of `SL₂` has finite order: with `det M = 1` some positive `n ≤ p⁴` has `Mⁿ = I` — the `p⁴ + 1` powers `M⁰, …, M^{p⁴}` cannot be distinct, and the adjugate cancels the common factor."
    },
    {
     "name": "FRC.Shell.Frame.sphere_det",
@@ -821,7 +821,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A13, 17:A14, 38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat` (`1, i, j, k ↦ I, diag(r, −r), [[0, 1], [−1, 0]], [[0, r], [r, 0]]`) and its norm is the determinant."
+    "doc": "7:A13, 7:A14, 38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat` (`1, i, j, k ↦ I, diag(r, −r), [[0, 1], [−1, 0]], [[0, r], [r, 0]]`) and its norm is the determinant."
    },
    {
     "name": "FRC.Spin.sphere_bijective",
@@ -830,7 +830,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A13, 17:A14, 00:C27, 00:C22 — the quaternion map is a bijection of `𝔽_p⁴` onto `M₂` on a field shell with `r² = −1` and `2h = 1`, the inverse `M ↦ ((a + d) h, (a − d)(−r) h, (b − c) h, (b + c)(−r) h)`: with `sphere_det`, the norm-one sphere is the whole of `SL₂`, point by point through the quarter-turn. The projective theme's statement of `Theme/Hopf.lean`'s `quat_bijective` (38:A7, the subject theme), so that the master's keys of C22 and C27 ride on the projective theme (20 October 2026)."
+    "doc": "7:A13, 7:A14, 00:C27, 00:C22 — the quaternion map is a bijection of `𝔽_p⁴` onto `M₂` on a field shell with `r² = −1` and `2h = 1`, the inverse `M ↦ ((a + d) h, (a − d)(−r) h, (b − c) h, (b + c)(−r) h)`: with `sphere_det`, the norm-one sphere is the whole of `SL₂`, point by point through the quarter-turn. The projective theme's statement of `Theme/Hopf.lean`'s `quat_bijective` (38:A7, the subject theme), so that the master's keys of C22 and C27 ride on the projective theme (20 October 2026)."
    }
   ],
   "A15": [
@@ -841,7 +841,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A15, **C25 (p00139), the horizon is the origin's antipode on the boost torus.** On a prime `p = 4κ + 1` with `ν` a nonsquare and `𝔽_{p²} = 𝔽_p[w]/(w² − ν)`: a direction `[x : y] ≠ 0` has the boost `u = yν + xw` of nonzero norm, and `v = a + bw` moves it by `q ↦ (aq + νb)/(bq + a)`; the torsor map `u ↦ u/ū` lands on `C_{p+1}`, is constant on the classes `𝔽_p^× u` and equivariant, and is a bijection from the directions onto `C_{p+1}`; it sends the origin `[0 : 1]` to `1` and the horizon `[1 : 0]` to `−1`, the one element of order two, and `𝔽_p^× ∩ C_{p+1} = {±1}`; the one boost of order two is the class of `w`, `q ↦ ν/q`, which swaps the origin and the horizon; and `2s = 0` forces `s = 0`, the seam `2κ + (2κ + 1) = 0`: `2⁻¹ = 2κ + 1 = −2κ`."
+    "doc": "7:A15, **C25 (p00139), the horizon is the origin's antipode on the boost torus.** On a prime `p = 4κ + 1` with `ν` a nonsquare and `𝔽_{p²} = 𝔽_p[w]/(w² − ν)`: a direction `[x : y] ≠ 0` has the boost `u = yν + xw` of nonzero norm, and `v = a + bw` moves it by `q ↦ (aq + νb)/(bq + a)`; the torsor map `u ↦ u/ū` lands on `C_{p+1}`, is constant on the classes `𝔽_p^× u` and equivariant, and is a bijection from the directions onto `C_{p+1}`; it sends the origin `[0 : 1]` to `1` and the horizon `[1 : 0]` to `−1`, the one element of order two, and `𝔽_p^× ∩ C_{p+1} = {±1}`; the one boost of order two is the class of `w`, `q ↦ ν/q`, which swaps the origin and the horizon; and `2s = 0` forces `s = 0`, the seam `2κ + (2κ + 1) = 0`: `2⁻¹ = 2κ + 1 = −2κ`."
    },
    {
     "name": "FRC.Subject.horizon_generator",
@@ -850,7 +850,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A15, 00:C25, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1` has `ζ^{2κ+1} = −1`, the torus's one element of order two."
+    "doc": "7:A15, 00:C25, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1` has `ζ^{2κ+1} = −1`, the torus's one element of order two."
    },
    {
     "name": "FRC.Subject.boost_unique",
@@ -859,7 +859,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A15, 00:C25 — `u_P` is the unique boost carrying the origin to `P`: a boost `v` with `v · dir(0, 1) = c · dir(x, y)` is `(c/ν) · dir(x, y)`, so it is `dir(x, y)` up to a scalar, which acts trivially on `ℙ¹` and leaves the ratio unchanged."
+    "doc": "7:A15, 00:C25 — `u_P` is the unique boost carrying the origin to `P`: a boost `v` with `v · dir(0, 1) = c · dir(x, y)` is `(c/ν) · dir(x, y)`, so it is `dir(x, y)` up to a scalar, which acts trivially on `ℙ¹` and leaves the ratio unchanged."
    }
   ],
   "A16": [
@@ -870,7 +870,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A16, **C8 (p00028), the square class is chronon parity.** On every frame `g^m` is a square iff `m` is even: the registered (two-way) transport `g²` is even, the one-way multiplier `g` and its inverse odd."
+    "doc": "7:A16, **C8 (p00028), the square class is chronon parity.** On every frame `g^m` is a square iff `m` is even: the registered (two-way) transport `g²` is even, the one-way multiplier `g` and its inverse odd."
    },
    {
     "name": "FRC.Subject.half_class",
@@ -879,7 +879,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A6, 17:A16, The Carrier's class `[c²] = [2⁻¹]` (C3, C8): on a prime `p = 4S + 1`, the half `h` (`2h = 1`) is a square iff `S` is even; the half is `2S + 1` (`Prime.half_square_iff`)."
+    "doc": "7:A6, 7:A16, The Carrier's class `[c²] = [2⁻¹]` (C3, C8): on a prime `p = 4S + 1`, the half `h` (`2h = 1`) is a square iff `S` is even; the half is `2S + 1` (`Prime.half_square_iff`)."
    },
    {
     "name": "FRC.Shell.Prime.tsirelson",
@@ -888,7 +888,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A16, 00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`."
+    "doc": "7:A16, 00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`."
    },
    {
     "name": "FRC.Extension.Ext.norm_scale",
@@ -897,7 +897,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A16, 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every norm by `g²`, a square."
+    "doc": "7:A16, 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every norm by `g²`, a square."
    }
   ],
   "A17": [
@@ -908,7 +908,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A4, 17:A17, **C1 (p00021), the frame's web.** On every frame, `π = 2κ` and `i = −g^κ`: `2π ≡ −1`, `g^π = −1`, `−π = 2⁻¹`, `i² = −1`; `0` and `1` are squares and the drive is not, the one nonsquare frame datum."
+    "doc": "7:A4, 7:A17, **C1 (p00021), the frame's web.** On every frame, `π = 2κ` and `i = −g^κ`: `2π ≡ −1`, `g^π = −1`, `−π = 2⁻¹`, `i² = −1`; `0` and `1` are squares and the drive is not, the one nonsquare frame datum."
    },
    {
     "name": "FRC.Lorentz.drift_one_directional",
@@ -917,7 +917,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X6, 17:F4, 17:A17 — **a count below the Carrier's cycle is its own residue**: the chart count of a duration `n < Ω − 1` is `n`."
+    "doc": "7:X6, 7:F4, 7:A17 — **a count below the Carrier's cycle is its own residue**: the chart count of a duration `n < Ω − 1` is `n`."
    },
    {
     "name": "FRC.Lorentz.nesting_depth",
@@ -926,7 +926,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B5, 17:F4, 17:A17 — **the nesting bound keeps every registrable depth below the cycle.** For an odd `p` with `p² < Ω = 4S + 1`, `p²` is odd and `4S` even, so `p² ≤ 4S − 1`, and a registered duration `n ≤ p²` has `n < Ω − 1`: the cycle never acts."
+    "doc": "7:B5, 7:F4, 7:A17 — **the nesting bound keeps every registrable depth below the cycle.** For an odd `p` with `p² < Ω = 4S + 1`, `p²` is odd and `4S` even, so `p² ≤ 4S − 1`, and a registered duration `n ≤ p²` has `n < Ω − 1`: the cycle never acts."
    },
    {
     "name": "FRC.Lorentz.drift_instance_pairs",
@@ -935,7 +935,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:F4, 17:A17 — the three laboratory pairs and `(13, 181)`: `p² < Ω − 1` on each, and the hosted joint periods all exceed `p²`."
+    "doc": "7:F4, 7:A17 — the three laboratory pairs and `(13, 181)`: `p² < Ω − 1` on each, and the hosted joint periods all exceed `p²`."
    }
   ],
   "A21": [
@@ -946,7 +946,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A21, 38:C13 — **the apsidal bound is the nesting condition.** A nested Subject `p = q + 1` on a Carrier `Ω` registers the apsidal fraction `κ/S = (p − 1)/(Ω − 1)` (`Pair.leak_rate`), and the bound `κ/S < 1/(√Ω + 1)` is, squared and cleared of its root, `(p − 1)²Ω < (Ω − p)²`, which holds exactly when `p² < Ω`: with `Ω = p² + d`, `(Ω − p)² − (p − 1)²Ω = d(Ω − 1) > 0` for `d ≥ 1`, and with `p² = Ω + d`, `Ω = m + q + 1`, `(Ω − p)² + d(Ω − 1) = (p − 1)²Ω`, so the bound fails. On the physical Carrier no hosted Subject registers an observed precession (the paper's C13)."
+    "doc": "7:A21, 38:C13 — **the apsidal bound is the nesting condition.** A nested Subject `p = q + 1` on a Carrier `Ω` registers the apsidal fraction `κ/S = (p − 1)/(Ω − 1)` (`Pair.leak_rate`), and the bound `κ/S < 1/(√Ω + 1)` is, squared and cleared of its root, `(p − 1)²Ω < (Ω − p)²`, which holds exactly when `p² < Ω`: with `Ω = p² + d`, `(Ω − p)² − (p − 1)²Ω = d(Ω − 1) > 0` for `d ≥ 1`, and with `p² = Ω + d`, `Ω = m + q + 1`, `(Ω − p)² + d(Ω − 1) = (p − 1)²Ω`, so the bound fails. On the physical Carrier no hosted Subject registers an observed precession (the paper's C13)."
    },
    {
     "name": "FRC.Pair.leak_rate",
@@ -955,7 +955,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A21, 17:A24, 17:A25, 17:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "7:A21, 7:A24, 7:A25, 7:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    }
   ],
   "A23": [
@@ -966,7 +966,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A23, Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero residue holds every residue iff `p` is prime. An ideal `I` holds `0` and is closed under addition and under multiplication by any residue. Forward, a nonzero `a ∈ I` has the inverse `a^{p−2}` (Fermat), so `1 ∈ I` and then `x = x · 1 ∈ I`. Backward, the annihilator `{x : x b = 0}` of `b` is an ideal, so `a b = 0` with `a ≠ 0` puts `1` in it and `b = 0`: no zero divisors, so `p` is prime."
+    "doc": "7:A23, Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero residue holds every residue iff `p` is prime. An ideal `I` holds `0` and is closed under addition and under multiplication by any residue. Forward, a nonzero `a ∈ I` has the inverse `a^{p−2}` (Fermat), so `1 ∈ I` and then `x = x · 1 ∈ I`. Backward, the annihilator `{x : x b = 0}` of `b` is an ideal, so `a b = 0` with `a ≠ 0` puts `1` in it and `b = 0`: no zero divisors, so `p` is prime."
    }
   ],
   "A24": [
@@ -977,7 +977,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A21, 17:A24, 17:A25, 17:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "7:A21, 7:A24, 7:A25, 7:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    },
    {
     "name": "FRC.Pair.two_faces",
@@ -986,7 +986,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A24, 38:C7, 38:C10, 38:X1 — the two faces at the instance: the angular face `12/232 = 3/58 = κ/S`, the temporal face `12/464 = 3/116 = κ/(2S)`, their ratio `2`; the per-chronon rate `1/232` at `(13, 233)` and at `(5, 233)`."
+    "doc": "7:A24, 38:C7, 38:C10, 38:X1 — the two faces at the instance: the angular face `12/232 = 3/58 = κ/S`, the temporal face `12/464 = 3/116 = κ/(2S)`, their ratio `2`; the per-chronon rate `1/232` at `(13, 233)` and at `(5, 233)`."
    }
   ],
   "A25": [
@@ -997,7 +997,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A25, 38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S` even: `κ = 2a + 1`, `S = 2m`, `ℓ` a common multiple of `2a + 1` and `m` with `ℓ/m` odd (`ℓ = (2a + 1)(2u + 1) = m(2v + 1)`). At `4ℓ` ticks the shell is home (`4ℓ ≡ 0 mod 4κ`) and the Carrier reads the half (`4ℓ ≡ 4m = (Ω − 1)/2 mod 8m`); at `8ℓ` both are home. At the instance `ℓ = 87 = 3 · 29`."
+    "doc": "7:A25, 38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S` even: `κ = 2a + 1`, `S = 2m`, `ℓ` a common multiple of `2a + 1` and `m` with `ℓ/m` odd (`ℓ = (2a + 1)(2u + 1) = m(2v + 1)`). At `4ℓ` ticks the shell is home (`4ℓ ≡ 0 mod 4κ`) and the Carrier reads the half (`4ℓ ≡ 4m = (Ω − 1)/2 mod 8m`); at `8ℓ` both are home. At the instance `ℓ = 87 = 3 · 29`."
    },
    {
     "name": "FRC.Pair.joint_cycle_frame",
@@ -1006,7 +1006,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A25, 38:C14 on the frames: a Subject frame of odd capacity `κ = 2a + 1` and a Carrier frame of even capacity `S = 2m` return together — at `4ℓ` the Subject's drive is home, `g^{4ℓ} = 1`, and the Carrier's reads the half, `h^{4ℓ} = −1` (the sign event); at `8ℓ` both are home."
+    "doc": "7:A25, 38:C14 on the frames: a Subject frame of odd capacity `κ = 2a + 1` and a Carrier frame of even capacity `S = 2m` return together — at `4ℓ` the Subject's drive is home, `g^{4ℓ} = 1`, and the Carrier's reads the half, `h^{4ℓ} = −1` (the sign event); at `8ℓ` both are home."
    },
    {
     "name": "FRC.Pair.joint_return_iff",
@@ -1015,7 +1015,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A25, 38:C14 — the joint returns are exactly the common multiples of the two periods, so the least is `lcm(p − 1, Ω − 1)`; for `κ` odd and `S = 2m` even it is `8ℓ`, `ℓ` the least common multiple of `κ` and `m` (`joint_return_eight`), whose cofactor over `m` is odd (`joint_cycle_frame`)."
+    "doc": "7:A25, 38:C14 — the joint returns are exactly the common multiples of the two periods, so the least is `lcm(p − 1, Ω − 1)`; for `κ` odd and `S = 2m` even it is `8ℓ`, `ℓ` the least common multiple of `κ` and `m` (`joint_return_eight`), whose cofactor over `m` is odd (`joint_cycle_frame`)."
    },
    {
     "name": "FRC.Pair.joint_return_eight",
@@ -1024,7 +1024,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A25, 38:C14 — every common multiple of the periods `4κ` (`κ = 2a + 1` odd) and `8m` (`S = 2m` even) is eight times a common multiple of `κ` and `m`: with `joint_return_iff` the least joint return is `8ℓ`, `ℓ = lcm(κ, m)`, and its half `4ℓ` is `joint_cycle_frame`'s sign event (`ℓ/m = κ/gcd(κ, m)` is odd)."
+    "doc": "7:A25, 38:C14 — every common multiple of the periods `4κ` (`κ = 2a + 1` odd) and `8m` (`S = 2m` even) is eight times a common multiple of `κ` and `m`: with `joint_return_iff` the least joint return is `8ℓ`, `ℓ = lcm(κ, m)`, and its half `4ℓ` is `joint_cycle_frame`'s sign event (`ℓ/m = κ/gcd(κ, m)` is odd)."
    },
    {
     "name": "FRC.Pair.leak_rate",
@@ -1033,7 +1033,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A21, 17:A24, 17:A25, 17:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "7:A21, 7:A24, 7:A25, 7:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    },
    {
     "name": "FRC.Pair.recurrence",
@@ -1042,7 +1042,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A25, 38:B5, 38:C14 — the recurrence data at the instance: `696 = lcm(12, 232) = 58·12 = 3·232` is the least common return, `1392 = 2·696` the spinor recurrence; the joint cycle's `ℓ = 87 = 3·29`: at `4ℓ = 348` the shell is home (`348 ≡ 0 mod 12`) and the Carrier reads the half (`348 ≡ 116 mod 232`, `78³⁴⁸ = −1`), at `8ℓ = 696` both are home."
+    "doc": "7:A25, 38:B5, 38:C14 — the recurrence data at the instance: `696 = lcm(12, 232) = 58·12 = 3·232` is the least common return, `1392 = 2·696` the spinor recurrence; the joint cycle's `ℓ = 87 = 3·29`: at `4ℓ = 348` the shell is home (`348 ≡ 0 mod 12`) and the Carrier reads the half (`348 ≡ 116 mod 232`, `78³⁴⁸ = −1`), at `8ℓ = 696` both are home."
    }
   ],
   "A26": [
@@ -1053,7 +1053,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A26, 38:C1, 38:C5 — home: at the row's own clock the count is `0`."
+    "doc": "7:A26, 38:C1, 38:C5 — home: at the row's own clock the count is `0`."
    },
    {
     "name": "FRC.Pair.flow_stations",
@@ -1062,7 +1062,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A26, 38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
+    "doc": "7:A26, 38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
    }
   ],
   "A28": [
@@ -1073,7 +1073,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A28, 21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate (Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch."
+    "doc": "7:A28, 21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate (Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch."
    },
    {
     "name": "FRC.Drift.conj_pow",
@@ -1082,7 +1082,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A28, 21:C3, 00:E3 — the conjugate of a power is the power of the conjugate, `conj (zⁿ) = (conj z)ⁿ`, on `𝔽_p[w]/(w² − ν)`."
+    "doc": "7:A28, 21:C3, 00:E3 — the conjugate of a power is the power of the conjugate, `conj (zⁿ) = (conj z)ⁿ`, on `𝔽_p[w]/(w² − ν)`."
    }
   ],
   "B1": [
@@ -1093,7 +1093,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B1, 17:C7, 17:P1, 38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare: (1) a boost that is not scalar fixes no point of `ℙ¹`; (2) a boost in the Borel subgroup is scalar: `T ∩ B = 1`; (3) every invertible matrix factors as (cone chart) × (boost) up to a scalar, (4) uniquely up to scalars — the cone chart is a global section of `G → G/T`; (5) the boost classes are the points of `ℙ¹` (`p + 1` per fibre) and (6) the cone charts number `p (p − 1)`; (7) on the spin cover `SL₂` the sign `−I` is both a boost and a chart, `B ∩ T = {±I}` there, and `b t = (−b)(−t)`: the section obstructs at `−1`."
+    "doc": "7:B1, 7:C7, 7:P1, 38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare: (1) a boost that is not scalar fixes no point of `ℙ¹`; (2) a boost in the Borel subgroup is scalar: `T ∩ B = 1`; (3) every invertible matrix factors as (cone chart) × (boost) up to a scalar, (4) uniquely up to scalars — the cone chart is a global section of `G → G/T`; (5) the boost classes are the points of `ℙ¹` (`p + 1` per fibre) and (6) the cone charts number `p (p − 1)`; (7) on the spin cover `SL₂` the sign `−I` is both a boost and a chart, `B ∩ T = {±I}` there, and `b t = (−b)(−t)`: the section obstructs at `−1`."
    },
    {
     "name": "FRC.Lorentz.consecutive_orders",
@@ -1102,7 +1102,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:P1, 17:B1 — the three cycles have the consecutive orders `4κ`, `4κ + 1`, `4κ + 2` on the shell `p = 4κ + 1`."
+    "doc": "7:P1, 7:B1 — the three cycles have the consecutive orders `4κ`, `4κ + 1`, `4κ + 2` on the shell `p = 4κ + 1`."
    },
    {
     "name": "FRC.Lorentz.minus_one_in_both",
@@ -1111,7 +1111,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B1, 17:C7 — on the spin cover `−I` is both upper triangular of determinant one and a norm-one diagonal matrix `diag(λ, λ̄)`: the Borel lift and the torus lift meet in `±I`, the obstruction to a subgroup section."
+    "doc": "7:B1, 7:C7 — on the spin cover `−I` is both upper triangular of determinant one and a norm-one diagonal matrix `diag(λ, λ̄)`: the Borel lift and the torus lift meet in `±I`, the obstruction to a subgroup section."
    }
   ],
   "B4": [
@@ -1122,7 +1122,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B4, 38:A9, 00:C19 — on a field-law shell, `x² − ν y² ≠ 0` for `(x, y) ≠ 0` when `ν` is a nonsquare."
+    "doc": "7:B4, 38:A9, 00:C19 — on a field-law shell, `x² − ν y² ≠ 0` for `(x, y) ≠ 0` when `ν` is a nonsquare."
    },
    {
     "name": "FRC.Lorentz.register_elliptic",
@@ -1131,7 +1131,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B4, 17:X1, 17:C5 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
+    "doc": "7:B4, 7:X1, 7:C5 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
    },
    {
     "name": "FRC.Lorentz.frame_hyperbolic",
@@ -1140,7 +1140,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B4, 17:X1, 17:C5 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
+    "doc": "7:B4, 7:X1, 7:C5 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
    }
   ],
   "B5": [
@@ -1151,7 +1151,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B5 — the same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries (the registrable depth)."
+    "doc": "7:B5 — the same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries (the registrable depth)."
    },
    {
     "name": "FRC.Lorentz.nesting_depth",
@@ -1160,7 +1160,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B5, 17:F4, 17:A17 — **the nesting bound keeps every registrable depth below the cycle.** For an odd `p` with `p² < Ω = 4S + 1`, `p²` is odd and `4S` even, so `p² ≤ 4S − 1`, and a registered duration `n ≤ p²` has `n < Ω − 1`: the cycle never acts."
+    "doc": "7:B5, 7:F4, 7:A17 — **the nesting bound keeps every registrable depth below the cycle.** For an odd `p` with `p² < Ω = 4S + 1`, `p²` is odd and `4S` even, so `p² ≤ 4S − 1`, and a registered duration `n ≤ p²` has `n < Ω − 1`: the cycle never acts."
    }
   ],
   "C1": [
@@ -1171,7 +1171,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C1 — `det X(x) = x₀² − x₁² − x₃² + ν x₂²`."
+    "doc": "7:C1 — `det X(x) = x₀² − x₁² − x₃² + ν x₂²`."
    },
    {
     "name": "FRC.Lorentz.register_hermitian",
@@ -1180,7 +1180,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C1 — `X(x)` is Hermitian: `X(x)† = X(x)`."
+    "doc": "7:C1 — `X(x)` is Hermitian: `X(x)† = X(x)`."
    },
    {
     "name": "FRC.Lorentz.time_vector",
@@ -1189,7 +1189,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C1, 17:D1 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`)."
+    "doc": "7:C1, 7:D1 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`)."
    }
   ],
   "C2": [
@@ -1200,7 +1200,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C2 — the congruence multiplies the determinant by the norm of `det A`: `det(A X A†) = det A · conj(det A) · det X`."
+    "doc": "7:C2 — the congruence multiplies the determinant by the norm of `det A`: `det(A X A†) = det A · conj(det A) · det X`."
    },
    {
     "name": "FRC.Lorentz.congruence_hermitian",
@@ -1209,7 +1209,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C2 — the congruence of a Hermitian matrix is Hermitian."
+    "doc": "7:C2 — the congruence of a Hermitian matrix is Hermitian."
    },
    {
     "name": "FRC.Lorentz.congruence_preserves",
@@ -1218,7 +1218,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:F3, 17:C2 — a congruence of determinant one preserves the form: `det(A X A†) = det X` when `det A = 1`."
+    "doc": "7:F3, 7:C2 — a congruence of determinant one preserves the form: `det(A X A†) = det X` when `det A = 1`."
    },
    {
     "name": "FRC.Lorentz.kernel_pm",
@@ -1227,7 +1227,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X4, 17:C2 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the register square is `I` or `−I`."
+    "doc": "7:X4, 7:C2 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the register square is `I` or `−I`."
    }
   ],
   "C3": [
@@ -1238,7 +1238,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C3 — the Hermitian matrix of `v = (v₁, v₂)`: `v v† = X(x)` with `x₀ = h(N v₁ + N v₂)`, `x₃ = h(N v₁ − N v₂)` (`2h = 1`), `(x₁, x₂) = v₁ conj v₂`, and `Q(x) = 0`: a null point of the register square."
+    "doc": "7:C3 — the Hermitian matrix of `v = (v₁, v₂)`: `v v† = X(x)` with `x₀ = h(N v₁ + N v₂)`, `x₃ = h(N v₁ − N v₂)` (`2h = 1`), `(x₁, x₂) = v₁ conj v₂`, and `Q(x) = 0`: a null point of the register square."
    },
    {
     "name": "FRC.Lorentz.null_count_13",
@@ -1247,7 +1247,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C3, 17:C4 — **the cone by vectors at `p = 13`**: `2041 = p³ − p² + p` null vectors, hence `(2041 − 1)/12 = 170 = p² + 1` null lines, the count of `cone_count_13`."
+    "doc": "7:C3, 7:C4 — **the cone by vectors at `p = 13`**: `2041 = p³ − p² + p` null vectors, hence `(2041 − 1)/12 = 170 = p² + 1` null lines, the count of `cone_count_13`."
    }
   ],
   "C4": [
@@ -1258,7 +1258,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C4 — a direction `[z : 1]` with `z ∉ 𝔽_p` carries a time component: the `x₂` coordinate of `v v†`, `v = (z, 1)`, is `Im z`."
+    "doc": "7:C4 — a direction `[z : 1]` with `z ∉ 𝔽_p` carries a time component: the `x₂` coordinate of `v v†`, `v = (z, 1)`, is `Im z`."
    },
    {
     "name": "FRC.Lorentz.null_count_13",
@@ -1267,7 +1267,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C3, 17:C4 — **the cone by vectors at `p = 13`**: `2041 = p³ − p² + p` null vectors, hence `(2041 − 1)/12 = 170 = p² + 1` null lines, the count of `cone_count_13`."
+    "doc": "7:C3, 7:C4 — **the cone by vectors at `p = 13`**: `2041 = p³ − p² + p` null vectors, hence `(2041 − 1)/12 = 170 = p² + 1` null lines, the count of `cone_count_13`."
    },
    {
     "name": "FRC.Lorentz.cone_count_13",
@@ -1276,7 +1276,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C4 — the cone's `p² + 1` directions are the `p + 1` of space and the `p(p − 1)` causal rays, at `p = 13`."
+    "doc": "7:C4 — the cone's `p² + 1` directions are the `p + 1` of space and the `p(p − 1)` causal rays, at `p = 13`."
    },
    {
     "name": "FRC.Lorentz.cone_count_173",
@@ -1285,7 +1285,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C4 — the cone's count at `p = 173`."
+    "doc": "7:C4 — the cone's count at `p = 173`."
    },
    {
     "name": "FRC.Lorentz.cone_count_1549",
@@ -1294,7 +1294,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C4 — the cone's count at `p = 1549`."
+    "doc": "7:C4 — the cone's count at `p = 1549`."
    }
   ],
   "C5": [
@@ -1305,7 +1305,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C5 — the determinant of a sum of two rank-one Hermitian matrices is the norm of the two-by-two determinant of the vectors: `det(u u† + v v†) = N(u₁ v₂ − u₂ v₁)`."
+    "doc": "7:C5 — the determinant of a sum of two rank-one Hermitian matrices is the norm of the two-by-two determinant of the vectors: `det(u u† + v v†) = N(u₁ v₂ − u₂ v₁)`."
    },
    {
     "name": "FRC.Lorentz.register_elliptic",
@@ -1314,7 +1314,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B4, 17:X1, 17:C5 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
+    "doc": "7:B4, 7:X1, 7:C5 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
    },
    {
     "name": "FRC.Lorentz.frame_hyperbolic",
@@ -1323,7 +1323,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B4, 17:X1, 17:C5 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
+    "doc": "7:B4, 7:X1, 7:C5 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
    }
   ],
   "C6": [
@@ -1334,7 +1334,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A9, 17:X5, 17:C6 — with `a² + b² = ν`, the map `(x₀, x₁, x₂, x₃) ↦ (ν x₂, a x₁ − b x₃, x₀, b x₁ + a x₃)` multiplies the form by `ν`: `⟨1, 1, 1, ν⟩ ≅ ⟨1, ν, ν, ν⟩`, a similitude of multiplier `ν` exchanging the two non-null classes."
+    "doc": "7:A9, 7:X5, 7:C6 — with `a² + b² = ν`, the map `(x₀, x₁, x₂, x₃) ↦ (ν x₂, a x₁ − b x₃, x₀, b x₁ + a x₃)` multiplies the form by `ν`: `⟨1, 1, 1, ν⟩ ≅ ⟨1, ν, ν, ν⟩`, a similitude of multiplier `ν` exchanging the two non-null classes."
    },
    {
     "name": "FRC.Lorentz.two_squares",
@@ -1343,7 +1343,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C6 — on a shell with a quarter-turn `i² = −1` and `2h = 1`, every `ν` is a sum of two squares: `ν = ((ν + 1)h)² + (i(ν − 1)h)²`."
+    "doc": "7:C6 — on a shell with a quarter-turn `i² = −1` and `2h = 1`, every `ν` is a sum of two squares: `ν = ((ν + 1)h)² + (i(ν − 1)h)²`."
    }
   ],
   "C7": [
@@ -1354,7 +1354,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C7 — the stabiliser of the ray `η` in the frame moves: `[[a, b], [c, d]]` fixes `η` under `z ↦ (az + b)/(cz + d)`, i.e. `aη + b = (cη + d)η`, exactly when `a = d` and `b = νc`: the norm-one torus `[[a, νc], [c, a]]` of A10."
+    "doc": "7:C7 — the stabiliser of the ray `η` in the frame moves: `[[a, b], [c, d]]` fixes `η` under `z ↦ (az + b)/(cz + d)`, i.e. `aη + b = (cη + d)η`, exactly when `a = d` and `b = νc`: the norm-one torus `[[a, νc], [c, a]]` of A10."
    },
    {
     "name": "FRC.Lorentz.minus_one_in_both",
@@ -1363,7 +1363,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B1, 17:C7 — on the spin cover `−I` is both upper triangular of determinant one and a norm-one diagonal matrix `diag(λ, λ̄)`: the Borel lift and the torus lift meet in `±I`, the obstruction to a subgroup section."
+    "doc": "7:B1, 7:C7 — on the spin cover `−I` is both upper triangular of determinant one and a norm-one diagonal matrix `diag(λ, λ̄)`: the Borel lift and the torus lift meet in `±I`, the obstruction to a subgroup section."
    },
    {
     "name": "FRC.Shell.Frame.Fld.hopf_section",
@@ -1372,7 +1372,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B1, 17:C7, 17:P1, 38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare: (1) a boost that is not scalar fixes no point of `ℙ¹`; (2) a boost in the Borel subgroup is scalar: `T ∩ B = 1`; (3) every invertible matrix factors as (cone chart) × (boost) up to a scalar, (4) uniquely up to scalars — the cone chart is a global section of `G → G/T`; (5) the boost classes are the points of `ℙ¹` (`p + 1` per fibre) and (6) the cone charts number `p (p − 1)`; (7) on the spin cover `SL₂` the sign `−I` is both a boost and a chart, `B ∩ T = {±I}` there, and `b t = (−b)(−t)`: the section obstructs at `−1`."
+    "doc": "7:B1, 7:C7, 7:P1, 38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare: (1) a boost that is not scalar fixes no point of `ℙ¹`; (2) a boost in the Borel subgroup is scalar: `T ∩ B = 1`; (3) every invertible matrix factors as (cone chart) × (boost) up to a scalar, (4) uniquely up to scalars — the cone chart is a global section of `G → G/T`; (5) the boost classes are the points of `ℙ¹` (`p + 1` per fibre) and (6) the cone charts number `p (p − 1)`; (7) on the spin cover `SL₂` the sign `−I` is both a boost and a chart, `B ∩ T = {±I}` there, and `b t = (−b)(−t)`: the section obstructs at `−1`."
    }
   ],
   "C8": [
@@ -1383,7 +1383,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X2, 17:C8 — the axis of a ray `z`: the binary form `(t − z)(t − z̄) = t² − tr(z) t + N(z)` has discriminant `tr(z)² − 4 N(z) = ν (2 Im z)²`, a nonsquare times a square."
+    "doc": "7:X2, 7:C8 — the axis of a ray `z`: the binary form `(t − z)(t − z̄) = t² − tr(z) t + N(z)` has discriminant `tr(z)² − 4 N(z) = ν (2 Im z)²`, a nonsquare times a square."
    }
   ],
   "C9": [
@@ -1394,7 +1394,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C9, 17:X2 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant classes with `12012`, `2028` and `12168` elements; divided by the `12` scalars these are the `1001` split classes, the identity with the `168` unipotent classes, and the `1014` non-split classes of `PGL₂(𝔽₁₃)`: the three terms of `class_equation_13`."
+    "doc": "7:C9, 7:X2 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant classes with `12012`, `2028` and `12168` elements; divided by the `12` scalars these are the `1001` split classes, the identity with the `168` unipotent classes, and the `1014` non-split classes of `PGL₂(𝔽₁₃)`: the three terms of `class_equation_13`."
    },
    {
     "name": "FRC.Lorentz.class_equation_13",
@@ -1403,7 +1403,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X2, 17:C9 — the class equation `1 + (p² − 1) + p(p + 1)(p − 2)/2 + p²(p − 1)/2 = (p − 1)p(p + 1)` at `p = 13`."
+    "doc": "7:X2, 7:C9 — the class equation `1 + (p² − 1) + p(p + 1)(p − 2)/2 + p²(p − 1)/2 = (p − 1)p(p + 1)` at `p = 13`."
    },
    {
     "name": "FRC.Lorentz.class_equation_173",
@@ -1412,7 +1412,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C9, 17:X2 — the class equation at `p = 173`."
+    "doc": "7:C9, 7:X2 — the class equation at `p = 173`."
    },
    {
     "name": "FRC.Lorentz.class_equation_1549",
@@ -1421,7 +1421,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C9, 17:X2 — the class equation at `p = 1549`."
+    "doc": "7:C9, 7:X2 — the class equation at `p = 1549`."
    },
    {
     "name": "FRC.Spin.finite_order",
@@ -1430,7 +1430,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A14, 17:C9, 00:C27 — every element of `SL₂` has finite order: with `det M = 1` some positive `n ≤ p⁴` has `Mⁿ = I` — the `p⁴ + 1` powers `M⁰, …, M^{p⁴}` cannot be distinct, and the adjugate cancels the common factor."
+    "doc": "7:A14, 7:C9, 00:C27 — every element of `SL₂` has finite order: with `det M = 1` some positive `n ≤ p⁴` has `Mⁿ = I` — the `p⁴ + 1` powers `M⁰, …, M^{p⁴}` cannot be distinct, and the adjugate cancels the common factor."
    }
   ],
   "D1": [
@@ -1441,7 +1441,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A14, 17:D1, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`."
+    "doc": "7:A14, 7:D1, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`."
    },
    {
     "name": "FRC.Lorentz.time_vector",
@@ -1450,7 +1450,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C1, 17:D1 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`)."
+    "doc": "7:C1, 7:D1 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`)."
    },
    {
     "name": "FRC.Spin.ad_preserves",
@@ -1459,7 +1459,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A13, 17:D1, 00:C22 — conjugation `X ↦ M X adj(M)` multiplies the determinant by `det(M)²` and the trace by `det M`: on `SL₂` it preserves `−det` on the trace-zero matrices — the map `PGL₂(𝔽_p) → SO₃(𝔽_p)` of the row."
+    "doc": "7:A13, 7:D1, 00:C22 — conjugation `X ↦ M X adj(M)` multiplies the determinant by `det(M)²` and the trace by `det M`: on `SL₂` it preserves `−det` on the trace-zero matrices — the map `PGL₂(𝔽_p) → SO₃(𝔽_p)` of the row."
    },
    {
     "name": "FRC.Lorentz.drive_time",
@@ -1468,7 +1468,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:D1, 17:D3, 17:A16 — the one-chronon move `diag(g, 1)` carries the time vector `ηJ = X(0, 0, 1, 0)` to `g·ηJ = X(0, 0, g, 0)`: its square class flips with the chronon parity, and it carries the ray `(z, 1)` to `(gz, 1)`."
+    "doc": "7:D1, 7:D3, 7:A16 — the one-chronon move `diag(g, 1)` carries the time vector `ηJ = X(0, 0, 1, 0)` to `g·ηJ = X(0, 0, g, 0)`: its square class flips with the chronon parity, and it carries the ray `(z, 1)` to `(gz, 1)`."
    }
   ],
   "D3": [
@@ -1479,7 +1479,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:D1, 17:D3, 17:A16 — the one-chronon move `diag(g, 1)` carries the time vector `ηJ = X(0, 0, 1, 0)` to `g·ηJ = X(0, 0, g, 0)`: its square class flips with the chronon parity, and it carries the ray `(z, 1)` to `(gz, 1)`."
+    "doc": "7:D1, 7:D3, 7:A16 — the one-chronon move `diag(g, 1)` carries the time vector `ηJ = X(0, 0, 1, 0)` to `g·ηJ = X(0, 0, g, 0)`: its square class flips with the chronon parity, and it carries the ray `(z, 1)` to `(gz, 1)`."
    },
    {
     "name": "FRC.Lorentz.lift_det",
@@ -1488,7 +1488,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:D3 — the unimodular lift `D = diag(η, uη)`, `νu = 1` (so `uη = η⁻¹`), has determinant one."
+    "doc": "7:D3 — the unimodular lift `D = diag(η, uη)`, `νu = 1` (so `uη = η⁻¹`), has determinant one."
    },
    {
     "name": "FRC.Lorentz.lift_time",
@@ -1497,7 +1497,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:D3 — the lift negates the time vector: `D (ηJ) D† = −ηJ`, i.e. `X(0, 0, 1, 0) ↦ X(0, 0, −1, 0)`."
+    "doc": "7:D3 — the lift negates the time vector: `D (ηJ) D† = −ηJ`, i.e. `X(0, 0, 1, 0) ↦ X(0, 0, −1, 0)`."
    },
    {
     "name": "FRC.Lorentz.even_transport",
@@ -1506,7 +1506,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:D3 — the even transport `diag(g, u)`, `gu = 1`, fixes the time vector and `σ_x` and dilates `E₂₂` by `u²` and `E₁₁` by `g²`."
+    "doc": "7:D3 — the even transport `diag(g, u)`, `gu = 1`, fixes the time vector and `σ_x` and dilates `E₂₂` by `u²` and `E₁₁` by `g²`."
    }
   ],
   "D4": [
@@ -1517,7 +1517,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X4, 17:D4 — `−I` acts trivially on the register square: the spinor's two circuits are one on the square."
+    "doc": "7:X4, 7:D4 — `−I` acts trivially on the register square: the spinor's two circuits are one on the square."
    },
    {
     "name": "FRC.Lorentz.torus_conjugate",
@@ -1526,7 +1526,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:D4 — `P diag(λ, λ̄) = (mult λ) P` for `P = [[η, −η], [1, 1]]` and `mult λ = [[x, νy], [y, x]]`, `λ = x + yη`: the norm-one diagonal group `N¹` and the torus lift are conjugate in `SL₂(K)` through `P`."
+    "doc": "7:D4 — `P diag(λ, λ̄) = (mult λ) P` for `P = [[η, −η], [1, 1]]` and `mult λ = [[x, νy], [y, x]]`, `λ = x + yη`: the norm-one diagonal group `N¹` and the torus lift are conjugate in `SL₂(K)` through `P`."
    }
   ],
   "D5": [
@@ -1541,7 +1541,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "17:D5 — **no definite space**: for every prime shell `p`, every `ν` and any three vectors `u, v, w` of `𝔽_p⁴`, some nonzero coefficient triple gives a null vector of the determinant form `x₀² − x₁² − x₃² + ν x₂²` in their span — every three-dimensional subspace of the register square contains a null vector (`FRC.Lorentz.isotropic_three`, `Theme/Lorentz.lean`, by Chevalley–Warning)."
+    "doc": "7:D5 — **no definite space**: for every prime shell `p`, every `ν` and any three vectors `u, v, w` of `𝔽_p⁴`, some nonzero coefficient triple gives a null vector of the determinant form `x₀² − x₁² − x₃² + ν x₂²` in their span — every three-dimensional subspace of the register square contains a null vector (`FRC.Lorentz.isotropic_three`, `Theme/Lorentz.lean`, by Chevalley–Warning)."
    }
   ],
   "D6": [
@@ -1552,7 +1552,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:D6, 17:A15 — `η` has order two modulo `𝔽_p^×`: `η² = ν ∈ 𝔽_p` while `η ∉ 𝔽_p` (its imaginary part is `1`)."
+    "doc": "7:D6, 7:A15 — `η` has order two modulo `𝔽_p^×`: `η² = ν ∈ 𝔽_p` while `η ∉ 𝔽_p` (its imaginary part is `1`)."
    },
    {
     "name": "FRC.Lorentz.half_step_odd",
@@ -1561,7 +1561,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:D6 — the half step of the cycle `C_{p+1}`, `p = 4κ + 1`: `p + 1 = 2(2κ + 1)`, and `2κ + 1` is odd."
+    "doc": "7:D6 — the half step of the cycle `C_{p+1}`, `p = 4κ + 1`: `p + 1 = 2(2κ + 1)`, and `2κ + 1` is odd."
    },
    {
     "name": "FRC.Lorentz.even_never_horizon",
@@ -1570,7 +1570,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:D6 — **the even steps never reach the horizon.** On a field shell with a quarter-turn `i² = −1` and `ν` a nonsquare, no square `y²` of the extension lies on the line `𝔽_p^× η` of the horizon: `y² = cη`, `c ≠ 0`, would make `ν = (i · N(y) · c⁻¹)²` a square. The unimodular torus, the even powers of a generator, misses the horizon."
+    "doc": "7:D6 — **the even steps never reach the horizon.** On a field shell with a quarter-turn `i² = −1` and `ν` a nonsquare, no square `y²` of the extension lies on the line `𝔽_p^× η` of the horizon: `y² = cη`, `c ≠ 0`, would make `ν = (i · N(y) · c⁻¹)²` a square. The unimodular torus, the even powers of a generator, misses the horizon."
    },
    {
     "name": "FRC.Lorentz.horizon_half_step_13",
@@ -1579,7 +1579,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:D6 — **the horizon at the odd half step, by every generator, at `p = 13`.** `K^×/𝔽₁₃^×` is a cycle of order `14` with `6 = φ(14)` generators, and every generator first carries the origin `η = [0 : 1]` to the horizon `1 = [1 : 0]` at the step `7 = (p + 1)/2 = 2κ + 1`, which is odd; `η` itself has order two."
+    "doc": "7:D6 — **the horizon at the odd half step, by every generator, at `p = 13`.** `K^×/𝔽₁₃^×` is a cycle of order `14` with `6 = φ(14)` generators, and every generator first carries the origin `η = [0 : 1]` to the horizon `1 = [1 : 0]` at the step `7 = (p + 1)/2 = 2κ + 1`, which is odd; `η` itself has order two."
    }
   ],
   "F1": [
@@ -1590,7 +1590,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A21, 17:A24, 17:A25, 17:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "7:A21, 7:A24, 7:A25, 7:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    }
   ],
   "F3": [
@@ -1601,7 +1601,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X6, 17:F3 — **the time reversal is not a Lorentz move.** No matrix of determinant one carries the four basis vectors of the register square as the Frobenius does, `x₂ ↦ −x₂` (which negates the time vector and fixes `I`, `σ_x`, `σ_z`)."
+    "doc": "7:X6, 7:F3 — **the time reversal is not a Lorentz move.** No matrix of determinant one carries the four basis vectors of the register square as the Frobenius does, `x₂ ↦ −x₂` (which negates the time vector and fixes `I`, `σ_x`, `σ_z`)."
    },
    {
     "name": "FRC.Lorentz.no_reflection",
@@ -1610,7 +1610,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X6, 17:F3 — **a spatial reflection is not a Lorentz move**: no matrix of determinant one carries the basis as `x₁ ↦ −x₁` (negating `σ_x`, fixing `I`, `σ_z` and the time vector)."
+    "doc": "7:X6, 7:F3 — **a spatial reflection is not a Lorentz move**: no matrix of determinant one carries the basis as `x₁ ↦ −x₁` (negating `σ_x`, fixing `I`, `σ_z` and the time vector)."
    },
    {
     "name": "FRC.Lorentz.no_inversion",
@@ -1619,7 +1619,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X6, 17:F3 — **the total inversion is not a Lorentz move**: no matrix of determinant one carries the basis as `X ↦ −X`."
+    "doc": "7:X6, 7:F3 — **the total inversion is not a Lorentz move**: no matrix of determinant one carries the basis as `X ↦ −X`."
    },
    {
     "name": "FRC.Lorentz.congruence_preserves",
@@ -1628,7 +1628,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:F3, 17:C2 — a congruence of determinant one preserves the form: `det(A X A†) = det X` when `det A = 1`."
+    "doc": "7:F3, 7:C2 — a congruence of determinant one preserves the form: `det(A X A†) = det X` when `det A = 1`."
    }
   ],
   "F4": [
@@ -1639,7 +1639,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X6, 17:F4, 17:A17 — **a count below the Carrier's cycle is its own residue**: the chart count of a duration `n < Ω − 1` is `n`."
+    "doc": "7:X6, 7:F4, 7:A17 — **a count below the Carrier's cycle is its own residue**: the chart count of a duration `n < Ω − 1` is `n`."
    },
    {
     "name": "FRC.Lorentz.nesting_depth",
@@ -1648,7 +1648,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B5, 17:F4, 17:A17 — **the nesting bound keeps every registrable depth below the cycle.** For an odd `p` with `p² < Ω = 4S + 1`, `p²` is odd and `4S` even, so `p² ≤ 4S − 1`, and a registered duration `n ≤ p²` has `n < Ω − 1`: the cycle never acts."
+    "doc": "7:B5, 7:F4, 7:A17 — **the nesting bound keeps every registrable depth below the cycle.** For an odd `p` with `p² < Ω = 4S + 1`, `p²` is odd and `4S` even, so `p² ≤ 4S − 1`, and a registered duration `n ≤ p²` has `n < Ω − 1`: the cycle never acts."
    },
    {
     "name": "FRC.Lorentz.drift_instance_pairs",
@@ -1657,7 +1657,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:F4, 17:A17 — the three laboratory pairs and `(13, 181)`: `p² < Ω − 1` on each, and the hosted joint periods all exceed `p²`."
+    "doc": "7:F4, 7:A17 — the three laboratory pairs and `(13, 181)`: `p² < Ω − 1` on each, and the hosted joint periods all exceed `p²`."
    },
    {
     "name": "FRC.Lorentz.joint_period",
@@ -1666,7 +1666,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:F4, 17:A25 — the joint period of a coprime pair, with its Bezout certificate `aκ = bS + 1` (at the laboratory pair `(13, 233)`: `3 · 39 = 2 · 58 + 1`): `4κS` is a common multiple of `4κ` and `4S`, and every common multiple `L = 4κx = 4Sy` is a multiple of `4κS` — the joint period is `lcm(4κ, 4S) = 4κS`."
+    "doc": "7:F4, 7:A25 — the joint period of a coprime pair, with its Bezout certificate `aκ = bS + 1` (at the laboratory pair `(13, 233)`: `3 · 39 = 2 · 58 + 1`): `4κS` is a common multiple of `4κ` and `4S`, and every common multiple `L = 4κx = 4Sy` is a multiple of `4κS` — the joint period is `lcm(4κ, 4S) = 4κS`."
    },
    {
     "name": "FRC.Lorentz.drift_injective",
@@ -1675,7 +1675,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X6, 17:F4 — **the drift distinguishes the revolutions on a hosted pair.** For a coprime pair, with its Bezout certificate `aκ = bS + 1`, the chart count `4κn mod 4S` of the shell's origin after `n` revolutions is injective on `n < S`: two revolutions below `S` at the same chart count are the same revolution."
+    "doc": "7:X6, 7:F4 — **the drift distinguishes the revolutions on a hosted pair.** For a coprime pair, with its Bezout certificate `aκ = bS + 1`, the chart count `4κn mod 4S` of the shell's origin after `n` revolutions is injective on `n < S`: two revolutions below `S` at the same chart count are the same revolution."
    },
    {
     "name": "FRC.Lorentz.drift_injective_gcd",
@@ -1684,7 +1684,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:F4 — **the drift distinguishes the revolutions, general hosted pair.** With `d = gcd(κ, S)`, `κ = d κ'`, `S = d S'` and a Bezout certificate `a κ' = b S' + 1` for the coprime parts, the chart count `4κn mod 4S` is injective on `n < S' = S/d`."
+    "doc": "7:F4 — **the drift distinguishes the revolutions, general hosted pair.** With `d = gcd(κ, S)`, `κ = d κ'`, `S = d S'` and a Bezout certificate `a κ' = b S' + 1` for the coprime parts, the chart count `4κn mod 4S` is injective on `n < S' = S/d`."
    },
    {
     "name": "FRC.Lorentz.drift_instance",
@@ -1693,7 +1693,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:F4 — the three laboratory pairs of the corpus, `(13, 233)`, `(173, 30089)` and `(1549, 2408561)`: their Bezout certificates `aκ = bS + 1` — `39 · 3 = 2 · 58 + 1`, `5073 · 43 = 29 · 7522 + 1`, `395203 · 387 = 254 · 602140 + 1` — and the joint periods `4κS`: `696`, `1293784`, `932112720`."
+    "doc": "7:F4 — the three laboratory pairs of the corpus, `(13, 233)`, `(173, 30089)` and `(1549, 2408561)`: their Bezout certificates `aκ = bS + 1` — `39 · 3 = 2 · 58 + 1`, `5073 · 43 = 29 · 7522 + 1`, `395203 · 387 = 254 · 602140 + 1` — and the joint periods `4κS`: `696`, `1293784`, `932112720`."
    },
    {
     "name": "FRC.Lorentz.drift_instance_gcd",
@@ -1702,7 +1702,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:F4 — an admissible pair with `gcd(κ, S) = 3`: `(13, 181)`, `κ = 3 · 1`, `S = 45 = 3 · 15`, the certificate `1 · 1 = 0 · 15 + 1` for the coprime parts, and the joint period `lcm(12, 180) = 180 = 4κS/3`."
+    "doc": "7:F4 — an admissible pair with `gcd(κ, S) = 3`: `(13, 181)`, `κ = 3 · 1`, `S = 45 = 3 · 15`, the certificate `1 · 1 = 0 · 15 + 1` for the coprime parts, and the joint period `lcm(12, 180) = 180 = 4κS/3`."
    }
   ],
   "X1": [
@@ -1713,7 +1713,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B4, 17:X1, 17:C5 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
+    "doc": "7:B4, 7:X1, 7:C5 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
    },
    {
     "name": "FRC.Lorentz.frame_hyperbolic",
@@ -1722,7 +1722,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B4, 17:X1, 17:C5 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
+    "doc": "7:B4, 7:X1, 7:C5 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
    }
   ],
   "X2": [
@@ -1733,7 +1733,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C9, 17:X2 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant classes with `12012`, `2028` and `12168` elements; divided by the `12` scalars these are the `1001` split classes, the identity with the `168` unipotent classes, and the `1014` non-split classes of `PGL₂(𝔽₁₃)`: the three terms of `class_equation_13`."
+    "doc": "7:C9, 7:X2 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant classes with `12012`, `2028` and `12168` elements; divided by the `12` scalars these are the `1001` split classes, the identity with the `168` unipotent classes, and the `1014` non-split classes of `PGL₂(𝔽₁₃)`: the three terms of `class_equation_13`."
    },
    {
     "name": "FRC.Lorentz.class_equation_13",
@@ -1742,7 +1742,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X2, 17:C9 — the class equation `1 + (p² − 1) + p(p + 1)(p − 2)/2 + p²(p − 1)/2 = (p − 1)p(p + 1)` at `p = 13`."
+    "doc": "7:X2, 7:C9 — the class equation `1 + (p² − 1) + p(p + 1)(p − 2)/2 + p²(p − 1)/2 = (p − 1)p(p + 1)` at `p = 13`."
    },
    {
     "name": "FRC.Lorentz.class_equation_173",
@@ -1751,7 +1751,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C9, 17:X2 — the class equation at `p = 173`."
+    "doc": "7:C9, 7:X2 — the class equation at `p = 173`."
    },
    {
     "name": "FRC.Lorentz.class_equation_1549",
@@ -1760,7 +1760,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:C9, 17:X2 — the class equation at `p = 1549`."
+    "doc": "7:C9, 7:X2 — the class equation at `p = 1549`."
    },
    {
     "name": "FRC.Lorentz.axis_discriminant",
@@ -1769,7 +1769,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X2, 17:C8 — the axis of a ray `z`: the binary form `(t − z)(t − z̄) = t² − tr(z) t + N(z)` has discriminant `tr(z)² − 4 N(z) = ν (2 Im z)²`, a nonsquare times a square."
+    "doc": "7:X2, 7:C8 — the axis of a ray `z`: the binary form `(t − z)(t − z̄) = t² − tr(z) t + N(z)` has discriminant `tr(z)² − 4 N(z) = ν (2 Im z)²`, a nonsquare times a square."
    }
   ],
   "X4": [
@@ -1780,7 +1780,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X4, 17:C2 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the register square is `I` or `−I`."
+    "doc": "7:X4, 7:C2 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the register square is `I` or `−I`."
    },
    {
     "name": "FRC.Lorentz.neg_one_trivial",
@@ -1789,7 +1789,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X4, 17:D4 — `−I` acts trivially on the register square: the spinor's two circuits are one on the square."
+    "doc": "7:X4, 7:D4 — `−I` acts trivially on the register square: the spinor's two circuits are one on the square."
    }
   ],
   "X5": [
@@ -1800,7 +1800,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:A9, 17:X5, 17:C6 — with `a² + b² = ν`, the map `(x₀, x₁, x₂, x₃) ↦ (ν x₂, a x₁ − b x₃, x₀, b x₁ + a x₃)` multiplies the form by `ν`: `⟨1, 1, 1, ν⟩ ≅ ⟨1, ν, ν, ν⟩`, a similitude of multiplier `ν` exchanging the two non-null classes."
+    "doc": "7:A9, 7:X5, 7:C6 — with `a² + b² = ν`, the map `(x₀, x₁, x₂, x₃) ↦ (ν x₂, a x₁ − b x₃, x₀, b x₁ + a x₃)` multiplies the form by `ν`: `⟨1, 1, 1, ν⟩ ≅ ⟨1, ν, ν, ν⟩`, a similitude of multiplier `ν` exchanging the two non-null classes."
    }
   ],
   "X6": [
@@ -1811,7 +1811,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X6, 17:F3 — **the time reversal is not a Lorentz move.** No matrix of determinant one carries the four basis vectors of the register square as the Frobenius does, `x₂ ↦ −x₂` (which negates the time vector and fixes `I`, `σ_x`, `σ_z`)."
+    "doc": "7:X6, 7:F3 — **the time reversal is not a Lorentz move.** No matrix of determinant one carries the four basis vectors of the register square as the Frobenius does, `x₂ ↦ −x₂` (which negates the time vector and fixes `I`, `σ_x`, `σ_z`)."
    },
    {
     "name": "FRC.Lorentz.no_reflection",
@@ -1820,7 +1820,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X6, 17:F3 — **a spatial reflection is not a Lorentz move**: no matrix of determinant one carries the basis as `x₁ ↦ −x₁` (negating `σ_x`, fixing `I`, `σ_z` and the time vector)."
+    "doc": "7:X6, 7:F3 — **a spatial reflection is not a Lorentz move**: no matrix of determinant one carries the basis as `x₁ ↦ −x₁` (negating `σ_x`, fixing `I`, `σ_z` and the time vector)."
    },
    {
     "name": "FRC.Lorentz.no_inversion",
@@ -1829,7 +1829,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X6, 17:F3 — **the total inversion is not a Lorentz move**: no matrix of determinant one carries the basis as `X ↦ −X`."
+    "doc": "7:X6, 7:F3 — **the total inversion is not a Lorentz move**: no matrix of determinant one carries the basis as `X ↦ −X`."
    },
    {
     "name": "FRC.Lorentz.drift_one_directional",
@@ -1838,7 +1838,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:X6, 17:F4, 17:A17 — **a count below the Carrier's cycle is its own residue**: the chart count of a duration `n < Ω − 1` is `n`."
+    "doc": "7:X6, 7:F4, 7:A17 — **a count below the Carrier's cycle is its own residue**: the chart count of a duration `n < Ω − 1` is `n`."
    }
   ],
   "P1": [
@@ -1849,7 +1849,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:B1, 17:C7, 17:P1, 38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare: (1) a boost that is not scalar fixes no point of `ℙ¹`; (2) a boost in the Borel subgroup is scalar: `T ∩ B = 1`; (3) every invertible matrix factors as (cone chart) × (boost) up to a scalar, (4) uniquely up to scalars — the cone chart is a global section of `G → G/T`; (5) the boost classes are the points of `ℙ¹` (`p + 1` per fibre) and (6) the cone charts number `p (p − 1)`; (7) on the spin cover `SL₂` the sign `−I` is both a boost and a chart, `B ∩ T = {±I}` there, and `b t = (−b)(−t)`: the section obstructs at `−1`."
+    "doc": "7:B1, 7:C7, 7:P1, 38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare: (1) a boost that is not scalar fixes no point of `ℙ¹`; (2) a boost in the Borel subgroup is scalar: `T ∩ B = 1`; (3) every invertible matrix factors as (cone chart) × (boost) up to a scalar, (4) uniquely up to scalars — the cone chart is a global section of `G → G/T`; (5) the boost classes are the points of `ℙ¹` (`p + 1` per fibre) and (6) the cone charts number `p (p − 1)`; (7) on the spin cover `SL₂` the sign `−I` is both a boost and a chart, `B ∩ T = {±I}` there, and `b t = (−b)(−t)`: the section obstructs at `−1`."
    },
    {
     "name": "FRC.Lorentz.consecutive_orders",
@@ -1858,7 +1858,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "17:P1, 17:B1 — the three cycles have the consecutive orders `4κ`, `4κ + 1`, `4κ + 2` on the shell `p = 4κ + 1`."
+    "doc": "7:P1, 7:B1 — the three cycles have the consecutive orders `4κ`, `4κ + 1`, `4κ + 2` on the shell `p = 4κ + 1`."
    }
   ]
  }

@@ -1250,13 +1250,29 @@
 'FRC.LedgerML.p25036' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.LedgerML.p25038' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.LedgerML.p25048' depends on axioms: [propext, Classical.choice, Quot.sound]
-'FRC.LedgerML.p17015' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.LedgerML.p07015' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.LedgerML.p22023' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.LedgerML.p22024' depends on axioms: [propext]
 'FRC.LedgerML.p22030' depends on axioms: [propext, Quot.sound]
 'FRC.LedgerML.p22044' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.LedgerML.p22051' depends on axioms: [propext]
 'FRC.LedgerML.p22053' depends on axioms: [propext]
+Axioms.lean:1261:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.confrontation_pulls`
+Axioms.lean:1262:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.ratio_above_octant`
+Axioms.lean:1263:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.matter_fraction`
+Axioms.lean:1264:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.desi_bound`
+Axioms.lean:1265:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.planck_bound`
+Axioms.lean:1266:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.lab_carrier_173`
+Axioms.lean:1267:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.octant_two_part_173`
+Axioms.lean:1268:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.exchange_station_173`
+Axioms.lean:1269:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.exchange_octant_iff_gen`
+Axioms.lean:1270:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.exchange_octant_iff`
+Axioms.lean:1271:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.octant_ladder_173`
+Axioms.lean:1272:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.p16003`
+Axioms.lean:1273:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.p16004`
+Axioms.lean:1274:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.p16006`
+Axioms.lean:1275:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.p16009`
+Axioms.lean:1276:14: error(lean.unknownIdentifier): Unknown constant `FRC.Octant.p16010`
 'FRC.Pnp.gauss_product' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Pnp.gauss_modulus' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Pnp.family_bits' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -1397,7 +1413,7 @@
 'FRC.S13.p38048' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.S13.p38049' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Spacetime.isotropic_three' depends on axioms: [propext, Classical.choice, Quot.sound]
-'FRC.Spacetime.p17015' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Spacetime.p07015' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Chart.scale_import' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Chart.ln_omega_ledger' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Chart.ceiling_bracket' depends on axioms: [propext, Classical.choice, Quot.sound]

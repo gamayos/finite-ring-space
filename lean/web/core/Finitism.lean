@@ -442,7 +442,7 @@ theorem mem_of_nodup_of_length (n : Nat) (l : List Nat) (hnd : NoDup l) (hb : �
     have := length_le_of_nodup n (v :: l) hnd' hb'
     absurd (hlen ▸ this : n + 1 ≤ n) (Nat.not_succ_le_self n)
 
-/-- 17:B5 — the same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries (the registrable depth). -/
+/-- 7:B5 — the same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries (the registrable depth). -/
 theorem length_le_of_nodup_lt : ∀ (n : Nat) (l : List Nat), NoDup l → (∀ e, mem e l → e < n) → l.length ≤ n
   | 0, [], _, _ => Nat.le_refl 0
   | 0, a :: l, _, hb => absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)
@@ -5819,7 +5819,7 @@ theorem octant_sector (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
     exact ⟨a ^ m, by rw [show (8 : Nat) = 4 * 2 from rfl, pow_mul, h4, pow_two, neg_mul_neg, mul_one],
       by rw [h4]; exact neg_one_ne_one h2⟩
 
-/-- 17:A16, 00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`. -/
+/-- 7:A16, 00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`. -/
 theorem tsirelson {ζ : Shell p} (h4 : ζ ^ 4 = -1) : (ζ + ζ ^ 7) * (ζ + ζ ^ 7) = 2 := by
   have h8 : ζ ^ 8 = 1 := by rw [show (8 : Nat) = 4 + 4 from rfl, pow_add, h4, neg_mul_neg, mul_one]
   have hz : ζ * ζ ^ 7 = 1 := by rw [mul_comm, ← pow_succ]; exact h8
@@ -5906,7 +5906,7 @@ variable {p : Nat} [Pos p]
 
 namespace Prime
 
-/-- 17:A23, Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero
+/-- 7:A23, Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero
 residue holds every residue iff `p` is prime. An ideal `I` holds `0` and is closed under addition and under
 multiplication by any residue. Forward, a nonzero `a ∈ I` has the inverse `a^{p−2}` (Fermat), so `1 ∈ I` and then
 `x = x · 1 ∈ I`. Backward, the annihilator `{x : x b = 0}` of `b` is an ideal, so `a b = 0` with `a ≠ 0` puts `1` in
@@ -6634,7 +6634,7 @@ theorem p00003 : (∀ {U : Type} (ρ : U → Nat) (a : FRC.Foundation.Registered
 /-- p00004 — 20:A2, 00:A2. \textbf{Finitude}: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its structural cardinality $\Om$ (A7). -/
 theorem p00004 : And (∀ {U : Type} (R : Nat) [FRC.Pos R] (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → @Exists (@FRC.Foundation.Registered U ρ → FRC.Shell R) fun ι => ∀ (a b : @FRC.Foundation.Registered U ρ), @Eq (FRC.Shell R) (ι a) (ι b) → @Eq (@FRC.Foundation.Registered U ρ) a b) (And (∀ {U : Type} (R : Nat) (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → ∀ (f : Nat → U), @Exists Nat fun i => @Exists Nat fun j => And (@LT.lt Nat instLTNat i (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@LT.lt Nat instLTNat j (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@Ne Nat i j) (@Eq Nat (ρ (f i)) (ρ (f j)))))) (∀ (s K : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) s → ∀ {N : Nat} [FRC.Pos N] (ρ : FRC.Shell N → Nat), (∀ (x : FRC.Shell N), @LT.lt Nat instLTNat (ρ x) (FRC.Logic.records s K)) → (∀ (x y : FRC.Shell N), @Eq Nat (ρ x) (ρ y) → @Eq (FRC.Shell N) x y) → And (@LE.le Nat instLENat N (FRC.Logic.records s K)) (@LT.lt Nat instLTNat (FRC.Logic.records s K) (@HPow.hPow Nat Nat Nat (@instHPow Nat Nat (@instPowNat Nat instNatPowNat)) s (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) K (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))))) :=
   And.intro @FRC.Foundation.registered_finite (And.intro @FRC.Foundation.no_unlimited_supply (@FRC.Foundation.agent_bound))
-/-- p00162 — 17:A23, 00:A10. \textbf{Completeness is primality}: the residues of a count $q\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it. -/
+/-- p00162 — 7:A23, 00:A10. \textbf{Completeness is primality}: the residues of a count $q\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it. -/
 theorem p00162 : ∀ {p : Nat} [FRC.Pos p], (2 : Nat) ≤ p → (FRC.Nat.isPrime p ↔ ∀ (I : FRC.Shell p → Prop), I (0 : FRC.Shell p) → (∀ (a b : FRC.Shell p), I a → I b → I (a + b)) → (∀ (r a : FRC.Shell p), I a → I (r * a)) → (∃ a, I a ∧ a ≠ (0 : FRC.Shell p)) → ∀ (x : FRC.Shell p), I x) :=
   @FRC.Shell.Prime.isPrime_iff_complete
 /-- p00163 — 00:A11. \textbf{The quarter-turn exists iff $\p\equiv1\pmod4$}: for an odd prime $\p$, $-1$ is a square in $\F_\p$ iff $\p\equiv1\pmod4$ (the formal shadow of B3). -/

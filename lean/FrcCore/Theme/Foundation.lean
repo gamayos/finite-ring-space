@@ -25,7 +25,7 @@ variable {p : Nat} [Pos p]
 
 namespace Prime
 
-/-- 17:A23, Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero
+/-- 7:A23, Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero
 residue holds every residue iff `p` is prime. An ideal `I` holds `0` and is closed under addition and under
 multiplication by any residue. Forward, a nonzero `a ∈ I` has the inverse `a^{p−2}` (Fermat), so `1 ∈ I` and then
 `x = x · 1 ∈ I`. Backward, the annihilator `{x : x b = 0}` of `b` is an ideal, so `a b = 0` with `a ≠ 0` puts `1` in

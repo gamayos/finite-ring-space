@@ -171,7 +171,7 @@ theorem fld (F : Frame p κ g) : Fld p :=
   ⟨F.one_ne_zero, fun hx => F.exists_inv hx, fun h => F.mul_eq_zero h, fun ha hb => F.mul_ne_zero ha hb,
    fun ha h => F.mul_left_cancel ha h, fun h => F.sq_eq_one h⟩
 
-/-- 17:B4, 38:A9, 00:C19 — on a field-law shell, `x² − ν y² ≠ 0` for `(x, y) ≠ 0` when `ν` is a nonsquare. -/
+/-- 7:B4, 38:A9, 00:C19 — on a field-law shell, `x² − ν y² ≠ 0` for `(x, y) ≠ 0` when `ν` is a nonsquare. -/
 theorem Fld.norm_ne_zero (K : Fld p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) {x y : Shell p}
     (hxy : x ≠ 0 ∨ y ≠ 0) : x * x + -(ν * (y * y)) ≠ 0 := fun h => by
   have e := eq_of_add_neg_eq_zero h
@@ -183,7 +183,7 @@ theorem Fld.norm_ne_zero (K : Fld p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y
     obtain ⟨s, hs⟩ := K.exists_inv hy
     exact hν ⟨x * s, by rw [mul_mul_mul_comm, e, mul_assoc, ← mul_mul_mul_comm, hs, mul_one, mul_one]⟩
 
-/-- 17:B1, 17:C7, 17:P1, 38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare:
+/-- 7:B1, 7:C7, 7:P1, 38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare:
 (1) a boost that is not scalar fixes no point of `ℙ¹`; (2) a boost in the Borel subgroup is scalar: `T ∩ B = 1`;
 (3) every invertible matrix factors as (cone chart) × (boost) up to a scalar, (4) uniquely up to scalars — the cone
 chart is a global section of `G → G/T`; (5) the boost classes are the points of `ℙ¹` (`p + 1` per fibre) and (6) the
@@ -353,7 +353,7 @@ theorem Fld.hopf_section (K : Fld p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y
         (.add (.mul (.mul (.neg .one) (.var 2)) (.mul (.neg .one) (.var 5))) (.mul (.mul (.neg .one) (.var 3)) (.mul (.neg .one) (.var 7))))
         (.add (.mul (.var 2) (.var 5)) (.mul (.var 3) (.var 7))) (by decide +kernel)
 
-/-- 17:A11, 17:A13, 38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`. -/
+/-- 7:A11, 7:A13, 38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`. -/
 theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ α β x y : Shell p, β ≠ 0 → (x ≠ 0 ∨ y ≠ 0) → ¬ PEq ((boost ν α β).act x y) (x, y)) ∧
     (∀ α β a b e l : Shell p, boost ν α β = M2.smul l (borel a b e) → β = 0) ∧
@@ -438,7 +438,7 @@ theorem Fld.hopf_counts (K : Fld p) (ν : Shell p) :
     exact K.one_ne_zero (M2.ext'_c h).symm
 
 
-/-- 17:A11, 17:A13, 38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`. -/
+/-- 7:A11, 7:A13, 38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`. -/
 theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
     (∀ a b e : Shell p, a * e ≠ 0 → ∃ i j : Nat, i < p ∧ j < p ∧ i ≠ 0 ∧
       ∃ l : Shell p, l ≠ 0 ∧ M2.smul l (borel a b e) = borel (ofNat i) (ofNat j) 1) ∧
@@ -578,7 +578,7 @@ theorem Fld.frame_triple (K : Fld p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y
       _ = a2 * e1 * b2 := by rw [hE]
       _ = a2 * (e1 * b2) := mul_assoc a2 e1 b2
 
-/-- 17:A13, 38:A9, 38:X4 — on a frame (`Frame.fld`): `Fld.frame_triple`. -/
+/-- 7:A13, 38:A9, 38:X4 — on a frame (`Frame.fld`): `Fld.frame_triple`. -/
 theorem frame_triple (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ M : M2 p, M.det ≠ 0 → (M.a ≠ 0 ∨ M.c ≠ 0) ∧ M.act 1 0 = (M.a, M.c) ∧ (boost ν M.a M.c).act 1 0 = (M.a, M.c) ∧
       M.a * M.a + -(ν * (M.c * M.c)) ≠ 0 ∧
@@ -732,7 +732,7 @@ def unit (g : Shell p) (κ : Nat) : M2 p := ⟨g ^ κ, 0, 0, -(g ^ κ)⟩
 /-- A diagonal matrix `diag(a, d)`. -/
 def diag (a d : Shell p) : M2 p := ⟨a, 0, 0, d⟩
 
-/-- 17:A12, 17:A13, 38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the
+/-- 7:A12, 7:A13, 38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the
 diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the
 centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the
 conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over
@@ -753,7 +753,7 @@ theorem unit_split (F : Frame p κ g) :
       (M'.adj.mul M).mul (unit g κ) = (unit g κ).mul (M'.adj.mul M)) :=
   unit_split_let F
 
-/-- 17:A12, 17:A13, 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover
+/-- 7:A12, 7:A13, 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover
 twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one. -/
 theorem frame_counts :
     (14 : Nat) * 13 * 12 = 2184 ∧ (2184 : Nat) = 156 * 14 ∧ (156 : Nat) = 13 * 12 ∧ (2 : Nat) * 1092 = 2184 ∧
@@ -762,7 +762,7 @@ theorem frame_counts :
 /-- The quaternion `x + y i + z j + w k` as a matrix, `[[x + r y, z + r w], [−z + r w, x − r y]]` with `r² = −1`. -/
 def quat (r x y z w : Shell p) : M2 p := ⟨x + r * y, z + r * w, -z + r * w, x + -(r * y)⟩
 
-/-- 17:A13, 17:A14, 38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat`
+/-- 7:A13, 7:A14, 38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat`
 (`1, i, j, k ↦ I, diag(r, −r), [[0, 1], [−1, 0]], [[0, r], [r, 0]]`) and its norm is the determinant. -/
 theorem sphere_det {r : Shell p} (hr : r * r = -1) (x y z w : Shell p) :
     M2.det (quat r x y z w) = x * x + y * y + z * z + w * w := by

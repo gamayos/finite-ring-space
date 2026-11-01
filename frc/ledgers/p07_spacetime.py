@@ -1,40 +1,40 @@
-"""p17_spacetime — the ledger file of 17-spacetime (the verification package of 31 October 2026).
+"""p07_spacetime — the ledger file of 7-spacetime (the verification package of 31 October 2026).
 
 "Emergent Lorentzian Space-Time over Finite Holographic Substrate" (Akhtman, 2026). The paper's predicate ledger is
-docs/17-spacetime/17-spacetime-ledger.json. This file binds its predicates to the framework: the table of keys (generated
+docs/7-spacetime/7-spacetime-ledger.json. This file binds its predicates to the framework: the table of keys (generated
 from the ledger by ci/make_ledgers.py) and the checks of six blocks. Each check names the predicate(s) it witnesses
-(LEDGER) under a `# 17:XN (<key>)` marker on the check that decides it (PREDICATES). The carried rows of block A keep
+(LEDGER) under a `# 7:XN (<key>)` marker on the check that decides it (PREDICATES). The carried rows of block A keep
 their origin keys (the master's 00:, 3-causality's 3:, 38-s13's 38:, 21-gravity's 21:) and are decided here again on
 the themes: the frame and the signature (frc/subject.py), the quadratic forms and their counts (frc/shell.py), the
 Hopf section, the frame triple, the frame group and its one form (frc/projective.py), the pair's drift and joint cycle
 (frc/subject.py), completeness as primality (frc/foundation.py), the retarded flow (frc/covering.py) and the single
 arrow (frc/drift.py). The paper's own rows are decided on the register square and the finite Lorentz group of
-frc/projective.py (17-spacetime's section): the determinant of the Hermitian matrix, the congruence of SL₂(𝔽_{p²}) with
+frc/projective.py (7-spacetime's section): the determinant of the Hermitian matrix, the congruence of SL₂(𝔽_{p²}) with
 its kernel ±I and its image of index four, the cone, the two four-dimensional classes, the similitude, the fibration,
 the class equation, the drive and the lift, the horizon at the half step, the three exclusions of the arrow, and the
 one-directional drift. Everything is exact (gate G09). The Lean side is lean/FrcCore/Theme/Lorentz.lean (the projective theme)
 with Theme/Spin.lean, Theme/Projective.lean, Theme/Hopf.lean and Theme/Pair.lean behind it, and lean/FrcMathlib/Theme/
 Lorentz.lean for the isotropy of every three-dimensional subspace (Chevalley–Warning, D5); the paper modules are
-lean/FrcCore/Spacetime.lean and lean/FrcMathlib/Spacetime.lean, the certificates lean/FrcCore/Ledgers/P17Spacetime.lean
-and lean/FrcMathlib/Ledgers/P17Spacetime.lean.
+lean/FrcCore/Spacetime.lean and lean/FrcMathlib/Spacetime.lean, the certificates lean/FrcCore/Ledgers/P07Spacetime.lean
+and lean/FrcMathlib/Ledgers/P07Spacetime.lean.
 
-    python3 -m frc.ledgers.p17_spacetime        every block, the census; exit 1 if a check fails (≈ 90 s: the one
+    python3 -m frc.ledgers.p07_spacetime        every block, the census; exit 1 if a check fails (≈ 90 s: the one
                                                 enumeration of SL₂(𝔽₁₆₉), 4 826 640 matrices, decides C2, D1 and F3)
-    python3 -m frc.ledgers.p17_spacetime C      one block (A to F)
-    from frc.ledgers.p17_spacetime import R; R.predicate("17:C2")    one predicate: its blocks run once per session
+    python3 -m frc.ledgers.p07_spacetime C      one block (A to F)
+    from frc.ledgers.p07_spacetime import R; R.predicate("7:C2")    one predicate: its blocks run once per session
 
-Blocks:  A  the inputs carried                         EXACT   (17:A4, A6, A8, A9, A10, A11, A12, A13, A14, A15, A16, A21, A23, A24, A25, A26, A28)
-         B  the register and the shell                 EXACT   (17:B1, B4)
-         C  the forms, the cone and the fibration      EXACT   (17:C1, C2, C3, C4, C5, C6, C7, C8, C9, X1, X2, X5)
-         D  time and the horizon                       EXACT   (17:D1, D3, D4, D5, D6, X4)
-         F  the arrow                                  EXACT   (17:F1, F3, F4, X6)
-         P  the prediction                             EXACT   (17:P1)
+Blocks:  A  the inputs carried                         EXACT   (7:A4, A6, A8, A9, A10, A11, A12, A13, A14, A15, A16, A21, A23, A24, A25, A26, A28)
+         B  the register and the shell                 EXACT   (7:B1, B4)
+         C  the forms, the cone and the fibration      EXACT   (7:C1, C2, C3, C4, C5, C6, C7, C8, C9, X1, X2, X5)
+         D  time and the horizon                       EXACT   (7:D1, D3, D4, D5, D6, X4)
+         F  the arrow                                  EXACT   (7:F1, F3, F4, X6)
+         P  the prediction                             EXACT   (7:P1)
 
 The instances are the corpus's three laboratory pairs: the Subjects 𝔽₁₃ (κ = 3), 𝔽₁₇₃ (κ = 43) and 𝔽₁₅₄₉ (κ = 387),
 each with the drive g = 2 (a generator and a nonsquare, p ≡ 5 mod 8) and its quadratic extension, inside the Carriers
 𝔽₂₃₃, 𝔽₃₀₀₈₉ and 𝔽₂₄₀₈₅₆₁ (38-s13, 39-s173, 37-sim). The identities, the counts by formula and the drift run on all three
 (SHELLS, PAIRS); the O(p²) searches on 𝔽₁₃ and 𝔽₁₇₃ (MID); the complete enumerations of SL₂(𝔽_{p²}), PGL₂(𝔽_p) and 𝔽_p⁴
-on 𝔽₁₃ alone (ENUM). The notebook frc/ledgers/p17_spacetime.ipynb runs one predicate per cell, the cell's id its key
+on 𝔽₁₃ alone (ENUM). The notebook frc/ledgers/p07_spacetime.ipynb runs one predicate per cell, the cell's id its key
 (gate G13).
 """
 import sys
@@ -51,9 +51,9 @@ from frc import subject as SB
 from frc.extension import Ext
 from frc.registry import Registry
 
-# ---- generated by ci/make_ledgers.py from docs/17-spacetime/17-spacetime-ledger.json; edit the ledger, not this table ----
-PAPER = "17-spacetime"
-KEYS = {"A1": "p03002", "A2": "p17001", "A3": "p17002", "A4": "p00021", "A5": "p00025", "A6": "p00150", "A7": "p03005", "A8": "p03008", "A9": "p03011", "A10": "p03013", "A11": "p00190", "A12": "p38050", "A13": "p00152", "A14": "p00183", "A15": "p00139", "A16": "p00028", "A17": "p00042", "A18": "p00044", "A19": "p00182", "A20": "p00198", "A21": "p38053", "A22": "p17041", "A23": "p00162", "A24": "p38044", "A25": "p38054", "A26": "p38016", "A27": "p00140", "A28": "p21018", "A29": "p00008", "B1": "p17003", "B2": "p17004", "B3": "p17038", "B4": "p17042", "B5": "p17049", "C1": "p17005", "C2": "p17006", "C3": "p17007", "C4": "p17008", "C5": "p17009", "C6": "p17010", "C7": "p17031", "C8": "p17032", "C9": "p17040", "D1": "p17011", "D3": "p17013", "D4": "p17014", "D5": "p17015", "D6": "p17033", "E1": "p17043", "F1": "p17044", "F2": "p17045", "F3": "p17046", "F4": "p17047", "X1": "p17020", "X2": "p17021", "X4": "p17023", "X5": "p17024", "X6": "p17048", "P1": "p17026"}       # every row of the ledger: its label and its accession key
+# ---- generated by ci/make_ledgers.py from docs/7-spacetime/7-spacetime-ledger.json; edit the ledger, not this table ----
+PAPER = "7-spacetime"
+KEYS = {"A1": "p03002", "A2": "p07001", "A3": "p07002", "A4": "p00021", "A5": "p00025", "A6": "p00150", "A7": "p03005", "A8": "p03008", "A9": "p03011", "A10": "p03013", "A11": "p00190", "A12": "p38050", "A13": "p00152", "A14": "p00183", "A15": "p00139", "A16": "p00028", "A17": "p00042", "A18": "p00044", "A19": "p00182", "A20": "p00198", "A21": "p38053", "A22": "p07041", "A23": "p00162", "A24": "p38044", "A25": "p38054", "A26": "p38016", "A27": "p00140", "A28": "p21018", "A29": "p00008", "B1": "p07003", "B2": "p07004", "B3": "p07038", "B4": "p07042", "B5": "p07049", "C1": "p07005", "C2": "p07006", "C3": "p07007", "C4": "p07008", "C5": "p07009", "C6": "p07010", "C7": "p07031", "C8": "p07032", "C9": "p07040", "D1": "p07011", "D3": "p07013", "D4": "p07014", "D5": "p07015", "D6": "p07033", "E1": "p07043", "F1": "p07044", "F2": "p07045", "F3": "p07046", "F4": "p07047", "X1": "p07020", "X2": "p07021", "X4": "p07023", "X5": "p07024", "X6": "p07048", "P1": "p07026"}       # every row of the ledger: its label and its accession key
 LEAN = {"A4": "core", "A6": "core", "A8": "core", "A9": "core", "A10": "core", "A11": "core", "A12": "core", "A13": "core", "A14": "core", "A15": "core", "A16": "core", "A17": "core", "A21": "core", "A23": "core", "A24": "core", "A25": "core", "A26": "core", "A28": "core", "B1": "core", "B4": "core", "B5": "core", "C1": "core", "C2": "core", "C3": "core", "C4": "core", "C5": "core", "C6": "core", "C7": "core", "C8": "core", "C9": "core", "D1": "core", "D3": "core", "D4": "core", "D5": "ml", "D6": "core", "F1": "core", "F3": "core", "F4": "core", "X1": "core", "X2": "core", "X4": "core", "X5": "core", "X6": "core", "P1": "core"}       # the rows with a Lean declaration: the libraries whose key files prove them
 # ---- end of the generated table ----
 
@@ -67,16 +67,16 @@ P, G, OM = 13, 2, 233
 ADMISSIBLE = [(p, Om) for p in range(5, 200) for Om in range(p * p + 1, 3000)
               if SB.admissible(p, Om)["p_prime"] and Om % 48 == 41 and arith.is_prime(Om) and all(SB.admissible(p, Om).values())]
 
-# The paper's predicate ledger (its appendix, predicates cited as 17:XN): the predicate(s) each check witnesses.
+# The paper's predicate ledger (its appendix, predicates cited as 7:XN): the predicate(s) each check witnesses.
 LEDGER = {
-    "A4": "17:A4", "A6": "17:A6, 17:A10", "A8": "17:A8, 17:A9", "A11": "17:A11, 17:A12", "A13": "17:A13, 17:A14", "A15": "17:A15",
-    "A16": "17:A16", "A17": "17:A17", "A21": "17:A21, 17:A24, 17:A25", "A23": "17:A23", "A26": "17:A26", "A28": "17:A28",
-    "B1": "17:B1", "B4": "17:B4", "B5": "17:B5",
-    "C1": "17:C1", "C2": "17:C2, 17:X4", "C3": "17:C3, 17:C4", "C5": "17:C5, 17:X1", "C6": "17:C6, 17:X5", "C7": "17:C7",
-    "C8": "17:C8", "C9": "17:C9, 17:X2",
-    "D1": "17:D1", "D3": "17:D3", "D4": "17:D4", "D5": "17:D5", "D6": "17:D6",
-    "F1": "17:F1", "F3": "17:F3, 17:X6", "F4": "17:F4",
-    "P1": "17:P1",
+    "A4": "7:A4", "A6": "7:A6, 7:A10", "A8": "7:A8, 7:A9", "A11": "7:A11, 7:A12", "A13": "7:A13, 7:A14", "A15": "7:A15",
+    "A16": "7:A16", "A17": "7:A17", "A21": "7:A21, 7:A24, 7:A25", "A23": "7:A23", "A26": "7:A26", "A28": "7:A28",
+    "B1": "7:B1", "B4": "7:B4", "B5": "7:B5",
+    "C1": "7:C1", "C2": "7:C2, 7:X4", "C3": "7:C3, 7:C4", "C5": "7:C5, 7:X1", "C6": "7:C6, 7:X5", "C7": "7:C7",
+    "C8": "7:C8", "C9": "7:C9, 7:X2",
+    "D1": "7:D1", "D3": "7:D3", "D4": "7:D4", "D5": "7:D5", "D6": "7:D6",
+    "F1": "7:F1", "F3": "7:F3, 7:X6", "F4": "7:F4",
+    "P1": "7:P1",
 }
 
 BLOCK = {"A": "the inputs carried",
@@ -88,18 +88,18 @@ BLOCK = {"A": "the inputs carried",
 
 # the deciding check of each witnessed predicate
 PREDICATES = {
-    "17:A4": "A4", "17:A6": "A6", "17:A10": "A6", "17:A8": "A8", "17:A9": "A8", "17:A11": "A11", "17:A12": "A11", "17:A13": "A13",
-    "17:A14": "A13", "17:A15": "A15", "17:A16": "A16", "17:A21": "A21", "17:A24": "A21", "17:A25": "A21", "17:A23": "A23", "17:A26": "A26",
-    "17:A28": "A28", "17:A17": "A17",
-    "17:B1": "B1", "17:B4": "B4", "17:B5": "B5",
-    "17:C1": "C1", "17:C2": "C2", "17:X4": "C2", "17:C3": "C3", "17:C4": "C3", "17:C5": "C5", "17:X1": "C5", "17:C6": "C6",
-    "17:X5": "C6", "17:C7": "C7", "17:C8": "C8", "17:C9": "C9", "17:X2": "C9",
-    "17:D1": "D1", "17:D3": "D3", "17:D4": "D4", "17:D5": "D5", "17:D6": "D6",
-    "17:F1": "F1", "17:F3": "F3", "17:X6": "F3", "17:F4": "F4",
-    "17:P1": "P1",
+    "7:A4": "A4", "7:A6": "A6", "7:A10": "A6", "7:A8": "A8", "7:A9": "A8", "7:A11": "A11", "7:A12": "A11", "7:A13": "A13",
+    "7:A14": "A13", "7:A15": "A15", "7:A16": "A16", "7:A21": "A21", "7:A24": "A21", "7:A25": "A21", "7:A23": "A23", "7:A26": "A26",
+    "7:A28": "A28", "7:A17": "A17",
+    "7:B1": "B1", "7:B4": "B4", "7:B5": "B5",
+    "7:C1": "C1", "7:C2": "C2", "7:X4": "C2", "7:C3": "C3", "7:C4": "C3", "7:C5": "C5", "7:X1": "C5", "7:C6": "C6",
+    "7:X5": "C6", "7:C7": "C7", "7:C8": "C8", "7:C9": "C9", "7:X2": "C9",
+    "7:D1": "D1", "7:D3": "D3", "7:D4": "D4", "7:D5": "D5", "7:D6": "D6",
+    "7:F1": "F1", "7:F3": "F3", "7:X6": "F3", "7:F4": "F4",
+    "7:P1": "P1",
 }
 
-R = Registry("17", "spacetime", LEDGER, PREDICATES, sources=[__file__])
+R = Registry("7", "spacetime", LEDGER, PREDICATES, sources=[__file__])
 Fr = Fraction
 _IMAGE = {}                                   # the one enumeration of SL₂(𝔽_{p²}) per shell, shared by C2, D1 and F2
 
@@ -114,7 +114,7 @@ def norm_one_order(nu, p):
     return sum(1 for t in range(p) for x in range(p) if (-nu * t * t + x * x) % p == 1)
 
 
-# ---- block A: the inputs carried (17:A4, A6, A8–A16, A21, A23–A26, A28) ---------------------------------------------------
+# ---- block A: the inputs carried (7:A4, A6, A8–A16, A21, A23–A26, A28) ---------------------------------------------------
 @R.block("A", BLOCK["A"])
 def block_A():
     ok, det = True, []
@@ -123,7 +123,7 @@ def block_A():
         ok &= p == 4 * k + 1 and pi == 2 * k and arith.is_primitive_root(g, p) and not SH.is_square(g, p)
         ok &= pow(i, 2, p) == p - 1 and (-pow(g, k, p)) % p == pow(g, 3 * k, p)
         det.append(f"p={p}: κ={k}, π={pi}, g={g} generator and nonsquare, i=−g^κ={(-pow(g, k, p)) % p} with i²=−1")
-    # 17:A4 (p00021)
+    # 7:A4 (p00021)
     R.check("A4", "the frame, Subject-only: on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉ the drive g = 2 is a generator of 𝔽_p^× and a nonsquare, the shell is p = 4κ + 1 with π = 2κ, and the quarter-turn i = −g^κ = g^{3κ} squares to −1", ok, "; ".join(det))
     ok, det = True, []
     for p, g in SHELLS:
@@ -132,7 +132,7 @@ def block_A():
         det.append(f"p={p}: |N¹(−g t² + x²)| = {ns}, |N¹(−g² t² + x²)| = {sq}")
     for p, g in ENUM:
         ok &= all(norm_one_order(nu, p) == (p - 1 if SH.is_square(nu, p) else p + 1) for nu in range(1, p))
-    # 17:A6 (p00150), 17:A10 (p03013)
+    # 7:A6 (p00150), 7:A10 (p03013)
     R.check("A6", "the signature is the square class of the temporal coefficient: the norm-one group of −ν t² + x² has order p + 1 (the non-split torus C_{p+1}) for ν the drive, a nonsquare, and p − 1 (the split torus C_{p−1}) for its square, on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉; for every ν of 𝔽₁₃^×", ok, "; ".join(det))
     ok, det = True, []
     for p, g in ENUM:
@@ -148,7 +148,7 @@ def block_A():
         nulls, _ = PJ.null_count_by_fibres(p, g)
         ok &= nulls == p ** 3 - p * p + p
         det.append(f"p={p}: elliptic null count by the binary fibres {nulls} = p³ − p² + p")
-    # 17:A8 (p03008), 17:A9 (p03011)
+    # 7:A8 (p03008), 7:A9 (p03011)
     R.check("A8", "the earlier classification carried: the null vectors of Q_ν = −ν t² + x² + y² + z² number p³ + p² − p for ν a square and p³ − p² + p for a nonsquare, and the two non-null classes of the elliptic form are equal, (p − 1)(p³ + p)/2 each, and invariant under rescaling by a square, enumerated on 𝔽₁₃; the elliptic count by the binary fibres on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉", ok, "; ".join(det))
     ok, det = True, []
     for p, g in ENUM:
@@ -157,7 +157,7 @@ def block_A():
         n, dirs, bors, bij = PJ.frame_triple(p, nu)
         ok &= facts and len(G_) == (p - 1) * p * (p + 1) and bij and n == (p + 1) * p * (p - 1)
         det.append(f"p={p}: |G| = {len(G_)} = (p+1)p(p−1), every class borel × boost, the frame triple bijective ({dirs} directions × {bors} Borel classes)")
-    # 17:A11 (p00190), 17:A12 (p38050)
+    # 7:A11 (p00190), 7:A12 (p38050)
     R.check("A11", "the Hopf section and the frame triple: every class of PGL₂(𝔽_p) is a Borel class times a boost, G = B · T, and one direction of ℙ¹(𝔽_p) × one Borel class, (p + 1)·p(p − 1) exactly, enumerated on 𝔽₁₃", ok, "; ".join(det))
     r13 = PJ.unit(13)[0]
     so = PJ.so3(13); inv = PJ.involutions(13)
@@ -165,7 +165,7 @@ def block_A():
     hw = PJ.hermitian_wJ(13, 2)[1]; sam = PJ.su2_is_sl2(13, 2)
     img = image(13, 2)
     ok &= hw and sam[0] and sam[3] == 0 and img["stabiliser"] == img["stabiliser_rational"] == img["sl2p"] == 2184
-    # 17:A13 (p00152), 17:A14 (p00183)
+    # 7:A13 (p00152), 7:A14 (p00183)
     R.check("A13", "the frame group: PGL₂(𝔽₁₃) → SO₃(𝔽₁₃) by the adjoint action is injective with image of order 2184 = |SO₃| (|O₃| = 4368 by frames), SL₂ has one involution against PGL₂'s 169; and SU₂(𝔽₁₆₉/𝔽₁₃) = SL₂(𝔽₁₃) for the Hermitian form ηJ: every rational unimodular matrix is unitary, no non-rational sample is, and over all of SL₂(𝔽₁₆₉) the unitary matrices are exactly the 2184 rational ones", ok,
             f"so3 {so[:2]}, dets {so[2]}, |O₃| {so[4]}; sample {sam}; stabiliser {img['stabiliser']}")
     ok, det = True, []
@@ -175,10 +175,10 @@ def block_A():
         seam = (2 * k + 1) * 2 % p == 1
         ok &= len(pts) == p + 1 and (1, 0) in pts and all(PJ.normal((x, 1), p) != (1, 0) for x in range(p)) and seam
         det.append(f"p={p}: ℙ¹ has {len(pts)} points, the horizon [1:0] no residue, 2⁻¹ = {2 * k + 1}")
-    # 17:A15 (p00139)
+    # 7:A15 (p00139)
     R.check("A15", "origin and horizon: the classes of 𝔽_{p²}^× modulo 𝔽_p^× are the p + 1 points of ℙ¹(𝔽_p), the horizon [1 : 0] among them and no residue [x : 1]; the seam 2⁻¹ = 2κ + 1, on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉", ok, "; ".join(det))
     ok = all(SH.is_square(pow(g, j, p), p) == (j % 2 == 0) for p, g in SHELLS for j in range(p - 1))
-    # 17:A16 (p00028)
+    # 7:A16 (p00028)
     R.check("A16", "the squares are the even drive steps: g^j is a square exactly when j is even, so registered transport (two chronons) is even and the one-way multiplier g odd, on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉", ok, "")
     ok, det = True, []
     for p, Om in PAIRS:
@@ -191,22 +191,22 @@ def block_A():
     ok &= all(SB.leak_rate(p, Om)[1] == Fr(1, Om - 1) for p, Om in ADMISSIBLE)
     ok &= all(SB.joint_cycle(p, Om)[0] == SB.least_return(p, Om) for p, Om in ADMISSIBLE[:40])
     ok &= all(SB.apsidal_bound(p, Om) == (True, True) for p, Om in ADMISSIBLE) and all(SB.apsidal_bound(p, Om) == (False, False) for p, Om in ((53, 157), (13, 157), (173, 233)))
-    # 17:A21 (p38053), 17:A24 (p38044), 17:A25 (p38054)
+    # 7:A21 (p38053), 7:A24 (p38044), 7:A25 (p38054)
     R.check("A21", f"the pair's arithmetic carried: the per-chronon drift rate is 1/(Ω − 1) on every admissible pair below (200, 3000) ({len(ADMISSIBLE)} of them) and on the three laboratory pairs, 1/232, 1/30088 and 1/2408560, with κ/S = 3/58, 43/7522 and 387/602140 per revolution; the joint cycle is lcm(p − 1, Ω − 1): 696, 1 293 784 and 932 112 720; and the apsidal bound κ/S < 1/(√Ω + 1) holds exactly on the nested pairs p² < Ω and fails on (53, 157), (13, 157), (173, 233)", ok,
             "; ".join(det))
     bad = [q for q in range(2, 260) if FO.is_complete(q) != arith.is_prime(q)]
     ok = not bad and FO.is_complete(233) and not FO.zero_divisors(233) and FO.zero_divisors(234) and not FO.is_complete(234)
     ok &= all(arith.is_prime(p) and arith.is_prime(Om) and p * p < Om and (p - 1) % 4 == 0 and (Om - 1) % 4 == 0 for p, Om in PAIRS)
-    # 17:A23 (p00162)
+    # 7:A23 (p00162)
     R.check("A23", "completeness is primality: for every count 2 ≤ q < 260 the residues of q have no proper nonzero ideal (every nonzero residue invertible) exactly when q is prime; 𝔽₂₃₃ is a field with no zero divisors, ℤ₂₃₄ is not; the three laboratory pairs are prime Subjects nested in prime Carriers, p² < Ω, both of the form 4n + 1", ok, f"exceptions {bad}")
     ok = all(CV.tick(232, k, k) == 0 and CV.tick(232, k, 116 + k) == 116 for k in range(232))
     ok &= all((CV.tick(232, k, b) + b) % 232 == k for b in range(232) for k in range(13))
     ok &= all(CV.tick(n, k, b) == (k - b) % n for n in (12, 24, 232, 464) for k in range(n) for b in range(n))
-    # 17:A26 (p38016)
+    # 7:A26 (p38016)
     R.check("A26", "one retarded flow law, carried from the laboratory: the row k at clock b stands at (k − b) mod 232 on the Carrier cycle C₂₃₂, the same count on C₁₂, C₂₄, C₂₃₂ and C₄₆₄, and the count returns the row at every clock state", ok, "")
     arrows = [D.single_arrow(p, g) for p, g in MID]
     ok = all(a[0] for a in arrows) and all(a[1] == p + 1 for a, (p, _) in zip(arrows, MID))
-    # 17:A28 (p21018)
+    # 7:A28 (p21018)
     R.check("A28", "the drive has a single arrow: on 𝔽₁₆₉ and 𝔽_{173²} the Frobenius is the conjugation on every element, on the norm-one circle the conjugate is the inverse and the drive generator's conjugate orbit is its orbit reversed, and the conjugation fixes ±1 alone — a time-reversed clock is the Frobenius branch, not a step of the drive", ok,
             "; ".join(f"p={p}: circle of order {a[1]}, fixed {a[2]}" for a, (p, _) in zip(arrows, MID)))
     # time is the drive (00:D1, a theorem on the author's word of 1 November 2026): the drive x ↦ gx is transitive on 𝔽_p^× (one orbit, so the
@@ -222,11 +222,11 @@ def block_A():
         ok &= below and inj and d % 2 == 1 and cyc % 2 == 0 and d <= cyc - 1
         det.append(f"({p}, {Om}): p²={d} < Ω−1={cyc}, the counts 0..{d} distinct")
     ok &= all(SB.drift_depth(p, Om)[0] and SB.drift_depth(p, Om)[1] for p, Om in ADMISSIBLE)
-    # 17:A17 (p00042)
+    # 7:A17 (p00042)
     R.check("A17", "time is the drive: on the three Subjects the drive g generates 𝔽_p^× (one orbit on the nonzero cells, the register back after 4κ steps, so the register alone registers no duration), and on the three laboratory pairs, on (13, 181) and on every admissible pair the registrable depth p² is odd and below the even cycle Ω − 1, so the chart count n mod (Ω − 1) is injective on every registered duration: a registered duration is the count of drive steps", ok, "; ".join(det))
 
 
-# ---- block B: the register and the shell (17:B1, B4) -------------------------------------------------------------------------
+# ---- block B: the register and the shell (7:B1, B4) -------------------------------------------------------------------------
 @R.block("B", BLOCK["B"])
 def block_B():
     ok, det = True, []
@@ -241,7 +241,7 @@ def block_B():
         k = (p - 1) // 4
         ok &= (p - 1, p, p + 1) == (4 * k, 4 * k + 1, 4 * k + 2) and 1 + (p * p - 1) + p * (p + 1) * (p - 2) // 2 + p * p * (p - 1) // 2 == (p - 1) * p * (p + 1)
         det.append(f"p={p}: cycles of orders {4 * k}, {4 * k + 1}, {4 * k + 2}, the class equation summing to {(p - 1) * p * (p + 1)}")
-    # 17:B1 (p17003)
+    # 7:B1 (p07003)
     R.check("B1", "every frame move factors uniquely as a Borel move times a boost (G = B · T, the Borel simply transitive on the causal rays) and on the spin cover the Borel lift meets the torus lift in ±I, the obstruction to a section, enumerated on 𝔽₁₃; the three cycles have the consecutive orders 4κ, 4κ + 1, 4κ + 2 and the class equation sums to |G| on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉", ok, "; ".join(det))
     ok, det = True, []
     for p, g in SHELLS:
@@ -254,9 +254,9 @@ def block_B():
         eh = PJ.elliptic_hyperbolic(p, g)
         ok &= eh["register_null"] == p * p + 1 and not eh["register_plane"] and eh["frame_null"] == (p + 1) ** 2 and eh["frame_plane"]
         det.append(f"p={p}: no totally isotropic plane in the register square, one in the frame quadric")
-    # 17:B4 (p17042)
+    # 7:B4 (p07042)
     R.check("B4", "the necessity chain: the drive's generator g is a nonsquare, the temporal plane −g t² + x² is anisotropic (its only null vector is zero) with norm-one group of order p + 1, the third cycle, and the register square is elliptic with p² + 1 null lines; a square coefficient gives the split plane (2p − 1 null vectors) and the cycle C_{p−1} again, on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉; no totally isotropic plane in the register square and one in the frame quadric, enumerated on 𝔽₁₃", ok, "; ".join(det))
-    # the registrable depth (17:B5): the Subject's register pair takes p² values, registration distinguishes states only, so a
+    # the registrable depth (7:B5): the Subject's register pair takes p² values, registration distinguishes states only, so a
     # sequence of distinct registrations has at most p² entries (frc/subject.py's drift_depth gives the depth against the Carrier's cycle)
     ok, det = True, []
     for p, g in SHELLS:
@@ -268,11 +268,11 @@ def block_B():
         below, inj, d, cyc = SB.drift_depth(p, Om)
         ok &= below and d == p * p
         det.append(f"({p}, {Om}): depth {d} < cycle {cyc}")
-    # 17:B5 (p17049)
+    # 7:B5 (p07049)
     R.check("B5", "the registrable depth: on the three Subjects the register pair takes p² values and a sequence of distinct registrations has at most p² entries (the full run of p² distinct states exists and none longer), and on the three laboratory pairs and (13, 181) the depth p² lies below the Carrier's cycle Ω − 1", ok, "; ".join(det))
 
 
-# ---- block C: the forms, the cone and the fibration (17:C1–C9, X1, X2, X5) ----------------------------------------------------
+# ---- block C: the forms, the cone and the fibration (7:C1–C9, X1, X2, X5) ----------------------------------------------------
 @R.block("C", BLOCK["C"])
 def block_C():
     ok, det = True, []
@@ -284,12 +284,12 @@ def block_C():
         nulls, lines = PJ.null_count_by_fibres(p, g)
         ok &= nulls == p ** 3 - p * p + p and lines == p * p + 1
         det.append(f"p={p}: null vectors {nulls}, null lines {lines} by the binary fibres")
-    # 17:C1 (p17005)
+    # 7:C1 (p07005)
     R.check("C1", "the register square: X(x) = [[x₀ + x₃, x₁ + ηx₂], [x₁ − ηx₂, x₀ − x₃]] is Hermitian with det X(x) = x₀² − x₁² − x₃² + g x₂² on every x ∈ 𝔽₁₃⁴, the coordinates recovered from the matrix; the null count is the elliptic one, p³ − p² + p vectors and p² + 1 lines, on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉", ok, "; ".join(det))
     im = image(P, G)
     ok = (im["sl2K"] == im["sl2K_formula"] and im["kernel"] == 2 and im["image"] == im["image_formula"] and im["index"] == 4
           and im["o_minus_4"] == SH.o_minus_4(P))
-    # 17:C2 (p17006), 17:X4 (p17023)
+    # 7:C2 (p07006), 7:X4 (p07023)
     R.check("C2", "the congruence X ↦ A X A† of SL₂(𝔽₁₆₉) on the register square, enumerated over all 4 826 640 matrices: the kernel is ±I (two matrices fix the four basis vectors), so the image has order 13²(13⁴ − 1)/2 = 2 413 320, one quarter of |O₄⁻(13)| = 9 653 280 — the finite Lorentz group PSL₂(𝔽₁₆₉), the spinor kernel of X4", ok,
             f"|SL₂(K)| = {im['sl2K']}, kernel {im['kernel']}, image {im['image']}, index {im['index']}")
     ok, det = True, []
@@ -300,7 +300,7 @@ def block_C():
     for p, g in SHELLS:
         ok &= p + 1 + p * (p - 1) == p * p + 1
         det.append(f"p={p}: {p + 1} + {p * (p - 1)} = {p * p + 1}")
-    # 17:C3 (p17007), 17:C4 (p17008)
+    # 7:C3 (p07007), 7:C4 (p07008)
     R.check("C3", "the cone is ℙ¹(K): [v] ↦ [v v†] is a bijection onto the null lines of the register square, p² + 1 directions, enumerated on 𝔽₁₃; the p + 1 points of ℙ¹(𝔽_p) give the symmetric null matrices (x₂ = 0), the null directions inside space, and the p(p − 1) others carry a time component (x₂ ≠ 0), the causal rays — the count p + 1 + p(p − 1) = p² + 1 on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉", ok, "; ".join(det))
     ok, det = True, []
     for p, g in ENUM:
@@ -311,14 +311,14 @@ def block_C():
     for p, g in SHELLS:
         ok &= SH.is_square(p - 1, p)
         det.append(f"p={p}: −1 a square")
-    # 17:C5 (p17009), 17:X1 (p17020)
+    # 7:C5 (p07009), 7:X1 (p07020)
     R.check("C5", "exactly two four-dimensional classes: the frame quadric (M₂(𝔽_p), det) is hyperbolic — (p + 1)² null lines and a totally isotropic plane — and the register square elliptic — p² + 1 null lines and no totally isotropic plane; ⟨1,1,1,1⟩ and ⟨1,1,1,−1⟩ have the same null count, enumerated on 𝔽₁₃; −1 is a square on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉, so the sign pattern is not the invariant, the Witt index is (the elliptic class is Lorentzian by the index chart)", ok, "; ".join(det))
     ok, det = True, []
     for p, g in ENUM:
         s_ = PJ.similitude(p, g, g)
         ok &= s_["multiplies"] and s_["exchanges"] and s_["equal_classes"] and s_["bijective"]
         det.append(f"p={p}: c={s_['c']}, (a, b)={s_['ab']}, Q(Sx) = g Q(x), the two non-null classes exchanged")
-    # 17:C6 (p17010), 17:X5 (p17024)
+    # 7:C6 (p07010), 7:X5 (p07024)
     R.check("C6", "no inertia: with a² + b² = g and c² = −1 the similitude (t, x, y, z) ↦ (cz, ax − by, bx + ay, cgt) multiplies Q_g by g, so it is an isometry ⟨1,1,1,g⟩ ≅ ⟨1,g,g,g⟩ exchanging the two non-null classes (equal in size) and fixing the null cone: a change of unit exchanges the label, the cone is the invariant, enumerated on 𝔽₁₃", ok, "; ".join(det))
     ok, det = True, []
     for p, g in ENUM:
@@ -328,7 +328,7 @@ def block_C():
         det.append(f"p={p}: {hf['rays']} rays, stabiliser the norm-one torus of order {hf['stabiliser']}, |SL₂| = rays × fibre; Borel lift orbits {hf['borel_lift_orbits']}")
     for p, g in SHELLS:
         ok &= p * (p - 1) * (p + 1) == (p - 1) * p * (p + 1)
-    # 17:C7 (p17031)
+    # 7:C7 (p07031)
     R.check("C7", "the fibration is exact: SL₂(𝔽_p) acts transitively on the p(p − 1) causal rays with stabiliser the norm-one torus C_{p+1}, |SL₂| = p(p − 1)·(p + 1); the Borel of G is simply transitive on the rays, a section; on the spin cover the Borel lift has two orbits of p(p − 1)/2 and meets the torus lift in ±I, so no subgroup section, enumerated on 𝔽₁₃", ok, "; ".join(det))
     ok, det = True, []
     for p, g in MID:
@@ -338,7 +338,7 @@ def block_C():
     for p, g in ENUM:
         ok &= PJ.hopf_fibration(p, g)["axes_nonsquare"]
         det.append(f"p={p}: every ray's axis t² − tr(z)t + N(z) has nonsquare discriminant")
-    # 17:C8 (p17032)
+    # 7:C8 (p07032)
     R.check("C8", "the Hopf base: the stabiliser of a causal ray z fixes the binary form with roots {z, z̄}, of discriminant 4g(Im z)², a nonsquare, so the causal rays are the oriented nonsquare axes, two per axis (every ray's axis checked on 𝔽₁₃); the p² + p + 1 directions of space are root pairs: p + 1 double, p(p + 1)/2 split, p(p − 1)/2 conjugate (the internal points of the conic), on 𝔽₁₃ and 𝔽₁₇₃", ok, "; ".join(det))
     ok, det = True, []
     for p, g in ENUM:
@@ -348,17 +348,17 @@ def block_C():
     for p, g in SHELLS:
         ok &= 1 + (p * p - 1) + p * (p + 1) * (p - 2) // 2 + p * p * (p - 1) // 2 == (p - 1) * p * (p + 1)
         det.append(f"p={p}: 1 + (p² − 1) + p(p+1)(p−2)/2 + p²(p−1)/2 = {(p - 1) * p * (p + 1)}")
-    # 17:C9 (p17040), 17:X2 (p17021)
+    # 7:C9 (p07040), 7:X2 (p07021)
     R.check("C9", "the class equation of PGL₂(𝔽_p): every element has order dividing p − 1, p or p + 1; the maximal cyclic subgroups are the p(p + 1)/2 split tori, the p + 1 unipotent groups and the p(p − 1)/2 non-split tori, partitioning G ∖ {1}, enumerated on 𝔽₁₃; 1 + (p² − 1) + p(p + 1)(p − 2)/2 + p²(p − 1)/2 = (p − 1)p(p + 1) on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉; the three kinds of cycle are the three direction classes of space", ok, "; ".join(det))
 
 
-# ---- block D: time and the horizon (17:D1, D3–D6, X4) --------------------------------------------------------------------------
+# ---- block D: time and the horizon (7:D1, D3–D6, X4) --------------------------------------------------------------------------
 @R.block("D", BLOCK["D"])
 def block_D():
     im = image(P, G)
     so = PJ.so3(P); dr = PJ.drive_on_square(P, G, G)
     ok = im["stabiliser"] == im["stabiliser_rational"] == P * (P * P - 1) and so[0] == so[1] and so[3] and dr["time_scaled_by_g"] and dr["g_nonsquare"]
-    # 17:D1 (p17011)
+    # 7:D1 (p07011)
     R.check("D1", "the stabiliser of the time vector ηJ in SL₂(𝔽₁₆₉), over all 4 826 640 matrices, is exactly the 2184 matrices with entries in 𝔽₁₃ — the spin cover SL₂(𝔽₁₃) — which acts on Sym²(V) through the adjoint action PGL₂ → SO₃ (injective, orthogonal); the one-chronon move diag(g, 1), of nonsquare determinant, fixes the time line and scales the vector by g", ok,
             f"stabiliser {im['stabiliser']} = |SL₂(𝔽₁₃)|, all rational; so3 injective {so[0] == so[1]}")
     ok, det = True, []
@@ -366,21 +366,21 @@ def block_D():
         dr = PJ.drive_on_square(p, g, g)
         ok &= all(dr.values())
         det.append(f"p={p}: {dr}")
-    # 17:D3 (p17013)
+    # 7:D3 (p07013)
     R.check("D3", "the drive on the square: diag(g, 1) carries every ray [z : 1] to [gz : 1] and ηJ to g·ηJ (two chronons scale by the square g²); its unimodular lift D = diag(η, η⁻¹) has det 1, D† = −D and carries ηJ to −ηJ; the even transport diag(g, g⁻¹) ∈ SL₂(𝔽_p) fixes ηJ and σ_x and dilates E₂₂ by g⁻², E₁₁ by g², on 𝔽₁₃ and 𝔽₁₇₃", ok, "; ".join(det))
     ok, det = True, []
     for p, g in SHELLS:
         tc = PJ.two_circuits(p, g)
         ok &= tc["order"] == p + 1 and tc["contains_minus_I"] and tc["image_order"] == (p + 1) // 2 and tc["conjugate_to_torus"]
         det.append(f"p={p}: |N¹| = {tc['order']}, image on the square of order {tc['image_order']}, conjugate to the torus lift through P")
-    # 17:D4 (p17014)
+    # 7:D4 (p07014)
     R.check("D4", "two circuits: N¹ = {diag(λ, λ̄) : N(λ) = 1} has order p + 1 and contains −I, its image on the register square has order (p + 1)/2 (−I acts trivially), and P diag(λ, λ̄) P⁻¹, P = [[η, −η], [1, 1]], is the multiplication by λ in the basis (1, η): N¹ and the torus lift are conjugate in SL₂(K), on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉", ok, "; ".join(det))
     ok, det = True, []
     for p, g in ENUM:
         iso, n = PJ.no_definite_space(p, g)
         ok &= iso and n == p ** 3 + p * p + p + 1
         det.append(f"p={p}: all {n} three-dimensional subspaces carry a null vector")
-    # 17:D5 (p17015)
+    # 7:D5 (p07015)
     R.check("D5", "no definite space: every three-dimensional subspace of the register square (every hyperplane, p³ + p² + p + 1 of them) contains a nonzero null vector of the determinant form, by search on 𝔽₁₃ (Chevalley–Warning on every shell, the Lean witness)", ok, "; ".join(det))
     ok, det = True, []
     for p, g in MID:
@@ -391,17 +391,17 @@ def block_D():
     for p, g in SHELLS:
         k = (p - 1) // 4
         ok &= (p + 1) // 2 == 2 * k + 1 and (2 * k + 1) % 2 == 1
-    # 17:D6 (p17033)
+    # 7:D6 (p07033)
     R.check("D6", "the horizon: K^×/𝔽_p^× (cyclic of order p + 1) acts regularly on ℙ¹(𝔽_p); the horizon [1 : 0] is its unique element of order two, reached from the origin [0 : 1] by every generator first at the half step (p + 1)/2 = 2κ + 1, which is odd; the unimodular torus, the even steps, never reaches it, on 𝔽₁₃ and 𝔽₁₇₃; the half step odd on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉", ok, "; ".join(det))
 
 
-# ---- block F: the arrow (17:F1, F3, F4, X6) ---------------------------------------------------------------------------------------
+# ---- block F: the arrow (7:F1, F3, F4, X6) ---------------------------------------------------------------------------------------
 @R.block("F", BLOCK["F"])
 def block_F():
     ok = all(SB.leak_rate(p, Om)[1] == Fr(1, Om - 1) and SB.leak_rate(p, Om)[0] == Fr((p - 1) // 4, (Om - 1) // 4) for p, Om in ADMISSIBLE + PAIRS)
     ok &= all(SB.apsidal_bound(p, Om) == (p * p < Om, p * p < Om) for p in range(5, 60, 4) if arith.is_prime(p) for Om in range(p + 1, 2000) if arith.is_prime(Om) and Om % 4 == 1)
     ok &= [SB.leak_rate(p, Om)[1] for p, Om in PAIRS] == [Fr(1, 232), Fr(1, 30088), Fr(1, 2408560)]
-    # 17:F1 (p17044)
+    # 7:F1 (p07044)
     R.check("F1", f"one rate for every observer: on every admissible pair below (200, 3000) ({len(ADMISSIBLE)}) and on the three laboratory pairs an embedded shell drifts by 1/(Ω − 1) of the Carrier cycle per chronon and κ/S per revolution, 1/232, 1/30088 and 1/2408560; and the rate lies below 1/(√Ω + 1) exactly when p² < Ω, on every prime pair p ≡ 1 (4) below (60, 2000)", ok, "")
     im = image(P, G)
     ok = im["T_hits"] == im["P_hits"] == im["PT_hits"] == 0 and im["index"] == 4
@@ -409,7 +409,7 @@ def block_F():
     K = Ext(P, G)
     frob = all(tuple(K.conj(v) for v in PJ.herm(K, x)) == PJ.herm(K, (x[0], x[1], (-x[2]) % P, x[3])) for x in ((a, b, c, d) for a in range(P) for b in range(P) for c in range(0, P, 3) for d in range(0, P, 4)))
     ok &= frob
-    # 17:F3 (p17046), 17:X6 (p17048)
+    # 7:F3 (p07046), 7:X6 (p07048)
     R.check("F3", "the time reversal is not a Lorentz move: over all of SL₂(𝔽₁₆₉) no congruence realises the time reversal (the Frobenius σ of K, which acts on X(x) as x₂ ↦ −x₂), the spatial reflection x₁ ↦ −x₁ or the total inversion X ↦ −X; the image is one coset of four in O₄⁻(13), the three others are those maps", ok,
             f"hits T {im['T_hits']}, P {im['P_hits']}, −I {im['PT_hits']}; index {im['index']}")
     lo = {pair: SB.drift_order(*pair) for pair in PAIRS}
@@ -424,12 +424,12 @@ def block_F():
     # the physical pair: the registrable depth p² below the cycle Ω − 1, the chart count injective on it, and the hosted period above it
     dd = {pair: SB.drift_depth(*pair) for pair in PAIRS + [(13, 181)]}
     ok &= all(v[0] and v[1] for v in dd.values()) and all(dd[pair][2] < (lo | gl)[pair][1] for pair in dd)
-    # 17:F4 (p17047)
+    # 7:F4 (p07047)
     R.check("F4", "the drift is one-directional: on the three laboratory pairs and on (13, 181) the registrable depth p² (169, 29 929, 2 399 401, 169) lies below the Carrier's cycle Ω − 1 (232, 30 088, 2 408 560, 180), so the chart count n mod (Ω − 1) is injective on every registered duration and no recurrence is registrable; on a hosted Carrier run through its cycle the joint period is lcm(4κ, 4S) = 4κS — 696, 1 293 784, 932 112 720 — above the registrable depth, the chart counts 4κn mod 4S of the first S revolutions distinct and repeating at S, and on (13, 181), (13, 193), (13, 229), (13, 241) with gcd(κ, S) = 3 the period 4κS/3 (180 at (13, 181)); the joint period agrees with the joint cycle on the admissible pairs", ok,
             "; ".join(f"({p}, {Om}): depth {v[2]} < cycle {v[3]}" for (p, Om), v in dd.items()) + "; " + "; ".join(f"({p}, {Om}): {v}" for (p, Om), v in list(lo.items()) + list(gl.items())))
 
 
-# ---- block P: the prediction (17:P1) --------------------------------------------------------------------------------------------------
+# ---- block P: the prediction (7:P1) --------------------------------------------------------------------------------------------------
 @R.block("P", BLOCK["P"])
 def block_P():
     ok, det = True, []
@@ -443,7 +443,7 @@ def block_P():
         det.append(f"p={p}: three kinds of maximal cyclic subgroup, three cycles")
     for p, g in SHELLS:
         ok &= (p + 1) + p * (p - 1) // 2 + p * (p + 1) // 2 == p * p + p + 1
-    # 17:P1 (p17026)
+    # 7:P1 (p07026)
     R.check("P1", "three spatial dimensions, staked: space is Sym²(V), of dimension three (its p² + p + 1 directions fall in the three classes of the three cycles — counted on 𝔽₁₃ and 𝔽₁₇₃, summed on 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉ — and the frame moves have no fourth cycle), at every registrable scale through the declared metric chart; falsifier a short-range departure from the inverse-square law of the extra-dimension form; confrontation: the law holds to 52 μm (Lee et al. 2020) [data]", ok, "; ".join(det))
 
 
