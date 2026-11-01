@@ -181,7 +181,7 @@ def stated(lib, theme):
 
 def lean_run(src):
     with tempfile.NamedTemporaryFile("w", suffix=".lean", dir=ROOT, delete=False) as f: f.write(src); path = Path(f.name)
-    try: r = subprocess.run(["lake", "env", "lean", str(path)], cwd=ROOT, capture_output=True, text=True)
+    try: r = subprocess.run(["lake", "env", "lean", "-DmaxErrors=100000", str(path)], cwd=ROOT, capture_output=True, text=True)   # every failing statement must be seen (Lean stops at 100 errors by default)
     finally: path.unlink()
     return r.stdout + r.stderr
 

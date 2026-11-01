@@ -10,6 +10,7 @@ import FrcCore.Sum
 import FrcCore.Theme.Domain
 import FrcCore.Theme.Projective
 import FrcCore.Theme.Spin
+import FrcCore.Theme.Lorentz
 import FrcCore.Theme.Fourier
 import FrcCore.Theme.Shift
 import FrcCore.Theme.Fractional
@@ -98,6 +99,7 @@ import FrcCore.Rh
 import FrcCore.Entropy
 import FrcCore.Gravity
 import FrcCore.S13
+import FrcCore.Spacetime
 import FrcCore.Quantum
 import FrcCore.Pnp
 import FrcCore.Fields

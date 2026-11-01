@@ -442,7 +442,7 @@ theorem mem_of_nodup_of_length (n : Nat) (l : List Nat) (hnd : NoDup l) (hb : �
     have := length_le_of_nodup n (v :: l) hnd' hb'
     absurd (hlen ▸ this : n + 1 ≤ n) (Nat.not_succ_le_self n)
 
-/-- The same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries. -/
+/-- 17:B5 — the same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries (the registrable depth). -/
 theorem length_le_of_nodup_lt : ∀ (n : Nat) (l : List Nat), NoDup l → (∀ e, mem e l → e < n) → l.length ≤ n
   | 0, [], _, _ => Nat.le_refl 0
   | 0, a :: l, _, hb => absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)
@@ -2397,7 +2397,7 @@ theorem conj_mul (z z' : Ext p ν) : conj (z * z') = conj z * conj z' :=
       (by show -(z.re * z'.im + z.im * z'.re) = z.re * -z'.im + -z.im * z'.re
           rw [Shell.neg_add_rev, ← Shell.mul_neg, ← Shell.neg_mul])
 
-/-- 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
+/-- 17:A16, 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
 norm by `g²`, a square. -/
 theorem norm_scale (c : Shell p) (z : Ext p ν) : norm (ofShell c * z) = c * c * norm z := by
   unfold norm
@@ -3413,7 +3413,7 @@ theorem conic_row (F : Frame p κ g) (a c : Shell p) :
   exact count_bij (fun y => a + quarterTurn g κ * y) (fun u => (u + -a) * -(quarterTurn g κ))
     (fun y => red1 ((fun i => Shell.Frame.RE.sound (Shell.Frame.look [a, i, y]) (.mul (.add (.add (.var 0) (.mul (.var 1) (.var 2))) (.neg (.var 0))) (.neg (.var 1))) (.add (.var 2) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.neg (.var 2)))) (by decide +kernel)) (quarterTurn g κ)) hi) (fun u => u * (a + a + -u) = c)
 
-/-- 00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for
+/-- 17:A12, 00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for
 `c = 0`; the circle `x² + y² = 1` is the drive torus of the split fibration (38-s13). -/
 theorem conic_count (F : Frame p κ g) (c : Shell p) :
     nsum (fun x => count (fun y => ofNat x * ofNat x + y * y = c)) p = (p - 1) + (if c = 0 then p else 0) := by
@@ -3527,7 +3527,7 @@ def quad (x y z : Shell p) : Shell p := x * x + y * y + z * z
 def sphereCount (p : Nat) [Pos p] (a : Shell p) : Nat :=
   nsum (fun z => nsum (fun x => count (fun y => quad (ofNat x) y (ofNat z) = a)) p) p
 
-/-- 00:E6, 38:A9 — the area of the sphere at every nonzero square rung `a = b²`: `p(p + 1)`; the unit sphere's
+/-- 17:A12, 00:E6, 38:A9 — the area of the sphere at every nonzero square rung `a = b²`: `p(p + 1)`; the unit sphere's
 `p(p + 1)` points are the base of the split fibration (38-s13). -/
 theorem sphere_area_rung (F : Frame p κ g) {b : Shell p} (hb : b ≠ 0) : sphereCount p (b * b) = p * (p + 1) := by
   show nsum (fun z => nsum (fun x => count (fun y => ofNat x * ofNat x + y * y + ofNat z * ofNat z = b * b)) p) p = _
@@ -4142,14 +4142,14 @@ theorem registration_root {κ : Nat} {g : Shell p} (F : Frame p κ g) {w s η : 
 open FRC.Extension FRC.Extension.Ext
 variable {ν : Shell p}
 
-/-- 21:C3, 00:E3 — the conjugate of a power is the power of the conjugate, `conj (zⁿ) = (conj z)ⁿ`, on `𝔽_p[w]/(w² − ν)`. -/
+/-- 17:A28, 21:C3, 00:E3 — the conjugate of a power is the power of the conjugate, `conj (zⁿ) = (conj z)ⁿ`, on `𝔽_p[w]/(w² − ν)`. -/
 theorem conj_pow (z : Ext p ν) : ∀ n : Nat, conj (z ^ n) = (conj z) ^ n
   | 0 => Ext.ext rfl Shell.neg_zero
   | n + 1 => by
       show conj (z ^ n * z) = (conj z) ^ n * conj z
       rw [conj_mul, conj_pow z n]
 
-/-- 21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate
+/-- 17:A28, 21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate
 (Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock
 is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch. -/
 theorem conj_branch (z : Ext p ν) (hz : norm z = 1) : ∀ n : Nat, z ^ n * (conj z) ^ n = 1
@@ -4229,7 +4229,7 @@ theorem cut_ordering (L M : Nat) (hM : L * L < 4 * M) (hL : 2 < L) (h0 : 0 < M) 
   have e : 2 * M * (2 * M) = 4 * M * M := FRC.Grav.nat_sound (FRC.Grav.nlook [M]) (.mul (.mul (.add .one .one) (.var 0)) (.mul (.add .one .one) (.var 0))) (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 0)) rfl rfl (by decide +kernel)
   exact ⟨by rw [e]; exact Nat.mul_lt_mul_of_pos_right hM h0, Nat.mul_lt_mul_of_pos_right hL h0⟩
 
-/-- 38:C13 — **the apsidal bound is the nesting condition.** A nested Subject `p = q + 1` on a Carrier `Ω` registers the
+/-- 17:A21, 38:C13 — **the apsidal bound is the nesting condition.** A nested Subject `p = q + 1` on a Carrier `Ω` registers the
 apsidal fraction `κ/S = (p − 1)/(Ω − 1)` (`Pair.leak_rate`), and the bound `κ/S < 1/(√Ω + 1)` is, squared and cleared
 of its root, `(p − 1)²Ω < (Ω − p)²`, which holds exactly when `p² < Ω`: with `Ω = p² + d`, `(Ω − p)² − (p − 1)²Ω =
 d(Ω − 1) > 0` for `d ≥ 1`, and with `p² = Ω + d`, `Ω = m + q + 1`, `(Ω − p)² + d(Ω − 1) = (p − 1)²Ω`, so the bound fails.

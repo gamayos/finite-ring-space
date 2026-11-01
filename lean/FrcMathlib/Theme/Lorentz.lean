@@ -1,0 +1,82 @@
+import Mathlib
+
+/-!
+# FrcMathlib.Theme.Lorentz — no definite space (17:D5), on Mathlib
+
+The projective theme's Mathlib file for 17-spacetime (31 October 2026). The register square of the shell carries the
+determinant form `Q_ν(x) = x₀² − x₁² − x₃² + ν x₂²` on `𝔽_p⁴`; every three-dimensional subspace contains a nonzero null
+vector, so no form on space is definite. The restriction of `Q_ν` to the span of three vectors `u, v, w` is a quadratic
+polynomial in the three coefficients, of total degree at most two in three variables, and the Chevalley–Warning theorem
+(`char_dvd_card_solutions`) makes its number of zeros a multiple of `p`; the zero vector is one, so there is a second,
+nonzero one (`isotropic_three`). The clause is stated for every prime `p` and every `ν`; the core proves the other clauses
+of the row's theorem (`FrcCore/Theme/Lorentz.lean`). Classical, on Mathlib's hierarchy.
+-/
+
+namespace FRC.Lorentz
+
+open MvPolynomial
+
+variable {p : ℕ} [hp : Fact p.Prime]
+
+/-- The determinant form of the register square on the coordinates `(x₀, x₁, x₂, x₃)`. -/
+def Qf (ν : ZMod p) (x : Fin 4 → ZMod p) : ZMod p := x 0 ^ 2 - x 1 ^ 2 - x 3 ^ 2 + ν * x 2 ^ 2
+
+/-- The linear form `a u_i + b v_i + c w_i` in the three coefficients, as a polynomial. -/
+noncomputable def lin (u v w : Fin 4 → ZMod p) (i : Fin 4) : MvPolynomial (Fin 3) (ZMod p) :=
+  C (u i) * X 0 + C (v i) * X 1 + C (w i) * X 2
+
+/-- The restriction of `Q_ν` to the span of `u, v, w`, as a polynomial in the coefficients. -/
+noncomputable def restr (ν : ZMod p) (u v w : Fin 4 → ZMod p) : MvPolynomial (Fin 3) (ZMod p) :=
+  lin u v w 0 * lin u v w 0 - lin u v w 1 * lin u v w 1 - lin u v w 3 * lin u v w 3 +
+    C ν * (lin u v w 2 * lin u v w 2)
+
+theorem lin_totalDegree (u v w : Fin 4 → ZMod p) (i : Fin 4) : (lin u v w i).totalDegree ≤ 1 := by
+  unfold lin
+  refine le_trans (totalDegree_add _ _) (max_le (le_trans (totalDegree_add _ _) (max_le ?_ ?_)) ?_) <;>
+  · refine le_trans (totalDegree_mul _ _) ?_
+    rw [totalDegree_C, totalDegree_X]
+
+theorem restr_totalDegree (ν : ZMod p) (u v w : Fin 4 → ZMod p) : (restr ν u v w).totalDegree ≤ 2 := by
+  have sq : ∀ i, (lin u v w i * lin u v w i).totalDegree ≤ 2 := fun i =>
+    le_trans (totalDegree_mul _ _) (by have := lin_totalDegree u v w i; omega)
+  have cs : (C ν * (lin u v w 2 * lin u v w 2)).totalDegree ≤ 2 :=
+    le_trans (totalDegree_mul _ _) (by rw [totalDegree_C]; have := sq 2; omega)
+  unfold restr
+  refine le_trans (totalDegree_add _ _) (max_le (le_trans (totalDegree_sub _ _) (max_le (le_trans (totalDegree_sub _ _) (max_le ?_ ?_)) ?_)) ?_)
+  · exact sq 0
+  · exact sq 1
+  · exact sq 3
+  · exact cs
+
+theorem eval_lin (u v w : Fin 4 → ZMod p) (i : Fin 4) (a : Fin 3 → ZMod p) :
+    eval a (lin u v w i) = a 0 * u i + a 1 * v i + a 2 * w i := by
+  unfold lin; simp [mul_comm]
+
+/-- The polynomial evaluates to `Q_ν` of the combination `a₀ u + a₁ v + a₂ w`. -/
+theorem eval_restr (ν : ZMod p) (u v w : Fin 4 → ZMod p) (a : Fin 3 → ZMod p) :
+    eval a (restr ν u v w) = Qf ν (a 0 • u + a 1 • v + a 2 • w) := by
+  unfold restr Qf
+  simp only [eval_add, eval_sub, eval_mul, eval_C, eval_lin, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+  ring
+
+/-- 17:D5 — **no definite space.** On every prime shell `p` and for every `ν`, any three vectors `u, v, w` of `𝔽_p⁴` admit
+coefficients `(a₀, a₁, a₂) ≠ 0` with `Q_ν(a₀ u + a₁ v + a₂ w) = 0`: a three-dimensional subspace of the register square
+contains a nonzero null vector (Chevalley–Warning: the restricted form has degree two in three variables, its zeros number a
+multiple of `p`, and the zero coefficients are one of them). -/
+theorem isotropic_three (ν : ZMod p) (u v w : Fin 4 → ZMod p) :
+    ∃ a : Fin 3 → ZMod p, a ≠ 0 ∧ Qf ν (a 0 • u + a 1 • v + a 2 • w) = 0 := by
+  classical
+  have hdeg : (restr ν u v w).totalDegree < Fintype.card (Fin 3) := by
+    have := restr_totalDegree ν u v w; simp; omega
+  have hdvd := char_dvd_card_solutions (K := ZMod p) (σ := Fin 3) p hdeg
+  let S := { x : Fin 3 → ZMod p // eval x (restr ν u v w) = 0 }
+  have z0 : eval (0 : Fin 3 → ZMod p) (restr ν u v w) = 0 := by
+    rw [eval_restr]; simp [Qf]
+  have hpos : 0 < Fintype.card S := Fintype.card_pos_iff.mpr ⟨⟨0, z0⟩⟩
+  have hle : p ≤ Fintype.card S := Nat.le_of_dvd hpos hdvd
+  have h1 : 1 < Fintype.card S := lt_of_lt_of_le hp.out.one_lt hle
+  obtain ⟨b, hb⟩ := Fintype.exists_ne_of_one_lt_card h1 (⟨0, z0⟩ : S)
+  refine ⟨b.1, fun h0 => hb (Subtype.ext h0), ?_⟩
+  rw [← eval_restr]; exact b.2
+
+end FRC.Lorentz

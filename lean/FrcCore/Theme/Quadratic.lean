@@ -84,7 +84,7 @@ theorem conj_mul (z z' : Ext p ν) : conj (z * z') = conj z * conj z' :=
       (by show -(z.re * z'.im + z.im * z'.re) = z.re * -z'.im + -z.im * z'.re
           rw [Shell.neg_add_rev, ← Shell.mul_neg, ← Shell.neg_mul])
 
-/-- 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
+/-- 17:A16, 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
 norm by `g²`, a square. -/
 theorem norm_scale (c : Shell p) (z : Ext p ν) : norm (ofShell c * z) = c * c * norm z := by
   unfold norm

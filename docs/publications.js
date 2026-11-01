@@ -403,7 +403,7 @@ const PUBLICATIONS = [
   {
     "key": "21-grav",
     "n": 21,
-    "title": "Gravitation as Phase Synchronisation",
+    "title": "Gravitation as the Relaxation of Frame Drift over Finite Substrate",
     "status": {
       "kind": "preprint"
     },
@@ -435,7 +435,7 @@ const PUBLICATIONS = [
   {
     "key": "22-qm",
     "n": 22,
-    "title": "Quantum Observation over Finite Substrate",
+    "title": "Quantum Observation over Finite Holographic Substrate",
     "status": {
       "kind": "preprint"
     },

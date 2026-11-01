@@ -961,5 +961,54 @@
    "35:X8": "Hadrons",
    "35:X9": "Hadrons"
   }
+ },
+ "17-spacetime": {
+  "module": "Spacetime",
+  "FrcCore": {
+   "17:A10": "Spacetime",
+   "17:A11": "Spacetime",
+   "17:A12": "Spacetime",
+   "17:A13": "Spacetime",
+   "17:A14": "Spacetime",
+   "17:A15": "Spacetime",
+   "17:A16": "Spacetime",
+   "17:A21": "Spacetime",
+   "17:A23": "Spacetime",
+   "17:A24": "Spacetime",
+   "17:A25": "Spacetime",
+   "17:A26": "Spacetime",
+   "17:A28": "Spacetime",
+   "17:A4": "Spacetime",
+   "17:A6": "Spacetime",
+   "17:A8": "Spacetime",
+   "17:A9": "Spacetime",
+   "17:B1": "Spacetime",
+   "17:B4": "Spacetime",
+   "17:C1": "Spacetime",
+   "17:C2": "Spacetime",
+   "17:C3": "Spacetime",
+   "17:C4": "Spacetime",
+   "17:C5": "Spacetime",
+   "17:C6": "Spacetime",
+   "17:C7": "Spacetime",
+   "17:C8": "Spacetime",
+   "17:C9": "Spacetime",
+   "17:D1": "Spacetime",
+   "17:D3": "Spacetime",
+   "17:D4": "Spacetime",
+   "17:D6": "Spacetime",
+   "17:F1": "Spacetime",
+   "17:F3": "Spacetime",
+   "17:F4": "Spacetime",
+   "17:P1": "Spacetime",
+   "17:X1": "Spacetime",
+   "17:X2": "Spacetime",
+   "17:X4": "Spacetime",
+   "17:X5": "Spacetime",
+   "17:X6": "Spacetime"
+  },
+  "FrcMathlib": {
+   "17:D5": "Spacetime"
+  }
  }
 }

@@ -442,7 +442,7 @@ theorem mem_of_nodup_of_length (n : Nat) (l : List Nat) (hnd : NoDup l) (hb : �
     have := length_le_of_nodup n (v :: l) hnd' hb'
     absurd (hlen ▸ this : n + 1 ≤ n) (Nat.not_succ_le_self n)
 
-/-- The same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries. -/
+/-- 17:B5 — the same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries (the registrable depth). -/
 theorem length_le_of_nodup_lt : ∀ (n : Nat) (l : List Nat), NoDup l → (∀ e, mem e l → e < n) → l.length ≤ n
   | 0, [], _, _ => Nat.le_refl 0
   | 0, a :: l, _, hb => absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)
@@ -2064,7 +2064,7 @@ theorem conj_mul (z z' : Ext p ν) : conj (z * z') = conj z * conj z' :=
       (by show -(z.re * z'.im + z.im * z'.re) = z.re * -z'.im + -z.im * z'.re
           rw [Shell.neg_add_rev, ← Shell.mul_neg, ← Shell.neg_mul])
 
-/-- 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
+/-- 17:A16, 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
 norm by `g²`, a square. -/
 theorem norm_scale (c : Shell p) (z : Ext p ν) : norm (ofShell c * z) = c * c * norm z := by
   unfold norm
@@ -2364,7 +2364,7 @@ theorem norm_mul (ν a b c d : Shell p) :
 def boostT (_ν γ b t x : Shell p) : Shell p := γ * t + b * x
 def boostX (ν γ b t x : Shell p) : Shell p := γ * x + ν * (b * t)
 
-/-- 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
+/-- 17:A10, 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
 theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) (t x : Shell p) :
     Q2 ν (boostT ν γ b t x) (boostX ν γ b t x) = Q2 ν t x := by
   unfold boostT boostX
@@ -2372,7 +2372,7 @@ theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) 
   unfold Q2 at this ⊢
   rw [this, h, one_mul]
 
-/-- 3:C2 — boosts compose as their parameters multiply in `K`:
+/-- 17:A10, 3:C2 — boosts compose as their parameters multiply in `K`:
 `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row. -/
 theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostT ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
@@ -2382,7 +2382,7 @@ theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 γ2 x, mul_left_comm b1 ν (b2 * t), ← mul_assoc b1 b2 t, ← mul_assoc ν (b1 * b2) t,
     add_comm (b1 * γ2 * x) (ν * (b1 * b2) * t), add_add_add_comm]
 
-/-- 3:C2 — the composition, the `x`-row. -/
+/-- 17:A10, 3:C2 — the composition, the `x`-row. -/
 theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostX ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
     boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by
@@ -2392,7 +2392,7 @@ theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 b2 x, ← mul_assoc ν (b1 * b2) x,
     add_comm (ν * (b1 * γ2 * t)) (ν * (b1 * b2) * x), add_add_add_comm]
 
-/-- 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
+/-- 17:A10, 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
 theorem norm_one_mul {ν γ1 b1 γ2 b2 : Shell p} (h1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1)
     (h2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1) :
     (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) +
@@ -2471,15 +2471,15 @@ def nullCount (p ν : Nat) : Nat :=
 def normOneCount (p ν : Nat) : Nat :=
   sumTo (fun γ => sumTo (fun b => if (γ * γ + (p - ν) * (b * b)) % p = 1 then 1 else 0) p) p
 
-/-- 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type. -/
+/-- 17:A8, 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type. -/
 theorem null13 : nullCount 13 2 = 2041 := by decide +kernel
-/-- 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type. -/
+/-- 17:A8, 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type. -/
 theorem euclid13 : nullCount 13 1 = 2353 := by decide +kernel
-/-- 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`. -/
+/-- 17:A8, 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`. -/
 theorem null5 : nullCount 5 2 = 105 ∧ nullCount 5 1 = 145 := by decide +kernel
-/-- 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points. -/
+/-- 17:A8, 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points. -/
 theorem null17 : nullCount 17 3 = 4641 := by decide +kernel
-/-- 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`. -/
+/-- 17:A10, 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`. -/
 theorem normOne_values : normOneCount 5 2 = 6 ∧ normOneCount 13 2 = 14 ∧ normOneCount 17 3 = 18 ∧
     normOneCount 29 2 = 30 := by decide +kernel
 
@@ -2944,13 +2944,13 @@ theorem p03006 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, ¬FRC.Shell.Fram
 /-- p03007 — 3:B3. Square-class absorption: if $a_{i}/a_{0}\in S$ for all $\im$ then $Q\simeq a_{0}\sum Y_{i}^{2}$ by $Y_{i}=w_{i}X_{i}$, $w_{i}^{2}=a_{i}/a_{0}$; no root of $a_{0}$ is needed, and none exists for $a_{0}\in N$ ($-a_{0}$ is a nonsquare with it). -/
 theorem p03007 : ∀ {p : Nat} [FRC.Pos p] (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : FRC.Shell p), w1 * w1 * a0 = a1 → w2 * w2 * a0 = a2 → w3 * w3 * a0 = a3 → a0 * (x0 * x0) + a1 * (x1 * x1) + a2 * (x2 * x2) + a3 * (x3 * x3) = a0 * (x0 * x0 + w1 * x1 * (w1 * x1) + w2 * x2 * (w2 * x2) + w3 * x3 * (w3 * x3)) :=
   @FRC.Shell.Frame.absorb
-/-- p03008 — 3:B4. The dichotomy lives on the shell: $\operatorname{disc}Q_{\nu}\equiv\nu$ (as $-1\in S$); for $\nu\in N$ the form is elliptic, Witt index one, with $\p^{3}-\p^{2}+\p$ null points; for $\nu\in S$ hyperbolic, Witt index two, $\p^{3}+\p^{2}-\p$; every $\nu$ on $\p\le41$ ($2041$ and $2353$ at $13$; 8:B7). -/
+/-- p03008 — 3:B4, 17:A8. The counts of the two four-dimensional classes: $\p^{3}+\p^{2}-\p$ null vectors for the hyperbolic class, $\p^{3}-\p^{2}+\p$ for the elliptic. -/
 theorem p03008 : FRC.Shell.Frame.nullCount (13 : Nat) (2 : Nat) = (2041 : Nat) ∧ FRC.Shell.Frame.nullCount (13 : Nat) (1 : Nat) = (2353 : Nat) ∧ (FRC.Shell.Frame.nullCount (5 : Nat) (2 : Nat) = (105 : Nat) ∧ FRC.Shell.Frame.nullCount (5 : Nat) (1 : Nat) = (145 : Nat)) ∧ FRC.Shell.Frame.nullCount (17 : Nat) (3 : Nat) = (4641 : Nat) :=
   And.intro @FRC.Shell.Frame.null13 (And.intro @FRC.Shell.Frame.euclid13 (And.intro @FRC.Shell.Frame.null5 (@FRC.Shell.Frame.null17)))
 /-- p03009 — 3:B5. The Witt decomposition: for $\nu\in N$ the plane $x^{2}-\nu t^{2}$ (the norm of $\Fpq$) is anisotropic and $y^{2}+z^{2}=(y+iz)(y-iz)$ hyperbolic, so $Q_{\nu}=H\perp\langle1,-\nu\rangle$, index one; for $\nu=w^{2}$ the $(t,x)$-plane is hyperbolic too, $H\perp H$. Over $\Fpq$, $\nu=c^{2}$ and $Q_{\nu}\simeq\sum X_{i}^{2}$: hyperbolic ($16\,225$ zeros at $q=25$); the extension dissolves the split. -/
 theorem p03009 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → ∀ {t x : FRC.Shell p}, x * x = ν * (t * t) → t = (0 : FRC.Shell p) ∧ x = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (1 : FRC.Shell p) * (1 : FRC.Shell p) + FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] (w : FRC.Shell p), FRC.Shell.Frame.Q2 (w * w) (1 : FRC.Shell p) w = (0 : FRC.Shell p) :=
   And.intro @FRC.Shell.Frame.aniso_tx (And.intro @FRC.Shell.Frame.null_yz (@FRC.Shell.Frame.null_tx_of_square))
-/-- p03013 — 3:C2. $\Lambda(\gamma,b)$ preserves $-\nu t^{2}+x^{2}$ exactly and $\Lambda(z_{1})\Lambda(z_{2})=\Lambda(z_{1}z_{2})$: the boosts are the norm-one cycle $N^{1}\simeq C_{\p+1}$, the non-split torus, and exhaust $SO(Q_{\nu},\Fp)$ in dimension $1{+}1$ ($6$, $14$, $18$ at $5$, $13$, $17$); with $\nu\in S$ the same construction is the split torus $C_{\p-1}$ --- the two tori are the two signatures (00:C3). -/
+/-- p03013 — 3:C2, 17:A10. The norm-one group of the plane form $-\nu t^{2}+x^{2}$ is the cycle $C_{\p+1}$, the non-split torus, for $\nu$ a nonsquare, and the split torus $C_{\p-1}$ for $\nu$ a square. -/
 theorem p03013 : (∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → ∀ (t x : FRC.Shell p), FRC.Shell.Frame.Q2 ν (FRC.Shell.Frame.boostT ν γ b t x) (FRC.Shell.Frame.boostX ν γ b t x) = FRC.Shell.Frame.Q2 ν t x) ∧ (∀ {p : Nat} [FRC.Pos p] (ν γ1 b1 γ2 b2 t x : FRC.Shell p), FRC.Shell.Frame.boostT ν γ1 b1 (FRC.Shell.Frame.boostT ν γ2 b2 t x) (FRC.Shell.Frame.boostX ν γ2 b2 t x) = FRC.Shell.Frame.boostT ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x) ∧ (∀ {p : Nat} [FRC.Pos p] (ν γ1 b1 γ2 b2 t x : FRC.Shell p), FRC.Shell.Frame.boostX ν γ1 b1 (FRC.Shell.Frame.boostT ν γ2 b2 t x) (FRC.Shell.Frame.boostX ν γ2 b2 t x) = FRC.Shell.Frame.boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x) ∧ (∀ {p : Nat} [FRC.Pos p] {ν γ1 b1 γ2 b2 : FRC.Shell p}, γ1 * γ1 + -(ν * (b1 * b1)) = (1 : FRC.Shell p) → γ2 * γ2 + -(ν * (b2 * b2)) = (1 : FRC.Shell p) → (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) + -(ν * ((γ1 * b2 + b1 * γ2) * (γ1 * b2 + b1 * γ2))) = (1 : FRC.Shell p)) ∧ FRC.Shell.Frame.normOneCount (5 : Nat) (2 : Nat) = (6 : Nat) ∧ FRC.Shell.Frame.normOneCount (13 : Nat) (2 : Nat) = (14 : Nat) ∧ FRC.Shell.Frame.normOneCount (17 : Nat) (3 : Nat) = (18 : Nat) ∧ FRC.Shell.Frame.normOneCount (29 : Nat) (2 : Nat) = (30 : Nat) :=
   And.intro @FRC.Shell.Frame.boost_preserves (And.intro @FRC.Shell.Frame.boost_comp_t (And.intro @FRC.Shell.Frame.boost_comp_x (And.intro @FRC.Shell.Frame.norm_one_mul (@FRC.Shell.Frame.normOne_values))))
 /-- p03014 — 3:C3. Velocity: $\gamma\neq0$ on every boost; $v=-\nu b/\gamma\in\Fp$; $\gamma^{2}(\nu-v^{2})=\nu$, the finite $\gamma=1/\sqrt{1-\beta^{2}}$ with $\beta^{2}=v^{2}/\nu$ ($\beta$ itself is no shell quantity, 8:B8); Einstein's law $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/\nu)$ exact, the denominator never zero; $v$ is two-to-one on $N^{1}$. -/

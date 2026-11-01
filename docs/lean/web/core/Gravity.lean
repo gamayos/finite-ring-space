@@ -442,7 +442,7 @@ theorem mem_of_nodup_of_length (n : Nat) (l : List Nat) (hnd : NoDup l) (hb : �
     have := length_le_of_nodup n (v :: l) hnd' hb'
     absurd (hlen ▸ this : n + 1 ≤ n) (Nat.not_succ_le_self n)
 
-/-- The same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries. -/
+/-- 17:B5 — the same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries (the registrable depth). -/
 theorem length_le_of_nodup_lt : ∀ (n : Nat) (l : List Nat), NoDup l → (∀ e, mem e l → e < n) → l.length ≤ n
   | 0, [], _, _ => Nat.le_refl 0
   | 0, a :: l, _, hb => absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)
@@ -2985,7 +2985,7 @@ theorem fld (F : Frame p κ g) : Fld p :=
   ⟨F.one_ne_zero, fun hx => F.exists_inv hx, fun h => F.mul_eq_zero h, fun ha hb => F.mul_ne_zero ha hb,
    fun ha h => F.mul_left_cancel ha h, fun h => F.sq_eq_one h⟩
 
-/-- 38:A9, 00:C19 — on a field-law shell, `x² − ν y² ≠ 0` for `(x, y) ≠ 0` when `ν` is a nonsquare. -/
+/-- 17:B4, 38:A9, 00:C19 — on a field-law shell, `x² − ν y² ≠ 0` for `(x, y) ≠ 0` when `ν` is a nonsquare. -/
 theorem Fld.norm_ne_zero (K : Fld p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) {x y : Shell p}
     (hxy : x ≠ 0 ∨ y ≠ 0) : x * x + -(ν * (y * y)) ≠ 0 := fun h => by
   have e := eq_of_add_neg_eq_zero h
@@ -2997,7 +2997,7 @@ theorem Fld.norm_ne_zero (K : Fld p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y
     obtain ⟨s, hs⟩ := K.exists_inv hy
     exact hν ⟨x * s, by rw [mul_mul_mul_comm, e, mul_assoc, ← mul_mul_mul_comm, hs, mul_one, mul_one]⟩
 
-/-- 38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare:
+/-- 17:B1, 17:C7, 17:P1, 38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare:
 (1) a boost that is not scalar fixes no point of `ℙ¹`; (2) a boost in the Borel subgroup is scalar: `T ∩ B = 1`;
 (3) every invertible matrix factors as (cone chart) × (boost) up to a scalar, (4) uniquely up to scalars — the cone
 chart is a global section of `G → G/T`; (5) the boost classes are the points of `ℙ¹` (`p + 1` per fibre) and (6) the
@@ -3167,7 +3167,7 @@ theorem Fld.hopf_section (K : Fld p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y
         (.add (.mul (.mul (.neg .one) (.var 2)) (.mul (.neg .one) (.var 5))) (.mul (.mul (.neg .one) (.var 3)) (.mul (.neg .one) (.var 7))))
         (.add (.mul (.var 2) (.var 5)) (.mul (.var 3) (.var 7))) (by decide +kernel)
 
-/-- 38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`. -/
+/-- 17:A11, 17:A13, 38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`. -/
 theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ α β x y : Shell p, β ≠ 0 → (x ≠ 0 ∨ y ≠ 0) → ¬ PEq ((boost ν α β).act x y) (x, y)) ∧
     (∀ α β a b e l : Shell p, boost ν α β = M2.smul l (borel a b e) → β = 0) ∧
@@ -3252,7 +3252,7 @@ theorem Fld.hopf_counts (K : Fld p) (ν : Shell p) :
     exact K.one_ne_zero (M2.ext'_c h).symm
 
 
-/-- 38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`. -/
+/-- 17:A11, 17:A13, 38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`. -/
 theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
     (∀ a b e : Shell p, a * e ≠ 0 → ∃ i j : Nat, i < p ∧ j < p ∧ i ≠ 0 ∧
       ∃ l : Shell p, l ≠ 0 ∧ M2.smul l (borel a b e) = borel (ofNat i) (ofNat j) 1) ∧
@@ -3392,7 +3392,7 @@ theorem Fld.frame_triple (K : Fld p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y
       _ = a2 * e1 * b2 := by rw [hE]
       _ = a2 * (e1 * b2) := mul_assoc a2 e1 b2
 
-/-- 38:A9, 38:X4 — on a frame (`Frame.fld`): `Fld.frame_triple`. -/
+/-- 17:A13, 38:A9, 38:X4 — on a frame (`Frame.fld`): `Fld.frame_triple`. -/
 theorem frame_triple (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ M : M2 p, M.det ≠ 0 → (M.a ≠ 0 ∨ M.c ≠ 0) ∧ M.act 1 0 = (M.a, M.c) ∧ (boost ν M.a M.c).act 1 0 = (M.a, M.c) ∧
       M.a * M.a + -(ν * (M.c * M.c)) ≠ 0 ∧
@@ -3546,7 +3546,7 @@ def unit (g : Shell p) (κ : Nat) : M2 p := ⟨g ^ κ, 0, 0, -(g ^ κ)⟩
 /-- A diagonal matrix `diag(a, d)`. -/
 def diag (a d : Shell p) : M2 p := ⟨a, 0, 0, d⟩
 
-/-- 38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the
+/-- 17:A12, 17:A13, 38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the
 diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the
 centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the
 conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over
@@ -3567,7 +3567,7 @@ theorem unit_split (F : Frame p κ g) :
       (M'.adj.mul M).mul (unit g κ) = (unit g κ).mul (M'.adj.mul M)) :=
   unit_split_let F
 
-/-- 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover
+/-- 17:A12, 17:A13, 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover
 twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one. -/
 theorem frame_counts :
     (14 : Nat) * 13 * 12 = 2184 ∧ (2184 : Nat) = 156 * 14 ∧ (156 : Nat) = 13 * 12 ∧ (2 : Nat) * 1092 = 2184 ∧
@@ -3576,7 +3576,7 @@ theorem frame_counts :
 /-- The quaternion `x + y i + z j + w k` as a matrix, `[[x + r y, z + r w], [−z + r w, x − r y]]` with `r² = −1`. -/
 def quat (r x y z w : Shell p) : M2 p := ⟨x + r * y, z + r * w, -z + r * w, x + -(r * y)⟩
 
-/-- 38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat`
+/-- 17:A13, 17:A14, 38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat`
 (`1, i, j, k ↦ I, diag(r, −r), [[0, 1], [−1, 0]], [[0, r], [r, 0]]`) and its norm is the determinant. -/
 theorem sphere_det {r : Shell p} (hr : r * r = -1) (x y z w : Shell p) :
     M2.det (quat r x y z w) = x * x + y * y + z * z + w * w := by
@@ -6876,7 +6876,7 @@ theorem conj_mul (z z' : Ext p ν) : conj (z * z') = conj z * conj z' :=
       (by show -(z.re * z'.im + z.im * z'.re) = z.re * -z'.im + -z.im * z'.re
           rw [Shell.neg_add_rev, ← Shell.mul_neg, ← Shell.neg_mul])
 
-/-- 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
+/-- 17:A16, 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
 norm by `g²`, a square. -/
 theorem norm_scale (c : Shell p) (z : Ext p ν) : norm (ofShell c * z) = c * c * norm z := by
   unfold norm
@@ -7633,7 +7633,7 @@ theorem octant_sector (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
     exact ⟨a ^ m, by rw [show (8 : Nat) = 4 * 2 from rfl, pow_mul, h4, pow_two, neg_mul_neg, mul_one],
       by rw [h4]; exact neg_one_ne_one h2⟩
 
-/-- 00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`. -/
+/-- 17:A16, 00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`. -/
 theorem tsirelson {ζ : Shell p} (h4 : ζ ^ 4 = -1) : (ζ + ζ ^ 7) * (ζ + ζ ^ 7) = 2 := by
   have h8 : ζ ^ 8 = 1 := by rw [show (8 : Nat) = 4 + 4 from rfl, pow_add, h4, neg_mul_neg, mul_one]
   have hz : ζ * ζ ^ 7 = 1 := by rw [mul_comm, ← pow_succ]; exact h8
@@ -7749,7 +7749,7 @@ theorem even_add {a b : Nat} (h : (a + b) % 2 = 0) : a % 2 = 0 ↔ b % 2 = 0 := 
 
 /-! ## C1: the frame's web -/
 
-/-- **C1 (p00021), the frame's web.** On every frame, `π = 2κ` and `i = −g^κ`: `2π ≡ −1`, `g^π = −1`, `−π = 2⁻¹`,
+/-- 17:A4, 17:A17, **C1 (p00021), the frame's web.** On every frame, `π = 2κ` and `i = −g^κ`: `2π ≡ −1`, `g^π = −1`, `−π = 2⁻¹`,
 `i² = −1`; `0` and `1` are squares and the drive is not, the one nonsquare frame datum. -/
 theorem frame_web {κ : Nat} {g : Shell p} (F : Frame p κ g) :
     (ofNat (2 * Frame.halfPeriod κ) : Shell p) = -1 ∧ g ^ Frame.halfPeriod κ = -1 ∧
@@ -7762,7 +7762,7 @@ theorem frame_web {κ : Nat} {g : Shell p} (F : Frame p κ g) :
 
 /-! ## C3: the signature -/
 
-/-- **C3 (p00150), the Euclidean–Lorentzian dichotomy.** On every frame the temporal coefficient `ν = g` is a
+/-- 17:A6, **C3 (p00150), the Euclidean–Lorentzian dichotomy.** On every frame the temporal coefficient `ν = g` is a
 nonsquare; the norm form `x² − ν t²` has a zero with `t ≠ 0` iff `ν` is a square (split torus) and none otherwise
 (non-split); `ν = 2⁻¹ · (2g)`, and the classes of `2⁻¹` and `2g` are fixed by the parity of `κ`. -/
 theorem signature {κ : Nat} {g : Shell p} (F : Frame p κ g) :
@@ -7803,14 +7803,14 @@ theorem signature {κ : Nat} {g : Shell p} (F : Frame p κ g) :
 
 /-! ## C8: the square class is chronon parity -/
 
-/-- **C8 (p00028), the square class is chronon parity.** On every frame `g^m` is a square iff `m` is even: the
+/-- 17:A16, **C8 (p00028), the square class is chronon parity.** On every frame `g^m` is a square iff `m` is even: the
 registered (two-way) transport `g²` is even, the one-way multiplier `g` and its inverse odd. -/
 theorem square_class {κ : Nat} {g : Shell p} (F : Frame p κ g) :
     (∀ m : Nat, (∃ y : Shell p, y * y = g ^ m) ↔ m % 2 = 0) ∧ (¬ ∃ y : Shell p, y * y = g) ∧
     (∀ y : Shell p, g * y = 1 → ¬ ∃ r : Shell p, r * r = y) ∧ (∃ y : Shell p, y * y = g * g) :=
   ⟨F.parity_iff, F.drive_nonsquare, fun _ hy => F.inv_drive_nonsquare hy, ⟨g, rfl⟩⟩
 
-/-- The Carrier's class `[c²] = [2⁻¹]` (C3, C8): on a prime `p = 4S + 1`, the half `h` (`2h = 1`) is a square iff `S`
+/-- 17:A6, 17:A16, The Carrier's class `[c²] = [2⁻¹]` (C3, C8): on a prime `p = 4S + 1`, the half `h` (`2h = 1`) is a square iff `S`
 is even; the half is `2S + 1` (`Prime.half_square_iff`). -/
 theorem half_class (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
     ∀ h : Shell p, 2 * h = 1 → ((∃ c : Shell p, c * c = h) ↔ S % 2 = 0) := fun h h2 => by
@@ -8225,7 +8225,7 @@ theorem norm_ratio (hp : FRC.Nat.isPrime p) {u : Extension.Ext p ν} (hu : u.nor
 theorem nonsquare_ne_zero {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) : ν ≠ 0 :=
   fun e => hν ⟨0, by rw [e, mul_zero]⟩
 
-/-- **C25 (p00139), the horizon is the origin's antipode on the boost torus.** On a prime `p = 4κ + 1` with `ν` a
+/-- 17:A15, **C25 (p00139), the horizon is the origin's antipode on the boost torus.** On a prime `p = 4κ + 1` with `ν` a
 nonsquare and `𝔽_{p²} = 𝔽_p[w]/(w² − ν)`: a direction `[x : y] ≠ 0` has the boost `u = yν + xw` of nonzero norm, and
 `v = a + bw` moves it by `q ↦ (aq + νb)/(bq + a)`; the torsor map `u ↦ u/ū` lands on `C_{p+1}`, is constant on the
 classes `𝔽_p^× u` and equivariant, and is a bijection from the directions onto `C_{p+1}`; it sends the origin `[0 : 1]`
@@ -8451,7 +8451,7 @@ theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ +
     hsurj, h01, hm1, hord2, hrat, hinv, hwact,
     fun s hs => (Prime.mul_eq_zero hp hs).resolve_left h2, Prime.two_mul_chart_half hκ, hseam⟩
 
-/-- 00:C25, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
+/-- 17:A15, 00:C25, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
 has `ζ^{2κ+1} = −1`, the torus's one element of order two. -/
 theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν)
     (ζ : Extension.Ext p ν) (hn : ζ.norm = 1) (hζ : ζ ^ (p + 1) = 1)
@@ -8465,7 +8465,7 @@ theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ 
   | .inl e => exact absurd e (hmin _ (Nat.zero_lt_succ _) hlt)
   | .inr e => exact e
 
-/-- 00:C25 — `u_P` is the unique boost carrying the origin to `P`: a boost `v` with `v · dir(0, 1) = c · dir(x, y)` is
+/-- 17:A15, 00:C25 — `u_P` is the unique boost carrying the origin to `P`: a boost `v` with `v · dir(0, 1) = c · dir(x, y)` is
 `(c/ν) · dir(x, y)`, so it is `dir(x, y)` up to a scalar, which acts trivially on `ℙ¹` and leaves the ratio unchanged. -/
 theorem boost_unique (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (v : Extension.Ext p ν) (c x y : Shell p)
     (h : v * dir ν 0 1 = Extension.Ext.ofShell c * dir ν x y) :
@@ -8554,7 +8554,7 @@ theorem window_sum {κ k₁ k₂ : Nat} (hκ : 0 < κ) (h₁ : k₁ ≤ κ) (h�
 
 /-! ## 38:C10 — the per-chronon leak rate -/
 
-/-- 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer
+/-- 17:A21, 17:A24, 17:A25, 17:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer
 identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`. -/
 theorem leak_rate {p Ω κ S : Nat} (hp : p = 4 * κ + 1) (hΩ : Ω = 4 * S + 1) :
     κ * (4 * S) = S * (p - 1) ∧ 4 * S = Ω - 1 ∧ 2 * (Ω - 1) = 8 * S := by
@@ -8573,7 +8573,7 @@ theorem mod_mul_self (p q : Nat) (hp : 0 < p) : (p * q) % p = 0 :=
 
 /-! ## 38:C14 — the joint cycle -/
 
-/-- 38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S` even: `κ = 2a + 1`, `S = 2m`, `ℓ` a common multiple
+/-- 17:A25, 38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S` even: `κ = 2a + 1`, `S = 2m`, `ℓ` a common multiple
 of `2a + 1` and `m` with `ℓ/m` odd (`ℓ = (2a + 1)(2u + 1) = m(2v + 1)`). At `4ℓ` ticks the shell is home (`4ℓ ≡ 0 mod 4κ`)
 and the Carrier reads the half (`4ℓ ≡ 4m = (Ω − 1)/2 mod 8m`); at `8ℓ` both are home. At the instance `ℓ = 87 = 3 · 29`. -/
 theorem joint_cycle {a m u v ℓ : Nat} (hm : 0 < m) (hu : ℓ = (2 * a + 1) * (2 * u + 1)) (hv : ℓ = m * (2 * v + 1)) :
@@ -8601,7 +8601,7 @@ theorem joint_cycle {a m u v ℓ : Nat} (hm : 0 < m) (hu : ℓ = (2 * a + 1) * (
   refine ⟨by rw [e1, mod_mul_self _ _ ha0], FRC.Nat.mod_unique hb4 e2, by rw [e3, mod_mul_self _ _ ha0],
     by rw [e4, mod_mul_self _ _ hb0]⟩
 
-/-- 38:C14 on the frames: a Subject frame of odd capacity `κ = 2a + 1` and a Carrier frame of even capacity `S = 2m`
+/-- 17:A25, 38:C14 on the frames: a Subject frame of odd capacity `κ = 2a + 1` and a Carrier frame of even capacity `S = 2m`
 return together — at `4ℓ` the Subject's drive is home, `g^{4ℓ} = 1`, and the Carrier's reads the half, `h^{4ℓ} = −1`
 (the sign event); at `8ℓ` both are home. -/
 theorem joint_cycle_frame {p Ω : Nat} [Pos p] [Pos Ω] {a m : Nat} {g : Shell p} {h : Shell Ω}
@@ -8617,7 +8617,7 @@ theorem joint_cycle_frame {p Ω : Nat} [Pos p] [Pos Ω] {a m : Nat} {g : Shell p
     G.pow_eq_one_of_mod (by rw [eS]; exact c4)⟩
   rw [G.pow_mod, eS, c2, ← eH]; exact G.half_period
 
-/-- 38:C14 — the joint returns are exactly the common multiples of the two periods, so the least is `lcm(p − 1, Ω − 1)`;
+/-- 17:A25, 38:C14 — the joint returns are exactly the common multiples of the two periods, so the least is `lcm(p − 1, Ω − 1)`;
 for `κ` odd and `S = 2m` even it is `8ℓ`, `ℓ` the least common multiple of `κ` and `m` (`joint_return_eight`), whose
 cofactor over `m` is odd (`joint_cycle_frame`). -/
 theorem joint_return_iff {p Ω : Nat} [Pos p] [Pos Ω] {κ S : Nat} {g : Shell p} {h : Shell Ω}
@@ -8626,7 +8626,7 @@ theorem joint_return_iff {p Ω : Nat} [Pos p] [Pos Ω] {κ S : Nat} {g : Shell p
   ⟨fun ⟨hg, hh⟩ => ⟨F.mod_eq_zero_of_pow_eq_one hg, G.mod_eq_zero_of_pow_eq_one hh⟩,
    fun ⟨hg, hh⟩ => ⟨F.pow_eq_one_of_mod hg, G.pow_eq_one_of_mod hh⟩⟩
 
-/-- 38:C14 — every common multiple of the periods `4κ` (`κ = 2a + 1` odd) and `8m` (`S = 2m` even) is eight times a common
+/-- 17:A25, 38:C14 — every common multiple of the periods `4κ` (`κ = 2a + 1` odd) and `8m` (`S = 2m` even) is eight times a common
 multiple of `κ` and `m`: with `joint_return_iff` the least joint return is `8ℓ`, `ℓ = lcm(κ, m)`, and its half `4ℓ` is
 `joint_cycle_frame`'s sign event (`ℓ/m = κ/gcd(κ, m)` is odd). -/
 theorem joint_return_eight {a m n : Nat} (hm : 0 < m) (h4 : n % (4 * (2 * a + 1)) = 0) (h8 : n % (8 * m) = 0) :
@@ -8666,7 +8666,7 @@ theorem joint_return_eight {a m n : Nat} (hm : 0 < m) (h4 : n % (4 * (2 * a + 1)
 `2π/232`. -/
 def tick (n k b : Nat) : Nat := (k + (n - b % n)) % n
 
-/-- 38:C1, 38:C5 — home: at the row's own clock the count is `0`. -/
+/-- 17:A26, 38:C1, 38:C5 — home: at the row's own clock the count is `0`. -/
 theorem tick_home (n : Nat) (hn : 0 < n) (k : Nat) : tick n k k = 0 := by
   obtain ⟨q, hq⟩ := FRC.Nat.mod_spec n hn k
   have hle : k % n ≤ n := Nat.le_of_lt (FRC.Nat.mod_lt' k hn)
@@ -8933,7 +8933,7 @@ theorem sky_chronon :
     (∀ s, s < 24 → ∀ t, t < 24 → s % 12 = t % 12 → s % 8 = t % 8 → s = t) ∧
     (∀ s, s < 24 → (s + 12) % 24 ≠ s ∧ (s + 12 + 12) % 24 = s) ∧ (232 : Nat) = 8 * 29 := by decide +kernel
 
-/-- 38:B5, 38:C14 — the recurrence data at the instance: `696 = lcm(12, 232) = 58·12 = 3·232` is the least common
+/-- 17:A25, 38:B5, 38:C14 — the recurrence data at the instance: `696 = lcm(12, 232) = 58·12 = 3·232` is the least common
 return, `1392 = 2·696` the spinor recurrence; the joint cycle's `ℓ = 87 = 3·29`: at `4ℓ = 348` the shell is home
 (`348 ≡ 0 mod 12`) and the Carrier reads the half (`348 ≡ 116 mod 232`, `78³⁴⁸ = −1`), at `8ℓ = 696` both are home. -/
 theorem recurrence :
@@ -8955,7 +8955,7 @@ theorem frame_leak :
 
 /-! ## C. The flow -/
 
-/-- 38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its
+/-- 17:A26, 38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its
 parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state. -/
 theorem flow_stations :
     (∀ k, k < 232 → tick 232 k k = 0 ∧ tick 232 k (116 + k) = 116) ∧
@@ -8988,7 +8988,7 @@ theorem kill_test :
     (12 : Nat) * 13 = 52 * 3 ∧ (156 : Nat) % 12 = 0 ∧ (156 : Nat) % 52 = 0 ∧
     (∀ n, n < 156 → 0 < n → n % 12 = 0 → n % 52 ≠ 0) ∧ (78 : Nat) * 2 = 156 := by decide +kernel
 
-/-- 38:C7, 38:C10, 38:X1 — the two faces at the instance: the angular face `12/232 = 3/58 = κ/S`, the temporal face
+/-- 17:A24, 38:C7, 38:C10, 38:X1 — the two faces at the instance: the angular face `12/232 = 3/58 = κ/S`, the temporal face
 `12/464 = 3/116 = κ/(2S)`, their ratio `2`; the per-chronon rate `1/232` at `(13, 233)` and at `(5, 233)`. -/
 theorem two_faces :
     (12 : Nat) * 58 = 3 * 232 ∧ (12 : Nat) * 116 = 3 * 464 ∧ (3 : Nat) * 116 = 2 * (3 * 58) ∧
@@ -9177,7 +9177,7 @@ theorem fld (hp : FRC.Nat.isPrime p) : Frame.Fld p :=
   ⟨one_ne_zero hp, fun hx => exists_inv hp hx, fun h => mul_eq_zero hp h, fun ha hb => mul_ne_zero hp ha hb,
    fun ha h => mul_left_cancel hp ha h, fun h => sq_eq_one hp h⟩
 
-/-- 38:A9 — the Hopf section on every prime shell (`Fld.hopf_section` under primality, `ν` any nonsquare; on `𝔽₂` no
+/-- 17:A12, 38:A9 — the Hopf section on every prime shell (`Fld.hopf_section` under primality, `ν` any nonsquare; on `𝔽₂` no
 nonsquare exists, and the rows quantify over the odd primes). -/
 theorem hopf_section (hp : FRC.Nat.isPrime p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ α β x y : Shell p, β ≠ 0 → (x ≠ 0 ∨ y ≠ 0) → ¬ PEq ((boost ν α β).act x y) (x, y)) ∧
@@ -9195,7 +9195,7 @@ theorem hopf_section (hp : FRC.Nat.isPrime p) {ν : Shell p} (hν : ¬ ∃ y : S
       ∀ M N : M2 p, (M2.smul (-1) M).mul (M2.smul (-1) N) = M.mul N) :=
   (fld hp).hopf_section hν
 
-/-- 38:A9 — the frame counts on every prime shell: `Fld.hopf_counts` under primality. -/
+/-- 17:A12, 38:A9 — the frame counts on every prime shell: `Fld.hopf_counts` under primality. -/
 theorem hopf_counts (hp : FRC.Nat.isPrime p) (ν : Shell p) :
     (∀ a b e : Shell p, a * e ≠ 0 → ∃ i j : Nat, i < p ∧ j < p ∧ i ≠ 0 ∧
       ∃ l : Shell p, l ≠ 0 ∧ M2.smul l (borel a b e) = borel (ofNat i) (ofNat j) 1) ∧
@@ -9211,7 +9211,7 @@ theorem hopf_counts (hp : FRC.Nat.isPrime p) (ν : Shell p) :
     natCount (fun _ => True) p + 1 = p + 1 :=
   (fld hp).hopf_counts ν
 
-/-- 38:A9 — the frame triple on every prime shell (`Fld.frame_triple` under primality). -/
+/-- 17:A12, 38:A9 — the frame triple on every prime shell (`Fld.frame_triple` under primality). -/
 theorem frame_triple (hp : FRC.Nat.isPrime p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ M : M2 p, M.det ≠ 0 → (M.a ≠ 0 ∨ M.c ≠ 0) ∧ M.act 1 0 = (M.a, M.c) ∧ (boost ν M.a M.c).act 1 0 = (M.a, M.c) ∧
       M.a * M.a + -(ν * (M.c * M.c)) ≠ 0 ∧
@@ -10171,7 +10171,7 @@ theorem conic_row (F : Frame p κ g) (a c : Shell p) :
   exact count_bij (fun y => a + quarterTurn g κ * y) (fun u => (u + -a) * -(quarterTurn g κ))
     (fun y => red1 ((fun i => Shell.Frame.RE.sound (Shell.Frame.look [a, i, y]) (.mul (.add (.add (.var 0) (.mul (.var 1) (.var 2))) (.neg (.var 0))) (.neg (.var 1))) (.add (.var 2) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.neg (.var 2)))) (by decide +kernel)) (quarterTurn g κ)) hi) (fun u => u * (a + a + -u) = c)
 
-/-- 00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for
+/-- 17:A12, 00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for
 `c = 0`; the circle `x² + y² = 1` is the drive torus of the split fibration (38-s13). -/
 theorem conic_count (F : Frame p κ g) (c : Shell p) :
     nsum (fun x => count (fun y => ofNat x * ofNat x + y * y = c)) p = (p - 1) + (if c = 0 then p else 0) := by
@@ -10285,7 +10285,7 @@ def quad (x y z : Shell p) : Shell p := x * x + y * y + z * z
 def sphereCount (p : Nat) [Pos p] (a : Shell p) : Nat :=
   nsum (fun z => nsum (fun x => count (fun y => quad (ofNat x) y (ofNat z) = a)) p) p
 
-/-- 00:E6, 38:A9 — the area of the sphere at every nonzero square rung `a = b²`: `p(p + 1)`; the unit sphere's
+/-- 17:A12, 00:E6, 38:A9 — the area of the sphere at every nonzero square rung `a = b²`: `p(p + 1)`; the unit sphere's
 `p(p + 1)` points are the base of the split fibration (38-s13). -/
 theorem sphere_area_rung (F : Frame p κ g) {b : Shell p} (hb : b ≠ 0) : sphereCount p (b * b) = p * (p + 1) := by
   show nsum (fun z => nsum (fun x => count (fun y => ofNat x * ofNat x + y * y + ofNat z * ofNat z = b * b)) p) p = _
@@ -11000,14 +11000,14 @@ theorem registration_root {κ : Nat} {g : Shell p} (F : Frame p κ g) {w s η : 
 open FRC.Extension FRC.Extension.Ext
 variable {ν : Shell p}
 
-/-- 21:C3, 00:E3 — the conjugate of a power is the power of the conjugate, `conj (zⁿ) = (conj z)ⁿ`, on `𝔽_p[w]/(w² − ν)`. -/
+/-- 17:A28, 21:C3, 00:E3 — the conjugate of a power is the power of the conjugate, `conj (zⁿ) = (conj z)ⁿ`, on `𝔽_p[w]/(w² − ν)`. -/
 theorem conj_pow (z : Ext p ν) : ∀ n : Nat, conj (z ^ n) = (conj z) ^ n
   | 0 => Ext.ext rfl Shell.neg_zero
   | n + 1 => by
       show conj (z ^ n * z) = (conj z) ^ n * conj z
       rw [conj_mul, conj_pow z n]
 
-/-- 21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate
+/-- 17:A28, 21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate
 (Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock
 is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch. -/
 theorem conj_branch (z : Ext p ν) (hz : norm z = 1) : ∀ n : Nat, z ^ n * (conj z) ^ n = 1
@@ -11087,7 +11087,7 @@ theorem cut_ordering (L M : Nat) (hM : L * L < 4 * M) (hL : 2 < L) (h0 : 0 < M) 
   have e : 2 * M * (2 * M) = 4 * M * M := FRC.Grav.nat_sound (FRC.Grav.nlook [M]) (.mul (.mul (.add .one .one) (.var 0)) (.mul (.add .one .one) (.var 0))) (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 0)) rfl rfl (by decide +kernel)
   exact ⟨by rw [e]; exact Nat.mul_lt_mul_of_pos_right hM h0, Nat.mul_lt_mul_of_pos_right hL h0⟩
 
-/-- 38:C13 — **the apsidal bound is the nesting condition.** A nested Subject `p = q + 1` on a Carrier `Ω` registers the
+/-- 17:A21, 38:C13 — **the apsidal bound is the nesting condition.** A nested Subject `p = q + 1` on a Carrier `Ω` registers the
 apsidal fraction `κ/S = (p − 1)/(Ω − 1)` (`Pair.leak_rate`), and the bound `κ/S < 1/(√Ω + 1)` is, squared and cleared
 of its root, `(p − 1)²Ω < (Ω − p)²`, which holds exactly when `p² < Ω`: with `Ω = p² + d`, `(Ω − p)² − (p − 1)²Ω =
 d(Ω − 1) > 0` for `d ≥ 1`, and with `p² = Ω + d`, `Ω = m + q + 1`, `(Ω − p)² + d(Ω − 1) = (p − 1)²Ω`, so the bound fails.
@@ -12197,7 +12197,7 @@ theorem p21009 : (∀ (κ S : Nat), κ * ((2 : Nat) * S) = (2 : Nat) * (κ * S) 
 set_option linter.defProp false in
 /-- p21017 — 21:C2. Newton's law $F=-Gm_1m_2/r^2$ with $G=1/4\pi\varkappa$ [chart] (register value $G=2S$): the exact balance $\partial J+s=0$ on every closed region with the neutral return chain (the Gauss law), the product $m_1m_2$ from coherent additivity, the sign from the one drive; the $r^{-2}$ the chart's, the Coulomb asymptotics of the three frame freedoms in the decoherence distance (the isotropic inverse-correlation count, not the shortest-path count), the discrete Poisson equation solvable on the finite chart under the spanning-tree condition. -/
 def p21017 := And.intro @FRC.Grav.newton_residue (And.intro @FRC.Drift.gauss_law (@FRC.Drift.locked_sum))
-/-- p21018 — 21:C3. Universal attraction from the single arrow of the drive (a repulsive charge would need a time-reversed, Frobenius-branch clock). -/
+/-- p21018 — 17:A28, 21:C3. Universal attraction from the single arrow of the drive (a repulsive charge would need a time-reversed, Frobenius-branch clock). -/
 theorem p21018 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν), z.norm = (1 : FRC.Shell p) → ∀ (n : Nat), z ^ n * z.conj ^ n = (1 : FRC.Extension.Ext p ν)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν) (n : Nat), (z ^ n).conj = z.conj ^ n :=
   And.intro @FRC.Drift.conj_branch (@FRC.Drift.conj_pow)
 /-- p21020 — 21:C5. The magnitude $G=\hbar c/m_P^2$, frame-covariant (a relativity principle for scale); gravity's weakness is cardinality dilution. -/
@@ -12257,10 +12257,10 @@ theorem p38027 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p38029 — 38:D5. Four rays realise the four quarter classes (Theorem~\ref{th:channel}), each a fiber geodesic to the quarter fold $a=13/4$. -/
 theorem p38029 : (∀ {p : Nat} [FRC.Pos p] (κ : Nat) (x : FRC.Shell p), x ^ ((4 : Nat) * κ) = (1 : FRC.Shell p) ∧ x ^ ((2 : Nat) * ((4 : Nat) * κ + (2 : Nat))) = (1 : FRC.Shell p) ↔ x ^ (4 : Nat) = (1 : FRC.Shell p)) ∧ (∀ (c : Nat), c < (4 : Nat) → FRC.Pair.count (fun j => j % (4 : Nat) = c) (12 : Nat) = (3 : Nat)) ∧ (9 : Nat) % (4 : Nat) = (1 : Nat) ∧ (6 : Nat) % (4 : Nat) = (2 : Nat) ∧ (2 : FRC.Shell (13 : Nat)) ^ (9 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (6 : Nat) = (-1 : FRC.Shell (13 : Nat)) ∧ (4 : Nat) * (3 : Nat) < (13 : Nat) ∧ (13 : Nat) < (4 : Nat) * (4 : Nat) :=
   And.intro @FRC.Drift.channel_q4 (@FRC.Pair.quarter_classes)
-/-- p38050 — 38:A9. The two fibrations and the frame triple (Theorem~\ref{th:holography}): $G\cong\Prj^{1}\times\F_\p\times C_{\p-1}$ for every odd $\p$ of the totality, $14\times13\times12$; non-split fibres $C_{\p+1}$ over $\p(\p-1)=156$ with the cone-chart section, split fibres $C_{\p-1}$ over $\p(\p+1)=182$ without; the unit $\im$ is split at every $\p=4\kap+1$. -/
+/-- p38050 — 17:A12, 38:A9. The two fibrations and the frame triple (Theorem~\ref{th:holography}): $G\cong\Prj^{1}\times\F_\p\times C_{\p-1}$ for every odd $\p$ of the totality, $14\times13\times12$; non-split fibres $C_{\p+1}$ over $\p(\p-1)=156$ with the cone-chart section, split fibres $C_{\p-1}$ over $\p(\p+1)=182$ without; the unit $\im$ is split at every $\p=4\kap+1$. -/
 theorem p38050 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {ν : FRC.Shell p}, (¬∃ y, y * y = ν) → (∀ (M : FRC.Shell.Frame.M2 p), M.det ≠ (0 : FRC.Shell p) → (M.a ≠ (0 : FRC.Shell p) ∨ M.c ≠ (0 : FRC.Shell p)) ∧ M.act (1 : FRC.Shell p) (0 : FRC.Shell p) = (M.a, M.c) ∧ (FRC.Shell.Frame.boost ν M.a M.c).act (1 : FRC.Shell p) (0 : FRC.Shell p) = (M.a, M.c) ∧ M.a * M.a + -(ν * (M.c * M.c)) ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul (M.a * M.a + -(ν * (M.c * M.c))) M = (FRC.Shell.Frame.boost ν M.a M.c).mul (FRC.Shell.Frame.borel (M.a * M.a + -(ν * (M.c * M.c))) (M.a * M.b + -(ν * (M.c * M.d))) M.det)) ∧ (∀ (a b e : FRC.Shell p), (FRC.Shell.Frame.borel a b e).act (1 : FRC.Shell p) (0 : FRC.Shell p) = (a, (0 : FRC.Shell p))) ∧ ∀ (l α1 β1 a1 b1 e1 α2 β2 a2 b2 e2 : FRC.Shell p), l ≠ (0 : FRC.Shell p) → a1 ≠ (0 : FRC.Shell p) → a2 ≠ (0 : FRC.Shell p) → α1 ≠ (0 : FRC.Shell p) ∨ β1 ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul l ((FRC.Shell.Frame.boost ν α1 β1).mul (FRC.Shell.Frame.borel a1 b1 e1)) = (FRC.Shell.Frame.boost ν α2 β2).mul (FRC.Shell.Frame.borel a2 b2 e2) → α1 * β2 = α2 * β1 ∧ e2 * a1 = e1 * a2 ∧ e2 * b1 = e1 * b2) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {ν : FRC.Shell p}, (¬∃ y, y * y = ν) → (∀ (α β x y : FRC.Shell p), β ≠ (0 : FRC.Shell p) → x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p) → ¬FRC.Shell.Frame.PEq ((FRC.Shell.Frame.boost ν α β).act x y) (x, y)) ∧ (∀ (α β a b e l : FRC.Shell p), FRC.Shell.Frame.boost ν α β = FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel a b e) → β = (0 : FRC.Shell p)) ∧ (∀ (M : FRC.Shell.Frame.M2 p), M.det ≠ (0 : FRC.Shell p) → ∃ N a b e α β, N ≠ (0 : FRC.Shell p) ∧ a * e ≠ (0 : FRC.Shell p) ∧ (α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p)) ∧ FRC.Shell.Frame.M2.smul N M = (FRC.Shell.Frame.borel a b e).mul (FRC.Shell.Frame.boost ν α β)) ∧ (∀ (l a1 b1 e1 α1 β1 a2 b2 e2 α2 β2 : FRC.Shell p), l ≠ (0 : FRC.Shell p) → e2 ≠ (0 : FRC.Shell p) → α1 ≠ (0 : FRC.Shell p) ∨ β1 ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul l ((FRC.Shell.Frame.borel a1 b1 e1).mul (FRC.Shell.Frame.boost ν α1 β1)) = (FRC.Shell.Frame.borel a2 b2 e2).mul (FRC.Shell.Frame.boost ν α2 β2) → α1 * β2 = α2 * β1 ∧ e2 * a1 = e1 * a2 ∧ e2 * b1 = e1 * b2) ∧ (∀ (α β α' β' : FRC.Shell p), α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p) → α' ≠ (0 : FRC.Shell p) ∨ β' ≠ (0 : FRC.Shell p) → ((∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.boost ν α' β' = FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β)) ↔ α * β' = α' * β)) ∧ FRC.Shell.Frame.natCount (fun x => True) p * FRC.Shell.Frame.natCount (fun b => b ≠ (0 : Nat)) p = p * (p - (1 : Nat)) ∧ FRC.Shell.Frame.boost ν (-1 : FRC.Shell p) (0 : FRC.Shell p) = FRC.Shell.Frame.borel (-1 : FRC.Shell p) (0 : FRC.Shell p) (-1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) + -(ν * ((0 : FRC.Shell p) * (0 : FRC.Shell p))) = (1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) = (1 : FRC.Shell p) ∧ (∀ (α β a b e : FRC.Shell p), FRC.Shell.Frame.boost ν α β = FRC.Shell.Frame.borel a b e → α * α + -(ν * (β * β)) = (1 : FRC.Shell p) → β = (0 : FRC.Shell p) ∧ (α = (1 : FRC.Shell p) ∨ α = (-1 : FRC.Shell p))) ∧ ∀ (M N : FRC.Shell.Frame.M2 p), (FRC.Shell.Frame.M2.smul (-1 : FRC.Shell p) M).mul (FRC.Shell.Frame.M2.smul (-1 : FRC.Shell p) N) = M.mul N) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ (ν : FRC.Shell p), (∀ (a b e : FRC.Shell p), a * e ≠ (0 : FRC.Shell p) → ∃ i j, i < p ∧ j < p ∧ i ≠ (0 : Nat) ∧ ∃ l, l ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel a b e) = FRC.Shell.Frame.borel (FRC.Shell.ofNat i) (FRC.Shell.ofNat j) (1 : FRC.Shell p)) ∧ (∀ (i j i' j' : Nat), i < p → j < p → i' < p → j' < p → ∀ (l : FRC.Shell p), FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel (FRC.Shell.ofNat i) (FRC.Shell.ofNat j) (1 : FRC.Shell p)) = FRC.Shell.Frame.borel (FRC.Shell.ofNat i') (FRC.Shell.ofNat j') (1 : FRC.Shell p) → i = i' ∧ j = j') ∧ FRC.Shell.Frame.natCount (fun x => True) p * FRC.Shell.Frame.natCount (fun b => b ≠ (0 : Nat)) p = p * (p - (1 : Nat)) ∧ (∀ (α β : FRC.Shell p), α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p) → (∃ i, i < p ∧ ∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β) = FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ∨ ∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β) = FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ∧ (∀ (i i' : Nat), i < p → i' < p → ∀ (μ : FRC.Shell p), FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) = FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i') (1 : FRC.Shell p) → i = i') ∧ (∀ (i : Nat) (μ : FRC.Shell p), μ ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ≠ FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ∧ (∀ (i : Nat) (μ : FRC.Shell p), FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ≠ FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ∧ FRC.Shell.Frame.natCount (fun x => True) p + (1 : Nat) = p + (1 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (M : FRC.Shell.Frame.M2 p), M.mul (FRC.Shell.Frame.unit g κ) = (FRC.Shell.Frame.unit g κ).mul M → M.b = (0 : FRC.Shell p) ∧ M.c = (0 : FRC.Shell p)) ∧ (∀ (a d : FRC.Shell p), (FRC.Shell.Frame.diag a d).mul (FRC.Shell.Frame.unit g κ) = (FRC.Shell.Frame.unit g κ).mul (FRC.Shell.Frame.diag a d) ∧ FRC.Shell.Frame.diag a d = FRC.Shell.Frame.borel a (0 : FRC.Shell p) d) ∧ (∀ (l : FRC.Shell p), FRC.Shell.Frame.unit g κ ≠ FRC.Shell.Frame.diag l l) ∧ (∀ (x y : FRC.Shell p), x * x + y * y = (1 : FRC.Shell p) → (FRC.Shell.Frame.diag (x + g ^ κ * y) (x + -(g ^ κ * y))).det = (1 : FRC.Shell p)) ∧ (∀ (M : FRC.Shell.Frame.M2 p), ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).a + ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).d = (0 : FRC.Shell p) ∧ ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).a * ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).a + ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).b * ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).c = -(M.det * M.det)) ∧ (∀ (N : FRC.Shell.Frame.M2 p), N.a + N.d = (0 : FRC.Shell p) → N.a * N.a + N.b * N.c = (-1 : FRC.Shell p) → ∃ M, M.det ≠ (0 : FRC.Shell p) ∧ M.mul (FRC.Shell.Frame.unit g κ) = N.mul M) ∧ (∀ (x y z : FRC.Shell p), x * x + y * y + z * z = (1 : FRC.Shell p) → g ^ κ * x * (g ^ κ * x) + (y + g ^ κ * z) * -(y + -(g ^ κ * z)) = (-1 : FRC.Shell p)) ∧ (∀ (h : FRC.Shell p), ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * h = (1 : FRC.Shell p) → ∀ (a b c : FRC.Shell p), a * a + b * c = (-1 : FRC.Shell p) → -(g ^ κ * a) * -(g ^ κ * a) + h * (b + -c) * (h * (b + -c)) + -(h * (g ^ κ * (b + c))) * -(h * (g ^ κ * (b + c))) = (1 : FRC.Shell p)) ∧ ∀ (N M M' : FRC.Shell.Frame.M2 p), M'.det ≠ (0 : FRC.Shell p) → M.mul (FRC.Shell.Frame.unit g κ) = N.mul M → M'.mul (FRC.Shell.Frame.unit g κ) = N.mul M' → (M'.adj.mul M).mul (FRC.Shell.Frame.unit g κ) = (FRC.Shell.Frame.unit g κ).mul (M'.adj.mul M)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {b : FRC.Shell p}, b ≠ (0 : FRC.Shell p) → FRC.Grav.sphereCount p (b * b) = p * (p + (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (c : FRC.Shell p), FRC.Grav.nsum (fun x => FRC.Grav.count fun y => FRC.Shell.ofNat x * FRC.Shell.ofNat x + y * y = c) p = p - (1 : Nat) + if c = (0 : FRC.Shell p) then p else (0 : Nat)) ∧ (14 : Nat) * (13 : Nat) * (12 : Nat) = (2184 : Nat) ∧ (2184 : Nat) = (156 : Nat) * (14 : Nat) ∧ (156 : Nat) = (13 : Nat) * (12 : Nat) ∧ (2 : Nat) * (1092 : Nat) = (2184 : Nat) ∧ (13 : Nat) * (13 : Nat) = (169 : Nat) ∧ (182 : Nat) = (13 : Nat) * (14 : Nat) ∧ (2184 : Nat) = (12 : Nat) * (182 : Nat) :=
   And.intro @FRC.Shell.Prime.frame_triple (And.intro @FRC.Shell.Prime.hopf_section (And.intro @FRC.Shell.Prime.hopf_counts (And.intro @FRC.Shell.Frame.unit_split (And.intro @FRC.Grav.sphere_area_rung (And.intro @FRC.Grav.conic_count (@FRC.Shell.Frame.frame_counts))))))
-/-- p38053 — 38:C13. The apsidal bound: a nested Subject registers $\kap/\dS=(\p-1)/(\Om-1)<1/(\sqrt\Om+1)$, the nesting condition $\p^{2}<\Om$ itself; on the physical Carrier no Subject registers an observed precession (Mercury's $8.0\times10^{-8}$ per revolution sits $54$ orders above the bound $10^{-61}$ [approx]), and the pair reads per orbit of period $T$ the floor $TH_{0}/2\pi$ (C10, C11; \S\ref{sec:reality}). -/
+/-- p38053 — 17:A21, 38:C13. The apsidal bound: a nested Subject registers $\kap/\dS=(\p-1)/(\Om-1)<1/(\sqrt\Om+1)$, the nesting condition $\p^{2}<\Om$ itself; on the physical Carrier no Subject registers an observed precession (Mercury's $8.0\times10^{-8}$ per revolution sits $54$ orders above the bound $10^{-61}$ [approx]), and the pair reads per orbit of period $T$ the floor $TH_{0}/2\pi$ (C10, C11; \S\ref{sec:reality}). -/
 theorem p38053 : (∀ (q d : Nat), (q + (1 : Nat)) * (q + (1 : Nat)) + d - (q + (1 : Nat)) = q * q + q + d ∧ q * q * ((q + (1 : Nat)) * (q + (1 : Nat)) + d) + d * (q * q + (2 : Nat) * q + d) = (q * q + q + d) * (q * q + q + d) ∧ ((0 : Nat) < d → q * q * ((q + (1 : Nat)) * (q + (1 : Nat)) + d) < (q * q + q + d) * (q * q + q + d)) ∧ ∀ (m : Nat), (q + (1 : Nat)) * (q + (1 : Nat)) = m + q + (1 : Nat) + d → m * m + d * (m + q) = q * q * (m + q + (1 : Nat)) ∧ m * m ≤ q * q * (m + q + (1 : Nat))) ∧ ∀ {p Ω κ S : Nat}, p = (4 : Nat) * κ + (1 : Nat) → Ω = (4 : Nat) * S + (1 : Nat) → κ * ((4 : Nat) * S) = S * (p - (1 : Nat)) ∧ (4 : Nat) * S = Ω - (1 : Nat) ∧ (2 : Nat) * (Ω - (1 : Nat)) = (8 : Nat) * S :=
   And.intro @FRC.Drift.nesting_bound (@FRC.Pair.leak_rate)
 -- end keys

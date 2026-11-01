@@ -3,7 +3,7 @@
  "tree": "38-s13-20260801",
  "title": "Exact Quantum Dynamics on (13,233)",
  "doi": "https://doi.org/10.20944/preprints202608.0390.v1",
- "generated": "29 October 2026",
+ "generated": "31 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -568,7 +568,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`."
+    "doc": "17:A11, 17:A13, 38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`."
    },
    {
     "name": "FRC.Shell.Frame.hopf_counts",
@@ -577,7 +577,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`."
+    "doc": "17:A11, 17:A13, 38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`."
    },
    {
     "name": "FRC.Shell.Frame.sphere_det",
@@ -586,7 +586,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat` (`1, i, j, k ↦ I, diag(r, −r), [[0, 1], [−1, 0]], [[0, r], [r, 0]]`) and its norm is the determinant."
+    "doc": "17:A13, 17:A14, 38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat` (`1, i, j, k ↦ I, diag(r, −r), [[0, 1], [−1, 0]], [[0, r], [r, 0]]`) and its norm is the determinant."
    },
    {
     "name": "FRC.Shell.Frame.quat_bijective",
@@ -604,7 +604,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one."
+    "doc": "17:A12, 17:A13, 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one."
    }
   ],
   "A8": [
@@ -644,7 +644,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9 — the frame triple on every prime shell (`Fld.frame_triple` under primality)."
+    "doc": "17:A12, 38:A9 — the frame triple on every prime shell (`Fld.frame_triple` under primality)."
    },
    {
     "name": "FRC.Shell.Prime.hopf_section",
@@ -653,7 +653,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9 — the Hopf section on every prime shell (`Fld.hopf_section` under primality, `ν` any nonsquare; on `𝔽₂` no nonsquare exists, and the rows quantify over the odd primes)."
+    "doc": "17:A12, 38:A9 — the Hopf section on every prime shell (`Fld.hopf_section` under primality, `ν` any nonsquare; on `𝔽₂` no nonsquare exists, and the rows quantify over the odd primes)."
    },
    {
     "name": "FRC.Shell.Prime.hopf_counts",
@@ -662,7 +662,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9 — the frame counts on every prime shell: `Fld.hopf_counts` under primality."
+    "doc": "17:A12, 38:A9 — the frame counts on every prime shell: `Fld.hopf_counts` under primality."
    },
    {
     "name": "FRC.Shell.Frame.unit_split",
@@ -671,7 +671,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over one point differ by an element of the centraliser."
+    "doc": "17:A12, 17:A13, 38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over one point differ by an element of the centraliser."
    },
    {
     "name": "FRC.Grav.sphere_area_rung",
@@ -680,7 +680,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:E6, 38:A9 — the area of the sphere at every nonzero square rung `a = b²`: `p(p + 1)`; the unit sphere's `p(p + 1)` points are the base of the split fibration (38-s13)."
+    "doc": "17:A12, 00:E6, 38:A9 — the area of the sphere at every nonzero square rung `a = b²`: `p(p + 1)`; the unit sphere's `p(p + 1)` points are the base of the split fibration (38-s13)."
    },
    {
     "name": "FRC.Grav.conic_count",
@@ -689,7 +689,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for `c = 0`; the circle `x² + y² = 1` is the drive torus of the split fibration (38-s13)."
+    "doc": "17:A12, 00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for `c = 0`; the circle `x² + y² = 1` is the drive torus of the split fibration (38-s13)."
    },
    {
     "name": "FRC.Shell.Frame.frame_counts",
@@ -698,7 +698,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one."
+    "doc": "17:A12, 17:A13, 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one."
    }
   ],
   "B1": [
@@ -784,7 +784,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S` even: `κ = 2a + 1`, `S = 2m`, `ℓ` a common multiple of `2a + 1` and `m` with `ℓ/m` odd (`ℓ = (2a + 1)(2u + 1) = m(2v + 1)`). At `4ℓ` ticks the shell is home (`4ℓ ≡ 0 mod 4κ`) and the Carrier reads the half (`4ℓ ≡ 4m = (Ω − 1)/2 mod 8m`); at `8ℓ` both are home. At the instance `ℓ = 87 = 3 · 29`."
+    "doc": "17:A25, 38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S` even: `κ = 2a + 1`, `S = 2m`, `ℓ` a common multiple of `2a + 1` and `m` with `ℓ/m` odd (`ℓ = (2a + 1)(2u + 1) = m(2v + 1)`). At `4ℓ` ticks the shell is home (`4ℓ ≡ 0 mod 4κ`) and the Carrier reads the half (`4ℓ ≡ 4m = (Ω − 1)/2 mod 8m`); at `8ℓ` both are home. At the instance `ℓ = 87 = 3 · 29`."
    },
    {
     "name": "FRC.Pair.recurrence",
@@ -793,7 +793,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:B5, 38:C14 — the recurrence data at the instance: `696 = lcm(12, 232) = 58·12 = 3·232` is the least common return, `1392 = 2·696` the spinor recurrence; the joint cycle's `ℓ = 87 = 3·29`: at `4ℓ = 348` the shell is home (`348 ≡ 0 mod 12`) and the Carrier reads the half (`348 ≡ 116 mod 232`, `78³⁴⁸ = −1`), at `8ℓ = 696` both are home."
+    "doc": "17:A25, 38:B5, 38:C14 — the recurrence data at the instance: `696 = lcm(12, 232) = 58·12 = 3·232` is the least common return, `1392 = 2·696` the spinor recurrence; the joint cycle's `ℓ = 87 = 3·29`: at `4ℓ = 348` the shell is home (`348 ≡ 0 mod 12`) and the Carrier reads the half (`348 ≡ 116 mod 232`, `78³⁴⁸ = −1`), at `8ℓ = 696` both are home."
    }
   ],
   "B6": [
@@ -804,7 +804,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over one point differ by an element of the centraliser."
+    "doc": "17:A12, 17:A13, 38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over one point differ by an element of the centraliser."
    },
    {
     "name": "FRC.Grav.conic_count",
@@ -813,7 +813,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for `c = 0`; the circle `x² + y² = 1` is the drive torus of the split fibration (38-s13)."
+    "doc": "17:A12, 00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for `c = 0`; the circle `x² + y² = 1` is the drive torus of the split fibration (38-s13)."
    }
   ],
   "B7": [
@@ -824,7 +824,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S` even: `κ = 2a + 1`, `S = 2m`, `ℓ` a common multiple of `2a + 1` and `m` with `ℓ/m` odd (`ℓ = (2a + 1)(2u + 1) = m(2v + 1)`). At `4ℓ` ticks the shell is home (`4ℓ ≡ 0 mod 4κ`) and the Carrier reads the half (`4ℓ ≡ 4m = (Ω − 1)/2 mod 8m`); at `8ℓ` both are home. At the instance `ℓ = 87 = 3 · 29`."
+    "doc": "17:A25, 38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S` even: `κ = 2a + 1`, `S = 2m`, `ℓ` a common multiple of `2a + 1` and `m` with `ℓ/m` odd (`ℓ = (2a + 1)(2u + 1) = m(2v + 1)`). At `4ℓ` ticks the shell is home (`4ℓ ≡ 0 mod 4κ`) and the Carrier reads the half (`4ℓ ≡ 4m = (Ω − 1)/2 mod 8m`); at `8ℓ` both are home. At the instance `ℓ = 87 = 3 · 29`."
    },
    {
     "name": "FRC.Pair.tick_half",
@@ -853,7 +853,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C1, 38:C5 — home: at the row's own clock the count is `0`."
+    "doc": "17:A26, 38:C1, 38:C5 — home: at the row's own clock the count is `0`."
    },
    {
     "name": "FRC.Pair.flow_stations",
@@ -862,7 +862,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
+    "doc": "17:A26, 38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
    }
   ],
   "C3": [
@@ -913,7 +913,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
+    "doc": "17:A26, 38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
    }
   ],
   "C6": [
@@ -944,7 +944,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "17:A21, 17:A24, 17:A25, 17:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    },
    {
     "name": "FRC.Pair.two_faces",
@@ -953,7 +953,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C7, 38:C10, 38:X1 — the two faces at the instance: the angular face `12/232 = 3/58 = κ/S`, the temporal face `12/464 = 3/116 = κ/(2S)`, their ratio `2`; the per-chronon rate `1/232` at `(13, 233)` and at `(5, 233)`."
+    "doc": "17:A24, 38:C7, 38:C10, 38:X1 — the two faces at the instance: the angular face `12/232 = 3/58 = κ/S`, the temporal face `12/464 = 3/116 = κ/(2S)`, their ratio `2`; the per-chronon rate `1/232` at `(13, 233)` and at `(5, 233)`."
    },
    {
     "name": "FRC.S13.registration_dictionary",
@@ -992,7 +992,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "17:A21, 17:A24, 17:A25, 17:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    },
    {
     "name": "FRC.Pair.two_faces",
@@ -1001,7 +1001,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C7, 38:C10, 38:X1 — the two faces at the instance: the angular face `12/232 = 3/58 = κ/S`, the temporal face `12/464 = 3/116 = κ/(2S)`, their ratio `2`; the per-chronon rate `1/232` at `(13, 233)` and at `(5, 233)`."
+    "doc": "17:A24, 38:C7, 38:C10, 38:X1 — the two faces at the instance: the angular face `12/232 = 3/58 = κ/S`, the temporal face `12/464 = 3/116 = κ/(2S)`, their ratio `2`; the per-chronon rate `1/232` at `(13, 233)` and at `(5, 233)`."
    }
   ],
   "C13": [
@@ -1012,7 +1012,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C13 — **the apsidal bound is the nesting condition.** A nested Subject `p = q + 1` on a Carrier `Ω` registers the apsidal fraction `κ/S = (p − 1)/(Ω − 1)` (`Pair.leak_rate`), and the bound `κ/S < 1/(√Ω + 1)` is, squared and cleared of its root, `(p − 1)²Ω < (Ω − p)²`, which holds exactly when `p² < Ω`: with `Ω = p² + d`, `(Ω − p)² − (p − 1)²Ω = d(Ω − 1) > 0` for `d ≥ 1`, and with `p² = Ω + d`, `Ω = m + q + 1`, `(Ω − p)² + d(Ω − 1) = (p − 1)²Ω`, so the bound fails. On the physical Carrier no hosted Subject registers an observed precession (the paper's C13)."
+    "doc": "17:A21, 38:C13 — **the apsidal bound is the nesting condition.** A nested Subject `p = q + 1` on a Carrier `Ω` registers the apsidal fraction `κ/S = (p − 1)/(Ω − 1)` (`Pair.leak_rate`), and the bound `κ/S < 1/(√Ω + 1)` is, squared and cleared of its root, `(p − 1)²Ω < (Ω − p)²`, which holds exactly when `p² < Ω`: with `Ω = p² + d`, `(Ω − p)² − (p − 1)²Ω = d(Ω − 1) > 0` for `d ≥ 1`, and with `p² = Ω + d`, `Ω = m + q + 1`, `(Ω − p)² + d(Ω − 1) = (p − 1)²Ω`, so the bound fails. On the physical Carrier no hosted Subject registers an observed precession (the paper's C13)."
    },
    {
     "name": "FRC.Pair.leak_rate",
@@ -1021,7 +1021,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "17:A21, 17:A24, 17:A25, 17:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    }
   ],
   "C14": [
@@ -1032,7 +1032,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S` even: `κ = 2a + 1`, `S = 2m`, `ℓ` a common multiple of `2a + 1` and `m` with `ℓ/m` odd (`ℓ = (2a + 1)(2u + 1) = m(2v + 1)`). At `4ℓ` ticks the shell is home (`4ℓ ≡ 0 mod 4κ`) and the Carrier reads the half (`4ℓ ≡ 4m = (Ω − 1)/2 mod 8m`); at `8ℓ` both are home. At the instance `ℓ = 87 = 3 · 29`."
+    "doc": "17:A25, 38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S` even: `κ = 2a + 1`, `S = 2m`, `ℓ` a common multiple of `2a + 1` and `m` with `ℓ/m` odd (`ℓ = (2a + 1)(2u + 1) = m(2v + 1)`). At `4ℓ` ticks the shell is home (`4ℓ ≡ 0 mod 4κ`) and the Carrier reads the half (`4ℓ ≡ 4m = (Ω − 1)/2 mod 8m`); at `8ℓ` both are home. At the instance `ℓ = 87 = 3 · 29`."
    },
    {
     "name": "FRC.Pair.joint_cycle_frame",
@@ -1041,7 +1041,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C14 on the frames: a Subject frame of odd capacity `κ = 2a + 1` and a Carrier frame of even capacity `S = 2m` return together — at `4ℓ` the Subject's drive is home, `g^{4ℓ} = 1`, and the Carrier's reads the half, `h^{4ℓ} = −1` (the sign event); at `8ℓ` both are home."
+    "doc": "17:A25, 38:C14 on the frames: a Subject frame of odd capacity `κ = 2a + 1` and a Carrier frame of even capacity `S = 2m` return together — at `4ℓ` the Subject's drive is home, `g^{4ℓ} = 1`, and the Carrier's reads the half, `h^{4ℓ} = −1` (the sign event); at `8ℓ` both are home."
    },
    {
     "name": "FRC.Pair.joint_return_iff",
@@ -1050,7 +1050,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C14 — the joint returns are exactly the common multiples of the two periods, so the least is `lcm(p − 1, Ω − 1)`; for `κ` odd and `S = 2m` even it is `8ℓ`, `ℓ` the least common multiple of `κ` and `m` (`joint_return_eight`), whose cofactor over `m` is odd (`joint_cycle_frame`)."
+    "doc": "17:A25, 38:C14 — the joint returns are exactly the common multiples of the two periods, so the least is `lcm(p − 1, Ω − 1)`; for `κ` odd and `S = 2m` even it is `8ℓ`, `ℓ` the least common multiple of `κ` and `m` (`joint_return_eight`), whose cofactor over `m` is odd (`joint_cycle_frame`)."
    },
    {
     "name": "FRC.Pair.joint_return_eight",
@@ -1059,7 +1059,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C14 — every common multiple of the periods `4κ` (`κ = 2a + 1` odd) and `8m` (`S = 2m` even) is eight times a common multiple of `κ` and `m`: with `joint_return_iff` the least joint return is `8ℓ`, `ℓ = lcm(κ, m)`, and its half `4ℓ` is `joint_cycle_frame`'s sign event (`ℓ/m = κ/gcd(κ, m)` is odd)."
+    "doc": "17:A25, 38:C14 — every common multiple of the periods `4κ` (`κ = 2a + 1` odd) and `8m` (`S = 2m` even) is eight times a common multiple of `κ` and `m`: with `joint_return_iff` the least joint return is `8ℓ`, `ℓ = lcm(κ, m)`, and its half `4ℓ` is `joint_cycle_frame`'s sign event (`ℓ/m = κ/gcd(κ, m)` is odd)."
    },
    {
     "name": "FRC.Pair.leak_rate",
@@ -1068,7 +1068,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "17:A21, 17:A24, 17:A25, 17:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    },
    {
     "name": "FRC.Pair.recurrence",
@@ -1077,7 +1077,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:B5, 38:C14 — the recurrence data at the instance: `696 = lcm(12, 232) = 58·12 = 3·232` is the least common return, `1392 = 2·696` the spinor recurrence; the joint cycle's `ℓ = 87 = 3·29`: at `4ℓ = 348` the shell is home (`348 ≡ 0 mod 12`) and the Carrier reads the half (`348 ≡ 116 mod 232`, `78³⁴⁸ = −1`), at `8ℓ = 696` both are home."
+    "doc": "17:A25, 38:B5, 38:C14 — the recurrence data at the instance: `696 = lcm(12, 232) = 58·12 = 3·232` is the least common return, `1392 = 2·696` the spinor recurrence; the joint cycle's `ℓ = 87 = 3·29`: at `4ℓ = 348` the shell is home (`348 ≡ 0 mod 12`) and the Carrier reads the half (`348 ≡ 116 mod 232`, `78³⁴⁸ = −1`), at `8ℓ = 696` both are home."
    }
   ],
   "D1": [
@@ -1106,7 +1106,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
+    "doc": "17:A26, 38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
    }
   ],
   "D2": [
@@ -1288,7 +1288,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "17:A21, 17:A24, 17:A25, 17:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    },
    {
     "name": "FRC.Pair.two_faces",
@@ -1297,7 +1297,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C7, 38:C10, 38:X1 — the two faces at the instance: the angular face `12/232 = 3/58 = κ/S`, the temporal face `12/464 = 3/116 = κ/(2S)`, their ratio `2`; the per-chronon rate `1/232` at `(13, 233)` and at `(5, 233)`."
+    "doc": "17:A24, 38:C7, 38:C10, 38:X1 — the two faces at the instance: the angular face `12/232 = 3/58 = κ/S`, the temporal face `12/464 = 3/116 = κ/(2S)`, their ratio `2`; the per-chronon rate `1/232` at `(13, 233)` and at `(5, 233)`."
    }
   ],
   "X3": [
@@ -1308,7 +1308,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "17:A21, 17:A24, 17:A25, 17:F1, 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    },
    {
     "name": "FRC.S13.floor_value",
@@ -1332,7 +1332,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9, 38:X4 — on a frame (`Frame.fld`): `Fld.frame_triple`."
+    "doc": "17:A13, 38:A9, 38:X4 — on a frame (`Frame.fld`): `Fld.frame_triple`."
    },
    {
     "name": "FRC.Shell.Frame.unit_split",
@@ -1341,7 +1341,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over one point differ by an element of the centraliser."
+    "doc": "17:A12, 17:A13, 38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over one point differ by an element of the centraliser."
    },
    {
     "name": "FRC.Shell.Frame.hopf_counts",
@@ -1350,7 +1350,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`."
+    "doc": "17:A11, 17:A13, 38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`."
    }
   ],
   "P1": [

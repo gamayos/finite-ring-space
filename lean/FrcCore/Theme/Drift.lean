@@ -341,14 +341,14 @@ theorem registration_root {κ : Nat} {g : Shell p} (F : Frame p κ g) {w s η : 
 open FRC.Extension FRC.Extension.Ext
 variable {ν : Shell p}
 
-/-- 21:C3, 00:E3 — the conjugate of a power is the power of the conjugate, `conj (zⁿ) = (conj z)ⁿ`, on `𝔽_p[w]/(w² − ν)`. -/
+/-- 17:A28, 21:C3, 00:E3 — the conjugate of a power is the power of the conjugate, `conj (zⁿ) = (conj z)ⁿ`, on `𝔽_p[w]/(w² − ν)`. -/
 theorem conj_pow (z : Ext p ν) : ∀ n : Nat, conj (z ^ n) = (conj z) ^ n
   | 0 => Ext.ext rfl Shell.neg_zero
   | n + 1 => by
       show conj (z ^ n * z) = (conj z) ^ n * conj z
       rw [conj_mul, conj_pow z n]
 
-/-- 21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate
+/-- 17:A28, 21:C3, 21:C10, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate
 (Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock
 is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch. -/
 theorem conj_branch (z : Ext p ν) (hz : norm z = 1) : ∀ n : Nat, z ^ n * (conj z) ^ n = 1
@@ -428,7 +428,7 @@ theorem cut_ordering (L M : Nat) (hM : L * L < 4 * M) (hL : 2 < L) (h0 : 0 < M) 
   have e : 2 * M * (2 * M) = 4 * M * M := FRC.Grav.nat_sound (FRC.Grav.nlook [M]) (.mul (.mul (.add .one .one) (.var 0)) (.mul (.add .one .one) (.var 0))) (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 0)) rfl rfl (by decide +kernel)
   exact ⟨by rw [e]; exact Nat.mul_lt_mul_of_pos_right hM h0, Nat.mul_lt_mul_of_pos_right hL h0⟩
 
-/-- 38:C13 — **the apsidal bound is the nesting condition.** A nested Subject `p = q + 1` on a Carrier `Ω` registers the
+/-- 17:A21, 38:C13 — **the apsidal bound is the nesting condition.** A nested Subject `p = q + 1` on a Carrier `Ω` registers the
 apsidal fraction `κ/S = (p − 1)/(Ω − 1)` (`Pair.leak_rate`), and the bound `κ/S < 1/(√Ω + 1)` is, squared and cleared
 of its root, `(p − 1)²Ω < (Ω − p)²`, which holds exactly when `p² < Ω`: with `Ω = p² + d`, `(Ω − p)² − (p − 1)²Ω =
 d(Ω − 1) > 0` for `d ≥ 1`, and with `p² = Ω + d`, `Ω = m + q + 1`, `(Ω − p)² + d(Ω − 1) = (p − 1)²Ω`, so the bound fails.

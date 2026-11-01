@@ -442,7 +442,7 @@ theorem mem_of_nodup_of_length (n : Nat) (l : List Nat) (hnd : NoDup l) (hb : �
     have := length_le_of_nodup n (v :: l) hnd' hb'
     absurd (hlen ▸ this : n + 1 ≤ n) (Nat.not_succ_le_self n)
 
-/-- The same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries. -/
+/-- 17:B5 — the same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries (the registrable depth). -/
 theorem length_le_of_nodup_lt : ∀ (n : Nat) (l : List Nat), NoDup l → (∀ e, mem e l → e < n) → l.length ≤ n
   | 0, [], _, _ => Nat.le_refl 0
   | 0, a :: l, _, hb => absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)
@@ -3082,7 +3082,7 @@ theorem conj_mul (z z' : Ext p ν) : conj (z * z') = conj z * conj z' :=
       (by show -(z.re * z'.im + z.im * z'.re) = z.re * -z'.im + -z.im * z'.re
           rw [Shell.neg_add_rev, ← Shell.mul_neg, ← Shell.neg_mul])
 
-/-- 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
+/-- 17:A16, 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
 norm by `g²`, a square. -/
 theorem norm_scale (c : Shell p) (z : Ext p ν) : norm (ofShell c * z) = c * c * norm z := by
   unfold norm
@@ -3382,7 +3382,7 @@ theorem norm_mul (ν a b c d : Shell p) :
 def boostT (_ν γ b t x : Shell p) : Shell p := γ * t + b * x
 def boostX (ν γ b t x : Shell p) : Shell p := γ * x + ν * (b * t)
 
-/-- 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
+/-- 17:A10, 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
 theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) (t x : Shell p) :
     Q2 ν (boostT ν γ b t x) (boostX ν γ b t x) = Q2 ν t x := by
   unfold boostT boostX
@@ -3390,7 +3390,7 @@ theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) 
   unfold Q2 at this ⊢
   rw [this, h, one_mul]
 
-/-- 3:C2 — boosts compose as their parameters multiply in `K`:
+/-- 17:A10, 3:C2 — boosts compose as their parameters multiply in `K`:
 `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row. -/
 theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostT ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
@@ -3400,7 +3400,7 @@ theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 γ2 x, mul_left_comm b1 ν (b2 * t), ← mul_assoc b1 b2 t, ← mul_assoc ν (b1 * b2) t,
     add_comm (b1 * γ2 * x) (ν * (b1 * b2) * t), add_add_add_comm]
 
-/-- 3:C2 — the composition, the `x`-row. -/
+/-- 17:A10, 3:C2 — the composition, the `x`-row. -/
 theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostX ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
     boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by
@@ -3410,7 +3410,7 @@ theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 b2 x, ← mul_assoc ν (b1 * b2) x,
     add_comm (ν * (b1 * γ2 * t)) (ν * (b1 * b2) * x), add_add_add_comm]
 
-/-- 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
+/-- 17:A10, 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
 theorem norm_one_mul {ν γ1 b1 γ2 b2 : Shell p} (h1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1)
     (h2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1) :
     (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) +
@@ -3489,15 +3489,15 @@ def nullCount (p ν : Nat) : Nat :=
 def normOneCount (p ν : Nat) : Nat :=
   sumTo (fun γ => sumTo (fun b => if (γ * γ + (p - ν) * (b * b)) % p = 1 then 1 else 0) p) p
 
-/-- 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type. -/
+/-- 17:A8, 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type. -/
 theorem null13 : nullCount 13 2 = 2041 := by decide +kernel
-/-- 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type. -/
+/-- 17:A8, 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type. -/
 theorem euclid13 : nullCount 13 1 = 2353 := by decide +kernel
-/-- 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`. -/
+/-- 17:A8, 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`. -/
 theorem null5 : nullCount 5 2 = 105 ∧ nullCount 5 1 = 145 := by decide +kernel
-/-- 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points. -/
+/-- 17:A8, 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points. -/
 theorem null17 : nullCount 17 3 = 4641 := by decide +kernel
-/-- 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`. -/
+/-- 17:A10, 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`. -/
 theorem normOne_values : normOneCount 5 2 = 6 ∧ normOneCount 13 2 = 14 ∧ normOneCount 17 3 = 18 ∧
     normOneCount 29 2 = 30 := by decide +kernel
 
@@ -5262,7 +5262,7 @@ theorem octant_sector (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
     exact ⟨a ^ m, by rw [show (8 : Nat) = 4 * 2 from rfl, pow_mul, h4, pow_two, neg_mul_neg, mul_one],
       by rw [h4]; exact neg_one_ne_one h2⟩
 
-/-- 00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`. -/
+/-- 17:A16, 00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`. -/
 theorem tsirelson {ζ : Shell p} (h4 : ζ ^ 4 = -1) : (ζ + ζ ^ 7) * (ζ + ζ ^ 7) = 2 := by
   have h8 : ζ ^ 8 = 1 := by rw [show (8 : Nat) = 4 + 4 from rfl, pow_add, h4, neg_mul_neg, mul_one]
   have hz : ζ * ζ ^ 7 = 1 := by rw [mul_comm, ← pow_succ]; exact h8
@@ -5349,7 +5349,7 @@ variable {p : Nat} [Pos p]
 
 namespace Prime
 
-/-- Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero
+/-- 17:A23, Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero
 residue holds every residue iff `p` is prime. An ideal `I` holds `0` and is closed under addition and under
 multiplication by any residue. Forward, a nonzero `a ∈ I` has the inverse `a^{p−2}` (Fermat), so `1 ∈ I` and then
 `x = x · 1 ∈ I`. Backward, the annihilator `{x : x b = 0}` of `b` is an ideal, so `a b = 0` with `a ≠ 0` puts `1` in
@@ -7768,7 +7768,7 @@ theorem p00003 : (∀ {U : Type} (ρ : U → Nat) (a : FRC.Foundation.Registered
 /-- p00004 — 20:A2, 00:A2. \textbf{Finitude}: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its structural cardinality $\Om$ (A7). -/
 theorem p00004 : And (∀ {U : Type} (R : Nat) [FRC.Pos R] (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → @Exists (@FRC.Foundation.Registered U ρ → FRC.Shell R) fun ι => ∀ (a b : @FRC.Foundation.Registered U ρ), @Eq (FRC.Shell R) (ι a) (ι b) → @Eq (@FRC.Foundation.Registered U ρ) a b) (And (∀ {U : Type} (R : Nat) (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → ∀ (f : Nat → U), @Exists Nat fun i => @Exists Nat fun j => And (@LT.lt Nat instLTNat i (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@LT.lt Nat instLTNat j (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@Ne Nat i j) (@Eq Nat (ρ (f i)) (ρ (f j)))))) (∀ (s K : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) s → ∀ {N : Nat} [FRC.Pos N] (ρ : FRC.Shell N → Nat), (∀ (x : FRC.Shell N), @LT.lt Nat instLTNat (ρ x) (FRC.Logic.records s K)) → (∀ (x y : FRC.Shell N), @Eq Nat (ρ x) (ρ y) → @Eq (FRC.Shell N) x y) → And (@LE.le Nat instLENat N (FRC.Logic.records s K)) (@LT.lt Nat instLTNat (FRC.Logic.records s K) (@HPow.hPow Nat Nat Nat (@instHPow Nat Nat (@instPowNat Nat instNatPowNat)) s (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) K (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))))) :=
   And.intro @FRC.Foundation.registered_finite (And.intro @FRC.Foundation.no_unlimited_supply (@FRC.Foundation.agent_bound))
-/-- p00162 — 00:A10. \textbf{Completeness is primality}: the residues of a count $q\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it. -/
+/-- p00162 — 17:A23, 00:A10. \textbf{Completeness is primality}: the residues of a count $q\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it. -/
 theorem p00162 : ∀ {p : Nat} [FRC.Pos p], (2 : Nat) ≤ p → (FRC.Nat.isPrime p ↔ ∀ (I : FRC.Shell p → Prop), I (0 : FRC.Shell p) → (∀ (a b : FRC.Shell p), I a → I b → I (a + b)) → (∀ (r a : FRC.Shell p), I a → I (r * a)) → (∃ a, I a ∧ a ≠ (0 : FRC.Shell p)) → ∀ (x : FRC.Shell p), I x) :=
   @FRC.Shell.Prime.isPrime_iff_complete
 /-- p00163 — 00:A11. \textbf{The quarter-turn exists iff $\p\equiv1\pmod4$}: for an odd prime $\p$, $-1$ is a square in $\F_\p$ iff $\p\equiv1\pmod4$ (the formal shadow of B3). -/

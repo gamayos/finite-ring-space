@@ -442,7 +442,7 @@ theorem mem_of_nodup_of_length (n : Nat) (l : List Nat) (hnd : NoDup l) (hb : �
     have := length_le_of_nodup n (v :: l) hnd' hb'
     absurd (hlen ▸ this : n + 1 ≤ n) (Nat.not_succ_le_self n)
 
-/-- The same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries. -/
+/-- 17:B5 — the same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries (the registrable depth). -/
 theorem length_le_of_nodup_lt : ∀ (n : Nat) (l : List Nat), NoDup l → (∀ e, mem e l → e < n) → l.length ≤ n
   | 0, [], _, _ => Nat.le_refl 0
   | 0, a :: l, _, hb => absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)
@@ -2064,7 +2064,7 @@ theorem conj_mul (z z' : Ext p ν) : conj (z * z') = conj z * conj z' :=
       (by show -(z.re * z'.im + z.im * z'.re) = z.re * -z'.im + -z.im * z'.re
           rw [Shell.neg_add_rev, ← Shell.mul_neg, ← Shell.neg_mul])
 
-/-- 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
+/-- 17:A16, 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
 norm by `g²`, a square. -/
 theorem norm_scale (c : Shell p) (z : Ext p ν) : norm (ofShell c * z) = c * c * norm z := by
   unfold norm
@@ -2364,7 +2364,7 @@ theorem norm_mul (ν a b c d : Shell p) :
 def boostT (_ν γ b t x : Shell p) : Shell p := γ * t + b * x
 def boostX (ν γ b t x : Shell p) : Shell p := γ * x + ν * (b * t)
 
-/-- 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
+/-- 17:A10, 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
 theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) (t x : Shell p) :
     Q2 ν (boostT ν γ b t x) (boostX ν γ b t x) = Q2 ν t x := by
   unfold boostT boostX
@@ -2372,7 +2372,7 @@ theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) 
   unfold Q2 at this ⊢
   rw [this, h, one_mul]
 
-/-- 3:C2 — boosts compose as their parameters multiply in `K`:
+/-- 17:A10, 3:C2 — boosts compose as their parameters multiply in `K`:
 `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row. -/
 theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostT ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
@@ -2382,7 +2382,7 @@ theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 γ2 x, mul_left_comm b1 ν (b2 * t), ← mul_assoc b1 b2 t, ← mul_assoc ν (b1 * b2) t,
     add_comm (b1 * γ2 * x) (ν * (b1 * b2) * t), add_add_add_comm]
 
-/-- 3:C2 — the composition, the `x`-row. -/
+/-- 17:A10, 3:C2 — the composition, the `x`-row. -/
 theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostX ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
     boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by
@@ -2392,7 +2392,7 @@ theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 b2 x, ← mul_assoc ν (b1 * b2) x,
     add_comm (ν * (b1 * γ2 * t)) (ν * (b1 * b2) * x), add_add_add_comm]
 
-/-- 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
+/-- 17:A10, 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
 theorem norm_one_mul {ν γ1 b1 γ2 b2 : Shell p} (h1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1)
     (h2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1) :
     (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) +
@@ -2471,15 +2471,15 @@ def nullCount (p ν : Nat) : Nat :=
 def normOneCount (p ν : Nat) : Nat :=
   sumTo (fun γ => sumTo (fun b => if (γ * γ + (p - ν) * (b * b)) % p = 1 then 1 else 0) p) p
 
-/-- 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type. -/
+/-- 17:A8, 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type. -/
 theorem null13 : nullCount 13 2 = 2041 := by decide +kernel
-/-- 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type. -/
+/-- 17:A8, 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type. -/
 theorem euclid13 : nullCount 13 1 = 2353 := by decide +kernel
-/-- 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`. -/
+/-- 17:A8, 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`. -/
 theorem null5 : nullCount 5 2 = 105 ∧ nullCount 5 1 = 145 := by decide +kernel
-/-- 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points. -/
+/-- 17:A8, 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points. -/
 theorem null17 : nullCount 17 3 = 4641 := by decide +kernel
-/-- 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`. -/
+/-- 17:A10, 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`. -/
 theorem normOne_values : normOneCount 5 2 = 6 ∧ normOneCount 13 2 = 14 ∧ normOneCount 17 3 = 18 ∧
     normOneCount 29 2 = 30 := by decide +kernel
 
@@ -4244,7 +4244,7 @@ theorem octant_sector (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
     exact ⟨a ^ m, by rw [show (8 : Nat) = 4 * 2 from rfl, pow_mul, h4, pow_two, neg_mul_neg, mul_one],
       by rw [h4]; exact neg_one_ne_one h2⟩
 
-/-- 00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`. -/
+/-- 17:A16, 00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`. -/
 theorem tsirelson {ζ : Shell p} (h4 : ζ ^ 4 = -1) : (ζ + ζ ^ 7) * (ζ + ζ ^ 7) = 2 := by
   have h8 : ζ ^ 8 = 1 := by rw [show (8 : Nat) = 4 + 4 from rfl, pow_add, h4, neg_mul_neg, mul_one]
   have hz : ζ * ζ ^ 7 = 1 := by rw [mul_comm, ← pow_succ]; exact h8
@@ -4663,7 +4663,7 @@ theorem even_add {a b : Nat} (h : (a + b) % 2 = 0) : a % 2 = 0 ↔ b % 2 = 0 := 
 
 /-! ## C1: the frame's web -/
 
-/-- **C1 (p00021), the frame's web.** On every frame, `π = 2κ` and `i = −g^κ`: `2π ≡ −1`, `g^π = −1`, `−π = 2⁻¹`,
+/-- 17:A4, 17:A17, **C1 (p00021), the frame's web.** On every frame, `π = 2κ` and `i = −g^κ`: `2π ≡ −1`, `g^π = −1`, `−π = 2⁻¹`,
 `i² = −1`; `0` and `1` are squares and the drive is not, the one nonsquare frame datum. -/
 theorem frame_web {κ : Nat} {g : Shell p} (F : Frame p κ g) :
     (ofNat (2 * Frame.halfPeriod κ) : Shell p) = -1 ∧ g ^ Frame.halfPeriod κ = -1 ∧
@@ -4676,7 +4676,7 @@ theorem frame_web {κ : Nat} {g : Shell p} (F : Frame p κ g) :
 
 /-! ## C3: the signature -/
 
-/-- **C3 (p00150), the Euclidean–Lorentzian dichotomy.** On every frame the temporal coefficient `ν = g` is a
+/-- 17:A6, **C3 (p00150), the Euclidean–Lorentzian dichotomy.** On every frame the temporal coefficient `ν = g` is a
 nonsquare; the norm form `x² − ν t²` has a zero with `t ≠ 0` iff `ν` is a square (split torus) and none otherwise
 (non-split); `ν = 2⁻¹ · (2g)`, and the classes of `2⁻¹` and `2g` are fixed by the parity of `κ`. -/
 theorem signature {κ : Nat} {g : Shell p} (F : Frame p κ g) :
@@ -4717,14 +4717,14 @@ theorem signature {κ : Nat} {g : Shell p} (F : Frame p κ g) :
 
 /-! ## C8: the square class is chronon parity -/
 
-/-- **C8 (p00028), the square class is chronon parity.** On every frame `g^m` is a square iff `m` is even: the
+/-- 17:A16, **C8 (p00028), the square class is chronon parity.** On every frame `g^m` is a square iff `m` is even: the
 registered (two-way) transport `g²` is even, the one-way multiplier `g` and its inverse odd. -/
 theorem square_class {κ : Nat} {g : Shell p} (F : Frame p κ g) :
     (∀ m : Nat, (∃ y : Shell p, y * y = g ^ m) ↔ m % 2 = 0) ∧ (¬ ∃ y : Shell p, y * y = g) ∧
     (∀ y : Shell p, g * y = 1 → ¬ ∃ r : Shell p, r * r = y) ∧ (∃ y : Shell p, y * y = g * g) :=
   ⟨F.parity_iff, F.drive_nonsquare, fun _ hy => F.inv_drive_nonsquare hy, ⟨g, rfl⟩⟩
 
-/-- The Carrier's class `[c²] = [2⁻¹]` (C3, C8): on a prime `p = 4S + 1`, the half `h` (`2h = 1`) is a square iff `S`
+/-- 17:A6, 17:A16, The Carrier's class `[c²] = [2⁻¹]` (C3, C8): on a prime `p = 4S + 1`, the half `h` (`2h = 1`) is a square iff `S`
 is even; the half is `2S + 1` (`Prime.half_square_iff`). -/
 theorem half_class (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
     ∀ h : Shell p, 2 * h = 1 → ((∃ c : Shell p, c * c = h) ↔ S % 2 = 0) := fun h h2 => by
@@ -5139,7 +5139,7 @@ theorem norm_ratio (hp : FRC.Nat.isPrime p) {u : Extension.Ext p ν} (hu : u.nor
 theorem nonsquare_ne_zero {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) : ν ≠ 0 :=
   fun e => hν ⟨0, by rw [e, mul_zero]⟩
 
-/-- **C25 (p00139), the horizon is the origin's antipode on the boost torus.** On a prime `p = 4κ + 1` with `ν` a
+/-- 17:A15, **C25 (p00139), the horizon is the origin's antipode on the boost torus.** On a prime `p = 4κ + 1` with `ν` a
 nonsquare and `𝔽_{p²} = 𝔽_p[w]/(w² − ν)`: a direction `[x : y] ≠ 0` has the boost `u = yν + xw` of nonzero norm, and
 `v = a + bw` moves it by `q ↦ (aq + νb)/(bq + a)`; the torsor map `u ↦ u/ū` lands on `C_{p+1}`, is constant on the
 classes `𝔽_p^× u` and equivariant, and is a bijection from the directions onto `C_{p+1}`; it sends the origin `[0 : 1]`
@@ -5365,7 +5365,7 @@ theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ +
     hsurj, h01, hm1, hord2, hrat, hinv, hwact,
     fun s hs => (Prime.mul_eq_zero hp hs).resolve_left h2, Prime.two_mul_chart_half hκ, hseam⟩
 
-/-- 00:C25, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
+/-- 17:A15, 00:C25, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
 has `ζ^{2κ+1} = −1`, the torus's one element of order two. -/
 theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν)
     (ζ : Extension.Ext p ν) (hn : ζ.norm = 1) (hζ : ζ ^ (p + 1) = 1)
@@ -5379,7 +5379,7 @@ theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ 
   | .inl e => exact absurd e (hmin _ (Nat.zero_lt_succ _) hlt)
   | .inr e => exact e
 
-/-- 00:C25 — `u_P` is the unique boost carrying the origin to `P`: a boost `v` with `v · dir(0, 1) = c · dir(x, y)` is
+/-- 17:A15, 00:C25 — `u_P` is the unique boost carrying the origin to `P`: a boost `v` with `v · dir(0, 1) = c · dir(x, y)` is
 `(c/ν) · dir(x, y)`, so it is `dir(x, y)` up to a scalar, which acts trivially on `ℙ¹` and leaves the ratio unchanged. -/
 theorem boost_unique (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (v : Extension.Ext p ν) (c x y : Shell p)
     (h : v * dir ν 0 1 = Extension.Ext.ofShell c * dir ν x y) :
@@ -7989,10 +7989,10 @@ open FRC.Shell
 variable {q : Nat} [Pos q]
 
 /-- 22:C33 (ii) — a completely spread cell at a nontrivial character: on a prime shell the complete sum of a character of
-order dividing `n` vanishes, `Σ_{ρ<n} w^ρ = 0` for `w^n = 1`, `w ≠ 1` (the telescoping geometric sum, then no zero divisors).
+order dividing `n` vanishes, `Σ_{ξ<n} w^ξ = 0` for `w^n = 1`, `w ≠ 1` (the telescoping geometric sum, then no zero divisors).
 With `w = ζ^{mΔ}` this is the vanishing of the uniform law's characteristic at every nontrivial argument. -/
 theorem complete_spread_zero (hq : FRC.Nat.isPrime q) (w : Shell q) (n : Nat) (hn : w ^ n = 1) (hw : w ≠ 1) :
-    sumRange (fun ρ => w ^ ρ) n = 0 := by
+    sumRange (fun ξ => w ^ ξ) n = 0 := by
   have hg := geom_sum_mul w n
   rw [hn, add_neg] at hg
   match Prime.mul_eq_zero hq hg with
@@ -8265,18 +8265,18 @@ def p22065 := And.intro @FRC.Strata.Q2.pow_Wp_irrational (And.intro @FRC.Strata.
 /-- p22066 — 22:C29. The readout law on the sweep: the extended readout lies within one grid step of its weight [chart], is exact at the four classical settings, restricts to the quadratic readout at the Tsirelson settings with positive trace element [chart], and the grid allocation of a protocol lies within one of the readout times the run count. -/
 theorem p22066 : (∀ (D : Nat), D < (80 : Nat) → FRC.Strata.Readout.IsCell (FRC.Strata.Readout.polyOf D) (81 : Int) (FRC.Strata.Readout.nth FRC.Strata.Readout.s4 D)) ∧ (∀ (k : Nat), k < (325 : Nat) → (FRC.Strata.Readout.IsCell FRC.Strata.Readout.P20 (81 : Int) (↑k - (162 : Int)) ↔ FRC.Strata.Readout.mem [(-162 : Int), (-158 : Int), (-150 : Int), (-139 : Int), (-124 : Int), (-106 : Int), (-85 : Int), (-62 : Int), (-38 : Int), (-13 : Int), (12 : Int), (37 : Int), (61 : Int), (84 : Int), (105 : Int), (123 : Int), (138 : Int), (149 : Int), (157 : Int), (161 : Int)] (↑k - (162 : Int)) = true)) ∧ (∀ {uG s : Nat}, s ≤ uG → uG + s + (uG - s) = uG + uG) ∧ (∀ (B a D δ : Nat), (0 : Nat) < D → δ ≤ (1 : Nat) → ∃ f, B * a = D * f + B * a % D ∧ D * (f + δ) ≤ B * a + D ∧ B * a < D * (f + δ) + D) ∧ (FRC.Strata.Readout.IsCell [(-2 : Int), (0 : Int), (1 : Int)] (81 : Int) (114 : Int) ∧ ((114 : Nat) * (114 : Nat) ≤ (2 : Nat) * (81 : Nat) * (81 : Nat) ∧ (2 : Nat) * (81 : Nat) * (81 : Nat) < (115 : Nat) * (115 : Nat)) ∧ (2 : Nat) * (81 : Nat) + (114 : Nat) = (276 : Nat) ∧ (2 : Nat) * (81 : Nat) - (114 : Nat) = (48 : Nat) ∧ (8 : Nat) * (81 : Nat) = (648 : Nat)) ∧ FRC.Strata.Readout.hom (FRC.Strata.Readout.polyOf (0 : Nat)) (162 : Int) (81 : Int) = (0 : Int) ∧ FRC.Strata.Readout.hom (FRC.Strata.Readout.polyOf (20 : Nat)) (0 : Int) (81 : Int) = (0 : Int) ∧ FRC.Strata.Readout.hom (FRC.Strata.Readout.polyOf (40 : Nat)) (-162 : Int) (81 : Int) = (0 : Int) ∧ FRC.Strata.Readout.hom (FRC.Strata.Readout.polyOf (60 : Nat)) (0 : Int) (81 : Int) = (0 : Int) :=
   And.intro @FRC.Strata.Readout.cells_all_settings (And.intro @FRC.Strata.Readout.cells_P20 (And.intro @FRC.Strata.Readout.pair_sum (And.intro @FRC.Strata.hamilton_count (And.intro @FRC.Strata.Readout.tsirelson_restriction (@FRC.Strata.Readout.classical_exact)))))
-set_option linter.defProp false in
 /-- p22068 — 22:C30. The calibration law: the normalised rate of a pair run is the product of the two coherent fractions, against a spread-free reference of independent cells certified under the clause of B8 it is the source's own fraction, and the off-diagonal rate table is rank one, each nonzero fraction recovered from three runs; standard quantum mechanics is the table of ones. -/
-def p22068 := And.intro @FRC.Calibration.reference_rate (And.intro @FRC.Calibration.recover_sq (And.intro @FRC.Calibration.quad_consistency (@FRC.Calibration.unit_table)))
-set_option linter.defProp false in
+theorem p22068 : (∀ (ci mi m : Nat), FRC.Calibration.feq (FRC.Calibration.rho ci mi m m) (ci, mi)) ∧ (∀ (ci mi cj mj ck mk : Nat), FRC.Calibration.feq (FRC.Calibration.fmul (FRC.Calibration.rho ci mi cj mj) (FRC.Calibration.rho ci mi ck mk)) (FRC.Calibration.fmul (FRC.Calibration.rho cj mj ck mk) (ci * ci, mi * mi))) ∧ (∀ (ci mi cj mj ck mk cl ml : Nat), FRC.Calibration.feq (FRC.Calibration.fmul (FRC.Calibration.rho ci mi cj mj) (FRC.Calibration.rho ck mk cl ml)) (FRC.Calibration.fmul (FRC.Calibration.rho ci mi ck mk) (FRC.Calibration.rho cj mj cl ml))) ∧ ∀ (m m' : Nat), FRC.Calibration.feq (FRC.Calibration.rho m m m' m') ((1 : Nat), (1 : Nat)) :=
+  And.intro @FRC.Calibration.reference_rate (And.intro @FRC.Calibration.recover_sq (And.intro @FRC.Calibration.quad_consistency (@FRC.Calibration.unit_table)))
 /-- p22069 — 22:C31. Factorisation for independent preparation: with the pair phase additive in the cells' winding offsets, the spread characteristic of a two-source run is the product of the two sources' own spread characteristics, each at its own argument, so the pairwise characteristics of the channel follow from per-source data. -/
-def p22069 := @FRC.Calibration.dsum_eq
-set_option linter.defProp false in
+theorem p22069 : ∀ (p g q h : List Nat), FRC.Calibration.dsum p g q h = FRC.Calibration.wsum p g * FRC.Calibration.wsum q h :=
+  @FRC.Calibration.dsum_eq
 /-- p22071 — 22:C33. The domain of the normalised rate: $|\Gamma_{ij}|=|\chi_{ij}|$; a recurrence lies in it; a completely spread cell at a nontrivial character removes every other differential; a geometric law has $0<|\chi|<1$ at every nontrivial argument; a two-point law on $\Z_{12}$ vanishes at a non-recurrence argument; unit contrast at the unit tick forces a point occupation, under independence a locked source. -/
-def p22071 := And.intro @FRC.Calibration.complete_spread_zero (@FRC.Calibration.two_point_zero)
-set_option linter.defProp false in
+theorem p22071 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (w : FRC.Shell q) (n : Nat), w ^ n = (1 : FRC.Shell q) → w ≠ (1 : FRC.Shell q) → FRC.Shell.sumRange (fun ξ => w ^ ξ) n = (0 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (ζ : FRC.Shell q), ζ ^ (12 : Nat) = (1 : FRC.Shell q) → ζ ^ (6 : Nat) ≠ (1 : FRC.Shell q) → (1 : FRC.Shell q) + ζ ^ (30 : Nat) = (0 : FRC.Shell q) :=
+  And.intro @FRC.Calibration.complete_spread_zero (@FRC.Calibration.two_point_zero)
 /-- p22072 — 22:C34. Entanglement under spread: with a completely spread cell at nondegenerate geometry the registered state is the separable partition state whatever $f_1f_2$, in three classes, each positive under partial transposition; three equal separations entangle it, least partial-transpose eigenvalue $(1-\sqrt3)/4$ [chart]; nonuniform laws entangle at some geometries and not at others; a locally additive spread phase alone never entangles. -/
-def p22072 := And.intro @FRC.Calibration.pt_psd_classes (And.intro @FRC.Calibration.three_equal_npt (@FRC.Calibration.nondegenerate_classes))
+theorem p22072 : (FRC.Calibration.psd4 FRC.Calibration.ptDistinct = true ∧ FRC.Calibration.psd4 FRC.Calibration.ptOnePair = true ∧ FRC.Calibration.psd4 FRC.Calibration.ptTwoPairs = true) ∧ FRC.Calibration.det4 FRC.Calibration.ptThreeEqual = (-2 : Int) ∧ ((FRC.Calibration.nondegenerate.all fun l => [[(1 : Nat), (1 : Nat), (1 : Nat), (1 : Nat)], [(2 : Nat), (1 : Nat), (1 : Nat)], [(2 : Nat), (2 : Nat)]].contains (FRC.Calibration.blockSizes l)) && [[(1 : Nat), (1 : Nat), (1 : Nat), (1 : Nat)], [(2 : Nat), (1 : Nat), (1 : Nat)], [(2 : Nat), (2 : Nat)]].all fun s => (List.map FRC.Calibration.blockSizes FRC.Calibration.nondegenerate).contains s) = true :=
+  And.intro @FRC.Calibration.pt_psd_classes (And.intro @FRC.Calibration.three_equal_npt (@FRC.Calibration.nondegenerate_classes))
 -- end keys
 
 end FRC.Ledger

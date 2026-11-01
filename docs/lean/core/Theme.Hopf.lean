@@ -72,7 +72,7 @@ theorem fld (hp : FRC.Nat.isPrime p) : Frame.Fld p :=
   ⟨one_ne_zero hp, fun hx => exists_inv hp hx, fun h => mul_eq_zero hp h, fun ha hb => mul_ne_zero hp ha hb,
    fun ha h => mul_left_cancel hp ha h, fun h => sq_eq_one hp h⟩
 
-/-- 38:A9 — the Hopf section on every prime shell (`Fld.hopf_section` under primality, `ν` any nonsquare; on `𝔽₂` no
+/-- 17:A12, 38:A9 — the Hopf section on every prime shell (`Fld.hopf_section` under primality, `ν` any nonsquare; on `𝔽₂` no
 nonsquare exists, and the rows quantify over the odd primes). -/
 theorem hopf_section (hp : FRC.Nat.isPrime p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ α β x y : Shell p, β ≠ 0 → (x ≠ 0 ∨ y ≠ 0) → ¬ PEq ((boost ν α β).act x y) (x, y)) ∧
@@ -90,7 +90,7 @@ theorem hopf_section (hp : FRC.Nat.isPrime p) {ν : Shell p} (hν : ¬ ∃ y : S
       ∀ M N : M2 p, (M2.smul (-1) M).mul (M2.smul (-1) N) = M.mul N) :=
   (fld hp).hopf_section hν
 
-/-- 38:A9 — the frame counts on every prime shell: `Fld.hopf_counts` under primality. -/
+/-- 17:A12, 38:A9 — the frame counts on every prime shell: `Fld.hopf_counts` under primality. -/
 theorem hopf_counts (hp : FRC.Nat.isPrime p) (ν : Shell p) :
     (∀ a b e : Shell p, a * e ≠ 0 → ∃ i j : Nat, i < p ∧ j < p ∧ i ≠ 0 ∧
       ∃ l : Shell p, l ≠ 0 ∧ M2.smul l (borel a b e) = borel (ofNat i) (ofNat j) 1) ∧
@@ -106,7 +106,7 @@ theorem hopf_counts (hp : FRC.Nat.isPrime p) (ν : Shell p) :
     natCount (fun _ => True) p + 1 = p + 1 :=
   (fld hp).hopf_counts ν
 
-/-- 38:A9 — the frame triple on every prime shell (`Fld.frame_triple` under primality). -/
+/-- 17:A12, 38:A9 — the frame triple on every prime shell (`Fld.frame_triple` under primality). -/
 theorem frame_triple (hp : FRC.Nat.isPrime p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ M : M2 p, M.det ≠ 0 → (M.a ≠ 0 ∨ M.c ≠ 0) ∧ M.act 1 0 = (M.a, M.c) ∧ (boost ν M.a M.c).act 1 0 = (M.a, M.c) ∧
       M.a * M.a + -(ν * (M.c * M.c)) ≠ 0 ∧

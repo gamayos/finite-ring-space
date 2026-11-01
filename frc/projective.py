@@ -40,6 +40,24 @@ frc.extension.Ext, 2 × 2 matrices over it as tuples of pairs.
     psl2_image(p, r)                          the sphere's image in PGL₂ is PSL₂, index 2
     so3(p)                                    the adjoint action: PGL₂ → O(𝔰𝔩₂, −det) injective, det 1, image SO₃ of order p(p² − 1) (|O₃| by frames)
     no_section_split(p)                       the Sylow count: p + 1 Sylow p-subgroups, |N(U)| = p(p − 1), the unipotents generate PSL₂ > p(p + 1)
+
+The register square and the finite Lorentz group (17-spacetime; `Theme/Lorentz.lean`, 31 October 2026): the Hermitian
+matrices over 𝔽_{p²} as the register square Herm₂(K) = Sym²(V) ⊕ 𝔽_p ηJ with det X = x₀² − x₁² − x₃² + ν x₂².
+
+    herm(K, x), herm_coords(K, X), lorentz_form(x, nu, p)    X(x), its inverse, and Q_ν(x) = det X(x)
+    register_square(p, nu)                    det X(x) = Q_ν(x) on all of 𝔽_p⁴; the null counts p³ − p² + p and p² + 1 (17:C1)
+    cone_bijection(p, nu)                     [v] ↦ [v v†] bijective ℙ¹(K) → null lines; ℙ¹(𝔽_p) symmetric, the rest with a time component (17:C3, C4)
+    sl2_ext(K), congruence(K, A, X)           SL₂(K) once, and A X A†
+    congruence_image(p, nu)                   the kernel ±I, the image p²(p⁴ − 1)/2 of index four in O₄⁻, the stabiliser SL₂(𝔽_p), T/P/−I outside (17:C2, D1, F3)
+    class_equation(p)                         orders divide p − 1, p, p + 1; the maximal cyclic subgroups partition G ∖ {1} (17:C9, B1)
+    direction_classes(p, nu)                  the p + 1 null, p(p − 1)/2 internal and p(p + 1)/2 external directions of space (17:C8, C9)
+    hopf_fibration(p, nu)                     SL₂(𝔽_p) transitive on the p(p − 1) causal rays with stabiliser C_{p+1}; the Borel section; the axes (17:C7, C8)
+    drive_on_square(p, nu, g)                 diag(g, 1): [z] ↦ [gz], ηJ ↦ g ηJ; the lift diag(η, η⁻¹): ηJ ↦ −ηJ; the even transport (17:D3)
+    two_circuits(p, nu)                       N¹ of order p + 1 with −I, image of order (p + 1)/2, conjugate to the torus lift (17:D4)
+    no_definite_space(p, nu)                  every three-dimensional subspace carries a null vector (17:D5)
+    horizon_half_step(p, nu)                  K^×/𝔽_p^× regular on ℙ¹(𝔽_p); the horizon at the half step 2κ + 1 by every generator (17:D6)
+    similitude(p, nu, g)                      the similitude of multiplier g exchanging the two non-null classes (17:C6)
+    elliptic_hyperbolic(p, nu)                the frame quadric hyperbolic, the register square elliptic (17:C5)
 """
 from frc.extension import Ext as Ext2
 from frc.shell import is_square
@@ -437,3 +455,315 @@ def no_section_split(p):
     Ts = {pclass((a, 0, 0, 1), p) for a in range(1, p)}
     B = {pclass(borel(a, b, 1, p), p) for a in range(1, p) for b in range(p)}
     return len(sylows), len(NU), len(gen), Ts <= B
+
+
+# ---- the register square and the finite Lorentz group (17-spacetime; Theme/Lorentz.lean, 31 October 2026) -----------------
+# The Hermitian 2 × 2 matrices over K = 𝔽_{p²} = 𝔽_p(η), η² = ν a nonsquare, as the register square Herm₂(K) = Sym²(V) ⊕ 𝔽_p ηJ
+# with coordinates x = (x₀, x₁, x₂, x₃): X(x) = [[x₀ + x₃, x₁ + η x₂], [x₁ − η x₂, x₀ − x₃]], det X = x₀² − x₁² − x₃² + ν x₂²
+# (17:C1); SL₂(K) acts by the congruence X ↦ A X A† (17:C2); the cone ℙ¹(K) → null lines, [v] ↦ [v v†] (17:C3, C4); the
+# three cycles and the class equation of PGL₂ (17:C9); the fibration (17:C7, C8); the drive, the lift and the horizon
+# (17:D3, D4, D6); the three exclusions of the arrow (17:F3). Exact integers only.
+
+def herm(K, x):
+    """X(x), the Hermitian matrix of the coordinates x = (x₀, x₁, x₂, x₃) ∈ 𝔽_p⁴."""
+    p = K.p; x0, x1, x2, x3 = (v % p for v in x)
+    return (((x0 + x3) % p, 0), (x1, x2), (x1, (-x2) % p), ((x0 - x3) % p, 0))
+
+
+def herm_coords(K, X):
+    """The coordinates of a Hermitian matrix (None if X is not Hermitian): x₀ = (a + d)/2, x₃ = (a − d)/2, (x₁, x₂) = b."""
+    p = K.p; a, b, c, d = X
+    if a[1] or d[1] or c != K.conj(b): return None
+    h = pow(2, -1, p)
+    return ((a[0] + d[0]) * h % p, b[0], b[1], (a[0] - d[0]) * h % p)
+
+
+def lorentz_form(x, nu, p):
+    """Q_ν(x) = x₀² − x₁² − x₃² + ν x₂², the determinant of X(x) (17:C1)."""
+    x0, x1, x2, x3 = x
+    return (x0 * x0 - x1 * x1 - x3 * x3 + nu * x2 * x2) % p
+
+
+def register_square(p, nu):
+    """17:C1 — on every x ∈ 𝔽_p⁴, X(x) is Hermitian with det X(x) = Q_ν(x) and herm_coords inverts herm; the null vectors
+    number p³ − p² + p with the zero vector (the elliptic count, 3:B4), the null lines p² + 1. Returns (identity on all p⁴, null vectors, null lines)."""
+    K = Ext2(p, nu); ok, nulls = True, 0
+    for x in ((a, b, c, d) for a in range(p) for b in range(p) for c in range(p) for d in range(p)):
+        X = herm(K, x)
+        ok &= xdagger(K, X) == X and xdet(K, X) == (lorentz_form(x, nu, p), 0) and herm_coords(K, X) == x
+        nulls += lorentz_form(x, nu, p) == 0
+    return ok, nulls, (nulls - 1) // (p - 1)
+
+
+def null_count_by_fibres(p, nu):
+    """17:C1 on a large Subject — the null vectors of Q_ν(x) = x₀² − x₁² − x₃² + ν x₂² counted through the two binary forms
+    without visiting 𝔽_p⁴: r(v) = #{(x₁, x₂) : x₁² − ν x₂² = v} and s(w) = #{(x₀, x₃) : x₀² − x₃² = w} are each O(p²), and
+    the null count is Σ_v r(v) s(v). Returns (null vectors, null lines); equals register_square's count where both run."""
+    r, s_ = [0] * p, [0] * p
+    for x1 in range(p):
+        for x2 in range(p): r[(x1 * x1 - nu * x2 * x2) % p] += 1
+    for x0 in range(p):
+        for x3 in range(p): s_[(x0 * x0 - x3 * x3) % p] += 1
+    nulls = sum(r[v] * s_[v] for v in range(p))
+    return nulls, (nulls - 1) // (p - 1)
+
+
+def proj_line_ext(K):
+    """ℙ¹(K): the p² + 1 points (z, 1) and (1, 0), z ∈ K."""
+    return [(z, (1, 0)) for z in K.elements()] + [((1, 0), (0, 0))]
+
+
+def herm_class(K, X):
+    """A nonzero Hermitian matrix scaled to leading coefficient one (the null line it spans)."""
+    p = K.p; x = herm_coords(K, X)
+    lead = next(v for v in x if v)
+    s = pow(lead, -1, p)
+    return tuple(v * s % p for v in x)
+
+
+def cone_bijection(p, nu):
+    """17:C3, 17:C4 — [v] ↦ [v v†] is a bijection of ℙ¹(K) onto the null lines of the register square: p² + 1 directions; the
+    p + 1 points of ℙ¹(𝔽_p) give the symmetric matrices (x₂ = 0), the p(p − 1) others carry a time component (x₂ ≠ 0).
+    Returns (bijective, |ℙ¹(K)|, null lines, symmetric images, time-carrying images)."""
+    K = Ext2(p, nu)
+    nulls = {tuple(x) for x in ((a, b, c, d) for a in range(p) for b in range(p) for c in range(p) for d in range(p))
+             if any(x) and lorentz_form(x, nu, p) == 0 and x[next(k for k, v in enumerate(x) if v)] == 1}
+    img, sym, tim = {}, 0, 0
+    for v1, v2 in proj_line_ext(K):
+        X = (K.mul(v1, K.conj(v1)), K.mul(v1, K.conj(v2)), K.mul(v2, K.conj(v1)), K.mul(v2, K.conj(v2)))
+        x = herm_coords(K, X)
+        assert x is not None and lorentz_form(x, nu, p) == 0
+        img[(v1, v2)] = herm_class(K, X)
+        if x[2] == 0: sym += 1
+        else: tim += 1
+    bij = len(set(img.values())) == len(img) == len(nulls) and set(img.values()) == nulls
+    return bij, len(img), len(nulls), sym, tim
+
+
+def sl2_ext(K):
+    """SL₂(K) exactly once: (a, b, c, d) with d = (1 + bc)/a for a ≠ 0, and the sheet a = 0, c = −1/b."""
+    els = K.elements(); one = (1, 0); zero = (0, 0)
+    for a in els:
+        if a == zero: continue
+        ai = K.inv(a)
+        for b in els:
+            for c in els:
+                bc = K.mul(b, c)
+                yield (a, b, c, K.mul(K.add(one, bc), ai))
+    for b in els:
+        if b == zero: continue
+        c = K.neg(K.inv(b))
+        for d in els:
+            yield (zero, b, c, d)
+
+
+def congruence(K, A, X):
+    """A X A†."""
+    return xmul(K, xmul(K, A, X), xdagger(K, A))
+
+
+def congruence_image(p, nu):
+    """17:C2, 17:D1, 17:F3 — over SL₂(K), enumerated once: the kernel of A ↦ (X ↦ A X A†) on the four basis vectors is ±I,
+    so the image has order |SL₂(K)|/2 = p²(p⁴ − 1)/2 = |O₄⁻(p)|/4 (index four); the stabiliser of the time vector ηJ is
+    exactly SL₂(𝔽_p) (p³ − p elements, all Frobenius-fixed); and no A carries X to σ(X) (the time reversal, x₂ ↦ −x₂), to
+    the reflection x₁ ↦ −x₁, or to −X. Returns a dict of the counts."""
+    K = Ext2(p, nu); zero, one = (0, 0), (1, 0); mone = ((-1) % p, 0)
+    eta = (0, 1); etaJ = herm(K, (0, 0, 1, 0))
+    basis = [herm(K, e) for e in ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1))]
+    T = [herm(K, e) for e in ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, p - 1, 0), (0, 0, 0, 1))]      # the Frobenius σ: x₂ ↦ −x₂
+    P = [herm(K, e) for e in ((1, 0, 0, 0), (0, p - 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1))]      # x₁ ↦ −x₁
+    PT = [herm(K, e) for e in ((p - 1, 0, 0, 0), (0, p - 1, 0, 0), (0, 0, p - 1, 0), (0, 0, 0, p - 1))]   # X ↦ −X
+    n = kernel = stab = stab_rational = hitT = hitP = hitPT = 0
+    for A in sl2_ext(K):
+        n += 1
+        a, b, c, d = A
+        # A A† = X(e₀) ↦ ? : the images of I decide quickly whether the four tests can hold (I ↦ I for the kernel, T, P; I ↦ −I for PT)
+        aa = xmul(K, A, xdagger(K, A))
+        if congruence(K, A, etaJ) == etaJ:
+            stab += 1
+            if all(v[1] == 0 for v in A): stab_rational += 1
+        if aa == (one, zero, zero, one):
+            imgs = [congruence(K, A, X) for X in basis]
+            if imgs == basis: kernel += 1
+            if imgs == T: hitT += 1
+            if imgs == P: hitP += 1
+        elif aa == (mone, zero, zero, mone):
+            if [congruence(K, A, X) for X in basis] == PT: hitPT += 1
+    from frc.shell import o_minus_4
+    return dict(sl2K=n, sl2K_formula=p * p * (p ** 4 - 1), kernel=kernel, image=n // kernel, image_formula=p * p * (p ** 4 - 1) // 2,
+                o_minus_4=o_minus_4(p), index=o_minus_4(p) // (n // kernel), stabiliser=stab, stabiliser_rational=stab_rational,
+                sl2p=p * (p * p - 1), T_hits=hitT, P_hits=hitP, PT_hits=hitPT)
+
+
+def class_equation(p):
+    """17:C9, 17:B1 — the order of every element of PGL₂(𝔽_p) divides p − 1, p or p + 1; the maximal cyclic subgroups are the
+    split tori (order p − 1), the unipotent groups (p) and the non-split tori (p + 1), p(p + 1)/2, p + 1 and p(p − 1)/2 of
+    them, and they partition G ∖ {1}: 1 + (p² − 1) + p(p + 1)(p − 2)/2 + p²(p − 1)/2 = (p − 1)p(p + 1). Returns (orders divide,
+    the counts of maximal cyclic subgroups by order, partition, the class equation)."""
+    G = pgl2(p); I = (1, 0, 0, 1)
+    def cyc(M):
+        H, X = [I], M
+        while X != I: H.append(X); X = pclass(mul(X, M, p), p)
+        return frozenset(H)
+    cycs = {cyc(M) for M in G if M != I}
+    divides = all((p - 1) % len(H) == 0 or p % len(H) == 0 or (p + 1) % len(H) == 0 for H in cycs)
+    maximal = [H for H in cycs if not any(H < H2 for H2 in cycs)]
+    counts = {len(H): sum(1 for H2 in maximal if len(H2) == len(H)) for H in maximal}
+    covered = [x for H in maximal for x in H if x != I]
+    partition = len(covered) == len(set(covered)) == len(G) - 1
+    eq = 1 + (p * p - 1) + p * (p + 1) * (p - 2) // 2 + p * p * (p - 1) // 2 == (p - 1) * p * (p + 1) == len(G)
+    return divides, counts, partition, eq
+
+
+def direction_classes(p, nu):
+    """17:C8, 17:C9 — the p² + p + 1 directions of space Sym²(V) ≅ binary forms by the square class of the discriminant
+    s₁₂² − s₁₁s₂₂ = −det: the null directions (p + 1, the conic and [1:0]), the internal points (p(p − 1)/2, the nonsquare
+    axes, the Hopf base) and the external points (p(p + 1)/2). Returns (null, internal, external)."""
+    pts = [(a, b, c) for a in range(p) for b in range(p) for c in range(p) if any((a, b, c)) and (a, b, c)[next(k for k, v in enumerate((a, b, c)) if v)] == 1]
+    null = internal = external = 0
+    for s11, s12, s22 in pts:
+        d = (s12 * s12 - s11 * s22) % p
+        if d == 0: null += 1
+        elif is_square(d, p): external += 1
+        else: internal += 1
+    return null, internal, external
+
+
+def hopf_fibration(p, nu):
+    """17:C7, 17:C8 — SL₂(𝔽_p) acts on the causal rays H_p = ℙ¹(K) ∖ ℙ¹(𝔽_p) (p(p − 1) of them) by Möbius maps: transitively,
+    with stabiliser of η the norm-one torus {[[α, νβ], [β, α]] : α² − νβ² = 1} of order p + 1 (the fibration with fibre
+    C_{p+1}); the Borel B = {[[a, b], [0, 1]]} of G is simply transitive on H_p (a section in G); the Borel lift of SL₂,
+    {[[a, b], [0, a⁻¹]]}, has two orbits of p(p − 1)/2 and meets the torus in ±I. The axis of a ray z: the binary form
+    (t − z)(t − z̄) = t² − tr(z) t + N(z) has discriminant tr² − 4N = 4ν(Im z)², a nonsquare. Returns a dict."""
+    K = Ext2(p, nu)
+    rays = [z for z in K.elements() if z[1] != 0]
+    def mob(M, z):                       # (a z + b)/(c z + d) on K, M over 𝔽_p; None at the pole
+        a, b, c, d = M
+        num = K.add(K.mul(K.scalar(a), z), K.scalar(b)); den = K.add(K.mul(K.scalar(c), z), K.scalar(d))
+        return K.mul(num, K.inv(den)) if den != (0, 0) else None
+    SL = sl2(p); eta = (0, 1)
+    orbit = {mob(M, eta) for M in SL}
+    stab = [M for M in SL if mob(M, eta) == eta]
+    torus = {(a % p, nu * b % p, b % p, a % p) for a in range(p) for b in range(p) if (a * a - nu * b * b) % p == 1}
+    B = [(a, b, 0, 1) for a in range(1, p) for b in range(p)]
+    reach = {mob(M, eta) for M in B}
+    free = len(reach) == len(B)
+    Bl = [(a, b, 0, pow(a, -1, p)) for a in range(1, p) for b in range(p)]
+    orbs = []
+    seen = set()
+    for z in rays:
+        if z in seen: continue
+        o = {mob(M, z) for M in Bl}; orbs.append(len(o)); seen |= o
+    mI = (p - 1, 0, 0, p - 1)
+    nonsq_axes = all(not is_square((4 * nu * z[1] * z[1]) % p, p) and ((2 * z[0]) ** 2 - 4 * K.norm(z)) % p == (4 * nu * z[1] * z[1]) % p for z in rays)
+    return dict(rays=len(rays), transitive=orbit == set(rays), stabiliser=len(stab), torus=set(stab) == torus, torus_order=len(torus),
+                borel_section=free and reach == set(rays), borel_lift_orbits=sorted(orbs), lift_meets_torus_in_pm_I=set(Bl) & torus == {(1, 0, 0, 1), mI},
+                axes_nonsquare=nonsq_axes, count=len(SL) == len(rays) * len(torus))
+
+
+def drive_on_square(p, nu, g):
+    """17:D3, 17:A16 — the one-chronon move diag(g, 1) carries [z : 1] to [g z : 1] and ηJ to g·ηJ (the class flips, two
+    chronons restore it); the unimodular lift D = diag(η, η⁻¹) has det 1, D† = −D and D(ηJ)D† = −ηJ; the even transport
+    diag(g, g⁻¹) fixes ηJ and σ_x and dilates E₂₂ by g⁻² and E₁₁ by g². Returns a dict of booleans."""
+    K = Ext2(p, nu); zero, one = (0, 0), (1, 0); eta = (0, 1)
+    etaJ = herm(K, (0, 0, 1, 0)); sx = herm(K, (0, 1, 0, 0)); E11 = (one, zero, zero, zero); E22 = (zero, zero, zero, one)
+    G1 = (K.scalar(g), zero, zero, one)
+    scal = lambda s, X: tuple(K.mul(K.scalar(s), v) for v in X)
+    rays_ok = all(herm_class(K, congruence(K, G1, (K.mul(z, K.conj(z)), z, K.conj(z), one))) ==
+                  herm_class(K, (K.mul(K.mul(K.scalar(g), z), K.conj(K.mul(K.scalar(g), z))), K.mul(K.scalar(g), z), K.conj(K.mul(K.scalar(g), z)), one))
+                  for z in K.elements())
+    time_g = congruence(K, G1, etaJ) == scal(g, etaJ)
+    twice = congruence(K, G1, congruence(K, G1, etaJ)) == scal(g * g % p, etaJ)
+    D = (eta, zero, zero, K.inv(eta))
+    lift = xdet(K, D) == one and xdagger(K, D) == tuple(K.neg(v) for v in D) and congruence(K, D, etaJ) == tuple(K.neg(v) for v in etaJ)
+    E = (K.scalar(g), zero, zero, K.scalar(pow(g, -1, p)))
+    gi2 = pow(g, -2, p)
+    even = (xdet(K, E) == one and congruence(K, E, etaJ) == etaJ and congruence(K, E, sx) == sx and
+            congruence(K, E, E22) == scal(gi2, E22) and congruence(K, E, E11) == scal(g * g % p, E11))
+    return dict(rays=rays_ok, time_scaled_by_g=time_g, two_chronons_square=twice, g_nonsquare=not is_square(g, p), lift=lift, even_transport=even)
+
+
+def two_circuits(p, nu):
+    """17:D4 — N¹ = {diag(λ, λ̄) : N(λ) = 1} has order p + 1, contains −I, and its image on the register square has order
+    (p + 1)/2 (−I acts trivially: the spinor closes in two circuits); N¹ and the torus lift are conjugate in SL₂(K) through
+    P = [[η, −η], [1, 1]]: P diag(λ, λ̄) P⁻¹ is the matrix of multiplication by λ in the basis (1, η). Returns a dict."""
+    K = Ext2(p, nu); zero, one = (0, 0), (1, 0); eta = (0, 1)
+    N1 = [(l, zero, zero, K.conj(l)) for l in K.elements() if K.norm(l) == 1]
+    basis = [herm(K, e) for e in ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1))]
+    imgs = {tuple(congruence(K, A, X) for X in basis) for A in N1}
+    mI = (K.scalar(p - 1), zero, zero, K.scalar(p - 1))
+    P = (eta, K.neg(eta), one, one); Pi_den = K.inv(xdet(K, P)); a, b, c, d = P
+    Pi = (K.mul(d, Pi_den), K.mul(K.neg(b), Pi_den), K.mul(K.neg(c), Pi_den), K.mul(a, Pi_den))
+    conj_ok = True
+    for A in N1:
+        l = A[0]
+        M = xmul(K, xmul(K, P, A), Pi)                     # multiplication by λ = x + yη on (1, η): [[x, νy], [y, x]]
+        x, y = l
+        conj_ok &= M == (K.scalar(x), K.scalar(nu * y % p), K.scalar(y), K.scalar(x))
+    return dict(order=len(N1), order_formula=p + 1, contains_minus_I=mI in N1, image_order=len(imgs), half=(p + 1) // 2, conjugate_to_torus=conj_ok)
+
+
+def no_definite_space(p, nu):
+    """17:D5 — every three-dimensional subspace of the register square (the kernel of a nonzero linear form ℓ) contains a
+    nonzero null vector of Q_ν; by search over the p³ + p² + p + 1 forms. Returns (all hyperplanes isotropic, their number)."""
+    forms = [(a, b, c, d) for a in range(p) for b in range(p) for c in range(p) for d in range(p) if any((a, b, c, d)) and (a, b, c, d)[next(k for k, v in enumerate((a, b, c, d)) if v)] == 1]
+    nulls = [x for x in ((a, b, c, d) for a in range(p) for b in range(p) for c in range(p) for d in range(p)) if any(x) and lorentz_form(x, nu, p) == 0]
+    ok = all(any((l[0] * x[0] + l[1] * x[1] + l[2] * x[2] + l[3] * x[3]) % p == 0 for x in nulls) for l in forms)
+    return ok, len(forms)
+
+
+def horizon_half_step(p, nu):
+    """17:D6 — K^×/𝔽_p^× (cyclic of order p + 1) acts regularly on ℙ¹(𝔽_p) under [x : y] ↔ x + yη; η is its unique element of
+    order two, the horizon [1 : 0] ↔ 1 is reached from the origin [0 : 1] ↔ η by every generator first at the half step
+    (p + 1)/2 = 2κ + 1, which is odd; the unimodular torus (the even steps) never reaches it. Returns a dict."""
+    K = Ext2(p, nu); one, eta = (1, 0), (0, 1)
+    def cls(z):                                   # the class of z = x + yη in K^×/𝔽_p^× as the point [y : x] of ℙ¹(𝔽_p): 1 ↦ [0 : 1] the origin, η ↦ [1 : 0] the horizon
+        return normal((z[1], z[0]), p)
+    origin, horizon = cls(one), cls(eta)
+    pts = {cls(z) for z in K.elements() if z != (0, 0)}
+    regular = len(pts) == p + 1 and (origin, horizon) == ((0, 1), (1, 0))
+    order2 = [z for z in K.elements() if z != (0, 0) and cls(z) != origin and cls(K.mul(z, z)) == origin]
+    gens = [w for w in K.elements() if w != (0, 0) and len({cls(K.pow(w, k)) for k in range(p + 1)}) == p + 1]
+    half = (p + 1) // 2
+    first = {}
+    for w in gens:
+        k, z = 0, one
+        while cls(z) != horizon: z = K.mul(w, z); k += 1
+        first[w] = k
+    even_never = all(cls(K.pow(w, 2 * k)) != horizon for w in gens[:12] for k in range(p + 1))
+    return dict(regular=regular, order_two_classes={cls(z) for z in order2}, generators=len(gens), first_step=set(first.values()),
+                half=half, half_odd=half % 2 == 1, even_never=even_never)
+
+
+def similitude(p, nu, g):
+    """17:C6 — no inertia: with a² + b² = g (solvable: the sums of two squares cover 𝔽_p) and c² = −1 the map
+    (t, x, y, z) ↦ (c z, a x − b y, b x + a y, c g t) multiplies Q_g = −g t² + x² + y² + z² by g and so exchanges the two
+    non-null classes, which are equal in size (3:B7); ⟨1,1,1,g⟩ ≅ ⟨1,g,g,g⟩. Returns a dict."""
+    c = next(x for x in range(1, p) if x * x % p == p - 1)
+    a, b = next((a, b) for a in range(p) for b in range(p) if (a * a + b * b) % p == g % p)
+    Qg = lambda v: (-g * v[0] * v[0] + v[1] * v[1] + v[2] * v[2] + v[3] * v[3]) % p
+    S = lambda v: ((c * v[3]) % p, (a * v[1] - b * v[2]) % p, (b * v[1] + a * v[2]) % p, (c * g * v[0]) % p)
+    vecs = [(t, x, y, z) for t in range(p) for x in range(p) for y in range(p) for z in range(p)]
+    mult = all(Qg(S(v)) == g * Qg(v) % p for v in vecs)
+    sq = {v for v in vecs if Qg(v) and is_square(Qg(v), p)}; nsq = {v for v in vecs if Qg(v) and not is_square(Qg(v), p)}
+    exchange = {S(v) for v in sq} == nsq and {S(v) for v in nsq} == sq
+    inj = len({S(v) for v in vecs}) == len(vecs)
+    return dict(c=c, ab=(a, b), multiplies=mult, exchanges=exchange, equal_classes=len(sq) == len(nsq), bijective=inj)
+
+
+def elliptic_hyperbolic(p, nu):
+    """17:C5 — the frame quadric (M₂(𝔽_p), det) has (p + 1)² null lines and a totally isotropic plane (hyperbolic, Witt index
+    two); the register square has p² + 1 null lines and no totally isotropic plane (elliptic, Witt index one); and
+    ⟨1,1,1,1⟩ ≅ ⟨1,1,1,−1⟩ have the same null count (the sign pattern is not the invariant). Returns a dict."""
+    def null_lines(Q):
+        return [x for x in ((a, b, c, d) for a in range(p) for b in range(p) for c in range(p) for d in range(p)) if any(x) and Q(x) == 0 and x[next(k for k, v in enumerate(x) if v)] == 1]
+    def has_plane(Q, nulls):
+        B = lambda u, v: (Q(tuple((a + b) % p for a, b in zip(u, v))) - Q(u) - Q(v)) % p
+        return any(B(u, v) == 0 for i, u in enumerate(nulls) for v in nulls[i + 1:])
+    frame = lambda x: (x[0] * x[3] - x[1] * x[2]) % p
+    reg = lambda x: lorentz_form(x, nu, p)
+    s4 = lambda x: (x[0] ** 2 + x[1] ** 2 + x[2] ** 2 + x[3] ** 2) % p
+    s31 = lambda x: (x[0] ** 2 + x[1] ** 2 + x[2] ** 2 - x[3] ** 2) % p
+    nf, nr, n4, n31 = null_lines(frame), null_lines(reg), null_lines(s4), null_lines(s31)
+    return dict(frame_null=len(nf), frame_formula=(p + 1) ** 2, frame_plane=has_plane(frame, nf), register_null=len(nr),
+                register_formula=p * p + 1, register_plane=has_plane(reg, nr), s4_null=len(n4), s31_null=len(n31))

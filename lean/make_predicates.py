@@ -140,7 +140,7 @@ def compiles(lib, host, rows, stated, module):
     src = f"import {lib}.{host}\nset_option linter.unusedVariables false\nnamespace FRC.{module}.PredicateCheck\n" + "".join(
         f"theorem {n} : {t} := {term_of(names[n][2])}\n" for n, t in stated.items()) + f"end FRC.{module}.PredicateCheck\n"
     with tempfile.NamedTemporaryFile("w", suffix=".lean", dir=ROOT, delete=False) as f: f.write(src); path = Path(f.name)
-    try: res = subprocess.run(["lake", "env", "lean", str(path)], cwd=ROOT, capture_output=True, text=True)
+    try: res = subprocess.run(["lake", "env", "lean", "-DmaxErrors=100000", str(path)], cwd=ROOT, capture_output=True, text=True)   # every failing statement must be seen (Lean stops at 100 errors by default)
     finally: path.unlink()
     lines = src.split("\n"); bad = set()
     for m in re.finditer(r":(\d+):\d+: error", res.stdout + res.stderr):

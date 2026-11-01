@@ -1,5 +1,5 @@
 {
- "generated": "31 October 2026",
+ "generated": "1 November 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -127,6 +127,19 @@
    "restated": [],
    "witnessed": false,
    "page": "14-entropy/index.html"
+  },
+  {
+   "id": "17:P1",
+   "paper": "17-st",
+   "label": "P1",
+   "key": "p17026",
+   "tag": "T",
+   "predicate": "Exactly three spatial dimensions at every scale the Subject registers, read through the declared metric chart. Falsifier: a short-range departure from the inverse-square law of the extra-dimension form; holds to $52\\,\\mu$m [data].",
+   "source": "\\S\\ref{sec:discussion}; rests on A3, A20, B2, C9\\newline \\pywit{spacetime}{p17026}{P1}, \\leanwit{FrcCore}{p17026}{P1} \\lean{FRC.Shell.Frame.Fld.hopf\\_section, FRC.Lorentz.consecutive\\_orders}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "17-spacetime/index.html"
   },
   {
    "id": "21:P1",

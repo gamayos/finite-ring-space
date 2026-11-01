@@ -56,7 +56,7 @@ theorem even_add {a b : Nat} (h : (a + b) % 2 = 0) : a % 2 = 0 ↔ b % 2 = 0 := 
 
 /-! ## C1: the frame's web -/
 
-/-- **C1 (p00021), the frame's web.** On every frame, `π = 2κ` and `i = −g^κ`: `2π ≡ −1`, `g^π = −1`, `−π = 2⁻¹`,
+/-- 17:A4, 17:A17, **C1 (p00021), the frame's web.** On every frame, `π = 2κ` and `i = −g^κ`: `2π ≡ −1`, `g^π = −1`, `−π = 2⁻¹`,
 `i² = −1`; `0` and `1` are squares and the drive is not, the one nonsquare frame datum. -/
 theorem frame_web {κ : Nat} {g : Shell p} (F : Frame p κ g) :
     (ofNat (2 * Frame.halfPeriod κ) : Shell p) = -1 ∧ g ^ Frame.halfPeriod κ = -1 ∧
@@ -69,7 +69,7 @@ theorem frame_web {κ : Nat} {g : Shell p} (F : Frame p κ g) :
 
 /-! ## C3: the signature -/
 
-/-- **C3 (p00150), the Euclidean–Lorentzian dichotomy.** On every frame the temporal coefficient `ν = g` is a
+/-- 17:A6, **C3 (p00150), the Euclidean–Lorentzian dichotomy.** On every frame the temporal coefficient `ν = g` is a
 nonsquare; the norm form `x² − ν t²` has a zero with `t ≠ 0` iff `ν` is a square (split torus) and none otherwise
 (non-split); `ν = 2⁻¹ · (2g)`, and the classes of `2⁻¹` and `2g` are fixed by the parity of `κ`. -/
 theorem signature {κ : Nat} {g : Shell p} (F : Frame p κ g) :
@@ -110,14 +110,14 @@ theorem signature {κ : Nat} {g : Shell p} (F : Frame p κ g) :
 
 /-! ## C8: the square class is chronon parity -/
 
-/-- **C8 (p00028), the square class is chronon parity.** On every frame `g^m` is a square iff `m` is even: the
+/-- 17:A16, **C8 (p00028), the square class is chronon parity.** On every frame `g^m` is a square iff `m` is even: the
 registered (two-way) transport `g²` is even, the one-way multiplier `g` and its inverse odd. -/
 theorem square_class {κ : Nat} {g : Shell p} (F : Frame p κ g) :
     (∀ m : Nat, (∃ y : Shell p, y * y = g ^ m) ↔ m % 2 = 0) ∧ (¬ ∃ y : Shell p, y * y = g) ∧
     (∀ y : Shell p, g * y = 1 → ¬ ∃ r : Shell p, r * r = y) ∧ (∃ y : Shell p, y * y = g * g) :=
   ⟨F.parity_iff, F.drive_nonsquare, fun _ hy => F.inv_drive_nonsquare hy, ⟨g, rfl⟩⟩
 
-/-- The Carrier's class `[c²] = [2⁻¹]` (C3, C8): on a prime `p = 4S + 1`, the half `h` (`2h = 1`) is a square iff `S`
+/-- 17:A6, 17:A16, The Carrier's class `[c²] = [2⁻¹]` (C3, C8): on a prime `p = 4S + 1`, the half `h` (`2h = 1`) is a square iff `S`
 is even; the half is `2S + 1` (`Prime.half_square_iff`). -/
 theorem half_class (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
     ∀ h : Shell p, 2 * h = 1 → ((∃ c : Shell p, c * c = h) ↔ S % 2 = 0) := fun h h2 => by
@@ -532,7 +532,7 @@ theorem norm_ratio (hp : FRC.Nat.isPrime p) {u : Extension.Ext p ν} (hu : u.nor
 theorem nonsquare_ne_zero {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) : ν ≠ 0 :=
   fun e => hν ⟨0, by rw [e, mul_zero]⟩
 
-/-- **C25 (p00139), the horizon is the origin's antipode on the boost torus.** On a prime `p = 4κ + 1` with `ν` a
+/-- 17:A15, **C25 (p00139), the horizon is the origin's antipode on the boost torus.** On a prime `p = 4κ + 1` with `ν` a
 nonsquare and `𝔽_{p²} = 𝔽_p[w]/(w² − ν)`: a direction `[x : y] ≠ 0` has the boost `u = yν + xw` of nonzero norm, and
 `v = a + bw` moves it by `q ↦ (aq + νb)/(bq + a)`; the torsor map `u ↦ u/ū` lands on `C_{p+1}`, is constant on the
 classes `𝔽_p^× u` and equivariant, and is a bijection from the directions onto `C_{p+1}`; it sends the origin `[0 : 1]`
@@ -758,7 +758,7 @@ theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ +
     hsurj, h01, hm1, hord2, hrat, hinv, hwact,
     fun s hs => (Prime.mul_eq_zero hp hs).resolve_left h2, Prime.two_mul_chart_half hκ, hseam⟩
 
-/-- 00:C25, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
+/-- 17:A15, 00:C25, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
 has `ζ^{2κ+1} = −1`, the torus's one element of order two. -/
 theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν)
     (ζ : Extension.Ext p ν) (hn : ζ.norm = 1) (hζ : ζ ^ (p + 1) = 1)
@@ -772,7 +772,7 @@ theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ 
   | .inl e => exact absurd e (hmin _ (Nat.zero_lt_succ _) hlt)
   | .inr e => exact e
 
-/-- 00:C25 — `u_P` is the unique boost carrying the origin to `P`: a boost `v` with `v · dir(0, 1) = c · dir(x, y)` is
+/-- 17:A15, 00:C25 — `u_P` is the unique boost carrying the origin to `P`: a boost `v` with `v · dir(0, 1) = c · dir(x, y)` is
 `(c/ν) · dir(x, y)`, so it is `dir(x, y)` up to a scalar, which acts trivially on `ℙ¹` and leaves the ratio unchanged. -/
 theorem boost_unique (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (v : Extension.Ext p ν) (c x y : Shell p)
     (h : v * dir ν 0 1 = Extension.Ext.ofShell c * dir ν x y) :

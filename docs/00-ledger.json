@@ -1,5 +1,5 @@
 {
- "generated": "21 October 2026",
+ "generated": "1 November 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -1084,15 +1084,28 @@
    "name": "Time is scale-dilation",
    "block": "D",
    "key": "p00042",
-   "tag": "R",
+   "tag": "T",
    "sources": [
     "21-grav",
     "27-fld",
     "22-qm"
    ],
-   "witness": null,
-   "refs": [],
-   "statement": "Each Subject's clock is its own drive $x\\mapsto gx$. A composite is read through the reader's one drive, so its diagonal action and conserved offset are observer-derived, the offset group fixed by the arena's divisor structure; the Carrier has no clock. Falsifier: a registered duration that is not a drive count of the reader's frame, or a frame-independent Carrier tick."
+   "witness": "17:p17_spacetime.py",
+   "refs": [
+    {
+     "label": "A4",
+     "key": "p00197"
+    },
+    {
+     "label": "A6",
+     "key": "p00008"
+    },
+    {
+     "label": "C1",
+     "key": "p00021"
+    }
+   ],
+   "statement": "\\textbf{Time is the drive}: a Subject's clock is its drive $x\\mapsto gx$ and a chronon one drive step (C1); the timeless Carrier (A6), registered by parts (A4), has no clock. A registered duration is the chronon count, one-directional: the registrable depth $\\p^{2}$ lies below the cycle $\\Om-1$ (17:F4). A composite's conserved offset is observer-derived, its group fixed by the arena's divisors."
   },
   {
    "label": "D2",
