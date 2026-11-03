@@ -23,7 +23,7 @@ Blocks:  K  the frame's web                              EXACT  (00:C1)
          O  the quarter-turn is the odd member           EXACT  (00:C14)
          V  the spinor dichotomy                         EXACT  (00:C16)
          M  the mass–energy channel                      EXACT  (00:C20)
-         H  the horizon is the origin's antipode         EXACT  (00:C25)
+         H  the antipode [1:0] is −1 on the boost torus  EXACT  (00:C25)
 
 The notebook frc/ledgers/master/subject.ipynb runs one row per cell, the cell's id its key (gate G13).
 """
@@ -53,7 +53,7 @@ PROOFS = {
             "FRC.Shell.Frame.euler_identity"],      # 6:B2 (p06009), the Euler identity as a chart-class property (6-fourier's propagation list, row 5; 9 October 2026)
     "C16": ["FRC.Subject.spinor", "FRC.Subject.no_iso", "FRC.Subject.two_part"],
     "C20": ["FRC.Subject.channel", "FRC.Subject.channel_233"],
-    "C25": ["FRC.Subject.horizon_antipode", "FRC.Subject.horizon_generator", "FRC.Subject.boost_unique"],
+    "C25": ["FRC.Subject.torus_antipode", "FRC.Subject.antipode_generator", "FRC.Subject.boost_unique"],
 }
 
 LEAN_ONLY = ()                  # the rows with a Lean declaration and no python check (gate G12): none
@@ -76,7 +76,7 @@ LEDGER = {
 
 BLOCKS = {"K": "the frame's web", "I": "the Euclidean–Lorentzian dichotomy", "Q": "the square class is chronon parity",
           "O": "the quarter-turn is the odd member", "V": "the spinor dichotomy", "M": "the mass–energy channel",
-          "H": "the horizon is the origin's antipode"}
+          "H": "the antipode [1:0] is −1 on the boost torus"}
 
 # the deciding check of each row: the three Subjects (C16: the sweep, which decides the four-way equivalence); the rest
 # corroborate
@@ -333,11 +333,11 @@ def block_M():
 
 
 # ------------------------------------------------------------------------------------------------------------
-# block H: the horizon is the origin's antipode on the boost torus (00:C25)
+# block H: the antipode [1:0] is −1 on the boost torus (00:C25)
 # for w² = ν a nonsquare, the torsor map P ↦ u_P/ū_P from P¹(F_p) to C_{p+1} is an equivariant bijection, origin ↦ 1,
-# horizon ↦ −1; ±1 are the rational norm-one elements; w acts as q ↦ ν/q and swaps origin and horizon; the additive
-# antipode is no residue, the seam 2κ + 1 = 2⁻¹ = −2κ (Subject.lean, horizon_antipode).
-def _horizon(p, nu, boosts=None):
+# antipode ↦ −1; ±1 are the rational norm-one elements; w acts as q ↦ ν/q and swaps origin and antipode; the additive
+# antipode is no residue, the seam 2κ + 1 = 2⁻¹ = −2κ (Subject.lean, torus_antipode).
+def _antipode(p, nu, boosts=None):
     K = Ext(p, nu)
     P1 = projective_line(p)
     tors = {P: torsor(P, nu, p) for P in P1}
@@ -362,18 +362,18 @@ def _horizon(p, nu, boosts=None):
 
 @R.block("H", BLOCKS["H"])
 def block_H():
-    """Block H — the horizon is the origin's antipode (EXACT): H1–H3."""
+    """Block H — the antipode [1:0] is −1 on the boost torus (EXACT): H1–H3."""
     # 00:C25 (p00139)
     nus13 = [nu for nu in range(1, 13) if nu not in squares(13)]
-    ok = all(_horizon(13, nu) for nu in nus13)
+    ok = all(_antipode(13, nu) for nu in nus13)
     nu173 = [arith.nonresidue(173), frame(173)[1]]
     for nu in nu173:
         K = Ext(173, nu)
         sample = [z for z in K.elements() if K.norm(z) != 0][::97]
-        ok &= _horizon(173, nu, sample)
-    R.check("H1", "the torsor map P ↦ u_P/ū_P (u_P = ν y + x w) bijects P¹(F_p) onto the norm-one torus C_{p+1}, origin ↦ 1 and horizon ↦ −1, "
+        ok &= _antipode(173, nu, sample)
+    R.check("H1", "the torsor map P ↦ u_P/ū_P (u_P = ν y + x w) bijects P¹(F_p) onto the norm-one torus C_{p+1}, origin ↦ 1 and antipode ↦ −1, "
             "and is equivariant, tors(v·P) = (v/v̄)·tors(P); ±1 are the torus's rational elements and its only square roots of 1; w "
-            "acts as q ↦ ν/q and swaps origin and horizon; 2s = 0 forces s = 0 and 2κ + 1 = 2⁻¹ = −2κ. On p = 13 for every "
+            "acts as q ↦ ν/q and swaps origin and antipode; 2s = 0 forces s = 0 and 2κ + 1 = 2⁻¹ = −2κ. On p = 13 for every "
             "nonsquare ν and every boost; on p = 173 for ν the least nonsquare and ν = g, every 97th boost", ok,
             f"p=13: {len(nus13)} values of ν; p=173: ν ∈ {nu173}, {len(sample)} boosts")
     # H2 the Subject 1373, ν the least nonsquare: the bijection, the two points, the swap, 40 boosts
@@ -381,14 +381,14 @@ def block_H():
     K = Ext(p, nu)
     boosts = [(a, b) for a in range(0, p, 97) for b in range(1, p, 211) if K.norm((a, b)) != 0][:40]
     R.check("H2", f"the Subject p = 1373 with ν = {nu}: the torsor map is a bijection onto p + 1 norm-one elements with origin ↦ 1 and "
-            "horizon ↦ −1, equivariant under 40 boosts, w swaps origin and horizon", _horizon(p, nu, boosts), f"{len(boosts)} boosts")
+            "antipode ↦ −1, equivariant under 40 boosts, w swaps origin and antipode", _antipode(p, nu, boosts), f"{len(boosts)} boosts")
     # H3 every prime p = 4κ + 1 below SMALL, ν the least nonsquare: the full statement on every boost below 100, a sample above
     bad = []
     for p in _shells(5, SMALL):
         nu = arith.nonresidue(p)
         Kp = Ext(p, nu)
         vs = None if p < 100 else [z for z in Kp.elements() if Kp.norm(z) != 0][::max(1, p // 3)]
-        if not _horizon(p, nu, vs): bad.append(p)
+        if not _antipode(p, nu, vs): bad.append(p)
     R.check("H3", f"every prime p = 4κ + 1 below {SMALL} with ν the least nonsquare: the same clauses (every boost below 100, a sample "
             "of boosts above)", not bad, f"{len(_shells(5, SMALL))} shells; exceptions {bad[:5]}")
 

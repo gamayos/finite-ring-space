@@ -67,7 +67,7 @@ PROOFS = {
     "E12": ["FRC.Grav.chart_plane_overflows", "FRC.Grav.chart_space_overflows", "FRC.Grav.chart_line_fits",
             "FRC.Grav.chart_lab_instance"],      # the chart count beside the declared chart E11 (master T1 ill-posed, 15 October 2026)
     "C21": ["FRC.Drift.character_composition", "FRC.Drift.character_unique", "FRC.Drift.ppn_defect", "FRC.Drift.ppn_no_character",
-            "FRC.Subject.horizon_generator"],    # the dilation rigidity theorem: the character and its uniqueness, the PPN defect 4ab, the cover's horizon station (20 October 2026)
+            "FRC.Subject.antipode_generator"],   # the dilation rigidity theorem: the character and its uniqueness, the PPN defect 4ab, the cover's antipodal station (20 October 2026)
 }
 # The Mathlib theorems of E14's key (lean/FrcMathlib/Theme/Strong.lean): the eikonal pair of the exponential reading and the
 # shadow–ringdown bracket; the row's ℓ = 2 mode is the chart check M2 (master T5 ill-posed, 16 October 2026).
@@ -517,8 +517,8 @@ def block_M():
 # static clock comparison is the register character g^{−Δn}; characters compose exactly and a function with the composition
 # law is the character of its first value (Drift.lean character_composition, character_unique: zero coefficient freedom);
 # the PPN temporal form admits no register character — its transitivity defect is exactly 4ab (ppn_defect, ppn_no_character);
-# the spinor cover halves the angle at every tick and reaches the horizon station −1 at (p + 1)/2 base ticks
-# (Subject.lean horizon_generator) — the corpus script check_c21.py reproduced record for record.
+# the spinor cover halves the angle at every tick and reaches the antipodal station −1 at (p + 1)/2 base ticks
+# (Subject.lean antipode_generator) — the corpus script check_c21.py reproduced record for record.
 @R.block("R", BLOCKS["R"])
 def block_R():
     """Block R — the dilation rigidity theorem: R1 the character and the PPN form on the shells (EXACT), R2 the continuum chart (CHART), R3 the cover (EXACT)."""
@@ -544,7 +544,7 @@ def block_R():
     # R3 the two-face cover at all orders, exhaustive on C_{2(p+1)} ⊂ 𝔽_{p²} at p = 13 and 173
     cov = {q: D.spinor_cover(q, arith.nonresidue(q)) for q in (13, 173)}
     R.check("R3", "the cover halves the angle at every tick (C20): in 𝔽_{p²} a generator w of the spinor cover C_{2(p+1)} has w^{2n} = (w²)ⁿ at "
-            "every n < 2(p + 1), the cover's half w^{p+1} = −1, and the base generator w² reaches the horizon station −1 at exactly "
+            "every n < 2(p + 1), the cover's half w^{p+1} = −1, and the base generator w² reaches the antipodal station −1 at exactly "
             "(p + 1)/2 ticks (finitely many, not asymptotic; the base quarter (p + 1)/4 is no lattice point), exhaustively at p = 13 (28 ticks) "
             "and p = 173 (348 ticks)", all(all(v) for v in cov.values()), f"{cov}")
 

@@ -219,7 +219,7 @@ def block_B():
             N = chart[0]
             ok &= N != 0 and tuple(N * x % p for x in M) == PJ.mul(PJ.boost(nu, al, be, p), PJ.borel(*chart, p), p)
             ok &= direction == PJ.normal((al, be), p) and PJ.act(M, (1, 0), p) == (M[0], M[2]) and PJ.det(PJ.boost(nu, al, be, p), p) != 0
-    R.check("B3", "the triple's factorisation N M = boost(a, c) · borel(N, ab − νcd, det M) with N = a² − νc² ≠ 0, the boost carrying the horizon to the direction M·[1 : 0], on 40 random classes at p = 5 and p = 13", ok, "")
+    R.check("B3", "the triple's factorisation N M = boost(a, c) · borel(N, ab − νcd, det M) with N = a² − νc² ≠ 0, the boost taking the antipode to the direction M·[1 : 0], on 40 random classes at p = 5 and p = 13", ok, "")
     classes, equi = CV.quarter_classes(P, G)
     ok = equi and classes[1] == [2, 5, 6] and 5 in classes[1] and (P - 1) in classes[2] and all(len(v) == KAP for v in classes.values())
     ok &= 4 * 3 < P < 4 * 4

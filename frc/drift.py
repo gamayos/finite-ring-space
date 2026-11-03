@@ -47,7 +47,7 @@ standard library only (gate G09). The ledger file that uses it: frc/ledgers/p21_
     nesting_bound(p, Om)             (p − 1)²Ω < (Ω − p)² iff p² < Ω, with the exact difference (Ω − p²)(Ω − 1) (38:C13)
 
 The dilation rigidity theorem (00:C21; 20 October 2026; Theme/Drift.lean's character_composition, character_unique,
-ppn_defect, ppn_no_character; the cover through Theme/Subject.lean's horizon_generator):
+ppn_defect, ppn_no_character; the cover through Theme/Subject.lean's antipode_generator):
     quarter_channel(p, g)            gcd(p − 1, 2(p + 1)) = 4, i = g^{−κ}, i² = −1, N(i) = i^{p+1} = −1 with (p + 1)/2 odd
     ppn_no_character(p)              the pairs (c, u) with c = 1 − 2u and c² = 1 − 4u: (1, 0) alone, exhaustively
     ppn_defect(p, trials)            (1 − 2a)(1 − 2b) − (1 − 2(a + b)) = 4ab on 𝔽_p, exhaustive or sampled
@@ -860,8 +860,8 @@ def composition_series(N=6):
 def spinor_cover(p, nu):
     """The two-face cover at every order (00:C21 (d), 00:C20): in 𝔽_{p²} = 𝔽_p(√ν) a generator w of the subgroup of order
     2(p + 1) (the spinor cover C_{2(p+1)}) has base b = w² of order p + 1; the projection halves the angle at every tick,
-    w^{2n} = bⁿ for all n < 2(p + 1); the cover's half w^{p+1} = −1; the horizon station −1 is reached at exactly (p + 1)/2
-    base ticks, b^{(p+1)/2} = −1 (Theme/Subject.lean, horizon_generator); the base quarter (p + 1)/4 is no lattice point.
+    w^{2n} = bⁿ for all n < 2(p + 1); the cover's half w^{p+1} = −1; the antipodal station −1 is reached at exactly (p + 1)/2
+    base ticks, b^{(p+1)/2} = −1 (Theme/Subject.lean, antipode_generator); the base quarter (p + 1)/4 is no lattice point.
     Returns (every tick halves, w^{p+1} = −1, the station, (p + 1) ≡ 2 (mod 4))."""
     K = Ext(p, nu)
     n2 = 2 * (p + 1); e = (p * p - 1) // n2

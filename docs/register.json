@@ -2760,7 +2760,7 @@
   {
    "key": "p00139",
    "origin": "00",
-   "statement": "For $w^2=\\nu$ a nonsquare, the torsor map $\\mathbb{P}^1(\\F_\\p)\\to C_{\\p +1}$, $P\\mapsto u_P/\\bar u_P$ with $u_P$ the unique boost carrying $0$ to $P$, is equivariant and sends the origin to $1$ and the horizon $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$. Origin and horizon are the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is the seam $\\p/2$ (1:Z1, 1:Z2).",
+   "statement": "For $w^2=\\nu$ a nonsquare, the torsor map $\\mathbb{P}^1(\\F_\\p)\\to C_{\\p +1}$, $P\\mapsto u_P/\\bar u_P$ with $u_P$ the unique boost taking $0$ to $P$, is equivariant and sends the origin to $1$ and the antipode $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$. Origin and antipode are the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is the seam $\\p/2$ (1:Z1, 1:Z2).",
    "origin_row": "00:C25",
    "tag": "T",
    "tier": 0,
@@ -2779,12 +2779,12 @@
     {
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Subject",
-     "name": "FRC.Subject.horizon_antipode"
+     "name": "FRC.Subject.torus_antipode"
     },
     {
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Subject",
-     "name": "FRC.Subject.horizon_generator"
+     "name": "FRC.Subject.antipode_generator"
     },
     {
      "lib": "FrcCore",
@@ -3047,7 +3047,7 @@
   {
    "key": "p00140",
    "origin": "00",
-   "statement": "The Subject registers its past cone, one chronon per decoherence step (D1, D3), through the cone chart (C19, C22); the horizon is the origin's antipode (C25). Falsifier: a registration on the direct branch whose value is not the Object's drive state at $\\chron -k$ for its decoherence count $k$, read modulo $\\p -1$, or a registration off the past cone.",
+   "statement": "The Subject registers its past cone, one chronon per decoherence step (D1, D3), through the cone chart (C19, C22), fixing the antipode $[1{:}0]$, $-1$ on the torus (C25). Falsifier: a registration on the direct branch whose value is not the Object's drive state at $\\chron -k$ for its decoherence count $k$, read modulo $\\p -1$, or a registration off the past cone.",
    "origin_row": "00:D13",
    "tag": "R",
    "tier": null,
@@ -5372,7 +5372,7 @@
   {
    "key": "p01021",
    "origin": "01",
-   "statement": "The antipode named $\\infty$: the horizon of the observer at $0$ (00:C25, 00:D13), the compactification point of the framed line [chart]; its reading as classical infinity is the chart, not a residue.",
+   "statement": "The antipode, charted $\\infty$: the compactification point of the framed line beyond the observer's horizon (00:C25, 00:D13); its reading as classical infinity is the chart, not a residue.",
    "origin_row": "1:Z2",
    "tag": "D",
    "tier": null,
@@ -21542,7 +21542,7 @@
     {
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Subject",
-     "name": "FRC.Subject.horizon_generator"
+     "name": "FRC.Subject.antipode_generator"
     },
     {
      "lib": "FrcCore",
@@ -34419,8 +34419,8 @@
    "label": "C25",
    "block": "C",
    "tag": "T",
-   "name": "The horizon is the origin's antipode on the boost torus",
-   "statement": "For $w^2=\\nu$ a nonsquare, the torsor map $\\mathbb{P}^1(\\F_\\p)\\to C_{\\p +1}$, $P\\mapsto u_P/\\bar u_P$ with $u_P$ the unique boost carrying $0$ to $P$, is equivariant and sends the origin to $1$ and the horizon $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$. Origin and horizon are the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is the seam $\\p/2$ (1:Z1, 1:Z2).",
+   "name": "The antipode [1:0] is −1 on the boost torus",
+   "statement": "For $w^2=\\nu$ a nonsquare, the torsor map $\\mathbb{P}^1(\\F_\\p)\\to C_{\\p +1}$, $P\\mapsto u_P/\\bar u_P$ with $u_P$ the unique boost taking $0$ to $P$, is equivariant and sends the origin to $1$ and the antipode $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$. Origin and antipode are the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is the seam $\\p/2$ (1:Z1, 1:Z2).",
    "source": "38-s13, 1-alg",
    "page": "ledger.html#C25",
    "witness": {
@@ -34451,7 +34451,7 @@
     "38-s13",
     "1-alg"
    ],
-   "text": "The horizon is the origin's antipode on the boost torus: For $w^2=\\nu$ a nonsquare, the torsor map $\\mathbb{P}^1(\\F_\\p)\\to C_{\\p +1}$, $P\\mapsto u_P/\\bar u_P$ with $u_P$ the unique boost carrying $0$ to $P$, is equivariant and sends the origin to $1$ and the horizon $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$. Origin and horizon are the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is the seam $\\p/2$ (1:Z1, 1:Z2). 38-s13, 1-alg 38:p38_s13.py"
+   "text": "The antipode [1:0] is −1 on the boost torus: For $w^2=\\nu$ a nonsquare, the torsor map $\\mathbb{P}^1(\\F_\\p)\\to C_{\\p +1}$, $P\\mapsto u_P/\\bar u_P$ with $u_P$ the unique boost taking $0$ to $P$, is equivariant and sends the origin to $1$ and the antipode $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$. Origin and antipode are the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is the seam $\\p/2$ (1:Z1, 1:Z2). 38-s13, 1-alg 38:p38_s13.py"
   },
   {
    "paper": "00",
@@ -34786,7 +34786,7 @@
    "block": "D",
    "tag": "R",
    "name": "Observation is the Hopf section",
-   "statement": "The Subject registers its past cone, one chronon per decoherence step (D1, D3), through the cone chart (C19, C22); the horizon is the origin's antipode (C25). Falsifier: a registration on the direct branch whose value is not the Object's drive state at $\\chron -k$ for its decoherence count $k$, read modulo $\\p -1$, or a registration off the past cone.",
+   "statement": "The Subject registers its past cone, one chronon per decoherence step (D1, D3), through the cone chart (C19, C22), fixing the antipode $[1{:}0]$, $-1$ on the torus (C25). Falsifier: a registration on the direct branch whose value is not the Object's drive state at $\\chron -k$ for its decoherence count $k$, read modulo $\\p -1$, or a registration off the past cone.",
    "source": "38-s13, 1-alg",
    "page": "ledger.html#D13",
    "witness": {
@@ -34805,7 +34805,7 @@
     "38-s13",
     "1-alg"
    ],
-   "text": "Observation is the Hopf section: The Subject registers its past cone, one chronon per decoherence step (D1, D3), through the cone chart (C19, C22); the horizon is the origin's antipode (C25). Falsifier: a registration on the direct branch whose value is not the Object's drive state at $\\chron -k$ for its decoherence count $k$, read modulo $\\p -1$, or a registration off the past cone. 38-s13, 1-alg 38:p38_s13.py"
+   "text": "Observation is the Hopf section: The Subject registers its past cone, one chronon per decoherence step (D1, D3), through the cone chart (C19, C22), fixing the antipode $[1{:}0]$, $-1$ on the torus (C25). Falsifier: a registration on the direct branch whose value is not the Object's drive state at $\\chron -k$ for its decoherence count $k$, read modulo $\\p -1$, or a registration off the past cone. 38-s13, 1-alg 38:p38_s13.py"
   },
   {
    "paper": "00",
@@ -38204,7 +38204,7 @@
    "block": "Z",
    "tag": "D",
    "name": null,
-   "statement": "The antipode named $\\infty$: the horizon of the observer at $0$ (00:C25, 00:D13), the compactification point of the framed line [chart]; its reading as classical infinity is the chart, not a residue.",
+   "statement": "The antipode, charted $\\infty$: the compactification point of the framed line beyond the observer's horizon (00:C25, 00:D13); its reading as classical infinity is the chart, not a residue.",
    "source": "Section~\\ref{sec:infinity}; 00:C25, 00:D13",
    "page": "1-algebra/index.html#Z2",
    "witness": {
@@ -38215,7 +38215,7 @@
     "p00139",
     "p00140"
    ],
-   "text": "The antipode named $\\infty$: the horizon of the observer at $0$ (00:C25, 00:D13), the compactification point of the framed line [chart]; its reading as classical infinity is the chart, not a residue. Section sec:infinity; 00:C25, 00:D13"
+   "text": "The antipode, charted $\\infty$: the compactification point of the framed line beyond the observer's horizon (00:C25, 00:D13); its reading as classical infinity is the chart, not a residue. Section sec:infinity; 00:C25, 00:D13"
   },
   {
    "paper": "1-alg",
@@ -44879,7 +44879,7 @@
    "tag": "T",
    "name": null,
    "statement": "Origin and antipode: the origin $[0:1]$ and the antipode $[1:0]$ of the frame's line; the antipode is no residue, the antipodal point $\\p/2$ of the additive cycle between $2\\kap$ and $2\\kap+1$.",
-   "source": "Prop.~\\ref{prop:frame}(iv); \\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#C25}{00:C25}\\newline \\pywit{spacetime}{p00139}{A15}, \\leanwit{FrcCore}{p00139}{A15} \\lean{FRC.Subject.horizon\\_antipode, FRC.Subject.horizon\\_generator, FRC.Subject.boost\\_unique}",
+   "source": "Prop.~\\ref{prop:frame}(iv); \\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#C25}{00:C25}\\newline \\pywit{spacetime}{p00139}{A15}, \\leanwit{FrcCore}{p00139}{A15} \\lean{FRC.Subject.torus\\_antipode, FRC.Subject.antipode\\_generator, FRC.Subject.boost\\_unique}",
    "page": "7-spacetime/index.html#A15",
    "witness": {
     "py": {
@@ -44892,18 +44892,18 @@
      {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/Subject",
-      "name": "FRC.Subject.horizon_antipode",
+      "name": "FRC.Subject.torus_antipode",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Theme.html#FRC.Subject.horizon_antipode"
+      "page": "lean/core/Theme.html#FRC.Subject.torus_antipode"
      },
      {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/Subject",
-      "name": "FRC.Subject.horizon_generator",
+      "name": "FRC.Subject.antipode_generator",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Theme.html#FRC.Subject.horizon_generator"
+      "page": "lean/core/Theme.html#FRC.Subject.antipode_generator"
      },
      {
       "lib": "FrcCore",
@@ -44918,7 +44918,7 @@
    "refs": [
     "p00139"
    ],
-   "text": "Origin and antipode: the origin $[0:1]$ and the antipode $[1:0]$ of the frame's line; the antipode is no residue, the antipodal point $\\p/2$ of the additive cycle between $2\\kap$ and $2\\kap+1$. Prop. prop:frame(iv); [akhtman2025algebra]; 00:C25 p00139, FrcCore{A15} FRC.Subject.horizon_antipode, FRC.Subject.horizon_generator, FRC.Subject.boost_unique"
+   "text": "Origin and antipode: the origin $[0:1]$ and the antipode $[1:0]$ of the frame's line; the antipode is no residue, the antipodal point $\\p/2$ of the additive cycle between $2\\kap$ and $2\\kap+1$. Prop. prop:frame(iv); [akhtman2025algebra]; 00:C25 p00139, FrcCore{A15} FRC.Subject.torus_antipode, FRC.Subject.antipode_generator, FRC.Subject.boost_unique"
   },
   {
    "paper": "7-st",
@@ -62193,7 +62193,7 @@
    "tag": "T",
    "name": null,
    "statement": "No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched.",
-   "source": "Rem.~\\ref{rem:doublecover}; rests on A2, B2\\newline \\pywit{quantum}{p22055}{P4}, \\leanwit{FrcCore}{p22055}{P4} \\lean{FRC.Subject.channel, FRC.Subject.horizon\\_generator, FRC.Observation.torus\\_conj\\_inv}",
+   "source": "Rem.~\\ref{rem:doublecover}; rests on A2, B2\\newline \\pywit{quantum}{p22055}{P4}, \\leanwit{FrcCore}{p22055}{P4} \\lean{FRC.Subject.channel, FRC.Subject.antipode\\_generator, FRC.Observation.torus\\_conj\\_inv}",
    "page": "22-quantum/index.html#P4",
    "witness": {
     "py": {
@@ -62214,10 +62214,10 @@
      {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/Subject",
-      "name": "FRC.Subject.horizon_generator",
+      "name": "FRC.Subject.antipode_generator",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Theme.html#FRC.Subject.horizon_generator"
+      "page": "lean/core/Theme.html#FRC.Subject.antipode_generator"
      },
      {
       "lib": "FrcCore",
@@ -62234,7 +62234,7 @@
     "p22002",
     "p22010"
    ],
-   "text": "No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched. Rem. rem:doublecover; rests on A2, B2 p22055, FrcCore{P4} FRC.Subject.channel, FRC.Subject.horizon_generator, FRC.Observation.torus_conj_inv"
+   "text": "No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched. Rem. rem:doublecover; rests on A2, B2 p22055, FrcCore{P4} FRC.Subject.channel, FRC.Subject.antipode_generator, FRC.Observation.torus_conj_inv"
   },
   {
    "paper": "22-qm",

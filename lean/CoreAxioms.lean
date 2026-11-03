@@ -1669,8 +1669,8 @@ import FrcBridge.Subject
 #print axioms FRC.Subject.ratio_scale
 #print axioms FRC.Subject.norm_ratio
 #print axioms FRC.Subject.nonsquare_ne_zero
-#print axioms FRC.Subject.horizon_antipode
-#print axioms FRC.Subject.horizon_generator
+#print axioms FRC.Subject.torus_antipode
+#print axioms FRC.Subject.antipode_generator
 #print axioms FRC.Subject.boost_unique
 #print axioms FRC.Pair.tower_solvable
 #print axioms FRC.Pair.window

@@ -2511,7 +2511,7 @@ theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
 /-! ## 38:A9, 38:X4, 38:B6: the frame triple and the split fibration (12 October 2026)
 
 The adjugate `adj M = [[d, −b], [−c, a]]` with `M · adj M = adj M · M = det M · I`; the frame triple
-`G ≅ ℙ¹ × B`: every invertible `M` factors as (boost carrying the horizon to its direction `M·[1 : 0]`) × (cone chart),
+`G ≅ ℙ¹ × B`: every invertible `M` factors as (boost taking the antipode to its direction `M·[1 : 0]`) × (cone chart),
 uniquely up to scalars (`frame_triple`); the split fibration by the unit `i = diag(r, −r)`, `r = g^κ`, `r² = −1`: the
 centraliser of `i` is the diagonal torus inside the Borel, `i` is not scalar, the circle `x² + y² = 1` is the torus's
 norm-one part, the conjugates of `i` fill the trace-zero quadric `a² + bc = −1` and every point of it is reached, and
@@ -2559,7 +2559,7 @@ end M2
 /-- 38:A9, 38:X4 — **the frame triple** (Theorem *The two fibrations and the frame triple*, the master's C22). On a
 frame with `ν` a nonsquare: (1) an invertible `M` has a nonzero first column, its direction `M·[1 : 0] = [a : c]` is the
 boost `[[a, νc], [c, a]]`'s direction, that boost has nonzero norm `N = a² − νc²`, and `N·M = boost(a, c) · borel(N, ab − νcd, det M)`:
-every frame is (boost carrying the horizon to its direction) × (cone chart); (2) the cone charts fix the horizon;
+every frame is (boost taking the antipode to its direction) × (cone chart); (2) the cone charts fix the antipode;
 (3) the factorisation is unique up to scalars — two factorisations of proportional frames have the same boost class and
 the same chart class. With `hopf_counts` (`p + 1` boost classes, `p(p − 1)` charts) the frames number
 `(p + 1)·p·(p − 1)`: one direction, one shell cell, one drive phase. -/
@@ -5650,9 +5650,9 @@ shell without a generator (`Theme/Field.lean`, `Theme/Quadratic.lean`):
 * **C16** the spinor dichotomy: `κ` odd iff `v₂(p − 1) = 2` iff the fold `(r, s) ↦ iʳ g^{4s}` is a bijection
   `C₄ × C_κ → 𝔽_p^×` iff `3κr + 4s ≡ 1 (mod 4κ)` is solvable; the shared 2-part and the cover degree (`spinor`);
 * **C20** the mass–energy channel: `C_{p−1}` meets `C_{p+1}` in `±1` and `C_{2(p+1)}` in `Q₄`, `N(i) = −1` (`channel`);
-* **C25** the horizon is the origin's antipode on the boost torus: the torsor map `P¹ → C_{p+1}`, `P ↦ u_P/ū_P`, is an
-  equivariant bijection sending the origin to `1` and the horizon to `−1`, exchanged by the torus's one involution
-  `q ↦ ν/q`; the additive antipode is no residue (`horizon_antipode`). No axioms.
+* **C25** the antipode `[1 : 0]` is `−1` on the boost torus: the torsor map `P¹ → C_{p+1}`, `P ↦ u_P/ū_P`, is an
+  equivariant bijection sending the origin to `1` and the antipode to `−1`, exchanged by the torus's one involution
+  `q ↦ ν/q`; the additive antipode is no residue (`torus_antipode`). No axioms.
 -/
 
 namespace FRC.Subject
@@ -6129,7 +6129,7 @@ theorem two_part :
     have hb : b = 3 := Nat.le_antisymm (pow_dvd_odd hodd ⟨w, e'.symm⟩) (pow_dvd_odd hw ⟨2 * t + 1, e'⟩)
     rw [hb]
 
-/-! ## C25: the horizon is the origin's antipode on the boost torus -/
+/-! ## C25: the antipode `[1 : 0]` is `−1` on the boost torus -/
 
 section torus
 variable {ν : Shell p}
@@ -6163,14 +6163,14 @@ theorem norm_ratio (hp : FRC.Nat.isPrime p) {u : Extension.Ext p ν} (hu : u.nor
 theorem nonsquare_ne_zero {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) : ν ≠ 0 :=
   fun e => hν ⟨0, by rw [e, mul_zero]⟩
 
-/-- 7:A15, **C25 (p00139), the horizon is the origin's antipode on the boost torus.** On a prime `p = 4κ + 1` with `ν` a
+/-- 7:A15, **C25 (p00139), the antipode `[1 : 0]` is `−1` on the boost torus.** On a prime `p = 4κ + 1` with `ν` a
 nonsquare and `𝔽_{p²} = 𝔽_p[w]/(w² − ν)`: a direction `[x : y] ≠ 0` has the boost `u = yν + xw` of nonzero norm, and
 `v = a + bw` moves it by `q ↦ (aq + νb)/(bq + a)`; the torsor map `u ↦ u/ū` lands on `C_{p+1}`, is constant on the
 classes `𝔽_p^× u` and equivariant, and is a bijection from the directions onto `C_{p+1}`; it sends the origin `[0 : 1]`
-to `1` and the horizon `[1 : 0]` to `−1`, the one element of order two, and `𝔽_p^× ∩ C_{p+1} = {±1}`; the one boost
-of order two is the class of `w`, `q ↦ ν/q`, which swaps the origin and the horizon; and `2s = 0` forces `s = 0`, the
+to `1` and the antipode `[1 : 0]` to `−1`, the one element of order two, and `𝔽_p^× ∩ C_{p+1} = {±1}`; the one boost
+of order two is the class of `w`, `q ↦ ν/q`, which swaps the origin and the antipode; and `2s = 0` forces `s = 0`, the
 seam `2κ + (2κ + 1) = 0`: `2⁻¹ = 2κ + 1 = −2κ`. -/
-theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν) :
+theorem torus_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ x y : Shell p, (x ≠ 0 ∨ y ≠ 0) → (dir ν x y).norm ≠ 0) ∧
     (∀ (v : Extension.Ext p ν) (x y : Shell p), v * dir ν x y = dir ν (v.re * x + ν * (v.im * y)) (v.re * y + v.im * x)) ∧
     (∀ u : Extension.Ext p ν, u.norm ≠ 0 → (ratio u).norm = 1) ∧
@@ -6217,7 +6217,7 @@ theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ +
       (Shell.Frame.RE.sound (Shell.Frame.look [ν, v.re, v.im, x, y])
         (.add (.mul (.var 1) (.var 3)) (.mul (.var 2) (.mul (.var 0) (.var 4))))
         (.add (.mul (.var 1) (.var 3)) (.mul (.var 0) (.mul (.var 2) (.var 4)))) (by decide +kernel))
-  -- the horizon's boost is `w`, of norm `−ν`
+  -- the antipode's boost is `w`, of norm `−ν`
   have hw : dir ν 1 0 = Extension.Ext.w := Extension.Ext.ext (mul_zero ν) rfl
   have hm1 : ratio (dir ν 1 0) = -1 := by
     rw [hw, ratio, Extension.Ext.w_sq, Extension.Ext.ofShell_mul]
@@ -6389,9 +6389,9 @@ theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ +
     hsurj, h01, hm1, hord2, hrat, hinv, hwact,
     fun s hs => (Prime.mul_eq_zero hp hs).resolve_left h2, Prime.two_mul_chart_half hκ, hseam⟩
 
-/-- 7:A15, 00:C25, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
+/-- 7:A15, 00:C25, 22:P4 — the antipode is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
 has `ζ^{2κ+1} = −1`, the torus's one element of order two. -/
-theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν)
+theorem antipode_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν)
     (ζ : Extension.Ext p ν) (hn : ζ.norm = 1) (hζ : ζ ^ (p + 1) = 1)
     (hmin : ∀ l, 0 < l → l < p + 1 → ζ ^ l ≠ 1) : ζ ^ (2 * κ + 1) = -1 := by
   have hh : (2 * κ + 1) + (2 * κ + 1) = p + 1 := by
@@ -6399,7 +6399,7 @@ theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ 
   have hsq : ζ ^ (2 * κ + 1) * ζ ^ (2 * κ + 1) = 1 := by rw [← Extension.Ext.pow_add, hh, hζ]
   have hnorm : (ζ ^ (2 * κ + 1)).norm = 1 := by rw [Extension.Ext.norm_pow, hn, one_pow]
   have hlt : 2 * κ + 1 < p + 1 := by rw [← hh]; exact Nat.lt_add_of_pos_right (Nat.zero_lt_succ _)
-  match (horizon_antipode hp hκ hν).2.2.2.2.2.2.2.2.2.1 _ hnorm hsq with
+  match (torus_antipode hp hκ hν).2.2.2.2.2.2.2.2.2.1 _ hnorm hsq with
   | .inl e => exact absurd e (hmin _ (Nat.zero_lt_succ _) hlt)
   | .inr e => exact e
 
@@ -7193,9 +7193,9 @@ theorem p00040 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {h : FRC.
 /-- p00042 — 7:A17, 00:D1. Time is the drive: each Subject's clock is its own drive $x\mapsto\gen x$. A chronon is one drive step; a registered duration is the count of chronons, the Subject's chart count, injective on every registrable depth; the Carrier has no clock. -/
 theorem p00042 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) ∧ g ^ FRC.Shell.Frame.halfPeriod κ = (-1 : FRC.Shell p) ∧ -FRC.Shell.ofNat (FRC.Shell.Frame.halfPeriod κ) * (2 : FRC.Shell p) = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) ∧ (∃ y, y * y = (0 : FRC.Shell p)) ∧ (∃ y, y * y = (1 : FRC.Shell p)) ∧ ¬∃ y, y * y = g) ∧ (∀ (Om n : Nat), n < Om - (1 : Nat) → n % (Om - (1 : Nat)) = n) ∧ (∀ (p S n : Nat), p % (2 : Nat) = (1 : Nat) → p * p < (4 : Nat) * S + (1 : Nat) → n ≤ p * p → n < (4 : Nat) * S + (1 : Nat) - (1 : Nat)) ∧ (13 : Nat) * (13 : Nat) < (232 : Nat) ∧ (173 : Nat) * (173 : Nat) < (30088 : Nat) ∧ (1549 : Nat) * (1549 : Nat) < (2408560 : Nat) ∧ (13 : Nat) * (13 : Nat) < (180 : Nat) ∧ (13 : Nat) * (13 : Nat) < (696 : Nat) ∧ (173 : Nat) * (173 : Nat) < (1293784 : Nat) ∧ (1549 : Nat) * (1549 : Nat) < (932112720 : Nat) ∧ (13 : Nat) * (13 : Nat) < (180 : Nat) :=
   And.intro @FRC.Subject.frame_web (And.intro @FRC.Lorentz.drift_one_directional (And.intro @FRC.Lorentz.nesting_depth (@FRC.Lorentz.drift_instance_pairs)))
-/-- p00139 — 7:A15, 00:C25. For $w^2=\nu$ a nonsquare, the torsor map $\mathbb{P}^1(\F_\p)\to C_{\p +1}$, $P\mapsto u_P/\bar u_P$ with $u_P$ the unique boost carrying $0$ to $P$, is equivariant and sends the origin to $1$ and the horizon $[1{:}0]$ to $-1=\zeta^{(\p +1)/2}$. Origin and horizon are the sign pair $C_{\p -1}\cap C_{\p +1}$ (C20), exchanged by the torus's unique involution $q\mapsto\nu/q$. On the additive cycle the antipode is the seam $\p/2$ (1:Z1, 1:Z2). -/
+/-- p00139 — 7:A15, 00:C25. For $w^2=\nu$ a nonsquare, the torsor map $\mathbb{P}^1(\F_\p)\to C_{\p +1}$, $P\mapsto u_P/\bar u_P$ with $u_P$ the unique boost taking $0$ to $P$, is equivariant and sends the origin to $1$ and the antipode $[1{:}0]$ to $-1=\zeta^{(\p +1)/2}$. Origin and antipode are the sign pair $C_{\p -1}\cap C_{\p +1}$ (C20), exchanged by the torus's unique involution $q\mapsto\nu/q$. On the additive cycle the antipode is the seam $\p/2$ (1:Z1, 1:Z2). -/
 theorem p00139 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → ∀ {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → (¬∃ y, y * y = ν) → (∀ (x y : FRC.Shell p), x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p) → (FRC.Subject.dir ν x y).norm ≠ (0 : FRC.Shell p)) ∧ (∀ (v : FRC.Extension.Ext p ν) (x y : FRC.Shell p), v * FRC.Subject.dir ν x y = FRC.Subject.dir ν (v.re * x + ν * (v.im * y)) (v.re * y + v.im * x)) ∧ (∀ (u : FRC.Extension.Ext p ν), u.norm ≠ (0 : FRC.Shell p) → (FRC.Subject.ratio u).norm = (1 : FRC.Shell p)) ∧ (∀ (c : FRC.Shell p) (u : FRC.Extension.Ext p ν), c ≠ (0 : FRC.Shell p) → FRC.Subject.ratio (FRC.Extension.Ext.ofShell c * u) = FRC.Subject.ratio u) ∧ (∀ (u v : FRC.Extension.Ext p ν), FRC.Subject.ratio (v * u) = FRC.Subject.ratio v * FRC.Subject.ratio u) ∧ (∀ (x y x' y' : FRC.Shell p), x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p) → x' ≠ (0 : FRC.Shell p) ∨ y' ≠ (0 : FRC.Shell p) → (FRC.Subject.ratio (FRC.Subject.dir ν x y) = FRC.Subject.ratio (FRC.Subject.dir ν x' y') ↔ x * y' = x' * y)) ∧ (∀ (z : FRC.Extension.Ext p ν), z.norm = (1 : FRC.Shell p) → ∃ x y, (x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p)) ∧ FRC.Subject.ratio (FRC.Subject.dir ν x y) = z) ∧ FRC.Subject.ratio (FRC.Subject.dir ν (0 : FRC.Shell p) (1 : FRC.Shell p)) = (1 : FRC.Extension.Ext p ν) ∧ FRC.Subject.ratio (FRC.Subject.dir ν (1 : FRC.Shell p) (0 : FRC.Shell p)) = (-1 : FRC.Extension.Ext p ν) ∧ (∀ (z : FRC.Extension.Ext p ν), z.norm = (1 : FRC.Shell p) → z * z = (1 : FRC.Extension.Ext p ν) → z = (1 : FRC.Extension.Ext p ν) ∨ z = (-1 : FRC.Extension.Ext p ν)) ∧ (∀ (z : FRC.Extension.Ext p ν), z.im = (0 : FRC.Shell p) → (z.norm = (1 : FRC.Shell p) ↔ z = (1 : FRC.Extension.Ext p ν) ∨ z = (-1 : FRC.Extension.Ext p ν))) ∧ (∀ (v : FRC.Extension.Ext p ν), (v * v).im = (0 : FRC.Shell p) → v.im ≠ (0 : FRC.Shell p) → v.re = (0 : FRC.Shell p)) ∧ (∀ (x y : FRC.Shell p), FRC.Extension.Ext.w * FRC.Subject.dir ν x y = FRC.Subject.dir ν (ν * y) x) ∧ (∀ (s : FRC.Shell p), (2 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p)) ∧ (2 : FRC.Shell p) * FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.ofNat ((2 : Nat) * κ) + FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → ∀ {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → (¬∃ y, y * y = ν) → ∀ (ζ : FRC.Extension.Ext p ν), ζ.norm = (1 : FRC.Shell p) → ζ ^ (p + (1 : Nat)) = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), (0 : Nat) < l → l < p + (1 : Nat) → ζ ^ l ≠ (1 : FRC.Extension.Ext p ν)) → ζ ^ ((2 : Nat) * κ + (1 : Nat)) = (-1 : FRC.Extension.Ext p ν)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → ∀ (v : FRC.Extension.Ext p ν) (c x y : FRC.Shell p), v * FRC.Subject.dir ν (0 : FRC.Shell p) (1 : FRC.Shell p) = FRC.Extension.Ext.ofShell c * FRC.Subject.dir ν x y → v = FRC.Extension.Ext.ofShell (c * FRC.Subject.inv ν) * FRC.Subject.dir ν x y :=
-  And.intro @FRC.Subject.horizon_antipode (And.intro @FRC.Subject.horizon_generator (@FRC.Subject.boost_unique))
+  And.intro @FRC.Subject.torus_antipode (And.intro @FRC.Subject.antipode_generator (@FRC.Subject.boost_unique))
 /-- p00150 — 7:A6, 00:C3. The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\nu=\gen$ (C1); in $\F_\p$, $\nu=2^{-1}\cdot(2\gen)$, both classes fixed by the parity of $\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8, D7), and $\eta_{00}=-c^2$ is a chart artifact. -/
 theorem p00150 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (¬∃ y, y * y = g) ∧ (∀ (ν : FRC.Shell p), (∃ t x, t ≠ (0 : FRC.Shell p) ∧ x * x = ν * (t * t)) ↔ ∃ w, w * w = ν) ∧ ∀ (h : FRC.Shell p), (2 : FRC.Shell p) * h = (1 : FRC.Shell p) → h * ((2 : FRC.Shell p) * g) = g ∧ ((∃ r, r * r = h) ↔ κ % (2 : Nat) = (0 : Nat)) ∧ ((∃ r, r * r = (2 : FRC.Shell p) * g) ↔ κ % (2 : Nat) = (1 : Nat))) ∧ ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {S : Nat}, p = (4 : Nat) * S + (1 : Nat) → ∀ (h : FRC.Shell p), (2 : FRC.Shell p) * h = (1 : FRC.Shell p) → ((∃ c, c * c = h) ↔ S % (2 : Nat) = (0 : Nat)) :=
   And.intro @FRC.Subject.signature (@FRC.Subject.half_class)

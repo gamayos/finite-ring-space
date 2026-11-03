@@ -3454,7 +3454,7 @@ theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
 /-! ## 38:A9, 38:X4, 38:B6: the frame triple and the split fibration (12 October 2026)
 
 The adjugate `adj M = [[d, −b], [−c, a]]` with `M · adj M = adj M · M = det M · I`; the frame triple
-`G ≅ ℙ¹ × B`: every invertible `M` factors as (boost carrying the horizon to its direction `M·[1 : 0]`) × (cone chart),
+`G ≅ ℙ¹ × B`: every invertible `M` factors as (boost taking the antipode to its direction `M·[1 : 0]`) × (cone chart),
 uniquely up to scalars (`frame_triple`); the split fibration by the unit `i = diag(r, −r)`, `r = g^κ`, `r² = −1`: the
 centraliser of `i` is the diagonal torus inside the Borel, `i` is not scalar, the circle `x² + y² = 1` is the torus's
 norm-one part, the conjugates of `i` fill the trace-zero quadric `a² + bc = −1` and every point of it is reached, and
@@ -3502,7 +3502,7 @@ end M2
 /-- 38:A9, 38:X4 — **the frame triple** (Theorem *The two fibrations and the frame triple*, the master's C22). On a
 frame with `ν` a nonsquare: (1) an invertible `M` has a nonzero first column, its direction `M·[1 : 0] = [a : c]` is the
 boost `[[a, νc], [c, a]]`'s direction, that boost has nonzero norm `N = a² − νc²`, and `N·M = boost(a, c) · borel(N, ab − νcd, det M)`:
-every frame is (boost carrying the horizon to its direction) × (cone chart); (2) the cone charts fix the horizon;
+every frame is (boost taking the antipode to its direction) × (cone chart); (2) the cone charts fix the antipode;
 (3) the factorisation is unique up to scalars — two factorisations of proportional frames have the same boost class and
 the same chart class. With `hopf_counts` (`p + 1` boost classes, `p(p − 1)` charts) the frames number
 `(p + 1)·p·(p − 1)`: one direction, one shell cell, one drive phase. -/

@@ -136,7 +136,7 @@ def conj(M, N, p):
 
 def triple(M, nu, p):
     """The T·B factorisation of an invertible M (Projective.lean, `frame_triple` (1)): the direction M·[1 : 0] = [a : c],
-    the boost (α, β) = (a, c) carrying the horizon to it with norm N = a² − νc², and the chart (N, ab − νcd, det M), with
+    the boost (α, β) = (a, c) taking the antipode to it with norm N = a² − νc², and the chart (N, ab − νcd, det M), with
     N M = boost(α, β) · borel(N, ab − νcd, det M)."""
     a, b, c, d = M
     N = (a * a - nu * c * c) % p

@@ -19,9 +19,9 @@ shell without a generator (`Theme/Field.lean`, `Theme/Quadratic.lean`):
 * **C16** the spinor dichotomy: `κ` odd iff `v₂(p − 1) = 2` iff the fold `(r, s) ↦ iʳ g^{4s}` is a bijection
   `C₄ × C_κ → 𝔽_p^×` iff `3κr + 4s ≡ 1 (mod 4κ)` is solvable; the shared 2-part and the cover degree (`spinor`);
 * **C20** the mass–energy channel: `C_{p−1}` meets `C_{p+1}` in `±1` and `C_{2(p+1)}` in `Q₄`, `N(i) = −1` (`channel`);
-* **C25** the horizon is the origin's antipode on the boost torus: the torsor map `P¹ → C_{p+1}`, `P ↦ u_P/ū_P`, is an
-  equivariant bijection sending the origin to `1` and the horizon to `−1`, exchanged by the torus's one involution
-  `q ↦ ν/q`; the additive antipode is no residue (`horizon_antipode`). No axioms.
+* **C25** the antipode `[1 : 0]` is `−1` on the boost torus: the torsor map `P¹ → C_{p+1}`, `P ↦ u_P/ū_P`, is an
+  equivariant bijection sending the origin to `1` and the antipode to `−1`, exchanged by the torus's one involution
+  `q ↦ ν/q`; the additive antipode is no residue (`torus_antipode`). No axioms.
 -/
 
 namespace FRC.Subject
@@ -498,7 +498,7 @@ theorem two_part :
     have hb : b = 3 := Nat.le_antisymm (pow_dvd_odd hodd ⟨w, e'.symm⟩) (pow_dvd_odd hw ⟨2 * t + 1, e'⟩)
     rw [hb]
 
-/-! ## C25: the horizon is the origin's antipode on the boost torus -/
+/-! ## C25: the antipode `[1 : 0]` is `−1` on the boost torus -/
 
 section torus
 variable {ν : Shell p}
@@ -532,14 +532,14 @@ theorem norm_ratio (hp : FRC.Nat.isPrime p) {u : Extension.Ext p ν} (hu : u.nor
 theorem nonsquare_ne_zero {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) : ν ≠ 0 :=
   fun e => hν ⟨0, by rw [e, mul_zero]⟩
 
-/-- 7:A15, **C25 (p00139), the horizon is the origin's antipode on the boost torus.** On a prime `p = 4κ + 1` with `ν` a
+/-- 7:A15, **C25 (p00139), the antipode `[1 : 0]` is `−1` on the boost torus.** On a prime `p = 4κ + 1` with `ν` a
 nonsquare and `𝔽_{p²} = 𝔽_p[w]/(w² − ν)`: a direction `[x : y] ≠ 0` has the boost `u = yν + xw` of nonzero norm, and
 `v = a + bw` moves it by `q ↦ (aq + νb)/(bq + a)`; the torsor map `u ↦ u/ū` lands on `C_{p+1}`, is constant on the
 classes `𝔽_p^× u` and equivariant, and is a bijection from the directions onto `C_{p+1}`; it sends the origin `[0 : 1]`
-to `1` and the horizon `[1 : 0]` to `−1`, the one element of order two, and `𝔽_p^× ∩ C_{p+1} = {±1}`; the one boost
-of order two is the class of `w`, `q ↦ ν/q`, which swaps the origin and the horizon; and `2s = 0` forces `s = 0`, the
+to `1` and the antipode `[1 : 0]` to `−1`, the one element of order two, and `𝔽_p^× ∩ C_{p+1} = {±1}`; the one boost
+of order two is the class of `w`, `q ↦ ν/q`, which swaps the origin and the antipode; and `2s = 0` forces `s = 0`, the
 seam `2κ + (2κ + 1) = 0`: `2⁻¹ = 2κ + 1 = −2κ`. -/
-theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν) :
+theorem torus_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ x y : Shell p, (x ≠ 0 ∨ y ≠ 0) → (dir ν x y).norm ≠ 0) ∧
     (∀ (v : Extension.Ext p ν) (x y : Shell p), v * dir ν x y = dir ν (v.re * x + ν * (v.im * y)) (v.re * y + v.im * x)) ∧
     (∀ u : Extension.Ext p ν, u.norm ≠ 0 → (ratio u).norm = 1) ∧
@@ -586,7 +586,7 @@ theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ +
       (Shell.Frame.RE.sound (Shell.Frame.look [ν, v.re, v.im, x, y])
         (.add (.mul (.var 1) (.var 3)) (.mul (.var 2) (.mul (.var 0) (.var 4))))
         (.add (.mul (.var 1) (.var 3)) (.mul (.var 0) (.mul (.var 2) (.var 4)))) (by decide +kernel))
-  -- the horizon's boost is `w`, of norm `−ν`
+  -- the antipode's boost is `w`, of norm `−ν`
   have hw : dir ν 1 0 = Extension.Ext.w := Extension.Ext.ext (mul_zero ν) rfl
   have hm1 : ratio (dir ν 1 0) = -1 := by
     rw [hw, ratio, Extension.Ext.w_sq, Extension.Ext.ofShell_mul]
@@ -758,9 +758,9 @@ theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ +
     hsurj, h01, hm1, hord2, hrat, hinv, hwact,
     fun s hs => (Prime.mul_eq_zero hp hs).resolve_left h2, Prime.two_mul_chart_half hκ, hseam⟩
 
-/-- 7:A15, 00:C25, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
+/-- 7:A15, 00:C25, 22:P4 — the antipode is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
 has `ζ^{2κ+1} = −1`, the torus's one element of order two. -/
-theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν)
+theorem antipode_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν)
     (ζ : Extension.Ext p ν) (hn : ζ.norm = 1) (hζ : ζ ^ (p + 1) = 1)
     (hmin : ∀ l, 0 < l → l < p + 1 → ζ ^ l ≠ 1) : ζ ^ (2 * κ + 1) = -1 := by
   have hh : (2 * κ + 1) + (2 * κ + 1) = p + 1 := by
@@ -768,7 +768,7 @@ theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ 
   have hsq : ζ ^ (2 * κ + 1) * ζ ^ (2 * κ + 1) = 1 := by rw [← Extension.Ext.pow_add, hh, hζ]
   have hnorm : (ζ ^ (2 * κ + 1)).norm = 1 := by rw [Extension.Ext.norm_pow, hn, one_pow]
   have hlt : 2 * κ + 1 < p + 1 := by rw [← hh]; exact Nat.lt_add_of_pos_right (Nat.zero_lt_succ _)
-  match (horizon_antipode hp hκ hν).2.2.2.2.2.2.2.2.2.1 _ hnorm hsq with
+  match (torus_antipode hp hκ hν).2.2.2.2.2.2.2.2.2.1 _ hnorm hsq with
   | .inl e => exact absurd e (hmin _ (Nat.zero_lt_succ _) hlt)
   | .inr e => exact e
 

@@ -17,7 +17,7 @@ channel, the inter-Subject refinement and the three worked carriers in `Theme/Co
 joint recurrence, the pair offset and the dephasing in `Theme/Quantum.lean` (`FRC.Quantum`, the master's F2); the two
 strata and the pair tally on `Q₄` in `Theme/Extension.lean` and `Theme/Tally.lean` (the extension theme, the master's
 C10 and C11); the Tsirelson square's root identity in `Theme/Field.lean` (`Prime.tsirelson`) and the spinor cover and
-the torus half-turn in `Theme/Subject.lean` (`Subject.channel`, `horizon_generator`, the master's C20 and C25). Every
+the torus half-turn in `Theme/Subject.lean` (`Subject.channel`, `antipode_generator`, the master's C20 and C25). Every
 row of the paper's ledger is a key written by `make_keys.py` from those (`Keys/*.lean`), and this module carries the
 rows' declarations `FRC.Quantum.p22NNN` as aliases of the keys (`make_predicates.py`). No theorem is stated here twice.
 Every declaration is checked to depend on no axiom (`check_core_axioms.py`).

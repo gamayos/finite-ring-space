@@ -3,7 +3,7 @@
  "tree": "1-algebra-axioms",
  "title": "Relativistic Algebra over Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/axioms14080636",
- "generated": "2 November 2026",
+ "generated": "3 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -230,7 +230,7 @@
     },
     {
      "label": "Z2",
-     "predicate": "The antipode named $\\infty$: the horizon of the observer at $0$ (00:C25, 00:D13), the compactification point of the framed line [chart]; its reading as classical infinity is the chart, not a residue.",
+     "predicate": "The antipode, charted $\\infty$: the compactification point of the framed line beyond the observer's horizon (00:C25, 00:D13); its reading as classical infinity is the chart, not a residue.",
      "tag": "D",
      "source": "Section~\\ref{sec:infinity}; 00:C25, 00:D13",
      "key": "p01021"

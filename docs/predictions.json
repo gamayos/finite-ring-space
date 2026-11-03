@@ -1,5 +1,5 @@
 {
- "generated": "2 November 2026",
+ "generated": "3 November 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -299,7 +299,7 @@
    "key": "p22055",
    "tag": "T",
    "predicate": "No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched.",
-   "source": "Rem.~\\ref{rem:doublecover}; rests on A2, B2\\newline \\pywit{quantum}{p22055}{P4}, \\leanwit{FrcCore}{p22055}{P4} \\lean{FRC.Subject.channel, FRC.Subject.horizon\\_generator, FRC.Observation.torus\\_conj\\_inv}",
+   "source": "Rem.~\\ref{rem:doublecover}; rests on A2, B2\\newline \\pywit{quantum}{p22055}{P4}, \\leanwit{FrcCore}{p22055}{P4} \\lean{FRC.Subject.channel, FRC.Subject.antipode\\_generator, FRC.Observation.torus\\_conj\\_inv}",
    "master": [
     "C20"
    ],

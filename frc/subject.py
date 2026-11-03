@@ -105,7 +105,7 @@ def channel(p, h):
 
 
 def projective_line(p):
-    """The p + 1 points of P¹(F_p) in normal form: (x, 1) for x in [0, p), the origin (0, 1) first, then the horizon
+    """The p + 1 points of P¹(F_p) in normal form: (x, 1) for x in [0, p), the origin (0, 1) first, then the antipode
     (1, 0)."""
     return [(x, 1) for x in range(p)] + [(1, 0)]
 

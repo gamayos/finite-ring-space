@@ -1658,8 +1658,8 @@
 'FRC.Subject.ratio_scale' does not depend on any axioms
 'FRC.Subject.norm_ratio' does not depend on any axioms
 'FRC.Subject.nonsquare_ne_zero' does not depend on any axioms
-'FRC.Subject.horizon_antipode' does not depend on any axioms
-'FRC.Subject.horizon_generator' does not depend on any axioms
+'FRC.Subject.torus_antipode' does not depend on any axioms
+'FRC.Subject.antipode_generator' does not depend on any axioms
 'FRC.Subject.boost_unique' does not depend on any axioms
 'FRC.Pair.tower_solvable' does not depend on any axioms
 'FRC.Pair.window' does not depend on any axioms
