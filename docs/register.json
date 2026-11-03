@@ -10862,7 +10862,7 @@
   {
    "key": "p07043",
    "origin": "07",
-   "statement": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, in the affine chart $(s_{12},s_{11})$ of the plane of binary forms, on the continuum Hopf picture [chart], and the laboratory's host view of the cone [chart]; no row rests on a figure.",
+   "statement": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure.",
    "origin_row": "7:E1",
    "tag": "D",
    "tier": null,
@@ -46579,7 +46579,7 @@
    "block": "E",
    "tag": "D",
    "name": null,
-   "statement": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, in the affine chart $(s_{12},s_{11})$ of the plane of binary forms, on the continuum Hopf picture [chart], and the laboratory's host view of the cone [chart]; no row rests on a figure.",
+   "statement": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure.",
    "source": "Def.~\\ref{def:charts}",
    "page": "7-spacetime/index.html#E1",
    "witness": {
@@ -46587,7 +46587,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of [akhtman2026s13], in the affine chart $(s_{12},s_{11})$ of the plane of binary forms, on the continuum Hopf picture [chart], and the laboratory's host view of the cone [chart]; no row rests on a figure. Def. def:charts"
+   "text": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of [akhtman2026s13], in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure. Def. def:charts"
   },
   {
    "paper": "7-st",

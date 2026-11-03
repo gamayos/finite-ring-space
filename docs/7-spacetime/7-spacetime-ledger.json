@@ -427,7 +427,7 @@
    "rows": [
     {
      "label": "E1",
-     "predicate": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, in the affine chart $(s_{12},s_{11})$ of the plane of binary forms, on the continuum Hopf picture [chart], and the laboratory's host view of the cone [chart]; no row rests on a figure.",
+     "predicate": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure.",
      "tag": "D",
      "source": "Def.~\\ref{def:charts}",
      "key": "p07043"
