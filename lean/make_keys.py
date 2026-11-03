@@ -19,9 +19,12 @@ cites a paper module stays in that module until its paper migrates (tasks LM35, 
 
 The statement is the one Lean prints for the conjunction (`#check`, the numerals typed); a key whose printed statement
 does not re-elaborate is written as a definition, as make_predicates.py does. Without --typed the statements already in
-the key files are kept, so --check needs no Lean run.
+the key files are kept, so --check needs no Lean run. After a ledger rebinds a key's theorems (rows split or merged) a
+kept statement is stale and the key file no longer builds: `--untyped <theme,…>` writes every key of those themes in the
+def form, the library builds, and the next `--typed` pass states them again (2 November 2026).
 
     python3 make_keys.py --docs ../docs --typed     # (re)write the key files of both libraries (needs `lake build`)
+    python3 make_keys.py --docs ../docs --untyped dirac   # the def form for one theme's keys (then lake build, then --typed)
     python3 make_keys.py --docs ../docs --check     # exit 1 if a key file is stale or a keyable predicate has no key
     python3 make_keys.py --docs ../docs --list      # the keys, their themes and their sources
 """
@@ -171,12 +174,15 @@ def keyable(docs):
     return res
 
 
-def stated(lib, theme):
-    """The statements already written in a key file: key -> statement (the theorem form only)."""
+def stated(lib, theme, keys=None):
+    """The statements already written in a key file: key -> statement (the theorem form only). A statement whose proof term
+    has changed since it was typed (the key's theorems rebound) is dropped, so the key takes the def form until the next
+    `--typed` pass (2 November 2026, after the 8-dirac rows were split: a stale statement no longer elaborates against the
+    new conjunction)."""
     p = ROOT / lib / "Keys" / f"{theme.capitalize()}.lean"
     if not p.exists(): return {}
-    got = dict(re.findall(r"^theorem (p\d{5}) : (.*?) :=\n", p.read_text(encoding="utf-8"), re.M | re.S))
-    return {k: " ".join(v.split()) for k, v in got.items()}
+    got = re.findall(r"^theorem (p\d{5}) : (.*?) :=\n  (.*?)\n", p.read_text(encoding="utf-8"), re.M | re.S)
+    return {k: " ".join(v.split()) for k, v, term in got if keys is None or k not in keys or term.strip() == MP.term_of(keys[k]["thms"]).strip()}
 
 
 def lean_run(src):
@@ -246,7 +252,8 @@ def root(lib, themes):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--docs", required=True); ap.add_argument("--typed", action="store_true")
     ap.add_argument("--check", action="store_true"); ap.add_argument("--list", action="store_true")
-    a = ap.parse_args()
+    ap.add_argument("--untyped", default="", help="themes (comma-separated, lower case) whose keys are written in the def form")
+    a = ap.parse_args(); untyped = {t.strip().lower() for t in a.untyped.split(",") if t.strip()}
     K = keyable(a.docs); stale = []
     bad = [f"conflicting bindings: {c}" for c in CONFLICTS if c.split()[1].rstrip(":") not in SUPERSEDES] + [f"unresolved: {u}" for u in sorted(set(UNRESOLVED))]
     if bad: sys.exit("make_keys.py: " + "\n  ".join(["the bindings do not resolve:"] + bad))
@@ -259,7 +266,7 @@ def main():
         for gone in sorted({p.stem.lower() for p in d.glob("*.lean")} - set(themes)) if d.exists() else []:
             stale.append(f"{lib}/Keys/{gone.capitalize()}.lean (no key left: move it to _to_delete/)")
         st = typed(lib, keys) if a.typed else {}
-        targets = [(d / f"{th.capitalize()}.lean", key_file(lib, th, keys, st if a.typed else stated(lib, th))) for th in themes]
+        targets = [(d / f"{th.capitalize()}.lean", key_file(lib, th, keys, st if a.typed else {} if th in untyped else stated(lib, th, keys))) for th in themes]
         targets.append(root(lib, themes))
         for p, text in targets:
             old = p.read_text(encoding="utf-8") if p.exists() else None; rel = p.relative_to(ROOT)

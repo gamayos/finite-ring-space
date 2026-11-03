@@ -1,5 +1,5 @@
 {
- "generated": "1 November 2026",
+ "generated": "2 November 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -64,7 +64,20 @@
    "key": "p07026",
    "tag": "T",
    "predicate": "Exactly three spatial dimensions at every scale the Subject registers, read through the declared metric chart. Falsifier: a short-range departure from the inverse-square law of the extra-dimension form; holds to $52\\,\\mu$m [data].",
-   "source": "\\S\\ref{sec:discussion}; rests on A3, A20, B2, C9\\newline \\pywit{spacetime}{p07026}{P1}, \\leanwit{FrcCore}{p07026}{P1} \\lean{FRC.Shell.Frame.Fld.hopf\\_section, FRC.Lorentz.consecutive\\_orders}",
+   "source": "Prop.~\\ref{pred:three}; rests on A3, A20, B1, C1, C5, C6, C9, C10\\newline \\pywit{spacetime}{p07026}{P1}, \\leanwit{FrcCore}{p07026}{P1} \\lean{FRC.Shell.Frame.Fld.hopf\\_section, FRC.Lorentz.consecutive\\_orders}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "7-spacetime/index.html"
+  },
+  {
+   "id": "7:P2",
+   "paper": "7-st",
+   "label": "P2",
+   "key": "p07054",
+   "tag": "T",
+   "predicate": "The floor is the Carrier's temperature: the de Sitter temperature of the Carrier's horizon, $T_{\\mathrm{dS}}=\\hbar H_{0}/2\\pi k_B$, and the floor $a_{0}=cH_{0}/2\\pi$ are one number in the acceleration domain, $k_BT_{\\mathrm{dS}}=(\\hbar/c)\\,a_{0}$ with $|k_B|=\\hbar/c$ the chart's unit [chart]: $2.66\\times10^{-30}$ K and $1.04\\times10^{-10}$ m\\,s$^{-2}$ at $H_{0}=67.4$. Falsifier: a measured floor that departs from $cH_{0}/2\\pi$.",
+   "source": "Prop.~\\ref{prop:floortemp}; rests on A31, A32, A33, A34\\newline \\pywit{spacetime}{p07054}{P2}, \\leanwit{FrcCore}{p07054}{P2} \\lean{FRC.Register.floor\\_is\\_temperature, FRC.Register.kB\\_c\\_carriers}",
    "master": [],
    "restated": [],
    "witnessed": false,

@@ -55,7 +55,7 @@ matrices over 𝔽_{p²} as the register square Herm₂(K) = Sym²(V) ⊕ 𝔽_p
     drive_on_square(p, nu, g)                 diag(g, 1): [z] ↦ [gz], ηJ ↦ g ηJ; the lift diag(η, η⁻¹): ηJ ↦ −ηJ; the even transport (7:D3)
     two_circuits(p, nu)                       N¹ of order p + 1 with −I, image of order (p + 1)/2, conjugate to the torus lift (7:D4)
     no_definite_space(p, nu)                  every three-dimensional subspace carries a null vector (7:D5)
-    horizon_half_step(p, nu)                  K^×/𝔽_p^× regular on ℙ¹(𝔽_p); the horizon at the half step 2κ + 1 by every generator (7:D6)
+    antipode_half_step(p, nu)                  K^×/𝔽_p^× regular on ℙ¹(𝔽_p); the antipode at the half step 2κ + 1 by every generator (7:D6)
     similitude(p, nu, g)                      the similitude of multiplier g exchanging the two non-null classes (7:C6)
     elliptic_hyperbolic(p, nu)                the frame quadric hyperbolic, the register square elliptic (7:C5)
 """
@@ -461,7 +461,7 @@ def no_section_split(p):
 # The Hermitian 2 × 2 matrices over K = 𝔽_{p²} = 𝔽_p(η), η² = ν a nonsquare, as the register square Herm₂(K) = Sym²(V) ⊕ 𝔽_p ηJ
 # with coordinates x = (x₀, x₁, x₂, x₃): X(x) = [[x₀ + x₃, x₁ + η x₂], [x₁ − η x₂, x₀ − x₃]], det X = x₀² − x₁² − x₃² + ν x₂²
 # (7:C1); SL₂(K) acts by the congruence X ↦ A X A† (7:C2); the cone ℙ¹(K) → null lines, [v] ↦ [v v†] (7:C3, C4); the
-# three cycles and the class equation of PGL₂ (7:C9); the fibration (7:C7, C8); the drive, the lift and the horizon
+# three cycles and the class equation of PGL₂ (7:C9); the fibration (7:C7, C8); the drive, the lift and the antipode
 # (7:D3, D4, D6); the three exclusions of the arrow (7:F3). Exact integers only.
 
 def herm(K, x):
@@ -712,25 +712,25 @@ def no_definite_space(p, nu):
     return ok, len(forms)
 
 
-def horizon_half_step(p, nu):
+def antipode_half_step(p, nu):
     """7:D6 — K^×/𝔽_p^× (cyclic of order p + 1) acts regularly on ℙ¹(𝔽_p) under [x : y] ↔ x + yη; η is its unique element of
-    order two, the horizon [1 : 0] ↔ 1 is reached from the origin [0 : 1] ↔ η by every generator first at the half step
+    order two, the antipode [1 : 0] ↔ 1 is reached from the origin [0 : 1] ↔ η by every generator first at the half step
     (p + 1)/2 = 2κ + 1, which is odd; the unimodular torus (the even steps) never reaches it. Returns a dict."""
     K = Ext2(p, nu); one, eta = (1, 0), (0, 1)
-    def cls(z):                                   # the class of z = x + yη in K^×/𝔽_p^× as the point [y : x] of ℙ¹(𝔽_p): 1 ↦ [0 : 1] the origin, η ↦ [1 : 0] the horizon
+    def cls(z):                                   # the class of z = x + yη in K^×/𝔽_p^× as the point [y : x] of ℙ¹(𝔽_p): 1 ↦ [0 : 1] the origin, η ↦ [1 : 0] the antipode
         return normal((z[1], z[0]), p)
-    origin, horizon = cls(one), cls(eta)
+    origin, antipode = cls(one), cls(eta)
     pts = {cls(z) for z in K.elements() if z != (0, 0)}
-    regular = len(pts) == p + 1 and (origin, horizon) == ((0, 1), (1, 0))
+    regular = len(pts) == p + 1 and (origin, antipode) == ((0, 1), (1, 0))
     order2 = [z for z in K.elements() if z != (0, 0) and cls(z) != origin and cls(K.mul(z, z)) == origin]
     gens = [w for w in K.elements() if w != (0, 0) and len({cls(K.pow(w, k)) for k in range(p + 1)}) == p + 1]
     half = (p + 1) // 2
     first = {}
     for w in gens:
         k, z = 0, one
-        while cls(z) != horizon: z = K.mul(w, z); k += 1
+        while cls(z) != antipode: z = K.mul(w, z); k += 1
         first[w] = k
-    even_never = all(cls(K.pow(w, 2 * k)) != horizon for w in gens[:12] for k in range(p + 1))
+    even_never = all(cls(K.pow(w, 2 * k)) != antipode for w in gens[:12] for k in range(p + 1))
     return dict(regular=regular, order_two_classes={cls(z) for z in order2}, generators=len(gens), first_step=set(first.values()),
                 half=half, half_odd=half % 2 == 1, even_never=even_never)
 

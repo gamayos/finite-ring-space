@@ -7,34 +7,25 @@ The projective theme's third core file (31 October 2026; the verification packag
 `p = 4κ + 1` with its quadratic extension `K = 𝔽_p(η)`, `η² = ν` the drive's generator, a nonsquare, with
 `conj η = −η`:
 
-* **The register square** (7:C1). The Hermitian matrices `X(x) = [[x₀ + x₃, x₁ + ηx₂], [x₁ − ηx₂, x₀ − x₃]]` have
-  `det X(x) = x₀² − x₁² − x₃² + ν x₂²` (`register_det`) and `X(x)† = X(x)` (`register_hermitian`); the time vector is
-  `X(0, 0, 1, 0) = ηJ` (`time_vector`), the Hermitian form of `Theme/Spin.lean`.
-* **The congruence** (7:C2). `X ↦ A X A†` carries Hermitian matrices to Hermitian matrices (`congruence_hermitian`)
-  and multiplies the determinant by `N(det A)` (`congruence_det`, from `det_mul` and `det_dagger`); a matrix of
-  determinant one fixing the four basis vectors is `±I` (`kernel_pm`): the kernel of the finite Lorentz group.
-* **The cone** (7:C3, C4). `v v†` is the Hermitian matrix of explicit coordinates with `det = 0` (`cone_point`); a
-  direction `[z : 1]` with `z ∉ 𝔽_p` carries a time component (`cone_time`).
-* **The two classes** (7:C5). `det(u u† + v v†) = N(u₁v₂ − u₂v₁)` (`rank_two_det`): two null points span no
-  isotropic plane unless proportional over `K`, since the norm is anisotropic (`register_elliptic`); the frame quadric
-  `(M₂(𝔽_p), det)` carries the isotropic plane of the first row (`frame_hyperbolic`).
-* **No inertia** (7:C6). With `a² + b² = ν` the explicit linear map multiplies the form by `ν` (`similitude`), and
-  such `a, b` exist on every shell with a quarter-turn (`two_squares`).
-* **The fibration** (7:C7, C8). The stabiliser of the ray `η` in `SL₂(𝔽_p)` is the norm-one torus `[[a, νc], [c, a]]`
-  (`ray_stabiliser`); `−I` lies in the Borel lift and in the torus lift (`minus_one_in_both`); the axis of a ray `z`,
-  the binary form with roots `z, z̄`, has discriminant `ν (2 Im z)²` (`axis_discriminant`).
-* **Time** (7:D3, D4). The one-chronon move `diag(g, 1)` scales the time vector by `g` (`drive_time`), its unimodular
-  lift `diag(η, η⁻¹)` has determinant one and negates it (`lift_det`, `lift_time`), the even transport fixes it and
-  dilates the origin and the horizon (`even_transport`); `−I` acts trivially (`neg_one_trivial`) and `P diag(λ, λ̄) =
-  (mult λ) P` conjugates `N¹` to the torus lift (`torus_conjugate`).
-* **The horizon** (7:D6). `η` has order two modulo `𝔽_p^×` (`horizon_order_two`), the half step `(p + 1)/2 = 2κ + 1`
-  is odd (`half_step_odd`), and no square of `K` lies on the line `𝔽_p^× η`: the unimodular torus, the even steps,
-  never reaches the horizon (`even_never_horizon`).
-* **The arrow** (7:F3, F4). No matrix of determinant one realises the time reversal `x₂ ↦ −x₂` (the Frobenius), the
-  reflection `x₁ ↦ −x₁` or the total inversion `X ↦ −X` on the four basis vectors (`no_time_reversal`,
-  `no_reflection`, `no_inversion`). The drift: on a hosted pair the joint period is `lcm(4κ, 4S)` (`joint_period`) and the
-  chart count `4κn mod 4S` of the origin is injective for `n < S / gcd(κ, S)` (`drift_injective`, `drift_injective_gcd`);
-  on the physical pair `p² < Ω − 1`, so the drift is one-directional (`drift_one_directional`, `nesting_depth`).
+* **The register square** (7:C1). `X(x) = [[x₀ + x₃, x₁ + ηx₂], [x₁ − ηx₂, x₀ − x₃]]` has `det X(x) = x₀² − x₁² − x₃² + ν x₂²`
+  (`register_det`) and `X(x)† = X(x)` (`register_hermitian`); the time vector is `X(0, 0, 1, 0) = ηJ` (`time_vector`).
+* **The congruence** (7:C2). `X ↦ A X A†` preserves the Hermitian matrices (`congruence_hermitian`) and multiplies the
+  determinant by `N(det A)` (`congruence_det`); a unimodular matrix fixing the four basis vectors is `±I` (`kernel_pm`).
+* **The cone** (7:C3, C4). `v v†` has `det = 0` (`cone_point`); a direction `[z : 1]`, `z ∉ 𝔽_p`, has a time component (`cone_time`).
+* **The two classes** (7:C5). `det(u u† + v v†) = N(u₁v₂ − u₂v₁)` (`rank_two_det`), so two null points span no isotropic plane
+  unless proportional over `K` (`register_elliptic`); the frame quadric has the isotropic plane of the first row (`frame_hyperbolic`).
+* **No inertia** (7:C6). With `a² + b² = ν` the explicit map multiplies the form by `ν` (`similitude`); such `a, b` exist (`two_squares`).
+* **The fibration** (7:C7, C8). The stabiliser of the ray `η` in `SL₂(𝔽_p)` is the torus `[[a, νc], [c, a]]` (`ray_stabiliser`);
+  `−I` lies in both lifts (`minus_one_in_both`); the axis of a ray `z` has discriminant `ν (2 Im z)²` (`axis_discriminant`).
+* **Time** (7:D3, D4). `diag(g, 1)` scales the time vector by `g` (`drive_time`); its lift `diag(η, η⁻¹)` is unimodular and
+  negates it (`lift_det`, `lift_time`); the even transport fixes it and dilates origin and antipode (`even_transport`); `−I` acts
+  trivially (`neg_one_trivial`) and `P` conjugates `N¹` to the torus lift (`torus_conjugate`).
+* **The antipode** (7:D6). `η` has order two modulo `𝔽_p^×` (`antipode_order_two`), the half step `2κ + 1` is odd
+  (`half_step_odd`), and no square of `K` lies on `𝔽_p^× η` (`even_never_antipode`).
+* **The arrow** (7:F3, F4). No unimodular matrix realises the time reversal, the reflection `x₁ ↦ −x₁` or `X ↦ −X`
+  (`no_time_reversal`, `no_reflection`, `no_inversion`); on a hosted pair the joint period is `lcm(4κ, 4S)` (`joint_period`) and
+  the chart count is injective for `n < S / gcd(κ, S)` (`drift_injective`, `drift_injective_gcd`); on the physical pair
+  `p² < Ω − 1`, so the drift is one-directional (`drift_one_directional`, `nesting_depth`).
 
 The identities are decided by the ring normaliser of `Ring.lean` lifted to the extension and to its two-by-two matrices
 (`Theme/Spin.lean`'s `XR`, `MX`). No axioms.
@@ -293,7 +284,7 @@ theorem minus_one_in_both :
     rw [Shell.neg_mul_neg, Shell.one_mul, Shell.neg_zero, Shell.mul_zero, Shell.mul_zero, Shell.neg_zero, Shell.add_zero]
   · exact Ext.ext rfl (by show -(-(0 : Shell p)) = -0; rw [Shell.neg_neg, Shell.neg_zero])
 
-/-- 7:X2, 7:C8 — the axis of a ray `z`: the binary form `(t − z)(t − z̄) = t² − tr(z) t + N(z)` has discriminant
+/-- 7:X2, 7:C8, 7:C10 — the axis of a ray `z`: the binary form `(t − z)(t − z̄) = t² − tr(z) t + N(z)` has discriminant
 `tr(z)² − 4 N(z) = ν (2 Im z)²`, a nonsquare times a square. -/
 theorem axis_discriminant (z : Ext p ν) :
     Ext.trace z * Ext.trace z + -((1 + 1) * (1 + 1) * Ext.norm z) = ν * (((1 + 1) * z.im) * ((1 + 1) * z.im)) :=
@@ -304,7 +295,7 @@ theorem axis_discriminant (z : Ext p ν) :
 
 /-! ## Time (7:D3, D4) -/
 
-/-- 7:D1, 7:D3, 7:A16 — the one-chronon move `diag(g, 1)` carries the time vector `ηJ = X(0, 0, 1, 0)` to `g·ηJ = X(0, 0, g, 0)`:
+/-- 7:D3, 7:A16 — the one-chronon move `diag(g, 1)` carries the time vector `ηJ = X(0, 0, 1, 0)` to `g·ηJ = X(0, 0, g, 0)`:
 its square class flips with the chronon parity, and it carries the ray `(z, 1)` to `(gz, 1)`. -/
 theorem drive_time (g : Shell p) :
     cong (diagx (Ext.ofShell g) 1) (X (ν := ν) 0 0 1 0) = X 0 0 g 0 ∧
@@ -579,19 +570,19 @@ theorem no_inversion (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1
     | Or.inr h => by rw [h]; exact norm_neg_one
   exact one_ne_neg_one h2 (n1.symm.trans nm)
 
-/-! ## The horizon (7:D6) -/
+/-! ## The antipode (7:D6) -/
 
 /-- 7:D6, 7:A15 — `η` has order two modulo `𝔽_p^×`: `η² = ν ∈ 𝔽_p` while `η ∉ 𝔽_p` (its imaginary part is `1`). -/
-theorem horizon_order_two : (Ext.w : Ext p ν) * Ext.w = Ext.ofShell ν ∧ (Ext.w : Ext p ν).im = 1 := ⟨Ext.w_sq, rfl⟩
+theorem antipode_order_two : (Ext.w : Ext p ν) * Ext.w = Ext.ofShell ν ∧ (Ext.w : Ext p ν).im = 1 := ⟨Ext.w_sq, rfl⟩
 
 /-- 7:D6 — the half step of the cycle `C_{p+1}`, `p = 4κ + 1`: `p + 1 = 2(2κ + 1)`, and `2κ + 1` is odd. -/
 theorem half_step_odd (κ : Nat) : 4 * κ + 1 + 1 = 2 * (2 * κ + 1) ∧ (2 * κ + 1) % 2 = 1 :=
   ⟨by rw [Nat.mul_add, ← FRC.Nat.mul_assoc], FRC.Nat.mod_unique (by decide) rfl⟩
 
-/-- 7:D6 — **the even steps never reach the horizon.** On a field shell with a quarter-turn `i² = −1` and `ν` a nonsquare,
-no square `y²` of the extension lies on the line `𝔽_p^× η` of the horizon: `y² = cη`, `c ≠ 0`, would make
-`ν = (i · N(y) · c⁻¹)²` a square. The unimodular torus, the even powers of a generator, misses the horizon. -/
-theorem even_never_horizon (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) (i : Shell p) (hi : i * i = -1)
+/-- 7:D6 — **the even steps never reach the antipode.** On a field shell with a quarter-turn `i² = −1` and `ν` a nonsquare,
+no square `y²` of the extension lies on the line `𝔽_p^× η` of the antipode: `y² = cη`, `c ≠ 0`, would make
+`ν = (i · N(y) · c⁻¹)²` a square. The unimodular torus, the even powers of a generator, misses the antipode. -/
+theorem even_never_antipode (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) (i : Shell p) (hi : i * i = -1)
     (c : Shell p) (hc : c ≠ 0) (y : Ext p ν) : y * y ≠ Ext.ofShell c * Ext.w := fun h => by
   have hn : Ext.norm y * Ext.norm y = c * c * -ν := by
     have e : Ext.norm (Ext.ofShell c * Ext.w : Ext p ν) = c * c * -ν :=
@@ -722,10 +713,10 @@ theorem drift_instance_gcd : 3 = 3 * 1 ∧ 45 = 3 * 15 ∧ 1 * 1 = 0 * 15 + 1 �
 
 /-! ## The drift is one-directional (7:F4, 7:A17; the physical pair, 1 November 2026) -/
 
-/-- 7:X6, 7:F4, 7:A17 — **a count below the Carrier's cycle is its own residue**: the chart count of a duration `n < Ω − 1` is `n`. -/
+/-- 7:F5, 7:X6, 7:F4, 7:A17 — **a count below the Carrier's cycle is its own residue**: the chart count of a duration `n < Ω − 1` is `n`. -/
 theorem drift_one_directional (Om n : Nat) (h : n < Om - 1) : n % (Om - 1) = n := FRC.Nat.mod_eq_of_lt h
 
-/-- 7:B5, 7:F4, 7:A17 — **the nesting bound keeps every registrable depth below the cycle.** For an odd `p` with `p² < Ω = 4S + 1`,
+/-- 7:F5, 7:B5, 7:F4, 7:A17 — **the nesting bound keeps every registrable depth below the cycle.** For an odd `p` with `p² < Ω = 4S + 1`,
 `p²` is odd and `4S` even, so `p² ≤ 4S − 1`, and a registered duration `n ≤ p²` has `n < Ω − 1`: the cycle never acts. -/
 theorem nesting_depth (p S n : Nat) (hp : p % 2 = 1) (hn : p * p < 4 * S + 1) (hd : n ≤ p * p) : n < 4 * S + 1 - 1 := by
   have h1 : p * p ≤ 4 * S := Nat.le_of_lt_succ hn
@@ -777,7 +768,7 @@ theorem null_count_13 : nullCount13 = 2041 ∧ 2041 = 13 * 13 * 13 - 13 * 13 + 1
 def kmul13 (u v : Nat × Nat) : Nat × Nat := ((u.1 * v.1 + 2 * u.2 * v.2) % 13, (u.1 * v.2 + u.2 * v.1) % 13)
 /-- The inverse of `b` in `𝔽₁₃^×` (`0` for `b = 0`). -/
 def inv13 (b : Nat) : Nat := (List.range 13).foldl (fun acc c => if (b * c) % 13 = 1 then c else acc) 0
-/-- The class of `a + bη` modulo `𝔽₁₃^×`: `(a/b, 1)` for `b ≠ 0`, the horizon `(1, 0)` for `b = 0`. -/
+/-- The class of `a + bη` modulo `𝔽₁₃^×`: `(a/b, 1)` for `b ≠ 0`, the antipode `(1, 0)` for `b = 0`. -/
 def nrm13 (u : Nat × Nat) : Nat × Nat := if u.2 = 0 then (1, 0) else ((u.1 * inv13 u.2) % 13, 1)
 /-- The least `k ∈ [1, 14]` with `w^k ≡ t` modulo `𝔽₁₃^×`, or `0` when none. -/
 def firstHit13 (w t : Nat × Nat) : Nat :=
@@ -788,10 +779,10 @@ def firstHit13 (w t : Nat × Nat) : Nat :=
 def classes13 : List (Nat × Nat) := (1, 0) :: (List.range 13).map (fun a => (a, 1))
 /-- The generators of the cycle `K^×/𝔽₁₃^×`: the classes whose first return to the identity is at `k = 14`. -/
 def generators13 : List (Nat × Nat) := classes13.filter (fun w => firstHit13 w (1, 0) = 14)
-/-- 7:D6 — **the horizon at the odd half step, by every generator, at `p = 13`.** `K^×/𝔽₁₃^×` is a cycle of order `14` with
-`6 = φ(14)` generators, and every generator first carries the origin `η = [0 : 1]` to the horizon `1 = [1 : 0]` at the step
+/-- 7:D6 — **the antipode at the odd half step, by every generator, at `p = 13`.** `K^×/𝔽₁₃^×` is a cycle of order `14` with
+`6 = φ(14)` generators, and every generator first carries the origin `η = [0 : 1]` to the antipode `1 = [1 : 0]` at the step
 `7 = (p + 1)/2 = 2κ + 1`, which is odd; `η` itself has order two. -/
-theorem horizon_half_step_13 : classes13.length = 14 ∧ generators13.length = 6 ∧
+theorem antipode_half_step_13 : classes13.length = 14 ∧ generators13.length = 6 ∧
     generators13.all (fun w => firstHit13 w (0, 1) = 7) = true ∧ firstHit13 (0, 1) (1, 0) = 2 ∧ 7 % 2 = 1 := by
   decide +kernel
 

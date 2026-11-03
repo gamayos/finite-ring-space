@@ -56,7 +56,7 @@ theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clau
 
 /-- From the paper's key `FRC.Dirac.p08009` (8:B3). -/
 theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g :=
-  ⟨FRC.Dirac.p08009.1 F, fun _ h2 => (FRC.Dirac.p08009.2.2.2.1 F h2).2.1⟩
+  ⟨FRC.Dirac.p08009.1 F, fun _ h2 => (FRC.Dirac.p08009.2.2.2 F h2).2.1⟩
 
 end C3_8B3
 
@@ -70,9 +70,9 @@ def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop :=
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := fun h h2 =>
   ⟨((FRC.Ledger.p00150.1 F).2.2 h h2).1, ((FRC.Ledger.p00150.1 F).2.2 h h2).2.2⟩
 
-/-- From the paper's key `FRC.Dirac.p08010` (8:B4). -/
+/-- From the paper's key `FRC.Dirac.p08049` (8:B4; p08010 retired on 1 November 2026). -/
 theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := fun _ h2 =>
-  FRC.Dirac.p08010.1 F h2
+  FRC.Dirac.p08049.1 F h2
 
 end C3_8B4
 
@@ -100,7 +100,7 @@ theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clau
 
 /-- From the paper's key `FRC.Dirac.p08012` (8:B6). -/
 theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p g := fun _ hy =>
-  FRC.Dirac.p08012.2 F hy
+  FRC.Dirac.p08012.2.2 F hy
 
 end C8_8B6
 

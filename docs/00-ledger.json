@@ -1,5 +1,5 @@
 {
- "generated": "1 November 2026",
+ "generated": "3 November 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -1103,9 +1103,13 @@
     {
      "label": "C1",
      "key": "p00021"
+    },
+    {
+     "label": "D15",
+     "key": "p00153"
     }
    ],
-   "statement": "\\textbf{Time is the drive}: a Subject's clock is its drive $x\\mapsto gx$ and a chronon one drive step (C1); the timeless Carrier (A6), registered by parts (A4), has no clock. A registered duration is the chronon count, one-directional: the registrable depth $\\p^{2}$ lies below the cycle $\\Om-1$ (7:F4). A composite's conserved offset is observer-derived, its group fixed by the arena's divisors."
+   "statement": "\\textbf{Time is the drive}: a Subject's clock is its drive $x\\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has no clock. A registered duration is the one-directional chronon count on the depth $\\p^{2}<\\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors."
   },
   {
    "label": "D2",

@@ -2,6 +2,7 @@ import FrcMathlib.Theme.Fourier
 import FrcMathlib.Theme.Fractional
 import FrcMathlib.Theme.Frame
 import FrcMathlib.Theme.Extension
+import FrcMathlib.Theme.Dirac
 import FrcMathlib.Theme.Logic
 import FrcMathlib.Theme.Horizon
 import FrcMathlib.Theme.Chart
@@ -13,11 +14,11 @@ import FrcMathlib.Theme.Fields
 import FrcMathlib.Theme.Flavour
 import FrcMathlib.Theme.Dark
 import FrcMathlib.Theme.Hadrons
-import FrcMathlib.Keys.Frame
 import FrcMathlib.Keys.Extension
 import FrcMathlib.Keys.Projective
 import FrcMathlib.Keys.Fourier
 import FrcMathlib.Keys.Logic
+import FrcMathlib.Keys.Dirac
 import FrcMathlib.Keys.Gravity
 import FrcMathlib.Keys.Quantum
 import FrcMathlib.Keys.Horizon

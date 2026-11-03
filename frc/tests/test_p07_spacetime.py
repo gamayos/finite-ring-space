@@ -69,7 +69,7 @@ class LedgerTest(unittest.TestCase):
         from frc.ledgers import p07_spacetime as L
         self.assertEqual(L.LEAN["D5"], "ml")                                              # Chevalley–Warning, on Mathlib alone
         self.assertEqual({v for k, v in L.LEAN.items() if k != "D5"}, {"core"})
-        self.assertEqual(len(L.LEAN), 44)
+        self.assertEqual(len(L.LEAN), 48)
 
 
 if __name__ == "__main__":

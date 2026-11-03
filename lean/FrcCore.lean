@@ -11,6 +11,7 @@ import FrcCore.Theme.Domain
 import FrcCore.Theme.Projective
 import FrcCore.Theme.Spin
 import FrcCore.Theme.Lorentz
+import FrcCore.Theme.Register
 import FrcCore.Theme.Fourier
 import FrcCore.Theme.Shift
 import FrcCore.Theme.Fractional
@@ -22,6 +23,7 @@ import FrcCore.Theme.Spectra
 import FrcCore.Theme.Exclusivity
 import FrcCore.Theme.Extension
 import FrcCore.Theme.Tally
+import FrcCore.Theme.Dirac
 import FrcCore.Theme.Numbers
 import FrcCore.Theme.Logic
 import FrcCore.Theme.SecondOrder
@@ -68,6 +70,7 @@ import FrcCore.Keys.Projective
 import FrcCore.Keys.Fourier
 import FrcCore.Keys.Numbers
 import FrcCore.Keys.Logic
+import FrcCore.Keys.Dirac
 import FrcCore.Keys.Foundation
 import FrcCore.Keys.Carrier
 import FrcCore.Keys.Subject

@@ -1,20 +1,20 @@
 {
  "header": {
-  "generated": "1 November 2026",
+  "generated": "3 November 2026",
   "schema": "frc-register/2",
-  "rows": 1118,
-  "theorems": 1078,
+  "rows": 1128,
+  "theorems": 1084,
   "counts": {
-   "keys": 1078,
-   "rows": 1118,
-   "shared": 39,
+   "keys": 1084,
+   "rows": 1128,
+   "shared": 43,
    "by_tag": {
-    "D": 172,
+    "D": 173,
     "G": 1,
-    "I": 126,
+    "I": 127,
     "O": 11,
     "R": 87,
-    "T": 652,
+    "T": 656,
     "Ω": 29
    }
   },
@@ -504,7 +504,7 @@
      {
       "tag": "T",
       "name": "Theorem",
-      "text": "Derived within the framework from the rows it names, in this paper or in the origin paper of a carried row; machine-verified in exact arithmetic by the named witness where a witness is named."
+      "text": "Proved at the statement the source column names, in this paper or in the origin paper of a carried row; machine-verified in exact arithmetic by the named witness where a witness is named."
      },
      {
       "tag": "R",
@@ -512,7 +512,7 @@
       "text": "States what a physical term denotes on the substrate: constitutive, not interpretive, and carrying its falsifier."
      }
     ],
-    "rows": 59
+    "rows": 69
    },
    {
     "key": "8-dirac",
@@ -2022,7 +2022,8 @@
    ],
    "aliases": [],
    "rows": [
-    "00:B7"
+    "00:B7",
+    "7:A33"
    ],
    "realisations": [
     "p00048"
@@ -2502,7 +2503,8 @@
    ],
    "aliases": [],
    "rows": [
-    "00:C12"
+    "00:C12",
+    "7:A32"
    ],
    "realisations": []
   },
@@ -2868,14 +2870,14 @@
   {
    "key": "p00042",
    "origin": "00",
-   "statement": "\\textbf{Time is the drive}: a Subject's clock is its drive $x\\mapsto gx$ and a chronon one drive step (C1); the timeless Carrier (A6), registered by parts (A4), has no clock. A registered duration is the chronon count, one-directional: the registrable depth $\\p^{2}$ lies below the cycle $\\Om-1$ (7:F4). A composite's conserved offset is observer-derived, its group fixed by the arena's divisors.",
+   "statement": "\\textbf{Time is the drive}: a Subject's clock is its drive $x\\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has no clock. A registered duration is the one-directional chronon count on the depth $\\p^{2}<\\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors.",
    "origin_row": "00:D1",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/spacetime.html#p00042",
     "script": "p07_spacetime.py",
-    "line": 225,
+    "line": 258,
     "verdict": "pass"
    },
    "declarations": [
@@ -2905,7 +2907,9 @@
     "00:D1",
     "7:A17"
    ],
-   "realisations": []
+   "realisations": [
+    "p00153"
+   ]
   },
   {
    "key": "p00043",
@@ -3082,7 +3086,8 @@
    "declarations": [],
    "aliases": [],
    "rows": [
-    "00:D15"
+    "00:D15",
+    "7:A30"
    ]
   },
   {
@@ -10099,6 +10104,51 @@
    "realisations": []
   },
   {
+   "key": "p21052",
+   "origin": "21",
+   "statement": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the measured $H_0=67.4$ \\citep{planck}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle \\citep{dimensions}, the one-cycle-per-period threshold a realisation with its discrete falsifier.",
+   "origin_row": "21:P3",
+   "tag": "T",
+   "tier": 2,
+   "check": {
+    "href": "py/gravity.html#p21052",
+    "script": "p21_gravity.py",
+    "line": 500,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/Gravity",
+     "name": "FRC.Gravity.floor_value"
+    }
+   ],
+   "aliases": [
+    "p32028"
+   ],
+   "rows": [
+    "7:A31",
+    "21:P3"
+   ],
+   "realisations": [
+    "p00192"
+   ]
+  },
+  {
+   "key": "p07053",
+   "origin": "07",
+   "statement": "The de Sitter temperature of a horizon with Hubble rate $H$ is $T_{\\mathrm{dS}}=\\hbar H/2\\pi k_B$ [chart].",
+   "origin_row": "7:A34",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "7:A34"
+   ]
+  },
+  {
    "key": "p07003",
    "origin": "07",
    "statement": "Every frame move of $G=\\mathrm{PGL}_2(\\Fp)$ factors uniquely as scale, translation and rotation, on $C_{4\\kap}$, $C_{4\\kap+1}$ and $C_{4\\kap+2}$, of consecutive orders; on the spin cover the section obstructs at $-I$.",
@@ -10108,7 +10158,7 @@
    "check": {
     "href": "py/spacetime.html#p07003",
     "script": "p07_spacetime.py",
-    "line": 244,
+    "line": 288,
     "verdict": "pass"
    },
    "declarations": [
@@ -10151,7 +10201,7 @@
   {
    "key": "p07038",
    "origin": "07",
-   "statement": "Registration: the Subject registers the orbits of its frame's action, of size moves over stabiliser; a move, a label or a coordinate is not registered, and a count of registrations is a count of orbits.",
+   "statement": "Registration: the Subject registers the orbits of an action, of size moves over stabiliser, named at each use (the drive on the register, the trivial action on the register pair, the quarter-turn group on the nonzero pairs); a move, a label or a coordinate is not registered, and a count of registrations is a count of orbits.",
    "origin_row": "7:B3",
    "tag": "D",
    "tier": null,
@@ -10172,7 +10222,7 @@
    "check": {
     "href": "py/spacetime.html#p07042",
     "script": "p07_spacetime.py",
-    "line": 257,
+    "line": 301,
     "verdict": "pass"
    },
    "declarations": [
@@ -10201,14 +10251,14 @@
   {
    "key": "p07049",
    "origin": "07",
-   "statement": "The registrable depth: the Subject's register pair takes $\\p^{2}$ values, the pair space of the nesting condition (A21), and registration distinguishes states only (B3), so a sequence of distinct registrations has at most $\\p^{2}$ entries and a registered duration at most $\\p^{2}$ chronons.",
+   "statement": "The registrable depth: the Subject's register pair takes $\\p^{2}$ values, the pair space of the nesting condition, and the states of a registrable duration are pairwise distinct, so a registrable duration has at most $\\p^{2}$ chronons.",
    "origin_row": "7:B5",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/spacetime.html#p07049",
     "script": "p07_spacetime.py",
-    "line": 271,
+    "line": 315,
     "verdict": "pass"
    },
    "declarations": [
@@ -10230,6 +10280,46 @@
    "realisations": []
   },
   {
+   "key": "p07050",
+   "origin": "07",
+   "statement": "The register: the capacity register is the ring $\\Z_{\\p}$, the additive cycle $C_{\\p}$ of the $4\\kap+1$ cells; its translations $z\\mapsto z+b$ are the unipotent moves of the frame, and each nontrivial translation fixes exactly one direction of the frame's line, the antipode $[1:0]$.",
+   "origin_row": "7:B6",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "py/spacetime.html#p07050",
+    "script": "p07_spacetime.py",
+    "line": 274,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Register",
+     "name": "FRC.Register.translation_fixes_antipode"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "7:B6"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p07055",
+   "origin": "07",
+   "statement": "The registrable duration and the record: a registrable duration is a sequence of chronons whose register-pair states are pairwise distinct, since registration distinguishes states only; its record is the sequence of chart counts registered along it, one per chronon, and contains the record of each initial segment.",
+   "origin_row": "7:B7",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "7:B7"
+   ]
+  },
+  {
    "key": "p07005",
    "origin": "07",
    "statement": "The register square $\\mathrm{Herm}_2(K)=\\mathrm{Sym}^{2}(V)\\oplus\\Fp\\,\\eta J$ with $\\det X=x_{0}^{2}-x_{1}^{2}-x_{3}^{2}+\\gen x_{2}^{2}$; the map $\\varphi$ is an isometry onto $Q_{\\gen}$.",
@@ -10239,7 +10329,7 @@
    "check": {
     "href": "py/spacetime.html#p07005",
     "script": "p07_spacetime.py",
-    "line": 287,
+    "line": 331,
     "verdict": "pass"
    },
    "declarations": [
@@ -10275,7 +10365,7 @@
    "check": {
     "href": "py/spacetime.html#p07006",
     "script": "p07_spacetime.py",
-    "line": 292,
+    "line": 336,
     "verdict": "pass"
    },
    "declarations": [
@@ -10316,7 +10406,7 @@
    "check": {
     "href": "py/spacetime.html#p07007",
     "script": "p07_spacetime.py",
-    "line": 303,
+    "line": 347,
     "verdict": "pass"
    },
    "declarations": [
@@ -10347,7 +10437,7 @@
    "check": {
     "href": "py/spacetime.html#p07008",
     "script": "p07_spacetime.py",
-    "line": 303,
+    "line": 347,
     "verdict": "pass"
    },
    "declarations": [
@@ -10393,7 +10483,7 @@
    "check": {
     "href": "py/spacetime.html#p07009",
     "script": "p07_spacetime.py",
-    "line": 314,
+    "line": 358,
     "verdict": "pass"
    },
    "declarations": [
@@ -10429,7 +10519,7 @@
    "check": {
     "href": "py/spacetime.html#p07010",
     "script": "p07_spacetime.py",
-    "line": 321,
+    "line": 365,
     "verdict": "pass"
    },
    "declarations": [
@@ -10460,7 +10550,7 @@
    "check": {
     "href": "py/spacetime.html#p07031",
     "script": "p07_spacetime.py",
-    "line": 331,
+    "line": 375,
     "verdict": "pass"
    },
    "declarations": [
@@ -10496,7 +10586,7 @@
    "check": {
     "href": "py/spacetime.html#p07032",
     "script": "p07_spacetime.py",
-    "line": 341,
+    "line": 385,
     "verdict": "pass"
    },
    "declarations": [
@@ -10515,14 +10605,14 @@
   {
    "key": "p07040",
    "origin": "07",
-   "statement": "The class equation: every element of $G$ has order dividing $\\p-1$, $\\p$ or $\\p+1$; the maximal cyclic subgroups are the split tori, the unipotent groups and the non-split tori, $\\p(\\p+1)/2$, $\\p+1$ and $\\p(\\p-1)/2$ of them, partitioning $G\\setminus\\{1\\}$; the three kinds of cycle are the three direction classes of space.",
+   "statement": "The class equation: every element of $G$ has order dividing $\\p-1$, $\\p$ or $\\p+1$; the maximal cyclic subgroups are the split tori, the unipotent groups and the non-split tori, $\\p(\\p+1)/2$, $\\p+1$ and $\\p(\\p-1)/2$ of them, partitioning $G\\setminus\\{1\\}$.",
    "origin_row": "7:C9",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/spacetime.html#p07040",
     "script": "p07_spacetime.py",
-    "line": 351,
+    "line": 395,
     "verdict": "pass"
    },
    "declarations": [
@@ -10559,16 +10649,52 @@
    "realisations": []
   },
   {
+   "key": "p07051",
+   "origin": "07",
+   "statement": "The fixed points: a split torus fixes exactly two points of $\\mathbb{P}^{1}(\\Fp)$, a unipotent group one and a non-split torus none, by the square class of the discriminant; the three kinds of cycle are the three kinds of direction of space, a square-norm axis, a null direction and a nonsquare axis.",
+   "origin_row": "7:C10",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "py/spacetime.html#p07051",
+    "script": "p07_spacetime.py",
+    "line": 413,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Register",
+     "name": "FRC.Register.fixed_points_13"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Register",
+     "name": "FRC.Register.fixed_points_of_class"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lorentz",
+     "name": "FRC.Lorentz.axis_discriminant"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "7:C10"
+   ],
+   "realisations": []
+  },
+  {
    "key": "p07011",
    "origin": "07",
-   "statement": "The stabiliser of the time vector $\\eta J$ in $\\mathrm{SL}_2(K)$ is exactly the spin cover $\\mathrm{SL}_2(\\Fp)$, which rotates $\\mathrm{Sym}^{2}(V)$; a frame move of odd drive parity fixes the line and scales the vector by $\\gen$.",
+   "statement": "The stabiliser of the time vector $\\eta J$ in $\\mathrm{SL}_2(K)$ is exactly the spin cover $\\mathrm{SL}_2(\\Fp)$, which acts on $\\mathrm{Sym}^{2}(V)$ through $\\mathrm{PSL}_2(\\Fp)$, of index two in $G$; the moves of odd drive parity lie outside it.",
    "origin_row": "7:D1",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/spacetime.html#p07011",
     "script": "p07_spacetime.py",
-    "line": 361,
+    "line": 423,
     "verdict": "pass"
    },
    "declarations": [
@@ -10586,11 +10712,6 @@
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Spin",
      "name": "FRC.Spin.ad_preserves"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Theme/Lorentz",
-     "name": "FRC.Lorentz.drive_time"
     }
    ],
    "aliases": [],
@@ -10602,14 +10723,14 @@
   {
    "key": "p07013",
    "origin": "07",
-   "statement": "The drive on the square: $\\mathrm{diag}(\\gen,1)$ carries $[z]$ to $[\\gen z]$ and $\\eta J$ to $\\gen\\,\\eta J$; its unimodular lift $\\mathrm{diag}(\\eta,\\eta^{-1})$ carries $\\eta J$ to $-\\eta J$; the even transport $\\mathrm{diag}(\\gen,\\gen^{-1})$ fixes $\\eta J$ and dilates the origin and the horizon by $\\gen^{-2}$ and $\\gen^{2}$.",
+   "statement": "The drive on the square: $\\mathrm{diag}(\\gen,1)$ carries $[z]$ to $[\\gen z]$ and $\\eta J$ to $\\gen\\,\\eta J$; its unimodular lift $\\mathrm{diag}(\\eta,\\eta^{-1})$ carries $\\eta J$ to $-\\eta J$; the even transport $\\mathrm{diag}(\\gen,\\gen^{-1})$ fixes $\\eta J$ and dilates the origin and the antipode by $\\gen^{-2}$ and $\\gen^{2}$.",
    "origin_row": "7:D3",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/spacetime.html#p07013",
     "script": "p07_spacetime.py",
-    "line": 369,
+    "line": 431,
     "verdict": "pass"
    },
    "declarations": [
@@ -10650,7 +10771,7 @@
    "check": {
     "href": "py/spacetime.html#p07014",
     "script": "p07_spacetime.py",
-    "line": 376,
+    "line": 438,
     "verdict": "pass"
    },
    "declarations": [
@@ -10681,7 +10802,7 @@
    "check": {
     "href": "py/spacetime.html#p07015",
     "script": "p07_spacetime.py",
-    "line": 383,
+    "line": 445,
     "verdict": "pass"
    },
    "declarations": [
@@ -10700,21 +10821,21 @@
   {
    "key": "p07033",
    "origin": "07",
-   "statement": "$K^{\\times}/\\Fpx$ is regular on $\\mathbb{P}^{1}(\\Fp)$; the horizon $[1:0]$ is its element of order two, reached from the origin at the half step $2\\kap+1$ by every generator; the unimodular torus reaches only the even steps.",
+   "statement": "$K^{\\times}/\\Fpx$ is regular on $\\mathbb{P}^{1}(\\Fp)$; the antipode $[1:0]$ is its element of order two, reached from the origin at the half step $2\\kap+1$ by every generator; the unimodular torus reaches only the even steps.",
    "origin_row": "7:D6",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/spacetime.html#p07033",
     "script": "p07_spacetime.py",
-    "line": 394,
+    "line": 456,
     "verdict": "pass"
    },
    "declarations": [
     {
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Lorentz",
-     "name": "FRC.Lorentz.horizon_order_two"
+     "name": "FRC.Lorentz.antipode_order_two"
     },
     {
      "lib": "FrcCore",
@@ -10724,12 +10845,12 @@
     {
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Lorentz",
-     "name": "FRC.Lorentz.even_never_horizon"
+     "name": "FRC.Lorentz.even_never_antipode"
     },
     {
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Lorentz",
-     "name": "FRC.Lorentz.horizon_half_step_13"
+     "name": "FRC.Lorentz.antipode_half_step_13"
     }
    ],
    "aliases": [],
@@ -10762,7 +10883,7 @@
    "check": {
     "href": "py/spacetime.html#p07044",
     "script": "p07_spacetime.py",
-    "line": 404,
+    "line": 466,
     "verdict": "pass"
    },
    "declarations": [
@@ -10802,7 +10923,7 @@
    "check": {
     "href": "py/spacetime.html#p07046",
     "script": "p07_spacetime.py",
-    "line": 412,
+    "line": 474,
     "verdict": "pass"
    },
    "declarations": [
@@ -10843,7 +10964,7 @@
    "check": {
     "href": "py/spacetime.html#p07047",
     "script": "p07_spacetime.py",
-    "line": 427,
+    "line": 489,
     "verdict": "pass"
    },
    "declarations": [
@@ -10895,6 +11016,54 @@
    "realisations": []
   },
   {
+   "key": "p07052",
+   "origin": "07",
+   "statement": "The second law of the record: along a registrable duration the record gains one chart count per chronon, its entries pairwise distinct, and no count recurs below $\\Om-1$; its entropy $S_{\\mathrm{th}}(n)=k_B\\,n$ [chart] never decreases on a registrable duration; the record holds at most $\\p^{2}=4\\kap(\\p+1)+1$ entries, the $\\kap(\\p+1)$ orbits of the quarter-turn group on the nonzero pair states plus the origin.",
+   "origin_row": "7:F5",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "py/spacetime.html#p07052",
+    "script": "p07_spacetime.py",
+    "line": 510,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Register",
+     "name": "FRC.Register.record_second_law"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Register",
+     "name": "FRC.Register.record_quarter"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Register",
+     "name": "FRC.Register.record_quarter_pairs"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lorentz",
+     "name": "FRC.Lorentz.drift_one_directional"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lorentz",
+     "name": "FRC.Lorentz.nesting_depth"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "7:F5"
+   ],
+   "realisations": [
+    "p00153"
+   ]
+  },
+  {
    "key": "p07026",
    "origin": "07",
    "statement": "Exactly three spatial dimensions at every scale the Subject registers, read through the declared metric chart. Falsifier: a short-range departure from the inverse-square law of the extra-dimension form; holds to $52\\,\\mu$m [data].",
@@ -10904,7 +11073,7 @@
    "check": {
     "href": "py/spacetime.html#p07026",
     "script": "p07_spacetime.py",
-    "line": 446,
+    "line": 529,
     "verdict": "pass"
    },
    "declarations": [
@@ -10923,9 +11092,38 @@
    "rows": [
     "7:P1"
    ],
-   "realisations": [
-    "p07004"
-   ]
+   "realisations": []
+  },
+  {
+   "key": "p07054",
+   "origin": "07",
+   "statement": "The floor is the Carrier's temperature: the de Sitter temperature of the Carrier's horizon, $T_{\\mathrm{dS}}=\\hbar H_{0}/2\\pi k_B$, and the floor $a_{0}=cH_{0}/2\\pi$ are one number in the acceleration domain, $k_BT_{\\mathrm{dS}}=(\\hbar/c)\\,a_{0}$ with $|k_B|=\\hbar/c$ the chart's unit [chart]: $2.66\\times10^{-30}$ K and $1.04\\times10^{-10}$ m\\,s$^{-2}$ at $H_{0}=67.4$. Falsifier: a measured floor that departs from $cH_{0}/2\\pi$.",
+   "origin_row": "7:P2",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "py/spacetime.html#p07054",
+    "script": "p07_spacetime.py",
+    "line": 546,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Register",
+     "name": "FRC.Register.floor_is_temperature"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Register",
+     "name": "FRC.Register.kB_c_carriers"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "7:P2"
+   ],
+   "realisations": []
   },
   {
    "key": "p07020",
@@ -10937,7 +11135,7 @@
    "check": {
     "href": "py/spacetime.html#p07020",
     "script": "p07_spacetime.py",
-    "line": 314,
+    "line": 358,
     "verdict": "pass"
    },
    "declarations": [
@@ -10968,7 +11166,7 @@
    "check": {
     "href": "py/spacetime.html#p07021",
     "script": "p07_spacetime.py",
-    "line": 351,
+    "line": 395,
     "verdict": "pass"
    },
    "declarations": [
@@ -11002,7 +11200,9 @@
    "rows": [
     "7:X2"
    ],
-   "realisations": []
+   "realisations": [
+    "p07004"
+   ]
   },
   {
    "key": "p07023",
@@ -11014,7 +11214,7 @@
    "check": {
     "href": "py/spacetime.html#p07023",
     "script": "p07_spacetime.py",
-    "line": 292,
+    "line": 336,
     "verdict": "pass"
    },
    "declarations": [
@@ -11045,7 +11245,7 @@
    "check": {
     "href": "py/spacetime.html#p07024",
     "script": "p07_spacetime.py",
-    "line": 321,
+    "line": 365,
     "verdict": "pass"
    },
    "declarations": [
@@ -11071,7 +11271,7 @@
    "check": {
     "href": "py/spacetime.html#p07048",
     "script": "p07_spacetime.py",
-    "line": 412,
+    "line": 474,
     "verdict": "pass"
    },
    "declarations": [
@@ -19235,36 +19435,6 @@
    ],
    "realisations": [
     "p00056"
-   ]
-  },
-  {
-   "key": "p21052",
-   "origin": "21",
-   "statement": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the measured $H_0=67.4$ \\citep{planck}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle \\citep{dimensions}, the one-cycle-per-period threshold a realisation with its discrete falsifier.",
-   "origin_row": "21:P3",
-   "tag": "T",
-   "tier": 2,
-   "check": {
-    "href": "py/gravity.html#p21052",
-    "script": "p21_gravity.py",
-    "line": 500,
-    "verdict": "pass"
-   },
-   "declarations": [
-    {
-     "lib": "FrcMathlib",
-     "module": "FrcMathlib/Gravity",
-     "name": "FRC.Gravity.floor_value"
-    }
-   ],
-   "aliases": [
-    "p32028"
-   ],
-   "rows": [
-    "21:P3"
-   ],
-   "realisations": [
-    "p00192"
    ]
   },
   {
@@ -34355,7 +34525,7 @@
    "block": "D",
    "tag": "T",
    "name": "Time is scale-dilation",
-   "statement": "\\textbf{Time is the drive}: a Subject's clock is its drive $x\\mapsto gx$ and a chronon one drive step (C1); the timeless Carrier (A6), registered by parts (A4), has no clock. A registered duration is the chronon count, one-directional: the registrable depth $\\p^{2}$ lies below the cycle $\\Om-1$ (7:F4). A composite's conserved offset is observer-derived, its group fixed by the arena's divisors.",
+   "statement": "\\textbf{Time is the drive}: a Subject's clock is its drive $x\\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has no clock. A registered duration is the one-directional chronon count on the depth $\\p^{2}<\\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors.",
    "source": "21-grav, 27-fld, 22-qm",
    "page": "ledger.html#D1",
    "witness": {
@@ -34366,15 +34536,17 @@
    "refs": [
     "p00008",
     "p00021",
+    "p00153",
     "p00197",
-    "p07047"
+    "p07047",
+    "p07052"
    ],
    "sources": [
     "21-grav",
     "27-fld",
     "22-qm"
    ],
-   "text": "Time is scale-dilation: Time is the drive: a Subject's clock is its drive $x\\mapsto gx$ and a chronon one drive step (C1); the timeless Carrier (A6), registered by parts (A4), has no clock. A registered duration is the chronon count, one-directional: the registrable depth $\\p^{2}$ lies below the cycle $\\Om-1$ (7:F4). A composite's conserved offset is observer-derived, its group fixed by the arena's divisors. 21-grav, 27-fld, 22-qm 7:p07_spacetime.py"
+   "text": "Time is scale-dilation: Time is the drive: a Subject's clock is its drive $x\\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has no clock. A registered duration is the one-directional chronon count on the depth $\\p^{2}<\\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors. 21-grav, 27-fld, 22-qm 7:p07_spacetime.py"
   },
   {
    "paper": "00",
@@ -44075,7 +44247,7 @@
    "tag": "I",
    "name": null,
    "statement": "Quadratic forms over $\\Fp$: classified by dimension and discriminant; isotropic from dimension three; in dimension four the hyperbolic class (discriminant a square, Witt index two) and the elliptic class (discriminant a nonsquare, Witt index one), with $|\\mathrm{O}^{\\pm}_{4}|$.",
-   "source": "\\citep{akhtman2025lorentzian,taylor1992}; \\href{https://finitering.space/3-causality/index.html#A2}{3:A2}",
+   "source": "Prop.~\\ref{prop:forms}(i); \\citep{akhtman2025lorentzian,taylor1992}; \\href{https://finitering.space/3-causality/index.html#A2}{3:A2}",
    "page": "7-spacetime/index.html#A1",
    "witness": {
     "py": null,
@@ -44084,7 +44256,7 @@
    "refs": [
     "p03002"
    ],
-   "text": "Quadratic forms over $\\Fp$: classified by dimension and discriminant; isotropic from dimension three; in dimension four the hyperbolic class (discriminant a square, Witt index two) and the elliptic class (discriminant a nonsquare, Witt index one), with $|\\mathrm{O}^{\\pm}_{4}|$. [akhtman2025lorentzian,taylor1992]; 3:A2"
+   "text": "Quadratic forms over $\\Fp$: classified by dimension and discriminant; isotropic from dimension three; in dimension four the hyperbolic class (discriminant a square, Witt index two) and the elliptic class (discriminant a nonsquare, Witt index one), with $|\\mathrm{O}^{\\pm}_{4}|$. Prop. prop:forms(i); [akhtman2025lorentzian,taylor1992]; 3:A2"
   },
   {
    "paper": "7-st",
@@ -44096,14 +44268,14 @@
    "tag": "I",
    "name": null,
    "statement": "$\\mathrm{PSL}_2(\\p^{2})\\cong\\mathrm{P}\\Omega^{-}_{4}(\\p)$; the spinor map on $2\\times2$ Hermitian matrices, the continuum counterpart.",
-   "source": "\\citep{taylor1992}; \\citep{penrose1984}",
+   "source": "Prop.~\\ref{prop:forms}(vii); \\citep{taylor1992}; \\citep{penrose1984}",
    "page": "7-spacetime/index.html#A2",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "$\\mathrm{PSL}_2(\\p^{2})\\cong\\mathrm{P}\\Omega^{-}_{4}(\\p)$; the spinor map on $2\\times2$ Hermitian matrices, the continuum counterpart. [taylor1992]; [penrose1984]"
+   "text": "$\\mathrm{PSL}_2(\\p^{2})\\cong\\mathrm{P}\\Omega^{-}_{4}(\\p)$; the spinor map on $2\\times2$ Hermitian matrices, the continuum counterpart. Prop. prop:forms(vii); [taylor1992]; [penrose1984]"
   },
   {
    "paper": "7-st",
@@ -44115,14 +44287,14 @@
    "tag": "I",
    "name": null,
    "statement": "The inverse-square law of gravitation holds to separations of $52\\,\\mu$m [data].",
-   "source": "\\citep{lee2020}",
+   "source": "Rem.~\\ref{rem:data}; \\citep{lee2020}",
    "page": "7-spacetime/index.html#A3",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The inverse-square law of gravitation holds to separations of $52 \\mu$m [data]. [lee2020]"
+   "text": "The inverse-square law of gravitation holds to separations of $52 \\mu$m [data]. Rem. rem:data; [lee2020]"
   },
   {
    "paper": "7-st",
@@ -44134,13 +44306,13 @@
    "tag": "T",
    "name": null,
    "statement": "The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto\\gen x$; $\\gen$ the one nonsquare frame datum; the shell $\\p=4\\kap+1$, $\\im=-\\gen^{\\kap}$, $\\pi=2\\kap$.",
-   "source": "\\citep{akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#C1}{00:C1}\\newline \\pywit{spacetime}{p00021}{A4}, \\leanwit{FrcCore}{p00021}{A4} \\lean{FRC.Subject.frame\\_web}",
+   "source": "Prop.~\\ref{prop:frame}(i); \\citep{akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#C1}{00:C1}\\newline \\pywit{spacetime}{p00021}{A4}, \\leanwit{FrcCore}{p00021}{A4} \\lean{FRC.Subject.frame\\_web}",
    "page": "7-spacetime/index.html#A4",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p00021",
      "script": "p07_spacetime.py",
-     "line": 126,
+     "line": 132,
      "verdict": "pass"
     },
     "lean": [
@@ -44157,7 +44329,7 @@
    "refs": [
     "p00021"
    ],
-   "text": "The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto\\gen x$; $\\gen$ the one nonsquare frame datum; the shell $\\p=4\\kap+1$, $\\im=-\\gen^{\\kap}$, $\\pi=2\\kap$. [akhtman2026dimensions]; 00:C1 p00021, FrcCore{A4} FRC.Subject.frame_web"
+   "text": "The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto\\gen x$; $\\gen$ the one nonsquare frame datum; the shell $\\p=4\\kap+1$, $\\im=-\\gen^{\\kap}$, $\\pi=2\\kap$. Prop. prop:frame(i); [akhtman2026dimensions]; 00:C1 p00021, FrcCore{A4} FRC.Subject.frame_web"
   },
   {
    "paper": "7-st",
@@ -44169,7 +44341,7 @@
    "tag": "D",
    "name": null,
    "statement": "An oriented frame is a unimodular basis.",
-   "source": "\\citep{akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#C5}{00:C5}",
+   "source": "Prop.~\\ref{prop:frame}(ii); \\citep{akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#C5}{00:C5}",
    "page": "7-spacetime/index.html#A5",
    "witness": {
     "py": null,
@@ -44178,7 +44350,7 @@
    "refs": [
     "p00025"
    ],
-   "text": "An oriented frame is a unimodular basis. [akhtman2026dimensions]; 00:C5"
+   "text": "An oriented frame is a unimodular basis. Prop. prop:frame(ii); [akhtman2026dimensions]; 00:C5"
   },
   {
    "paper": "7-st",
@@ -44190,13 +44362,13 @@
    "tag": "T",
    "name": null,
    "statement": "The signature is the square class of the temporal coefficient $\\nu=\\gen$; the split and the non-split torus are the two signatures.",
-   "source": "\\citep{akhtman2025lorentzian}; \\href{https://finitering.space/ledger.html#C3}{00:C3}\\newline \\pywit{spacetime}{p00150}{A6}, \\leanwit{FrcCore}{p00150}{A6} \\lean{FRC.Subject.signature, FRC.Subject.half\\_class}",
+   "source": "Prop.~\\ref{prop:forms}(vi); \\citep{akhtman2025lorentzian}; \\href{https://finitering.space/ledger.html#C3}{00:C3}\\newline \\pywit{spacetime}{p00150}{A6}, \\leanwit{FrcCore}{p00150}{A6} \\lean{FRC.Subject.signature, FRC.Subject.half\\_class}",
    "page": "7-spacetime/index.html#A6",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p00150",
      "script": "p07_spacetime.py",
-     "line": 135,
+     "line": 141,
      "verdict": "pass"
     },
     "lean": [
@@ -44221,7 +44393,7 @@
    "refs": [
     "p00150"
    ],
-   "text": "The signature is the square class of the temporal coefficient $\\nu=\\gen$; the split and the non-split torus are the two signatures. [akhtman2025lorentzian]; 00:C3 p00150, FrcCore{A6} FRC.Subject.signature, FRC.Subject.half_class"
+   "text": "The signature is the square class of the temporal coefficient $\\nu=\\gen$; the split and the non-split torus are the two signatures. Prop. prop:forms(vi); [akhtman2025lorentzian]; 00:C3 p00150, FrcCore{A6} FRC.Subject.signature, FRC.Subject.half_class"
   },
   {
    "paper": "7-st",
@@ -44233,7 +44405,7 @@
    "tag": "D",
    "name": null,
    "statement": "The forms $Q_{\\nu}=-\\nu t^{2}+x^{2}+y^{2}+z^{2}$, $\\nu\\in\\Fpx$, hyperbolic for $\\nu$ a square and elliptic for $\\nu$ a nonsquare; $Q_{\\nu}$ depends on the class of $\\nu$ only.",
-   "source": "\\citep{akhtman2025lorentzian}; \\href{https://finitering.space/3-causality/index.html#B1}{3:B1}",
+   "source": "Prop.~\\ref{prop:forms}(ii); \\citep{akhtman2025lorentzian}; \\href{https://finitering.space/3-causality/index.html#B1}{3:B1}",
    "page": "7-spacetime/index.html#A7",
    "witness": {
     "py": null,
@@ -44242,7 +44414,7 @@
    "refs": [
     "p03005"
    ],
-   "text": "The forms $Q_{\\nu}=-\\nu t^{2}+x^{2}+y^{2}+z^{2}$, $\\nu\\in\\Fpx$, hyperbolic for $\\nu$ a square and elliptic for $\\nu$ a nonsquare; $Q_{\\nu}$ depends on the class of $\\nu$ only. [akhtman2025lorentzian]; 3:B1"
+   "text": "The forms $Q_{\\nu}=-\\nu t^{2}+x^{2}+y^{2}+z^{2}$, $\\nu\\in\\Fpx$, hyperbolic for $\\nu$ a square and elliptic for $\\nu$ a nonsquare; $Q_{\\nu}$ depends on the class of $\\nu$ only. Prop. prop:forms(ii); [akhtman2025lorentzian]; 3:B1"
   },
   {
    "paper": "7-st",
@@ -44254,13 +44426,13 @@
    "tag": "T",
    "name": null,
    "statement": "The counts of the two four-dimensional classes: $\\p^{3}+\\p^{2}-\\p$ null vectors for the hyperbolic class, $\\p^{3}-\\p^{2}+\\p$ for the elliptic.",
-   "source": "\\citep{akhtman2025lorentzian}; \\href{https://finitering.space/3-causality/index.html#B4}{3:B4}\\newline \\pywit{spacetime}{p03008}{A8}, \\leanwit{FrcCore}{p03008}{A8} \\lean{FRC.Shell.Frame.null13, FRC.Shell.Frame.euclid13, FRC.Shell.Frame.null5, FRC.Shell.Frame.null17}",
+   "source": "Prop.~\\ref{prop:forms}(iii); \\citep{akhtman2025lorentzian}; \\href{https://finitering.space/3-causality/index.html#B4}{3:B4}\\newline \\pywit{spacetime}{p03008}{A8}, \\leanwit{FrcCore}{p03008}{A8} \\lean{FRC.Shell.Frame.null13, FRC.Shell.Frame.euclid13, FRC.Shell.Frame.null5, FRC.Shell.Frame.null17}",
    "page": "7-spacetime/index.html#A8",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p03008",
      "script": "p07_spacetime.py",
-     "line": 151,
+     "line": 157,
      "verdict": "pass"
     },
     "lean": [
@@ -44301,7 +44473,7 @@
    "refs": [
     "p03008"
    ],
-   "text": "The counts of the two four-dimensional classes: $\\p^{3}+\\p^{2}-\\p$ null vectors for the hyperbolic class, $\\p^{3}-\\p^{2}+\\p$ for the elliptic. [akhtman2025lorentzian]; 3:B4 p03008, FrcCore{A8} FRC.Shell.Frame.null13, FRC.Shell.Frame.euclid13, FRC.Shell.Frame.null5, FRC.Shell.Frame.null17"
+   "text": "The counts of the two four-dimensional classes: $\\p^{3}+\\p^{2}-\\p$ null vectors for the hyperbolic class, $\\p^{3}-\\p^{2}+\\p$ for the elliptic. Prop. prop:forms(iii); [akhtman2025lorentzian]; 3:B4 p03008, FrcCore{A8} FRC.Shell.Frame.null13, FRC.Shell.Frame.euclid13, FRC.Shell.Frame.null5, FRC.Shell.Frame.null17"
   },
   {
    "paper": "7-st",
@@ -44312,14 +44484,14 @@
    "block": "A",
    "tag": "T",
    "name": null,
-   "statement": "The two classes of non-null vectors of $Q_{\\nu}$ are equal in size, $(\\p-1)(\\p^{3}+\\p)/2$ each, and invariant under the orthogonal group and under rescaling.",
-   "source": "\\citep{akhtman2025lorentzian}; \\href{https://finitering.space/3-causality/index.html#B7}{3:B7}\\newline \\pywit{spacetime}{p03011}{A9}, \\leanwit{FrcCore}{p03011}{A9} \\lean{FRC.Lorentz.similitude}",
+   "statement": "For $\\nu$ a nonsquare the two classes of non-null vectors of $Q_{\\nu}$ are equal in size, $(\\p-1)(\\p^{3}+\\p)/2$ each, and invariant under the orthogonal group and under rescaling.",
+   "source": "Prop.~\\ref{prop:forms}(iv); \\citep{akhtman2025lorentzian}; \\href{https://finitering.space/3-causality/index.html#B7}{3:B7}\\newline \\pywit{spacetime}{p03011}{A9}, \\leanwit{FrcCore}{p03011}{A9} \\lean{FRC.Lorentz.similitude}",
    "page": "7-spacetime/index.html#A9",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p03011",
      "script": "p07_spacetime.py",
-     "line": 151,
+     "line": 157,
      "verdict": "pass"
     },
     "lean": [
@@ -44336,7 +44508,7 @@
    "refs": [
     "p03011"
    ],
-   "text": "The two classes of non-null vectors of $Q_{\\nu}$ are equal in size, $(\\p-1)(\\p^{3}+\\p)/2$ each, and invariant under the orthogonal group and under rescaling. [akhtman2025lorentzian]; 3:B7 p03011, FrcCore{A9} FRC.Lorentz.similitude"
+   "text": "For $\\nu$ a nonsquare the two classes of non-null vectors of $Q_{\\nu}$ are equal in size, $(\\p-1)(\\p^{3}+\\p)/2$ each, and invariant under the orthogonal group and under rescaling. Prop. prop:forms(iv); [akhtman2025lorentzian]; 3:B7 p03011, FrcCore{A9} FRC.Lorentz.similitude"
   },
   {
    "paper": "7-st",
@@ -44348,13 +44520,13 @@
    "tag": "T",
    "name": null,
    "statement": "The norm-one group of the plane form $-\\nu t^{2}+x^{2}$ is the cycle $C_{\\p+1}$, the non-split torus, for $\\nu$ a nonsquare, and the split torus $C_{\\p-1}$ for $\\nu$ a square.",
-   "source": "\\citep{akhtman2025lorentzian}; \\href{https://finitering.space/3-causality/index.html#C2}{3:C2}\\newline \\pywit{spacetime}{p03013}{A10}, \\leanwit{FrcCore}{p03013}{A10} \\lean{FRC.Shell.Frame.boost\\_preserves, FRC.Shell.Frame.boost\\_comp\\_t, FRC.Shell.Frame.boost\\_comp\\_x, FRC.Shell.Frame.norm\\_one\\_mul, FRC.Shell.Frame.normOne\\_values}",
+   "source": "Prop.~\\ref{prop:forms}(v); \\citep{akhtman2025lorentzian}; \\href{https://finitering.space/3-causality/index.html#C2}{3:C2}\\newline \\pywit{spacetime}{p03013}{A10}, \\leanwit{FrcCore}{p03013}{A10} \\lean{FRC.Shell.Frame.boost\\_preserves, FRC.Shell.Frame.boost\\_comp\\_t, FRC.Shell.Frame.boost\\_comp\\_x, FRC.Shell.Frame.norm\\_one\\_mul, FRC.Shell.Frame.normOne\\_values}",
    "page": "7-spacetime/index.html#A10",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p03013",
      "script": "p07_spacetime.py",
-     "line": 135,
+     "line": 141,
      "verdict": "pass"
     },
     "lean": [
@@ -44403,7 +44575,7 @@
    "refs": [
     "p03013"
    ],
-   "text": "The norm-one group of the plane form $-\\nu t^{2}+x^{2}$ is the cycle $C_{\\p+1}$, the non-split torus, for $\\nu$ a nonsquare, and the split torus $C_{\\p-1}$ for $\\nu$ a square. [akhtman2025lorentzian]; 3:C2 p03013, FrcCore{A10} FRC.Shell.Frame.boost_preserves, FRC.Shell.Frame.boost_comp_t, FRC.Shell.Frame.boost_comp_x, FRC.Shell.Frame.norm_one_mul, FRC.Shell.Frame.normOne_values"
+   "text": "The norm-one group of the plane form $-\\nu t^{2}+x^{2}$ is the cycle $C_{\\p+1}$, the non-split torus, for $\\nu$ a nonsquare, and the split torus $C_{\\p-1}$ for $\\nu$ a square. Prop. prop:forms(v); [akhtman2025lorentzian]; 3:C2 p03013, FrcCore{A10} FRC.Shell.Frame.boost_preserves, FRC.Shell.Frame.boost_comp_t, FRC.Shell.Frame.boost_comp_x, FRC.Shell.Frame.norm_one_mul, FRC.Shell.Frame.normOne_values"
   },
   {
    "paper": "7-st",
@@ -44415,13 +44587,13 @@
    "tag": "T",
    "name": null,
    "statement": "The Hopf section: the frame moves factor as the affine group times the non-split torus, $G=B\\cdot T$, on the frames by elements.",
-   "source": "\\citep{akhtman2026s13}; \\href{https://finitering.space/ledger.html#C19}{00:C19}\\newline \\pywit{spacetime}{p00190}{A11}, \\leanwit{FrcCore}{p00190}{A11} \\lean{FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts}",
+   "source": "Prop.~\\ref{prop:frame}(viii); \\citep{akhtman2026s13}; \\href{https://finitering.space/ledger.html#C19}{00:C19}\\newline \\pywit{spacetime}{p00190}{A11}, \\leanwit{FrcCore}{p00190}{A11} \\lean{FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts}",
    "page": "7-spacetime/index.html#A11",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p00190",
      "script": "p07_spacetime.py",
-     "line": 160,
+     "line": 166,
      "verdict": "pass"
     },
     "lean": [
@@ -44446,7 +44618,7 @@
    "refs": [
     "p00190"
    ],
-   "text": "The Hopf section: the frame moves factor as the affine group times the non-split torus, $G=B\\cdot T$, on the frames by elements. [akhtman2026s13]; 00:C19 p00190, FrcCore{A11} FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts"
+   "text": "The Hopf section: the frame moves factor as the affine group times the non-split torus, $G=B\\cdot T$, on the frames by elements. Prop. prop:frame(viii); [akhtman2026s13]; 00:C19 p00190, FrcCore{A11} FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts"
   },
   {
    "paper": "7-st",
@@ -44458,13 +44630,13 @@
    "tag": "T",
    "name": null,
    "statement": "The frame triple: one projective direction, one shell cell, one drive phase; the $\\p+1$ directions of $\\mathbb{P}^{1}(\\Fp)$.",
-   "source": "\\citep{akhtman2026s13}; \\href{https://finitering.space/38-s13/index.html#A9}{38:A9}\\newline \\pywit{spacetime}{p38050}{A12}, \\leanwit{FrcCore}{p38050}{A12} \\lean{FRC.Shell.Prime.frame\\_triple, FRC.Shell.Prime.hopf\\_section, FRC.Shell.Prime.hopf\\_counts, FRC.Shell.Frame.unit\\_split, FRC.Grav.sphere\\_area\\_rung, FRC.Grav.conic\\_count, FRC.Shell.Frame.frame\\_counts}",
+   "source": "Prop.~\\ref{prop:frame}(v); \\citep{akhtman2026s13}; \\href{https://finitering.space/38-s13/index.html#A9}{38:A9}\\newline \\pywit{spacetime}{p38050}{A12}, \\leanwit{FrcCore}{p38050}{A12} \\lean{FRC.Shell.Prime.frame\\_triple, FRC.Shell.Prime.hopf\\_section, FRC.Shell.Prime.hopf\\_counts, FRC.Shell.Frame.unit\\_split, FRC.Grav.sphere\\_area\\_rung, FRC.Grav.conic\\_count, FRC.Shell.Frame.frame\\_counts}",
    "page": "7-spacetime/index.html#A12",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p38050",
      "script": "p07_spacetime.py",
-     "line": 160,
+     "line": 166,
      "verdict": "pass"
     },
     "lean": [
@@ -44529,7 +44701,7 @@
    "refs": [
     "p38050"
    ],
-   "text": "The frame triple: one projective direction, one shell cell, one drive phase; the $\\p+1$ directions of $\\mathbb{P}^{1}(\\Fp)$. [akhtman2026s13]; 38:A9 p38050, FrcCore{A12} FRC.Shell.Prime.frame_triple, FRC.Shell.Prime.hopf_section, FRC.Shell.Prime.hopf_counts, FRC.Shell.Frame.unit_split, FRC.Grav.sphere_area_rung, FRC.Grav.conic_count, FRC.Shell.Frame.frame_counts"
+   "text": "The frame triple: one projective direction, one shell cell, one drive phase; the $\\p+1$ directions of $\\mathbb{P}^{1}(\\Fp)$. Prop. prop:frame(v); [akhtman2026s13]; 38:A9 p38050, FrcCore{A12} FRC.Shell.Prime.frame_triple, FRC.Shell.Prime.hopf_section, FRC.Shell.Prime.hopf_counts, FRC.Shell.Frame.unit_split, FRC.Grav.sphere_area_rung, FRC.Grav.conic_count, FRC.Shell.Frame.frame_counts"
   },
   {
    "paper": "7-st",
@@ -44541,13 +44713,13 @@
    "tag": "T",
    "name": null,
    "statement": "$\\mathrm{PGL}_2(\\Fp)\\cong\\mathrm{SO}_3(\\Fp)$; the census of its elements by type.",
-   "source": "\\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#C22}{00:C22}\\newline \\pywit{spacetime}{p00152}{A13}, \\leanwit{FrcCore}{p00152}{A13} \\lean{FRC.Shell.Frame.frame\\_triple, FRC.Shell.Frame.unit\\_split, FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts, FRC.Shell.Frame.sphere\\_det, FRC.Spin.sphere\\_bijective, FRC.Shell.Frame.frame\\_counts, FRC.Spin.ad\\_preserves, FRC.Spin.ad\\_kernel}",
+   "source": "Prop.~\\ref{prop:frame}(vi); \\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#C22}{00:C22}\\newline \\pywit{spacetime}{p00152}{A13}, \\leanwit{FrcCore}{p00152}{A13} \\lean{FRC.Shell.Frame.frame\\_triple, FRC.Shell.Frame.unit\\_split, FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts, FRC.Shell.Frame.sphere\\_det, FRC.Spin.sphere\\_bijective, FRC.Shell.Frame.frame\\_counts, FRC.Spin.ad\\_preserves, FRC.Spin.ad\\_kernel}",
    "page": "7-spacetime/index.html#A13",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p00152",
      "script": "p07_spacetime.py",
-     "line": 168,
+     "line": 174,
      "verdict": "pass"
     },
     "lean": [
@@ -44628,7 +44800,7 @@
    "refs": [
     "p00152"
    ],
-   "text": "$\\mathrm{PGL}_2(\\Fp)\\cong\\mathrm{SO}_3(\\Fp)$; the census of its elements by type. [akhtman2025algebra]; 00:C22 p00152, FrcCore{A13} FRC.Shell.Frame.frame_triple, FRC.Shell.Frame.unit_split, FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts, FRC.Shell.Frame.sphere_det, FRC.Spin.sphere_bijective, FRC.Shell.Frame.frame_counts, FRC.Spin.ad_preserves, FRC.Spin.ad_kernel"
+   "text": "$\\mathrm{PGL}_2(\\Fp)\\cong\\mathrm{SO}_3(\\Fp)$; the census of its elements by type. Prop. prop:frame(vi); [akhtman2025algebra]; 00:C22 p00152, FrcCore{A13} FRC.Shell.Frame.frame_triple, FRC.Shell.Frame.unit_split, FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts, FRC.Shell.Frame.sphere_det, FRC.Spin.sphere_bijective, FRC.Shell.Frame.frame_counts, FRC.Spin.ad_preserves, FRC.Spin.ad_kernel"
   },
   {
    "paper": "7-st",
@@ -44640,13 +44812,13 @@
    "tag": "T",
    "name": null,
    "statement": "The frame group has one form: $\\mathrm{SU}_2(\\F_{\\p^{2}}/\\Fp)=\\mathrm{SL}_2(\\Fp)$ for the Hermitian form $wJ$, $w^{\\p}=-w$; the sphere $ad-bc=1$.",
-   "source": "\\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#C27}{00:C27}\\newline \\pywit{spacetime}{p00183}{A14}, \\leanwit{FrcCore}{p00183}{A14} \\lean{FRC.Spin.hermitian\\_wJ, FRC.Spin.su2\\_eq\\_sl2, FRC.Spin.finite\\_order, FRC.Shell.Frame.sphere\\_det, FRC.Spin.sphere\\_bijective}",
+   "source": "Prop.~\\ref{prop:frame}(vii); \\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#C27}{00:C27}\\newline \\pywit{spacetime}{p00183}{A14}, \\leanwit{FrcCore}{p00183}{A14} \\lean{FRC.Spin.hermitian\\_wJ, FRC.Spin.su2\\_eq\\_sl2, FRC.Spin.finite\\_order, FRC.Shell.Frame.sphere\\_det, FRC.Spin.sphere\\_bijective}",
    "page": "7-spacetime/index.html#A14",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p00183",
      "script": "p07_spacetime.py",
-     "line": 168,
+     "line": 174,
      "verdict": "pass"
     },
     "lean": [
@@ -44695,7 +44867,7 @@
    "refs": [
     "p00183"
    ],
-   "text": "The frame group has one form: $\\mathrm{SU}_2(\\F_{\\p^{2}}/\\Fp)=\\mathrm{SL}_2(\\Fp)$ for the Hermitian form $wJ$, $w^{\\p}=-w$; the sphere $ad-bc=1$. [akhtman2025algebra]; 00:C27 p00183, FrcCore{A14} FRC.Spin.hermitian_wJ, FRC.Spin.su2_eq_sl2, FRC.Spin.finite_order, FRC.Shell.Frame.sphere_det, FRC.Spin.sphere_bijective"
+   "text": "The frame group has one form: $\\mathrm{SU}_2(\\F_{\\p^{2}}/\\Fp)=\\mathrm{SL}_2(\\Fp)$ for the Hermitian form $wJ$, $w^{\\p}=-w$; the sphere $ad-bc=1$. Prop. prop:frame(vii); [akhtman2025algebra]; 00:C27 p00183, FrcCore{A14} FRC.Spin.hermitian_wJ, FRC.Spin.su2_eq_sl2, FRC.Spin.finite_order, FRC.Shell.Frame.sphere_det, FRC.Spin.sphere_bijective"
   },
   {
    "paper": "7-st",
@@ -44706,14 +44878,14 @@
    "block": "A",
    "tag": "T",
    "name": null,
-   "statement": "Origin and horizon: the origin $[0:1]$ and the horizon $[1:0]$ of the frame's line; the horizon is no residue, the seam $\\p/2$ of the additive cycle.",
-   "source": "\\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#C25}{00:C25}\\newline \\pywit{spacetime}{p00139}{A15}, \\leanwit{FrcCore}{p00139}{A15} \\lean{FRC.Subject.horizon\\_antipode, FRC.Subject.horizon\\_generator, FRC.Subject.boost\\_unique}",
+   "statement": "Origin and antipode: the origin $[0:1]$ and the antipode $[1:0]$ of the frame's line; the antipode is no residue, the antipodal point $\\p/2$ of the additive cycle between $2\\kap$ and $2\\kap+1$.",
+   "source": "Prop.~\\ref{prop:frame}(iv); \\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#C25}{00:C25}\\newline \\pywit{spacetime}{p00139}{A15}, \\leanwit{FrcCore}{p00139}{A15} \\lean{FRC.Subject.horizon\\_antipode, FRC.Subject.horizon\\_generator, FRC.Subject.boost\\_unique}",
    "page": "7-spacetime/index.html#A15",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p00139",
      "script": "p07_spacetime.py",
-     "line": 178,
+     "line": 184,
      "verdict": "pass"
     },
     "lean": [
@@ -44746,7 +44918,7 @@
    "refs": [
     "p00139"
    ],
-   "text": "Origin and horizon: the origin $[0:1]$ and the horizon $[1:0]$ of the frame's line; the horizon is no residue, the seam $\\p/2$ of the additive cycle. [akhtman2025algebra]; 00:C25 p00139, FrcCore{A15} FRC.Subject.horizon_antipode, FRC.Subject.horizon_generator, FRC.Subject.boost_unique"
+   "text": "Origin and antipode: the origin $[0:1]$ and the antipode $[1:0]$ of the frame's line; the antipode is no residue, the antipodal point $\\p/2$ of the additive cycle between $2\\kap$ and $2\\kap+1$. Prop. prop:frame(iv); [akhtman2025algebra]; 00:C25 p00139, FrcCore{A15} FRC.Subject.horizon_antipode, FRC.Subject.horizon_generator, FRC.Subject.boost_unique"
   },
   {
    "paper": "7-st",
@@ -44758,13 +44930,13 @@
    "tag": "T",
    "name": null,
    "statement": "The squares are the even drive steps: a residue's quadratic class is its drive-step parity; registered transport is even, the one-way multiplier $\\gen$ odd.",
-   "source": "\\citep{akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#C8}{00:C8}\\newline \\pywit{spacetime}{p00028}{A16}, \\leanwit{FrcCore}{p00028}{A16} \\lean{FRC.Subject.square\\_class, FRC.Subject.half\\_class, FRC.Shell.Prime.tsirelson, FRC.Extension.Ext.norm\\_scale}",
+   "source": "Prop.~\\ref{prop:frame}(iii); \\citep{akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#C8}{00:C8}\\newline \\pywit{spacetime}{p00028}{A16}, \\leanwit{FrcCore}{p00028}{A16} \\lean{FRC.Subject.square\\_class, FRC.Subject.half\\_class, FRC.Shell.Prime.tsirelson, FRC.Extension.Ext.norm\\_scale}",
    "page": "7-spacetime/index.html#A16",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p00028",
      "script": "p07_spacetime.py",
-     "line": 181,
+     "line": 187,
      "verdict": "pass"
     },
     "lean": [
@@ -44805,7 +44977,7 @@
    "refs": [
     "p00028"
    ],
-   "text": "The squares are the even drive steps: a residue's quadratic class is its drive-step parity; registered transport is even, the one-way multiplier $\\gen$ odd. [akhtman2026dimensions]; 00:C8 p00028, FrcCore{A16} FRC.Subject.square_class, FRC.Subject.half_class, FRC.Shell.Prime.tsirelson, FRC.Extension.Ext.norm_scale"
+   "text": "The squares are the even drive steps: a residue's quadratic class is its drive-step parity; registered transport is even, the one-way multiplier $\\gen$ odd. Prop. prop:frame(iii); [akhtman2026dimensions]; 00:C8 p00028, FrcCore{A16} FRC.Subject.square_class, FRC.Subject.half_class, FRC.Shell.Prime.tsirelson, FRC.Extension.Ext.norm_scale"
   },
   {
    "paper": "7-st",
@@ -44816,14 +44988,14 @@
    "block": "A",
    "tag": "T",
    "name": null,
-   "statement": "Time is the drive: each Subject's clock is its own drive $x\\mapsto\\gen x$. A chronon is one drive step (A4); a registered duration is the count of chronons, the Subject's chart count, injective on every registrable depth (B5, F4); the Carrier has no clock (A29, B3).",
-   "source": "Thm.~\\ref{thm:time}; \\citep{akhtman2026gravity}; rests on A4, A21, A24, A29, B3, B5, F4; \\href{https://finitering.space/ledger.html#D1}{00:D1}\\newline \\pywit{spacetime}{p00042}{A17}, \\leanwit{FrcCore}{p00042}{A17} \\lean{FRC.Subject.frame\\_web, FRC.Lorentz.drift\\_one\\_directional, FRC.Lorentz.nesting\\_depth, FRC.Lorentz.drift\\_instance\\_pairs}",
+   "statement": "Time is the drive: each Subject's clock is its own drive $x\\mapsto\\gen x$. A chronon is one drive step; a registered duration is the count of chronons, the Subject's chart count, injective on every registrable depth; the Carrier has no clock.",
+   "source": "Thm.~\\ref{thm:time}; \\citep{akhtman2026gravity}; \\href{https://finitering.space/ledger.html#D1}{00:D1}\\newline \\pywit{spacetime}{p00042}{A17}, \\leanwit{FrcCore}{p00042}{A17} \\lean{FRC.Subject.frame\\_web, FRC.Lorentz.drift\\_one\\_directional, FRC.Lorentz.nesting\\_depth, FRC.Lorentz.drift\\_instance\\_pairs}",
    "page": "7-spacetime/index.html#A17",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p00042",
      "script": "p07_spacetime.py",
-     "line": 225,
+     "line": 258,
      "verdict": "pass"
     },
     "lean": [
@@ -44862,16 +45034,9 @@
     ]
    },
    "refs": [
-    "p00008",
-    "p00021",
-    "p00042",
-    "p07038",
-    "p07047",
-    "p07049",
-    "p38044",
-    "p38053"
+    "p00042"
    ],
-   "text": "Time is the drive: each Subject's clock is its own drive $x\\mapsto\\gen x$. A chronon is one drive step (A4); a registered duration is the count of chronons, the Subject's chart count, injective on every registrable depth (B5, F4); the Carrier has no clock (A29, B3). Thm. thm:time; [akhtman2026gravity]; rests on A4, A21, A24, A29, B3, B5, F4; 00:D1 p00042, FrcCore{A17} FRC.Subject.frame_web, FRC.Lorentz.drift_one_directional, FRC.Lorentz.nesting_depth, FRC.Lorentz.drift_instance_pairs"
+   "text": "Time is the drive: each Subject's clock is its own drive $x\\mapsto\\gen x$. A chronon is one drive step; a registered duration is the count of chronons, the Subject's chart count, injective on every registrable depth; the Carrier has no clock. Thm. thm:time; [akhtman2026gravity]; 00:D1 p00042, FrcCore{A17} FRC.Subject.frame_web, FRC.Lorentz.drift_one_directional, FRC.Lorentz.nesting_depth, FRC.Lorentz.drift_instance_pairs"
   },
   {
    "paper": "7-st",
@@ -44883,7 +45048,7 @@
    "tag": "R",
    "name": null,
    "statement": "Distance is decoherence: separation is the count of decoherence steps along a direction of the sky. Falsifier: a registered separation that is not such a count.",
-   "source": "\\citep{akhtman2026gravity}; \\href{https://finitering.space/ledger.html#D3}{00:D3}",
+   "source": "Real.~\\ref{real:carried}(i); \\citep{akhtman2026gravity}; \\href{https://finitering.space/ledger.html#D3}{00:D3}",
    "page": "7-spacetime/index.html#A18",
    "witness": {
     "py": null,
@@ -44892,7 +45057,7 @@
    "refs": [
     "p00044"
    ],
-   "text": "Distance is decoherence: separation is the count of decoherence steps along a direction of the sky. Falsifier: a registered separation that is not such a count. [akhtman2026gravity]; 00:D3"
+   "text": "Distance is decoherence: separation is the count of decoherence steps along a direction of the sky. Falsifier: a registered separation that is not such a count. Real. real:carried(i); [akhtman2026gravity]; 00:D3"
   },
   {
    "paper": "7-st",
@@ -44904,7 +45069,7 @@
    "tag": "D",
    "name": null,
    "statement": "$S^{3}$, declared: the continuum chart of the spin cover $\\mathrm{SL}_2(\\Fp)$ [chart].",
-   "source": "\\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#C23}{00:C23}",
+   "source": "Def.~\\ref{def:declared}(i); \\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#C23}{00:C23}",
    "page": "7-spacetime/index.html#A19",
    "witness": {
     "py": null,
@@ -44913,7 +45078,7 @@
    "refs": [
     "p00182"
    ],
-   "text": "$S^{3}$, declared: the continuum chart of the spin cover $\\mathrm{SL}_2(\\Fp)$ [chart]. [akhtman2025algebra]; 00:C23"
+   "text": "$S^{3}$, declared: the continuum chart of the spin cover $\\mathrm{SL}_2(\\Fp)$ [chart]. Def. def:declared(i); [akhtman2025algebra]; 00:C23"
   },
   {
    "paper": "7-st",
@@ -44925,7 +45090,7 @@
    "tag": "D",
    "name": null,
    "statement": "The metric $3$-chart, declared: the continuum chart through which the inverse-square law is read [chart].",
-   "source": "\\citep{akhtman2026gravity}; \\href{https://finitering.space/ledger.html#E11}{00:E11}",
+   "source": "Def.~\\ref{def:declared}(ii); \\citep{akhtman2026gravity}; \\href{https://finitering.space/ledger.html#E11}{00:E11}",
    "page": "7-spacetime/index.html#A20",
    "witness": {
     "py": null,
@@ -44934,7 +45099,7 @@
    "refs": [
     "p00198"
    ],
-   "text": "The metric $3$-chart, declared: the continuum chart through which the inverse-square law is read [chart]. [akhtman2026gravity]; 00:E11"
+   "text": "The metric $3$-chart, declared: the continuum chart through which the inverse-square law is read [chart]. Def. def:declared(ii); [akhtman2026gravity]; 00:E11"
   },
   {
    "paper": "7-st",
@@ -44946,13 +45111,13 @@
    "tag": "T",
    "name": null,
    "statement": "The nesting condition $\\p^{2}<\\Om$: the Subject's pair space fits the Carrier; equivalent to $\\kap/\\dS<1/(\\sqrt{\\Om}+1)$ [chart].",
-   "source": "\\citep{akhtman2026s13}; \\href{https://finitering.space/38-s13/index.html#C13}{38:C13}\\newline \\pywit{spacetime}{p38053}{A21}, \\leanwit{FrcCore}{p38053}{A21} \\lean{FRC.Drift.nesting\\_bound, FRC.Pair.leak\\_rate}",
+   "source": "Prop.~\\ref{prop:drift}(ii); \\citep{akhtman2026s13}; \\href{https://finitering.space/38-s13/index.html#C13}{38:C13}\\newline \\pywit{spacetime}{p38053}{A21}, \\leanwit{FrcCore}{p38053}{A21} \\lean{FRC.Drift.nesting\\_bound, FRC.Pair.leak\\_rate}",
    "page": "7-spacetime/index.html#A21",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p38053",
      "script": "p07_spacetime.py",
-     "line": 194,
+     "line": 200,
      "verdict": "pass"
     },
     "lean": [
@@ -44977,7 +45142,7 @@
    "refs": [
     "p38053"
    ],
-   "text": "The nesting condition $\\p^{2}<\\Om$: the Subject's pair space fits the Carrier; equivalent to $\\kap/\\dS<1/(\\sqrt{\\Om}+1)$ [chart]. [akhtman2026s13]; 38:C13 p38053, FrcCore{A21} FRC.Drift.nesting_bound, FRC.Pair.leak_rate"
+   "text": "The nesting condition $\\p^{2}<\\Om$: the Subject's pair space fits the Carrier; equivalent to $\\kap/\\dS<1/(\\sqrt{\\Om}+1)$ [chart]. Prop. prop:drift(ii); [akhtman2026s13]; 38:C13 p38053, FrcCore{A21} FRC.Drift.nesting_bound, FRC.Pair.leak_rate"
   },
   {
    "paper": "7-st",
@@ -44989,14 +45154,14 @@
    "tag": "I",
    "name": null,
    "statement": "The finite upper half-plane $H_{\\p}=\\mathbb{P}^{1}(\\F_{\\p^{2}})\\setminus\\mathbb{P}^{1}(\\Fp)$, $\\p(\\p-1)$ points, with $\\mathrm{GL}_2(\\Fp)$ transitive and the non-split torus as stabiliser.",
-   "source": "\\citep{terras1999}",
+   "source": "Prop.~\\ref{prop:forms}(viii); \\citep{terras1999}",
    "page": "7-spacetime/index.html#A22",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The finite upper half-plane $H_{\\p}=\\mathbb{P}^{1}(\\F_{\\p^{2}})\\setminus\\mathbb{P}^{1}(\\Fp)$, $\\p(\\p-1)$ points, with $\\mathrm{GL}_2(\\Fp)$ transitive and the non-split torus as stabiliser. [terras1999]"
+   "text": "The finite upper half-plane $H_{\\p}=\\mathbb{P}^{1}(\\F_{\\p^{2}})\\setminus\\mathbb{P}^{1}(\\Fp)$, $\\p(\\p-1)$ points, with $\\mathrm{GL}_2(\\Fp)$ transitive and the non-split torus as stabiliser. Prop. prop:forms(viii); [terras1999]"
   },
   {
    "paper": "7-st",
@@ -45008,13 +45173,13 @@
    "tag": "T",
    "name": null,
    "statement": "Completeness is primality: the Carrier's chart $\\F_{\\Om}$ is a field and has no proper nonzero ideal.",
-   "source": "\\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#A10}{00:A10}\\newline \\pywit{spacetime}{p00162}{A23}, \\leanwit{FrcCore}{p00162}{A23} \\lean{FRC.Shell.Prime.isPrime\\_iff\\_complete}",
+   "source": "Prop.~\\ref{prop:drift}(i); \\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#A10}{00:A10}\\newline \\pywit{spacetime}{p00162}{A23}, \\leanwit{FrcCore}{p00162}{A23} \\lean{FRC.Shell.Prime.isPrime\\_iff\\_complete}",
    "page": "7-spacetime/index.html#A23",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p00162",
      "script": "p07_spacetime.py",
-     "line": 200,
+     "line": 206,
      "verdict": "pass"
     },
     "lean": [
@@ -45031,7 +45196,7 @@
    "refs": [
     "p00162"
    ],
-   "text": "Completeness is primality: the Carrier's chart $\\F_{\\Om}$ is a field and has no proper nonzero ideal. [akhtman2025algebra]; 00:A10 p00162, FrcCore{A23} FRC.Shell.Prime.isPrime_iff_complete"
+   "text": "Completeness is primality: the Carrier's chart $\\F_{\\Om}$ is a field and has no proper nonzero ideal. Prop. prop:drift(i); [akhtman2025algebra]; 00:A10 p00162, FrcCore{A23} FRC.Shell.Prime.isPrime_iff_complete"
   },
   {
    "paper": "7-st",
@@ -45043,13 +45208,13 @@
    "tag": "T",
    "name": null,
    "statement": "The per-chronon drift rate: an embedded shell's chart count advances by $1/(\\Om-1)$ of the Carrier's chart cycle per chronon, the same for every shell.",
-   "source": "\\citep{akhtman2026s13}; \\href{https://finitering.space/38-s13/index.html#C10}{38:C10}\\newline \\pywit{spacetime}{p38044}{A24}, \\leanwit{FrcCore}{p38044}{A24} \\lean{FRC.Pair.leak\\_rate, FRC.Pair.two\\_faces}",
+   "source": "Prop.~\\ref{prop:drift}(iii); \\citep{akhtman2026s13}; \\href{https://finitering.space/38-s13/index.html#C10}{38:C10}\\newline \\pywit{spacetime}{p38044}{A24}, \\leanwit{FrcCore}{p38044}{A24} \\lean{FRC.Pair.leak\\_rate, FRC.Pair.two\\_faces}",
    "page": "7-spacetime/index.html#A24",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p38044",
      "script": "p07_spacetime.py",
-     "line": 194,
+     "line": 200,
      "verdict": "pass"
     },
     "lean": [
@@ -45074,7 +45239,7 @@
    "refs": [
     "p38044"
    ],
-   "text": "The per-chronon drift rate: an embedded shell's chart count advances by $1/(\\Om-1)$ of the Carrier's chart cycle per chronon, the same for every shell. [akhtman2026s13]; 38:C10 p38044, FrcCore{A24} FRC.Pair.leak_rate, FRC.Pair.two_faces"
+   "text": "The per-chronon drift rate: an embedded shell's chart count advances by $1/(\\Om-1)$ of the Carrier's chart cycle per chronon, the same for every shell. Prop. prop:drift(iii); [akhtman2026s13]; 38:C10 p38044, FrcCore{A24} FRC.Pair.leak_rate, FRC.Pair.two_faces"
   },
   {
    "paper": "7-st",
@@ -45086,13 +45251,13 @@
    "tag": "T",
    "name": null,
    "statement": "The joint cycle of a hosted pair: the advance per shell revolution is $\\kap/\\dS=(\\p-1)/(\\Om-1)$ of the Carrier's chart cycle, and on a hosted Carrier run through its cycle the joint state returns after $\\mathrm{lcm}(\\p-1,\\Om-1)$ chronons.",
-   "source": "\\citep{akhtman2026s13}; \\href{https://finitering.space/38-s13/index.html#C14}{38:C14}\\newline \\pywit{spacetime}{p38054}{A25}, \\leanwit{FrcCore}{p38054}{A25} \\lean{FRC.Pair.joint\\_cycle, FRC.Pair.joint\\_cycle\\_frame, FRC.Pair.joint\\_return\\_iff, FRC.Pair.joint\\_return\\_eight, FRC.Pair.leak\\_rate, FRC.Pair.recurrence}",
+   "source": "Prop.~\\ref{prop:drift}(iv); \\citep{akhtman2026s13}; \\href{https://finitering.space/38-s13/index.html#C14}{38:C14}\\newline \\pywit{spacetime}{p38054}{A25}, \\leanwit{FrcCore}{p38054}{A25} \\lean{FRC.Pair.joint\\_cycle, FRC.Pair.joint\\_cycle\\_frame, FRC.Pair.joint\\_return\\_iff, FRC.Pair.joint\\_return\\_eight, FRC.Pair.leak\\_rate, FRC.Pair.recurrence}",
    "page": "7-spacetime/index.html#A25",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p38054",
      "script": "p07_spacetime.py",
-     "line": 194,
+     "line": 200,
      "verdict": "pass"
     },
     "lean": [
@@ -45149,7 +45314,7 @@
    "refs": [
     "p38054"
    ],
-   "text": "The joint cycle of a hosted pair: the advance per shell revolution is $\\kap/\\dS=(\\p-1)/(\\Om-1)$ of the Carrier's chart cycle, and on a hosted Carrier run through its cycle the joint state returns after $\\mathrm{lcm}(\\p-1,\\Om-1)$ chronons. [akhtman2026s13]; 38:C14 p38054, FrcCore{A25} FRC.Pair.joint_cycle, FRC.Pair.joint_cycle_frame, FRC.Pair.joint_return_iff, FRC.Pair.joint_return_eight, FRC.Pair.leak_rate, FRC.Pair.recurrence"
+   "text": "The joint cycle of a hosted pair: the advance per shell revolution is $\\kap/\\dS=(\\p-1)/(\\Om-1)$ of the Carrier's chart cycle, and on a hosted Carrier run through its cycle the joint state returns after $\\mathrm{lcm}(\\p-1,\\Om-1)$ chronons. Prop. prop:drift(iv); [akhtman2026s13]; 38:C14 p38054, FrcCore{A25} FRC.Pair.joint_cycle, FRC.Pair.joint_cycle_frame, FRC.Pair.joint_return_iff, FRC.Pair.joint_return_eight, FRC.Pair.leak_rate, FRC.Pair.recurrence"
   },
   {
    "paper": "7-st",
@@ -45161,13 +45326,13 @@
    "tag": "T",
    "name": null,
    "statement": "One retarded flow law: registration is retarded along the drift, the same across the three representations.",
-   "source": "\\citep{akhtman2026s13}; \\href{https://finitering.space/38-s13/index.html#C1}{38:C1}\\newline \\pywit{spacetime}{p38016}{A26}, \\leanwit{FrcCore}{p38016}{A26} \\lean{FRC.Pair.tick\\_home, FRC.Pair.flow\\_stations}",
+   "source": "Prop.~\\ref{prop:drift}(v); \\citep{akhtman2026s13}; \\href{https://finitering.space/38-s13/index.html#C1}{38:C1}\\newline \\pywit{spacetime}{p38016}{A26}, \\leanwit{FrcCore}{p38016}{A26} \\lean{FRC.Pair.tick\\_home, FRC.Pair.flow\\_stations}",
    "page": "7-spacetime/index.html#A26",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p38016",
      "script": "p07_spacetime.py",
-     "line": 205,
+     "line": 211,
      "verdict": "pass"
     },
     "lean": [
@@ -45192,7 +45357,7 @@
    "refs": [
     "p38016"
    ],
-   "text": "One retarded flow law: registration is retarded along the drift, the same across the three representations. [akhtman2026s13]; 38:C1 p38016, FrcCore{A26} FRC.Pair.tick_home, FRC.Pair.flow_stations"
+   "text": "One retarded flow law: registration is retarded along the drift, the same across the three representations. Prop. prop:drift(v); [akhtman2026s13]; 38:C1 p38016, FrcCore{A26} FRC.Pair.tick_home, FRC.Pair.flow_stations"
   },
   {
    "paper": "7-st",
@@ -45204,7 +45369,7 @@
    "tag": "R",
    "name": null,
    "statement": "Observation is the Hopf section: the Subject registers its past cone through the cone chart, one chronon of lookback per station. Falsifier: a registration off the past cone.",
-   "source": "\\citep{akhtman2026s13}; \\href{https://finitering.space/ledger.html#D13}{00:D13}",
+   "source": "Real.~\\ref{real:carried}(ii); \\citep{akhtman2026s13}; \\href{https://finitering.space/ledger.html#D13}{00:D13}",
    "page": "7-spacetime/index.html#A27",
    "witness": {
     "py": null,
@@ -45213,7 +45378,7 @@
    "refs": [
     "p00140"
    ],
-   "text": "Observation is the Hopf section: the Subject registers its past cone through the cone chart, one chronon of lookback per station. Falsifier: a registration off the past cone. [akhtman2026s13]; 00:D13"
+   "text": "Observation is the Hopf section: the Subject registers its past cone through the cone chart, one chronon of lookback per station. Falsifier: a registration off the past cone. Real. real:carried(ii); [akhtman2026s13]; 00:D13"
   },
   {
    "paper": "7-st",
@@ -45225,13 +45390,13 @@
    "tag": "T",
    "name": null,
    "statement": "The drive has a single arrow; its reversal would need the Frobenius-branch clock.",
-   "source": "\\citep{akhtman2026gravity}; \\href{https://finitering.space/21-gravity/index.html#C3}{21:C3}\\newline \\pywit{spacetime}{p21018}{A28}, \\leanwit{FrcCore}{p21018}{A28} \\lean{FRC.Drift.conj\\_branch, FRC.Drift.conj\\_pow}",
+   "source": "Prop.~\\ref{prop:frame}(ix); \\citep{akhtman2026gravity}; \\href{https://finitering.space/21-gravity/index.html#C3}{21:C3}\\newline \\pywit{spacetime}{p21018}{A28}, \\leanwit{FrcCore}{p21018}{A28} \\lean{FRC.Drift.conj\\_branch, FRC.Drift.conj\\_pow}",
    "page": "7-spacetime/index.html#A28",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p21018",
      "script": "p07_spacetime.py",
-     "line": 209,
+     "line": 215,
      "verdict": "pass"
     },
     "lean": [
@@ -45256,7 +45421,7 @@
    "refs": [
     "p21018"
    ],
-   "text": "The drive has a single arrow; its reversal would need the Frobenius-branch clock. [akhtman2026gravity]; 21:C3 p21018, FrcCore{A28} FRC.Drift.conj_branch, FRC.Drift.conj_pow"
+   "text": "The drive has a single arrow; its reversal would need the Frobenius-branch clock. Prop. prop:frame(ix); [akhtman2026gravity]; 21:C3 p21018, FrcCore{A28} FRC.Drift.conj_branch, FRC.Drift.conj_pow"
   },
   {
    "paper": "7-st",
@@ -45268,7 +45433,7 @@
    "tag": "D",
    "name": null,
    "statement": "The Carrier: a timeless torsor of $\\Om$ attribute-free manifestations, its cardinality its one absolute characteristic; a Subject's frame charts it as the prime field $\\FOm$, the frame's chart and never the Carrier.",
-   "source": "\\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#A6}{00:A6}",
+   "source": "Def.~\\ref{def:carrier}; \\citep{akhtman2025algebra}; \\href{https://finitering.space/ledger.html#A6}{00:A6}",
    "page": "7-spacetime/index.html#A29",
    "witness": {
     "py": null,
@@ -45277,7 +45442,125 @@
    "refs": [
     "p00008"
    ],
-   "text": "The Carrier: a timeless torsor of $\\Om$ attribute-free manifestations, its cardinality its one absolute characteristic; a Subject's frame charts it as the prime field $\\FOm$, the frame's chart and never the Carrier. [akhtman2025algebra]; 00:A6"
+   "text": "The Carrier: a timeless torsor of $\\Om$ attribute-free manifestations, its cardinality its one absolute characteristic; a Subject's frame charts it as the prime field $\\FOm$, the frame's chart and never the Carrier. Def. def:carrier; [akhtman2025algebra]; 00:A6"
+  },
+  {
+   "paper": "7-st",
+   "no": 7,
+   "rid": "7:A30",
+   "key": "p00153",
+   "label": "A30",
+   "block": "A",
+   "tag": "R",
+   "name": null,
+   "statement": "Thermodynamic entropy is the registration count: the entropy of the first law is the record $\\kap(\\p+1)=(\\p^{2}-1)/4$, one $k_B$ per channel, $S_{\\mathrm{th}}=k_B\\,\\kap(\\p+1)$ [chart], the count itself and not its logarithm. Falsifier: a horizon whose Clausius entropy at the thermometer temperature is not $k_B$ times its channel count.",
+   "source": "Real.~\\ref{real:carried}(iii); \\citep{akhtman2026gravity}; \\href{https://finitering.space/ledger.html#D15}{00:D15}",
+   "page": "7-spacetime/index.html#A30",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00153"
+   ],
+   "text": "Thermodynamic entropy is the registration count: the entropy of the first law is the record $\\kap(\\p+1)=(\\p^{2}-1)/4$, one $k_B$ per channel, $S_{\\mathrm{th}}=k_B \\kap(\\p+1)$ [chart], the count itself and not its logarithm. Falsifier: a horizon whose Clausius entropy at the thermometer temperature is not $k_B$ times its channel count. Real. real:carried(iii); [akhtman2026gravity]; 00:D15"
+  },
+  {
+   "paper": "7-st",
+   "no": 7,
+   "rid": "7:A31",
+   "key": "p21052",
+   "label": "A31",
+   "block": "A",
+   "tag": "T",
+   "name": null,
+   "statement": "The weak-acceleration floor of registration against the drift is $a_{0}=c/T_H=cH_{0}/2\\pi$, with $T_H=2\\pi/H_{0}$ the drive period by the angle--count dictionary: $1.04\\times10^{-10}$ m\\,s$^{-2}$ at $H_{0}=67.4$ km\\,s$^{-1}$\\,Mpc$^{-1}$, against the fitted $1.20\\pm0.24\\times10^{-10}$ [chart].",
+   "source": "Prop.~\\ref{prop:temperature}(i); \\citep{akhtman2026gravity}; \\href{https://finitering.space/21-gravity/index.html#P3}{21:P3}\\newline \\pywit{spacetime}{p21052}{A31}",
+   "page": "7-spacetime/index.html#A31",
+   "witness": {
+    "py": {
+     "href": "py/spacetime.html#p21052",
+     "script": "p07_spacetime.py",
+     "line": 255,
+     "verdict": "pass"
+    },
+    "lean": []
+   },
+   "refs": [
+    "p21052"
+   ],
+   "text": "The weak-acceleration floor of registration against the drift is $a_{0}=c/T_H=cH_{0}/2\\pi$, with $T_H=2\\pi/H_{0}$ the drive period by the angle–count dictionary: $1.04\\times10^{-10}$ m s$^{-2}$ at $H_{0}=67.4$ km s$^{-1}$ Mpc$^{-1}$, against the fitted $1.20\\pm0.24\\times10^{-10}$ [chart]. Prop. prop:temperature(i); [akhtman2026gravity]; 21:P3 p21052"
+  },
+  {
+   "paper": "7-st",
+   "no": 7,
+   "rid": "7:A32",
+   "key": "p00032",
+   "label": "A32",
+   "block": "A",
+   "tag": "T",
+   "name": null,
+   "statement": "Temperature carries the acceleration domain: $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, with $\\Theta_P=E_P/|k_B|$, and the Unruh combination $\\hbar a/2\\pi c\\,k_B$ closes as a domain identity; neither mass nor temperature is primitive.",
+   "source": "Prop.~\\ref{prop:temperature}(iii); \\citep{akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#C12}{00:C12}\\newline \\pywit{spacetime}{p00032}{A32}",
+   "page": "7-spacetime/index.html#A32",
+   "witness": {
+    "py": {
+     "href": "py/spacetime.html#p00032",
+     "script": "p07_spacetime.py",
+     "line": 246,
+     "verdict": "pass"
+    },
+    "lean": []
+   },
+   "refs": [
+    "p00032"
+   ],
+   "text": "Temperature carries the acceleration domain: $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, with $\\Theta_P=E_P/|k_B|$, and the Unruh combination $\\hbar a/2\\pi c k_B$ closes as a domain identity; neither mass nor temperature is primitive. Prop. prop:temperature(iii); [akhtman2026dimensions]; 00:C12 p00032"
+  },
+  {
+   "paper": "7-st",
+   "no": 7,
+   "rid": "7:A33",
+   "key": "p00165",
+   "label": "A33",
+   "block": "A",
+   "tag": "T",
+   "name": null,
+   "statement": "On a Carrier of even capacity $\\dS$ ($\\Om\\equiv1\\pmod 8$) the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in the capacity: $G=2\\dS=-c^{2}$, $2c^{2}\\equiv1$, $\\hbar^{2}\\equiv-1$ and $k_B^{2}\\equiv-2\\pmod\\Om$, with $|k_B|=\\hbar/c$; $G$ is exact and the rest hold up to sign.",
+   "source": "Prop.~\\ref{prop:drift}(vi); \\citep{akhtman2025algebra,akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#B7}{00:B7}\\newline \\pywit{spacetime}{p00165}{A33}",
+   "page": "7-spacetime/index.html#A33",
+   "witness": {
+    "py": {
+     "href": "py/spacetime.html#p00165",
+     "script": "p07_spacetime.py",
+     "line": 239,
+     "verdict": "pass"
+    },
+    "lean": []
+   },
+   "refs": [
+    "p00165"
+   ],
+   "text": "On a Carrier of even capacity $\\dS$ ($\\Om\\equiv1\\pmod 8$) the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in the capacity: $G=2\\dS=-c^{2}$, $2c^{2}\\equiv1$, $\\hbar^{2}\\equiv-1$ and $k_B^{2}\\equiv-2\\pmod\\Om$, with $|k_B|=\\hbar/c$; $G$ is exact and the rest hold up to sign. Prop. prop:drift(vi); [akhtman2025algebra,akhtman2026dimensions]; 00:B7 p00165"
+  },
+  {
+   "paper": "7-st",
+   "no": 7,
+   "rid": "7:A34",
+   "key": "p07053",
+   "label": "A34",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "statement": "The de Sitter temperature of a horizon with Hubble rate $H$ is $T_{\\mathrm{dS}}=\\hbar H/2\\pi k_B$ [chart].",
+   "source": "Prop.~\\ref{prop:temperature}(ii); \\citep{gibbons1977}",
+   "page": "7-spacetime/index.html#A34",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The de Sitter temperature of a horizon with Hubble rate $H$ is $T_{\\mathrm{dS}}=\\hbar H/2\\pi k_B$ [chart]. Prop. prop:temperature(ii); [gibbons1977]"
   },
   {
    "paper": "7-st",
@@ -45289,13 +45572,13 @@
    "tag": "T",
    "name": null,
    "statement": "Every frame move of $G=\\mathrm{PGL}_2(\\Fp)$ factors uniquely as scale, translation and rotation, on $C_{4\\kap}$, $C_{4\\kap+1}$ and $C_{4\\kap+2}$, of consecutive orders; on the spin cover the section obstructs at $-I$.",
-   "source": "Prop.~\\ref{prop:cycles}(i); rests on A11, A13\\newline \\pywit{spacetime}{p07003}{B1}, \\leanwit{FrcCore}{p07003}{B1} \\lean{FRC.Shell.Frame.Fld.hopf\\_section, FRC.Lorentz.consecutive\\_orders, FRC.Lorentz.minus\\_one\\_in\\_both}",
+   "source": "Prop.~\\ref{prop:cycles}(i); rests on A11\\newline \\pywit{spacetime}{p07003}{B1}, \\leanwit{FrcCore}{p07003}{B1} \\lean{FRC.Shell.Frame.Fld.hopf\\_section, FRC.Lorentz.consecutive\\_orders, FRC.Lorentz.minus\\_one\\_in\\_both}",
    "page": "7-spacetime/index.html#B1",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07003",
      "script": "p07_spacetime.py",
-     "line": 244,
+     "line": 288,
      "verdict": "pass"
     },
     "lean": [
@@ -45326,10 +45609,9 @@
     ]
    },
    "refs": [
-    "p00152",
     "p00190"
    ],
-   "text": "Every frame move of $G=\\mathrm{PGL}_2(\\Fp)$ factors uniquely as scale, translation and rotation, on $C_{4\\kap}$, $C_{4\\kap+1}$ and $C_{4\\kap+2}$, of consecutive orders; on the spin cover the section obstructs at $-I$. Prop. prop:cycles(i); rests on A11, A13 p07003, FrcCore{B1} FRC.Shell.Frame.Fld.hopf_section, FRC.Lorentz.consecutive_orders, FRC.Lorentz.minus_one_in_both"
+   "text": "Every frame move of $G=\\mathrm{PGL}_2(\\Fp)$ factors uniquely as scale, translation and rotation, on $C_{4\\kap}$, $C_{4\\kap+1}$ and $C_{4\\kap+2}$, of consecutive orders; on the spin cover the section obstructs at $-I$. Prop. prop:cycles(i); rests on A11 p07003, FrcCore{B1} FRC.Shell.Frame.Fld.hopf_section, FRC.Lorentz.consecutive_orders, FRC.Lorentz.minus_one_in_both"
   },
   {
    "paper": "7-st",
@@ -45341,7 +45623,7 @@
    "tag": "R",
    "name": null,
    "statement": "Space has the three degrees of freedom of phase decoherence of the Subject's frame, the cycles $\\p-1$, $\\p$, $\\p+1$. Falsifier: P1's.",
-   "source": "\\S\\ref{sec:discussion}; rests on A18",
+   "source": "Real.~\\ref{real:freedoms}; rests on A18, B1, C9, C10, P1",
    "page": "7-spacetime/index.html#B2",
    "witness": {
     "py": null,
@@ -45349,9 +45631,12 @@
    },
    "refs": [
     "p00044",
-    "p07026"
+    "p07003",
+    "p07026",
+    "p07040",
+    "p07051"
    ],
-   "text": "Space has the three degrees of freedom of phase decoherence of the Subject's frame, the cycles $\\p-1$, $\\p$, $\\p+1$. Falsifier: P1's. \\Ssec:discussion; rests on A18"
+   "text": "Space has the three degrees of freedom of phase decoherence of the Subject's frame, the cycles $\\p-1$, $\\p$, $\\p+1$. Falsifier: P1's. Real. real:freedoms; rests on A18, B1, C9, C10, P1"
   },
   {
    "paper": "7-st",
@@ -45362,15 +45647,15 @@
    "block": "B",
    "tag": "D",
    "name": null,
-   "statement": "Registration: the Subject registers the orbits of its frame's action, of size moves over stabiliser; a move, a label or a coordinate is not registered, and a count of registrations is a count of orbits.",
-   "source": "\\S\\ref{sec:primer}",
+   "statement": "Registration: the Subject registers the orbits of an action, of size moves over stabiliser, named at each use (the drive on the register, the trivial action on the register pair, the quarter-turn group on the nonzero pairs); a move, a label or a coordinate is not registered, and a count of registrations is a count of orbits.",
+   "source": "Def.~\\ref{def:registration}(i)",
    "page": "7-spacetime/index.html#B3",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "Registration: the Subject registers the orbits of its frame's action, of size moves over stabiliser; a move, a label or a coordinate is not registered, and a count of registrations is a count of orbits. \\Ssec:primer"
+   "text": "Registration: the Subject registers the orbits of an action, of size moves over stabiliser, named at each use (the drive on the register, the trivial action on the register pair, the quarter-turn group on the nonzero pairs); a move, a label or a coordinate is not registered, and a count of registrations is a count of orbits. Def. def:registration(i)"
   },
   {
    "paper": "7-st",
@@ -45382,13 +45667,13 @@
    "tag": "T",
    "name": null,
    "statement": "The necessity chain: time's coefficient is the drive's generator $\\gen$, a nonsquare; the temporal plane $-\\gen t^{2}+x^{2}$ is anisotropic with norm-one group $C_{\\p+1}$, the third cycle, and the register square is elliptic; a square coefficient gives the split plane, the cycle $C_{\\p-1}$ again, and no time.",
-   "source": "Lem.~\\ref{lem:shell}; rests on A4, A6, A7, A10, A16, A17\\newline \\pywit{spacetime}{p07042}{B4}, \\leanwit{FrcCore}{p07042}{B4} \\lean{FRC.Shell.Frame.Fld.norm\\_ne\\_zero, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
+   "source": "Lem.~\\ref{lem:shell}; rests on A6, A7\\newline \\pywit{spacetime}{p07042}{B4}, \\leanwit{FrcCore}{p07042}{B4} \\lean{FRC.Shell.Frame.Fld.norm\\_ne\\_zero, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
    "page": "7-spacetime/index.html#B4",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07042",
      "script": "p07_spacetime.py",
-     "line": 257,
+     "line": 301,
      "verdict": "pass"
     },
     "lean": [
@@ -45419,14 +45704,10 @@
     ]
    },
    "refs": [
-    "p00021",
-    "p00028",
-    "p00042",
     "p00150",
-    "p03005",
-    "p03013"
+    "p03005"
    ],
-   "text": "The necessity chain: time's coefficient is the drive's generator $\\gen$, a nonsquare; the temporal plane $-\\gen t^{2}+x^{2}$ is anisotropic with norm-one group $C_{\\p+1}$, the third cycle, and the register square is elliptic; a square coefficient gives the split plane, the cycle $C_{\\p-1}$ again, and no time. Lem. lem:shell; rests on A4, A6, A7, A10, A16, A17 p07042, FrcCore{B4} FRC.Shell.Frame.Fld.norm_ne_zero, FRC.Lorentz.register_elliptic, FRC.Lorentz.frame_hyperbolic"
+   "text": "The necessity chain: time's coefficient is the drive's generator $\\gen$, a nonsquare; the temporal plane $-\\gen t^{2}+x^{2}$ is anisotropic with norm-one group $C_{\\p+1}$, the third cycle, and the register square is elliptic; a square coefficient gives the split plane, the cycle $C_{\\p-1}$ again, and no time. Lem. lem:shell; rests on A6, A7 p07042, FrcCore{B4} FRC.Shell.Frame.Fld.norm_ne_zero, FRC.Lorentz.register_elliptic, FRC.Lorentz.frame_hyperbolic"
   },
   {
    "paper": "7-st",
@@ -45437,14 +45718,14 @@
    "block": "B",
    "tag": "T",
    "name": null,
-   "statement": "The registrable depth: the Subject's register pair takes $\\p^{2}$ values, the pair space of the nesting condition (A21), and registration distinguishes states only (B3), so a sequence of distinct registrations has at most $\\p^{2}$ entries and a registered duration at most $\\p^{2}$ chronons.",
-   "source": "Thm.~\\ref{thm:arrow}(ii); rests on A21, B3\\newline \\pywit{spacetime}{p07049}{B5}, \\leanwit{FrcCore}{p07049}{B5} \\lean{FRC.Pigeonhole.length\\_le\\_of\\_nodup\\_lt, FRC.Lorentz.nesting\\_depth}",
+   "statement": "The registrable depth: the Subject's register pair takes $\\p^{2}$ values, the pair space of the nesting condition, and the states of a registrable duration are pairwise distinct, so a registrable duration has at most $\\p^{2}$ chronons.",
+   "source": "Thm.~\\ref{thm:arrow}(ii); rests on A21, A24, A25, B7\\newline \\pywit{spacetime}{p07049}{B5}, \\leanwit{FrcCore}{p07049}{B5} \\lean{FRC.Pigeonhole.length\\_le\\_of\\_nodup\\_lt, FRC.Lorentz.nesting\\_depth}",
    "page": "7-spacetime/index.html#B5",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07049",
      "script": "p07_spacetime.py",
-     "line": 271,
+     "line": 315,
      "verdict": "pass"
     },
     "lean": [
@@ -45467,10 +45748,64 @@
     ]
    },
    "refs": [
-    "p07038",
-    "p38053"
+    "p07055",
+    "p38044",
+    "p38053",
+    "p38054"
    ],
-   "text": "The registrable depth: the Subject's register pair takes $\\p^{2}$ values, the pair space of the nesting condition (A21), and registration distinguishes states only (B3), so a sequence of distinct registrations has at most $\\p^{2}$ entries and a registered duration at most $\\p^{2}$ chronons. Thm. thm:arrow(ii); rests on A21, B3 p07049, FrcCore{B5} FRC.Pigeonhole.length_le_of_nodup_lt, FRC.Lorentz.nesting_depth"
+   "text": "The registrable depth: the Subject's register pair takes $\\p^{2}$ values, the pair space of the nesting condition, and the states of a registrable duration are pairwise distinct, so a registrable duration has at most $\\p^{2}$ chronons. Thm. thm:arrow(ii); rests on A21, A24, A25, B7 p07049, FrcCore{B5} FRC.Pigeonhole.length_le_of_nodup_lt, FRC.Lorentz.nesting_depth"
+  },
+  {
+   "paper": "7-st",
+   "no": 7,
+   "rid": "7:B6",
+   "key": "p07050",
+   "label": "B6",
+   "block": "B",
+   "tag": "T",
+   "name": null,
+   "statement": "The register: the capacity register is the ring $\\Z_{\\p}$, the additive cycle $C_{\\p}$ of the $4\\kap+1$ cells; its translations $z\\mapsto z+b$ are the unipotent moves of the frame, and each nontrivial translation fixes exactly one direction of the frame's line, the antipode $[1:0]$.",
+   "source": "Lem.~\\ref{lem:register}\\newline \\pywit{spacetime}{p07050}{B6}, \\leanwit{FrcCore}{p07050}{B6} \\lean{FRC.Register.translation\\_fixes\\_antipode}",
+   "page": "7-spacetime/index.html#B6",
+   "witness": {
+    "py": {
+     "href": "py/spacetime.html#p07050",
+     "script": "p07_spacetime.py",
+     "line": 274,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Register",
+      "name": "FRC.Register.translation_fixes_antipode",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Register.translation_fixes_antipode"
+     }
+    ]
+   },
+   "refs": [],
+   "text": "The register: the capacity register is the ring $\\Z_{\\p}$, the additive cycle $C_{\\p}$ of the $4\\kap+1$ cells; its translations $z\\mapsto z+b$ are the unipotent moves of the frame, and each nontrivial translation fixes exactly one direction of the frame's line, the antipode $[1:0]$. Lem. lem:register p07050, FrcCore{B6} FRC.Register.translation_fixes_antipode"
+  },
+  {
+   "paper": "7-st",
+   "no": 7,
+   "rid": "7:B7",
+   "key": "p07055",
+   "label": "B7",
+   "block": "B",
+   "tag": "D",
+   "name": null,
+   "statement": "The registrable duration and the record: a registrable duration is a sequence of chronons whose register-pair states are pairwise distinct, since registration distinguishes states only; its record is the sequence of chart counts registered along it, one per chronon, and contains the record of each initial segment.",
+   "source": "Def.~\\ref{def:registration}(ii)",
+   "page": "7-spacetime/index.html#B7",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The registrable duration and the record: a registrable duration is a sequence of chronons whose register-pair states are pairwise distinct, since registration distinguishes states only; its record is the sequence of chart counts registered along it, one per chronon, and contains the record of each initial segment. Def. def:registration(ii)"
   },
   {
    "paper": "7-st",
@@ -45482,13 +45817,13 @@
    "tag": "T",
    "name": null,
    "statement": "The register square $\\mathrm{Herm}_2(K)=\\mathrm{Sym}^{2}(V)\\oplus\\Fp\\,\\eta J$ with $\\det X=x_{0}^{2}-x_{1}^{2}-x_{3}^{2}+\\gen x_{2}^{2}$; the map $\\varphi$ is an isometry onto $Q_{\\gen}$.",
-   "source": "Thm.~\\ref{thm:hopf}(i); rests on A7\\newline \\pywit{spacetime}{p07005}{C1}, \\leanwit{FrcCore}{p07005}{C1} \\lean{FRC.Lorentz.register\\_det, FRC.Lorentz.register\\_hermitian, FRC.Lorentz.time\\_vector}",
+   "source": "Thm.~\\ref{thm:hopf}(i); rests on A1, A8, A9\\newline \\pywit{spacetime}{p07005}{C1}, \\leanwit{FrcCore}{p07005}{C1} \\lean{FRC.Lorentz.register\\_det, FRC.Lorentz.register\\_hermitian, FRC.Lorentz.time\\_vector}",
    "page": "7-spacetime/index.html#C1",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07005",
      "script": "p07_spacetime.py",
-     "line": 287,
+     "line": 331,
      "verdict": "pass"
     },
     "lean": [
@@ -45519,9 +45854,11 @@
     ]
    },
    "refs": [
-    "p03005"
+    "p03002",
+    "p03008",
+    "p03011"
    ],
-   "text": "The register square $\\mathrm{Herm}_2(K)=\\mathrm{Sym}^{2}(V)\\oplus\\Fp \\eta J$ with $\\det X=x_{0}^{2}-x_{1}^{2}-x_{3}^{2}+\\gen x_{2}^{2}$; the map $\\varphi$ is an isometry onto $Q_{\\gen}$. Thm. thm:hopf(i); rests on A7 p07005, FrcCore{C1} FRC.Lorentz.register_det, FRC.Lorentz.register_hermitian, FRC.Lorentz.time_vector"
+   "text": "The register square $\\mathrm{Herm}_2(K)=\\mathrm{Sym}^{2}(V)\\oplus\\Fp \\eta J$ with $\\det X=x_{0}^{2}-x_{1}^{2}-x_{3}^{2}+\\gen x_{2}^{2}$; the map $\\varphi$ is an isometry onto $Q_{\\gen}$. Thm. thm:hopf(i); rests on A1, A8, A9 p07005, FrcCore{C1} FRC.Lorentz.register_det, FRC.Lorentz.register_hermitian, FRC.Lorentz.time_vector"
   },
   {
    "paper": "7-st",
@@ -45533,13 +45870,13 @@
    "tag": "T",
    "name": null,
    "statement": "The congruence $X\\mapsto AXA^{\\dagger}$ of $\\mathrm{SL}_2(K)$ preserves the register square and its determinant, has kernel $\\pm I$ and image of order $\\p^{2}(\\p^{4}-1)/2$, the finite Lorentz group.",
-   "source": "Thm.~\\ref{thm:hopf}(iii); rests on A2\\newline \\pywit{spacetime}{p07006}{C2}, \\leanwit{FrcCore}{p07006}{C2} \\lean{FRC.Lorentz.congruence\\_det, FRC.Lorentz.congruence\\_hermitian, FRC.Lorentz.congruence\\_preserves, FRC.Lorentz.kernel\\_pm}",
+   "source": "Thm.~\\ref{thm:hopf}(iii); rests on A13\\newline \\pywit{spacetime}{p07006}{C2}, \\leanwit{FrcCore}{p07006}{C2} \\lean{FRC.Lorentz.congruence\\_det, FRC.Lorentz.congruence\\_hermitian, FRC.Lorentz.congruence\\_preserves, FRC.Lorentz.kernel\\_pm}",
    "page": "7-spacetime/index.html#C2",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07006",
      "script": "p07_spacetime.py",
-     "line": 292,
+     "line": 336,
      "verdict": "pass"
     },
     "lean": [
@@ -45578,9 +45915,9 @@
     ]
    },
    "refs": [
-    "p07001"
+    "p00152"
    ],
-   "text": "The congruence $X\\mapsto AXA^{\\dagger}$ of $\\mathrm{SL}_2(K)$ preserves the register square and its determinant, has kernel $\\pm I$ and image of order $\\p^{2}(\\p^{4}-1)/2$, the finite Lorentz group. Thm. thm:hopf(iii); rests on A2 p07006, FrcCore{C2} FRC.Lorentz.congruence_det, FRC.Lorentz.congruence_hermitian, FRC.Lorentz.congruence_preserves, FRC.Lorentz.kernel_pm"
+   "text": "The congruence $X\\mapsto AXA^{\\dagger}$ of $\\mathrm{SL}_2(K)$ preserves the register square and its determinant, has kernel $\\pm I$ and image of order $\\p^{2}(\\p^{4}-1)/2$, the finite Lorentz group. Thm. thm:hopf(iii); rests on A13 p07006, FrcCore{C2} FRC.Lorentz.congruence_det, FRC.Lorentz.congruence_hermitian, FRC.Lorentz.congruence_preserves, FRC.Lorentz.kernel_pm"
   },
   {
    "paper": "7-st",
@@ -45598,7 +45935,7 @@
     "py": {
      "href": "py/spacetime.html#p07007",
      "script": "p07_spacetime.py",
-     "line": 303,
+     "line": 347,
      "verdict": "pass"
     },
     "lean": [
@@ -45633,13 +45970,13 @@
    "tag": "T",
    "name": null,
    "statement": "Space and the causal rays: the $\\p+1$ points of $\\mathbb{P}^{1}(\\Fp)$ are the null directions inside space; the $\\p(\\p-1)$ others, the finite upper half-plane, carry a time component and are the cone chart.",
-   "source": "Thm.~\\ref{thm:hopf}(ii); rests on A22\\newline \\pywit{spacetime}{p07008}{C4}, \\leanwit{FrcCore}{p07008}{C4} \\lean{FRC.Lorentz.cone\\_time, FRC.Lorentz.null\\_count\\_13, FRC.Lorentz.cone\\_count\\_13, FRC.Lorentz.cone\\_count\\_173, FRC.Lorentz.cone\\_count\\_1549}",
+   "source": "Thm.~\\ref{thm:hopf}(ii)\\newline \\pywit{spacetime}{p07008}{C4}, \\leanwit{FrcCore}{p07008}{C4} \\lean{FRC.Lorentz.cone\\_time, FRC.Lorentz.null\\_count\\_13, FRC.Lorentz.cone\\_count\\_13, FRC.Lorentz.cone\\_count\\_173, FRC.Lorentz.cone\\_count\\_1549}",
    "page": "7-spacetime/index.html#C4",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07008",
      "script": "p07_spacetime.py",
-     "line": 303,
+     "line": 347,
      "verdict": "pass"
     },
     "lean": [
@@ -45685,10 +46022,8 @@
      }
     ]
    },
-   "refs": [
-    "p07041"
-   ],
-   "text": "Space and the causal rays: the $\\p+1$ points of $\\mathbb{P}^{1}(\\Fp)$ are the null directions inside space; the $\\p(\\p-1)$ others, the finite upper half-plane, carry a time component and are the cone chart. Thm. thm:hopf(ii); rests on A22 p07008, FrcCore{C4} FRC.Lorentz.cone_time, FRC.Lorentz.null_count_13, FRC.Lorentz.cone_count_13, FRC.Lorentz.cone_count_173, FRC.Lorentz.cone_count_1549"
+   "refs": [],
+   "text": "Space and the causal rays: the $\\p+1$ points of $\\mathbb{P}^{1}(\\Fp)$ are the null directions inside space; the $\\p(\\p-1)$ others, the finite upper half-plane, carry a time component and are the cone chart. Thm. thm:hopf(ii) p07008, FrcCore{C4} FRC.Lorentz.cone_time, FRC.Lorentz.null_count_13, FRC.Lorentz.cone_count_13, FRC.Lorentz.cone_count_173, FRC.Lorentz.cone_count_1549"
   },
   {
    "paper": "7-st",
@@ -45700,13 +46035,13 @@
    "tag": "T",
    "name": null,
    "statement": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(+++-)$ names the elliptic class by the index chart [chart].",
-   "source": "Thm.~\\ref{thm:hopf}(i); rests on A1, A6, A8, A14\\newline \\pywit{spacetime}{p07009}{C5}, \\leanwit{FrcCore}{p07009}{C5} \\lean{FRC.Lorentz.rank\\_two\\_det, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
+   "source": "Thm.~\\ref{thm:hopf}(i); rests on A1, A8, A9\\newline \\pywit{spacetime}{p07009}{C5}, \\leanwit{FrcCore}{p07009}{C5} \\lean{FRC.Lorentz.rank\\_two\\_det, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
    "page": "7-spacetime/index.html#C5",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07009",
      "script": "p07_spacetime.py",
-     "line": 314,
+     "line": 358,
      "verdict": "pass"
     },
     "lean": [
@@ -45737,12 +46072,11 @@
     ]
    },
    "refs": [
-    "p00150",
-    "p00183",
     "p03002",
-    "p03008"
+    "p03008",
+    "p03011"
    ],
-   "text": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(+++-)$ names the elliptic class by the index chart [chart]. Thm. thm:hopf(i); rests on A1, A6, A8, A14 p07009, FrcCore{C5} FRC.Lorentz.rank_two_det, FRC.Lorentz.register_elliptic, FRC.Lorentz.frame_hyperbolic"
+   "text": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(+++-)$ names the elliptic class by the index chart [chart]. Thm. thm:hopf(i); rests on A1, A8, A9 p07009, FrcCore{C5} FRC.Lorentz.rank_two_det, FRC.Lorentz.register_elliptic, FRC.Lorentz.frame_hyperbolic"
   },
   {
    "paper": "7-st",
@@ -45754,13 +46088,13 @@
    "tag": "T",
    "name": null,
    "statement": "No inertia: $\\langle1,1,1,\\gen\\rangle\\cong\\langle1,\\gen,\\gen,\\gen\\rangle$; a similitude of multiplier $\\gen$ exchanges the two non-null classes; the null cone is the invariant of a change of unit.",
-   "source": "Thm.~\\ref{thm:hopf}(i); rests on A9\\newline \\pywit{spacetime}{p07010}{C6}, \\leanwit{FrcCore}{p07010}{C6} \\lean{FRC.Lorentz.similitude, FRC.Lorentz.two\\_squares}",
+   "source": "Thm.~\\ref{thm:hopf}(i); rests on A1, A8, A9\\newline \\pywit{spacetime}{p07010}{C6}, \\leanwit{FrcCore}{p07010}{C6} \\lean{FRC.Lorentz.similitude, FRC.Lorentz.two\\_squares}",
    "page": "7-spacetime/index.html#C6",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07010",
      "script": "p07_spacetime.py",
-     "line": 321,
+     "line": 365,
      "verdict": "pass"
     },
     "lean": [
@@ -45783,9 +46117,11 @@
     ]
    },
    "refs": [
+    "p03002",
+    "p03008",
     "p03011"
    ],
-   "text": "No inertia: $\\langle1,1,1,\\gen\\rangle\\cong\\langle1,\\gen,\\gen,\\gen\\rangle$; a similitude of multiplier $\\gen$ exchanges the two non-null classes; the null cone is the invariant of a change of unit. Thm. thm:hopf(i); rests on A9 p07010, FrcCore{C6} FRC.Lorentz.similitude, FRC.Lorentz.two_squares"
+   "text": "No inertia: $\\langle1,1,1,\\gen\\rangle\\cong\\langle1,\\gen,\\gen,\\gen\\rangle$; a similitude of multiplier $\\gen$ exchanges the two non-null classes; the null cone is the invariant of a change of unit. Thm. thm:hopf(i); rests on A1, A8, A9 p07010, FrcCore{C6} FRC.Lorentz.similitude, FRC.Lorentz.two_squares"
   },
   {
    "paper": "7-st",
@@ -45797,13 +46133,13 @@
    "tag": "T",
    "name": null,
    "statement": "The frame's orbits: on the cone, the $\\p+1$ null directions of space (Borel stabilisers) and the $\\p(\\p-1)$ causal rays (torus stabilisers); $\\mathrm{SL}_2(\\Fp)$ transitive on the rays with stabiliser $C_{\\p+1}$, the exact fibration; the Borel a section in $G$, none on the spin cover.",
-   "source": "Thm.~\\ref{thm:hopf}(iv); rests on A11, B3\\newline \\pywit{spacetime}{p07031}{C7}, \\leanwit{FrcCore}{p07031}{C7} \\lean{FRC.Lorentz.ray\\_stabiliser, FRC.Lorentz.minus\\_one\\_in\\_both, FRC.Shell.Frame.Fld.hopf\\_section}",
+   "source": "Thm.~\\ref{thm:hopf}(iv); rests on C9\\newline \\pywit{spacetime}{p07031}{C7}, \\leanwit{FrcCore}{p07031}{C7} \\lean{FRC.Lorentz.ray\\_stabiliser, FRC.Lorentz.minus\\_one\\_in\\_both, FRC.Shell.Frame.Fld.hopf\\_section}",
    "page": "7-spacetime/index.html#C7",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07031",
      "script": "p07_spacetime.py",
-     "line": 331,
+     "line": 375,
      "verdict": "pass"
     },
     "lean": [
@@ -45834,10 +46170,9 @@
     ]
    },
    "refs": [
-    "p00190",
-    "p07038"
+    "p07040"
    ],
-   "text": "The frame's orbits: on the cone, the $\\p+1$ null directions of space (Borel stabilisers) and the $\\p(\\p-1)$ causal rays (torus stabilisers); $\\mathrm{SL}_2(\\Fp)$ transitive on the rays with stabiliser $C_{\\p+1}$, the exact fibration; the Borel a section in $G$, none on the spin cover. Thm. thm:hopf(iv); rests on A11, B3 p07031, FrcCore{C7} FRC.Lorentz.ray_stabiliser, FRC.Lorentz.minus_one_in_both, FRC.Shell.Frame.Fld.hopf_section"
+   "text": "The frame's orbits: on the cone, the $\\p+1$ null directions of space (Borel stabilisers) and the $\\p(\\p-1)$ causal rays (torus stabilisers); $\\mathrm{SL}_2(\\Fp)$ transitive on the rays with stabiliser $C_{\\p+1}$, the exact fibration; the Borel a section in $G$, none on the spin cover. Thm. thm:hopf(iv); rests on C9 p07031, FrcCore{C7} FRC.Lorentz.ray_stabiliser, FRC.Lorentz.minus_one_in_both, FRC.Shell.Frame.Fld.hopf_section"
   },
   {
    "paper": "7-st",
@@ -45849,13 +46184,13 @@
    "tag": "T",
    "name": null,
    "statement": "The Hopf base is the set of oriented nonsquare axes of space: a causal ray's stabiliser fixes one nonsquare axis, whose roots are the ray and its conjugate; every direction of space is a root pair on $\\mathbb{P}^{1}(K)$; the fibration covers the causal rays only.",
-   "source": "Thm.~\\ref{thm:hopf}(iv); rests on C7\\newline \\pywit{spacetime}{p07032}{C8}, \\leanwit{FrcCore}{p07032}{C8} \\lean{FRC.Lorentz.axis\\_discriminant}",
+   "source": "Thm.~\\ref{thm:hopf}(iv); rests on C9\\newline \\pywit{spacetime}{p07032}{C8}, \\leanwit{FrcCore}{p07032}{C8} \\lean{FRC.Lorentz.axis\\_discriminant}",
    "page": "7-spacetime/index.html#C8",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07032",
      "script": "p07_spacetime.py",
-     "line": 341,
+     "line": 385,
      "verdict": "pass"
     },
     "lean": [
@@ -45870,9 +46205,9 @@
     ]
    },
    "refs": [
-    "p07031"
+    "p07040"
    ],
-   "text": "The Hopf base is the set of oriented nonsquare axes of space: a causal ray's stabiliser fixes one nonsquare axis, whose roots are the ray and its conjugate; every direction of space is a root pair on $\\mathbb{P}^{1}(K)$; the fibration covers the causal rays only. Thm. thm:hopf(iv); rests on C7 p07032, FrcCore{C8} FRC.Lorentz.axis_discriminant"
+   "text": "The Hopf base is the set of oriented nonsquare axes of space: a causal ray's stabiliser fixes one nonsquare axis, whose roots are the ray and its conjugate; every direction of space is a root pair on $\\mathbb{P}^{1}(K)$; the fibration covers the causal rays only. Thm. thm:hopf(iv); rests on C9 p07032, FrcCore{C8} FRC.Lorentz.axis_discriminant"
   },
   {
    "paper": "7-st",
@@ -45883,14 +46218,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The class equation: every element of $G$ has order dividing $\\p-1$, $\\p$ or $\\p+1$; the maximal cyclic subgroups are the split tori, the unipotent groups and the non-split tori, $\\p(\\p+1)/2$, $\\p+1$ and $\\p(\\p-1)/2$ of them, partitioning $G\\setminus\\{1\\}$; the three kinds of cycle are the three direction classes of space.",
-   "source": "Prop.~\\ref{prop:cycles}(ii), (iii); rests on A13, C8\\newline \\pywit{spacetime}{p07040}{C9}, \\leanwit{FrcCore}{p07040}{C9} \\lean{FRC.Lorentz.class\\_partition\\_13, FRC.Lorentz.class\\_equation\\_13, FRC.Lorentz.class\\_equation\\_173, FRC.Lorentz.class\\_equation\\_1549, FRC.Spin.finite\\_order}",
+   "statement": "The class equation: every element of $G$ has order dividing $\\p-1$, $\\p$ or $\\p+1$; the maximal cyclic subgroups are the split tori, the unipotent groups and the non-split tori, $\\p(\\p+1)/2$, $\\p+1$ and $\\p(\\p-1)/2$ of them, partitioning $G\\setminus\\{1\\}$.",
+   "source": "Prop.~\\ref{prop:cycles}(ii)\\newline \\pywit{spacetime}{p07040}{C9}, \\leanwit{FrcCore}{p07040}{C9} \\lean{FRC.Lorentz.class\\_partition\\_13, FRC.Lorentz.class\\_equation\\_13, FRC.Lorentz.class\\_equation\\_173, FRC.Lorentz.class\\_equation\\_1549, FRC.Spin.finite\\_order}",
    "page": "7-spacetime/index.html#C9",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07040",
      "script": "p07_spacetime.py",
-     "line": 351,
+     "line": 395,
      "verdict": "pass"
     },
     "lean": [
@@ -45936,11 +46271,57 @@
      }
     ]
    },
-   "refs": [
-    "p00152",
-    "p07032"
-   ],
-   "text": "The class equation: every element of $G$ has order dividing $\\p-1$, $\\p$ or $\\p+1$; the maximal cyclic subgroups are the split tori, the unipotent groups and the non-split tori, $\\p(\\p+1)/2$, $\\p+1$ and $\\p(\\p-1)/2$ of them, partitioning $G\\setminus\\{1\\}$; the three kinds of cycle are the three direction classes of space. Prop. prop:cycles(ii), (iii); rests on A13, C8 p07040, FrcCore{C9} FRC.Lorentz.class_partition_13, FRC.Lorentz.class_equation_13, FRC.Lorentz.class_equation_173, FRC.Lorentz.class_equation_1549, FRC.Spin.finite_order"
+   "refs": [],
+   "text": "The class equation: every element of $G$ has order dividing $\\p-1$, $\\p$ or $\\p+1$; the maximal cyclic subgroups are the split tori, the unipotent groups and the non-split tori, $\\p(\\p+1)/2$, $\\p+1$ and $\\p(\\p-1)/2$ of them, partitioning $G\\setminus\\{1\\}$. Prop. prop:cycles(ii) p07040, FrcCore{C9} FRC.Lorentz.class_partition_13, FRC.Lorentz.class_equation_13, FRC.Lorentz.class_equation_173, FRC.Lorentz.class_equation_1549, FRC.Spin.finite_order"
+  },
+  {
+   "paper": "7-st",
+   "no": 7,
+   "rid": "7:C10",
+   "key": "p07051",
+   "label": "C10",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "The fixed points: a split torus fixes exactly two points of $\\mathbb{P}^{1}(\\Fp)$, a unipotent group one and a non-split torus none, by the square class of the discriminant; the three kinds of cycle are the three kinds of direction of space, a square-norm axis, a null direction and a nonsquare axis.",
+   "source": "Prop.~\\ref{prop:cycles}(iii)\\newline \\pywit{spacetime}{p07051}{C10}, \\leanwit{FrcCore}{p07051}{C10} \\lean{FRC.Register.fixed\\_points\\_13, FRC.Register.fixed\\_points\\_of\\_class, FRC.Lorentz.axis\\_discriminant}",
+   "page": "7-spacetime/index.html#C10",
+   "witness": {
+    "py": {
+     "href": "py/spacetime.html#p07051",
+     "script": "p07_spacetime.py",
+     "line": 413,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Register",
+      "name": "FRC.Register.fixed_points_13",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Register.fixed_points_13"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Register",
+      "name": "FRC.Register.fixed_points_of_class",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Register.fixed_points_of_class"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lorentz",
+      "name": "FRC.Lorentz.axis_discriminant",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Lorentz.axis_discriminant"
+     }
+    ]
+   },
+   "refs": [],
+   "text": "The fixed points: a split torus fixes exactly two points of $\\mathbb{P}^{1}(\\Fp)$, a unipotent group one and a non-split torus none, by the square class of the discriminant; the three kinds of cycle are the three kinds of direction of space, a square-norm axis, a null direction and a nonsquare axis. Prop. prop:cycles(iii) p07051, FrcCore{C10} FRC.Register.fixed_points_13, FRC.Register.fixed_points_of_class, FRC.Lorentz.axis_discriminant"
   },
   {
    "paper": "7-st",
@@ -45951,14 +46332,14 @@
    "block": "D",
    "tag": "T",
    "name": null,
-   "statement": "The stabiliser of the time vector $\\eta J$ in $\\mathrm{SL}_2(K)$ is exactly the spin cover $\\mathrm{SL}_2(\\Fp)$, which rotates $\\mathrm{Sym}^{2}(V)$; a frame move of odd drive parity fixes the line and scales the vector by $\\gen$.",
-   "source": "Thm.~\\ref{thm:hopf}(iii), (v); rests on A14, A16\\newline \\pywit{spacetime}{p07011}{D1}, \\leanwit{FrcCore}{p07011}{D1} \\lean{FRC.Spin.su2\\_eq\\_sl2, FRC.Lorentz.time\\_vector, FRC.Spin.ad\\_preserves, FRC.Lorentz.drive\\_time}",
+   "statement": "The stabiliser of the time vector $\\eta J$ in $\\mathrm{SL}_2(K)$ is exactly the spin cover $\\mathrm{SL}_2(\\Fp)$, which acts on $\\mathrm{Sym}^{2}(V)$ through $\\mathrm{PSL}_2(\\Fp)$, of index two in $G$; the moves of odd drive parity lie outside it.",
+   "source": "Thm.~\\ref{thm:hopf}(iii); rests on A13\\newline \\pywit{spacetime}{p07011}{D1}, \\leanwit{FrcCore}{p07011}{D1} \\lean{FRC.Spin.su2\\_eq\\_sl2, FRC.Lorentz.time\\_vector, FRC.Spin.ad\\_preserves}",
    "page": "7-spacetime/index.html#D1",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07011",
      "script": "p07_spacetime.py",
-     "line": 361,
+     "line": 423,
      "verdict": "pass"
     },
     "lean": [
@@ -45985,22 +46366,13 @@
       "tier": 0,
       "ok": true,
       "page": "lean/core/Theme.html#FRC.Spin.ad_preserves"
-     },
-     {
-      "lib": "FrcCore",
-      "module": "FrcCore/Theme/Lorentz",
-      "name": "FRC.Lorentz.drive_time",
-      "tier": 0,
-      "ok": true,
-      "page": "lean/core/Theme.html#FRC.Lorentz.drive_time"
      }
     ]
    },
    "refs": [
-    "p00028",
-    "p00183"
+    "p00152"
    ],
-   "text": "The stabiliser of the time vector $\\eta J$ in $\\mathrm{SL}_2(K)$ is exactly the spin cover $\\mathrm{SL}_2(\\Fp)$, which rotates $\\mathrm{Sym}^{2}(V)$; a frame move of odd drive parity fixes the line and scales the vector by $\\gen$. Thm. thm:hopf(iii), (v); rests on A14, A16 p07011, FrcCore{D1} FRC.Spin.su2_eq_sl2, FRC.Lorentz.time_vector, FRC.Spin.ad_preserves, FRC.Lorentz.drive_time"
+   "text": "The stabiliser of the time vector $\\eta J$ in $\\mathrm{SL}_2(K)$ is exactly the spin cover $\\mathrm{SL}_2(\\Fp)$, which acts on $\\mathrm{Sym}^{2}(V)$ through $\\mathrm{PSL}_2(\\Fp)$, of index two in $G$; the moves of odd drive parity lie outside it. Thm. thm:hopf(iii); rests on A13 p07011, FrcCore{D1} FRC.Spin.su2_eq_sl2, FRC.Lorentz.time_vector, FRC.Spin.ad_preserves"
   },
   {
    "paper": "7-st",
@@ -46011,14 +46383,14 @@
    "block": "D",
    "tag": "T",
    "name": null,
-   "statement": "The drive on the square: $\\mathrm{diag}(\\gen,1)$ carries $[z]$ to $[\\gen z]$ and $\\eta J$ to $\\gen\\,\\eta J$; its unimodular lift $\\mathrm{diag}(\\eta,\\eta^{-1})$ carries $\\eta J$ to $-\\eta J$; the even transport $\\mathrm{diag}(\\gen,\\gen^{-1})$ fixes $\\eta J$ and dilates the origin and the horizon by $\\gen^{-2}$ and $\\gen^{2}$.",
-   "source": "Thm.~\\ref{thm:hopf}(v); rests on A4, A15, A16\\newline \\pywit{spacetime}{p07013}{D3}, \\leanwit{FrcCore}{p07013}{D3} \\lean{FRC.Lorentz.drive\\_time, FRC.Lorentz.lift\\_det, FRC.Lorentz.lift\\_time, FRC.Lorentz.even\\_transport}",
+   "statement": "The drive on the square: $\\mathrm{diag}(\\gen,1)$ carries $[z]$ to $[\\gen z]$ and $\\eta J$ to $\\gen\\,\\eta J$; its unimodular lift $\\mathrm{diag}(\\eta,\\eta^{-1})$ carries $\\eta J$ to $-\\eta J$; the even transport $\\mathrm{diag}(\\gen,\\gen^{-1})$ fixes $\\eta J$ and dilates the origin and the antipode by $\\gen^{-2}$ and $\\gen^{2}$.",
+   "source": "Thm.~\\ref{thm:hopf}(v); rests on A10\\newline \\pywit{spacetime}{p07013}{D3}, \\leanwit{FrcCore}{p07013}{D3} \\lean{FRC.Lorentz.drive\\_time, FRC.Lorentz.lift\\_det, FRC.Lorentz.lift\\_time, FRC.Lorentz.even\\_transport}",
    "page": "7-spacetime/index.html#D3",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07013",
      "script": "p07_spacetime.py",
-     "line": 369,
+     "line": 431,
      "verdict": "pass"
     },
     "lean": [
@@ -46057,11 +46429,9 @@
     ]
    },
    "refs": [
-    "p00021",
-    "p00028",
-    "p00139"
+    "p03013"
    ],
-   "text": "The drive on the square: $\\mathrm{diag}(\\gen,1)$ carries $[z]$ to $[\\gen z]$ and $\\eta J$ to $\\gen \\eta J$; its unimodular lift $\\mathrm{diag}(\\eta,\\eta^{-1})$ carries $\\eta J$ to $-\\eta J$; the even transport $\\mathrm{diag}(\\gen,\\gen^{-1})$ fixes $\\eta J$ and dilates the origin and the horizon by $\\gen^{-2}$ and $\\gen^{2}$. Thm. thm:hopf(v); rests on A4, A15, A16 p07013, FrcCore{D3} FRC.Lorentz.drive_time, FRC.Lorentz.lift_det, FRC.Lorentz.lift_time, FRC.Lorentz.even_transport"
+   "text": "The drive on the square: $\\mathrm{diag}(\\gen,1)$ carries $[z]$ to $[\\gen z]$ and $\\eta J$ to $\\gen \\eta J$; its unimodular lift $\\mathrm{diag}(\\eta,\\eta^{-1})$ carries $\\eta J$ to $-\\eta J$; the even transport $\\mathrm{diag}(\\gen,\\gen^{-1})$ fixes $\\eta J$ and dilates the origin and the antipode by $\\gen^{-2}$ and $\\gen^{2}$. Thm. thm:hopf(v); rests on A10 p07013, FrcCore{D3} FRC.Lorentz.drive_time, FRC.Lorentz.lift_det, FRC.Lorentz.lift_time, FRC.Lorentz.even_transport"
   },
   {
    "paper": "7-st",
@@ -46079,7 +46449,7 @@
     "py": {
      "href": "py/spacetime.html#p07014",
      "script": "p07_spacetime.py",
-     "line": 376,
+     "line": 438,
      "verdict": "pass"
     },
     "lean": [
@@ -46122,7 +46492,7 @@
     "py": {
      "href": "py/spacetime.html#p07015",
      "script": "p07_spacetime.py",
-     "line": 383,
+     "line": 445,
      "verdict": "pass"
     },
     "lean": [
@@ -46150,24 +46520,24 @@
    "block": "D",
    "tag": "T",
    "name": null,
-   "statement": "$K^{\\times}/\\Fpx$ is regular on $\\mathbb{P}^{1}(\\Fp)$; the horizon $[1:0]$ is its element of order two, reached from the origin at the half step $2\\kap+1$ by every generator; the unimodular torus reaches only the even steps.",
-   "source": "Thm.~\\ref{thm:hopf}(vi); rests on A15\\newline \\pywit{spacetime}{p07033}{D6}, \\leanwit{FrcCore}{p07033}{D6} \\lean{FRC.Lorentz.horizon\\_order\\_two, FRC.Lorentz.half\\_step\\_odd, FRC.Lorentz.even\\_never\\_horizon, FRC.Lorentz.horizon\\_half\\_step\\_13}",
+   "statement": "$K^{\\times}/\\Fpx$ is regular on $\\mathbb{P}^{1}(\\Fp)$; the antipode $[1:0]$ is its element of order two, reached from the origin at the half step $2\\kap+1$ by every generator; the unimodular torus reaches only the even steps.",
+   "source": "Thm.~\\ref{thm:hopf}(vi); rests on A1\\newline \\pywit{spacetime}{p07033}{D6}, \\leanwit{FrcCore}{p07033}{D6} \\lean{FRC.Lorentz.antipode\\_order\\_two, FRC.Lorentz.half\\_step\\_odd, FRC.Lorentz.even\\_never\\_antipode, FRC.Lorentz.antipode\\_half\\_step\\_13}",
    "page": "7-spacetime/index.html#D6",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07033",
      "script": "p07_spacetime.py",
-     "line": 394,
+     "line": 456,
      "verdict": "pass"
     },
     "lean": [
      {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/Lorentz",
-      "name": "FRC.Lorentz.horizon_order_two",
+      "name": "FRC.Lorentz.antipode_order_two",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Theme.html#FRC.Lorentz.horizon_order_two"
+      "page": "lean/core/Theme.html#FRC.Lorentz.antipode_order_two"
      },
      {
       "lib": "FrcCore",
@@ -46180,25 +46550,25 @@
      {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/Lorentz",
-      "name": "FRC.Lorentz.even_never_horizon",
+      "name": "FRC.Lorentz.even_never_antipode",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Theme.html#FRC.Lorentz.even_never_horizon"
+      "page": "lean/core/Theme.html#FRC.Lorentz.even_never_antipode"
      },
      {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/Lorentz",
-      "name": "FRC.Lorentz.horizon_half_step_13",
+      "name": "FRC.Lorentz.antipode_half_step_13",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Theme.html#FRC.Lorentz.horizon_half_step_13"
+      "page": "lean/core/Theme.html#FRC.Lorentz.antipode_half_step_13"
      }
     ]
    },
    "refs": [
-    "p00139"
+    "p03002"
    ],
-   "text": "$K^{\\times}/\\Fpx$ is regular on $\\mathbb{P}^{1}(\\Fp)$; the horizon $[1:0]$ is its element of order two, reached from the origin at the half step $2\\kap+1$ by every generator; the unimodular torus reaches only the even steps. Thm. thm:hopf(vi); rests on A15 p07033, FrcCore{D6} FRC.Lorentz.horizon_order_two, FRC.Lorentz.half_step_odd, FRC.Lorentz.even_never_horizon, FRC.Lorentz.horizon_half_step_13"
+   "text": "$K^{\\times}/\\Fpx$ is regular on $\\mathbb{P}^{1}(\\Fp)$; the antipode $[1:0]$ is its element of order two, reached from the origin at the half step $2\\kap+1$ by every generator; the unimodular torus reaches only the even steps. Thm. thm:hopf(vi); rests on A1 p07033, FrcCore{D6} FRC.Lorentz.antipode_order_two, FRC.Lorentz.half_step_odd, FRC.Lorentz.even_never_antipode, FRC.Lorentz.antipode_half_step_13"
   },
   {
    "paper": "7-st",
@@ -46210,14 +46580,14 @@
    "tag": "D",
    "name": null,
    "statement": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, in the affine chart $(s_{12},s_{11})$ of the plane of binary forms, on the continuum Hopf picture [chart], and the laboratory's host view of the cone [chart]; no row rests on a figure.",
-   "source": "Figs.~\\ref{fig:register}--\\ref{fig:arrow}",
+   "source": "Def.~\\ref{def:charts}",
    "page": "7-spacetime/index.html#E1",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of [akhtman2026s13], in the affine chart $(s_{12},s_{11})$ of the plane of binary forms, on the continuum Hopf picture [chart], and the laboratory's host view of the cone [chart]; no row rests on a figure. Figs. fig:register–fig:arrow"
+   "text": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of [akhtman2026s13], in the affine chart $(s_{12},s_{11})$ of the plane of binary forms, on the continuum Hopf picture [chart], and the laboratory's host view of the cone [chart]; no row rests on a figure. Def. def:charts"
   },
   {
    "paper": "7-st",
@@ -46229,13 +46599,13 @@
    "tag": "T",
    "name": null,
    "statement": "Every embedded shell drifts against the Carrier at one rate, $1/(\\Om-1)$ of the Carrier cycle per chronon and $\\kap/\\dS$ per revolution, below $1/(\\sqrt{\\Om}+1)$ exactly when $\\p^{2}<\\Om$ [chart]; the count of F4 advances at the same rate for every embedded observer.",
-   "source": "Thm.~\\ref{thm:arrow}(iii); rests on A21, A23, A24, A25\\newline \\pywit{spacetime}{p07044}{F1}, \\leanwit{FrcCore}{p07044}{F1} \\lean{FRC.Pair.leak\\_rate}",
+   "source": "Thm.~\\ref{thm:arrow}(iii); rests on A21, A24, A25\\newline \\pywit{spacetime}{p07044}{F1}, \\leanwit{FrcCore}{p07044}{F1} \\lean{FRC.Pair.leak\\_rate}",
    "page": "7-spacetime/index.html#F1",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07044",
      "script": "p07_spacetime.py",
-     "line": 404,
+     "line": 466,
      "verdict": "pass"
     },
     "lean": [
@@ -46250,13 +46620,12 @@
     ]
    },
    "refs": [
-    "p00162",
     "p07047",
     "p38044",
     "p38053",
     "p38054"
    ],
-   "text": "Every embedded shell drifts against the Carrier at one rate, $1/(\\Om-1)$ of the Carrier cycle per chronon and $\\kap/\\dS$ per revolution, below $1/(\\sqrt{\\Om}+1)$ exactly when $\\p^{2}<\\Om$ [chart]; the count of F4 advances at the same rate for every embedded observer. Thm. thm:arrow(iii); rests on A21, A23, A24, A25 p07044, FrcCore{F1} FRC.Pair.leak_rate"
+   "text": "Every embedded shell drifts against the Carrier at one rate, $1/(\\Om-1)$ of the Carrier cycle per chronon and $\\kap/\\dS$ per revolution, below $1/(\\sqrt{\\Om}+1)$ exactly when $\\p^{2}<\\Om$ [chart]; the count of F4 advances at the same rate for every embedded observer. Thm. thm:arrow(iii); rests on A21, A24, A25 p07044, FrcCore{F1} FRC.Pair.leak_rate"
   },
   {
    "paper": "7-st",
@@ -46268,7 +46637,7 @@
    "tag": "R",
    "name": null,
    "statement": "Causal order between stations is the drift read through the cone chart: the cone gives the null directions and the drift the order along them, one chronon of depth per rung. Falsifier: a registered order of events on the cone that differs from the order of the chart count, or a registration that precedes the drift.",
-   "source": "Realisation~\\ref{real:leak}; rests on A26, A27, A28, F4",
+   "source": "Real.~\\ref{real:leak}; rests on A26, A27, A28, B5, C3, C4, F3, F4",
    "page": "7-spacetime/index.html#F2",
    "witness": {
     "py": null,
@@ -46276,11 +46645,15 @@
    },
    "refs": [
     "p00140",
+    "p07007",
+    "p07008",
+    "p07046",
     "p07047",
+    "p07049",
     "p21018",
     "p38016"
    ],
-   "text": "Causal order between stations is the drift read through the cone chart: the cone gives the null directions and the drift the order along them, one chronon of depth per rung. Falsifier: a registered order of events on the cone that differs from the order of the chart count, or a registration that precedes the drift. Realisation real:leak; rests on A26, A27, A28, F4"
+   "text": "Causal order between stations is the drift read through the cone chart: the cone gives the null directions and the drift the order along them, one chronon of depth per rung. Falsifier: a registered order of events on the cone that differs from the order of the chart count, or a registration that precedes the drift. Real. real:leak; rests on A26, A27, A28, B5, C3, C4, F3, F4"
   },
   {
    "paper": "7-st",
@@ -46292,13 +46665,13 @@
    "tag": "T",
    "name": null,
    "statement": "The time reversal is not a Lorentz move: the congruence image is $\\Omega^{-}_{4}(\\p)$, of index four in $\\mathrm{O}^{-}_{4}(\\p)$; the time reversal is the Frobenius of $K$, and it, a spatial reflection and the total inversion lie outside the image.",
-   "source": "Thm.~\\ref{thm:arrow}(i); rests on A2, C2, D1\\newline \\pywit{spacetime}{p07046}{F3}, \\leanwit{FrcCore}{p07046}{F3} \\lean{FRC.Lorentz.no\\_time\\_reversal, FRC.Lorentz.no\\_reflection, FRC.Lorentz.no\\_inversion, FRC.Lorentz.congruence\\_preserves}",
+   "source": "Thm.~\\ref{thm:arrow}(i); rests on C2, D1\\newline \\pywit{spacetime}{p07046}{F3}, \\leanwit{FrcCore}{p07046}{F3} \\lean{FRC.Lorentz.no\\_time\\_reversal, FRC.Lorentz.no\\_reflection, FRC.Lorentz.no\\_inversion, FRC.Lorentz.congruence\\_preserves}",
    "page": "7-spacetime/index.html#F3",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07046",
      "script": "p07_spacetime.py",
-     "line": 412,
+     "line": 474,
      "verdict": "pass"
     },
     "lean": [
@@ -46337,11 +46710,10 @@
     ]
    },
    "refs": [
-    "p07001",
     "p07006",
     "p07011"
    ],
-   "text": "The time reversal is not a Lorentz move: the congruence image is $\\Omega^{-}_{4}(\\p)$, of index four in $\\mathrm{O}^{-}_{4}(\\p)$; the time reversal is the Frobenius of $K$, and it, a spatial reflection and the total inversion lie outside the image. Thm. thm:arrow(i); rests on A2, C2, D1 p07046, FrcCore{F3} FRC.Lorentz.no_time_reversal, FRC.Lorentz.no_reflection, FRC.Lorentz.no_inversion, FRC.Lorentz.congruence_preserves"
+   "text": "The time reversal is not a Lorentz move: the congruence image is $\\Omega^{-}_{4}(\\p)$, of index four in $\\mathrm{O}^{-}_{4}(\\p)$; the time reversal is the Frobenius of $K$, and it, a spatial reflection and the total inversion lie outside the image. Thm. thm:arrow(i); rests on C2, D1 p07046, FrcCore{F3} FRC.Lorentz.no_time_reversal, FRC.Lorentz.no_reflection, FRC.Lorentz.no_inversion, FRC.Lorentz.congruence_preserves"
   },
   {
    "paper": "7-st",
@@ -46353,13 +46725,13 @@
    "tag": "T",
    "name": null,
    "statement": "The drift is one-directional: one chronon is one step of the Carrier's chart cycle, a registered duration has at most $\\p^{2}<\\Om-1$ chronons, so the chart count is injective on every registrable depth and no recurrence is registrable; on a hosted Carrier the pair returns after $\\mathrm{lcm}(4\\kap,4\\dS)$ chronons, the laboratory's period.",
-   "source": "Thm.~\\ref{thm:arrow}(ii); rests on A21, A24, A25, B5\\newline \\pywit{spacetime}{p07047}{F4}, \\leanwit{FrcCore}{p07047}{F4} \\lean{FRC.Lorentz.drift\\_one\\_directional, FRC.Lorentz.nesting\\_depth, FRC.Lorentz.drift\\_instance\\_pairs, FRC.Lorentz.joint\\_period, FRC.Lorentz.drift\\_injective, FRC.Lorentz.drift\\_injective\\_gcd, FRC.Lorentz.drift\\_instance, FRC.Lorentz.drift\\_instance\\_gcd}",
+   "source": "Thm.~\\ref{thm:arrow}(ii); rests on A21, A24, A25, B7\\newline \\pywit{spacetime}{p07047}{F4}, \\leanwit{FrcCore}{p07047}{F4} \\lean{FRC.Lorentz.drift\\_one\\_directional, FRC.Lorentz.nesting\\_depth, FRC.Lorentz.drift\\_instance\\_pairs, FRC.Lorentz.joint\\_period, FRC.Lorentz.drift\\_injective, FRC.Lorentz.drift\\_injective\\_gcd, FRC.Lorentz.drift\\_instance, FRC.Lorentz.drift\\_instance\\_gcd}",
    "page": "7-spacetime/index.html#F4",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07047",
      "script": "p07_spacetime.py",
-     "line": 427,
+     "line": 489,
      "verdict": "pass"
     },
     "lean": [
@@ -46430,12 +46802,84 @@
     ]
    },
    "refs": [
-    "p07049",
+    "p07055",
     "p38044",
     "p38053",
     "p38054"
    ],
-   "text": "The drift is one-directional: one chronon is one step of the Carrier's chart cycle, a registered duration has at most $\\p^{2}<\\Om-1$ chronons, so the chart count is injective on every registrable depth and no recurrence is registrable; on a hosted Carrier the pair returns after $\\mathrm{lcm}(4\\kap,4\\dS)$ chronons, the laboratory's period. Thm. thm:arrow(ii); rests on A21, A24, A25, B5 p07047, FrcCore{F4} FRC.Lorentz.drift_one_directional, FRC.Lorentz.nesting_depth, FRC.Lorentz.drift_instance_pairs, FRC.Lorentz.joint_period, FRC.Lorentz.drift_injective, FRC.Lorentz.drift_injective_gcd, FRC.Lorentz.drift_instance, FRC.Lorentz.drift_instance_gcd"
+   "text": "The drift is one-directional: one chronon is one step of the Carrier's chart cycle, a registered duration has at most $\\p^{2}<\\Om-1$ chronons, so the chart count is injective on every registrable depth and no recurrence is registrable; on a hosted Carrier the pair returns after $\\mathrm{lcm}(4\\kap,4\\dS)$ chronons, the laboratory's period. Thm. thm:arrow(ii); rests on A21, A24, A25, B7 p07047, FrcCore{F4} FRC.Lorentz.drift_one_directional, FRC.Lorentz.nesting_depth, FRC.Lorentz.drift_instance_pairs, FRC.Lorentz.joint_period, FRC.Lorentz.drift_injective, FRC.Lorentz.drift_injective_gcd, FRC.Lorentz.drift_instance, FRC.Lorentz.drift_instance_gcd"
+  },
+  {
+   "paper": "7-st",
+   "no": 7,
+   "rid": "7:F5",
+   "key": "p07052",
+   "label": "F5",
+   "block": "F",
+   "tag": "T",
+   "name": null,
+   "statement": "The second law of the record: along a registrable duration the record gains one chart count per chronon, its entries pairwise distinct, and no count recurs below $\\Om-1$; its entropy $S_{\\mathrm{th}}(n)=k_B\\,n$ [chart] never decreases on a registrable duration; the record holds at most $\\p^{2}=4\\kap(\\p+1)+1$ entries, the $\\kap(\\p+1)$ orbits of the quarter-turn group on the nonzero pair states plus the origin.",
+   "source": "Cor.~\\ref{cor:second}; rests on A4, A17, A30, B5, B7, F4\\newline \\pywit{spacetime}{p07052}{F5}, \\leanwit{FrcCore}{p07052}{F5} \\lean{FRC.Register.record\\_second\\_law, FRC.Register.record\\_quarter, FRC.Register.record\\_quarter\\_pairs, FRC.Lorentz.drift\\_one\\_directional, FRC.Lorentz.nesting\\_depth}",
+   "page": "7-spacetime/index.html#F5",
+   "witness": {
+    "py": {
+     "href": "py/spacetime.html#p07052",
+     "script": "p07_spacetime.py",
+     "line": 510,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Register",
+      "name": "FRC.Register.record_second_law",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Register.record_second_law"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Register",
+      "name": "FRC.Register.record_quarter",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Register.record_quarter"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Register",
+      "name": "FRC.Register.record_quarter_pairs",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Register.record_quarter_pairs"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lorentz",
+      "name": "FRC.Lorentz.drift_one_directional",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Lorentz.drift_one_directional"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lorentz",
+      "name": "FRC.Lorentz.nesting_depth",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Lorentz.nesting_depth"
+     }
+    ]
+   },
+   "refs": [
+    "p00021",
+    "p00042",
+    "p00153",
+    "p07047",
+    "p07049",
+    "p07055"
+   ],
+   "text": "The second law of the record: along a registrable duration the record gains one chart count per chronon, its entries pairwise distinct, and no count recurs below $\\Om-1$; its entropy $S_{\\mathrm{th}}(n)=k_B n$ [chart] never decreases on a registrable duration; the record holds at most $\\p^{2}=4\\kap(\\p+1)+1$ entries, the $\\kap(\\p+1)$ orbits of the quarter-turn group on the nonzero pair states plus the origin. Cor. cor:second; rests on A4, A17, A30, B5, B7, F4 p07052, FrcCore{F5} FRC.Register.record_second_law, FRC.Register.record_quarter, FRC.Register.record_quarter_pairs, FRC.Lorentz.drift_one_directional, FRC.Lorentz.nesting_depth"
   },
   {
    "paper": "7-st",
@@ -46447,13 +46891,13 @@
    "tag": "T",
    "name": null,
    "statement": "Exactly three spatial dimensions at every scale the Subject registers, read through the declared metric chart. Falsifier: a short-range departure from the inverse-square law of the extra-dimension form; holds to $52\\,\\mu$m [data].",
-   "source": "\\S\\ref{sec:discussion}; rests on A3, A20, B2, C9\\newline \\pywit{spacetime}{p07026}{P1}, \\leanwit{FrcCore}{p07026}{P1} \\lean{FRC.Shell.Frame.Fld.hopf\\_section, FRC.Lorentz.consecutive\\_orders}",
+   "source": "Prop.~\\ref{pred:three}; rests on A3, A20, B1, C1, C5, C6, C9, C10\\newline \\pywit{spacetime}{p07026}{P1}, \\leanwit{FrcCore}{p07026}{P1} \\lean{FRC.Shell.Frame.Fld.hopf\\_section, FRC.Lorentz.consecutive\\_orders}",
    "page": "7-spacetime/index.html#P1",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07026",
      "script": "p07_spacetime.py",
-     "line": 446,
+     "line": 529,
      "verdict": "pass"
     },
     "lean": [
@@ -46478,10 +46922,60 @@
    "refs": [
     "p00198",
     "p07002",
-    "p07004",
-    "p07040"
+    "p07003",
+    "p07005",
+    "p07009",
+    "p07010",
+    "p07040",
+    "p07051"
    ],
-   "text": "Exactly three spatial dimensions at every scale the Subject registers, read through the declared metric chart. Falsifier: a short-range departure from the inverse-square law of the extra-dimension form; holds to $52 \\mu$m [data]. \\Ssec:discussion; rests on A3, A20, B2, C9 p07026, FrcCore{P1} FRC.Shell.Frame.Fld.hopf_section, FRC.Lorentz.consecutive_orders"
+   "text": "Exactly three spatial dimensions at every scale the Subject registers, read through the declared metric chart. Falsifier: a short-range departure from the inverse-square law of the extra-dimension form; holds to $52 \\mu$m [data]. Prop. pred:three; rests on A3, A20, B1, C1, C5, C6, C9, C10 p07026, FrcCore{P1} FRC.Shell.Frame.Fld.hopf_section, FRC.Lorentz.consecutive_orders"
+  },
+  {
+   "paper": "7-st",
+   "no": 7,
+   "rid": "7:P2",
+   "key": "p07054",
+   "label": "P2",
+   "block": "P",
+   "tag": "T",
+   "name": null,
+   "statement": "The floor is the Carrier's temperature: the de Sitter temperature of the Carrier's horizon, $T_{\\mathrm{dS}}=\\hbar H_{0}/2\\pi k_B$, and the floor $a_{0}=cH_{0}/2\\pi$ are one number in the acceleration domain, $k_BT_{\\mathrm{dS}}=(\\hbar/c)\\,a_{0}$ with $|k_B|=\\hbar/c$ the chart's unit [chart]: $2.66\\times10^{-30}$ K and $1.04\\times10^{-10}$ m\\,s$^{-2}$ at $H_{0}=67.4$. Falsifier: a measured floor that departs from $cH_{0}/2\\pi$.",
+   "source": "Prop.~\\ref{prop:floortemp}; rests on A31, A32, A33, A34\\newline \\pywit{spacetime}{p07054}{P2}, \\leanwit{FrcCore}{p07054}{P2} \\lean{FRC.Register.floor\\_is\\_temperature, FRC.Register.kB\\_c\\_carriers}",
+   "page": "7-spacetime/index.html#P2",
+   "witness": {
+    "py": {
+     "href": "py/spacetime.html#p07054",
+     "script": "p07_spacetime.py",
+     "line": 546,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Register",
+      "name": "FRC.Register.floor_is_temperature",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Register.floor_is_temperature"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Register",
+      "name": "FRC.Register.kB_c_carriers",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Register.kB_c_carriers"
+     }
+    ]
+   },
+   "refs": [
+    "p00032",
+    "p00165",
+    "p07053",
+    "p21052"
+   ],
+   "text": "The floor is the Carrier's temperature: the de Sitter temperature of the Carrier's horizon, $T_{\\mathrm{dS}}=\\hbar H_{0}/2\\pi k_B$, and the floor $a_{0}=cH_{0}/2\\pi$ are one number in the acceleration domain, $k_BT_{\\mathrm{dS}}=(\\hbar/c) a_{0}$ with $|k_B|=\\hbar/c$ the chart's unit [chart]: $2.66\\times10^{-30}$ K and $1.04\\times10^{-10}$ m s$^{-2}$ at $H_{0}=67.4$. Falsifier: a measured floor that departs from $cH_{0}/2\\pi$. Prop. prop:floortemp; rests on A31, A32, A33, A34 p07054, FrcCore{P2} FRC.Register.floor_is_temperature, FRC.Register.kB_c_carriers"
   },
   {
    "paper": "7-st",
@@ -46493,13 +46987,13 @@
    "tag": "T",
    "name": null,
    "statement": "Why Lorentzian: a finite four-geometry is hyperbolic or elliptic, and the register square is elliptic because time's coefficient is the drive's generator, a nonsquare.",
-   "source": "\\S\\ref{sec:discussion}; rests on B4, C5\\newline \\pywit{spacetime}{p07020}{X1}, \\leanwit{FrcCore}{p07020}{X1} \\lean{FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
+   "source": "Cor.~\\ref{cor:explains}(i); rests on B4, C1, C5, C6\\newline \\pywit{spacetime}{p07020}{X1}, \\leanwit{FrcCore}{p07020}{X1} \\lean{FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
    "page": "7-spacetime/index.html#X1",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07020",
      "script": "p07_spacetime.py",
-     "line": 314,
+     "line": 358,
      "verdict": "pass"
     },
     "lean": [
@@ -46522,10 +47016,12 @@
     ]
    },
    "refs": [
+    "p07005",
     "p07009",
+    "p07010",
     "p07042"
    ],
-   "text": "Why Lorentzian: a finite four-geometry is hyperbolic or elliptic, and the register square is elliptic because time's coefficient is the drive's generator, a nonsquare. \\Ssec:discussion; rests on B4, C5 p07020, FrcCore{X1} FRC.Lorentz.register_elliptic, FRC.Lorentz.frame_hyperbolic"
+   "text": "Why Lorentzian: a finite four-geometry is hyperbolic or elliptic, and the register square is elliptic because time's coefficient is the drive's generator, a nonsquare. Cor. cor:explains(i); rests on B4, C1, C5, C6 p07020, FrcCore{X1} FRC.Lorentz.register_elliptic, FRC.Lorentz.frame_hyperbolic"
   },
   {
    "paper": "7-st",
@@ -46537,13 +47033,13 @@
    "tag": "T",
    "name": null,
    "statement": "Why three spatial dimensions: space is $\\mathrm{Sym}^{2}(V)$, of dimension three, and the frame moves have exactly three cyclic symmetries, the three kinds of direction of that space.",
-   "source": "\\S\\ref{sec:discussion}; rests on C9, C8\\newline \\pywit{spacetime}{p07021}{X2}, \\leanwit{FrcCore}{p07021}{X2} \\lean{FRC.Lorentz.class\\_partition\\_13, FRC.Lorentz.class\\_equation\\_13, FRC.Lorentz.class\\_equation\\_173, FRC.Lorentz.class\\_equation\\_1549, FRC.Lorentz.axis\\_discriminant}",
+   "source": "Cor.~\\ref{cor:explains}(ii); rests on B2, C1, C5, C6, C7, C8, C9, C10\\newline \\pywit{spacetime}{p07021}{X2}, \\leanwit{FrcCore}{p07021}{X2} \\lean{FRC.Lorentz.class\\_partition\\_13, FRC.Lorentz.class\\_equation\\_13, FRC.Lorentz.class\\_equation\\_173, FRC.Lorentz.class\\_equation\\_1549, FRC.Lorentz.axis\\_discriminant}",
    "page": "7-spacetime/index.html#X2",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07021",
      "script": "p07_spacetime.py",
-     "line": 351,
+     "line": 395,
      "verdict": "pass"
     },
     "lean": [
@@ -46590,10 +47086,16 @@
     ]
    },
    "refs": [
+    "p07004",
+    "p07005",
+    "p07009",
+    "p07010",
+    "p07031",
     "p07032",
-    "p07040"
+    "p07040",
+    "p07051"
    ],
-   "text": "Why three spatial dimensions: space is $\\mathrm{Sym}^{2}(V)$, of dimension three, and the frame moves have exactly three cyclic symmetries, the three kinds of direction of that space. \\Ssec:discussion; rests on C9, C8 p07021, FrcCore{X2} FRC.Lorentz.class_partition_13, FRC.Lorentz.class_equation_13, FRC.Lorentz.class_equation_173, FRC.Lorentz.class_equation_1549, FRC.Lorentz.axis_discriminant"
+   "text": "Why three spatial dimensions: space is $\\mathrm{Sym}^{2}(V)$, of dimension three, and the frame moves have exactly three cyclic symmetries, the three kinds of direction of that space. Cor. cor:explains(ii); rests on B2, C1, C5, C6, C7, C8, C9, C10 p07021, FrcCore{X2} FRC.Lorentz.class_partition_13, FRC.Lorentz.class_equation_13, FRC.Lorentz.class_equation_173, FRC.Lorentz.class_equation_1549, FRC.Lorentz.axis_discriminant"
   },
   {
    "paper": "7-st",
@@ -46605,13 +47107,13 @@
    "tag": "T",
    "name": null,
    "statement": "Why spin one half: the kernel of the congruence is $\\pm I$ and the spinor closes in two circuits.",
-   "source": "\\S\\ref{sec:discussion}; rests on C2, D4\\newline \\pywit{spacetime}{p07023}{X4}, \\leanwit{FrcCore}{p07023}{X4} \\lean{FRC.Lorentz.kernel\\_pm, FRC.Lorentz.neg\\_one\\_trivial}",
+   "source": "Cor.~\\ref{cor:explains}(iii); rests on C2, D1, D3, D4\\newline \\pywit{spacetime}{p07023}{X4}, \\leanwit{FrcCore}{p07023}{X4} \\lean{FRC.Lorentz.kernel\\_pm, FRC.Lorentz.neg\\_one\\_trivial}",
    "page": "7-spacetime/index.html#X4",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07023",
      "script": "p07_spacetime.py",
-     "line": 292,
+     "line": 336,
      "verdict": "pass"
     },
     "lean": [
@@ -46635,9 +47137,11 @@
    },
    "refs": [
     "p07006",
+    "p07011",
+    "p07013",
     "p07014"
    ],
-   "text": "Why spin one half: the kernel of the congruence is $\\pm I$ and the spinor closes in two circuits. \\Ssec:discussion; rests on C2, D4 p07023, FrcCore{X4} FRC.Lorentz.kernel_pm, FRC.Lorentz.neg_one_trivial"
+   "text": "Why spin one half: the kernel of the congruence is $\\pm I$ and the spinor closes in two circuits. Cor. cor:explains(iii); rests on C2, D1, D3, D4 p07023, FrcCore{X4} FRC.Lorentz.kernel_pm, FRC.Lorentz.neg_one_trivial"
   },
   {
    "paper": "7-st",
@@ -46649,13 +47153,13 @@
    "tag": "T",
    "name": null,
    "statement": "Why time is relational: there is no inertia, and a change of unit exchanges the label.",
-   "source": "\\S\\ref{sec:discussion}; rests on C6\\newline \\pywit{spacetime}{p07024}{X5}, \\leanwit{FrcCore}{p07024}{X5} \\lean{FRC.Lorentz.similitude}",
+   "source": "Cor.~\\ref{cor:explains}(iv); rests on C1, C5, C6\\newline \\pywit{spacetime}{p07024}{X5}, \\leanwit{FrcCore}{p07024}{X5} \\lean{FRC.Lorentz.similitude}",
    "page": "7-spacetime/index.html#X5",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07024",
      "script": "p07_spacetime.py",
-     "line": 321,
+     "line": 365,
      "verdict": "pass"
     },
     "lean": [
@@ -46670,9 +47174,11 @@
     ]
    },
    "refs": [
+    "p07005",
+    "p07009",
     "p07010"
    ],
-   "text": "Why time is relational: there is no inertia, and a change of unit exchanges the label. \\Ssec:discussion; rests on C6 p07024, FrcCore{X5} FRC.Lorentz.similitude"
+   "text": "Why time is relational: there is no inertia, and a change of unit exchanges the label. Cor. cor:explains(iv); rests on C1, C5, C6 p07024, FrcCore{X5} FRC.Lorentz.similitude"
   },
   {
    "paper": "7-st",
@@ -46684,13 +47190,13 @@
    "tag": "T",
    "name": null,
    "statement": "Why causality has an arrow: every embedded shell drifts at one rate, its chart count is a one-directional count that orders its revolutions, and the time reversal is not a Lorentz move.",
-   "source": "\\S\\ref{sec:discussion}; rests on A17, F1, F3, F4\\newline \\pywit{spacetime}{p07048}{X6}, \\leanwit{FrcCore}{p07048}{X6} \\lean{FRC.Lorentz.no\\_time\\_reversal, FRC.Lorentz.no\\_reflection, FRC.Lorentz.no\\_inversion, FRC.Lorentz.drift\\_one\\_directional}",
+   "source": "Cor.~\\ref{cor:explains}(v); rests on A17, B5, F1, F3, F4\\newline \\pywit{spacetime}{p07048}{X6}, \\leanwit{FrcCore}{p07048}{X6} \\lean{FRC.Lorentz.no\\_time\\_reversal, FRC.Lorentz.no\\_reflection, FRC.Lorentz.no\\_inversion, FRC.Lorentz.drift\\_one\\_directional}",
    "page": "7-spacetime/index.html#X6",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p07048",
      "script": "p07_spacetime.py",
-     "line": 412,
+     "line": 474,
      "verdict": "pass"
     },
     "lean": [
@@ -46732,9 +47238,10 @@
     "p00042",
     "p07044",
     "p07046",
-    "p07047"
+    "p07047",
+    "p07049"
    ],
-   "text": "Why causality has an arrow: every embedded shell drifts at one rate, its chart count is a one-directional count that orders its revolutions, and the time reversal is not a Lorentz move. \\Ssec:discussion; rests on A17, F1, F3, F4 p07048, FrcCore{X6} FRC.Lorentz.no_time_reversal, FRC.Lorentz.no_reflection, FRC.Lorentz.no_inversion, FRC.Lorentz.drift_one_directional"
+   "text": "Why causality has an arrow: every embedded shell drifts at one rate, its chart count is a one-directional count that orders its revolutions, and the time reversal is not a Lorentz move. Cor. cor:explains(v); rests on A17, B5, F1, F3, F4 p07048, FrcCore{X6} FRC.Lorentz.no_time_reversal, FRC.Lorentz.no_reflection, FRC.Lorentz.no_inversion, FRC.Lorentz.drift_one_directional"
   },
   {
    "paper": "8-dirac",

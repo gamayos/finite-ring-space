@@ -24,7 +24,10 @@ axioms off either form. V rows are not predicates and get no declaration. The ex
 
 A key whose theorem lives in a key file (`<lib>/Keys/<Theme>.lean`, written by make_keys.py; ledger migration, task LM19) is
 not proved here again: the predicate's declaration is the key's alias, `theorem p01004 : <statement> := @FRC.Ledger.p01004`
-(`FRC.LedgerML` on Mathlib), hosted by the paper's module, which imports the key file. Run make_keys.py first.
+(`FRC.LedgerML` on Mathlib), hosted by the paper's module, which imports the key file. Run make_keys.py first. An alias
+keeps its theorem form only while the key file states the key the same way (the universe names renumbered): a key rebound by
+the ledger, or in the def form, takes the alias back to the def form until the next --typed pass; `--untyped` writes every
+predicate of the module in the def form (2 November 2026).
 
     python3 make_predicates.py --module Dimensions --json ../docs/10-dimensions/10-dimensions-ledger.json
     python3 make_predicates.py --module Dimensions --json … --typed      # then restate as theorems (needs the library built: lake build)
@@ -148,15 +151,34 @@ def compiles(lib, host, rows, stated, module):
         if mm: bad.add(mm.group(1))
     return {n: t for n, t in stated.items() if n not in bad}
 
-def existing_statements(path, pkg):
+def universes(stmt):
+    """The statement with its universe variables renumbered in order of appearance, so that two printings compare."""
+    seen = {}
+    return re.sub(r"\bu_\d+\b", lambda m: seen.setdefault(m.group(0), f"u_{len(seen) + 1}"), stmt)
+
+def key_statements(lib):
+    """key -> the statement of its theorem form in the key file (a key in the def form has none)."""
+    d = ROOT / lib / "Keys"; out = {}
+    for p in sorted(d.glob("*.lean")) if d.exists() else []:
+        for k, v in re.findall(r"^theorem (p\d{5}) : (.*?) :=\n", p.read_text(encoding="utf-8"), re.M | re.S): out[k] = " ".join(v.split())
+    return out
+
+def existing_statements(path, pkg, lib):
     """The statements of the predicates already stated as theorems in the file's section of this paper (declaration name ->
-    statement), so that a run without --typed does not demote them to the def form."""
+    statement), so that a run without --typed does not demote them to the def form. A key's alias is kept only while the
+    key file states the key the same way."""
     src = path.read_text(encoding="utf-8"); head = f"-- Ledger predicates of {pkg} ("
     i = src.find(head)
     if i < 0: return None
     sec = src[i:src.index(END, i)]
     got = dict(re.findall(r"^theorem (p\d{5}) : (.*?) :=\n", sec, re.M | re.S))
-    return {k: " ".join(v.split()) for k, v in got.items()} or None
+    ks = key_statements(lib); kd = keyed(lib)
+    out = {}
+    for k, v in got.items():
+        v = " ".join(v.split())
+        if k in kd and universes(ks.get(k, "")) != universes(v): continue
+        out[k] = v
+    return out or None
 
 def splice(path, block, module, pkg):
     """The section replaces its earlier version (the one of this paper: `-- Ledger predicates of <pkg>`) or goes before
@@ -179,6 +201,7 @@ def splice(path, block, module, pkg):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--module", required=True); ap.add_argument("--json", required=True); ap.add_argument("--check", action="store_true"); ap.add_argument("--typed", action="store_true")
+    ap.add_argument("--untyped", action="store_true", help="every predicate of the module in the def form")
     a = ap.parse_args()
     data = json.loads(Path(a.json).read_text(encoding="utf-8")); pkg = Path(a.json).stem.replace("-ledger", "")
     paper_no = data["paper"].split("-")[0]
@@ -211,7 +234,7 @@ def main():
                 added = add_imports(lib, host, needed)
                 if added: print(f"{lib}/{host}.lean: imports {', '.join(added)} added")
             rows = [r[:5] for r in rows]
-            stated = existing_statements(hpath, pkg)                   # without --typed the theorem forms already in the file are kept
+            stated = None if a.untyped else existing_statements(hpath, pkg, lib)   # without --typed the theorem forms already in the file are kept
             if a.typed:
                 names = [r[4] for r in rows]
                 got = statements(lib, host, names, a.module); ok = compiles(lib, host, rows, got, a.module)
