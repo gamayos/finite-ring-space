@@ -3,7 +3,7 @@
  "tree": "7-spacetime-20261027",
  "title": "Emergent Lorentzian Space-Time over Finite Holographic Substrate",
  "doi": null,
- "generated": "3 November 2026",
+ "generated": "4 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -338,7 +338,7 @@
     },
     {
      "label": "C5",
-     "predicate": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(+++-)$ names the elliptic class by the index chart [chart].",
+     "predicate": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(3,1)$ names the elliptic class by the index chart [chart], in signs $(-+++)$ or equally $(+---)$, one class without inertia.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:hopf}(i); rests on A1, A8, A9\\newline \\pywit{spacetime}{p07009}{C5}, \\leanwit{FrcCore}{p07009}{C5} \\lean{FRC.Lorentz.rank\\_two\\_det, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
      "key": "p07009"

@@ -2337,7 +2337,7 @@ theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
 /-! ## 38:A9, 38:X4, 38:B6: the frame triple and the split fibration (12 October 2026)
 
 The adjugate `adj M = [[d, −b], [−c, a]]` with `M · adj M = adj M · M = det M · I`; the frame triple
-`G ≅ ℙ¹ × B`: every invertible `M` factors as (boost carrying the horizon to its direction `M·[1 : 0]`) × (cone chart),
+`G ≅ ℙ¹ × B`: every invertible `M` factors as (boost taking the antipode to its direction `M·[1 : 0]`) × (cone chart),
 uniquely up to scalars (`frame_triple`); the split fibration by the unit `i = diag(r, −r)`, `r = g^κ`, `r² = −1`: the
 centraliser of `i` is the diagonal torus inside the Borel, `i` is not scalar, the circle `x² + y² = 1` is the torus's
 norm-one part, the conjugates of `i` fill the trace-zero quadric `a² + bc = −1` and every point of it is reached, and
@@ -2385,7 +2385,7 @@ end M2
 /-- 38:A9, 38:X4 — **the frame triple** (Theorem *The two fibrations and the frame triple*, the master's C22). On a
 frame with `ν` a nonsquare: (1) an invertible `M` has a nonzero first column, its direction `M·[1 : 0] = [a : c]` is the
 boost `[[a, νc], [c, a]]`'s direction, that boost has nonzero norm `N = a² − νc²`, and `N·M = boost(a, c) · borel(N, ab − νcd, det M)`:
-every frame is (boost carrying the horizon to its direction) × (cone chart); (2) the cone charts fix the horizon;
+every frame is (boost taking the antipode to its direction) × (cone chart); (2) the cone charts fix the antipode;
 (3) the factorisation is unique up to scalars — two factorisations of proportional frames have the same boost class and
 the same chart class. With `hopf_counts` (`p + 1` boost classes, `p(p − 1)` charts) the frames number
 `(p + 1)·p·(p − 1)`: one direction, one shell cell, one drive phase. -/
@@ -5607,7 +5607,7 @@ theorem p07007 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (h : FRC.Shell p)
 theorem p07008 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν), (z * FRC.Extension.Ext.conj (1 : FRC.Extension.Ext p ν)).im = z.im) ∧ (FRC.Lorentz.nullCount13 = (2041 : Nat) ∧ (2041 : Nat) = (13 : Nat) * (13 : Nat) * (13 : Nat) - (13 : Nat) * (13 : Nat) + (13 : Nat) ∧ ((2041 : Nat) - (1 : Nat)) / (12 : Nat) = (13 : Nat) * (13 : Nat) + (1 : Nat)) ∧ (13 : Nat) + (1 : Nat) + (13 : Nat) * (12 : Nat) = (13 : Nat) * (13 : Nat) + (1 : Nat) ∧ (173 : Nat) + (1 : Nat) + (173 : Nat) * (172 : Nat) = (173 : Nat) * (173 : Nat) + (1 : Nat) ∧ (1549 : Nat) + (1 : Nat) + (1549 : Nat) * (1548 : Nat) = (1549 : Nat) * (1549 : Nat) + (1 : Nat) :=
   And.intro @FRC.Lorentz.cone_time (And.intro @FRC.Lorentz.null_count_13 (And.intro @FRC.Lorentz.cone_count_13 (And.intro @FRC.Lorentz.cone_count_173 (@FRC.Lorentz.cone_count_1549))))
 set_option linter.defProp false in
-/-- p07009 — 7:C5. Exactly two four-dimensional classes: the frame quadric $(M_{2}(\Fp),\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(+++-)$ names the elliptic class by the index chart [chart]. -/
+/-- p07009 — 7:C5. Exactly two four-dimensional classes: the frame quadric $(M_{2}(\Fp),\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(3,1)$ names the elliptic class by the index chart [chart], in signs $(-+++)$ or equally $(+---)$, one class without inertia. -/
 def p07009 := And.intro @FRC.Lorentz.rank_two_det (And.intro @FRC.Lorentz.register_elliptic (@FRC.Lorentz.frame_hyperbolic))
 /-- p07010 — 7:C6. No inertia: $\langle1,1,1,\gen\rangle\cong\langle1,\gen,\gen,\gen\rangle$; a similitude of multiplier $\gen$ exchanges the two non-null classes; the null cone is the invariant of a change of unit. -/
 theorem p07010 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a b : FRC.Shell p), a * a + b * b = ν → ∀ (x0 x1 x2 x3 : FRC.Shell p), FRC.Lorentz.Q ν (ν * x2) (a * x1 + -(b * x3)) x0 (b * x1 + a * x3) = ν * FRC.Lorentz.Q ν x0 x1 x2 x3) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (i h : FRC.Shell p), i * i = (-1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * h = (1 : FRC.Shell p) → (ν + (1 : FRC.Shell p)) * h * ((ν + (1 : FRC.Shell p)) * h) + i * ((ν + (-1 : FRC.Shell p)) * h) * (i * ((ν + (-1 : FRC.Shell p)) * h)) = ν :=

@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "3 November 2026",
+  "generated": "4 November 2026",
   "schema": "frc-register/2",
   "rows": 1128,
   "theorems": 1084,
@@ -10476,7 +10476,7 @@
   {
    "key": "p07009",
    "origin": "07",
-   "statement": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(+++-)$ names the elliptic class by the index chart [chart].",
+   "statement": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(3,1)$ names the elliptic class by the index chart [chart], in signs $(-+++)$ or equally $(+---)$, one class without inertia.",
    "origin_row": "7:C5",
    "tag": "T",
    "tier": 0,
@@ -46034,7 +46034,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(+++-)$ names the elliptic class by the index chart [chart].",
+   "statement": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(3,1)$ names the elliptic class by the index chart [chart], in signs $(-+++)$ or equally $(+---)$, one class without inertia.",
    "source": "Thm.~\\ref{thm:hopf}(i); rests on A1, A8, A9\\newline \\pywit{spacetime}{p07009}{C5}, \\leanwit{FrcCore}{p07009}{C5} \\lean{FRC.Lorentz.rank\\_two\\_det, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.frame\\_hyperbolic}",
    "page": "7-spacetime/index.html#C5",
    "witness": {
@@ -46076,7 +46076,7 @@
     "p03008",
     "p03011"
    ],
-   "text": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(+++-)$ names the elliptic class by the index chart [chart]. Thm. thm:hopf(i); rests on A1, A8, A9 p07009, FrcCore{C5} FRC.Lorentz.rank_two_det, FRC.Lorentz.register_elliptic, FRC.Lorentz.frame_hyperbolic"
+   "text": "Exactly two four-dimensional classes: the frame quadric $(M_{2}(\\Fp),\\det)$ hyperbolic, the register square elliptic; Lorentzian exactly when $K$ is a field; $(3,1)$ names the elliptic class by the index chart [chart], in signs $(-+++)$ or equally $(+—)$, one class without inertia. Thm. thm:hopf(i); rests on A1, A8, A9 p07009, FrcCore{C5} FRC.Lorentz.rank_two_det, FRC.Lorentz.register_elliptic, FRC.Lorentz.frame_hyperbolic"
   },
   {
    "paper": "7-st",
