@@ -10,7 +10,7 @@
   var BLOCKS = {X: "Explanation", P: "Prediction", Z: "Horizon", T: "Task", Y: "Hypothesis"}, BLOCK_ORDER = ["X", "P", "Z", "T", "Y"];
   var FORCED_TAG = {X: "T", P: "T", T: "O", Y: "O"};                       /* the rule: choosing X or P sets the status to theorem (Q23), T or Y to open */
   var TAGS = {G: "ground", P: "pillar", T: "theorem", D: "definition", R: "realisation", I: "import", "Ω": "Ω-hard", O: "open"};
-  var TABS = ["ledger", "pred", "expl"], FILE = {ledger: "ledger.html", pred: "predictions.html", expl: "explicability.html"};
+  var TABS = ["ledger", "expl", "pred"], FILE = {ledger: "ledger.html", pred: "predictions.html", expl: "explicability.html"};
   var HAS = {ledger: function (s) { return s.paper === "00"; },             /* what a tab shows in place: the master's rows on the Ledger, */
              pred: function (s) { return s.block === "P"; },                /* the predictions, a restatement folded into its first appearance, by source paper */
              expl: function (s) { return s.block === "X"; }};               /* and the explanations, folded the same way */
