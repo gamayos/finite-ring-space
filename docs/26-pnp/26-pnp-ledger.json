@@ -14,42 +14,48 @@
      "predicate": "$\\NPC$-completeness and self-reducibility: satisfiability is $\\NPC$-complete (Cook, Levin), the reductions reach combinatorial mathematics (Karp), and polynomial time is invariant across the standard machines (Church--Turing).",
      "tag": "I",
      "source": "\\citep{cook1971,levin1973,karp1972,hartmanis1965}",
-     "key": "p26001"
+     "key": "p26001",
+     "name": null
     },
     {
      "label": "A2",
      "predicate": "Proof complexity, used as proved: $\\NPC=\\coNP$ iff some propositional proof system is polynomially bounded (Cook--Reckhow); Extended Frege is not automatizable unless RSA breaks, bounded-depth Frege unless factoring and Diffie--Hellman are feasible, and resolution is $\\NPC$-hard to automate.",
      "tag": "I",
      "source": "\\citep{cook1979,krajicek1995,krajicekpudlak1998,bonet2000,atserias2019}",
-     "key": "p26002"
+     "key": "p26002",
+     "name": null
     },
     {
      "label": "A3",
      "predicate": "One-way functions and the average case: the discrete logarithm and factoring as the canonical instances (Diffie--Hellman), Impagliazzo's worlds; Shor's order finding, which inverts both for a quantum observer.",
      "tag": "I",
      "source": "\\citep{diffie1976,impagliazzo1995,shor1997}",
-     "key": "p26003"
+     "key": "p26003",
+     "name": null
     },
     {
      "label": "A4",
      "predicate": "The three barriers: relativization (Baker--Gill--Solovay), natural proofs (Razborov--Rudich), algebrization (Aaronson--Wigderson); Wigderson's survey of what a separation must use.",
      "tag": "I",
      "source": "\\citep{bakergillsolovay1975,razborov1997,aaronson2009,wigderson2019}",
-     "key": "p26004"
+     "key": "p26004",
+     "name": null
     },
     {
      "label": "A5",
      "predicate": "Eckmann and Tlusty: under uniform angle scaling a single walk in $\\mathrm{SO}(3)$ reaches the identity only on a measure-zero set, while the doubled walk returns for some exponentially large scaling, delivered non-constructively.",
      "tag": "I",
      "source": "\\citep{eckmanntlusty2025}",
-     "key": "p26005"
+     "key": "p26005",
+     "name": null
     },
     {
      "label": "A6",
      "predicate": "The corpus: the horizon clause and its complexity face (00:Z1--Z4; 25:G3, 25:G7), the shell theorem (00:Z10; 20:E1, 20:E12), the scale import $\\Om=4S+1$ (00:A7), the window ladder $P^{2}<\\Om$ (00:B8), the four generative levels (00:B6), the drive of every prime shell (00:A12).",
      "tag": "I",
      "source": "\\citep{akhtman2026godel,akhtman2026rh,akhtman2025algebra}",
-     "key": "p26006"
+     "key": "p26006",
+     "name": null
     }
    ]
   },
@@ -62,35 +68,40 @@
      "predicate": "A representation $R=(E_R,O_R,c_R)$: an encoding, a finite set of elementary operations, and the cost, the graph distance in $G_R$. $R$ is admissible when it and a standard machine simulate each other with polynomial overhead. Cost is counted in bit operations, $\\ell=\\log_2P$ for a carrier element and $n$ for a stored length-$n$ object.",
      "tag": "D",
      "source": "Def.~\\ref{def:rep}",
-     "key": "p26007"
+     "key": "p26007",
+     "name": null
     },
     {
      "label": "B2",
      "predicate": "Cost is a function of the pair (target, representation), not of the target alone: a target far in one chart can be near in another, and the transform between charts is itself a path. ``Within the horizon'' is a predicate on pairs.",
      "tag": "D",
      "source": "Claim~\\ref{cl:rel}",
-     "key": "p26008"
+     "key": "p26008",
+     "name": null
     },
     {
      "label": "B3",
      "predicate": "The longitudinal turn on the shell: the multiplicative characters $\\chi_\\nu(g^t)=g^{\\nu t}$ are eigenvectors of the scale shift $x\\mapsto gx$, with the $(P-1)$-th roots of unity $g^{\\nu}$ as distinct eigenvalues; the shift $x\\mapsto g^{r}x$ fixes every unit when $(P-1)\\mid r$ and none otherwise.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:longturn}; A6\\newline \\pywit{pnp}{p26009}{B3}, \\leanwit{FrcCore}{p26009}{B3} \\lean{FRC.Horizon.shift\\_power\\_character, FRC.Horizon.eigenphase, FRC.Shell.Frame.pow\\_inj, FRC.Horizon.shift\\_trace, FRC.Ladder.eigenvalues13}",
-     "key": "p26009"
+     "key": "p26009",
+     "name": "longitudinal_turn_shell"
     },
     {
      "label": "B4",
      "predicate": "The continuum reading [chart]: the dilation generator $\\HH=-\\mathrm i(x\\partial_x+\\tfrac12)$ has $x^{-1/2+\\mathrm i\\nu}$ as eigenfunction of eigenvalue $\\nu$ on $x>0$, so the frequency index is the spectrum of $\\HH$ in the chart of the scale shift (20:E1).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:longturn}; B3\\newline \\pywit{pnp}{p26010}{B4}, \\leanwit{FrcMathlib}{p26010}{B4} \\lean{Pnp.dilation\\_eigen}",
-     "key": "p26010"
+     "key": "p26010",
+     "name": "continuum_reading"
     },
     {
      "label": "B5",
      "predicate": "The Gauss sum couples the two turns: multiplication by a unit permutes the units; $\\sum_{t\\neq0}\\psi(tc)$ is $-1$ for $c\\neq0$ and $P-1$ for $c=0$; $\\sum_u\\chi(u)=0$ for $\\chi\\neq1$; hence $\\lvert g(\\chi)\\rvert^{2}=P$ for every nontrivial $\\chi$ on the shell ($\\Om$ on the Carrier).",
      "tag": "T",
      "source": "Rem.~\\ref{rem:gauss}; B3\\newline \\pywit{pnp}{p26011}{B5}, \\leanwit{FrcCore}{p26011}{B5}, \\leanwit{FrcMathlib}{p26011}{B5} \\lean{FRC.Horizon.ramanujan\\_sum, FRC.Horizon.ramanujan\\_zero, FRC.Shell.Frame.principal\\_root, FRC.Ladder.mul\\_perm, Pnp.gauss\\_product, Pnp.gauss\\_modulus}",
-     "key": "p26011"
+     "key": "p26011",
+     "name": "gauss_sum_couples_turns"
     }
    ]
   },
@@ -103,14 +114,16 @@
      "predicate": "Two horizons, nested: the per-instance feasible horizon $H(\\ell)$, polynomial in the feasible regime, and the absolute horizon $\\Om^{1/4}$, the observer's total budget in the totality. The totality holds the inverse of every ascent whole, the table of $P-1$ index pairs, below its own count: the endpoint-given oracle.",
      "tag": "D",
      "source": "Def.~\\ref{def:horizon}; A6",
-     "key": "p26012"
+     "key": "p26012",
+     "name": null
     },
     {
      "label": "C2",
      "predicate": "The family's size and the table beyond the horizon [chart]: at the anchor $2^{204}<\\sqrt\\Om<2^{205}$, so the shells of the family $P^{2}<\\Om$ have at most $205$ bits; $2^{102}<\\Om^{1/4}<2^{103}$, so a decision table with one entry per $204$-bit input exceeds the absolute horizon and lies below $\\sqrt\\Om$.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:bridge}; A6\\newline \\pywit{pnp}{p26013}{C2}, \\leanwit{FrcMathlib}{p26013}{C2} \\lean{Pnp.family\\_bits}",
-     "key": "p26013"
+     "key": "p26013",
+     "name": "family_size_beyond_horizon"
     }
    ]
   },
@@ -123,28 +136,32 @@
      "predicate": "The classes in a representation: $L\\in\\PC_R$ when a $\\mathrm{poly}(\\ell)$ uniform rule selects each next operation and the deterministic forward path reaches the decision bit within $H(\\ell)$; $L\\in\\NPC_R$ when a certificate of polynomial length places ``accept'' within $H(\\ell)$ of $(E_R(x),w)$. The axis is find versus exist.",
      "tag": "D",
      "source": "Def.~\\ref{def:classes}",
-     "key": "p26014"
+     "key": "p26014",
+     "name": null
     },
     {
      "label": "D2",
      "predicate": "Faithfulness: for every admissible $R$, $\\PC_R=\\PC$ and $\\NPC_R=\\NPC$. The forward direction simulates each operation in polynomial time and guesses the operation sequence with the certificate; the reverse rewrites a standard computation as an $R$-derivation of polynomial length.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:faith}; A1, B1, D1",
-     "key": "p26015"
+     "key": "p26015",
+     "name": null
     },
     {
      "label": "D3",
      "predicate": "The classes are representation-invariant; what varies with $R$ is the cost of a specific target within a fixed budget. A certificate is a representation in which the far target is near: supplied ($\\NPC$) rather than forward-constructed ($\\PC$).",
      "tag": "D",
      "source": "Cor.~\\ref{cor:robust}; D2, B2",
-     "key": "p26016"
+     "key": "p26016",
+     "name": null
     },
     {
      "label": "D4",
      "predicate": "Faithfulness is to the class structure on the carrier family: the carrier classes are $\\PC$ and $\\NPC$, the textbook asymptotic classes their degenerate idealisation. No tower of carriers is admitted; a fixed length admits a decision table, decided by the totality, unreachable below the horizon (C2).",
      "tag": "D",
      "source": "Rem.~\\ref{rem:bridge}; A6, C2",
-     "key": "p26017"
+     "key": "p26017",
+     "name": null
     }
    ]
   },
@@ -157,77 +174,88 @@
      "predicate": "The search problem $\\mathrm{Search}_V$ of $L\\in\\NPC$ with verifier $V$ and witness bound $p$ maps an instance to a witness or to $\\bot$. The near-representation is forward-constructible iff $\\mathrm{Search}_V\\in\\mathrm{FP}$.",
      "tag": "D",
      "source": "Def.~\\ref{def:search}",
-     "key": "p26018"
+     "key": "p26018",
+     "name": null
     },
     {
      "label": "E2",
      "predicate": "The crisp form: $\\PC=\\NPC$ iff $\\mathrm{Search}_V\\in\\mathrm{FP}$ for every $L\\in\\NPC$, equivalently for $\\mathrm{SAT}$; by self-reduction on the variables and the witness-preserving Cook--Levin reduction.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:crisp}; A1, E1",
-     "key": "p26019"
+     "key": "p26019",
+     "name": null
     },
     {
      "label": "E3",
      "predicate": "A propositional proof system is a polynomial-time onto map $\\Pi$ to $\\mathrm{TAUT}$; $p$-bounded when every tautology has a polynomial-size proof; automatizable when some algorithm finds a proof in time polynomial in the tautology and its least proof size.",
      "tag": "D",
      "source": "Def.~\\ref{def:ps}",
-     "key": "p26020"
+     "key": "p26020",
+     "name": null
     },
     {
      "label": "E4",
      "predicate": "The witness--automatization dictionary: for $L\\in\\NPC$ with verifier $V$, $\\mathrm{Search}_V\\in\\mathrm{FP}$ iff the certificate system $\\Pi_V$ (a witness system, not a system for $\\mathrm{TAUT}$) is automatizable; so $\\PC=\\NPC$ iff every witness system is automatizable.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:dict}; E1, E2, E3",
-     "key": "p26021"
+     "key": "p26021",
+     "name": null
     },
     {
      "label": "E5",
      "predicate": "Finding collapses to checking: if $\\PC=\\NPC$ then every propositional proof system is automatizable, the proof built bit by bit by self-reduction on the predicate ``$\\tau$ has a $\\Pi$-proof of size at most $s$''.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:auto}; A1, E2, E3",
-     "key": "p26022"
+     "key": "p26022",
+     "name": null
     },
     {
      "label": "E6",
      "predicate": "The gap is finding versus existing: the truth-table system is automatizable but not $p$-bounded, so existence ($\\NPC=\\coNP$) and discovery are distinct; the known separations condition the gap on the hardness of factoring and the discrete logarithm, the substrate's descent.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:gap}; A2, E5",
-     "key": "p26023"
+     "key": "p26023",
+     "name": null
     },
     {
      "label": "E7",
      "predicate": "A localizing chart for $x\\in L$: an admissible chart in which some witness lies within the polynomial horizon of $\\mathbf0$. A constructive localising selector emits, in $\\mathrm{FP}$, such a chart with a canonical forward rule whose orbit reaches the witness in $\\mathrm{poly}(\\ell)$ steps. Proximity alone is insufficient.",
      "tag": "D",
      "source": "Def.~\\ref{def:localize}",
-     "key": "p26024"
+     "key": "p26024",
+     "name": null
     },
     {
      "label": "E8",
      "predicate": "Existence is free: for every witness index $m$ of the scale chart the translation $j\\mapsto j+(n-m)+1$ of the index cycle is a chart (a bijection of the cycle) that places $g^{m}$ one counting step from the origin, $g=g^{0}\\cdot g$. The witness enters only to name the chart.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:uniformchart}; E7\\newline \\pywit{pnp}{p26025}{E8}, \\leanwit{FrcCore}{p26025}{E8} \\lean{FRC.Ladder.recentre\\_witness, FRC.Ladder.recentre\\_inj, FRC.Ladder.recentre\\_surj, FRC.Ladder.recentre13}",
-     "key": "p26025"
+     "key": "p26025",
+     "name": "existence_free"
     },
     {
      "label": "E9",
      "predicate": "The selector is the content: a constructive localising selector for every $L\\in\\NPC$, equivalently for $\\mathrm{SAT}$, exists iff $\\PC=\\NPC$; a selector for a single easy $L$ does not suffice.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:uniformchart}; E2, E7, E8",
-     "key": "p26026"
+     "key": "p26026",
+     "name": null
     },
     {
      "label": "E10",
      "predicate": "The counting distance of a unit along the orbit of $g$ is its index: $m\\mapsto g^{m}$ is a bijection of the index cycle onto the units, the distances $1,\\dots,P-1$ have mean $P/2$ and maximum $P-1$, between $2^{\\ell-1}$ and $2^{\\ell}$ for $\\ell$ the bit length.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:lucky}; A6\\newline \\pywit{pnp}{p26027}{E10}, \\leanwit{FrcCore}{p26027}{E10} \\lean{FRC.Shell.Prime.exists\\_drive, FRC.Shell.Prime.primitive\\_pow\\_inj, FRC.Shell.Frame.generates, FRC.Ladder.two\\_mul\\_distSum, FRC.Ladder.dist\\_le, FRC.Ladder.dist\\_max, FRC.Ladder.bits\\_bracket}",
-     "key": "p26027"
+     "key": "p26027",
+     "name": "counting_distance_along_orbit"
     },
     {
      "label": "E11",
      "predicate": "Three quantities differ: the naive orbit length (up to $2^{\\ell}$ steps), the cost of a specified algorithm (baby-step--giant-step, F3), and the minimum complexity of the descent, the open lower bound. The bijection of E10 bounds none of them. Short to name is not short to find.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:lucky}; E10, F3",
-     "key": "p26028"
+     "key": "p26028",
+     "name": null
     }
    ]
   },
@@ -240,77 +268,88 @@
      "predicate": "Charts and the family: on $\\F_P$ the additive chart and the scale chart $(\\F_P^{\\times},\\cdot)\\simeq C_{P-1}$; with a fixed generator $g$ the ascent $a_P(j)=g^{j}$ and the descent $d_P=\\mathrm{dlog}_g$. The carrier family is $\\{\\F_P:P^{2}<\\Om\\}$ (00:B8), input size $\\ell$, feasibility $\\mathrm{poly}(\\ell)$.",
      "tag": "D",
      "source": "Def.~\\ref{def:charts}; A6, C1",
-     "key": "p26029"
+     "key": "p26029",
+     "name": null
     },
     {
      "label": "F2",
      "predicate": "Ascent is feasible: square-and-multiply computes $g^{j}$ in at most $2\\,\\mathrm{bits}(j)$ modular multiplications, hence at most $2\\ell$ for $j<P$; on the three carriers $17$, $26$, $38$ multiplications at $j=P/3$, right to left with the last squaring skipped [data].",
      "tag": "T",
      "source": "Thm.~\\ref{thm:ascent}; F1\\newline \\pywit{pnp}{p26030}{F2}, \\leanwit{FrcCore}{p26030}{F2} \\lean{FRC.Ladder.sqmul\\_spec, FRC.Ladder.sqmul\\_count, FRC.Ladder.sqmul\\_count\\_of\\_lt\\_pow, FRC.Ladder.sqmul13}",
-     "key": "p26030"
+     "key": "p26030",
+     "name": "ascent_feasible"
     },
     {
      "label": "F3",
      "predicate": "The descent's count: with $m^{2}\\ge P-1$ baby steps $1,g,\\dots,g^{m-1}$ ($m$ entries, one multiplication per step) and at most $m$ giant steps, baby-step--giant-step recovers from $g^{x}$ an index $y$ with $g^{y}=g^{x}$; at most $2m$ operations, $m=\\lfloor\\sqrt{P-1}\\rfloor+1$; $134$, $1334$, $13334$ on the three carriers [data].",
      "tag": "T",
      "source": "\\S\\ref{sec:owf}; F1\\newline \\pywit{pnp}{p26031}{F3}, \\leanwit{FrcCore}{p26031}{F3} \\lean{FRC.Ladder.bsgs\\_spec, FRC.Ladder.bsgs\\_total, FRC.Ladder.baby\\_step, FRC.Ladder.descendsB\\_spec, FRC.Ladder.descent13\\_101}",
-     "key": "p26031"
+     "key": "p26031",
+     "name": "descent_count"
     },
     {
      "label": "F4",
      "predicate": "Three scales: the feasibility budget $\\mathrm{poly}(\\ell)$, exceeded by the descent; the per-instance descent $2\\sqrt P$, at most $\\Om^{1/4}$ on the family, superpolynomial yet far below carrier scale; the uniform statement that no $\\mathrm{poly}(\\ell)$ inverse exists across the family, with no per-instance witness.",
      "tag": "D",
      "source": "\\S\\ref{sec:owf}; C1, C2, F3",
-     "key": "p26032"
+     "key": "p26032",
+     "name": null
     },
     {
      "label": "F5",
      "predicate": "A one-way family: each $f_\\ell$ computable in $\\mathrm{poly}(\\ell)$ while every $\\mathrm{poly}(\\ell)$-time inverter succeeds on at most a sub-horizon fraction of the carrier, the finite-totality reading of negligibility.",
      "tag": "D",
      "source": "Def.~\\ref{def:owf}",
-     "key": "p26033"
+     "key": "p26033",
+     "name": null
     },
     {
      "label": "F6",
      "predicate": "One-way implies separation: if a one-way family exists then $\\PC\\neq\\NPC$, since inverting $f$ is the search problem of the verifier $[f(x)=y]$, which $\\PC=\\NPC$ would place in $\\mathrm{FP}$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:owf}; E2, F5",
-     "key": "p26034"
+     "key": "p26034",
+     "name": null
     },
     {
      "label": "F7",
      "predicate": "The scale-descent residue: the ascent family $\\{a_P\\}$ on the carrier family is one-way, $\\mathrm{poly}(\\ell)$ forward and inverted by no $\\mathrm{poly}(\\ell)$ forward computation. Decided by the totality, beyond the bounded observer; the complexity literature posits the same statement as the discrete-logarithm hardness assumption (00:Z4).",
      "tag": "Ω",
      "source": "Res.~\\ref{asm:dlog}; A3, A6, F2",
-     "key": "p26035"
+     "key": "p26035",
+     "name": null
     },
     {
      "label": "F8",
      "predicate": "If the scale descent is one-way (F7) then $\\PC\\neq\\NPC$.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:dlogsep}; F6, F7",
-     "key": "p26036"
+     "key": "p26036",
+     "name": null
     },
     {
      "label": "F9",
      "predicate": "The native locus: ascent is a horizon-bounded forward count, descent its inverse below the horizon; $\\PC\\neq\\NPC$ follows from F7 one way, the converse not known. The single arrow of the drive is the structural reason for the residue, the descent the time-reversed branch a composed observer cannot freely take.",
      "tag": "D",
      "source": "Claim~\\ref{cl:locus}; F7, F8",
-     "key": "p26037"
+     "key": "p26037",
+     "name": null
     },
     {
      "label": "F10",
      "predicate": "The descent is the inverse coordinate map: $a_P:j\\mapsto g^{j}$ is the bijection of $C_{P-1}$ onto $\\F_P^{\\times}$ carrying the time index to its position, and $d_P=\\mathrm{dlog}$ its inverse, a cyclic-group coordinate, not the inverse of the multiplicative Fourier transform (B3).",
      "tag": "T",
      "source": "Rem.~\\ref{rem:descentlong}; A6, B3\\newline \\pywit{pnp}{p26038}{F10}, \\leanwit{FrcCore}{p26038}{F10} \\lean{FRC.Shell.Prime.exists\\_drive, FRC.Shell.Prime.primitive\\_pow\\_inj, FRC.Shell.Frame.generates}",
-     "key": "p26038"
+     "key": "p26038",
+     "name": "descent_inverse_coordinate_map"
     },
     {
      "label": "F11",
      "predicate": "The scaling flow returns the doubled walk: Eckmann and Tlusty's two facts (A5) read on the shell as the find--exist split, a designated point unreachable by the single scaling, the relaxed target met non-constructively at an exponential scaling. A geometric parallel, not a lower bound.",
      "tag": "I",
      "source": "Rem.~\\ref{rem:rotation}; A5, E9",
-     "key": "p26039"
+     "key": "p26039",
+     "name": null
     }
    ]
   },
@@ -323,42 +362,48 @@
      "predicate": "The four primitive roles on $\\F_P$ with the generator $g$: succession $x+1$, addition $x+a$, multiplication $mx$, fixed-base exponentiation $a_P(j)=g^{j}$, each the previous iterated with a fixed operand; the fourth is the top, its inverse the discrete logarithm.",
      "tag": "D",
      "source": "Def.~\\ref{def:roles}",
-     "key": "p26040"
+     "key": "p26040",
+     "name": null
     },
     {
      "label": "G2",
      "predicate": "Ladder closure: the four roles generate the two cyclic structures, $C_P$ additive and $C_{P-1}$ multiplicative, with the bridge $a_P$. A tower exponent $g^{j}$ is read modulo $P-1$, so tetration is exponentiation of a reduced index, and the power map acts on the index as multiplication; no third cyclic structure hosts a fifth role (00:B6).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:closure}; A6, G1, G3\\newline \\pywit{pnp}{p26041}{G2}, \\leanwit{FrcCore}{p26041}{G2} \\lean{FRC.Shell.Frame.pow\\_mod, FRC.Ladder.tower\\_reduces, FRC.Ladder.power\\_index, FRC.Ladder.tower13}",
-     "key": "p26041"
+     "key": "p26041",
+     "name": "ladder_closure"
     },
     {
      "label": "G3",
      "predicate": "Phase-index dynamics: in the scale chart $x=g^{m}$ the power map acts by $P_k(g^{m})=g^{km}$ and its iterates by $P_k^{\\,r}(g^{m})=g^{k^{r}m}$, the exponents read modulo $P-1$; the ascent is the orbit traversal $g^{j+1}=g\\cdot g^{j}$, one multiplication per counted step.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:phase}; G1\\newline \\pywit{pnp}{p26042}{G3}, \\leanwit{FrcCore}{p26042}{G3} \\lean{FRC.Ladder.power\\_index, FRC.Ladder.phase\\_index, FRC.Ladder.ascent\\_step, FRC.Ladder.phase13}",
-     "key": "p26042"
+     "key": "p26042",
+     "name": "phase_index_dynamics"
     },
     {
      "label": "G4",
      "predicate": "The one-way function is the inverse of the last role: each forward role costs one modular operation, the ascent at most $2\\ell$ multiplications; the descent recovers the index, the position in the counted orbit of the fourth role. The descent/ascent operation ratio at the three carriers is $134/17$, $1334/26$, $13334/38$ [data].",
      "tag": "T",
      "source": "Prop.~\\ref{prop:invlast}; F2, F3, G3\\newline \\pywit{pnp}{p26043}{G4}, \\leanwit{FrcCore}{p26043}{G4} \\lean{FRC.Ladder.sqmul\\_count\\_of\\_lt\\_pow, FRC.Ladder.bsgs\\_spec, FRC.Ladder.ascent\\_step}",
-     "key": "p26043"
+     "key": "p26043",
+     "name": "one_way_function_inverse_role"
     },
     {
      "label": "G5",
      "predicate": "The power map $P_k$ is a bijection of $\\F_P^{\\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\\mapsto x^{a}$ with $ak\\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\\gcd(k,P-1)$ given as a Bezout witness $ak=b(P-1)+d$, of exactly $(P-1)/d$ elements.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:closuretransform}; G3\\newline \\pywit{pnp}{p26044}{G5}, \\leanwit{FrcCore}{p26044}{G5} \\lean{FRC.Ladder.power\\_bijective\\_of\\_unit, FRC.Ladder.power\\_image, FRC.Ladder.power\\_image\\_index, FRC.Ladder.compressive\\_of\\_gcd, FRC.Ladder.powers13}",
-     "key": "p26044"
+     "key": "p26044",
+     "name": "power_map_bijection_iff"
     },
     {
      "label": "G6",
      "predicate": "The index cycle $C_{P-1}$ is the abelian hidden-subgroup datum on which Shor's transform acts, the chart H5 marks as the hard classical case. The one-way map is the exponential $a_P$, whose inverse is the discrete logarithm, not the power map, which is efficiently inverted when bijective (G5).",
      "tag": "D",
      "source": "Rem.~\\ref{rem:closuretransform}; A3, G5, H5",
-     "key": "p26045"
+     "key": "p26045",
+     "name": null
     }
    ]
   },
@@ -371,35 +416,40 @@
      "predicate": "The two quarter turns as a structured correspondence: the transverse turn (the additive transform) is forward-computable classically on a stored vector; the longitudinal turn's period is reached by a $\\BQP$ observer through order finding, not by reading a transform vector. A correspondence between charts and the observers that reach them, not a complexity theorem.",
      "tag": "D",
      "source": "Prop.~\\ref{prop:twoturns}; A3, B3, H3",
-     "key": "p26046"
+     "key": "p26046",
+     "name": null
     },
     {
      "label": "H2",
      "predicate": "A chart change $T$ is forward-computable when $T$ and $T^{-1}$ lie in $\\PC$; a problem is transform-diagonalisable by $T$ when its instances become pointwise in the $T$-chart. Well defined for abelian and hidden-subgroup problems, not a feature of $\\NPC$ at large.",
      "tag": "D",
      "source": "Def.~\\ref{def:transform}",
-     "key": "p26047"
+     "key": "p26047",
+     "name": null
     },
     {
      "label": "H3",
      "predicate": "Fourier-diagonalisable implies $\\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (round trips at $n=8$, a sub-cycle of $\\F_{17}$, and at $n=256$, $2^{16}$, the full cycles of $\\F_{257}$, $\\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\\tfrac32n\\log_2n+n$ through the transform ($1\\,048\\,576$ against $16\\,384$ at $n=2^{10}$) [data].",
      "tag": "T",
      "source": "Thm.~\\ref{thm:fft}; B2, D1, H2\\newline \\pywit{pnp}{p26048}{H3}, \\leanwit{FrcCore}{p26048}{H3} \\lean{FRC.Shell.Frame.dft\\_inverse, FRC.Shell.Frame.principal\\_root}",
-     "key": "p26048"
+     "key": "p26048",
+     "name": "fourier_diagonalisable_implies_pc"
     },
     {
      "label": "H4",
      "predicate": "Structured witness sets are forward-localizable: when the witnesses of $x$ are the solutions of an affine $\\F_2$-system readable from $x$, Gaussian elimination returns a particular solution $w_0$ and a basis; the chart $w\\mapsto w-w_0$ places $w_0$ at $\\mathbf0$ and every solution within the basis's size in counting steps.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:affine}; E7, E8\\newline \\pywit{pnp}{p26049}{H4}",
-     "key": "p26049"
+     "key": "p26049",
+     "name": null
     },
     {
      "label": "H5",
      "predicate": "The scale chart is the hard case: the discrete logarithm is the carrier's native order-finding instance, reached by a $\\BQP$ observer and, under F7, by no classical forward computation; factoring is a distinct instance not covered by F7. A correspondence on structured instances, not a boundary theorem.",
      "tag": "D",
      "source": "Prop.~\\ref{prop:hardchart}; A3, F7, H1",
-     "key": "p26050"
+     "key": "p26050",
+     "name": null
     }
    ]
   },
@@ -412,14 +462,16 @@
      "predicate": "A universal constructive selector would invert the one-way family: applied to the inversion family of a one-way $f$ it inverts $f$ in $\\mathrm{poly}(\\ell)$; under F7 none exists, and its non-existence is equivalent to $\\PC\\neq\\NPC$ (E9). The natural-proofs reading is an analogy, the density not established.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:naturalselector}; E9, F6, F7",
-     "key": "p26051"
+     "key": "p26051",
+     "name": null
     },
     {
      "label": "J2",
      "predicate": "The barriers as obstructions: relativization treats the shell as a featureless sphere, natural proofs forbid a large generic marking where the hardness is the non-generic alignment with the arrow, algebrization adds an algebraic oracle the carrier's scale arithmetic replaces. The reading is a locus, not a technique the barriers exclude.",
      "tag": "D",
      "source": "\\S\\ref{sec:scope}; A4, F9",
-     "key": "p26052"
+     "key": "p26052",
+     "name": null
     }
    ]
   },
@@ -432,42 +484,48 @@
      "predicate": "$\\Om$-hard: a statement the totality decides and whose instance witnesses are checkable at sub-carrier scale, while its uniform forward-findable certificate is carrier-scale, below the bounded observer's horizon. Decidable, not undecidable: settled at the scale of the whole (00:Z3).",
      "tag": "D",
      "source": "\\S\\ref{sec:link}; A6",
-     "key": "p26053"
+     "key": "p26053",
+     "name": null
     },
     {
      "label": "K2",
      "predicate": "The three faces: the shell theorem's classical screen value in 20-rh (every mode on the self-dual line; classical RH as the count equality, $\\Om$-hard in its uniform form), the uniform per-$n$ Goldbach bound, and the forward-invertibility of the scale descent are one horizon clause, decided by the totality beyond the bounded observer (00:Z2).",
      "tag": "D",
      "source": "\\S\\ref{sec:link}; A6, K1",
-     "key": "p26054"
+     "key": "p26054",
+     "name": null
     },
     {
      "label": "K3",
      "predicate": "Frequency and the spectrum [chart]: the frequency chart is the spectrum of the scale shift on the shell (B3), the dilation generator its continuum reading (B4, 20:E1). The Hilbert--P\\'olya correspondence is a target of 20-rh, not a result; the spectral and the computational faces meet on the one $\\HH$-axis as a reading.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:hpspectrum}; A6, B3, B4",
-     "key": "p26055"
+     "key": "p26055",
+     "name": null
     },
     {
      "label": "K4",
      "predicate": "An arrow-forward computation: a $\\mathrm{poly}(\\ell)$-length path applying only the drive-forward operations of the carrier.",
      "tag": "D",
      "source": "Def.~\\ref{def:arrow}; F1, G1",
-     "key": "p26056"
+     "key": "p26056",
+     "name": null
     },
     {
      "label": "K5",
      "predicate": "Why the single arrow stops short of a proof: forbidding the inverse outright is circular; admitting every $\\mathrm{poly}(\\ell)$ operation makes the exclusion $\\mathrm{dlog}\\notin\\mathrm{FP}$, which implies $\\PC\\neq\\NPC$ one way; the closure removes the circularity (G4) and leaves the lower bound as the residue.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:arrow}; A4, G4, F9",
-     "key": "p26057"
+     "key": "p26057",
+     "name": null
     },
     {
      "label": "K6",
      "predicate": "The irreducible residue: the uniform certificate that the inverse of the last role has no $\\mathrm{poly}(\\ell)$ forward algorithm across the carrier family, the computational face of the horizon clause, decided by the totality and below the bounded observer's horizon (00:Z4).",
      "tag": "Ω",
      "source": "\\S\\ref{sec:program}; F7, G4, K1",
-     "key": "p26058"
+     "key": "p26058",
+     "name": null
     }
    ]
   }

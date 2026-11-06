@@ -14,49 +14,56 @@
      "predicate": "The finite substrate $\\F_\\Om$, cardinality $\\Om\\sim10^{123}$ (Planck units), fixed by the de Sitter entropy.",
      "tag": "I",
      "source": "\\citep{akhtman2026gravity,akhtman2026quantum}",
-     "key": "p32001"
+     "key": "p32001",
+     "name": null
     },
     {
      "label": "A2",
      "predicate": "The Hubble datum $\\Hzero$, the one measured number entering $\\az$.",
      "tag": "I",
      "source": "measured",
-     "key": "p32002"
+     "key": "p32002",
+     "name": null
     },
     {
      "label": "A3",
      "predicate": "The synchronisation premise (nearest-neighbour phase coupling) and unit channel capacity $G=\\hbar c/m_P^2$.",
      "tag": "I",
      "source": "\\citep{akhtman2026gravity}",
-     "key": "p32003"
+     "key": "p32003",
+     "name": null
     },
     {
      "label": "A4",
      "predicate": "The amplitude/Born rule: amplitude is the inter-subsystem projection, the squared amplitude a coincidence count.",
      "tag": "I",
      "source": "\\citep{akhtman2026quantum}",
-     "key": "p32004"
+     "key": "p32004",
+     "name": null
     },
     {
      "label": "A5",
      "predicate": "The exact finite Fourier (FrFT) rotation between the coordinate and conjugate spectral charts.",
      "tag": "I",
      "source": "\\citep{akhtman2026fourier}",
-     "key": "p32005"
+     "key": "p32005",
+     "name": null
     },
     {
      "label": "A6",
      "predicate": "The comprehension horizon: a bounded observer registers a signal only within its horizon in a chart.",
      "tag": "I",
      "source": "\\citep{akhtman2026pnp}",
-     "key": "p32006"
+     "key": "p32006",
+     "name": null
     },
     {
      "label": "A7",
      "predicate": "The measured relations used for comparison only: the RAR/McGaugh function, $\\az\\!\\approx\\!1.2\\times10^{-10}$, the $0.11$\\,dex scatter, the BTFR, the external-field downturn, the merging-cluster offset, the cluster-core residual; the SPARC tables (\\texttt{frc/data/sparc/} of the framework) as the confrontation data.",
      "tag": "I",
      "source": "\\citep{mcgaugh2016,lelli2016,lelli2017,chae2020,clowe2006}",
-     "key": "p32007"
+     "key": "p32007",
+     "name": null
     }
    ]
   },
@@ -69,63 +76,72 @@
      "predicate": "Gravitation is the synchronisation of elementary clocks; distance is decoherence. Falsifier: a gravitating species supplying the galactic \\emph{and} cosmological abundance (\\S\\ref{sec:discussion}), or entanglement induced off the Newtonian rate.",
      "tag": "R",
      "source": "\\S\\ref{sub:substrate}",
-     "key": "p32008"
+     "key": "p32008",
+     "name": null
     },
     {
      "label": "B2",
      "predicate": "Mass is winding rate, $E=hf$; an acceleration advances phase at the rate $g/c$. Falsifier: a knee that does not track $H(z)$ (P1), or a rest mass with no winding.",
      "tag": "R",
      "source": "\\S\\ref{sub:substrate},\\,\\ref{sub:floor}",
-     "key": "p32009"
+     "key": "p32009",
+     "name": null
     },
     {
      "label": "B3",
      "predicate": "The acceleration floor is the phase-coherence threshold $g/c=\\Hzero/2\\pi$: the winding frequency reaches the drive's cyclic frequency (one radian of phase per Hubble time). Falsifier: a measured floor off $c\\Hzero/2\\pi$ beyond the $H_0$ uncertainty, or a floor that is directional or density-dependent (P6).",
      "tag": "R",
      "source": "\\S\\ref{sub:floor}",
-     "key": "p32010"
+     "key": "p32010",
+     "name": null
     },
     {
      "label": "B4",
      "predicate": "Below the floor the registered force is read as an amplitude in the conjugate chart, the conserved flux as a count. Falsifier: a sub-floor law other than the geometric mean $\\sqrt{\\gb\\az}$ at $x\\ll1$, e.g.\\ the wide-binary knee failing P3.",
      "tag": "R",
      "source": "\\S\\ref{sub:tworeadings},\\,\\ref{sub:geomean}",
-     "key": "p32011"
+     "key": "p32011",
+     "name": null
     },
     {
      "label": "B5",
      "predicate": "The intrinsic scatter is the spread $\\delta\\alpha$ of the source's collective phase, read through the chart angle; its identification with the disk's dynamical temperature is the conjecture Y2. Falsifier: an intrinsic scatter that does not follow $\\tan\\alpha(x)$, i.e.\\ no rise into the deep regime at fixed $\\delta\\alpha$ (P2).",
      "tag": "R",
      "source": "\\S\\ref{sub:scatterderiv}",
-     "key": "p32012"
+     "key": "p32012",
+     "name": null
     },
     {
      "label": "B6",
      "predicate": "The lensing enhancement is the coherence-weighted amplitude, following the bulk-coherent components. Falsifier: a merger lensing peak tracking the shocked gas; the cluster-core residual off the amplitude-sum form over the core's composites is the exposure of the conjecture Y1.",
      "tag": "R",
      "source": "\\S\\ref{sub:bullet}",
-     "key": "p32013"
+     "key": "p32013",
+     "name": null
     },
     {
      "label": "B7",
      "predicate": "The cosmological constant is the curvature of the wrapped finite chart. Falsifier: $w\\neq-1$, or a negative or scale-varying $\\Lambda$ (C11).",
      "tag": "R",
      "source": "\\S\\ref{sub:lambda}",
-     "key": "p32014"
+     "key": "p32014",
+     "name": null
     },
     {
      "label": "B8",
      "predicate": "The masking barrier is the coincidence amplitude: registration fails when the killed noise walk first traverses the signal's amplitude $\\sqrt x$ in the metric $\\delta_A$ the floor rate induces, coefficient one. Falsifier: an approach to Newton departing from $1-e^{-\\sqrt x}$ beyond the binned-RAR uncertainty (the simple rational form differs by up to $0.05$ in $\\gobs/\\gb$ at $\\gb\\approx5\\az$), or a knee displaced from $c\\Hzero/2\\pi$ ($\\kappa^{2}\\neq1$).",
      "tag": "R",
      "source": "Prop.~\\ref{prop:passage}, Eq.~\\eqref{eq:norm}; its confrontation in \\S\\ref{sub:rar}",
-     "key": "p32015"
+     "key": "p32015",
+     "name": null
     },
     {
      "label": "B9",
      "predicate": "The bulk-coherence weight of a component $c$, $w_c=\\bigl|\\langle e^{i\\theta}\\rangle_c\\bigr|^{2}/\\langle|e^{i\\theta}|^{2}\\rangle_c\\in[0,1]$: unity for a virialised clump whose constituents share a bulk phase, near zero for gas a merger shock has randomised.",
      "tag": "D",
      "source": "Eq.~\\eqref{eq:cohweight}",
-     "key": "p32051"
+     "key": "p32051",
+     "name": null
     }
    ]
   },
@@ -138,77 +154,88 @@
      "predicate": "Newton's inverse-square law from the discrete Gauss law of the synchronisation flux.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:newton}\\newline \\pywit{dark}{p32016}{C1}, \\leanwit{FrcCore}{p32016}{C1} \\lean{FRC.Drift.gauss\\_law, FRC.Dark.enclosed\\_flux, FRC.Dark.source\\_free\\_flux, FRC.Dark.flux\\_superposition}",
-     "key": "p32016"
+     "key": "p32016",
+     "name": "newton_inverse_square_gauss"
     },
     {
      "label": "C2",
      "predicate": "The acceleration floor $\\az=c\\Hzero/2\\pi$, parameter-free, $13\\%$ below the fitted value ($0.7\\sigma$ of its systematic band).",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:a0}\\newline \\pywit{dark}{p32017}{C2}, \\leanwit{FrcMathlib}{p32017}{C2} \\lean{Dark.floor\\_value, Dark.floor\\_lambda\\_face}",
-     "key": "p32017"
+     "key": "p32017",
+     "name": "acceleration_floor_parameter_free"
     },
     {
      "label": "C3",
      "predicate": "Amplitude is the square root of the count (exact in $\\Z[i]$, by cross-term cancellation).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:born}\\newline \\pywit{dark}{p32018}{C3}, \\leanwit{FrcCore}{p32018}{C3} \\lean{FRC.Dark.parallelogram, FRC.Dark.coherent\\_stack, FRC.Dark.incoherent\\_mean}",
-     "key": "p32018"
+     "key": "p32018",
+     "name": "amplitude_square_root_count"
     },
     {
      "label": "C4",
      "predicate": "The deep-regime geometric mean $\\geff=\\sqrt{\\gb\\az}$, given the amplitude reading B4; the mean force of the link is Newtonian at every noise level (exactly so in the stationary solution), so the law is registration, not force modification.",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:spectral}, \\S\\ref{sub:geomean}\\newline \\pywit{dark}{p32019}{C4}, \\leanwit{FrcCore}{p32019}{C4}, \\leanwit{FrcMathlib}{p32019}{C4}; rests on A5, C3 \\lean{FRC.Dark.tully\\_fisher, FRC.Dark.source\\_free\\_flux, FRC.Drift.gauss\\_law, Dark.crossover\\_deep\\_limit, Dark.odd\\_linear\\_response}",
-     "key": "p32019"
+     "key": "p32019",
+     "name": "deep_regime_geometric_mean"
     },
     {
      "label": "C5",
      "predicate": "Flat rotation curves and the baryonic Tully--Fisher relation $v^4=GM\\az$.",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:btfr}\\newline \\pywit{dark}{p32020}{C5}, \\leanwit{FrcCore}{p32020}{C5}, \\leanwit{FrcMathlib}{p32020}{C5} \\lean{FRC.Dark.tully\\_fisher, Dark.crossover\\_limits}",
-     "key": "p32020"
+     "key": "p32020",
+     "name": "flat_rotation_curves_btfr"
     },
     {
      "label": "C6",
      "predicate": "The registration theorem: the finite coincidence count, its first-passage law, and flux conservation give the radial acceleration relation given B8; the fitting function of \\citet{mcgaugh2016} is this form with $g_\\dagger$ for $\\az$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:registration}, Eq.~\\eqref{eq:interp}\\newline \\pywit{dark}{p32021}{C6}, \\leanwit{FrcCore}{p32021}{C6}, \\leanwit{FrcMathlib}{p32021}{C6}; rests on C3, C7 \\lean{FRC.Dark.passage\\_vieta, FRC.Dark.line\\_passage, Dark.registration\\_root, Dark.crossover\\_limits, Dark.interpolant\\_discriminant, Dark.rar\\_from\\_count}",
-     "key": "p32021"
+     "key": "p32021",
+     "name": "registration_theorem"
     },
     {
      "label": "C7",
      "predicate": "The finite-cycle first-passage law: $e^{-\\sqrt x}$ is carrier-exact (amplitude identity) and the resolvable reading of the exact transform, to $O(\\Om^{-1/2})$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:passage}, Eq.~\\eqref{eq:exactfp}\\newline \\pywit{dark}{p32022}{C7}, \\leanwit{FrcCore}{p32022}{C7}, \\leanwit{FrcMathlib}{p32022}{C7} \\lean{FRC.Dark.passage\\_step, FRC.Dark.line\\_passage, FRC.Dark.cycle\\_passage, FRC.Dark.passage\\_vieta, Dark.passage\\_factor, Dark.passage\\_reduction}",
-     "key": "p32022"
+     "key": "p32022",
+     "name": "finite_cycle_first_passage"
     },
     {
      "label": "C8",
      "predicate": "The intrinsic-scatter relation, smallest at high acceleration and rising as $x^{-1/4}$.",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:scatter}\\newline \\pywit{dark}{p32023}{C8}, \\leanwit{FrcMathlib}{p32023}{C8} \\lean{Dark.scatter\\_deep}",
-     "key": "p32023"
+     "key": "p32023",
+     "name": "intrinsic_scatter_relation"
     },
     {
      "label": "C9",
      "predicate": "The external-field effect from the total-field dependence of the registration.",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:efe}\\newline \\pywit{dark}{p32024}{C9}, \\leanwit{FrcMathlib}{p32024}{C9} \\lean{Dark.nu\\_antitone, Dark.collinear\\_bound}",
-     "key": "p32024"
+     "key": "p32024",
+     "name": "external_field_effect"
     },
     {
      "label": "C10",
      "predicate": "The merging-cluster lensing offset onto the coherent component, the enhancement sourced by $\\sum_c w_c\\Sigma_c$ (B6, B9).",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:cohweight}, \\S\\ref{sub:bullet}\\newline \\pywit{dark}{p32050}{C10}, \\leanwit{FrcCore}{p32050}{C10}, \\leanwit{FrcMathlib}{p32050}{C10} \\lean{FRC.Drift.locked\\_sum, FRC.Shell.Frame.geom\\_sum\\_eq\\_zero, FRC.Dark.cohsum\\_three, FRC.Dark.coherent\\_stack, Dark.coherence\\_weight}",
-     "key": "p32050"
+     "key": "p32050",
+     "name": "cluster_lensing_offset"
     },
     {
      "label": "C11",
      "predicate": "The cosmological constant $\\Lambda\\sim1/\\Om$, sign positive, $w=-1$ de Sitter section; no $120$-order cancellation.",
      "tag": "T",
      "source": "\\S\\ref{sub:lambda}\\newline \\pywit{dark}{p32026}{C11}, \\leanwit{FrcMathlib}{p32026}{C11}; rests on A1, B7 \\lean{Dark.lambda\\_positive}",
-     "key": "p32026"
+     "key": "p32026",
+     "name": "cosmological_constant_positive"
     }
    ]
   },
@@ -221,77 +248,88 @@
      "predicate": "\\textbf{Newton's inverse-square law and the equivalence principle} follow from the discrete Gauss law of the synchronisation flux, the acceleration of a test cluster independent of its mass and composition.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:newton}\\newline \\pywit{dark}{p32027}{X1}, \\leanwit{FrcCore}{p32027}{X1} \\lean{FRC.Drift.gauss\\_law, FRC.Dark.enclosed\\_flux, FRC.Dark.source\\_free\\_flux, FRC.Dark.flux\\_superposition}",
-     "key": "p32027"
+     "key": "p32027",
+     "name": "newton_law_equivalence_principle"
     },
     {
      "label": "X2",
      "predicate": "\\textbf{The acceleration scale $\\az=c\\Hzero/2\\pi$} is the phase-coherence threshold, the acceleration whose winding frequency reaches the drive's cyclic rate, the $2\\pi$ the radian-to-cycle conversion of the angular Hubble rate, parameter-free, $13\\%$ below the fitted value at the entailed $\\Hzero$.",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:a0}\\newline \\pywit{dark}{p32028}{X2}, \\leanwit{FrcMathlib}{p32028}{X2} \\lean{Dark.floor\\_value, Dark.floor\\_lambda\\_face}",
-     "key": "p32028"
+     "key": "p32028",
+     "name": "acceleration_scale_coherence_threshold"
     },
     {
      "label": "X3",
      "predicate": "\\textbf{Flat rotation curves and the baryonic Tully--Fisher relation} $v^{4}=GM\\az$ are the deep-regime geometric mean $\\geff=\\sqrt{\\gb\\az}$, the amplitude reading of the field below the floor.",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:btfr}\\newline \\pywit{dark}{p32029}{X3}, \\leanwit{FrcCore}{p32029}{X3}, \\leanwit{FrcMathlib}{p32029}{X3} \\lean{FRC.Dark.tully\\_fisher, Dark.crossover\\_limits}",
-     "key": "p32029"
+     "key": "p32029",
+     "name": "rotation_curves_geometric_mean"
     },
     {
      "label": "X4",
      "predicate": "\\textbf{The radial acceleration relation carries no fitted function}: its interpolation is the finite first-passage registration given one declared identification, the amplitude barrier (B8), and it is the curve the data selected.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:registration}, Eq.~\\eqref{eq:interp}\\newline \\pywit{dark}{p32030}{X4}, \\leanwit{FrcCore}{p32030}{X4}, \\leanwit{FrcMathlib}{p32030}{X4} \\lean{FRC.Dark.passage\\_vieta, FRC.Dark.line\\_passage, Dark.registration\\_root, Dark.interpolant\\_discriminant, Dark.rar\\_from\\_count}",
-     "key": "p32030"
+     "key": "p32030",
+     "name": "radial_acceleration_no_fit"
     },
     {
      "label": "X5",
      "predicate": "\\textbf{The relation is tight}, its intrinsic scatter ($0.04$\\,dex at the knee, SPARC at fixed $\\az$) smallest at high acceleration and rising as $x^{-1/4}$ into the deep regime, the spread of the collective phase.",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:scatter}\\newline \\pywit{dark}{p32031}{X5}, \\leanwit{FrcMathlib}{p32031}{X5} \\lean{Dark.scatter\\_deep}",
-     "key": "p32031"
+     "key": "p32031",
+     "name": "intrinsic_scatter_tight"
     },
     {
      "label": "X6",
      "predicate": "\\textbf{The external-field effect breaks the strong equivalence principle}, the internal dynamics depending on the total field through the registration.",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:efe}\\newline \\pywit{dark}{p32032}{X6}, \\leanwit{FrcMathlib}{p32032}{X6} \\lean{Dark.nu\\_antitone}",
-     "key": "p32032"
+     "key": "p32032",
+     "name": "external_field_breaks_sep"
     },
     {
      "label": "X7",
      "predicate": "\\textbf{The merging-cluster lensing offset} is a selection: the coherence-weighted enhancement follows the collisionless galaxies and drops the shock-decohered gas ($C_{ij}\\to0$), not a coincidence.",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:cohweight}, \\S\\ref{sub:bullet}\\newline \\pywit{dark}{p32033}{X7}, \\leanwit{FrcCore}{p32033}{X7}, \\leanwit{FrcMathlib}{p32033}{X7} \\lean{FRC.Drift.locked\\_sum, FRC.Shell.Frame.geom\\_sum\\_eq\\_zero, FRC.Dark.cohsum\\_three, Dark.coherence\\_weight}",
-     "key": "p32033"
+     "key": "p32033",
+     "name": "cluster_lensing_offset_selection"
     },
     {
      "label": "X8",
      "predicate": "\\textbf{The cluster-core residual} is referred to the coherent amplitude addition $\\sqrt{N_{\\mathrm{eff}}}$ over the core's separately virialised composites, the one law that also gives the merger selection (C10); the quantitative closure, with $N_{\\mathrm{eff}}$ uncomputed, is the conjecture Y1.",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sub:clustermag}, Y1\\newline \\pywit{dark}{p32034}{X8}, \\leanwit{FrcCore}{p32034}{X8}, \\leanwit{FrcMathlib}{p32034}{X8} \\lean{FRC.Dark.cohsum\\_three, FRC.Dark.neff\\_equal, Dark.neff\\_bounds}",
-     "key": "p32034"
+     "key": "p32034",
+     "name": "cluster_core_residual"
     },
     {
      "label": "X9",
      "predicate": "\\textbf{The cosmological constant is small}, $\\Lambda\\sim1/\\Om$, the curvature of the finite chart and a reading of the one cardinality rather than a mode-sum vacuum energy, so no $120$-order cancellation arises.",
      "tag": "T",
      "source": "\\S\\ref{sub:lambda}\\newline \\pywit{dark}{p32035}{X9}, \\leanwit{FrcMathlib}{p32035}{X9} \\lean{Dark.lambda\\_positive}",
-     "key": "p32035"
+     "key": "p32035",
+     "name": "cosmological_constant_small"
     },
     {
      "label": "X10",
      "predicate": "\\textbf{The dark-matter and dark-energy scales coincide} because both are readings of the one cardinality $\\Om$, the floor $\\az=c\\Hzero/2\\pi$ and the curvature $\\Lambda\\sim1/\\Om$ fixed together.",
      "tag": "T",
      "source": "\\S\\ref{sub:lambda}\\newline \\pywit{dark}{p32036}{X10}, \\leanwit{FrcMathlib}{p32036}{X10} \\lean{Dark.floor\\_value, Dark.floor\\_lambda\\_face, Dark.lambda\\_positive}",
-     "key": "p32036"
+     "key": "p32036",
+     "name": "dark_scales_coincide"
     },
     {
      "label": "X11",
      "predicate": "\\textbf{The dark sector adds no particle}: the registered acceleration is a strictly increasing function of the baryonic acceleration and the one global $\\az$, so one registered acceleration fixes one baryonic acceleration with no room for a second component; the galactic discrepancy is the amplitude reading of the baryonic field, the direct-detection and axion nulls are consistent, and no dark subhaloes exist.",
      "tag": "T",
      "source": "\\S\\ref{sec:discussion}\\newline \\pywit{dark}{p32037}{X11}, \\leanwit{FrcMathlib}{p32037}{X11} \\lean{Dark.rar\\_monotone}",
-     "key": "p32037"
+     "key": "p32037",
+     "name": "dark_sector_no_particle"
     }
    ]
   },
@@ -304,42 +342,48 @@
      "predicate": "The redshift law $\\az(z)=cH(z)/2\\pi$: the knee shifts and the Tully--Fisher zero-point evolves, $v_{\\mathrm{flat}}\\propto E(z)^{1/4}$ ($+7\\%$, $+16\\%$, $+32\\%$ at $z=0.5,1,2$ for $\\Omega_m=0.315$), parameter-free; shape resolvable, value in Z1. Falsifier: a high-$z$ knee away from $cH(z)/2\\pi$, or a non-evolving Tully--Fisher zero-point.",
      "tag": "T",
      "source": "\\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32038}{P1}, \\leanwit{FrcMathlib}{p32038}{P1}; rests on B2, B3, C2 \\lean{Dark.running\\_floor, Dark.ez\\_quarter\\_brackets}",
-     "key": "p32038"
+     "key": "p32038",
+     "name": "redshift_law"
     },
     {
      "label": "P2",
      "predicate": "The scatter is the two-variable form $\\sigma=(2\\tan\\alpha/\\ln10)\\,\\delta\\alpha$, vanishing for cold high-$x$ systems and rising as $x^{-1/4}$; SPARC at fixed $\\az$: intrinsic $0.038$\\,dex overall, $0.04$ at the knee, $0.13$ at $x\\simeq0.02$, bounding $\\delta\\alpha\\lesssim3.5^{\\circ}$. Falsifier: a deep-regime intrinsic scatter that does not rise, or a measured collective spread the scatter does not track.",
      "tag": "T",
      "source": "\\S\\ref{sub:scatterderiv}, \\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32039}{P2}, \\leanwit{FrcMathlib}{p32039}{P2}; rests on B5, C8 \\lean{Dark.scatter\\_deep}",
-     "key": "p32039"
+     "key": "p32039",
+     "name": "scatter_two_variable_form"
     },
     {
      "label": "P3",
      "predicate": "Wide binaries ($\\gtrsim10$\\,kAU) follow $\\gb/(1-e^{-\\sqrt{x}})$ with the global $\\az$ and the vector Galactic field $\\gext\\simeq1.8\\az$: a $10$--$30\\%$ velocity enhancement ($12$--$16\\%$ at $10$--$40$\\,kAU on the collinear estimate), the exponential knee distinct from Newtonian and rational forms. Falsifier: Newtonian wide-binary motion, or a knee of the wrong shape.",
      "tag": "T",
      "source": "\\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32040}{P3}, \\leanwit{FrcMathlib}{p32040}{P3}; rests on B4, B8, C6, C9 \\lean{Dark.wide\\_binary\\_band}",
-     "key": "p32040"
+     "key": "p32040",
+     "name": "wide_binaries"
     },
     {
      "label": "P4",
      "predicate": "Pressure-supported systems (ellipticals, dSphs, UDGs) lie below the cold-disk relation by the coherence factor $\\sqrt{w}$, $w=1/(1+(\\sigma_v/v)^{2})$, by $0.05$--$0.15$\\,dex for $\\sigma_v/v=0.5$--$1$, correlating with $\\sigma_v/v$. Falsifier: pressure-supported systems on the cold-disk relation.",
      "tag": "T",
      "source": "\\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32041}{P4}, \\leanwit{FrcMathlib}{p32041}{P4}; rests on B4, B6, C10 \\lean{Dark.coherence\\_offset}",
-     "key": "p32041"
+     "key": "p32041",
+     "name": "pressure_supported_systems"
     },
     {
      "label": "P5",
      "predicate": "Coherence-state cluster gas: the X-ray gas gravitates only when bulk-coherent, contributing in a relaxed cluster ($C_{ij}\\to1$) and dropping out of a merger ($C_{ij}\\to0$), the lensing displacement growing with the shock Mach number; the quantitative core residual of the same law is the conjecture Y1. Falsifier: a merger lensing peak tracking the shocked gas, or no relaxed-versus-merging difference.",
      "tag": "T",
      "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32042}{P5}, \\leanwit{FrcCore}{p32042}{P5}; rests on B6, C10 \\lean{FRC.Dark.cohsum\\_three, FRC.Drift.locked\\_sum}",
-     "key": "p32042"
+     "key": "p32042",
+     "name": "coherence_state_cluster_gas"
     },
     {
      "label": "P6",
      "predicate": "A global, isotropic scale and no dark substructure: the registered acceleration depends on the baryonic field and the one global $\\az$ alone, strictly increasing, with no direction or environment in the law once the external field is in its argument; no new dark-matter state and no dark subhaloes, so stream perturbations and the satellite abundance trace baryons alone. Falsifier: a directional or density dependence of $\\az$ beyond the external-field effect, or stream gaps and substructure lensing with no baryonic counterpart.",
      "tag": "T",
      "source": "B1, B3; \\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32043}{P6}, \\leanwit{FrcMathlib}{p32043}{P6}; rests on C9 \\lean{Dark.rar\\_monotone}",
-     "key": "p32043"
+     "key": "p32043",
+     "name": "global_isotropic_scale"
     }
    ]
   },
@@ -352,14 +396,16 @@
      "predicate": "The ledger file \\texttt{frc/ledgers/p32\\_dark.py} of the \\texttt{finite-ring-space} framework decides the rows of blocks C, X, P and the reading of Z: twenty-three checks in eight blocks, each naming the rows it witnesses, the deciding check cited in each row's \\textsf{py} token; its notebook runs one predicate per cell.",
      "tag": "D",
      "source": "App.~\\ref{app:methods}",
-     "key": "p32044"
+     "key": "p32044",
+     "name": null
     },
     {
      "label": "V2",
      "predicate": "Two kinds per check: \\textsf{EXACT}, an identity decided in the rationals, $\\Z[i]$, $\\Z[\\omega]$ or $\\F_{p^2}$ with no tolerance (nine checks), and \\textsf{CHART}, a continuum reading or a confrontation with the SPARC tables against a rational bound (fourteen checks, labelled [chart]); the Lean declarations of each row are its \\textsf{lean} tokens.",
      "tag": "D",
      "source": "App.~\\ref{app:methods}",
-     "key": "p32045"
+     "key": "p32045",
+     "name": null
     }
    ]
   },
@@ -372,7 +418,8 @@
      "predicate": "The cross-scale running $\\az(d)/\\az(\\text{carrier})=(\\Om-1)/d$; its uniform certificate closes only at carrier scale (master ledger Z7).",
      "tag": "Ω",
      "source": "\\S\\ref{sub:running}",
-     "key": "p32047"
+     "key": "p32047",
+     "name": null
     }
    ]
   },
@@ -385,14 +432,16 @@
      "predicate": "The cluster-core residual as the coherent amplitude addition \\eqref{eq:cohsum} over the core's separately virialised composites, $\\sqrt{N_{\\mathrm{eff}}}$ over the smooth boost, the law that also gives the Bullet selection. Exposure: the coherence criterion is not derived; the radial acceleration relation forces $N_{\\mathrm{eff}}=1$ within a galaxy (\\S\\ref{sub:clustermag}), while the relaxed-core residual requires $N_{\\mathrm{eff}}\\simeq4$, uncomputed (\\S\\ref{sub:clustermag}). Deciding computation: $N_{\\mathrm{eff}}$ from the core galaxy populations of \\citet{sanders2003,pointecouteau2005}.",
      "tag": "O",
      "source": "\\S\\ref{sub:clustermag}",
-     "key": "p32048"
+     "key": "p32048",
+     "name": null
     },
     {
      "label": "Y2",
      "predicate": "The collective phase spread as the disk's dynamical temperature, $\\delta\\alpha=\\arctan(\\sigma_v/v_{\\mathrm{circ}})$. Exposure: at $\\sigma_v/v\\simeq0.1$--$0.2$ the law gives two to four times the SPARC intrinsic scatter at every $x$; the knee bounds $\\delta\\alpha\\lesssim3.5^{\\circ}$; the within-galaxy scatter of $116$ disks shows no correlation with $1/V_{\\mathrm{flat}}$ ($\\rho=-0.02$). Test: the scatter against measured dispersions.",
      "tag": "O",
      "source": "\\S\\ref{sub:scatterderiv}",
-     "key": "p32049"
+     "key": "p32049",
+     "name": null
     }
    ]
   }

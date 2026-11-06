@@ -35,6 +35,17 @@ def deps(name, seen=None, order=None):
             seen.add(d); deps(d, seen, order); order.append(d)
     return order
 
+def predicate_names(text):
+    """The predicate declarations of a module: those of its generated ledger section (named by the rows' declared names since
+    6 November 2026, else by their keys) and the keyed theorems of a key file (p<key>)."""
+    out, insec = [], False
+    for line in text.splitlines():
+        if line.startswith("-- Ledger predicates of "): insec = True
+        elif line.startswith("-- end ledger predicates"): insec = False
+        mm = re.match(r"^(?:theorem|def) ([A-Za-z_][A-Za-z0-9_']*)", line)
+        if mm and (insec or re.fullmatch(r"p\d{5}", mm.group(1))): out.append(mm.group(1))
+    return out
+
 def web(name):
     inlined = deps(name)
     parts = ["import Mathlib\n",
@@ -44,7 +55,7 @@ def web(name):
     for d in inlined:
         parts.append(f"\n/-! inlined: FrcMathlib/{d.replace('.', '/')}.lean (verbatim, minus its import lines) -/\n\n" + body(d))
     parts.append(f"\n/-! FrcMathlib/{name}.lean -/\n\n" + body(name))
-    rows = re.findall(r"^(?:theorem|def) (p\d{5})\b", module(name), re.M)     # the ledger predicates: their axioms computed in the editor
+    rows = predicate_names(module(name))                                           # the ledger predicates: their axioms computed in the editor
     ns = "FRC.LedgerML" if name.startswith("Keys.") else f"FRC.{name}"           # a key file declares FRC.LedgerML.p<key>
     if rows: parts.append("\n-- Ledger predicates: axioms (each predicate's, computed here)\n" + "".join(f"#print axioms {ns}.{r}\n" for r in rows))
     return "".join(parts)

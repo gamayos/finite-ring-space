@@ -70,7 +70,7 @@
   </url>
   <url>
     <loc>https://finitering.space/38-s13/lab.html</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-03</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/4-representation/</loc>
@@ -613,6 +613,10 @@
     <lastmod>2026-11-06</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/</loc>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/ml/Algebra.html</loc>
     <lastmod>2026-11-06</lastmod>
   </url>
@@ -729,6 +733,10 @@
     <lastmod>2026-11-06</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/ml/</loc>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/ledger.html</loc>
     <lastmod>2026-11-06</lastmod>
   </url>
@@ -774,7 +782,7 @@
   </url>
   <url>
     <loc>https://finitering.space/py/dirac.make_notebook.html</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-05</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/py/entropy.html</loc>

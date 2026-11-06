@@ -14,63 +14,72 @@
      "predicate": "Substrate arithmetic: $\\F_\\Om$, the multiplicative cycle, the Frobenius $C_3$ orbit, the quarter-turn $Q_4$, the admissible residue $\\Om\\equiv5\\,(\\mathrm{mod}\\,12)$.",
      "tag": "I",
      "source": "\\cite{akhtman2026fields,akhtman2026pnp}",
-     "key": "p35001"
+     "key": "p35001",
+     "name": null
     },
     {
      "label": "A2",
      "predicate": "Colour $\\SU(3)$ as the special unitary group of a Hermitian three-form; rank the minimal triality frame; centre $\\Z_3$; the gluon; the confinement area law $\\sigma>0$ and the string tension $c_1(\\beta)=\\langle\\chi_f/N\\rangle_w$.",
      "tag": "I",
      "source": "\\cite{akhtman2026fields}",
-     "key": "p35002"
+     "key": "p35002",
+     "name": null
     },
     {
      "label": "A3",
      "predicate": "The confinement scale $\\sig\\sim\\LQCD=M_Pe^{-2\\pi/b_0\\alpha_s}$, dimensional transmutation, $\\Om$-hard.",
      "tag": "I",
      "source": "\\cite{akhtman2026fields}",
-     "key": "p35003"
+     "key": "p35003",
+     "name": null
     },
     {
      "label": "A4",
      "predicate": "Mass is a winding rate; a composite cardinality is the total winding, $\\sim99\\%$ gluon binding for the nucleon.",
      "tag": "I",
      "source": "\\cite{akhtman2026fields,akhtman2026gravity}",
-     "key": "p35004"
+     "key": "p35004",
+     "name": null
     },
     {
      "label": "A5",
      "predicate": "The observable is a small residue: confinement is the frame-normalisation wrapping $\\Om$-hard quark residues into small exact hadron residues.",
      "tag": "I",
      "source": "\\cite{akhtman2026fields}",
-     "key": "p35005"
+     "key": "p35005",
+     "name": null
     },
     {
      "label": "A6",
      "predicate": "Flavour map: generation count three; $\\chi_3,\\chi_6$ giving $s,c,b$; the current-quark mass ratios, and the up--down isospin breaking with $\\bar\\theta=0$.",
      "tag": "I",
      "source": "\\cite{akhtman2026spectrum,akhtman2026fields}",
-     "key": "p35006"
+     "key": "p35006",
+     "name": null
     },
     {
      "label": "A7",
      "predicate": "The constituent-quark chromomagnetic hyperfine mechanism and the $\\SU(3)_F$ mass-formula templates.",
      "tag": "I",
      "source": "\\cite{drgg,gmo}",
-     "key": "p35007"
+     "key": "p35007",
+     "name": null
     },
     {
      "label": "A8",
      "predicate": "Measured anchors: the isospin-averaged octet and decuplet masses; the vector endpoints $\\rho,\\phi$.",
      "tag": "I",
      "source": "\\cite{pdg}",
-     "key": "p35008"
+     "key": "p35008",
+     "name": null
     },
     {
      "label": "A9",
      "predicate": "The electromagnetic coupling $\\alpha$, the measured fine-structure constant, entering the electromagnetic self-energy.",
      "tag": "I",
      "source": "\\cite{pdg}",
-     "key": "p35009"
+     "key": "p35009",
+     "name": null
     }
    ]
   },
@@ -83,35 +92,40 @@
      "predicate": "A baryon is the totally antisymmetric $\\varepsilon_{abc}$ invariant of the colour $\\mathbf 3$; colour-singlet $=$ centre-neutral, triality $0\\,(\\mathrm{mod}\\,3)$ (A2). Falsifier: an asymptotic state of non-zero triality (a free quark or coloured hadron).",
      "tag": "R",
      "source": "\\S\\ref{sec:colour}",
-     "key": "p35010"
+     "key": "p35010",
+     "name": null
     },
     {
      "label": "B2",
      "predicate": "A constituent quark is the wrapped composite, a current-quark seed dressed by a fixed share of the confinement wrap (A5, A6). Falsifier: constituent masses not one seed plus a fixed wrap share across the octet and decuplet (P2, P10 failing).",
      "tag": "R",
      "source": "\\S\\ref{sec:colour}",
-     "key": "p35011"
+     "key": "p35011",
+     "name": null
     },
     {
      "label": "B3",
      "predicate": "The chromomagnetic hyperfine interaction is the quark spin coupled to the colour curvature two-form, the spin-two partner of the string-tension plaquette (A2, A7). Falsifier: $A_{\\mathrm{light}}/\\sig$ failing to track one character sum across the heavy-quark series.",
      "tag": "R",
      "source": "\\S\\ref{sec:hyperfine}",
-     "key": "p35012"
+     "key": "p35012",
+     "name": null
     },
     {
      "label": "B4",
      "predicate": "The strange seed enters $f_{\\mathrm{fl}}$ additively at leading order, one wrap increment per strange constituent, set by the $\\chi_3$ current-mass ratio (A6). Falsifier: a non-linear strangeness dependence, breaking the equal decuplet spacing.",
      "tag": "R",
      "source": "\\S\\ref{sec:flavour}",
-     "key": "p35013"
+     "key": "p35013",
+     "name": null
     },
     {
      "label": "B5",
      "predicate": "The observable is a Carrier residue and stability is its indicator: a stable colourless object sits at a small exact residue (the minimal-wrap proton, the light nuclei), decay being frame-normalisation toward it. Falsifier: a stable colourless $B=1$ state below the proton, or strong/electromagnetic proton decay.",
      "tag": "R",
      "source": "\\S\\ref{sec:residue}",
-     "key": "p35014"
+     "key": "p35014",
+     "name": null
     }
    ]
   },
@@ -124,161 +138,184 @@
      "predicate": "Colour $\\SU(3,\\F_2)$ built exactly: order $216$, centre $\\Z_3$ the triality centre; the colour-singlet baryon is the centre-neutral $\\varepsilon_{abc}$ invariant $\\Lambda^3\\mathbf3=\\mathbf1$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:colour}\\newline \\pywit{hadrons}{p35015}{C1}, \\leanwit{FrcCore}{p35015}{C1} \\lean{FRC.Hadrons.colour\\_group, FRC.Interactions.su3\\_centre}",
-     "key": "p35015"
+     "key": "p35015",
+     "name": "colour_built_exactly"
     },
     {
      "label": "C2",
      "predicate": "Gell-Mann--Okubo $\\tfrac12(N+\\Xi)=\\tfrac14(3\\Lambda+\\Sigma)$: $2N+2\\Xi-3\\Lambda-\\Sigma=0$ identically, scale-cancelling.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:gmo}\\newline \\pywit{hadrons}{p35016}{C2}, \\leanwit{FrcCore}{p35016}{C2}, \\leanwit{FrcMathlib}{p35016}{C2} \\lean{FRC.Hadrons.gmo, Hadrons.gmo}",
-     "key": "p35016"
+     "key": "p35016",
+     "name": "gell_mann_okubo"
     },
     {
      "label": "C3",
      "predicate": "Decuplet equal spacing $\\Sigma^{*}-\\Delta=\\Xi^{*}-\\Sigma^{*}=\\Omega-\\Xi^{*}=\\beta$: the second differences vanish identically.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:spacing}\\newline \\pywit{hadrons}{p35017}{C3}, \\leanwit{FrcCore}{p35017}{C3}, \\leanwit{FrcMathlib}{p35017}{C3} \\lean{FRC.Hadrons.spacing, Hadrons.spacing}",
-     "key": "p35017"
+     "key": "p35017",
+     "name": "decuplet_equal_spacing"
     },
     {
      "label": "C4",
      "predicate": "Colour factor of the singlet $\\sum_{i<j}\\bvec\\lambda_i\\!\\cdot\\!\\bvec\\lambda_j=-8$ ($-\\tfrac83$ per pair) from $C_2(\\mathbf3)=\\tfrac43$, $C_2(\\mathbf1)=0$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:colourfactor}\\newline \\pywit{hadrons}{p35018}{C4}, \\leanwit{FrcCore}{p35018}{C4}, \\leanwit{FrcMathlib}{p35018}{C4} \\lean{FRC.Hadrons.colour\\_factor, Hadrons.colour\\_factor}",
-     "key": "p35018"
+     "key": "p35018",
+     "name": "colour_factor_singlet"
     },
     {
      "label": "C5",
      "predicate": "Spin structure $g_{\\mathrm{spin}}=\\half S(S+1)-\\tfrac98$, octet $-\\tfrac34$, decuplet $+\\tfrac34$; eigenvalues $+2,-2$; separation $M_{\\mathbf{10}}-M_{\\mathbf8}=\\tfrac32A_{\\mathrm{light}}$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:hyperfine}\\newline \\pywit{hadrons}{p35019}{C5}, \\leanwit{FrcCore}{p35019}{C5}, \\leanwit{FrcMathlib}{p35019}{C5} \\lean{FRC.Hadrons.spin\\_pattern, Hadrons.spin\\_pattern}",
-     "key": "p35019"
+     "key": "p35019",
+     "name": "spin_structure"
     },
     {
      "label": "C6",
      "predicate": "$A_{\\mathrm{light}}=\\sig\\,c_{\\mathrm{mag}}(\\beta)$, with $c_{\\mathrm{mag}}$ a colour-curvature character sum of the $c_1$ family ($c_1=\\beta/18+\\cdots$ reproduced); the dimensionless pattern exact, the absolute scale $\\Om$-hard.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:charsum}\\newline \\pywit{hadrons}{p35020}{C6}, \\leanwit{FrcCore}{p35020}{C6}, \\leanwit{FrcMathlib}{p35020}{C6}; rests on A3, B3, C14, Z1 \\lean{FRC.Hadrons.adjoint\\_channel, Hadrons.character\\_coefficients, Hadrons.a\\_light}",
-     "key": "p35020"
+     "key": "p35020",
+     "name": "light_hyperfine_character_sum"
     },
     {
      "label": "C7",
      "predicate": "Coleman--Glashow $(n-p)+(\\Xi^-{-}\\Xi^0)=\\Sigma^-{-}\\Sigma^+$: an exact one-body identity, the two-body electromagnetic term cancelling.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:cg}\\newline \\pywit{hadrons}{p35021}{C7}, \\leanwit{FrcCore}{p35021}{C7}, \\leanwit{FrcMathlib}{p35021}{C7} \\lean{FRC.Hadrons.coleman\\_glashow, Hadrons.coleman\\_glashow}",
-     "key": "p35021"
+     "key": "p35021",
+     "name": "coleman_glashow_identity"
     },
     {
      "label": "C8",
      "predicate": "The ordering $M_n>M_p$: the $d-u$ seed exceeds the charge-squared electromagnetic term ($\\sum Q^2=1$ for $p$, $\\tfrac23$ for $n$), fixing $m_d>m_u$.",
      "tag": "T",
      "source": "\\S\\ref{sec:isospin}\\newline \\pywit{hadrons}{p35022}{C8}, \\leanwit{FrcCore}{p35022}{C8}, \\leanwit{FrcMathlib}{p35022}{C8} \\lean{FRC.Hadrons.charge\\_structure, Hadrons.cg\\_pdg, Hadrons.charge\\_structure}",
-     "key": "p35022"
+     "key": "p35022",
+     "name": "neutron_proton_ordering"
     },
     {
      "label": "C9",
      "predicate": "$M_\\Sigma>M_\\Lambda$: hyperfine fine structure, the light $(ud)$ pair spin-$1$ vs spin-$0$, $M_\\Sigma-M_\\Lambda=a_{ll}(1-m_l/m_s)>0$.",
      "tag": "T",
      "source": "\\S\\ref{sec:isospin}\\newline \\pywit{hadrons}{p35023}{C9}, \\leanwit{FrcCore}{p35023}{C9}, \\leanwit{FrcMathlib}{p35023}{C9} \\lean{FRC.Hadrons.sigma\\_lambda, Hadrons.sigma\\_lambda}",
-     "key": "p35023"
+     "key": "p35023",
+     "name": "sigma_heavier_than_lambda"
     },
     {
      "label": "C10",
      "predicate": "Heavy-quark spin decoupling ($a_{iQ}\\sim1/m_Q$): $\\Lambda_Q$ a spin-$0$ light diquark; $M_{\\Lambda_b}-M_{\\Lambda_c}=M_B-M_D$; the $1/m_Q$ hyperfine ratio.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:heavy}\\newline \\pywit{hadrons}{p35024}{C10}, \\leanwit{FrcMathlib}{p35024}{C10}; rests on A3, A6, B3, Z1 \\lean{Hadrons.hqs\\_pdg}",
-     "key": "p35024"
+     "key": "p35024",
+     "name": "heavy_quark_spin_decoupling"
     },
     {
      "label": "C11",
      "predicate": "Second-order decuplet relation $M_\\Delta-3M_{\\Sigma^*}+3M_{\\Xi^*}-M_\\Omega=0$ (vanishing third difference), exact in the linear-seed pairwise-hyperfine model.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:thirddiff}\\newline \\pywit{hadrons}{p35025}{C11}, \\leanwit{FrcCore}{p35025}{C11}, \\leanwit{FrcMathlib}{p35025}{C11} \\lean{FRC.Hadrons.third\\_difference, Hadrons.third\\_difference}",
-     "key": "p35025"
+     "key": "p35025",
+     "name": "second_order_decuplet_relation"
     },
     {
      "label": "C12",
      "predicate": "Octet--decuplet hyperfine links $M_\\Sigma-M_\\Lambda=\\tfrac23[(M_\\Delta-M_N)-(M_{\\Sigma^*}-M_\\Sigma)]$ and $M_{\\Sigma^*}-M_\\Sigma=M_{\\Xi^*}-M_\\Xi$, parameter-free.",
      "tag": "T",
      "source": "\\S\\ref{sec:secondorder}\\newline \\pywit{hadrons}{p35026}{C12}, \\leanwit{FrcCore}{p35026}{C12}, \\leanwit{FrcMathlib}{p35026}{C12} \\lean{FRC.Hadrons.hyperfine\\_links, Hadrons.hyperfine\\_links, Hadrons.links\\_pdg}",
-     "key": "p35026"
+     "key": "p35026",
+     "name": "octet_decuplet_hyperfine_links"
     },
     {
      "label": "C13",
      "predicate": "EM splitting structure: one-body $\\sum Q_i^2$ and two-body $\\sum_{i<j}Q_iQ_j$ exact ($p$: $1,0$; $n$: $\\tfrac23,-\\tfrac13$); $\\Delta_{\\mathrm{EM}}=\\alpha\\,\\sig\\times$structure, the absolute reducing to the imported $\\alpha$ (A9) and $\\sig$ (A3), no new residue.",
      "tag": "T",
      "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35027}{C13}, \\leanwit{FrcCore}{p35027}{C13}, \\leanwit{FrcMathlib}{p35027}{C13}; rests on Z1 \\lean{FRC.Hadrons.charge\\_structure, Hadrons.charge\\_structure, Hadrons.em\\_magnitude}",
-     "key": "p35027"
+     "key": "p35027",
+     "name": "em_splitting_structure"
     },
     {
      "label": "C14",
      "predicate": "$c_{\\mathrm{mag}}$ the adjoint (colour-octet) plaquette character sum, $\\mathbf8\\subset\\mathbf3\\otimes\\bar{\\mathbf3}$ ($\\mathbf8\\not\\subset\\mathbf3\\otimes\\mathbf3$), leading $\\beta^2/36$ at $O(\\beta^2)$, one order finer than the tension $c_1=\\beta/18$.",
      "tag": "T",
      "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35028}{C14}, \\leanwit{FrcCore}{p35028}{C14}, \\leanwit{FrcMathlib}{p35028}{C14} \\lean{FRC.Hadrons.adjoint\\_channel, Hadrons.character\\_coefficients}",
-     "key": "p35028"
+     "key": "p35028",
+     "name": "adjoint_plaquette_character"
     },
     {
      "label": "C15",
      "predicate": "Baryon $=$ Carrier residue $1$: the colourless content of $\\Lambda^\\bullet(\\mathbf3)$ is $(1,0,0,1)$; the baryon is the determinant $\\Lambda^3=\\det$ at $k=N=3$ (residue $1$, baryon number), forced by the gluon residue $0$ (the fundamental has no invariant vector on $\\SU(3,\\F_2)$); parallel to photon $2$, gluon $0$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:residue}\\newline \\pywit{hadrons}{p35029}{C15}, \\leanwit{FrcCore}{p35029}{C15} \\lean{FRC.Hadrons.colourless\\_content}",
-     "key": "p35029"
+     "key": "p35029",
+     "name": "baryon_carrier_residue"
     },
     {
      "label": "C16",
      "predicate": "Single-scale reduction: $M_H=\\sig\\,\\lambda_H$, the three anchored masses read as one $\\Om$-hard scale $\\sig$ and three sub-horizon numbers ($\\lambda_l$, $m_s/m_l$, $\\lambda_{\\mathrm{hf}}$); $M_\\Lambda-M_N=m_s-m_l$ exact (hyperfine-cancelling); the finite-stage eigenvalues $\\varepsilon_k^{(G)}\\in\\mathrm{Spec}(H^{(N)})$ exact, the decimal Airy values the [approx] readout, $\\Om$-stable.",
      "tag": "T",
      "source": "\\S\\ref{sec:completion}\\newline \\pywit{hadrons}{p35030}{C16}, \\leanwit{FrcCore}{p35030}{C16}, \\leanwit{FrcMathlib}{p35030}{C16} \\lean{FRC.Hadrons.airy\\_sturm, FRC.Hadrons.lambda\\_n\\_gap, FRC.Hadrons.spin\\_split, Hadrons.lambda\\_n\\_gap, Hadrons.single\\_scale, Hadrons.airy\\_ratio}",
-     "key": "p35030"
+     "key": "p35030",
+     "name": "single_scale_reduction"
     },
     {
      "label": "C17",
      "predicate": "The baryon scale: the computed finite eigenvalue $E_0\\simeq2.232$ (operator $H_G=T_G^{1/2}+R_G$, no baryon mass entering); $M_N=E_0\\sig$ predicts the nucleon to $4.6\\%$, the absolute prediction carrying the imported $\\Om$-hard $\\sig$ (A3). $\\lambda_l,\\lambda_{\\mathrm{hf}}$ evaluated forward from $\\{N,\\beta\\}$ (C19), $\\Om$-stable.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:baryonscale}\\newline \\pywit{hadrons}{p35031}{C17}, \\leanwit{FrcCore}{p35031}{C17}, \\leanwit{FrcMathlib}{p35031}{C17}; rests on Z1 \\lean{FRC.Hadrons.spin\\_split, Hadrons.baryon\\_scale, Hadrons.spin\\_split}",
-     "key": "p35031"
+     "key": "p35031",
+     "name": "baryon_scale_eigenvalue"
     },
     {
      "label": "C18",
      "predicate": "Meson Carrier residue: the $q\\bar q$ colour singlet is the contraction of $\\mathbf3\\otimes\\bar{\\mathbf3}=\\mathbf1\\oplus\\mathbf8$ (the Hermitian invariant), residue $1$, $B=0$ (triality $0$); the residue series closes (photon $2$, gluon $0$, baryon $1$, meson $1$); on the same frame the vector-nonet equal spacing $2M_{K^{*}}=M_\\rho+M_\\phi$ is an exact identity of linear strangeness.",
      "tag": "T",
      "source": "\\S\\ref{sec:vector}, Prop.~\\ref{prop:vector}\\newline \\pywit{hadrons}{p35032}{C18}, \\leanwit{FrcCore}{p35032}{C18}, \\leanwit{FrcMathlib}{p35032}{C18} \\lean{FRC.Hadrons.meson\\_invariant, FRC.Hadrons.vector\\_spacing, Hadrons.vector\\_spacing}",
-     "key": "p35032"
+     "key": "p35032",
+     "name": "meson_carrier_residue"
     },
     {
      "label": "C19",
      "predicate": "Forward constituent eigenvalues: $\\lambda_l,\\lambda_{\\mathrm{hf}}$ computed from $\\{N{=}3,\\beta\\}$ with no measured baryon mass --- $\\lambda_{\\mathrm{hf}}$ the colour-magnetic contact ($c_{\\mathrm{adj}}{=}\\beta^2/36$, the exact overlap $|u'(0)|^2{=}1$, $\\alpha_s(\\sig)$ transmutation-pinned), $\\lambda_l$ from $E_0$ and the exact spin split; matching $0.44,0.85$ to constituent-model accuracy, the margin set by the linear-potential approximation.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:forward}\\newline \\pywit{hadrons}{p35033}{C19}, \\leanwit{FrcCore}{p35033}{C19}, \\leanwit{FrcMathlib}{p35033}{C19} \\lean{FRC.Hadrons.spin\\_split, Hadrons.forward\\_landing, Hadrons.alpha\\_s\\_bounds}",
-     "key": "p35033"
+     "key": "p35033",
+     "name": "forward_constituent_eigenvalues"
     },
     {
      "label": "C20",
      "predicate": "Residue resolution, second order: the $\\SU(3)_F$ residuals (decuplet third difference $6$ MeV, octet $\\mathbf{27}$-plet $0.57\\%$) are sub-horizon, $O(\\varepsilon_s^2)$ of a convergent strange-breaking expansion, $\\Om$-stable (Prop.~\\ref{prop:subhorizon}).",
      "tag": "T",
      "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35034}{C20}, \\leanwit{FrcCore}{p35034}{C20}, \\leanwit{FrcMathlib}{p35034}{C20} \\lean{FRC.Hadrons.admissible\\_shells, Hadrons.residual\\_orders}",
-     "key": "p35034"
+     "key": "p35034",
+     "name": "residue_resolution_second_order"
     },
     {
      "label": "C21",
      "predicate": "Residue resolution, electromagnetic: the splitting magnitude $\\Delta_{\\mathrm{EM}}=\\alpha\\,\\sig\\times$[exact charge structure] reduces to the imported $\\alpha$ (A9) and $\\sig$ (A3), no new residue (C13); Coleman--Glashow and the orderings derived (C7--C9).",
      "tag": "T",
      "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35035}{C21}, \\leanwit{FrcCore}{p35035}{C21}, \\leanwit{FrcMathlib}{p35035}{C21}; rests on C8 \\lean{FRC.Hadrons.charge\\_structure, Hadrons.em\\_magnitude, Hadrons.charge\\_structure}",
-     "key": "p35035"
+     "key": "p35035",
+     "name": "residue_resolution_electromagnetic"
     },
     {
      "label": "C22",
      "predicate": "Residue resolution, heavy flavour: the heavy-baryon absolute masses $M(\\Lambda_Q)=m_Q+O(\\sig)$ reduce to the imported scales (A3, A6); the heavy-quark-symmetry and $1/m_Q$ relations derived (C10).",
      "tag": "T",
      "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35036}{C22}, \\leanwit{FrcMathlib}{p35036}{C22} \\lean{Hadrons.hqs\\_pdg}",
-     "key": "p35036"
+     "key": "p35036",
+     "name": "residue_resolution_heavy_flavour"
     },
     {
      "label": "C23",
      "predicate": "Residue resolution, hyperfine: the dimensionless $A_{\\mathrm{light}}/\\sig$ is a ratio of $\\Om$-independent character sums (C14), $\\Om$-stable, sub-horizon; the absolute $A_{\\mathrm{light}}=\\sig\\,c_{\\mathrm{mag}}$ is $\\sig$-scaled (A3, Prop.~\\ref{prop:subhorizon}).",
      "tag": "T",
      "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35037}{C23}, \\leanwit{FrcCore}{p35037}{C23}, \\leanwit{FrcMathlib}{p35037}{C23} \\lean{FRC.Hadrons.admissible\\_shells, FRC.Hadrons.adjoint\\_channel, Hadrons.character\\_coefficients, Hadrons.single\\_scale}",
-     "key": "p35037"
+     "key": "p35037",
+     "name": "residue_resolution_hyperfine"
     }
    ]
   },
@@ -291,91 +328,104 @@
      "predicate": "\\textbf{The baryon is three quarks} because the only colourless escape from the gluon residue $0$ is the determinant $\\Lambda^N=\\det$, which requires exactly $N=3$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:residue}\\newline \\pywit{hadrons}{p35038}{X1}, \\leanwit{FrcCore}{p35038}{X1} \\lean{FRC.Hadrons.colourless\\_content}",
-     "key": "p35038"
+     "key": "p35038",
+     "name": "baryon_three_quarks"
     },
     {
      "label": "X2",
      "predicate": "\\textbf{The baryon is colour-neutral} as the centre-neutral, triality-$0$ invariant $\\varepsilon_{abc}$ of the triality frame, a derived singlet.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:colour}\\newline \\pywit{hadrons}{p35039}{X2}, \\leanwit{FrcCore}{p35039}{X2} \\lean{FRC.Hadrons.colour\\_group, FRC.Interactions.su3\\_centre}",
-     "key": "p35039"
+     "key": "p35039",
+     "name": "baryon_colour_neutral"
     },
     {
      "label": "X3",
      "predicate": "\\textbf{Baryon number is the Carrier residue $1$}, the determinant winding, so its conservation is the invariance of $\\Lambda^3$, on the same footing as the photon residue $2$ and the gluon residue $0$.",
      "tag": "T",
      "source": "\\S\\ref{sec:residue}\\newline \\pywit{hadrons}{p35040}{X3}, \\leanwit{FrcCore}{p35040}{X3} \\lean{FRC.Hadrons.colourless\\_content}",
-     "key": "p35040"
+     "key": "p35040",
+     "name": "baryon_number_carrier_residue"
     },
     {
      "label": "X4",
      "predicate": "\\textbf{The Gell-Mann--Okubo relation} is exact, the scale-cancelling identity $2N+2\\Xi-3\\Lambda-\\Sigma=0$ of linear flavour breaking, a derived sum rule.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:gmo}\\newline \\pywit{hadrons}{p35041}{X4}, \\leanwit{FrcCore}{p35041}{X4}, \\leanwit{FrcMathlib}{p35041}{X4} \\lean{FRC.Hadrons.gmo, Hadrons.gmo}",
-     "key": "p35041"
+     "key": "p35041",
+     "name": "gell_mann_okubo_scale_cancelling"
     },
     {
      "label": "X5",
      "predicate": "\\textbf{The decuplet is equally spaced} because the strange seed enters the wrap additively.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:spacing}\\newline \\pywit{hadrons}{p35042}{X5}, \\leanwit{FrcCore}{p35042}{X5}, \\leanwit{FrcMathlib}{p35042}{X5} \\lean{FRC.Hadrons.spacing, Hadrons.spacing}",
-     "key": "p35042"
+     "key": "p35042",
+     "name": "decuplet_equally_spaced"
     },
     {
      "label": "X6",
      "predicate": "\\textbf{The decuplet is heavier than the octet} by the colour-magnetic curvature invariant, the colour factor $-8$ times the spin $\\half S(S+1)-\\tfrac98$, a derived sign and pattern.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:hyperfine}\\newline \\pywit{hadrons}{p35043}{X6}, \\leanwit{FrcCore}{p35043}{X6}, \\leanwit{FrcMathlib}{p35043}{X6} \\lean{FRC.Hadrons.spin\\_pattern, FRC.Hadrons.colour\\_factor, Hadrons.spin\\_pattern, Hadrons.colour\\_factor}",
-     "key": "p35043"
+     "key": "p35043",
+     "name": "decuplet_heavier_than_octet"
     },
     {
      "label": "X7",
      "predicate": "\\textbf{The proton is stable} as the minimal-wrap residue-$1$ state, with no lighter $B=1$ residue to reach.",
      "tag": "T",
      "source": "\\S\\ref{sec:residue}\\newline \\pywit{hadrons}{p35044}{X7}, \\leanwit{FrcCore}{p35044}{X7} \\lean{FRC.Hadrons.colourless\\_content}",
-     "key": "p35044"
+     "key": "p35044",
+     "name": "proton_stable_minimal_wrap"
     },
     {
      "label": "X8",
      "predicate": "\\textbf{The neutron is heavier than the proton} because the $d-u$ seed exceeds the charge-squared electromagnetic term ($\\sum Q^2=1$ for $p$, $\\tfrac23$ for $n$), a derived ordering.",
      "tag": "T",
      "source": "\\S\\ref{sec:isospin}\\newline \\pywit{hadrons}{p35045}{X8}, \\leanwit{FrcCore}{p35045}{X8}, \\leanwit{FrcMathlib}{p35045}{X8} \\lean{FRC.Hadrons.charge\\_structure, Hadrons.cg\\_pdg, Hadrons.charge\\_structure}",
-     "key": "p35045"
+     "key": "p35045",
+     "name": "neutron_heavier_than_proton"
     },
     {
      "label": "X9",
      "predicate": "\\textbf{$\\Sigma$ is heavier than $\\Lambda$} by the spin-$1$ versus spin-$0$ light-pair hyperfine, a derived splitting of two states of identical quark content.",
      "tag": "T",
      "source": "\\S\\ref{sec:isospin}\\newline \\pywit{hadrons}{p35046}{X9}, \\leanwit{FrcCore}{p35046}{X9}, \\leanwit{FrcMathlib}{p35046}{X9} \\lean{FRC.Hadrons.sigma\\_lambda, Hadrons.sigma\\_lambda}",
-     "key": "p35046"
+     "key": "p35046",
+     "name": "sigma_lambda_hyperfine"
     },
     {
      "label": "X10",
      "predicate": "\\textbf{The isospin splittings obey Coleman--Glashow} exactly at one body, $(n{-}p)+(\\Xi^-{-}\\Xi^0)=\\Sigma^-{-}\\Sigma^+$, a derived identity.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:cg}\\newline \\pywit{hadrons}{p35047}{X10}, \\leanwit{FrcCore}{p35047}{X10}, \\leanwit{FrcMathlib}{p35047}{X10} \\lean{FRC.Hadrons.coleman\\_glashow, Hadrons.coleman\\_glashow}",
-     "key": "p35047"
+     "key": "p35047",
+     "name": "isospin_coleman_glashow"
     },
     {
      "label": "X11",
      "predicate": "\\textbf{The heavy baryons follow heavy-quark symmetry}, $M_{\\Lambda_b}-M_{\\Lambda_c}=M_B-M_D$ by spin decoupling, so the baryon and meson heavy-mass differences are one quantity.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:heavy}\\newline \\pywit{hadrons}{p35048}{X11}, \\leanwit{FrcMathlib}{p35048}{X11} \\lean{Hadrons.hqs\\_pdg}",
-     "key": "p35048"
+     "key": "p35048",
+     "name": "heavy_baryons_hq_symmetry"
     },
     {
      "label": "X12",
      "predicate": "\\textbf{The vector mesons equally space}, $2M_{K^{*}}=M_\\rho+M_\\phi$, the meson residue $1$ ($B=0$) on the same frame and scale as the baryons.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:vector}\\newline \\pywit{hadrons}{p35049}{X12}, \\leanwit{FrcCore}{p35049}{X12}, \\leanwit{FrcMathlib}{p35049}{X12} \\lean{FRC.Hadrons.vector\\_spacing, FRC.Hadrons.meson\\_invariant, Hadrons.vector\\_spacing}",
-     "key": "p35049"
+     "key": "p35049",
+     "name": "vector_mesons_equal_spacing"
     },
     {
      "label": "X13",
      "predicate": "\\textbf{The spectrum rests on one scale}, $\\sqrt\\sigma=\\LQCD$, the lone $\\Om$-hard residue; every dimensionless mass ratio is a sub-horizon eigenvalue.",
      "tag": "T",
      "source": "\\S\\ref{sec:completion}\\newline \\pywit{hadrons}{p35050}{X13}, \\leanwit{FrcCore}{p35050}{X13}, \\leanwit{FrcMathlib}{p35050}{X13} \\lean{FRC.Hadrons.admissible\\_shells, Hadrons.single\\_scale}",
-     "key": "p35050"
+     "key": "p35050",
+     "name": "spectrum_one_scale"
     }
    ]
   },
@@ -388,77 +438,88 @@
      "predicate": "Gell-Mann--Okubo exact at leading order; PDG $0.57\\%$, the bounded $\\chi_3^2$ second order. Falsifier: a violation beyond the second-order insertion.",
      "tag": "T",
      "source": "C2\\newline \\pywit{hadrons}{p35051}{P1}, \\leanwit{FrcCore}{p35051}{P1}, \\leanwit{FrcMathlib}{p35051}{P1}; rests on B4 \\lean{FRC.Hadrons.gmo, Hadrons.gmo\\_pdg}",
-     "key": "p35051"
+     "key": "p35051",
+     "name": "gell_mann_okubo_exact"
     },
     {
      "label": "P2",
      "predicate": "Decuplet equal spacing exact; PDG $9.2\\%$ spread, $\\beta\\simeq146.8$ MeV, the same second order. Falsifier: a non-equal spacing beyond it.",
      "tag": "T",
      "source": "C3\\newline \\pywit{hadrons}{p35052}{P2}, \\leanwit{FrcCore}{p35052}{P2}, \\leanwit{FrcMathlib}{p35052}{P2}; rests on B4 \\lean{FRC.Hadrons.spacing, Hadrons.spacing\\_pdg}",
-     "key": "p35052"
+     "key": "p35052",
+     "name": "decuplet_equal_spacing_exact"
     },
     {
      "label": "P3",
      "predicate": "The hyperfine pattern $g_{\\mathrm{spin}}=\\half S(S+1)-\\tfrac98$, octet $-\\tfrac34$, decuplet $+\\tfrac34$, separation $\\tfrac32A_{\\mathrm{light}}$ with $A_{\\mathrm{light}}\\simeq195$ MeV. Falsifier: a spin splitting outside this pattern.",
      "tag": "T",
      "source": "C5\\newline \\pywit{hadrons}{p35053}{P3}, \\leanwit{FrcCore}{p35053}{P3}, \\leanwit{FrcMathlib}{p35053}{P3}; rests on B3, C6 \\lean{FRC.Hadrons.spin\\_pattern, Hadrons.a\\_light, Hadrons.spin\\_pattern}",
-     "key": "p35053"
+     "key": "p35053",
+     "name": "hyperfine_pattern"
     },
     {
      "label": "P4",
      "predicate": "Proton effective stability: the proton is the minimal colour-neutral wrap, with no allowed strong or electromagnetic channel toward a smaller residue; the single neutron transition is one flavour flip, the $\\beta$ channel \\cite{akhtman2026fields}. Falsifier: an observed proton decay or a strong/electromagnetic baryon-number-violating process.",
      "tag": "T",
      "source": "B1, A5, B5\\newline \\pywit{hadrons}{p35054}{P4}, \\leanwit{FrcCore}{p35054}{P4} \\lean{FRC.Hadrons.colourless\\_content}",
-     "key": "p35054"
+     "key": "p35054",
+     "name": "proton_effective_stability"
     },
     {
      "label": "P5",
      "predicate": "No exotic light multiplets beyond the $\\mathbf 8$ and $\\mathbf{10}$ at leading wrap order. Falsifier: a confirmed light baryon outside the $\\mathbf 8$ and $\\mathbf{10}$ at the wrap scale.",
      "tag": "T",
      "source": "C1\\newline \\pywit{hadrons}{p35055}{P5}, \\leanwit{FrcCore}{p35055}{P5}; rests on B1, B2 \\lean{FRC.Hadrons.flavour\\_cube}",
-     "key": "p35055"
+     "key": "p35055",
+     "name": "no_exotic_light_multiplets"
     },
     {
      "label": "P6",
      "predicate": "Coleman--Glashow exact at one body; PDG $0.79\\%$, the residual the two-body electromagnetic term; the orderings $M_n>M_p$ and $M_\\Sigma>M_\\Lambda$ fixed. Falsifier: a Coleman--Glashow violation beyond the two-body term.",
      "tag": "T",
      "source": "C7, C8, C9\\newline \\pywit{hadrons}{p35056}{P6}, \\leanwit{FrcCore}{p35056}{P6}, \\leanwit{FrcMathlib}{p35056}{P6} \\lean{FRC.Hadrons.coleman\\_glashow, Hadrons.cg\\_pdg}",
-     "key": "p35056"
+     "key": "p35056",
+     "name": "coleman_glashow_one_body"
     },
     {
      "label": "P7",
      "predicate": "Heavy-quark symmetry $M_{\\Lambda_b}-M_{\\Lambda_c}=M_B-M_D$ ($2.4\\%$) and the $1/m_Q$ hyperfine ratio $(M_{\\Sigma_c^{*}}-M_{\\Sigma_c})/(M_{\\Sigma^{*}}-M_{\\Sigma})\\simeq m_s/m_c$. Falsifier: a heavy-baryon spectrum off the spin-decoupled, $1/m_Q$-scaled pattern.",
      "tag": "T",
      "source": "C10\\newline \\pywit{hadrons}{p35057}{P7}, \\leanwit{FrcMathlib}{p35057}{P7}; rests on B3 \\lean{Hadrons.hqs\\_pdg}",
-     "key": "p35057"
+     "key": "p35057",
+     "name": "heavy_quark_symmetry"
     },
     {
      "label": "P8",
      "predicate": "Second-order decuplet relation \\eqref{eq:thirddiff}, the vanishing third difference; PDG $6$ MeV ($0.36\\%$). Falsifier: a third difference beyond the few-MeV third-order scale.",
      "tag": "T",
      "source": "C11\\newline \\pywit{hadrons}{p35058}{P8}, \\leanwit{FrcCore}{p35058}{P8}, \\leanwit{FrcMathlib}{p35058}{P8}; rests on B4 \\lean{FRC.Hadrons.third\\_difference, Hadrons.third\\_pdg}",
-     "key": "p35058"
+     "key": "p35058",
+     "name": "second_order_decuplet_prediction"
     },
     {
      "label": "P9",
      "predicate": "Vector-meson nonet equal spacing $2M_{K^{*}}=M_\\rho+M_\\phi$ (PDG $0.42\\%$) and ideal mixing $M_\\omega\\simeq M_\\rho$; $\\rho,\\phi$ anchor, $K^{*},\\omega$ predicted $<1\\%$; the pseudoscalars are Goldstone bosons (a distinct chiral mechanism). Falsifier: a vector nonet off the linear-strangeness pattern.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:vector}\\newline \\pywit{hadrons}{p35059}{P9}, \\leanwit{FrcCore}{p35059}{P9}, \\leanwit{FrcMathlib}{p35059}{P9}; rests on B4, C18 \\lean{FRC.Hadrons.vector\\_spacing, Hadrons.vector\\_pdg}",
-     "key": "p35059"
+     "key": "p35059",
+     "name": "vector_meson_nonet_spacing"
     },
     {
      "label": "P10",
      "predicate": "Absolute octet$+$decuplet spectrum from the $\\Om$-hard scale $\\sig$ and three sub-horizon eigenvalues ($\\lambda_l$, $m_s/m_l$, $\\lambda_{\\mathrm{hf}}$, the two constituent ratios computed forward, C19): five parameter-free predictions within $1.1\\%$ (Table~\\ref{tab:absolute}). Falsifier: a predicted mass off beyond the traced second order.",
      "tag": "T",
      "source": "\\S\\ref{sec:absolute}\\newline \\pywit{hadrons}{p35060}{P10}, \\leanwit{FrcCore}{p35060}{P10}, \\leanwit{FrcMathlib}{p35060}{P10}; rests on A3, B2, C16, C17, Z1 \\lean{FRC.Hadrons.spin\\_split, FRC.Hadrons.lambda\\_n\\_gap, Hadrons.absolute\\_spectrum}",
-     "key": "p35060"
+     "key": "p35060",
+     "name": "absolute_octet_decuplet_spectrum"
     },
     {
      "label": "P11",
      "predicate": "The $\\Lambda$--$N$ gap is the strange constituent excess, $M_\\Lambda-M_N=m_s-m_l=176.8$ MeV, hyperfine- and scale-free \\eqref{eq:lamn}. Falsifier: a gap inconsistent with the strange seed and the $\\Xi,\\Sigma$ splittings.",
      "tag": "T",
      "source": "C16\\newline \\pywit{hadrons}{p35061}{P11}, \\leanwit{FrcCore}{p35061}{P11}, \\leanwit{FrcMathlib}{p35061}{P11}; rests on B2, B4 \\lean{FRC.Hadrons.lambda\\_n\\_gap, Hadrons.gap\\_pdg}",
-     "key": "p35061"
+     "key": "p35061",
+     "name": "strange_constituent_gap"
     }
    ]
   },
@@ -471,14 +532,16 @@
      "predicate": "The ledger file \\texttt{frc/ledgers/p35\\_hadrons.py} of the \\texttt{finite-ring-space} framework decides the rows of blocks C, X and P and the reading of Z: thirty-four checks in seven blocks, each naming the rows it witnesses, the deciding check cited in each row's \\textsf{py} token; its notebook runs one predicate per cell.",
      "tag": "D",
      "source": "\\S\\ref{sec:repro}",
-     "key": "p35062"
+     "key": "p35062",
+     "name": null
     },
     {
      "label": "V2",
      "predicate": "Two kinds per check: \\textsf{EXACT}, an identity decided in $\\F_4$, the integers or the rationals with no tolerance (eighteen checks), and \\textsf{CHART}, a reading of the PDG masses or of the finite operators' decimals against a rational bound (sixteen checks, labelled [chart]); the Lean declarations of each row are its \\textsf{lean} tokens.",
      "tag": "D",
      "source": "\\S\\ref{sec:repro}",
-     "key": "p35063"
+     "key": "p35063",
+     "name": null
     }
    ]
   },
@@ -491,7 +554,8 @@
      "predicate": "The sole $\\Om$-hard input is the imported confinement scale $\\sig\\sim\\LQCD$ (A3); the EM coupling $\\alpha$ (A9) is an imported constant; the paper introduces no $\\Om$-hard residue of its own.",
      "tag": "Ω",
      "source": "A3, A9; \\S\\ref{sec:scales}",
-     "key": "p35065"
+     "key": "p35065",
+     "name": null
     }
    ]
   }

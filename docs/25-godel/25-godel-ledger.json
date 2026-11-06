@@ -14,28 +14,32 @@
      "predicate": "The classical theorems, used as proved: G\\\"odel's first and second incompleteness theorems with Rosser's strengthening, Tarski's undefinability of truth, the essential undecidability of $\\mathsf{Q}$ and of $\\mathrm{R}$, G\\\"odel's speed-up. No classical derivation is disputed.",
      "tag": "I",
      "source": "\\citep{godel1931,rosser1936,tarski1936,tarski1956,trm1953,godel1936}",
-     "key": "p25001"
+     "key": "p25001",
+     "name": null
     },
     {
      "label": "A2",
      "predicate": "Model theory, classical results used as proved. Trakhtenbrot: validity over the class of all finite structures is not recursively enumerable. Presburger arithmetic is complete and decidable. Second-order Peano arithmetic is categorical under full semantics (Dedekind). Second-order arithmetic truth is not arithmetical.",
      "tag": "I",
      "source": "\\citep{trakhtenbrot1950,libkin2004,presburger1929,shapiro1991,vaananen2001}",
-     "key": "p25002"
+     "key": "p25002",
+     "name": null
     },
     {
      "label": "A3",
      "predicate": "Proof complexity and bounded arithmetic, used as proved. Polynomially bounded proof systems are tied to the hard-tautologies problem, and superpolynomial lower bounds hold for specific weak systems. Pudl\\'ak bounds finite consistency statements and frames the finite-domain programme. The row also imports feasibility, bounded arithmetic, Chaitin's information bound and partial truth definitions.",
      "tag": "I",
      "source": "\\citep{cook1979,krajicek1995,pudlak1987,pudlak2013,pudlak2017,parikh1971,buss1986,chaitin1974,enayatvisser2015,lelykwcislo2017}",
-     "key": "p25003"
+     "key": "p25003",
+     "name": null
     },
     {
      "label": "A4",
      "predicate": "The corpus: effective determinacy characterises the finite structures, proved also as 5:D8. No bounded agent certifies that its universe is infinite: every bounded record consistent with an infinite domain is realised in all sufficiently large finite structures. The master rows naming this paper as a source are 00:A3, 00:A4, 00:A13, 00:Z1--00:Z3 and 00:Z9.",
      "tag": "I",
      "source": "\\citep{akhtman2026paradoxes,akhtman2026finitism}",
-     "key": "p25004"
+     "key": "p25004",
+     "name": null
     }
    ]
   },
@@ -48,35 +52,40 @@
      "predicate": "The setting: a structure $\\M$ in a finite signature $\\sigma$ with $\\lvert\\M\\rvert=m\\ge2$ finite. $L$ is its first-order language, and $\\varphi\\in\\Th(\\M)$ abbreviates $\\M\\models\\varphi$, likewise $\\ThSO(\\M)$ for second-order sentences under full semantics. The running example is $\\M_p=(\\{0,\\dots,p-1\\};0,1,+,\\times)$, arithmetic modulo a prime. Rows E1, F7, F8, G5 and G8 are stated over $\\M_p$.",
      "tag": "D",
      "source": "Section~\\ref{sec:prelim}",
-     "key": "p25005"
+     "key": "p25005",
+     "name": null
     },
     {
      "label": "B2",
      "predicate": "Iteration and induction: iteration names the successor act, total on a finite cycle, where it wraps. ``Unbounded iteration'' abbreviates the freshness claim, a successor injective and never returning to zero. Induction names the proof principle. The two are independent. A finite ontology keeps induction and the act, and declines the freshness claim.",
      "tag": "D",
      "source": "Section~\\ref{sec:prelim}",
-     "key": "p25006"
+     "key": "p25006",
+     "name": null
     },
     {
      "label": "B3",
      "predicate": "The agent: capacity $(K,H)$ over an alphabet of $a\\ge2$ letters, at most $K$ symbols of storage and $H$ elementary steps. A derivation system $\\D$ is sound, its steps locally checkable with checking polynomial $p_{\\D}$. A certificate is a retained, step-checked record of a $\\D$-derivation with one designated end sentence, of length at most $B=\\min(K,H)$.",
      "tag": "D",
      "source": "Def.~\\ref{def:agent}",
-     "key": "p25007"
+     "key": "p25007",
+     "name": null
     },
     {
      "label": "B4",
      "predicate": "Local soundness: a rule is locally sound if it preserves truth in every structure that agrees with $\\M$ on the table entries its check consults. An axiom rule is locally sound when its sentence is true in every such structure. An axiom asserted on syntactic recognition consults nothing.",
      "tag": "D",
      "source": "Def.~\\ref{def:agent}",
-     "key": "p25008"
+     "key": "p25008",
+     "name": null
     },
     {
      "label": "B5",
      "predicate": "Grades of decision. (i) A truth value and nothing more. (ii) A decision specified as a finite evaluation object over the tables, of computed size on the order of $m^{q}$ at quantifier depth $q$. (iii) Certification by an agent within its budget. A sentence is in the reach gap when decided at grade (ii) and not at grade (iii).",
      "tag": "D",
      "source": "Def.~\\ref{def:grades}",
-     "key": "p25009"
+     "key": "p25009",
+     "name": null
     }
    ]
   },
@@ -89,35 +98,40 @@
      "predicate": "No finite structure interprets $\\mathsf{Q}$: a model of $\\mathsf{Q}$ has an injective successor with $0$ outside its range, and on a finite set an injective map is onto.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:noQ}\\newline \\pywit{godel}{p25010}{C1}, \\leanwit{FrcCore}{p25010}{C1}, \\leanwit{FrcMathlib}{p25010}{C1} \\lean{Godel.finite\\_succ\\_onto, Godel.infinite\\_of\\_succ, FRC.Logic.inj\\_onto, FRC.Logic.no\\_finite\\_successor}",
-     "key": "p25010"
+     "key": "p25010",
+     "name": "no_finite_structure_interprets"
     },
     {
      "label": "C2",
      "predicate": "Completeness and decidability: for finite $\\M$ the theory $\\Th(\\M)$ is complete, consistent and decidable by exhaustive evaluation. A sentence of quantifier depth $q$ takes at most $c\\,m^{q}$ atomic evaluations, $c$ depending on its length. One first-order sentence $\\sigma_{\\M}$ characterises $\\M$ up to isomorphism.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:complete}\\newline \\pywit{godel}{p25011}{C2}, \\leanwit{FrcCore}{p25011}{C2}, \\leanwit{FrcMathlib}{p25011}{C2} \\lean{Godel.theory\\_complete, Godel.decTheory, FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
-     "key": "p25011"
+     "key": "p25011",
+     "name": "completeness_decidability"
     },
     {
      "label": "C3",
      "predicate": "Vacuity: over a fixed finite $\\M$ neither incompleteness theorem has an instance. $\\Th(\\M)$ is consistent, effectively axiomatisable and complete. The hypothesis that fails is the interpretation of $\\mathsf{Q}$ (C1). No sentence true in $\\M$ is undecided by $\\Th(\\M)$.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:vacuity}; C1, C2\\newline \\pywit{godel}{p25012}{C3}, \\leanwit{FrcCore}{p25012}{C3}, \\leanwit{FrcMathlib}{p25012}{C3} \\lean{Godel.finite\\_succ\\_onto, Godel.theory\\_complete, FRC.Logic.no\\_finite\\_Q, FRC.Logic.no\\_interpretation, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
-     "key": "p25012"
+     "key": "p25012",
+     "name": "vacuity"
     },
     {
      "label": "C4",
      "predicate": "Trakhtenbrot's theorem concerns validity over the class of all finite structures. The finite ontology examined here commits to one structure, not to the class. For a fixed $\\M$ row C2 applies and no undecidability enters.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:trakh}; C2",
-     "key": "p25013"
+     "key": "p25013",
+     "name": null
     },
     {
      "label": "C5",
      "predicate": "Tarski scoped: the $m+1$ sentences $\\varphi,\\neg\\varphi,\\dots,\\neg^{m}\\varphi$ outnumber the $m$ elements of $\\M$, so every numbering of the sentences by elements of $\\M$ gives two of them the same number. Truth in $\\M$ is defined externally by a finite table with the evaluation procedure of C2. What fails is the internalisation of truth.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:tarski}; C2\\newline \\pywit{godel}{p25014}{C5}, \\leanwit{FrcCore}{p25014}{C5}, \\leanwit{FrcMathlib}{p25014}{C5} \\lean{Godel.nots\\_collide, FRC.Logic.sentences\\_outnumber}",
-     "key": "p25014"
+     "key": "p25014",
+     "name": "tarski_scoped"
     }
    ]
   },
@@ -130,28 +144,32 @@
      "predicate": "Relational diagonal: an agent of storage capacity $K$ with $a^{K}<m$ has no injective encoding of the elements of $\\M$ into its storage states. Every internal representation identifies distinct elements. A fortiori the agent holds no faithful model of $\\M$ that also represents the model's own encoding map.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:part}\\newline \\pywit{godel}{p25015}{D1}, \\leanwit{FrcCore}{p25015}{D1}, \\leanwit{FrcMathlib}{p25015}{D1} \\lean{Godel.no\\_injective\\_encoding, FRC.Logic.part\\_collides}",
-     "key": "p25015"
+     "key": "p25015",
+     "name": "relational_diagonal"
     },
     {
      "label": "D2",
      "predicate": "The limitation relocated: the diagonal's limitative role passes from the provability of truths to the representability of the totality by a part. Tarski undefinability relocates the same way in its representational face: truth of $\\M$ is externally a table, internally unrepresentable by a smaller part.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:diagonal}",
-     "key": "p25016"
+     "key": "p25016",
+     "name": null
     },
     {
      "label": "D3",
      "predicate": "Wrap, aliasing: every total assignment of storage readings to the elements of $\\M$ identifies distinct elements when $a^{K}<m$. Some reading stands for at least $\\lceil m/a^{K}\\rceil\\ge2$ elements. Every element outside a maximal faithfully represented range is read as an alias of one inside it.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:wrap}(1)\\newline \\pywit{godel}{p25017}{D3}, \\leanwit{FrcCore}{p25017}{D3}, \\leanwit{FrcMathlib}{p25017}{D3} \\lean{Godel.reading\\_identifies, Godel.alias\\_fibre, Godel.alias\\_two, Godel.alias\\_outside, FRC.Reach.alias\\_fibre, FRC.Reach.alias\\_two, FRC.Reach.alias\\_outside}",
-     "key": "p25017"
+     "key": "p25017",
+     "name": "wrap_aliasing"
     },
     {
      "label": "D4",
      "predicate": "Wrap, no internal trace: the steps that verify a certificate succeed in a finite $\\M'$ built on its cited table entries, $\\lvert \\M'\\rvert\\le(r+1)\\,p_{\\D}(B)$, $r$ the largest arity. Under locally sound rules its end sentence is true there. An axiom asserted on syntactic recognition transports as a record, not as a truth. If $(r+1)\\,p_{\\D}(B)\\le a^{K}$, no certificate marks a reading exact.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:wrap}(2)\\newline \\pywit{godel}{p25018}{D4}, \\leanwit{FrcCore}{p25018}{D4} \\lean{FRC.Reach.trace\\_transport, FRC.Reach.wrap\\_equation, FRC.Reach.lookups\\_succ}",
-     "key": "p25018"
+     "key": "p25018",
+     "name": "wrap_no_internal_trace"
     }
    ]
   },
@@ -164,28 +182,32 @@
      "predicate": "Abundance: the closed terms over $\\{1,+\\}$ with $\\ell$ leaves are the full binary trees, $C_{\\ell-1}\\ge2^{\\ell-2}$ in number. In $\\M_p$ all have the value $\\ell\\bmod p$, so any two give a true equation of length $O(\\ell)$, at least $2^{\\ell}$ of them for $\\ell\\ge6$. The true sentences of length at most $L$ number at least $2^{\\alpha L}$ for large $L$, $\\alpha>0$ constant.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:abundance}\\newline \\pywit{godel}{p25019}{E1}, \\leanwit{FrcCore}{p25019}{E1}, \\leanwit{FrcMathlib}{p25019}{E1} \\lean{Godel.two\\_pow\\_le\\_catalan, Godel.cohort\\_lower, Godel.abundance, FRC.Reach.value\\_leaves, FRC.Reach.equal\\_leaves\\_equal\\_value}",
-     "key": "p25019"
+     "key": "p25019",
+     "name": "abundance_of_terms"
     },
     {
      "label": "E2",
      "predicate": "Vanishing reach: an agent of capacity $(K,H)$ certifies at most $a^{B+1}$ sentences over all its runs, the records being strings of length at most $B$. The certified fraction of the truths of length at most $L$ (E1) is at most $a^{B+1}/2^{\\alpha L}$, below $1/N$ as soon as $\\alpha L>(B+1)\\log_2a+\\log_2N$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:reach}; E1\\newline \\pywit{godel}{p25020}{E2}, \\leanwit{FrcCore}{p25020}{E2}, \\leanwit{FrcMathlib}{p25020}{E2} \\lean{Godel.records\\_lt, FRC.Logic.records\\_lt, FRC.Reach.reach\\_vanishes}",
-     "key": "p25020"
+     "key": "p25020",
+     "name": "vanishing_reach"
     },
     {
      "label": "E3",
      "predicate": "Possession: certification is possession under the retention clause. Holding a schema and a derivation procedure is holding two records, not the instances. An instance is possessed exactly when its own certificate is retained.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:possession}",
-     "key": "p25021"
+     "key": "p25021",
+     "name": null
     },
     {
      "label": "E4",
      "predicate": "A single hard sentence, system-relatively: the bare evaluation calculus infers $\\forall x\\,\\varphi(x)$ from the $m$ premises $\\varphi(c)$. Every derivation of a global clause there has length at least $m$ and defeats every budget $H<m$. A richer $\\D$ may derive some global clauses briefly.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:globalclause}\\newline \\pywit{godel}{p25022}{E4}, \\leanwit{FrcCore}{p25022}{E4} \\lean{FRC.Reach.global\\_clause\\_length, FRC.Reach.global\\_clause\\_defeats\\_budget, FRC.Reach.bare\\_rule\\_sound}",
-     "key": "p25022"
+     "key": "p25022",
+     "name": "single_hard_sentence"
     }
    ]
   },
@@ -198,56 +220,64 @@
      "predicate": "Mention cost: if the truth of a formula in $\\M$ depends on coordinate $i$ of a tuple of variables, then $v_{i}$ occurs in it. A formula whose truth depends on all $N$ coordinates has length at least $N$. A quantifier block binding an $N$-tuple contributes at least $N$ symbols.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:mention}\\newline \\pywit{godel}{p25023}{F1}, \\leanwit{FrcCore}{p25023}{F1} \\lean{FRC.Diagonal.holds\\_congr, FRC.Diagonal.mention, FRC.Diagonal.arity\\_le\\_size, FRC.Diagonal.mention\\_cost, FRC.Diagonal.size\\_exBlock}",
-     "key": "p25023"
+     "key": "p25023",
+     "name": "mention_cost_bound"
     },
     {
      "label": "F2",
      "predicate": "No compression: code strings of length at most $N$ as tuples in $\\M^{N}$, one coordinate per symbol, signature and alphabet fixed independently of $N$, $\\theta$ non-degenerate. The G\\\"odel template has no instance at any scale. The diagonal formula needs $\\lvert \\delta\\rvert\\ge3N+\\lvert \\theta\\rvert>N$ symbols, so its code is not in $\\M^{N}$. Splitting the scales fails: $\\delta$ outgrows the scale $\\theta$ reads.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:nocompress}; F1\\newline \\pywit{godel}{p25024}{F2}, \\leanwit{FrcCore}{p25024}{F2} \\lean{FRC.Diagonal.template\\_size, FRC.Diagonal.no\\_template, FRC.Diagonal.split\\_scale, FRC.Diagonal.mention\\_cost}",
-     "key": "p25024"
+     "key": "p25024",
+     "name": "no_compression"
     },
     {
      "label": "F3",
      "predicate": "Quotation exceeds mention: a formula's arity is below its length. No sentence $\\lambda$ contains a subformula whose truth depends on all coordinates of a tuple of arity at least $\\lvert \\lambda\\rvert$. Under any coding that spends at least $\\lvert \\lambda\\rvert$ coordinates on $\\lambda$, per-symbol coding included, no sentence's truth is sensitive to every coordinate of its own code.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:quotation}; F1\\newline \\pywit{godel}{p25025}{F3}, \\leanwit{FrcCore}{p25025}{F3} \\lean{FRC.Diagonal.arity\\_lt\\_size, FRC.Diagonal.mention\\_cost\\_lt, FRC.Diagonal.no\\_self\\_reading}",
-     "key": "p25025"
+     "key": "p25025",
+     "name": "quotation_exceeds_mention"
     },
     {
      "label": "F4",
      "predicate": "Density: $m$ has $d$ base-$a$ digits. An injective coding of length-$n$ strings by $k$-tuples, $k\\ge1$, needs $m^{k}\\ge a^{n}$, so $n<dk$. In F2's $\\delta(u)=\\exists v\\,(\\mathrm{Diag}(u,v)\\wedge\\theta(v))$ let $v$ have $k$ coordinates and $u$ have $k_{1}$. Each coordinate of $v$ is named three times, each of $u$ once. So $\\lvert\\delta\\rvert\\ge2c(k)+c(k+k_{1})$, and $\\lambda=\\delta(\\ulcorner\\delta\\urcorner)$ has $\\lvert\\lambda\\rvert\\ge3c(k)+k_{1}$, $c(j)$ the total length of the $j$ shortest names.",
      "tag": "T",
      "source": "Lem.~\\ref{rem:density}; F2\\newline \\pywit{godel}{p25048}{F4}, \\leanwit{FrcCore}{p25048}{F4}, \\leanwit{FrcMathlib}{p25048}{F4} \\lean{Godel.dense\\_coding, FRC.Logic.dense\\_coding, FRC.Logic.digit\\_bound}",
-     "key": "p25048"
+     "key": "p25048",
+     "name": "density"
     },
     {
      "label": "F5",
      "predicate": "What the construction consumes: classically, one variable over an unbounded arithmetic carries a code of any size at constant syntactic cost. Over a fixed finite structure it carries one element's digits. G\\\"odel's proof uses infinity as a syntactic resource, the exponential compression of quotation. Row F2 concerns the construction, not material biconditionals, and does not diminish the classical result.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:compressor}",
-     "key": "p25027"
+     "key": "p25027",
+     "name": null
     },
     {
      "label": "F6",
      "predicate": "The threshold lies inside the count: the code of $\\delta$ fills $u$, that of $\\lambda$ fills $v$. By F4 the template needs $2c(k)+c(k+k_{1})<dk_{1}$ and $3c(k)+k_{1}<dk$. Let $k^{*}(\\M)$ be the largest such $k$, or $0$ if none, and $t(\\M)=d\\,k^{*}(\\M)$. No instance codes $\\lambda$ at length $n\\ge t(\\M)$, and $t(\\M)<m$ in every structure. $k^{*}(\\M)<6a^{\\lfloor d/3\\rfloor+1}$, and $k<6a^{\\lfloor d/4\\rfloor+1}$ at one scale, $k_{1}=k$.",
      "tag": "T",
      "source": "Lem.~\\ref{rem:density}; F4\\newline \\pywit{godel}{p25047}{F6}, \\leanwit{FrcCore}{p25047}{F6} \\lean{FRC.Diagonal.nameCost\\_lower, FRC.Diagonal.admits\\_digits, FRC.Diagonal.one\\_scale\\_bound, FRC.Diagonal.no\\_instance\\_small\\_d, FRC.Diagonal.kstar\\_max, FRC.Diagonal.kstar\\_digits, FRC.Diagonal.no\\_instance\\_at\\_threshold, FRC.Diagonal.threshold\\_lt, FRC.Diagonal.threshold\\_digits}",
-     "key": "p25047"
+     "key": "p25047",
+     "name": "threshold_lies_inside_count"
     },
     {
      "label": "F7",
      "predicate": "Decoders: over $\\M_p$ with $+$, $\\times$, $0$ and $1$, a formula $\\mathrm{Int}_{J}(x)$ of $50J+29$ symbols in the syntax of F8 defines $\\{0,\\dots,2^{J}-1\\}$ when $2^{J}\\le p$. It writes the binary expansion with six bound variables, four of them reused. A formula $\\mathrm{Dig}(y,r,s)$ defines digit $r$ of $y<\\beta^{n}$ in base $\\beta=2^{b}$ when $2^{bn+1}<p$, at a length linear in $bn$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:decoders}\\newline \\pywit{godel}{p25049}{F7}, \\leanwit{FrcCore}{p25049}{F7} \\lean{FRC.Diagonal.intJ\\_defines, FRC.Diagonal.inSeg\\_iff, FRC.Diagonal.size\\_IntJ}",
-     "key": "p25049"
+     "key": "p25049",
+     "name": "decoders"
     },
     {
      "label": "F8",
      "predicate": "A dense-coded instance: alphabet of $32$ symbols, constants $0,\\dots,16$, $D=1024$ symbols per element, $k_{1}=4096$, $k=45044$, $p$ of at least $D+2$ digits in base $32$. For every $\\theta(v)$ of at most $704\\,170$ symbols without variables of $u$, a formula $\\mathrm{Diag}$ defines diagonal substitution on strings with the layout of $\\delta$, and $\\lvert\\delta\\rvert\\le Dk_{1}$, $\\lvert\\lambda\\rvert\\le Dk$, $\\M_p\\models\\lambda\\leftrightarrow\\theta(\\ulcorner\\lambda\\urcorner)$.",
      "tag": "I",
      "source": "Thm.~\\ref{thm:instance}; F2, F7\\newline \\pywit{godel}{p25050}{F8}",
-     "key": "p25050"
+     "key": "p25050",
+     "name": null
     }
    ]
   },
@@ -260,56 +290,64 @@
      "predicate": "Length horizon: a certificate contains its designated end sentence, so no sentence longer than $B=\\min(K,H)$ is certifiable. None longer than $H$ has a derivation of length at most $H$ in any system. Beyond every budget there are truths, by counting alone (E1, E2).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:lengthhorizon}; E1, E2\\newline \\pywit{godel}{p25028}{G1}, \\leanwit{FrcCore}{p25028}{G1} \\lean{FRC.Reach.length\\_horizon, FRC.Reach.no\\_short\\_derivation, FRC.Reach.truths\\_beyond\\_budget}",
-     "key": "p25028"
+     "key": "p25028",
+     "name": "length_horizon"
     },
     {
      "label": "G2",
      "predicate": "The evaluation ceiling: without the local-checkability clause the one-rule system $\\D_{\\mathrm{tt}}$ asserts $\\varphi$ outright on exhaustive evaluation. It is sound, and every true $\\varphi$ has a derivation of length $\\lvert \\varphi\\rvert$. So a truth lacks a derivation of length at most $H$ exactly when it is longer than $H$. The step-check of $\\D_{\\mathrm{tt}}$ costs on the order of $m^{q}$ evaluations.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:dtruth}\\newline \\pywit{godel}{p25029}{G2}, \\leanwit{FrcCore}{p25029}{G2} \\lean{FRC.Reach.dtt\\_sound\\_complete, FRC.Reach.dtt\\_ceiling, FRC.Reach.cost\\_allBlock}",
-     "key": "p25029"
+     "key": "p25029",
+     "name": "evaluation_ceiling"
     },
     {
      "label": "G3",
      "predicate": "The complexity remainder: whether every sound, locally checkable $\\D$ leaves short truths underivable at every budget is the hard-tautologies problem, open in general and proved for specific weak systems. For bounded consistency, certificates below $H^{\\varepsilon}$ are excluded where Pudl\\'ak's bounds hold, and the budget-$H$ analogue is open. The status is the same on both ontologies.",
      "tag": "I",
      "source": "Rem.~\\ref{rem:system}; A3",
-     "key": "p25030"
+     "key": "p25030",
+     "name": null
     },
     {
      "label": "G4",
      "predicate": "Prefix simulation: $Q_{1}z_{1}\\cdots Q_{d}z_{d}\\,\\psi(\\bar z)$ holds in $\\M$ exactly when $\\forall y_{1}\\exists x_{1}\\cdots\\forall y_{d}\\exists x_{d}\\,[\\bigwedge_{i:Q_{i}=\\forall}x_{i}=y_{i}\\wedge\\psi(\\bar x)]$ does: one uniform prefix simulates every coded quantifier pattern.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:prefix}\\newline \\pywit{godel}{p25031}{G4}, \\leanwit{FrcCore}{p25031}{G4} \\lean{FRC.Diagonal.prefix\\_simulation, FRC.Diagonal.prefix\\_simulation\\_closed}",
-     "key": "p25031"
+     "key": "p25031",
+     "name": "prefix_simulation_quantifiers"
     },
     {
      "label": "G5",
      "predicate": "Fragment truth is definable over $\\M_p$ with $p\\ge a+1$, in the expansion $L_{A}$ of $L$ by alphabet-code constants. For each $n$ of $s$ digits a formula $\\mathrm{Truth}_{n}(v)$ of length $O(n^{2}s)$ defines truth for the coded prenex sentences of length at most $n$. It rejects every other code. It guesses parse and evaluation labels, checked by local clauses under G4's prefix.",
      "tag": "I",
      "source": "Thm.~\\ref{thm:truthdef}; G4\\newline \\pywit{godel}{p25032}{G5}",
-     "key": "p25032"
+     "key": "p25032",
+     "name": null
     },
     {
      "label": "G6",
      "predicate": "What remains undefinable: no single formula defines truth across all lengths, since a formula has fixed arity. Under per-symbol coding none defines truth for sentences longer than itself, by F1. Between the two, truth is definable fragment by fragment, from just above and never from within.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:tarskirev}; F1, G5\\newline \\pywit{godel}{p25033}{G6}, \\leanwit{FrcCore}{p25033}{G6} \\lean{FRC.Diagonal.arity\\_lt\\_size, FRC.Diagonal.mention\\_cost\\_lt, FRC.Diagonal.no\\_self\\_reading}",
-     "key": "p25033"
+     "key": "p25033",
+     "name": "what_remains_undefinable"
     },
     {
      "label": "G7",
      "predicate": "Decomposition: each classical limitation (G\\\"odel I and II, Tarski, speed-up) splits into a counting and a complexity face. The counting face is a theorem (E2, G1, D1, G6), and $\\Con{H}(\\D)$ is true at grade (ii). The complexity face is imported (G3), with one reversal (G5). The diagonal is unavailable: per-symbol at every scale (F2), any coding beyond $t(\\M)$ (F6).",
      "tag": "T",
      "source": "Thm.~\\ref{thm:migration}; D1, E2, F2, F4, F6, F8, G1, G3, G5, G6, G8\\newline \\pywit{godel}{p25034}{G7}, \\leanwit{FrcCore}{p25034}{G7} \\lean{FRC.Reach.reach\\_vanishes, FRC.Reach.length\\_horizon, FRC.Logic.part\\_collides, FRC.Diagonal.no\\_self\\_reading, FRC.Diagonal.template\\_size, FRC.Diagonal.threshold\\_lt}",
-     "key": "p25034"
+     "key": "p25034",
+     "name": "decomposition"
     },
     {
      "label": "G8",
      "predicate": "Truth in the window: at the scale of F8 no formula $T(v)$ of at most $704\\,169$ symbols without variables of $u$ defines truth for the densely coded sentences of length at most $Dk$. Take $\\theta=\\neg T$ in F8. The names of all $k$ variables take $225\\,220$ symbols, so the bound is not one of arity.",
      "tag": "I",
      "source": "Cor.~\\ref{cor:windowtruth}; F8\\newline \\pywit{godel}{p25051}{G8}",
-     "key": "p25051"
+     "key": "p25051",
+     "name": null
     }
    ]
   },
@@ -322,35 +360,40 @@
      "predicate": "The effectivity clause: among consistent, effectively axiomatised theories, interpreting $\\mathsf{Q}$ forces incompleteness. $\\Th(\\N)$ is complete at grade (i) only, presentable by nothing. Presburger arithmetic separates unbounded iteration from coding power: it is complete and decidable. Incompleteness tracks an effective description confronting a domain that codes its own syntax.",
      "tag": "D",
      "source": "Section~\\ref{sec:finiteness}; A1, A2",
-     "key": "p25035"
+     "key": "p25035",
+     "name": null
     },
     {
      "label": "H2",
      "predicate": "Finiteness, the finite direction: for finite $\\M$ the full second-order theory $\\ThSO(\\M)$ is decidable. A second-order quantifier over $k$-ary relations ranges over the $2^{m^{k}}$ subsets of $\\M^{k}$, and exhaustive evaluation decides every second-order sentence.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:finiteness}\\newline \\pywit{godel}{p25036}{H2}, \\leanwit{FrcCore}{p25036}{H2}, \\leanwit{FrcMathlib}{p25036}{H2} \\lean{Godel.card\\_relations, Godel.decideAllRelations, FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete}",
-     "key": "p25036"
+     "key": "p25036",
+     "name": "finiteness_finite_direction"
     },
     {
      "label": "H3",
      "predicate": "Finiteness, the classical direction: if $\\M$ contains a countably infinite subset, $\\ThSO(\\M)$ under full semantics is undecidable. A decision procedure would decide second-order arithmetic truth through a copy of $\\N$ (A2). The passage evaluates the infinite ontology by that ontology's own semantics.",
      "tag": "I",
      "source": "Thm.~\\ref{thm:finiteness}; A2",
-     "key": "p25037"
+     "key": "p25037",
+     "name": null
     },
     {
      "label": "H4",
      "predicate": "Determinacy meets effectivity only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or effectivity over a fragment. Finitude delivers both, at grade (ii).",
      "tag": "T",
      "source": "Cor.~\\ref{cor:determinacy}; H2, H3\\newline \\pywit{godel}{p25038}{H4}, \\leanwit{FrcCore}{p25038}{H4}, \\leanwit{FrcMathlib}{p25038}{H4} \\lean{Godel.card\\_relations, FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete}",
-     "key": "p25038"
+     "key": "p25038",
+     "name": "determinacy_meets_effectivity_finite"
     },
     {
      "label": "H5",
      "predicate": "Trichotomy: consistent, effectively axiomatised theories fall into three disjoint, exhaustive cells. (i) Essentially undecidable theories, whose incompleteness is irreparable. (ii) Theories outside (i) with no finite model, whose incompleteness an effective extension removes. ``At least $n$ elements, for every $n$'' with a free predicate is one. (iii) Theories with a finite model. Irreparable incompleteness tracks effective self-representation, not cardinality.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:trichotomy}; A1, A2\\newline \\pywit{godel}{p25039}{H5}, \\leanwit{FrcCore}{p25039}{H5} \\lean{FRC.Reach.atLeast\\_of\\_le, FRC.Reach.not\\_atLeast\\_succ, FRC.Reach.middle\\_cell\\_undecided}",
-     "key": "p25039"
+     "key": "p25039",
+     "name": "trichotomy"
     }
    ]
   },
@@ -363,35 +406,40 @@
      "predicate": "Evidential force: a certificate's categorical and conditional content. The categorical content is its end sentence as warranted by the checked steps alone, present exactly when every rule used is locally sound. The conditional content is the end sentence under the undischarged hypothesis that the rules are sound in the inhabited structure. Counterparts agree in both, up to the hypothesis named.",
      "tag": "D",
      "source": "Def.~\\ref{def:force}",
-     "key": "p25040"
+     "key": "p25040",
+     "name": null
     },
     {
      "label": "J2",
      "predicate": "Neutrality, certificate level: place a bounded agent in an infinite world under a consistent, effective $\\mathsf{Q}$-interpreting description, or in a sufficiently large finite structure. Categorical contents are realised certificate for certificate (D4), and conditional contents transfer verbatim. No certificate available to a bounded agent discriminates the two situations.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:neutrality}; D4, G7\\newline \\pywit{godel}{p25041}{J2}, \\leanwit{FrcCore}{p25041}{J2} \\lean{FRC.Reach.trace\\_transport, FRC.Reach.wrap\\_equation}",
-     "key": "p25041"
+     "key": "p25041",
+     "name": "neutrality_certificate_level"
     },
     {
      "label": "J3",
      "predicate": "The diagnosis: the effectivity hypothesis is the agent, abstracted. The excess of truth over certificates is information about the certifier's finitude, not about the cardinality of the world. Consequences are drawn for Hilbert's programme, for the anti-mechanist argument and for the platonist moral. The row is a reading argued from J2.",
      "tag": "D",
      "source": "Section~\\ref{sec:neutrality}; J2",
-     "key": "p25042"
+     "key": "p25042",
+     "name": null
     },
     {
      "label": "J4",
      "predicate": "The residue for the finitist: agents get no completeness (E2). No certificate of a part has the totality's cardinality as its categorical content (D4). Universal arithmetic claims are read schematically, instance by instance below the bound. In exchange, determinacy is effectively realised in full on this ontology alone (H4).",
      "tag": "D",
      "source": "Section~\\ref{sec:neutrality}; E2, D4, H4",
-     "key": "p25043"
+     "key": "p25043",
+     "name": null
     },
     {
      "label": "J5",
      "predicate": "Objections O1--O8 are answered. Grade (ii) asserts a specification and a computed size, not the realisation of the evaluation object (O8). The agent bounds are parameters, not psychology (O4). No feasibility predicate is used, and no number is called too large to exist (O5).",
      "tag": "D",
      "source": "Section~\\ref{sec:objections}",
-     "key": "p25044"
+     "key": "p25044",
+     "name": null
     }
    ]
   }

@@ -14,42 +14,48 @@
      "predicate": "Substrate arithmetic: $\\F_\\Om$, the multiplicative cycle, the Frobenius $C_3$ Galois orbit, the quarter-turn $Q_4$, the admissible residue $\\Om\\equiv5\\,(\\mathrm{mod}\\,12)$.",
      "tag": "I",
      "source": "\\cite{akhtman2026fields,akhtman2026pnp}",
-     "key": "p28001"
+     "key": "p28001",
+     "name": null
     },
     {
      "label": "A2",
      "predicate": "One generation as the $\\mathbf{16}$ of $\\SO(10)$: field content, hypercharges, charges, anomaly freedom, $\\sin^2\\theta_W=3/8$, and the massless-photon / confining-gluon residues.",
      "tag": "I",
      "source": "\\cite{akhtman2026fields}",
-     "key": "p28002"
+     "key": "p28002",
+     "name": null
     },
     {
      "label": "A3",
      "predicate": "The Froggatt--Nielsen flavour mechanism and the Wolfenstein parametrisation.",
      "tag": "I",
      "source": "\\cite{froggattnielsen1979,wolfenstein1983}",
-     "key": "p28003"
+     "key": "p28003",
+     "name": null
     },
     {
      "label": "A4",
      "predicate": "The Gatto--Sartori--Tonin, Georgi--Jarlskog, and lopsided-$\\SU(5)$ textures.",
      "tag": "I",
      "source": "\\cite{gattosartoritonin1968,georgijarlskog1979,albrightbarr1998}",
-     "key": "p28004"
+     "key": "p28004",
+     "name": null
     },
     {
      "label": "A5",
      "predicate": "The seesaw mechanism and the renormalisation-group running.",
      "tag": "I",
      "source": "\\cite{minkowski1977}",
-     "key": "p28005"
+     "key": "p28005",
+     "name": null
     },
     {
      "label": "A6",
      "predicate": "Measured anchors: the two $\\Delta m^2$, $M_R$, the charged-lepton and quark masses, $V_{us}$ and the mixing angles; the Koide identity is P1's prediction, not an input.",
      "tag": "I",
      "source": "\\cite{koide1983,nufit60}",
-     "key": "p28006"
+     "key": "p28006",
+     "name": null
     }
    ]
   },
@@ -62,42 +68,48 @@
      "predicate": "Matter is the circulant amplitude matrix $\\sqrt M$; a mass is the squared modulus of a generation amplitude (the Born square). Falsifier: a charged-lepton spectrum departing from the circulant Koide form at improved precision (present agreement $6\\times10^{-6}$).",
      "tag": "R",
      "source": "\\cite{akhtman2026quantum}",
-     "key": "p28007"
+     "key": "p28007",
+     "name": null
     },
     {
      "label": "B2",
      "predicate": "The three generations are the Frobenius $C_3$ Galois orbit: identical in every gauge number, differing only in mass. Falsifier: a fourth generation, or two generations differing in any gauge number.",
      "tag": "R",
      "source": "\\cite{akhtman2026fields}",
-     "key": "p28008"
+     "key": "p28008",
+     "name": null
     },
     {
      "label": "B3",
      "predicate": "The role depths $(0,1,2)$ of the closed ladder are the Froggatt--Nielsen flavour charges. Falsifier: a confirmed departure of the Wolfenstein hierarchy from the depth ladder $(0,1,2)$, e.g.\\ $V_{us}$ outside the band of the Gatto relation for every phase $\\varphi$.",
      "tag": "R",
      "source": "\\cite{akhtman2026pnp}",
-     "key": "p28009"
+     "key": "p28009",
+     "name": null
     },
     {
      "label": "B4",
      "predicate": "The colour excess of the quark amplitudes is the Georgi--Jarlskog Clebsch $\\Nc=3$; the squared amplitude is the cyclotomic norm $N(1-\\zeta_n)$. Falsifier: a quark-to-lepton amplitude ratio departing from the $\\Nc=3$ Clebsch at improved precision.",
      "tag": "R",
      "source": "\\cite{akhtman2026fields}",
-     "key": "p28010"
+     "key": "p28010",
+     "name": null
     },
     {
      "label": "B5",
      "predicate": "A colourless sector (charged leptons, neutrinos) carries the undressed quarter-turn amplitude $r=\\sqrt2$, i.e.\\ $Q=2/3$. Falsifier: $Q_\\ell\\neq2/3$ at improved charged-lepton precision; for neutrinos, inverted ordering, a degenerate spectrum, or $\\sum m_\\nu\\gtrsim120$\\,meV.",
      "tag": "R",
      "source": "\\cite{akhtman2026fields}",
-     "key": "p28011"
+     "key": "p28011",
+     "name": null
     },
     {
      "label": "B6",
      "predicate": "Drive-invariant boundary branch: the lightest colourless neutrino sits at the quarter-turn zero (as the electron), selecting the normal near-$m_1{=}0$ branch. Falsifier: inverted ordering.",
      "tag": "R",
      "source": "\\S\\ref{sec:neutrino}",
-     "key": "p28051"
+     "key": "p28051",
+     "name": null
     }
    ]
   },
@@ -110,91 +122,104 @@
      "predicate": "Generation universality $\\Rightarrow$ the amplitude matrix is a $C_3$-circulant $\\Rightarrow$ the Koide functional form.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:circulant}\\newline \\pywit{flavour}{p28012}{C1}, \\leanwit{FrcCore}{p28012}{C1} \\lean{FRC.Flavour.circ\\_eigen, FRC.Flavour.eigen\\_sum, FRC.Flavour.eigen\\_sumsq, FRC.Interactions.koide\\_parseval}",
-     "key": "p28012"
+     "key": "p28012",
+     "name": "generation_universality_circulant"
     },
     {
      "label": "C2",
      "predicate": "$Q=2/3\\Leftrightarrow r=\\sqrt2\\Leftrightarrow\\rho^2=\\tfrac12$ (the equivalence an identity); the value $\\rho^2=\\tfrac12$ is the realisation B5.",
      "tag": "T",
      "source": "\\S\\ref{sec:koide}\\newline \\pywit{flavour}{p28013}{C2}, \\leanwit{FrcCore}{p28013}{C2}; rests on C1 \\lean{FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Flavour.eigen\\_sumsq}",
-     "key": "p28013"
+     "key": "p28013",
+     "name": "charge_two_thirds_identity"
     },
     {
      "label": "C3",
      "predicate": "The leading boundary phase is the framed-rational winding $\\delta_{\\mathrm{LO}}=\\tfrac38-\\tfrac13=\\tfrac1{24}$ cycle (split-torus boundary $\\tfrac38$ minus generation $\\tfrac13$; continuum $\\pi/12$ [approx]); massless lightest generation.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:pi12}\\newline \\pywit{flavour}{p28014}{C3}, \\leanwit{FrcCore}{p28014}{C3}, \\leanwit{FrcMathlib}{p28014}{C3} \\lean{FRC.Flavour.quarter\\_turn\\_boundary, FRC.Flavour.lo\\_eigen, FRC.Flavour.lo\\_ratio\\_sq, FRC.Flavour.delta\\_lo, Flavour.lo\\_ratio}",
-     "key": "p28014"
+     "key": "p28014",
+     "name": "leading_boundary_phase"
     },
     {
      "label": "C4",
      "predicate": "The squared amplitudes are the cyclotomic norms $r_\\ell^2=N(1-i)=2$, $r_u^2=N(1-\\omega)=3$ (on B5), hence $Q_\\ell=\\tfrac23$, $Q_u=\\tfrac56$ in framed arithmetic ($Q_u=0.849$ in the working scheme, band $0.83$--$0.89$); the down sector is the GJ-dressed intermediate.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:23tori}\\newline \\pywit{flavour}{p28015}{C4}, \\leanwit{FrcCore}{p28015}{C4}, \\leanwit{FrcMathlib}{p28015}{C4}; rests on B4 \\lean{FRC.Flavour.norm\\_one\\_sub\\_i, FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
-     "key": "p28015"
+     "key": "p28015",
+     "name": "squared_amplitudes_cyclotomic_norms"
     },
     {
      "label": "C5",
      "predicate": "The cross-sector phase lock $\\delta_\\ell:\\delta_d:\\delta_u=1:\\tfrac12:\\tfrac13$ is the relation $c_\\ell=2c_d^{2}-1=4c_u^{3}-3c_u$ between the cube invariants $c=\\cos3\\delta$ of the sectors, each read from its masses through the circulant determinant; in the $\\overline{\\mathrm{MS}}$ working scheme of Table~\\ref{tab:sectors} the sectors satisfy it within the quark-mass uncertainty [chart] ($0.496$, $0.335$; $0.388$ for the up ratio with the pole charm mass).",
      "tag": "T",
      "source": "\\S\\ref{sec:winding}\\newline \\pywit{flavour}{p28016}{C5}, \\leanwit{FrcCore}{p28016}{C5} \\lean{FRC.Flavour.trace\\_double, FRC.Flavour.trace\\_triple, FRC.Flavour.circ\\_det}",
-     "key": "p28016"
+     "key": "p28016",
+     "name": "cross_sector_phase_lock"
     },
     {
      "label": "C6",
      "predicate": "The Gatto Cabibbo relation $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$, the phase $\\varphi$ a kernel datum ($85^\\circ\\pm10^\\circ$ from the data).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:gatto}\\newline \\pywit{flavour}{p28017}{C6}, \\leanwit{FrcCore}{p28017}{C6}, \\leanwit{FrcMathlib}{p28017}{C6} \\lean{FRC.Flavour.gst\\_relation, FRC.Flavour.cabibbo\\_modulus, Flavour.gatto\\_leading}",
-     "key": "p28017"
+     "key": "p28017",
+     "name": "gatto_cabibbo_relation"
     },
     {
      "label": "C7",
      "predicate": "Up-sector doubling $m^u_i\\sim(m^d_i)^2$ from the $\\mathbf{10}\\cdot\\mathbf{10}$ Yukawa.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:doubling}\\newline \\pywit{flavour}{p28018}{C7}, \\leanwit{FrcCore}{p28018}{C7}, \\leanwit{FrcMathlib}{p28018}{C7} \\lean{FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
-     "key": "p28018"
+     "key": "p28018",
+     "name": "up_sector_doubling"
     },
     {
      "label": "C8",
      "predicate": "Lopsided $M_e=M_d^{\\mathsf T}$ splits CKM (small) from PMNS (large); the CKM angle values reduce to the winding kernel and the shared $\\sigma$.",
      "tag": "T",
      "source": "\\S\\ref{sec:mixing}\\newline \\pywit{flavour}{p28019}{C8}, \\leanwit{FrcCore}{p28019}{C8} \\lean{FRC.Flavour.transpose\\_exchanges, FRC.Flavour.transpose\\_mul}",
-     "key": "p28019"
+     "key": "p28019",
+     "name": "lopsided_splits_ckm"
     },
     {
      "label": "C9",
      "predicate": "The reactor angle at leading order, $\\sin\\theta_{13}=\\sin\\theta_C/\\sqrt2\\simeq\\delta_0/\\sqrt2$ (quark--lepton complementarity): $0.159$ against the measured $0.149$, $7\\%$, no correction derived.",
      "tag": "T",
      "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28020}{C9}, \\leanwit{FrcMathlib}{p28020}{C9} \\lean{Flavour.theta13\\_estimate}",
-     "key": "p28020"
+     "key": "p28020",
+     "name": "reactor_angle_leading_order"
     },
     {
      "label": "C10",
      "predicate": "TM2 selected: the trivial $C_3$ character $(1,1,1)/\\sqrt3$ is the protected column, so $\\cos\\delta_{\\mathrm{CP}}$ is locked to $\\theta_{23}$ by \\eqref{eq:tm2}; the magic Jarlskog $J=1/(6\\sqrt3)$ is maximal CP, the sign fixed by the drive.",
      "tag": "T",
      "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28021}{C10}, \\leanwit{FrcCore}{p28021}{C10}, \\leanwit{FrcMathlib}{p28021}{C10} \\lean{FRC.Flavour.protected\\_column, FRC.Flavour.trimaximal, FRC.Flavour.jarlskog\\_sq, Flavour.jarlskog, Flavour.tm2\\_at\\_maximal, Flavour.exact\\_tm2\\_solar}",
-     "key": "p28021"
+     "key": "p28021",
+     "name": "tm2_selected"
     },
     {
      "label": "C11",
      "predicate": "Seesaw of circulants $\\Rightarrow$ Koide-form (theorem); with $M_R\\propto m_D$ (Y1) the seesaw gives $m_\\nu=m_D^{\\mathsf T}$, $r_\\nu=\\sqrt2$ (transpose fixed point).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:seesaw},\\,\\ref{prop:transpose}\\newline \\pywit{flavour}{p28022}{C11}, \\leanwit{FrcCore}{p28022}{C11}; rests on A5, B1, B5, C1 \\lean{FRC.Flavour.circ\\_mul, FRC.Flavour.circ\\_adj, FRC.Flavour.seesaw\\_circulant, FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.circ\\_transpose}",
-     "key": "p28022"
+     "key": "p28022",
+     "name": "seesaw_circulants_koide"
     },
     {
      "label": "C11b",
      "predicate": "Both orderings solved: the signed $r_\\nu=\\sqrt2$ circulant solves both neutrino orderings exactly, so the boundary branch (B6) is the sole ordering assumption.",
      "tag": "T",
      "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28050}{C11b}, \\leanwit{FrcCore}{p28050}{C11b}; rests on B5, C11 \\lean{FRC.Interactions.koide\\_two\\_thirds, FRC.Flavour.eigen\\_sumsq}",
-     "key": "p28050"
+     "key": "p28050",
+     "name": "both_orderings_solved"
     },
     {
      "label": "C12",
      "predicate": "The generation $\\mathbf{16}$ is the four-chart reflection algebra $\\Lambda^{\\bullet}(\\C^4)\\cong\\Lambda^{\\mathrm{even}}(\\C^5)$, the quarter-turn the fifth direction; projection anchored at $\\nu^c=\\Lambda^0$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:reflection}\\newline \\pywit{flavour}{p28024}{C12}, \\leanwit{FrcCore}{p28024}{C12} \\lean{FRC.Interactions.reflection\\_algebra, FRC.Interactions.fifth\\_direction}",
-     "key": "p28024"
+     "key": "p28024",
+     "name": "generation_reflection_algebra"
     }
    ]
   },
@@ -207,77 +232,88 @@
      "predicate": "\\textbf{The Koide ratio} is exactly $2/3$ given the quarter-turn realisation B5, the cube-root generation orbit bisected at the quarter-turn ($\\rho^2=2^{-1}$), an exact value rather than an unexplained empirical coincidence.",
      "tag": "T",
      "source": "Proposition~\\ref{prop:koide}\\newline \\pywit{flavour}{p28025}{X1}, \\leanwit{FrcCore}{p28025}{X1}, \\leanwit{FrcMathlib}{p28025}{X1} \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half, Flavour.koide\\_measured}",
-     "key": "p28025"
+     "key": "p28025",
+     "name": "koide_ratio_quarter_turn"
     },
     {
      "label": "X2",
      "predicate": "\\textbf{The up-quark Koide value} is $5/6$ in framed arithmetic ($0.849$ in the working scheme, $0.832$ with pole masses), the cube-root colour norm $r_u^2=N(1-\\omega)=3$ against the colourless $N(1-i)=2$, a ratio where the Standard Model carries no relation at all.",
      "tag": "T",
      "source": "Remark~\\ref{rem:23tori}\\newline \\pywit{flavour}{p28026}{X2}, \\leanwit{FrcCore}{p28026}{X2}, \\leanwit{FrcMathlib}{p28026}{X2} \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
-     "key": "p28026"
+     "key": "p28026",
+     "name": "up_quark_koide_framed"
     },
     {
      "label": "X3",
      "predicate": "\\textbf{The flavour charges} are the role depths $(0,1,2)$ of the closed primitive-role ladder, derived as the three generative roles rather than assigned to fit the hierarchy.",
      "tag": "T",
      "source": "\\S\\ref{sec:texture}\\newline \\pywit{flavour}{p28027}{X3}, \\leanwit{FrcCore}{p28027}{X3}, \\leanwit{FrcMathlib}{p28027}{X3} \\lean{FRC.Ladder.tower\\_reduces, FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
-     "key": "p28027"
+     "key": "p28027",
+     "name": "flavour_charges_role_depths"
     },
     {
      "label": "X4",
      "predicate": "\\textbf{The Cabibbo angle} is the Gatto relation $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$ following from the role-depth texture, the leading term at $0.3\\%$ and the phase $\\varphi$ a kernel datum, so two otherwise-independent observables are tied rather than measured apart.",
      "tag": "T",
      "source": "Proposition~\\ref{prop:gatto}\\newline \\pywit{flavour}{p28028}{X4}, \\leanwit{FrcCore}{p28028}{X4}, \\leanwit{FrcMathlib}{p28028}{X4} \\lean{FRC.Flavour.gst\\_relation, FRC.Flavour.cabibbo\\_modulus, Flavour.gatto\\_leading}",
-     "key": "p28028"
+     "key": "p28028",
+     "name": "cabibbo_angle_gatto"
     },
     {
      "label": "X5",
      "predicate": "\\textbf{The Georgi--Jarlskog factor} is the colour count $N_c=3$, the $B\\!-\\!L$ Clebsch of the $\\overline{\\mathbf{126}}$, not a texture coefficient inserted by hand; its double ratio $9$ against the measured $10.4\\pm0.5$ is the open $15\\%$ excess of the minimal Clebsch.",
      "tag": "T",
      "source": "\\S\\ref{sec:gj}\\newline \\pywit{flavour}{p28029}{X5}, \\leanwit{FrcCore}{p28029}{X5}, \\leanwit{FrcMathlib}{p28029}{X5} \\lean{FRC.Flavour.colour\\_count, Flavour.gj\\_ratio}",
-     "key": "p28029"
+     "key": "p28029",
+     "name": "georgi_jarlskog_colour_count"
     },
     {
      "label": "X6",
      "predicate": "\\textbf{The up-sector doubling} $m^u_i\\sim(m^d_i)^2$ is forced by the $\\mathbf{10}\\cdot\\mathbf{10}$ Yukawa, so the steeper up hierarchy is a consequence rather than a separate assumption.",
      "tag": "T",
      "source": "Proposition~\\ref{prop:doubling}\\newline \\pywit{flavour}{p28030}{X6}, \\leanwit{FrcCore}{p28030}{X6}, \\leanwit{FrcMathlib}{p28030}{X6} \\lean{FRC.Flavour.texture\\_exponents, Flavour.texture\\_powers}",
-     "key": "p28030"
+     "key": "p28030",
+     "name": "up_sector_doubling_forced"
     },
     {
      "label": "X7",
      "predicate": "\\textbf{The electron's extreme lightness} is the quarter-turn boundary: the lightest generation sits where the winding amplitude vanishes, massless at leading order, rather than an anomalously small Yukawa tuned by hand.",
      "tag": "T",
      "source": "Proposition~\\ref{prop:pi12}\\newline \\pywit{flavour}{p28031}{X7}, \\leanwit{FrcCore}{p28031}{X7}, \\leanwit{FrcMathlib}{p28031}{X7} \\lean{FRC.Flavour.quarter\\_turn\\_boundary, FRC.Flavour.lo\\_eigen, FRC.Flavour.lo\\_ratio\\_sq, Flavour.lo\\_ratio}",
-     "key": "p28031"
+     "key": "p28031",
+     "name": "electron_lightness_quarter_turn"
     },
     {
      "label": "X8",
      "predicate": "\\textbf{The large-lepton, small-quark mixing split} is the lopsided $M_e=M_d^{\\mathsf T}$: one off-diagonal feeds the invisible right-handed quark rotation and, transposed, the visible left-handed lepton rotation, so the two mixing matrices are one structure rather than two unrelated ones.",
      "tag": "T",
      "source": "\\S\\ref{sec:mixing}\\newline \\pywit{flavour}{p28032}{X8}, \\leanwit{FrcCore}{p28032}{X8} \\lean{FRC.Flavour.transpose\\_exchanges, FRC.Flavour.transpose\\_mul}",
-     "key": "p28032"
+     "key": "p28032",
+     "name": "lepton_quark_mixing_split"
     },
     {
      "label": "X9",
      "predicate": "\\textbf{The reactor angle} is, at leading order, $\\sin\\theta_{13}=\\sin\\theta_C/\\sqrt2=0.159$, quark--lepton complementarity through the quarter-turn, $7\\%$ above the observed $0.149$ with no correction derived: a leading-order estimate of the mixing parameter, not a prediction.",
      "tag": "T",
      "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28033}{X9}, \\leanwit{FrcMathlib}{p28033}{X9} \\lean{Flavour.theta13\\_estimate}",
-     "key": "p28033"
+     "key": "p28033",
+     "name": "reactor_angle_complementarity"
     },
     {
      "label": "X10",
      "predicate": "\\textbf{Near-maximal leptonic CP} is the cube-root phase: $\\mathrm{Im}\\,\\omega=\\sqrt3/2$ gives the maximal Jarlskog $J=1/(6\\sqrt3)$, so the cubic reappears as CP violation rather than a free phase fitted to data.",
      "tag": "T",
      "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28034}{X10}, \\leanwit{FrcCore}{p28034}{X10}, \\leanwit{FrcMathlib}{p28034}{X10} \\lean{FRC.Flavour.trimaximal, FRC.Flavour.jarlskog\\_sq, Flavour.jarlskog}",
-     "key": "p28034"
+     "key": "p28034",
+     "name": "near_maximal_leptonic_cp"
     },
     {
      "label": "X11",
      "predicate": "\\textbf{The neutrino spectrum} (a near-massless lightest state, $\\sum m_\\nu\\simeq59\\,$meV on the normal branch) follows from colourlessness fixing $Q_\\nu=2/3$, the transpose fixed point under the alignment $M_R\\propto m_D$ (Y1) and the boundary branch that selects the ordering (B6), rather than three independent neutrino masses.",
      "tag": "T",
      "source": "Proposition~\\ref{prop:transpose}, \\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28035}{X11}, \\leanwit{FrcCore}{p28035}{X11}, \\leanwit{FrcMathlib}{p28035}{X11} \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.seesaw\\_circulant, FRC.Flavour.circ\\_eigen, Flavour.neutrino\\_floor}",
-     "key": "p28035"
+     "key": "p28035",
+     "name": "neutrino_spectrum"
     }
    ]
   },
@@ -290,49 +326,56 @@
      "predicate": "Charged-lepton Koide $Q_\\ell=2/3$ exact on B5 (measured $0.666661\\pm0.000007$); $m_e=0.5106$ vs $0.5110$ MeV. Falsifier: a lepton-mass shift of $Q_\\ell$ off $2/3$ beyond the $\\tau$-mass tolerance.",
      "tag": "T",
      "source": "C2, B5\\newline \\pywit{flavour}{p28036}{P1}, \\leanwit{FrcCore}{p28036}{P1}, \\leanwit{FrcMathlib}{p28036}{P1}; rests on A6 \\lean{FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, Flavour.koide\\_measured}",
-     "key": "p28036"
+     "key": "p28036",
+     "name": "charged_lepton_koide_exact"
     },
     {
      "label": "P2",
      "predicate": "Up-quark Koide $Q_u=5/6$ in framed arithmetic, $r_u^2=N(1-\\omega)=3$; continuum $0.849$ in the working scheme, $0.832$ with pole masses, band $0.83$--$0.89$. Falsifier: up/charm/top masses moving $Q_u$ outside the band in every standard scheme.",
      "tag": "T",
      "source": "C4\\newline \\pywit{flavour}{p28037}{P2}, \\leanwit{FrcCore}{p28037}{P2}, \\leanwit{FrcMathlib}{p28037}{P2}; rests on B4, B5 \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
-     "key": "p28037"
+     "key": "p28037",
+     "name": "up_quark_koide_prediction"
     },
     {
      "label": "P3",
      "predicate": "Cabibbo $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$: leading term $0.224^{+0.011}_{-0.004}$ vs $0.2243$ ($0.3\\%$), the up term $\\pm0.04$ with $\\varphi$ open. Falsifier: no $\\varphi$ satisfying the relation within the input band.",
      "tag": "T",
      "source": "C6\\newline \\pywit{flavour}{p28038}{P3}, \\leanwit{FrcCore}{p28038}{P3}, \\leanwit{FrcMathlib}{p28038}{P3}; rests on B3 \\lean{FRC.Flavour.cabibbo\\_modulus, FRC.Flavour.gst\\_relation, Flavour.gatto\\_leading}",
-     "key": "p28038"
+     "key": "p28038",
+     "name": "cabibbo"
     },
     {
      "label": "P5",
      "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$, the two $\\Delta m^2$ and the boundary branch (B6); the signed circulant solves both orderings (C11b). Falsifier: inverted ordering.",
      "tag": "T",
      "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28039}{P5}, \\leanwit{FrcCore}{p28039}{P5}, \\leanwit{FrcMathlib}{p28039}{P5}; rests on A6, B5, C11 \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.circ\\_transpose, Flavour.neutrino\\_floor}",
-     "key": "p28039"
+     "key": "p28039",
+     "name": "normal_neutrino_ordering"
     },
     {
      "label": "P6",
      "predicate": "Mass-sum floor $\\sum m_\\nu=58.8$ meV at NuFIT~6.0 ($m_1{=}0$, $m_2{=}8.65$, $m_3{=}50.13$ meV), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological $\\sum m_\\nu<0.058$ eV.",
      "tag": "T",
      "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28040}{P6}, \\leanwit{FrcMathlib}{p28040}{P6}; rests on A6, B5, B6, C11, Y1 \\lean{Flavour.neutrino\\_floor}",
-     "key": "p28040"
+     "key": "p28040",
+     "name": "mass_sum_floor"
     },
     {
      "label": "P7",
      "predicate": "Effective Majorana mass $m_{\\beta\\beta}{\\simeq}1.5$--$3.7$ meV (NO, at $m_1=0$, over the relative Majorana phase; $1.2$--$4.0$ meV with the fitted $m_1=0.36$ meV). Falsifier: a $0\\nu\\beta\\beta$ signal at the inverted scale $15$--$50$ meV.",
      "tag": "T",
      "source": "C11\\newline \\pywit{flavour}{p28041}{P7}, \\leanwit{FrcMathlib}{p28041}{P7}; rests on B6, Y1 \\lean{Flavour.majorana\\_band}",
-     "key": "p28041"
+     "key": "p28041",
+     "name": "effective_majorana_mass"
     },
     {
      "label": "P8",
      "predicate": "Leptonic CP locked to the octant by \\eqref{eq:tm2}: $\\delta_{\\mathrm{CP}}\\in(204^\\circ,310^\\circ)$ over the $3\\sigma$ $\\theta_{23}$ range, $\\pm124^\\circ$/$\\pm74^\\circ$ at the NuFIT~6.0 best fits, $\\sin\\delta_{\\mathrm{CP}}{<}0$, $J=1/(6\\sqrt3)$. Falsifier: CP-conserving $\\delta_{\\mathrm{CP}}$, $\\sin\\delta_{\\mathrm{CP}}{>}0$, or $(\\theta_{23},\\delta_{\\mathrm{CP}})$ off the relation.",
      "tag": "T",
      "source": "C10\\newline \\pywit{flavour}{p28042}{P8}, \\leanwit{FrcCore}{p28042}{P8}, \\leanwit{FrcMathlib}{p28042}{P8}; rests on B2 \\lean{FRC.Flavour.jarlskog\\_sq, FRC.Flavour.protected\\_column, FRC.Flavour.trimaximal, Flavour.jarlskog, Flavour.tm2\\_at\\_maximal}",
-     "key": "p28042"
+     "key": "p28042",
+     "name": "leptonic_cp_locked_octant"
     }
    ]
   },
@@ -345,14 +388,16 @@
      "predicate": "The ledger file \\texttt{frc/ledgers/p28\\_flavour.py} of the \\texttt{finite-ring-space} framework decides the rows of blocks C, X, P and the readings of Z: thirty-one checks in eight blocks, each naming the rows it witnesses, the deciding check cited in each row's \\textsf{py} token; its notebook runs one predicate per cell.",
      "tag": "D",
      "source": "\\S\\ref{sec:repro}",
-     "key": "p28043"
+     "key": "p28043",
+     "name": null
     },
     {
      "label": "V2",
      "predicate": "Two kinds per check: \\textsf{EXACT}, an identity decided in $\\F_p$, $\\F_{p^2}$, $\\Q(\\omega)$ or the rationals with no tolerance (thirteen checks), and \\textsf{CHART}, a reading of the measured masses, mixings and splittings against a rational bound (eighteen checks, labelled [chart]); the Lean declarations of each row are its \\textsf{lean} tokens.",
      "tag": "D",
      "source": "\\S\\ref{sec:repro}",
-     "key": "p28044"
+     "key": "p28044",
+     "name": null
     }
    ]
   },
@@ -365,28 +410,32 @@
      "predicate": "The lepton winding phase $\\delta_0$: the one $\\Om$-hard drive-orientation residue. Neither a geometric nor a profinite derivation fixes it, the drive-orientation Gauss sum's phase taking no fixed value across the shells of the totality, equidistributed in its large-shell reading. Sub-horizon reading $\\delta_0=Q/3=2/9$ ($3\\delta_0=Q$); leading $\\delta_{\\mathrm{LO}}=\\tfrac38-\\tfrac13$ framed-rational (C3); phase residue carried by $\\mathrm{Re}(b^{3})$.",
      "tag": "Ω",
      "source": "\\S\\ref{sec:winding},\\,\\S\\ref{sec:status}",
-     "key": "p28046"
+     "key": "p28046",
+     "name": null
     },
     {
      "label": "Z2",
      "predicate": "With the quark phases locked to $\\delta_0$ by C5 ($\\delta_d=\\delta_0/2$, $\\delta_u=\\delta_0/3$), the neutrino phase $\\delta_\\nu\\simeq0.48$, which the seesaw resets, and the quark CP phase are independent $\\Om$-hard residues.",
      "tag": "Ω",
      "source": "C5,\\,C11; rests on Z1",
-     "key": "p28047"
+     "key": "p28047",
+     "name": null
     },
     {
      "label": "Z3",
      "predicate": "The absolute masses and the electroweak scale $v$: $\\Om$-hard, the matter face of the scale operator (master ledger Z6).",
      "tag": "Ω",
      "source": "\\cite{akhtman2026fields}",
-     "key": "p28048"
+     "key": "p28048",
+     "name": null
     },
     {
      "label": "Z4",
      "predicate": "$\\alpha^{-1}(0)$: the electromagnetic face of the scale operator, $\\Om$-hard (master ledger Z8).",
      "tag": "Ω",
      "source": "App.~\\ref{app:status}, AL",
-     "key": "p28049"
+     "key": "p28049",
+     "name": null
     }
    ]
   },
@@ -399,7 +448,8 @@
      "predicate": "The $\\overline{\\mathbf{126}}$ alignment, $M_R\\propto m_D$, on which the seesaw's transpose fixed point rests (C11): a hypothesis stated ahead of its test; no falsifier that tests it alone is yet stated.",
      "tag": "O",
      "source": "Prop.~\\ref{prop:transpose}",
-     "key": "p28052"
+     "key": "p28052",
+     "name": null
     }
    ]
   }

@@ -14,42 +14,48 @@
      "predicate": "The framed substrate: the symmetry-complete shell $\\p=4\\kap+1$ with its frame $(\\chron;0,1,g)$ and derived quarter-turn, the orbital shell with its meridians and latitudes, and the stance under which the continuum is a projection.",
      "tag": "I",
      "source": "Def.~\\ref{def:framed-shell}; \\citep{Akhtman2025Axioms,Akhtman2026Geometry,Akhtman2025Lorentz}",
-     "key": "p08001"
+     "key": "p08001",
+     "name": null
     },
     {
      "label": "A2",
      "predicate": "Finite-field algebra: the quadratic extension with its Frobenius conjugation and norm, Hilbert's Theorem~90, the square classes by Euler's criterion, the unitary group of a nondegenerate Hermitian form over a finite field.",
      "tag": "I",
      "source": "Prop.~\\ref{prop:algebra}; \\citep{LidlNiederreiter1997,Lam2005,Taylor1992}",
-     "key": "p08002"
+     "key": "p08002",
+     "name": null
     },
     {
      "label": "A3",
      "predicate": "The continuum antecedents: the Cayley transform and the Crank--Nicolson step, Clifford algebras and the Dirac matrices, the $1{+}1$ Lorentz boost and its spin lift, the Schwinger unitary basis and the finite-field quantum mechanics it is compared with.",
      "tag": "I",
      "source": "Rem.~\\ref{rem:antecedents}; \\citep{CrankNicolson1947,Chevalley1996,Porteous1995,Schwinger1960,Chang2013GFQM,Chang2013Spin,Lev2010GFQT}",
-     "key": "p08003"
+     "key": "p08003",
+     "name": null
     },
     {
      "label": "A4",
      "predicate": "The Hartley (max-)entropy reading of image counts, and reversibility as zero information loss.",
      "tag": "I",
      "source": "Rem.~\\ref{rem:entropy}; \\citep{Hartley1928,Renyi1961,Landauer1961,Bennett1973,FredkinToffoli1982}",
-     "key": "p08004"
+     "key": "p08004",
+     "name": null
     },
     {
      "label": "A5",
      "predicate": "The laboratory Carrier $\\Om=2\\,408\\,561$ with $\\dS=602\\,140$, and the constants correspondence read on the Carrier: the two-way constant has $c^2=2^{-1}$, a square since $\\dS$ is even.",
      "tag": "I",
      "source": "Rem.~\\ref{rem:nu-not-c}; \\citep{Akhtman2026Dimensions}",
-     "key": "p08050"
+     "key": "p08050",
+     "name": null
     },
     {
      "label": "A6",
      "predicate": "The framework's stance: the primary object a finite symmetry space of algebraic possibilities, every description an incomplete projection; the theorems of the paper stand independently of it.",
      "tag": "I",
      "source": "Rem.~\\ref{rem:stance}; \\citep{Akhtman2025Axioms}",
-     "key": "p08006"
+     "key": "p08006",
+     "name": null
     }
    ]
   },
@@ -62,56 +68,64 @@
      "predicate": "The shells in play and the two conjugation registers: the laboratory Subjects $\\F_{13}$ and $\\F_{173}$, with $\\F_{1549}$ where the computation allows, the coordinate shell $Y$ and the coefficient field $K$; $\\im$ Frobenius-fixed, $\\w$ anti-fixed; Carrier-scale statements are transfer targets, never sites of computation.",
      "tag": "D",
      "source": "Def.~\\ref{def:shells}",
-     "key": "p08007"
+     "key": "p08007",
+     "name": null
     },
     {
      "label": "B2",
      "predicate": "The class is the datum: the nonsquares form one square class, and the Lorentzian form depends on its coefficient through that class alone.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:class-datum}; rests on A2\\newline \\pywit{dirac}{p08008}{B2}, \\leanwit{FrcCore}{p08008}{B2}, \\leanwit{FrcMathlib}{p08008}{B2} \\lean{Dirac.class\\_datum, Dirac.form\\_class, FRC.Dirac.Plane.class\\_datum, FRC.Dirac.Plane.form\\_class}",
-     "key": "p08008"
+     "key": "p08008",
+     "name": "class_is_the_datum"
     },
     {
      "label": "B3",
      "predicate": "The drive is canonical: the drive multiplier is a nonsquare on every shell and the only named residue that is one on every symmetry-complete shell; the classes of $2$, $2^{-1}$, $-2$, $\\pi=-2^{-1}$ and $\\im$ are fixed by the parity of $\\kap$, that of $e$ by no rule; the reframing flip keeps the class. Decided on $\\p<2000$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:canonical-nu}; rests on A2\\newline \\pywit{dirac}{p08009}{B3}, \\leanwit{FrcCore}{p08009}{B3}, \\leanwit{FrcMathlib}{p08009}{B3} \\lean{Dirac.drive\\_nonsquare, Dirac.named\\_residues, Dirac.shell13, FRC.Dirac.drive\\_nonsquare, FRC.Dirac.inv\\_drive\\_nonsquare, FRC.Dirac.quarter\\_class, FRC.Dirac.two\\_class}",
-     "key": "p08009"
+     "key": "p08009",
+     "name": "drive_canonical"
     },
     {
      "label": "B4",
      "predicate": "The factorisation of the temporal coefficient: $\\nu=g=2^{-1}\\cdot(2g)$ on every shell, the class of $2^{-1}$ even iff $\\kap$ is even, the class of $2g$ odd iff $\\kap$ is even, the product odd always; the reframing flip preserves the parity class and reverses the one-way direction.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:coefficient-factors}; rests on B5, B6\\newline \\pywit{dirac}{p08049}{B4}, \\leanwit{FrcCore}{p08049}{B4}, \\leanwit{FrcMathlib}{p08049}{B4} \\lean{Dirac.nu\\_factorisation, Dirac.two\\_g\\_class, Dirac.named\\_residues, Dirac.shell13, Dirac.carrier\\_constants, FRC.Dirac.nu\\_factorisation, FRC.Dirac.carrier\\_constants}",
-     "key": "p08049"
+     "key": "p08049",
+     "name": "temporal_coefficient_factorisation"
     },
     {
      "label": "B5",
      "predicate": "The square class is chronon parity: the squares are the even drive steps, a residue's class the parity of its drive-step count; on $\\kap$-even shells the whole quarter-turn group is square, so the order-four chart grading carries no signature. Decided on every primitive root of $\\F_{13}$ and $\\F_{173}$ and on $\\p<2000$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:parity}\\newline \\pywit{dirac}{p08011}{B5}, \\leanwit{FrcCore}{p08011}{B5}, \\leanwit{FrcMathlib}{p08011}{B5} \\lean{Dirac.parity\\_iff, FRC.Dirac.parity\\_iff}",
-     "key": "p08011"
+     "key": "p08011",
+     "name": "square_class_chronon_parity"
     },
     {
      "label": "B6",
      "predicate": "Norm growth and parity: one chronon of drive scales every Frobenius norm by the square $g^2$; the single-chronon multiplier is odd and has no square root in $\\Fp$; the flip $g\\mapsto g^{-1}$ preserves the parity class.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:even-transport}\\newline \\pywit{dirac}{p08012}{B6}, \\leanwit{FrcCore}{p08012}{B6}, \\leanwit{FrcMathlib}{p08012}{B6} \\lean{Dirac.norm\\_growth, Dirac.Ext.norm\\_mul, FRC.Dirac.Ext.norm\\_scale, FRC.Dirac.Ext.mul\\_conj, FRC.Dirac.inv\\_drive\\_nonsquare}",
-     "key": "p08012"
+     "key": "p08012",
+     "name": "norm_growth_parity"
     },
     {
      "label": "B7",
      "predicate": "Signature lives on $\\Fp$: the Euclidean form is hyperbolic and $Q_\\nu$ elliptic, with the zero counts of the two classes on every symmetry-complete shell below $60$; over $K$ every element of $\\Fp$ is a square and the dichotomy collapses.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:signature-record}; rests on D5\\newline \\pywit{dirac}{p08013}{B7}, \\leanwit{FrcCore}{p08013}{B7}, \\leanwit{FrcMathlib}{p08013}{B7} \\lean{Dirac.ext\\_square, FRC.Dirac.zeros13}",
-     "key": "p08013"
+     "key": "p08013",
+     "name": "signature_on_shell"
     },
     {
      "label": "B8",
      "predicate": "One-way and two-way transport: comparison readings are even drive steps, the one-way single-chronon multiplier odd, and light-like transport carries no registered velocity, only its square class. Falsifier: a registered one-way velocity, or a two-way constant that changes under the synchronisation gauge.",
      "tag": "R",
      "source": "Real.~\\ref{rem:oneway}; rests on B6",
-     "key": "p08014"
+     "key": "p08014",
+     "name": null
     }
    ]
   },
@@ -124,112 +138,128 @@
      "predicate": "The Hermitian form on $K$-valued functions on a finite set: the sum of the conjugate of the first function times the second.",
      "tag": "D",
      "source": "Def.~\\ref{def:hermitian-form}",
-     "key": "p08015"
+     "key": "p08015",
+     "name": null
     },
     {
      "label": "C2",
      "predicate": "The form is Hermitian and nondegenerate.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:hermitian-nondeg}\\newline \\pywit{dirac}{p08016}{C2}, \\leanwit{FrcCore}{p08016}{C2}, \\leanwit{FrcMathlib}{p08016}{C2} \\lean{Dirac.herm\\_star, Dirac.herm\\_nondegenerate, FRC.Dirac.Hermitian.herm\\_star, FRC.Dirac.Hermitian.herm\\_nondegenerate}",
-     "key": "p08016"
+     "key": "p08016",
+     "name": "form_hermitian_nondegenerate"
     },
     {
      "label": "C3",
      "predicate": "The Cayley step of a Hamiltonian at a trace-zero parameter, and its recursion form.",
      "tag": "D",
      "source": "Def.~\\ref{def:cayley-step}",
-     "key": "p08017"
+     "key": "p08017",
+     "name": null
     },
     {
      "label": "C4",
      "predicate": "Exact Hermitian preservation: for a self-adjoint Hamiltonian and an admissible parameter the Cayley step is unitary.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:cayley-preservation}\\newline \\pywit{dirac}{p08018}{C4}, \\leanwit{FrcCore}{p08018}{C4}, \\leanwit{FrcMathlib}{p08018}{C4} \\lean{Dirac.cayley\\_unitary, FRC.Dirac.Operator.cayley\\_unitary, FRC.Dirac.Spinor.MatE.adjoint\\_dagger, FRC.Dirac.Spinor.cayley\\_values173, FRC.Dirac.Spinor.cayley\\_nilpotent1549, FRC.Dirac.Spinor.cayley\\_step1549, FRC.Dirac.Spinor.cayley\\_unitary1549}",
-     "key": "p08018"
+     "key": "p08018",
+     "name": "exact_hermitian_preservation"
     },
     {
      "label": "C5",
      "predicate": "The finite Cayley transform: the scalar Cayley map is defined on the whole shell, takes values in the norm-one cycle, and bijects the projective line onto it, which has $\\p+1$ elements and is the unitary group of one channel.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:cayley-transform}; rests on A2\\newline \\pywit{dirac}{p08019}{C5}, \\leanwit{FrcCore}{p08019}{C5}, \\leanwit{FrcMathlib}{p08019}{C5} \\lean{Dirac.Ext.field, Dirac.Ext.cayley\\_norm, Dirac.Ext.cayley\\_injective, Dirac.Ext.card\\_normOneGroup, FRC.Dirac.torus\\_counts}",
-     "key": "p08019"
+     "key": "p08019",
+     "name": "finite_cayley_transform"
     },
     {
      "label": "C6",
      "predicate": "The $\\F_{13}$ Schr\\\"odinger example: the kinetic Hamiltonian is nilpotent, every trace-zero parameter is admissible, and every nonzero parameter gives a unitary step of order $13$.",
      "tag": "T",
      "source": "Ex.~\\ref{ex:cayley-13}; rests on E7\\newline \\pywit{dirac}{p08020}{C6}, \\leanwit{FrcCore}{p08020}{C6}, \\leanwit{FrcMathlib}{p08020}{C6} \\lean{Dirac.kinetic\\_nilpotent, Dirac.cayley\\_period, FRC.Dirac.cayley13\\_values, FRC.Dirac.Spinor.cayley\\_values173, FRC.Dirac.Spinor.cayley\\_nilpotent1549, FRC.Dirac.Spinor.cayley\\_step1549, FRC.Dirac.Spinor.cayley\\_unitary1549}",
-     "key": "p08020"
+     "key": "p08020",
+     "name": "schrodinger_example"
     },
     {
      "label": "C7",
      "predicate": "The adjoint of a linear operator for the Hermitian form: the unique operator moved across the pairing; it exists because the form is nondegenerate and the space finite-dimensional.",
      "tag": "D",
      "source": "Def.~\\ref{def:adjoint}",
-     "key": "p08057"
+     "key": "p08057",
+     "name": null
     },
     {
      "label": "C8",
      "predicate": "Translations are unitary: every translation operator preserves the Hermitian form, and its adjoint is the opposite translation.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:translation-unitary}\\newline \\pywit{dirac}{p08058}{C8}, \\leanwit{FrcCore}{p08058}{C8}, \\leanwit{FrcMathlib}{p08058}{C8} \\lean{Dirac.herm\\_translate, Dirac.herm\\_translate\\_adjoint, FRC.Dirac.Hermitian.herm\\_translate, FRC.Dirac.Hermitian.herm\\_translate\\_adjoint}",
-     "key": "p08058"
+     "key": "p08058",
+     "name": "translations_unitary"
     },
     {
      "label": "C9",
      "predicate": "The finite Laplacian of an ordered basis is self-adjoint, each of its summands being self-adjoint.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:laplacian-sa}\\newline \\pywit{dirac}{p08059}{C9}, \\leanwit{FrcCore}{p08059}{C9}, \\leanwit{FrcMathlib}{p08059}{C9} \\lean{Dirac.herm\\_laplacian, FRC.Dirac.Hermitian.herm\\_laplacian}",
-     "key": "p08059"
+     "key": "p08059",
+     "name": "finite_laplacian_self_adjoint"
     },
     {
      "label": "C10",
      "predicate": "The finite Hamiltonian: the stiffness times the negative Laplacian plus a multiplication operator by a base-field potential; the stiffness $\\vkap$ is distinct from the capacity $\\kap$.",
      "tag": "D",
      "source": "Def.~\\ref{def:finite-hamiltonian}",
-     "key": "p08060"
+     "key": "p08060",
+     "name": null
     },
     {
      "label": "C11",
      "predicate": "Every finite Hamiltonian is self-adjoint: the Laplacian and the potential are, and the stiffness is Frobenius-fixed.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:hamiltonian-sa}\\newline \\pywit{dirac}{p08061}{C11}, \\leanwit{FrcCore}{p08061}{C11}, \\leanwit{FrcMathlib}{p08061}{C11} \\lean{Dirac.herm\\_hamiltonian, FRC.Dirac.Hermitian.herm\\_hamiltonian}",
-     "key": "p08061"
+     "key": "p08061",
+     "name": "finite_hamiltonian_self_adjoint"
     },
     {
      "label": "C12",
      "predicate": "The finite unitary group of a Hermitian space: the invertible operators preserving the form, the finite unitary group of the quadratic extension.",
      "tag": "D",
      "source": "Def.~\\ref{def:unitary-group}",
-     "key": "p08062"
+     "key": "p08062",
+     "name": null
     },
     {
      "label": "C13",
      "predicate": "Frame covariance: a change of basis by an invertible matrix intertwines, through the pullback of functions, the translations, the differences and the Laplacians of the two frames.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:frame-covariance}\\newline \\pywit{dirac}{p08063}{C13}, \\leanwit{FrcCore}{p08063}{C13}, \\leanwit{FrcMathlib}{p08063}{C13} \\lean{Dirac.translate\\_covariance, FRC.Dirac.Hermitian.pullback\\_translate, FRC.Dirac.Hermitian.pullback\\_fwdDiff, FRC.Dirac.Hermitian.pullback\\_symDiff}",
-     "key": "p08063"
+     "key": "p08063",
+     "name": "frame_covariance_dirac"
     },
     {
      "label": "C14",
      "predicate": "The admissible set of a self-adjoint Hamiltonian: the trace-zero parameters at which the Cayley denominator is invertible; it contains zero.",
      "tag": "D",
      "source": "Def.~\\ref{def:admissible}",
-     "key": "p08064"
+     "key": "p08064",
+     "name": null
     },
     {
      "label": "C15",
      "predicate": "Finite periodicity: every Cayley orbit is periodic, the unitary group of the finite space being finite.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:finite-periodicity}; rests on C4\\newline \\pywit{dirac}{p08065}{C15}, \\leanwit{FrcCore}{p08065}{C15}, \\leanwit{FrcMathlib}{p08065}{C15} \\lean{Dirac.cayley\\_periodic, FRC.Dirac.cayley13\\_values, FRC.Dirac.Spinor.cayley\\_values173, FRC.Dirac.Spinor.cayley\\_nilpotent1549, FRC.Dirac.Spinor.cayley\\_step1549, FRC.Dirac.Spinor.cayley\\_step\\_c1549}",
-     "key": "p08065"
+     "key": "p08065",
+     "name": "finite_periodicity"
     },
     {
      "label": "C16",
      "predicate": "The forward step: the orientation gauge $\\alpha\\mapsto-\\alpha$ inverts every value of the Cayley map, the same $\\Z_2$ as the derived orientation; the forward parameter composes the two quarter-turns and gives the finite Crank--Nicolson form at unit stiffness.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:forward-step}\\newline \\pywit{dirac}{p08066}{C16}, \\leanwit{FrcCore}{p08066}{C16}, \\leanwit{FrcMathlib}{p08066}{C16} \\lean{Dirac.Ext.cayley\\_gauge, FRC.Dirac.Plane.cayley\\_gauge}",
-     "key": "p08066"
+     "key": "p08066",
+     "name": "forward_step"
     }
    ]
   },
@@ -242,133 +272,152 @@
      "predicate": "Spinor fields on the coordinate shell, the forward differences, the gamma matrices for $\\eta=\\diag(-\\nu,1,1,1)$, the standard finite Dirac operator and the finite Dirac equation.",
      "tag": "D",
      "source": "Def.~\\ref{def:dirac-standard}",
-     "key": "p08021"
+     "key": "p08021",
+     "name": null
     },
     {
      "label": "D2",
      "predicate": "The Clifford relations of the gamma matrices.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:clifford}\\newline \\pywit{dirac}{p08022}{D2}, \\leanwit{FrcCore}{p08022}{D2}, \\leanwit{FrcMathlib}{p08022}{D2} \\lean{Dirac.clifford, Dirac.pauli, FRC.Dirac.clifford\\_values}",
-     "key": "p08022"
+     "key": "p08022",
+     "name": "clifford_relations_gamma"
     },
     {
      "label": "D3",
      "predicate": "Dirac-to-Klein--Gordon factorization: the Dirac operator shifted by the mass, times its partner, is the spinorial Klein--Gordon operator shifted by the squared mass.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:standard-factorization}; rests on D2\\newline \\pywit{dirac}{p08023}{D3}, \\leanwit{FrcCore}{p08023}{D3} \\lean{FRC.Dirac.Operator.dirac\\_factorisation, FRC.Dirac.Spinor.factorisation\\_value}",
-     "key": "p08023"
+     "key": "p08023",
+     "name": "dirac_klein_gordon_factorisation"
     },
     {
      "label": "D4",
      "predicate": "The $1{+}1$ boost with its entries, the spin lift, the spinor transport and the transported Dirac operator.",
      "tag": "D",
      "source": "Def.~\\ref{def:coordinate-boost}",
-     "key": "p08024"
+     "key": "p08024",
+     "name": null
     },
     {
      "label": "D5",
      "predicate": "The boost group is the non-split cycle: the image of the extension's units with kernel the scalar line, the boost entries the coordinates of $z/\\bar z$, cyclic of order $\\p+1$; an order-three boost exists iff $3$ divides $\\p+1$ (at $173$, not at $13$).",
      "tag": "T",
      "source": "Lem.~\\ref{lem:boost-torus}; rests on A2, D14, D15\\newline \\pywit{dirac}{p08025}{D5}, \\leanwit{FrcCore}{p08025}{D5}, \\leanwit{FrcMathlib}{p08025}{D5} \\lean{Dirac.Ext.boost\\_eq\\_one\\_iff, Dirac.Ext.boost\\_range, Dirac.Ext.exists\\_boost\\_eq, Dirac.Ext.card\\_normOneGroup, Dirac.Ext.normOne\\_cyclic, Dirac.Ext.order\\_three\\_iff, FRC.Dirac.torus\\_counts, FRC.Dirac.triality\\_values}",
-     "key": "p08025"
+     "key": "p08025",
+     "name": "boost_group_non_split_cycle"
     },
     {
      "label": "D6",
      "predicate": "Spin conjugation: the lift carries the two temporal gamma matrices to the stated combinations and fixes the other two.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:spin-conjugation}\\newline \\pywit{dirac}{p08026}{D6}, \\leanwit{FrcCore}{p08026}{D6}, \\leanwit{FrcMathlib}{p08026}{D6} \\lean{Dirac.spin\\_conjugation, Dirac.spin\\_conjugation\\_AB, FRC.Dirac.spin\\_conjugation\\_values}",
-     "key": "p08026"
+     "key": "p08026",
+     "name": "spin_conjugation_lift"
     },
     {
      "label": "D7",
      "predicate": "The pullback intertwines the differences of the two frames: the difference along a transported basis vector of the pulled-back field is the pulled-back difference.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:difference-pullback}; rests on C13\\newline \\pywit{dirac}{p08027}{D7}, \\leanwit{FrcCore}{p08027}{D7}, \\leanwit{FrcMathlib}{p08027}{D7} \\lean{Dirac.translate\\_covariance, FRC.Dirac.Hermitian.pullback\\_fwdDiff, FRC.Dirac.Hermitian.pullback\\_symDiff}",
-     "key": "p08027"
+     "key": "p08027",
+     "name": "pullback_intertwines_differences"
     },
     {
      "label": "D8",
      "predicate": "Exact covariance: the transport carries solutions of the Dirac equation to solutions of the transported equation; decided on a sample field at $\\p=13$.",
      "tag": "T",
      "source": "Cor.~\\ref{thm:boost-covariance}; rests on D16\\newline \\pywit{dirac}{p08028}{D8}, \\leanwit{FrcCore}{p08028}{D8} \\lean{FRC.Dirac.Hermitian.pullback\\_symDiff}",
-     "key": "p08028"
+     "key": "p08028",
+     "name": "exact_covariance"
     },
     {
      "label": "D9",
      "predicate": "The spinor form: under the plain conjugate transpose the gamma matrices carry mixed signs and the $\\gamma^0$-twist fails; the odd product $X=\\gamma^0\\gamma^1\\gamma^3$ is Hermitian with square $\\nu$ and makes every gamma matrix anti-self-adjoint; the symmetric Dirac operator is self-adjoint and nilpotent for the $X$-form. Decided at $\\p=13$, $173$ and $1549$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:spinor-form}\\newline \\pywit{dirac}{p08029}{D9}, \\leanwit{FrcCore}{p08029}{D9}, \\leanwit{FrcMathlib}{p08029}{D9} \\lean{Dirac.spinor\\_twist, Dirac.gamma\\_dagger, Dirac.twist\\_adjoint, FRC.Dirac.spinor\\_form\\_values}",
-     "key": "p08029"
+     "key": "p08029",
+     "name": "spinor_form"
     },
     {
      "label": "D10",
      "predicate": "Exact Dirac evolution: the Cayley step of the symmetric Dirac operator shifted by the mass preserves the $X$-form; massless it is unipotent with order a power of $\\p$; massive it is the norm-one phase of the mass times a unipotent, and its order is their least common multiple ($169=\\p^{2}$, $1183$, $2366$ for $m=0,1,2$ in $1{+}1$ at $\\p=13$).",
      "tag": "T",
      "source": "Thm.~\\ref{thm:dirac-evolution}; rests on C4, D9\\newline \\pywit{dirac}{p08030}{D10}, \\leanwit{FrcCore}{p08030}{D10}, \\leanwit{FrcMathlib}{p08030}{D10} \\lean{Dirac.cayley\\_unitary, Dirac.translation\\_nilpotent, FRC.Dirac.Operator.cayley\\_nilpotent\\_shift, FRC.Dirac.Operator.nilpotent\\_of\\_eq\\_mul, FRC.Dirac.Operator.opow\\_of\\_nilpotent\\_shift, FRC.Dirac.Spinor.MatE.adjoint\\_twist, FRC.Dirac.Spinor.MatE.symdiff\\_nilpotent, FRC.Dirac.Spinor.translation\\_values13, FRC.Dirac.Spinor.translation\\_values173, FRC.Dirac.Spinor.translation\\_values1549, FRC.Dirac.Spinor.kinetic\\_values1549}",
-     "key": "p08030"
+     "key": "p08030",
+     "name": "exact_dirac_evolution"
     },
     {
      "label": "D11",
      "predicate": "The two Dirac operators are one covariant family: the pullback identity holds for the symmetric differences, the transport carries the symmetric operator to its transported form, and the spinor form transports by the norm of the lift: norm-one lifts preserve it, the odd coset scales it by the nonsquare class.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:two-diracs}\\newline \\pywit{dirac}{p08031}{D11}, \\leanwit{FrcCore}{p08031}{D11}, \\leanwit{FrcMathlib}{p08031}{D11} \\lean{Dirac.lift\\_adjoint, Dirac.lift\\_transport, FRC.Dirac.Spinor.lift\\_transport\\_values}",
-     "key": "p08031"
+     "key": "p08031",
+     "name": "two_dirac_operators_one_family"
     },
     {
      "label": "D12",
      "predicate": "The worked shell $\\F_{13}$ with the drive $2$: the boost at $x=y=1$ with $A=10$, $B=2$, the transported gamma matrices, the order $14$ of the boost cycle and no triality element; the named residues $2$, $2^{-1}$, $\\im$, $e$, $\\pi$ are nonsquares.",
      "tag": "T",
      "source": "Ex.~\\ref{ex:dirac-13}; rests on D5\\newline \\pywit{dirac}{p08051}{D12}, \\leanwit{FrcCore}{p08051}{D12}, \\leanwit{FrcMathlib}{p08051}{D12} \\lean{Dirac.shell13, FRC.Dirac.spin\\_conjugation\\_values, FRC.Dirac.torus\\_counts, FRC.Dirac.shell173\\_values, FRC.Dirac.triality\\_values}",
-     "key": "p08051"
+     "key": "p08051",
+     "name": "worked_shell_drive"
     },
     {
      "label": "D13",
      "predicate": "Mass is winding rate: the finite Dirac equation equates the meridional development rate of the spinor field to the mass times the field, $E=hf$ an identity. Falsifier: a rest mass with no cycle winding, or a stationary state whose registered frequency is not its winding index.",
      "tag": "R",
      "source": "Real.~\\ref{rem:mass-winding}; rests on D3",
-     "key": "p08033"
+     "key": "p08033",
+     "name": null
     },
     {
      "label": "D14",
      "predicate": "The boost is orthogonal: $\\Lambda(x,y)$ preserves the coordinate form, by $A^2-\\nu B^2=1$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:boost-orthogonal}\\newline \\pywit{dirac}{p08067}{D14}, \\leanwit{FrcCore}{p08067}{D14}, \\leanwit{FrcMathlib}{p08067}{D14} \\lean{Dirac.boost\\_entries, Dirac.Ext.boost\\_mem, FRC.Dirac.Plane.boost\\_entries\\_norm, FRC.Dirac.Plane.boost\\_orthogonal, FRC.Shell.Frame.boost\\_preserves}",
-     "key": "p08067"
+     "key": "p08067",
+     "name": "boost_orthogonal"
     },
     {
      "label": "D15",
      "predicate": "The boosts form a subgroup of the orthogonal group: the product of two boosts is the boost of the product in the extension, the identity and the inverse are boosts.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:boost-subgroup}\\newline \\pywit{dirac}{p08068}{D15}, \\leanwit{FrcCore}{p08068}{D15}, \\leanwit{FrcMathlib}{p08068}{D15} \\lean{Dirac.boost\\_entries, FRC.Dirac.Plane.boost\\_of\\_mul, FRC.Dirac.Plane.boost\\_one, FRC.Dirac.Plane.boost\\_inv, FRC.Shell.Frame.boost\\_comp\\_t, FRC.Shell.Frame.boost\\_comp\\_x, FRC.Shell.Frame.norm\\_one\\_mul}",
-     "key": "p08068"
+     "key": "p08068",
+     "name": "boosts_subgroup_orthogonal"
     },
     {
      "label": "D16",
      "predicate": "The explicit transported form: the transported Dirac operator is the Dirac operator of the transported frame with the transported gamma matrices, the spin conjugates of the standard ones.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:transported-dirac-form}; rests on D6\\newline \\pywit{dirac}{p08069}{D16}, \\leanwit{FrcCore}{p08069}{D16}, \\leanwit{FrcMathlib}{p08069}{D16} \\lean{Dirac.spin\\_conjugation, FRC.Dirac.spin\\_conjugation\\_values}",
-     "key": "p08069"
+     "key": "p08069",
+     "name": "explicit_transported_form"
     },
     {
      "label": "D17",
      "predicate": "The transported gamma matrices satisfy the Clifford relations, conjugation preserving anticommutators.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:transported-clifford}; rests on D2, D16\\newline \\pywit{dirac}{p08070}{D17}, \\leanwit{FrcCore}{p08070}{D17}, \\leanwit{FrcMathlib}{p08070}{D17} \\lean{Dirac.conj\\_anticomm, Dirac.clifford, FRC.Dirac.Operator.conj\\_anticomm, FRC.Dirac.clifford\\_values}",
-     "key": "p08070"
+     "key": "p08070",
+     "name": "transported_gamma_clifford"
     },
     {
      "label": "D18",
      "predicate": "The transported factorization: the transported Dirac operator shifted by the mass, times its partner, is the spinorial Klein--Gordon operator of the transported frame shifted by the squared mass; decided as matrices and on sample fields.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:transported-factorization}; rests on D3, D16, D17\\newline \\pywit{dirac}{p08071}{D18}, \\leanwit{FrcCore}{p08071}{D18} \\lean{FRC.Dirac.Operator.dirac\\_factorisation, FRC.Dirac.Operator.conj\\_anticomm}",
-     "key": "p08071"
+     "key": "p08071",
+     "name": "transported_factorization"
     },
     {
      "label": "D19",
      "predicate": "The worked shell $\\F_{173}$, the second laboratory Subject, with the drive $2$ and $\\im=93$: the boost at $x=y=1$ with $A=170$, $B=2$, the transported gamma matrices, the order $174$ of the boost cycle and its triality element; the named residues are nonsquares.",
      "tag": "T",
      "source": "Ex.~\\ref{ex:dirac-173}; rests on B3\\newline \\pywit{dirac}{p08072}{D19}, \\leanwit{FrcCore}{p08072}{D19}, \\leanwit{FrcMathlib}{p08072}{D19} \\lean{Dirac.shell173, FRC.Dirac.shell173\\_values, FRC.Dirac.torus\\_counts, FRC.Dirac.triality\\_values}",
-     "key": "p08072"
+     "key": "p08072",
+     "name": "worked_shell_second_subject"
     }
    ]
   },
@@ -381,56 +430,64 @@
      "predicate": "The image count and the loss factor of a finite map.",
      "tag": "D",
      "source": "Def.~\\ref{def:loss-factor}",
-     "key": "p08034"
+     "key": "p08034",
+     "name": null
     },
     {
      "label": "E2",
      "predicate": "A self-map of a finite set is bijective iff its image count is the whole count iff its loss factor is one.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:loss-factor-one}\\newline \\pywit{dirac}{p08035}{E2}, \\leanwit{FrcCore}{p08035}{E2}, \\leanwit{FrcMathlib}{p08035}{E2} \\lean{Dirac.loss\\_factor\\_one, FRC.Dirac.Loss.bijective\\_iff\\_image\\_count}",
-     "key": "p08035"
+     "key": "p08035",
+     "name": "self_map_bijective_iff"
     },
     {
      "label": "E3",
      "predicate": "Cayley propagators have loss factor one: the Cayley step is invertible.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:cayley-loss}; rests on E2\\newline \\pywit{dirac}{p08036}{E3}, \\leanwit{FrcCore}{p08036}{E3}, \\leanwit{FrcMathlib}{p08036}{E3} \\lean{Dirac.unit\\_loss\\_factor\\_one, FRC.Dirac.Operator.unit\\_injective, FRC.Dirac.Operator.unit\\_surjective}",
-     "key": "p08036"
+     "key": "p08036",
+     "name": "cayley_propagators_loss_one"
     },
     {
      "label": "E4",
      "predicate": "Period dichotomy: kinetic Hamiltonians give unipotent propagators of order $\\p$; potential Hamiltonians give diagonal propagators with phases on the norm-one cycle and order dividing $\\p+1$ ($14$ at $13$, $174$ at $173$).",
      "tag": "T",
      "source": "Thm.~\\ref{thm:period-dichotomy}; rests on C5\\newline \\pywit{dirac}{p08037}{E4}, \\leanwit{FrcCore}{p08037}{E4}, \\leanwit{FrcMathlib}{p08037}{E4} \\lean{Dirac.cayley\\_period, Dirac.kinetic\\_nilpotent, Dirac.Ext.torus\\_period, FRC.Dirac.cayley13\\_values, FRC.Dirac.potential\\_orders, FRC.Dirac.Spinor.cayley\\_values173, FRC.Dirac.Spinor.cayley\\_nilpotent1549, FRC.Dirac.Spinor.cayley\\_step1549, FRC.Dirac.Spinor.cayley\\_unitary1549}",
-     "key": "p08037"
+     "key": "p08037",
+     "name": "period_dichotomy"
     },
     {
      "label": "E5",
      "predicate": "The power map on the phase cycle has image count $(\\p-1)/\\gcd(\\varepsilon,\\p-1)$ and loss factor $\\gcd(\\varepsilon,\\p-1)$, every nonempty fibre of that size.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:power-map-count}\\newline \\pywit{dirac}{p08073}{E5}, \\leanwit{FrcCore}{p08073}{E5}, \\leanwit{FrcMathlib}{p08073}{E5} \\lean{Dirac.power\\_map\\_count, FRC.Dirac.power\\_map13}",
-     "key": "p08073"
+     "key": "p08073",
+     "name": "power_map_phase_cycle"
     },
     {
      "label": "E6",
      "predicate": "Boost transports have loss factor one: the pullback and the lift are bijective.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:boost-loss}; rests on E2\\newline \\pywit{dirac}{p08074}{E6}, \\leanwit{FrcCore}{p08074}{E6}, \\leanwit{FrcMathlib}{p08074}{E6} \\lean{Dirac.unit\\_loss\\_factor\\_one, FRC.Dirac.Operator.unit\\_injective, FRC.Dirac.Operator.unit\\_surjective}",
-     "key": "p08074"
+     "key": "p08074",
+     "name": "boost_transports_loss_one"
     },
     {
      "label": "E7",
      "predicate": "Kinetic Hamiltonians are fully admissible: a nilpotent Hamiltonian, the kinetic Hamiltonian and the symmetric Dirac operator among them, has every trace-zero parameter admissible, on every shell.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:kinetic-admissible}\\newline \\pywit{dirac}{p08075}{E7}, \\leanwit{FrcCore}{p08075}{E7}, \\leanwit{FrcMathlib}{p08075}{E7} \\lean{Dirac.kinetic\\_nilpotent, Dirac.translation\\_nilpotent, FRC.Dirac.cayley13\\_values, FRC.Dirac.Spinor.cayley\\_values173, FRC.Dirac.Spinor.cayley\\_nilpotent1549, FRC.Dirac.Spinor.cayley\\_step1549, FRC.Dirac.Spinor.cayley\\_step\\_c1549}",
-     "key": "p08075"
+     "key": "p08075",
+     "name": "kinetic_hamiltonians_admissible"
     },
     {
      "label": "E8",
      "predicate": "The three cycles in dynamical roles: the kinetic period is the register's, the potential period the third cycle's, the drive runs on the drive cycle; block compositions take the least common multiple, and the mixed instance at $\\p=13$ has order $(13^{13}+1)/2$; the general classification is posed as open.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:three-tori}; rests on D5, D10\\newline \\pywit{dirac}{p08076}{E8}, \\leanwit{FrcCore}{p08076}{E8} \\lean{FRC.Dirac.Spinor.mixed\\_step\\_values, FRC.Dirac.cayley13\\_values, FRC.Dirac.potential\\_orders, FRC.Dirac.sector\\_separation}",
-     "key": "p08076"
+     "key": "p08076",
+     "name": "three_cycles_dynamical_roles"
     }
    ]
   },
@@ -443,49 +500,56 @@
      "predicate": "The four domains of one framed shell: the additive Fourier pair on the prime and the quarter-turn meridians, the multiplicative pair on the first latitude and the latitude one capacity step down; zonal and meridional motion; both dualities the index advance by the capacity.",
      "tag": "D",
      "source": "Def.~\\ref{def:domains}; rests on A1",
-     "key": "p08038"
+     "key": "p08038",
+     "name": null
     },
     {
      "label": "F2",
      "predicate": "The latitude identities: the energy index $\\kap+1$ is the first rung past the midpoint of the ladder; the shift by $\\kap$ is multiplication by $g^{\\kap}$ on the meridians and carries the first latitude to the energy latitude; $\\kap=-4^{-1}$, so the energy radius is $3\\cdot4^{-1}$ and $\\pi=2\\kap=-2^{-1}$; the unit-norm circle has $\\p-1$ points. On $\\F_{13}$ and $\\F_{173}$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:latitudes}; rests on A1\\newline \\pywit{dirac}{p08052}{F2}, \\leanwit{FrcCore}{p08052}{F2}, \\leanwit{FrcMathlib}{p08052}{F2} \\lean{Dirac.latitude\\_identities, FRC.Dirac.ladder, FRC.Dirac.four\\_kappa, FRC.Dirac.terminal\\_latitude, FRC.Dirac.torus\\_counts}",
-     "key": "p08052"
+     "key": "p08052",
+     "name": "latitude_identities_ladder"
     },
     {
      "label": "F3",
      "predicate": "The free evolution is the drive: the drive pullback is unitary, the characters are its eigenvectors with the phase $g^{-k}$ per chronon, and every character line is isotropic except the two with eigenvalues $\\pm1$, the meeting of the norm-one cycle and the drive cycle. Decided on $\\F_{13}$ and $\\F_{173}$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:zonal}\\newline \\pywit{dirac}{p08040}{F3}, \\leanwit{FrcCore}{p08040}{F3}, \\leanwit{FrcMathlib}{p08040}{F3} \\lean{Dirac.drive\\_chi, Dirac.drive\\_sum, Dirac.chi\\_isotropy, Dirac.exceptional\\_eigen, FRC.Dirac.drive\\_eigen, FRC.Dirac.exceptional\\_eigen, FRC.Dirac.isotropy}",
-     "key": "p08040"
+     "key": "p08040",
+     "name": "free_evolution_drive"
     },
     {
      "label": "F4",
      "predicate": "Two evolution sectors, one space: the drive's split-phase sector and the Cayley propagators' norm-one sector meet in $\\{\\pm1\\}$ alone; the cycle Laplacian is self-adjoint, its Cayley steps commute with the drive, and the composite is unitary.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:sectors}; rests on C5, F3\\newline \\pywit{dirac}{p08041}{F4}, \\leanwit{FrcCore}{p08041}{F4}, \\leanwit{FrcMathlib}{p08041}{F4} \\lean{Dirac.sector\\_separation, Dirac.exceptional\\_eigen, FRC.Dirac.sector\\_separation}",
-     "key": "p08041"
+     "key": "p08041",
+     "name": "two_evolution_sectors_one_space"
     },
     {
      "label": "F5",
      "predicate": "The shell reading: Schr\\\"odinger dynamics is the exact zonal evolution, Dirac dynamics the exact meridional development; the drive cycle holds the free evolution, the register the kinetic periods, the third cycle the interactions, masses and boosts; the light cone is a square-class boundary. Falsifier: a registered dynamics with a phase outside the cycles, or a mass without winding.",
      "tag": "R",
      "source": "Real.~\\ref{rem:thesis}; rests on A4, B6, D5, D13, F3, F6",
-     "key": "p08042"
+     "key": "p08042",
+     "name": null
     },
     {
      "label": "F6",
      "predicate": "The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\\varphi(-m)$ on the third cycle and the mass phases fill it once; the spectra meet in $\\{\\pm1\\}$; the Hamiltonian form has the two eigenvalues $\\varphi(\\pm\\im\\nu m)$, a conjugate pair. Decided at $\\p=13$ and $173$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:two-spectra}; rests on C5, D9, D10, F3, F4\\newline \\pywit{dirac}{p08048}{F6}, \\leanwit{FrcCore}{p08048}{F6}, \\leanwit{FrcMathlib}{p08048}{F6} \\lean{Dirac.drive\\_chi, Dirac.cayley\\_nilpotent\\_shift, Dirac.Ext.cayley\\_injective, Dirac.Ext.card\\_normOneGroup, Dirac.sector\\_separation, FRC.Dirac.drive\\_eigen, FRC.Dirac.sector\\_separation, FRC.Dirac.torus\\_counts}",
-     "key": "p08048"
+     "key": "p08048",
+     "name": "two_spectra"
     },
     {
      "label": "F7",
      "predicate": "Finite plane waves, dispersion and the mass shell: the cycle Laplacian has the closed dispersion relation on the characters; the translations admit no characters and the kinetic sector is unipotent; the static massive Dirac equation has only the zero solution, the mass being an evolution phase.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:dispersion}; rests on C5, D3, D9, D10, E4, F3\\newline \\pywit{dirac}{p08077}{F7}, \\leanwit{FrcCore}{p08077}{F7}, \\leanwit{FrcMathlib}{p08077}{F7} \\lean{Dirac.dispersion, Dirac.translation\\_nilpotent, Dirac.cayley\\_nilpotent\\_shift, FRC.Dirac.Plane.dispersion, FRC.Dirac.Operator.translation\\_nilpotent, FRC.Dirac.Spinor.MatE.translation\\_unipotent, FRC.Dirac.Operator.static\\_unique, FRC.Dirac.Spinor.translation\\_values13, FRC.Dirac.Spinor.translation\\_values173, FRC.Dirac.Spinor.translation\\_values1549, FRC.Dirac.Spinor.kinetic\\_values1549}",
-     "key": "p08077"
+     "key": "p08077",
+     "name": "finite_plane_waves_dispersion"
     }
    ]
   },
@@ -498,28 +562,32 @@
      "predicate": "Two cycles for one unit circle: the continuum's single phase group appears on the shell as the drive cycle, carrying the free evolution, and the norm-one cycle, carrying the Cayley phases and the boosts, and the two meet in $\\{\\pm1\\}$.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:explains}(i); rests on F4, F6\\newline \\pywit{dirac}{p08053}{X1}, \\leanwit{FrcCore}{p08053}{X1}, \\leanwit{FrcMathlib}{p08053}{X1} \\lean{Dirac.sector\\_separation, FRC.Dirac.sector\\_separation}",
-     "key": "p08053"
+     "key": "p08053",
+     "name": "two_cycles_one_circle"
     },
     {
      "label": "X2",
      "predicate": "The one-way speed is gauge: the temporal coefficient is an odd drive step, registered transport is even, and the reframing flip reverses the one-way direction while preserving the parity class.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:explains}(ii); rests on B4, B5\\newline \\pywit{dirac}{p08054}{X2}, \\leanwit{FrcCore}{p08054}{X2}, \\leanwit{FrcMathlib}{p08054}{X2} \\lean{Dirac.nu\\_factorisation, Dirac.parity\\_iff, FRC.Dirac.nu\\_factorisation, FRC.Dirac.parity\\_iff}",
-     "key": "p08054"
+     "key": "p08054",
+     "name": "one_way_speed_gauge"
     },
     {
      "label": "X3",
      "predicate": "Mass is an evolution phase, not a kernel condition: the symmetric Dirac operator is nilpotent, the static massive equation has only the zero solution, and the mass enters as the norm-one factor of the Cayley step.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:explains}(iii); rests on D10, F7\\newline \\pywit{dirac}{p08055}{X3}, \\leanwit{FrcCore}{p08055}{X3}, \\leanwit{FrcMathlib}{p08055}{X3} \\lean{Dirac.translation\\_nilpotent, Dirac.cayley\\_nilpotent\\_shift, Dirac.cayley\\_unitary, FRC.Dirac.Spinor.MatE.symdiff\\_nilpotent, FRC.Dirac.Operator.static\\_unique, FRC.Dirac.Operator.cayley\\_unitary, FRC.Dirac.Spinor.translation\\_values13, FRC.Dirac.Spinor.translation\\_values173, FRC.Dirac.Spinor.translation\\_values1549, FRC.Dirac.Spinor.kinetic\\_values1549}",
-     "key": "p08055"
+     "key": "p08055",
+     "name": "mass_is_evolution_phase"
     },
     {
      "label": "X4",
      "predicate": "The spinor form is forced: the continuum's $\\gamma^0$-twist fails because Frobenius fixes the internal quarter-turn, and the arithmetic forces the twist onto the odd product omitting $\\gamma^2$.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:explains}(iv); rests on D9\\newline \\pywit{dirac}{p08056}{X4}, \\leanwit{FrcCore}{p08056}{X4}, \\leanwit{FrcMathlib}{p08056}{X4} \\lean{Dirac.spinor\\_twist, Dirac.gamma\\_dagger, FRC.Dirac.spinor\\_form\\_values}",
-     "key": "p08056"
+     "key": "p08056",
+     "name": "spinor_form_forced"
     }
    ]
   },
@@ -532,7 +600,8 @@
      "predicate": "The classification of the admissible set of Cayley parameters for a general self-adjoint Hamiltonian, beyond the nilpotent and the diagonal cases.",
      "tag": "O",
      "source": "Rem.~\\ref{rem:admissibility}; rests on C5, E7",
-     "key": "p08046"
+     "key": "p08046",
+     "name": null
     }
    ]
   }

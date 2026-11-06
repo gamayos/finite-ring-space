@@ -14,21 +14,24 @@
      "predicate": "Completeness is primality: the residues of a count $q\\ge2$ have no proper nonzero ideal exactly when $q$ is prime, so $\\Fp$ is a field.",
      "tag": "T",
      "source": "Section~\\ref{sec:framing}; \\cite{burton2010elementary,dummit2004abstract}; \\href{https://finitering.space/ledger.html#A10}{00:A10}\\newline \\pywit{algebra}{p00162}{A1}, \\leanwit{FrcCore}{p00162}{A1} \\lean{FRC.Shell.Prime.isPrime\\_iff\\_complete}",
-     "key": "p00162"
+     "key": "p00162",
+     "name": "completeness_is_primality"
     },
     {
      "label": "A2",
      "predicate": "The quarter-turn criterion: for an odd prime $\\p$, $-1$ is a square in $\\Fp$ exactly when $\\p\\equiv1\\pmod4$ (Euler's criterion).",
      "tag": "T",
      "source": "Section~\\ref{sec:framing}; \\cite{burton2010elementary,dummit2004abstract}; \\href{https://finitering.space/ledger.html#A11}{00:A11}\\newline \\pywit{algebra}{p00163}{A2}, \\leanwit{FrcCore}{p00163}{A2} \\lean{FRC.Shell.Prime.quarter\\_turn\\_iff}",
-     "key": "p00163"
+     "key": "p00163",
+     "name": "quarter_turn_criterion"
     },
     {
      "label": "A3",
      "predicate": "Primitive roots: $\\Fpx$ is cyclic of order $\\p-1$; every prime field has a primitive root $\\gen$, with $\\gen^{\\p-1}=1$ and $\\langle\\gen\\rangle=\\Fpx$.",
      "tag": "T",
      "source": "Section~\\ref{sec:sphere}; \\cite{burton2010elementary,dummit2004abstract}; \\href{https://finitering.space/ledger.html#A12}{00:A12}\\newline \\pywit{algebra}{p00164}{A3}, \\leanwit{FrcCore}{p00164}{A3} \\lean{FRC.Shell.Prime.exists\\_drive}",
-     "key": "p00164"
+     "key": "p00164",
+     "name": "prime_carries_frame"
     }
    ]
   },
@@ -41,35 +44,40 @@
      "predicate": "The shell, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$ prime; the frame $(\\tau;0,1,\\gen)$ with $\\gen$ a primitive root and the drive $x\\mapsto\\gen x$; the cycle $\\Phi_\\p\\cong C_{\\p-1}$; $\\im:=-\\gen^{\\kap}$, $-1=\\gen^{2\\kap}$.",
      "tag": "D",
      "source": "Def.~\\ref{def:field}",
-     "key": "p01003"
+     "key": "p01003",
+     "name": null
     },
     {
      "label": "B2",
      "predicate": "Symmetry completeness: the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$; under the Klein four-group $\\langle x\\mapsto-x,\\,x\\mapsto x^{-1}\\rangle$, $Q_4$ is the union of the two size-two orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$, and $\\Fpx\\setminus Q_4$ splits into exactly $\\kap-1$ orbits of size four. For $\\p\\equiv3\\pmod4$ no $\\im$ exists.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:symmetric-completeness}\\newline \\pywit{algebra}{p01004}{B2}, \\leanwit{FrcCore}{p01004}{B2}, \\leanwit{FrcMathlib}{p01004}{B2} \\lean{Algebra.quarter\\_turn\\_exists, Algebra.klein\\_orbit\\_four, Algebra.card\\_fourth\\_roots, FRC.Shell.Frame.quarter\\_turn\\_exists, FRC.Shell.Frame.fourth\\_roots, FRC.Shell.Frame.klein\\_orbit\\_four, FRC.Shell.Frame.orbit\\_rep, FRC.Shell.Frame.orbit\\_rep\\_unique, FRC.Shell.s13\\_klein}",
-     "key": "p01004"
+     "key": "p01004",
+     "name": "symmetry_completeness"
     },
     {
      "label": "B3",
      "predicate": "The oriented quarter-turn: $\\im=-\\gen^{\\kap}$ satisfies $\\im^{2}=-1$ for every primitive root $\\gen$; the two square roots of $-1$ are $\\{-\\gen^{\\kap},\\gen^{\\kap}\\}$, so the drive fixes which is $\\im$. On $\\F_{13}$, $\\gen=2$: $\\im=5$.",
      "tag": "T",
      "source": "Section~\\ref{sec:framing}\\newline \\pywit{algebra}{p01005}{B3}, \\leanwit{FrcCore}{p01005}{B3}, \\leanwit{FrcMathlib}{p01005}{B3} \\lean{Algebra.quarter\\_turn, Algebra.s13\\_quarter\\_turn, FRC.Shell.Frame.quarter\\_turn\\_sq, FRC.Shell.s13\\_datum}",
-     "key": "p01005"
+     "key": "p01005",
+     "name": "oriented_quarter_turn"
     },
     {
      "label": "B4",
      "predicate": "Affine reframing: $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:affine-invariance}; Def.~\\ref{def:framed-field}\\newline \\pywit{algebra}{p01006}{B4}, \\leanwit{FrcCore}{p01006}{B4}, \\leanwit{FrcMathlib}{p01006}{B4} \\lean{Algebra.affine\\_frame, FRC.Shell.Frame.affine\\_frame\\_unit}",
-     "key": "p01006"
+     "key": "p01006",
+     "name": "affine_reframing"
     },
     {
      "label": "B5",
      "predicate": "Origin and unit are observer data (affine gauge); the generator $\\gen$ is the frame's drive, not gauge; the observer's window is the naturals below $\\sqrt\\p$.",
      "tag": "D",
      "source": "Section~\\ref{sec:unification}",
-     "key": "p01007"
+     "key": "p01007",
+     "name": null
     }
    ]
   },
@@ -82,28 +90,32 @@
      "predicate": "The four symmetries as maps of the shell: the successor $C_1:k\\mapsto k+1$; translations $T_a$, $a\\in\\Fp$, the cycle $C_\\p$; scalings $S_m$, $m\\in\\Fpx$, the cycle $C_{\\p-1}$; power maps $P_\\varepsilon:x\\mapsto x^{\\varepsilon}$, $\\varepsilon\\in C_{\\p-1}$, bijective iff $\\gcd(\\varepsilon,\\p-1)=1$.",
      "tag": "D",
      "source": "Section~\\ref{sec:sphere}, (\\ref{eq:counting})--(\\ref{eq:powering})",
-     "key": "p01008"
+     "key": "p01008",
+     "name": null
     },
     {
      "label": "C2",
      "predicate": "The frame group: $\\langle T_a,S_m\\rangle$ is the affine group of order $\\p(\\p-1)$, acting simply transitively on the frames $(a,b)$, $b\\neq0$; the set of frames is a torsor under it.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:frame-group}; rests on B4\\newline \\pywit{algebra}{p01009}{C2}, \\leanwit{FrcCore}{p01009}{C2} \\lean{FRC.Shell.Frame.Affine.simply\\_transitive, FRC.Shell.Frame.frame\\_count}",
-     "key": "p01009"
+     "key": "p01009",
+     "name": "frame_group"
     },
     {
      "label": "C3",
      "predicate": "Meridians and latitudes: $M_n(a)=a\\gen^{n}$, $a\\in\\Fp$, the ordered list of the shell with step $\\gen^{n}$; $L_a(m)=a\\gen^{m}$, $m\\in C_{\\p-1}$, $a\\neq0$, the multiplicative cycle from $a$; the orbital complex $\\Sp$ with vertex set $\\{(n,\\pm a)\\}\\cup\\{0\\}$. The $2$-sphere reading is 2-geometry's~\\cite{akhtman2025geometry}.",
      "tag": "D",
      "source": "Def.~\\ref{def:orbit-sphere}",
-     "key": "p01010"
+     "key": "p01010",
+     "name": null
     },
     {
      "label": "C4",
      "predicate": "Involutions and counts: $M_n(a)=M_{n+2\\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\\kap)$ since $\\gen^{2\\kap}=-1$; $\\p-1$ distinct meridian lists in $2\\kap$ great circles; $2\\kap$ latitude pairs; one-sided vertex count $(\\p-1)^{2}/2+1$, the double cover $(\\p-1)^{2}$.",
      "tag": "T",
      "source": "Section~\\ref{sec:sphere}, Def.~\\ref{def:orbit-sphere}\\newline \\pywit{algebra}{p01011}{C4}, \\leanwit{FrcCore}{p01011}{C4}, \\leanwit{FrcMathlib}{p01011}{C4} \\lean{Algebra.meridian\\_involution, FRC.Shell.Frame.meridian\\_involution, FRC.Shell.Frame.pow\\_inj, FRC.Shell.Frame.sign\\_pair, FRC.Shell.Frame.window\\_injective, FRC.Shell.Frame.window\\_signed, FRC.Shell.Frame.vertex\\_count}",
-     "key": "p01011"
+     "key": "p01011",
+     "name": "involutions_and_counts"
     }
    ]
   },
@@ -116,49 +128,56 @@
      "predicate": "Framed integers: the window $W_H=\\{z\\in\\Z:|z|\\le H\\}$, $2H<\\p$, embedded by $z\\mapsto z\\bmod\\p$; sign, order and magnitude are the window's; sums read back for $4H<\\p$, products for $2H^{2}<\\p$.",
      "tag": "D",
      "source": "Def.~\\ref{def:integers}",
-     "key": "p01012"
+     "key": "p01012",
+     "name": null
     },
     {
      "label": "D2",
      "predicate": "The window law: $z\\mapsto z\\bmod\\p$ is injective on $W_H$ when $2H<\\p$; for $x,y\\in W_H$ the residue of $x\\pm y$ reads back the integer when $4H<\\p$, and that of $xy$ when $2H^{2}<\\p$ (the same injectivity on the windows $2H$ and $H^{2}$).",
      "tag": "T",
      "source": "Section~\\ref{sec:numbers}\\newline \\pywit{algebra}{p01013}{D2}, \\leanwit{FrcCore}{p01013}{D2}, \\leanwit{FrcMathlib}{p01013}{D2} \\lean{Algebra.framed\\_integer\\_window, FRC.Shell.Frame.window\\_injective, FRC.Shell.Frame.window\\_signed, FRC.Shell.Frame.window\\_add\\_readback, FRC.Shell.Frame.window\\_mul\\_readback}",
-     "key": "p01013"
+     "key": "p01013",
+     "name": "window_law"
     },
     {
      "label": "D3",
      "predicate": "Framed rationals: $a/b$ with $a,b\\in W_H$, $b\\not\\equiv0$, of value $ab^{-1}\\in\\Fp$; the scale grid $[x,n]:=x\\gen^{-n}$, $x\\in\\{0,\\dots,\\p-1\\}$, $n\\in C_{\\p-1}$; $G_n$ the ordered list $(x\\gen^{-n})_x$, the meridian $M_{-n}$ of C3.",
      "tag": "D",
      "source": "Def.~\\ref{def:rationals}",
-     "key": "p01014"
+     "key": "p01014",
+     "name": null
     },
     {
      "label": "D8",
      "predicate": "The window law for framed rationals: for $2ND<\\p$, fractions $a/b$ with $|a|\\le N$, $1\\le b\\le D$ and equal values are equal fractions; products of such fractions with $|a|,b\\le H$ read back when $2H^{4}<\\p$, sums when $4H^{4}<\\p$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:frac-window}\\newline \\pywit{algebra}{p01035}{D8}, \\leanwit{FrcCore}{p01035}{D8} \\lean{FRC.Shell.Frame.frac\\_window, FRC.Shell.Frame.frac\\_window\\_inv, FRC.Shell.Frame.frac\\_mul\\_readback, FRC.Shell.Frame.frac\\_add\\_readback}",
-     "key": "p01035"
+     "key": "p01035",
+     "name": "window_law_framed_rationals"
     },
     {
      "label": "D9",
      "predicate": "The scale grid covers the field: for every unit $B$, every element of $\\Fp$ is $tB^{-1}$ for exactly one integer $t$ with $|t|\\le2\\kap$; each grid $\\{t/\\gen^{n}\\}$ lists every element once.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:grid}\\newline \\pywit{algebra}{p01036}{D9}, \\leanwit{FrcCore}{p01036}{D9} \\lean{FRC.Shell.Frame.signed\\_rep, FRC.Shell.Frame.signed\\_rep\\_unique, FRC.Shell.Frame.grid\\_cover, FRC.Shell.Frame.grid\\_unique}",
-     "key": "p01036"
+     "key": "p01036",
+     "name": "scale_grid_covers_field"
     },
     {
      "label": "D4",
      "predicate": "Scale-periodicity, in the field: $S_n(x)=x\\gen^{-n}$ satisfies $S_{n+(\\p-1)}=S_n$, and the period is exact: for $x\\neq0$, $x\\gen^{-m}=x\\gen^{-n}$ iff $m\\equiv n\\pmod{\\p-1}$; each grid $G_n$ lists every residue once; the zoom has order $\\p-1$. As lists of rationals $x/\\gen^{n}$ the grids are not periodic.",
      "tag": "T",
      "source": "Lem.~\\ref{thm:scale-periodicity}; 6:D4\\newline \\pywit{algebra}{p01015}{D4}, \\leanwit{FrcCore}{p01015}{D4}, \\leanwit{FrcMathlib}{p01015}{D4} \\lean{Algebra.scale\\_periodic, FRC.Shell.Frame.scale\\_periodic, FRC.Shell.Frame.scale\\_inv\\_periodic, FRC.Shell.Frame.scale\\_exact, FRC.Shell.Frame.zoom\\_order, FRC.Shell.Frame.scale\\_bijective}",
-     "key": "p01015"
+     "key": "p01015",
+     "name": "scale_periodicity_field"
     },
     {
      "label": "D6",
      "predicate": "The continuum as chart: the framed real line is the reading of the nested grids against $\\R$, a labelled idealisation entered nowhere as an object; no completion, compactness or ``complete continuum'' is claimed.",
      "tag": "D",
      "source": "Section~\\ref{sec:reals}",
-     "key": "p01017"
+     "key": "p01017",
+     "name": null
     }
    ]
   },
@@ -171,28 +190,32 @@
      "predicate": "The framed complex chart: the pair $(a,b)\\in W_H^{2}$ read as $a+b\\im\\in\\Fp$; the quarter-turn acts on the shell as the rotation $x\\mapsto\\im x$ of order four; the chart is the plane picture of $Q_4$ acting on the shell, not an extension of $\\Fp$.",
      "tag": "D",
      "source": "Def.~\\ref{def:complex}",
-     "key": "p01018"
+     "key": "p01018",
+     "name": null
     },
     {
      "label": "E2",
      "predicate": "The extension by $X^{2}+1$ is trivial: on the shell $\\Fp[X]/(X^{2}+1)$ has zero divisors, $(X+\\im)(X-\\im)=0$, so it is not a field; $\\Fp[X]/(X^{2}+1)$ is a field exactly when $\\p\\equiv3\\pmod4$, every nonzero pair $(a,b)$ having the inverse $(a,-b)/(a^{2}+b^{2})$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:Cp-field}\\newline \\pywit{algebra}{p01019}{E2}, \\leanwit{FrcCore}{p01019}{E2}, \\leanwit{FrcMathlib}{p01019}{E2} \\lean{Algebra.complex\\_chart\\_zero\\_divisor, FRC.Shell.Frame.complex\\_chart\\_zero\\_divisor, FRC.Shell.Frame.complex\\_chart\\_field}",
-     "key": "p01019"
+     "key": "p01019",
+     "name": "quadratic_extension_trivial"
     },
     {
      "label": "E3",
      "predicate": "Solving in the substrate: $f\\in\\Fp[X]$ has a root in $\\Fp$ iff $f$ and $X^{\\p}-X=\\prod_{a}(X-a)$ are not coprime; a nonzero $f$ of degree $d$ has at most $d$ roots. An equation without a root in $\\Fp$ is recognised, not extended (E2).",
      "tag": "T",
      "source": "Section~\\ref{sec:conclusion}\\newline \\pywit{algebra}{p01026}{E3}, \\leanwit{FrcCore}{p01026}{E3}, \\leanwit{FrcMathlib}{p01026}{E3} \\lean{Algebra.root\\_iff\\_not\\_coprime, FRC.Shell.Poly.Frame.root\\_iff\\_common\\_factor, FRC.Shell.Poly.Frame.root\\_bound, FRC.Shell.Frame.fermat}",
-     "key": "p01026"
+     "key": "p01026",
+     "name": "solving_substrate"
     },
     {
      "label": "E4",
      "predicate": "Continuous symmetry, the abelian case: $\\Fpx\\simeq C_{\\p-1}$ is a $\\pi/(\\p-1)$-net of $U(1)$ under $k\\mapsto e^{2\\pi\\im k/(\\p-1)}$; the rounding of a framed turn $u/v$ to $C_{\\p-1}$ lies within half a step, and its group-law defect is at most one step.",
      "tag": "T",
      "source": "Section~\\ref{sec:conclusion}; 6:E2\\newline \\pywit{algebra}{p01028}{E4}, \\leanwit{FrcCore}{p01028}{E4}, \\leanwit{FrcMathlib}{p01028}{E4} \\lean{Algebra.circle\\_net, Algebra.group\\_law\\_defect, FRC.Shell.Frame.round\\_exists, FRC.Shell.Frame.round\\_defect}",
-     "key": "p01028"
+     "key": "p01028",
+     "name": "continuous_symmetry_abelian"
     }
    ]
   },
@@ -205,21 +228,24 @@
      "predicate": "No element of additive order two: $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\\kap=(\\p-1)/2$ and $2\\kap+1=(\\p+1)/2=2^{-1}$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:no-south-pole}\\newline \\pywit{algebra}{p01020}{Z1}, \\leanwit{FrcCore}{p01020}{Z1}, \\leanwit{FrcMathlib}{p01020}{Z1} \\lean{Algebra.no\\_south\\_pole, FRC.Shell.Frame.no\\_south\\_pole}",
-     "key": "p01020"
+     "key": "p01020",
+     "name": "no_additive_order_two"
     },
     {
      "label": "Z2",
      "predicate": "The antipode, charted $\\infty$: the compactification point of the framed line beyond the observer's horizon; its reading as classical infinity is the chart, not a residue.",
      "tag": "D",
      "source": "Section~\\ref{sec:infinity}",
-     "key": "p01021"
+     "key": "p01021",
+     "name": null
     },
     {
      "label": "Z3",
      "predicate": "No latitude on the equator: $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle ($\\p/4$, $\\p/2$, $3\\p/4$) has value $0$, and none of the window sits there; the equator, depth $\\kap+\\tfrac14$, lies strictly between $L_\\kap$ and $L_{\\kap+1}$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:no-equator}\\newline \\pywit{algebra}{p01034}{Z3}, \\leanwit{FrcCore}{p01034}{Z3}, \\leanwit{FrcMathlib}{p01034}{Z3} \\lean{Algebra.no\\_equator, Algebra.quarter\\_position, Algebra.quarter\\_position\\_window, Algebra.equator\\_between, FRC.Shell.Frame.no\\_equator, FRC.Shell.Frame.quarter\\_fold, FRC.Shell.Frame.quarter\\_position, FRC.Shell.Frame.equator\\_between}",
-     "key": "p01034"
+     "key": "p01034",
+     "name": "no_latitude_equator"
     }
    ]
   }

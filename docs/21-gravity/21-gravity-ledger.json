@@ -14,56 +14,64 @@
      "predicate": "The finite substrate: the torsor Carrier, coordinatized by a frame as $\\F_\\Omega$, its cardinality the Carrier identity $\\Omega=4S+1$ with the measured $S\\sim10^{122}$ (Planck units) locating the coherence horizon, with the phase cycle $C_{\\Omega-1}$, the quarter-turn core $Q_4$, the drive (time is scale-dilation, each Subject's own), the coherence horizon $\\sqrt\\Omega$, and the resolution floor $1/\\sqrt\\Omega$.",
      "tag": "I",
      "source": "\\citep{algebra,lorentzian,dimensions}\\newline \\pywit{gravity}{p21001}{A1}, \\leanwit{FrcCore}{p21001}{A1}, \\leanwit{FrcMathlib}{p21001}{A1} \\lean{Gravity.calibration\\_congruence, Gravity.hbar\\_register, FRC.Grav.calibration}",
-     "key": "p21001"
+     "key": "p21001",
+     "name": "finite_substrate"
     },
     {
      "label": "A2",
      "predicate": "The three frame freedoms: the frame space is a torsor under $\\mathrm{SL}_2(\\F_\\Omega)$, the spatial chart three-dimensional per frame, its continuum shadow the $3$-sphere.",
      "tag": "I",
      "source": "\\citep{dickson}; declared in \\S\\ref{sec:primer}",
-     "key": "p21002"
+     "key": "p21002",
+     "name": null
     },
     {
      "label": "A3",
      "predicate": "The quadratic extension $K$, the Frobenius involution, the Lorentzian norm form, and the boost cycle (the Dirac layer).",
      "tag": "I",
      "source": "\\citep{lorentzian}",
-     "key": "p21003"
+     "key": "p21003",
+     "name": null
     },
     {
      "label": "A4",
      "predicate": "Composite coherence: a bound cluster is one synchronised drive orbit (offset confinement, the $m$-body synchronisation lemma), coupling with coefficient $m$ against an incoherent $O(\\sqrt m)$.",
      "tag": "I",
      "source": "\\citep{quantum}",
-     "key": "p21004"
+     "key": "p21004",
+     "name": null
     },
     {
      "label": "A5",
      "predicate": "Lattice potential theory and the discrete harmonic Green's function, with Coulomb asymptotics $1/4\\pi r$.",
      "tag": "I",
      "source": "\\citep{duffin,lawler}",
-     "key": "p21005"
+     "key": "p21005",
+     "name": null
     },
     {
      "label": "A7",
      "predicate": "The continuum uniqueness of the Fierz--Pauli stiffness and Deser's energy--momentum self-coupling bootstrap, used as imported templates.",
      "tag": "I",
      "source": "\\citep{fierz,deser}",
-     "key": "p21007"
+     "key": "p21007",
+     "name": null
     },
     {
      "label": "A8",
      "predicate": "Measured quantities used for comparison only: the GRAVITY mass--distance and EHT shadow for Sgr~A$^*$, the SPARC acceleration scale, the classical-test values, and $H_0$.",
      "tag": "I",
      "source": "measured \\citep{gravity,eht,mcgaugh,will}",
-     "key": "p21008"
+     "key": "p21008",
+     "name": null
     },
     {
      "label": "A9",
      "predicate": "The minimal-instance results consumed: the two-face count of the drift (angular $\\kap/S$, temporal $\\kap/(2S)$, ratio $2$ the double cover), the registration dictionary $p_{\\mathrm{sl}}=3(S/\\kap)\\,r_g$ with the forcing $2\\gamma-\\beta=1$, and the mass--energy channel $C_{\\p-1}\\cap C_{2(\\p+1)}=Q_4$.",
      "tag": "I",
      "source": "\\citep{s13}\\newline \\pywit{gravity}{p21009}{A9}, \\leanwit{FrcCore}{p21009}{A9}, \\leanwit{FrcMathlib}{p21009}{A9} \\lean{Gravity.cover\\_forcing, Gravity.channel\\_q4, FRC.Grav.two\\_face\\_count, FRC.Drift.channel\\_q4}",
-     "key": "p21009"
+     "key": "p21009",
+     "name": "minimal_instance_results"
     }
    ]
   },
@@ -76,70 +84,80 @@
      "predicate": "Gravity is the relaxation of forced frame drift: a field has no proper ideals, so every embedded massive shell is non-ideal and its frame drifts; reducing the mutual drift (raising coherence) is identically motion toward smaller separation.",
      "tag": "R",
      "source": "\\S\\ref{sec:intro},\\,\\ref{sec:premises}",
-     "key": "p21010"
+     "key": "p21010",
+     "name": null
     },
     {
      "label": "B2",
      "predicate": "Mass is winding rate: the per-cell rate identification, one $Q_4$ datum in the channel $C_{\\p-1}\\cap C_{2(\\p+1)}=Q_4$, tested against its falsifier at the instance \\cite{s13}; $E=mc^2=hf$ an identity; the composite coefficient $m$ is derived (C1), not constitutive.",
      "tag": "R",
      "source": "Def.~\\ref{def:mass},~\\ref{pre:mass}",
-     "key": "p21011"
+     "key": "p21011",
+     "name": null
     },
     {
      "label": "B3",
      "predicate": "Distance is decoherence, counted in the relational steps of the observer's chart.",
      "tag": "R",
      "source": "Def.~\\ref{pre:dist}",
-     "key": "p21012"
+     "key": "p21012",
+     "name": null
     },
     {
      "label": "B4",
      "predicate": "Channel unity: the clock tick (temporal correlation) and the decoherence count (spatial correlation) are two readings of one capacity.",
      "tag": "R",
      "source": "Lem.~\\ref{pre:unity}",
-     "key": "p21013"
+     "key": "p21013",
+     "name": null
     },
     {
      "label": "B5",
      "predicate": "The single realisation: the objects we weigh are coherent composites.",
      "tag": "R",
      "source": "\\S\\ref{sec:premises}",
-     "key": "p21014"
+     "key": "p21014",
+     "name": null
     },
     {
      "label": "B6",
      "predicate": "A cell-local change of frame data is the gauge symmetry, its compensating connection the field; the source's conservation is that gauge invariance.",
      "tag": "R",
      "source": "Prop.~\\ref{prop:gaugeact}",
-     "key": "p21015"
+     "key": "p21015",
+     "name": null
     },
     {
      "label": "B7",
      "predicate": "The count of the registration set at the operational cut is the coordinate area in Planck cells, $|R_\\partial|=4\\pi r_f^{2}/\\ell_P^{2}$ up to the solid-angle recalibration of the chart. Falsifier: a collapsed object whose externally resolvable capacity is measured at the Bekenstein--Hawking value.",
      "tag": "R",
      "source": "Thm.~\\ref{thm:area}",
-     "key": "p21065"
+     "key": "p21065",
+     "name": null
     },
     {
      "label": "B8",
      "predicate": "The cosmological constant is the curvature of the wrapped finite chart. Falsifier: $w\\neq-1$, or a negative or scale-varying $\\Lambda$.",
      "tag": "R",
      "source": "\\S\\ref{sec:discussion}, App.~\\ref{app:floor}",
-     "key": "p32014"
+     "key": "p32014",
+     "name": null
     },
     {
      "label": "B9",
      "predicate": "The masking barrier is the coincidence amplitude: registration fails when the killed noise walk first traverses the signal's amplitude $\\sqrt x$, coefficient one. Falsifier: an approach to Newton departing from $1-e^{-\\sqrt x}$ beyond the binned-RAR uncertainty, or a knee displaced from $cH_0/2\\pi$.",
      "tag": "R",
      "source": "Prop.~\\ref{prop:crossover}",
-     "key": "p32015"
+     "key": "p32015",
+     "name": null
     },
     {
      "label": "B10",
      "predicate": "One drift rate for every observer: every Subject's chronon is one step of the Carrier's phase cycle $C_{4S}$, so the registered rate of the drive is the Hubble rate for every observer; the arithmetic defines no rate between two Subjects, the drive being each Subject's own (A1). Falsifier: a floor that differs between observers at one epoch, at fixed $\\Omega$.",
      "tag": "R",
      "source": "Prop.~\\ref{prop:afloor}",
-     "key": "p21069"
+     "key": "p21069",
+     "name": null
     }
    ]
   },
@@ -152,196 +170,224 @@
      "predicate": "The linearised dynamics is the gradient flow of a coherence free energy --- its current derived from the pair tally conditional on channel unity (Lemma~\\ref{lem:pairtally}) --- and a locked cluster of $m$ unit-winding cells couples with coefficient exactly $m$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:gradient},~\\ref{lem:additivity},~\\ref{lem:pairtally}\\newline \\pywit{gravity}{p21016}{C1}, \\leanwit{FrcCore}{p21016}{C1}, \\leanwit{FrcMathlib}{p21016}{C1} \\lean{Gravity.locked\\_sum, FRC.Drift.locked\\_sum, FRC.Drift.pair\\_tally, FRC.Relaxation.tally\\_gradient, FRC.Relaxation.leakage\\_contraction}",
-     "key": "p21016"
+     "key": "p21016",
+     "name": "linearised_gradient_flow"
     },
     {
      "label": "C2",
      "predicate": "Newton's law $F=-Gm_1m_2/r^2$ with $G=1/4\\pi\\varkappa$ [chart] (register value $G=2S$): the exact balance $\\partial J+s=0$ on every closed region with the neutral return chain (the Gauss law), the product $m_1m_2$ from coherent additivity, the sign from the one drive; the $r^{-2}$ the chart's, the Coulomb asymptotics of the three frame freedoms in the decoherence distance (the isotropic inverse-correlation count, not the shortest-path count), the discrete Poisson equation solvable on the finite chart under the spanning-tree condition.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:newton}, Lem.~\\ref{lem:green}\\newline \\pywit{gravity}{p21017}{C2}, \\leanwit{FrcCore}{p21017}{C2}, \\leanwit{FrcMathlib}{p21017}{C2}; rests on A5, C1, C3 \\lean{Gravity.newton\\_register, FRC.Grav.newton\\_residue, FRC.Drift.gauss\\_law, FRC.Drift.locked\\_sum}",
-     "key": "p21017"
+     "key": "p21017",
+     "name": "newtons_law"
     },
     {
      "label": "C3",
      "predicate": "Universal attraction from the single arrow of the drive (a repulsive charge would need a time-reversed, Frobenius-branch clock).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:universal}\\newline \\pywit{gravity}{p21018}{C3}, \\leanwit{FrcCore}{p21018}{C3} \\lean{FRC.Drift.conj\\_branch, FRC.Drift.conj\\_pow}",
-     "key": "p21018"
+     "key": "p21018",
+     "name": "single_arrow"
     },
     {
      "label": "C4",
      "predicate": "The equivalence principle as an identity: the gravitational and the inertial coefficient are one cardinality, which cancels inside the two-shift law, $(m\\,g)/m=g$; the bias field is clock rate, giving the redshift $\\Delta f/f=Gm/rc^2$ [chart]; the turnaround radius against the Hubble drive [chart].",
      "tag": "T",
      "source": "Thm.~\\ref{thm:twoshift}, Cor.~\\ref{cor:equiv},~\\ref{cor:dilation},~\\ref{cor:turnaround}\\newline \\pywit{gravity}{p21019}{C4}, \\leanwit{FrcCore}{p21019}{C4}, \\leanwit{FrcMathlib}{p21019}{C4}; rests on C1, C20 \\lean{Gravity.redshift\\_linear, FRC.Relaxation.equivalence\\_cancel}",
-     "key": "p21019"
+     "key": "p21019",
+     "name": "equivalence_principle_identity"
     },
     {
      "label": "C5",
      "predicate": "The magnitude $G=\\hbar c/m_P^2$, frame-covariant (a relativity principle for scale); gravity's weakness is cardinality dilution.",
      "tag": "T",
      "source": "\\S\\ref{sub:G}\\newline \\pywit{gravity}{p21020}{C5}, \\leanwit{FrcCore}{p21020}{C5}, \\leanwit{FrcMathlib}{p21020}{C5} \\lean{Gravity.hbar\\_register, Gravity.dilution, FRC.Grav.hbar\\_root}",
-     "key": "p21020"
+     "key": "p21020",
+     "name": "magnitude_of_g"
     },
     {
      "label": "C6",
      "predicate": "The conserved dust-tensor source as the Frobenius-symmetric square on the mass shell (cardinality conservation and torsor equivariance).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:source}\\newline \\pywit{gravity}{p21021}{C6}, \\leanwit{FrcCore}{p21021}{C6} \\lean{FRC.Drift.frobenius\\_trace}",
-     "key": "p21021"
+     "key": "p21021",
+     "name": "conserved_dust_tensor_source"
     },
     {
      "label": "C7",
      "predicate": "Channel unity forces the spatial bias to equal the temporal one: the registered rate $M/B$ and the dwell per quantum are the two faces of one window count (the gaps of the Christoffel word take the two values $\\lfloor B/M\\rfloor$ and $\\lceil B/M\\rceil$), read as space and time through B4, so $\\gamma=1$ [chart], restoring the full light deflection $4Gm/c^2b$ [chart].",
      "tag": "T",
      "source": "Lem.~\\ref{lem:isopair}, Prop.~\\ref{prop:bending}\\newline \\pywit{gravity}{p21022}{C7}, \\leanwit{FrcCore}{p21022}{C7}, \\leanwit{FrcMathlib}{p21022}{C7}; rests on B4, C27 \\lean{Gravity.cover\\_forcing, Gravity.pn\\_series, FRC.Drift.cover\\_triangle, FRC.Relaxation.quiet\\_run, FRC.Relaxation.dwell\\_two\\_values}",
-     "key": "p21022"
+     "key": "p21022",
+     "name": "channel_unity_spatial_bias"
     },
     {
      "label": "C8",
      "predicate": "The exponential isotropic metric by multiplicative composition (the character composition law $\\gen^{a+b}=\\gen^{a}\\gen^{b}$ on the shell), with $\\beta=\\gamma=1$: deflection, Shapiro delay, and perihelion at their observed values [chart].",
      "tag": "T",
      "source": "Thm.~\\ref{thm:ppn}, Lem.~\\ref{lem:multiplicative}\\newline \\pywit{gravity}{p21023}{C8}, \\leanwit{FrcCore}{p21023}{C8}, \\leanwit{FrcMathlib}{p21023}{C8}; rests on C7 \\lean{Gravity.cover\\_forcing, Gravity.pn\\_series, FRC.Drift.cover\\_triangle, FRC.Drift.pn\\_coefficients, FRC.Drift.character\\_composition}",
-     "key": "p21023"
+     "key": "p21023",
+     "name": "exponential_isotropic_metric"
     },
     {
      "label": "C9",
      "predicate": "The discrete Fierz--Pauli functional, exactly gauge-invariant and the unique adjacency-local stiffness on the shell (the spin-one case is unique-Maxwell).",
      "tag": "T",
      "source": "Thm.~\\ref{thm:fierzpauli}\\newline \\pywit{gravity}{p21024}{C9}, \\leanwit{FrcCore}{p21024}{C9}, \\leanwit{FrcMathlib}{p21024}{C9}; rests on 00:E1 \\lean{Gravity.central\\_difference\\_adjoint, FRC.Lattice.central\\_difference\\_adjoint, FRC.Lattice.forward\\_difference\\_adjoint, FRC.Symbol.fierz\\_pauli\\_unique, FRC.Symbol.fierz\\_pauli\\_invariant, FRC.Symbol.maxwell\\_unique, FRC.Relaxation.odd\\_kernel\\_is\\_cdiff, FRC.Relaxation.bdiff\\_fdiff}",
-     "key": "p21024"
+     "key": "p21024",
+     "name": "discrete_fierz_pauli"
     },
     {
      "label": "C10",
      "predicate": "No preferred-frame leakage: the Lense--Thirring precession at its observed value [chart], with $\\alpha_1,\\alpha_2=O(1/\\sqrt\\Omega)$; the exact face, that transport over the complete norm-one cycle closes with no residual and the dispersion symbol is even, so no secular term and no $O(k)\\cdot n$ cross term.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:dragging}\\newline \\pywit{gravity}{p21025}{C10}, \\leanwit{FrcCore}{p21025}{C10}; rests on C3, C15 \\lean{FRC.Drift.conj\\_branch, FRC.Lattice.laplacian\\_symbol}",
-     "key": "p21025"
+     "key": "p21025",
+     "name": "no_preferred_frame_leakage"
     },
     {
      "label": "C11",
      "predicate": "The nonlinear completion forced: the exact cut-flux law (transfer antisymmetry) and the winding grading (sectors multiply, an equivariant operation preserves the grade, an invariant configuration in a nonzero winding sector vanishes) forbid independent static self-sourcing, the clock-comparison cocycle makes the exponential reading unique (exactly the character $\\gen^{-\\Delta n}$, $e^{-u}$ its observer lift), and Deser's bootstrap does not apply because what gravitates is winding rate.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:branch}\\newline \\pywit{gravity}{p21026}{C11}, \\leanwit{FrcCore}{p21026}{C11}, \\leanwit{FrcMathlib}{p21026}{C11}; rests on B2, C6, C21 \\lean{Gravity.exponential\\_reading, FRC.Drift.gauss\\_law, FRC.Drift.character\\_composition, FRC.Drift.character\\_unique, FRC.Static.graded\\_mul, FRC.Static.equivariant\\_graded, FRC.Static.selection}",
-     "key": "p21026"
+     "key": "p21026",
+     "name": "nonlinear_completion_forced"
     },
     {
      "label": "C12",
      "predicate": "The exact static profile in cut form: on an equitable radial partition a static locked exterior exists exactly where the enclosed demand is within the capacity of every cut, $Q_r\\le\\varkappa A_r$ (the condition necessary on every chart), and ends at the first cut that fails, the slip core ($\\sqrt{m/30}\\le r_*\\le\\lceil\\sqrt{m/12}\\,\\rceil$ on the graph balls at unit capacity, $r_*=\\sqrt{Gm}$ in the isotropic chart with $4\\pi r^{2}$ its [chart] reading); horizonless, operationally black at $r_f=r_s/\\ln\\Omega$ [chart]; the $r_f$-anchored claims stated in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Omega/2)^{2}$ Planck masses.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:exactprofile},~\\ref{prop:operational}\\newline \\pywit{gravity}{p21027}{C12}, \\leanwit{FrcCore}{p21027}{C12}, \\leanwit{FrcMathlib}{p21027}{C12}; rests on B4, C2 \\lean{Gravity.operational\\_cut, FRC.Static.static\\_iff, FRC.Static.slip\\_of\\_exceeds, FRC.Static.exterior\\_of\\_sq, FRC.Static.slip\\_of\\_sq, FRC.Static.slip\\_instance, FRC.Drift.cut\\_ordering}",
-     "key": "p21027"
+     "key": "p21027",
+     "name": "exact_static_profile_cut"
     },
     {
      "label": "C13",
      "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count \\citep{quantum}; an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip emission at the first-law temperature $T_{\\mathrm S}=\\ln^{2}\\Omega\\,T_H$, the Subject's registered value, luminosity $\\ln^{6}\\Omega$ times Hawking's, negligible.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:area}, Rem.~\\ref{rem:entropy}, Prop.~\\ref{prop:capacity}\\newline \\pywit{gravity}{p21062}{C13}, \\leanwit{FrcCore}{p21062}{C13}, \\leanwit{FrcMathlib}{p21062}{C13}; rests on A1, B2, C12, 00:D15 \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, Gravity.capacity\\_ratio\\_numeral, FRC.Grav.count\\_identity, FRC.Grav.merger\\_area, FRC.Grav.merger\\_instance}",
-     "key": "p21062"
+     "key": "p21062",
+     "name": "area_law_entropy"
     },
     {
      "label": "C14",
      "predicate": "The magnitude of dark energy, $\\Lambda\\sim1/\\Omega$ in Planck units, the curvature of the finite chart (B8), the fine-tuning problem unasked; the CMB large-angle anomaly the wrapped-chart signature (C18).",
      "tag": "T",
      "source": "\\S\\ref{sec:discussion}, App.~\\ref{app:floor}\\newline \\pywit{gravity}{p21063}{C14}, \\leanwit{FrcMathlib}{p21063}{C14}; rests on A1, A2, B8, C18 \\lean{Gravity.curvature\\_datum}",
-     "key": "p21063"
+     "key": "p21063",
+     "name": "dark_energy_magnitude_planck"
     },
     {
      "label": "C15",
      "predicate": "The radiative sector: the quarter-turn conjugate momentum makes the dynamics a wave equation: two helicity-$\\pm2$ gravitons at speed $c$, quadrupole radiation; gauge leaves two polarisations.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:wave},~\\ref{prop:graviton}\\newline \\pywit{gravity}{p21030}{C15}, \\leanwit{FrcCore}{p21030}{C15}, \\leanwit{FrcMathlib}{p21030}{C15}; rests on A1, B1, B6, C9, 00:C9 \\lean{Gravity.dispersion\\_symbol, FRC.Lattice.laplacian\\_symbol}",
-     "key": "p21030"
+     "key": "p21030",
+     "name": "radiative_sector"
     },
     {
      "label": "C16",
      "predicate": "The order-one constants are determined: $c_S'=\\tfrac14$ (the $Q_4$ gauge quotient, counted on an instantiated shell and carried by the Carrier identity), the floor's $2\\pi$ the full cycle of the angle--count dictionary \\citep{dimensions}, its threshold a realisation (Proposition~\\ref{prop:afloor}), the recurring constant the solid angle $4\\pi$, reducing in the Carrier register to the calibration congruence $(4S)^{2}\\equiv1$ (one residue relation).",
      "tag": "T",
      "source": "Thm.~\\ref{thm:area}, Prop.~\\ref{prop:afloor}, App.~\\ref{app:face}\\newline \\pywit{gravity}{p21031}{C16}, \\leanwit{FrcCore}{p21031}{C16}, \\leanwit{FrcMathlib}{p21031}{C16}; rests on A1, C13, 00:L1, 00:N2 \\lean{Gravity.calibration\\_congruence, Gravity.newton\\_register, FRC.Grav.calibration, FRC.Grav.lab\\_register}",
-     "key": "p21031"
+     "key": "p21031",
+     "name": "order_one_constants_determined"
     },
     {
      "label": "C17",
      "predicate": "The rotating solution as the gravitomagnetic (quarter-turn) dual: frame-dragging $=$ Lense--Thirring, horizonless, shadow split at $O(a)$; the ergoregion is an $O(a^2)$ feature of the rapid-rotation residue.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:rotating}\\newline \\pywit{gravity}{p21032}{C17}, \\leanwit{FrcMathlib}{p21032}{C17}; rests on B6, C10, C11, C12 \\lean{Gravity.dipole\\_divergence\\_free, Gravity.lense\\_thirring\\_axis, Gravity.slow\\_rotation\\_timelike, Gravity.ergosurface, Gravity.ergosurface\\_mono}",
-     "key": "p21032"
+     "key": "p21032",
+     "name": "rotating_solution_gravitomagnetic"
     },
     {
      "label": "C18",
      "predicate": "The primordial spectrum: $n_s=1$ the scale-dilation fixed point; the tilt's committed form $-\\pi^{2}/\\ln\\Omega$, $\\ln\\Omega$ the e-fold count of the frame's scale range, a realisation with the measured tilt its falsifier ($\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$; the linearity condition undefined on a shell); the wrapped chart fixing the low large-angle power.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:primordial}\\newline \\pywit{gravity}{p21033}{C18}, \\leanwit{FrcMathlib}{p21033}{C18}; rests on A1, 00:L8 \\lean{Gravity.scale\\_invariance\\_iff, Gravity.tilt\\_bracket}",
-     "key": "p21033"
+     "key": "p21033",
+     "name": "primordial_spectrum"
     },
     {
      "label": "C19",
      "predicate": "The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\\ref{thm:twoshift} with the registered-inertia identity); it rests on the masking barrier (B9) and the unified sampling clause of \\citep{quantum}.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:crossover}; \\citep{quantum}\\newline \\pywit{gravity}{p21064}{C19}, \\leanwit{FrcCore}{p21064}{C19}, \\leanwit{FrcMathlib}{p21064}{C19}; rests on A4, C20, 00:D10 \\lean{Gravity.registration\\_root, Gravity.crossover\\_limits, Gravity.crossover\\_deep\\_limit, FRC.Drift.registration\\_root}",
-     "key": "p21064"
+     "key": "p21064",
+     "name": "registration_crossover_exact"
     },
     {
      "label": "C20",
      "predicate": "The two-shift update law: kick (finite Fourier shift by the source character) composed with metaplectic transport gives $\\Delta^{2}_{\\tau}q=-\\nabla u$ with $m$ cancelling --- registered inertia and the equivalence principle inside one derived law.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:twoshift}\\newline \\pywit{gravity}{p21035}{C20}, \\leanwit{FrcCore}{p21035}{C20}, \\leanwit{FrcMathlib}{p21035}{C20} \\lean{Gravity.shift\\_theorem, FRC.Cycle.dft\\_kick, FRC.Cycle.dft\\_shift}",
-     "key": "p21035"
+     "key": "p21035",
+     "name": "two_shift_update_law"
     },
     {
      "label": "C21",
      "predicate": "The defect chain: relative-cycle defect with exact recurrence; the compression identity (relaxation $=$ unresolved leakage, recurrence retained), the leakage over a window counted as the chronons at which the registered outcome fails to close; the pair-tally current (the current $z-z^{-1}$ derived, the sine its chart, conditional on channel unity); binding bookkeeping decided --- substrate winding sources the field, the defect registered-side, $\\eta_{\\mathrm{Nordtvedt}}=0$ on that bookkeeping, the three coefficients of a bound composite not derived separately.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:relcycle}, Prop.~\\ref{prop:compression}, Lem.~\\ref{lem:pairtally}\\newline \\pywit{gravity}{p21036}{C21}, \\leanwit{FrcCore}{p21036}{C21} \\lean{FRC.Drift.return\\_iff, FRC.Drift.defect\\_instance, FRC.Drift.pair\\_tally, FRC.Drift.compression, FRC.Static.leakage\\_add\\_returns, FRC.Static.leakage\\_eq}",
-     "key": "p21036"
+     "key": "p21036",
+     "name": "defect_chain"
     },
     {
      "label": "C22",
      "predicate": "Induced relaxation: given the registered adjacency chart with unit capacity, the compressed evolution $K_{\\mathrm S}=P_{\\mathrm S}U_{\\mathrm C}P_{\\mathrm S}$ contracts by exactly the unresolved leakage, counted over a window as the chronons at which the registered outcome fails to close; the leading odd leakage kernel is forced to the central difference and the incidence composite is the Laplacian; the constitutive current is the pair-tally current, its window count the readout of the sine on the strata $C_8$, $C_{12}$; under the re-registration rule the mismatch reaches alignment in finitely many chronons --- the Kuramoto gradient flow its weak-defect, short-memory chart, sampled at the quantum.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:indrelax}\\newline \\pywit{gravity}{p21037}{C22}, \\leanwit{FrcCore}{p21037}{C22}; rests on C21, C27, C28, C29, 00:E11 \\lean{FRC.Drift.compression, FRC.Relaxation.odd\\_kernel\\_is\\_cdiff, FRC.Relaxation.bdiff\\_fdiff, FRC.Relaxation.leakage\\_contraction, FRC.Relaxation.tally\\_gradient}",
-     "key": "p21037"
+     "key": "p21037",
+     "name": "induced_relaxation"
     },
     {
      "label": "C23",
      "predicate": "The 1PN equivalence lemma: through first post-Newtonian order the two-body metric coefficients coincide with general relativity's isotropic form on the superposed potential, cross term included, so the static part of the Einstein--Infeld--Hoffmann sector is shared exactly; the velocity-dependent 1PN potentials are not compared.",
      "tag": "T",
      "source": "App.~\\ref{app:pn}\\newline \\pywit{gravity}{p21038}{C23}, \\leanwit{FrcCore}{p21038}{C23}; rests on C8 \\lean{FRC.Drift.two\\_body\\_1pn, FRC.Drift.pn\\_coefficients}",
-     "key": "p21038"
+     "key": "p21038",
+     "name": "one_pn_equivalence_lemma"
     },
     {
      "label": "C25",
      "predicate": "The PPN triangle closed by two routes: channel unity gives $\\gamma=1$ (C7), the instance cover forces $2\\gamma-\\beta=1$ (A9), jointly $\\beta=1$ --- Theorem~\\ref{thm:ppn} reached independently, the deviation $\\tfrac23(2\\gamma-\\beta-1)$ its falsifier.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:cover}; \\citep{s13}\\newline \\pywit{gravity}{p21040}{C25}, \\leanwit{FrcCore}{p21040}{C25}, \\leanwit{FrcMathlib}{p21040}{C25} \\lean{Gravity.cover\\_forcing, FRC.Drift.cover\\_triangle, FRC.Drift.cover\\_deviation}",
-     "key": "p21040"
+     "key": "p21040",
+     "name": "ppn_triangle_two_routes"
     },
     {
      "label": "C26",
      "predicate": "The Kuramoto form is the chart of C22: on every shell the pair-tally current $z-z^{-1}$ is the centred drive-difference of the tally, $W(zg)-W(zg^{-1})=(g-g^{-1})(z-z^{-1})$, the failure tally is the mismatch norm $(1-z)(1-z^{-1})$, and an odd adjacency-local kernel is a multiple of the central difference; $\\sin(\\theta_y-\\theta_x)$ is the chart of $(z-z^{-1})/2i$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:pairtally}, eq.~\\eqref{eq:kuramoto}; \\citep{kuramoto,strogatz,pantaleone}\\newline \\pywit{gravity}{p21006}{C26}, \\leanwit{FrcCore}{p21006}{C26}; rests on B4, C1, C22 \\lean{FRC.Relaxation.tally\\_gradient, FRC.Relaxation.failure\\_norm, FRC.Relaxation.odd\\_kernel\\_is\\_cdiff}",
-     "key": "p21006"
+     "key": "p21006",
+     "name": "kuramoto_form_chart"
     },
     {
      "label": "C27",
      "predicate": "The pulse law of unit capacity: a transfer of $M\\le N$ quanta over $N$ chronons is realised by the counts $s_k=\\lfloor kM/N\\rfloor$, which rise by at most one per chronon and reach $M$ at $k=N$ --- at most one quantum per chronon (Lemma~\\ref{pre:unit}), the Christoffel word of Lemma~\\ref{lem:isopair}, the sine its observer mean.",
      "tag": "T",
      "source": "Lem.~\\ref{pre:unit},~\\ref{lem:isopair}\\newline \\pywit{gravity}{p21066}{C27}, \\leanwit{FrcCore}{p21066}{C27}; rests on B4 \\lean{FRC.Relaxation.pulse\\_law}",
-     "key": "p21066"
+     "key": "p21066",
+     "name": "pulse_law_unit_capacity"
     },
     {
      "label": "C28",
      "predicate": "The registered relaxation terminates: under the re-registration rule, with a transfer per window at every mismatch at or below the start (the basin below the antipode, where the current vanishes), the mismatch of a link never grows, moves by at most one quantum per chronon, reaches exact alignment within $\\sum_\\mu\\lceil B/M(\\mu)\\rceil$ chronons and stays there; the Kuramoto flow sampled at the quantum is its chart [chart].",
      "tag": "T",
      "source": "Def.~\\ref{def:reregistration}, Lem.~\\ref{lem:windowrelax}\\newline \\pywit{gravity}{p21067}{C28}, \\leanwit{FrcCore}{p21067}{C28}; rests on B4, C27, 22:B6, 22:C11 \\lean{FRC.Relaxation.terminates, FRC.Relaxation.terminates\\_basin, FRC.Relaxation.drops\\_within, FRC.Relaxation.run\\_aligned, FRC.Relaxation.step\\_mu\\_le, FRC.Relaxation.step\\_mu\\_ge}",
-     "key": "p21067"
+     "key": "p21067",
+     "name": "registered_relaxation_terminates"
     },
     {
      "label": "C29",
      "predicate": "The window count of the link's current is the readout of its quadratic weight, the sine its chart: on $C_8$ and $C_{12}$, the real-quadratic strata of the readout map, the current read at the worked scale counts the transfers per window within half a unit of $B\\sin(2\\pi\\mu/N)$ [chart], and the readouts nest across scales.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:windowrelax}; \\citep{quantum}\\newline \\pywit{gravity}{p21068}{C29}, \\leanwit{FrcCore}{p21068}{C29}; rests on C26, 22:C11 \\lean{FRC.Relaxation.readout\\_c8, FRC.Relaxation.readout\\_c12, FRC.Relaxation.isSqrt\\_nest, FRC.Relaxation.isSqrt\\_unique}",
-     "key": "p21068"
+     "key": "p21068",
+     "name": "window_count_readout"
     }
    ]
   },
@@ -354,56 +400,64 @@
      "predicate": "\\textbf{The cosmological-constant magnitude.} $\\Lambda\\sim1/\\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked.",
      "tag": "T",
      "source": "\\S\\ref{sec:intro}\\newline \\pywit{gravity}{p21041}{X1}, \\leanwit{FrcCore}{p21041}{X1}; rests on A1, B8, C14 \\lean{FRC.Grav.closed\\_chart}",
-     "key": "p21041"
+     "key": "p21041",
+     "name": "cosmological_constant_magnitude"
     },
     {
      "label": "X2",
      "predicate": "\\textbf{No dark-matter particle.} The radial acceleration relation is a registration crossover of the resolution floor, not evidence for undetected mass: galactic dynamics require no dark sector beyond the floor already fixed by $\\Omega$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21042}{X2}, \\leanwit{FrcMathlib}{p21042}{X2}; rests on A1, B9, C19, 00:L1 \\lean{Gravity.crossover\\_deep\\_limit}",
-     "key": "p21042"
+     "key": "p21042",
+     "name": "no_dark_matter_particle"
     },
     {
      "label": "X3",
      "predicate": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}\\newline \\pywit{gravity}{p21043}{X3}, \\leanwit{FrcCore}{p21043}{X3}; rests on 22:C15 \\lean{FRC.Drift.compression, FRC.Cycle.cyc\\_add\\_n}",
-     "key": "p21043"
+     "key": "p21043",
+     "name": "no_horizons_singularities_loss"
     },
     {
      "label": "X4",
      "predicate": "\\textbf{Misner's standing objection dissolves.} The exponential metric is derived, not posited as a self-coupled field equation, so the field-equation pathology Misner identified in exponential-metric gravity does not arise here.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:exponential}\\newline \\pywit{gravity}{p21044}{X4}, \\leanwit{FrcCore}{p21044}{X4}; rests on C8, C11 \\lean{FRC.Static.selection, FRC.Drift.gauss\\_law, FRC.Drift.character\\_unique}",
-     "key": "p21044"
+     "key": "p21044",
+     "name": "misners_standing_objection_dissolves"
     },
     {
      "label": "X5",
      "predicate": "\\textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise.",
      "tag": "T",
      "source": "\\S\\ref{sub:radiative}\\newline \\pywit{gravity}{p21045}{X5}, \\leanwit{FrcCore}{p21045}{X5}; rests on B1, C15 \\lean{FRC.Lattice.laplacian\\_symbol}",
-     "key": "p21045"
+     "key": "p21045",
+     "name": "no_graviton_quantisation_problem"
     },
     {
      "label": "X6",
      "predicate": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported. Falsifier: large-angle power at the unwrapped chart's value.",
      "tag": "R",
      "source": "Prop.~\\ref{prop:primordial}; rests on A2, C14, C18",
-     "key": "p21046"
+     "key": "p21046",
+     "name": null
     },
     {
      "label": "X7",
      "predicate": "\\textbf{The equivalence principle} is an identity, not a postulate.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:equiv}\\newline \\pywit{gravity}{p21047}{X7}, \\leanwit{FrcCore}{p21047}{X7}; rests on C4, C20 \\lean{FRC.Relaxation.equivalence\\_cancel}",
-     "key": "p21047"
+     "key": "p21047",
+     "name": "equivalence_principle_not_postulate"
     },
     {
      "label": "X8",
      "predicate": "\\textbf{The weakness of gravity} is cardinality dilution, not a hierarchy to be tuned.",
      "tag": "T",
      "source": "\\S\\ref{sub:G}\\newline \\pywit{gravity}{p21048}{X8}, \\leanwit{FrcMathlib}{p21048}{X8} \\lean{Gravity.dilution}",
-     "key": "p21048"
+     "key": "p21048",
+     "name": "weakness_gravity_cardinality_dilution"
     }
    ]
   },
@@ -416,56 +470,64 @@
      "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, eikonal ringdown $-4.4\\%$ (the $(2,2,0)$ reading open, GW250114 the exposure), ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
      "tag": "T",
      "source": "App.~\\ref{app:strongfield}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}\\newline \\pywit{gravity}{p21049}{P1}, \\leanwit{FrcMathlib}{p21049}{P1}; rests on B2, C11, C12, 00:E4 \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
-     "key": "p21049"
+     "key": "p21049",
+     "name": "strong_field_signatures"
     },
     {
      "label": "P7",
      "predicate": "Floor-surface signatures: no prompt echoes (the exact profile horizonless with no reflecting surface, C12; the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; a reported echo detection at the stated precision falsifies the construction.",
      "tag": "T",
      "source": "App.~\\ref{app:strongfield}, Rem.~\\ref{rem:fold},~\\ref{rem:hawking}\\newline \\pywit{gravity}{p21050}{P7}, \\leanwit{FrcMathlib}{p21050}{P7}; rests on C13, 00:E5 \\lean{Gravity.operational\\_cut}",
-     "key": "p21050"
+     "key": "p21050",
+     "name": "floor_surface_signatures"
     },
     {
      "label": "P8",
      "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the scale import from the measured $\\Lambda$ \\citep{planck}), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$), ACT DR6 $-0.026\\pm0.003$ ($-2.9\\sigma$) and the SPT--Planck--ACT combination $-0.0321\\pm0.0033$ ($-0.8\\sigma$), under $\\Lambda$CDM; $0.24\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:primordial}\\newline \\pywit{gravity}{p21060}{P8}, \\leanwit{FrcMathlib}{p21060}{P8}; rests on A8, C18, 00:L8 \\lean{Gravity.tilt\\_bracket}",
-     "key": "p21060"
+     "key": "p21060",
+     "name": "primordial_tilt"
     },
     {
      "label": "P2",
      "predicate": "Preferred-frame effects at $O(1/\\sqrt\\Omega)=O(10^{-62})$ ($3\\times10^{-62}$ at $\\Omega=1.3\\times10^{123}$): the drive's in-principle signature, far below current $10^{-5}$ bounds.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:dragging}\\newline \\pywit{gravity}{p21051}{P2}, \\leanwit{FrcMathlib}{p21051}{P2}; rests on A1, C10, 00:E5 \\lean{Gravity.preferred\\_frame\\_scale}",
-     "key": "p21051"
+     "key": "p21051",
+     "name": "preferred_frame_effects"
     },
     {
      "label": "P3",
      "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the measured $H_0=67.4$ \\citep{planck}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle \\citep{dimensions}, the one-cycle-per-period threshold a realisation with its discrete falsifier.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21052}{P3}, \\leanwit{FrcCore}{p21052}{P3}, \\leanwit{FrcMathlib}{p21052}{P3}; rests on A8, C16, 14:C8, 00:L1 \\lean{FRC.Drift.floor\\_period, Gravity.floor\\_value}",
-     "key": "p21052"
+     "key": "p21052",
+     "name": "weak_acceleration_floor"
     },
     {
      "label": "P4",
      "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the barrier identification (B9), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:crossover}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcMathlib}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.crossover\\_newton\\_limit, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
-     "key": "p21053"
+     "key": "p21053",
+     "name": "radial_acceleration_relation"
     },
     {
      "label": "P5",
      "predicate": "The floor tracks the expansion, $a_0(z)\\propto H(z)$ (BTFR zero-point $\\propto E(z)^{1/4}$); high-$z$ rotation curves decisive.",
      "tag": "T",
      "source": "App.~\\ref{app:floor}\\newline \\pywit{gravity}{p21054}{P5}, \\leanwit{FrcMathlib}{p21054}{P5}; rests on 14:B4, 32:B3, 00:L1 \\lean{Gravity.running\\_floor}",
-     "key": "p21054"
+     "key": "p21054",
+     "name": "floor_tracks_expansion"
     },
     {
      "label": "P6",
      "predicate": "The 2PN periastron excess for PSR~J0737$-$3039: $\\delta\\dot\\omega/\\dot\\omega\\approx1.5\\times10^{-6}$ in the test-particle sector [approx], the comparable-mass terms ($\\nu=0.250$) not yet reduced; today degenerate with the mass refit; decisive either way once that sector is reduced and an independent observable fixes $M_{\\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \\citep{quantum}; the ledger carries both.",
      "tag": "T",
      "source": "App.~\\ref{app:pn}\\newline \\pywit{gravity}{p21055}{P6}, \\leanwit{FrcCore}{p21055}{P6}, \\leanwit{FrcMathlib}{p21055}{P6}; rests on A8, C8, C23 \\lean{Gravity.pn\\_series, FRC.Drift.pn\\_coefficients}",
-     "key": "p21055"
+     "key": "p21055",
+     "name": "two_pn_periastron_excess"
     }
    ]
   },
@@ -478,7 +540,8 @@
      "predicate": "The cross-scale running of $a_0$, the ratio $(\\Omega-1)/d$: reduces to the factorisation of $\\Omega-1$.",
      "tag": "Ω",
      "source": "App.~\\ref{app:floor}",
-     "key": "p21059"
+     "key": "p21059",
+     "name": null
     }
    ]
   }

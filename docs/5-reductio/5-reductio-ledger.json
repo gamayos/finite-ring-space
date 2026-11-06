@@ -14,28 +14,32 @@
      "predicate": "The classical theorems, accepted unchanged: G\\\"odel~I and Rosser, Tarski's undefinability, Turing's halting theorem, Cantor's theorem and uncountability, Russell, Burali--Forti, Skolem, Vitali, Hausdorff, Banach--Tarski; the operational paradoxes (Hilbert's hotel, Zeno). No classical derivation is disputed.",
      "tag": "I",
      "source": "\\cite{Godel1931,Rosser1936,Tarski1956,Turing1937,Cantor1891,Russell1903,BuraliForti1897,Skolem1922,Vitali1905,Hausdorff1914,BanachTarski1924}",
-     "key": "p05001"
+     "key": "p05001",
+     "name": null
     },
     {
      "label": "A2",
      "predicate": "Metamathematics: Robinson's $Q$, essentially undecidable, every model infinite; $\\mathrm{Con}(Q)$ by cut elimination in $I\\Delta_0+\\mathrm{superexp}$, not in $I\\Delta_0+\\mathrm{exp}$; Tait's finitism; Dedekind's categoricity of the second-order naturals; true second-order arithmetic not arithmetical; Tarski's decidable real field; Solovay's model and Shelah's inaccessible.",
      "tag": "I",
      "source": "\\cite{TarskiMostowskiRobinson1953,HajekPudlak1993,WilkieParis1987,Tait1981,Shapiro1991,Tarski1951,Solovay1970,Shelah1984}",
-     "key": "p05002"
+     "key": "p05002",
+     "name": null
     },
     {
      "label": "A3",
      "predicate": "Combinatorics and set theory: Fraenkel--Mostowski permutation models (symmetry as an obstruction to choice); de~Bruijn--Erd\\H{o}s compactness of colouring; aperiodic tile sets and the undecidability of the domino problem (Berger, Robinson); Zermelo's choice.",
      "tag": "I",
      "source": "\\cite{Jech1973,deBruijnErdos1951,Berger1966,Robinson1971,Zermelo1904}",
-     "key": "p05003"
+     "key": "p05003",
+     "name": null
     },
     {
      "label": "A4",
      "predicate": "The corpus: the totality finite and complete (00:A4), counting closes by return (00:A7), a bounded observer a proper part and every reading a projection (00:A5, A6), G\\\"odel vacuous over the finite $\\Omega$ (00:Z1), the $\\Omega$-hard demarcation (00:Z3); finite mathematics as ontologically primary (Lev, Zeilberger).",
      "tag": "I",
      "source": "\\cite{lev2020finite,Zeilberger2001,akhtman2025algebra}",
-     "key": "p05004"
+     "key": "p05004",
+     "name": null
     }
    ]
   },
@@ -48,49 +52,56 @@
      "predicate": "The standing hypotheses: (Eff) effective axiomatisation, (Arith) interpretability of $Q$, (Cns) consistency. Two doors for infinity: the meta-level syntax, potential and retained; and (IR), the object theory interprets $Q$ --- an injective non-cyclic successor with sequence coding, the completed registry inside the theory.",
      "tag": "D",
      "source": "Section~\\ref{sec:godel-reductio}; \\S\\ref{subsec:IR}",
-     "key": "p05005"
+     "key": "p05005",
+     "name": null
     },
     {
      "label": "B2",
      "predicate": "The bundle $\\{$Eff, Cns, Cmp, IR$\\}$ is inconsistent, with no soundness assumption: under Eff and IR the Rosser sentence is available, and Cmp decides it against plain consistency.",
      "tag": "I",
      "source": "Prop.~\\ref{prop:triad}; Thm.~\\ref{thm:rosser}",
-     "key": "p05006"
+     "key": "p05006",
+     "name": null
     },
     {
      "label": "B3",
      "predicate": "Witnessed independence: every three-element subset is satisfiable --- $Q$ itself ($\\neg$Cmp, consistent by finitary means, the superexponential cost exact); $\\mathrm{Th}(W_N)$ ($\\neg$IR: consistent, complete, decidable, singly axiomatised, interpreting no $Q$ since every model of $Q$ is infinite); the inconsistent extension ($\\neg$Cns); true arithmetic ($\\neg$Eff). Four legs, all load-bearing.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:witnessed}\\newline \\pywit{reductio}{p05007}{B3}, \\leanwit{FrcCore}{p05007}{B3}, \\leanwit{FrcMathlib}{p05007}{B3} \\lean{Reductio.infinite\\_of\\_succ, Reductio.theory\\_complete, FRC.Logic.no\\_finite\\_Q, FRC.Logic.no\\_interpretation, FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
-     "key": "p05007"
+     "key": "p05007",
+     "name": "witnessed_independence"
     },
     {
      "label": "B4",
      "predicate": "The arithmetic frame $W_N$: domain $[0,N)$, constant $0$, order $<$, the graphs $S$, $A$, $M$ of successor, sum and product restricted to the domain (overflow fails the atom); frame truth is truth in $W_N$; a $\\Delta_0$ sentence is transcribed through the graphs with guarded bounded quantifiers.",
      "tag": "D",
      "source": "Def.~\\ref{def:frame}; \\S\\ref{subsec:frame-completeness}",
-     "key": "p05008"
+     "key": "p05008",
+     "name": null
     },
     {
      "label": "B5",
      "predicate": "Per-frame completeness: $\\mathrm{Th}(W_N)$ is consistent, complete and decidable, axiomatised by the categorical sentence $\\sigma_N$; truth in any finite structure is decided by evaluation, and the theory of any structure is complete.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:frame-complete}\\newline \\pywit{reductio}{p05009}{B5}, \\leanwit{FrcCore}{p05009}{B5}, \\leanwit{FrcMathlib}{p05009}{B5} \\lean{Reductio.theory\\_complete, Reductio.decRealize, Reductio.decTheory, FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent}",
-     "key": "p05009"
+     "key": "p05009",
+     "name": "per_frame_completeness"
     },
     {
      "label": "B6",
      "predicate": "Bounded stability, schema form: a $\\Delta_0$ sentence $\\varphi$ with bound $t(\\varphi)$ has $W_N\\models\\varphi^{*}\\iff\\N\\models\\varphi$ for every $N>t(\\varphi)$, each instance $\\mathrm{St}(\\varphi,M)$ a finite conjunction of finite checks; proved for an explicit $\\Delta_0$ language with $t(\\varphi)$ computed; Goldbach below $20$ has $t=400$ and value true (below $10$, $t=100$, decided by the kernel).",
      "tag": "T",
      "source": "Thm.~\\ref{thm:stability}; Ex.~\\ref{ex:schema-instance}\\newline \\pywit{reductio}{p05010}{B6}, \\leanwit{FrcCore}{p05010}{B6} \\lean{FRC.Reductio.stable, FRC.Reductio.evalT\\_frame, FRC.Reductio.goldbach\\_ten\\_stable}",
-     "key": "p05010"
+     "key": "p05010",
+     "name": "bounded_stability_schema"
     },
     {
      "label": "B7",
      "predicate": "The unbounded quantifier is the internalised registry: a $\\Pi^{0}_{1}$ sentence receives a verdict from each frame about its own domain and none about all frames at once; frame-relative completeness covers every executed verification (a bounded $\\Delta_0$ trace) and no $\\Pi^{0}_{1}$ closure.",
      "tag": "Ω",
      "source": "\\S\\ref{subsec:frame-completeness}; \\src{D2}; 00:Z3",
-     "key": "p05011"
+     "key": "p05011",
+     "name": null
     }
    ]
   },
@@ -103,35 +114,40 @@
      "predicate": "The bounded agent of capacity $K$: records of at most $K$ symbols over $s\\ge2$ letters, fewer than $s^{K+1}$ of them; certification is a retained record encoding a completed proof-check, one sentence per record, no schema compression.",
      "tag": "D",
      "source": "Def.~\\ref{def:agent}",
-     "key": "p05012"
+     "key": "p05012",
+     "name": null
     },
     {
      "label": "C2",
      "predicate": "No internal mirror: fewer than $s^{K+1}$ records exist, so an agent with $s^{K+1}<N$ holds no injective representation of the domain of $W_N$ --- a proper part cannot mirror the whole (pigeonhole).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:mirror}\\newline \\pywit{reductio}{p05013}{C2}, \\leanwit{FrcCore}{p05013}{C2}, \\leanwit{FrcMathlib}{p05013}{C2} \\lean{Reductio.records\\_lt, Reductio.no\\_mirror, FRC.Reductio.records\\_lt, FRC.Reductio.no\\_mirror}",
-     "key": "p05013"
+     "key": "p05013",
+     "name": "no_internal_mirror"
     },
     {
      "label": "C3",
      "predicate": "Vanishing certified fraction: at least $c^{L}$ normal-form sentences of length $\\le L$, half of each cohort frame truths by completeness, fewer than $s^{K+1}$ certified, so the certified fraction is at most $s^{K+1}/\\lfloor c^{L}/2\\rfloor$, below $1/N$ as soon as $2s^{K+1}N\\le c^{L}$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:fraction}\\newline \\pywit{reductio}{p05014}{C3}, \\leanwit{FrcCore}{p05014}{C3} \\lean{FRC.Reach.certified\\_fraction\\_vanishes, FRC.Logic.records\\_lt, FRC.Logic.fin\\_theory\\_complete}",
-     "key": "p05014"
+     "key": "p05014",
+     "name": "vanishing_certified_fraction"
     },
     {
      "label": "C4",
      "predicate": "The migration: without IR every sentence about the totality is decided and incompleteness reappears as a resource bound on agents --- the G\\\"odel sentence's role passes to truths whose shortest certificate exceeds the capacity; truth for $W_N$ is definable one level up (Tarski relativised to a resource hierarchy).",
      "tag": "D",
      "source": "\\S\\ref{subsec:migration}; 00:Z1",
-     "key": "p05015"
+     "key": "p05015",
+     "name": null
     },
     {
      "label": "C5",
      "predicate": "Horizon separation: halting for machines of bounded space $K$ is decided from above within $|Q|\\,K\\,s^{K}$ steps (a configuration repeats) and never from within (diagonalisation); Turing's theorem is an external non-existence theorem, classified with Cantor's, not an instance of the bundle.",
      "tag": "T",
      "source": "\\S\\ref{subsec:migration}\\newline \\pywit{reductio}{p05016}{C5}, \\leanwit{FrcCore}{p05016}{C5} \\lean{FRC.Reductio.repeat\\_below, FRC.Reductio.halts\\_iff\\_halts\\_below}",
-     "key": "p05016"
+     "key": "p05016",
+     "name": "horizon_separation"
     }
    ]
   },
@@ -144,70 +160,80 @@
      "predicate": "The premises and baselines: AT (an absolute totality), IR (the internalised registry), AC$\\infty$ (unrestricted choice over uncountable families); Cns, Cmp, Meas (the exact measure axioms of each geometry), and Det --- a totality decides every well-posed question about itself, elements, subsets and relations, with its full second-order theory effectively presented; declared as an axiom.",
      "tag": "D",
      "source": "\\S\\ref{subsec:premises}",
-     "key": "p05017"
+     "key": "p05017",
+     "name": null
     },
     {
      "label": "D2",
      "predicate": "Antinomy normal form: Cns $+$ AT $+$ comprehension is inconsistent (Russell, Burali--Forti); the witness of Cns $+\\neg$AT is bounded comprehension --- every set $u$ has a subset not among its members and no universal set exists, decided on $V_4$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:antinomy-NF}\\newline \\pywit{reductio}{p05018}{D2}, \\leanwit{FrcCore}{p05018}{D2} \\lean{FRC.Sets.no\\_russell\\_class, FRC.Sets.no\\_universal\\_of\\_separation, FRC.Sets.russell\\_not\\_mem, FRC.Sets.not\\_mem\\_self, FRC.Sets.russell\\_not\\_mem\\_hf, FRC.Sets.no\\_universal}",
-     "key": "p05018"
+     "key": "p05018",
+     "name": "antinomy_normal_form"
     },
     {
      "label": "D3",
      "predicate": "Diagonal normal form: $\\{$Eff, Cns, Cmp, IR$\\}$ inconsistent (B2), Tarski a variant with the truth predicate for Cmp; the diagonal is a theorem when external --- Cantor's theorem, $n<2^{n}$ on every frame, uncountability, halting --- and a paradox engine only over an internalised registry with completeness demanded.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:diagonal-NF}; Rem.~\\ref{rem:cantor-diagonal}\\newline \\pywit{reductio}{p05019}{D3}, \\leanwit{FrcCore}{p05019}{D3}, \\leanwit{FrcMathlib}{p05019}{D3} \\lean{Reductio.cantor, Reductio.cantor\\_finite, FRC.Reductio.cantor\\_finite}",
-     "key": "p05019"
+     "key": "p05019",
+     "name": "diagonal_normal_form"
     },
     {
      "label": "D4",
      "predicate": "Choice normal forms: Vitali (countably additive translation-invariant measure on all subsets $+$ AC$\\infty$ on $\\R/\\Q$, a countable amenable group) and Banach--Tarski (finitely additive isometry-invariant measure $+$ AC$\\infty$ $+$ a free non-amenable rotation subgroup) are inconsistent bundles with distinct mechanisms; the finite witness is counting measure with definable choice.",
      "tag": "I",
      "source": "Prop.~\\ref{prop:choice-NF}\\newline \\pywit{reductio}{p05020}{D4}",
-     "key": "p05020"
+     "key": "p05020",
+     "name": null
     },
     {
      "label": "D5",
      "predicate": "The reductio principle: for each normal form a baseline $B$ and one infinitary premise $I$ with $B+I$ contradictory and $B+\\neg I$ satisfiable by an explicit witness --- bounded ranks, $\\mathrm{Th}(W_N)$, counting measure (Solovay's model as classical corroboration); the rejection of $I$ is coherent and witnessed.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:reductio-principle}; Table~\\ref{tab:decision}; B3, D2, D4\\newline \\pywit{reductio}{p05021}{D5}, \\leanwit{FrcCore}{p05021}{D5} \\lean{FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_consistent, FRC.Logic.no\\_interpretation, FRC.Sets.no\\_russell\\_class, FRC.Sets.no\\_universal\\_of\\_separation, FRC.Sets.russell\\_not\\_mem\\_hf, FRC.Sets.no\\_universal, FRC.Sets.measure\\_add, FRC.Sets.measure\\_perm, FRC.Sets.no\\_doubling}",
-     "key": "p05021"
+     "key": "p05021",
+     "name": "reductio_principle"
     },
     {
      "label": "D6",
      "predicate": "The selection thesis: every normal form conjoins completed infinity with a totalising operation (comprehension, completeness, total selection, a total measure); each is harmless alone, contradiction tracks the conjunction; classical mathematics rejected the totalising conjunct at each crisis, this paper the shared one, the selection settled by Det rather than convention.",
      "tag": "D",
      "source": "\\S\\ref{subsec:determinacy}; \\S\\ref{subsec:synthesis}",
-     "key": "p05022"
+     "key": "p05022",
+     "name": null
     },
     {
      "label": "D7",
      "predicate": "Forced exit: Det supplies Eff and Cmp, so $\\{$Cns, Det, IR$\\}$ is inconsistent and, Cns and Det being constitutive, the reductio is forced against IR --- no determinate totality internalises an unbounded registry; the four-clause bundle condenses to this triad. Conditional on Det.",
      "tag": "I",
      "source": "Prop.~\\ref{prop:forced}; B2",
-     "key": "p05023"
+     "key": "p05023",
+     "name": null
     },
     {
      "label": "D8",
      "predicate": "Finiteness of determinate totalities: in ZF with every infinite set Dedekind-infinite, a structure satisfies Det iff it is finite --- finite: the full higher-order theory decided by exhaustive evaluation; infinite: a copy of $\\N$ inside gives an effective reduction of true second-order arithmetic, which is not arithmetical. The real field's first-order tameness is silence about its subsets.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:finiteness}\\newline \\pywit{reductio}{p05024}{D8}, \\leanwit{FrcCore}{p05024}{D8}, \\leanwit{FrcMathlib}{p05024}{D8} \\lean{Reductio.decideAllSubsets, Reductio.nat\\_embeds, FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete}",
-     "key": "p05024"
+     "key": "p05024",
+     "name": "finiteness_determinate_totalities"
     },
     {
      "label": "D9",
      "predicate": "Corollaries: no absolute totality is determinate (a universal set is infinite by the iterated singletons); Meas is decided content --- a Det totality decides every measure question, trivially on a finite one (counting measure). The totalising conjuncts of two normal forms follow from D8.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:AT-det}; Cor.~\\ref{cor:meas-det}\\newline \\pywit{reductio}{p05025}{D9}, \\leanwit{FrcCore}{p05025}{D9} \\lean{FRC.Sets.rank\\_chain, FRC.Sets.chain\\_injective, FRC.Sets.chain\\_not\\_mem, FRC.Sets.measure\\_le, FRC.Sets.measure\\_perm}",
-     "key": "p05025"
+     "key": "p05025",
+     "name": "reductio_corollaries"
     },
     {
      "label": "D10",
      "predicate": "The three gates: syntactic infinity (meta-level, potential, retained), semantic infinity (a completed object of the theory, the target in all three forms), diagonalisation (a method, dangerous only downstream of the second gate); the paper argues with an unbounded supply of finite objects only.",
      "tag": "D",
      "source": "\\S\\ref{subsec:gates}; Table~\\ref{tab:gates}",
-     "key": "p05026"
+     "key": "p05026",
+     "name": null
     }
    ]
   },
@@ -220,56 +246,64 @@
      "predicate": "Global choice on a finite universe: with a canonical order, $\\operatorname{ch}(A)=\\min A$ is a uniform pointwise choice rule; over a fixed finite base AC is a definable theorem; finite products are nonempty without it.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:finite-choice}\\newline \\pywit{reductio}{p05027}{E1}, \\leanwit{FrcCore}{p05027}{E1}, \\leanwit{FrcMathlib}{p05027}{E1} \\lean{Reductio.finite\\_choice, FRC.Reductio.leastBelow\\_spec, FRC.Reductio.leastBelow\\_some}",
-     "key": "p05027"
+     "key": "p05027",
+     "name": "global_choice_finite_universe"
     },
     {
      "label": "E2",
      "predicate": "Periodic choice: an equality-periodic family $A_{i+N}=A_i$ has the choice $f(i)=\\operatorname{ch}(A_i)$ of the same period; group-periodic families as equivariant surjections $\\pi:A\\to I$ with equivariant sections.",
      "tag": "T",
      "source": "Lemma~\\ref{lem:periodic-equality}; Def.~\\ref{def:group-periodic}\\newline \\pywit{reductio}{p05028}{E2}, \\leanwit{FrcCore}{p05028}{E2}, \\leanwit{FrcMathlib}{p05028}{E2} \\lean{Reductio.periodic\\_choice, FRC.Reductio.leastBelow\\_congr}",
-     "key": "p05028"
+     "key": "p05028",
+     "name": "periodic_choice_same_period"
     },
     {
      "label": "E3",
      "predicate": "Equivariant periodic choice: a $G$-equivariant section exists iff each stabiliser action $G_i\\curvearrowright A_i$ has a fixed point (one orbit at a time); the Fraenkel--Mostowski mechanism in positive form.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:equivariant-choice}\\newline \\pywit{reductio}{p05029}{E3}, \\leanwit{FrcCore}{p05029}{E3}, \\leanwit{FrcMathlib}{p05029}{E3} \\lean{Reductio.equivariant\\_section\\_iff, FRC.Equivariant.equivariant\\_section\\_iff, FRC.Equivariant.equivariant\\_section\\_orbits}",
-     "key": "p05029"
+     "key": "p05029",
+     "name": "equivariant_periodic_choice"
     },
     {
      "label": "E4",
      "predicate": "The definable basis: every subspace of a finite vector space has the greedy $\\min$-basis, one definable function on all subspaces; the equivariant obstruction --- $\\Z/2$ acting by $v\\mapsto-v$ on the line over $\\F_5$ fixes no basis ($-v\\neq v$), over $\\F_2$ it does: arithmetic, not formal.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:basis}; Ex.~\\ref{ex:basis-obstruction}\\newline \\pywit{reductio}{p05030}{E4}, \\leanwit{FrcCore}{p05030}{E4}, \\leanwit{FrcMathlib}{p05030}{E4} \\lean{Reductio.obstruction\\_five, FRC.Reductio.obstruction\\_five}",
-     "key": "p05030"
+     "key": "p05030",
+     "name": "definable_basis"
     },
     {
      "label": "E5",
      "predicate": "Periodic K\\H{o}nig: in a finite digraph with out-degree $\\ge1$ the greedy walk repeats a vertex within $|D|+1$ steps and is eventually periodic with period $\\le|D|$ --- the pigeonhole on an iteration over finitely many states.",
      "tag": "T",
      "source": "Lemma~\\ref{lem:periodic-konig}\\newline \\pywit{reductio}{p05031}{E5}, \\leanwit{FrcCore}{p05031}{E5} \\lean{FRC.Reductio.repeat\\_below, FRC.Reductio.eventually\\_periodic}",
-     "key": "p05031"
+     "key": "p05031",
+     "name": "periodic_konig"
     },
     {
      "label": "E6",
      "predicate": "Periodic de~Bruijn--Erd\\H{o}s, dimension one: a $\\sigma$-periodic graph of bounded range whose finite subgraphs are $c$-colourable admits a definable $\\sigma^{m}$-periodic $c$-colouring (the transfer digraph $D_c$, its sub-digraph of vertices beginning walks of every length, E5).",
      "tag": "T",
      "source": "Thm.~\\ref{thm:periodic-dbe}\\newline \\pywit{reductio}{p05032}{E6}, \\leanwit{FrcCore}{p05032}{E6} \\lean{FRC.Transfer.exists\\_allGood, FRC.Transfer.allGood\\_successor, FRC.Transfer.periodic\\_walk}",
-     "key": "p05032"
+     "key": "p05032",
+     "name": "periodic_de_bruijn_erdos"
     },
     {
      "label": "E7",
      "predicate": "The dimension boundary: in $\\Z^{2}$ aperiodic tile sets exist --- every finite patch admissible, no periodic configuration --- and the domino problem is undecidable; the passage from finite admissibility to infinite realisability has no finite certificate, its demarcation none either. The finite reading asserts patch admissibility only.",
      "tag": "Ω",
      "source": "\\S\\ref{subsec:dimension-boundary}; A3",
-     "key": "p05033"
+     "key": "p05033",
+     "name": null
     },
     {
      "label": "E8",
      "predicate": "The choice paradoxes vanish: on a finite set counting measure is complete and invariant, no decomposition doubles the set ($X\\sqcup X$ does not inject into $X$), and every ultrafilter is principal; periodic variants inherit this on one period.",
      "tag": "T",
      "source": "\\S\\ref{subsec:AC-consequences}\\newline \\pywit{reductio}{p05034}{E8}, \\leanwit{FrcCore}{p05034}{E8}, \\leanwit{FrcMathlib}{p05034}{E8} \\lean{Reductio.no\\_doubling, Reductio.ultrafilter\\_principal, FRC.Sets.measure\\_le, FRC.Sets.measure\\_add, FRC.Sets.measure\\_compl, FRC.Sets.measure\\_perm, FRC.Sets.no\\_doubling, FRC.Sets.ultra\\_principal}",
-     "key": "p05034"
+     "key": "p05034",
+     "name": "choice_paradoxes_vanish"
     }
    ]
   },
@@ -282,21 +316,24 @@
      "predicate": "Ontology and conservativeness: actual infinity is an idealisation of the finite; the bounded fragment is kept exactly, the unbounded fragment in schema form; analysis as approximation over finite grids; choice in the small. Positioning: finitism, intuitionism, ultrafinitism, structuralism; the potential-infinity rule retained at the meta-level as a commitment, not a neutrality.",
      "tag": "D",
      "source": "\\S\\ref{subsec:ontology}; \\S\\ref{subsec:conservativeness}; \\S\\ref{subsec:positions}; 00:A2",
-     "key": "p05035"
+     "key": "p05035",
+     "name": null
     },
     {
      "label": "F2",
      "predicate": "The Reductio Rule and its two tribunals: the economic ledger (the classical exit keeps $\\Pi_1$, $\\Pi_2$ number theory at a superexponential consistency grant; the finite exit keeps the bounded fragment and declines one classically provable existence claim, E7) and the constitutive Det, on which the verdict rests; objections O1--O5 answered.",
      "tag": "D",
      "source": "\\S\\ref{subsec:method-rule}; \\S\\ref{subsec:objections}",
-     "key": "p05036"
+     "key": "p05036",
+     "name": null
     },
     {
      "label": "F3",
      "predicate": "The catalogue: the pathologies of the completed infinite in four classes --- antinomies, consistent-but-unregistrable, underdetermination, physical divergences --- each removed by finiteness; the one exclusion retained, the schema over finite instances and the successor act.",
      "tag": "D",
      "source": "Appendix~\\ref{app:catalogue}",
-     "key": "p05037"
+     "key": "p05037",
+     "name": null
     }
    ]
   },
@@ -309,7 +346,8 @@
      "predicate": "The standing of the iteration rule --- whether the potential-infinity rule of the meta-level can be rejected, and at what cost --- is the subject of companion work; the present results are stated to survive either outcome.",
      "tag": "O",
      "source": "\\S\\ref{subsec:positions}",
-     "key": "p05041"
+     "key": "p05041",
+     "name": null
     }
    ]
   }
