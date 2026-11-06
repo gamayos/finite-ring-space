@@ -722,7 +722,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:A4, 00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole)."
+    "doc": "1:A3, 00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole)."
    },
    {
     "name": "FRC.Shell.Prime.primitive_pow_inj",
@@ -872,7 +872,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:A4, 00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole)."
+    "doc": "1:A3, 00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole)."
    },
    {
     "name": "FRC.Shell.Prime.primitive_pow_inj",

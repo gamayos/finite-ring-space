@@ -12,15 +12,15 @@ The algebra theme holds 1-algebra's exact content above the frame and the founda
 * the signed window integers `SInt` (a pair `(u, v)` read as `u − v`; no `Int`), their reading `sread`, the window
   bound `SBound`, and the signed window law `sread_inj` — moved here from the paper module `FrcCore/Quaternion.lean`,
   every name unchanged;
-* the window law for framed rationals (1:D4): fractions `a/b` with `|a| ≤ N`, `1 ≤ b ≤ D` and `2ND < p` that read as
+* the window law for framed rationals (1:D8): fractions `a/b` with `|a| ≤ N`, `1 ≤ b ≤ D` and `2ND < p` that read as
   the same residue are the same fraction (`frac_window`, `frac_window_inv`), so the products and the sums of window
   fractions read back on the windows `(H², H²)` and `(2H², H²)` (`frac_mul_readback`, `frac_add_readback`);
-* the scale grid covers the shell (1:D5): every residue is `t · B⁻¹` for exactly one `t` with `|t| ≤ 2κ`
+* the scale grid covers the shell (1:D9): every residue is `t · B⁻¹` for exactly one `t` with `|t| ≤ 2κ`
   (`signed_rep`, `signed_rep_unique`, `grid_cover`, `grid_unique`), and the nonzero residues form `2κ` sign pairs
   (`sign_pair`; 1:C4 with `vertex_count`);
 * the complex chart is a field exactly off the shells (1:E2): on a prime `p ≡ 3 (mod 4)` every nonzero pair of
   `F_p[X]/(X² + 1)` is invertible (`complex_chart_field`);
-* scale-periodicity made exact (1:D6): the grid `x · g^{−n}` returns to a nonzero point exactly when the scales
+* scale-periodicity made exact (1:D4): the grid `x · g^{−n}` returns to a nonzero point exactly when the scales
   agree modulo `p − 1`, the zoom has order exactly `p − 1`, and every grid lists the whole shell once;
 * the circle in counts (1:E4): the rounding of a framed turn `u/v` to the cycle of `N` steps is within half a step,
   and the rounding's group-law defect is `−1`, `0` or `1` (`round_bounds`, `round_defect`).
@@ -160,7 +160,7 @@ theorem snorm_bound {M : Nat} {x : SInt} (h1 : x.1 ≤ M) (h2 : x.2 ≤ M) : SBo
   | .isTrue h => exact Or.inr (FRC.Nat.sub_eq_zero_of_le h)
   | .isFalse h => exact Or.inl (FRC.Nat.sub_eq_zero_of_le (Nat.le_of_lt (Nat.lt_of_not_le h)))
 
-/-- 1:E7, The signed window law: two canonical pairs of size `M`, `2M < p`, with the same reading are equal. -/
+/-- The signed window law: two canonical pairs of size `M`, `2M < p`, with the same reading are equal. -/
 theorem sread_inj {M : Nat} (hM : 2 * M < p) {x y : SInt} (hx : SBound M x) (hy : SBound M y)
     (h : (sread x : Shell p) = sread y) : x = y := by
   unfold sread at h
@@ -198,7 +198,7 @@ theorem sread_inj {M : Nat} (hM : 2 * M < p) {x y : SInt} (hx : SBound M x) (hy 
     exact prod_ext hv (e.trans f.symm)
 
 
-/-! ## Framed rationals: the window law (1:D4) -/
+/-! ## Framed rationals: the window law (1:D8) -/
 
 /-- A natural number as a signed window integer reads as itself. -/
 theorem sread_nat (b : Nat) : (sread (b, 0) : Shell p) = ofNat b := by
@@ -250,7 +250,7 @@ theorem smul_bound2 {N D : Nat} {x y : SInt} (hx : SBound N x) (hy : SBound D y)
     · show x.1 * y.2 + x.2 * y.1 = 0
       rw [e, f, Nat.mul_zero, Nat.zero_mul]
 
-/-- 1:D4, the window law for framed rationals — two fractions `a₁/b₁`, `a₂/b₂` with `|aᵢ| ≤ N`, `bᵢ ≤ D` and
+/-- 1:D8, the window law for framed rationals — two fractions `a₁/b₁`, `a₂/b₂` with `|aᵢ| ≤ N`, `bᵢ ≤ D` and
 `2ND < p` whose cross-products agree on the shell, `a₁ b₂ ≡ a₂ b₁`, are the same fraction: `a₁ b₂ = a₂ b₁` as
 integers. -/
 theorem frac_window {N D : Nat} (hND : 2 * (N * D) < p) {a₁ a₂ : SInt} {b₁ b₂ : Nat}
@@ -260,7 +260,7 @@ theorem frac_window {N D : Nat} (hND : 2 * (N * D) < p) {a₁ a₂ : SInt} {b₁
   apply sread_inj hND (smul_bound2 ha₁ (nat_bound hb₂)) (smul_bound2 ha₂ (nat_bound hb₁))
   rw [sread_mul, sread_mul, sread_nat, sread_nat]; exact h
 
-/-- 1:D4, in the residues of the fractions — `a₁ · b₁⁻¹ = a₂ · b₂⁻¹` on the shell, with the window bounds and
+/-- 1:D8, in the residues of the fractions — `a₁ · b₁⁻¹ = a₂ · b₂⁻¹` on the shell, with the window bounds and
 `2ND < p`, forces `a₁ b₂ = a₂ b₁`: distinct window fractions take distinct residues. -/
 theorem frac_window_inv {N D : Nat} (hND : 2 * (N * D) < p) {a₁ a₂ : SInt} {b₁ b₂ : Nat} {y₁ y₂ : Shell p}
     (ha₁ : SBound N a₁) (ha₂ : SBound N a₂) (hb₁ : b₁ ≤ D) (hb₂ : b₂ ≤ D)
@@ -278,7 +278,7 @@ theorem frac_window_inv {N D : Nat} (hND : 2 * (N * D) < p) {a₁ a₂ : SInt} {
           (.mul (.mul (.var 0) (.var 2)) (.mul (.var 3) (.var 1))) (by decide +kernel)
     _ = sread a₂ * ofNat b₁ := by rw [hy₂, mul_one]
 
-/-- 1:D4, products read back — for window fractions `a/b`, `c/d` (`|a|, |c|, b, d ≤ H`) the product `ac/bd` lies
+/-- 1:D8, products read back — for window fractions `a/b`, `c/d` (`|a|, |c|, b, d ≤ H`) the product `ac/bd` lies
 in the window `(H², H²)`; when `2H⁴ < p` the residue of the product determines it among that window's fractions
 `e/f`. -/
 theorem frac_mul_readback {H : Nat} (hH : 2 * ((H * H) * (H * H)) < p) {a c e : SInt} {b d f : Nat}
@@ -299,7 +299,7 @@ theorem frac_mul_readback {H : Nat} (hH : 2 * ((H * H) * (H * H)) < p) {a c e : 
   exact RE.sound (look [sread a, sread c, yb, yd]) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 2) (.var 3)))
     (.mul (.mul (.var 0) (.var 2)) (.mul (.var 1) (.var 3))) (by decide +kernel)
 
-/-- 1:D4, sums read back — for window fractions `a/b`, `c/d` the sum `(ad + cb)/bd` lies in the window
+/-- 1:D8, sums read back — for window fractions `a/b`, `c/d` the sum `(ad + cb)/bd` lies in the window
 `(2H², H²)`; when `4H⁴ < p` its residue determines it among that window's fractions `e/f`. -/
 theorem frac_add_readback {H : Nat} (hH : 2 * ((H * H + H * H) * (H * H)) < p) {a c e : SInt} {b d f : Nat}
     {yb yd yf : Shell p} (ha : SBound H a) (hc : SBound H c) (hb : b ≤ H) (hd : d ≤ H)
@@ -328,7 +328,7 @@ theorem frac_add_readback {H : Nat} (hH : 2 * ((H * H + H * H) * (H * H)) < p) {
             (by decide +kernel)
     _ = sread a * yb + sread c * yd := by rw [hyd, hyb, mul_one, mul_one]
 
-/-! ## The scale grid covers the shell (1:D5) and the sign pairs (1:C4) -/
+/-! ## The scale grid covers the shell (1:D9) and the sign pairs (1:C4) -/
 
 theorem four_eq_two_two (κ : Nat) : 4 * κ = 2 * κ + 2 * κ := by
   rw [four_mul_eq, Nat.two_mul, Nat.add_assoc (κ + κ) κ κ]
@@ -337,7 +337,7 @@ omit [Pos p] in
 theorem two_two_lt {κ : Nat} (hcap : p = 4 * κ + 1) : 2 * (2 * κ) < p := by
   rw [hcap, Nat.two_mul (2 * κ), ← four_eq_two_two]; exact Nat.lt_succ_self _
 
-/-- 1:D5 — every residue of the shell `p = 4κ + 1` is the reading of exactly one signed window integer of size `2κ`
+/-- 1:D9 — every residue of the shell `p = 4κ + 1` is the reading of exactly one signed window integer of size `2κ`
 (existence here, uniqueness `signed_rep_unique`). -/
 theorem signed_rep {κ : Nat} (hcap : p = 4 * κ + 1) (x : Shell p) : ∃ t : SInt, SBound (2 * κ) t ∧ (sread t : Shell p) = x := by
   match Nat.decLe x.val (2 * κ) with
@@ -359,18 +359,18 @@ theorem signed_rep {κ : Nat} (hcap : p = 4 * κ + 1) (x : Shell p) : ∃ t : SI
         rw [ofNat_add, FRC.Nat.sub_add_cancel hxp, ofNat_self]
       rw [neg_eq_of_add_eq_zero hs, ofNat_val]
 
-/-- 1:D5, uniqueness — two signed window integers of size `2κ` with the same reading are equal. -/
+/-- 1:D9, uniqueness — two signed window integers of size `2κ` with the same reading are equal. -/
 theorem signed_rep_unique {κ : Nat} (hcap : p = 4 * κ + 1) {t t' : SInt} (ht : SBound (2 * κ) t) (ht' : SBound (2 * κ) t')
     (h : (sread t : Shell p) = sread t') : t = t' :=
   sread_inj (two_two_lt hcap) ht ht' h
 
-/-- 1:D5 — for every unit `B` (`B · y = 1`) the scale grid `t · B⁻¹`, `|t| ≤ 2κ`, covers the shell. -/
+/-- 1:D9 — for every unit `B` (`B · y = 1`) the scale grid `t · B⁻¹`, `|t| ≤ 2κ`, covers the shell. -/
 theorem grid_cover {κ : Nat} (hcap : p = 4 * κ + 1) {B y : Shell p} (hBy : B * y = 1) (x : Shell p) :
     ∃ t : SInt, SBound (2 * κ) t ∧ (sread t : Shell p) * y = x := by
   obtain ⟨t, ht, hr⟩ := signed_rep hcap (x * B)
   exact ⟨t, ht, by rw [hr, mul_assoc, hBy, mul_one]⟩
 
-/-- 1:D5 — and each residue sits on the grid once: `t · B⁻¹ = t' · B⁻¹` with `|t|, |t'| ≤ 2κ` forces `t = t'`. -/
+/-- 1:D9 — and each residue sits on the grid once: `t · B⁻¹ = t' · B⁻¹` with `|t|, |t'| ≤ 2κ` forces `t = t'`. -/
 theorem grid_unique {κ : Nat} (hcap : p = 4 * κ + 1) {B y : Shell p} (hBy : B * y = 1) {t t' : SInt}
     (ht : SBound (2 * κ) t) (ht' : SBound (2 * κ) t') (h : (sread t : Shell p) * y = sread t' * y) : t = t' := by
   apply signed_rep_unique hcap ht ht'
@@ -454,7 +454,7 @@ theorem complex_chart_field (hp : FRC.Nat.isPrime p) (h3 : p % 4 = 3) {x : Shell
       .zero (by decide +kernel)
   rw [e1, e2, hm]
 
-/-! ## Scale-periodicity, exact (1:D6)
+/-! ## Scale-periodicity, exact (1:D4)
 
 The grid at scale `n` is `G_n = (x · g^{−n})_x`, written with the inverse `y` of the drive (`g · y = 1`), so that
 `x · y^n = x g^{−n}`. The frame theme's `scale_periodic` gives the period `p − 1`; the theorems below make it exact:
@@ -473,7 +473,7 @@ theorem mul_cancel {κ : Nat} {g : Shell p} (F : Frame p κ g) {x a b : Shell p}
     _ = z * (x * b) := by rw [mul_assoc, h]
     _ = b := by rw [← mul_assoc, mul_comm z x, hz, one_mul]
 
-/-- 1:D6 — the grid of scale `n` is periodic in `n` with period `p − 1`: `x · y^{n+(p−1)} = x · y^n`. -/
+/-- 1:D4 — the grid of scale `n` is periodic in `n` with period `p − 1`: `x · y^{n+(p−1)} = x · y^n`. -/
 theorem scale_inv_periodic {κ : Nat} {g y : Shell p} (F : Frame p κ g) (hy : g * y = 1) (x : Shell p) (n : Nat) :
     x * y ^ (n + (p - 1)) = x * y ^ n := by
   have h1 : y ^ (p - 1) = 1 := by
@@ -490,7 +490,7 @@ theorem pow_eq_iff {κ : Nat} {g : Shell p} (F : Frame p κ g) (m n : Nat) :
     exact F.pow_inj (Nat.mod_lt m F.n_pos) (Nat.mod_lt n F.n_pos) h
   · intro h; rw [F.pow_mod m, F.pow_mod n, h]
 
-/-- 1:D6, the period is exact — for a nonzero `x` the grid points `x · y^m` and `x · y^n` coincide exactly when
+/-- 1:D4, the period is exact — for a nonzero `x` the grid points `x · y^m` and `x · y^n` coincide exactly when
 `m ≡ n (mod p − 1)`: no smaller shift of scale returns a nonzero point to its place. -/
 theorem scale_exact {κ : Nat} {g y : Shell p} (F : Frame p κ g) (hy : g * y = 1) {x : Shell p} (hx : x ≠ 0)
     (m n : Nat) : x * y ^ m = x * y ^ n ↔ m % (p - 1) = n % (p - 1) := by
@@ -512,7 +512,7 @@ theorem scale_exact {κ : Nat} {g y : Shell p} (F : Frame p κ g) (hy : g * y = 
         _ = y ^ n := by rw [inv_pow hy m, one_mul]
     rw [ey]
 
-/-- 1:D6, the zoom has order `p − 1` — the zoom by `k` steps fixes every grid point, `x · y^k = x` for all `x`,
+/-- 1:D4, the zoom has order `p − 1` — the zoom by `k` steps fixes every grid point, `x · y^k = x` for all `x`,
 exactly when `(p − 1) ∣ k`. -/
 theorem zoom_order {κ : Nat} {g y : Shell p} (F : Frame p κ g) (hy : g * y = 1) (k : Nat) :
     (∀ x : Shell p, x * y ^ k = x) ↔ k % (p - 1) = 0 := by
@@ -529,7 +529,7 @@ theorem zoom_order {κ : Nat} {g y : Shell p} (F : Frame p κ g) (hy : g * y = 1
     rw [one_mul, one_mul, pow_zero] at e
     rw [e, mul_one]
 
-/-- 1:D6, every grid is the whole shell — the scale map `x ↦ x · y^n` is onto (`z = (z g^n) y^n`) and one-to-one,
+/-- 1:D4, every grid is the whole shell — the scale map `x ↦ x · y^n` is onto (`z = (z g^n) y^n`) and one-to-one,
 so each grid `G_n` lists every residue once, and `G_m`, `G_n` are equal as ordered lists exactly when
 `m ≡ n (mod p − 1)` (`scale_exact` at `x = 1`, `scale_inv_periodic`). -/
 theorem scale_bijective {κ : Nat} {g y : Shell p} (F : Frame p κ g) (hy : g * y = 1) (n : Nat) :

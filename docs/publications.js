@@ -59,20 +59,20 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p01_algebra.ipynb",
         "label": "python",
-        "count": 0,
-        "title": "0 predicates checked, all passing: the notebook p01_algebra.ipynb on Google Colab, one cell per predicate"
+        "count": 17,
+        "title": "17 predicates checked, all passing: the notebook p01_algebra.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Algebra.lean",
         "label": "lean",
-        "count": 20,
-        "title": "20 predicates proved in the core (no axioms), 12 of them also on Mathlib: the core module Algebra as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 17,
+        "title": "17 predicates proved in the core (no axioms), 11 of them also on Mathlib: the core module Algebra as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Algebra.lean",
         "label": "lean-mathlib",
-        "count": 12,
-        "title": "12 predicates proved on Mathlib (classical), 12 of them also in the core: the module Algebra as one file on Mathlib in Lean Live"
+        "count": 11,
+        "title": "11 predicates proved on Mathlib (classical), 11 of them also in the core: the module Algebra as one file on Mathlib in Lean Live"
       }
     ]
   },

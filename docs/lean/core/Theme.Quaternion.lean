@@ -5,17 +5,18 @@ import FrcCore.Theme.Extension
 # FrcCore.Theme.Quaternion — rotations in the window (the algebra theme)
 
 1-algebra's framed quaternions and their rotations (6 November 2026), moved here from the paper module
-`FrcCore/Quaternion.lean`, every name unchanged, and completed in the core:
+`FrcCore/Quaternion.lean`, every name unchanged, and completed in the core. The revision of 1-algebra of the same day
+moved the rotations out of that paper's ledger; they wait for a paper of their own:
 
-* 1:E5 — the framed quaternions compose exactly: with coordinates in the window `H` and a shell `p > 8H²` the product
+* the framed quaternions compose exactly: with coordinates in the window `H` and a shell `p > 8H²` the product
   lies in the window `4H²` and the shell reading determines it (`quaternion_window`, `read_mul`);
-* 1:E6 — one axis: the rotation `x ↦ q x q̄ / N(q)` is the Cayley step of `S_v` (`rot_cayley`, `cayley_inj`), the
+* one axis: the rotation `x ↦ q x q̄ / N(q)` is the Cayley step of `S_v` (`rot_cayley`, `cayley_inj`), the
   half-turn at `a = 0` (`half_turn`), with kernel the scalars (`rot_trivial`) and `ρ_{−q} = ρ_q` (`rot_neg`); a quaternion
   `a + tv` with `a ≠ 0` is the scalar `a` times `1 + sv`, `s = t/a` (`axis_param`, `rot_smul`), distinct parameters
   give distinct rotations (`axis_inj`) and none of them is the half-turn (`axis_half`), and the parameter `s` fails exactly where `s² = −N(v)⁻¹`
   (`axis_exceptional`), at two values `±x` when `N(v)` is a square and at none otherwise (`neg_inv_square_iff`,
   `root_pair`); the window pairs `±(a, t)`, `|a|, |t| ≤ H`, number `2H² + 2H` (`box_count`);
-* 1:E7 — two axes: `(1 + u)(1 + w) = (1 − u·w) + (u + w + u × w)` (`one_add_mul`), the composition law (`compose`), the
+* two axes: `(1 + u)(1 + w) = (1 − u·w) + (u + w + u × w)` (`one_add_mul`), the composition law (`compose`), the
   half-turn case (`one_add_mul_half`), the bracket (`bracket`), and the multiplicative norm (`nrm_mul`, `rot_mul`).
 
 No axioms.
@@ -49,7 +50,7 @@ def QBound (H : Nat) (q : IQuat) : Prop := SBound H q.a ∧ SBound H q.b ∧ SBo
 theorem IQuat.ext' {q r : IQuat} (ha : q.a = r.a) (hb : q.b = r.b) (hc : q.c = r.c) (hd : q.d = r.d) : q = r := by
   cases q; cases r; cases ha; cases hb; cases hc; cases hd; rfl
 
-/-- 1:E5, exact composition — the reading of the integer product is the product of the readings. -/
+/-- Exact composition — the reading of the integer product is the product of the readings. -/
 theorem read_mul (q r : IQuat) : ((IQuat.mul q r).read : Quat p) = Quat.mul q.read r.read := by
   unfold IQuat.mul IQuat.read Quat.mul
   rw [sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add,
@@ -75,7 +76,7 @@ theorem norm_bound {H : Nat} {q r : IQuat} (hq : QBound H q) (hr : QBound H r) :
   · have := sum4_bound (m hq.1 hr.2.2.2) (m hq.2.1 hr.2.2.1) (sneg_bound (m hq.2.2.1 hr.2.1)) (m hq.2.2.2 hr.1)
     exact snorm_bound this.1 this.2
 
-/-- 1:E5, the finitary clause — framed quaternions with window coordinates `≤ H`, read in a shell `p > 8H²`,
+/-- The finitary clause — framed quaternions with window coordinates `≤ H`, read in a shell `p > 8H²`,
 compose exactly: the product of the readings is the reading of the integer product; that product's
 coordinates lie in the window `4H²`; and the reading determines it among the window's quaternions. -/
 theorem quaternion_window {H : Nat} (hH : 8 * (H * H) < p) {q r : IQuat} (hq : QBound H q) (hr : QBound H r) :
@@ -91,14 +92,14 @@ theorem quaternion_window {H : Nat} (hH : 8 * (H * H) < p) {q r : IQuat} (hq : Q
   exact IQuat.ext' (sread_inj hM hs.1 hn.1 (congrArg Quat.a he)) (sread_inj hM hs.2.1 hn.2.1 (congrArg Quat.b he))
     (sread_inj hM hs.2.2.1 hn.2.2.1 (congrArg Quat.c he)) (sread_inj hM hs.2.2.2 hn.2.2.2 (congrArg Quat.d he))
 
-/-! ## 1:E6 — the Lie-algebra layer, one axis -/
+/-! ## The Lie-algebra layer, one axis -/
 
-/-- 1:E6, conjugation keeps a pure quaternion pure: the scalar part of `q x q̄` vanishes. -/
+/-- Conjugation keeps a pure quaternion pure: the scalar part of `q x q̄` vanishes. -/
 theorem rot_pure (q x : Quat p) (hx : x.a = 0) : (Quat.conjBy q x).a = 0 := by
   rw [Quat.pure_eq hx]
   exact RE.sound (look [q.a, q.b, q.c, q.d, x.b, x.c, x.d]) (QR.conjBy (QR.v 0) (QR.pv 4)).a .zero (by decide +kernel)
 
-/-- 1:E6, the Cayley form cleared of the norm: for `q = a + v` and a pure `x`, the conjugate `y = q x q̄` satisfies
+/-- The Cayley form cleared of the norm: for `q = a + v` and a pure `x`, the conjugate `y = q x q̄` satisfies
 `(aI − S_v) y = N(q) (aI + S_v) x`, where `S_v x = v × x`. -/
 theorem rot_cayley (q x : Quat p) (hx : x.a = 0) :
     Quat.add (Quat.smul q.a (Quat.conjBy q x)) (Quat.neg (Quat.cross (Quat.vec q) (Quat.conjBy q x))) =
@@ -108,7 +109,7 @@ theorem rot_cayley (q x : Quat p) (hx : x.a = 0) :
     (QR.add (QR.smul (.var 0) (QR.conjBy (QR.v 0) (QR.pv 4))) (QR.neg (QR.cross (QR.vec (QR.v 0)) (QR.conjBy (QR.v 0) (QR.pv 4)))))
     (QR.smul (QR.nrm (QR.v 0)) (QR.add (QR.smul (.var 0) (QR.pv 4)) (QR.cross (QR.vec (QR.v 0)) (QR.pv 4)))) (by decide +kernel)
 
-/-- 1:E6, the half-turn: for pure `v` and `x`, `v x v̄ = N(v) x + 2 v × (v × x)`, so `ρ_v = I + 2N(v)⁻¹ S_v²`. -/
+/-- The half-turn: for pure `v` and `x`, `v x v̄ = N(v) x + 2 v × (v × x)`, so `ρ_v = I + 2N(v)⁻¹ S_v²`. -/
 theorem half_turn (v x : Quat p) (hv : v.a = 0) (hx : x.a = 0) :
     Quat.conjBy v x = Quat.add (Quat.smul (Quat.nrm v) x) (Quat.add (Quat.cross v (Quat.cross v x)) (Quat.cross v (Quat.cross v x))) := by
   rw [Quat.pure_eq hv, Quat.pure_eq hx]
@@ -116,7 +117,7 @@ theorem half_turn (v x : Quat p) (hv : v.a = 0) (hx : x.a = 0) :
     (QR.conjBy (QR.pv 0) (QR.pv 3))
     (QR.add (QR.smul (QR.nrm (QR.pv 0)) (QR.pv 3)) (QR.add (QR.cross (QR.pv 0) (QR.cross (QR.pv 0) (QR.pv 3))) (QR.cross (QR.pv 0) (QR.cross (QR.pv 0) (QR.pv 3))))) (by decide +kernel)
 
-/-- 1:E6, the key identity of uniqueness: with `w = a z − v × z`, `a (a² + N(v)) z = a² w + a (v × w) + (v · w) v`. -/
+/-- The key identity of uniqueness: with `w = a z − v × z`, `a (a² + N(v)) z = a² w + a (v × w) + (v · w) v`. -/
 theorem cayley_key (a : Shell p) (v z : Quat p) (hv : v.a = 0) (hz : z.a = 0) :
     Quat.smul (a * (a * a + Quat.dot v v)) z =
       Quat.add (Quat.add (Quat.smul (a * a) (Quat.add (Quat.smul a z) (Quat.neg (Quat.cross v z))))
@@ -139,7 +140,7 @@ theorem key_zero (a : Shell p) (v : Quat p) :
     (QR.add (QR.add (QR.smul (.mul (.var 0) (.var 0)) ⟨.zero, .zero, .zero, .zero⟩) (QR.smul (.var 0) (QR.cross (QR.v 1) ⟨.zero, .zero, .zero, .zero⟩)))
       (QR.smul (QR.dot (QR.v 1) ⟨.zero, .zero, .zero, .zero⟩) (QR.v 1))) ⟨.zero, .zero, .zero, .zero⟩ (by decide +kernel)
 
-/-- 1:E6, `aI − S_v` is injective on pure quaternions when `a ≠ 0` and `a² + N(v) ≠ 0` (a field shell). -/
+/-- `aI − S_v` is injective on pure quaternions when `a ≠ 0` and `a² + N(v) ≠ 0` (a field shell). -/
 theorem cayley_inj {κ : Nat} {g : Shell p} (F : Frame p κ g) {a : Shell p} {v z : Quat p} (hv : v.a = 0) (hz : z.a = 0)
     (ha : a ≠ 0) (hn : a * a + Quat.dot v v ≠ 0) (h : Quat.smul a z = Quat.cross v z) : z = ⟨0, 0, 0, 0⟩ := by
   have hw : Quat.add (Quat.smul a z) (Quat.neg (Quat.cross v z)) = ⟨0, 0, 0, 0⟩ := by rw [h]; exact add_neg_q _
@@ -155,9 +156,9 @@ theorem cayley_inj {κ : Nat} {g : Shell p} (F : Frame p κ g) {a : Shell p} {v 
     | .inr e2 => e2
   exact Quat.ext4 hz (comp _ (congrArg Quat.b key)) (comp _ (congrArg Quat.c key)) (comp _ (congrArg Quat.d key))
 
-/-! ## 1:E7 — the Lie-algebra layer, two axes and range -/
+/-! ## The Lie-algebra layer, two axes and range -/
 
-/-- 1:E7, the product of two Gibbs quaternions: `(1 + u)(1 + w) = (1 − u·w) + (u + w + u × w)` for pure `u`, `w`. -/
+/-- The product of two Gibbs quaternions: `(1 + u)(1 + w) = (1 − u·w) + (u + w + u × w)` for pure `u`, `w`. -/
 theorem one_add_mul (u w : Quat p) (hu : u.a = 0) (hw : w.a = 0) :
     Quat.mul (Quat.add (Quat.sc 1) u) (Quat.add (Quat.sc 1) w) =
       Quat.add (Quat.sc (1 + -(Quat.dot u w))) (Quat.add (Quat.add u w) (Quat.cross u w)) := by
@@ -166,31 +167,31 @@ theorem one_add_mul (u w : Quat p) (hu : u.a = 0) (hw : w.a = 0) :
     (QR.mul (QR.add (QR.sc .one) (QR.pv 0)) (QR.add (QR.sc .one) (QR.pv 3)))
     (QR.add (QR.sc (.add .one (.neg (QR.dot (QR.pv 0) (QR.pv 3))))) (QR.add (QR.add (QR.pv 0) (QR.pv 3)) (QR.cross (QR.pv 0) (QR.pv 3)))) (by decide +kernel)
 
-/-- 1:E7, the bracket: `uw − wu = 2 u × w` for pure `u`, `w`. -/
+/-- The bracket: `uw − wu = 2 u × w` for pure `u`, `w`. -/
 theorem bracket (u w : Quat p) (hu : u.a = 0) (hw : w.a = 0) :
     Quat.add (Quat.mul u w) (Quat.neg (Quat.mul w u)) = Quat.add (Quat.cross u w) (Quat.cross u w) := by
   rw [Quat.pure_eq hu, Quat.pure_eq hw]
   exact QR.sound (look [u.b, u.c, u.d, w.b, w.c, w.d])
     (QR.add (QR.mul (QR.pv 0) (QR.pv 3)) (QR.neg (QR.mul (QR.pv 3) (QR.pv 0)))) (QR.add (QR.cross (QR.pv 0) (QR.pv 3)) (QR.cross (QR.pv 0) (QR.pv 3))) (by decide +kernel)
 
-/-- 1:E7, conjugation is multiplicative: `(qr) x (qr)‾ = q (r x r̄) q̄`. -/
+/-- Conjugation is multiplicative: `(qr) x (qr)‾ = q (r x r̄) q̄`. -/
 theorem rot_mul (q r x : Quat p) : Quat.conjBy (Quat.mul q r) x = Quat.conjBy q (Quat.conjBy r x) :=
   QR.sound (look [q.a, q.b, q.c, q.d, r.a, r.b, r.c, r.d, x.a, x.b, x.c, x.d]) (QR.conjBy (QR.mul (QR.v 0) (QR.v 4)) (QR.v 8))
     (QR.conjBy (QR.v 0) (QR.conjBy (QR.v 4) (QR.v 8))) (by decide +kernel)
 
-/-- 1:E6, 1:E7, scaling: `(sq) x (sq)‾ = s² q x q̄` and `N(sq) = s² N(q)`, so the rotation of `q` depends on `q` up to a scalar. -/
+/-- Scaling: `(sq) x (sq)‾ = s² q x q̄` and `N(sq) = s² N(q)`, so the rotation of `q` depends on `q` up to a scalar. -/
 theorem rot_smul (s : Shell p) (q x : Quat p) :
     Quat.conjBy (Quat.smul s q) x = Quat.smul (s * s) (Quat.conjBy q x) ∧ Quat.nrm (Quat.smul s q) = s * s * Quat.nrm q :=
   ⟨QR.sound (look [s, q.a, q.b, q.c, q.d, x.a, x.b, x.c, x.d]) (QR.conjBy (QR.smul (.var 0) (QR.v 1)) (QR.v 5))
       (QR.smul (.mul (.var 0) (.var 0)) (QR.conjBy (QR.v 1) (QR.v 5))) (by decide +kernel),
    RE.sound (look [s, q.a, q.b, q.c, q.d]) (QR.nrm (QR.smul (.var 0) (QR.v 1))) (.mul (.mul (.var 0) (.var 0)) (QR.nrm (QR.v 1))) (by decide +kernel)⟩
 
-/-- 1:E7, the half-turn case: at `u · w = 1` the product `(1 + u)(1 + w)` is the pure quaternion `u + w + u × w`. -/
+/-- The half-turn case: at `u · w = 1` the product `(1 + u)(1 + w)` is the pure quaternion `u + w + u × w`. -/
 theorem one_add_mul_half (u w : Quat p) (hu : u.a = 0) (hw : w.a = 0) (h1 : Quat.dot u w = 1) :
     Quat.mul (Quat.add (Quat.sc 1) u) (Quat.add (Quat.sc 1) w) = Quat.add (Quat.sc 0) (Quat.add (Quat.add u w) (Quat.cross u w)) := by
   rw [one_add_mul u w hu hw, h1, add_neg]
 
-/-- 1:E6, the sign: `ρ_{−q} = ρ_q` (`(−q) x (−q)‾ = q x q̄`, `N(−q) = N(q)`); the window rotations of an axis come in
+/-- The sign: `ρ_{−q} = ρ_q` (`(−q) x (−q)‾ = q x q̄`, `N(−q) = N(q)`); the window rotations of an axis come in
 pairs `±(a, t)`, which bounds them by `2H² + 2H` (`FRC.Algebra.card_image_le_of_neg`). -/
 theorem rot_neg (q x : Quat p) : Quat.conjBy (Quat.neg q) x = Quat.conjBy q x ∧ Quat.nrm (Quat.neg q) = Quat.nrm q :=
   ⟨QR.sound (look [q.a, q.b, q.c, q.d, x.a, x.b, x.c, x.d]) (QR.conjBy (QR.neg (QR.v 0)) (QR.v 4)) (QR.conjBy (QR.v 0) (QR.v 4)) (by decide +kernel),
@@ -224,7 +225,7 @@ theorem inv_chain (nu nw s nc Nu Nw Nc : Shell p) (hu : Nu * nu = 1) (hw : Nw * 
       (.mul (.mul (.var 2) (.var 0)) (.mul (.var 3) (.var 1))) (by decide +kernel)
   rw [e1, ← hN, e2, hu, hw, mul_one, mul_one]
 
-/-- 1:E7, the composition law: for pure `u`, `w` with `1 + N(u)`, `1 + N(w)`, `1 − u·w` and `1 + N(u∘w)` invertible
+/-- The composition law: for pure `u`, `w` with `1 + N(u)`, `1 + N(w)`, `1 − u·w` and `1 + N(u∘w)` invertible
 (inverses `nu`, `nw`, `s'`, `nc`), `ρ_{1+u} ρ_{1+w} = ρ_{1+u∘w}` with `u∘w = (u + w + u × w)/(1 − u·w)`; here
 `ρ_q x = N(q)⁻¹ q x q̄`. -/
 theorem compose (u w x : Quat p) (hu : u.a = 0) (hw : w.a = 0) (s' nu nw nc : Shell p)
@@ -256,7 +257,7 @@ theorem cayley_trivial_id (q x : Quat p) (hx : x.a = 0) :
       (QR.smul (.add .one .one) (QR.smul (QR.nrm (QR.v 0)) (QR.cross (QR.vec (QR.v 0)) (QR.pv 4)))))
     (QR.smul (QR.nrm (QR.v 0)) (QR.add (QR.smul (.var 0) (QR.pv 4)) (QR.cross (QR.vec (QR.v 0)) (QR.pv 4)))) (by decide +kernel)
 
-/-- 1:E6, the kernel: on a field shell, a rotation `ρ_q` (`N(q) ≠ 0`) that fixes every pure quaternion has `q` a
+/-- The kernel: on a field shell, a rotation `ρ_q` (`N(q) ≠ 0`) that fixes every pure quaternion has `q` a
 scalar — so `a + t v ↦ ρ_{a+tv}` is injective on the pairs modulo the scalars, and the axis group of
 `FRC.Algebra.axis_group` is the rotation group of the axis. -/
 theorem rot_trivial {κ : Nat} {g : Shell p} (F : Frame p κ g) (q : Quat p) (hN : Quat.nrm q ≠ 0)
@@ -295,9 +296,9 @@ theorem rot_trivial {κ : Nat} {g : Shell p} (F : Frame p κ g) (q : Quat p) (hN
 
 
 
-/-! ## 1:E6 — the axis: parameters, injectivity, exceptional values, the window count -/
+/-! ## The axis: parameters, injectivity, exceptional values, the window count -/
 
-/-- 1:E6 — on the axis of `v`, `a + t v` (`a y = 1`) is the scalar `a` times `1 + s v` with `s = t y`. -/
+/-- On the axis of `v`, `a + t v` (`a y = 1`) is the scalar `a` times `1 + s v` with `s = t y`. -/
 theorem axis_param {a t y : Shell p} (hay : a * y = 1) (v : Quat p) :
     Quat.add (Quat.sc a) (Quat.smul t v) = Quat.smul a (Quat.add (Quat.sc 1) (Quat.smul (t * y) v)) := by
   have key : ∀ w : Shell p, t * w = a * (t * y * w) := fun w => by
@@ -332,7 +333,7 @@ theorem axis_quotient (s t b c d : Shell p) :
     (QR.add (QR.sc (.add .one (.mul (.mul (.var 0) (.var 1)) (.add (.add (.mul (.var 2) (.var 2)) (.mul (.var 3) (.var 3))) (.mul (.var 4) (.var 4))))))
       (QR.smul (.add (.var 1) (.neg (.var 0))) ⟨.zero, .var 2, .var 3, .var 4⟩)) (by decide +kernel)
 
-/-- 1:E6 — distinct parameters give distinct rotations: if `1 + s v` and `1 + t v` (`v` pure and nonzero, both norms
+/-- Distinct parameters give distinct rotations: if `1 + s v` and `1 + t v` (`v` pure and nonzero, both norms
 nonzero) rotate every pure quaternion alike, `N(r) ρ_q = N(q) ρ_r`, then `s = t`. -/
 theorem axis_inj {κ : Nat} {g : Shell p} (F : Frame p κ g) {b c d s t : Shell p} (hv0 : b ≠ 0 ∨ c ≠ 0 ∨ d ≠ 0)
     (hq : Quat.nrm (Quat.add (Quat.sc 1) (Quat.smul s ⟨0, b, c, d⟩)) ≠ 0)
@@ -377,7 +378,7 @@ theorem axis_half_quotient (s b c d : Shell p) :
     (QR.add (QR.sc (.mul (.var 0) (.add (.add (.mul (.var 1) (.var 1)) (.mul (.var 2) (.var 2))) (.mul (.var 3) (.var 3)))))
       ⟨.zero, .var 1, .var 2, .var 3⟩) (by decide +kernel)
 
-/-- 1:E6 — the half-turn is not among the parameters: `ρ_{1+sv} ≠ ρ_v` for a pure nonzero `v` (the quotient
+/-- The half-turn is not among the parameters: `ρ_{1+sv} ≠ ρ_v` for a pure nonzero `v` (the quotient
 `(1 − s v) v = sN(v) + v` is never a scalar). -/
 theorem axis_half {κ : Nat} {g : Shell p} (F : Frame p κ g) {b c d s : Shell p} (hv0 : b ≠ 0 ∨ c ≠ 0 ∨ d ≠ 0)
     (hq : Quat.nrm (Quat.add (Quat.sc 1) (Quat.smul s ⟨0, b, c, d⟩)) ≠ 0)
@@ -410,7 +411,7 @@ theorem axis_half {κ : Nat} {g : Shell p} (F : Frame p κ g) {b c d s : Shell p
   | Or.inr (Or.inl h0) => exact h0 hc'
   | Or.inr (Or.inr h0) => exact h0 hd'
 
-/-- 1:E6 — the parameter `s` fails exactly at the roots of `1 + N s² = 0`, that is `s² = −N⁻¹` (`N m = 1`). -/
+/-- The parameter `s` fails exactly at the roots of `1 + N s² = 0`, that is `s² = −N⁻¹` (`N m = 1`). -/
 theorem axis_exceptional {N m : Shell p} (hm : N * m = 1) (s : Shell p) : (1 : Shell p) + N * (s * s) = 0 ↔ s * s = -m := by
   constructor
   · intro h
@@ -422,7 +423,7 @@ theorem axis_exceptional {N m : Shell p} (hm : N * m = 1) (s : Shell p) : (1 : S
     rw [h, ← mul_neg, hm]
     exact add_neg 1
 
-/-- 1:E6 — on a framed shell `−N⁻¹` is a square exactly when `N` is (the quarter-turn turns one into the other), so the
+/-- On a framed shell `−N⁻¹` is a square exactly when `N` is (the quarter-turn turns one into the other), so the
 exceptional parameters are two (`root_pair`) when `N` is a square and none otherwise. -/
 theorem neg_inv_square_iff {κ : Nat} {g : Shell p} (F : Frame p κ g) {N m : Shell p} (hm : N * m = 1) :
     (∃ x : Shell p, x * x = -m) ↔ (∃ y : Shell p, y * y = N) := by
@@ -466,7 +467,7 @@ theorem neg_inv_square_iff {κ : Nat} {g : Shell p} (F : Frame p κ g) {N m : Sh
             (.mul (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (by decide +kernel)
       _ = -m := by rw [hi, hyim, neg_one_mul]
 
-/-- 1:E6 — the window box: the `(2H + 1)²` pairs `(a, t)`, `|a|, |t| ≤ H`, are the origin and `2(2H² + 2H)` others,
+/-- The window box: the `(2H + 1)²` pairs `(a, t)`, `|a|, |t| ≤ H`, are the origin and `2(2H² + 2H)` others,
 which the sign `(a, t) ↦ (−a, −t)` (`window_signed`, `rot_neg`) pairs into `2H² + 2H` classes. -/
 theorem box_count (H : Nat) : (2 * H + 1) * (2 * H + 1) = 2 * (2 * H * H + 2 * H) + 1 := by
   have hA : 2 * (2 * H * H) = 2 * H * (2 * H) := by

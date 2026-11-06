@@ -1688,7 +1688,7 @@ variable {κ : Nat} {g : Shell p}
 
 /-! ## The frame's arithmetic (moved from 1-algebra by the ledger migration, task LM17) -/
 
-/-- 1:D6 (Lemma 2 of 1-algebra, scale periodicity) — the residue grid repeats with the period `p − 1`
+/-- 1:D4 (Lemma 2 of 1-algebra, scale periodicity) — the residue grid repeats with the period `p − 1`
 of the drive: `g^{n + (p−1)} = g^n`, hence `x·g^{n + (p−1)} = x·g^n` for every `x`. -/
 theorem scale_periodic (F : Frame p κ g) (x : Shell p) (n : Nat) :
     x * g ^ (n + (p - 1)) = x * g ^ n := by
@@ -1840,7 +1840,7 @@ theorem natCount_ne_zero (n : Nat) : natCount (fun x => x ≠ 0) (n + 1) = n := 
     show natCount (fun x => x ≠ 0) (n + 1) + (if n + 1 ≠ 0 then 1 else 0) = n + 1
     rw [ih, ite_eq_left (Nat.succ_ne_zero n)]
 
-/-- 1:E6, 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
+/-- 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
 each quadratic defining congruence has exactly two roots on a framed Carrier. -/
 theorem root_pair (F : Frame p κ g) (a x : Shell p) (hx : x * x = a) (hx0 : x ≠ 0) :
     (∀ y : Shell p, y * y = a ↔ (y = x ∨ y = -x)) ∧ -x ≠ x := by
@@ -2447,7 +2447,7 @@ theorem QR.sound (env : Nat → Shell p) (l r : QR) (h : QR.check l r = true) : 
     (RE.sound env _ _ (and_true_left (and_true_right h))) (RE.sound env _ _ (and_true_right (and_true_right h)))
 
 
-/-- 1:E7, the norm is multiplicative: `N(qr) = N(q) N(r)`. -/
+/-- The norm is multiplicative: `N(qr) = N(q) N(r)`. -/
 theorem nrm_mul (q r : Quat p) : Quat.nrm (Quat.mul q r) = Quat.nrm q * Quat.nrm r :=
   RE.sound (look [q.a, q.b, q.c, q.d, r.a, r.b, r.c, r.d]) (QR.nrm (QR.mul (QR.v 0) (QR.v 4))) (.mul (QR.nrm (QR.v 0)) (QR.nrm (QR.v 4))) (by decide +kernel)
 
@@ -4522,7 +4522,7 @@ variable {p : Nat} [Pos p]
 
 namespace Prime
 
-/-- 1:A2, 7:A23, Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero
+/-- 1:A1, 7:A23, Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero
 residue holds every residue iff `p` is prime. An ideal `I` holds `0` and is closed under addition and under
 multiplication by any residue. Forward, a nonzero `a ∈ I` has the inverse `a^{p−2}` (Fermat), so `1 ∈ I` and then
 `x = x · 1 ∈ I`. Backward, the annihilator `{x : x b = 0}` of `b` is an ideal, so `a b = 0` with `a ≠ 0` puts `1` in
@@ -4559,7 +4559,7 @@ theorem pow_mod_eq_one (hp : FRC.Nat.isPrime p) {z : Shell p} (hz : z ≠ 0) {d 
 
 /-! ## The quarter-turn criterion: `−1` is a square iff `p ≡ 1 (mod 4)` -/
 
-/-- 1:A3, the quarter-turn criterion on a prime `p > 2`: `x² = −1` is solvable iff `p ≡ 1 (mod 4)`. Forward, `ħ⁴ = 1`
+/-- 1:A2, the quarter-turn criterion on a prime `p > 2`: `x² = −1` is solvable iff `p ≡ 1 (mod 4)`. Forward, `ħ⁴ = 1`
 and `ħ^{(p−1) mod 4} = 1` leave only `(p − 1) mod 4 = 0`; backward, the chart. -/
 theorem quarter_turn_iff (hp : FRC.Nat.isPrime p) (h2 : 2 < p) : (∃ h : Shell p, h * h = -1) ↔ p % 4 = 1 := by
   constructor
@@ -5017,7 +5017,7 @@ theorem primitive_pow_inj (hp : FRC.Nat.isPrime p) {g : Shell p} (hg0 : g ≠ 0)
     | .inl hlt => key (Nat.le_of_lt hlt) hj h
     | .inr hge => (key hge hi h.symm).symm
 
-/-- 1:A4, 00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and
+/-- 1:A3, 00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and
 its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole). -/
 theorem exists_drive (hp : FRC.Nat.isPrime p) :
     ∃ g : Shell p, (g ^ (p - 1) = 1 ∧ ∀ l, l < p - 1 → 0 < l → g ^ l ≠ 1) ∧

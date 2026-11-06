@@ -67,7 +67,15 @@ BLOCK = {"A": "the inputs carried: completeness, the quarter-turn criterion, the
          "C": "the orbital complex and its poles",
          "D": "framed numbers",
          "E": "the complex chart, polynomials and continuous symmetry"}
-PREDICATES = {lab: pid for pid, lab in LEDGER.items()}
+# the deciding check of each witnessed predicate, as the package names it
+PREDICATES = {
+    "1:A1": "A1", "1:A2": "A2", "1:A3": "A3",
+    "1:B2": "B1", "1:B3": "B2", "1:B4": "B3", "1:C2": "B4",
+    "1:C4": "C1", "1:Z1": "C2", "1:Z3": "C3",
+    "1:D2": "D1", "1:D8": "D2", "1:D9": "D3", "1:D4": "D4",
+    "1:E2": "E1", "1:E3": "E2", "1:E4": "E3",
+}
+assert PREDICATES == {pid: lab for lab, pid in LEDGER.items()}
 R = Registry("1", "algebra", LEDGER, PREDICATES, sources=[__file__])
 
 

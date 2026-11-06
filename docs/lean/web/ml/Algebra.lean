@@ -208,7 +208,7 @@ The section `conjecture` keeps the solving criterion (1:E3); the 2025 edition's 
 the chart theme's `Theme/Circle.lean` (the circle net and the rounding's group law, 1:E4's chart clause), and the tower
 density of the retired D7 left the library (`_to_delete/conversion-20261106/`). The section `lie` proves the counting
 clauses of the Lie-algebra layer: the axis group, cyclic of order `p − (N|p)`, the window count `2H² + 2H`, and the
-heights and read-back of 1:E7. Every docstring opens with the ledger rows the declaration decides (`1:B2`).
+heights and read-back of the rotation layer. Every docstring opens with the ledger rows the declaration decides (`1:B2`).
 -/
 
 namespace FRC.AlgebraML
@@ -345,7 +345,7 @@ theorem framed_integer_window (p : ℕ) [NeZero p] (H : ℕ) (hH : 2 * H < p) (x
   omega
 
 omit [DecidableEq F] in
-/-- 1:D6 (Lemma 2 restated in the field — scale-periodicity): the scale map
+/-- 1:D4 (Lemma 2 restated in the field — scale-periodicity): the scale map
 `S n x = x · g^(−n)` on the shell is `(card F − 1)`-periodic in `n`: the residue grids
 `G_n = S_n(0..p−1)` coincide as ordered lists. -/
 theorem scale_periodic (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (n : ℕ) (x : F) :
@@ -519,7 +519,7 @@ end conjecture
 
 section lie
 
-/-! ### 1:E6, 1:E7 — the Lie-algebra layer: the axis group, the window count, the heights and the read-back -/
+/-! ### The Lie-algebra layer: the axis group, the window count, the heights and the read-back -/
 
 open QuadraticAlgebra
 
@@ -545,7 +545,7 @@ theorem card_scalars (d : ZMod p) : Nat.card (scalars p d) = p - 1 := by
   have := congrArg Units.val h
   simpa using (algebraMap (ZMod p) (AxisAlg p d)).injective this
 
-/-- 1:E6, the axis group when `−d` is not a square: cyclic of order `p + 1`. -/
+/-- The axis group when `−d` is not a square: cyclic of order `p + 1`. -/
 theorem axis_field (d : ZMod p) [Fact (¬ IsSquare (-d))] :
     IsCyclic ((AxisAlg p d)ˣ ⧸ scalars p d) ∧ Nat.card ((AxisAlg p d)ˣ ⧸ scalars p d) = p + 1 := by
   refine ⟨isCyclic_of_surjective (QuotientGroup.mk' _) (QuotientGroup.mk'_surjective _), ?_⟩
@@ -573,7 +573,7 @@ def psiK {K : Type*} [Field K] (d r : K) (hr : r * r = -d) : QuadraticAlgebra K 
 theorem psiK_apply {K : Type*} [Field K] (d r : K) (hr : r * r = -d) (z : QuadraticAlgebra K (-d) 0) :
     psiK d r hr z = z.re + r * z.im := rfl
 
-/-- 1:E6, the axis group when `−d = r²` with `r ≠ 0` (characteristic not two): the units modulo the scalars are
+/-- The axis group when `−d = r²` with `r ≠ 0` (characteristic not two): the units modulo the scalars are
 isomorphic to `Kˣ`. -/
 theorem axis_split_equiv {K : Type*} [Field K] (h2 : (2 : K) ≠ 0) (d r : K) (hr : r * r = -d) (hr0 : r ≠ 0) :
     Nonempty ((QuadraticAlgebra K (-d) 0)ˣ ⧸
@@ -633,7 +633,7 @@ theorem axis_split_equiv {K : Type*} [Field K] (h2 : (2 : K) ≠ 0) (d r : K) (h
     exact ⟨u, by simp [φ, hu1, hu2]⟩
   exact ⟨(QuotientGroup.quotientMulEquivOfEq hker.symm).trans (QuotientGroup.quotientKerEquivOfSurjective φ hsurj)⟩
 
-/-- 1:E6, the axis group on the shell when `−d = r²`, `r ≠ 0`: cyclic of order `p − 1`. -/
+/-- The axis group on the shell when `−d = r²`, `r ≠ 0`: cyclic of order `p − 1`. -/
 theorem axis_split (hp2 : p ≠ 2) (d r : ZMod p) (hr : r * r = -d) (hr0 : r ≠ 0) :
     IsCyclic ((AxisAlg p d)ˣ ⧸ scalars p d) ∧ Nat.card ((AxisAlg p d)ˣ ⧸ scalars p d) = p - 1 := by
   have h2 : (2 : ZMod p) ≠ 0 := Ring.two_ne_zero (by rw [ZMod.ringChar_zmod_n]; exact hp2)
@@ -641,7 +641,7 @@ theorem axis_split (hp2 : p ≠ 2) (d r : ZMod p) (hr : r * r = -d) (hr0 : r ≠
   refine ⟨isCyclic_of_surjective e.symm.toMonoidHom e.symm.surjective, ?_⟩
   exact (Nat.card_congr e.toEquiv).trans (by rw [Nat.card_eq_fintype_card, ZMod.card_units])
 
-/-- 1:E6, the rotation group of an axis `v` on a shell `p ≡ 1 (mod 4)`, `N(v) = N ≢ 0`: the pairs `a + t v` modulo
+/-- The rotation group of an axis `v` on a shell `p ≡ 1 (mod 4)`, `N(v) = N ≢ 0`: the pairs `a + t v` modulo
 the scalars form a cyclic group of order `p − (N|p)`. -/
 theorem axis_group (hp4 : p % 4 = 1) (N : ℤ) (hN : (N : ZMod p) ≠ 0) :
     IsCyclic ((AxisAlg p N)ˣ ⧸ scalars p N) ∧ (Nat.card ((AxisAlg p N)ˣ ⧸ scalars p N) : ℤ) = p - legendreSym p N := by
@@ -684,7 +684,7 @@ theorem card_halfPairs (H : ℕ) : (halfPairs H).card = 2 * H * H + 2 * H := by
     simp only [Finset.mem_product, Finset.mem_Icc, Finset.mem_singleton] at h1 h2
     omega
 
-/-- 1:E6, the window count: a map of the window pairs that takes `x` and `−x` to the same value (the rotation
+/-- The window count: a map of the window pairs that takes `x` and `−x` to the same value (the rotation
 `ρ_{a + t v₀}`: `ρ_{−q} = ρ_q`) takes at most `2H² + 2H` values. -/
 theorem card_image_le_of_neg {β : Type*} [DecidableEq β] (H : ℕ) (f : ℤ × ℤ → β) (hf : ∀ x, f (-x) = f x) :
     ((winPairs H).image f).card ≤ 2 * H * H + 2 * H := by
@@ -708,7 +708,7 @@ section heights
 
 open Quaternion
 
-/-- 1:E7, the height law: a window quaternion `q` (integer coordinates of size at most `H`) has every coordinate
+/-- The height law: a window quaternion `q` (integer coordinates of size at most `H`) has every coordinate
 of `q^m` of size at most `(2H)^m` — the norm is multiplicative and at most `4H²` on the window. -/
 theorem quat_pow_height (H : ℤ) (q : ℍ[ℤ]) (hr : |q.re| ≤ H) (hi : |q.imI| ≤ H) (hj : |q.imJ| ≤ H) (hk : |q.imK| ≤ H) (m : ℕ) :
     |(q ^ m).re| ≤ (2 * H) ^ m ∧ |(q ^ m).imI| ≤ (2 * H) ^ m ∧ |(q ^ m).imJ| ≤ (2 * H) ^ m ∧ |(q ^ m).imK| ≤ (2 * H) ^ m := by
@@ -729,7 +729,7 @@ theorem quat_pow_height (H : ℤ) (q : ℍ[ℤ]) (hr : |q.re| ≤ H) (hi : |q.im
   rw [normSq_def'] at hpow
   refine ⟨key _ ?_, key _ ?_, key _ ?_, key _ ?_⟩ <;> rw [normSq_def'] <;> nlinarith [sq_nonneg (q ^ m).re, sq_nonneg (q ^ m).imI, sq_nonneg (q ^ m).imJ, sq_nonneg (q ^ m).imK]
 
-/-- 1:E7, read-back (the window law D2 coordinate by coordinate): an integer `c` is the signed reading of its residue
+/-- Read-back (the window law D2 coordinate by coordinate): an integer `c` is the signed reading of its residue
 on the shell `p` (odd) exactly when `2|c| < p`. -/
 theorem readback_iff (p : ℕ) [Fact p.Prime] (hp : p ≠ 2) (c : ℤ) : ((c : ZMod p).valMinAbs = c) ↔ 2 * |c| < p := by
   rw [ZMod.valMinAbs_spec]
@@ -817,37 +817,34 @@ that every row carrying the key asserts, proved from the themes alone. The paper
 namespace FRC.LedgerML
 
 -- Keys of the algebra theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
-/-- p01004 — 1:B2. Symmetry completeness: the fourth roots of unity form the unique order-four subgroup $Q_4=\{1,\im,-1,-\im\}$, the union of the Klein orbits $\{\pm1\}$, $\{\pm\im\}$; the other $4\kap-4$ residues fall into exactly $\kap-1$ Klein orbits of size four; for $\p\equiv3\pmod4$ no quarter-turn exists. -/
+/-- p01004 — 1:B2. Symmetry completeness: the fourth roots of unity form the unique order-four subgroup $Q_4=\{1,\im,-1,-\im\}$; under the Klein four-group $\langle x\mapsto-x,\,x\mapsto x^{-1}\rangle$, $Q_4$ is the union of the two size-two orbits $\{\pm1\}$, $\{\pm\im\}$, and $\Fpx\setminus Q_4$ splits into exactly $\kap-1$ orbits of size four. For $\p\equiv3\pmod4$ no $\im$ exists. -/
 theorem p01004 : (∀ {F : Type u_1} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → ∃ u, u ^ (2 : ℕ) = (-1 : F)) ∧ (∀ {F : Type u_2} [Field F], (2 : F) ≠ (0 : F) → ∀ (x : F), x ≠ (0 : F) → x ^ (2 : ℕ) ≠ (1 : F) → x ^ (2 : ℕ) ≠ (-1 : F) → x ≠ -x ∧ x ≠ x⁻¹ ∧ x ≠ -x⁻¹ ∧ -x ≠ x⁻¹ ∧ -x ≠ -x⁻¹ ∧ x⁻¹ ≠ -x⁻¹) ∧ ∀ {F : Type u_3} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → Nat.card ↥(rootsOfUnity (4 : ℕ) F) = (4 : ℕ) :=
   And.intro @FRC.AlgebraML.quarter_turn_exists (And.intro @FRC.AlgebraML.klein_orbit_four (@FRC.AlgebraML.card_fourth_roots))
-/-- p01005 — 1:B3. The oriented quarter-turn: $\im=-\gen^{\kap}$ satisfies $\im^{2}=-1$ for every primitive root $\gen$; the two square roots of $-1$ are $\pm\gen^{\kap}$, so the drive fixes which is $\im$; on $\F_{13}$, $\gen=2$: $\im=5$. -/
+/-- p01005 — 1:B3. The oriented quarter-turn: $\im=-\gen^{\kap}$ satisfies $\im^{2}=-1$ for every primitive root $\gen$; the two square roots of $-1$ are $\{-\gen^{\kap},\gen^{\kap}\}$, so the drive fixes which is $\im$. On $\F_{13}$, $\gen=2$: $\im=5$. -/
 theorem p01005 : (∀ {F : Type u_1} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → ∀ (g : F), IsPrimitiveRoot g (Fintype.card F - (1 : ℕ)) → (-g ^ κ) ^ (2 : ℕ) = (-1 : F) ∧ g ^ ((2 : ℕ) * κ) = (-1 : F)) ∧ -(2 : ZMod (13 : ℕ)) ^ (3 : ℕ) = (5 : ZMod (13 : ℕ)) ∧ (5 : ZMod (13 : ℕ)) ^ (2 : ℕ) = (-1 : ZMod (13 : ℕ)) :=
   And.intro @FRC.AlgebraML.quarter_turn (@FRC.AlgebraML.s13_quarter_turn)
 /-- p01006 — 1:B4. Affine reframing: $\varphi_{a,b}(x)=a+bx$, $b\neq0$, is a ring isomorphism $(\Fp,+,\cdot)\to(\Fp,\oplus,\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant. -/
 theorem p01006 : ∀ {F : Type u_1} [Field F] (a b : F), b ≠ (0 : F) → have φ := fun x => a + b * x; have oplus := fun x y => a + b * ((x - a) / b + (y - a) / b); have otimes := fun x y => a + b * ((x - a) / b * ((y - a) / b)); (∀ (x y : F), φ (x + y) = oplus (φ x) (φ y)) ∧ (∀ (x y : F), φ (x * y) = otimes (φ x) (φ y)) ∧ Function.Bijective φ ∧ (∀ (y : F), otimes (a + b) y = y) ∧ (a ≠ (0 : F) → otimes b (a + b) ≠ a + b) :=
   @FRC.AlgebraML.affine_frame
-/-- p01011 — 1:C4. Involutions and counts: $M_n(a)=M_{n+2\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\kap)$; the $\p-1$ meridian steps are distinct, in $2\kap$ great circles; the nonzero residues form $2\kap$ sign pairs $\{\pm a\}$, $a\le2\kap$; the complex has $(\p-1)^{2}/2+1$ vertices. -/
+/-- p01011 — 1:C4. Involutions and counts: $M_n(a)=M_{n+2\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\kap)$ since $\gen^{2\kap}=-1$; $\p-1$ distinct meridian lists in $2\kap$ great circles; $2\kap$ latitude pairs; one-sided vertex count $(\p-1)^{2}/2+1$, the double cover $(\p-1)^{2}$. -/
 theorem p01011 : ∀ {F : Type u_1} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → ∀ (g : F), IsPrimitiveRoot g (Fintype.card F - (1 : ℕ)) → ∀ (a : F) (n : ℕ), -a * g ^ (n + (2 : ℕ) * κ) = a * g ^ n :=
   @FRC.AlgebraML.meridian_involution
 set_option linter.defProp false in
-/-- p01013 — 1:D2. The window law: $z\mapsto z\bmod\p$ is injective on $W_H$ when $2H<\p$; for $x,y\in W_H$ the residue of $x\pm y$ reads back the integer when $4H<\p$, and that of $xy$ when $2H^{2}<\p$. -/
+/-- p01013 — 1:D2. The window law: $z\mapsto z\bmod\p$ is injective on $W_H$ when $2H<\p$; for $x,y\in W_H$ the residue of $x\pm y$ reads back the integer when $4H<\p$, and that of $xy$ when $2H^{2}<\p$ (the same injectivity on the windows $2H$ and $H^{2}$). -/
 def p01013 := @FRC.AlgebraML.framed_integer_window
 set_option linter.defProp false in
-/-- p01015 — 1:D6. Scale-periodicity, exact: $x\gen^{-(n+\p-1)}=x\gen^{-n}$; for $x\neq0$, $x\gen^{-m}=x\gen^{-n}$ exactly when $m\equiv n\pmod{\p-1}$; each grid $G_n$ lists every residue once and the zoom has order $\p-1$; read over $\Z$ with $\gen$ lifted the grids are not periodic. -/
+/-- p01015 — 1:D4. Scale-periodicity, in the field: $S_n(x)=x\gen^{-n}$ satisfies $S_{n+(\p-1)}=S_n$, and the period is exact: for $x\neq0$, $x\gen^{-m}=x\gen^{-n}$ iff $m\equiv n\pmod{\p-1}$; each grid $G_n$ lists every residue once; the zoom has order $\p-1$. As lists of rationals $x/\gen^{n}$ the grids are not periodic. -/
 def p01015 := @FRC.AlgebraML.scale_periodic
-/-- p01019 — 1:E2. The extension by $X^{2}+1$ splits: on the shell $\Fp[X]/(X^{2}+1)$ has the zero divisors $(X+\im)(X-\im)$; it is a field exactly when $\p\equiv3\pmod4$, every nonzero pair $(a,b)$ having the inverse $(a,-b)/(a^{2}+b^{2})$. -/
+/-- p01019 — 1:E2. The extension by $X^{2}+1$ is trivial: on the shell $\Fp[X]/(X^{2}+1)$ has zero divisors, $(X+\im)(X-\im)=0$, so it is not a field; $\Fp[X]/(X^{2}+1)$ is a field exactly when $\p\equiv3\pmod4$, every nonzero pair $(a,b)$ having the inverse $(a,-b)/(a^{2}+b^{2})$. -/
 theorem p01019 : ∀ {F : Type u_1} [Field F] (u : F), u ^ (2 : ℕ) = (-1 : F) → let R := AdjoinRoot (Polynomial.X ^ (2 : ℕ) + (1 : Polynomial F)); ∃ α β, α ≠ (0 : R) ∧ β ≠ (0 : R) ∧ α * β = (0 : R) :=
   @FRC.AlgebraML.complex_chart_zero_divisor
-set_option linter.defProp false in
-/-- p01020 — 1:Z1. No element of additive order two: $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap$ and $2\kap+1=2^{-1}$. -/
-def p01020 := @FRC.AlgebraML.no_south_pole
-/-- p01026 — 1:E3. Solving in the substrate: $f\in\Fp[X]$ has a root in $\Fp$ exactly when $f$ and $X^{\p}-X=\prod_a(X-a)$ have a common factor; a nonzero $f$ of degree $d$ has at most $d$ roots. -/
+/-- p01020 — 1:Z1. No element of additive order two: $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$. -/
+theorem p01020 : ∀ {F : Type u_1} [Field F], (2 : F) ≠ (0 : F) → ∀ (s : F), (2 : F) * s = (0 : F) → s = (0 : F) :=
+  @FRC.AlgebraML.no_south_pole
+/-- p01026 — 1:E3. Solving in the substrate: $f\in\Fp[X]$ has a root in $\Fp$ iff $f$ and $X^{\p}-X=\prod_{a}(X-a)$ are not coprime; a nonzero $f$ of degree $d$ has at most $d$ roots. An equation without a root in $\Fp$ is recognised, not extended (E2). -/
 theorem p01026 : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (f : Polynomial (ZMod p)), (∃ a, Polynomial.eval a f = (0 : ZMod p)) ↔ ¬IsCoprime f (Polynomial.X ^ p - Polynomial.X) :=
   @FRC.AlgebraML.root_iff_not_coprime
-set_option linter.defProp false in
-/-- p01033 — 1:E7. Two axes: $(1+u)(1+w)=(1-u\cdot w)+(u+w+u\times w)$; $\rho_{1+u}\rho_{1+w}=\rho_{1+u\circ w}$, $u\circ w=(u+w+u\times w)/(1-u\cdot w)$; the half-turn at $u\cdot w=1$; $uw-wu=2u\times w$; $N(qr)=N(q)N(r)$; $q^{m}$ reads back when $2\|q^{m}\|_\infty<\p$. -/
-def p01033 := @FRC.AlgebraML.readback_iff
-/-- p01034 — 1:Z3. No latitude on the equator: $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle has value $0$, and none of the window sits there; the equator, depth $\kap+\tfrac14$, lies strictly between the latitudes $\kap$ and $\kap+1$. -/
+/-- p01034 — 1:Z3. No latitude on the equator: $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle ($\p/4$, $\p/2$, $3\p/4$) has value $0$, and none of the window sits there; the equator, depth $\kap+\tfrac14$, lies strictly between $L_\kap$ and $L_{\kap+1}$. -/
 theorem p01034 : (∀ {F : Type u_1} [Field F], (2 : F) ≠ (0 : F) → ∀ (s : F), (4 : F) * s = (0 : F) → s = (0 : F)) ∧ (∀ (p : ℕ) [Fact (Nat.Prime p)], (2 : ZMod p) ≠ (0 : ZMod p) → ∀ (a b m : ℤ), (4 : ℤ) * a = ↑p * b * m → ↑a * (↑b)⁻¹ = (0 : ZMod p)) ∧ (∀ (p : ℕ) [Fact (Nat.Prime p)] (a b m : ℤ) (H : ℕ), (2 : ℕ) * H < p → |a| ≤ ↑H → b ≠ (0 : ℤ) → m ≠ (0 : ℤ) → (4 : ℤ) * a = ↑p * b * m → False) ∧ ∀ (p κ : ℕ), p = (4 : ℕ) * κ + (1 : ℕ) → (4 : ℕ) * κ < p ∧ p < (4 : ℕ) * (κ + (1 : ℕ)) :=
   And.intro @FRC.AlgebraML.no_equator (And.intro @FRC.AlgebraML.quarter_position (And.intro @FRC.AlgebraML.quarter_position_window (@FRC.AlgebraML.equator_between)))
 -- end keys
@@ -4277,7 +4274,7 @@ theorem p00193 : (∀ (S r c : ℝ), S ≠ (0 : ℝ) → S / (2 : ℝ) / ((4 : �
 /-- p00201 — 00:E14. \textbf{The eikonal pair}: on the exponential reading (E4) the photon sphere sits at $r_c=2M$, $b_c=2eM$, and the orbital rate equals the Lyapunov rate, $\Omega_c=\lambda=1/(2eM)$, both $3\sqrt3/(2e)$ of Schwarzschild's. The wave operator's $\ell=2$ mode (E13) is $(0.4641-0.0923\,i)/M$ [approx], $0.8\%$ above the eikonal $(\ell+\tfrac12)/(2eM)$. Falsifier: that mode read as the remnant's $(2,2,0)$ oscillation, $+24\%$ against Kerr, excluded by GW250114 [import]. -/
 theorem p00201 : (∀ (M : ℝ), (0 : ℝ) < M → (∀ (r : ℝ), r ≠ (0 : ℝ) → HasDerivAt (fun r => r ^ (2 : ℕ) * Real.exp ((4 : ℝ) * M / r)) (Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) * r - (4 : ℝ) * M)) r) ∧ (∀ (r : ℝ), Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) * r - (4 : ℝ) * M) = (0 : ℝ) ↔ r = (2 : ℝ) * M) ∧ (∀ (r : ℝ), r ≠ (0 : ℝ) → HasDerivAt (fun r => Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) * r - (4 : ℝ) * M)) (Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) - (4 : ℝ) * M * ((2 : ℝ) * r - (4 : ℝ) * M) / r ^ (2 : ℕ))) r) ∧ Real.exp ((4 : ℝ) * M / ((2 : ℝ) * M)) * ((2 : ℝ) - (4 : ℝ) * M * ((2 : ℝ) * ((2 : ℝ) * M) - (4 : ℝ) * M) / ((2 : ℝ) * M) ^ (2 : ℕ)) = (2 : ℝ) * Real.exp (2 : ℝ) ∧ ((2 : ℝ) * M) ^ (2 : ℕ) * Real.exp ((4 : ℝ) * M / ((2 : ℝ) * M)) = ((2 : ℝ) * Real.exp (1 : ℝ) * M) ^ (2 : ℕ) ∧ Real.exp (-((4 : ℝ) * M / ((2 : ℝ) * M))) * ((2 : ℝ) * Real.exp (2 : ℝ)) / ((2 : ℝ) * (((2 : ℝ) * M) ^ (2 : ℕ) * Real.exp ((4 : ℝ) * M / ((2 : ℝ) * M)))) = ((1 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ) * M)) ^ (2 : ℕ) ∧ (1 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ) * M) / ((1 : ℝ) / ((3 : ℝ) * √(3 : ℝ) * M)) = (3 : ℝ) * √(3 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ))) ∧ 1.0462 < (2 : ℝ) * Real.exp (1 : ℝ) / ((3 : ℝ) * √(3 : ℝ)) ∧ (2 : ℝ) * Real.exp (1 : ℝ) / ((3 : ℝ) * √(3 : ℝ)) < 1.0463 ∧ 0.9557 < (3 : ℝ) * √(3 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ)) ∧ (3 : ℝ) * √(3 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ)) < 0.9558 ∧ 2.46 < ((4 : ℝ) * Real.exp (1 : ℝ) - (6 : ℝ) * √(3 : ℝ)) * 5.12 ∧ ((4 : ℝ) * Real.exp (1 : ℝ) - (6 : ℝ) * √(3 : ℝ)) * 5.12 < 2.47 :=
   And.intro @FRC.Strong.eikonal_pair (@FRC.Strong.shadow_bracket)
-/-- p01028 — 1:E4. The circle in counts: the rounding $k$ of a framed turn $u/v$ to $C_{\p-1}$, $2vk\le2(\p-1)u+v<2vk+2v$, exists and lies within half a step; its group-law defect is $-1$, $0$ or $1$; read in $U(1)$, a $\pi/(\p-1)$-net [chart]. -/
+/-- p01028 — 1:E4. Continuous symmetry, the abelian case: $\Fpx\simeq C_{\p-1}$ is a $\pi/(\p-1)$-net of $U(1)$ under $k\mapsto e^{2\pi\im k/(\p-1)}$; the rounding of a framed turn $u/v$ to $C_{\p-1}$ lies within half a step, and its group-law defect is at most one step. -/
 theorem p01028 : (∀ (N : ℕ), (0 : ℕ) < N → ∀ (θ : ℝ), |θ - (2 : ℝ) * Real.pi * ↑(round (↑N * θ / ((2 : ℝ) * Real.pi))) / ↑N| ≤ Real.pi / ↑N) ∧ ∀ (N : ℕ) (θ₁ θ₂ : ℝ), |round (↑N * θ₁ / ((2 : ℝ) * Real.pi)) + round (↑N * θ₂ / ((2 : ℝ) * Real.pi)) - round (↑N * (θ₁ + θ₂) / ((2 : ℝ) * Real.pi))| ≤ (1 : ℤ) :=
   And.intro @FRC.AlgebraML.circle_net (@FRC.AlgebraML.group_law_defect)
 /-- p14038 — 14:P3. The age--rate locus $t_{\mathrm{age}}H_0=(\pi/4)/\tanh(3\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\pm0.34$ Gyr): $H_0=68.2\pm1.7$ km/s/Mpc \apx, $0.5\sigma$ from Planck, $0.65\sigma$ from TRGB, $2.4\sigma$ from the Cepheid ladder --- the framework favours the CMB/TRGB value at that significance, and forbids the $\Omega_\Lambda\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\Lambda$ it returns the channel-1 $H_0$ (to $0.1\%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\star H_0\ge1.0$ against $0.950$). -/
@@ -4609,7 +4606,7 @@ theorem meridian_involution : ∀ {F : Type u_1} [Field F] [Fintype F] (κ : ℕ
 /-- 1:D2 (Definition 6 made precise): the framed-integer window. Integers of absolute value `≤ H` with `2H < card F` have distinct residues: the cast `ℤ → ZMod p` is injective on the window. Stated on `ZMod p`. -/
 theorem framed_integer_window : ∀ (p : Nat) [@NeZero Nat (@MulZeroClass.toZero Nat Nat.instMulZeroClass) p] (H : Nat), @LT.lt Nat instLTNat (@HMul.hMul Nat Nat Nat (@instHMul Nat instMulNat) (@OfNat.ofNat Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) H) p → ∀ (x y : Int), @LE.le Int Int.instLEInt (@abs Int instLatticeInt Int.instAddGroup x) (@Nat.cast Int instNatCastInt H) → @LE.le Int Int.instLEInt (@abs Int instLatticeInt Int.instAddGroup y) (@Nat.cast Int instNatCastInt H) → @Eq (ZMod p) (@Int.cast (ZMod p) (@AddGroupWithOne.toIntCast (ZMod p) (@Ring.toAddGroupWithOne (ZMod p) (@CommRing.toRing (ZMod p) (ZMod.commRing p)))) x) (@Int.cast (ZMod p) (@AddGroupWithOne.toIntCast (ZMod p) (@Ring.toAddGroupWithOne (ZMod p) (@CommRing.toRing (ZMod p) (ZMod.commRing p)))) y) → @Eq Int x y :=
   @FRC.AlgebraML.framed_integer_window
-/-- 1:D6 (Lemma 2 restated in the field — scale-periodicity): the scale map `S n x = x · g^(−n)` on the shell is `(card F − 1)`-periodic in `n`: the residue grids `G_n = S_n(0..p−1)` coincide as ordered lists. -/
+/-- 1:D4 (Lemma 2 restated in the field — scale-periodicity): the scale map `S n x = x · g^(−n)` on the shell is `(card F − 1)`-periodic in `n`: the residue grids `G_n = S_n(0..p−1)` coincide as ordered lists. -/
 theorem scale_periodic : ∀ {F : Type u_1} [Field F] [Fintype F] (g : F), IsPrimitiveRoot g (Fintype.card F - (1 : ℕ)) → ∀ (n : ℕ) (x : F), x * (g ^ (n + (Fintype.card F - (1 : ℕ))))⁻¹ = x * (g ^ n)⁻¹ :=
   @FRC.AlgebraML.scale_periodic
 /-- 1:E2 (Proposition 5 reversed): adjoining a root of `X² + 1` to a field that already contains one gives zero divisors — `F[X]/(X²+1)` is not a field on the shell. With `u² = −1`, `(X + u)(X − u) = 0` in the quotient while both factors are nonzero. -/
@@ -4624,9 +4621,6 @@ theorem circle_net : ∀ (N : ℕ), (0 : ℕ) < N → ∀ (θ : ℝ), |θ - (2 :
 /-- 1:E4 (third clause): the group-law defect of the rounding is at most one step. -/
 theorem group_law_defect : ∀ (N : ℕ) (θ₁ θ₂ : ℝ), |round (↑N * θ₁ / ((2 : ℝ) * Real.pi)) + round (↑N * θ₂ / ((2 : ℝ) * Real.pi)) - round (↑N * (θ₁ + θ₂) / ((2 : ℝ) * Real.pi))| ≤ (1 : ℤ) :=
   @FRC.AlgebraML.group_law_defect
-/-- 1:E7, read-back (the window law D2 coordinate by coordinate): an integer `c` is the signed reading of its residue on the shell `p` (odd) exactly when `2|c| < p`. -/
-theorem readback_iff : ∀ (p : ℕ) [Fact p.Prime], p ≠ 2 → ∀ (c : ℤ), ((c : ZMod p).valMinAbs = c) ↔ 2 * |c| < (p : ℤ) :=
-  @FRC.AlgebraML.readback_iff
 /-- 1:Z1 (Theorem 3): `2s = 0 ⇒ s = 0` in a field of characteristic `≠ 2`: the additive cycle has no element of order two; the antipode of the origin is not a residue. -/
 theorem no_south_pole : ∀ {F : Type u_1} [Field F], (2 : F) ≠ (0 : F) → ∀ (s : F), (2 : F) * s = (0 : F) → s = (0 : F) :=
   @FRC.AlgebraML.no_south_pole
@@ -4644,42 +4638,39 @@ theorem equator_between : ∀ (p κ : ℕ), p = (4 : ℕ) * κ + (1 : ℕ) → (
   @FRC.AlgebraML.equator_between
 
 -- Ledger predicates of 1-algebra (generated by make_predicates.py from docs/1-algebra/1-algebra-ledger.json; edit the ledger, not this section)
-/-- 1:B2 (p01004) — Symmetry completeness: the fourth roots of unity form the unique order-four subgroup $Q_4=\{1,\im,-1,-\im\}$, the union of the Klein orbits $\{\pm1\}$, $\{\pm\im\}$; the other $4\kap-4$ residues fall into exactly $\kap-1$ Klein orbits of size four; for $\p\equiv3\pmod4$ no quarter-turn exists. -/
-theorem p01004 : (∀ {F : Type u_1} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → ∃ u, u ^ (2 : ℕ) = (-1 : F)) ∧ (∀ {F : Type u_2} [Field F], (2 : F) ≠ (0 : F) → ∀ (x : F), x ≠ (0 : F) → x ^ (2 : ℕ) ≠ (1 : F) → x ^ (2 : ℕ) ≠ (-1 : F) → x ≠ -x ∧ x ≠ x⁻¹ ∧ x ≠ -x⁻¹ ∧ -x ≠ x⁻¹ ∧ -x ≠ -x⁻¹ ∧ x⁻¹ ≠ -x⁻¹) ∧ ∀ {F : Type u_3} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → Nat.card ↥(rootsOfUnity (4 : ℕ) F) = (4 : ℕ) :=
-  @FRC.LedgerML.p01004
-/-- 1:B3 (p01005) — The oriented quarter-turn: $\im=-\gen^{\kap}$ satisfies $\im^{2}=-1$ for every primitive root $\gen$; the two square roots of $-1$ are $\pm\gen^{\kap}$, so the drive fixes which is $\im$; on $\F_{13}$, $\gen=2$: $\im=5$. -/
-theorem p01005 : (∀ {F : Type u_1} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → ∀ (g : F), IsPrimitiveRoot g (Fintype.card F - (1 : ℕ)) → (-g ^ κ) ^ (2 : ℕ) = (-1 : F) ∧ g ^ ((2 : ℕ) * κ) = (-1 : F)) ∧ -(2 : ZMod (13 : ℕ)) ^ (3 : ℕ) = (5 : ZMod (13 : ℕ)) ∧ (5 : ZMod (13 : ℕ)) ^ (2 : ℕ) = (-1 : ZMod (13 : ℕ)) :=
-  @FRC.LedgerML.p01005
-/-- 1:B4 (p01006) — Affine reframing: $\varphi_{a,b}(x)=a+bx$, $b\neq0$, is a ring isomorphism $(\Fp,+,\cdot)\to(\Fp,\oplus,\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant. -/
-theorem p01006 : ∀ {F : Type u_1} [Field F] (a b : F), b ≠ (0 : F) → have φ := fun x => a + b * x; have oplus := fun x y => a + b * ((x - a) / b + (y - a) / b); have otimes := fun x y => a + b * ((x - a) / b * ((y - a) / b)); (∀ (x y : F), φ (x + y) = oplus (φ x) (φ y)) ∧ (∀ (x y : F), φ (x * y) = otimes (φ x) (φ y)) ∧ Function.Bijective φ ∧ (∀ (y : F), otimes (a + b) y = y) ∧ (a ≠ (0 : F) → otimes b (a + b) ≠ a + b) :=
-  @FRC.LedgerML.p01006
-/-- 1:C4 (p01011) — Involutions and counts: $M_n(a)=M_{n+2\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\kap)$; the $\p-1$ meridian steps are distinct, in $2\kap$ great circles; the nonzero residues form $2\kap$ sign pairs $\{\pm a\}$, $a\le2\kap$; the complex has $(\p-1)^{2}/2+1$ vertices. -/
-theorem p01011 : ∀ {F : Type u_1} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → ∀ (g : F), IsPrimitiveRoot g (Fintype.card F - (1 : ℕ)) → ∀ (a : F) (n : ℕ), -a * g ^ (n + (2 : ℕ) * κ) = a * g ^ n :=
-  @FRC.LedgerML.p01011
 set_option linter.defProp false in
-/-- 1:D2 (p01013) — The window law: $z\mapsto z\bmod\p$ is injective on $W_H$ when $2H<\p$; for $x,y\in W_H$ the residue of $x\pm y$ reads back the integer when $4H<\p$, and that of $xy$ when $2H^{2}<\p$. -/
+/-- 1:B2 (p01004) — Symmetry completeness: the fourth roots of unity form the unique order-four subgroup $Q_4=\{1,\im,-1,-\im\}$; under the Klein four-group $\langle x\mapsto-x,\,x\mapsto x^{-1}\rangle$, $Q_4$ is the union of the two size-two orbits $\{\pm1\}$, $\{\pm\im\}$, and $\Fpx\setminus Q_4$ splits into exactly $\kap-1$ orbits of size four. For $\p\equiv3\pmod4$ no $\im$ exists. -/
+def p01004 := @FRC.LedgerML.p01004
+set_option linter.defProp false in
+/-- 1:B3 (p01005) — The oriented quarter-turn: $\im=-\gen^{\kap}$ satisfies $\im^{2}=-1$ for every primitive root $\gen$; the two square roots of $-1$ are $\{-\gen^{\kap},\gen^{\kap}\}$, so the drive fixes which is $\im$. On $\F_{13}$, $\gen=2$: $\im=5$. -/
+def p01005 := @FRC.LedgerML.p01005
+set_option linter.defProp false in
+/-- 1:B4 (p01006) — Affine reframing: $\varphi_{a,b}(x)=a+bx$, $b\neq0$, is a ring isomorphism $(\Fp,+,\cdot)\to(\Fp,\oplus,\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant. -/
+def p01006 := @FRC.LedgerML.p01006
+set_option linter.defProp false in
+/-- 1:C4 (p01011) — Involutions and counts: $M_n(a)=M_{n+2\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\kap)$ since $\gen^{2\kap}=-1$; $\p-1$ distinct meridian lists in $2\kap$ great circles; $2\kap$ latitude pairs; one-sided vertex count $(\p-1)^{2}/2+1$, the double cover $(\p-1)^{2}$. -/
+def p01011 := @FRC.LedgerML.p01011
+set_option linter.defProp false in
+/-- 1:D2 (p01013) — The window law: $z\mapsto z\bmod\p$ is injective on $W_H$ when $2H<\p$; for $x,y\in W_H$ the residue of $x\pm y$ reads back the integer when $4H<\p$, and that of $xy$ when $2H^{2}<\p$ (the same injectivity on the windows $2H$ and $H^{2}$). -/
 def p01013 := @FRC.LedgerML.p01013
 set_option linter.defProp false in
-/-- 1:D6 (p01015) — Scale-periodicity, exact: $x\gen^{-(n+\p-1)}=x\gen^{-n}$; for $x\neq0$, $x\gen^{-m}=x\gen^{-n}$ exactly when $m\equiv n\pmod{\p-1}$; each grid $G_n$ lists every residue once and the zoom has order $\p-1$; read over $\Z$ with $\gen$ lifted the grids are not periodic. -/
+/-- 1:D4 (p01015) — Scale-periodicity, in the field: $S_n(x)=x\gen^{-n}$ satisfies $S_{n+(\p-1)}=S_n$, and the period is exact: for $x\neq0$, $x\gen^{-m}=x\gen^{-n}$ iff $m\equiv n\pmod{\p-1}$; each grid $G_n$ lists every residue once; the zoom has order $\p-1$. As lists of rationals $x/\gen^{n}$ the grids are not periodic. -/
 def p01015 := @FRC.LedgerML.p01015
-/-- 1:E2 (p01019) — The extension by $X^{2}+1$ splits: on the shell $\Fp[X]/(X^{2}+1)$ has the zero divisors $(X+\im)(X-\im)$; it is a field exactly when $\p\equiv3\pmod4$, every nonzero pair $(a,b)$ having the inverse $(a,-b)/(a^{2}+b^{2})$. -/
-theorem p01019 : ∀ {F : Type u_1} [Field F] (u : F), u ^ (2 : ℕ) = (-1 : F) → let R := AdjoinRoot (Polynomial.X ^ (2 : ℕ) + (1 : Polynomial F)); ∃ α β, α ≠ (0 : R) ∧ β ≠ (0 : R) ∧ α * β = (0 : R) :=
-  @FRC.LedgerML.p01019
-/-- 1:E3 (p01026) — Solving in the substrate: $f\in\Fp[X]$ has a root in $\Fp$ exactly when $f$ and $X^{\p}-X=\prod_a(X-a)$ have a common factor; a nonzero $f$ of degree $d$ has at most $d$ roots. -/
-theorem p01026 : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (f : Polynomial (ZMod p)), (∃ a, Polynomial.eval a f = (0 : ZMod p)) ↔ ¬IsCoprime f (Polynomial.X ^ p - Polynomial.X) :=
-  @FRC.LedgerML.p01026
-/-- 1:E4 (p01028) — The circle in counts: the rounding $k$ of a framed turn $u/v$ to $C_{\p-1}$, $2vk\le2(\p-1)u+v<2vk+2v$, exists and lies within half a step; its group-law defect is $-1$, $0$ or $1$; read in $U(1)$, a $\pi/(\p-1)$-net [chart]. -/
-theorem p01028 : (∀ (N : ℕ), (0 : ℕ) < N → ∀ (θ : ℝ), |θ - (2 : ℝ) * Real.pi * ↑(round (↑N * θ / ((2 : ℝ) * Real.pi))) / ↑N| ≤ Real.pi / ↑N) ∧ ∀ (N : ℕ) (θ₁ θ₂ : ℝ), |round (↑N * θ₁ / ((2 : ℝ) * Real.pi)) + round (↑N * θ₂ / ((2 : ℝ) * Real.pi)) - round (↑N * (θ₁ + θ₂) / ((2 : ℝ) * Real.pi))| ≤ (1 : ℤ) :=
-  @FRC.LedgerML.p01028
 set_option linter.defProp false in
-/-- 1:E7 (p01033) — Two axes: $(1+u)(1+w)=(1-u\cdot w)+(u+w+u\times w)$; $\rho_{1+u}\rho_{1+w}=\rho_{1+u\circ w}$, $u\circ w=(u+w+u\times w)/(1-u\cdot w)$; the half-turn at $u\cdot w=1$; $uw-wu=2u\times w$; $N(qr)=N(q)N(r)$; $q^{m}$ reads back when $2\|q^{m}\|_\infty<\p$. -/
-def p01033 := @FRC.LedgerML.p01033
+/-- 1:E2 (p01019) — The extension by $X^{2}+1$ is trivial: on the shell $\Fp[X]/(X^{2}+1)$ has zero divisors, $(X+\im)(X-\im)=0$, so it is not a field; $\Fp[X]/(X^{2}+1)$ is a field exactly when $\p\equiv3\pmod4$, every nonzero pair $(a,b)$ having the inverse $(a,-b)/(a^{2}+b^{2})$. -/
+def p01019 := @FRC.LedgerML.p01019
 set_option linter.defProp false in
-/-- 1:Z1 (p01020) — No element of additive order two: $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap$ and $2\kap+1=2^{-1}$. -/
+/-- 1:E3 (p01026) — Solving in the substrate: $f\in\Fp[X]$ has a root in $\Fp$ iff $f$ and $X^{\p}-X=\prod_{a}(X-a)$ are not coprime; a nonzero $f$ of degree $d$ has at most $d$ roots. An equation without a root in $\Fp$ is recognised, not extended (E2). -/
+def p01026 := @FRC.LedgerML.p01026
+set_option linter.defProp false in
+/-- 1:E4 (p01028) — Continuous symmetry, the abelian case: $\Fpx\simeq C_{\p-1}$ is a $\pi/(\p-1)$-net of $U(1)$ under $k\mapsto e^{2\pi\im k/(\p-1)}$; the rounding of a framed turn $u/v$ to $C_{\p-1}$ lies within half a step, and its group-law defect is at most one step. -/
+def p01028 := @FRC.LedgerML.p01028
+set_option linter.defProp false in
+/-- 1:Z1 (p01020) — No element of additive order two: $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$. -/
 def p01020 := @FRC.LedgerML.p01020
-/-- 1:Z3 (p01034) — No latitude on the equator: $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle has value $0$, and none of the window sits there; the equator, depth $\kap+\tfrac14$, lies strictly between the latitudes $\kap$ and $\kap+1$. -/
-theorem p01034 : (∀ {F : Type u_1} [Field F], (2 : F) ≠ (0 : F) → ∀ (s : F), (4 : F) * s = (0 : F) → s = (0 : F)) ∧ (∀ (p : ℕ) [Fact (Nat.Prime p)], (2 : ZMod p) ≠ (0 : ZMod p) → ∀ (a b m : ℤ), (4 : ℤ) * a = ↑p * b * m → ↑a * (↑b)⁻¹ = (0 : ZMod p)) ∧ (∀ (p : ℕ) [Fact (Nat.Prime p)] (a b m : ℤ) (H : ℕ), (2 : ℕ) * H < p → |a| ≤ ↑H → b ≠ (0 : ℤ) → m ≠ (0 : ℤ) → (4 : ℤ) * a = ↑p * b * m → False) ∧ ∀ (p κ : ℕ), p = (4 : ℕ) * κ + (1 : ℕ) → (4 : ℕ) * κ < p ∧ p < (4 : ℕ) * (κ + (1 : ℕ)) :=
-  @FRC.LedgerML.p01034
+set_option linter.defProp false in
+/-- 1:Z3 (p01034) — No latitude on the equator: $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle ($\p/4$, $\p/2$, $3\p/4$) has value $0$, and none of the window sits there; the equator, depth $\kap+\tfrac14$, lies strictly between $L_\kap$ and $L_{\kap+1}$. -/
+def p01034 := @FRC.LedgerML.p01034
 -- end ledger predicates
 
 end FRC.Algebra
@@ -4694,6 +4685,5 @@ end FRC.Algebra
 #print axioms FRC.Algebra.p01019
 #print axioms FRC.Algebra.p01026
 #print axioms FRC.Algebra.p01028
-#print axioms FRC.Algebra.p01033
 #print axioms FRC.Algebra.p01020
 #print axioms FRC.Algebra.p01034
