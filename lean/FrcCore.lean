@@ -24,6 +24,7 @@ import FrcCore.Theme.Exclusivity
 import FrcCore.Theme.Extension
 import FrcCore.Theme.Tally
 import FrcCore.Theme.Dirac
+import FrcCore.Theme.Packed
 import FrcCore.Theme.Plane
 import FrcCore.Theme.Hermitian
 import FrcCore.Theme.Operator
@@ -43,6 +44,8 @@ import FrcCore.Theme.Transfer
 import FrcCore.Theme.Field
 import FrcCore.Theme.Foundation
 import FrcCore.Theme.Drive
+import FrcCore.Theme.Framed
+import FrcCore.Theme.Quaternion
 import FrcCore.Theme.Carrier
 import FrcCore.Theme.Subject
 import FrcCore.Theme.Pair
@@ -70,6 +73,7 @@ import FrcCore.Theme.Flavour
 import FrcCore.Theme.Dark
 import FrcCore.Theme.Hadrons
 import FrcCore.Theme.Super
+import FrcCore.Keys.Domain
 import FrcCore.Keys.Frame
 import FrcCore.Keys.Extension
 import FrcCore.Keys.Projective
@@ -77,7 +81,9 @@ import FrcCore.Keys.Fourier
 import FrcCore.Keys.Numbers
 import FrcCore.Keys.Logic
 import FrcCore.Keys.Dirac
+import FrcCore.Keys.Operator
 import FrcCore.Keys.Foundation
+import FrcCore.Keys.Algebra
 import FrcCore.Keys.Carrier
 import FrcCore.Keys.Subject
 import FrcCore.Keys.Gravity

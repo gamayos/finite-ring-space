@@ -68,6 +68,12 @@ def floor(h0_kms=H0_ENTAILED):
     return C_LIGHT * float(h0_kms) * 1e3 / (float(MPC_KM) * 1e3) / (2 * math.pi)
 
 
+def de_sitter_temperature(h0_kms=H0_ENTAILED):
+    """The de Sitter temperature T_dS = ħH₀/(2π k_B) in K, H₀ in km s⁻¹ Mpc⁻¹ (7:P2: the floor is the Carrier's temperature,
+    T_dS = a₀ in the chart's unit ħ/(c k_B)); ħ and k_B are the triangle section's constants below (6 November 2026)."""
+    return float(HBAR) * float(h0_kms) * 1e3 / (float(MPC_KM) * 1e3) / (2 * math.pi * float(K_BOLTZMANN))
+
+
 def tilt(ln_omega=LN_OMEGA):
     """The tilt's committed form n_s − 1 = −π²/ln Ω (00:L8)."""
     return -math.pi ** 2 / float(ln_omega)
@@ -259,6 +265,7 @@ def sigma_bracket(bracket, fit):
 # figure (the package src/14-entropy/entropy.py, block tri), every radius and mass [approx] by construction.
 G_NEWTON = Q("6.67430e-11")               # m³ kg⁻¹ s⁻²
 HBAR = Q("1.054571817e-34")               # J s
+K_BOLTZMANN = Q("1.380649e-23")           # J K⁻¹, exact (SI); the de Sitter temperature of 7:P2 (de_sitter_temperature)
 M_SUN = Q("1.989e30")                     # kg, the package's numeral
 OBJECTS = {                               # name: (R [m], m [kg]) — the typical-object marks, 14-entropy's figure
     "electron": (Q("3.86e-13"), Q("9.109e-31")), "proton": (Q("8.4e-16"), Q("1.673e-27")), "H atom": (Q("5.29e-11"), Q("1.674e-27")),

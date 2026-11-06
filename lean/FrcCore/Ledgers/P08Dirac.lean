@@ -1,6 +1,7 @@
 import FrcCore.Keys.Dirac
 import FrcCore.Keys.Extension
 import FrcCore.Keys.Frame
+import FrcCore.Keys.Operator
 
 /-!
 # FrcCore.Ledgers.P08Dirac — the certificate of the ledger of 8-dirac, core (ledger migration, task LM20)

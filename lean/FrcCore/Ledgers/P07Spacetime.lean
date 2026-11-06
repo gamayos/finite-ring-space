@@ -1,3 +1,5 @@
+import FrcCore.Keys.Carrier
+import FrcCore.Keys.Domain
 import FrcCore.Keys.Extension
 import FrcCore.Keys.Foundation
 import FrcCore.Keys.Gravity
@@ -101,6 +103,21 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 /-- info: 'FRC.Ledger.p21018' does not depend on any axioms -/
 #guard_msgs in
 #print axioms FRC.Ledger.p21018
+
+-- 7:A31 (p21052)
+/-- info: 'FRC.Ledger.p21052' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p21052
+
+-- 7:A32 (p00032)
+/-- info: 'FRC.Ledger.p00032' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p00032
+
+-- 7:A33 (p00165)
+/-- info: 'FRC.Ledger.p00165' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p00165
 
 -- 7:B1 (p07003)
 /-- info: 'FRC.Ledger.p07003' does not depend on any axioms -/

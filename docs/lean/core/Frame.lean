@@ -24,7 +24,7 @@ variable {κ : Nat} {g : Shell p}
 
 /-! ## The frame's arithmetic (moved from 1-algebra by the ledger migration, task LM17) -/
 
-/-- 1:D4 (Lemma 2 of 1-algebra, scale periodicity) — the residue grid repeats with the period `p − 1`
+/-- 1:D6 (Lemma 2 of 1-algebra, scale periodicity) — the residue grid repeats with the period `p − 1`
 of the drive: `g^{n + (p−1)} = g^n`, hence `x·g^{n + (p−1)} = x·g^n` for every `x`. -/
 theorem scale_periodic (F : Frame p κ g) (x : Shell p) (n : Nat) :
     x * g ^ (n + (p - 1)) = x * g ^ n := by
@@ -42,7 +42,7 @@ theorem affine_frame_unit {a b y : Shell p} (hby : b * y = 1) (z : Shell p) :
   have e1 : a + b + -a = b := by rw [add_comm a b, add_assoc, add_neg, add_zero]
   rw [e1, hby, mul_one, mul_left_comm b, hby, mul_one, add_comm z (-a), ← add_assoc, add_neg, zero_add]
 
-/-- 1:D2 (the window law, injectivity) — two window integers `x, y ≤ H` with `2H < p` that read as the same
+/-- 1:C4, 1:D2 (the window law, injectivity) — two window integers `x, y ≤ H` with `2H < p` that read as the same
 residue are equal: `ofNat x = ofNat y → x = y`. (Both are below `p`, so the residues are the integers.) -/
 theorem window_injective {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ H)
     (h : (ofNat x : Shell p) = ofNat y) : x = y := by
@@ -79,7 +79,7 @@ theorem window_mul_readback {H x y z : Nat} (hH : 2 * (H * H) < p) (hx : x ≤ H
   rw [ofNat_mul] at h
   exact window_injective hH (Nat.mul_le_mul hx hy) hz h
 
-/-- 1:D2, the signed window: `x` and `−y` (`x, y ≤ H`, `2H < p`) read as the same residue only when both
+/-- 1:C4, 1:D2, the signed window: `x` and `−y` (`x, y ≤ H`, `2H < p`) read as the same residue only when both
 are zero — the window's positive and negative halves do not overlap. -/
 theorem window_signed {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ H)
     (h : (ofNat x : Shell p) = -(ofNat y)) : x = 0 ∧ y = 0 := by
@@ -156,7 +156,7 @@ theorem complex_chart_zero_divisor (F : Frame p κ g) :
   show (quarterTurn g κ * -(quarterTurn g κ) + -(1 * 1), quarterTurn g κ * 1 + 1 * -(quarterTurn g κ)) = (0, 0)
   rw [← mul_neg, F.quarter_turn_sq, neg_neg, one_mul, add_neg, mul_one, one_mul, add_neg]
 
-/-- 1:D6 (Theorem approx, the range at `p = 13`, `g = 2`): every grid point
+/-- 1-algebra 2025 (Theorem approx, retired 6 November 2026; the range at `p = 13`, `g = 2`): every grid point
 `x / 2^n` with `x < 13` and `n ≥ 3` is at most `3/2` — as the integer statement `2x ≤ 3·2^n`. -/
 theorem approx_obstruction (n x : Nat) (hn : 3 ≤ n) (hx : x < 13) : 2 * x ≤ 3 * 2 ^ n := by
   have h8 : 2 ^ 3 ≤ 2 ^ n := Nat.pow_le_pow_right (Nat.zero_lt_succ 1) hn
@@ -176,7 +176,7 @@ theorem natCount_ne_zero (n : Nat) : natCount (fun x => x ≠ 0) (n + 1) = n := 
     show natCount (fun x => x ≠ 0) (n + 1) + (if n + 1 ≠ 0 then 1 else 0) = n + 1
     rw [ih, ite_eq_left (Nat.succ_ne_zero n)]
 
-/-- 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
+/-- 1:E6, 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
 each quadratic defining congruence has exactly two roots on a framed Carrier. -/
 theorem root_pair (F : Frame p κ g) (a x : Shell p) (hx : x * x = a) (hx0 : x ≠ 0) :
     (∀ y : Shell p, y * y = a ↔ (y = x ∨ y = -x)) ∧ -x ≠ x := by

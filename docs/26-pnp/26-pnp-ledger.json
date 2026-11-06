@@ -3,7 +3,7 @@
  "tree": "26-pnp-20260614",
  "title": "P versus NP: Computation as Counting",
  "doi": "https://doi.org/10.20944/preprints202606.1781.v1",
- "generated": "5 November 2026",
+ "generated": "6 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -561,7 +561,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "26:B3 — the powers `g⁰, …, g^{n−1}` of the drive are distinct: `g^i = g^j` with `i, j < n` forces `i = j`."
+    "doc": "1:C4, 26:B3 — the powers `g⁰, …, g^{n−1}` of the drive are distinct: `g^i = g^j` with `i, j < n` forces `i = j`."
    },
    {
     "name": "FRC.Horizon.shift_trace",
@@ -722,7 +722,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole)."
+    "doc": "1:A4, 00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole)."
    },
    {
     "name": "FRC.Shell.Prime.primitive_pow_inj",
@@ -872,7 +872,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole)."
+    "doc": "1:A4, 00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole)."
    },
    {
     "name": "FRC.Shell.Prime.primitive_pow_inj",

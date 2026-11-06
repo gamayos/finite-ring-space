@@ -1448,7 +1448,7 @@ theorem mod_eq_zero_of_pow_eq_one (F : Frame p κ g) {l : Nat} (h : g ^ l = 1) :
     | .isTrue h0 => h0
     | .isFalse h0 => absurd h (F.prim.2 _ (Nat.mod_lt l F.n_pos) (Nat.pos_of_ne_zero h0))
 
-/-- 26:B3 — the powers `g⁰, …, g^{n−1}` of the drive are distinct: `g^i = g^j` with `i, j < n` forces `i = j`. -/
+/-- 1:C4, 26:B3 — the powers `g⁰, …, g^{n−1}` of the drive are distinct: `g^i = g^j` with `i, j < n` forces `i = j`. -/
 theorem pow_inj (F : Frame p κ g) {i j : Nat} (hi : i < p - 1) (hj : j < p - 1) (h : g ^ i = g ^ j) :
     i = j := by
   have key : ∀ {i j : Nat}, i ≤ j → j < p - 1 → g ^ i = g ^ j → i = j := by
@@ -1763,7 +1763,7 @@ variable {κ : Nat} {g : Shell p}
 
 /-! ## The frame's arithmetic (moved from 1-algebra by the ledger migration, task LM17) -/
 
-/-- 1:D4 (Lemma 2 of 1-algebra, scale periodicity) — the residue grid repeats with the period `p − 1`
+/-- 1:D6 (Lemma 2 of 1-algebra, scale periodicity) — the residue grid repeats with the period `p − 1`
 of the drive: `g^{n + (p−1)} = g^n`, hence `x·g^{n + (p−1)} = x·g^n` for every `x`. -/
 theorem scale_periodic (F : Frame p κ g) (x : Shell p) (n : Nat) :
     x * g ^ (n + (p - 1)) = x * g ^ n := by
@@ -1781,7 +1781,7 @@ theorem affine_frame_unit {a b y : Shell p} (hby : b * y = 1) (z : Shell p) :
   have e1 : a + b + -a = b := by rw [add_comm a b, add_assoc, add_neg, add_zero]
   rw [e1, hby, mul_one, mul_left_comm b, hby, mul_one, add_comm z (-a), ← add_assoc, add_neg, zero_add]
 
-/-- 1:D2 (the window law, injectivity) — two window integers `x, y ≤ H` with `2H < p` that read as the same
+/-- 1:C4, 1:D2 (the window law, injectivity) — two window integers `x, y ≤ H` with `2H < p` that read as the same
 residue are equal: `ofNat x = ofNat y → x = y`. (Both are below `p`, so the residues are the integers.) -/
 theorem window_injective {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ H)
     (h : (ofNat x : Shell p) = ofNat y) : x = y := by
@@ -1818,7 +1818,7 @@ theorem window_mul_readback {H x y z : Nat} (hH : 2 * (H * H) < p) (hx : x ≤ H
   rw [ofNat_mul] at h
   exact window_injective hH (Nat.mul_le_mul hx hy) hz h
 
-/-- 1:D2, the signed window: `x` and `−y` (`x, y ≤ H`, `2H < p`) read as the same residue only when both
+/-- 1:C4, 1:D2, the signed window: `x` and `−y` (`x, y ≤ H`, `2H < p`) read as the same residue only when both
 are zero — the window's positive and negative halves do not overlap. -/
 theorem window_signed {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ H)
     (h : (ofNat x : Shell p) = -(ofNat y)) : x = 0 ∧ y = 0 := by
@@ -1895,7 +1895,7 @@ theorem complex_chart_zero_divisor (F : Frame p κ g) :
   show (quarterTurn g κ * -(quarterTurn g κ) + -(1 * 1), quarterTurn g κ * 1 + 1 * -(quarterTurn g κ)) = (0, 0)
   rw [← mul_neg, F.quarter_turn_sq, neg_neg, one_mul, add_neg, mul_one, one_mul, add_neg]
 
-/-- 1:D6 (Theorem approx, the range at `p = 13`, `g = 2`): every grid point
+/-- 1-algebra 2025 (Theorem approx, retired 6 November 2026; the range at `p = 13`, `g = 2`): every grid point
 `x / 2^n` with `x < 13` and `n ≥ 3` is at most `3/2` — as the integer statement `2x ≤ 3·2^n`. -/
 theorem approx_obstruction (n x : Nat) (hn : 3 ≤ n) (hx : x < 13) : 2 * x ≤ 3 * 2 ^ n := by
   have h8 : 2 ^ 3 ≤ 2 ^ n := Nat.pow_le_pow_right (Nat.zero_lt_succ 1) hn
@@ -1915,7 +1915,7 @@ theorem natCount_ne_zero (n : Nat) : natCount (fun x => x ≠ 0) (n + 1) = n := 
     show natCount (fun x => x ≠ 0) (n + 1) + (if n + 1 ≠ 0 then 1 else 0) = n + 1
     rw [ih, ite_eq_left (Nat.succ_ne_zero n)]
 
-/-- 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
+/-- 1:E6, 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
 each quadratic defining congruence has exactly two roots on a framed Carrier. -/
 theorem root_pair (F : Frame p κ g) (a x : Shell p) (hx : x * x = a) (hx0 : x ≠ 0) :
     (∀ y : Shell p, y * y = a ↔ (y = x ∨ y = -x)) ∧ -x ≠ x := by
@@ -11051,6 +11051,13 @@ theorem character_unique (f : Nat → Shell p) (h0 : f 0 = 1) (hf : ∀ a b, f (
   | 0 => h0
   | a + 1 => by rw [hf a 1, character_unique f h0 hf a, pow_succ]
 
+/-- 21:P3, 7:A31 — **the floor as the speed over the drive period.** With `a₀ T_H = c` (the floor is the speed per period)
+and `T_H H = τ` (the period times the rate is the full cycle, `2π` in the chart), `a₀ τ = c H`: the identity
+`a₀ = c/T_H = cH₀/2π` in every value of the symbols. The number at `H₀ = 67.4` is the chart's, on Mathlib
+(`FRC.Chart.floor_value`). -/
+theorem floor_period (a T H τ c : Nat) (h₁ : a * T = c) (h₂ : T * H = τ) : a * τ = c * H := by
+  rw [← h₂, ← Nat.mul_assoc, h₁]
+
 /-- 00:C21 — the PPN temporal form is no character: clock comparison composes as `R(a + b) = R(a) R(b)`, and the form
 `1 − 2u` fails it by exactly `4ab`: `(1 − 2a)(1 − 2b) − (1 − 2(a + b)) = 4ab` on every shell (the dilation rigidity
 theorem's transitivity defect; 20 October 2026). -/
@@ -12236,6 +12243,9 @@ theorem p21043 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (P 
 /-- p21045 — 21:X5. \textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise. -/
 theorem p21045 : ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k i : Nat), FRC.Lattice.lap n (FRC.Lattice.chi n g k) i = (g ^ k + g ^ (k * (n - (1 : Nat))) + -((1 : FRC.Shell p) + (1 : FRC.Shell p))) * FRC.Lattice.chi n g k i :=
   @FRC.Lattice.laplacian_symbol
+/-- p21052 — 7:A31, 21:P3. The weak-acceleration floor $a_0=cH_0/2\pi=1.04\times10^{-10}\,\mathrm{m\,s^{-2}}$ at the measured $H_0=67.4$ \citep{planck}, against the fitted $1.20\pm0.24\times10^{-10}$: $13\%$ low, $0.7\sigma$ of the systematic-dominated error, no free parameter; the $2\pi$ the dictionary's full cycle \citep{dimensions}, the one-cycle-per-period threshold a realisation with its discrete falsifier. -/
+theorem p21052 : ∀ (a T H τ c : Nat), a * T = c → T * H = τ → a * τ = c * H :=
+  @FRC.Drift.floor_period
 /-- p21055 — 21:P6. The 2PN periastron excess for PSR~J0737$-$3039: $\delta\dot\omega/\dot\omega\approx1.5\times10^{-6}$ in the test-particle sector [approx], the comparable-mass terms ($\nu=0.250$) not yet reduced; today degenerate with the mass refit; decisive either way once that sector is reduced and an independent observable fixes $M_{\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \citep{quantum}; the ledger carries both. -/
 theorem p21055 : (6 : Int) * (-4 : Int) / (3 : Int) - (6 : Int) * (-3 : Int) / (2 : Int) = (1 : Int) ∧ (2 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (3 : Int) + (4 : Int) + (1 : Int) = (8 : Int) ∧ (-4 : Int) - (6 : Int) - (2 : Int) = (-12 : Int) ∧ (8 / 4 : Int) = (2 : Int) ∧ (-12 : Int) * (2 : Int) / (8 : Int) = (-3 : Int) :=
   @FRC.Drift.pn_coefficients
@@ -12523,6 +12533,9 @@ theorem p21045 : ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g :
 /-- 21:X7 (p21047) — \textbf{The equivalence principle} is an identity, not a postulate. -/
 theorem p21047 : ∀ (m g : Nat), (0 : Nat) < m → m * g / m = g :=
   @FRC.Ledger.p21047
+/-- 21:P3 (p21052) — The weak-acceleration floor $a_0=cH_0/2\pi=1.04\times10^{-10}\,\mathrm{m\,s^{-2}}$ at the measured $H_0=67.4$ \citep{planck}, against the fitted $1.20\pm0.24\times10^{-10}$: $13\%$ low, $0.7\sigma$ of the systematic-dominated error, no free parameter; the $2\pi$ the dictionary's full cycle \citep{dimensions}, the one-cycle-per-period threshold a realisation with its discrete falsifier. -/
+theorem p21052 : ∀ (a T H τ c : Nat), a * T = c → T * H = τ → a * τ = c * H :=
+  @FRC.Ledger.p21052
 /-- 21:P6 (p21055) — The 2PN periastron excess for PSR~J0737$-$3039: $\delta\dot\omega/\dot\omega\approx1.5\times10^{-6}$ in the test-particle sector [approx], the comparable-mass terms ($\nu=0.250$) not yet reduced; today degenerate with the mass refit; decisive either way once that sector is reduced and an independent observable fixes $M_{\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \citep{quantum}; the ledger carries both. -/
 theorem p21055 : (6 : Int) * (-4 : Int) / (3 : Int) - (6 : Int) * (-3 : Int) / (2 : Int) = (1 : Int) ∧ (2 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (3 : Int) + (4 : Int) + (1 : Int) = (8 : Int) ∧ (-4 : Int) - (6 : Int) - (2 : Int) = (-12 : Int) ∧ (8 / 4 : Int) = (2 : Int) ∧ (-12 : Int) * (2 : Int) / (8 : Int) = (-3 : Int) :=
   @FRC.Ledger.p21055
@@ -12563,4 +12576,5 @@ end FRC.Gravity
 #print axioms FRC.Gravity.p21044
 #print axioms FRC.Gravity.p21045
 #print axioms FRC.Gravity.p21047
+#print axioms FRC.Gravity.p21052
 #print axioms FRC.Gravity.p21055

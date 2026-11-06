@@ -3,7 +3,7 @@
  "tree": "21-gravity-20260623",
  "title": "Gravitation as the Relaxation of Frame Drift over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1018.v3",
- "generated": "5 November 2026",
+ "generated": "6 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -443,7 +443,7 @@
      "label": "P3",
      "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the measured $H_0=67.4$ \\citep{planck}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle \\citep{dimensions}, the one-cycle-per-period threshold a realisation with its discrete falsifier.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21052}{P3}, \\leanwit{FrcMathlib}{p21052}{P3}; rests on A8, C16, 14:C8, 00:L1 \\lean{Gravity.floor\\_value}",
+     "source": "Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21052}{P3}, \\leanwit{FrcCore}{p21052}{P3}, \\leanwit{FrcMathlib}{p21052}{P3}; rests on A8, C16, 14:C8, 00:L1 \\lean{FRC.Drift.floor\\_period, Gravity.floor\\_value}",
      "key": "p21052"
     },
     {
@@ -1194,7 +1194,7 @@
    {
     "name": "FRC.Drift.cut_ordering",
     "module": "FrcCore/Theme/Drift",
-    "line": 426,
+    "line": 433,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2044,6 +2044,15 @@
    }
   ],
   "P3": [
+   {
+    "name": "FRC.Drift.floor_period",
+    "module": "FrcCore/Theme/Drift",
+    "line": 399,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:P3, 7:A31 — **the floor as the speed over the drive period.** With `a₀ T_H = c` (the floor is the speed per period) and `T_H H = τ` (the period times the rate is the full cycle, `2π` in the chart), `a₀ τ = c H`: the identity `a₀ = c/T_H = cH₀/2π` in every value of the symbols. The number at `H₀ = 67.4` is the chart's, on Mathlib (`FRC.Chart.floor_value`)."
+   },
    {
     "name": "FRC.Gravity.floor_value",
     "module": "FrcMathlib/Gravity",

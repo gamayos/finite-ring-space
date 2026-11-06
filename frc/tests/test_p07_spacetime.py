@@ -68,8 +68,9 @@ class LedgerTest(unittest.TestCase):
     def test_lean_table(self):
         from frc.ledgers import p07_spacetime as L
         self.assertEqual(L.LEAN["D5"], "ml")                                              # Chevalley–Warning, on Mathlib alone
-        self.assertEqual({v for k, v in L.LEAN.items() if k != "D5"}, {"core"})
-        self.assertEqual(len(L.LEAN), 48)
+        self.assertEqual(L.LEAN["A31"], "core, ml")                                       # the floor: the identity in the core, the number on Mathlib
+        self.assertEqual({v for k, v in L.LEAN.items() if k not in ("D5", "A31")}, {"core"})
+        self.assertEqual(len(L.LEAN), 51)                                                 # A31, A32, A33 since 6 November 2026
 
 
 if __name__ == "__main__":

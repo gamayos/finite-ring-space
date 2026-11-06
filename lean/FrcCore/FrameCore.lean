@@ -102,7 +102,7 @@ theorem mod_eq_zero_of_pow_eq_one (F : Frame p κ g) {l : Nat} (h : g ^ l = 1) :
     | .isTrue h0 => h0
     | .isFalse h0 => absurd h (F.prim.2 _ (Nat.mod_lt l F.n_pos) (Nat.pos_of_ne_zero h0))
 
-/-- 26:B3 — the powers `g⁰, …, g^{n−1}` of the drive are distinct: `g^i = g^j` with `i, j < n` forces `i = j`. -/
+/-- 1:C4, 26:B3 — the powers `g⁰, …, g^{n−1}` of the drive are distinct: `g^i = g^j` with `i, j < n` forces `i = j`. -/
 theorem pow_inj (F : Frame p κ g) {i j : Nat} (hi : i < p - 1) (hj : j < p - 1) (h : g ^ i = g ^ j) :
     i = j := by
   have key : ∀ {i j : Nat}, i ≤ j → j < p - 1 → g ^ i = g ^ j → i = j := by

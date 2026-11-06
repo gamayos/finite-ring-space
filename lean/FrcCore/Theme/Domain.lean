@@ -72,23 +72,23 @@ def unruh : Lift := hbar * accel * speed⁻¹ * kB⁻¹
 lift under `M ↦ Iq L⁻² T` (the mass primitive standing in for the flag) and `Θ ↦ L T⁻²`. -/
 def classical (a b c d : Int) : Lift := ⟨-2 * a + b + d, a + c - 2 * d, a⟩
 
-/-- 00:C12, 10:F3 — the temperature domain is acceleration: `[Θ] = [E][k_B]⁻¹ = L T⁻² = [a]`, and `[k_B] = Iq L⁻¹ T`. -/
+/-- 00:C12, 10:F3, 7:A32 — the temperature domain is acceleration: `[Θ] = [E][k_B]⁻¹ = L T⁻² = [a]`, and `[k_B] = Iq L⁻¹ T`. -/
 theorem temp_eq_accel : temp = accel ∧ temp = ⟨1, -2, 0⟩ ∧ kB = ⟨-1, 1, 1⟩ := by decide
 
-/-- 00:C12 — flag-free: the flag exponent of the temperature domain is zero, while energy, `ħ` and `k_B` each carry
+/-- 00:C12, 7:A32 — flag-free: the flag exponent of the temperature domain is zero, while energy, `ħ` and `k_B` each carry
 the flag once. -/
 theorem temp_flag_free : temp.j = 0 ∧ energy.j = 1 ∧ hbar.j = 1 ∧ kB.j = 1 := by decide
 
-/-- 00:C12 — the Unruh combination `ħ a/(c k_B)` closes as a domain identity: it is the temperature domain, flag-free. -/
+/-- 00:C12, 7:A32 — the Unruh combination `ħ a/(c k_B)` closes as a domain identity: it is the temperature domain, flag-free. -/
 theorem unruh_closes : unruh = temp ∧ unruh.j = 0 := by decide
 
-/-- 00:C12 — neither mass nor temperature is primitive: each is a monomial in the two generators and the flag, and
+/-- 00:C12, 7:A32 — neither mass nor temperature is primitive: each is a monomial in the two generators and the flag, and
 the Planck temperature `Θ_P = E_P/|k_B|`, written out from the energy and the linkage `[k_B] = [ħ][c]⁻¹`, is the
 acceleration domain, flag-free. -/
 theorem not_primitive : mass = ⟨-2, 1, 1⟩ ∧ temp = L * T⁻¹ * T⁻¹ ∧
     energy * (hbar * speed⁻¹)⁻¹ = accel ∧ (energy * (hbar * speed⁻¹)⁻¹).j = 0 := by decide
 
-/-- 00:C12 — classical dimensional analysis recovered in exponents: the classical `M`-`L`-`T`-`Θ` exponents of the
+/-- 00:C12, 7:A32 — classical dimensional analysis recovered in exponents: the classical `M`-`L`-`T`-`Θ` exponents of the
 mechanical, gravitational and thermal quantities (10:F2, F3) map to their domains under the dictionary. -/
 theorem classical_exponents :
     classical 1 0 0 0 = mass ∧ classical 0 1 (-1) 0 = speed ∧ classical 0 1 (-2) 0 = accel ∧
@@ -96,7 +96,7 @@ theorem classical_exponents :
     classical 1 1 (-1) 0 = momentum ∧ classical 1 2 (-3) 0 = power ∧ classical 1 (-1) (-2) 0 = pressure ∧
     classical (-1) 3 (-2) 0 = G ∧ classical 1 2 (-2) (-1) = kB ∧ classical 0 0 0 1 = temp := by decide
 
-/-- 00:C12 — recovered in arity: the classical four symbols generate the lift's three (two generators and the
+/-- 00:C12, 7:A32 — recovered in arity: the classical four symbols generate the lift's three (two generators and the
 flag) — `L`, `T` and the flag are classical monomials, the kernel's generator `Θ L⁻¹ T²` maps to the trivial domain,
 and the `M`-`L`-`T` block of the dictionary, the determinant of the images of `M`, `L`, `T`, is unimodular (determinant 1) — with the one relation `Θ = L T⁻²`, so
 temperature is not a fourth generator; the flag's fourth power is the trivial domain only modulo `4κ`, which the
@@ -113,7 +113,7 @@ theorem classical_arity :
 the flag `Iq = T^κ` folded into the time exponent. -/
 def reduce (p κ : Nat) (a : Lift) : Int × Int := (a.r % (p : Int), (a.s + (κ : Int) * a.j) % (4 * κ : Int))
 
-/-- 00:C12 — the torsion-free shadow: on the three Subjects `p = 13, 173, 1373` (`κ = 3, 43, 343`) the identities hold
+/-- 00:C12, 7:A32 — the torsion-free shadow: on the three Subjects `p = 13, 173, 1373` (`κ = 3, 43, 343`) the identities hold
 in the modular group `C_p × C_{4κ}` of 10-dimensions, the flag reduces to `T^κ`, its fourth power to the trivial domain
 while its first three powers reduce to `(0, κ)`, `(0, 2κ)`, `(0, 3κ)`, and the mass and temperature domains reduce to their
 residues. -/

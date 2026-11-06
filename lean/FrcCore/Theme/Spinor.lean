@@ -1,3 +1,4 @@
+import FrcCore.Theme.Packed
 import FrcCore.Theme.Unipotent
 import FrcCore.Theme.Hermitian
 import FrcCore.Theme.Dirac
@@ -245,107 +246,193 @@ theorem symdiff_nilpotent {κ : Nat} {g : Shell p} (F : Frame p κ g) {h : MatE 
 
 end MatE
 
-/-! ## The decided witnesses on the standard shells -/
+/-! ## The decided witnesses on the standard shells, on the packed arithmetic -/
 section witnesses
-open FRC.Dirac Mat
+open FRC.Dirac Mat FRC.Dirac.Packed
 
-/-- The cyclic convolution of two first rows, row `k` as the dot product of `a` with `b` read backwards from `k`
-(`b_k, b_{k−1}, …, b_0, b_{n−1}, …, b_{k+1}`): the theme's `cyc` by rotations instead of indexed access, which the
-kernel evaluates in `n²` steps. -/
-def cycR (n : Nat) (a b : List (Ext p ν)) : List (Ext p ν) :=
-  (List.range n).map fun k => dot a ((b.take (k + 1)).reverse ++ (b.drop (k + 1)).reverse)
+/-! ### Rows of the cycle as rows of residues, kept packed between the products -/
 
-/-- Powers of a circulant by squaring (fuel the exponent itself; `e / 2 < e` for `e > 0`). -/
-def cycPowAux (n : Nat) (a : List (Ext p ν)) : Nat → Nat → List (Ext p ν)
-  | 0, _ => cycId n
+/-- A real row of the cycle (a row of residues), a row over `K` as the pair of its residue rows (the real and the
+`w` parts), and their packed forms. -/
+abbrev RRow := List Nat
+abbrev NRow := List Nat × List Nat
+abbrev PRow := Nat × Nat
+def packRow (a : NRow) : PRow := (pack a.1, pack a.2)
+def unpackRow (p n : Nat) (A : PRow) : NRow := (unpack p n A.1, unpack p n A.2)
+
+/-- The zero row, the identity, the translation `T` (first row `(0, 1, 0, …)`), `T − 1`, the symmetric difference
+`h (T − T⁻¹)` and `−Δ = 2 − T − T⁻¹` (the theme's `kineticRow`) on the cycle of `p` sites, as rows of residues. -/
+def zeroR (n : Nat) : RRow := List.replicate n 0
+def idR (n : Nat) : RRow := (List.range n).map fun j => if j = 0 then 1 else 0
+def shiftR (n : Nat) : RRow := (List.range n).map fun j => if j = 1 then 1 else 0
+def shiftMinusOneR (p : Nat) : RRow := (List.range p).map fun j => if j = 0 then p - 1 else if j = 1 then 1 else 0
+def symDiffR (p h : Nat) : RRow := (List.range p).map fun j => if j = 1 then h else if j + 1 = p then p - h else 0
+def kineticR (p : Nat) : RRow :=
+  (List.range p).map fun j => if j = 0 then 2 else if j = 1 ∨ j + 1 = p then p - 1 else 0
+def idN (n : Nat) : NRow := (idR n, zeroR n)
+/-- `α H` for `α = λ w` and a real row `H`: the real part zero, the `w` part `λ H`. -/
+def wsmul (p lam : Nat) (H : RRow) : NRow := (List.replicate H.length 0, H.map fun x => lam * x % p)
+
+/-- The products and the sum on the cycle of `n` sites, on packed rows (`Packed.rmul`, `Packed.pmul`, `Packed.padd`;
+sound by `Packed.rmul_eq`, `Packed.pmul_eq`, `Packed.padd_eq`, the slots by `Packed.le_two_pow_slots`), and the
+product of two rows over `K`. -/
+def rmulN (p n : Nat) (A C : Nat) : Nat := rmul p n (slots n) A C
+def pmulN (p ν n : Nat) (A C : PRow) : PRow := pmul p ν n (slots n) A C
+def paddN (p n : Nat) (A C : PRow) : PRow := (padd p (slots n) A.1 C.1, padd p (slots n) A.2 C.2)
+def cmul (p ν n : Nat) (a b : NRow) : NRow := unpackRow p n (pmulN p ν n (packRow a) (packRow b))
+
+/-- Powers by squaring on packed rows (the exponent as its own fuel): real rows and rows over `K`. -/
+def rpowP (p n : Nat) (A : Nat) : Nat → Nat → Nat
+  | 0, _ => pack (idR n)
   | fuel + 1, e =>
-    if e = 0 then cycId n
+    if e = 0 then pack (idR n)
     else
-      let h := cycPowAux n a fuel (e / 2)
-      let sq := cycR n h h
-      if e % 2 = 0 then sq else cycR n sq a
-def cycPowBin (n : Nat) (a : List (Ext p ν)) (e : Nat) : List (Ext p ν) := cycPowAux n a e e
-
-/-- The transpose of a list matrix by structural recursion (the theme's `transpose` indexes its columns). -/
-def transposeL {α : Type} : List (List α) → List (List α)
-  | [] => []
-  | r :: rs =>
-    match rs with
-    | [] => r.map fun x => [x]
-    | _ :: _ => List.zipWith (· :: ·) r (transposeL rs)
-
-/-- The product `A B` as the dot products of the rows of `A` with the rows of `Bᵀ`. -/
-def mulL (A B : Mat p ν) : Mat p ν :=
-  let Bt := transposeL B
-  A.map fun r => Bt.map fun c => dot r c
-
-/-- Powers of a matrix by squaring. -/
-def powAux (A : Mat p ν) (n : Nat) : Nat → Nat → Mat p ν
-  | 0, _ => ident n
+      let h := rpowP p n A fuel (e / 2)
+      let sq := rmulN p n h h
+      if e % 2 = 0 then sq else rmulN p n sq A
+def rpow (p n : Nat) (a : RRow) (e : Nat) : RRow := unpack p n (rpowP p n (pack a) e e)
+def cpowP (p ν n : Nat) (A : PRow) : Nat → Nat → PRow
+  | 0, _ => packRow (idN n)
   | fuel + 1, e =>
-    if e = 0 then ident n
+    if e = 0 then packRow (idN n)
     else
-      let h := powAux A n fuel (e / 2)
-      let sq := mulL h h
-      if e % 2 = 0 then sq else mulL sq A
-def powBin (A : Mat p ν) (n e : Nat) : Mat p ν := powAux A n e e
+      let h := cpowP p ν n A fuel (e / 2)
+      let sq := pmulN p ν n h h
+      if e % 2 = 0 then sq else pmulN p ν n sq A
+def cpow (p ν n : Nat) (a : NRow) (e : Nat) : NRow := unpackRow p n (cpowP p ν n (packRow a) e e)
 
-/-- The zero row, the translation `T` (first row `(0, 1, 0, …)`), `T − 1`, and the symmetric difference
-`∇^s = h (T − T⁻¹)` with `h = 2⁻¹` supplied. -/
-def zeroRow (n : Nat) : List (Ext p ν) := (List.range n).map fun _ => 0
-def shiftRow (n : Nat) : List (Ext p ν) := (List.range n).map fun j => if j = 1 then 1 else 0
-def shiftMinusOne (n : Nat) : List (Ext p ν) := cycAdd (shiftRow n) (cycSmul (-1) (cycId n))
-def symDiffRow (n : Nat) (h : Ext p ν) : List (Ext p ν) :=
-  (List.range n).map fun j => if j = 1 then h else if j + 1 = n then -h else 0
+/-- `(Π_{i<k} (1 + X^{2^i}), X^{2^k})`: the first is `Σ_{j<2^k} X^j`, the inverse of `1 − X` when `X^{2^k} = 0`, in
+`2k` products. -/
+def geomInvP (p ν n : Nat) (X : PRow) : Nat → PRow × PRow
+  | 0 => (packRow (idN n), X)
+  | k + 1 =>
+    let r := geomInvP p ν n X k
+    (pmulN p ν n r.1 (paddN p n (packRow (idN n)) r.2), pmulN p ν n r.2 r.2)
 
-/-- The conjugate transpose of a circulant, by its first row: `b_k = conj a_{−k}`. -/
-def cycDagger (n : Nat) (a : List (Ext p ν)) : List (Ext p ν) :=
-  (List.range n).map fun k => FRC.Extension.Ext.conj (nth 0 a ((n - k) % n))
+/-- The Cayley step `U = (1 − αH)⁻¹(1 + αH)` of a real row `H` at `α = λ w` on the cycle of `p` sites, the inverse
+by `geomInvP` over `slots p + 4` doublings (`2^{slots p + 4} = 16 · 2^{slots p} ≥ p` by `Packed.le_two_pow_slots`;
+`(αH)^p = 0` is decided alongside). -/
+def cayleyN (p ν lam : Nat) (H : RRow) : NRow :=
+  let N := packRow (wsmul p lam H)
+  unpackRow p p (pmulN p ν p (geomInvP p ν p N (slots p + 4)).1 (paddN p p (packRow (idN p)) N))
 
-/-- The circulant `n × n` matrix of a first row, and the Kronecker product of two list matrices. -/
+/-- The conjugate transpose of a circulant, by its first row: `b_k = conj a_{−k}`, the row reversed past its
+first entry and the `w` part negated. -/
+def daggerN (p : Nat) (a : NRow) : NRow :=
+  match a.1 with
+  | x :: xs =>
+    match a.2 with
+    | y :: ys => (x :: xs.reverse, ((p - y) % p) :: (ys.reverse.map fun v => (p - v) % p))
+    | [] => a
+  | [] => a
+
+/-! ### The cycles: the translation, the differences and `−Δ` at 13, 173 and 1549 -/
+
+/-- 8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₃`: `T^p = 1`, `(T − 1)^p = 0`, the symmetric difference
+`∇^s = 2⁻¹(T − T⁻¹)` has `(∇^s)^p = 0`, and `(−Δ)^p = 0` (the kinetic sector unipotent; the general statements
+`translation_unipotent`, `symdiff_nilpotent`). -/
+theorem translation_values13 :
+    rpow 13 13 (shiftR 13) 13 = idR 13 ∧ rpow 13 13 (shiftMinusOneR 13) 13 = zeroR 13 ∧
+      rpow 13 13 (symDiffR 13 7) 13 = zeroR 13 ∧ (2 : Shell 13) * 7 = 1 ∧ rpow 13 13 (kineticR 13) 13 = zeroR 13 := by
+  decide +kernel
+
+/-- 8:F7, 8:D10, 8:X3 [value] — the same on the cycle of `𝔽₁₇₃`. -/
+theorem translation_values173 :
+    rpow 173 173 (shiftR 173) 173 = idR 173 ∧ rpow 173 173 (shiftMinusOneR 173) 173 = zeroR 173 ∧
+      rpow 173 173 (symDiffR 173 87) 173 = zeroR 173 ∧ (2 : Shell 173) * 87 = 1 ∧
+      rpow 173 173 (kineticR 173) 173 = zeroR 173 := by
+  decide +kernel
+
+/-- 8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₅₄₉`: `T^p = 1` and `(T − 1)^p = 0`. -/
+theorem translation_values1549 :
+    rpow 1549 1549 (shiftR 1549) 1549 = idR 1549 ∧ rpow 1549 1549 (shiftMinusOneR 1549) 1549 = zeroR 1549 := by
+  decide +kernel
+
+/-- 8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₅₄₉`: `(∇^s)^p = 0` with `2⁻¹ = 775`, and `(−Δ)^p = 0`. -/
+theorem kinetic_values1549 :
+    rpow 1549 1549 (symDiffR 1549 775) 1549 = zeroR 1549 ∧ (2 : Shell 1549) * 775 = 1 ∧
+      rpow 1549 1549 (kineticR 1549) 1549 = zeroR 1549 := by
+  decide +kernel
+
+/-! ### The Cayley step of `−Δ` at 173 and 1549 -/
+
+/-- 8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — the Cayley step `U = (1 − αH)⁻¹(1 + αH)` of `H = −Δ` on the cycle of
+`𝔽₁₇₃`, at `α = w` and at `α = c = λw` with `λ = 87`, `c² = 87 = 2⁻¹`: `(wH)^p = 0` (so `geomInvP` is the inverse,
+for `α = λw` too), `U ≠ 1` and `U^p = 1`, so the order is exactly `p`, and `U†U = 1` at `α = w` — the 173 sibling of
+`cayley13_values`. -/
+theorem cayley_values173 :
+    cpow 173 2 173 (wsmul 173 1 (kineticR 173)) 173 = (zeroR 173, zeroR 173) ∧
+      cayleyN 173 2 1 (kineticR 173) ≠ idN 173 ∧ cpow 173 2 173 (cayleyN 173 2 1 (kineticR 173)) 173 = idN 173 ∧
+      cmul 173 2 173 (daggerN 173 (cayleyN 173 2 1 (kineticR 173))) (cayleyN 173 2 1 (kineticR 173)) = idN 173 ∧
+      cayleyN 173 2 87 (kineticR 173) ≠ idN 173 ∧ cpow 173 2 173 (cayleyN 173 2 87 (kineticR 173)) 173 = idN 173 ∧
+      ((⟨0, 87⟩ : Ext 173 2) * ⟨0, 87⟩ = 87 ∧ (2 : Shell 173) * 87 = 1) := by
+  decide +kernel
+
+/-- 8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on the cycle of `𝔽₁₅₄₉`, in four declarations (each decided within the
+budget of a kernel call): `(wH)^p = 0` for `H = −Δ`, and the data of `c = λw`, `λ = 775`, `c² = 775 = 2⁻¹`. -/
+theorem cayley_nilpotent1549 :
+    cpow 1549 2 1549 (wsmul 1549 1 (kineticR 1549)) 1549 = (zeroR 1549, zeroR 1549) ∧
+      ((⟨0, 775⟩ : Ext 1549 2) * ⟨0, 775⟩ = 775 ∧ (2 : Shell 1549) * 775 = 1) := by
+  decide +kernel
+
+/-- 8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = w`: `U ≠ 1`, `U^p = 1`. -/
+theorem cayley_step1549 :
+    cayleyN 1549 2 1 (kineticR 1549) ≠ idN 1549 ∧
+      cpow 1549 2 1549 (cayleyN 1549 2 1 (kineticR 1549)) 1549 = idN 1549 := by
+  decide +kernel
+
+/-- 8:C4, 8:C6, 8:E4 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = w` is unitary: `U†U = 1`. -/
+theorem cayley_unitary1549 :
+    cmul 1549 2 1549 (daggerN 1549 (cayleyN 1549 2 1 (kineticR 1549))) (cayleyN 1549 2 1 (kineticR 1549)) =
+      idN 1549 := by
+  decide +kernel
+
+/-- 8:C15, 8:E7 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = c = 775 w`: `U ≠ 1`, `U^p = 1`. -/
+theorem cayley_step_c1549 :
+    cayleyN 1549 2 775 (kineticR 1549) ≠ idN 1549 ∧
+      cpow 1549 2 1549 (cayleyN 1549 2 775 (kineticR 1549)) 1549 = idN 1549 := by
+  decide +kernel
+
+/-! ### Matrices as pairs of residue matrices, and their packed products -/
+
+/-- A matrix over `K` as the pair of its residue matrices; the residue matrices of a matrix of the theme file. -/
+abbrev NMat := List (List Nat) × List (List Nat)
+def toN (M : Mat p ν) : NMat := (M.map (·.map fun z => z.re.val), M.map (·.map fun z => z.im.val))
+
+/-- The product, by the packed combinations of rows (`Packed.mulExtPacked`, sound by `Packed.mulExtPacked_eq`). -/
+def mmulN (p ν n : Nat) (A B : NMat) : NMat := mulExtPacked p ν n A (B.1.map pack, B.2.map pack)
+
+def identN (n : Nat) : NMat :=
+  ((List.range n).map fun i => (List.range n).map fun j => if i = j then 1 else 0,
+   (List.range n).map fun _ => List.replicate n 0)
+
+def mpowAux (p ν n : Nat) (A : NMat) : Nat → Nat → NMat
+  | 0, _ => identN n
+  | fuel + 1, e =>
+    if e = 0 then identN n
+    else
+      let h := mpowAux p ν n A fuel (e / 2)
+      let sq := mmulN p ν n h h
+      if e % 2 = 0 then sq else mmulN p ν n sq A
+def mpowN (p ν n : Nat) (A : NMat) (e : Nat) : NMat := mpowAux p ν n A e e
+
+/-- The circulant `n × n` matrix of a first row, and the Kronecker product of two list matrices (the theme's
+matrices over `K`). -/
 def circMat (n : Nat) (a : List (Ext p ν)) : Mat p ν :=
   (List.range n).map fun i => (List.range n).map fun j => nth 0 a ((j + n - i) % n)
 def kron (A B : Mat p ν) : Mat p ν :=
   A.flatMap fun r => B.map fun s => r.flatMap fun x => s.map fun y => x * y
+def symDiffRow (n : Nat) (h : Ext p ν) : List (Ext p ν) :=
+  (List.range n).map fun j => if j = 1 then h else if j + 1 = n then -h else 0
 
-/-- 8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₃`: the translation has `T^p = 1`, `T − 1` is nilpotent,
-`(T − 1)^p = 0`, and the symmetric difference `∇^s = 2⁻¹(T − T⁻¹)` is nilpotent, `(∇^s)^p = 0` (the kinetic sector
-unipotent; the general statements `translation_nilpotent` and `series_inverse`). -/
-theorem translation_values13 :
-    cycPowBin 13 (shiftRow 13 : List (Ext 13 2)) 13 = cycId 13 ∧
-    cycPowBin 13 (shiftMinusOne 13 : List (Ext 13 2)) 13 = zeroRow 13 ∧
-    cycPowBin 13 (symDiffRow 13 (7 : Ext 13 2)) 13 = zeroRow 13 ∧ (2 : Shell 13) * 7 = 1 := by
-  decide +kernel
-
-/-- 8:C4 [value] — the Cayley step `U = (1 − wH)⁻¹(1 + wH)` of `H = −Δ` on `𝔽₁₃` (`α = w`, `w̄ = −w`) is unitary,
-`U†U = 1` (the general statement `cayley_unitary` with `adjoint_dagger`). -/
-theorem cayley_unitary_value :
-    cycR 13 (cycDagger 13 (cayleyRow ⟨0, 1⟩ (kineticRow 13 2))) (cayleyRow ⟨0, 1⟩ (kineticRow 13 2)) = cycId 13 := by
-  decide +kernel
-
-/-- A translation-invariant operator of `0+1` by its kernel: the list of its `4 × 4` blocks at the offsets
-`0, …, n−1` (the package's representation); the product is the block convolution, the sum blockwise. -/
-def bconv (n : Nat) (A B : List (Mat p ν)) : List (Mat p ν) :=
-  (List.range n).map fun k =>
-    (List.zipWith mul A ((B.take (k + 1)).reverse ++ (B.drop (k + 1)).reverse)).foldl add
-      ((List.range 4).map fun _ => (List.range 4).map fun _ => 0)
-def badd (A B : List (Mat p ν)) : List (Mat p ν) := List.zipWith add A B
-/-- The scalar kernel `c · 1` (the block `c I₄` at the offset `0`). -/
-def bscalar (n : Nat) (c : Ext p ν) : List (Mat p ν) :=
-  (List.range n).map fun k => if k = 0 then smul c (ident 4) else (List.range 4).map fun _ => (List.range 4).map fun _ => 0
-/-- The kernel of `𝒟^s = ∇^s ⊗ γ⁰` with `∇^s = h (T − T⁻¹)`: `h γ⁰` at the offset `1`, `−h γ⁰` at `n − 1`. -/
-def diracKernel (n : Nat) (h : Ext p ν) (G : Mat p ν) : List (Mat p ν) :=
-  (List.range n).map fun k =>
-    if k = 1 then smul h G else if k + 1 = n then smul (-h) G else (List.range 4).map fun _ => (List.range 4).map fun _ => 0
-
-/-- 8:D3 [value] — the factorisation in `0+1` on `𝔽₁₃` (`ν = 2`, `i = 5`), on the kernels of the translation-invariant
-operators: for `𝒟^s = ∇^s ⊗ γ⁰` and `m = 1`, `(𝒟^s − m)(𝒟^s + m) = −ν (∇^s)² ⊗ I₄ − m²`, as `dirac_factorisation`
-states with `η₀ = γ⁰γ⁰ = −ν`. -/
+/-- 8:D3 [value] — the factorisation in `0+1` on `𝔽₁₃` (`ν = 2`, `i = 5`), on the `52 × 52` matrices: for
+`𝒟^s = ∇^s ⊗ γ⁰` and `m = 1`, `(𝒟^s − 1)(𝒟^s + 1) = −ν (∇^s)² ⊗ I₄ − I₅₂`, as `dirac_factorisation` states with
+`η₀ = γ⁰γ⁰ = −ν`; the product on the packed rows. -/
 theorem factorisation_value :
     let d : List (Ext 13 2) := symDiffRow 13 7
-    let D : List (Mat 13 2) := diracKernel 13 7 (gamma0 5)
-    bconv 13 (badd D (bscalar 13 (-1))) (badd D (bscalar 13 1)) =
-      badd ((cycR 13 d d).map fun c => smul (-(2 : Ext 13 2) * c) (ident 4)) (bscalar 13 (-1)) := by
+    let D : Mat 13 2 := kron (circMat 13 d) (gamma0 5)
+    mmulN 13 2 52 (toN (add D (neg (ident 52)))) (toN (add D (ident 52))) =
+      toN (add (smul (-(2 : Ext 13 2)) (kron (circMat 13 (cyc 13 d d)) (ident 4))) (neg (ident 52))) := by
   decide +kernel
 
 /-- 8:E8 [value] — the three cycles in dynamical roles: `lcm(13, 14) = 182`, and the mixed step `U = M⁻¹P` of
@@ -356,13 +443,10 @@ theorem mixed_step_values :
     Nat.lcm 13 14 = 182 ∧
     let H : Mat 13 2 := add (circMat 13 (kineticRow 13 2))
       ((List.range 13).map fun i => (List.range 13).map fun j => if i = j then ⟨ofNat i, 0⟩ else 0)
-    let M : Mat 13 2 := add (ident 13) (neg (smul ⟨0, 1⟩ H))
-    let P : Mat 13 2 := add (ident 13) (smul ⟨0, 1⟩ H)
-    let M13 := powBin M 13 13
-    let P13 := powBin P 13 13
-    let M14 := mulL M13 M
-    let P14 := mulL P13 P
-    mulL M P = mulL P M ∧ P13 ≠ M13 ∧ P14 ≠ M14 ∧ powBin P14 13 13 ≠ powBin M14 13 13 := by
+    let M : NMat := toN (add (ident 13) (neg (smul ⟨0, 1⟩ H)))
+    let P : NMat := toN (add (ident 13) (smul ⟨0, 1⟩ H))
+    mmulN 13 2 13 M P = mmulN 13 2 13 P M ∧ mpowN 13 2 13 P 13 ≠ mpowN 13 2 13 M 13 ∧
+      mpowN 13 2 13 P 14 ≠ mpowN 13 2 13 M 14 ∧ mpowN 13 2 13 P 182 ≠ mpowN 13 2 13 M 182 := by
   decide +kernel
 
 /-- 8:D11 [value] — the spinor form transports by the norm of the lift: `S† X S = N(z) X` for `S = x I₄ + y γ⁰γ¹`,

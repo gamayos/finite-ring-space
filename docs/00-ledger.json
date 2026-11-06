@@ -1,5 +1,5 @@
 {
- "generated": "5 November 2026",
+ "generated": "6 November 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -1088,7 +1088,8 @@
    "sources": [
     "21-grav",
     "27-fld",
-    "22-qm"
+    "22-qm",
+    "7-st (A17)"
    ],
    "witness": "7:p07_spacetime.py",
    "refs": [

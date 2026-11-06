@@ -238,7 +238,7 @@ theorem c_exists_iff (hp : FRC.Nat.isPrime Ω) {S : Nat} (hS : Ω = 4 * S + 1) :
     (∃ c : Shell Ω, c * c = csq Ω S) ↔ S % 2 = 0 :=
   half_square_iff hp hS
 
-/-- **B7 (p00165), the register in `S` alone**, on the chart `Ω = 4S + 1`, `Ω` prime, without a generator:
+/-- 00:B7 (p00165), 7:A33 — **the register in `S` alone**, on the chart `Ω = 4S + 1`, `Ω` prime, without a generator:
 `c² := 2S + 1` (`csq`) is `2⁻¹`; `G := 2S` (`grav`) is `−c²`, `2G = −1`, and `G` is the only solution (exact);
 `ħ² = −1` has a solution; `c` exists iff `S` is even; `k_B c = ħ` forces `k_B² = −2`; a square fixes its root up to
 sign; `h := −ħ` is a second, distinct root of `−1`. -/

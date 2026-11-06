@@ -37,7 +37,7 @@ from math import gcd, lcm
 
 from frc import dirac as DR
 from frc.dirac import ONE, ZERO, ident, madd, meq, minv, mmul, msc, msub, mord, nilindex, iszero, dagger, kron
-from frc.dirac import kadd, kneg, ksc, kconv, kid, kiszero, keq, kpow, kadjoint, knilindex, sym_dirac_kernel, fwd_dirac_kernel, kg_kernel, kcayley, sconv, sadd, ssc, qmul, qid, qeq, qpow, qexpand, scalar_kernel, order_certified
+from frc.operator import kadd, kneg, ksc, kconv, kid, kiszero, keq, kpow, kadjoint, knilindex, sym_dirac_kernel, fwd_dirac_kernel, kg_kernel, kcayley, sconv, sadd, ssc, qmul, qid, qeq, qpow, qexpand, scalar_kernel, order_certified
 from frc.extension import Ext
 from frc.registry import Registry
 
@@ -318,7 +318,7 @@ def _korder(K, p, A, d, cap):
 
 
 def kseries_inv_(K, p, N, d, idx):
-    from frc.dirac import kseries_inv
+    from frc.operator import kseries_inv
     return kseries_inv(K, p, N, d, idx)
 
 

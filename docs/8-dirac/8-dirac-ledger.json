@@ -3,7 +3,7 @@
  "tree": "8-dirac-20260709",
  "title": "Schrödinger and Dirac Dynamics",
  "doi": "https://doi.org/10.20944/preprints202510.1486.v2",
- "generated": "5 November 2026",
+ "generated": "6 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -144,7 +144,7 @@
      "label": "C4",
      "predicate": "Exact Hermitian preservation: for a self-adjoint Hamiltonian and an admissible parameter the Cayley step is unitary.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:cayley-preservation}\\newline \\pywit{dirac}{p08018}{C4}, \\leanwit{FrcCore}{p08018}{C4}, \\leanwit{FrcMathlib}{p08018}{C4} \\lean{Dirac.cayley\\_unitary, FRC.Dirac.Operator.cayley\\_unitary, FRC.Dirac.Spinor.MatE.adjoint\\_dagger, FRC.Dirac.Spinor.cayley\\_unitary\\_value}",
+     "source": "Thm.~\\ref{thm:cayley-preservation}\\newline \\pywit{dirac}{p08018}{C4}, \\leanwit{FrcCore}{p08018}{C4}, \\leanwit{FrcMathlib}{p08018}{C4} \\lean{Dirac.cayley\\_unitary, FRC.Dirac.Operator.cayley\\_unitary, FRC.Dirac.Spinor.MatE.adjoint\\_dagger, FRC.Dirac.Spinor.cayley\\_values173, FRC.Dirac.Spinor.cayley\\_nilpotent1549, FRC.Dirac.Spinor.cayley\\_step1549, FRC.Dirac.Spinor.cayley\\_unitary1549}",
      "key": "p08018"
     },
     {
@@ -158,7 +158,7 @@
      "label": "C6",
      "predicate": "The $\\F_{13}$ Schr\\\"odinger example: the kinetic Hamiltonian is nilpotent, every trace-zero parameter is admissible, and every nonzero parameter gives a unitary step of order $13$.",
      "tag": "T",
-     "source": "Ex.~\\ref{ex:cayley-13}; rests on E7\\newline \\pywit{dirac}{p08020}{C6}, \\leanwit{FrcCore}{p08020}{C6}, \\leanwit{FrcMathlib}{p08020}{C6} \\lean{Dirac.kinetic\\_nilpotent, Dirac.cayley\\_period, FRC.Dirac.cayley13\\_values}",
+     "source": "Ex.~\\ref{ex:cayley-13}; rests on E7\\newline \\pywit{dirac}{p08020}{C6}, \\leanwit{FrcCore}{p08020}{C6}, \\leanwit{FrcMathlib}{p08020}{C6} \\lean{Dirac.kinetic\\_nilpotent, Dirac.cayley\\_period, FRC.Dirac.cayley13\\_values, FRC.Dirac.Spinor.cayley\\_values173, FRC.Dirac.Spinor.cayley\\_nilpotent1549, FRC.Dirac.Spinor.cayley\\_step1549, FRC.Dirac.Spinor.cayley\\_unitary1549}",
      "key": "p08020"
     },
     {
@@ -221,7 +221,7 @@
      "label": "C15",
      "predicate": "Finite periodicity: every Cayley orbit is periodic, the unitary group of the finite space being finite.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:finite-periodicity}; rests on C4\\newline \\pywit{dirac}{p08065}{C15}, \\leanwit{FrcCore}{p08065}{C15}, \\leanwit{FrcMathlib}{p08065}{C15} \\lean{Dirac.cayley\\_periodic, FRC.Dirac.cayley13\\_values}",
+     "source": "Cor.~\\ref{cor:finite-periodicity}; rests on C4\\newline \\pywit{dirac}{p08065}{C15}, \\leanwit{FrcCore}{p08065}{C15}, \\leanwit{FrcMathlib}{p08065}{C15} \\lean{Dirac.cayley\\_periodic, FRC.Dirac.cayley13\\_values, FRC.Dirac.Spinor.cayley\\_values173, FRC.Dirac.Spinor.cayley\\_nilpotent1549, FRC.Dirac.Spinor.cayley\\_step1549, FRC.Dirac.Spinor.cayley\\_step\\_c1549}",
      "key": "p08065"
     },
     {
@@ -304,7 +304,7 @@
      "label": "D10",
      "predicate": "Exact Dirac evolution: the Cayley step of the symmetric Dirac operator shifted by the mass preserves the $X$-form; massless it is unipotent with order a power of $\\p$; massive it is the norm-one phase of the mass times a unipotent, and its order is their least common multiple ($169=\\p^{2}$, $1183$, $2366$ for $m=0,1,2$ in $1{+}1$ at $\\p=13$).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:dirac-evolution}; rests on C4, D9\\newline \\pywit{dirac}{p08030}{D10}, \\leanwit{FrcCore}{p08030}{D10}, \\leanwit{FrcMathlib}{p08030}{D10} \\lean{Dirac.cayley\\_unitary, Dirac.translation\\_nilpotent, FRC.Dirac.Operator.cayley\\_nilpotent\\_shift, FRC.Dirac.Operator.nilpotent\\_of\\_eq\\_mul, FRC.Dirac.Operator.opow\\_of\\_nilpotent\\_shift, FRC.Dirac.Spinor.MatE.adjoint\\_twist, FRC.Dirac.Spinor.MatE.symdiff\\_nilpotent, FRC.Dirac.Spinor.translation\\_values13}",
+     "source": "Thm.~\\ref{thm:dirac-evolution}; rests on C4, D9\\newline \\pywit{dirac}{p08030}{D10}, \\leanwit{FrcCore}{p08030}{D10}, \\leanwit{FrcMathlib}{p08030}{D10} \\lean{Dirac.cayley\\_unitary, Dirac.translation\\_nilpotent, FRC.Dirac.Operator.cayley\\_nilpotent\\_shift, FRC.Dirac.Operator.nilpotent\\_of\\_eq\\_mul, FRC.Dirac.Operator.opow\\_of\\_nilpotent\\_shift, FRC.Dirac.Spinor.MatE.adjoint\\_twist, FRC.Dirac.Spinor.MatE.symdiff\\_nilpotent, FRC.Dirac.Spinor.translation\\_values13, FRC.Dirac.Spinor.translation\\_values173, FRC.Dirac.Spinor.translation\\_values1549, FRC.Dirac.Spinor.kinetic\\_values1549}",
      "key": "p08030"
     },
     {
@@ -401,7 +401,7 @@
      "label": "E4",
      "predicate": "Period dichotomy: kinetic Hamiltonians give unipotent propagators of order $\\p$; potential Hamiltonians give diagonal propagators with phases on the norm-one cycle and order dividing $\\p+1$ ($14$ at $13$, $174$ at $173$).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:period-dichotomy}; rests on C5\\newline \\pywit{dirac}{p08037}{E4}, \\leanwit{FrcCore}{p08037}{E4}, \\leanwit{FrcMathlib}{p08037}{E4} \\lean{Dirac.cayley\\_period, Dirac.kinetic\\_nilpotent, Dirac.Ext.torus\\_period, FRC.Dirac.cayley13\\_values, FRC.Dirac.potential\\_orders}",
+     "source": "Thm.~\\ref{thm:period-dichotomy}; rests on C5\\newline \\pywit{dirac}{p08037}{E4}, \\leanwit{FrcCore}{p08037}{E4}, \\leanwit{FrcMathlib}{p08037}{E4} \\lean{Dirac.cayley\\_period, Dirac.kinetic\\_nilpotent, Dirac.Ext.torus\\_period, FRC.Dirac.cayley13\\_values, FRC.Dirac.potential\\_orders, FRC.Dirac.Spinor.cayley\\_values173, FRC.Dirac.Spinor.cayley\\_nilpotent1549, FRC.Dirac.Spinor.cayley\\_step1549, FRC.Dirac.Spinor.cayley\\_unitary1549}",
      "key": "p08037"
     },
     {
@@ -422,7 +422,7 @@
      "label": "E7",
      "predicate": "Kinetic Hamiltonians are fully admissible: a nilpotent Hamiltonian, the kinetic Hamiltonian and the symmetric Dirac operator among them, has every trace-zero parameter admissible, on every shell.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:kinetic-admissible}\\newline \\pywit{dirac}{p08075}{E7}, \\leanwit{FrcCore}{p08075}{E7}, \\leanwit{FrcMathlib}{p08075}{E7} \\lean{Dirac.kinetic\\_nilpotent, Dirac.translation\\_nilpotent, FRC.Dirac.cayley13\\_values}",
+     "source": "Cor.~\\ref{cor:kinetic-admissible}\\newline \\pywit{dirac}{p08075}{E7}, \\leanwit{FrcCore}{p08075}{E7}, \\leanwit{FrcMathlib}{p08075}{E7} \\lean{Dirac.kinetic\\_nilpotent, Dirac.translation\\_nilpotent, FRC.Dirac.cayley13\\_values, FRC.Dirac.Spinor.cayley\\_values173, FRC.Dirac.Spinor.cayley\\_nilpotent1549, FRC.Dirac.Spinor.cayley\\_step1549, FRC.Dirac.Spinor.cayley\\_step\\_c1549}",
      "key": "p08075"
     },
     {
@@ -484,7 +484,7 @@
      "label": "F7",
      "predicate": "Finite plane waves, dispersion and the mass shell: the cycle Laplacian has the closed dispersion relation on the characters; the translations admit no characters and the kinetic sector is unipotent; the static massive Dirac equation has only the zero solution, the mass being an evolution phase.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:dispersion}; rests on C5, D3, D9, D10, E4, F3\\newline \\pywit{dirac}{p08077}{F7}, \\leanwit{FrcCore}{p08077}{F7}, \\leanwit{FrcMathlib}{p08077}{F7} \\lean{Dirac.dispersion, Dirac.translation\\_nilpotent, Dirac.cayley\\_nilpotent\\_shift, FRC.Dirac.Plane.dispersion, FRC.Dirac.Operator.translation\\_nilpotent, FRC.Dirac.Spinor.MatE.translation\\_unipotent, FRC.Dirac.Operator.static\\_unique, FRC.Dirac.Spinor.translation\\_values13}",
+     "source": "Prop.~\\ref{prop:dispersion}; rests on C5, D3, D9, D10, E4, F3\\newline \\pywit{dirac}{p08077}{F7}, \\leanwit{FrcCore}{p08077}{F7}, \\leanwit{FrcMathlib}{p08077}{F7} \\lean{Dirac.dispersion, Dirac.translation\\_nilpotent, Dirac.cayley\\_nilpotent\\_shift, FRC.Dirac.Plane.dispersion, FRC.Dirac.Operator.translation\\_nilpotent, FRC.Dirac.Spinor.MatE.translation\\_unipotent, FRC.Dirac.Operator.static\\_unique, FRC.Dirac.Spinor.translation\\_values13, FRC.Dirac.Spinor.translation\\_values173, FRC.Dirac.Spinor.translation\\_values1549, FRC.Dirac.Spinor.kinetic\\_values1549}",
      "key": "p08077"
     }
    ]
@@ -511,7 +511,7 @@
      "label": "X3",
      "predicate": "Mass is an evolution phase, not a kernel condition: the symmetric Dirac operator is nilpotent, the static massive equation has only the zero solution, and the mass enters as the norm-one factor of the Cayley step.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:explains}(iii); rests on D10, F7\\newline \\pywit{dirac}{p08055}{X3}, \\leanwit{FrcCore}{p08055}{X3}, \\leanwit{FrcMathlib}{p08055}{X3} \\lean{Dirac.translation\\_nilpotent, Dirac.cayley\\_nilpotent\\_shift, Dirac.cayley\\_unitary, FRC.Dirac.Spinor.MatE.symdiff\\_nilpotent, FRC.Dirac.Operator.static\\_unique, FRC.Dirac.Operator.cayley\\_unitary}",
+     "source": "Cor.~\\ref{cor:explains}(iii); rests on D10, F7\\newline \\pywit{dirac}{p08055}{X3}, \\leanwit{FrcCore}{p08055}{X3}, \\leanwit{FrcMathlib}{p08055}{X3} \\lean{Dirac.translation\\_nilpotent, Dirac.cayley\\_nilpotent\\_shift, Dirac.cayley\\_unitary, FRC.Dirac.Spinor.MatE.symdiff\\_nilpotent, FRC.Dirac.Operator.static\\_unique, FRC.Dirac.Operator.cayley\\_unitary, FRC.Dirac.Spinor.translation\\_values13, FRC.Dirac.Spinor.translation\\_values173, FRC.Dirac.Spinor.translation\\_values1549, FRC.Dirac.Spinor.kinetic\\_values1549}",
      "key": "p08055"
     },
     {
@@ -976,20 +976,47 @@
    {
     "name": "FRC.Dirac.Spinor.MatE.adjoint_dagger",
     "module": "FrcCore/Theme/Spinor",
-    "line": 122,
+    "line": 123,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "8:C4 — the conjugate transpose is an anti-automorphism of the matrix ring: `(AB)† = B†A†`, `(A+B)† = A†+B†`, `1† = 1`, `(−A)† = −A†`, respecting the congruence."
    },
    {
-    "name": "FRC.Dirac.Spinor.cayley_unitary_value",
+    "name": "FRC.Dirac.Spinor.cayley_values173",
     "module": "FrcCore/Theme/Spinor",
-    "line": 322,
+    "line": 363,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:C4 [value] — the Cayley step `U = (1 − wH)⁻¹(1 + wH)` of `H = −Δ` on `𝔽₁₃` (`α = w`, `w̄ = −w`) is unitary, `U†U = 1` (the general statement `cayley_unitary` with `adjoint_dagger`)."
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — the Cayley step `U = (1 − αH)⁻¹(1 + αH)` of `H = −Δ` on the cycle of `𝔽₁₇₃`, at `α = w` and at `α = c = λw` with `λ = 87`, `c² = 87 = 2⁻¹`: `(wH)^p = 0` (so `geomInvP` is the inverse, for `α = λw` too), `U ≠ 1` and `U^p = 1`, so the order is exactly `p`, and `U†U = 1` at `α = w` — the 173 sibling of `cayley13_values`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_nilpotent1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 373,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on the cycle of `𝔽₁₅₄₉`, in four declarations (each decided within the budget of a kernel call): `(wH)^p = 0` for `H = −Δ`, and the data of `c = λw`, `λ = 775`, `c² = 775 = 2⁻¹`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_step1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 379,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = w`: `U ≠ 1`, `U^p = 1`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_unitary1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 385,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:E4 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = w` is unitary: `U†U = 1`."
    }
   ],
   "C5": [
@@ -1090,6 +1117,42 @@
     "tier": 0,
     "ok": true,
     "doc": "8:C6, 8:C15, 8:E4, 8:E7, 8:E8 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w` (`c² = 7 = 2⁻¹`): every Cayley orbit on the shell is periodic, here with the period `13` (C15)."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_values173",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 363,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — the Cayley step `U = (1 − αH)⁻¹(1 + αH)` of `H = −Δ` on the cycle of `𝔽₁₇₃`, at `α = w` and at `α = c = λw` with `λ = 87`, `c² = 87 = 2⁻¹`: `(wH)^p = 0` (so `geomInvP` is the inverse, for `α = λw` too), `U ≠ 1` and `U^p = 1`, so the order is exactly `p`, and `U†U = 1` at `α = w` — the 173 sibling of `cayley13_values`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_nilpotent1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 373,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on the cycle of `𝔽₁₅₄₉`, in four declarations (each decided within the budget of a kernel call): `(wH)^p = 0` for `H = −Δ`, and the data of `c = λw`, `λ = 775`, `c² = 775 = 2⁻¹`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_step1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 379,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = w`: `U ≠ 1`, `U^p = 1`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_unitary1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 385,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:E4 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = w` is unitary: `U†U = 1`."
    }
   ],
   "C8": [
@@ -1249,6 +1312,42 @@
     "tier": 0,
     "ok": true,
     "doc": "8:C6, 8:C15, 8:E4, 8:E7, 8:E8 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w` (`c² = 7 = 2⁻¹`): every Cayley orbit on the shell is periodic, here with the period `13` (C15)."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_values173",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 363,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — the Cayley step `U = (1 − αH)⁻¹(1 + αH)` of `H = −Δ` on the cycle of `𝔽₁₇₃`, at `α = w` and at `α = c = λw` with `λ = 87`, `c² = 87 = 2⁻¹`: `(wH)^p = 0` (so `geomInvP` is the inverse, for `α = λw` too), `U ≠ 1` and `U^p = 1`, so the order is exactly `p`, and `U†U = 1` at `α = w` — the 173 sibling of `cayley13_values`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_nilpotent1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 373,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on the cycle of `𝔽₁₅₄₉`, in four declarations (each decided within the budget of a kernel call): `(wH)^p = 0` for `H = −Δ`, and the data of `c = λw`, `λ = 775`, `c² = 775 = 2⁻¹`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_step1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 379,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = w`: `U ≠ 1`, `U^p = 1`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_step_c1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 391,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C15, 8:E7 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = c = 775 w`: `U ≠ 1`, `U^p = 1`."
    }
   ],
   "C16": [
@@ -1325,11 +1424,11 @@
    {
     "name": "FRC.Dirac.Spinor.factorisation_value",
     "module": "FrcCore/Theme/Spinor",
-    "line": 344,
+    "line": 431,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:D3 [value] — the factorisation in `0+1` on `𝔽₁₃` (`ν = 2`, `i = 5`), on the kernels of the translation-invariant operators: for `𝒟^s = ∇^s ⊗ γ⁰` and `m = 1`, `(𝒟^s − m)(𝒟^s + m) = −ν (∇^s)² ⊗ I₄ − m²`, as `dirac_factorisation` states with `η₀ = γ⁰γ⁰ = −ν`."
+    "doc": "8:D3 [value] — the factorisation in `0+1` on `𝔽₁₃` (`ν = 2`, `i = 5`), on the `52 × 52` matrices: for `𝒟^s = ∇^s ⊗ γ⁰` and `m = 1`, `(𝒟^s − 1)(𝒟^s + 1) = −ν (∇^s)² ⊗ I₄ − I₅₂`, as `dirac_factorisation` states with `η₀ = γ⁰γ⁰ = −ν`; the product on the packed rows."
    }
   ],
   "D5": [
@@ -1615,7 +1714,7 @@
    {
     "name": "FRC.Dirac.Spinor.MatE.adjoint_twist",
     "module": "FrcCore/Theme/Spinor",
-    "line": 140,
+    "line": 141,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1624,7 +1723,7 @@
    {
     "name": "FRC.Dirac.Spinor.MatE.symdiff_nilpotent",
     "module": "FrcCore/Theme/Spinor",
-    "line": 218,
+    "line": 219,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1633,11 +1732,38 @@
    {
     "name": "FRC.Dirac.Spinor.translation_values13",
     "module": "FrcCore/Theme/Spinor",
-    "line": 314,
+    "line": 334,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₃`: the translation has `T^p = 1`, `T − 1` is nilpotent, `(T − 1)^p = 0`, and the symmetric difference `∇^s = 2⁻¹(T − T⁻¹)` is nilpotent, `(∇^s)^p = 0` (the kinetic sector unipotent; the general statements `translation_nilpotent` and `series_inverse`)."
+    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₃`: `T^p = 1`, `(T − 1)^p = 0`, the symmetric difference `∇^s = 2⁻¹(T − T⁻¹)` has `(∇^s)^p = 0`, and `(−Δ)^p = 0` (the kinetic sector unipotent; the general statements `translation_unipotent`, `symdiff_nilpotent`)."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.translation_values173",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 340,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — the same on the cycle of `𝔽₁₇₃`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.translation_values1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 347,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₅₄₉`: `T^p = 1` and `(T − 1)^p = 0`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.kinetic_values1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 352,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₅₄₉`: `(∇^s)^p = 0` with `2⁻¹ = 775`, and `(−Δ)^p = 0`."
    }
   ],
   "D11": [
@@ -1670,7 +1796,7 @@
    {
     "name": "FRC.Dirac.Spinor.lift_transport_values",
     "module": "FrcCore/Theme/Spinor",
-    "line": 370,
+    "line": 454,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2094,6 +2220,42 @@
     "tier": 0,
     "ok": true,
     "doc": "8:E4, 8:E8 [value] — the potential propagator of `V = id` has order `14 = p + 1` on `𝔽₁₃` and `174` on `𝔽₁₇₃`, the least common multiple of the phase orders, every phase of norm one."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_values173",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 363,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — the Cayley step `U = (1 − αH)⁻¹(1 + αH)` of `H = −Δ` on the cycle of `𝔽₁₇₃`, at `α = w` and at `α = c = λw` with `λ = 87`, `c² = 87 = 2⁻¹`: `(wH)^p = 0` (so `geomInvP` is the inverse, for `α = λw` too), `U ≠ 1` and `U^p = 1`, so the order is exactly `p`, and `U†U = 1` at `α = w` — the 173 sibling of `cayley13_values`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_nilpotent1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 373,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on the cycle of `𝔽₁₅₄₉`, in four declarations (each decided within the budget of a kernel call): `(wH)^p = 0` for `H = −Δ`, and the data of `c = λw`, `λ = 775`, `c² = 775 = 2⁻¹`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_step1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 379,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = w`: `U ≠ 1`, `U^p = 1`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_unitary1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 385,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:E4 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = w` is unitary: `U†U = 1`."
    }
   ],
   "E5": [
@@ -2186,13 +2348,49 @@
     "tier": 0,
     "ok": true,
     "doc": "8:C6, 8:C15, 8:E4, 8:E7, 8:E8 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w` (`c² = 7 = 2⁻¹`): every Cayley orbit on the shell is periodic, here with the period `13` (C15)."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_values173",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 363,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — the Cayley step `U = (1 − αH)⁻¹(1 + αH)` of `H = −Δ` on the cycle of `𝔽₁₇₃`, at `α = w` and at `α = c = λw` with `λ = 87`, `c² = 87 = 2⁻¹`: `(wH)^p = 0` (so `geomInvP` is the inverse, for `α = λw` too), `U ≠ 1` and `U^p = 1`, so the order is exactly `p`, and `U†U = 1` at `α = w` — the 173 sibling of `cayley13_values`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_nilpotent1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 373,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on the cycle of `𝔽₁₅₄₉`, in four declarations (each decided within the budget of a kernel call): `(wH)^p = 0` for `H = −Δ`, and the data of `c = λw`, `λ = 775`, `c² = 775 = 2⁻¹`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_step1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 379,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:C6, 8:C15, 8:E4, 8:E7 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = w`: `U ≠ 1`, `U^p = 1`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_step_c1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 391,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C15, 8:E7 [value] — on `𝔽₁₅₄₉`, the Cayley step of `−Δ` at `α = c = 775 w`: `U ≠ 1`, `U^p = 1`."
    }
   ],
   "E8": [
    {
     "name": "FRC.Dirac.Spinor.mixed_step_values",
     "module": "FrcCore/Theme/Spinor",
-    "line": 355,
+    "line": 442,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2550,7 +2748,7 @@
    {
     "name": "FRC.Dirac.Spinor.MatE.translation_unipotent",
     "module": "FrcCore/Theme/Spinor",
-    "line": 212,
+    "line": 213,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2568,11 +2766,38 @@
    {
     "name": "FRC.Dirac.Spinor.translation_values13",
     "module": "FrcCore/Theme/Spinor",
-    "line": 314,
+    "line": 334,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₃`: the translation has `T^p = 1`, `T − 1` is nilpotent, `(T − 1)^p = 0`, and the symmetric difference `∇^s = 2⁻¹(T − T⁻¹)` is nilpotent, `(∇^s)^p = 0` (the kinetic sector unipotent; the general statements `translation_nilpotent` and `series_inverse`)."
+    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₃`: `T^p = 1`, `(T − 1)^p = 0`, the symmetric difference `∇^s = 2⁻¹(T − T⁻¹)` has `(∇^s)^p = 0`, and `(−Δ)^p = 0` (the kinetic sector unipotent; the general statements `translation_unipotent`, `symdiff_nilpotent`)."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.translation_values173",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 340,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — the same on the cycle of `𝔽₁₇₃`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.translation_values1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 347,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₅₄₉`: `T^p = 1` and `(T − 1)^p = 0`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.kinetic_values1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 352,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₅₄₉`: `(∇^s)^p = 0` with `2⁻¹ = 775`, and `(−Δ)^p = 0`."
    }
   ],
   "X1": [
@@ -2687,7 +2912,7 @@
    {
     "name": "FRC.Dirac.Spinor.MatE.symdiff_nilpotent",
     "module": "FrcCore/Theme/Spinor",
-    "line": 218,
+    "line": 219,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2710,6 +2935,42 @@
     "tier": 0,
     "ok": true,
     "doc": "8:C4, 8:D10, 8:X3 — the Cayley step is unitary: for `h` symmetric (`σ h ≈ h`), `a` central with `σ a ≈ −a`, and `v` the inverse of `1 − a h`, the step `u = v (1 + a h)` satisfies `σ(u) u ≈ 1`. The adjoint of `1 − a h` is `1 + a h`, so `σ v` is the inverse of `1 + a h`; `v` commutes with `1 + a h`; and `σ(u) u = (1 − a h) σ(v) v (1 + a h) = (1 − a h) σ(v) (1 + a h) v`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.translation_values13",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 334,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₃`: `T^p = 1`, `(T − 1)^p = 0`, the symmetric difference `∇^s = 2⁻¹(T − T⁻¹)` has `(∇^s)^p = 0`, and `(−Δ)^p = 0` (the kinetic sector unipotent; the general statements `translation_unipotent`, `symdiff_nilpotent`)."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.translation_values173",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 340,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — the same on the cycle of `𝔽₁₇₃`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.translation_values1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 347,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₅₄₉`: `T^p = 1` and `(T − 1)^p = 0`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.kinetic_values1549",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 352,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₅₄₉`: `(∇^s)^p = 0` with `2⁻¹ = 775`, and `(−Δ)^p = 0`."
    }
   ],
   "X4": [

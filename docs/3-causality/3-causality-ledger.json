@@ -3,7 +3,7 @@
  "tree": "3-causality-20260510",
  "title": "Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/e27111098",
- "generated": "5 November 2026",
+ "generated": "6 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -429,7 +429,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:A10, 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell."
+    "doc": "7:A10, 3:C2, 8:D14 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell."
    },
    {
     "name": "FRC.Shell.Frame.boost_comp_t",
@@ -438,7 +438,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:A10, 3:C2 — boosts compose as their parameters multiply in `K`: `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row."
+    "doc": "7:A10, 3:C2, 8:D15 — boosts compose as their parameters multiply in `K`: `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row."
    },
    {
     "name": "FRC.Shell.Frame.boost_comp_x",
@@ -447,7 +447,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:A10, 3:C2 — the composition, the `x`-row."
+    "doc": "7:A10, 3:C2, 8:D15 — the composition, the `x`-row."
    },
    {
     "name": "FRC.Shell.Frame.norm_one_mul",
@@ -456,7 +456,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:A10, 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
+    "doc": "7:A10, 3:C2, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
    },
    {
     "name": "FRC.Shell.Frame.normOne_values",

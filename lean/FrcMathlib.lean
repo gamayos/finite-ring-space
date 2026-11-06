@@ -7,6 +7,7 @@ import FrcMathlib.Theme.Logic
 import FrcMathlib.Theme.Horizon
 import FrcMathlib.Theme.Chart
 import FrcMathlib.Theme.Strong
+import FrcMathlib.Theme.Circle
 import FrcMathlib.Theme.Gravity
 import FrcMathlib.Theme.Quantum
 import FrcMathlib.Theme.Lorentz
@@ -14,11 +15,13 @@ import FrcMathlib.Theme.Fields
 import FrcMathlib.Theme.Flavour
 import FrcMathlib.Theme.Dark
 import FrcMathlib.Theme.Hadrons
+import FrcMathlib.Theme.Algebra
 import FrcMathlib.Keys.Extension
 import FrcMathlib.Keys.Projective
 import FrcMathlib.Keys.Fourier
 import FrcMathlib.Keys.Logic
 import FrcMathlib.Keys.Dirac
+import FrcMathlib.Keys.Algebra
 import FrcMathlib.Keys.Gravity
 import FrcMathlib.Keys.Quantum
 import FrcMathlib.Keys.Horizon

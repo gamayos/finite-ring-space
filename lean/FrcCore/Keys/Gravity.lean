@@ -95,6 +95,9 @@ theorem p21043 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (P 
 /-- p21045 — 21:X5. \textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise. -/
 theorem p21045 : ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k i : Nat), FRC.Lattice.lap n (FRC.Lattice.chi n g k) i = (g ^ k + g ^ (k * (n - (1 : Nat))) + -((1 : FRC.Shell p) + (1 : FRC.Shell p))) * FRC.Lattice.chi n g k i :=
   @FRC.Lattice.laplacian_symbol
+/-- p21052 — 7:A31, 21:P3. The weak-acceleration floor $a_0=cH_0/2\pi=1.04\times10^{-10}\,\mathrm{m\,s^{-2}}$ at the measured $H_0=67.4$ \citep{planck}, against the fitted $1.20\pm0.24\times10^{-10}$: $13\%$ low, $0.7\sigma$ of the systematic-dominated error, no free parameter; the $2\pi$ the dictionary's full cycle \citep{dimensions}, the one-cycle-per-period threshold a realisation with its discrete falsifier. -/
+theorem p21052 : ∀ (a T H τ c : Nat), a * T = c → T * H = τ → a * τ = c * H :=
+  @FRC.Drift.floor_period
 /-- p21055 — 21:P6. The 2PN periastron excess for PSR~J0737$-$3039: $\delta\dot\omega/\dot\omega\approx1.5\times10^{-6}$ in the test-particle sector [approx], the comparable-mass terms ($\nu=0.250$) not yet reduced; today degenerate with the mass refit; decisive either way once that sector is reduced and an independent observable fixes $M_{\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \citep{quantum}; the ledger carries both. -/
 theorem p21055 : (6 : Int) * (-4 : Int) / (3 : Int) - (6 : Int) * (-3 : Int) / (2 : Int) = (1 : Int) ∧ (2 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (3 : Int) + (4 : Int) + (1 : Int) = (8 : Int) ∧ (-4 : Int) - (6 : Int) - (2 : Int) = (-12 : Int) ∧ (8 / 4 : Int) = (2 : Int) ∧ (-12 : Int) * (2 : Int) / (8 : Int) = (-3 : Int) :=
   @FRC.Drift.pn_coefficients

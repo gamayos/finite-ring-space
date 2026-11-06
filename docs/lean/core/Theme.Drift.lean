@@ -392,6 +392,13 @@ theorem character_unique (f : Nat → Shell p) (h0 : f 0 = 1) (hf : ∀ a b, f (
   | 0 => h0
   | a + 1 => by rw [hf a 1, character_unique f h0 hf a, pow_succ]
 
+/-- 21:P3, 7:A31 — **the floor as the speed over the drive period.** With `a₀ T_H = c` (the floor is the speed per period)
+and `T_H H = τ` (the period times the rate is the full cycle, `2π` in the chart), `a₀ τ = c H`: the identity
+`a₀ = c/T_H = cH₀/2π` in every value of the symbols. The number at `H₀ = 67.4` is the chart's, on Mathlib
+(`FRC.Chart.floor_value`). -/
+theorem floor_period (a T H τ c : Nat) (h₁ : a * T = c) (h₂ : T * H = τ) : a * τ = c * H := by
+  rw [← h₂, ← Nat.mul_assoc, h₁]
+
 /-- 00:C21 — the PPN temporal form is no character: clock comparison composes as `R(a + b) = R(a) R(b)`, and the form
 `1 − 2u` fails it by exactly `4ab`: `(1 − 2a)(1 − 2b) − (1 − 2(a + b)) = 4ab` on every shell (the dilation rigidity
 theorem's transitivity defect; 20 October 2026). -/

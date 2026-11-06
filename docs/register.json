@@ -1,17 +1,17 @@
 {
  "header": {
-  "generated": "5 November 2026",
+  "generated": "6 November 2026",
   "schema": "frc-register/2",
-  "rows": 1156,
-  "theorems": 1112,
+  "rows": 1157,
+  "theorems": 1109,
   "counts": {
-   "keys": 1112,
-   "rows": 1156,
-   "shared": 43,
+   "keys": 1109,
+   "rows": 1157,
+   "shared": 45,
    "by_tag": {
     "D": 177,
     "G": 1,
-    "I": 127,
+    "I": 124,
     "O": 11,
     "R": 89,
     "T": 678,
@@ -96,7 +96,7 @@
     "blocks": [
      {
       "letter": "A",
-      "title": "Inputs"
+      "title": "Inputs carried from the framework, proved here or defined"
      },
      {
       "letter": "B",
@@ -112,31 +112,26 @@
      },
      {
       "letter": "E",
-      "title": "The complex chart, polynomial equations and continuous symmetry"
+      "title": "The complex chart, polynomial equations and rotations in the window"
      },
      {
       "letter": "Z",
-      "title": "The horizon"
+      "title": "The poles"
      }
     ],
     "legend": [
      {
-      "tag": "I",
-      "name": "Import",
-      "text": "A standard result used without reproof."
-     },
-     {
       "tag": "D",
       "name": "Definition",
-      "text": "A naming or declared convention, carrying no empirical content."
+      "text": "A naming, a declared dictionary, or a set-up move, carrying no empirical content."
      },
      {
       "tag": "T",
       "name": "Theorem",
-      "text": "Derived, and machine-verified in exact arithmetic by the named witness."
+      "text": "Proved at the statement the source column names; machine-verified in exact arithmetic by the named witness and proved in the Lean core."
      }
     ],
-    "rows": 29
+    "rows": 30
    },
    {
     "key": "2-geom",
@@ -454,7 +449,9 @@
     "dir": "7-spacetime",
     "no": 7,
     "title": "Emergent Lorentzian Space-Time over Finite Holographic Substrate",
-    "status": null,
+    "status": {
+     "kind": "preprint"
+    },
     "page": "7-spacetime/index.html",
     "blocks": [
      {
@@ -1750,6 +1747,7 @@
    "aliases": [],
    "rows": [
     "00:A6",
+    "1:A1",
     "7:A29",
     "20:A5"
    ]
@@ -1830,11 +1828,17 @@
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Foundation",
      "name": "FRC.Shell.Prime.isPrime_iff_complete"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Foundation",
+     "name": "FRC.Shell.Prime.isPrime_iff_complete"
     }
    ],
    "aliases": [],
    "rows": [
     "00:A10",
+    "1:A2",
     "7:A23"
    ],
    "realisations": []
@@ -1857,11 +1861,17 @@
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Foundation",
      "name": "FRC.Ledger.p00163"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Foundation",
+     "name": "FRC.Shell.Prime.quarter_turn_iff"
     }
    ],
    "aliases": [],
    "rows": [
-    "00:A11"
+    "00:A11",
+    "1:A3"
    ],
    "realisations": []
   },
@@ -1883,11 +1893,17 @@
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Foundation",
      "name": "FRC.Ledger.p00164"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drive",
+     "name": "FRC.Shell.Prime.exists_drive"
     }
    ],
    "aliases": [],
    "rows": [
-    "00:A12"
+    "00:A12",
+    "1:A4"
    ],
    "realisations": []
   },
@@ -2022,6 +2038,11 @@
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Carrier",
      "name": "FRC.Ledger.p00165"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Carrier",
+     "name": "FRC.Carrier.register"
     }
    ],
    "aliases": [],
@@ -2501,8 +2522,43 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Frame",
+     "module": "FrcCore/Keys/Domain",
      "name": "FRC.Ledger.p00032"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Domain",
+     "name": "FRC.Domain.Lift.temp_eq_accel"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Domain",
+     "name": "FRC.Domain.Lift.temp_flag_free"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Domain",
+     "name": "FRC.Domain.Lift.unruh_closes"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Domain",
+     "name": "FRC.Domain.Lift.not_primitive"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Domain",
+     "name": "FRC.Domain.Lift.classical_exponents"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Domain",
+     "name": "FRC.Domain.Lift.classical_arity"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Domain",
+     "name": "FRC.Domain.Lift.modular_shadow"
     }
    ],
    "aliases": [],
@@ -2881,7 +2937,7 @@
    "check": {
     "href": "py/spacetime.html#p00042",
     "script": "p07_spacetime.py",
-    "line": 258,
+    "line": 263,
     "verdict": "pass"
    },
    "declarations": [
@@ -4613,51 +4669,9 @@
    ]
   },
   {
-   "key": "p01001",
-   "origin": "01",
-   "statement": "Finite-field algebra: $\\Fpx$ is cyclic of order $\\p-1$ with primitive roots; $\\gen^{\\p-1}=1$; $-1$ is a square in $\\Fp$ iff $\\p\\equiv1\\pmod4$ (Euler's criterion); the affine maps $x\\mapsto a+bx$, $b\\neq0$, are the bijections preserving the field structure up to relabelling.",
-   "origin_row": "1:A1",
-   "tag": "I",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "1:A1"
-   ]
-  },
-  {
-   "key": "p01002",
-   "origin": "01",
-   "statement": "The sign of the quarter-turn exponent: the oriented quarter-turn is $\\im=\\gen^{-\\kap}=-\\gen^{\\kap}$, the exponent negative by pullback covariance (00:C7); the positive-exponent reading is the conjugate chart. Declared here, derived in the corpus.",
-   "origin_row": "1:A2",
-   "tag": "I",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "1:A2"
-   ]
-  },
-  {
-   "key": "p01025",
-   "origin": "01",
-   "statement": "The finite subgroups of $SO(3)$: cyclic, dihedral, tetrahedral ($12$), octahedral ($24$), icosahedral ($60$) --- Klein's classification; the binary icosahedral group as the $600$-cell's vertices. Imported for E5.",
-   "origin_row": "1:A3",
-   "tag": "I",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "1:A3"
-   ]
-  },
-  {
    "key": "p01003",
    "origin": "01",
-   "statement": "The shell, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$ prime; the Subject's frame $(\\tau;0,1,\\gen)$ with $\\gen$ a primitive root and the drive $x\\mapsto\\gen x$; the cycle $\\Phi_\\p\\cong C_{\\p-1}$; $\\im:=-\\gen^{\\kap}$ (A2), $-1=\\gen^{2\\kap}$.",
+   "statement": "The shell, capacity-first: $\\kap\\ge1$ primary, $\\p=4\\kap+1$ prime; the frame $(\\chron;0,1,\\gen)$ with $\\gen$ a primitive root and the drive $x\\mapsto\\gen x$; the cycle $C_{\\p-1}$; the oriented quarter-turn $\\im:=-\\gen^{\\kap}$, and $-1=\\gen^{2\\kap}$.",
    "origin_row": "1:B1",
    "tag": "D",
    "tier": null,
@@ -4671,14 +4685,14 @@
   {
    "key": "p01004",
    "origin": "01",
-   "statement": "Symmetry completeness (Thm.~\\ref{thm:symmetric-completeness}): the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$; under the Klein four-group $\\langle x\\mapsto-x,\\,x\\mapsto x^{-1}\\rangle$, $Q_4$ is the union of the two size-two orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$, and $\\Fpx\\setminus Q_4$ splits into exactly $\\kap-1$ orbits of size four. For $\\p\\equiv3\\pmod4$ no $\\im$ exists.",
+   "statement": "Symmetry completeness: the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$, the union of the Klein orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$; the other $4\\kap-4$ residues fall into exactly $\\kap-1$ Klein orbits of size four; for $\\p\\equiv3\\pmod4$ no quarter-turn exists.",
    "origin_row": "1:B2",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/algebra.html#p01004",
-    "script": "algebra.py",
-    "line": 197,
+    "script": "p01_algebra.py",
+    "line": 122,
     "verdict": "pass"
    },
    "declarations": [
@@ -4737,14 +4751,14 @@
   {
    "key": "p01005",
    "origin": "01",
-   "statement": "The oriented quarter-turn: $\\im=-\\gen^{\\kap}$ satisfies $\\im^{2}=-1$ for every primitive root $\\gen$; the two square roots of $-1$ are $\\{-\\gen^{\\kap},\\gen^{\\kap}\\}$, so the drive fixes which is $\\im$. On $\\F_{13}$, $\\gen=2$: $\\im=5$.",
+   "statement": "The oriented quarter-turn: $\\im=-\\gen^{\\kap}$ satisfies $\\im^{2}=-1$ for every primitive root $\\gen$; the two square roots of $-1$ are $\\pm\\gen^{\\kap}$, so the drive fixes which is $\\im$; on $\\F_{13}$, $\\gen=2$: $\\im=5$.",
    "origin_row": "1:B3",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/algebra.html#p01005",
-    "script": "algebra.py",
-    "line": 210,
+    "script": "p01_algebra.py",
+    "line": 133,
     "verdict": "pass"
    },
    "declarations": [
@@ -4778,14 +4792,14 @@
   {
    "key": "p01006",
    "origin": "01",
-   "statement": "Affine reframing (Def.~\\ref{def:framed-field}, Lemma~\\ref{lem:affine-invariance}): $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant.",
+   "statement": "Affine reframing: $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant.",
    "origin_row": "1:B4",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/algebra.html#p01006",
-    "script": "algebra.py",
-    "line": 229,
+    "script": "p01_algebra.py",
+    "line": 152,
     "verdict": "pass"
    },
    "declarations": [
@@ -4809,7 +4823,7 @@
   {
    "key": "p01007",
    "origin": "01",
-   "statement": "Origin and unit are observer data (affine gauge); the generator $\\gen$ is the Subject's drive, not gauge; the observer's window is the naturals below $\\sqrt\\p$ (00:B8).",
+   "statement": "The observer's window: origin and unit are the observer's data, the drive $\\gen$ the Subject's own; the window is the naturals below $\\sqrt\\p$, the residues an observer resolves as integers.",
    "origin_row": "1:B5",
    "tag": "D",
    "tier": null,
@@ -4823,7 +4837,7 @@
   {
    "key": "p01008",
    "origin": "01",
-   "statement": "The four symmetries as maps of the shell: the successor $C_1:k\\mapsto k+1$; translations $T_a$, $a\\in\\Fp$, the cycle $C_\\p$; scalings $S_m$, $m\\in\\Fpx$, the cycle $C_{\\p-1}$; power maps $P_\\varepsilon:x\\mapsto x^{\\varepsilon}$, $\\varepsilon\\in C_{\\p-1}$, bijective iff $\\gcd(\\varepsilon,\\p-1)=1$.",
+   "statement": "The four symmetries: the successor $k\\mapsto k+1$; translations $T_a$, the cycle $C_\\p$; scalings $S_m$, $m\\in\\Fpx$, the cycle $C_{\\p-1}$; power maps $x\\mapsto x^{\\varepsilon}$, $\\varepsilon\\in\\Zp$, bijective exactly when $\\gcd(\\varepsilon,\\p-1)=1$.",
    "origin_row": "1:C1",
    "tag": "D",
    "tier": null,
@@ -4837,14 +4851,14 @@
   {
    "key": "p01009",
    "origin": "01",
-   "statement": "The frame group (Prop.~\\ref{prop:frame-group}): $\\langle T_a,S_m\\rangle$ is the affine group of order $\\p(\\p-1)$, acting simply transitively on the frames $(a,b)$, $b\\neq0$; the set of frames is a torsor under it (00:C5, 00:D13).",
+   "statement": "The frame group: the translations and scalings generate the affine group of order $\\p(\\p-1)$, acting simply transitively on the frames $(a,b)$, $b\\neq0$; the frames form a torsor under it.",
    "origin_row": "1:C2",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/algebra.html#p01009",
-    "script": "algebra.py",
-    "line": 247,
+    "script": "p01_algebra.py",
+    "line": 168,
     "verdict": "pass"
    },
    "declarations": [
@@ -4863,14 +4877,12 @@
    "rows": [
     "1:C2"
    ],
-   "realisations": [
-    "p00140"
-   ]
+   "realisations": []
   },
   {
    "key": "p01010",
    "origin": "01",
-   "statement": "Meridians and latitudes (Def.~\\ref{def:orbit-sphere}): $M_n(a)=a\\gen^{n}$, $a\\in\\Fp$, the ordered list of the shell with step $\\gen^{n}$; $L_a(m)=a\\gen^{m}$, $m\\in C_{\\p-1}$, $a\\neq0$, the multiplicative cycle from $a$; the orbital complex $\\Sp$ with vertex set $\\{(n,\\pm a)\\}\\cup\\{0\\}$. The $2$-sphere reading is 2-geometry's~\\cite{akhtman2025geometry}.",
+   "statement": "The orbital complex $\\Sp$: meridians $M_n=(a\\gen^{n})_a$, $n\\in\\Zp$; latitudes $L_a=(a\\gen^{m})_m$, $a\\neq0$; vertex set $\\{(n,\\pm a)\\}\\cup\\{0\\}$, the observer's origin the North Pole.",
    "origin_row": "1:C3",
    "tag": "D",
    "tier": null,
@@ -4884,14 +4896,14 @@
   {
    "key": "p01011",
    "origin": "01",
-   "statement": "Involutions and counts (Def.~\\ref{def:orbit-sphere}\\,(a)--(c)): $M_n(a)=M_{n+2\\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\\kap)$ since $\\gen^{2\\kap}=-1$; $\\p-1$ distinct meridian lists in $2\\kap$ great circles; $2\\kap$ latitude pairs; one-sided vertex count $(\\p-1)^{2}/2+1$, the double cover $(\\p-1)^{2}$ (00:B11).",
+   "statement": "Involutions and counts: $M_n(a)=M_{n+2\\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\\kap)$; the $\\p-1$ meridian steps are distinct, in $2\\kap$ great circles; the nonzero residues form $2\\kap$ sign pairs $\\{\\pm a\\}$, $a\\le2\\kap$; the complex has $(\\p-1)^{2}/2+1$ vertices.",
    "origin_row": "1:C4",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/algebra.html#p01011",
-    "script": "algebra.py",
-    "line": 265,
+    "script": "p01_algebra.py",
+    "line": 194,
     "verdict": "pass"
    },
    "declarations": [
@@ -4904,6 +4916,31 @@
      "lib": "FrcCore",
      "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.meridian_involution"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/FrameCore",
+     "name": "FRC.Shell.Frame.pow_inj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.sign_pair"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Frame",
+     "name": "FRC.Shell.Frame.window_injective"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Frame",
+     "name": "FRC.Shell.Frame.window_signed"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.vertex_count"
     }
    ],
    "aliases": [],
@@ -4915,7 +4952,7 @@
   {
    "key": "p01012",
    "origin": "01",
-   "statement": "Framed integers (Def.~\\ref{def:integers}): the window $W_H=\\{z\\in\\Z:|z|\\le H\\}$, $2H<\\p$, embedded by $z\\mapsto z\\bmod\\p$; sign, order and magnitude are the window's; sums read back for $4H<\\p$, products for $2H^{2}<\\p$ --- the corpus window $\\sqrt\\p$ (00:B1).",
+   "statement": "Framed integers: the window $W_H=\\{z\\in\\Z:|z|\\le H\\}$, $2H<\\p$, embedded by $z\\mapsto z\\bmod\\p$; sign, order and magnitude are the window's.",
    "origin_row": "1:D1",
    "tag": "D",
    "tier": null,
@@ -4929,14 +4966,14 @@
   {
    "key": "p01013",
    "origin": "01",
-   "statement": "The window law: $z\\mapsto z\\bmod\\p$ is injective on $W_H$ when $2H<\\p$; for $x,y\\in W_H$ the residue of $x\\pm y$ reads back the integer when $4H<\\p$, and that of $xy$ when $2H^{2}<\\p$ (the same injectivity on the windows $2H$ and $H^{2}$).",
+   "statement": "The window law: $z\\mapsto z\\bmod\\p$ is injective on $W_H$ when $2H<\\p$; for $x,y\\in W_H$ the residue of $x\\pm y$ reads back the integer when $4H<\\p$, and that of $xy$ when $2H^{2}<\\p$.",
    "origin_row": "1:D2",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/algebra.html#p01013",
-    "script": "algebra.py",
-    "line": 303,
+    "script": "p01_algebra.py",
+    "line": 238,
     "verdict": "pass"
    },
    "declarations": [
@@ -4975,7 +5012,7 @@
   {
    "key": "p01014",
    "origin": "01",
-   "statement": "Framed rationals (Def.~\\ref{def:rationals}): $a/b$ with $a,b\\in W_H$, $b\\not\\equiv0$, of value $ab^{-1}\\in\\Fp$; the scale grid $[x,n]:=x\\gen^{-n}$, $x\\in\\{0,\\dots,\\p-1\\}$, $n\\in C_{\\p-1}$; $G_n$ the ordered list $(x\\gen^{-n})_x$, the meridian $M_{-n}$ of C3.",
+   "statement": "Framed rationals and the scale grid: $a/b$, $b\\not\\equiv0$, of value $ab^{-1}$, the window fractions of size $(N,D)$ with $|a|\\le N$, $1\\le b\\le D$; for a unit $B$ the grid $(tB^{-1})_{|t|\\le2\\kap}$, at $B=\\gen^{n}$ the meridian $M_{-n}$.",
    "origin_row": "1:D3",
    "tag": "D",
    "tier": null,
@@ -4987,16 +5024,98 @@
    ]
   },
   {
-   "key": "p01015",
+   "key": "p01035",
    "origin": "01",
-   "statement": "Scale-periodicity (Lemma~\\ref{thm:scale-periodicity}, in the field): $S_n(x)=x\\gen^{-n}$ satisfies $S_{n+(\\p-1)}=S_n$; the grids $G_n$ are $(\\p-1)$-periodic as ordered lists; the zoom $[x,n]\\mapsto[x,n+1]$ has order $\\p-1$. As lists of rationals $x/\\gen^{n}$ ($\\gen$ lifted to $\\Z$) the grids are not periodic: the periodicity is a relation of the field.",
+   "statement": "The window law for framed rationals: for $2ND<\\p$, window fractions of size $(N,D)$ with equal values are equal fractions; products of window fractions of size $(H,H)$ read back when $2H^{4}<\\p$, sums when $4H^{4}<\\p$.",
    "origin_row": "1:D4",
    "tag": "T",
    "tier": 0,
    "check": {
+    "href": "py/algebra.html#p01035",
+    "script": "p01_algebra.py",
+    "line": 261,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.frac_window"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.frac_window_inv"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.frac_mul_readback"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.frac_add_readback"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "1:D4"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p01036",
+   "origin": "01",
+   "statement": "The scale grid covers the shell: for every unit $B$ every residue is $tB^{-1}$ for exactly one $t$ with $|t|\\le2\\kap$; on one shell the range and the step multiply to $2\\kap$.",
+   "origin_row": "1:D5",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "py/algebra.html#p01036",
+    "script": "p01_algebra.py",
+    "line": 270,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.signed_rep"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.signed_rep_unique"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.grid_cover"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.grid_unique"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "1:D5"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p01015",
+   "origin": "01",
+   "statement": "Scale-periodicity, exact: $x\\gen^{-(n+\\p-1)}=x\\gen^{-n}$; for $x\\neq0$, $x\\gen^{-m}=x\\gen^{-n}$ exactly when $m\\equiv n\\pmod{\\p-1}$; each grid $G_n$ lists every residue once and the zoom has order $\\p-1$; read over $\\Z$ with $\\gen$ lifted the grids are not periodic.",
+   "origin_row": "1:D6",
+   "tag": "T",
+   "tier": 0,
+   "check": {
     "href": "py/algebra.html#p01015",
-    "script": "algebra.py",
-    "line": 316,
+    "script": "p01_algebra.py",
+    "line": 286,
     "verdict": "pass"
    },
    "declarations": [
@@ -5009,58 +5128,52 @@
      "lib": "FrcCore",
      "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.scale_periodic"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.scale_inv_periodic"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.scale_exact"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.zoom_order"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.scale_bijective"
     }
    ],
    "aliases": [],
    "rows": [
-    "1:D4"
+    "1:D6"
    ],
    "realisations": []
   },
   {
    "key": "p01017",
    "origin": "01",
-   "statement": "The continuum as chart (Def.~\\ref{def:reals}, Props.~\\ref{prop:total-bounded}--\\ref{prop:compactness}, Cor.~\\ref{cor:knowability}): the framed real line is the reading of the nested grids against $\\R$, a labelled idealisation entered nowhere as an object (00:B1); no completion, compactness or ``complete continuum'' is claimed.",
-   "origin_row": "1:D6",
+   "statement": "The real chart: the framed real line is the reading of the nested grids against $\\R$, a labelled idealisation entered nowhere as an object; no completion, compactness or continuum is claimed [chart].",
+   "origin_row": "1:D7",
    "tag": "D",
    "tier": null,
    "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
-    "1:D6"
-   ]
-  },
-  {
-   "key": "p01027",
-   "origin": "01",
-   "statement": "Limit-like approximation (second clause), across the tower: for every real $r$ and $\\varepsilon>0$ some shell $\\p=4\\kap+1$ carries a framed rational $x/2^{n}$, $|x|\\le2\\kap$, within $\\varepsilon$ of $r$ (primes $\\equiv1\\pmod4$ beyond every bound). One shell trades range for resolution; the limit is the tower, not a completion.",
-   "origin_row": "1:D7",
-   "tag": "T",
-   "tier": 2,
-   "check": {
-    "href": "py/algebra.html#p01027",
-    "script": "algebra.py",
-    "line": 497,
-    "verdict": "pass"
-   },
-   "declarations": [
-    {
-     "lib": "FrcMathlib",
-     "module": "FrcMathlib/Algebra",
-     "name": "FRC.Algebra.tower_density"
-    }
-   ],
-   "aliases": [],
-   "rows": [
     "1:D7"
-   ],
-   "realisations": []
+   ]
   },
   {
    "key": "p01018",
    "origin": "01",
-   "statement": "The framed complex chart (Def.~\\ref{def:complex}): the pair $(a,b)\\in W_H^{2}$ read as $a+b\\im\\in\\Fp$; the quarter-turn acts on the shell as the rotation $x\\mapsto\\im x$ of order four; the chart is the plane picture of $Q_4$ acting on the shell, not an extension of $\\Fp$.",
+   "statement": "The complex chart: the pair $(a,b)$ of window integers read as $a+b\\im\\in\\Fp$; the quarter-turn acts as the rotation $x\\mapsto\\im x$ of order four; the chart is the plane picture of $Q_4$ acting on the shell, not an extension of $\\Fp$.",
    "origin_row": "1:E1",
    "tag": "D",
    "tier": null,
@@ -5074,14 +5187,14 @@
   {
    "key": "p01019",
    "origin": "01",
-   "statement": "The extension by $X^{2}+1$ is trivial (Prop.~\\ref{prop:Cp-field} reversed): on the shell $\\Fp[X]/(X^{2}+1)\\cong\\Fp\\times\\Fp$ has zero divisors, $(X+\\im)(X-\\im)=0$, so it is not a field; $\\Fp[X]/(X^{2}+1)$ is a field exactly when $\\p\\equiv3\\pmod4$; the quadratic extension of the shell is $\\Fp[\\eta]$, $\\eta^{2}=\\nu$ a non-square (8-dirac B6).",
+   "statement": "The extension by $X^{2}+1$ splits: on the shell $\\Fp[X]/(X^{2}+1)$ has the zero divisors $(X+\\im)(X-\\im)$; it is a field exactly when $\\p\\equiv3\\pmod4$, every nonzero pair $(a,b)$ having the inverse $(a,-b)/(a^{2}+b^{2})$.",
    "origin_row": "1:E2",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/algebra.html#p01019",
-    "script": "algebra.py",
-    "line": 351,
+    "script": "p01_algebra.py",
+    "line": 308,
     "verdict": "pass"
    },
    "declarations": [
@@ -5094,6 +5207,11 @@
      "lib": "FrcCore",
      "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.complex_chart_zero_divisor"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.complex_chart_field"
     }
    ],
    "aliases": [],
@@ -5105,14 +5223,14 @@
   {
    "key": "p01026",
    "origin": "01",
-   "statement": "Solving in the substrate (first clause): $f\\in\\Fp[X]$ has a root in $\\Fp$ iff $f$ and $X^{\\p}-X=\\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\\Fp$ is recognised, not extended (E2).",
+   "statement": "Solving in the substrate: $f\\in\\Fp[X]$ has a root in $\\Fp$ exactly when $f$ and $X^{\\p}-X=\\prod_a(X-a)$ have a common factor; a nonzero $f$ of degree $d$ has at most $d$ roots.",
    "origin_row": "1:E3",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/algebra.html#p01026",
-    "script": "algebra.py",
-    "line": 476,
+    "script": "p01_algebra.py",
+    "line": 320,
     "verdict": "pass"
    },
    "declarations": [
@@ -5146,14 +5264,14 @@
   {
    "key": "p01028",
    "origin": "01",
-   "statement": "Continuous symmetry, the abelian case (third clause): $\\Fpx\\simeq C_{\\p-1}\\simeq SO(2,\\Fp)$ (6:E2) is a $\\pi/(\\p-1)$-net of $U(1)$ under $k\\mapsto e^{2\\pi\\im k/(\\p-1)}$; the rounding $k(\\theta)=\\lfloor(\\p-1)\\theta/2\\pi+\\tfrac12\\rfloor$ has angle and chord error $\\le\\pi/(\\p-1)$ and group-law defect at most one step.",
+   "statement": "The circle in counts: the rounding $k$ of a framed turn $u/v$ to $C_{\\p-1}$, $2vk\\le2(\\p-1)u+v<2vk+2v$, exists and lies within half a step; its group-law defect is $-1$, $0$ or $1$; read in $U(1)$, a $\\pi/(\\p-1)$-net [chart].",
    "origin_row": "1:E4",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "py/algebra.html#p01028",
-    "script": "algebra.py",
-    "line": 517,
+    "script": "p01_algebra.py",
+    "line": 336,
     "verdict": "pass"
    },
    "declarations": [
@@ -5166,6 +5284,16 @@
      "lib": "FrcMathlib",
      "module": "FrcMathlib/Algebra",
      "name": "FRC.Algebra.group_law_defect"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.round_exists"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.round_defect"
     }
    ],
    "aliases": [],
@@ -5175,19 +5303,30 @@
    "realisations": []
   },
   {
-   "key": "p01029",
+   "key": "p01030",
    "origin": "01",
-   "statement": "Continuous symmetry, the non-abelian obstruction: no finite subgroup of $SO(3)$ is an $\\varepsilon$-net for $\\varepsilon<\\varepsilon_0=\\arccos\\big((3\\sqrt5-1)/8\\big)\\approx44.5^\\circ$, the covering radius of the icosahedral group (A3); the tetrahedral, cyclic and dihedral groups have radius $\\ge\\pi/2$, the octahedral $\\approx62.8^\\circ$. Finite subgroups cannot approximate $SO(3)$; the window does (E6).",
+   "statement": "The framed quaternions compose exactly: for entries in $W_H$ and a shell $\\p>8H^{2}$, products have entries in $W_{4H^{2}}$, and the shell's reading determines the integer product.",
    "origin_row": "1:E5",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "href": "py/algebra.html#p01029",
-    "script": "algebra.py",
-    "line": 574,
+    "href": "py/algebra.html#p01030",
+    "script": "p01_algebra.py",
+    "line": 348,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.quaternion_window"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.read_mul"
+    }
+   ],
    "aliases": [],
    "rows": [
     "1:E5"
@@ -5195,28 +5334,83 @@
    "realisations": []
   },
   {
-   "key": "p01030",
+   "key": "p01032",
    "origin": "01",
-   "statement": "Continuous symmetry, the non-abelian case resolved by the window: the framed quaternions $W_H^{4}$, read in a shell $\\p>8H^{2}$, compose exactly (products land in $W_{4H^{2}}$); normalised, they are an $\\varepsilon$-net of $SO(3)$ with $\\varepsilon\\le2\\arcsin(1/H)$ (round $Hs$ to the lattice). At $H=3$, $\\p=73$: $38.9^\\circ<\\varepsilon_0$, finer than any finite subgroup; measured $30.0^\\circ$.",
+   "statement": "One axis: $\\rho_q$ is the Cayley step of $S_v$, the half-turn at $a=0$, trivial only for scalars; $\\rho_{a+tv}=\\rho_{1+sv}$, distinct $s$ distinct; $s$ fails where $s^{2}=-N(v)^{-1}$, twice when $N(v)$ is a square, else never: $\\p-\\bigl(\\tfrac{N(v)}{\\p}\\bigr)$ rotations; window pairs $2H^{2}+2H$ up to sign.",
    "origin_row": "1:E6",
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "py/algebra.html#p01030",
-    "script": "algebra.py",
-    "line": 615,
+    "href": "py/algebra.html#p01032",
+    "script": "p01_algebra.py",
+    "line": 375,
     "verdict": "pass"
    },
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.quaternion_window"
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.rot_cayley"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.read_mul"
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.cayley_inj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.half_turn"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.rot_trivial"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.rot_neg"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.rot_smul"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.axis_param"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.axis_inj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.axis_half"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.axis_exceptional"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.neg_inv_square_iff"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Frame",
+     "name": "FRC.Shell.Frame.root_pair"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.box_count"
     }
    ],
    "aliases": [],
@@ -5226,53 +5420,58 @@
    "realisations": []
   },
   {
-   "key": "p01032",
+   "key": "p01033",
    "origin": "01",
-   "statement": "The Lie-algebra layer, one axis: on a shell $\\p>8H^{2}$, for $q=a+v\\in W_H^{4}$ with $v\\ne0$, the rotation $\\rho_q\\colon x\\mapsto qxq^{-1}$ is the Cayley step (8:C3) of the self-adjoint $\\eta S_v$ (E2's $\\eta$, $S_vx=v\\times x$, $N(v)=v\\cdot v$) at $\\alpha=\\eta/(\\nu a)$, and the half-turn $U_\\infty=I+2N(v)^{-1}S_v^{2}$ at $a=0$. With $U_\\infty$ these steps form a cyclic group of order $\\p-\\bigl(\\tfrac{N(v)}{\\p}\\bigr)$ containing every iterate; at most $2H^{2}+2H$ of its elements are window rotations.",
+   "statement": "Two axes: $(1+u)(1+w)=(1-u\\cdot w)+(u+w+u\\times w)$; $\\rho_{1+u}\\rho_{1+w}=\\rho_{1+u\\circ w}$, $u\\circ w=(u+w+u\\times w)/(1-u\\cdot w)$; the half-turn at $u\\cdot w=1$; $uw-wu=2u\\times w$; $N(qr)=N(q)N(r)$; $q^{m}$ reads back when $2\\|q^{m}\\|_\\infty<\\p$.",
    "origin_row": "1:E7",
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "py/algebra.html#p01032",
-    "script": "algebra.py",
-    "line": 699,
+    "href": "py/algebra.html#p01033",
+    "script": "p01_algebra.py",
+    "line": 420,
     "verdict": "pass"
    },
    "declarations": [
     {
-     "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.rot_cayley"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.cayley_inj"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.half_turn"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.rot_trivial"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.rot_neg"
-    },
-    {
      "lib": "FrcMathlib",
      "module": "FrcMathlib/Algebra",
-     "name": "FRC.Algebra.axis_group"
+     "name": "FRC.Algebra.readback_iff"
     },
     {
-     "lib": "FrcMathlib",
-     "module": "FrcMathlib/Algebra",
-     "name": "FRC.Algebra.card_image_le_of_neg"
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.compose"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.one_add_mul"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.one_add_mul_half"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.bracket"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Quaternion",
+     "name": "FRC.Shell.Frame.rot_mul"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Extension",
+     "name": "FRC.Shell.Frame.nrm_mul"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Framed",
+     "name": "FRC.Shell.Frame.sread_inj"
     }
    ],
    "aliases": [],
@@ -5282,77 +5481,16 @@
    "realisations": []
   },
   {
-   "key": "p01033",
-   "origin": "01",
-   "statement": "The Lie-algebra layer, two axes and range: for pure quaternions $u,w$ with $1+N(u)$, $1+N(w)$ and $1-u\\cdot w$ nonzero, $\\rho_{1+u}\\rho_{1+w}=\\rho_{1+u\\circ w}$ with $u\\circ w=(u+w+u\\times w)/(1-u\\cdot w)$, the bracket being $[u,w]=2u\\times w$; at $u\\cdot w=1$ the product is the half-turn about $u+w+u\\times w$. The entries of $q^{m}$, $q\\in W_H^{4}$, are at most $(2H)^{m}$, and $q^{m}$ reads back from the shell iff $2\\|q^{m}\\|_\\infty<\\p$ (D2).",
-   "origin_row": "1:E8",
-   "tag": "T",
-   "tier": 0,
-   "check": {
-    "href": "py/algebra.html#p01033",
-    "script": "algebra.py",
-    "line": 749,
-    "verdict": "pass"
-   },
-   "declarations": [
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.compose"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.one_add_mul"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.one_add_mul_half"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.bracket"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
-     "name": "FRC.Shell.Frame.rot_mul"
-    },
-    {
-     "lib": "FrcCore",
-     "module": "FrcCore/Theme/Extension",
-     "name": "FRC.Shell.Frame.nrm_mul"
-    },
-    {
-     "lib": "FrcMathlib",
-     "module": "FrcMathlib/Algebra",
-     "name": "FRC.Algebra.quat_pow_height"
-    },
-    {
-     "lib": "FrcMathlib",
-     "module": "FrcMathlib/Algebra",
-     "name": "FRC.Algebra.readback_iff"
-    }
-   ],
-   "aliases": [],
-   "rows": [
-    "1:E8"
-   ],
-   "realisations": []
-  },
-  {
    "key": "p01020",
    "origin": "01",
-   "statement": "No element of additive order two (Thm.~\\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\\kap=(\\p-1)/2$ and $2\\kap+1=(\\p+1)/2=2^{-1}$ (20-rh B8).",
+   "statement": "No element of additive order two: $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\\kap$ and $2\\kap+1=2^{-1}$.",
    "origin_row": "1:Z1",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/algebra.html#p01020",
-    "script": "algebra.py",
-    "line": 362,
+    "script": "p01_algebra.py",
+    "line": 199,
     "verdict": "pass"
    },
    "declarations": [
@@ -5376,7 +5514,7 @@
   {
    "key": "p01021",
    "origin": "01",
-   "statement": "The antipode, charted $\\infty$: the compactification point of the framed line beyond the observer's horizon (00:C25, 00:D13); its reading as classical infinity is the chart, not a residue.",
+   "statement": "The antipode: the non-residue antipodal point $\\p/2$ of the additive cycle, drawn as the South Pole of the orbital complex; a position of the drawing, not an element of the shell.",
    "origin_row": "1:Z2",
    "tag": "D",
    "tier": null,
@@ -5390,14 +5528,14 @@
   {
    "key": "p01034",
    "origin": "01",
-   "statement": "No latitude on the equator (Thm.~\\ref{thm:no-equator}): $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle ($\\p/4$, $\\p/2$, $3\\p/4$) has value $0$, and none of the window sits there; the equator, depth $\\kap+\\tfrac14$, lies strictly between $L_\\kap$ and $L_{\\kap+1}$, with $\\kap\\equiv-4^{-1}$, $\\kap+1\\equiv3\\cdot4^{-1}$; no latitude is the equator [chart: $L_a$ drawn at colatitude $2\\pi a/\\p$].",
+   "statement": "No latitude on the equator: $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle has value $0$, and none of the window sits there; the equator, depth $\\kap+\\tfrac14$, lies strictly between the latitudes $\\kap$ and $\\kap+1$.",
    "origin_row": "1:Z3",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "py/algebra.html#p01034",
-    "script": "algebra.py",
-    "line": 402,
+    "script": "p01_algebra.py",
+    "line": 218,
     "verdict": "pass"
    },
    "declarations": [
@@ -10113,7 +10251,7 @@
    "statement": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the measured $H_0=67.4$ \\citep{planck}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle \\citep{dimensions}, the one-cycle-per-period threshold a realisation with its discrete falsifier.",
    "origin_row": "21:P3",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "py/gravity.html#p21052",
     "script": "p21_gravity.py",
@@ -10121,6 +10259,21 @@
     "verdict": "pass"
    },
    "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.floor_period"
+    },
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/Spacetime",
+     "name": "FRC.Spacetime.floor_value"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.floor_period"
+    },
     {
      "lib": "FrcMathlib",
      "module": "FrcMathlib/Gravity",
@@ -10162,7 +10315,7 @@
    "check": {
     "href": "py/spacetime.html#p07003",
     "script": "p07_spacetime.py",
-    "line": 288,
+    "line": 293,
     "verdict": "pass"
    },
    "declarations": [
@@ -10226,7 +10379,7 @@
    "check": {
     "href": "py/spacetime.html#p07042",
     "script": "p07_spacetime.py",
-    "line": 301,
+    "line": 306,
     "verdict": "pass"
    },
    "declarations": [
@@ -10262,7 +10415,7 @@
    "check": {
     "href": "py/spacetime.html#p07049",
     "script": "p07_spacetime.py",
-    "line": 315,
+    "line": 320,
     "verdict": "pass"
    },
    "declarations": [
@@ -10293,7 +10446,7 @@
    "check": {
     "href": "py/spacetime.html#p07050",
     "script": "p07_spacetime.py",
-    "line": 274,
+    "line": 279,
     "verdict": "pass"
    },
    "declarations": [
@@ -10333,7 +10486,7 @@
    "check": {
     "href": "py/spacetime.html#p07005",
     "script": "p07_spacetime.py",
-    "line": 331,
+    "line": 336,
     "verdict": "pass"
    },
    "declarations": [
@@ -10369,7 +10522,7 @@
    "check": {
     "href": "py/spacetime.html#p07006",
     "script": "p07_spacetime.py",
-    "line": 336,
+    "line": 341,
     "verdict": "pass"
    },
    "declarations": [
@@ -10410,7 +10563,7 @@
    "check": {
     "href": "py/spacetime.html#p07007",
     "script": "p07_spacetime.py",
-    "line": 347,
+    "line": 352,
     "verdict": "pass"
    },
    "declarations": [
@@ -10441,7 +10594,7 @@
    "check": {
     "href": "py/spacetime.html#p07008",
     "script": "p07_spacetime.py",
-    "line": 347,
+    "line": 352,
     "verdict": "pass"
    },
    "declarations": [
@@ -10487,7 +10640,7 @@
    "check": {
     "href": "py/spacetime.html#p07009",
     "script": "p07_spacetime.py",
-    "line": 358,
+    "line": 363,
     "verdict": "pass"
    },
    "declarations": [
@@ -10523,7 +10676,7 @@
    "check": {
     "href": "py/spacetime.html#p07010",
     "script": "p07_spacetime.py",
-    "line": 365,
+    "line": 370,
     "verdict": "pass"
    },
    "declarations": [
@@ -10554,7 +10707,7 @@
    "check": {
     "href": "py/spacetime.html#p07031",
     "script": "p07_spacetime.py",
-    "line": 375,
+    "line": 380,
     "verdict": "pass"
    },
    "declarations": [
@@ -10590,7 +10743,7 @@
    "check": {
     "href": "py/spacetime.html#p07032",
     "script": "p07_spacetime.py",
-    "line": 385,
+    "line": 390,
     "verdict": "pass"
    },
    "declarations": [
@@ -10616,7 +10769,7 @@
    "check": {
     "href": "py/spacetime.html#p07040",
     "script": "p07_spacetime.py",
-    "line": 395,
+    "line": 400,
     "verdict": "pass"
    },
    "declarations": [
@@ -10662,7 +10815,7 @@
    "check": {
     "href": "py/spacetime.html#p07051",
     "script": "p07_spacetime.py",
-    "line": 413,
+    "line": 418,
     "verdict": "pass"
    },
    "declarations": [
@@ -10698,7 +10851,7 @@
    "check": {
     "href": "py/spacetime.html#p07011",
     "script": "p07_spacetime.py",
-    "line": 423,
+    "line": 428,
     "verdict": "pass"
    },
    "declarations": [
@@ -10734,7 +10887,7 @@
    "check": {
     "href": "py/spacetime.html#p07013",
     "script": "p07_spacetime.py",
-    "line": 431,
+    "line": 436,
     "verdict": "pass"
    },
    "declarations": [
@@ -10775,7 +10928,7 @@
    "check": {
     "href": "py/spacetime.html#p07014",
     "script": "p07_spacetime.py",
-    "line": 438,
+    "line": 443,
     "verdict": "pass"
    },
    "declarations": [
@@ -10806,7 +10959,7 @@
    "check": {
     "href": "py/spacetime.html#p07015",
     "script": "p07_spacetime.py",
-    "line": 445,
+    "line": 450,
     "verdict": "pass"
    },
    "declarations": [
@@ -10832,7 +10985,7 @@
    "check": {
     "href": "py/spacetime.html#p07033",
     "script": "p07_spacetime.py",
-    "line": 456,
+    "line": 461,
     "verdict": "pass"
    },
    "declarations": [
@@ -10887,7 +11040,7 @@
    "check": {
     "href": "py/spacetime.html#p07044",
     "script": "p07_spacetime.py",
-    "line": 466,
+    "line": 471,
     "verdict": "pass"
    },
    "declarations": [
@@ -10927,7 +11080,7 @@
    "check": {
     "href": "py/spacetime.html#p07046",
     "script": "p07_spacetime.py",
-    "line": 474,
+    "line": 479,
     "verdict": "pass"
    },
    "declarations": [
@@ -10968,7 +11121,7 @@
    "check": {
     "href": "py/spacetime.html#p07047",
     "script": "p07_spacetime.py",
-    "line": 489,
+    "line": 494,
     "verdict": "pass"
    },
    "declarations": [
@@ -11029,7 +11182,7 @@
    "check": {
     "href": "py/spacetime.html#p07052",
     "script": "p07_spacetime.py",
-    "line": 510,
+    "line": 515,
     "verdict": "pass"
    },
    "declarations": [
@@ -11091,7 +11244,7 @@
    "check": {
     "href": "py/spacetime.html#p07026",
     "script": "p07_spacetime.py",
-    "line": 529,
+    "line": 534,
     "verdict": "pass"
    },
    "declarations": [
@@ -11122,7 +11275,7 @@
    "check": {
     "href": "py/spacetime.html#p07054",
     "script": "p07_spacetime.py",
-    "line": 546,
+    "line": 550,
     "verdict": "pass"
    },
    "declarations": [
@@ -11153,7 +11306,7 @@
    "check": {
     "href": "py/spacetime.html#p07020",
     "script": "p07_spacetime.py",
-    "line": 358,
+    "line": 363,
     "verdict": "pass"
    },
    "declarations": [
@@ -11184,7 +11337,7 @@
    "check": {
     "href": "py/spacetime.html#p07021",
     "script": "p07_spacetime.py",
-    "line": 395,
+    "line": 400,
     "verdict": "pass"
    },
    "declarations": [
@@ -11232,7 +11385,7 @@
    "check": {
     "href": "py/spacetime.html#p07023",
     "script": "p07_spacetime.py",
-    "line": 336,
+    "line": 341,
     "verdict": "pass"
    },
    "declarations": [
@@ -11263,7 +11416,7 @@
    "check": {
     "href": "py/spacetime.html#p07024",
     "script": "p07_spacetime.py",
-    "line": 365,
+    "line": 370,
     "verdict": "pass"
    },
    "declarations": [
@@ -11289,7 +11442,7 @@
    "check": {
     "href": "py/spacetime.html#p07048",
     "script": "p07_spacetime.py",
-    "line": 474,
+    "line": 479,
     "verdict": "pass"
    },
    "declarations": [
@@ -35103,11 +35256,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Frame",
+      "module": "FrcCore/Keys/Domain",
       "name": "FRC.Ledger.p00032",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Frame.html#FRC.Ledger.p00032"
+      "page": "lean/core/Keys.Domain.html#FRC.Ledger.p00032"
      }
     ]
    },
@@ -35523,7 +35676,7 @@
    "tag": "T",
    "name": "Time is scale-dilation",
    "statement": "\\textbf{Time is the drive}: a Subject's clock is its drive $x\\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has no clock. A registered duration is the one-directional chronon count on the depth $\\p^{2}<\\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors.",
-   "source": "21-grav, 27-fld, 22-qm",
+   "source": "21-grav, 27-fld, 22-qm, 7-st (A17)",
    "page": "ledger.html#D1",
    "witness": {
     "script": "7:p07_spacetime.py",
@@ -35533,6 +35686,7 @@
    "refs": [
     "p00008",
     "p00021",
+    "p00042",
     "p00153",
     "p00197",
     "p07047",
@@ -35541,9 +35695,10 @@
    "sources": [
     "21-grav",
     "27-fld",
-    "22-qm"
+    "22-qm",
+    "7-st"
    ],
-   "text": "Time is scale-dilation: Time is the drive: a Subject's clock is its drive $x\\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has no clock. A registered duration is the one-directional chronon count on the depth $\\p^{2}<\\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors. 21-grav, 27-fld, 22-qm 7:p07_spacetime.py"
+   "text": "Time is scale-dilation: Time is the drive: a Subject's clock is its drive $x\\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has no clock. A registered duration is the one-directional chronon count on the depth $\\p^{2}<\\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors. 21-grav, 27-fld, 22-qm, 7-st (A17) 7:p07_spacetime.py"
   },
   {
    "paper": "00",
@@ -38114,62 +38269,128 @@
    "paper": "1-alg",
    "no": 1,
    "rid": "1:A1",
-   "key": "p01001",
+   "key": "p00008",
    "label": "A1",
    "block": "A",
-   "tag": "I",
+   "tag": "D",
    "name": null,
-   "statement": "Finite-field algebra: $\\Fpx$ is cyclic of order $\\p-1$ with primitive roots; $\\gen^{\\p-1}=1$; $-1$ is a square in $\\Fp$ iff $\\p\\equiv1\\pmod4$ (Euler's criterion); the affine maps $x\\mapsto a+bx$, $b\\neq0$, are the bijections preserving the field structure up to relabelling.",
-   "source": "\\cite{burton2010elementary,dummit2004abstract}",
+   "statement": "The Carrier: a timeless torsor of $\\Om$ attribute-free elements, its cardinality its one absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_{\\Om}$, the frame's chart and never the Carrier.",
+   "source": "Def.~\\ref{def:carrier}; \\href{https://finitering.space/ledger.html#A6}{00:A6}",
    "page": "1-algebra/index.html#A1",
    "witness": {
     "py": null,
     "lean": []
    },
-   "refs": [],
-   "text": "Finite-field algebra: $\\Fpx$ is cyclic of order $\\p-1$ with primitive roots; $\\gen^{\\p-1}=1$; $-1$ is a square in $\\Fp$ iff $\\p\\equiv1\\pmod4$ (Euler's criterion); the affine maps $x\\mapsto a+bx$, $b\\neq0$, are the bijections preserving the field structure up to relabelling. [burton2010elementary,dummit2004abstract]"
+   "refs": [
+    "p00008"
+   ],
+   "text": "The Carrier: a timeless torsor of $\\Om$ attribute-free elements, its cardinality its one absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_{\\Om}$, the frame's chart and never the Carrier. Def. def:carrier; 00:A6"
   },
   {
    "paper": "1-alg",
    "no": 1,
    "rid": "1:A2",
-   "key": "p01002",
+   "key": "p00162",
    "label": "A2",
    "block": "A",
-   "tag": "I",
+   "tag": "T",
    "name": null,
-   "statement": "The sign of the quarter-turn exponent: the oriented quarter-turn is $\\im=\\gen^{-\\kap}=-\\gen^{\\kap}$, the exponent negative by pullback covariance (00:C7); the positive-exponent reading is the conjugate chart. Declared here, derived in the corpus.",
-   "source": "00:C7",
+   "statement": "Completeness is primality: the residues of a count $q\\ge2$ have no proper nonzero ideal exactly when $q$ is prime.",
+   "source": "Prop.~\\ref{prop:complete}; \\href{https://finitering.space/ledger.html#A10}{00:A10}\\newline \\pywit{algebra}{p00162}{A2}, \\leanwit{FrcCore}{p00162}{A2} \\lean{FRC.Shell.Prime.isPrime\\_iff\\_complete}",
    "page": "1-algebra/index.html#A2",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "py/algebra.html#p00162",
+     "script": "p01_algebra.py",
+     "line": 84,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Foundation",
+      "name": "FRC.Shell.Prime.isPrime_iff_complete",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Prime.isPrime_iff_complete"
+     }
+    ]
    },
    "refs": [
+    "p00162",
     "p00189"
    ],
-   "text": "The sign of the quarter-turn exponent: the oriented quarter-turn is $\\im=\\gen^{-\\kap}=-\\gen^{\\kap}$, the exponent negative by pullback covariance (00:C7); the positive-exponent reading is the conjugate chart. Declared here, derived in the corpus. 00:C7"
+   "text": "Completeness is primality: the residues of a count $q\\ge2$ have no proper nonzero ideal exactly when $q$ is prime. Prop. prop:complete; 00:A10 p00162, FrcCore{A2} FRC.Shell.Prime.isPrime_iff_complete"
   },
   {
    "paper": "1-alg",
    "no": 1,
    "rid": "1:A3",
-   "key": "p01025",
+   "key": "p00163",
    "label": "A3",
    "block": "A",
-   "tag": "I",
+   "tag": "T",
    "name": null,
-   "statement": "The finite subgroups of $SO(3)$: cyclic, dihedral, tetrahedral ($12$), octahedral ($24$), icosahedral ($60$) --- Klein's classification; the binary icosahedral group as the $600$-cell's vertices. Imported for E5.",
-   "source": "\\citep{klein1884ikosaeder,coxeter1973regular}",
+   "statement": "The quarter-turn criterion: for an odd prime $\\p$, $-1$ is a square in $\\F_\\p$ exactly when $\\p\\equiv1\\pmod4$.",
+   "source": "Prop.~\\ref{prop:quarter}; \\href{https://finitering.space/ledger.html#A11}{00:A11}\\newline \\pywit{algebra}{p00163}{A3}, \\leanwit{FrcCore}{p00163}{A3} \\lean{FRC.Shell.Prime.quarter\\_turn\\_iff}",
    "page": "1-algebra/index.html#A3",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "py/algebra.html#p00163",
+     "script": "p01_algebra.py",
+     "line": 89,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Foundation",
+      "name": "FRC.Shell.Prime.quarter_turn_iff",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Prime.quarter_turn_iff"
+     }
+    ]
    },
    "refs": [
-    "p01029"
+    "p00163"
    ],
-   "text": "The finite subgroups of $SO(3)$: cyclic, dihedral, tetrahedral ($12$), octahedral ($24$), icosahedral ($60$) — Klein's classification; the binary icosahedral group as the $600$-cell's vertices. Imported for E5. [klein1884ikosaeder,coxeter1973regular]"
+   "text": "The quarter-turn criterion: for an odd prime $\\p$, $-1$ is a square in $\\F_\\p$ exactly when $\\p\\equiv1\\pmod4$. Prop. prop:quarter; 00:A11 p00163, FrcCore{A3} FRC.Shell.Prime.quarter_turn_iff"
+  },
+  {
+   "paper": "1-alg",
+   "no": 1,
+   "rid": "1:A4",
+   "key": "p00164",
+   "label": "A4",
+   "block": "A",
+   "tag": "T",
+   "name": null,
+   "statement": "Every prime carries a frame: every prime field $\\F_\\p$ has a primitive root, a drive $\\gen$ with $\\langle\\gen\\rangle=\\F_\\p^{\\times}$.",
+   "source": "Prop.~\\ref{prop:drive}; \\href{https://finitering.space/ledger.html#A12}{00:A12}\\newline \\pywit{algebra}{p00164}{A4}, \\leanwit{FrcCore}{p00164}{A4} \\lean{FRC.Shell.Prime.exists\\_drive}",
+   "page": "1-algebra/index.html#A4",
+   "witness": {
+    "py": {
+     "href": "py/algebra.html#p00164",
+     "script": "p01_algebra.py",
+     "line": 100,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drive",
+      "name": "FRC.Shell.Prime.exists_drive",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Prime.exists_drive"
+     }
+    ]
+   },
+   "refs": [
+    "p00164"
+   ],
+   "text": "Every prime carries a frame: every prime field $\\F_\\p$ has a primitive root, a drive $\\gen$ with $\\langle\\gen\\rangle=\\F_\\p^{\\times}$. Prop. prop:drive; 00:A12 p00164, FrcCore{A4} FRC.Shell.Prime.exists_drive"
   },
   {
    "paper": "1-alg",
@@ -38180,18 +38401,17 @@
    "block": "B",
    "tag": "D",
    "name": null,
-   "statement": "The shell, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$ prime; the Subject's frame $(\\tau;0,1,\\gen)$ with $\\gen$ a primitive root and the drive $x\\mapsto\\gen x$; the cycle $\\Phi_\\p\\cong C_{\\p-1}$; $\\im:=-\\gen^{\\kap}$ (A2), $-1=\\gen^{2\\kap}$.",
-   "source": "Def.~\\ref{def:field}, Section~\\ref{sec:framing}",
+   "statement": "The shell, capacity-first: $\\kap\\ge1$ primary, $\\p=4\\kap+1$ prime; the frame $(\\chron;0,1,\\gen)$ with $\\gen$ a primitive root and the drive $x\\mapsto\\gen x$; the cycle $C_{\\p-1}$; the oriented quarter-turn $\\im:=-\\gen^{\\kap}$, and $-1=\\gen^{2\\kap}$.",
+   "source": "Def.~\\ref{def:shell}",
    "page": "1-algebra/index.html#B1",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [
-    "p00021",
-    "p01002"
+    "p00021"
    ],
-   "text": "The shell, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$ prime; the Subject's frame $(\\tau;0,1,\\gen)$ with $\\gen$ a primitive root and the drive $x\\mapsto\\gen x$; the cycle $\\Phi_\\p\\cong C_{\\p-1}$; $\\im:=-\\gen^{\\kap}$ (A2), $-1=\\gen^{2\\kap}$. Def. def:field, Section sec:framing"
+   "text": "The shell, capacity-first: $\\kap\\ge1$ primary, $\\p=4\\kap+1$ prime; the frame $(\\chron;0,1,\\gen)$ with $\\gen$ a primitive root and the drive $x\\mapsto\\gen x$; the cycle $C_{\\p-1}$; the oriented quarter-turn $\\im:=-\\gen^{\\kap}$, and $-1=\\gen^{2\\kap}$. Def. def:shell"
   },
   {
    "paper": "1-alg",
@@ -38202,14 +38422,14 @@
    "block": "B",
    "tag": "T",
    "name": null,
-   "statement": "Symmetry completeness (Thm.~\\ref{thm:symmetric-completeness}): the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$; under the Klein four-group $\\langle x\\mapsto-x,\\,x\\mapsto x^{-1}\\rangle$, $Q_4$ is the union of the two size-two orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$, and $\\Fpx\\setminus Q_4$ splits into exactly $\\kap-1$ orbits of size four. For $\\p\\equiv3\\pmod4$ no $\\im$ exists.",
-   "source": "\\pywit{algebra}{p01004}{B2}, \\leanwit{FrcCore}{p01004}{B2}, \\leanwit{FrcMathlib}{p01004}{B2} \\lean{Algebra.quarter\\_turn\\_exists, Algebra.klein\\_orbit\\_four, Algebra.card\\_fourth\\_roots, FRC.Shell.Frame.quarter\\_turn\\_exists, FRC.Shell.Frame.fourth\\_roots, FRC.Shell.Frame.klein\\_orbit\\_four, FRC.Shell.Frame.orbit\\_rep, FRC.Shell.Frame.orbit\\_rep\\_unique, FRC.Shell.s13\\_klein}",
+   "statement": "Symmetry completeness: the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$, the union of the Klein orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$; the other $4\\kap-4$ residues fall into exactly $\\kap-1$ Klein orbits of size four; for $\\p\\equiv3\\pmod4$ no quarter-turn exists.",
+   "source": "Thm.~\\ref{thm:symmetric}; rests on A3\\newline \\pywit{algebra}{p01004}{B2}, \\leanwit{FrcCore}{p01004}{B2}, \\leanwit{FrcMathlib}{p01004}{B2} \\lean{Algebra.quarter\\_turn\\_exists, Algebra.klein\\_orbit\\_four, Algebra.card\\_fourth\\_roots, FRC.Shell.Frame.quarter\\_turn\\_exists, FRC.Shell.Frame.fourth\\_roots, FRC.Shell.Frame.klein\\_orbit\\_four, FRC.Shell.Frame.orbit\\_rep, FRC.Shell.Frame.orbit\\_rep\\_unique, FRC.Shell.s13\\_klein}",
    "page": "1-algebra/index.html#B2",
    "witness": {
     "py": {
      "href": "py/algebra.html#p01004",
-     "script": "algebra.py",
-     "line": 197,
+     "script": "p01_algebra.py",
+     "line": 122,
      "verdict": "pass"
     },
     "lean": [
@@ -38287,8 +38507,10 @@
      }
     ]
    },
-   "refs": [],
-   "text": "Symmetry completeness (Thm. thm:symmetric-completeness): the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$; under the Klein four-group $\\langle x\\mapsto-x, x\\mapsto x^{-1}\\rangle$, $Q_4$ is the union of the two size-two orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$, and $\\Fpx\\setminus Q_4$ splits into exactly $\\kap-1$ orbits of size four. For $\\p\\equiv3\\pmod4$ no $\\im$ exists. p01004, FrcCore{B2}, FrcMathlib{B2} Algebra.quarter_turn_exists, Algebra.klein_orbit_four, Algebra.card_fourth_roots, FRC.Shell.Frame.quarter_turn_exists, FRC.Shell.Frame.fourth_roots, FRC.Shell.Frame.klein_orbit_four, FRC.Shell.Frame.orbit_rep, FRC.Shell.Frame.orbit_rep_unique, FRC.Shell.s13_klein"
+   "refs": [
+    "p00163"
+   ],
+   "text": "Symmetry completeness: the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$, the union of the Klein orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$; the other $4\\kap-4$ residues fall into exactly $\\kap-1$ Klein orbits of size four; for $\\p\\equiv3\\pmod4$ no quarter-turn exists. Thm. thm:symmetric; rests on A3 p01004, FrcCore{B2}, FrcMathlib{B2} Algebra.quarter_turn_exists, Algebra.klein_orbit_four, Algebra.card_fourth_roots, FRC.Shell.Frame.quarter_turn_exists, FRC.Shell.Frame.fourth_roots, FRC.Shell.Frame.klein_orbit_four, FRC.Shell.Frame.orbit_rep, FRC.Shell.Frame.orbit_rep_unique, FRC.Shell.s13_klein"
   },
   {
    "paper": "1-alg",
@@ -38299,14 +38521,14 @@
    "block": "B",
    "tag": "T",
    "name": null,
-   "statement": "The oriented quarter-turn: $\\im=-\\gen^{\\kap}$ satisfies $\\im^{2}=-1$ for every primitive root $\\gen$; the two square roots of $-1$ are $\\{-\\gen^{\\kap},\\gen^{\\kap}\\}$, so the drive fixes which is $\\im$. On $\\F_{13}$, $\\gen=2$: $\\im=5$.",
-   "source": "\\pywit{algebra}{p01005}{B3}, \\leanwit{FrcCore}{p01005}{B3}, \\leanwit{FrcMathlib}{p01005}{B3} \\lean{Algebra.quarter\\_turn, Algebra.s13\\_quarter\\_turn, FRC.Shell.Frame.quarter\\_turn\\_sq, FRC.Shell.s13\\_datum}",
+   "statement": "The oriented quarter-turn: $\\im=-\\gen^{\\kap}$ satisfies $\\im^{2}=-1$ for every primitive root $\\gen$; the two square roots of $-1$ are $\\pm\\gen^{\\kap}$, so the drive fixes which is $\\im$; on $\\F_{13}$, $\\gen=2$: $\\im=5$.",
+   "source": "Prop.~\\ref{prop:oriented}\\newline \\pywit{algebra}{p01005}{B3}, \\leanwit{FrcCore}{p01005}{B3}, \\leanwit{FrcMathlib}{p01005}{B3} \\lean{Algebra.quarter\\_turn, Algebra.s13\\_quarter\\_turn, FRC.Shell.Frame.quarter\\_turn\\_sq, FRC.Shell.s13\\_datum}",
    "page": "1-algebra/index.html#B3",
    "witness": {
     "py": {
      "href": "py/algebra.html#p01005",
-     "script": "algebra.py",
-     "line": 210,
+     "script": "p01_algebra.py",
+     "line": 133,
      "verdict": "pass"
     },
     "lean": [
@@ -38347,7 +38569,7 @@
    "refs": [
     "p00189"
    ],
-   "text": "The oriented quarter-turn: $\\im=-\\gen^{\\kap}$ satisfies $\\im^{2}=-1$ for every primitive root $\\gen$; the two square roots of $-1$ are $\\{-\\gen^{\\kap},\\gen^{\\kap}\\}$, so the drive fixes which is $\\im$. On $\\F_{13}$, $\\gen=2$: $\\im=5$. p01005, FrcCore{B3}, FrcMathlib{B3} Algebra.quarter_turn, Algebra.s13_quarter_turn, FRC.Shell.Frame.quarter_turn_sq, FRC.Shell.s13_datum"
+   "text": "The oriented quarter-turn: $\\im=-\\gen^{\\kap}$ satisfies $\\im^{2}=-1$ for every primitive root $\\gen$; the two square roots of $-1$ are $\\pm\\gen^{\\kap}$, so the drive fixes which is $\\im$; on $\\F_{13}$, $\\gen=2$: $\\im=5$. Prop. prop:oriented p01005, FrcCore{B3}, FrcMathlib{B3} Algebra.quarter_turn, Algebra.s13_quarter_turn, FRC.Shell.Frame.quarter_turn_sq, FRC.Shell.s13_datum"
   },
   {
    "paper": "1-alg",
@@ -38358,14 +38580,14 @@
    "block": "B",
    "tag": "T",
    "name": null,
-   "statement": "Affine reframing (Def.~\\ref{def:framed-field}, Lemma~\\ref{lem:affine-invariance}): $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant.",
-   "source": "\\pywit{algebra}{p01006}{B4}, \\leanwit{FrcCore}{p01006}{B4}, \\leanwit{FrcMathlib}{p01006}{B4} \\lean{Algebra.affine\\_frame, FRC.Shell.Frame.affine\\_frame\\_unit}",
+   "statement": "Affine reframing: $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant.",
+   "source": "Lem.~\\ref{lem:affine}\\newline \\pywit{algebra}{p01006}{B4}, \\leanwit{FrcCore}{p01006}{B4}, \\leanwit{FrcMathlib}{p01006}{B4} \\lean{Algebra.affine\\_frame, FRC.Shell.Frame.affine\\_frame\\_unit}",
    "page": "1-algebra/index.html#B4",
    "witness": {
     "py": {
      "href": "py/algebra.html#p01006",
-     "script": "algebra.py",
-     "line": 229,
+     "script": "p01_algebra.py",
+     "line": 152,
      "verdict": "pass"
     },
     "lean": [
@@ -38390,7 +38612,7 @@
    "refs": [
     "p00008"
    ],
-   "text": "Affine reframing (Def. def:framed-field, Lemma lem:affine-invariance): $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant. p01006, FrcCore{B4}, FrcMathlib{B4} Algebra.affine_frame, FRC.Shell.Frame.affine_frame_unit"
+   "text": "Affine reframing: $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant. Lem. lem:affine p01006, FrcCore{B4}, FrcMathlib{B4} Algebra.affine_frame, FRC.Shell.Frame.affine_frame_unit"
   },
   {
    "paper": "1-alg",
@@ -38401,20 +38623,18 @@
    "block": "B",
    "tag": "D",
    "name": null,
-   "statement": "Origin and unit are observer data (affine gauge); the generator $\\gen$ is the Subject's drive, not gauge; the observer's window is the naturals below $\\sqrt\\p$ (00:B8).",
-   "source": "Section~\\ref{sec:unification}; 00:A8, 00:C1",
+   "statement": "The observer's window: origin and unit are the observer's data, the drive $\\gen$ the Subject's own; the window is the naturals below $\\sqrt\\p$, the residues an observer resolves as integers.",
+   "source": "Def.~\\ref{def:window}",
    "page": "1-algebra/index.html#B5",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [
-    "p00010",
     "p00021",
-    "p00166",
     "p00167"
    ],
-   "text": "Origin and unit are observer data (affine gauge); the generator $\\gen$ is the Subject's drive, not gauge; the observer's window is the naturals below $\\sqrt\\p$ (00:B8). Section sec:unification; 00:A8, 00:C1"
+   "text": "The observer's window: origin and unit are the observer's data, the drive $\\gen$ the Subject's own; the window is the naturals below $\\sqrt\\p$, the residues an observer resolves as integers. Def. def:window"
   },
   {
    "paper": "1-alg",
@@ -38425,15 +38645,15 @@
    "block": "C",
    "tag": "D",
    "name": null,
-   "statement": "The four symmetries as maps of the shell: the successor $C_1:k\\mapsto k+1$; translations $T_a$, $a\\in\\Fp$, the cycle $C_\\p$; scalings $S_m$, $m\\in\\Fpx$, the cycle $C_{\\p-1}$; power maps $P_\\varepsilon:x\\mapsto x^{\\varepsilon}$, $\\varepsilon\\in C_{\\p-1}$, bijective iff $\\gcd(\\varepsilon,\\p-1)=1$.",
-   "source": "Section~\\ref{sec:sphere}, (\\ref{eq:counting})--(\\ref{eq:powering})",
+   "statement": "The four symmetries: the successor $k\\mapsto k+1$; translations $T_a$, the cycle $C_\\p$; scalings $S_m$, $m\\in\\Fpx$, the cycle $C_{\\p-1}$; power maps $x\\mapsto x^{\\varepsilon}$, $\\varepsilon\\in\\Zp$, bijective exactly when $\\gcd(\\varepsilon,\\p-1)=1$.",
+   "source": "Def.~\\ref{def:symmetries}",
    "page": "1-algebra/index.html#C1",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The four symmetries as maps of the shell: the successor $C_1:k\\mapsto k+1$; translations $T_a$, $a\\in\\Fp$, the cycle $C_\\p$; scalings $S_m$, $m\\in\\Fpx$, the cycle $C_{\\p-1}$; power maps $P_\\varepsilon:x\\mapsto x^{\\varepsilon}$, $\\varepsilon\\in C_{\\p-1}$, bijective iff $\\gcd(\\varepsilon,\\p-1)=1$. Section sec:sphere, (eq:counting)–(eq:powering)"
+   "text": "The four symmetries: the successor $k\\mapsto k+1$; translations $T_a$, the cycle $C_\\p$; scalings $S_m$, $m\\in\\Fpx$, the cycle $C_{\\p-1}$; power maps $x\\mapsto x^{\\varepsilon}$, $\\varepsilon\\in\\Zp$, bijective exactly when $\\gcd(\\varepsilon,\\p-1)=1$. Def. def:symmetries"
   },
   {
    "paper": "1-alg",
@@ -38444,14 +38664,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The frame group (Prop.~\\ref{prop:frame-group}): $\\langle T_a,S_m\\rangle$ is the affine group of order $\\p(\\p-1)$, acting simply transitively on the frames $(a,b)$, $b\\neq0$; the set of frames is a torsor under it (00:C5, 00:D13).",
-   "source": "\\texttt{manuscript}\\newline \\pywit{algebra}{p01009}{C2}, \\leanwit{FrcCore}{p01009}{C2} \\lean{FRC.Shell.Frame.Affine.simply\\_transitive, FRC.Shell.Frame.frame\\_count}",
+   "statement": "The frame group: the translations and scalings generate the affine group of order $\\p(\\p-1)$, acting simply transitively on the frames $(a,b)$, $b\\neq0$; the frames form a torsor under it.",
+   "source": "Prop.~\\ref{prop:framegroup}; rests on B4\\newline \\pywit{algebra}{p01009}{C2}, \\leanwit{FrcCore}{p01009}{C2} \\lean{FRC.Shell.Frame.Affine.simply\\_transitive, FRC.Shell.Frame.frame\\_count}",
    "page": "1-algebra/index.html#C2",
    "witness": {
     "py": {
      "href": "py/algebra.html#p01009",
-     "script": "algebra.py",
-     "line": 247,
+     "script": "p01_algebra.py",
+     "line": 168,
      "verdict": "pass"
     },
     "lean": [
@@ -38474,10 +38694,9 @@
     ]
    },
    "refs": [
-    "p00025",
-    "p00140"
+    "p01006"
    ],
-   "text": "The frame group (Prop. prop:frame-group): $\\langle T_a,S_m\\rangle$ is the affine group of order $\\p(\\p-1)$, acting simply transitively on the frames $(a,b)$, $b\\neq0$; the set of frames is a torsor under it (00:C5, 00:D13). manuscript p01009, FrcCore{C2} FRC.Shell.Frame.Affine.simply_transitive, FRC.Shell.Frame.frame_count"
+   "text": "The frame group: the translations and scalings generate the affine group of order $\\p(\\p-1)$, acting simply transitively on the frames $(a,b)$, $b\\neq0$; the frames form a torsor under it. Prop. prop:framegroup; rests on B4 p01009, FrcCore{C2} FRC.Shell.Frame.Affine.simply_transitive, FRC.Shell.Frame.frame_count"
   },
   {
    "paper": "1-alg",
@@ -38488,15 +38707,15 @@
    "block": "C",
    "tag": "D",
    "name": null,
-   "statement": "Meridians and latitudes (Def.~\\ref{def:orbit-sphere}): $M_n(a)=a\\gen^{n}$, $a\\in\\Fp$, the ordered list of the shell with step $\\gen^{n}$; $L_a(m)=a\\gen^{m}$, $m\\in C_{\\p-1}$, $a\\neq0$, the multiplicative cycle from $a$; the orbital complex $\\Sp$ with vertex set $\\{(n,\\pm a)\\}\\cup\\{0\\}$. The $2$-sphere reading is 2-geometry's~\\cite{akhtman2025geometry}.",
-   "source": "Def.~\\ref{def:orbit-sphere}",
+   "statement": "The orbital complex $\\Sp$: meridians $M_n=(a\\gen^{n})_a$, $n\\in\\Zp$; latitudes $L_a=(a\\gen^{m})_m$, $a\\neq0$; vertex set $\\{(n,\\pm a)\\}\\cup\\{0\\}$, the observer's origin the North Pole.",
+   "source": "Def.~\\ref{def:orbital}",
    "page": "1-algebra/index.html#C3",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "Meridians and latitudes (Def. def:orbit-sphere): $M_n(a)=a\\gen^{n}$, $a\\in\\Fp$, the ordered list of the shell with step $\\gen^{n}$; $L_a(m)=a\\gen^{m}$, $m\\in C_{\\p-1}$, $a\\neq0$, the multiplicative cycle from $a$; the orbital complex $\\Sp$ with vertex set $\\{(n,\\pm a)\\}\\cup\\{0\\}$. The $2$-sphere reading is 2-geometry's [akhtman2025geometry]. Def. def:orbit-sphere"
+   "text": "The orbital complex $\\Sp$: meridians $M_n=(a\\gen^{n})_a$, $n\\in\\Zp$; latitudes $L_a=(a\\gen^{m})_m$, $a\\neq0$; vertex set $\\{(n,\\pm a)\\}\\cup\\{0\\}$, the observer's origin the North Pole. Def. def:orbital"
   },
   {
    "paper": "1-alg",
@@ -38507,14 +38726,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Involutions and counts (Def.~\\ref{def:orbit-sphere}\\,(a)--(c)): $M_n(a)=M_{n+2\\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\\kap)$ since $\\gen^{2\\kap}=-1$; $\\p-1$ distinct meridian lists in $2\\kap$ great circles; $2\\kap$ latitude pairs; one-sided vertex count $(\\p-1)^{2}/2+1$, the double cover $(\\p-1)^{2}$ (00:B11).",
-   "source": "\\pywit{algebra}{p01011}{C4}, \\leanwit{FrcCore}{p01011}{C4}, \\leanwit{FrcMathlib}{p01011}{C4} \\lean{Algebra.meridian\\_involution, FRC.Shell.Frame.meridian\\_involution}",
+   "statement": "Involutions and counts: $M_n(a)=M_{n+2\\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\\kap)$; the $\\p-1$ meridian steps are distinct, in $2\\kap$ great circles; the nonzero residues form $2\\kap$ sign pairs $\\{\\pm a\\}$, $a\\le2\\kap$; the complex has $(\\p-1)^{2}/2+1$ vertices.",
+   "source": "Prop.~\\ref{prop:counts}\\newline \\pywit{algebra}{p01011}{C4}, \\leanwit{FrcCore}{p01011}{C4}, \\leanwit{FrcMathlib}{p01011}{C4} \\lean{Algebra.meridian\\_involution, FRC.Shell.Frame.meridian\\_involution, FRC.Shell.Frame.pow\\_inj, FRC.Shell.Frame.sign\\_pair, FRC.Shell.Frame.window\\_injective, FRC.Shell.Frame.window\\_signed, FRC.Shell.Frame.vertex\\_count}",
    "page": "1-algebra/index.html#C4",
    "witness": {
     "py": {
      "href": "py/algebra.html#p01011",
-     "script": "algebra.py",
-     "line": 265,
+     "script": "p01_algebra.py",
+     "line": 194,
      "verdict": "pass"
     },
     "lean": [
@@ -38533,11 +38752,51 @@
       "tier": 0,
       "ok": true,
       "page": "lean/core/Frame.html#FRC.Shell.Frame.meridian_involution"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/FrameCore",
+      "name": "FRC.Shell.Frame.pow_inj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.pow_inj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.sign_pair",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.sign_pair"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Frame",
+      "name": "FRC.Shell.Frame.window_injective",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.window_injective"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Frame",
+      "name": "FRC.Shell.Frame.window_signed",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.window_signed"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.vertex_count",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.vertex_count"
      }
     ]
    },
    "refs": [],
-   "text": "Involutions and counts (Def. def:orbit-sphere (a)–(c)): $M_n(a)=M_{n+2\\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\\kap)$ since $\\gen^{2\\kap}=-1$; $\\p-1$ distinct meridian lists in $2\\kap$ great circles; $2\\kap$ latitude pairs; one-sided vertex count $(\\p-1)^{2}/2+1$, the double cover $(\\p-1)^{2}$ (00:B11). p01011, FrcCore{C4}, FrcMathlib{C4} Algebra.meridian_involution, FRC.Shell.Frame.meridian_involution"
+   "text": "Involutions and counts: $M_n(a)=M_{n+2\\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\\kap)$; the $\\p-1$ meridian steps are distinct, in $2\\kap$ great circles; the nonzero residues form $2\\kap$ sign pairs $\\{\\pm a\\}$, $a\\le2\\kap$; the complex has $(\\p-1)^{2}/2+1$ vertices. Prop. prop:counts p01011, FrcCore{C4}, FrcMathlib{C4} Algebra.meridian_involution, FRC.Shell.Frame.meridian_involution, FRC.Shell.Frame.pow_inj, FRC.Shell.Frame.sign_pair, FRC.Shell.Frame.window_injective, FRC.Shell.Frame.window_signed, FRC.Shell.Frame.vertex_count"
   },
   {
    "paper": "1-alg",
@@ -38548,8 +38807,8 @@
    "block": "D",
    "tag": "D",
    "name": null,
-   "statement": "Framed integers (Def.~\\ref{def:integers}): the window $W_H=\\{z\\in\\Z:|z|\\le H\\}$, $2H<\\p$, embedded by $z\\mapsto z\\bmod\\p$; sign, order and magnitude are the window's; sums read back for $4H<\\p$, products for $2H^{2}<\\p$ --- the corpus window $\\sqrt\\p$ (00:B1).",
-   "source": "Def.~\\ref{def:integers}; 00:B1",
+   "statement": "Framed integers: the window $W_H=\\{z\\in\\Z:|z|\\le H\\}$, $2H<\\p$, embedded by $z\\mapsto z\\bmod\\p$; sign, order and magnitude are the window's.",
+   "source": "Def.~\\ref{def:integers}",
    "page": "1-algebra/index.html#D1",
    "witness": {
     "py": null,
@@ -38558,7 +38817,7 @@
    "refs": [
     "p00011"
    ],
-   "text": "Framed integers (Def. def:integers): the window $W_H=\\{z\\in\\Z:|z|\\le H\\}$, $2H<\\p$, embedded by $z\\mapsto z\\bmod\\p$; sign, order and magnitude are the window's; sums read back for $4H<\\p$, products for $2H^{2}<\\p$ — the corpus window $\\sqrt\\p$ (00:B1). Def. def:integers; 00:B1"
+   "text": "Framed integers: the window $W_H=\\{z\\in\\Z:|z|\\le H\\}$, $2H<\\p$, embedded by $z\\mapsto z\\bmod\\p$; sign, order and magnitude are the window's. Def. def:integers"
   },
   {
    "paper": "1-alg",
@@ -38569,14 +38828,14 @@
    "block": "D",
    "tag": "T",
    "name": null,
-   "statement": "The window law: $z\\mapsto z\\bmod\\p$ is injective on $W_H$ when $2H<\\p$; for $x,y\\in W_H$ the residue of $x\\pm y$ reads back the integer when $4H<\\p$, and that of $xy$ when $2H^{2}<\\p$ (the same injectivity on the windows $2H$ and $H^{2}$).",
-   "source": "\\pywit{algebra}{p01013}{D2}, \\leanwit{FrcCore}{p01013}{D2}, \\leanwit{FrcMathlib}{p01013}{D2} \\lean{Algebra.framed\\_integer\\_window, FRC.Shell.Frame.window\\_injective, FRC.Shell.Frame.window\\_signed, FRC.Shell.Frame.window\\_add\\_readback, FRC.Shell.Frame.window\\_mul\\_readback}",
+   "statement": "The window law: $z\\mapsto z\\bmod\\p$ is injective on $W_H$ when $2H<\\p$; for $x,y\\in W_H$ the residue of $x\\pm y$ reads back the integer when $4H<\\p$, and that of $xy$ when $2H^{2}<\\p$.",
+   "source": "Thm.~\\ref{thm:window}\\newline \\pywit{algebra}{p01013}{D2}, \\leanwit{FrcCore}{p01013}{D2}, \\leanwit{FrcMathlib}{p01013}{D2} \\lean{Algebra.framed\\_integer\\_window, FRC.Shell.Frame.window\\_injective, FRC.Shell.Frame.window\\_signed, FRC.Shell.Frame.window\\_add\\_readback, FRC.Shell.Frame.window\\_mul\\_readback}",
    "page": "1-algebra/index.html#D2",
    "witness": {
     "py": {
      "href": "py/algebra.html#p01013",
-     "script": "algebra.py",
-     "line": 303,
+     "script": "p01_algebra.py",
+     "line": 238,
      "verdict": "pass"
     },
     "lean": [
@@ -38623,7 +38882,7 @@
     ]
    },
    "refs": [],
-   "text": "The window law: $z\\mapsto z\\bmod\\p$ is injective on $W_H$ when $2H<\\p$; for $x,y\\in W_H$ the residue of $x\\pm y$ reads back the integer when $4H<\\p$, and that of $xy$ when $2H^{2}<\\p$ (the same injectivity on the windows $2H$ and $H^{2}$). p01013, FrcCore{D2}, FrcMathlib{D2} Algebra.framed_integer_window, FRC.Shell.Frame.window_injective, FRC.Shell.Frame.window_signed, FRC.Shell.Frame.window_add_readback, FRC.Shell.Frame.window_mul_readback"
+   "text": "The window law: $z\\mapsto z\\bmod\\p$ is injective on $W_H$ when $2H<\\p$; for $x,y\\in W_H$ the residue of $x\\pm y$ reads back the integer when $4H<\\p$, and that of $xy$ when $2H^{2}<\\p$. Thm. thm:window p01013, FrcCore{D2}, FrcMathlib{D2} Algebra.framed_integer_window, FRC.Shell.Frame.window_injective, FRC.Shell.Frame.window_signed, FRC.Shell.Frame.window_add_readback, FRC.Shell.Frame.window_mul_readback"
   },
   {
    "paper": "1-alg",
@@ -38634,8 +38893,8 @@
    "block": "D",
    "tag": "D",
    "name": null,
-   "statement": "Framed rationals (Def.~\\ref{def:rationals}): $a/b$ with $a,b\\in W_H$, $b\\not\\equiv0$, of value $ab^{-1}\\in\\Fp$; the scale grid $[x,n]:=x\\gen^{-n}$, $x\\in\\{0,\\dots,\\p-1\\}$, $n\\in C_{\\p-1}$; $G_n$ the ordered list $(x\\gen^{-n})_x$, the meridian $M_{-n}$ of C3.",
-   "source": "Def.~\\ref{def:rationals}; 6:B1",
+   "statement": "Framed rationals and the scale grid: $a/b$, $b\\not\\equiv0$, of value $ab^{-1}$, the window fractions of size $(N,D)$ with $|a|\\le N$, $1\\le b\\le D$; for a unit $B$ the grid $(tB^{-1})_{|t|\\le2\\kap}$, at $B=\\gen^{n}$ the meridian $M_{-n}$.",
+   "source": "Def.~\\ref{def:rationals}; rests on C3",
    "page": "1-algebra/index.html#D3",
    "witness": {
     "py": null,
@@ -38643,28 +38902,143 @@
    },
    "refs": [
     "p00011",
-    "p01010",
-    "p06008"
+    "p01010"
    ],
-   "text": "Framed rationals (Def. def:rationals): $a/b$ with $a,b\\in W_H$, $b\\not\\equiv0$, of value $ab^{-1}\\in\\Fp$; the scale grid $[x,n]:=x\\gen^{-n}$, $x\\in\\{0,\\dots,\\p-1\\}$, $n\\in C_{\\p-1}$; $G_n$ the ordered list $(x\\gen^{-n})_x$, the meridian $M_{-n}$ of C3. Def. def:rationals; 6:B1"
+   "text": "Framed rationals and the scale grid: $a/b$, $b\\not\\equiv0$, of value $ab^{-1}$, the window fractions of size $(N,D)$ with $|a|\\le N$, $1\\le b\\le D$; for a unit $B$ the grid $(tB^{-1})_{|t|\\le2\\kap}$, at $B=\\gen^{n}$ the meridian $M_{-n}$. Def. def:rationals; rests on C3"
   },
   {
    "paper": "1-alg",
    "no": 1,
    "rid": "1:D4",
-   "key": "p01015",
+   "key": "p01035",
    "label": "D4",
    "block": "D",
    "tag": "T",
    "name": null,
-   "statement": "Scale-periodicity (Lemma~\\ref{thm:scale-periodicity}, in the field): $S_n(x)=x\\gen^{-n}$ satisfies $S_{n+(\\p-1)}=S_n$; the grids $G_n$ are $(\\p-1)$-periodic as ordered lists; the zoom $[x,n]\\mapsto[x,n+1]$ has order $\\p-1$. As lists of rationals $x/\\gen^{n}$ ($\\gen$ lifted to $\\Z$) the grids are not periodic: the periodicity is a relation of the field.",
-   "source": "6:D4\\newline \\pywit{algebra}{p01015}{D4}, \\leanwit{FrcCore}{p01015}{D4}, \\leanwit{FrcMathlib}{p01015}{D4} \\lean{Algebra.scale\\_periodic, FRC.Shell.Frame.scale\\_periodic}",
+   "statement": "The window law for framed rationals: for $2ND<\\p$, window fractions of size $(N,D)$ with equal values are equal fractions; products of window fractions of size $(H,H)$ read back when $2H^{4}<\\p$, sums when $4H^{4}<\\p$.",
+   "source": "Thm.~\\ref{thm:fracwindow}\\newline \\pywit{algebra}{p01035}{D4}, \\leanwit{FrcCore}{p01035}{D4} \\lean{FRC.Shell.Frame.frac\\_window, FRC.Shell.Frame.frac\\_window\\_inv, FRC.Shell.Frame.frac\\_mul\\_readback, FRC.Shell.Frame.frac\\_add\\_readback}",
    "page": "1-algebra/index.html#D4",
    "witness": {
     "py": {
+     "href": "py/algebra.html#p01035",
+     "script": "p01_algebra.py",
+     "line": 261,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.frac_window",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frac_window"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.frac_window_inv",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frac_window_inv"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.frac_mul_readback",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frac_mul_readback"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.frac_add_readback",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frac_add_readback"
+     }
+    ]
+   },
+   "refs": [],
+   "text": "The window law for framed rationals: for $2ND<\\p$, window fractions of size $(N,D)$ with equal values are equal fractions; products of window fractions of size $(H,H)$ read back when $2H^{4}<\\p$, sums when $4H^{4}<\\p$. Thm. thm:fracwindow p01035, FrcCore{D4} FRC.Shell.Frame.frac_window, FRC.Shell.Frame.frac_window_inv, FRC.Shell.Frame.frac_mul_readback, FRC.Shell.Frame.frac_add_readback"
+  },
+  {
+   "paper": "1-alg",
+   "no": 1,
+   "rid": "1:D5",
+   "key": "p01036",
+   "label": "D5",
+   "block": "D",
+   "tag": "T",
+   "name": null,
+   "statement": "The scale grid covers the shell: for every unit $B$ every residue is $tB^{-1}$ for exactly one $t$ with $|t|\\le2\\kap$; on one shell the range and the step multiply to $2\\kap$.",
+   "source": "Prop.~\\ref{prop:grid}; rests on D2\\newline \\pywit{algebra}{p01036}{D5}, \\leanwit{FrcCore}{p01036}{D5} \\lean{FRC.Shell.Frame.signed\\_rep, FRC.Shell.Frame.signed\\_rep\\_unique, FRC.Shell.Frame.grid\\_cover, FRC.Shell.Frame.grid\\_unique}",
+   "page": "1-algebra/index.html#D5",
+   "witness": {
+    "py": {
+     "href": "py/algebra.html#p01036",
+     "script": "p01_algebra.py",
+     "line": 270,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.signed_rep",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.signed_rep"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.signed_rep_unique",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.signed_rep_unique"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.grid_cover",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.grid_cover"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.grid_unique",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.grid_unique"
+     }
+    ]
+   },
+   "refs": [
+    "p01013"
+   ],
+   "text": "The scale grid covers the shell: for every unit $B$ every residue is $tB^{-1}$ for exactly one $t$ with $|t|\\le2\\kap$; on one shell the range and the step multiply to $2\\kap$. Prop. prop:grid; rests on D2 p01036, FrcCore{D5} FRC.Shell.Frame.signed_rep, FRC.Shell.Frame.signed_rep_unique, FRC.Shell.Frame.grid_cover, FRC.Shell.Frame.grid_unique"
+  },
+  {
+   "paper": "1-alg",
+   "no": 1,
+   "rid": "1:D6",
+   "key": "p01015",
+   "label": "D6",
+   "block": "D",
+   "tag": "T",
+   "name": null,
+   "statement": "Scale-periodicity, exact: $x\\gen^{-(n+\\p-1)}=x\\gen^{-n}$; for $x\\neq0$, $x\\gen^{-m}=x\\gen^{-n}$ exactly when $m\\equiv n\\pmod{\\p-1}$; each grid $G_n$ lists every residue once and the zoom has order $\\p-1$; read over $\\Z$ with $\\gen$ lifted the grids are not periodic.",
+   "source": "Lem.~\\ref{lem:periodic}\\newline \\pywit{algebra}{p01015}{D6}, \\leanwit{FrcCore}{p01015}{D6}, \\leanwit{FrcMathlib}{p01015}{D6} \\lean{Algebra.scale\\_periodic, FRC.Shell.Frame.scale\\_periodic, FRC.Shell.Frame.scale\\_inv\\_periodic, FRC.Shell.Frame.scale\\_exact, FRC.Shell.Frame.zoom\\_order, FRC.Shell.Frame.scale\\_bijective}",
+   "page": "1-algebra/index.html#D6",
+   "witness": {
+    "py": {
      "href": "py/algebra.html#p01015",
-     "script": "algebra.py",
-     "line": 316,
+     "script": "p01_algebra.py",
+     "line": 286,
      "verdict": "pass"
     },
     "lean": [
@@ -38683,67 +39057,64 @@
       "tier": 0,
       "ok": true,
       "page": "lean/core/Frame.html#FRC.Shell.Frame.scale_periodic"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.scale_inv_periodic",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.scale_inv_periodic"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.scale_exact",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.scale_exact"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.zoom_order",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.zoom_order"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.scale_bijective",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.scale_bijective"
      }
     ]
    },
    "refs": [
-    "p06027"
-   ],
-   "text": "Scale-periodicity (Lemma thm:scale-periodicity, in the field): $S_n(x)=x\\gen^{-n}$ satisfies $S_{n+(\\p-1)}=S_n$; the grids $G_n$ are $(\\p-1)$-periodic as ordered lists; the zoom $[x,n]\\mapsto[x,n+1]$ has order $\\p-1$. As lists of rationals $x/\\gen^{n}$ ($\\gen$ lifted to $\\Z$) the grids are not periodic: the periodicity is a relation of the field. 6:D4 p01015, FrcCore{D4}, FrcMathlib{D4} Algebra.scale_periodic, FRC.Shell.Frame.scale_periodic"
-  },
-  {
-   "paper": "1-alg",
-   "no": 1,
-   "rid": "1:D6",
-   "key": "p01017",
-   "label": "D6",
-   "block": "D",
-   "tag": "D",
-   "name": null,
-   "statement": "The continuum as chart (Def.~\\ref{def:reals}, Props.~\\ref{prop:total-bounded}--\\ref{prop:compactness}, Cor.~\\ref{cor:knowability}): the framed real line is the reading of the nested grids against $\\R$, a labelled idealisation entered nowhere as an object (00:B1); no completion, compactness or ``complete continuum'' is claimed.",
-   "source": "Section~\\ref{sec:reals}; 00:B1",
-   "page": "1-algebra/index.html#D6",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
     "p00011"
    ],
-   "text": "The continuum as chart (Def. def:reals, Props. prop:total-bounded–prop:compactness, Cor. cor:knowability): the framed real line is the reading of the nested grids against $\\R$, a labelled idealisation entered nowhere as an object (00:B1); no completion, compactness or “complete continuum” is claimed. Section sec:reals; 00:B1"
+   "text": "Scale-periodicity, exact: $x\\gen^{-(n+\\p-1)}=x\\gen^{-n}$; for $x\\neq0$, $x\\gen^{-m}=x\\gen^{-n}$ exactly when $m\\equiv n\\pmod{\\p-1}$; each grid $G_n$ lists every residue once and the zoom has order $\\p-1$; read over $\\Z$ with $\\gen$ lifted the grids are not periodic. Lem. lem:periodic p01015, FrcCore{D6}, FrcMathlib{D6} Algebra.scale_periodic, FRC.Shell.Frame.scale_periodic, FRC.Shell.Frame.scale_inv_periodic, FRC.Shell.Frame.scale_exact, FRC.Shell.Frame.zoom_order, FRC.Shell.Frame.scale_bijective"
   },
   {
    "paper": "1-alg",
    "no": 1,
    "rid": "1:D7",
-   "key": "p01027",
+   "key": "p01017",
    "label": "D7",
    "block": "D",
-   "tag": "T",
+   "tag": "D",
    "name": null,
-   "statement": "Limit-like approximation (second clause), across the tower: for every real $r$ and $\\varepsilon>0$ some shell $\\p=4\\kap+1$ carries a framed rational $x/2^{n}$, $|x|\\le2\\kap$, within $\\varepsilon$ of $r$ (primes $\\equiv1\\pmod4$ beyond every bound). One shell trades range for resolution; the limit is the tower, not a completion.",
-   "source": "\\pywit{algebra}{p01027}{D7}, \\leanwit{FrcMathlib}{p01027}{D7} \\lean{Algebra.tower\\_density}",
+   "statement": "The real chart: the framed real line is the reading of the nested grids against $\\R$, a labelled idealisation entered nowhere as an object; no completion, compactness or continuum is claimed [chart].",
+   "source": "Def.~\\ref{def:realchart}",
    "page": "1-algebra/index.html#D7",
    "witness": {
-    "py": {
-     "href": "py/algebra.html#p01027",
-     "script": "algebra.py",
-     "line": 497,
-     "verdict": "pass"
-    },
-    "lean": [
-     {
-      "lib": "FrcMathlib",
-      "module": "FrcMathlib/Algebra",
-      "name": "FRC.Algebra.tower_density",
-      "tier": 2,
-      "ok": true,
-      "page": "lean/ml/Algebra.html#FRC.Algebra.tower_density"
-     }
-    ]
+    "py": null,
+    "lean": []
    },
    "refs": [],
-   "text": "Limit-like approximation (second clause), across the tower: for every real $r$ and $\\varepsilon>0$ some shell $\\p=4\\kap+1$ carries a framed rational $x/2^{n}$, $|x|\\le2\\kap$, within $\\varepsilon$ of $r$ (primes $\\equiv1\\pmod4$ beyond every bound). One shell trades range for resolution; the limit is the tower, not a completion. p01027, FrcMathlib{D7} Algebra.tower_density"
+   "text": "The real chart: the framed real line is the reading of the nested grids against $\\R$, a labelled idealisation entered nowhere as an object; no completion, compactness or continuum is claimed [chart]. Def. def:realchart"
   },
   {
    "paper": "1-alg",
@@ -38754,7 +39125,7 @@
    "block": "E",
    "tag": "D",
    "name": null,
-   "statement": "The framed complex chart (Def.~\\ref{def:complex}): the pair $(a,b)\\in W_H^{2}$ read as $a+b\\im\\in\\Fp$; the quarter-turn acts on the shell as the rotation $x\\mapsto\\im x$ of order four; the chart is the plane picture of $Q_4$ acting on the shell, not an extension of $\\Fp$.",
+   "statement": "The complex chart: the pair $(a,b)$ of window integers read as $a+b\\im\\in\\Fp$; the quarter-turn acts as the rotation $x\\mapsto\\im x$ of order four; the chart is the plane picture of $Q_4$ acting on the shell, not an extension of $\\Fp$.",
    "source": "Def.~\\ref{def:complex}",
    "page": "1-algebra/index.html#E1",
    "witness": {
@@ -38762,7 +39133,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The framed complex chart (Def. def:complex): the pair $(a,b)\\in W_H^{2}$ read as $a+b\\im\\in\\Fp$; the quarter-turn acts on the shell as the rotation $x\\mapsto\\im x$ of order four; the chart is the plane picture of $Q_4$ acting on the shell, not an extension of $\\Fp$. Def. def:complex"
+   "text": "The complex chart: the pair $(a,b)$ of window integers read as $a+b\\im\\in\\Fp$; the quarter-turn acts as the rotation $x\\mapsto\\im x$ of order four; the chart is the plane picture of $Q_4$ acting on the shell, not an extension of $\\Fp$. Def. def:complex"
   },
   {
    "paper": "1-alg",
@@ -38773,14 +39144,14 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "The extension by $X^{2}+1$ is trivial (Prop.~\\ref{prop:Cp-field} reversed): on the shell $\\Fp[X]/(X^{2}+1)\\cong\\Fp\\times\\Fp$ has zero divisors, $(X+\\im)(X-\\im)=0$, so it is not a field; $\\Fp[X]/(X^{2}+1)$ is a field exactly when $\\p\\equiv3\\pmod4$; the quadratic extension of the shell is $\\Fp[\\eta]$, $\\eta^{2}=\\nu$ a non-square (8-dirac B6).",
-   "source": "\\pywit{algebra}{p01019}{E2}, \\leanwit{FrcCore}{p01019}{E2}, \\leanwit{FrcMathlib}{p01019}{E2} \\lean{Algebra.complex\\_chart\\_zero\\_divisor, FRC.Shell.Frame.complex\\_chart\\_zero\\_divisor}",
+   "statement": "The extension by $X^{2}+1$ splits: on the shell $\\Fp[X]/(X^{2}+1)$ has the zero divisors $(X+\\im)(X-\\im)$; it is a field exactly when $\\p\\equiv3\\pmod4$, every nonzero pair $(a,b)$ having the inverse $(a,-b)/(a^{2}+b^{2})$.",
+   "source": "Thm.~\\ref{thm:ext}; rests on A3\\newline \\pywit{algebra}{p01019}{E2}, \\leanwit{FrcCore}{p01019}{E2}, \\leanwit{FrcMathlib}{p01019}{E2} \\lean{Algebra.complex\\_chart\\_zero\\_divisor, FRC.Shell.Frame.complex\\_chart\\_zero\\_divisor, FRC.Shell.Frame.complex\\_chart\\_field}",
    "page": "1-algebra/index.html#E2",
    "witness": {
     "py": {
      "href": "py/algebra.html#p01019",
-     "script": "algebra.py",
-     "line": 351,
+     "script": "p01_algebra.py",
+     "line": 308,
      "verdict": "pass"
     },
     "lean": [
@@ -38799,11 +39170,21 @@
       "tier": 0,
       "ok": true,
       "page": "lean/core/Frame.html#FRC.Shell.Frame.complex_chart_zero_divisor"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.complex_chart_field",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.complex_chart_field"
      }
     ]
    },
-   "refs": [],
-   "text": "The extension by $X^{2}+1$ is trivial (Prop. prop:Cp-field reversed): on the shell $\\Fp[X]/(X^{2}+1)\\cong\\Fp\\times\\Fp$ has zero divisors, $(X+\\im)(X-\\im)=0$, so it is not a field; $\\Fp[X]/(X^{2}+1)$ is a field exactly when $\\p\\equiv3\\pmod4$; the quadratic extension of the shell is $\\Fp[\\eta]$, $\\eta^{2}=\\nu$ a non-square (8-dirac B6). p01019, FrcCore{E2}, FrcMathlib{E2} Algebra.complex_chart_zero_divisor, FRC.Shell.Frame.complex_chart_zero_divisor"
+   "refs": [
+    "p00163"
+   ],
+   "text": "The extension by $X^{2}+1$ splits: on the shell $\\Fp[X]/(X^{2}+1)$ has the zero divisors $(X+\\im)(X-\\im)$; it is a field exactly when $\\p\\equiv3\\pmod4$, every nonzero pair $(a,b)$ having the inverse $(a,-b)/(a^{2}+b^{2})$. Thm. thm:ext; rests on A3 p01019, FrcCore{E2}, FrcMathlib{E2} Algebra.complex_chart_zero_divisor, FRC.Shell.Frame.complex_chart_zero_divisor, FRC.Shell.Frame.complex_chart_field"
   },
   {
    "paper": "1-alg",
@@ -38814,14 +39195,14 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "Solving in the substrate (first clause): $f\\in\\Fp[X]$ has a root in $\\Fp$ iff $f$ and $X^{\\p}-X=\\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\\Fp$ is recognised, not extended (E2).",
-   "source": "\\pywit{algebra}{p01026}{E3}, \\leanwit{FrcCore}{p01026}{E3}, \\leanwit{FrcMathlib}{p01026}{E3} \\lean{Algebra.root\\_iff\\_not\\_coprime, FRC.Shell.Poly.Frame.root\\_iff\\_common\\_factor, FRC.Shell.Poly.Frame.root\\_bound, FRC.Shell.Frame.fermat}",
+   "statement": "Solving in the substrate: $f\\in\\Fp[X]$ has a root in $\\Fp$ exactly when $f$ and $X^{\\p}-X=\\prod_a(X-a)$ have a common factor; a nonzero $f$ of degree $d$ has at most $d$ roots.",
+   "source": "Prop.~\\ref{prop:solve}\\newline \\pywit{algebra}{p01026}{E3}, \\leanwit{FrcCore}{p01026}{E3}, \\leanwit{FrcMathlib}{p01026}{E3} \\lean{Algebra.root\\_iff\\_not\\_coprime, FRC.Shell.Poly.Frame.root\\_iff\\_common\\_factor, FRC.Shell.Poly.Frame.root\\_bound, FRC.Shell.Frame.fermat}",
    "page": "1-algebra/index.html#E3",
    "witness": {
     "py": {
      "href": "py/algebra.html#p01026",
-     "script": "algebra.py",
-     "line": 476,
+     "script": "p01_algebra.py",
+     "line": 320,
      "verdict": "pass"
     },
     "lean": [
@@ -38859,10 +39240,8 @@
      }
     ]
    },
-   "refs": [
-    "p01019"
-   ],
-   "text": "Solving in the substrate (first clause): $f\\in\\Fp[X]$ has a root in $\\Fp$ iff $f$ and $X^{\\p}-X=\\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor–Zassenhaus splitting finds them, exactly. An equation without a root in $\\Fp$ is recognised, not extended (E2). p01026, FrcCore{E3}, FrcMathlib{E3} Algebra.root_iff_not_coprime, FRC.Shell.Poly.Frame.root_iff_common_factor, FRC.Shell.Poly.Frame.root_bound, FRC.Shell.Frame.fermat"
+   "refs": [],
+   "text": "Solving in the substrate: $f\\in\\Fp[X]$ has a root in $\\Fp$ exactly when $f$ and $X^{\\p}-X=\\prod_a(X-a)$ have a common factor; a nonzero $f$ of degree $d$ has at most $d$ roots. Prop. prop:solve p01026, FrcCore{E3}, FrcMathlib{E3} Algebra.root_iff_not_coprime, FRC.Shell.Poly.Frame.root_iff_common_factor, FRC.Shell.Poly.Frame.root_bound, FRC.Shell.Frame.fermat"
   },
   {
    "paper": "1-alg",
@@ -38873,14 +39252,14 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "Continuous symmetry, the abelian case (third clause): $\\Fpx\\simeq C_{\\p-1}\\simeq SO(2,\\Fp)$ (6:E2) is a $\\pi/(\\p-1)$-net of $U(1)$ under $k\\mapsto e^{2\\pi\\im k/(\\p-1)}$; the rounding $k(\\theta)=\\lfloor(\\p-1)\\theta/2\\pi+\\tfrac12\\rfloor$ has angle and chord error $\\le\\pi/(\\p-1)$ and group-law defect at most one step.",
-   "source": "6:E2\\newline \\pywit{algebra}{p01028}{E4}, \\leanwit{FrcMathlib}{p01028}{E4} \\lean{Algebra.circle\\_net, Algebra.group\\_law\\_defect}",
+   "statement": "The circle in counts: the rounding $k$ of a framed turn $u/v$ to $C_{\\p-1}$, $2vk\\le2(\\p-1)u+v<2vk+2v$, exists and lies within half a step; its group-law defect is $-1$, $0$ or $1$; read in $U(1)$, a $\\pi/(\\p-1)$-net [chart].",
+   "source": "Prop.~\\ref{prop:circle}\\newline \\pywit{algebra}{p01028}{E4}, \\leanwit{FrcCore}{p01028}{E4}, \\leanwit{FrcMathlib}{p01028}{E4} \\lean{Algebra.circle\\_net, Algebra.group\\_law\\_defect, FRC.Shell.Frame.round\\_exists, FRC.Shell.Frame.round\\_defect}",
    "page": "1-algebra/index.html#E4",
    "witness": {
     "py": {
      "href": "py/algebra.html#p01028",
-     "script": "algebra.py",
-     "line": 517,
+     "script": "p01_algebra.py",
+     "line": 336,
      "verdict": "pass"
     },
     "lean": [
@@ -38899,226 +39278,269 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Algebra.html#FRC.Algebra.group_law_defect"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.round_exists",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.round_exists"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.round_defect",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.round_defect"
      }
     ]
    },
-   "refs": [
-    "p06031"
-   ],
-   "text": "Continuous symmetry, the abelian case (third clause): $\\Fpx\\simeq C_{\\p-1}\\simeq SO(2,\\Fp)$ (6:E2) is a $\\pi/(\\p-1)$-net of $U(1)$ under $k\\mapsto e^{2\\pi\\im k/(\\p-1)}$; the rounding $k(\\theta)=\\lfloor(\\p-1)\\theta/2\\pi+\\tfrac12\\rfloor$ has angle and chord error $\\le\\pi/(\\p-1)$ and group-law defect at most one step. 6:E2 p01028, FrcMathlib{E4} Algebra.circle_net, Algebra.group_law_defect"
+   "refs": [],
+   "text": "The circle in counts: the rounding $k$ of a framed turn $u/v$ to $C_{\\p-1}$, $2vk\\le2(\\p-1)u+v<2vk+2v$, exists and lies within half a step; its group-law defect is $-1$, $0$ or $1$; read in $U(1)$, a $\\pi/(\\p-1)$-net [chart]. Prop. prop:circle p01028, FrcCore{E4}, FrcMathlib{E4} Algebra.circle_net, Algebra.group_law_defect, FRC.Shell.Frame.round_exists, FRC.Shell.Frame.round_defect"
   },
   {
    "paper": "1-alg",
    "no": 1,
    "rid": "1:E5",
-   "key": "p01029",
+   "key": "p01030",
    "label": "E5",
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "Continuous symmetry, the non-abelian obstruction: no finite subgroup of $SO(3)$ is an $\\varepsilon$-net for $\\varepsilon<\\varepsilon_0=\\arccos\\big((3\\sqrt5-1)/8\\big)\\approx44.5^\\circ$, the covering radius of the icosahedral group (A3); the tetrahedral, cyclic and dihedral groups have radius $\\ge\\pi/2$, the octahedral $\\approx62.8^\\circ$. Finite subgroups cannot approximate $SO(3)$; the window does (E6).",
-   "source": "A3\\newline \\pywit{algebra}{p01029}{E5}",
+   "statement": "The framed quaternions compose exactly: for entries in $W_H$ and a shell $\\p>8H^{2}$, products have entries in $W_{4H^{2}}$, and the shell's reading determines the integer product.",
+   "source": "Prop.~\\ref{prop:quatwindow}; rests on D2\\newline \\pywit{algebra}{p01030}{E5}, \\leanwit{FrcCore}{p01030}{E5} \\lean{FRC.Shell.Frame.quaternion\\_window, FRC.Shell.Frame.read\\_mul}",
    "page": "1-algebra/index.html#E5",
    "witness": {
     "py": {
-     "href": "py/algebra.html#p01029",
-     "script": "algebra.py",
-     "line": 574,
+     "href": "py/algebra.html#p01030",
+     "script": "p01_algebra.py",
+     "line": 348,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.quaternion_window",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.quaternion_window"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.read_mul",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.read_mul"
+     }
+    ]
    },
    "refs": [
-    "p01025",
-    "p01030"
+    "p01013"
    ],
-   "text": "Continuous symmetry, the non-abelian obstruction: no finite subgroup of $SO(3)$ is an $\\varepsilon$-net for $\\varepsilon<\\varepsilon_0=\\arccos\\big((3\\sqrt5-1)/8\\big)\\approx44.5^\\circ$, the covering radius of the icosahedral group (A3); the tetrahedral, cyclic and dihedral groups have radius $\\ge\\pi/2$, the octahedral $\\approx62.8^\\circ$. Finite subgroups cannot approximate $SO(3)$; the window does (E6). A3 p01029"
+   "text": "The framed quaternions compose exactly: for entries in $W_H$ and a shell $\\p>8H^{2}$, products have entries in $W_{4H^{2}}$, and the shell's reading determines the integer product. Prop. prop:quatwindow; rests on D2 p01030, FrcCore{E5} FRC.Shell.Frame.quaternion_window, FRC.Shell.Frame.read_mul"
   },
   {
    "paper": "1-alg",
    "no": 1,
    "rid": "1:E6",
-   "key": "p01030",
+   "key": "p01032",
    "label": "E6",
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "Continuous symmetry, the non-abelian case resolved by the window: the framed quaternions $W_H^{4}$, read in a shell $\\p>8H^{2}$, compose exactly (products land in $W_{4H^{2}}$); normalised, they are an $\\varepsilon$-net of $SO(3)$ with $\\varepsilon\\le2\\arcsin(1/H)$ (round $Hs$ to the lattice). At $H=3$, $\\p=73$: $38.9^\\circ<\\varepsilon_0$, finer than any finite subgroup; measured $30.0^\\circ$.",
-   "source": "Section~\\ref{sec:conclusion}\\newline \\pywit{algebra}{p01030}{E6}, \\leanwitin{FrcCore}{Quaternion}{p01030}{E6} \\lean{FRC.Shell.Frame.quaternion\\_window, FRC.Shell.Frame.read\\_mul}",
+   "statement": "One axis: $\\rho_q$ is the Cayley step of $S_v$, the half-turn at $a=0$, trivial only for scalars; $\\rho_{a+tv}=\\rho_{1+sv}$, distinct $s$ distinct; $s$ fails where $s^{2}=-N(v)^{-1}$, twice when $N(v)$ is a square, else never: $\\p-\\bigl(\\tfrac{N(v)}{\\p}\\bigr)$ rotations; window pairs $2H^{2}+2H$ up to sign.",
+   "source": "Thm.~\\ref{thm:axis}; rests on D2\\newline \\pywit{algebra}{p01032}{E6}, \\leanwit{FrcCore}{p01032}{E6} \\lean{FRC.Shell.Frame.rot\\_cayley, FRC.Shell.Frame.cayley\\_inj, FRC.Shell.Frame.half\\_turn, FRC.Shell.Frame.rot\\_trivial, FRC.Shell.Frame.rot\\_neg, FRC.Shell.Frame.rot\\_smul, FRC.Shell.Frame.axis\\_param, FRC.Shell.Frame.axis\\_inj, FRC.Shell.Frame.axis\\_half, FRC.Shell.Frame.axis\\_exceptional, FRC.Shell.Frame.neg\\_inv\\_square\\_iff, FRC.Shell.Frame.root\\_pair, FRC.Shell.Frame.box\\_count}",
    "page": "1-algebra/index.html#E6",
    "witness": {
     "py": {
-     "href": "py/algebra.html#p01030",
-     "script": "algebra.py",
-     "line": 615,
+     "href": "py/algebra.html#p01032",
+     "script": "p01_algebra.py",
+     "line": 375,
      "verdict": "pass"
     },
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
-      "name": "FRC.Shell.Frame.quaternion_window",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.rot_cayley",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.quaternion_window"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_cayley"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
-      "name": "FRC.Shell.Frame.read_mul",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.cayley_inj",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.read_mul"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.cayley_inj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.half_turn",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.half_turn"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.rot_trivial",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_trivial"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.rot_neg",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_neg"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.rot_smul",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_smul"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.axis_param",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.axis_param"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.axis_inj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.axis_inj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.axis_half",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.axis_half"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.axis_exceptional",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.axis_exceptional"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.neg_inv_square_iff",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.neg_inv_square_iff"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Frame",
+      "name": "FRC.Shell.Frame.root_pair",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.root_pair"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Quaternion",
+      "name": "FRC.Shell.Frame.box_count",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.box_count"
      }
     ]
    },
-   "refs": [],
-   "text": "Continuous symmetry, the non-abelian case resolved by the window: the framed quaternions $W_H^{4}$, read in a shell $\\p>8H^{2}$, compose exactly (products land in $W_{4H^{2}}$); normalised, they are an $\\varepsilon$-net of $SO(3)$ with $\\varepsilon\\le2\\arcsin(1/H)$ (round $Hs$ to the lattice). At $H=3$, $\\p=73$: $38.9^\\circ<\\varepsilon_0$, finer than any finite subgroup; measured $30.0^\\circ$. Section sec:conclusion p01030, Quaternion{E6} FRC.Shell.Frame.quaternion_window, FRC.Shell.Frame.read_mul"
+   "refs": [
+    "p01013"
+   ],
+   "text": "One axis: $\\rho_q$ is the Cayley step of $S_v$, the half-turn at $a=0$, trivial only for scalars; $\\rho_{a+tv}=\\rho_{1+sv}$, distinct $s$ distinct; $s$ fails where $s^{2}=-N(v)^{-1}$, twice when $N(v)$ is a square, else never: $\\p-\\bigl(\\tfrac{N(v)}{\\p}\\bigr)$ rotations; window pairs $2H^{2}+2H$ up to sign. Thm. thm:axis; rests on D2 p01032, FrcCore{E6} FRC.Shell.Frame.rot_cayley, FRC.Shell.Frame.cayley_inj, FRC.Shell.Frame.half_turn, FRC.Shell.Frame.rot_trivial, FRC.Shell.Frame.rot_neg, FRC.Shell.Frame.rot_smul, FRC.Shell.Frame.axis_param, FRC.Shell.Frame.axis_inj, FRC.Shell.Frame.axis_half, FRC.Shell.Frame.axis_exceptional, FRC.Shell.Frame.neg_inv_square_iff, FRC.Shell.Frame.root_pair, FRC.Shell.Frame.box_count"
   },
   {
    "paper": "1-alg",
    "no": 1,
    "rid": "1:E7",
-   "key": "p01032",
+   "key": "p01033",
    "label": "E7",
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "The Lie-algebra layer, one axis: on a shell $\\p>8H^{2}$, for $q=a+v\\in W_H^{4}$ with $v\\ne0$, the rotation $\\rho_q\\colon x\\mapsto qxq^{-1}$ is the Cayley step (8:C3) of the self-adjoint $\\eta S_v$ (E2's $\\eta$, $S_vx=v\\times x$, $N(v)=v\\cdot v$) at $\\alpha=\\eta/(\\nu a)$, and the half-turn $U_\\infty=I+2N(v)^{-1}S_v^{2}$ at $a=0$. With $U_\\infty$ these steps form a cyclic group of order $\\p-\\bigl(\\tfrac{N(v)}{\\p}\\bigr)$ containing every iterate; at most $2H^{2}+2H$ of its elements are window rotations.",
-   "source": "Section~\\ref{sec:conclusion}; 8:C3, 8:C5\\newline \\pywit{algebra}{p01032}{E7}, \\leanwitin{FrcCore}{Quaternion}{p01032}{E7}, \\leanwit{FrcMathlib}{p01032}{E7} \\lean{FRC.Shell.Frame.rot\\_cayley, FRC.Shell.Frame.cayley\\_inj, FRC.Shell.Frame.half\\_turn, FRC.Shell.Frame.rot\\_trivial, FRC.Shell.Frame.rot\\_neg, Algebra.axis\\_group, Algebra.card\\_image\\_le\\_of\\_neg}",
+   "statement": "Two axes: $(1+u)(1+w)=(1-u\\cdot w)+(u+w+u\\times w)$; $\\rho_{1+u}\\rho_{1+w}=\\rho_{1+u\\circ w}$, $u\\circ w=(u+w+u\\times w)/(1-u\\cdot w)$; the half-turn at $u\\cdot w=1$; $uw-wu=2u\\times w$; $N(qr)=N(q)N(r)$; $q^{m}$ reads back when $2\\|q^{m}\\|_\\infty<\\p$.",
+   "source": "Prop.~\\ref{prop:twoaxes}; rests on D2, E6\\newline \\pywit{algebra}{p01033}{E7}, \\leanwit{FrcCore}{p01033}{E7}, \\leanwit{FrcMathlib}{p01033}{E7} \\lean{Algebra.readback\\_iff, FRC.Shell.Frame.compose, FRC.Shell.Frame.one\\_add\\_mul, FRC.Shell.Frame.one\\_add\\_mul\\_half, FRC.Shell.Frame.bracket, FRC.Shell.Frame.rot\\_mul, FRC.Shell.Frame.nrm\\_mul, FRC.Shell.Frame.sread\\_inj}",
    "page": "1-algebra/index.html#E7",
    "witness": {
     "py": {
-     "href": "py/algebra.html#p01032",
-     "script": "algebra.py",
-     "line": 699,
-     "verdict": "pass"
-    },
-    "lean": [
-     {
-      "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
-      "name": "FRC.Shell.Frame.rot_cayley",
-      "tier": 0,
-      "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.rot_cayley"
-     },
-     {
-      "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
-      "name": "FRC.Shell.Frame.cayley_inj",
-      "tier": 0,
-      "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.cayley_inj"
-     },
-     {
-      "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
-      "name": "FRC.Shell.Frame.half_turn",
-      "tier": 0,
-      "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.half_turn"
-     },
-     {
-      "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
-      "name": "FRC.Shell.Frame.rot_trivial",
-      "tier": 0,
-      "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.rot_trivial"
-     },
-     {
-      "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
-      "name": "FRC.Shell.Frame.rot_neg",
-      "tier": 0,
-      "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.rot_neg"
-     },
-     {
-      "lib": "FrcMathlib",
-      "module": "FrcMathlib/Algebra",
-      "name": "FRC.Algebra.axis_group",
-      "tier": 2,
-      "ok": true,
-      "page": "lean/ml/Algebra.html#FRC.Algebra.axis_group"
-     },
-     {
-      "lib": "FrcMathlib",
-      "module": "FrcMathlib/Algebra",
-      "name": "FRC.Algebra.card_image_le_of_neg",
-      "tier": 2,
-      "ok": true,
-      "page": "lean/ml/Algebra.html#FRC.Algebra.card_image_le_of_neg"
-     }
-    ]
-   },
-   "refs": [
-    "p01019",
-    "p08017",
-    "p08019"
-   ],
-   "text": "The Lie-algebra layer, one axis: on a shell $\\p>8H^{2}$, for $q=a+v\\in W_H^{4}$ with $v\\ne0$, the rotation $\\rho_q\\colon x\\mapsto qxq^{-1}$ is the Cayley step (8:C3) of the self-adjoint $\\eta S_v$ (E2's $\\eta$, $S_vx=v\\times x$, $N(v)=v\\cdot v$) at $\\alpha=\\eta/(\\nu a)$, and the half-turn $U_\\infty=I+2N(v)^{-1}S_v^{2}$ at $a=0$. With $U_\\infty$ these steps form a cyclic group of order $\\p-\\bigl(\\tfrac{N(v)}{\\p}\\bigr)$ containing every iterate; at most $2H^{2}+2H$ of its elements are window rotations. Section sec:conclusion; 8:C3, 8:C5 p01032, Quaternion{E7}, FrcMathlib{E7} FRC.Shell.Frame.rot_cayley, FRC.Shell.Frame.cayley_inj, FRC.Shell.Frame.half_turn, FRC.Shell.Frame.rot_trivial, FRC.Shell.Frame.rot_neg, Algebra.axis_group, Algebra.card_image_le_of_neg"
-  },
-  {
-   "paper": "1-alg",
-   "no": 1,
-   "rid": "1:E8",
-   "key": "p01033",
-   "label": "E8",
-   "block": "E",
-   "tag": "T",
-   "name": null,
-   "statement": "The Lie-algebra layer, two axes and range: for pure quaternions $u,w$ with $1+N(u)$, $1+N(w)$ and $1-u\\cdot w$ nonzero, $\\rho_{1+u}\\rho_{1+w}=\\rho_{1+u\\circ w}$ with $u\\circ w=(u+w+u\\times w)/(1-u\\cdot w)$, the bracket being $[u,w]=2u\\times w$; at $u\\cdot w=1$ the product is the half-turn about $u+w+u\\times w$. The entries of $q^{m}$, $q\\in W_H^{4}$, are at most $(2H)^{m}$, and $q^{m}$ reads back from the shell iff $2\\|q^{m}\\|_\\infty<\\p$ (D2).",
-   "source": "Section~\\ref{sec:conclusion}; D2\\newline \\pywit{algebra}{p01033}{E8}, \\leanwitin{FrcCore}{Quaternion}{p01033}{E8}, \\leanwit{FrcMathlib}{p01033}{E8} \\lean{FRC.Shell.Frame.compose, FRC.Shell.Frame.one\\_add\\_mul, FRC.Shell.Frame.one\\_add\\_mul\\_half, FRC.Shell.Frame.bracket, FRC.Shell.Frame.rot\\_mul, FRC.Shell.Frame.nrm\\_mul, Algebra.quat\\_pow\\_height, Algebra.readback\\_iff}",
-   "page": "1-algebra/index.html#E8",
-   "witness": {
-    "py": {
      "href": "py/algebra.html#p01033",
-     "script": "algebra.py",
-     "line": 749,
+     "script": "p01_algebra.py",
+     "line": 420,
      "verdict": "pass"
     },
     "lean": [
      {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/Algebra",
+      "name": "FRC.Algebra.readback_iff",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Algebra.html#FRC.Algebra.readback_iff"
+     },
+     {
       "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
+      "module": "FrcCore/Theme/Quaternion",
       "name": "FRC.Shell.Frame.compose",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.compose"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.compose"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
+      "module": "FrcCore/Theme/Quaternion",
       "name": "FRC.Shell.Frame.one_add_mul",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.one_add_mul"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.one_add_mul"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
+      "module": "FrcCore/Theme/Quaternion",
       "name": "FRC.Shell.Frame.one_add_mul_half",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.one_add_mul_half"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.one_add_mul_half"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
+      "module": "FrcCore/Theme/Quaternion",
       "name": "FRC.Shell.Frame.bracket",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.bracket"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.bracket"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
+      "module": "FrcCore/Theme/Quaternion",
       "name": "FRC.Shell.Frame.rot_mul",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.rot_mul"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_mul"
      },
      {
       "lib": "FrcCore",
@@ -39129,27 +39551,20 @@
       "page": "lean/core/Theme.html#FRC.Shell.Frame.nrm_mul"
      },
      {
-      "lib": "FrcMathlib",
-      "module": "FrcMathlib/Algebra",
-      "name": "FRC.Algebra.quat_pow_height",
-      "tier": 2,
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Framed",
+      "name": "FRC.Shell.Frame.sread_inj",
+      "tier": 0,
       "ok": true,
-      "page": "lean/ml/Algebra.html#FRC.Algebra.quat_pow_height"
-     },
-     {
-      "lib": "FrcMathlib",
-      "module": "FrcMathlib/Algebra",
-      "name": "FRC.Algebra.readback_iff",
-      "tier": 2,
-      "ok": true,
-      "page": "lean/ml/Algebra.html#FRC.Algebra.readback_iff"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.sread_inj"
      }
     ]
    },
    "refs": [
-    "p01013"
+    "p01013",
+    "p01032"
    ],
-   "text": "The Lie-algebra layer, two axes and range: for pure quaternions $u,w$ with $1+N(u)$, $1+N(w)$ and $1-u\\cdot w$ nonzero, $\\rho_{1+u}\\rho_{1+w}=\\rho_{1+u\\circ w}$ with $u\\circ w=(u+w+u\\times w)/(1-u\\cdot w)$, the bracket being $[u,w]=2u\\times w$; at $u\\cdot w=1$ the product is the half-turn about $u+w+u\\times w$. The entries of $q^{m}$, $q\\in W_H^{4}$, are at most $(2H)^{m}$, and $q^{m}$ reads back from the shell iff $2\\|q^{m}\\|_\\infty<\\p$ (D2). Section sec:conclusion; D2 p01033, Quaternion{E8}, FrcMathlib{E8} FRC.Shell.Frame.compose, FRC.Shell.Frame.one_add_mul, FRC.Shell.Frame.one_add_mul_half, FRC.Shell.Frame.bracket, FRC.Shell.Frame.rot_mul, FRC.Shell.Frame.nrm_mul, Algebra.quat_pow_height, Algebra.readback_iff"
+   "text": "Two axes: $(1+u)(1+w)=(1-u\\cdot w)+(u+w+u\\times w)$; $\\rho_{1+u}\\rho_{1+w}=\\rho_{1+u\\circ w}$, $u\\circ w=(u+w+u\\times w)/(1-u\\cdot w)$; the half-turn at $u\\cdot w=1$; $uw-wu=2u\\times w$; $N(qr)=N(q)N(r)$; $q^{m}$ reads back when $2\\|q^{m}\\|_\\infty<\\p$. Prop. prop:twoaxes; rests on D2, E6 p01033, FrcCore{E7}, FrcMathlib{E7} Algebra.readback_iff, FRC.Shell.Frame.compose, FRC.Shell.Frame.one_add_mul, FRC.Shell.Frame.one_add_mul_half, FRC.Shell.Frame.bracket, FRC.Shell.Frame.rot_mul, FRC.Shell.Frame.nrm_mul, FRC.Shell.Frame.sread_inj"
   },
   {
    "paper": "1-alg",
@@ -39160,14 +39575,14 @@
    "block": "Z",
    "tag": "T",
    "name": null,
-   "statement": "No element of additive order two (Thm.~\\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\\kap=(\\p-1)/2$ and $2\\kap+1=(\\p+1)/2=2^{-1}$ (20-rh B8).",
-   "source": "\\pywit{algebra}{p01020}{Z1}, \\leanwit{FrcCore}{p01020}{Z1}, \\leanwit{FrcMathlib}{p01020}{Z1} \\lean{Algebra.no\\_south\\_pole, FRC.Shell.Frame.no\\_south\\_pole}",
+   "statement": "No element of additive order two: $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\\kap$ and $2\\kap+1=2^{-1}$.",
+   "source": "Thm.~\\ref{thm:south}\\newline \\pywit{algebra}{p01020}{Z1}, \\leanwit{FrcCore}{p01020}{Z1}, \\leanwit{FrcMathlib}{p01020}{Z1} \\lean{Algebra.no\\_south\\_pole, FRC.Shell.Frame.no\\_south\\_pole}",
    "page": "1-algebra/index.html#Z1",
    "witness": {
     "py": {
      "href": "py/algebra.html#p01020",
-     "script": "algebra.py",
-     "line": 362,
+     "script": "p01_algebra.py",
+     "line": 199,
      "verdict": "pass"
     },
     "lean": [
@@ -39190,7 +39605,7 @@
     ]
    },
    "refs": [],
-   "text": "No element of additive order two (Thm. thm:no-south-pole): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\\kap=(\\p-1)/2$ and $2\\kap+1=(\\p+1)/2=2^{-1}$ (20-rh B8). p01020, FrcCore{Z1}, FrcMathlib{Z1} Algebra.no_south_pole, FRC.Shell.Frame.no_south_pole"
+   "text": "No element of additive order two: $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\\kap$ and $2\\kap+1=2^{-1}$. Thm. thm:south p01020, FrcCore{Z1}, FrcMathlib{Z1} Algebra.no_south_pole, FRC.Shell.Frame.no_south_pole"
   },
   {
    "paper": "1-alg",
@@ -39201,8 +39616,8 @@
    "block": "Z",
    "tag": "D",
    "name": null,
-   "statement": "The antipode, charted $\\infty$: the compactification point of the framed line beyond the observer's horizon (00:C25, 00:D13); its reading as classical infinity is the chart, not a residue.",
-   "source": "Section~\\ref{sec:infinity}; 00:C25, 00:D13",
+   "statement": "The antipode: the non-residue antipodal point $\\p/2$ of the additive cycle, drawn as the South Pole of the orbital complex; a position of the drawing, not an element of the shell.",
+   "source": "Def.~\\ref{def:antipode}",
    "page": "1-algebra/index.html#Z2",
    "witness": {
     "py": null,
@@ -39212,7 +39627,7 @@
     "p00139",
     "p00140"
    ],
-   "text": "The antipode, charted $\\infty$: the compactification point of the framed line beyond the observer's horizon (00:C25, 00:D13); its reading as classical infinity is the chart, not a residue. Section sec:infinity; 00:C25, 00:D13"
+   "text": "The antipode: the non-residue antipodal point $\\p/2$ of the additive cycle, drawn as the South Pole of the orbital complex; a position of the drawing, not an element of the shell. Def. def:antipode"
   },
   {
    "paper": "1-alg",
@@ -39223,14 +39638,14 @@
    "block": "Z",
    "tag": "T",
    "name": null,
-   "statement": "No latitude on the equator (Thm.~\\ref{thm:no-equator}): $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle ($\\p/4$, $\\p/2$, $3\\p/4$) has value $0$, and none of the window sits there; the equator, depth $\\kap+\\tfrac14$, lies strictly between $L_\\kap$ and $L_{\\kap+1}$, with $\\kap\\equiv-4^{-1}$, $\\kap+1\\equiv3\\cdot4^{-1}$; no latitude is the equator [chart: $L_a$ drawn at colatitude $2\\pi a/\\p$].",
-   "source": "\\pywit{algebra}{p01034}{Z3}, \\leanwit{FrcCore}{p01034}{Z3}, \\leanwit{FrcMathlib}{p01034}{Z3} \\lean{Algebra.no\\_equator, Algebra.quarter\\_position, Algebra.quarter\\_position\\_window, Algebra.equator\\_between, FRC.Shell.Frame.no\\_equator, FRC.Shell.Frame.quarter\\_fold, FRC.Shell.Frame.quarter\\_position, FRC.Shell.Frame.equator\\_between}",
+   "statement": "No latitude on the equator: $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle has value $0$, and none of the window sits there; the equator, depth $\\kap+\\tfrac14$, lies strictly between the latitudes $\\kap$ and $\\kap+1$.",
+   "source": "Thm.~\\ref{thm:equator}\\newline \\pywit{algebra}{p01034}{Z3}, \\leanwit{FrcCore}{p01034}{Z3}, \\leanwit{FrcMathlib}{p01034}{Z3} \\lean{Algebra.no\\_equator, Algebra.quarter\\_position, Algebra.quarter\\_position\\_window, Algebra.equator\\_between, FRC.Shell.Frame.no\\_equator, FRC.Shell.Frame.quarter\\_fold, FRC.Shell.Frame.quarter\\_position, FRC.Shell.Frame.equator\\_between}",
    "page": "1-algebra/index.html#Z3",
    "witness": {
     "py": {
      "href": "py/algebra.html#p01034",
-     "script": "algebra.py",
-     "line": 402,
+     "script": "p01_algebra.py",
+     "line": 218,
      "verdict": "pass"
     },
     "lean": [
@@ -39301,7 +39716,7 @@
     ]
    },
    "refs": [],
-   "text": "No latitude on the equator (Thm. thm:no-equator): $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle ($\\p/4$, $\\p/2$, $3\\p/4$) has value $0$, and none of the window sits there; the equator, depth $\\kap+\\tfrac14$, lies strictly between $L_\\kap$ and $L_{\\kap+1}$, with $\\kap\\equiv-4^{-1}$, $\\kap+1\\equiv3\\cdot4^{-1}$; no latitude is the equator [chart: $L_a$ drawn at colatitude $2\\pi a/\\p$]. p01034, FrcCore{Z3}, FrcMathlib{Z3} Algebra.no_equator, Algebra.quarter_position, Algebra.quarter_position_window, Algebra.equator_between, FRC.Shell.Frame.no_equator, FRC.Shell.Frame.quarter_fold, FRC.Shell.Frame.quarter_position, FRC.Shell.Frame.equator_between"
+   "text": "No latitude on the equator: $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle has value $0$, and none of the window sits there; the equator, depth $\\kap+\\tfrac14$, lies strictly between the latitudes $\\kap$ and $\\kap+1$. Thm. thm:equator p01034, FrcCore{Z3}, FrcMathlib{Z3} Algebra.no_equator, Algebra.quarter_position, Algebra.quarter_position_window, Algebra.equator_between, FRC.Shell.Frame.no_equator, FRC.Shell.Frame.quarter_fold, FRC.Shell.Frame.quarter_position, FRC.Shell.Frame.equator_between"
   },
   {
    "paper": "2-geom",
@@ -39320,7 +39735,7 @@
     "lean": []
    },
    "refs": [
-    "p01001",
+    "p00008",
     "p01004"
    ],
    "text": "Finite-field algebra: $\\Fpx$ is cyclic of order $\\p-1$; its generators are the $\\gen^{u}$, $u\\in\\Zp^{\\times}$; $\\gen^{(\\p-1)/2}=-1$; $-1$ is a square in $\\Fp$ iff $\\p\\equiv1\\pmod4$; the fourth roots of unity form the unique subgroup of order four (1:A1, 1:B2). Rotman; 1:A1; 1:B2"
@@ -39342,8 +39757,8 @@
     "lean": []
    },
    "refs": [
-    "p00189",
-    "p01002"
+    "p00162",
+    "p00189"
    ],
    "text": "The sign of the quarter-turn exponent: $\\im=\\gen^{-\\kap}=-\\gen^{\\kap}$, the exponent negative by pullback covariance (00:C7); the positive-exponent reading is the conjugate chart. Declared here, derived in the corpus. 00:C7; 1:A2"
   },
@@ -39383,7 +39798,7 @@
     "lean": []
    },
    "refs": [
-    "p01027"
+    "p01017"
    ],
    "text": "The framed-rational charts of 1-algebra: on one shell the scale grids $x/\\gen^{n}$, $|x|\\le2\\kap$, trade range for resolution; across shells the tower resolves every real (1:D7). 1:D7"
   },
@@ -40133,7 +40548,7 @@
     "lean": []
    },
    "refs": [
-    "p01027",
+    "p01017",
     "p02022",
     "p02023"
    ],
@@ -40387,7 +40802,7 @@
     "lean": []
    },
    "refs": [
-    "p01001"
+    "p00008"
    ],
    "text": "Finite-field algebra: $\\Fpx$ is cyclic of order $\\p-1$ with two square classes $S=(\\Fpx)^{2}$ and $N=\\Fpx\\setminus S$ of $(\\p-1)/2$ each; $-1\\in S$ for $\\p\\equiv1\\pmod4$; $X^{2}-\\nu$ is irreducible for $\\nu\\in N$ and $\\Fpq=\\Fp(\\sqrt\\nu)$; every element of $\\Fp$ is a square in $\\Fpq$. [LidlNiederreiter1997]; 1:A1"
   },
@@ -45309,7 +45724,7 @@
     "py": {
      "href": "py/spacetime.html#p00021",
      "script": "p07_spacetime.py",
-     "line": 132,
+     "line": 137,
      "verdict": "pass"
     },
     "lean": [
@@ -45365,7 +45780,7 @@
     "py": {
      "href": "py/spacetime.html#p00150",
      "script": "p07_spacetime.py",
-     "line": 141,
+     "line": 146,
      "verdict": "pass"
     },
     "lean": [
@@ -45429,7 +45844,7 @@
     "py": {
      "href": "py/spacetime.html#p03008",
      "script": "p07_spacetime.py",
-     "line": 157,
+     "line": 162,
      "verdict": "pass"
     },
     "lean": [
@@ -45488,7 +45903,7 @@
     "py": {
      "href": "py/spacetime.html#p03011",
      "script": "p07_spacetime.py",
-     "line": 157,
+     "line": 162,
      "verdict": "pass"
     },
     "lean": [
@@ -45523,7 +45938,7 @@
     "py": {
      "href": "py/spacetime.html#p03013",
      "script": "p07_spacetime.py",
-     "line": 141,
+     "line": 146,
      "verdict": "pass"
     },
     "lean": [
@@ -45590,7 +46005,7 @@
     "py": {
      "href": "py/spacetime.html#p00190",
      "script": "p07_spacetime.py",
-     "line": 166,
+     "line": 171,
      "verdict": "pass"
     },
     "lean": [
@@ -45633,7 +46048,7 @@
     "py": {
      "href": "py/spacetime.html#p38050",
      "script": "p07_spacetime.py",
-     "line": 166,
+     "line": 171,
      "verdict": "pass"
     },
     "lean": [
@@ -45716,7 +46131,7 @@
     "py": {
      "href": "py/spacetime.html#p00152",
      "script": "p07_spacetime.py",
-     "line": 174,
+     "line": 179,
      "verdict": "pass"
     },
     "lean": [
@@ -45815,7 +46230,7 @@
     "py": {
      "href": "py/spacetime.html#p00183",
      "script": "p07_spacetime.py",
-     "line": 174,
+     "line": 179,
      "verdict": "pass"
     },
     "lean": [
@@ -45882,7 +46297,7 @@
     "py": {
      "href": "py/spacetime.html#p00139",
      "script": "p07_spacetime.py",
-     "line": 184,
+     "line": 189,
      "verdict": "pass"
     },
     "lean": [
@@ -45933,7 +46348,7 @@
     "py": {
      "href": "py/spacetime.html#p00028",
      "script": "p07_spacetime.py",
-     "line": 187,
+     "line": 192,
      "verdict": "pass"
     },
     "lean": [
@@ -45992,7 +46407,7 @@
     "py": {
      "href": "py/spacetime.html#p00042",
      "script": "p07_spacetime.py",
-     "line": 258,
+     "line": 263,
      "verdict": "pass"
     },
     "lean": [
@@ -46114,7 +46529,7 @@
     "py": {
      "href": "py/spacetime.html#p38053",
      "script": "p07_spacetime.py",
-     "line": 200,
+     "line": 205,
      "verdict": "pass"
     },
     "lean": [
@@ -46176,7 +46591,7 @@
     "py": {
      "href": "py/spacetime.html#p00162",
      "script": "p07_spacetime.py",
-     "line": 206,
+     "line": 211,
      "verdict": "pass"
     },
     "lean": [
@@ -46211,7 +46626,7 @@
     "py": {
      "href": "py/spacetime.html#p38044",
      "script": "p07_spacetime.py",
-     "line": 200,
+     "line": 205,
      "verdict": "pass"
     },
     "lean": [
@@ -46254,7 +46669,7 @@
     "py": {
      "href": "py/spacetime.html#p38054",
      "script": "p07_spacetime.py",
-     "line": 200,
+     "line": 205,
      "verdict": "pass"
     },
     "lean": [
@@ -46329,7 +46744,7 @@
     "py": {
      "href": "py/spacetime.html#p38016",
      "script": "p07_spacetime.py",
-     "line": 211,
+     "line": 216,
      "verdict": "pass"
     },
     "lean": [
@@ -46393,7 +46808,7 @@
     "py": {
      "href": "py/spacetime.html#p21018",
      "script": "p07_spacetime.py",
-     "line": 215,
+     "line": 220,
      "verdict": "pass"
     },
     "lean": [
@@ -46472,21 +46887,38 @@
    "tag": "T",
    "name": null,
    "statement": "The weak-acceleration floor of registration against the drift is $a_{0}=c/T_H=cH_{0}/2\\pi$, with $T_H=2\\pi/H_{0}$ the drive period by the angle--count dictionary: $1.04\\times10^{-10}$ m\\,s$^{-2}$ at $H_{0}=67.4$ km\\,s$^{-1}$\\,Mpc$^{-1}$, against the fitted $1.20\\pm0.24\\times10^{-10}$ [chart].",
-   "source": "Prop.~\\ref{prop:temperature}(i); \\citep{akhtman2026gravity}; \\href{https://finitering.space/21-gravity/index.html#P3}{21:P3}\\newline \\pywit{spacetime}{p21052}{A31}",
+   "source": "Prop.~\\ref{prop:temperature}(i); \\citep{akhtman2026gravity}; \\href{https://finitering.space/21-gravity/index.html#P3}{21:P3}\\newline \\pywit{spacetime}{p21052}{A31}, \\leanwit{FrcCore}{p21052}{A31}, \\leanwit{FrcMathlib}{p21052}{A31} \\lean{FRC.Drift.floor\\_period, Spacetime.floor\\_value}",
    "page": "7-spacetime/index.html#A31",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p21052",
      "script": "p07_spacetime.py",
-     "line": 255,
+     "line": 260,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.floor_period",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.floor_period"
+     },
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/Spacetime",
+      "name": "FRC.Spacetime.floor_value",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Spacetime.html#FRC.Spacetime.floor_value"
+     }
+    ]
    },
    "refs": [
     "p21052"
    ],
-   "text": "The weak-acceleration floor of registration against the drift is $a_{0}=c/T_H=cH_{0}/2\\pi$, with $T_H=2\\pi/H_{0}$ the drive period by the angle–count dictionary: $1.04\\times10^{-10}$ m s$^{-2}$ at $H_{0}=67.4$ km s$^{-1}$ Mpc$^{-1}$, against the fitted $1.20\\pm0.24\\times10^{-10}$ [chart]. Prop. prop:temperature(i); [akhtman2026gravity]; 21:P3 p21052"
+   "text": "The weak-acceleration floor of registration against the drift is $a_{0}=c/T_H=cH_{0}/2\\pi$, with $T_H=2\\pi/H_{0}$ the drive period by the angle–count dictionary: $1.04\\times10^{-10}$ m s$^{-2}$ at $H_{0}=67.4$ km s$^{-1}$ Mpc$^{-1}$, against the fitted $1.20\\pm0.24\\times10^{-10}$ [chart]. Prop. prop:temperature(i); [akhtman2026gravity]; 21:P3 p21052, FrcCore{A31}, FrcMathlib{A31} FRC.Drift.floor_period, Spacetime.floor_value"
   },
   {
    "paper": "7-st",
@@ -46498,21 +46930,78 @@
    "tag": "T",
    "name": null,
    "statement": "Temperature carries the acceleration domain: $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, with $\\Theta_P=E_P/|k_B|$, and the Unruh combination $\\hbar a/2\\pi c\\,k_B$ closes as a domain identity; neither mass nor temperature is primitive.",
-   "source": "Prop.~\\ref{prop:temperature}(iii); \\citep{akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#C12}{00:C12}\\newline \\pywit{spacetime}{p00032}{A32}",
+   "source": "Prop.~\\ref{prop:temperature}(iii); \\citep{akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#C12}{00:C12}\\newline \\pywit{spacetime}{p00032}{A32}, \\leanwit{FrcCore}{p00032}{A32} \\lean{FRC.Domain.Lift.temp\\_eq\\_accel, FRC.Domain.Lift.temp\\_flag\\_free, FRC.Domain.Lift.unruh\\_closes, FRC.Domain.Lift.not\\_primitive, FRC.Domain.Lift.classical\\_exponents, FRC.Domain.Lift.classical\\_arity, FRC.Domain.Lift.modular\\_shadow}",
    "page": "7-spacetime/index.html#A32",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p00032",
      "script": "p07_spacetime.py",
-     "line": 246,
+     "line": 251,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Domain",
+      "name": "FRC.Domain.Lift.temp_eq_accel",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Domain.Lift.temp_eq_accel"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Domain",
+      "name": "FRC.Domain.Lift.temp_flag_free",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Domain.Lift.temp_flag_free"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Domain",
+      "name": "FRC.Domain.Lift.unruh_closes",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Domain.Lift.unruh_closes"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Domain",
+      "name": "FRC.Domain.Lift.not_primitive",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Domain.Lift.not_primitive"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Domain",
+      "name": "FRC.Domain.Lift.classical_exponents",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Domain.Lift.classical_exponents"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Domain",
+      "name": "FRC.Domain.Lift.classical_arity",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Domain.Lift.classical_arity"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Domain",
+      "name": "FRC.Domain.Lift.modular_shadow",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Domain.Lift.modular_shadow"
+     }
+    ]
    },
    "refs": [
     "p00032"
    ],
-   "text": "Temperature carries the acceleration domain: $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, with $\\Theta_P=E_P/|k_B|$, and the Unruh combination $\\hbar a/2\\pi c k_B$ closes as a domain identity; neither mass nor temperature is primitive. Prop. prop:temperature(iii); [akhtman2026dimensions]; 00:C12 p00032"
+   "text": "Temperature carries the acceleration domain: $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, with $\\Theta_P=E_P/|k_B|$, and the Unruh combination $\\hbar a/2\\pi c k_B$ closes as a domain identity; neither mass nor temperature is primitive. Prop. prop:temperature(iii); [akhtman2026dimensions]; 00:C12 p00032, FrcCore{A32} FRC.Domain.Lift.temp_eq_accel, FRC.Domain.Lift.temp_flag_free, FRC.Domain.Lift.unruh_closes, FRC.Domain.Lift.not_primitive, FRC.Domain.Lift.classical_exponents, FRC.Domain.Lift.classical_arity, FRC.Domain.Lift.modular_shadow"
   },
   {
    "paper": "7-st",
@@ -46524,21 +47013,30 @@
    "tag": "T",
    "name": null,
    "statement": "On a Carrier of even capacity $\\dS$ ($\\Om\\equiv1\\pmod 8$) the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in the capacity: $G=2\\dS=-c^{2}$, $2c^{2}\\equiv1$, $\\hbar^{2}\\equiv-1$ and $k_B^{2}\\equiv-2\\pmod\\Om$, with $|k_B|=\\hbar/c$; $G$ is exact and the rest hold up to sign.",
-   "source": "Prop.~\\ref{prop:drift}(vi); \\citep{akhtman2025algebra,akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#B7}{00:B7}\\newline \\pywit{spacetime}{p00165}{A33}",
+   "source": "Prop.~\\ref{prop:drift}(vi); \\citep{akhtman2025algebra,akhtman2026dimensions}; \\href{https://finitering.space/ledger.html#B7}{00:B7}\\newline \\pywit{spacetime}{p00165}{A33}, \\leanwit{FrcCore}{p00165}{A33} \\lean{FRC.Carrier.register}",
    "page": "7-spacetime/index.html#A33",
    "witness": {
     "py": {
      "href": "py/spacetime.html#p00165",
      "script": "p07_spacetime.py",
-     "line": 239,
+     "line": 244,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Carrier",
+      "name": "FRC.Carrier.register",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Carrier.register"
+     }
+    ]
    },
    "refs": [
     "p00165"
    ],
-   "text": "On a Carrier of even capacity $\\dS$ ($\\Om\\equiv1\\pmod 8$) the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in the capacity: $G=2\\dS=-c^{2}$, $2c^{2}\\equiv1$, $\\hbar^{2}\\equiv-1$ and $k_B^{2}\\equiv-2\\pmod\\Om$, with $|k_B|=\\hbar/c$; $G$ is exact and the rest hold up to sign. Prop. prop:drift(vi); [akhtman2025algebra,akhtman2026dimensions]; 00:B7 p00165"
+   "text": "On a Carrier of even capacity $\\dS$ ($\\Om\\equiv1\\pmod 8$) the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in the capacity: $G=2\\dS=-c^{2}$, $2c^{2}\\equiv1$, $\\hbar^{2}\\equiv-1$ and $k_B^{2}\\equiv-2\\pmod\\Om$, with $|k_B|=\\hbar/c$; $G$ is exact and the rest hold up to sign. Prop. prop:drift(vi); [akhtman2025algebra,akhtman2026dimensions]; 00:B7 p00165, FrcCore{A33} FRC.Carrier.register"
   },
   {
    "paper": "7-st",
@@ -46575,7 +47073,7 @@
     "py": {
      "href": "py/spacetime.html#p07003",
      "script": "p07_spacetime.py",
-     "line": 288,
+     "line": 293,
      "verdict": "pass"
     },
     "lean": [
@@ -46670,7 +47168,7 @@
     "py": {
      "href": "py/spacetime.html#p07042",
      "script": "p07_spacetime.py",
-     "line": 301,
+     "line": 306,
      "verdict": "pass"
     },
     "lean": [
@@ -46722,7 +47220,7 @@
     "py": {
      "href": "py/spacetime.html#p07049",
      "script": "p07_spacetime.py",
-     "line": 315,
+     "line": 320,
      "verdict": "pass"
     },
     "lean": [
@@ -46768,7 +47266,7 @@
     "py": {
      "href": "py/spacetime.html#p07050",
      "script": "p07_spacetime.py",
-     "line": 274,
+     "line": 279,
      "verdict": "pass"
     },
     "lean": [
@@ -46820,7 +47318,7 @@
     "py": {
      "href": "py/spacetime.html#p07005",
      "script": "p07_spacetime.py",
-     "line": 331,
+     "line": 336,
      "verdict": "pass"
     },
     "lean": [
@@ -46873,7 +47371,7 @@
     "py": {
      "href": "py/spacetime.html#p07006",
      "script": "p07_spacetime.py",
-     "line": 336,
+     "line": 341,
      "verdict": "pass"
     },
     "lean": [
@@ -46932,7 +47430,7 @@
     "py": {
      "href": "py/spacetime.html#p07007",
      "script": "p07_spacetime.py",
-     "line": 347,
+     "line": 352,
      "verdict": "pass"
     },
     "lean": [
@@ -46973,7 +47471,7 @@
     "py": {
      "href": "py/spacetime.html#p07008",
      "script": "p07_spacetime.py",
-     "line": 347,
+     "line": 352,
      "verdict": "pass"
     },
     "lean": [
@@ -47038,7 +47536,7 @@
     "py": {
      "href": "py/spacetime.html#p07009",
      "script": "p07_spacetime.py",
-     "line": 358,
+     "line": 363,
      "verdict": "pass"
     },
     "lean": [
@@ -47091,7 +47589,7 @@
     "py": {
      "href": "py/spacetime.html#p07010",
      "script": "p07_spacetime.py",
-     "line": 365,
+     "line": 370,
      "verdict": "pass"
     },
     "lean": [
@@ -47136,7 +47634,7 @@
     "py": {
      "href": "py/spacetime.html#p07031",
      "script": "p07_spacetime.py",
-     "line": 375,
+     "line": 380,
      "verdict": "pass"
     },
     "lean": [
@@ -47187,7 +47685,7 @@
     "py": {
      "href": "py/spacetime.html#p07032",
      "script": "p07_spacetime.py",
-     "line": 385,
+     "line": 390,
      "verdict": "pass"
     },
     "lean": [
@@ -47222,7 +47720,7 @@
     "py": {
      "href": "py/spacetime.html#p07040",
      "script": "p07_spacetime.py",
-     "line": 395,
+     "line": 400,
      "verdict": "pass"
     },
     "lean": [
@@ -47287,7 +47785,7 @@
     "py": {
      "href": "py/spacetime.html#p07051",
      "script": "p07_spacetime.py",
-     "line": 413,
+     "line": 418,
      "verdict": "pass"
     },
     "lean": [
@@ -47336,7 +47834,7 @@
     "py": {
      "href": "py/spacetime.html#p07011",
      "script": "p07_spacetime.py",
-     "line": 423,
+     "line": 428,
      "verdict": "pass"
     },
     "lean": [
@@ -47387,7 +47885,7 @@
     "py": {
      "href": "py/spacetime.html#p07013",
      "script": "p07_spacetime.py",
-     "line": 431,
+     "line": 436,
      "verdict": "pass"
     },
     "lean": [
@@ -47446,7 +47944,7 @@
     "py": {
      "href": "py/spacetime.html#p07014",
      "script": "p07_spacetime.py",
-     "line": 438,
+     "line": 443,
      "verdict": "pass"
     },
     "lean": [
@@ -47489,7 +47987,7 @@
     "py": {
      "href": "py/spacetime.html#p07015",
      "script": "p07_spacetime.py",
-     "line": 445,
+     "line": 450,
      "verdict": "pass"
     },
     "lean": [
@@ -47524,7 +48022,7 @@
     "py": {
      "href": "py/spacetime.html#p07033",
      "script": "p07_spacetime.py",
-     "line": 456,
+     "line": 461,
      "verdict": "pass"
     },
     "lean": [
@@ -47602,7 +48100,7 @@
     "py": {
      "href": "py/spacetime.html#p07044",
      "script": "p07_spacetime.py",
-     "line": 466,
+     "line": 471,
      "verdict": "pass"
     },
     "lean": [
@@ -47670,7 +48168,7 @@
     "py": {
      "href": "py/spacetime.html#p07046",
      "script": "p07_spacetime.py",
-     "line": 474,
+     "line": 479,
      "verdict": "pass"
     },
     "lean": [
@@ -47730,7 +48228,7 @@
     "py": {
      "href": "py/spacetime.html#p07047",
      "script": "p07_spacetime.py",
-     "line": 489,
+     "line": 494,
      "verdict": "pass"
     },
     "lean": [
@@ -47824,7 +48322,7 @@
     "py": {
      "href": "py/spacetime.html#p07052",
      "script": "p07_spacetime.py",
-     "line": 510,
+     "line": 515,
      "verdict": "pass"
     },
     "lean": [
@@ -47917,7 +48415,7 @@
     "py": {
      "href": "py/spacetime.html#p07026",
      "script": "p07_spacetime.py",
-     "line": 529,
+     "line": 534,
      "verdict": "pass"
     },
     "lean": [
@@ -47967,7 +48465,7 @@
     "py": {
      "href": "py/spacetime.html#p07054",
      "script": "p07_spacetime.py",
-     "line": 546,
+     "line": 550,
      "verdict": "pass"
     },
     "lean": [
@@ -48013,7 +48511,7 @@
     "py": {
      "href": "py/spacetime.html#p07020",
      "script": "p07_spacetime.py",
-     "line": 358,
+     "line": 363,
      "verdict": "pass"
     },
     "lean": [
@@ -48059,7 +48557,7 @@
     "py": {
      "href": "py/spacetime.html#p07021",
      "script": "p07_spacetime.py",
-     "line": 395,
+     "line": 400,
      "verdict": "pass"
     },
     "lean": [
@@ -48133,7 +48631,7 @@
     "py": {
      "href": "py/spacetime.html#p07023",
      "script": "p07_spacetime.py",
-     "line": 336,
+     "line": 341,
      "verdict": "pass"
     },
     "lean": [
@@ -48179,7 +48677,7 @@
     "py": {
      "href": "py/spacetime.html#p07024",
      "script": "p07_spacetime.py",
-     "line": 365,
+     "line": 370,
      "verdict": "pass"
     },
     "lean": [
@@ -48216,7 +48714,7 @@
     "py": {
      "href": "py/spacetime.html#p07048",
      "script": "p07_spacetime.py",
-     "line": 474,
+     "line": 479,
      "verdict": "pass"
     },
     "lean": [
@@ -61572,7 +62070,7 @@
    "tag": "T",
    "name": null,
    "statement": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the measured $H_0=67.4$ \\citep{planck}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle \\citep{dimensions}, the one-cycle-per-period threshold a realisation with its discrete falsifier.",
-   "source": "Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21052}{P3}, \\leanwit{FrcMathlib}{p21052}{P3}; rests on A8, C16, 14:C8, 00:L1 \\lean{Gravity.floor\\_value}",
+   "source": "Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21052}{P3}, \\leanwit{FrcCore}{p21052}{P3}, \\leanwit{FrcMathlib}{p21052}{P3}; rests on A8, C16, 14:C8, 00:L1 \\lean{FRC.Drift.floor\\_period, Gravity.floor\\_value}",
    "page": "21-gravity/index.html#P3",
    "witness": {
     "py": {
@@ -61582,6 +62080,14 @@
      "verdict": "pass"
     },
     "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.floor_period",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.floor_period"
+     },
      {
       "lib": "FrcMathlib",
       "module": "FrcMathlib/Gravity",
@@ -61598,7 +62104,7 @@
     "p21008",
     "p21031"
    ],
-   "text": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10} \\mathrm{m s^{-2}}$ at the measured $H_0=67.4$ [planck], against the fitted $1.20\\pm0.24\\times10^{-10}$: $13%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle [dimensions], the one-cycle-per-period threshold a realisation with its discrete falsifier. Prop. prop:afloor p21052, FrcMathlib{P3}; rests on A8, C16, 14:C8, 00:L1 Gravity.floor_value"
+   "text": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10} \\mathrm{m s^{-2}}$ at the measured $H_0=67.4$ [planck], against the fitted $1.20\\pm0.24\\times10^{-10}$: $13%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle [dimensions], the one-cycle-per-period threshold a realisation with its discrete falsifier. Prop. prop:afloor p21052, FrcCore{P3}, FrcMathlib{P3}; rests on A8, C16, 14:C8, 00:L1 FRC.Drift.floor_period, Gravity.floor_value"
   },
   {
    "paper": "21-grav",

@@ -2595,7 +2595,7 @@ variable {p : Nat} [Pos p]
 
 namespace Prime
 
-/-- 7:A23, Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero
+/-- 1:A2, 7:A23, Completeness is primality, in the ideal form (A10): for `p ≥ 2`, every ideal of the shell that holds a nonzero
 residue holds every residue iff `p` is prime. An ideal `I` holds `0` and is closed under addition and under
 multiplication by any residue. Forward, a nonzero `a ∈ I` has the inverse `a^{p−2}` (Fermat), so `1 ∈ I` and then
 `x = x · 1 ∈ I`. Backward, the annihilator `{x : x b = 0}` of `b` is an ideal, so `a b = 0` with `a ≠ 0` puts `1` in
@@ -2632,7 +2632,7 @@ theorem pow_mod_eq_one (hp : FRC.Nat.isPrime p) {z : Shell p} (hz : z ≠ 0) {d 
 
 /-! ## The quarter-turn criterion: `−1` is a square iff `p ≡ 1 (mod 4)` -/
 
-/-- The quarter-turn criterion on a prime `p > 2`: `x² = −1` is solvable iff `p ≡ 1 (mod 4)`. Forward, `ħ⁴ = 1`
+/-- 1:A3, the quarter-turn criterion on a prime `p > 2`: `x² = −1` is solvable iff `p ≡ 1 (mod 4)`. Forward, `ħ⁴ = 1`
 and `ħ^{(p−1) mod 4} = 1` leave only `(p − 1) mod 4 = 0`; backward, the chart. -/
 theorem quarter_turn_iff (hp : FRC.Nat.isPrime p) (h2 : 2 < p) : (∃ h : Shell p, h * h = -1) ↔ p % 4 = 1 := by
   constructor
@@ -3052,7 +3052,7 @@ theorem c_exists_iff (hp : FRC.Nat.isPrime Ω) {S : Nat} (hS : Ω = 4 * S + 1) :
     (∃ c : Shell Ω, c * c = csq Ω S) ↔ S % 2 = 0 :=
   half_square_iff hp hS
 
-/-- **B7 (p00165), the register in `S` alone**, on the chart `Ω = 4S + 1`, `Ω` prime, without a generator:
+/-- 00:B7 (p00165), 7:A33 — **the register in `S` alone**, on the chart `Ω = 4S + 1`, `Ω` prime, without a generator:
 `c² := 2S + 1` (`csq`) is `2⁻¹`; `G := 2S` (`grav`) is `−c²`, `2G = −1`, and `G` is the only solution (exact);
 `ħ² = −1` has a solution; `c` exists iff `S` is even; `k_B c = ħ` forces `k_B² = −2`; a square fixes its root up to
 sign; `h := −ħ` is a second, distinct root of `−1`. -/

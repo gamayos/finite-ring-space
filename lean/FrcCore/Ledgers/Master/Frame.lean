@@ -1,4 +1,4 @@
-import FrcCore.Keys.Frame
+import FrcCore.Keys.Domain
 
 /-!
 # FrcCore.Ledgers.Master.Frame — the certificate of the master's block C, core (ledger migration, task LM22)
