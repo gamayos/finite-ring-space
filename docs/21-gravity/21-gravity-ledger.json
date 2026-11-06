@@ -133,6 +133,13 @@
      "tag": "R",
      "source": "Prop.~\\ref{prop:crossover}",
      "key": "p32015"
+    },
+    {
+     "label": "B10",
+     "predicate": "One drift rate for every observer: every Subject's chronon is one step of the Carrier's phase cycle $C_{4S}$, so the registered rate of the drive is the Hubble rate for every observer; the arithmetic defines no rate between two Subjects, the drive being each Subject's own (A1). Falsifier: a floor that differs between observers at one epoch, at fixed $\\Omega$.",
+     "tag": "R",
+     "source": "Prop.~\\ref{prop:afloor}",
+     "key": "p21069"
     }
    ]
   },

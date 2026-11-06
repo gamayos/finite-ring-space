@@ -2120,18 +2120,18 @@
    "label": "G20",
    "name": "Superconductivity (duality)",
    "block": "G",
-   "key": "p00089",
+   "key": "p00202",
    "tag": "T",
    "sources": [],
    "witness": null,
    "refs": [],
-   "statement": "\\textbf{Superconductivity} (duality): the electric--magnetic duality is the $Q_4$ quarter-turn on the charge-flux lattice (charge$\\leftrightarrow$flux, Josephson$\\leftrightarrow$phase-slip), predicting an Airy vortex-core spectrum and a quantum current standard whose metrology triangle closes on $q_c^2=4$."
+   "statement": "\\textbf{Superconductivity} (duality): the electric--magnetic duality is the $Q_4$ quarter-turn on the charge-flux lattice (charge$\\leftrightarrow$flux, Josephson$\\leftrightarrow$phase-slip), predicting a quantum current standard whose metrology triangle closes on $q_c^2=4$."
   },
   {
    "label": "G21",
    "name": "Superconductivity (scale)",
    "block": "G",
-   "key": "p00090",
+   "key": "p00203",
    "tag": "Ω",
    "sources": [],
    "witness": null,
@@ -2146,10 +2146,10 @@
     },
     {
      "label": "G20",
-     "key": "p00089"
+     "key": "p00202"
     }
    ],
-   "statement": "\\textbf{Superconductivity} (scale): the absolute transition scale ($T_c\\propto\\omega_D$, the gap and vortex tension in physical units) is $\\Om$-hard, the family of $\\Lambda_{\\mathrm{QCD}}$ (G6) and $v$ (G3). Value tagged: the absolute $T_c$ (with $\\omega_D$), in no embedded reader's window --- the failing computation is the physical unit of the shell-exact ratios. Relations, $\\Om$-blind: the ratios and the Airy law of G20."
+   "statement": "\\textbf{Superconductivity} (scale): the absolute transition scale ($T_c\\propto\\omega_D$, the gap and vortex tension in physical units) is $\\Om$-hard, the family of $\\Lambda_{\\mathrm{QCD}}$ (G6) and $v$ (G3). Value tagged: the absolute $T_c$ (with $\\omega_D$), in no embedded reader's window --- the failing computation is the physical unit of the shell-exact ratios. Relations, $\\Om$-blind: the ratios and the charge--flux dictionary of G20."
   },
   {
    "label": "L1",

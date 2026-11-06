@@ -59,7 +59,7 @@
    "label": "X6",
    "key": "p07048",
    "tag": "T",
-   "predicate": "Why causality has an arrow: every embedded shell drifts at one rate, its chart count is a one-directional count that orders its revolutions, and the time reversal is not a Lorentz move.",
+   "predicate": "Why causality has an arrow: every embedded shell's chart count is a one-directional count on a cycle of one order for every observer, it orders the shell's revolutions, and the time reversal is not a Lorentz move.",
    "source": "Cor.~\\ref{cor:explains}(v); rests on A17, B5, F1, F3, F4\\newline \\pywit{spacetime}{p07048}{X6}, \\leanwit{FrcCore}{p07048}{X6} \\lean{FRC.Lorentz.no\\_time\\_reversal, FRC.Lorentz.no\\_reflection, FRC.Lorentz.no\\_inversion, FRC.Lorentz.drift\\_one\\_directional}",
    "master": [],
    "restated": [],

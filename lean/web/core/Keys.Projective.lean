@@ -3041,7 +3041,7 @@ theorem norm_mul (ν a b c d : Shell p) :
 def boostT (_ν γ b t x : Shell p) : Shell p := γ * t + b * x
 def boostX (ν γ b t x : Shell p) : Shell p := γ * x + ν * (b * t)
 
-/-- 7:A10, 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
+/-- 7:A10, 3:C2, 8:D14 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
 theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) (t x : Shell p) :
     Q2 ν (boostT ν γ b t x) (boostX ν γ b t x) = Q2 ν t x := by
   unfold boostT boostX
@@ -3049,7 +3049,7 @@ theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) 
   unfold Q2 at this ⊢
   rw [this, h, one_mul]
 
-/-- 7:A10, 3:C2 — boosts compose as their parameters multiply in `K`:
+/-- 7:A10, 3:C2, 8:D15 — boosts compose as their parameters multiply in `K`:
 `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row. -/
 theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostT ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
@@ -3059,7 +3059,7 @@ theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 γ2 x, mul_left_comm b1 ν (b2 * t), ← mul_assoc b1 b2 t, ← mul_assoc ν (b1 * b2) t,
     add_comm (b1 * γ2 * x) (ν * (b1 * b2) * t), add_add_add_comm]
 
-/-- 7:A10, 3:C2 — the composition, the `x`-row. -/
+/-- 7:A10, 3:C2, 8:D15 — the composition, the `x`-row. -/
 theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostX ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
     boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by
@@ -3069,7 +3069,7 @@ theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 b2 x, ← mul_assoc ν (b1 * b2) x,
     add_comm (ν * (b1 * γ2 * t)) (ν * (b1 * b2) * x), add_add_add_comm]
 
-/-- 7:A10, 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
+/-- 7:A10, 3:C2, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
 theorem norm_one_mul {ν γ1 b1 γ2 b2 : Shell p} (h1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1)
     (h2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1) :
     (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) +
@@ -5657,7 +5657,7 @@ theorem p07046 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Shell.Frame.
 /-- p07047 — 7:F4. The drift is one-directional: one chronon is one step of the Carrier's chart cycle, a registered duration has at most $\p^{2}<\Om-1$ chronons, so the chart count is injective on every registrable depth and no recurrence is registrable; on a hosted Carrier the pair returns after $\mathrm{lcm}(4\kap,4\dS)$ chronons, the laboratory's period. -/
 theorem p07047 : (∀ (Om n : Nat), n < Om - (1 : Nat) → n % (Om - (1 : Nat)) = n) ∧ (∀ (p S n : Nat), p % (2 : Nat) = (1 : Nat) → p * p < (4 : Nat) * S + (1 : Nat) → n ≤ p * p → n < (4 : Nat) * S + (1 : Nat) - (1 : Nat)) ∧ ((13 : Nat) * (13 : Nat) < (232 : Nat) ∧ (173 : Nat) * (173 : Nat) < (30088 : Nat) ∧ (1549 : Nat) * (1549 : Nat) < (2408560 : Nat) ∧ (13 : Nat) * (13 : Nat) < (180 : Nat) ∧ (13 : Nat) * (13 : Nat) < (696 : Nat) ∧ (173 : Nat) * (173 : Nat) < (1293784 : Nat) ∧ (1549 : Nat) * (1549 : Nat) < (932112720 : Nat) ∧ (13 : Nat) * (13 : Nat) < (180 : Nat)) ∧ (∀ (κ S a b : Nat), (0 : Nat) < S → a * κ = b * S + (1 : Nat) → (∃ x, (4 : Nat) * κ * S = (4 : Nat) * κ * x) ∧ (∃ y, (4 : Nat) * κ * S = (4 : Nat) * S * y) ∧ ∀ (L x y : Nat), L = (4 : Nat) * κ * x → L = (4 : Nat) * S * y → ∃ z, L = (4 : Nat) * κ * S * z) ∧ (∀ (κ S n m a b : Nat), (0 : Nat) < S → a * κ = b * S + (1 : Nat) → n < S → m < S → (4 : Nat) * κ * n % ((4 : Nat) * S) = (4 : Nat) * κ * m % ((4 : Nat) * S) → n = m) ∧ (∀ (κ' S' d n m a b : Nat), (0 : Nat) < d → (0 : Nat) < S' → a * κ' = b * S' + (1 : Nat) → n < S' → m < S' → (4 : Nat) * (d * κ') * n % ((4 : Nat) * (d * S')) = (4 : Nat) * (d * κ') * m % ((4 : Nat) * (d * S')) → n = m) ∧ (((39 : Nat) * (3 : Nat) = (2 : Nat) * (58 : Nat) + (1 : Nat) ∧ (4 : Nat) * (3 : Nat) * (58 : Nat) = (696 : Nat)) ∧ ((5073 : Nat) * (43 : Nat) = (29 : Nat) * (7522 : Nat) + (1 : Nat) ∧ (4 : Nat) * (43 : Nat) * (7522 : Nat) = (1293784 : Nat)) ∧ (395203 : Nat) * (387 : Nat) = (254 : Nat) * (602140 : Nat) + (1 : Nat) ∧ (4 : Nat) * (387 : Nat) * (602140 : Nat) = (932112720 : Nat)) ∧ (3 : Nat) = (3 : Nat) * (1 : Nat) ∧ (45 : Nat) = (3 : Nat) * (15 : Nat) ∧ (1 : Nat) * (1 : Nat) = (0 : Nat) * (15 : Nat) + (1 : Nat) ∧ (4 : Nat) * (3 : Nat) * (45 : Nat) / (3 : Nat) = (180 : Nat) ∧ (13 : Nat) * (13 : Nat) < (181 : Nat) :=
   And.intro @FRC.Lorentz.drift_one_directional (And.intro @FRC.Lorentz.nesting_depth (And.intro @FRC.Lorentz.drift_instance_pairs (And.intro @FRC.Lorentz.joint_period (And.intro @FRC.Lorentz.drift_injective (And.intro @FRC.Lorentz.drift_injective_gcd (And.intro @FRC.Lorentz.drift_instance (@FRC.Lorentz.drift_instance_gcd)))))))
-/-- p07048 — 7:X6. Why causality has an arrow: every embedded shell drifts at one rate, its chart count is a one-directional count that orders its revolutions, and the time reversal is not a Lorentz move. -/
+/-- p07048 — 7:X6. Why causality has an arrow: every embedded shell's chart count is a one-directional count on a cycle of one order for every observer, it orders the shell's revolutions, and the time reversal is not a Lorentz move. -/
 theorem p07048 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Shell.Frame.Fld p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ∀ (A : FRC.Spin.M2x p ν), A.det = (1 : FRC.Extension.Ext p ν) → FRC.Lorentz.cong A (FRC.Lorentz.X (1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p)) = FRC.Lorentz.X (1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) → FRC.Lorentz.cong A (FRC.Lorentz.X (0 : FRC.Shell p) (1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p)) = FRC.Lorentz.X (0 : FRC.Shell p) (1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) → FRC.Lorentz.cong A (FRC.Lorentz.X (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (1 : FRC.Shell p)) = FRC.Lorentz.X (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (1 : FRC.Shell p) → FRC.Lorentz.cong A (FRC.Lorentz.X (0 : FRC.Shell p) (0 : FRC.Shell p) (1 : FRC.Shell p) (0 : FRC.Shell p)) = FRC.Lorentz.X (0 : FRC.Shell p) (0 : FRC.Shell p) (-1 : FRC.Shell p) (0 : FRC.Shell p) → False) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Shell.Frame.Fld p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ∀ (A : FRC.Spin.M2x p ν), A.det = (1 : FRC.Extension.Ext p ν) → FRC.Lorentz.cong A (FRC.Lorentz.X (1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p)) = FRC.Lorentz.X (1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) → FRC.Lorentz.cong A (FRC.Lorentz.X (0 : FRC.Shell p) (1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p)) = FRC.Lorentz.X (0 : FRC.Shell p) (-1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) → FRC.Lorentz.cong A (FRC.Lorentz.X (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (1 : FRC.Shell p)) = FRC.Lorentz.X (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (1 : FRC.Shell p) → FRC.Lorentz.cong A (FRC.Lorentz.X (0 : FRC.Shell p) (0 : FRC.Shell p) (1 : FRC.Shell p) (0 : FRC.Shell p)) = FRC.Lorentz.X (0 : FRC.Shell p) (0 : FRC.Shell p) (1 : FRC.Shell p) (0 : FRC.Shell p) → False) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Shell.Frame.Fld p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ∀ (A : FRC.Spin.M2x p ν), A.det = (1 : FRC.Extension.Ext p ν) → FRC.Lorentz.cong A (FRC.Lorentz.X (1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p)) = FRC.Lorentz.X (-1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) → FRC.Lorentz.cong A (FRC.Lorentz.X (0 : FRC.Shell p) (1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p)) = FRC.Lorentz.X (0 : FRC.Shell p) (-1 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) → FRC.Lorentz.cong A (FRC.Lorentz.X (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (1 : FRC.Shell p)) = FRC.Lorentz.X (0 : FRC.Shell p) (0 : FRC.Shell p) (0 : FRC.Shell p) (-1 : FRC.Shell p) → False) ∧ ∀ (Om n : Nat), n < Om - (1 : Nat) → n % (Om - (1 : Nat)) = n :=
   And.intro @FRC.Lorentz.no_time_reversal (And.intro @FRC.Lorentz.no_reflection (And.intro @FRC.Lorentz.no_inversion (@FRC.Lorentz.drift_one_directional)))
 /-- p07049 — 7:B5. The registrable depth: the Subject's register pair takes $\p^{2}$ values, the pair space of the nesting condition, and the states of a registrable duration are pairwise distinct, so a registrable duration has at most $\p^{2}$ chronons. -/

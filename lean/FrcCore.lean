@@ -24,6 +24,12 @@ import FrcCore.Theme.Exclusivity
 import FrcCore.Theme.Extension
 import FrcCore.Theme.Tally
 import FrcCore.Theme.Dirac
+import FrcCore.Theme.Plane
+import FrcCore.Theme.Hermitian
+import FrcCore.Theme.Operator
+import FrcCore.Theme.Unipotent
+import FrcCore.Theme.Spinor
+import FrcCore.Theme.Loss
 import FrcCore.Theme.Numbers
 import FrcCore.Theme.Logic
 import FrcCore.Theme.SecondOrder

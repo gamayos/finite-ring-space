@@ -59,7 +59,7 @@
    "rows": [
     {
      "label": "B1",
-     "predicate": "The shells in play and the two conjugation registers: the laboratory Subjects $\\F_{13}$ and $\\F_{173}$, the shell $\\F_5$ for the dense computations, the coordinate shell $Y$ and the coefficient field $K$; $\\im$ Frobenius-fixed, $\\w$ anti-fixed; Carrier-scale statements are transfer targets, never sites of computation.",
+     "predicate": "The shells in play and the two conjugation registers: the laboratory Subjects $\\F_{13}$ and $\\F_{173}$, with $\\F_{1549}$ where the computation allows, the coordinate shell $Y$ and the coefficient field $K$; $\\im$ Frobenius-fixed, $\\w$ anti-fixed; Carrier-scale statements are transfer targets, never sites of computation.",
      "tag": "D",
      "source": "Def.~\\ref{def:shells}",
      "key": "p08007"
@@ -68,7 +68,7 @@
      "label": "B2",
      "predicate": "The class is the datum: the nonsquares form one square class, and the Lorentzian form depends on its coefficient through that class alone.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:class-datum}; rests on A2\\newline \\pywit{dirac}{p08008}{B2}, \\leanwit{FrcMathlib}{p08008}{B2} \\lean{Dirac.class\\_datum, Dirac.form\\_class}",
+     "source": "Lem.~\\ref{lem:class-datum}; rests on A2\\newline \\pywit{dirac}{p08008}{B2}, \\leanwit{FrcCore}{p08008}{B2}, \\leanwit{FrcMathlib}{p08008}{B2} \\lean{Dirac.class\\_datum, Dirac.form\\_class, FRC.Dirac.Plane.class\\_datum, FRC.Dirac.Plane.form\\_class}",
      "key": "p08008"
     },
     {
@@ -103,7 +103,7 @@
      "label": "B7",
      "predicate": "Signature lives on $\\Fp$: the Euclidean form is hyperbolic and $Q_\\nu$ elliptic, with the zero counts of the two classes on every symmetry-complete shell below $60$; over $K$ every element of $\\Fp$ is a square and the dichotomy collapses.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:signature-record}; rests on D5\\newline \\pywit{dirac}{p08013}{B7}, \\leanwit{FrcCore}{p08013}{B7}, \\leanwit{FrcMathlib}{p08013}{B7} \\lean{Dirac.ext\\_square, FRC.Dirac.zeros5, FRC.Dirac.zeros13}",
+     "source": "Rem.~\\ref{rem:signature-record}; rests on D5\\newline \\pywit{dirac}{p08013}{B7}, \\leanwit{FrcCore}{p08013}{B7}, \\leanwit{FrcMathlib}{p08013}{B7} \\lean{Dirac.ext\\_square, FRC.Dirac.zeros13}",
      "key": "p08013"
     },
     {
@@ -130,7 +130,7 @@
      "label": "C2",
      "predicate": "The form is Hermitian and nondegenerate.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:hermitian-nondeg}\\newline \\pywit{dirac}{p08016}{C2}, \\leanwit{FrcMathlib}{p08016}{C2} \\lean{Dirac.herm\\_star, Dirac.herm\\_nondegenerate}",
+     "source": "Lem.~\\ref{lem:hermitian-nondeg}\\newline \\pywit{dirac}{p08016}{C2}, \\leanwit{FrcCore}{p08016}{C2}, \\leanwit{FrcMathlib}{p08016}{C2} \\lean{Dirac.herm\\_star, Dirac.herm\\_nondegenerate, FRC.Dirac.Hermitian.herm\\_star, FRC.Dirac.Hermitian.herm\\_nondegenerate}",
      "key": "p08016"
     },
     {
@@ -144,7 +144,7 @@
      "label": "C4",
      "predicate": "Exact Hermitian preservation: for a self-adjoint Hamiltonian and an admissible parameter the Cayley step is unitary.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:cayley-preservation}\\newline \\pywit{dirac}{p08018}{C4}, \\leanwit{FrcMathlib}{p08018}{C4} \\lean{Dirac.cayley\\_unitary}",
+     "source": "Thm.~\\ref{thm:cayley-preservation}\\newline \\pywit{dirac}{p08018}{C4}, \\leanwit{FrcCore}{p08018}{C4}, \\leanwit{FrcMathlib}{p08018}{C4} \\lean{Dirac.cayley\\_unitary, FRC.Dirac.Operator.cayley\\_unitary, FRC.Dirac.Spinor.MatE.adjoint\\_dagger, FRC.Dirac.Spinor.cayley\\_unitary\\_value}",
      "key": "p08018"
     },
     {
@@ -172,14 +172,14 @@
      "label": "C8",
      "predicate": "Translations are unitary: every translation operator preserves the Hermitian form, and its adjoint is the opposite translation.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:translation-unitary}\\newline \\pywit{dirac}{p08058}{C8}, \\leanwit{FrcMathlib}{p08058}{C8} \\lean{Dirac.herm\\_translate, Dirac.herm\\_translate\\_adjoint}",
+     "source": "Prop.~\\ref{prop:translation-unitary}\\newline \\pywit{dirac}{p08058}{C8}, \\leanwit{FrcCore}{p08058}{C8}, \\leanwit{FrcMathlib}{p08058}{C8} \\lean{Dirac.herm\\_translate, Dirac.herm\\_translate\\_adjoint, FRC.Dirac.Hermitian.herm\\_translate, FRC.Dirac.Hermitian.herm\\_translate\\_adjoint}",
      "key": "p08058"
     },
     {
      "label": "C9",
      "predicate": "The finite Laplacian of an ordered basis is self-adjoint, each of its summands being self-adjoint.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:laplacian-sa}\\newline \\pywit{dirac}{p08059}{C9}, \\leanwit{FrcMathlib}{p08059}{C9} \\lean{Dirac.herm\\_laplacian}",
+     "source": "Prop.~\\ref{prop:laplacian-sa}\\newline \\pywit{dirac}{p08059}{C9}, \\leanwit{FrcCore}{p08059}{C9}, \\leanwit{FrcMathlib}{p08059}{C9} \\lean{Dirac.herm\\_laplacian, FRC.Dirac.Hermitian.herm\\_laplacian}",
      "key": "p08059"
     },
     {
@@ -193,7 +193,7 @@
      "label": "C11",
      "predicate": "Every finite Hamiltonian is self-adjoint: the Laplacian and the potential are, and the stiffness is Frobenius-fixed.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:hamiltonian-sa}\\newline \\pywit{dirac}{p08061}{C11}, \\leanwit{FrcMathlib}{p08061}{C11} \\lean{Dirac.herm\\_hamiltonian}",
+     "source": "Cor.~\\ref{cor:hamiltonian-sa}\\newline \\pywit{dirac}{p08061}{C11}, \\leanwit{FrcCore}{p08061}{C11}, \\leanwit{FrcMathlib}{p08061}{C11} \\lean{Dirac.herm\\_hamiltonian, FRC.Dirac.Hermitian.herm\\_hamiltonian}",
      "key": "p08061"
     },
     {
@@ -207,7 +207,7 @@
      "label": "C13",
      "predicate": "Frame covariance: a change of basis by an invertible matrix intertwines, through the pullback of functions, the translations, the differences and the Laplacians of the two frames.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:frame-covariance}\\newline \\pywit{dirac}{p08063}{C13}, \\leanwit{FrcMathlib}{p08063}{C13} \\lean{Dirac.translate\\_covariance}",
+     "source": "Lem.~\\ref{lem:frame-covariance}\\newline \\pywit{dirac}{p08063}{C13}, \\leanwit{FrcCore}{p08063}{C13}, \\leanwit{FrcMathlib}{p08063}{C13} \\lean{Dirac.translate\\_covariance, FRC.Dirac.Hermitian.pullback\\_translate, FRC.Dirac.Hermitian.pullback\\_fwdDiff, FRC.Dirac.Hermitian.pullback\\_symDiff}",
      "key": "p08063"
     },
     {
@@ -221,14 +221,14 @@
      "label": "C15",
      "predicate": "Finite periodicity: every Cayley orbit is periodic, the unitary group of the finite space being finite.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:finite-periodicity}; rests on C4\\newline \\pywit{dirac}{p08065}{C15}, \\leanwit{FrcMathlib}{p08065}{C15} \\lean{Dirac.cayley\\_periodic}",
+     "source": "Cor.~\\ref{cor:finite-periodicity}; rests on C4\\newline \\pywit{dirac}{p08065}{C15}, \\leanwit{FrcCore}{p08065}{C15}, \\leanwit{FrcMathlib}{p08065}{C15} \\lean{Dirac.cayley\\_periodic, FRC.Dirac.cayley13\\_values}",
      "key": "p08065"
     },
     {
      "label": "C16",
      "predicate": "The forward step: the orientation gauge $\\alpha\\mapsto-\\alpha$ inverts every value of the Cayley map, the same $\\Z_2$ as the derived orientation; the forward parameter composes the two quarter-turns and gives the finite Crank--Nicolson form at unit stiffness.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:forward-step}\\newline \\pywit{dirac}{p08066}{C16}, \\leanwit{FrcMathlib}{p08066}{C16} \\lean{Dirac.Ext.cayley\\_gauge}",
+     "source": "Rem.~\\ref{rem:forward-step}\\newline \\pywit{dirac}{p08066}{C16}, \\leanwit{FrcCore}{p08066}{C16}, \\leanwit{FrcMathlib}{p08066}{C16} \\lean{Dirac.Ext.cayley\\_gauge, FRC.Dirac.Plane.cayley\\_gauge}",
      "key": "p08066"
     }
    ]
@@ -255,7 +255,7 @@
      "label": "D3",
      "predicate": "Dirac-to-Klein--Gordon factorization: the Dirac operator shifted by the mass, times its partner, is the spinorial Klein--Gordon operator shifted by the squared mass.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:standard-factorization}; rests on D2\\newline \\pywit{dirac}{p08023}{D3}",
+     "source": "Thm.~\\ref{thm:standard-factorization}; rests on D2\\newline \\pywit{dirac}{p08023}{D3}, \\leanwit{FrcCore}{p08023}{D3} \\lean{FRC.Dirac.Operator.dirac\\_factorisation, FRC.Dirac.Spinor.factorisation\\_value}",
      "key": "p08023"
     },
     {
@@ -283,35 +283,35 @@
      "label": "D7",
      "predicate": "The pullback intertwines the differences of the two frames: the difference along a transported basis vector of the pulled-back field is the pulled-back difference.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:difference-pullback}; rests on C13\\newline \\pywit{dirac}{p08027}{D7}, \\leanwit{FrcMathlib}{p08027}{D7} \\lean{Dirac.translate\\_covariance}",
+     "source": "Lem.~\\ref{lem:difference-pullback}; rests on C13\\newline \\pywit{dirac}{p08027}{D7}, \\leanwit{FrcCore}{p08027}{D7}, \\leanwit{FrcMathlib}{p08027}{D7} \\lean{Dirac.translate\\_covariance, FRC.Dirac.Hermitian.pullback\\_fwdDiff, FRC.Dirac.Hermitian.pullback\\_symDiff}",
      "key": "p08027"
     },
     {
      "label": "D8",
      "predicate": "Exact covariance: the transport carries solutions of the Dirac equation to solutions of the transported equation; decided on a sample field at $\\p=13$.",
      "tag": "T",
-     "source": "Cor.~\\ref{thm:boost-covariance}; rests on D16\\newline \\pywit{dirac}{p08028}{D8}",
+     "source": "Cor.~\\ref{thm:boost-covariance}; rests on D16\\newline \\pywit{dirac}{p08028}{D8}, \\leanwit{FrcCore}{p08028}{D8} \\lean{FRC.Dirac.Hermitian.pullback\\_symDiff}",
      "key": "p08028"
     },
     {
      "label": "D9",
-     "predicate": "The spinor form: under the plain conjugate transpose the gamma matrices carry mixed signs and the $\\gamma^0$-twist fails; the odd product $X=\\gamma^0\\gamma^1\\gamma^3$ is Hermitian with square $\\nu$ and makes every gamma matrix anti-self-adjoint; the symmetric Dirac operator is self-adjoint and nilpotent for the $X$-form. Decided at $\\p=5$, $13$, $173$.",
+     "predicate": "The spinor form: under the plain conjugate transpose the gamma matrices carry mixed signs and the $\\gamma^0$-twist fails; the odd product $X=\\gamma^0\\gamma^1\\gamma^3$ is Hermitian with square $\\nu$ and makes every gamma matrix anti-self-adjoint; the symmetric Dirac operator is self-adjoint and nilpotent for the $X$-form. Decided at $\\p=13$, $173$ and $1549$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:spinor-form}\\newline \\pywit{dirac}{p08029}{D9}, \\leanwit{FrcCore}{p08029}{D9}, \\leanwit{FrcMathlib}{p08029}{D9} \\lean{Dirac.spinor\\_twist, Dirac.gamma\\_dagger, Dirac.twist\\_adjoint, FRC.Dirac.spinor\\_form\\_values}",
      "key": "p08029"
     },
     {
      "label": "D10",
-     "predicate": "Exact Dirac evolution: the Cayley step of the symmetric Dirac operator shifted by the mass preserves the $X$-form; massless it is unipotent with order a power of $\\p$; massive it is the norm-one phase of the mass times a unipotent, and its order is their least common multiple ($25$, $75$, $150$ at $\\p=5$).",
+     "predicate": "Exact Dirac evolution: the Cayley step of the symmetric Dirac operator shifted by the mass preserves the $X$-form; massless it is unipotent with order a power of $\\p$; massive it is the norm-one phase of the mass times a unipotent, and its order is their least common multiple ($169=\\p^{2}$, $1183$, $2366$ for $m=0,1,2$ in $1{+}1$ at $\\p=13$).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:dirac-evolution}; rests on C4, D9\\newline \\pywit{dirac}{p08030}{D10}, \\leanwit{FrcMathlib}{p08030}{D10} \\lean{Dirac.cayley\\_unitary, Dirac.translation\\_nilpotent}",
+     "source": "Thm.~\\ref{thm:dirac-evolution}; rests on C4, D9\\newline \\pywit{dirac}{p08030}{D10}, \\leanwit{FrcCore}{p08030}{D10}, \\leanwit{FrcMathlib}{p08030}{D10} \\lean{Dirac.cayley\\_unitary, Dirac.translation\\_nilpotent, FRC.Dirac.Operator.cayley\\_nilpotent\\_shift, FRC.Dirac.Operator.nilpotent\\_of\\_eq\\_mul, FRC.Dirac.Operator.opow\\_of\\_nilpotent\\_shift, FRC.Dirac.Spinor.MatE.adjoint\\_twist, FRC.Dirac.Spinor.MatE.symdiff\\_nilpotent, FRC.Dirac.Spinor.translation\\_values13}",
      "key": "p08030"
     },
     {
      "label": "D11",
      "predicate": "The two Dirac operators are one covariant family: the pullback identity holds for the symmetric differences, the transport carries the symmetric operator to its transported form, and the spinor form transports by the norm of the lift: norm-one lifts preserve it, the odd coset scales it by the nonsquare class.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:two-diracs}\\newline \\pywit{dirac}{p08031}{D11}, \\leanwit{FrcMathlib}{p08031}{D11} \\lean{Dirac.lift\\_adjoint, Dirac.lift\\_transport}",
+     "source": "Prop.~\\ref{prop:two-diracs}\\newline \\pywit{dirac}{p08031}{D11}, \\leanwit{FrcCore}{p08031}{D11}, \\leanwit{FrcMathlib}{p08031}{D11} \\lean{Dirac.lift\\_adjoint, Dirac.lift\\_transport, FRC.Dirac.Spinor.lift\\_transport\\_values}",
      "key": "p08031"
     },
     {
@@ -332,14 +332,14 @@
      "label": "D14",
      "predicate": "The boost is orthogonal: $\\Lambda(x,y)$ preserves the coordinate form, by $A^2-\\nu B^2=1$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:boost-orthogonal}\\newline \\pywit{dirac}{p08067}{D14}, \\leanwit{FrcMathlib}{p08067}{D14} \\lean{Dirac.boost\\_entries, Dirac.Ext.boost\\_mem}",
+     "source": "Prop.~\\ref{prop:boost-orthogonal}\\newline \\pywit{dirac}{p08067}{D14}, \\leanwit{FrcCore}{p08067}{D14}, \\leanwit{FrcMathlib}{p08067}{D14} \\lean{Dirac.boost\\_entries, Dirac.Ext.boost\\_mem, FRC.Dirac.Plane.boost\\_entries\\_norm, FRC.Dirac.Plane.boost\\_orthogonal, FRC.Shell.Frame.boost\\_preserves}",
      "key": "p08067"
     },
     {
      "label": "D15",
      "predicate": "The boosts form a subgroup of the orthogonal group: the product of two boosts is the boost of the product in the extension, the identity and the inverse are boosts.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:boost-subgroup}\\newline \\pywit{dirac}{p08068}{D15}, \\leanwit{FrcMathlib}{p08068}{D15} \\lean{Dirac.boost\\_entries}",
+     "source": "Prop.~\\ref{prop:boost-subgroup}\\newline \\pywit{dirac}{p08068}{D15}, \\leanwit{FrcCore}{p08068}{D15}, \\leanwit{FrcMathlib}{p08068}{D15} \\lean{Dirac.boost\\_entries, FRC.Dirac.Plane.boost\\_of\\_mul, FRC.Dirac.Plane.boost\\_one, FRC.Dirac.Plane.boost\\_inv, FRC.Shell.Frame.boost\\_comp\\_t, FRC.Shell.Frame.boost\\_comp\\_x, FRC.Shell.Frame.norm\\_one\\_mul}",
      "key": "p08068"
     },
     {
@@ -353,14 +353,14 @@
      "label": "D17",
      "predicate": "The transported gamma matrices satisfy the Clifford relations, conjugation preserving anticommutators.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:transported-clifford}; rests on D2, D16\\newline \\pywit{dirac}{p08070}{D17}, \\leanwit{FrcMathlib}{p08070}{D17} \\lean{Dirac.conj\\_anticomm, Dirac.clifford}",
+     "source": "Cor.~\\ref{cor:transported-clifford}; rests on D2, D16\\newline \\pywit{dirac}{p08070}{D17}, \\leanwit{FrcCore}{p08070}{D17}, \\leanwit{FrcMathlib}{p08070}{D17} \\lean{Dirac.conj\\_anticomm, Dirac.clifford, FRC.Dirac.Operator.conj\\_anticomm, FRC.Dirac.clifford\\_values}",
      "key": "p08070"
     },
     {
      "label": "D18",
      "predicate": "The transported factorization: the transported Dirac operator shifted by the mass, times its partner, is the spinorial Klein--Gordon operator of the transported frame shifted by the squared mass; decided as matrices and on sample fields.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:transported-factorization}; rests on D3, D16, D17\\newline \\pywit{dirac}{p08071}{D18}",
+     "source": "Thm.~\\ref{thm:transported-factorization}; rests on D3, D16, D17\\newline \\pywit{dirac}{p08071}{D18}, \\leanwit{FrcCore}{p08071}{D18} \\lean{FRC.Dirac.Operator.dirac\\_factorisation, FRC.Dirac.Operator.conj\\_anticomm}",
      "key": "p08071"
     },
     {
@@ -387,14 +387,14 @@
      "label": "E2",
      "predicate": "A self-map of a finite set is bijective iff its image count is the whole count iff its loss factor is one.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:loss-factor-one}\\newline \\pywit{dirac}{p08035}{E2}, \\leanwit{FrcMathlib}{p08035}{E2} \\lean{Dirac.loss\\_factor\\_one}",
+     "source": "Prop.~\\ref{prop:loss-factor-one}\\newline \\pywit{dirac}{p08035}{E2}, \\leanwit{FrcCore}{p08035}{E2}, \\leanwit{FrcMathlib}{p08035}{E2} \\lean{Dirac.loss\\_factor\\_one, FRC.Dirac.Loss.bijective\\_iff\\_image\\_count}",
      "key": "p08035"
     },
     {
      "label": "E3",
      "predicate": "Cayley propagators have loss factor one: the Cayley step is invertible.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:cayley-loss}; rests on E2\\newline \\pywit{dirac}{p08036}{E3}, \\leanwit{FrcMathlib}{p08036}{E3} \\lean{Dirac.unit\\_loss\\_factor\\_one}",
+     "source": "Cor.~\\ref{cor:cayley-loss}; rests on E2\\newline \\pywit{dirac}{p08036}{E3}, \\leanwit{FrcCore}{p08036}{E3}, \\leanwit{FrcMathlib}{p08036}{E3} \\lean{Dirac.unit\\_loss\\_factor\\_one, FRC.Dirac.Operator.unit\\_injective, FRC.Dirac.Operator.unit\\_surjective}",
      "key": "p08036"
     },
     {
@@ -415,7 +415,7 @@
      "label": "E6",
      "predicate": "Boost transports have loss factor one: the pullback and the lift are bijective.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:boost-loss}; rests on E2\\newline \\pywit{dirac}{p08074}{E6}, \\leanwit{FrcMathlib}{p08074}{E6} \\lean{Dirac.unit\\_loss\\_factor\\_one}",
+     "source": "Cor.~\\ref{cor:boost-loss}; rests on E2\\newline \\pywit{dirac}{p08074}{E6}, \\leanwit{FrcCore}{p08074}{E6}, \\leanwit{FrcMathlib}{p08074}{E6} \\lean{Dirac.unit\\_loss\\_factor\\_one, FRC.Dirac.Operator.unit\\_injective, FRC.Dirac.Operator.unit\\_surjective}",
      "key": "p08074"
     },
     {
@@ -427,9 +427,9 @@
     },
     {
      "label": "E8",
-     "predicate": "The three cycles in dynamical roles: the kinetic period is the register's, the potential period the third cycle's, the drive runs on the drive cycle; block compositions take the least common multiple, and the mixed instance at $\\p=5$ has order $1563=(5^5+1)/2$; the general classification is posed as open.",
+     "predicate": "The three cycles in dynamical roles: the kinetic period is the register's, the potential period the third cycle's, the drive runs on the drive cycle; block compositions take the least common multiple, and the mixed instance at $\\p=13$ has order $(13^{13}+1)/2$; the general classification is posed as open.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:three-tori}; rests on D5, D10\\newline \\pywit{dirac}{p08076}{E8}",
+     "source": "Rem.~\\ref{rem:three-tori}; rests on D5, D10\\newline \\pywit{dirac}{p08076}{E8}, \\leanwit{FrcCore}{p08076}{E8} \\lean{FRC.Dirac.Spinor.mixed\\_step\\_values, FRC.Dirac.cayley13\\_values, FRC.Dirac.potential\\_orders, FRC.Dirac.sector\\_separation}",
      "key": "p08076"
     }
    ]
@@ -475,7 +475,7 @@
     },
     {
      "label": "F6",
-     "predicate": "The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\\varphi(-m)$ on the third cycle and the mass phases fill it once; the spectra meet in $\\{\\pm1\\}$; the Hamiltonian form has the two eigenvalues $\\varphi(\\pm\\im\\nu m)$, a conjugate pair. Decided at $\\p=5$, $13$.",
+     "predicate": "The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\\varphi(-m)$ on the third cycle and the mass phases fill it once; the spectra meet in $\\{\\pm1\\}$; the Hamiltonian form has the two eigenvalues $\\varphi(\\pm\\im\\nu m)$, a conjugate pair. Decided at $\\p=13$ and $173$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:two-spectra}; rests on C5, D9, D10, F3, F4\\newline \\pywit{dirac}{p08048}{F6}, \\leanwit{FrcCore}{p08048}{F6}, \\leanwit{FrcMathlib}{p08048}{F6} \\lean{Dirac.drive\\_chi, Dirac.cayley\\_nilpotent\\_shift, Dirac.Ext.cayley\\_injective, Dirac.Ext.card\\_normOneGroup, Dirac.sector\\_separation, FRC.Dirac.drive\\_eigen, FRC.Dirac.sector\\_separation, FRC.Dirac.torus\\_counts}",
      "key": "p08048"
@@ -484,7 +484,7 @@
      "label": "F7",
      "predicate": "Finite plane waves, dispersion and the mass shell: the cycle Laplacian has the closed dispersion relation on the characters; the translations admit no characters and the kinetic sector is unipotent; the static massive Dirac equation has only the zero solution, the mass being an evolution phase.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:dispersion}; rests on C5, D3, D9, D10, E4, F3\\newline \\pywit{dirac}{p08077}{F7}, \\leanwit{FrcMathlib}{p08077}{F7} \\lean{Dirac.dispersion, Dirac.translation\\_nilpotent, Dirac.cayley\\_nilpotent\\_shift}",
+     "source": "Prop.~\\ref{prop:dispersion}; rests on C5, D3, D9, D10, E4, F3\\newline \\pywit{dirac}{p08077}{F7}, \\leanwit{FrcCore}{p08077}{F7}, \\leanwit{FrcMathlib}{p08077}{F7} \\lean{Dirac.dispersion, Dirac.translation\\_nilpotent, Dirac.cayley\\_nilpotent\\_shift, FRC.Dirac.Plane.dispersion, FRC.Dirac.Operator.translation\\_nilpotent, FRC.Dirac.Spinor.MatE.translation\\_unipotent, FRC.Dirac.Operator.static\\_unique, FRC.Dirac.Spinor.translation\\_values13}",
      "key": "p08077"
     }
    ]
@@ -511,7 +511,7 @@
      "label": "X3",
      "predicate": "Mass is an evolution phase, not a kernel condition: the symmetric Dirac operator is nilpotent, the static massive equation has only the zero solution, and the mass enters as the norm-one factor of the Cayley step.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:explains}(iii); rests on D10, F7\\newline \\pywit{dirac}{p08055}{X3}, \\leanwit{FrcMathlib}{p08055}{X3} \\lean{Dirac.translation\\_nilpotent, Dirac.cayley\\_nilpotent\\_shift, Dirac.cayley\\_unitary}",
+     "source": "Cor.~\\ref{cor:explains}(iii); rests on D10, F7\\newline \\pywit{dirac}{p08055}{X3}, \\leanwit{FrcCore}{p08055}{X3}, \\leanwit{FrcMathlib}{p08055}{X3} \\lean{Dirac.translation\\_nilpotent, Dirac.cayley\\_nilpotent\\_shift, Dirac.cayley\\_unitary, FRC.Dirac.Spinor.MatE.symdiff\\_nilpotent, FRC.Dirac.Operator.static\\_unique, FRC.Dirac.Operator.cayley\\_unitary}",
      "key": "p08055"
     },
     {
@@ -622,6 +622,24 @@
     "tier": 1,
     "ok": true,
     "doc": "8:B2 — `DiracML.form_class`."
+   },
+   {
+    "name": "FRC.Dirac.Plane.class_datum",
+    "module": "FrcCore/Theme/Plane",
+    "line": 49,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:B2 — the nonsquares form one square class: the product of two nonsquares is a square, on every frame. Each is an odd power of the drive, so the product is an even power."
+   },
+   {
+    "name": "FRC.Dirac.Plane.form_class",
+    "module": "FrcCore/Theme/Plane",
+    "line": 63,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:B2 — the Lorentzian form depends on its coefficient through the class alone: for every `m`, `−(m²ν) x₀² + x₁² + x₂² + x₃² = −ν (m x₀)² + x₁² + x₂² + x₃²`, so the forms of `ν` and `m²ν` are equivalent by the rescaling `x₀ ↦ m x₀` (a polynomial identity, decided by the normaliser)."
    }
   ],
   "B3": [
@@ -667,7 +685,7 @@
    {
     "name": "FRC.Dirac.drive_nonsquare",
     "module": "FrcCore/Theme/Dirac",
-    "line": 530,
+    "line": 527,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -676,7 +694,7 @@
    {
     "name": "FRC.Dirac.inv_drive_nonsquare",
     "module": "FrcCore/Theme/Dirac",
-    "line": 546,
+    "line": 543,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -685,7 +703,7 @@
    {
     "name": "FRC.Dirac.quarter_class",
     "module": "FrcCore/Theme/Dirac",
-    "line": 59,
+    "line": 58,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -694,7 +712,7 @@
    {
     "name": "FRC.Dirac.two_class",
     "module": "FrcCore/Theme/Dirac",
-    "line": 68,
+    "line": 67,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -770,7 +788,7 @@
    {
     "name": "FRC.Dirac.nu_factorisation",
     "module": "FrcCore/Theme/Dirac",
-    "line": 102,
+    "line": 101,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -779,7 +797,7 @@
    {
     "name": "FRC.Dirac.carrier_constants",
     "module": "FrcCore/Theme/Dirac",
-    "line": 503,
+    "line": 500,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -803,7 +821,7 @@
    {
     "name": "FRC.Dirac.parity_iff",
     "module": "FrcCore/Theme/Dirac",
-    "line": 526,
+    "line": 523,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -838,7 +856,7 @@
    {
     "name": "FRC.Dirac.Ext.norm_scale",
     "module": "FrcCore/Theme/Dirac",
-    "line": 611,
+    "line": 608,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -847,7 +865,7 @@
    {
     "name": "FRC.Dirac.Ext.mul_conj",
     "module": "FrcCore/Theme/Dirac",
-    "line": 602,
+    "line": 599,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -856,7 +874,7 @@
    {
     "name": "FRC.Dirac.inv_drive_nonsquare",
     "module": "FrcCore/Theme/Dirac",
-    "line": 546,
+    "line": 543,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -878,22 +896,13 @@
     "doc": "8:B7 — `DiracML.ext_square`."
    },
    {
-    "name": "FRC.Dirac.zeros5",
-    "module": "FrcCore/Theme/Dirac",
-    "line": 256,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "8:B7 [value] — on `𝔽₅` the Euclidean form has `5³ + 5² − 5 = 145` zeros and the Lorentzian form (`ν = g = 2`) has `5³ − 5² + 5 = 105`: the hyperbolic and the elliptic form part on the base shell."
-   },
-   {
     "name": "FRC.Dirac.zeros13",
     "module": "FrcCore/Theme/Dirac",
-    "line": 259,
+    "line": 255,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:B7 [value] — on `𝔽₁₃`: `2353` and `2041` zeros (`13³ ± 13² ∓ 13`), `ν = g = 2`."
+    "doc": "8:B7 [value] — on `𝔽₁₃` the Euclidean form has `13³ + 13² − 13 = 2353` zeros and the Lorentzian form (`ν = g = 2`) has `13³ − 13² + 13 = 2041`: the hyperbolic and the elliptic form part on the base shell."
    }
   ],
   "C2": [
@@ -922,6 +931,24 @@
     "tier": 2,
     "ok": true,
     "doc": "8:C2 — `DiracML.herm_nondegenerate`."
+   },
+   {
+    "name": "FRC.Dirac.Hermitian.herm_star",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 142,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C2 — the form is Hermitian: `conj ⟨ψ, φ⟩ = ⟨φ, ψ⟩`."
+   },
+   {
+    "name": "FRC.Dirac.Hermitian.herm_nondegenerate",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 191,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C2 — the form is nondegenerate: a field orthogonal to every field vanishes at every site of the register (its conjugate against the delta field is the site's value)."
    }
   ],
   "C4": [
@@ -936,6 +963,33 @@
     "tier": 2,
     "ok": true,
     "doc": "8:C4, 8:D10, 8:X3 — `DiracML.cayley_unitary`."
+   },
+   {
+    "name": "FRC.Dirac.Operator.cayley_unitary",
+    "module": "FrcCore/Theme/Operator",
+    "line": 549,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:D10, 8:X3 — the Cayley step is unitary: for `h` symmetric (`σ h ≈ h`), `a` central with `σ a ≈ −a`, and `v` the inverse of `1 − a h`, the step `u = v (1 + a h)` satisfies `σ(u) u ≈ 1`. The adjoint of `1 − a h` is `1 + a h`, so `σ v` is the inverse of `1 + a h`; `v` commutes with `1 + a h`; and `σ(u) u = (1 − a h) σ(v) v (1 + a h) = (1 − a h) σ(v) (1 + a h) v`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.MatE.adjoint_dagger",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 122,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4 — the conjugate transpose is an anti-automorphism of the matrix ring: `(AB)† = B†A†`, `(A+B)† = A†+B†`, `1† = 1`, `(−A)† = −A†`, respecting the congruence."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.cayley_unitary_value",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 322,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4 [value] — the Cayley step `U = (1 − wH)⁻¹(1 + wH)` of `H = −Δ` on `𝔽₁₃` (`α = w`, `w̄ = −w`) is unitary, `U†U = 1` (the general statement `cayley_unitary` with `adjoint_dagger`)."
    }
   ],
   "C5": [
@@ -994,7 +1048,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 263,
+    "line": 259,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1031,11 +1085,11 @@
    {
     "name": "FRC.Dirac.cayley13_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 437,
+    "line": 434,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:C6, 8:E4, 8:E7 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w` (`c² = 7 = 2⁻¹`)."
+    "doc": "8:C6, 8:C15, 8:E4, 8:E7, 8:E8 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w` (`c² = 7 = 2⁻¹`): every Cayley orbit on the shell is periodic, here with the period `13` (C15)."
    }
   ],
   "C8": [
@@ -1064,6 +1118,24 @@
     "tier": 2,
     "ok": true,
     "doc": "8:C8 — `DiracML.herm_translate_adjoint`."
+   },
+   {
+    "name": "FRC.Dirac.Hermitian.herm_translate",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 206,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C8 — translations are unitary: `⟨T_s ψ, T_s φ⟩ = ⟨ψ, φ⟩`."
+   },
+   {
+    "name": "FRC.Dirac.Hermitian.herm_translate_adjoint",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 217,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C8 — the adjoint of a translation is the opposite translation: `⟨T_s ψ, φ⟩ = ⟨ψ, T_{p−s} φ⟩` for `s < p`."
    }
   ],
   "C9": [
@@ -1079,6 +1151,15 @@
     "tier": 2,
     "ok": true,
     "doc": "8:C9 — `DiracML.herm_laplacian`."
+   },
+   {
+    "name": "FRC.Dirac.Hermitian.herm_laplacian",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 240,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C9 — the Laplacian is self-adjoint, each of its summands being self-adjoint: `T_1` and `T_{p−1}` are adjoint to each other and the diagonal term is real."
    }
   ],
   "C11": [
@@ -1094,6 +1175,15 @@
     "tier": 2,
     "ok": true,
     "doc": "8:C11 — `DiracML.herm_hamiltonian`."
+   },
+   {
+    "name": "FRC.Dirac.Hermitian.herm_hamiltonian",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 262,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C11 — every finite Hamiltonian is self-adjoint: the Laplacian is, the potential is real, and the stiffness is Frobenius-fixed."
    }
   ],
   "C13": [
@@ -1108,6 +1198,33 @@
     "tier": 1,
     "ok": true,
     "doc": "8:C13, 8:D7 — `DiracML.translate_covariance`."
+   },
+   {
+    "name": "FRC.Dirac.Hermitian.pullback_translate",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 338,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C13, 8:D7 — the pullback intertwines the translations: `T_{Ae} (A_* ψ) = A_* (T_e ψ)` at every point."
+   },
+   {
+    "name": "FRC.Dirac.Hermitian.pullback_fwdDiff",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 345,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C13, 8:D7 — the pullback intertwines the forward differences: `∂_{Ae} (A_* ψ) = A_* (∂_e ψ)` at every point, so the transported difference operator is the difference along the transported direction."
+   },
+   {
+    "name": "FRC.Dirac.Hermitian.pullback_symDiff",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 352,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C13, 8:D7, 8:D8 — the pullback intertwines the symmetric differences: `∂^s_{Ae} (A_* ψ) = A_* (∂^s_e ψ)` at every point (the change is additive, so it sends `−e` to `−Ae`)."
    }
   ],
   "C15": [
@@ -1123,6 +1240,15 @@
     "tier": 2,
     "ok": true,
     "doc": "8:C15 — `DiracML.cayley_periodic`."
+   },
+   {
+    "name": "FRC.Dirac.cayley13_values",
+    "module": "FrcCore/Theme/Dirac",
+    "line": 434,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C6, 8:C15, 8:E4, 8:E7, 8:E8 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w` (`c² = 7 = 2⁻¹`): every Cayley orbit on the shell is periodic, here with the period `13` (C15)."
    }
   ],
   "C16": [
@@ -1138,6 +1264,15 @@
     "tier": 2,
     "ok": true,
     "doc": "8:C16 — `DiracML.Ext.cayley_gauge`."
+   },
+   {
+    "name": "FRC.Dirac.Plane.cayley_gauge",
+    "module": "FrcCore/Theme/Plane",
+    "line": 194,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C16 — the orientation gauge inverts every value of the Cayley map: `φ⁻(λ) φ(λ) = 1` when `(1 − νλ²) u = 1` (the product is `(N u)²` on the real line and `0` on the imaginary one, two polynomial identities)."
    }
   ],
   "D2": [
@@ -1170,11 +1305,31 @@
    {
     "name": "FRC.Dirac.clifford_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 342,
+    "line": 338,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:D2 [value] — the Clifford relations hold on `𝔽₁₃` (`ν = 2`, `i = 5`), `𝔽₁₇₃` (`ν = 2`, `i = 93`) and `𝔽₅` (`ν = 2`, `i = 2`)."
+    "doc": "8:D2, 8:D17 [value] — the Clifford relations hold on `𝔽₁₃` (`ν = 2`, `i = 5`), `𝔽₁₇₃` (`ν = 2`, `i = 93`) and `𝔽₁₅₄₉` (`ν = 2`, `i = 1461`)."
+   }
+  ],
+  "D3": [
+   {
+    "name": "FRC.Dirac.Operator.dirac_factorisation",
+    "module": "FrcCore/Theme/Operator",
+    "line": 762,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D3, 8:D18 — the Dirac factorisation. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other and with the gammas, the gammas anticommuting and squaring to central `η_μ`, and the mass `m` central: `(𝒟 − m)(𝒟 + m) ≈ Σ_μ η_μ ∇_μ² − m²`. The cross terms pair into anticommutators, which vanish (`sq_osum`)."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.factorisation_value",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 344,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D3 [value] — the factorisation in `0+1` on `𝔽₁₃` (`ν = 2`, `i = 5`), on the kernels of the translation-invariant operators: for `𝒟^s = ∇^s ⊗ γ⁰` and `m = 1`, `(𝒟^s − m)(𝒟^s + m) = −ν (∇^s)² ⊗ I₄ − m²`, as `dirac_factorisation` states with `η₀ = γ⁰γ⁰ = −ν`."
    }
   ],
   "D5": [
@@ -1258,7 +1413,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 263,
+    "line": 259,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1267,7 +1422,7 @@
    {
     "name": "FRC.Dirac.triality_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 477,
+    "line": 474,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1304,11 +1459,11 @@
    {
     "name": "FRC.Dirac.spin_conjugation_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 371,
+    "line": 367,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:D6, 8:D16, 8:D12 [value] — on `𝔽₁₃` (`ν = g = 2`, `x = y = 1`, `δ = −1`): `A = 10`, `B = 2`, `γ̂⁰ = 10γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 10γ¹`; on `𝔽₁₇₃` (`ν = g = 2`, `i = 93`, `δ = −1`): `A = 170`, `B = 2`, `γ̂⁰ = 170γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 170γ¹`."
+    "doc": "8:D6, 8:D16, 8:D12 [value] — on `𝔽₁₃` (`ν = g = 2`, `x = y = 1`, `δ = −1`): `A = 10`, `B = 2`, `γ̂⁰ = 10γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 10γ¹`; on `𝔽₁₇₃` (`ν = g = 2`, `i = 93`, `δ = −1`): `A = 170`, `B = 2`, `γ̂⁰ = 170γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 170γ¹`; on `𝔽₁₅₄₉` (`i = 1461`, `δ = −1`): `A = 1546`, `B = 2`."
    }
   ],
   "D7": [
@@ -1323,6 +1478,35 @@
     "tier": 1,
     "ok": true,
     "doc": "8:C13, 8:D7 — `DiracML.translate_covariance`."
+   },
+   {
+    "name": "FRC.Dirac.Hermitian.pullback_fwdDiff",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 345,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C13, 8:D7 — the pullback intertwines the forward differences: `∂_{Ae} (A_* ψ) = A_* (∂_e ψ)` at every point, so the transported difference operator is the difference along the transported direction."
+   },
+   {
+    "name": "FRC.Dirac.Hermitian.pullback_symDiff",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 352,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C13, 8:D7, 8:D8 — the pullback intertwines the symmetric differences: `∂^s_{Ae} (A_* ψ) = A_* (∂^s_e ψ)` at every point (the change is additive, so it sends `−e` to `−Ae`)."
+   }
+  ],
+  "D8": [
+   {
+    "name": "FRC.Dirac.Hermitian.pullback_symDiff",
+    "module": "FrcCore/Theme/Hermitian",
+    "line": 352,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C13, 8:D7, 8:D8 — the pullback intertwines the symmetric differences: `∂^s_{Ae} (A_* ψ) = A_* (∂^s_e ψ)` at every point (the change is additive, so it sends `−e` to `−Ae`)."
    }
   ],
   "D9": [
@@ -1368,11 +1552,11 @@
    {
     "name": "FRC.Dirac.spinor_form_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 392,
+    "line": 389,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:D9, 8:X4 [value] — the spinor form on `𝔽₅`, `𝔽₁₃` and `𝔽₁₇₃`: the `γ⁰`-twist fails and `X = γ⁰γ¹γ³` is the form the arithmetic forces."
+    "doc": "8:D9, 8:X4 [value] — the spinor form on `𝔽₁₃`, `𝔽₁₇₃` and `𝔽₁₅₄₉`: the `γ⁰`-twist fails and `X = γ⁰γ¹γ³` is the form the arithmetic forces."
    }
   ],
   "D10": [
@@ -1400,6 +1584,60 @@
     "tier": 2,
     "ok": true,
     "doc": "8:D10, 8:E7, 8:F7, 8:X3 — `DiracML.translation_nilpotent`."
+   },
+   {
+    "name": "FRC.Dirac.Operator.cayley_nilpotent_shift",
+    "module": "FrcCore/Theme/Operator",
+    "line": 568,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D10 — the Cayley step of a nilpotent shift minus a mass. With `α`, `m` central, `a = 1 + α m` a central unit of inverse `a'`, `b = 1 − α m`, and `N` nilpotent (`N^{k+1} ≈ 0`): `1 − α(N − m) = a (1 − a' α N)` is a unit, with inverse `V = geom (a' α N) (k+1) · a'`, and the step `U = V (1 + α(N − m))` differs from the scalar phase `b a'` by `N c` with `c` commuting with `N`. The massless step (`m = 0`, `b = a = a' = 1`) is `1 + N c`."
+   },
+   {
+    "name": "FRC.Dirac.Operator.nilpotent_of_eq_mul",
+    "module": "FrcCore/Theme/Operator",
+    "line": 664,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D10 — the step minus the phase is nilpotent: `(U − b a')^{k+1} ≈ 0` when `U − b a' ≈ N c`, `N c ≈ c N`, `N^{k+1} ≈ 0`. With the phase central, `U^{(k+1)} ≈ (b a')^{k+1}` follows in characteristic `p` for `k + 1 = p` (the unipotent file); the massless step has `b a' = 1`."
+   },
+   {
+    "name": "FRC.Dirac.Operator.opow_of_nilpotent_shift",
+    "module": "FrcCore/Theme/Unipotent",
+    "line": 256,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D10 — a unipotent step has order dividing `p`: `(u − 1)^p ≈ 0` gives `u^p ≈ 1`, and a phase times a unipotent, `u ≈ φ + N` with `φ` central and `N^p ≈ 0`, `N` commuting with `φ`, has `u^p ≈ φ^p`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.MatE.adjoint_twist",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 140,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:D10 — the `X`-adjoint `A ↦ X' A† X` of a unit `X` (`X X' ≈ 1`) is an adjoint too: the spinor form's adjoint is an anti-automorphism, so the Cayley step of an `X`-self-adjoint operator preserves the `X`-form (`cayley_unitary` with this adjoint)."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.MatE.symdiff_nilpotent",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 218,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D10, 8:X3 — the symmetric difference `∇^s = h (T − T⁻¹)` is nilpotent on every frame, `(∇^s)^p ≈ 0`: `(T − T⁻¹)^p ≈ T^p + (−T⁻¹)^p ≈ 1 − 1` by the Frobenius, `T⁻¹ = T^{p−1}`, and the central `h` factors out."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.translation_values13",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 314,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₃`: the translation has `T^p = 1`, `T − 1` is nilpotent, `(T − 1)^p = 0`, and the symmetric difference `∇^s = 2⁻¹(T − T⁻¹)` is nilpotent, `(∇^s)^p = 0` (the kinetic sector unipotent; the general statements `translation_nilpotent` and `series_inverse`)."
    }
   ],
   "D11": [
@@ -1428,6 +1666,15 @@
     "tier": 2,
     "ok": true,
     "doc": "8:D11 — `DiracML.lift_transport`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.lift_transport_values",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 370,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D11 [value] — the spinor form transports by the norm of the lift: `S† X S = N(z) X` for `S = x I₄ + y γ⁰γ¹`, `X = γ⁰γ¹γ³`, at `x = y = 1` (`N = 1 − ν = −1`) on `𝔽₁₃`, `𝔽₁₇₃` and `𝔽₁₅₄₉`."
    }
   ],
   "D12": [
@@ -1447,16 +1694,16 @@
    {
     "name": "FRC.Dirac.spin_conjugation_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 371,
+    "line": 367,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:D6, 8:D16, 8:D12 [value] — on `𝔽₁₃` (`ν = g = 2`, `x = y = 1`, `δ = −1`): `A = 10`, `B = 2`, `γ̂⁰ = 10γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 10γ¹`; on `𝔽₁₇₃` (`ν = g = 2`, `i = 93`, `δ = −1`): `A = 170`, `B = 2`, `γ̂⁰ = 170γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 170γ¹`."
+    "doc": "8:D6, 8:D16, 8:D12 [value] — on `𝔽₁₃` (`ν = g = 2`, `x = y = 1`, `δ = −1`): `A = 10`, `B = 2`, `γ̂⁰ = 10γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 10γ¹`; on `𝔽₁₇₃` (`ν = g = 2`, `i = 93`, `δ = −1`): `A = 170`, `B = 2`, `γ̂⁰ = 170γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 170γ¹`; on `𝔽₁₅₄₉` (`i = 1461`, `δ = −1`): `A = 1546`, `B = 2`."
    },
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 263,
+    "line": 259,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1465,7 +1712,7 @@
    {
     "name": "FRC.Dirac.shell173_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 493,
+    "line": 490,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1474,7 +1721,7 @@
    {
     "name": "FRC.Dirac.triality_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 477,
+    "line": 474,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1507,6 +1754,33 @@
     "tier": 2,
     "ok": true,
     "doc": "8:D14 — `DiracML.Ext.boost_mem`."
+   },
+   {
+    "name": "FRC.Dirac.Plane.boost_entries_norm",
+    "module": "FrcCore/Theme/Plane",
+    "line": 83,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D14 — the boost entries have `A² − νB² = 1`: `A² − νB² = (δu)²` as polynomials, and `δu = 1`."
+   },
+   {
+    "name": "FRC.Dirac.Plane.boost_orthogonal",
+    "module": "FrcCore/Theme/Plane",
+    "line": 102,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D14 — the boost is orthogonal: `Λ(x, y)` preserves the coordinate form `x² − νt²` (the extension theme's `boost_preserves` with `γ = A`, `b = B`)."
+   },
+   {
+    "name": "FRC.Shell.Frame.boost_preserves",
+    "module": "FrcCore/Theme/Extension",
+    "line": 232,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:A10, 3:C2, 8:D14 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell."
    }
   ],
   "D15": [
@@ -1522,6 +1796,60 @@
     "tier": 2,
     "ok": true,
     "doc": "8:D14, 8:D15 — `DiracML.boost_entries`."
+   },
+   {
+    "name": "FRC.Dirac.Plane.boost_of_mul",
+    "module": "FrcCore/Theme/Plane",
+    "line": 109,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D15 — the boost of the product is the product of the boosts: with `zz' = (xx' + νyy') + (xy' + yx')w` and the inverse `uu'` of `δ(zz') = δ(z)δ(z')`, `Λ(zz') = Λ(z)Λ(z')` in the extension (two polynomial identities)."
+   },
+   {
+    "name": "FRC.Dirac.Plane.boost_one",
+    "module": "FrcCore/Theme/Plane",
+    "line": 139,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D15 — the identity: `Λ(1, 0) = 1` (with the inverse `1` of `δ = 1`)."
+   },
+   {
+    "name": "FRC.Dirac.Plane.boost_inv",
+    "module": "FrcCore/Theme/Plane",
+    "line": 157,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D15 — `Λ(x, y) Λ(x, −y) = 1`: the boosts form a group under the product of the extension, with the conjugate as the inverse."
+   },
+   {
+    "name": "FRC.Shell.Frame.boost_comp_t",
+    "module": "FrcCore/Theme/Extension",
+    "line": 241,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:A10, 3:C2, 8:D15 — boosts compose as their parameters multiply in `K`: `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row."
+   },
+   {
+    "name": "FRC.Shell.Frame.boost_comp_x",
+    "module": "FrcCore/Theme/Extension",
+    "line": 250,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:A10, 3:C2, 8:D15 — the composition, the `x`-row."
+   },
+   {
+    "name": "FRC.Shell.Frame.norm_one_mul",
+    "module": "FrcCore/Theme/Extension",
+    "line": 260,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:A10, 3:C2, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
    }
   ],
   "D16": [
@@ -1541,11 +1869,11 @@
    {
     "name": "FRC.Dirac.spin_conjugation_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 371,
+    "line": 367,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:D6, 8:D16, 8:D12 [value] — on `𝔽₁₃` (`ν = g = 2`, `x = y = 1`, `δ = −1`): `A = 10`, `B = 2`, `γ̂⁰ = 10γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 10γ¹`; on `𝔽₁₇₃` (`ν = g = 2`, `i = 93`, `δ = −1`): `A = 170`, `B = 2`, `γ̂⁰ = 170γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 170γ¹`."
+    "doc": "8:D6, 8:D16, 8:D12 [value] — on `𝔽₁₃` (`ν = g = 2`, `x = y = 1`, `δ = −1`): `A = 10`, `B = 2`, `γ̂⁰ = 10γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 10γ¹`; on `𝔽₁₇₃` (`ν = g = 2`, `i = 93`, `δ = −1`): `A = 170`, `B = 2`, `γ̂⁰ = 170γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 170γ¹`; on `𝔽₁₅₄₉` (`i = 1461`, `δ = −1`): `A = 1546`, `B = 2`."
    }
   ],
   "D17": [
@@ -1572,6 +1900,44 @@
     "tier": 2,
     "ok": true,
     "doc": "8:D2, 8:D17 — `DiracML.clifford`."
+   },
+   {
+    "name": "FRC.Dirac.Operator.conj_anticomm",
+    "module": "FrcCore/Theme/Operator",
+    "line": 691,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D17, 8:D18 — conjugation by a unit preserves the anticommutator: `{S a S', S b S'} ≈ S {a, b} S'`, so the transported gammas satisfy the Clifford relations the originals do."
+   },
+   {
+    "name": "FRC.Dirac.clifford_values",
+    "module": "FrcCore/Theme/Dirac",
+    "line": 338,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D2, 8:D17 [value] — the Clifford relations hold on `𝔽₁₃` (`ν = 2`, `i = 5`), `𝔽₁₇₃` (`ν = 2`, `i = 93`) and `𝔽₁₅₄₉` (`ν = 2`, `i = 1461`)."
+   }
+  ],
+  "D18": [
+   {
+    "name": "FRC.Dirac.Operator.dirac_factorisation",
+    "module": "FrcCore/Theme/Operator",
+    "line": 762,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D3, 8:D18 — the Dirac factorisation. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other and with the gammas, the gammas anticommuting and squaring to central `η_μ`, and the mass `m` central: `(𝒟 − m)(𝒟 + m) ≈ Σ_μ η_μ ∇_μ² − m²`. The cross terms pair into anticommutators, which vanish (`sq_osum`)."
+   },
+   {
+    "name": "FRC.Dirac.Operator.conj_anticomm",
+    "module": "FrcCore/Theme/Operator",
+    "line": 691,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D17, 8:D18 — conjugation by a unit preserves the anticommutator: `{S a S', S b S'} ≈ S {a, b} S'`, so the transported gammas satisfy the Clifford relations the originals do."
    }
   ],
   "D19": [
@@ -1591,7 +1957,7 @@
    {
     "name": "FRC.Dirac.shell173_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 493,
+    "line": 490,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1600,7 +1966,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 263,
+    "line": 259,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1609,7 +1975,7 @@
    {
     "name": "FRC.Dirac.triality_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 477,
+    "line": 474,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1629,6 +1995,15 @@
     "tier": 2,
     "ok": true,
     "doc": "8:E2 — `DiracML.loss_factor_one`."
+   },
+   {
+    "name": "FRC.Dirac.Loss.bijective_iff_image_count",
+    "module": "FrcCore/Theme/Loss",
+    "line": 125,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E2 — a self-map of `[0, n)` is bijective exactly when its image count is `n` (the loss factor, the count over the image count, is one): surjectivity is the count of the hit values, and injectivity follows from surjectivity by the pigeonhole — with a collision `f i = f j`, `i ≠ j`, the `n − 1` values of `f` off `j` would still cover `[0, n)`."
    }
   ],
   "E3": [
@@ -1642,6 +2017,24 @@
     "tier": 1,
     "ok": true,
     "doc": "8:E3, 8:E6 — `DiracML.unit_loss_factor_one`."
+   },
+   {
+    "name": "FRC.Dirac.Operator.unit_injective",
+    "module": "FrcCore/Theme/Operator",
+    "line": 397,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E3, 8:E6 — a unit is injective: `u x ≈ u y → x ≈ y` when `u` has a left inverse."
+   },
+   {
+    "name": "FRC.Dirac.Operator.unit_surjective",
+    "module": "FrcCore/Theme/Operator",
+    "line": 407,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E3, 8:E6 — a unit is surjective: every `y` is `u x` when `u` has a right inverse."
    }
   ],
   "E4": [
@@ -1687,20 +2080,20 @@
    {
     "name": "FRC.Dirac.cayley13_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 437,
+    "line": 434,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:C6, 8:E4, 8:E7 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w` (`c² = 7 = 2⁻¹`)."
+    "doc": "8:C6, 8:C15, 8:E4, 8:E7, 8:E8 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w` (`c² = 7 = 2⁻¹`): every Cayley orbit on the shell is periodic, here with the period `13` (C15)."
    },
    {
     "name": "FRC.Dirac.potential_orders",
     "module": "FrcCore/Theme/Dirac",
-    "line": 466,
+    "line": 463,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:E4 [value] — the potential propagator of `V = id` has order `14 = p + 1` on `𝔽₁₃` and `174` on `𝔽₁₇₃`, the least common multiple of the phase orders, every phase of norm one."
+    "doc": "8:E4, 8:E8 [value] — the potential propagator of `V = id` has order `14 = p + 1` on `𝔽₁₃` and `174` on `𝔽₁₇₃`, the least common multiple of the phase orders, every phase of norm one."
    }
   ],
   "E5": [
@@ -1720,7 +2113,7 @@
    {
     "name": "FRC.Dirac.power_map13",
     "module": "FrcCore/Theme/Dirac",
-    "line": 486,
+    "line": 483,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1738,6 +2131,24 @@
     "tier": 1,
     "ok": true,
     "doc": "8:E3, 8:E6 — `DiracML.unit_loss_factor_one`."
+   },
+   {
+    "name": "FRC.Dirac.Operator.unit_injective",
+    "module": "FrcCore/Theme/Operator",
+    "line": 397,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E3, 8:E6 — a unit is injective: `u x ≈ u y → x ≈ y` when `u` has a left inverse."
+   },
+   {
+    "name": "FRC.Dirac.Operator.unit_surjective",
+    "module": "FrcCore/Theme/Operator",
+    "line": 407,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E3, 8:E6 — a unit is surjective: every `y` is `u x` when `u` has a right inverse."
    }
   ],
   "E7": [
@@ -1770,11 +2181,49 @@
    {
     "name": "FRC.Dirac.cayley13_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 437,
+    "line": 434,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:C6, 8:E4, 8:E7 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w` (`c² = 7 = 2⁻¹`)."
+    "doc": "8:C6, 8:C15, 8:E4, 8:E7, 8:E8 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w` (`c² = 7 = 2⁻¹`): every Cayley orbit on the shell is periodic, here with the period `13` (C15)."
+   }
+  ],
+  "E8": [
+   {
+    "name": "FRC.Dirac.Spinor.mixed_step_values",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 355,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E8 [value] — the three cycles in dynamical roles: `lcm(13, 14) = 182`, and the mixed step `U = M⁻¹P` of `H = −Δ + V_id` on `𝔽₁₃` (`M = 1 − wH`, `P = 1 + wH`, commuting) has `U^{13} ≠ 1`, `U^{14} ≠ 1`, `U^{182} ≠ 1`, since `U^k = 1` exactly when `P^k = M^k`: neither cycle, nor their least common period, is its period (the exact order `(13¹³ + 1)/2` is the package's certificate)."
+   },
+   {
+    "name": "FRC.Dirac.cayley13_values",
+    "module": "FrcCore/Theme/Dirac",
+    "line": 434,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C6, 8:C15, 8:E4, 8:E7, 8:E8 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w` (`c² = 7 = 2⁻¹`): every Cayley orbit on the shell is periodic, here with the period `13` (C15)."
+   },
+   {
+    "name": "FRC.Dirac.potential_orders",
+    "module": "FrcCore/Theme/Dirac",
+    "line": 463,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E4, 8:E8 [value] — the potential propagator of `V = id` has order `14 = p + 1` on `𝔽₁₃` and `174` on `𝔽₁₇₃`, the least common multiple of the phase orders, every phase of norm one."
+   },
+   {
+    "name": "FRC.Dirac.sector_separation",
+    "module": "FrcCore/Theme/Dirac",
+    "line": 210,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F4, 8:F6, 8:X1, 8:E8 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`, so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one cycle meets the base field in `{±1}` alone (`u² = 1 ⇒ u = ±1`): the two spectra meet in the two signs."
    }
   ],
   "F2": [
@@ -1794,7 +2243,7 @@
    {
     "name": "FRC.Dirac.ladder",
     "module": "FrcCore/Theme/Dirac",
-    "line": 128,
+    "line": 127,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1803,7 +2252,7 @@
    {
     "name": "FRC.Dirac.four_kappa",
     "module": "FrcCore/Theme/Dirac",
-    "line": 132,
+    "line": 131,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1812,7 +2261,7 @@
    {
     "name": "FRC.Dirac.terminal_latitude",
     "module": "FrcCore/Theme/Dirac",
-    "line": 152,
+    "line": 151,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1821,7 +2270,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 263,
+    "line": 259,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1884,7 +2333,7 @@
    {
     "name": "FRC.Dirac.drive_eigen",
     "module": "FrcCore/Theme/Dirac",
-    "line": 173,
+    "line": 172,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1893,7 +2342,7 @@
    {
     "name": "FRC.Dirac.exceptional_eigen",
     "module": "FrcCore/Theme/Dirac",
-    "line": 180,
+    "line": 179,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1902,7 +2351,7 @@
    {
     "name": "FRC.Dirac.isotropy",
     "module": "FrcCore/Theme/Dirac",
-    "line": 190,
+    "line": 189,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1939,11 +2388,11 @@
    {
     "name": "FRC.Dirac.sector_separation",
     "module": "FrcCore/Theme/Dirac",
-    "line": 211,
+    "line": 210,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:F4, 8:F6, 8:X1 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`, so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one cycle meets the base field in `{±1}` alone (`u² = 1 ⇒ u = ±1`): the two spectra meet in the two signs."
+    "doc": "8:F4, 8:F6, 8:X1, 8:E8 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`, so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one cycle meets the base field in `{±1}` alone (`u² = 1 ⇒ u = ±1`): the two spectra meet in the two signs."
    }
   ],
   "F6": [
@@ -2015,7 +2464,7 @@
    {
     "name": "FRC.Dirac.drive_eigen",
     "module": "FrcCore/Theme/Dirac",
-    "line": 173,
+    "line": 172,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2024,16 +2473,16 @@
    {
     "name": "FRC.Dirac.sector_separation",
     "module": "FrcCore/Theme/Dirac",
-    "line": 211,
+    "line": 210,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:F4, 8:F6, 8:X1 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`, so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one cycle meets the base field in `{±1}` alone (`u² = 1 ⇒ u = ±1`): the two spectra meet in the two signs."
+    "doc": "8:F4, 8:F6, 8:X1, 8:E8 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`, so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one cycle meets the base field in `{±1}` alone (`u² = 1 ⇒ u = ±1`): the two spectra meet in the two signs."
    },
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 263,
+    "line": 259,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2079,6 +2528,51 @@
     "tier": 2,
     "ok": true,
     "doc": "8:F6, 8:F7, 8:X3 — `DiracML.cayley_nilpotent_shift`."
+   },
+   {
+    "name": "FRC.Dirac.Plane.dispersion",
+    "module": "FrcCore/Theme/Plane",
+    "line": 171,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7 — the dispersion relation: on the drive cycle, `χ_k(j) = g^{jk}` and the cycle Laplacian `(Δχ)(j) = χ(j+1) + χ(j−1) − 2χ(j)` acts on `χ_k` as the scalar `g^k + g^{−k} − 2`: at the site `j + 1`, `χ_k(j+2) = g^k χ_k(j+1)` and `χ_k(j) = y^k χ_k(j+1)` with `y = g⁻¹` (`drive_eigen`)."
+   },
+   {
+    "name": "FRC.Dirac.Operator.translation_nilpotent",
+    "module": "FrcCore/Theme/Unipotent",
+    "line": 245,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10 — the translations are unipotent: on the frame's shell (`p = 4κ + 1`), in characteristic `p`, `t^p ≈ 1` gives `(t − 1)^p ≈ t^p + (−1)^p ≈ 1 − 1 ≈ 0` (`t` and `−1` commute; the Frobenius is additive)."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.MatE.translation_unipotent",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 212,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7 — the translations are unipotent on every frame: `(T − 1)^p ≈ 0` on the cycle of `p` sites, by `translation_nilpotent` with `T^p ≈ 1` and the characteristic."
+   },
+   {
+    "name": "FRC.Dirac.Operator.static_unique",
+    "module": "FrcCore/Theme/Operator",
+    "line": 482,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:X3, 8:F7 — the static massive equation `(N − m) ψ ≈ 0` has only the zero solution, `N − m` being a unit."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.translation_values13",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 314,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F7, 8:D10, 8:X3 [value] — on the cycle of `𝔽₁₃`: the translation has `T^p = 1`, `T − 1` is nilpotent, `(T − 1)^p = 0`, and the symmetric difference `∇^s = 2⁻¹(T − T⁻¹)` is nilpotent, `(∇^s)^p = 0` (the kinetic sector unipotent; the general statements `translation_nilpotent` and `series_inverse`)."
    }
   ],
   "X1": [
@@ -2098,11 +2592,11 @@
    {
     "name": "FRC.Dirac.sector_separation",
     "module": "FrcCore/Theme/Dirac",
-    "line": 211,
+    "line": 210,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:F4, 8:F6, 8:X1 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`, so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one cycle meets the base field in `{±1}` alone (`u² = 1 ⇒ u = ±1`): the two spectra meet in the two signs."
+    "doc": "8:F4, 8:F6, 8:X1, 8:E8 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`, so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one cycle meets the base field in `{±1}` alone (`u² = 1 ⇒ u = ±1`): the two spectra meet in the two signs."
    }
   ],
   "X2": [
@@ -2135,7 +2629,7 @@
    {
     "name": "FRC.Dirac.nu_factorisation",
     "module": "FrcCore/Theme/Dirac",
-    "line": 102,
+    "line": 101,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2144,7 +2638,7 @@
    {
     "name": "FRC.Dirac.parity_iff",
     "module": "FrcCore/Theme/Dirac",
-    "line": 526,
+    "line": 523,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2189,6 +2683,33 @@
     "tier": 2,
     "ok": true,
     "doc": "8:C4, 8:D10, 8:X3 — `DiracML.cayley_unitary`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.MatE.symdiff_nilpotent",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 218,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D10, 8:X3 — the symmetric difference `∇^s = h (T − T⁻¹)` is nilpotent on every frame, `(∇^s)^p ≈ 0`: `(T − T⁻¹)^p ≈ T^p + (−T⁻¹)^p ≈ 1 − 1` by the Frobenius, `T⁻¹ = T^{p−1}`, and the central `h` factors out."
+   },
+   {
+    "name": "FRC.Dirac.Operator.static_unique",
+    "module": "FrcCore/Theme/Operator",
+    "line": 482,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:X3, 8:F7 — the static massive equation `(N − m) ψ ≈ 0` has only the zero solution, `N − m` being a unit."
+   },
+   {
+    "name": "FRC.Dirac.Operator.cayley_unitary",
+    "module": "FrcCore/Theme/Operator",
+    "line": 549,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C4, 8:D10, 8:X3 — the Cayley step is unitary: for `h` symmetric (`σ h ≈ h`), `a` central with `σ a ≈ −a`, and `v` the inverse of `1 − a h`, the step `u = v (1 + a h)` satisfies `σ(u) u ≈ 1`. The adjoint of `1 − a h` is `1 + a h`, so `σ v` is the inverse of `1 + a h`; `v` commutes with `1 + a h`; and `σ(u) u = (1 − a h) σ(v) v (1 + a h) = (1 − a h) σ(v) (1 + a h) v`."
    }
   ],
   "X4": [
@@ -2221,11 +2742,11 @@
    {
     "name": "FRC.Dirac.spinor_form_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 392,
+    "line": 389,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:D9, 8:X4 [value] — the spinor form on `𝔽₅`, `𝔽₁₃` and `𝔽₁₇₃`: the `γ⁰`-twist fails and `X = γ⁰γ¹γ³` is the form the arithmetic forces."
+    "doc": "8:D9, 8:X4 [value] — the spinor form on `𝔽₁₃`, `𝔽₁₇₃` and `𝔽₁₅₄₉`: the `γ⁰`-twist fails and `X = γ⁰γ¹γ³` is the form the arithmetic forces."
    }
   ]
  }

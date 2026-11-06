@@ -10,8 +10,10 @@ the content), as `frc/super.py` and `frc/ledgers/master/super.py` compute it: th
 inverse pairs `(k, −k)` (`winding_pairs`, G19), the charge-`2` condensate leaves the residual `ℤ₂` on every cycle of length
 `4m` (`residual_two`, G19), the self-dual point `β* = ½ ln(1 + √2)` as a ring identity in `√2` (`self_dual_point`, G19),
 the symplectic quarter-turn on the charge–flux lattice (`symplectic_quarter_turn`, G20), the metrology closure
-`K_J R_K Q = 4` (`metrology_closure`, G20) and the even and odd Airy ladders of the vortex core by Sturm's count
-(`airy_ladder_sturm`, G20). Kernel-decided or ring-normalised throughout; no axioms (`check_core_axioms.py`).
+`K_J R_K Q = 4` (`metrology_closure`, G20) and the even and odd Airy ladders of the linear potential by Sturm's count
+(`airy_ladder_sturm`, bound to no row since 5 November 2026: the vortex-core reading was withdrawn when the published
+quantum-limit ladders excluded it, 34-super reports/vortex-ladder-20261105). Kernel-decided or ring-normalised throughout;
+no axioms (`check_core_axioms.py`).
 -/
 
 namespace FRC.Super
@@ -140,7 +142,8 @@ theorem metrology_closure {p : Nat} [Pos p] (e h E Hi t : Shell p) (he : e * E =
     rw [i, he, ht]
     exact RE.sound (look [h]) (.mul (.mul (.var 0) .one) .one) (.var 0) (by decide +kernel)
 
-/-! ## The even and odd Airy ladders of the vortex core by Sturm's count (00:G20; 34-super D1) -/
+/-! ## The even and odd Airy ladders of the linear potential by Sturm's count (no row: the vortex-core reading, 34-super's
+D1 and the Airy clause of 00:G20 under p00089, was withdrawn on 5 November 2026) -/
 
 /-- The leading principal minors of the even (Neumann) operator's integer tridiagonal on the sites `k = 0 … N`: the diagonal
 `2c + L³ k` with `c = (N + 1)³`, the squared off-diagonal `2c²` on the first link (the origin's symmetrising rescaling,
@@ -159,11 +162,12 @@ def sturmEvenAux (N L : Nat) (μ : Int) : Nat → Int × Int × Nat
 /-- Sturm's count of the even operator's eigenvalues below `μ = (N + 1) L² ε`, over its `N + 1` sites. -/
 def sturmEven (N L : Nat) (μ : Int) : Nat := (sturmEvenAux N L μ (N + 1)).2.2
 
-/-- 00:G20 — the vortex-core ladder is the Airy ladder, by Sturm's count on `N = 200` sites of `[0, 16]`: the even operator
+/-- The Airy ladder of the linear potential `−u″ + x u`, by Sturm's count on `N = 200` sites of `[0, 16]`: the even operator
 has exactly one eigenvalue in `(1.018, 1.019)` (`E₁`, the first zero of `Ai'`) and one in `(3.246, 3.247)` (`E₃`, the
 second), the odd operator (`FRC.Hadrons.sturm`) exactly one in `(2.337, 2.338)` (`E₂`, the first zero of `Ai`); so the
-successive-spacing ratio `ρ = (E₃ − E₂)/(E₂ − E₁)` lies in `(0.687, 0.691)` — the Airy value `0.690`, below the
-equally-spaced ladder's `1`. The bracket ends enter as the integer `μ = ⌊201 · 256 · ε⌋`, within `2 × 10⁻⁵` below the
+successive-spacing ratio `ρ = (E₃ − E₂)/(E₂ − E₁)` lies in `(0.687, 0.691)` — the Airy value `0.690`. A statement about
+the operator alone: the published vortex-core ladders are not this ladder (34-super reports/vortex-ladder-20261105), and the
+theorem binds to no ledger row. The bracket ends enter as the integer `μ = ⌊201 · 256 · ε⌋`, within `2 × 10⁻⁵` below the
 decimal `ε` (the convention of `FRC.Hadrons.airy_sturm`); the python witness `frc.super.airy_ladder` counts at the exact
 decimals in `Fraction`s. -/
 theorem airy_ladder_sturm :

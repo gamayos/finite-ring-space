@@ -111,6 +111,13 @@
   },
   {
    "master": "C3",
+   "paper": "8:B2",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "5 November 2026 (8-dirac's core-proof programme): 8:B2's key is the square-class product of two nonsquares and the rescaling identity of the form (FRC.Dirac.Plane.class_datum, form_class); C3's key has the isotropy criterion and the half class, no clause in common"
+  },
+  {
+   "master": "C3",
    "paper": "8:B3",
    "status": "bridged",
    "lean": "FRC.Bridge.C3_8B3",

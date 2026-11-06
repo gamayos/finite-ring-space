@@ -121,7 +121,7 @@ class MasterSuperTest(unittest.TestCase):
         self.assertFalse(hasattr(M, "CHART"))
         kinds = {r["id"]: r["kind"] for r in M.R.results}
         self.assertEqual(kinds["S1"], "EXACT"); self.assertEqual(kinds["D1"], "EXACT")
-        self.assertEqual(kinds["S2"], "CHART"); self.assertEqual(kinds["D2"], "CHART")
+        self.assertEqual(kinds["S2"], "CHART"); self.assertNotIn("D2", kinds)                 # the Airy reading left the row (2026-11-05)
 
 
 if __name__ == "__main__":

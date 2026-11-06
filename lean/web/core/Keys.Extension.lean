@@ -2364,7 +2364,7 @@ theorem norm_mul (ν a b c d : Shell p) :
 def boostT (_ν γ b t x : Shell p) : Shell p := γ * t + b * x
 def boostX (ν γ b t x : Shell p) : Shell p := γ * x + ν * (b * t)
 
-/-- 7:A10, 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
+/-- 7:A10, 3:C2, 8:D14 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
 theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) (t x : Shell p) :
     Q2 ν (boostT ν γ b t x) (boostX ν γ b t x) = Q2 ν t x := by
   unfold boostT boostX
@@ -2372,7 +2372,7 @@ theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) 
   unfold Q2 at this ⊢
   rw [this, h, one_mul]
 
-/-- 7:A10, 3:C2 — boosts compose as their parameters multiply in `K`:
+/-- 7:A10, 3:C2, 8:D15 — boosts compose as their parameters multiply in `K`:
 `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row. -/
 theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostT ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
@@ -2382,7 +2382,7 @@ theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 γ2 x, mul_left_comm b1 ν (b2 * t), ← mul_assoc b1 b2 t, ← mul_assoc ν (b1 * b2) t,
     add_comm (b1 * γ2 * x) (ν * (b1 * b2) * t), add_add_add_comm]
 
-/-- 7:A10, 3:C2 — the composition, the `x`-row. -/
+/-- 7:A10, 3:C2, 8:D15 — the composition, the `x`-row. -/
 theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostX ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
     boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by
@@ -2392,7 +2392,7 @@ theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 b2 x, ← mul_assoc ν (b1 * b2) x,
     add_comm (ν * (b1 * γ2 * t)) (ν * (b1 * b2) * x), add_add_add_comm]
 
-/-- 7:A10, 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
+/-- 7:A10, 3:C2, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
 theorem norm_one_mul {ν γ1 b1 γ2 b2 : Shell p} (h1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1)
     (h2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1) :
     (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) +

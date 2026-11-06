@@ -3215,7 +3215,7 @@ theorem norm_mul (ν a b c d : Shell p) :
 def boostT (_ν γ b t x : Shell p) : Shell p := γ * t + b * x
 def boostX (ν γ b t x : Shell p) : Shell p := γ * x + ν * (b * t)
 
-/-- 7:A10, 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
+/-- 7:A10, 3:C2, 8:D14 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
 theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) (t x : Shell p) :
     Q2 ν (boostT ν γ b t x) (boostX ν γ b t x) = Q2 ν t x := by
   unfold boostT boostX
@@ -3223,7 +3223,7 @@ theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) 
   unfold Q2 at this ⊢
   rw [this, h, one_mul]
 
-/-- 7:A10, 3:C2 — boosts compose as their parameters multiply in `K`:
+/-- 7:A10, 3:C2, 8:D15 — boosts compose as their parameters multiply in `K`:
 `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row. -/
 theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostT ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
@@ -3233,7 +3233,7 @@ theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 γ2 x, mul_left_comm b1 ν (b2 * t), ← mul_assoc b1 b2 t, ← mul_assoc ν (b1 * b2) t,
     add_comm (b1 * γ2 * x) (ν * (b1 * b2) * t), add_add_add_comm]
 
-/-- 7:A10, 3:C2 — the composition, the `x`-row. -/
+/-- 7:A10, 3:C2, 8:D15 — the composition, the `x`-row. -/
 theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     boostX ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
     boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by
@@ -3243,7 +3243,7 @@ theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 b2 x, ← mul_assoc ν (b1 * b2) x,
     add_comm (ν * (b1 * γ2 * t)) (ν * (b1 * b2) * x), add_add_add_comm]
 
-/-- 7:A10, 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
+/-- 7:A10, 3:C2, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
 theorem norm_one_mul {ν γ1 b1 γ2 b2 : Shell p} (h1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1)
     (h2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1) :
     (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) +
@@ -7202,7 +7202,7 @@ theorem p00150 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p00151 — 00:C16. \textbf{The spinor dichotomy}: $\kap$ odd $\Leftrightarrow$ $C_{\p-1}\cong C_4\times C_\kap$ $\Leftrightarrow$ $v_2(\p-1)=2$ $\Leftrightarrow$ $3\kap r+4s\equiv1\ (\mathrm{mod}\ 4\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\min(v_2(\p-1),v_2(\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\dS\equiv2\ (\mathrm{mod}\ 4)$. The midpoint event of a $\kap$-odd shell: 38:C14. -/
 theorem p00151 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (κ % (2 : Nat) = (1 : Nat) ↔ (p - (1 : Nat)) % (8 : Nat) ≠ (0 : Nat)) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∀ (r s r' s' : Nat), r < (4 : Nat) → s < κ → r' < (4 : Nat) → s' < κ → FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = FRC.Shell.Frame.quarterTurn g κ ^ r' * (g ^ (4 : Nat)) ^ s' → r = r' ∧ s = s') ∧ (κ % (2 : Nat) = (1 : Nat) → ∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → ∃ r s, r < (4 : Nat) ∧ s < κ ∧ FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = x) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∃ r s, r < (4 : Nat) ∧ s < κ ∧ ((3 : Nat) * κ * r + (4 : Nat) * s) % ((4 : Nat) * κ) = (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → κ % (2 : Nat) = (0 : Nat) → ∀ (φ : FRC.Shell p → Nat × Nat), (∀ (x y : FRC.Shell p), x ≠ (0 : FRC.Shell p) → y ≠ (0 : FRC.Shell p) → φ (x * y) = (((φ x).fst + (φ y).fst) % (4 : Nat), ((φ x).snd + (φ y).snd) % κ)) → ¬∀ (x y : FRC.Shell p), x ≠ (0 : FRC.Shell p) → y ≠ (0 : FRC.Shell p) → φ x = φ y → x = y) ∧ (∀ (a b u w m : Nat), u % (2 : Nat) = (1 : Nat) → w % (2 : Nat) = (1 : Nat) → m ≤ a → m ≤ b → m = a ∨ m = b → (2 : Nat) ^ m ∣ (2 : Nat) ^ a * u ∧ (2 : Nat) ^ m ∣ (2 : Nat) ^ b * w ∧ ¬((2 : Nat) ^ (m + (1 : Nat)) ∣ (2 : Nat) ^ a * u ∧ (2 : Nat) ^ (m + (1 : Nat)) ∣ (2 : Nat) ^ b * w) ∧ (2 : Nat) ^ m * (2 : Nat) ^ (b - m) = (2 : Nat) ^ b) ∧ ∀ (S b w : Nat), w % (2 : Nat) = (1 : Nat) → (4 : Nat) * S = (2 : Nat) ^ b * w → ((2 : Nat) ^ b = (8 : Nat) ↔ S % (4 : Nat) = (2 : Nat)) :=
   And.intro @FRC.Subject.spinor (And.intro @FRC.Subject.no_iso (@FRC.Subject.two_part))
-/-- p07044 — 7:F1. Every embedded shell drifts against the Carrier at one rate, $1/(\Om-1)$ of the Carrier cycle per chronon and $\kap/\dS$ per revolution, below $1/(\sqrt{\Om}+1)$ exactly when $\p^{2}<\Om$ [chart]; the count of F4 advances at the same rate for every embedded observer. -/
+/-- p07044 — 7:F1. Every embedded shell drifts against its own chart of the Carrier by $1/(\Om-1)$ of the cycle per chronon and $\kap/\dS$ per revolution, below $1/(\sqrt{\Om}+1)$ exactly when $\p^{2}<\Om$ [chart]; the cycle's order $\Om-1$ is the same for every Subject, and no rate between two Subjects is defined. -/
 theorem p07044 : ∀ {p Ω κ S : Nat}, p = (4 : Nat) * κ + (1 : Nat) → Ω = (4 : Nat) * S + (1 : Nat) → κ * ((4 : Nat) * S) = S * (p - (1 : Nat)) ∧ (4 : Nat) * S = Ω - (1 : Nat) ∧ (2 : Nat) * (Ω - (1 : Nat)) = (8 : Nat) * S :=
   @FRC.Pair.leak_rate
 /-- p38001 — 38:A1. The pair: $\p=13$, $\kap=3$, $\Om=233$, $\dS=58$; $\gen=2$, $\im=5=-\gen^{\kap}$. -/

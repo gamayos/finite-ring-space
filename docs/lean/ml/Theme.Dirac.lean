@@ -383,7 +383,7 @@ adjoint of a nondegenerate Hermitian form, or the `X`-adjoint of the spinor form
 `a` is central with `σ a = −a`, and `1 − a h` is a unit, then `u = (1 − a h)⁻¹ (1 + a h)` satisfies
 `σ u · u = 1` — the Cayley step is unitary (Theorem `cayley-preservation`). For D10 the premise
 `σ h = h` is the `X`-self-adjointness of `𝒟^s − m` (D9's operator clause, decided by the package at
-`p = 5, 13` and not proved here). -/
+`p = 13, 173` and not proved here). -/
 theorem cayley_unitary (σ : R → R) (hmul : ∀ x y, σ (x * y) = σ y * σ x) (hadd : ∀ x y, σ (x + y) = σ x + σ y)
     (hone : σ 1 = 1) (hneg : ∀ x, σ (-x) = -σ x)
     {h a : R} (hh : σ h = h) (ha : σ a = -a) (hc : ∀ x, Commute a x)

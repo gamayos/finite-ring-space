@@ -20,14 +20,13 @@ odd always (B4); the coefficient field `K = 𝔽_p[w]/(w² − ν)` on component
 `g^{(p−2)k}` inverse to `g^k`, the isotropy `Σ_j g^{2jk} = 0` unless `(p − 1) ∣ 2k`, and the two exceptional
 lines `k = 0, 2κ` with eigenvalues `±1` (F3, F6); the sector separation — `g^{p−2}` primitive of order `p − 1`,
 and `u² = 1 ⇒ u = ±1`, the meeting of the drive cycle and the norm-one cycle (F4, F6, X1). Decided by the kernel
-on the laboratory Subjects `𝔽₁₃` and `𝔽₁₇₃` (both with the drive `2`) and on `𝔽₅`: the Clifford relations, the
-spin conjugation with `A = 10`, `B = 2` on `𝔽₁₃` and `A = 170`, `B = 2` on `𝔽₁₇₃`, the transported gammas (D2, D6,
-D7, D12); the spinor twist `X = γ⁰γ¹γ³` with `X² = ν`, its commutations, `(γ^μ)† X = −X γ^μ` and the failure of
+on the laboratory Subjects `𝔽₁₃`, `𝔽₁₇₃` and `𝔽₁₅₄₉` (all with the drive `2`; the standard set of 5 November 2026, the
+shell `𝔽₅` dropped): the Clifford relations, the spin conjugation with `A = 10`, `B = 2` on `𝔽₁₃`, `A = 170`, `B = 2` on
+`𝔽₁₇₃` and `A = 1546`, `B = 2` on `𝔽₁₅₄₉`, the transported gammas (D2, D6, D7, D12); the spinor twist `X = γ⁰γ¹γ³` with `X² = ν`, its commutations, `(γ^μ)† X = −X γ^μ` and the failure of
 the `γ⁰`-twist (D9, X4); the norm-one cycle `|N¹| = 14` on `𝔽₁₃` and `174` on `𝔽₁₇₃`, an order-three element on
 `𝔽₁₇₃` and none on `𝔽₁₃` (D5, D12); the Cayley step of `H = −Δ` on `𝔽₁₃`, `U¹³ = I ≠ U` at `α = w` and `α = 6w`
 (C6, E4); the potential propagators of order `14` on `𝔽₁₃` and `174` on `𝔽₁₇₃`, the least common multiple of the
-phase orders (E4); the power-map image counts on `𝔽₁₃` (E2); the zero counts `145`, `105` on `𝔽₅` and `2353`,
-`2041` on `𝔽₁₃` (B7); the unit-norm circle of `p − 1` points (F2); the named residues of the two Subjects (B3,
+phase orders (E4); the power-map image counts on `𝔽₁₃` (E2); the zero counts `2353`, `2041` on `𝔽₁₃` (B7); the unit-norm circle of `p − 1` points (F2); the named residues of the two Subjects (B3,
 D12); the laboratory Carrier's `c = 171 106` with `c² = 2⁻¹` and `2⁻¹·12 = 6` (B4). Every declaration is checked
 to depend on no axiom (`check_core_axioms.py`).
 
@@ -205,7 +204,7 @@ theorem isotropy (F : Frame p κ g) (k : Nat) :
       sum_const, Shell.mul_one]
     exact Frame.ofNat_n F
 
-/-- 8:F4, 8:F6, 8:X1 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`,
+/-- 8:F4, 8:F6, 8:X1, 8:E8 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`,
 so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one
 cycle meets the base field in `{±1}` alone (`u² = 1 ⇒ u = ±1`): the two spectra meet in the two signs. -/
 theorem sector_separation (F : Frame p κ g) {y : Shell p} (hy : g * y = 1) :
@@ -251,11 +250,8 @@ def lorentzZeros (p : Nat) [Pos p] (ν : Shell p) : Nat :=
   count4 p fun t x y z => decide (-(ν * ((ofNat t : Shell p) * ofNat t)) + ofNat x * ofNat x +
     ofNat y * ofNat y + ofNat z * ofNat z = 0)
 
-/-- 8:B7 [value] — on `𝔽₅` the Euclidean form has `5³ + 5² − 5 = 145` zeros and the Lorentzian form
-(`ν = g = 2`) has `5³ − 5² + 5 = 105`: the hyperbolic and the elliptic form part on the base shell. -/
-theorem zeros5 : euclidZeros 5 = 145 ∧ lorentzZeros 5 2 = 105 := by decide +kernel
-
-/-- 8:B7 [value] — on `𝔽₁₃`: `2353` and `2041` zeros (`13³ ± 13² ∓ 13`), `ν = g = 2`. -/
+/-- 8:B7 [value] — on `𝔽₁₃` the Euclidean form has `13³ + 13² − 13 = 2353` zeros and the Lorentzian form (`ν = g = 2`)
+has `13³ − 13² + 13 = 2041`: the hyperbolic and the elliptic form part on the base shell. -/
 theorem zeros13 : euclidZeros 13 = 2353 ∧ lorentzZeros 13 2 = 2041 := by decide +kernel
 
 /-- 8:D5, 8:D12, 8:D19, 8:C5, 8:F2, 8:F6 [value] — the norm-one cycle: `|N¹| = 14 = p + 1` on `𝔽₁₃` and `174` on `𝔽₁₇₃`
@@ -337,10 +333,10 @@ def clifford (ν : Shell p) (i : Shell p) : Bool :=
   (List.range 4).all fun μ => (List.range 4).all fun μ' =>
     decide (gamma i μ * gamma i μ' + gamma i μ' * gamma i μ = smul (2 * eta ν μ μ') (ident 4 : Mat p ν))
 
-/-- 8:D2 [value] — the Clifford relations hold on `𝔽₁₃` (`ν = 2`, `i = 5`), `𝔽₁₇₃` (`ν = 2`, `i = 93`) and
-`𝔽₅` (`ν = 2`, `i = 2`). -/
+/-- 8:D2, 8:D17 [value] — the Clifford relations hold on `𝔽₁₃` (`ν = 2`, `i = 5`), `𝔽₁₇₃` (`ν = 2`, `i = 93`) and
+`𝔽₁₅₄₉` (`ν = 2`, `i = 1461`). -/
 theorem clifford_values : clifford (2 : Shell 13) 5 = true ∧ clifford (2 : Shell 173) 93 = true ∧
-    clifford (2 : Shell 5) 2 = true := by decide +kernel
+    clifford (2 : Shell 1549) 1461 = true := by decide +kernel
 
 /-- The spin lift `S(x, y) = x I₄ + y γ⁰γ¹` and its inverse `δ⁻¹(x I₄ − y γ⁰γ¹)`, `δ = x² − ν y²`, with the
 inverse of `δ` supplied. -/
@@ -367,9 +363,10 @@ def spinConj (ν i x y dinv A B : Shell p) : Bool :=
 
 /-- 8:D6, 8:D16, 8:D12 [value] — on `𝔽₁₃` (`ν = g = 2`, `x = y = 1`, `δ = −1`): `A = 10`, `B = 2`,
 `γ̂⁰ = 10γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 10γ¹`; on `𝔽₁₇₃` (`ν = g = 2`, `i = 93`, `δ = −1`): `A = 170`, `B = 2`,
-`γ̂⁰ = 170γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 170γ¹`. -/
+`γ̂⁰ = 170γ⁰ − 4γ¹`, `γ̂¹ = −2γ⁰ + 170γ¹`; on `𝔽₁₅₄₉` (`i = 1461`, `δ = −1`): `A = 1546`, `B = 2`. -/
 theorem spin_conjugation_values :
-    spinConj (2 : Shell 13) 5 1 1 12 10 2 = true ∧ spinConj (2 : Shell 173) 93 1 1 172 170 2 = true := by
+    spinConj (2 : Shell 13) 5 1 1 12 10 2 = true ∧ spinConj (2 : Shell 173) 93 1 1 172 170 2 = true ∧
+    spinConj (2 : Shell 1549) 1461 1 1 1548 1546 2 = true := by
   decide +kernel
 
 /-- 8:D9 — the spinor twist `X = γ⁰γ¹γ³`: Hermitian for the conjugate transpose, `X² = ν I₄`, commuting with
@@ -387,10 +384,10 @@ def spinorForm (ν i : Shell p) : Bool :=
   decide ((dagger (gamma2 i) : Mat p ν) = gamma2 i) && decide ((dagger (gamma3 i) : Mat p ν) = -(gamma3 i)) &&
   decide ((dagger (gamma1 i) : Mat p ν) * gamma0 i ≠ -(gamma0 i * gamma1 i))
 
-/-- 8:D9, 8:X4 [value] — the spinor form on `𝔽₅`, `𝔽₁₃` and `𝔽₁₇₃`: the `γ⁰`-twist fails and `X = γ⁰γ¹γ³` is the
+/-- 8:D9, 8:X4 [value] — the spinor form on `𝔽₁₃`, `𝔽₁₇₃` and `𝔽₁₅₄₉`: the `γ⁰`-twist fails and `X = γ⁰γ¹γ³` is the
 form the arithmetic forces. -/
 theorem spinor_form_values :
-    spinorForm (2 : Shell 5) 2 = true ∧ spinorForm (2 : Shell 13) 5 = true ∧ spinorForm (2 : Shell 173) 93 = true := by
+    spinorForm (2 : Shell 13) 5 = true ∧ spinorForm (2 : Shell 173) 93 = true ∧ spinorForm (2 : Shell 1549) 1461 = true := by
   decide +kernel
 
 /-- The inverse of a residue by bounded search (`0` when none). -/
@@ -432,8 +429,8 @@ def cayley13 (α : Ext 13 2) : Bool :=
   decide (cycPow 13 (cycSmul α H) 13 = (List.range 13).map fun _ => (0 : Ext 13 2)) &&
   decide (cycPow 13 U 13 = cycId 13) && decide (U ≠ cycId 13)
 
-/-- 8:C6, 8:E4, 8:E7 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at `α = c = 6w`
-(`c² = 7 = 2⁻¹`). -/
+/-- 8:C6, 8:C15, 8:E4, 8:E7, 8:E8 [value] — the Cayley step of `H = −Δ` on `𝔽₁₃` has order exactly `13` at `α = w` and at
+`α = c = 6w` (`c² = 7 = 2⁻¹`): every Cayley orbit on the shell is periodic, here with the period `13` (C15). -/
 theorem cayley13_values : cayley13 ⟨0, 1⟩ = true ∧ cayley13 ⟨0, 6⟩ = true ∧
     ((⟨0, 6⟩ : Ext 13 2) * ⟨0, 6⟩ = 7 ∧ (2 : Shell 13) * 7 = 1) := by decide +kernel
 
@@ -461,7 +458,7 @@ def potentialOrder (p : Nat) [Pos p] (ν : Shell p) : Nat :=
 def potentialNormOne (p : Nat) [Pos p] (ν : Shell p) : Bool :=
   (List.range p).all fun l => decide (Ext.norm (phi ν (ofNat l)) = 1) && decide ((phi ν (ofNat l)) ^ (p + 1) = 1)
 
-/-- 8:E4 [value] — the potential propagator of `V = id` has order `14 = p + 1` on `𝔽₁₃` and `174` on `𝔽₁₇₃`, the
+/-- 8:E4, 8:E8 [value] — the potential propagator of `V = id` has order `14 = p + 1` on `𝔽₁₃` and `174` on `𝔽₁₇₃`, the
 least common multiple of the phase orders, every phase of norm one. -/
 theorem potential_orders : potentialNormOne 13 2 = true ∧ potentialOrder 13 2 = 14 ∧
     potentialNormOne 173 2 = true ∧ potentialOrder 173 2 = 174 := by decide +kernel

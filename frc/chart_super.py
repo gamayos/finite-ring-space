@@ -67,7 +67,8 @@ def universal_numbers():
     return dict(jump=2 / math.pi, gap_ratio=2 * math.pi / math.exp(EULER_GAMMA), heat_jump=12 / (7 * ZETA_3))
 
 
-# ---- the Airy vortex-core ladder (00:G20; 34-super D1, m6) ------------------------------------------------------------------
+# ---- the Airy ladder of the linear potential (library; its reading as the vortex-core ladder, 00:G20 and 34-super D1, was
+# ---- withdrawn on 2026-11-05, 34-super reports/vortex-ladder-20261105; no row cites these) ---------------------------------
 def _sturm(diag, off2, lam):
     """Sturm's count in floating point: the eigenvalues below lam of the tridiagonal with diagonal diag and squared
     off-diagonals off2 (a list, one per link)."""

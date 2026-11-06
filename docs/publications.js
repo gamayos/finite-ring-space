@@ -240,6 +240,38 @@ const PUBLICATIONS = [
     ]
   },
   {
+    "key": "7-st",
+    "n": 7,
+    "title": "Emergent Lorentzian Space-Time over Finite Holographic Substrate",
+    "status": {
+      "kind": "preprint"
+    },
+    "doi": "https://doi.org/10.20944/preprints202611.0720.v1",
+    "doiLabel": "pp202611.0720.v1",
+    "ledger": "7-spacetime/index.html",
+    "schema": true,
+    "links": [
+      {
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p07_spacetime.ipynb",
+        "label": "python",
+        "count": 51,
+        "title": "51 predicates checked, all passing: the notebook p07_spacetime.ipynb on Google Colab, one cell per predicate"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Spacetime.lean",
+        "label": "lean",
+        "count": 47,
+        "title": "47 predicates proved in the core (no axioms): the core module Spacetime as one executable file (plain Lean, no Mathlib) in Lean Live"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Spacetime.lean",
+        "label": "lean-mathlib",
+        "count": 1,
+        "title": "1 predicates proved on Mathlib (classical): the module Spacetime as one file on Mathlib in Lean Live"
+      }
+    ]
+  },
+  {
     "key": "8-dirac",
     "n": 8,
     "title": "Schrödinger and Dirac Dynamics",
@@ -260,14 +292,14 @@ const PUBLICATIONS = [
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Dirac.lean",
         "label": "lean",
-        "count": 24,
-        "title": "24 predicates proved in the core (no axioms), 24 of them also on Mathlib: the core module Dirac as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 48,
+        "title": "48 predicates proved in the core (no axioms), 44 of them also on Mathlib: the core module Dirac as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Dirac.lean",
         "label": "lean-mathlib",
         "count": 44,
-        "title": "44 predicates proved on Mathlib (classical), 24 of them also in the core: the module Dirac as one file on Mathlib in Lean Live"
+        "title": "44 predicates proved on Mathlib (classical), 44 of them also in the core: the module Dirac as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -801,4 +833,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "5 November 2026";
+const GENERATED = "6 November 2026";

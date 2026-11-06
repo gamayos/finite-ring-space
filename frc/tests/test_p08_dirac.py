@@ -1,7 +1,6 @@
 """8-dirac's ledger file (frc/ledgers/p08_dirac.py): the ledger file green, its markers on its deciding checks with the keys
 of the generated table, every witnessed predicate decided by a check that cites it, every block exact (no chart), and the
-instances the paper names (the laboratory Subjects 𝔽₁₃ and 𝔽₁₇₃ with the drive 2, the shell 𝔽₅ for the dense spinor
-computations, the laboratory Carrier)."""
+instances the paper names (the standard shells 𝔽₁₃, 𝔽₁₇₃ and 𝔽₁₅₄₉ with the drive 2, the laboratory Carrier)."""
 import io
 import json
 import re
@@ -38,7 +37,7 @@ class LedgerTest(unittest.TestCase):
         kinds = {b: {r["kind"] for r in L.R.results if r["id"][0] == b} for b in L.BLOCK}
         for b in L.BLOCK: self.assertEqual(kinds[b], {"EXACT"}, b)
         self.assertEqual(L.SHELLS, [(13, 2), (173, 2)])
-        self.assertEqual(L.DENSE, (5, 2))
+        self.assertEqual(L.SHELL3, (1549, 2))                                # the third standard shell (5 November 2026; 𝔽₅ dropped)
         self.assertEqual(L.CARRIER, (2408561, 602140, 6))
         self.assertEqual((L.P, L.G), (13, 2))
 
@@ -68,7 +67,7 @@ class LedgerTest(unittest.TestCase):
     def test_lean_table(self):
         from frc.ledgers import p08_dirac as L
         self.assertTrue(all(v in ("core", "ml", "core, ml") for v in L.LEAN.values()))
-        self.assertEqual(len(L.LEAN), 44)                                    # the rows with a Lean declaration (the record schema of 2 November 2026)
+        self.assertEqual(len(L.LEAN), 48)                                    # the rows with a Lean declaration: every theorem row since the core-proof programme of 5 November 2026 (44 under the record schema of 2 November)
         self.assertEqual(len(L.PREDICATES), 48)                              # one check per theorem row
 
 

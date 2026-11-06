@@ -5093,8 +5093,10 @@ the content), as `frc/super.py` and `frc/ledgers/master/super.py` compute it: th
 inverse pairs `(k, −k)` (`winding_pairs`, G19), the charge-`2` condensate leaves the residual `ℤ₂` on every cycle of length
 `4m` (`residual_two`, G19), the self-dual point `β* = ½ ln(1 + √2)` as a ring identity in `√2` (`self_dual_point`, G19),
 the symplectic quarter-turn on the charge–flux lattice (`symplectic_quarter_turn`, G20), the metrology closure
-`K_J R_K Q = 4` (`metrology_closure`, G20) and the even and odd Airy ladders of the vortex core by Sturm's count
-(`airy_ladder_sturm`, G20). Kernel-decided or ring-normalised throughout; no axioms (`check_core_axioms.py`).
+`K_J R_K Q = 4` (`metrology_closure`, G20) and the even and odd Airy ladders of the linear potential by Sturm's count
+(`airy_ladder_sturm`, bound to no row since 5 November 2026: the vortex-core reading was withdrawn when the published
+quantum-limit ladders excluded it, 34-super reports/vortex-ladder-20261105). Kernel-decided or ring-normalised throughout;
+no axioms (`check_core_axioms.py`).
 -/
 
 namespace FRC.Super
@@ -5223,7 +5225,8 @@ theorem metrology_closure {p : Nat} [Pos p] (e h E Hi t : Shell p) (he : e * E =
     rw [i, he, ht]
     exact RE.sound (look [h]) (.mul (.mul (.var 0) .one) .one) (.var 0) (by decide +kernel)
 
-/-! ## The even and odd Airy ladders of the vortex core by Sturm's count (00:G20; 34-super D1) -/
+/-! ## The even and odd Airy ladders of the linear potential by Sturm's count (no row: the vortex-core reading, 34-super's
+D1 and the Airy clause of 00:G20 under p00089, was withdrawn on 5 November 2026) -/
 
 /-- The leading principal minors of the even (Neumann) operator's integer tridiagonal on the sites `k = 0 … N`: the diagonal
 `2c + L³ k` with `c = (N + 1)³`, the squared off-diagonal `2c²` on the first link (the origin's symmetrising rescaling,
@@ -5242,11 +5245,12 @@ def sturmEvenAux (N L : Nat) (μ : Int) : Nat → Int × Int × Nat
 /-- Sturm's count of the even operator's eigenvalues below `μ = (N + 1) L² ε`, over its `N + 1` sites. -/
 def sturmEven (N L : Nat) (μ : Int) : Nat := (sturmEvenAux N L μ (N + 1)).2.2
 
-/-- 00:G20 — the vortex-core ladder is the Airy ladder, by Sturm's count on `N = 200` sites of `[0, 16]`: the even operator
+/-- The Airy ladder of the linear potential `−u″ + x u`, by Sturm's count on `N = 200` sites of `[0, 16]`: the even operator
 has exactly one eigenvalue in `(1.018, 1.019)` (`E₁`, the first zero of `Ai'`) and one in `(3.246, 3.247)` (`E₃`, the
 second), the odd operator (`FRC.Hadrons.sturm`) exactly one in `(2.337, 2.338)` (`E₂`, the first zero of `Ai`); so the
-successive-spacing ratio `ρ = (E₃ − E₂)/(E₂ − E₁)` lies in `(0.687, 0.691)` — the Airy value `0.690`, below the
-equally-spaced ladder's `1`. The bracket ends enter as the integer `μ = ⌊201 · 256 · ε⌋`, within `2 × 10⁻⁵` below the
+successive-spacing ratio `ρ = (E₃ − E₂)/(E₂ − E₁)` lies in `(0.687, 0.691)` — the Airy value `0.690`. A statement about
+the operator alone: the published vortex-core ladders are not this ladder (34-super reports/vortex-ladder-20261105), and the
+theorem binds to no ledger row. The bracket ends enter as the integer `μ = ⌊201 · 256 · ε⌋`, within `2 × 10⁻⁵` below the
 decimal `ε` (the convention of `FRC.Hadrons.airy_sturm`); the python witness `frc.super.airy_ladder` counts at the exact
 decimals in `Fraction`s. -/
 theorem airy_ladder_sturm :
@@ -5275,13 +5279,13 @@ namespace FRC.Ledger
 /-- p00088 — 00:G19. \textbf{Superconductivity} (structure): superconductivity is split-torus confinement, the electric/phase dual of colour (G4), the charge-$2$ condensate a phase-singlet reducing $\mathrm{U}(1)$ to a residual $\Z_2$ (flux $h/2e$) and the Abrikosov vortex the dual colour string whose line tension vanishes at the Kramers--Wannier self-dual point $\beta_*=\tfrac12\ln(1+\sqrt2)$ that is $T_c$. -/
 theorem p00088 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) = FRC.Shell.Frame.J (p - (1 : Nat)) k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p)) ∧ ((∀ {q : Nat} [FRC.Pos q] (a b : FRC.Shell q), a + b = (0 : FRC.Shell q) → b = -a) ∧ ([(16 : Nat), (28 : Nat), (40 : Nat), (52 : Nat), (88 : Nat), (100 : Nat)].all fun q => (FRC.Super.neutralPairs q).length == q && (FRC.Super.neutralPairs q).all fun ab => ab.snd == (q - ab.fst) % q) = true ∧ ([(16 : Nat), (28 : Nat)].all fun q => (FRC.Super.neutralTriples q).length == q * q) = true) ∧ ((∀ (m b : Nat), (0 : Nat) < m → b < (4 : Nat) * m → (2 : Nat) * b % ((4 : Nat) * m) = (0 : Nat) → b = (0 : Nat) ∨ b = (2 : Nat) * m) ∧ (∀ (m : Nat), (0 : Nat) < m → (2 : Nat) * (0 : Nat) % ((4 : Nat) * m) = (0 : Nat) ∧ (2 : Nat) * ((2 : Nat) * m) % ((4 : Nat) * m) = (0 : Nat)) ∧ ([(16 : Nat), (28 : Nat), (40 : Nat), (52 : Nat), (88 : Nat), (100 : Nat)].all fun q => FRC.Super.residual q == [(0 : Nat), q / (2 : Nat)]) = true) ∧ ∀ {p : Nat} [FRC.Pos p] (w : FRC.Shell p), w * w = (1 : FRC.Shell p) + (1 : FRC.Shell p) → ((1 : FRC.Shell p) + w) * (w + (-1 : FRC.Shell p)) = (1 : FRC.Shell p) ∧ (1 : FRC.Shell p) + w + -(w + (-1 : FRC.Shell p)) = (1 : FRC.Shell p) + (1 : FRC.Shell p) ∧ ((1 : FRC.Shell p) + (1 : FRC.Shell p) + w) * (w + (-1 : FRC.Shell p)) = w ∧ ((1 : FRC.Shell p) + w) * ((1 : FRC.Shell p) + w) + -(((1 : FRC.Shell p) + (1 : FRC.Shell p)) * ((1 : FRC.Shell p) + w)) + (-1 : FRC.Shell p) = (0 : FRC.Shell p) :=
   And.intro @FRC.Shell.Frame.F_sq (And.intro @FRC.Shell.Frame.J_sq (And.intro @FRC.Super.winding_pairs (And.intro @FRC.Super.residual_two (@FRC.Super.self_dual_point))))
-/-- p00089 — 00:G20. \textbf{Superconductivity} (duality): the electric--magnetic duality is the $Q_4$ quarter-turn on the charge-flux lattice (charge$\leftrightarrow$flux, Josephson$\leftrightarrow$phase-slip), predicting an Airy vortex-core spectrum and a quantum current standard whose metrology triangle closes on $q_c^2=4$. -/
-theorem p00089 : (∀ {p : Nat} [FRC.Pos p] (a b a' b' : FRC.Shell p), FRC.Super.S (FRC.Super.S (a, b)) = (-a, -b) ∧ FRC.Super.S (FRC.Super.S (FRC.Super.S (FRC.Super.S (a, b)))) = (a, b) ∧ FRC.Super.pairing (FRC.Super.S (a, b)) (FRC.Super.S (a', b')) = FRC.Super.pairing (a, b) (a', b') ∧ FRC.Super.S ((1 : FRC.Shell p) + (1 : FRC.Shell p), (0 : FRC.Shell p)) = ((0 : FRC.Shell p), -((1 : FRC.Shell p) + (1 : FRC.Shell p))) ∧ FRC.Super.S ((0 : FRC.Shell p), (1 : FRC.Shell p)) = ((1 : FRC.Shell p), (0 : FRC.Shell p))) ∧ (∀ {p : Nat} [FRC.Pos p] (e h E Hi t : FRC.Shell p), e * E = (1 : FRC.Shell p) → h * Hi = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * t = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * e * Hi * (h * E * E) * (((1 : FRC.Shell p) + (1 : FRC.Shell p)) * e) = (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) ∧ ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * e * Hi * (h * E * E) * e = (1 : FRC.Shell p) + (1 : FRC.Shell p) ∧ ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * e * (h * E * t) = h) ∧ FRC.Super.sturmEven (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (1018 : Int) / (1000 : Int)) = (0 : Nat) ∧ FRC.Super.sturmEven (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (1019 : Int) / (1000 : Int)) = (1 : Nat) ∧ FRC.Super.sturmEven (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (3246 : Int) / (1000 : Int)) = (1 : Nat) ∧ FRC.Super.sturmEven (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (3247 : Int) / (1000 : Int)) = (2 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (2337 : Int) / (1000 : Int)) = (0 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (2338 : Int) / (1000 : Int)) = (1 : Nat) ∧ (687 : Nat) * ((2338 : Nat) - (1018 : Nat)) < ((3246 : Nat) - (2338 : Nat)) * (1000 : Nat) ∧ ((3247 : Nat) - (2337 : Nat)) * (1000 : Nat) < (691 : Nat) * ((2337 : Nat) - (1019 : Nat)) ∧ ((3247 : Nat) - (2337 : Nat)) * (1000 : Nat) < (1000 : Nat) * ((2337 : Nat) - (1019 : Nat)) :=
-  And.intro @FRC.Super.symplectic_quarter_turn (And.intro @FRC.Super.metrology_closure (@FRC.Super.airy_ladder_sturm))
+/-- p00202 — 00:G20. \textbf{Superconductivity} (duality): the electric--magnetic duality is the $Q_4$ quarter-turn on the charge-flux lattice (charge$\leftrightarrow$flux, Josephson$\leftrightarrow$phase-slip), predicting a quantum current standard whose metrology triangle closes on $q_c^2=4$. -/
+theorem p00202 : (∀ {p : Nat} [FRC.Pos p] (a b a' b' : FRC.Shell p), FRC.Super.S (FRC.Super.S (a, b)) = (-a, -b) ∧ FRC.Super.S (FRC.Super.S (FRC.Super.S (FRC.Super.S (a, b)))) = (a, b) ∧ FRC.Super.pairing (FRC.Super.S (a, b)) (FRC.Super.S (a', b')) = FRC.Super.pairing (a, b) (a', b') ∧ FRC.Super.S ((1 : FRC.Shell p) + (1 : FRC.Shell p), (0 : FRC.Shell p)) = ((0 : FRC.Shell p), -((1 : FRC.Shell p) + (1 : FRC.Shell p))) ∧ FRC.Super.S ((0 : FRC.Shell p), (1 : FRC.Shell p)) = ((1 : FRC.Shell p), (0 : FRC.Shell p))) ∧ ∀ {p : Nat} [FRC.Pos p] (e h E Hi t : FRC.Shell p), e * E = (1 : FRC.Shell p) → h * Hi = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * t = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * e * Hi * (h * E * E) * (((1 : FRC.Shell p) + (1 : FRC.Shell p)) * e) = (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) ∧ ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * e * Hi * (h * E * E) * e = (1 : FRC.Shell p) + (1 : FRC.Shell p) ∧ ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * e * (h * E * t) = h :=
+  And.intro @FRC.Super.symplectic_quarter_turn (@FRC.Super.metrology_closure)
 -- end keys
 
 end FRC.Ledger
 
 -- Ledger predicates: axioms (each predicate's, computed here)
 #print axioms FRC.Ledger.p00088
-#print axioms FRC.Ledger.p00089
+#print axioms FRC.Ledger.p00202

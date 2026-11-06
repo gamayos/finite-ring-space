@@ -112,7 +112,8 @@ def metrology():
     return dict(action=action, pair=pair, single=single, step=step, product=product)
 
 
-# ---- the even and odd Airy ladders by Sturm's count (00:G20; 34-super D1) ------------------------------------------------
+# ---- the even and odd Airy ladders of the linear potential by Sturm's count (library; the vortex-core reading of 00:G20 and
+# ---- 34-super D1 was withdrawn on 2026-11-05, 34-super reports/vortex-ladder-20261105; no row cites these) ------------------
 def even_grid(N, L):
     """The even (Neumann) finite operator −u'' + x u on the sites x_k = k h, k = 0 … N, h = L/(N+1), with u(−h) = u(h) at
     the origin and u(L) = 0: the diagonal 2/h² + k h and, after the symmetrising rescaling of the origin, the squared

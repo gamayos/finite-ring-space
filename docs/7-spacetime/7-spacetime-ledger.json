@@ -172,7 +172,7 @@
     },
     {
      "label": "A24",
-     "predicate": "The per-chronon drift rate: an embedded shell's chart count advances by $1/(\\Om-1)$ of the Carrier's chart cycle per chronon, the same for every shell.",
+     "predicate": "The per-chronon drift rate: an embedded shell's chart count, its position in its own chart of the Carrier's cycle, advances by $1/(\\Om-1)$ of the cycle per chronon; on a hosted Carrier the host's clock drives every shell at that rate.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:drift}(iii); \\citep{akhtman2026s13}; \\href{https://finitering.space/38-s13/index.html#C10}{38:C10}\\newline \\pywit{spacetime}{p38044}{A24}, \\leanwit{FrcCore}{p38044}{A24} \\lean{FRC.Pair.leak\\_rate, FRC.Pair.two\\_faces}",
      "key": "p38044"
@@ -440,9 +440,9 @@
    "rows": [
     {
      "label": "F1",
-     "predicate": "Every embedded shell drifts against the Carrier at one rate, $1/(\\Om-1)$ of the Carrier cycle per chronon and $\\kap/\\dS$ per revolution, below $1/(\\sqrt{\\Om}+1)$ exactly when $\\p^{2}<\\Om$ [chart]; the count of F4 advances at the same rate for every embedded observer.",
+     "predicate": "Every embedded shell drifts against its own chart of the Carrier by $1/(\\Om-1)$ of the cycle per chronon and $\\kap/\\dS$ per revolution, below $1/(\\sqrt{\\Om}+1)$ exactly when $\\p^{2}<\\Om$ [chart]; the cycle's order $\\Om-1$ is the same for every Subject, and no rate between two Subjects is defined.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:arrow}(iii); rests on A21, A24, A25\\newline \\pywit{spacetime}{p07044}{F1}, \\leanwit{FrcCore}{p07044}{F1} \\lean{FRC.Pair.leak\\_rate}",
+     "source": "Thm.~\\ref{thm:arrow}(iii); rests on A21, A23, A24, A25, A29, B3\\newline \\pywit{spacetime}{p07044}{F1}, \\leanwit{FrcCore}{p07044}{F1} \\lean{FRC.Pair.leak\\_rate}",
      "key": "p07044"
     },
     {
@@ -472,6 +472,13 @@
      "tag": "T",
      "source": "Cor.~\\ref{cor:second}; rests on A4, A17, A30, B5, B7, F4\\newline \\pywit{spacetime}{p07052}{F5}, \\leanwit{FrcCore}{p07052}{F5} \\lean{FRC.Register.record\\_second\\_law, FRC.Register.record\\_quarter, FRC.Register.record\\_quarter\\_pairs, FRC.Lorentz.drift\\_one\\_directional, FRC.Lorentz.nesting\\_depth}",
      "key": "p07052"
+    },
+    {
+     "label": "F6",
+     "predicate": "One drift rate for every observer: every Subject's chronon is one step of the Carrier's chart cycle, so the drift has one rate for every observer, read as the Hubble rate [chart]; the arithmetic defines no rate between two Subjects. Falsifier: a drift rate that differs between observers at one epoch, at fixed $\\Om$.",
+     "tag": "R",
+     "source": "Real.~\\ref{real:rate}; rests on F1",
+     "key": "p07056"
     }
    ]
   },
@@ -509,7 +516,7 @@
     },
     {
      "label": "X6",
-     "predicate": "Why causality has an arrow: every embedded shell drifts at one rate, its chart count is a one-directional count that orders its revolutions, and the time reversal is not a Lorentz move.",
+     "predicate": "Why causality has an arrow: every embedded shell's chart count is a one-directional count on a cycle of one order for every observer, it orders the shell's revolutions, and the time reversal is not a Lorentz move.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:explains}(v); rests on A17, B5, F1, F3, F4\\newline \\pywit{spacetime}{p07048}{X6}, \\leanwit{FrcCore}{p07048}{X6} \\lean{FRC.Lorentz.no\\_time\\_reversal, FRC.Lorentz.no\\_reflection, FRC.Lorentz.no\\_inversion, FRC.Lorentz.drift\\_one\\_directional}",
      "key": "p07048"
