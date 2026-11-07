@@ -90,16 +90,16 @@ const PUBLICATIONS = [
     "schema": true,
     "links": [
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/2-geometry/frc-2-geometry.ipynb",
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p02_geometry.ipynb",
         "label": "python",
         "count": 21,
-        "title": "21 predicates checked, all passing: the notebook frc-2-geometry.ipynb on Google Colab, one cell per predicate"
+        "title": "21 predicates checked, all passing: the notebook p02_geometry.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Geometry.lean",
         "label": "lean",
-        "count": 16,
-        "title": "16 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Geometry as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 19,
+        "title": "19 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Geometry as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Geometry.lean",

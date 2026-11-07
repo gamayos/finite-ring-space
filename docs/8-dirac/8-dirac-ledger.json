@@ -3,7 +3,7 @@
  "tree": "8-dirac-20260709",
  "title": "Schrödinger and Dirac Dynamics",
  "doi": "https://doi.org/10.20944/preprints202510.1486.v2",
- "generated": "6 November 2026",
+ "generated": "7 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -260,6 +260,14 @@
      "source": "Rem.~\\ref{rem:forward-step}\\newline \\pywit{dirac}{p08066}{C16}, \\leanwit{FrcCore}{p08066}{C16}, \\leanwit{FrcMathlib}{p08066}{C16} \\lean{Dirac.Ext.cayley\\_gauge, FRC.Dirac.Plane.cayley\\_gauge}",
      "key": "p08066",
      "name": "forward_step"
+    },
+    {
+     "label": "C17",
+     "predicate": "The classification of the admissible set: a nonzero trace-zero parameter is excluded iff its inverse is a trace-zero eigenvalue; $|\\calA(H)|=\\p-2r(H)$ with $r(H)$ the number of nonsquare quadratic factors of $\\chi_H\\in\\Fp[x]$; every count down to $\\p-2\\min(\\lfloor n/2\\rfloor,(\\p-1)/2)$ occurs; the nilpotent and the $\\Fp$-spectrum cases are full.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:admissible-classification}; rests on C1\\newline \\pywit{dirac}{p08046}{C17}, \\leanwit{FrcCore}{p08046}{C17} \\lean{FRC.Dirac.Det.cayleyDen\\_singular\\_iff\\_eigen, FRC.Dirac.Det.det\\_cayleyDen\\_zero, FRC.Dirac.Det.skew\\_cayleyDen\\_values, FRC.Dirac.Det.skew\\_cayleyDen\\_values173, FRC.Dirac.Det.skew\\_cayleyDen\\_values1549, FRC.Dirac.Det.sym\\_cayleyDen\\_values13, FRC.Dirac.Det.kinV\\_full13}",
+     "key": "p08046",
+     "name": "admissible_set_classification"
     }
    ]
   },
@@ -588,20 +596,6 @@
      "source": "Cor.~\\ref{cor:explains}(iv); rests on D9\\newline \\pywit{dirac}{p08056}{X4}, \\leanwit{FrcCore}{p08056}{X4}, \\leanwit{FrcMathlib}{p08056}{X4} \\lean{Dirac.spinor\\_twist, Dirac.gamma\\_dagger, FRC.Dirac.spinor\\_form\\_values}",
      "key": "p08056",
      "name": "spinor_form_forced"
-    }
-   ]
-  },
-  {
-   "letter": "T",
-   "title": "Tasks",
-   "rows": [
-    {
-     "label": "T1",
-     "predicate": "The classification of the admissible set of Cayley parameters for a general self-adjoint Hamiltonian, beyond the nilpotent and the diagonal cases.",
-     "tag": "O",
-     "source": "Rem.~\\ref{rem:admissibility}; rests on C5, E7",
-     "key": "p08046",
-     "name": null
     }
    ]
   }
@@ -1441,6 +1435,71 @@
     "tier": 0,
     "ok": true,
     "doc": "8:C16 — the orientation gauge inverts every value of the Cayley map: `φ⁻(λ) φ(λ) = 1` when `(1 − νλ²) u = 1` (the product is `(N u)²` on the real line and `0` on the imaginary one, two polynomial identities)."
+   }
+  ],
+  "C17": [
+   {
+    "name": "FRC.Dirac.Det.cayleyDen_singular_iff_eigen",
+    "module": "FrcCore/Theme/Cayley",
+    "line": 195,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C17 — for `α ≠ 0` the excluded parameters are the inverses of the eigenvalues: `det(I − αH) = 0 ↔ ∃ v ≠ 0, Hv = α⁻¹v`, for every square matrix over `K` (item (ii) of the classification)."
+   },
+   {
+    "name": "FRC.Dirac.Det.det_cayleyDen_zero",
+    "module": "FrcCore/Theme/Cayley",
+    "line": 255,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C17 — `α = 0` is always admissible: `det(I − 0·H) = 1` (the admissible set contains zero)."
+   },
+   {
+    "name": "FRC.Dirac.Det.skew_cayleyDen_values",
+    "module": "FrcCore/Theme/Cayley",
+    "line": 283,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C17 [value] — on `𝔽₁₃` (`ν = 2`): `I − kwH` is `skewCayley`; the Cayley denominator is singular exactly at `k = 4, 9`, and at `k = 4` the vector `(8, 1)` is fixed by `αH`, at `k = 9` the vector `(5, 1)`."
+   },
+   {
+    "name": "FRC.Dirac.Det.skew_cayleyDen_values173",
+    "module": "FrcCore/Theme/Cayley",
+    "line": 314,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C17 [value] — the skew Hamiltonian on `𝔽₁₇₃` (`ν = 2`): the two excluded parameters are `k = 40, 133`, the roots of `(kν)² = −1`."
+   },
+   {
+    "name": "FRC.Dirac.Det.skew_cayleyDen_values1549",
+    "module": "FrcCore/Theme/Cayley",
+    "line": 319,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C17 [value] — the skew Hamiltonian on `𝔽₁₅₄₉` (`ν = 2`): the two excluded parameters are `k = 44, 1505`."
+   },
+   {
+    "name": "FRC.Dirac.Det.sym_cayleyDen_values13",
+    "module": "FrcCore/Theme/Cayley",
+    "line": 307,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C17 [value] — on `𝔽₁₃` (`ν = 2`): for every real symmetric block `[[a, b], [b, −a]]` and every `k`, `I − kwH` is singular exactly when `k²·ν·(a² + b²) = 1`; exactly 72 of the 169 blocks exclude a parameter (those with `a² + b²` a nonsquare), each of them two."
+   },
+   {
+    "name": "FRC.Dirac.Det.kinV_full13",
+    "module": "FrcCore/Theme/Cayley",
+    "line": 325,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:C17 [value] — on `𝔽₁₃`: the paper's `−Δ + V_id` is fully admissible, `det(I − kwH) ≠ 0` for every `k`, read off the general determinant by elimination."
    }
   ],
   "D2": [

@@ -547,7 +547,7 @@ def IsRound (N u v k : Nat) : Prop := 2 * v * k ≤ 2 * N * u + v ∧ 2 * N * u 
 
 theorem two_v_pos {v : Nat} (hv : 0 < v) : 0 < 2 * v := Nat.mul_pos (Nat.zero_lt_succ 1) hv
 
-/-- 1:E4 — every framed turn has its rounding (the division with remainder by `2v`). -/
+/-- 1:E4, 2:E2, 2:E4 — every framed turn has its rounding (the division with remainder by `2v`). -/
 theorem round_exists (N u v : Nat) (hv : 0 < v) : ∃ k, IsRound N u v k := by
   obtain ⟨q, hq⟩ := FRC.Nat.mod_spec (2 * v) (two_v_pos hv) (2 * N * u + v)
   have hr := Nat.mod_lt (2 * N * u + v) (two_v_pos hv)

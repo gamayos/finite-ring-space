@@ -1,5 +1,6 @@
 import FrcCore.FrameCore
 import FrcCore.Frame
+import FrcCore.Theme.Orbital
 import FrcCore.Theme.Framed
 
 /-!
@@ -31,6 +32,12 @@ def p01035 := And.intro @FRC.Shell.Frame.frac_window (And.intro @FRC.Shell.Frame
 set_option linter.defProp false in
 /-- p01036 — 1:D9. The scale grid covers the field: for every unit $B$, every element of $\Fp$ is $tB^{-1}$ for exactly one integer $t$ with $|t|\le2\kap$; each grid $\{t/\gen^{n}\}$ lists every element once. -/
 def p01036 := And.intro @FRC.Shell.Frame.signed_rep (And.intro @FRC.Shell.Frame.signed_rep_unique (And.intro @FRC.Shell.Frame.grid_cover (@FRC.Shell.Frame.grid_unique)))
+/-- p02022 — 2:E2. Base-grid estimate [chart]: every point of $S^{2}$ lies within geodesic distance $\delta_{\p}=\sqrt2\,\pi_{\R}/(\p-1)$ of $\Xi_{\p,\gen}(V(\Sp))$; in counts, every latitude fraction and every phase fraction rounds to a grid index within half a step. Measured covering radius $0.36$ at $\p=13$, bound $0.370$. -/
+theorem p02022 : ∀ (N u v : Nat), (0 : Nat) < v → ∃ k, FRC.Shell.Frame.IsRound N u v k :=
+  @FRC.Shell.Frame.round_exists
+/-- p02024 — 2:E4. Precision at the shell's resolution [chart]: for every $L$-bounded observable family and configuration on $(S^{2})^{r}$, vertex images of $\Sp$ reproduce every observable within $L^{2}\delta_{\p}$; a tolerance $\varepsilon$ is met on every shell with $\p-1>\sqrt2\,\pi_{\R}L^{2}/\varepsilon$, and one such shell has $\p\le2\max(7,\sqrt2\,\pi_{\R}L^{2}/\varepsilon+1)$ (A5). -/
+theorem p02024 : (∀ (N u v : Nat), (0 : Nat) < v → ∃ k, FRC.Shell.Frame.IsRound N u v k) ∧ ∀ (L r d : Nat), r ≤ L → L * (r * d) ≤ L * (L * d) :=
+  And.intro @FRC.Shell.Frame.round_exists (@FRC.Geometry.lipschitz_budget)
 -- end keys
 
 end FRC.Ledger

@@ -21,6 +21,7 @@ import FrcMathlib.Keys.Projective
 import FrcMathlib.Keys.Fourier
 import FrcMathlib.Keys.Logic
 import FrcMathlib.Keys.Dirac
+import FrcMathlib.Keys.Geometry
 import FrcMathlib.Keys.Algebra
 import FrcMathlib.Keys.Gravity
 import FrcMathlib.Keys.Quantum

@@ -132,3 +132,78 @@ def order_certified(pow_, eq_, one, U, N, primes):
     for q, e in primes.items(): prod *= q ** e
     if prod != N or not eq_(pow_(U, N), one): return False
     return all(not eq_(pow_(U, N // q), one) for q in primes)
+
+
+# ---- the determinant over K, the characteristic polynomial and the admissible set (7 November 2026) ------------------------
+# The Lean side is the core's Theme/Det (the Laplace determinant and its row calculus), Theme/Elim (the elimination, equal to
+# the determinant, and the kernel criterion) and Theme/Cayley (the Cayley denominator I − αH: singular iff α⁻¹ is an
+# eigenvalue). Here the determinant is the elimination, the characteristic polynomial the Hessenberg recursion.
+
+def mdet(K, M):
+    """det M over the field K by Gaussian elimination (exact; divisions by nonzero pivots only)."""
+    n = len(M); A = [row[:] for row in M]; d = ONE
+    for c in range(n):
+        piv = next((r for r in range(c, n) if A[r][c] != ZERO), None)
+        if piv is None: return ZERO
+        if piv != c: A[c], A[piv] = A[piv], A[c]; d = K.neg(d)
+        d = K.mul(d, A[c][c]); inv = K.inv(A[c][c])
+        for r in range(c + 1, n):
+            if A[r][c] != ZERO:
+                f = K.mul(A[r][c], inv)
+                A[r] = [K.sub(A[r][j], K.mul(f, A[c][j])) for j in range(n)]
+    return d
+
+def charpoly(K, H):
+    """The coefficients c_0, …, c_n of χ_H(x) = det(xI − H) over K: the Hessenberg form, then the recursion on its leading
+    principal blocks (Cohen, A Course in Computational Algebraic Number Theory, Alg. 2.2.9); divisions by nonzero elements only."""
+    n = len(H); A = [row[:] for row in H]
+    for m in range(1, n - 1):                                  # columns 0..m−1 cleared below the subdiagonal
+        piv = next((i for i in range(m + 1, n) if A[i][m - 1] != ZERO), None)
+        if piv is None: continue
+        if A[m][m - 1] == ZERO:
+            A[m], A[piv] = A[piv], A[m]
+            for row in A: row[m], row[piv] = row[piv], row[m]
+        t_inv = K.inv(A[m][m - 1])
+        for i in range(m + 1, n):
+            if A[i][m - 1] != ZERO:
+                u = K.mul(A[i][m - 1], t_inv)
+                A[i] = [K.sub(A[i][j], K.mul(u, A[m][j])) for j in range(n)]
+                for row in A: row[m] = K.add(row[m], K.mul(u, row[i]))
+    polys = [[ONE]]                                             # p_0 = 1, p_m = (x − a_mm) p_{m−1} − Σ_{i<m} a_im (Π_{i<k≤m} a_{k,k−1}) p_{i−1}
+    for m in range(1, n + 1):
+        prev = polys[m - 1]; pm = [ZERO] + prev
+        pm = [K.sub(pm[j], K.mul(A[m - 1][m - 1], prev[j]) if j < len(prev) else ZERO) for j in range(len(pm))]
+        prod = ONE
+        for i in range(m - 1, 0, -1):
+            prod = K.mul(prod, A[i][i - 1]); coef = K.mul(A[i - 1][m - 1], prod)
+            if coef != ZERO:
+                pi = polys[i - 1]
+                for j in range(len(pi)): pm[j] = K.sub(pm[j], K.mul(coef, pi[j]))
+        polys.append(pm)
+    return polys[n]
+
+def cayley_den(K, H, k):
+    """I − k w H, the Cayley denominator at the trace-zero parameter α = k w."""
+    n = len(H); a = (0, k % K.p)
+    return [[K.sub(ONE if i == j else ZERO, K.mul(a, H[i][j])) for j in range(n)] for i in range(n)]
+
+def admissible_set(K, H):
+    """𝒜(H) = {k ∈ F_p : det(I − k w H) ≠ 0}, decided by the determinant at every k."""
+    return [k for k in range(K.p) if mdet(K, cayley_den(K, H, k)) != ZERO]
+
+def nonsquare_quadratic_factors(p, chi):
+    """The nonsquares y of F_p with (x² − y) | χ, for χ with coefficients c_0, …, c_n in F_p (given as the (c, 0) pairs of K):
+    y is a common root of the even and the odd part of χ. Returns the sorted list of y."""
+    assert all(c[1] == 0 for c in chi), "the polynomial is not over F_p"
+    E = [chi[i][0] for i in range(0, len(chi), 2)]; O = [chi[i][0] for i in range(1, len(chi), 2)]
+    ev = lambda P, y: sum(a * pow(y, i, p) for i, a in enumerate(P)) % p
+    sq = {x * x % p for x in range(1, p)}
+    return [y for y in range(1, p) if y not in sq and ev(E, y) == 0 and ev(O, y) == 0]
+
+def excluded_by_charpoly(K, H):
+    """The classification of 8:C17: the excluded k ≠ 0 are those with (k w)⁻¹ an eigenvalue, i.e. χ_H(m w) = 0 for m = (k ν)⁻¹,
+    i.e. ν m² a nonsquare root of the even and the odd part of χ_H. Returns (excluded k's, the factors y, χ_H)."""
+    p, nu = K.p, K.nu
+    chi = charpoly(K, H); ys = set(nonsquare_quadratic_factors(p, chi))
+    excl = sorted(k for k in range(1, p) if nu * pow(k * nu % p, -2, p) % p in ys)
+    return excl, sorted(ys), chi

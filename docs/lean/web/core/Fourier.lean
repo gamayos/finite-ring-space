@@ -1768,7 +1768,7 @@ theorem window_signed {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ 
 theorem quarter_turn_exists (F : Frame p κ g) : ∃ u : Shell p, u * u = -1 :=
   ⟨quarterTurn g κ, F.quarter_turn_sq⟩
 
-/-- 1:B2 (Theorem 1, the structural set) — the fourth roots of unity are exactly `1, −1, i, −i`. -/
+/-- 1:B2, 2:D2 (Theorem 1, the structural set) — the fourth roots of unity are exactly `1, −1, i, −i`. -/
 theorem fourth_roots (F : Frame p κ g) (x : Shell p) :
     x ^ 4 = 1 ↔ x = 1 ∨ x = -1 ∨ x = quarterTurn g κ ∨ x = -(quarterTurn g κ) := by
   have h4 : x ^ 4 = (x * x) * (x * x) := by
@@ -6246,14 +6246,6 @@ theorem s13_euler : ((2 : Shell 13) ^ 5) ^ (5 * 6) = -1 := by decide
 theorem frame17a : Frame 17 4 (3 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide⟩
 theorem frame17b : Frame 17 4 (6 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide⟩
 
-set_option maxRecDepth 20000 in
-/-- 2:D6 [value], 00:C14 — on `𝔽₁₇` the frame `g = 3` reads `i = 4` (even: `e^{iπ} = +1`) and the frame
-`g = 6` reads `i = 13` (odd: `e^{iπ} = −1`); `6 = 3^{15}` with `15 ≡ 3 (mod 4)` flips the orientation. -/
-theorem s17_orientation :
-    Frame.quarterTurn (3 : Shell 17) 4 = 4 ∧ Frame.quarterTurn (6 : Shell 17) 4 = 13 ∧
-    ((3 : Shell 17) ^ 4) ^ (4 * 8) = 1 ∧ ((6 : Shell 17) ^ 13) ^ (13 * 8) = -1 ∧
-    (3 : Shell 17) ^ 15 = 6 := by decide
-
 /-- 00:C1 on `𝔽₂₉`: the frame `(τ; 0, 1, 2)`, capacity `7`. -/
 theorem frame29 : Frame 29 7 (2 : Shell 29) := ⟨rfl, Nat.zero_lt_succ 6, by decide⟩
 
@@ -6304,37 +6296,34 @@ theorem p01020 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p01034 — 1:Z3. No latitude on the equator: $4s=0$ forces $s=0$; a framed rational at a quarter position of the additive cycle ($\p/4$, $\p/2$, $3\p/4$) has value $0$, and none of the window sits there; the equator, depth $\kap+\tfrac14$, lies strictly between $L_\kap$ and $L_{\kap+1}$. -/
 theorem p01034 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (s : FRC.Shell p), (4 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (4 : FRC.Shell p) * FRC.Shell.ofNat κ = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (a m : Nat), (4 : Nat) * a = p * m → FRC.Shell.ofNat a = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (4 : Nat) * κ < p ∧ p < (4 : Nat) * (κ + (1 : Nat)) :=
   And.intro @FRC.Shell.Frame.no_equator (And.intro @FRC.Shell.Frame.quarter_fold (And.intro @FRC.Shell.Frame.quarter_position (@FRC.Shell.Frame.equator_between)))
-/-- p02007 — 2:B3. Primitive generators form one orbit: every generator is $\gen^{u}$ with $u\in\Zp^{\times}$, a torsor for $\operatorname{Aut}(C_{\p-1})$ (Props.~\ref{prop:primitive-orbit}, \ref{prop:no-canonical-e}). -/
+/-- p02007 — 2:B3. Primitive generators form one orbit: every generator is $\gen^{u}$ with $u\in\Zp^{\times}$, a torsor for $\operatorname{Aut}(C_{\p-1})$. -/
 theorem p02007 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (h : FRC.Shell p), h.IsPrimitive (p - (1 : Nat)) ↔ ∃ u, u < p - (1 : Nat) ∧ FRC.Shell.Coprime u (p - (1 : Nat)) ∧ h = g ^ u) ∧ FRC.Shell.Coprime (5 : Nat) (12 : Nat) ∧ FRC.Shell.Coprime (7 : Nat) (12 : Nat) ∧ FRC.Shell.Coprime (11 : Nat) (12 : Nat) ∧ ¬FRC.Shell.Coprime (2 : Nat) (12 : Nat) ∧ FRC.Shell.IsPrimitive (6 : FRC.Shell (13 : Nat)) (12 : Nat) ∧ ¬FRC.Shell.IsPrimitive (4 : FRC.Shell (13 : Nat)) (12 : Nat) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) :=
   And.intro @FRC.Shell.Frame.generator_orbit (@FRC.Shell.s13_orbit)
-/-- p02013 — 2:D1. The half-period: $\gen^{\pi}=-1$ for every primitive $\gen$, $\pi=2\kap$ (Prop.~\ref{prop:half-period}); $2\pi\equiv-1$ (00:C1). -/
+/-- p02013 — 2:D1. The half-period: $\gen^{\pi}=-1$ for every primitive $\gen$, $\pi=2\kap$; $2\pi\equiv-1$ (00:C1). -/
 theorem p02013 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) :=
   @FRC.Shell.Frame.half_period
-/-- p02014 — 2:D2. The quarter-turn subgroup $\Qp=\{x:x^{4}=1\}$ is the unique subgroup of order four; $\gen^{\kap}$ has order four with $(\gen^{\kap})^{2}=-1$; $\Qp=\{\pm1,\pm\im\}$ (Def.~\ref{def:quarter-turn-subgroup}, Prop.~\ref{prop:quarter-turn}; 1:B2). -/
-theorem p02014 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (g ^ κ) ^ (2 : Nat) = (-1 : FRC.Shell p) ∧ (g ^ κ) ^ (4 : Nat) = (1 : FRC.Shell p) :=
-  @FRC.Shell.Frame.quarter_turn_order
-/-- p02015 — 2:D3. The oriented quarter-turn $\im=-\gen^{\kap}=\gen^{-\kap}$, $\im^{2}=-1$, orientation by A2 (Rem.~\ref{rem:observer-canonical-e}); on $\F_{13}(\chron;0,1,2)$: $\im=5$, $-\im=8$, $\pi=6$ [value] (Fig.~\ref{fig:f13-constant-datum}). -/
+/-- p02014 — 2:D2. The quarter-turn subgroup $\Qp=\{x:x^{4}=1\}$ is the unique subgroup of order four; $\gen^{\kap}$ has order four with $(\gen^{\kap})^{2}=-1$; $\Qp=\{\pm1,\pm\im\}$ (1:B2). -/
+theorem p02014 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (g ^ κ) ^ (2 : Nat) = (-1 : FRC.Shell p) ∧ (g ^ κ) ^ (4 : Nat) = (1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p), x ^ (4 : Nat) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = FRC.Shell.Frame.quarterTurn g κ ∨ x = -FRC.Shell.Frame.quarterTurn g κ :=
+  And.intro @FRC.Shell.Frame.quarter_turn_order (@FRC.Shell.Frame.fourth_roots)
+/-- p02015 — 2:D3. The oriented quarter-turn $\im=-\gen^{\kap}=\gen^{-\kap}$, $\im^{2}=-1$, orientation by A2; on $\F_{13}(\chron;0,1,2)$: $\im=5$, $-\im=8$, $\pi=6$ [value] (Fig.~\ref{fig:f13-constant-datum}). -/
 theorem p02015 : FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (-5 : FRC.Shell (13 : Nat)) = (8 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (6 : Nat) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) :=
   @FRC.Shell.s13_datum
 /-- p02017 — 2:D5. Orientation classes: for $\gen'=\gen^{u}$, $\im'=-\gen'^{\kap}$ equals $\im$ when $u\equiv1\pmod4$ and $-\im$ when $u\equiv3\pmod4$; the oriented quarter-turn is frame-covariant within one class of generators, not under every generator change. -/
 theorem p02017 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u : Nat), (u % (4 : Nat) = (1 : Nat) → -(g ^ u) ^ κ = -g ^ κ) ∧ (u % (4 : Nat) = (3 : Nat) → -(g ^ u) ^ κ = - -g ^ κ) :=
   @FRC.Shell.Frame.orientation_class
-/-- p02018 — 2:D6. The Euler identity on the shell: $\eu^{\im\pi}=\gen^{2\kap\im^{2}}=(-1)^{\im}$, equal to $-1$ exactly when the representative of $\im$ is odd (00:C14); the oriented frames of a shell are those with $-\gen^{\kap}$ odd --- on $\F_{13}$, $\gen=2$ ($\im=5$) is one, on $\F_{17}$, $\gen=3$ ($\im=4$) is not. -/
-theorem p02018 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (i : Nat), (g ^ i) ^ (i * ((2 : Nat) * κ)) = if i % (2 : Nat) = (0 : Nat) then (1 : FRC.Shell p) else (-1 : FRC.Shell p)) ∧ FRC.Shell.Frame.quarterTurn (3 : FRC.Shell (17 : Nat)) (4 : Nat) = (4 : FRC.Shell (17 : Nat)) ∧ FRC.Shell.Frame.quarterTurn (6 : FRC.Shell (17 : Nat)) (4 : Nat) = (13 : FRC.Shell (17 : Nat)) ∧ ((3 : FRC.Shell (17 : Nat)) ^ (4 : Nat)) ^ ((4 : Nat) * (8 : Nat)) = (1 : FRC.Shell (17 : Nat)) ∧ ((6 : FRC.Shell (17 : Nat)) ^ (13 : Nat)) ^ ((13 : Nat) * (8 : Nat)) = (-1 : FRC.Shell (17 : Nat)) ∧ (3 : FRC.Shell (17 : Nat)) ^ (15 : Nat) = (6 : FRC.Shell (17 : Nat)) :=
-  And.intro @FRC.Shell.Frame.euler_identity (@FRC.Shell.s17_orientation)
-/-- p02019 — 2:D7. Negation $R(x)=-x$ and inversion $I(x)=x^{-1}$ are commuting involutions; off $\Qp$ the $\langle R,I\rangle$-orbit $\{x,-x,x^{-1},-x^{-1}\}$ has four elements, and $\Fpx\setminus\Qp$ splits into $\kap-1$ such orbits (Props.~\ref{prop:shell-negation}, \ref{prop:k4-shell}; 1:B2). -/
+/-- p02019 — 2:D7. Negation $R(x)=-x$ and inversion $I(x)=x^{-1}$ are commuting involutions; off $\Qp$ the $\langle R,I\rangle$-orbit $\{x,-x,x^{-1},-x^{-1}\}$ has four elements, and $\Fpx\setminus\Qp$ splits into $\kap-1$ such orbits (1:B2). -/
 theorem p02019 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x y : FRC.Shell p}, x * y = (1 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → x ≠ -x ∧ x ≠ y ∧ x ≠ -y ∧ -x ≠ y ∧ -x ≠ -y ∧ y ≠ -y) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x : FRC.Shell p}, x ≠ (0 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → ∃ r, (1 : Nat) ≤ r ∧ r < κ ∧ FRC.Shell.Frame.InOrbit (g ^ r) x) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {r r' : Nat}, (1 : Nat) ≤ r → r < κ → (1 : Nat) ≤ r' → r' < κ → ∀ {x : FRC.Shell p}, FRC.Shell.Frame.InOrbit (g ^ r) x → FRC.Shell.Frame.InOrbit (g ^ r') x → r = r' :=
   And.intro @FRC.Shell.Frame.klein_orbit_four (And.intro @FRC.Shell.Frame.orbit_rep (@FRC.Shell.Frame.orbit_rep_unique))
-/-- p02025 — 2:F1. $\gen$ is a principal $n$-th root of unity, $n=\p-1$: $\gen^{n}=1$, $\sum_{j<n}\gen^{jk}=0$ for $0<k<n$, and $n^{-1}=-1$ in $\Fp$ (Prop.~\ref{prop:principal-root}; $2\pi\equiv-1$). -/
+/-- p02025 — 2:F1. $\gen$ is a principal $n$-th root of unity, $n=\p-1$: $\gen^{n}=1$, $\sum_{j<n}\gen^{jk}=0$ for $0<k<n$, and $n^{-1}=-1$ in $\Fp$ ($2\pi\equiv-1$). -/
 theorem p02025 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun j => (g ^ k) ^ j) (p - (1 : Nat)) = (0 : FRC.Shell p) ∧ FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
   @FRC.Shell.Frame.principal_root
-/-- p02027 — 2:F3. Inversion: $v_{j}=-\sum_{k<n}\mathcal F_{\gen}(v)_{k}\gen^{-jk}$, i.e.\ $W_{\gen}^{-1}=-(\gen^{-jk})_{jk}=-W_{\gen}J$ (Prop.~\ref{prop:ring-dft-inverse}; 6:B5), exact on every shell. -/
+/-- p02027 — 2:F3. Inversion: $v_{j}=-\sum_{k<n}\mathcal F_{\gen}(v)_{k}\gen^{-jk}$, i.e.\ $W_{\gen}^{-1}=-(\gen^{-jk})_{jk}=-W_{\gen}J$ (6:B5), exact on every shell. -/
 theorem p02027 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => g ^ (l * k) * -g ^ ((p - (1 : Nat) - j) * l)) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p) :=
   @FRC.Shell.Frame.dft_inverse
-/-- p02028 — 2:F4. Polynomial reading: $\mathcal F_{\gen}(v)_{k}=P_{v}(\gen^{k})$ with $P_{v}=\sum_{j}v_{j}X^{j}$; the transform exchanges coefficients with values on the phase cycle (Prop.~\ref{prop:polynomial-form}). -/
+/-- p02028 — 2:F4. Polynomial reading: $\mathcal F_{\gen}(v)_{k}=P_{v}(\gen^{k})$ with $P_{v}=\sum_{j}v_{j}X^{j}$; the transform exchanges coefficients with values on the phase cycle. -/
 theorem p02028 : ∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (n : Nat) (v : Nat → FRC.Shell p) (k : Nat), FRC.Shell.Frame.dft g n v k = FRC.Shell.Frame.polyEval n v (g ^ k) :=
   @FRC.Shell.Frame.dft_eq_polyEval
-/-- p02029 — 2:F5. Covariance under generator change: for $\gen'=\gen^{u}$, $v^{(\gen')}_{j}=v^{(\gen)}_{uj}$ and $\mathcal F_{\gen'}(v^{(\gen')})=\mathcal F_{\gen}(v^{(\gen)})$ (Prop.~\ref{prop:ring-dft-covariance}). -/
+/-- p02029 — 2:F5. Covariance under generator change: for $\gen'=\gen^{u}$, $v^{(\gen')}_{j}=v^{(\gen)}_{uj}$ and $\mathcal F_{\gen'}(v^{(\gen')})=\mathcal F_{\gen}(v^{(\gen)})$. -/
 theorem p02029 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {u : Nat}, FRC.Shell.Coprime u (p - (1 : Nat)) → ∀ (v : Nat → FRC.Shell p) (k : Nat), FRC.Shell.Frame.dft (g ^ u) (p - (1 : Nat)) (fun j => v (u * j % (p - (1 : Nat)))) k = FRC.Shell.Frame.dft g (p - (1 : Nat)) v k :=
   @FRC.Shell.Frame.dft_covariance
 /-- p06009 — 6:B2. The Euler identity is a property of the chart class: $e^{\im\pi}=\gen^{2\kap(\im\bmod2)}\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate chart $(\gen,\im)\mapsto(\gen^{-1},-\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\F_{13}(\chron;0,1,2)$, $\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells. -/

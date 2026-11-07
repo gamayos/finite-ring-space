@@ -67,8 +67,8 @@ class LedgerTest(unittest.TestCase):
     def test_lean_table(self):
         from frc.ledgers import p08_dirac as L
         self.assertTrue(all(v in ("core", "ml", "core, ml") for v in L.LEAN.values()))
-        self.assertEqual(len(L.LEAN), 48)                                    # the rows with a Lean declaration: every theorem row since the core-proof programme of 5 November 2026 (44 under the record schema of 2 November)
-        self.assertEqual(len(L.PREDICATES), 48)                              # one check per theorem row
+        self.assertEqual(len(L.LEAN), 49)                                    # the rows with a Lean declaration: every theorem row since the core-proof programme of 5 November 2026 (44 under the record schema of 2 November; 49 with C17, the closed T1, since 7 November)
+        self.assertEqual(len(L.PREDICATES), 49)                              # one check per theorem row
 
 
 if __name__ == "__main__":

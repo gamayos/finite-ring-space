@@ -79,7 +79,7 @@ def index(lib):
                 k = i
                 while ":=" not in lines[k]: k += 1
                 rest = lines[k].split(":=", 1)[1] + "\n" + (lines[k + 1] if k + 1 < len(lines) else "")
-                t = re.search(r"@?(FRC\.[\w.'?]+)", rest)
+                t = re.search(r"@(FRC\.[\w.'?]+)", rest) or re.search(r"(FRC\.[\w.'?]+)", rest)   # the @-term first: a statement may carry a `:=` (2-geometry's dft_inverse, a haveI)
                 if t: alias[".".join(stack + [m.group(1)])] = t.group(1)
     return decl, alias
 

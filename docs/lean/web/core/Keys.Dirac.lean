@@ -1768,7 +1768,7 @@ theorem window_signed {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ 
 theorem quarter_turn_exists (F : Frame p κ g) : ∃ u : Shell p, u * u = -1 :=
   ⟨quarterTurn g κ, F.quarter_turn_sq⟩
 
-/-- 1:B2 (Theorem 1, the structural set) — the fourth roots of unity are exactly `1, −1, i, −i`. -/
+/-- 1:B2, 2:D2 (Theorem 1, the structural set) — the fourth roots of unity are exactly `1, −1, i, −i`. -/
 theorem fourth_roots (F : Frame p κ g) (x : Shell p) :
     x ^ 4 = 1 ↔ x = 1 ∨ x = -1 ∨ x = quarterTurn g κ ∨ x = -(quarterTurn g κ) := by
   have h4 : x ^ 4 = (x * x) * (x * x) := by
@@ -3819,14 +3819,6 @@ theorem s13_euler : ((2 : Shell 13) ^ 5) ^ (5 * 6) = -1 := by decide
 /-- 00:C1 on `𝔽₁₇`: two frames, `g = 3` and `g = 6`. -/
 theorem frame17a : Frame 17 4 (3 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide⟩
 theorem frame17b : Frame 17 4 (6 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide⟩
-
-set_option maxRecDepth 20000 in
-/-- 2:D6 [value], 00:C14 — on `𝔽₁₇` the frame `g = 3` reads `i = 4` (even: `e^{iπ} = +1`) and the frame
-`g = 6` reads `i = 13` (odd: `e^{iπ} = −1`); `6 = 3^{15}` with `15 ≡ 3 (mod 4)` flips the orientation. -/
-theorem s17_orientation :
-    Frame.quarterTurn (3 : Shell 17) 4 = 4 ∧ Frame.quarterTurn (6 : Shell 17) 4 = 13 ∧
-    ((3 : Shell 17) ^ 4) ^ (4 * 8) = 1 ∧ ((6 : Shell 17) ^ 13) ^ (13 * 8) = -1 ∧
-    (3 : Shell 17) ^ 15 = 6 := by decide
 
 /-- 00:C1 on `𝔽₂₉`: the frame `(τ; 0, 1, 2)`, capacity `7`. -/
 theorem frame29 : Frame 29 7 (2 : Shell 29) := ⟨rfl, Nat.zero_lt_succ 6, by decide⟩

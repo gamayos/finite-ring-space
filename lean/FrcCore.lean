@@ -31,6 +31,12 @@ import FrcCore.Theme.Operator
 import FrcCore.Theme.Unipotent
 import FrcCore.Theme.Spinor
 import FrcCore.Theme.Loss
+import FrcCore.Theme.Det
+import FrcCore.Theme.Elim
+import FrcCore.Theme.Cayley
+import FrcCore.Theme.Product
+import FrcCore.Theme.Poly
+import FrcCore.Theme.CharPoly
 import FrcCore.Theme.Numbers
 import FrcCore.Theme.Logic
 import FrcCore.Theme.SecondOrder
@@ -82,6 +88,7 @@ import FrcCore.Keys.Numbers
 import FrcCore.Keys.Logic
 import FrcCore.Keys.Dirac
 import FrcCore.Keys.Operator
+import FrcCore.Keys.Geometry
 import FrcCore.Keys.Foundation
 import FrcCore.Keys.Algebra
 import FrcCore.Keys.Carrier

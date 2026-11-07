@@ -1843,7 +1843,7 @@ theorem window_signed {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ 
 theorem quarter_turn_exists (F : Frame p κ g) : ∃ u : Shell p, u * u = -1 :=
   ⟨quarterTurn g κ, F.quarter_turn_sq⟩
 
-/-- 1:B2 (Theorem 1, the structural set) — the fourth roots of unity are exactly `1, −1, i, −i`. -/
+/-- 1:B2, 2:D2 (Theorem 1, the structural set) — the fourth roots of unity are exactly `1, −1, i, −i`. -/
 theorem fourth_roots (F : Frame p κ g) (x : Shell p) :
     x ^ 4 = 1 ↔ x = 1 ∨ x = -1 ∨ x = quarterTurn g κ ∨ x = -(quarterTurn g κ) := by
   have h4 : x ^ 4 = (x * x) * (x * x) := by
