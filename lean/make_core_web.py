@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The core for the live editor (no imports, no Mathlib), one self-contained file each:
 web/FrcCore.lean — the whole library in dependency order (the FRC-wide copy); web/core/<Module>.lean — one paper's
-module with the modules it rests on inlined, ending in a `-- Ledger predicates: axioms` block, one `#print axioms` per
+module (or the master ledger's, Master) with the modules it rests on inlined, ending in a `-- Ledger predicates: axioms` block, one `#print axioms` per
 predicate declaration of the module, so the editor computes each predicate's axioms in front of the reader; the same for
 each key file (web/core/Keys.<Theme>.lean, one `#print axioms` per key). --check compares."""
 import re, sys
@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 ORDER = ["Nat", "Pigeonhole", "Shell", "Series", "Cycle", "Ring", "FrameCore", "Frame", "Parity", "Transform", "Orbit", "Sum", "Theme.Projective", "Theme.Fourier", "Theme.Fractional", "Theme.Lifts", "Theme.Dichotomy", "Theme.Rotations", "Theme.Heisenberg", "Theme.Spectra", "Theme.Exclusivity", "Theme.Shift", "Theme.Quadratic", "Theme.Extension", "Theme.Domain", "Theme.Spin", "Theme.Lorentz", "Theme.Register", "Theme.Numbers", "Theme.Logic", "Theme.SecondOrder", "Theme.Formation", "Theme.Reach", "Theme.Diagonal", "Theme.Threshold", "Theme.Sets", "Theme.Equivariant", "Theme.Transfer", "Theme.Field", "Theme.Foundation", "Theme.Drive", "Theme.Framed", "Theme.Quaternion", "Theme.Carrier", "Theme.Subject", "Theme.Pair", "Theme.Hopf", "Theme.Symbol", "Theme.Gravity", "Theme.Lattice", "Theme.Drift", "Theme.Relaxation", "Theme.Window", "Theme.Static", "Theme.Quantum", "Theme.Observation", "Theme.Interference", "Theme.Composite", "Theme.Unitary", "Theme.Interactions", "Theme.Fields", "Theme.Horizon", "Theme.Zeros", "Theme.Ladder", "Theme.Flavour", "Theme.Dark", "Theme.Hadrons", "Theme.Super", "Theme.Brackets", "Theme.YangMills", "Theme.Strata", "Theme.Calibration", "Theme.Tally", "Theme.Causal", "Meridian", "Fourier", "Algebra", "Epi", "Dimensions", "Poly", "Quaternion", "Causality", "Representation", "Reductio", "Godel", "Finitism", "Geometry", "Complex", "Instances", "Theme.Dirac", "Theme.Packed", "Theme.Plane", "Theme.Hermitian", "Theme.Operator", "Theme.Unipotent", "Theme.Spinor", "Theme.Loss", "Theme.Det", "Theme.Elim", "Theme.Cayley", "Theme.Product", "Theme.Poly", "Theme.CharPoly", "Rh", "Entropy", "Gravity", "Dirac", "S13", "Quantum", "Pnp", "Fields", "Flavour", "Dark", "Hadrons", "Spacetime", "YangMills"]
 ORDER += ["Keys." + p.stem for p in sorted((ROOT / "FrcCore" / "Keys").glob("*.lean"))]   # the key files (make_keys.py, task LM19): after the themes they import
+ORDER += ["Master"]                                                                       # the master ledger's named predicate declarations (make_master.py, 8 November 2026): aliases of the keys, after the key files
 _IMPORTED = re.findall(r"^import FrcCore\.([\w.]+)", (ROOT / "FrcCore.lean").read_text(encoding="utf-8"), re.M)
 _MISSING = sorted(set(_IMPORTED) - set(ORDER))
 assert not _MISSING, f"make_core_web.py: modules imported by FrcCore.lean and absent from ORDER (ticket T13): {_MISSING}"   # 8 November 2026

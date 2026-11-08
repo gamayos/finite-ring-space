@@ -3,7 +3,7 @@
  "tree": "5-reductio-20260706",
  "title": "Paradoxes of Infinity as Reductio ad Absurdum",
  "doi": "https://doi.org/10.20944/preprints202508.1744.v1",
- "generated": "6 November 2026",
+ "generated": "8 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -304,50 +304,6 @@
      "source": "\\S\\ref{subsec:AC-consequences}\\newline \\pywit{reductio}{p05034}{E8}, \\leanwit{FrcCore}{p05034}{E8}, \\leanwit{FrcMathlib}{p05034}{E8} \\lean{Reductio.no\\_doubling, Reductio.ultrafilter\\_principal, FRC.Sets.measure\\_le, FRC.Sets.measure\\_add, FRC.Sets.measure\\_compl, FRC.Sets.measure\\_perm, FRC.Sets.no\\_doubling, FRC.Sets.ultra\\_principal}",
      "key": "p05034",
      "name": "choice_paradoxes_vanish"
-    }
-   ]
-  },
-  {
-   "letter": "F",
-   "title": "The reading",
-   "rows": [
-    {
-     "label": "F1",
-     "predicate": "Ontology and conservativeness: actual infinity is an idealisation of the finite; the bounded fragment is kept exactly, the unbounded fragment in schema form; analysis as approximation over finite grids; choice in the small. Positioning: finitism, intuitionism, ultrafinitism, structuralism; the potential-infinity rule retained at the meta-level as a commitment, not a neutrality.",
-     "tag": "D",
-     "source": "\\S\\ref{subsec:ontology}; \\S\\ref{subsec:conservativeness}; \\S\\ref{subsec:positions}; 00:A2",
-     "key": "p05035",
-     "name": null
-    },
-    {
-     "label": "F2",
-     "predicate": "The Reductio Rule and its two tribunals: the economic ledger (the classical exit keeps $\\Pi_1$, $\\Pi_2$ number theory at a superexponential consistency grant; the finite exit keeps the bounded fragment and declines one classically provable existence claim, E7) and the constitutive Det, on which the verdict rests; objections O1--O5 answered.",
-     "tag": "D",
-     "source": "\\S\\ref{subsec:method-rule}; \\S\\ref{subsec:objections}",
-     "key": "p05036",
-     "name": null
-    },
-    {
-     "label": "F3",
-     "predicate": "The catalogue: the pathologies of the completed infinite in four classes --- antinomies, consistent-but-unregistrable, underdetermination, physical divergences --- each removed by finiteness; the one exclusion retained, the schema over finite instances and the successor act.",
-     "tag": "D",
-     "source": "Appendix~\\ref{app:catalogue}",
-     "key": "p05037",
-     "name": null
-    }
-   ]
-  },
-  {
-   "letter": "T",
-   "title": "Tasks",
-   "rows": [
-    {
-     "label": "T1",
-     "predicate": "The standing of the iteration rule --- whether the potential-infinity rule of the meta-level can be rejected, and at what cost --- is the subject of companion work; the present results are stated to survive either outcome.",
-     "tag": "O",
-     "source": "\\S\\ref{subsec:positions}",
-     "key": "p05041",
-     "name": null
     }
    ]
   }

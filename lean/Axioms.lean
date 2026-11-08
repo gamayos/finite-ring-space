@@ -1198,6 +1198,15 @@ import FrcMathlib
 #print axioms FRC.LedgerML.p22053
 #print axioms FRC.LedgerML.p46041
 #print axioms FRC.LedgerML.p46043
+#print axioms FRC.Master.scale_import
+#print axioms FRC.Master.eikonal_pair_phase_mode
+#print axioms FRC.Master.cosmology_dark_sector
+#print axioms FRC.Master.octant_record_depth
+#print axioms FRC.Master.registrable_triangle_realisation
+#print axioms FRC.Master.primordial_tilt_realisation
+#print axioms FRC.Master.floor_tracks_drive_rate
+#print axioms FRC.Master.flavour_targets
+#print axioms FRC.Master.empty_desert
 #print axioms FRC.Octant.confrontation_pulls
 #print axioms FRC.Octant.ratio_above_octant
 #print axioms FRC.Octant.matter_fraction

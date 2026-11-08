@@ -184,6 +184,8 @@ LEGACY = {
     "lean/FrcCore/Hadrons.lean": ("35-hadrons", ["hadrons", "interactions"]),
     "lean/FrcCore/Finitism.lean": ("29-finitism", ["logic"]),
     "lean/FrcCore/Spacetime.lean": ("7-spacetime", ["projective", "subject"]),
+    "lean/FrcCore/YangMills.lean": ("46-yangmills", ["yangmills"]),
+    "lean/FrcCore/Master.lean": ("00-ledger", []),                 # the master ledger's named predicate declarations (lean/make_master.py, 8 November 2026): aliases of the keys, no content of its own; it imports key files only
     "lean/FrcMathlib/Algebra.lean": ("1-algebra", ["algebra"]),
     "lean/FrcMathlib/Geometry.lean": ("2-geometry", ["geometry"]),
     "lean/FrcMathlib/Causality.lean": ("3-causality", []),
@@ -205,6 +207,8 @@ LEGACY = {
     "lean/FrcMathlib/Dark.lean": ("32-dark", ["chart"]),
     "lean/FrcMathlib/Hadrons.lean": ("35-hadrons", ["hadrons"]),
     "lean/FrcMathlib/Spacetime.lean": ("7-spacetime", ["projective"]),
+    "lean/FrcMathlib/YangMills.lean": ("46-yangmills", ["yangmills", "chart"]),
+    "lean/FrcMathlib/Master.lean": ("00-ledger", []),              # the master's chart rows, aliases of their Mathlib keys (make_master.py)
 }
 LEGACY_IMPORTS_ENFORCED = True          # set by LM18 (5 October 2026): the paper modules import themes only
 

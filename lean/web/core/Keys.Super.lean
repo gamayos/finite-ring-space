@@ -5249,10 +5249,10 @@ def sturmEven (N L : Nat) (μ : Int) : Nat := (sturmEvenAux N L μ (N + 1)).2.2
 has exactly one eigenvalue in `(1.018, 1.019)` (`E₁`, the first zero of `Ai'`) and one in `(3.246, 3.247)` (`E₃`, the
 second), the odd operator (`FRC.Hadrons.sturm`) exactly one in `(2.337, 2.338)` (`E₂`, the first zero of `Ai`); so the
 successive-spacing ratio `ρ = (E₃ − E₂)/(E₂ − E₁)` lies in `(0.687, 0.691)` — the Airy value `0.690`. A statement about
-the operator alone: the published vortex-core ladders are not this ladder (34-super reports/vortex-ladder-20261105), and the
-theorem binds to no ledger row. The bracket ends enter as the integer `μ = ⌊201 · 256 · ε⌋`, within `2 × 10⁻⁵` below the
-decimal `ε` (the convention of `FRC.Hadrons.airy_sturm`); the python witness `frc.super.airy_ladder` counts at the exact
-decimals in `Fraction`s. -/
+the operator alone: the published vortex-core ladders are not this ladder (34-super reports/vortex-ladder-20261105), and
+the theorem binds to no ledger row. The bracket ends enter as the integer `μ = ⌊201 · 256 · ε⌋`, within `2 × 10⁻⁵` below
+the decimal `ε` (the convention of `FRC.Hadrons.airy_sturm`); the python witness `frc.super.airy_ladder` counts at the
+exact decimals in `Fraction`s. -/
 theorem airy_ladder_sturm :
     sturmEven 200 16 (201 * 256 * 1018 / 1000) = 0 ∧ sturmEven 200 16 (201 * 256 * 1019 / 1000) = 1 ∧
     sturmEven 200 16 (201 * 256 * 3246 / 1000) = 1 ∧ sturmEven 200 16 (201 * 256 * 3247 / 1000) = 2 ∧

@@ -54,6 +54,9 @@ jobs:
       - name: the key files current (one declaration per key, from the ledgers' Lean bindings)
         working-directory: lean
         run: python3 make_keys.py --docs ../docs --check
+      - name: the master's module current (one named declaration per bound master row, the alias of its key; make_master.py)
+        working-directory: lean
+        run: python3 make_master.py --docs ../docs --check
       - name: the migrated ledgers' certificates build (each key's axioms guarded)
         working-directory: lean
         run: |

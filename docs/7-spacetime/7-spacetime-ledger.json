@@ -1,9 +1,9 @@
 {
  "paper": "7-st",
  "tree": "7-spacetime-20261027",
- "title": "Emergent Lorentzian Space-Time over Finite Holographic Substrate",
+ "title": "Emergent Lorentzian Spacetime over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202611.0720.v1",
- "generated": "6 November 2026",
+ "generated": "8 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -686,7 +686,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:A8, 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type."
+    "doc": "7:A8, 3:B4, 3:D1 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type."
    },
    {
     "name": "FRC.Shell.Frame.null5",
@@ -1418,7 +1418,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:B6 — **a nontrivial translation fixes the antipode alone.** On the frame's line the translation `[x : y] ↦ [x + by : y]` with `b ≠ 0` fixes `[x : y]` exactly when `y = 0`: `x + by = x` forces `by = 0`, and the prime shell has no zero divisors."
+    "doc": "7:B6 — **a nontrivial translation fixes the antipode alone.** On the frame's line the translation `[x : y] ↦ [x + by : y]` with `b ≠ 0` fixes `[x : y]` exactly when `y = 0`: `x + by = x` forces `by = 0`, and the frame's shell has no zero divisors (`Frame.mul_eq_zero`, the frame theme; the hypothesis is the frame, which makes the shell prime)."
    }
   ],
   "C1": [
@@ -1695,7 +1695,7 @@
    {
     "name": "FRC.Register.fixed_points_13",
     "module": "FrcCore/Theme/Register",
-    "line": 55,
+    "line": 56,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1704,7 +1704,7 @@
    {
     "name": "FRC.Register.fixed_points_of_class",
     "module": "FrcCore/Theme/Register",
-    "line": 69,
+    "line": 70,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1987,7 +1987,7 @@
    {
     "name": "FRC.Register.record_second_law",
     "module": "FrcCore/Theme/Register",
-    "line": 74,
+    "line": 75,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1996,7 +1996,7 @@
    {
     "name": "FRC.Register.record_quarter",
     "module": "FrcCore/Theme/Register",
-    "line": 79,
+    "line": 80,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2005,7 +2005,7 @@
    {
     "name": "FRC.Register.record_quarter_pairs",
     "module": "FrcCore/Theme/Register",
-    "line": 88,
+    "line": 89,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2190,7 +2190,7 @@
    {
     "name": "FRC.Register.floor_is_temperature",
     "module": "FrcCore/Theme/Register",
-    "line": 93,
+    "line": 94,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2199,7 +2199,7 @@
    {
     "name": "FRC.Register.kB_c_carriers",
     "module": "FrcCore/Theme/Register",
-    "line": 98,
+    "line": 99,
     "axioms": [],
     "tier": 0,
     "ok": true,

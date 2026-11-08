@@ -2,17 +2,17 @@
  "header": {
   "generated": "8 November 2026",
   "schema": "frc-register/2",
-  "rows": 1197,
-  "theorems": 1150,
+  "rows": 1193,
+  "theorems": 1146,
   "counts": {
-   "keys": 1150,
-   "rows": 1197,
+   "keys": 1146,
+   "rows": 1193,
    "shared": 45,
    "by_tag": {
-    "D": 182,
+    "D": 179,
     "G": 1,
     "I": 139,
-    "O": 9,
+    "O": 8,
     "R": 90,
     "T": 699,
     "Ω": 30
@@ -245,11 +245,6 @@
       "tag": "R",
       "name": "Realisation",
       "text": "States what a physical term denotes in the substrate: constitutive, not interpretive, and carrying its falsifier."
-     },
-     {
-      "tag": "O",
-      "name": "Open",
-      "text": "Genuinely unresolved."
      }
     ],
     "rows": 23
@@ -352,14 +347,6 @@
      {
       "letter": "E",
       "title": "Choice recovered"
-     },
-     {
-      "letter": "F",
-      "title": "The reading"
-     },
-     {
-      "letter": "T",
-      "title": "Tasks"
      }
     ],
     "legend": [
@@ -384,7 +371,7 @@
       "text": "Decided by the totality; not closeable by a bounded observer. A demarcation, not an open item."
      }
     ],
-    "rows": 38
+    "rows": 34
    },
    {
     "key": "6-four",
@@ -440,7 +427,7 @@
     "key": "7-st",
     "dir": "7-spacetime",
     "no": 7,
-    "title": "Emergent Lorentzian Space-Time over Finite Holographic Substrate",
+    "title": "Emergent Lorentzian Spacetime over Finite Holographic Substrate",
     "status": {
      "kind": "preprint"
     },
@@ -1665,8 +1652,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Foundation",
-     "name": "FRC.Ledger.p00004"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.finitude"
     },
     {
      "lib": "FrcCore",
@@ -1708,8 +1695,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Foundation",
-     "name": "FRC.Ledger.p00003"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.completeness_of_totality"
     },
     {
      "lib": "FrcCore",
@@ -1746,8 +1733,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Foundation",
-     "name": "FRC.Ledger.p00197"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.incompleteness_of_observation"
     },
     {
      "lib": "FrcCore",
@@ -1789,8 +1776,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Foundation",
-     "name": "FRC.Ledger.p00188"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.counting_closes_by_return"
     }
    ],
    "aliases": [],
@@ -1833,8 +1820,8 @@
    "declarations": [
     {
      "lib": "FrcMathlib",
-     "module": "FrcMathlib/Keys/Chart",
-     "name": "FRC.LedgerML.p00009"
+     "module": "FrcMathlib/Master",
+     "name": "FRC.Master.scale_import"
     }
    ],
    "aliases": [],
@@ -1889,8 +1876,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Foundation",
-     "name": "FRC.Ledger.p00162"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.completeness_is_primality"
     },
     {
      "lib": "FrcCore",
@@ -1928,8 +1915,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Foundation",
-     "name": "FRC.Ledger.p00163"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.quarter_turn_criterion"
     },
     {
      "lib": "FrcCore",
@@ -1961,8 +1948,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Foundation",
-     "name": "FRC.Ledger.p00164"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.prime_carries_frame"
     },
     {
      "lib": "FrcCore",
@@ -2069,8 +2056,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Carrier",
-     "name": "FRC.Ledger.p00015"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.substrate_residue"
     }
    ],
    "aliases": [],
@@ -2114,8 +2101,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Carrier",
-     "name": "FRC.Ledger.p00165"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.carrier_register"
     },
     {
      "lib": "FrcCore",
@@ -2149,8 +2136,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Carrier",
-     "name": "FRC.Ledger.p00166"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.window_ladder"
     }
    ],
    "aliases": [],
@@ -2193,8 +2180,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Carrier",
-     "name": "FRC.Ledger.p00168"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.gauge_bit_sign_sector"
     }
    ],
    "aliases": [],
@@ -2250,8 +2237,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Carrier",
-     "name": "FRC.Ledger.p00170"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.carrier_octant_sector"
     }
    ],
    "aliases": [],
@@ -2277,8 +2264,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Subject",
-     "name": "FRC.Ledger.p00021"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.frame_subject_only"
     },
     {
      "lib": "FrcCore",
@@ -2310,8 +2297,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Fourier",
-     "name": "FRC.Ledger.p00022"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.scale_shift_duality"
     }
    ],
    "aliases": [],
@@ -2337,8 +2324,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Subject",
-     "name": "FRC.Ledger.p00150"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.euclidean_lorentzian_dichotomy"
     },
     {
      "lib": "FrcCore",
@@ -2423,8 +2410,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Fourier",
-     "name": "FRC.Ledger.p00189"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.orientation_derived"
     }
    ],
    "aliases": [],
@@ -2452,8 +2439,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Subject",
-     "name": "FRC.Ledger.p00028"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.square_class_parity"
     },
     {
      "lib": "FrcCore",
@@ -2517,8 +2504,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Extension",
-     "name": "FRC.Ledger.p00030"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.two_strata_of_probability"
     }
    ],
    "aliases": [],
@@ -2546,8 +2533,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Extension",
-     "name": "FRC.Ledger.p22028"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.fibre_local_functionals"
     },
     {
      "lib": "FrcCore",
@@ -2618,8 +2605,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Domain",
-     "name": "FRC.Ledger.p00032"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.temperature_domain"
     },
     {
      "lib": "FrcCore",
@@ -2681,8 +2668,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Subject",
-     "name": "FRC.Ledger.p00034"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.quarter_turn_odd_member"
     }
    ],
    "aliases": [],
@@ -2708,8 +2695,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Subject",
-     "name": "FRC.Ledger.p00151"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.spinor_dichotomy"
     }
    ],
    "aliases": [],
@@ -2735,8 +2722,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Projective",
-     "name": "FRC.Ledger.p00190"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.hopf_section"
     },
     {
      "lib": "FrcCore",
@@ -2773,8 +2760,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Subject",
-     "name": "FRC.Ledger.p00040"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.mass_energy_channel"
     }
    ],
    "aliases": [],
@@ -2802,8 +2789,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Gravity",
-     "name": "FRC.Ledger.p00041"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.dilation_rigidity"
     }
    ],
    "aliases": [],
@@ -2829,8 +2816,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Projective",
-     "name": "FRC.Ledger.p00152"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.frame_variety"
     },
     {
      "lib": "FrcCore",
@@ -2938,8 +2925,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Subject",
-     "name": "FRC.Ledger.p00139"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.antipode_on_torus"
     },
     {
      "lib": "FrcCore",
@@ -2998,8 +2985,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Projective",
-     "name": "FRC.Ledger.p00183"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.frame_group_one_form"
     },
     {
      "lib": "FrcCore",
@@ -3317,8 +3304,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Gravity",
-     "name": "FRC.Ledger.p00052"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.uniqueness_of_dynamics"
     }
    ],
    "aliases": [],
@@ -3344,8 +3331,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Gravity",
-     "name": "FRC.Ledger.p00154"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.gravity_linear"
     }
    ],
    "aliases": [],
@@ -3371,8 +3358,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Gravity",
-     "name": "FRC.Ledger.p00055"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.gravity_nonlinear_completion"
     }
    ],
    "aliases": [],
@@ -3397,8 +3384,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Gravity",
-     "name": "FRC.Ledger.p00056"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.gravity_floor_faces"
     }
    ],
    "aliases": [],
@@ -3423,8 +3410,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Gravity",
-     "name": "FRC.Ledger.p00176"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.gravity_horizon_count"
     }
    ],
    "aliases": [],
@@ -3450,8 +3437,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Gravity",
-     "name": "FRC.Ledger.p00058"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.gravity_horizon_triple"
     }
    ],
    "aliases": [],
@@ -3482,8 +3469,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Gravity",
-     "name": "FRC.Ledger.p00147"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.fold_is_chart_projection"
     }
    ],
    "aliases": [],
@@ -3525,8 +3512,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Gravity",
-     "name": "FRC.Ledger.p00199"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.chart_count"
     }
    ],
    "aliases": [],
@@ -3567,8 +3554,8 @@
    "declarations": [
     {
      "lib": "FrcMathlib",
-     "module": "FrcMathlib/Keys/Chart",
-     "name": "FRC.LedgerML.p00201"
+     "module": "FrcMathlib/Master",
+     "name": "FRC.Master.eikonal_pair_phase_mode"
     }
    ],
    "aliases": [],
@@ -3608,8 +3595,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Quantum",
-     "name": "FRC.Ledger.p00191"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.multibody_registration"
     }
    ],
    "aliases": [],
@@ -3637,8 +3624,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Quantum",
-     "name": "FRC.Ledger.p00062"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.wavefunction_folds"
     }
    ],
    "aliases": [],
@@ -3664,8 +3651,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Quantum",
-     "name": "FRC.Ledger.p00194"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.graded_registration_law"
     }
    ],
    "aliases": [],
@@ -3691,8 +3678,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Quantum",
-     "name": "FRC.Ledger.p00064"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.binding_lift"
     }
    ],
    "aliases": [],
@@ -3718,8 +3705,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Interactions",
-     "name": "FRC.Ledger.p00178"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.electromagnetism_exact"
     }
    ],
    "aliases": [],
@@ -3749,8 +3736,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Interactions",
-     "name": "FRC.Ledger.p00067"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.weak_amplitudes"
     }
    ],
    "aliases": [],
@@ -3793,8 +3780,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Interactions",
-     "name": "FRC.Ledger.p00069"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.strong_structure"
     }
    ],
    "aliases": [],
@@ -3820,8 +3807,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Hadrons",
-     "name": "FRC.Ledger.p00070"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.strong_tension"
     }
    ],
    "aliases": [],
@@ -3862,8 +3849,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Interactions",
-     "name": "FRC.Ledger.p27043"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.vanishing_strong_cp_angle"
     },
     {
      "lib": "FrcCore",
@@ -3910,8 +3897,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Hadrons",
-     "name": "FRC.Ledger.p00073"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.strong_hadron_spectrum"
     }
    ],
    "aliases": [],
@@ -3937,8 +3924,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Hadrons",
-     "name": "FRC.Ledger.p00074"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.strong_residue_series"
     }
    ],
    "aliases": [],
@@ -3966,8 +3953,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Hadrons",
-     "name": "FRC.Ledger.p00075"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.strong_baryon_scale"
     }
    ],
    "aliases": [],
@@ -3993,8 +3980,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Interactions",
-     "name": "FRC.Ledger.p27020"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.standard_model_generation_spinor"
     },
     {
      "lib": "FrcCore",
@@ -4030,8 +4017,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Interactions",
-     "name": "FRC.Ledger.p00155"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.one_generation_origin"
     }
    ],
    "aliases": [],
@@ -4091,8 +4078,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Flavour",
-     "name": "FRC.Ledger.p00080"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.flavour_structure"
     }
    ],
    "aliases": [],
@@ -4118,8 +4105,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Interactions",
-     "name": "FRC.Ledger.p00081"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.flavour_koide"
     }
    ],
    "aliases": [],
@@ -4145,8 +4132,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Flavour",
-     "name": "FRC.Ledger.p00179"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.flavour_exact_ratios"
     }
    ],
    "aliases": [],
@@ -4174,8 +4161,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Interactions",
-     "name": "FRC.Ledger.p00083"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.flavour_projection"
     }
    ],
    "aliases": [],
@@ -4201,8 +4188,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Super",
-     "name": "FRC.Ledger.p00088"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.superconductivity_structure"
     }
    ],
    "aliases": [],
@@ -4228,8 +4215,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Super",
-     "name": "FRC.Ledger.p00202"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.superconductivity_duality"
     }
    ],
    "aliases": [],
@@ -4270,8 +4257,8 @@
    "declarations": [
     {
      "lib": "FrcMathlib",
-     "module": "FrcMathlib/Keys/Chart",
-     "name": "FRC.LedgerML.p00192"
+     "module": "FrcMathlib/Master",
+     "name": "FRC.Master.cosmology_dark_sector"
     }
    ],
    "aliases": [],
@@ -4313,8 +4300,8 @@
    "declarations": [
     {
      "lib": "FrcMathlib",
-     "module": "FrcMathlib/Keys/Chart",
-     "name": "FRC.LedgerML.p00193"
+     "module": "FrcMathlib/Master",
+     "name": "FRC.Master.octant_record_depth"
     }
    ],
    "aliases": [],
@@ -4339,8 +4326,8 @@
    "declarations": [
     {
      "lib": "FrcMathlib",
-     "module": "FrcMathlib/Keys/Chart",
-     "name": "FRC.LedgerML.p00087"
+     "module": "FrcMathlib/Master",
+     "name": "FRC.Master.registrable_triangle_realisation"
     }
    ],
    "aliases": [],
@@ -4382,8 +4369,8 @@
    "declarations": [
     {
      "lib": "FrcMathlib",
-     "module": "FrcMathlib/Keys/Chart",
-     "name": "FRC.LedgerML.p00148"
+     "module": "FrcMathlib/Master",
+     "name": "FRC.Master.primordial_tilt_realisation"
     }
    ],
    "aliases": [],
@@ -4440,8 +4427,8 @@
    "declarations": [
     {
      "lib": "FrcMathlib",
-     "module": "FrcMathlib/Keys/Chart",
-     "name": "FRC.LedgerML.p00133"
+     "module": "FrcMathlib/Master",
+     "name": "FRC.Master.floor_tracks_drive_rate"
     }
    ],
    "aliases": [],
@@ -4470,8 +4457,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Quantum",
-     "name": "FRC.Ledger.p00061"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.equal_force_unequal_entanglement"
     }
    ],
    "aliases": [],
@@ -4500,8 +4487,8 @@
    "declarations": [
     {
      "lib": "FrcMathlib",
-     "module": "FrcMathlib/Keys/Chart",
-     "name": "FRC.LedgerML.p00180"
+     "module": "FrcMathlib/Master",
+     "name": "FRC.Master.flavour_targets"
     }
    ],
    "aliases": [],
@@ -4531,8 +4518,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Hadrons",
-     "name": "FRC.Ledger.p00091"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.empty_desert"
     },
     {
      "lib": "FrcMathlib",
@@ -4566,8 +4553,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Logic",
-     "name": "FRC.Ledger.p00186"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.godel_vacuous"
     }
    ],
    "aliases": [],
@@ -4638,8 +4625,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Interactions",
-     "name": "FRC.Ledger.p27021"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.simple_unification_forced"
     },
     {
      "lib": "FrcCore",
@@ -4742,8 +4729,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Logic",
-     "name": "FRC.Ledger.p00187"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.no_compression_any_coding"
     }
    ],
    "aliases": [],
@@ -4769,8 +4756,8 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Keys/Horizon",
-     "name": "FRC.Ledger.p20043"
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.shell_theorem"
     },
     {
      "lib": "FrcMathlib",
@@ -8890,66 +8877,6 @@
     "5:E8"
    ],
    "realisations": []
-  },
-  {
-   "key": "p05035",
-   "origin": "05",
-   "statement": "Ontology and conservativeness: actual infinity is an idealisation of the finite; the bounded fragment is kept exactly, the unbounded fragment in schema form; analysis as approximation over finite grids; choice in the small. Positioning: finitism, intuitionism, ultrafinitism, structuralism; the potential-infinity rule retained at the meta-level as a commitment, not a neutrality.",
-   "origin_row": "5:F1",
-   "tag": "D",
-   "name": null,
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "5:F1"
-   ]
-  },
-  {
-   "key": "p05036",
-   "origin": "05",
-   "statement": "The Reductio Rule and its two tribunals: the economic ledger (the classical exit keeps $\\Pi_1$, $\\Pi_2$ number theory at a superexponential consistency grant; the finite exit keeps the bounded fragment and declines one classically provable existence claim, E7) and the constitutive Det, on which the verdict rests; objections O1--O5 answered.",
-   "origin_row": "5:F2",
-   "tag": "D",
-   "name": null,
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "5:F2"
-   ]
-  },
-  {
-   "key": "p05037",
-   "origin": "05",
-   "statement": "The catalogue: the pathologies of the completed infinite in four classes --- antinomies, consistent-but-unregistrable, underdetermination, physical divergences --- each removed by finiteness; the one exclusion retained, the schema over finite instances and the successor act.",
-   "origin_row": "5:F3",
-   "tag": "D",
-   "name": null,
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "5:F3"
-   ]
-  },
-  {
-   "key": "p05041",
-   "origin": "05",
-   "statement": "The standing of the iteration rule --- whether the potential-infinity rule of the meta-level can be rejected, and at what cost --- is the subject of companion work; the present results are stated to survive either outcome.",
-   "origin_row": "5:T1",
-   "tag": "O",
-   "name": null,
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "5:T1"
-   ]
   },
   {
    "key": "p06001",
@@ -36399,11 +36326,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Foundation",
-      "name": "FRC.Ledger.p00004",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.finitude",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00004"
+      "page": "lean/core/Master.html#FRC.Master.finitude"
      }
     ]
    },
@@ -36445,11 +36372,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Foundation",
-      "name": "FRC.Ledger.p00003",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.completeness_of_totality",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00003"
+      "page": "lean/core/Master.html#FRC.Master.completeness_of_totality"
      }
     ]
    },
@@ -36491,11 +36418,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Foundation",
-      "name": "FRC.Ledger.p00197",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.incompleteness_of_observation",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00197"
+      "page": "lean/core/Master.html#FRC.Master.incompleteness_of_observation"
      }
     ]
    },
@@ -36541,11 +36468,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Foundation",
-      "name": "FRC.Ledger.p00188",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.counting_closes_by_return",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00188"
+      "page": "lean/core/Master.html#FRC.Master.counting_closes_by_return"
      }
     ]
    },
@@ -36609,11 +36536,11 @@
     "lean": [
      {
       "lib": "FrcMathlib",
-      "module": "FrcMathlib/Keys/Chart",
-      "name": "FRC.LedgerML.p00009",
+      "module": "FrcMathlib/Master",
+      "name": "FRC.Master.scale_import",
       "tier": 2,
       "ok": true,
-      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00009"
+      "page": "lean/ml/Master.html#FRC.Master.scale_import"
      }
     ]
    },
@@ -36700,11 +36627,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Foundation",
-      "name": "FRC.Ledger.p00162",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.completeness_is_primality",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00162"
+      "page": "lean/core/Master.html#FRC.Master.completeness_is_primality"
      }
     ]
    },
@@ -36740,11 +36667,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Foundation",
-      "name": "FRC.Ledger.p00163",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.quarter_turn_criterion",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00163"
+      "page": "lean/core/Master.html#FRC.Master.quarter_turn_criterion"
      }
     ]
    },
@@ -36780,11 +36707,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Foundation",
-      "name": "FRC.Ledger.p00164",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.prime_carries_frame",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00164"
+      "page": "lean/core/Master.html#FRC.Master.prime_carries_frame"
      }
     ]
    },
@@ -36956,11 +36883,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Carrier",
-      "name": "FRC.Ledger.p00015",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.substrate_residue",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Carrier.html#FRC.Ledger.p00015"
+      "page": "lean/core/Master.html#FRC.Master.substrate_residue"
      }
     ]
    },
@@ -37026,11 +36953,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Carrier",
-      "name": "FRC.Ledger.p00165",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.carrier_register",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Carrier.html#FRC.Ledger.p00165"
+      "page": "lean/core/Master.html#FRC.Master.carrier_register"
      }
     ]
    },
@@ -37070,11 +36997,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Carrier",
-      "name": "FRC.Ledger.p00166",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.window_ladder",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Carrier.html#FRC.Ledger.p00166"
+      "page": "lean/core/Master.html#FRC.Master.window_ladder"
      }
     ]
    },
@@ -37141,11 +37068,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Carrier",
-      "name": "FRC.Ledger.p00168",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.gauge_bit_sign_sector",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Carrier.html#FRC.Ledger.p00168"
+      "page": "lean/core/Master.html#FRC.Master.gauge_bit_sign_sector"
      }
     ]
    },
@@ -37241,11 +37168,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Carrier",
-      "name": "FRC.Ledger.p00170",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.carrier_octant_sector",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Carrier.html#FRC.Ledger.p00170"
+      "page": "lean/core/Master.html#FRC.Master.carrier_octant_sector"
      }
     ]
    },
@@ -37281,11 +37208,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Subject",
-      "name": "FRC.Ledger.p00021",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.frame_subject_only",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00021"
+      "page": "lean/core/Master.html#FRC.Master.frame_subject_only"
      }
     ]
    },
@@ -37326,11 +37253,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Fourier",
-      "name": "FRC.Ledger.p00022",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.scale_shift_duality",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Fourier.html#FRC.Ledger.p00022"
+      "page": "lean/core/Master.html#FRC.Master.scale_shift_duality"
      }
     ]
    },
@@ -37364,11 +37291,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Subject",
-      "name": "FRC.Ledger.p00150",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.euclidean_lorentzian_dichotomy",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00150"
+      "page": "lean/core/Master.html#FRC.Master.euclidean_lorentzian_dichotomy"
      }
     ]
    },
@@ -37488,11 +37415,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Fourier",
-      "name": "FRC.Ledger.p00189",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.orientation_derived",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Fourier.html#FRC.Ledger.p00189"
+      "page": "lean/core/Master.html#FRC.Master.orientation_derived"
      }
     ]
    },
@@ -37532,11 +37459,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Subject",
-      "name": "FRC.Ledger.p00028",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.square_class_parity",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00028"
+      "page": "lean/core/Master.html#FRC.Master.square_class_parity"
      }
     ]
    },
@@ -37605,11 +37532,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Extension",
-      "name": "FRC.Ledger.p00030",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.two_strata_of_probability",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Extension.html#FRC.Ledger.p00030"
+      "page": "lean/core/Master.html#FRC.Master.two_strata_of_probability"
      }
     ]
    },
@@ -37646,11 +37573,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Extension",
-      "name": "FRC.Ledger.p22028",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.fibre_local_functionals",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Extension.html#FRC.Ledger.p22028"
+      "page": "lean/core/Master.html#FRC.Master.fibre_local_functionals"
      }
     ]
    },
@@ -37686,11 +37613,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Domain",
-      "name": "FRC.Ledger.p00032",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.temperature_domain",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Domain.html#FRC.Ledger.p00032"
+      "page": "lean/core/Master.html#FRC.Master.temperature_domain"
      }
     ]
    },
@@ -37724,11 +37651,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Subject",
-      "name": "FRC.Ledger.p00034",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.quarter_turn_odd_member",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00034"
+      "page": "lean/core/Master.html#FRC.Master.quarter_turn_odd_member"
      }
     ]
    },
@@ -37768,11 +37695,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Subject",
-      "name": "FRC.Ledger.p00151",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.spinor_dichotomy",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00151"
+      "page": "lean/core/Master.html#FRC.Master.spinor_dichotomy"
      }
     ]
    },
@@ -37808,11 +37735,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Projective",
-      "name": "FRC.Ledger.p00190",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.hopf_section",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Projective.html#FRC.Ledger.p00190"
+      "page": "lean/core/Master.html#FRC.Master.hopf_section"
      }
     ]
    },
@@ -37848,11 +37775,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Subject",
-      "name": "FRC.Ledger.p00040",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.mass_energy_channel",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00040"
+      "page": "lean/core/Master.html#FRC.Master.mass_energy_channel"
      }
     ]
    },
@@ -37890,11 +37817,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Gravity",
-      "name": "FRC.Ledger.p00041",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.dilation_rigidity",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00041"
+      "page": "lean/core/Master.html#FRC.Master.dilation_rigidity"
      }
     ]
    },
@@ -37930,11 +37857,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Projective",
-      "name": "FRC.Ledger.p00152",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.frame_variety",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Projective.html#FRC.Ledger.p00152"
+      "page": "lean/core/Master.html#FRC.Master.frame_variety"
      }
     ]
    },
@@ -38023,11 +37950,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Subject",
-      "name": "FRC.Ledger.p00139",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.antipode_on_torus",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00139"
+      "page": "lean/core/Master.html#FRC.Master.antipode_on_torus"
      }
     ]
    },
@@ -38092,11 +38019,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Projective",
-      "name": "FRC.Ledger.p00183",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.frame_group_one_form",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Projective.html#FRC.Ledger.p00183"
+      "page": "lean/core/Master.html#FRC.Master.frame_group_one_form"
      }
     ]
    },
@@ -38556,11 +38483,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Gravity",
-      "name": "FRC.Ledger.p00052",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.uniqueness_of_dynamics",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00052"
+      "page": "lean/core/Master.html#FRC.Master.uniqueness_of_dynamics"
      }
     ]
    },
@@ -38595,11 +38522,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Gravity",
-      "name": "FRC.Ledger.p00154",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.gravity_linear",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00154"
+      "page": "lean/core/Master.html#FRC.Master.gravity_linear"
      }
     ]
    },
@@ -38636,11 +38563,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Gravity",
-      "name": "FRC.Ledger.p00055",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.gravity_nonlinear_completion",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00055"
+      "page": "lean/core/Master.html#FRC.Master.gravity_nonlinear_completion"
      }
     ]
    },
@@ -38676,11 +38603,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Gravity",
-      "name": "FRC.Ledger.p00056",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.gravity_floor_faces",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00056"
+      "page": "lean/core/Master.html#FRC.Master.gravity_floor_faces"
      }
     ]
    },
@@ -38715,11 +38642,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Gravity",
-      "name": "FRC.Ledger.p00176",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.gravity_horizon_count",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00176"
+      "page": "lean/core/Master.html#FRC.Master.gravity_horizon_count"
      }
     ]
    },
@@ -38758,11 +38685,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Gravity",
-      "name": "FRC.Ledger.p00058",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.gravity_horizon_triple",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00058"
+      "page": "lean/core/Master.html#FRC.Master.gravity_horizon_triple"
      }
     ]
    },
@@ -38802,11 +38729,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Gravity",
-      "name": "FRC.Ledger.p00147",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.fold_is_chart_projection",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00147"
+      "page": "lean/core/Master.html#FRC.Master.fold_is_chart_projection"
      }
     ]
    },
@@ -38869,11 +38796,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Gravity",
-      "name": "FRC.Ledger.p00199",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.chart_count",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00199"
+      "page": "lean/core/Master.html#FRC.Master.chart_count"
      }
     ]
    },
@@ -38938,11 +38865,11 @@
     "lean": [
      {
       "lib": "FrcMathlib",
-      "module": "FrcMathlib/Keys/Chart",
-      "name": "FRC.LedgerML.p00201",
+      "module": "FrcMathlib/Master",
+      "name": "FRC.Master.eikonal_pair_phase_mode",
       "tier": 2,
       "ok": true,
-      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00201"
+      "page": "lean/ml/Master.html#FRC.Master.eikonal_pair_phase_mode"
      }
     ]
    },
@@ -39008,11 +38935,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Quantum",
-      "name": "FRC.Ledger.p00191",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.multibody_registration",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Quantum.html#FRC.Ledger.p00191"
+      "page": "lean/core/Master.html#FRC.Master.multibody_registration"
      }
     ]
    },
@@ -39048,11 +38975,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Quantum",
-      "name": "FRC.Ledger.p00062",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.wavefunction_folds",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Quantum.html#FRC.Ledger.p00062"
+      "page": "lean/core/Master.html#FRC.Master.wavefunction_folds"
      }
     ]
    },
@@ -39089,11 +39016,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Quantum",
-      "name": "FRC.Ledger.p00194",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.graded_registration_law",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Quantum.html#FRC.Ledger.p00194"
+      "page": "lean/core/Master.html#FRC.Master.graded_registration_law"
      }
     ]
    },
@@ -39125,11 +39052,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Quantum",
-      "name": "FRC.Ledger.p00064",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.binding_lift",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Quantum.html#FRC.Ledger.p00064"
+      "page": "lean/core/Master.html#FRC.Master.binding_lift"
      }
     ]
    },
@@ -39167,11 +39094,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Interactions",
-      "name": "FRC.Ledger.p00178",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.electromagnetism_exact",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p00178"
+      "page": "lean/core/Master.html#FRC.Master.electromagnetism_exact"
      }
     ]
    },
@@ -39212,11 +39139,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Interactions",
-      "name": "FRC.Ledger.p00067",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.weak_amplitudes",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p00067"
+      "page": "lean/core/Master.html#FRC.Master.weak_amplitudes"
      }
     ]
    },
@@ -39277,11 +39204,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Interactions",
-      "name": "FRC.Ledger.p00069",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.strong_structure",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p00069"
+      "page": "lean/core/Master.html#FRC.Master.strong_structure"
      }
     ]
    },
@@ -39318,11 +39245,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Hadrons",
-      "name": "FRC.Ledger.p00070",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.strong_tension",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Hadrons.html#FRC.Ledger.p00070"
+      "page": "lean/core/Master.html#FRC.Master.strong_tension"
      }
     ]
    },
@@ -39384,11 +39311,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Interactions",
-      "name": "FRC.Ledger.p27043",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.vanishing_strong_cp_angle",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p27043"
+      "page": "lean/core/Master.html#FRC.Master.vanishing_strong_cp_angle"
      }
     ]
    },
@@ -39422,11 +39349,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Hadrons",
-      "name": "FRC.Ledger.p00073",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.strong_hadron_spectrum",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Hadrons.html#FRC.Ledger.p00073"
+      "page": "lean/core/Master.html#FRC.Master.strong_hadron_spectrum"
      }
     ]
    },
@@ -39463,11 +39390,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Hadrons",
-      "name": "FRC.Ledger.p00074",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.strong_residue_series",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Hadrons.html#FRC.Ledger.p00074"
+      "page": "lean/core/Master.html#FRC.Master.strong_residue_series"
      }
     ]
    },
@@ -39505,11 +39432,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Hadrons",
-      "name": "FRC.Ledger.p00075",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.strong_baryon_scale",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Hadrons.html#FRC.Ledger.p00075"
+      "page": "lean/core/Master.html#FRC.Master.strong_baryon_scale"
      }
     ]
    },
@@ -39545,11 +39472,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Interactions",
-      "name": "FRC.Ledger.p27020",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.standard_model_generation_spinor",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p27020"
+      "page": "lean/core/Master.html#FRC.Master.standard_model_generation_spinor"
      }
     ]
    },
@@ -39586,11 +39513,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Interactions",
-      "name": "FRC.Ledger.p00155",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.one_generation_origin",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p00155"
+      "page": "lean/core/Master.html#FRC.Master.one_generation_origin"
      }
     ]
    },
@@ -39685,11 +39612,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Flavour",
-      "name": "FRC.Ledger.p00080",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.flavour_structure",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Flavour.html#FRC.Ledger.p00080"
+      "page": "lean/core/Master.html#FRC.Master.flavour_structure"
      }
     ]
    },
@@ -39726,11 +39653,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Interactions",
-      "name": "FRC.Ledger.p00081",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.flavour_koide",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p00081"
+      "page": "lean/core/Master.html#FRC.Master.flavour_koide"
      }
     ]
    },
@@ -39768,11 +39695,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Flavour",
-      "name": "FRC.Ledger.p00179",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.flavour_exact_ratios",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Flavour.html#FRC.Ledger.p00179"
+      "page": "lean/core/Master.html#FRC.Master.flavour_exact_ratios"
      }
     ]
    },
@@ -39812,11 +39739,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Interactions",
-      "name": "FRC.Ledger.p00083",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.flavour_projection",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p00083"
+      "page": "lean/core/Master.html#FRC.Master.flavour_projection"
      }
     ]
    },
@@ -39854,11 +39781,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Super",
-      "name": "FRC.Ledger.p00088",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.superconductivity_structure",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Super.html#FRC.Ledger.p00088"
+      "page": "lean/core/Master.html#FRC.Master.superconductivity_structure"
      }
     ]
    },
@@ -39892,11 +39819,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Super",
-      "name": "FRC.Ledger.p00202",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.superconductivity_duality",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Super.html#FRC.Ledger.p00202"
+      "page": "lean/core/Master.html#FRC.Master.superconductivity_duality"
      }
     ]
    },
@@ -39954,11 +39881,11 @@
     "lean": [
      {
       "lib": "FrcMathlib",
-      "module": "FrcMathlib/Keys/Chart",
-      "name": "FRC.LedgerML.p00192",
+      "module": "FrcMathlib/Master",
+      "name": "FRC.Master.cosmology_dark_sector",
       "tier": 2,
       "ok": true,
-      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00192"
+      "page": "lean/ml/Master.html#FRC.Master.cosmology_dark_sector"
      }
     ]
    },
@@ -40025,11 +39952,11 @@
     "lean": [
      {
       "lib": "FrcMathlib",
-      "module": "FrcMathlib/Keys/Chart",
-      "name": "FRC.LedgerML.p00193",
+      "module": "FrcMathlib/Master",
+      "name": "FRC.Master.octant_record_depth",
       "tier": 2,
       "ok": true,
-      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00193"
+      "page": "lean/ml/Master.html#FRC.Master.octant_record_depth"
      }
     ]
    },
@@ -40066,11 +39993,11 @@
     "lean": [
      {
       "lib": "FrcMathlib",
-      "module": "FrcMathlib/Keys/Chart",
-      "name": "FRC.LedgerML.p00087",
+      "module": "FrcMathlib/Master",
+      "name": "FRC.Master.registrable_triangle_realisation",
       "tier": 2,
       "ok": true,
-      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00087"
+      "page": "lean/ml/Master.html#FRC.Master.registrable_triangle_realisation"
      }
     ]
    },
@@ -40135,11 +40062,11 @@
     "lean": [
      {
       "lib": "FrcMathlib",
-      "module": "FrcMathlib/Keys/Chart",
-      "name": "FRC.LedgerML.p00148",
+      "module": "FrcMathlib/Master",
+      "name": "FRC.Master.primordial_tilt_realisation",
       "tier": 2,
       "ok": true,
-      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00148"
+      "page": "lean/ml/Master.html#FRC.Master.primordial_tilt_realisation"
      }
     ]
    },
@@ -40225,11 +40152,11 @@
     "lean": [
      {
       "lib": "FrcMathlib",
-      "module": "FrcMathlib/Keys/Chart",
-      "name": "FRC.LedgerML.p00133",
+      "module": "FrcMathlib/Master",
+      "name": "FRC.Master.floor_tracks_drive_rate",
       "tier": 2,
       "ok": true,
-      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00133"
+      "page": "lean/ml/Master.html#FRC.Master.floor_tracks_drive_rate"
      }
     ]
    },
@@ -40268,11 +40195,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Quantum",
-      "name": "FRC.Ledger.p00061",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.equal_force_unequal_entanglement",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Quantum.html#FRC.Ledger.p00061"
+      "page": "lean/core/Master.html#FRC.Master.equal_force_unequal_entanglement"
      }
     ]
    },
@@ -40310,11 +40237,11 @@
     "lean": [
      {
       "lib": "FrcMathlib",
-      "module": "FrcMathlib/Keys/Chart",
-      "name": "FRC.LedgerML.p00180",
+      "module": "FrcMathlib/Master",
+      "name": "FRC.Master.flavour_targets",
       "tier": 2,
       "ok": true,
-      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00180"
+      "page": "lean/ml/Master.html#FRC.Master.flavour_targets"
      }
     ]
    },
@@ -40356,11 +40283,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Hadrons",
-      "name": "FRC.Ledger.p00091",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.empty_desert",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Hadrons.html#FRC.Ledger.p00091"
+      "page": "lean/core/Master.html#FRC.Master.empty_desert"
      },
      {
       "lib": "FrcMathlib",
@@ -40410,11 +40337,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Logic",
-      "name": "FRC.Ledger.p00186",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.godel_vacuous",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Logic.html#FRC.Ledger.p00186"
+      "page": "lean/core/Master.html#FRC.Master.godel_vacuous"
      }
     ]
    },
@@ -40549,11 +40476,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Interactions",
-      "name": "FRC.Ledger.p27021",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.simple_unification_forced",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p27021"
+      "page": "lean/core/Master.html#FRC.Master.simple_unification_forced"
      }
     ]
    },
@@ -40692,11 +40619,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Logic",
-      "name": "FRC.Ledger.p00187",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.no_compression_any_coding",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Logic.html#FRC.Ledger.p00187"
+      "page": "lean/core/Master.html#FRC.Master.no_compression_any_coding"
      }
     ]
    },
@@ -40738,11 +40665,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Keys/Horizon",
-      "name": "FRC.Ledger.p20043",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.shell_theorem",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Horizon.html#FRC.Ledger.p20043"
+      "page": "lean/core/Master.html#FRC.Master.shell_theorem"
      }
     ]
    },
@@ -46459,90 +46386,6 @@
    },
    "refs": [],
    "text": "The choice paradoxes vanish: on a finite set counting measure is complete and invariant, no decomposition doubles the set ($X\\sqcup X$ does not inject into $X$), and every ultrafilter is principal; periodic variants inherit this on one period. \\Ssubsec:AC-consequences p05034, FrcCore{E8}, FrcMathlib{E8} Reductio.no_doubling, Reductio.ultrafilter_principal, FRC.Sets.measure_le, FRC.Sets.measure_add, FRC.Sets.measure_compl, FRC.Sets.measure_perm, FRC.Sets.no_doubling, FRC.Sets.ultra_principal"
-  },
-  {
-   "paper": "5-red",
-   "no": 5,
-   "rid": "5:F1",
-   "key": "p05035",
-   "label": "F1",
-   "block": "F",
-   "tag": "D",
-   "name": null,
-   "lean_name": null,
-   "statement": "Ontology and conservativeness: actual infinity is an idealisation of the finite; the bounded fragment is kept exactly, the unbounded fragment in schema form; analysis as approximation over finite grids; choice in the small. Positioning: finitism, intuitionism, ultrafinitism, structuralism; the potential-infinity rule retained at the meta-level as a commitment, not a neutrality.",
-   "source": "\\S\\ref{subsec:ontology}; \\S\\ref{subsec:conservativeness}; \\S\\ref{subsec:positions}; 00:A2",
-   "page": "5-reductio/index.html#F1",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p00004"
-   ],
-   "text": "Ontology and conservativeness: actual infinity is an idealisation of the finite; the bounded fragment is kept exactly, the unbounded fragment in schema form; analysis as approximation over finite grids; choice in the small. Positioning: finitism, intuitionism, ultrafinitism, structuralism; the potential-infinity rule retained at the meta-level as a commitment, not a neutrality. \\Ssubsec:ontology; \\Ssubsec:conservativeness; \\Ssubsec:positions; 00:A2"
-  },
-  {
-   "paper": "5-red",
-   "no": 5,
-   "rid": "5:F2",
-   "key": "p05036",
-   "label": "F2",
-   "block": "F",
-   "tag": "D",
-   "name": null,
-   "lean_name": null,
-   "statement": "The Reductio Rule and its two tribunals: the economic ledger (the classical exit keeps $\\Pi_1$, $\\Pi_2$ number theory at a superexponential consistency grant; the finite exit keeps the bounded fragment and declines one classically provable existence claim, E7) and the constitutive Det, on which the verdict rests; objections O1--O5 answered.",
-   "source": "\\S\\ref{subsec:method-rule}; \\S\\ref{subsec:objections}",
-   "page": "5-reductio/index.html#F2",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p05033"
-   ],
-   "text": "The Reductio Rule and its two tribunals: the economic ledger (the classical exit keeps $\\Pi_1$, $\\Pi_2$ number theory at a superexponential consistency grant; the finite exit keeps the bounded fragment and declines one classically provable existence claim, E7) and the constitutive Det, on which the verdict rests; objections O1–O5 answered. \\Ssubsec:method-rule; \\Ssubsec:objections"
-  },
-  {
-   "paper": "5-red",
-   "no": 5,
-   "rid": "5:F3",
-   "key": "p05037",
-   "label": "F3",
-   "block": "F",
-   "tag": "D",
-   "name": null,
-   "lean_name": null,
-   "statement": "The catalogue: the pathologies of the completed infinite in four classes --- antinomies, consistent-but-unregistrable, underdetermination, physical divergences --- each removed by finiteness; the one exclusion retained, the schema over finite instances and the successor act.",
-   "source": "Appendix~\\ref{app:catalogue}",
-   "page": "5-reductio/index.html#F3",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The catalogue: the pathologies of the completed infinite in four classes — antinomies, consistent-but-unregistrable, underdetermination, physical divergences — each removed by finiteness; the one exclusion retained, the schema over finite instances and the successor act. Appendix app:catalogue"
-  },
-  {
-   "paper": "5-red",
-   "no": 5,
-   "rid": "5:T1",
-   "key": "p05041",
-   "label": "T1",
-   "block": "T",
-   "tag": "O",
-   "name": null,
-   "lean_name": null,
-   "statement": "The standing of the iteration rule --- whether the potential-infinity rule of the meta-level can be rejected, and at what cost --- is the subject of companion work; the present results are stated to survive either outcome.",
-   "source": "\\S\\ref{subsec:positions}",
-   "page": "5-reductio/index.html#T1",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The standing of the iteration rule — whether the potential-infinity rule of the meta-level can be rejected, and at what cost — is the subject of companion work; the present results are stated to survive either outcome. \\Ssubsec:positions"
   },
   {
    "paper": "6-four",

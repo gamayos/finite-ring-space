@@ -134,3 +134,4 @@ import FrcCore.Flavour
 import FrcCore.Dark
 import FrcCore.Hadrons
 import FrcCore.YangMills
+import FrcCore.Master

@@ -4826,7 +4826,7 @@ theorem delta_lo : (3 : Nat) * 3 = 8 + 1 ∧ 24 = 3 * 8 := by decide
 of a colourless sector, `r² = N(1 − i) = 2`, so `Q = 1/3 + r²/6 = 2/3`. -/
 theorem norm_one_sub_i {i : Shell p} (hi : i * i + 1 = 0) : (1 + -i) * (1 + i) = 2 := by
   rw [FRC.Interactions.two_eq]
-  exact red1 (RE.sound (look [i])
+  exact Unitary.red1 (RE.sound (look [i])
     (.mul (.add .one (.neg (.var 0))) (.add .one (.var 0)))
     (.add (.add .one .one) (.mul (.add (.mul (.var 0) (.var 0)) .one) (.neg .one)))
     (by decide +kernel) :
@@ -4838,7 +4838,7 @@ theorem norm_one_sub_omega {h : Shell p} (hh : h + h = 1) (hν : ν + 1 + 1 + 1 
     Ext.norm ((1 : Ext p ν) + -(omega3 ν h)) = 3 := by
   have hA : h + h + -1 = 0 := by rw [hh, add_neg]
   rw [FRC.Interactions.three_eq]
-  exact red2 (RE.sound (look [ν, h])
+  exact Unitary.red2 (RE.sound (look [ν, h])
     (.add (.mul (.add .one (.neg (.neg (.var 1)))) (.add .one (.neg (.neg (.var 1))))) (.neg (.mul (.var 0) (.mul (.add .zero (.neg (.var 1))) (.add .zero (.neg (.var 1)))))))
     (.add (.add (.add (.add .one .one) .one) (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.add (.add (.var 1) (.var 1)) (.add .one .one)))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) (.neg (.mul (.var 1) (.var 1)))))
     (by decide +kernel) :
@@ -4972,7 +4972,7 @@ theorem trimaximal {h : Shell p} (hh : h + h = 1) (hν : ν + 1 + 1 + 1 = 0) :
     Ext.norm (omega3 ν h) = 1 ∧ Ext.norm (omega3 ν h * omega3 ν h) = 1 := by
   have hA : h + h + -1 = 0 := by rw [hh, add_neg]
   have e : Ext.norm (omega3 ν h) = 1 :=
-    (red2 (RE.sound (look [ν, h]) (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.add (.add .one (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.add (.mul (.add .one .one) (.var 1)) .one))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) (.neg (.mul (.var 1) (.var 1))))) (by decide +kernel) : (-h) * (-h) + -(ν * (h * h)) = 1 + (h + h + -1) * ((1 + 1) * h + 1) + (ν + 1 + 1 + 1) * (-(h * h))) hA hν)
+    (Unitary.red2 (RE.sound (look [ν, h]) (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.add (.add .one (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.add (.mul (.add .one .one) (.var 1)) .one))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) (.neg (.mul (.var 1) (.var 1))))) (by decide +kernel) : (-h) * (-h) + -(ν * (h * h)) = 1 + (h + h + -1) * ((1 + 1) * h + 1) + (ν + 1 + 1 + 1) * (-(h * h))) hA hν)
   exact ⟨e, by rw [Ext.norm_mul, e, Shell.one_mul]⟩
 
 /-- 28:C10, 28:X10, 28:P8, 00:G17 — the maximal Jarlskog invariant as a framed rational. The magic matrix's rephasing invariant
@@ -4982,7 +4982,7 @@ is `F₀₀ F₁₁ F̄₀₁ F̄₁₀ = ω/9`, so `J = Im(ω)/9` and `J² = (I
 theorem jarlskog_sq {h : Shell p} (hh : h + h = 1) (hν : ν + 1 + 1 + 1 = 0) :
     (1 + 1 + 1 + 1) * (-(ν * (h * h))) = 1 + 1 + 1 := by
   have hA : h + h + -1 = 0 := by rw [hh, add_neg]
-  exact (red2 (RE.sound (look [ν, h]) (.mul (.add (.add (.add .one .one) .one) .one) (.neg (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.add (.add (.add (.add .one .one) .one) (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.add (.neg (.mul (.add .one .one) (.mul (.var 0) (.var 1)))) (.neg (.var 0))))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) (.neg .one))) (by decide +kernel) : (1 + 1 + 1 + 1) * (-(ν * (h * h))) = 1 + 1 + 1 + (h + h + -1) * (-((1 + 1) * (ν * h)) + -ν) + (ν + 1 + 1 + 1) * (-1)) hA hν)
+  exact (Unitary.red2 (RE.sound (look [ν, h]) (.mul (.add (.add (.add .one .one) .one) .one) (.neg (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.add (.add (.add (.add .one .one) .one) (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.add (.neg (.mul (.add .one .one) (.mul (.var 0) (.var 1)))) (.neg (.var 0))))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) (.neg .one))) (by decide +kernel) : (1 + 1 + 1 + 1) * (-(ν * (h * h))) = 1 + 1 + 1 + (h + h + -1) * (-((1 + 1) * (ν * h)) + -ν) + (ν + 1 + 1 + 1) * (-1)) hA hν)
 
 /-- 28:C5, 00:G17 — the trace of the square of a unit: for `z z̄ = 1`, `z² + z̄² = (z + z̄)² − 2`; with `z = e^{iθ}` this is
 `2cos 2θ = (2cos θ)² − 2`. The lock `δ_d = δ₀/2` of 28:C5 is this relation between the cube invariants `c = cos 3δ`
