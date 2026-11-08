@@ -17,8 +17,10 @@ reading's selection with the octant mark (2x ≡ S iff x = S/2 on the stations; 
 the square and fourth-power brackets of Ω). A CHART
 check is a continuum reading: the chart theme's certified brackets (π from Machin's formula, e^x from its Taylor
 series with the tail bound, artanh from its series with the tail bound) decide the inversion, the locus, the pulls and
-the bound; the radiation root is a floating-point computation of the flat age integral, standard library only, with
-the bracket it must fall in; every float of the determinations is converted exactly before a comparison. The
+the bound; the rate read on the locus and its pulls, the entailed rate, the chart's own product and ages, the
+age–de Sitter deviations and the radiation and curvature roots of the age integral are floating-point readings of the
+chart theme (frc/chart.py, the octant section), each returned as the exact rational of its double and compared here, as a
+rational, against its declared window; this file holds no float (gate G09, ticket T6). The
 determinations are declared data with their sources: Planck 2018 VI Table 2 (TT,TE,EE+lowE+lensing alone and with BAO)
 and DESI DR2 Results II Section VI (BAO alone; BAO with the CMB, the CMB being the Planck PR4 CamSpec likelihood with
 Planck and ACT DR6 lensing).
@@ -39,7 +41,6 @@ Blocks:  A  the octant sector, the instance clause, the octant mark, the exchang
 Checks: 19, of them 7 EXACT (A1, A2, A3, A4, B1, B2, B3) and 12 CHART (C1, C2, C3, C4, C5, D1, D2, D3, D4, P1, P2, P3). The notebook frc/ledgers/p16_octant.ipynb
 runs one predicate per cell, the cell's id its key.
 """
-import math
 import sys
 from fractions import Fraction as Q
 
@@ -198,47 +199,42 @@ def block_B():
 @R.block("C", BLOCK["C"])
 def block_C():
     om_lo, om_hi = CH.omega_lambda_bracket()
+    planck = DETERMINATIONS["Planck 2018 alone"]
+    landing = _landing((om_lo, om_hi), planck[:2])
     # 16:C3 (p14024), 16:X1 (p14030), 16:X2 (p14033)
     R.check("C1", "Ω_Λ = tanh²(3π/8) between 0.68368 and 0.68369; the Planck-only landing between 0.13σ and 0.15σ",
             _between(om_lo, "0.68368", "0.68369") and _between(om_hi, "0.68368", "0.68369")
-            and all(_between(s, "0.13", "0.15") for s in _landing((om_lo, om_hi), DETERMINATIONS["Planck 2018 alone"][:2])),
-            f"Ω_Λ = {CH.omega_lambda():.6f}, lands {-CH.sigma(CH.omega_lambda(), tuple(float(v) for v in DETERMINATIONS['Planck 2018 alone'][:2])):.3f}σ below Planck alone",
+            and all(_between(s, "0.13", "0.15") for s in landing),
+            f"Ω_Λ between {CH.show(om_lo, '.6f')} and {CH.show(om_hi, '.6f')}, lands {CH.show(landing[0], '.3f')}σ to {CH.show(landing[1], '.3f')}σ below Planck alone",
             kind="CHART")
     lo, hi = CH.locus_bracket()
-    h0 = CH.locus() / (float(STELLAR[0]) * 1e9 * float(CH.JULIAN_YEAR)) * float(CH.MPC_KM)
-    err = h0 * float(STELLAR[1] / STELLAR[0])
-    pulls = {n: (float(v[0]) - h0) / math.sqrt(float(v[1]) ** 2 + err ** 2) for n, v in
-             [("Planck", (DETERMINATIONS["Planck 2018 alone"][2], Q("0.54"))), ("TRGB", TRGB), ("Cepheid", CEPHEID)]}
+    rate = CH.octant_rate(STELLAR, {"Planck": (planck[2], Q("0.54")), "TRGB": TRGB, "Cepheid": CEPHEID})
+    h0, err = rate["H0"], rate["err"]
+    pulls = {n: rate["pull " + n] for n in ("Planck", "TRGB", "Cepheid")}
     # 16:P2 (p14038)
-    h0_inf = CH.locus() / (float(INFERRED[0]) * 1e9 * float(CH.JULIAN_YEAR)) * float(CH.MPC_KM)
-    err_inf = h0_inf * float(INFERRED[1] / INFERRED[0])
+    inferred = CH.octant_rate(INFERRED, {})
+    h0_inf, err_inf = inferred["H0"], inferred["err"]
     R.check("C2", "the locus (π/4)/tanh(3π/8) between 0.9498 and 0.9499; on t★ = 13.61 ± 0.34 Gyr, H₀ = 68.2 ± 1.7 (an upper limit), 0.5σ from Planck, 0.65σ from TRGB, 2.4σ from the Cepheid ladder; on the inferred age 13.81 ± 0.34 Gyr, 67.3 ± 1.7",
-            _between(lo, "0.9498", "0.9499") and _between(hi, "0.9498", "0.9499") and 68.15 < h0 < 68.25 and 1.70 < err < 1.71
-            and abs(pulls["Planck"]) < 0.55 and 0.6 < pulls["TRGB"] < 0.7 and 2.35 < pulls["Cepheid"] < 2.45
-            and 67.25 < h0_inf < 67.35 and 1.65 < err_inf < 1.70,
-            f"locus = {CH.locus():.5f}; H₀ = {h0:.2f} ± {err:.2f}; pulls " + ", ".join(f"{k} {v:+.2f}σ" for k, v in pulls.items()) + f"; on the inferred age {h0_inf:.2f} ± {err_inf:.2f}",
+            _between(lo, "0.9498", "0.9499") and _between(hi, "0.9498", "0.9499") and _between(h0, "68.15", "68.25") and _between(err, "1.70", "1.71")
+            and abs(pulls["Planck"]) < Q("0.55") and _between(pulls["TRGB"], "0.6", "0.7") and _between(pulls["Cepheid"], "2.35", "2.45")
+            and _between(h0_inf, "67.25", "67.35") and _between(err_inf, "1.65", "1.70"),
+            f"locus between {CH.show(lo, '.5f')} and {CH.show(hi, '.5f')}; H₀ = {CH.show(h0, '.2f')} ± {CH.show(err, '.2f')}; pulls " + ", ".join(f"{k} {CH.show(v, '+.2f')}σ" for k, v in pulls.items()) + f"; on the inferred age {CH.show(h0_inf, '.2f')} ± {CH.show(err_inf, '.2f')}",
             kind="CHART")
     # 16:C4 (p14025): with the Planck-only Λ (H_Λ = H₀√Ω_Λ, 1/H_Λ = 17.54 Gyr) the locus returns H₀ = 67.4 to 0.1 %
-    planck = DETERMINATIONS["Planck 2018 alone"]
-    h_lambda = float(planck[2]) * math.sqrt(float(planck[0]))
-    inv_h_lambda = float(_inv_h_gyr(Q(h_lambda)))
-    h_back = h_lambda / CH.tanh_octant()
+    entailed = CH.octant_entailed_rate(planck[2], planck[0])
+    h_lambda, inv_h_lambda, h_back = entailed["H_Lambda"], entailed["inv_H_Lambda_Gyr"], entailed["H0_back"]
     R.check("C3", "the entailed-rate consistency: the Planck-only Λ (1/H_Λ = 17.54 Gyr, depth 13.78 Gyr) returns H₀ = 67.4 km s⁻¹ Mpc⁻¹ to 0.1 %",
-            abs(h_back - 67.4) / 67.4 < 1e-3 and 17.535 < inv_h_lambda < 17.545 and abs(13.80 / inv_h_lambda - 0.787) < 0.0005,
-            f"1/H_Λ = {inv_h_lambda:.3f} Gyr, H_Λ = {h_lambda:.2f}, H₀ = H_Λ/tanh(3π/8) = {h_back:.2f}; 13.80/{inv_h_lambda:.2f} = {13.80 / inv_h_lambda:.4f}", kind="CHART")
+            abs(h_back - Q("67.4")) / Q("67.4") < Q(1, 1000) and _between(inv_h_lambda, "17.535", "17.545")
+            and abs(Q("13.80") / inv_h_lambda - Q("0.787")) < Q("0.0005"),
+            f"1/H_Λ = {CH.show(inv_h_lambda, '.3f')} Gyr, H_Λ = {CH.show(h_lambda, '.2f')}, H₀ = H_Λ/tanh(3π/8) = {CH.show(h_back, '.2f')}; 13.80/{CH.show(inv_h_lambda, '.2f')} = {CH.show(Q('13.80') / inv_h_lambda, '.4f')}", kind="CHART")
     # 16:P2 (p14038), 16:P1 (p14037): the chart's own product at the Planck-only Ω_Λ, the Ω_Λ that accommodates the Cepheid pair, the separation rate
-    t_h0 = lambda om: CH.lcdm_age(om) / math.sqrt(om)                       # t H₀ = t H_Λ / √Ω_Λ in the flat chart
-    lo_c, hi_c = 0.5, 0.95
-    for _ in range(80):                                                   # bisection: t H₀ = 1.016 at Ω_Λ ≈ 0.752
-        mid = (lo_c + hi_c) / 2
-        if t_h0(mid) < 1.016: lo_c = mid
-        else: hi_c = mid
-    om_c = (lo_c + hi_c) / 2
-    t_star_h0 = 73.0 / float(CH.MPC_KM) * 13.61e9 * float(CH.JULIAN_YEAR)      # H₀ in s⁻¹ is 73 km s⁻¹ per Mpc in km
-    sep = 1 / (CH.lcdm_age(float(planck[0])) * inv_h_lambda)              # the ΛCDM age grows one Gyr per Gyr: the bound falls behind by 1/13.8 ≈ 7 % per Gyr
+    t_h0 = CH.octant_product(planck[0])                                   # t H₀ = t H_Λ / √Ω_Λ in the flat chart
+    om_c = CH.octant_accommodating_omega(Q("1.016"))                      # bisection: t H₀ = 1.016 at Ω_Λ ≈ 0.752
+    t_star_h0 = Q(73) * STELLAR[0] * GYR_S / CH.MPC_KM                    # H₀ in s⁻¹ is 73 km s⁻¹ per Mpc in km, times t★ in s: exact
+    sep = CH.octant_separation(planck[0], inv_h_lambda)                   # the ΛCDM age grows one Gyr per Gyr: the bound falls behind by 1/13.8 ≈ 7 % per Gyr
     R.check("C5", "the chart's own product t H₀ at the Planck-only Ω_Λ is 0.951; (13.61 Gyr, 73 km/s/Mpc) gives t★H₀ = 1.016, accommodated at Ω_Λ ≈ 0.75; the bound and the ΛCDM age separate at ≈ 7 % per Gyr",
-            0.9505 < t_h0(float(planck[0])) < 0.9510 and 1.0155 < t_star_h0 < 1.0165 and 0.748 < om_c < 0.756 and 0.070 < sep < 0.075,
-            f"t H₀(0.6847) = {t_h0(float(planck[0])):.4f}; t★H₀ = {t_star_h0:.4f}; Ω_Λ = {om_c:.4f}; {100 * sep:.2f} % per Gyr", kind="CHART")
+            _between(t_h0, "0.9505", "0.9510") and _between(t_star_h0, "1.0155", "1.0165") and _between(om_c, "0.748", "0.756") and _between(sep, "0.070", "0.075"),
+            f"t H₀(0.6847) = {CH.show(t_h0, '.4f')}; t★H₀ = {CH.show(t_star_h0, '.4f')}; Ω_Λ = {CH.show(om_c, '.4f')}; {CH.show(100 * sep, '.2f')} % per Gyr", kind="CHART")
     # 16:P3 (p14039): the continuity law with ρ̇_Λ = 0 gives w = −1 exactly, for any H ≠ 0, ρ ≠ 0
     ok = all(Q(-3 * H * rho, 3 * H * rho) == -1 for H in (Q(1), Q(7, 3)) for rho in (Q(2), Q(5, 11)))
     R.check("C4", "the effective fluid: ρ̇_Λ + 3H(ρ_Λ + p_Λ) = 0 with ρ̇_Λ = 0 forces p_Λ = −ρ_Λ, w = −1 exactly",
@@ -246,45 +242,6 @@ def block_C():
 
 
 # ---- D. the confrontation ------------------------------------------------------------------------------------------------
-def _age_ratio_radiation(omega_l, n=4000):
-    """t H_Λ with radiation: √Ω_Λ · ∫₀¹ a da / √(Ω_m a + Ω_r + Ω_Λ a⁴), Ω_m = 1 − Ω_Λ − Ω_r (flat), by Simpson's rule after the
-    substitution a = u², which removes the √a behaviour of the integrand near a = 0: ∫₀¹ 2u³ du / √(Ω_m u² + Ω_r + Ω_Λ u⁸),
-    smooth on [0, 1]; the rule's error at n = 4000 is below 1e-13."""
-    om_r = float(OMEGA_R); om_m = 1 - omega_l - om_r
-    f = lambda u: 2 * u ** 3 / math.sqrt(om_m * u ** 2 + om_r + omega_l * u ** 8)
-    h = 1 / n
-    total = f(0) + f(1) + sum((4 if k % 2 else 2) * f(k * h) for k in range(1, n))
-    return math.sqrt(omega_l) * total * h / 3
-
-
-def _age_ratio_curved(omega_l, omega_k, n=4000):
-    """t H_Λ with curvature and no radiation: √Ω_Λ · ∫₀¹ da / √(Ω_m/a + Ω_k + Ω_Λ a²), Ω_m = 1 − Ω_Λ − Ω_k, after a = u²:
-    ∫₀¹ 2u² du / √(Ω_m + Ω_k u² + Ω_Λ u⁶), smooth on [0, 1], by Simpson's rule."""
-    om_m = 1 - omega_l - omega_k
-    f = lambda u: 2 * u ** 2 / math.sqrt(om_m + omega_k * u ** 2 + omega_l * u ** 6)
-    h = 1 / n
-    total = f(0) + f(1) + sum((4 if k % 2 else 2) * f(k * h) for k in range(1, n))
-    return math.sqrt(omega_l) * total * h / 3
-
-
-def _curved_root(omega_k):
-    lo, hi = 0.67, 0.70
-    for _ in range(60):
-        mid = (lo + hi) / 2
-        if _age_ratio_curved(mid, omega_k) < math.pi / 4: lo = mid
-        else: hi = mid
-    return (lo + hi) / 2
-
-
-def _radiation_root():
-    lo, hi = 0.68, 0.69
-    for _ in range(60):
-        mid = (lo + hi) / 2
-        if _age_ratio_radiation(mid) < math.pi / 4: lo = mid
-        else: hi = mid
-    return (lo + hi) / 2
-
-
 @R.block("D", BLOCK["D"])
 def block_D():
     om = CH.omega_lambda_bracket()
@@ -294,28 +251,30 @@ def block_D():
     # 16:C5 (p16003)
     R.check("D1", "the four landings of 0.6837: Planck alone 0.14σ, Planck + BAO 0.93σ, DESI DR2 BAO alone 2.2σ, DESI DR2 BAO + CMB 3.8σ (each bracketed)",
             all(_between(p[0], *targets[n]) and _between(p[1], *targets[n]) for n, p in pulls.items()),
-            "; ".join(f"{n} {float(p[0]):.3f}σ" for n, p in pulls.items()), kind="CHART")
-    # 16:C5 (p16003), 16:X1 (p14030)
-    devs = {n: CH.lcdm_age(float(v[0])) / (math.pi / 4) - 1 for n, v in DETERMINATIONS.items()}
-    dev_targets = {"Planck 2018 alone": (0.0015, 0.0018), "Planck 2018 + BAO": (0.008, 0.009),
-                   "DESI DR2 BAO alone": (0.030, 0.032), "DESI DR2 BAO + CMB": (0.022, 0.023)}
+            "; ".join(f"{n} {CH.show(p[0], '.3f')}σ" for n, p in pulls.items()), kind="CHART")
+    # 16:C5 (p16003), 16:X1 (p14030): the chart's age–de Sitter ratio against π/4 at each determination (the chart's reading, as a rational)
+    devs = {n: CH.octant_age_deviation(v[0]) for n, v in DETERMINATIONS.items()}
+    dev_targets = {"Planck 2018 alone": ("0.0015", "0.0018"), "Planck 2018 + BAO": ("0.008", "0.009"),
+                   "DESI DR2 BAO alone": ("0.030", "0.032"), "DESI DR2 BAO + CMB": ("0.022", "0.023")}
     R.check("D2", "the age–de Sitter ratio exceeds π/4 at every determination: by 0.17 %, 0.85 %, 3.1 % and 2.2 %",
-            all(dev_targets[n][0] < d < dev_targets[n][1] for n, d in devs.items()),
-            "; ".join(f"{n} {100 * d:+.2f} %" for n, d in devs.items()), kind="CHART")
-    # 16:C5 (p16003)
-    root = _radiation_root()
-    om_m_rad = 1 - root - float(OMEGA_R)
-    pull_rad = (float(DETERMINATIONS["DESI DR2 BAO + CMB"][0]) - root) / float(DETERMINATIONS["DESI DR2 BAO + CMB"][1])
+            all(_between(d, *dev_targets[n]) for n, d in devs.items()),
+            "; ".join(f"{n} {CH.show(100 * d, '+.2f')} %" for n, d in devs.items()), kind="CHART")
+    # 16:C5 (p16003): the radiation root of the flat age integral (the chart's reading), its shift above the bracket of tanh²(3π/8)
+    root = CH.octant_radiation_root(OMEGA_R)
+    om_m_rad = 1 - root - OMEGA_R
+    desi = DETERMINATIONS["DESI DR2 BAO + CMB"]
+    pull_rad = (desi[0] - root) / desi[1]
     R.check("D3", "with radiation Ω_r = 9.2 × 10⁻⁵ the root of t H_Λ = π/4 is 0.68388, a shift of +0.0002 above tanh²(3π/8); the flat matter fraction there is 0.3160 and the DESI-with-CMB landing 3.7σ",
-            0.68387 < root < 0.68389 and 0.00015 < root - CH.omega_lambda() < 0.00025 and 0.31595 < om_m_rad < 0.31605 and 3.70 < pull_rad < 3.76,
-            f"root = {root:.6f}, shift = {root - CH.omega_lambda():+.6f}; Ω_m = {om_m_rad:.5f}; landing {pull_rad:.3f}σ", kind="CHART")
+            _between(root, "0.68387", "0.68389") and Q("0.00015") < root - om[1] and root - om[0] < Q("0.00025")
+            and _between(om_m_rad, "0.31595", "0.31605") and _between(pull_rad, "3.70", "3.76"),
+            f"root = {CH.show(root, '.6f')}, shift = {CH.show(root - om[1], '+.6f')} to {CH.show(root - om[0], '+.6f')}; Ω_m = {CH.show(om_m_rad, '.5f')}; landing {CH.show(pull_rad, '.3f')}σ", kind="CHART")
     # 16:C5 (p16003): the flat identity used as a measured bound on curvature, not a postulate
-    k0, dk = float(OMEGA_K[0]), float(OMEGA_K[1])
-    r_flat, r_k, r_up, r_dn = _curved_root(0.0), _curved_root(k0), _curved_root(k0 + dk), _curved_root(k0 - dk)
+    k0, dk = OMEGA_K
+    r_flat, r_k, r_up, r_dn = (CH.octant_curved_root(k) for k in (Q(0), k0, k0 + dk, k0 - dk))
     R.check("D4", "at the measured curvature Ω_K = 0.0007 ± 0.0019 the root of t H_Λ = π/4 moves by −0.0003 ± 0.0007 from the flat value, below every quoted error (the curved integrand at Ω_K = 0 returns the flat root)",
-            abs(r_flat - CH.omega_lambda()) < 2e-6 and -0.0003 < r_k - r_flat < -0.0002
-            and 0.0006 < r_k - r_up < 0.0008 and 0.0006 < r_dn - r_k < 0.0008,
-            f"flat root {r_flat:.6f}; at Ω_K = {k0}: {r_k:.6f} ({r_k - r_flat:+.6f}); at ±{dk}: {r_up - r_flat:+.6f}, {r_dn - r_flat:+.6f}", kind="CHART")
+            om[0] - Q(2, 10 ** 6) < r_flat < om[1] + Q(2, 10 ** 6) and _between(r_k - r_flat, "-0.0003", "-0.0002")
+            and _between(r_k - r_up, "0.0006", "0.0008") and _between(r_dn - r_k, "0.0006", "0.0008"),
+            f"flat root {CH.show(r_flat, '.6f')}; at Ω_K = {CH.show(k0, '.4f')}: {CH.show(r_k, '.6f')} ({CH.show(r_k - r_flat, '+.6f')}); at ±{CH.show(dk, '.4f')}: {CH.show(r_up - r_flat, '+.6f')}, {CH.show(r_dn - r_flat, '+.6f')}", kind="CHART")
 
 
 # ---- P. the prediction and the ages ---------------------------------------------------------------------------------------
@@ -329,27 +288,27 @@ def block_P():
     R.check("P1", "the matter fraction Ω_m = 1 − tanh²(3π/8) between 0.31631 and 0.31632; the DESI DR2 BAO + CMB value 0.3027 ± 0.0036 lies between 3.7σ and 3.9σ from it",
             _between(om_m[0], "0.31631", "0.31632") and _between(om_m[1], "0.31631", "0.31632")
             and _between(pull[0], "3.7", "3.9") and _between(pull[1], "3.7", "3.9"),
-            f"Ω_m = {1 - CH.omega_lambda():.6f}, pull {float(pull[0]):.3f}σ", kind="CHART")
+            f"Ω_m between {CH.show(om_m[0], '.6f')} and {CH.show(om_m[1], '.6f')}, pull {CH.show(pull[0], '.3f')}σ", kind="CHART")
     (p_lo, p_hi) = CH.pi_bracket()
     s_lo, s_hi = CH.sqrt_bracket(desi[0])
     h_lambda = (desi[2] * s_lo, desi[2] * s_hi)                              # H_Λ = H₀ √Ω_Λ, km s⁻¹ Mpc⁻¹
     bound = (p_lo / 4 * _inv_h_gyr(h_lambda[1]), p_hi / 4 * _inv_h_gyr(h_lambda[0]))
     t_pull = ((STELLAR[0] - bound[1]) / STELLAR[1], (STELLAR[0] - bound[0]) / STELLAR[1])
-    # 16:P4 (p16004)
-    inv_h_lambda_desi = float(_inv_h_gyr(Q(float(desi[2]) * math.sqrt(float(desi[0])))))
-    age_desi = CH.lcdm_age(float(desi[0])) * inv_h_lambda_desi
+    # 16:P4 (p16004): the chart's own age at the DESI pair (the chart's reading, as a rational)
+    chart = CH.octant_chart_age(desi[0], desi[2])
+    inv_h_lambda_desi, age_desi = chart["inv_H_Lambda_Gyr"], chart["age_Gyr"]
     R.check("P2", "the octant bound at the DESI DR2 BAO + CMB pair between 13.48 and 13.50 Gyr (1/H_Λ = 17.18 Gyr); the oldest cluster population 13.61 ± 0.34 Gyr between 0.3σ and 0.4σ above it; the chart's own age there 13.79 Gyr, 2.2 % above the bound",
             _between(bound[0], "13.48", "13.50") and _between(bound[1], "13.48", "13.50")
             and _between(t_pull[0], "0.3", "0.4") and _between(t_pull[1], "0.3", "0.4")
-            and 17.17 < inv_h_lambda_desi < 17.19 and 13.785 < age_desi < 13.80 and 0.0220 < age_desi / float(bound[0]) - 1 < 0.0230,
-            f"bound {float(bound[0]):.3f}–{float(bound[1]):.3f} Gyr; 1/H_Λ = {inv_h_lambda_desi:.3f} Gyr; t★ pull {float(t_pull[0]):.2f}σ; chart age {age_desi:.3f} Gyr, {100 * (age_desi / float(bound[0]) - 1):.2f} % above", kind="CHART")
+            and _between(inv_h_lambda_desi, "17.17", "17.19") and _between(age_desi, "13.785", "13.80") and _between(age_desi / bound[0] - 1, "0.0220", "0.0230"),
+            f"bound {CH.show(bound[0], '.3f')}–{CH.show(bound[1], '.3f')} Gyr; 1/H_Λ = {CH.show(inv_h_lambda_desi, '.3f')} Gyr; t★ pull {CH.show(t_pull[0], '.2f')}σ; chart age {CH.show(age_desi, '.3f')} Gyr, {CH.show(100 * (age_desi / bound[0] - 1), '.2f')} % above", kind="CHART")
     planck = DETERMINATIONS["Planck 2018 alone"]
-    bound_p = (math.pi / 4) * float(_inv_h_gyr(Q(float(planck[2]) * math.sqrt(float(planck[0])))))   # the Planck pair, H_Λ = H₀√Ω_Λ, the Julian year
-    pull_s = (float(STELLAR[0]) - bound_p) / float(STELLAR[1]); pull_i = (float(INFERRED[0]) - bound_p) / float(INFERRED[1])
+    bound_p = CH.octant_bound(planck[0], planck[2])                          # the Planck pair, H_Λ = H₀√Ω_Λ, the Julian year (the chart's reading)
+    pull_s = (STELLAR[0] - bound_p) / STELLAR[1]; pull_i = (INFERRED[0] - bound_p) / INFERRED[1]
     # 16:P1 (p14037)
     R.check("P3", "the bound at the Planck-only pair, 13.78 Gyr: the oldest cluster population 0.5σ below it, the inferred cosmic age 0.03 Gyr above it, within 0.1σ",
-            abs(bound_p - 13.78) < 0.005 and -0.55 < pull_s < -0.45 and abs(pull_i) < 0.1 and 0.025 < float(INFERRED[0]) - bound_p < 0.035,
-            f"bound {bound_p:.3f} Gyr; pulls {pull_s:+.2f}σ, {pull_i:+.2f}σ; inferred age above by {float(INFERRED[0]) - bound_p:.3f} Gyr", kind="CHART")
+            abs(bound_p - Q("13.78")) < Q("0.005") and _between(pull_s, "-0.55", "-0.45") and abs(pull_i) < Q("0.1") and _between(INFERRED[0] - bound_p, "0.025", "0.035"),
+            f"bound {CH.show(bound_p, '.3f')} Gyr; pulls {CH.show(pull_s, '+.2f')}σ, {CH.show(pull_i, '+.2f')}σ; inferred age above by {CH.show(INFERRED[0] - bound_p, '.3f')} Gyr", kind="CHART")
 
 
 if __name__ == "__main__":

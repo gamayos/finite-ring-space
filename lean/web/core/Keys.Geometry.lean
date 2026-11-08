@@ -3133,7 +3133,7 @@ shell and its completion (2:C2); the fixed-shell bound of the scale grids, its f
 namespace FRC
 namespace Geometry
 
-/-- 2:C2, 2:C3 (Remark 3.4) — the counts: with `π = m + 1` phases-deep and `n = p − 1` phases,
+/-- 2:C2, 2:C3, 2:C6 (Remark 3.4) — the counts: with `π = m + 1` phases-deep and `n = p − 1` phases,
 `|V| − |E| + |F| = 1` for the shell and `2` for its completion, written without subtraction:
 `(πn + 1) + πn = 2πn + 1` and `((π−1)n + 2) + πn = (2π−1)n + 2`. -/
 theorem euler_characteristic (m n : Nat) :
@@ -3517,6 +3517,72 @@ theorem census13 :
     cellular 13 1 = true ∧ cellular 13 5 = false ∧ cellular 13 7 = false ∧ cellular 13 11 = true ∧
     poleExchange 13 = true := by decide +kernel
 
+/-! ## The edge metric and the curvature of the completion (2:C5, C6, C7) -/
+
+/-- The neighbours of every vertex code: the other ends of the sides through it, without repetition. -/
+def nbrs (fs : List (List Nat)) (N : Nat) : List (List Nat) :=
+  let E := (withSides fs).foldr (fun f acc => f.2 ++ acc) []
+  (List.range N).map fun v =>
+    E.foldr (fun s acc =>
+      let w := if s.1 == v then s.2 else if s.2 == v then s.1 else v
+      if w == v || acc.contains w then acc else w :: acc) []
+
+/-- The `i`-th entry of a list of lists (`[]` past the end), by structural recursion. -/
+def nth : List (List Nat) → Nat → List Nat
+  | [], _ => []
+  | l :: _, 0 => l
+  | _ :: L, i + 1 => nth L i
+
+/-- The latitude index `a` of a vertex code (`0` at the north pole, `pi` at the south pole). -/
+def lat (n pi v : Nat) : Nat := if v == 0 then 0 else if v == south n pi then pi else (v - 1) / n + 1
+def isPole (n pi v : Nat) : Bool := v == 0 || v == south n pi
+/-- The cyclic distance of two phase labels on the cycle of `n` phases. -/
+def cyc (n m k : Nat) : Nat := let d := (m + n - k % n) % n; min d (n - d)
+
+/-- 2:C5 — the distance formula: `min(|a − a'| + δ(m, m'), a + a', 2π − a − a')`, with `δ` the cyclic distance on the
+phase cycle (`0` when a pole is involved). -/
+def edgeDist (n pi u v : Nat) : Nat :=
+  let a := lat n pi u; let b := lat n pi v
+  let δ := if isPole n pi u || isPole n pi v then 0 else cyc n ((u - 1) % n) ((v - 1) % n)
+  let da := if a ≤ b then b - a else a - b
+  min (da + δ) (min (a + b) (2 * pi - a - b))
+
+/-- `12 K(v)`, the combinatorial curvature `K(v) = 1 − deg(v)/2 + Σ_{f ∋ v} 1/|f|` times twelve, as an integer. -/
+def curv12 (fs : List (List Nat)) (A : List (List Nat)) (v : Nat) : Int :=
+  12 - 6 * ((nth A v).length : Int) +
+    fs.foldr (fun f acc => if f.contains v then acc + (if f.length == 3 then 4 else 3) else acc) 0
+
+/-- The adjacency of the completion on `𝔽₁₃` (`n = 12`, `π = 6`, 62 vertex codes), written out. -/
+def A13 : List (List Nat) := [[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1], [0, 2, 13, 12], [0, 1, 14, 3], [0, 2, 15, 4], [0, 3, 16, 5], [0, 4, 17, 6], [0, 5, 18, 7], [0, 6, 19, 8], [0, 7, 20, 9], [0, 8, 21, 10], [0, 9, 22, 11], [0, 10, 23, 12], [0, 11, 24, 1], [1, 14, 25, 24], [2, 13, 26, 15], [3, 14, 27, 16], [4, 15, 28, 17], [5, 16, 29, 18], [6, 17, 30, 19], [7, 18, 31, 20], [8, 19, 32, 21], [9, 20, 33, 22], [10, 21, 34, 23], [11, 22, 35, 24], [12, 23, 36, 13], [13, 26, 37, 36], [14, 25, 38, 27], [15, 26, 39, 28], [16, 27, 40, 29], [17, 28, 41, 30], [18, 29, 42, 31], [19, 30, 43, 32], [20, 31, 44, 33], [21, 32, 45, 34], [22, 33, 46, 35], [23, 34, 47, 36], [24, 35, 48, 25], [25, 38, 49, 48], [26, 37, 50, 39], [27, 38, 51, 40], [28, 39, 52, 41], [29, 40, 53, 42], [30, 41, 54, 43], [31, 42, 55, 44], [32, 43, 56, 45], [33, 44, 57, 46], [34, 45, 58, 47], [35, 46, 59, 48], [36, 47, 60, 37], [37, 50, 61, 60], [38, 49, 61, 51], [39, 50, 61, 52], [40, 51, 61, 53], [41, 52, 61, 54], [42, 53, 61, 55], [43, 54, 61, 56], [44, 55, 61, 57], [45, 56, 61, 58], [46, 57, 61, 59], [47, 58, 61, 60], [48, 59, 61, 49], [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 49]]
+
+/-- The written adjacency is the adjacency of the faces of the completion. -/
+theorem A13_eq : A13 = nbrs (faces 12 6) 62 := by decide +kernel
+
+/-- 2:C5, 2:C7 [value] — on `𝔽₁₃` the distance formula is the graph distance of the completion: for every source `s` it
+vanishes at `s`, changes by at most one along every edge, and every other vertex has a neighbour one step closer. These
+three properties characterise the distance from `s` (induction on the formula's value). The diameter is `π = 6`, between
+the poles. -/
+theorem metric13 :
+    (List.range 62).all (fun s => edgeDist 12 6 s s == 0 && (List.range 62).all fun v =>
+      (nth A13 v).all (fun w => edgeDist 12 6 s w ≤ edgeDist 12 6 s v + 1 && edgeDist 12 6 s v ≤ edgeDist 12 6 s w + 1) &&
+      (v == s || (nth A13 v).any fun w => edgeDist 12 6 s w + 1 == edgeDist 12 6 s v)) = true ∧
+    edgeDist 12 6 0 (south 12 6) = 6 := by decide +kernel
+
+/-- 2:C6 [value] — on `𝔽₁₃` the curvature: zero on the band `2 ≤ a ≤ π − 2`, `1/6` on the latitudes `1` and `π − 1`,
+`1 − (p − 1)/6 = −1` at each pole (twelve times: `0`, `2`, `−12`); the total is `24/12 = 2`, the Euler characteristic. -/
+theorem curvature13 :
+    (List.range 62).all (fun v => curv12 (faces 12 6) A13 v ==
+      (if isPole 12 6 v then -12 else if lat 12 6 v == 1 || lat 12 6 v == 5 then 2 else 0)) = true ∧
+    (List.range 62).foldr (fun v acc => acc + curv12 (faces 12 6) A13 v) 0 = 24 := by decide +kernel
+
+/-- 2:C7 [value] — on `𝔽₁₃` the band is a square grid: every vertex with `2 ≤ a ≤ 4` has four neighbours, pairwise at
+distance two (the unit ball of the square lattice), while each pole has `p − 1 = 12` neighbours. -/
+theorem flat13 :
+    (List.range 62).all (fun v => !(2 ≤ lat 12 6 v && lat 12 6 v ≤ 4 && !isPole 12 6 v) ||
+      ((nth A13 v).length == 4 &&
+       (nth A13 v).all fun u => (nth A13 v).all fun w => u == w || edgeDist 12 6 u w == 2)) = true ∧
+    (nth A13 0).length = 12 ∧ (nth A13 (south 12 6)).length = 12 := by decide +kernel
+
 end Complex
 end FRC
 
@@ -3554,6 +3620,15 @@ theorem p02023 : (∀ (g κ m n x : Nat), (2 : Nat) ≤ g → x ≤ (2 : Nat) * 
 /-- p02030 — 2:F6. Exact external transport [chart]: $\chi(\gen^{m})=e^{-2\pi_{\R}im/n}$ is an isomorphism of $\Fpx$ onto the complex $n$-th roots of unity with $\chi(\gen^{m+1})=e^{-2\pi_{\R}i/n}\chi(\gen^{m})$, $\chi(\gen^{m+\pi})=-\chi(\gen^{m})$, $\chi(\im\gen^{m})=i\,\chi(\gen^{m})$; in the exponents, $\gen^{m+\pi}=-\gen^{m}$ and $\im\gen^{m}=\gen^{m+3\kap}$. -/
 theorem p02030 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m j r : Nat), g ^ (m + (2 : Nat) * κ) = -g ^ m ∧ FRC.Shell.Frame.quarterTurn g κ * g ^ m = g ^ (m + (3 : Nat) * κ) ∧ (g ^ j) ^ r = g ^ (j * r) :=
   @FRC.Geometry.transport_exponents
+/-- p02034 — 2:C5. The edge metric of the completion: the distance between the vertices of latitudes $a,a'$ and phases $m,m'$ is $\min(|a-a'|+\delta(m,m'),a+a',2\pi-a-a')$, with $\delta$ the cyclic distance on $\Phi_{\p}$ and $\delta=0$ at a pole; shortest paths follow a meridian and a latitude or pass through a pole; the diameter is $\pi$. -/
+theorem p02034 : ((List.range (62 : Nat)).all fun s => FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s s == (0 : Nat) && (List.range (62 : Nat)).all fun v => ((FRC.Complex.nth FRC.Complex.A13 v).all fun w => decide (FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s w ≤ FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s v + (1 : Nat)) && decide (FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s v ≤ FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s w + (1 : Nat))) && (v == s || (FRC.Complex.nth FRC.Complex.A13 v).any fun w => FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s w + (1 : Nat) == FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s v)) = true ∧ FRC.Complex.edgeDist (12 : Nat) (6 : Nat) (0 : Nat) (FRC.Complex.south (12 : Nat) (6 : Nat)) = (6 : Nat) :=
+  @FRC.Complex.metric13
+/-- p02036 — 2:C6. Curvature of the completion, $K(v)=1-\deg v/2+\sum_{f\ni v}1/|f|$, for $\p\ge13$: zero at every vertex of latitude $2\le a\le\pi-2$, $1/6$ on the latitudes $1$ and $\pi-1$, $1-(\p-1)/6$ at each pole; the total is $2$. -/
+theorem p02036 : (((List.range (62 : Nat)).all fun v => FRC.Complex.curv12 (FRC.Complex.faces (12 : Nat) (6 : Nat)) FRC.Complex.A13 v == if FRC.Complex.isPole (12 : Nat) (6 : Nat) v = true then (-12 : Int) else if (FRC.Complex.lat (12 : Nat) (6 : Nat) v == (1 : Nat) || FRC.Complex.lat (12 : Nat) (6 : Nat) v == (5 : Nat)) = true then (2 : Int) else (0 : Int)) = true ∧ List.foldr (fun v acc => acc + FRC.Complex.curv12 (FRC.Complex.faces (12 : Nat) (6 : Nat)) FRC.Complex.A13 v) (0 : Int) (List.range (62 : Nat)) = (24 : Int)) ∧ ∀ (m n : Nat), (m + (1 : Nat)) * n + (1 : Nat) + (m + (1 : Nat)) * n = (2 : Nat) * ((m + (1 : Nat)) * n) + (1 : Nat) ∧ m * n + (2 : Nat) + (m + (1 : Nat)) * n = ((2 : Nat) * m + (1 : Nat)) * n + (2 : Nat) :=
+  And.intro @FRC.Complex.curvature13 (@FRC.Geometry.euler_characteristic)
+/-- p02037 — 2:C7. The flat band, for $\p\ge13$: for $2r\le a\le\pi-2r$ the ball of radius $r$ about a vertex of latitude $a$ is isometric to the ball of radius $r$ of the square lattice; the observer origin, with $\p-1$ neighbours and nonzero curvature, has no flat ball. -/
+theorem p02037 : (((List.range (62 : Nat)).all fun v => !(decide ((2 : Nat) ≤ FRC.Complex.lat (12 : Nat) (6 : Nat) v) && decide (FRC.Complex.lat (12 : Nat) (6 : Nat) v ≤ (4 : Nat)) && !FRC.Complex.isPole (12 : Nat) (6 : Nat) v) || (FRC.Complex.nth FRC.Complex.A13 v).length == (4 : Nat) && (FRC.Complex.nth FRC.Complex.A13 v).all fun u => (FRC.Complex.nth FRC.Complex.A13 v).all fun w => u == w || FRC.Complex.edgeDist (12 : Nat) (6 : Nat) u w == (2 : Nat)) = true ∧ (FRC.Complex.nth FRC.Complex.A13 (0 : Nat)).length = (12 : Nat) ∧ (FRC.Complex.nth FRC.Complex.A13 (FRC.Complex.south (12 : Nat) (6 : Nat))).length = (12 : Nat)) ∧ ((List.range (62 : Nat)).all fun s => FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s s == (0 : Nat) && (List.range (62 : Nat)).all fun v => ((FRC.Complex.nth FRC.Complex.A13 v).all fun w => decide (FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s w ≤ FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s v + (1 : Nat)) && decide (FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s v ≤ FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s w + (1 : Nat))) && (v == s || (FRC.Complex.nth FRC.Complex.A13 v).any fun w => FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s w + (1 : Nat) == FRC.Complex.edgeDist (12 : Nat) (6 : Nat) s v)) = true ∧ FRC.Complex.edgeDist (12 : Nat) (6 : Nat) (0 : Nat) (FRC.Complex.south (12 : Nat) (6 : Nat)) = (6 : Nat) :=
+  And.intro @FRC.Complex.flat13 (@FRC.Complex.metric13)
 -- end keys
 
 end FRC.Ledger
@@ -3566,3 +3641,6 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p02018
 #print axioms FRC.Ledger.p02023
 #print axioms FRC.Ledger.p02030
+#print axioms FRC.Ledger.p02034
+#print axioms FRC.Ledger.p02036
+#print axioms FRC.Ledger.p02037

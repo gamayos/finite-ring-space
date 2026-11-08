@@ -61,7 +61,7 @@ def Clause : Prop := PartClause
 /-- From the master's key `FRC.Ledger.p00197` (00:A4). -/
 theorem from_master : Clause := part_of_master
 
-/-- From the paper's key `FRC.Ledger.p05013` (5:C2, alias `FRC.Reductio.p05013`): its second clause. -/
+/-- From the paper's key `FRC.Ledger.p05013` (5:C2; the paper module's predicate `FRC.Reductio.no_internal_mirror`): its second clause. -/
 theorem from_paper : Clause := fun hR f hf hinj => FRC.Ledger.p05013.2 hR f hf hinj
 
 end A5_5C2
@@ -75,12 +75,12 @@ def Clause : Prop := PartClause
 /-- From the master's key `FRC.Ledger.p00197` (00:A4). -/
 theorem from_master : Clause := part_of_master
 
-/-- From the paper's key `FRC.Ledger.p25015` (25:D1, alias `FRC.Godel.p25015`). -/
+/-- From the paper's key `FRC.Ledger.p25015` (25:D1; the paper module's predicate `FRC.Godel.relational_diagonal`). -/
 theorem from_paper : Clause := fun hR f hf hinj => FRC.Ledger.p25015 hR f hf hinj
 
 end A5_25D1
 
-/-- 14:C6 ⇒ 00:B14: the master's key `FRC.Ledger.p00170` from the paper's key `FRC.Entropy.p14023` and 00:A12's frame
+/-- 14:C6 ⇒ 00:B14: the master's key `FRC.Ledger.p00170` from the paper's key `FRC.Entropy.octant_sector` and 00:A12's frame
 (`frame_exists`): on a prime `Ω = 4S + 1` an element of order eight exists iff `S` is even. -/
 theorem b14_of_14C6 : ∀ {Ω : Nat} [Pos Ω] (S : Nat), FRC.Nat.isPrime Ω → Ω = 4 * S + 1 →
     ((∃ ζ : Shell Ω, ζ ^ 8 = 1 ∧ ζ ^ 4 ≠ 1) ↔ S % 2 = 0) := by
@@ -90,7 +90,7 @@ theorem b14_of_14C6 : ∀ {Ω : Nat} [Pos Ω] (S : Nat), FRC.Nat.isPrime Ω → 
     | 0, e => rw [e] at hp; exact absurd hp.1 (by decide)
     | k + 1, _ => exact Nat.zero_lt_succ k
   obtain ⟨g, F⟩ := frame_exists hp hcap hS
-  have hk := FRC.Entropy.p14023.2.1 F
+  have hk := FRC.Entropy.octant_sector.2.1 F
   have hne := frame_neg_one_ne_one F
   constructor
   · intro ⟨ζ, h8, h4⟩

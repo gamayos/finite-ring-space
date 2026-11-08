@@ -899,6 +899,34 @@
    "status": "no shared clause",
    "lean": null,
    "note": "7 November 2026 (3-causality's minimal revision): 3:B7's key is the similitude that multiplies the form by the drive, the class flip under the drive and the null count (Theme/Causal.lean); C3's key has the isotropy criterion and the half class, no clause in common"
+  },
+  {
+   "master": "C7",
+   "paper": "1:A2",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "T5 (8 November 2026): 1:A2's key is Euler's criterion, a square root of −1 exists in F_p exactly when p ≡ 1 (mod 4) (FRC.Shell.Prime.quarter_turn_iff); C7's key takes a frame, whose quarter-turn is given, and states the transport annihilation (h² = −1 and S even give h^S = ±1) and the conjugate frame's orientation. The master's clauses are identities under a given quarter-turn, the paper's is its existence criterion; neither is a conjunct of the other, and the master's key does not reach p mod 4."
+  },
+  {
+   "master": "E4",
+   "paper": "21:C23",
+   "status": "shared theorem",
+   "lean": "FRC.Drift.pn_coefficients",
+   "note": "T5 (8 November 2026): the post-Newtonian coefficients; both keys conjoin the theorem. E4's key adds the Gauss law, the character composition and uniqueness and the cover triangle and deviation; 21:C23's key adds the two-body 1PN identity (two_body_1pn)."
+  },
+  {
+   "master": "E5",
+   "paper": "21:C12",
+   "status": "shared theorem",
+   "lean": "FRC.Drift.cut_ordering",
+   "note": "T5 (8 November 2026): the ordering of the cuts; both keys conjoin the theorem. E5's key adds the compression identity and the cycle's period (cyc_add_n); 21:C12's key adds the static profile in cut form (static_iff, slip_of_exceeds, exterior_of_sq, slip_of_sq, slip_instance)."
+  },
+  {
+   "master": "E10",
+   "paper": "21:C12",
+   "status": "shared theorem",
+   "lean": "FRC.Drift.cut_ordering",
+   "note": "T5 (8 November 2026): the same theorem; E10's key adds the fold's return and collision clauses, the cut area's monotonicity and the cycle's period."
   }
  ]
 }

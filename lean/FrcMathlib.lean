@@ -42,6 +42,7 @@ import FrcMathlib.Epi
 import FrcMathlib.Dimensions
 import FrcMathlib.Rh
 import FrcMathlib.Entropy
+import FrcMathlib.Octant
 import FrcMathlib.Gravity
 import FrcMathlib.S13
 import FrcMathlib.Spacetime

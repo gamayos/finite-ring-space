@@ -1,5 +1,5 @@
 {
- "generated": "7 November 2026",
+ "generated": "8 November 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -36,6 +36,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": null,
    "statement": "\\textbf{The Universe exists}: the sole indubitable given (``I think, therefore the Universe is''). Neither axiom nor assumption."
   },
   {
@@ -60,6 +61,7 @@
      "key": "p00010"
     }
    ],
+   "lean_name": "finitude",
    "statement": "\\textbf{Finitude}: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its structural cardinality $\\Om$ (A7)."
   },
   {
@@ -95,6 +97,7 @@
      "key": "p00162"
     }
    ],
+   "lean_name": "completeness_of_totality",
    "statement": "\\textbf{Completeness of the totality}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4)."
   },
   {
@@ -135,6 +138,7 @@
      "key": "p00187"
     }
    ],
+   "lean_name": "incompleteness_of_observation",
    "statement": "\\textbf{Incompleteness of observation}: every observation is a registration by an embedded part (C4, A13) of cardinality $\\p<\\sqrt\\Om$ (A6, B8): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection, complete only at the whole count. No frame sees more: one translation carries each member to each, one affine map each frame to each (A6, 1:C2). Horizon: Z1, Z9."
   },
   {
@@ -154,6 +158,7 @@
      "key": "p00004"
     }
    ],
+   "lean_name": "counting_closes_by_return",
    "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's."
   },
   {
@@ -176,6 +181,7 @@
      "key": "p00021"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{The Carrier C}: A timeless torsor of $\\Om$ elements, its cardinality is its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ --- the frame's chart, never the Carrier (C1). Arena and numbers: B1."
   },
   {
@@ -203,6 +209,7 @@
      "key": "p00085"
     }
    ],
+   "lean_name": "scale_import",
    "statement": "Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ [chart]. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2."
   },
   {
@@ -219,6 +226,7 @@
      "key": "p00197"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the incompleteness of observation (A4) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers."
   },
   {
@@ -232,6 +240,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": null,
    "statement": "\\textbf{The trusted base}: the kernel's type theory, with the prelude's natural numbers read as the index of shells; no core statement asserts unboundedness, and no step of a certificate computes a count above $\\Om$ at any admissible instance."
   },
   {
@@ -250,6 +259,7 @@
      "key": "p00003"
     }
    ],
+   "lean_name": "completeness_is_primality",
    "statement": "\\textbf{Completeness is primality}: the residues of a count $q\\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it."
   },
   {
@@ -268,6 +278,7 @@
      "key": "p00013"
     }
    ],
+   "lean_name": "quarter_turn_criterion",
    "statement": "\\textbf{The quarter-turn exists iff $\\p\\equiv1\\pmod4$}: for an odd prime $\\p$, $-1$ is a square in $\\F_\\p$ iff $\\p\\equiv1\\pmod4$ (the formal shadow of B3)."
   },
   {
@@ -286,6 +297,7 @@
      "key": "p00021"
     }
    ],
+   "lean_name": "prime_carries_frame",
    "statement": "\\textbf{Every prime carries a frame}: every prime field $\\F_\\p$ of the totality has a primitive root, so a drive $\\gen$ with $\\langle\\gen\\rangle=\\F_\\p^{\\times}$ exists (the formal shadow of C1)."
   },
   {
@@ -304,6 +316,7 @@
      "key": "p00197"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{Labels and support}: a reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$; labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one (A4)."
   },
   {
@@ -328,6 +341,7 @@
      "key": "p00019"
     }
    ],
+   "lean_name": null,
    "statement": "All numbers are unframed Carrier residues, framed rationals ($\\fQ$) in a Subject frame, in which every structure the sciences use is built exactly. The continuum is a labelled idealisation read against $\\mathbb R$ [chart], never an object. The accessible smalls are the counts below the observer's horizon, the wrap-free window of primality, parity and order (B8, B9)."
   },
   {
@@ -341,6 +355,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": null,
    "statement": "Phase cycle $\\Phi=\\F_\\Om^{\\times}\\cong C_{\\Om-1}$, the split torus of order $\\Om-1=4\\dS$; the cycle's order and divisor lattice are frame-invariant (the arithmetic of $\\dS$ is the spectrum of admissible dynamics), its marked elements frame data."
   },
   {
@@ -371,6 +386,7 @@
      "key": "p00048"
     }
    ],
+   "lean_name": null,
    "statement": "Quarter-turn torsion: $4\\mid\\Om-1$ by construction ($\\Om=4\\dS+1$, A7), so the split torus carries a unique order-four subgroup --- the Carrier's $Q_4$ core $\\{1,\\hbar,-1,h\\}$ ($\\hbar^2\\equiv-1$, $h:=-\\hbar$ the root-pair partner of $\\hbar$, B7), the symmetry-complete condition. The Subject's labels $\\{1,\\im,-1,-\\im\\}$ are frame data (C1), the two quarter-turns distinct objects (D7)."
   },
   {
@@ -397,6 +413,7 @@
      "key": "p00021"
     }
    ],
+   "lean_name": null,
    "statement": "Triality centre: $3\\mid\\Om+1$, so $x^2+x+1$ has no root in $\\F_\\Om$, and its roots $\\omega,\\omega^2$ with $1$ form the unique order-three group of norm-one residue pairs, the triality centre; its labels $\\{1,\\omega,\\omega^2\\}$ are Subject frame data (C1); jointly with B3 it forces the substrate residue (B5)."
   },
   {
@@ -431,6 +448,7 @@
      "key": "p00047"
     }
    ],
+   "lean_name": "substrate_residue",
    "statement": "\\textbf{The substrate residue}: the quarter-turn ($4\\mid\\Om-1$, B3) and the triality centre ($3\\mid\\Om+1$, B4) jointly hold iff $\\Om\\equiv5\\pmod{12}$. Both are relations certified by realisations, never properties of an integer: $Q_4$ by the quantum realisation (D4), the triality centre by the strong realisation (D6). The inference runs structure $\\to$ congruence (A3); a laboratory pattern instantiates the residue or does not (10:E9)."
   },
   {
@@ -445,6 +463,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": null,
    "statement": "Four generative levels (succession $\\to$ addition $\\to$ multiplication $\\to$ fixed-base exponentiation) generate the carrier's two cyclic structures ($C_\\Om$, $C_{\\Om-1}$) and the exponential bridge lemma; the fifth level (tetration) folds back since exponents are $(\\Om{-}1)$-cardinality residues, so the hierarchy, unbounded under the classical reading, closes at four over $\\F_\\Om$ (structural, not a cost claim)."
   },
   {
@@ -479,6 +498,7 @@
      "key": "p00048"
     }
    ],
+   "lean_name": "carrier_register",
    "statement": "\\textbf{Physical constants are definite Carrier residues}: the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in $\\dS$ alone --- $G=2\\dS=-c^2$, $c^2=2^{-1}$ (C8, D7), $\\hbar^2=-1$, $k_B^2=-2$, $|k_B|=\\hbar/c$; the defining congruences are the observer's complete certificates, $G$ exact, the rest up to sign (B10); $h:=-\\hbar$ is the root-pair partner of $\\hbar$ (B3, D7). No Subject counterpart of $G$ or $\\hbar$; no fifth constant (C1)."
   },
   {
@@ -499,6 +519,7 @@
      "key": "p00167"
     }
    ],
+   "lean_name": "window_ladder",
    "statement": "\\textbf{The window ladder}: a nested Subject, $\\p^2<\\Om$, has its own horizon below the Carrier's quarter-root, $\\sqrt\\p<\\Om^{1/4}$, and its shell below the coherence horizon, $\\p<\\Om^{1/2}$; the saturating Subject ($\\p^2\\to\\Om$) locks the ladder $\\mathrm{small}<\\Om^{1/4}<\\p\\text{-hard}<\\Om^{1/2}<\\Om\\text{-hard}<\\Om$, one square-root horizon per embedding (the bands: B12). Lab-verified ($\\Om=2{,}408{,}561$)."
   },
   {
@@ -526,6 +547,7 @@
      "key": "p00021"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{Certification is the orthogonal axis} to the B8 bands: a certified entity carries a bounded-height defining relation holding across shells; a framed transcendental is a hard role with none. Registers: at the Carrier the four constants (B7); at the Subject the half-period and quarter-turn, $2\\pi\\equiv-1$, $\\im^2\\equiv-1$ (C1) --- the same congruence shapes (self-similarity). Physical constants $\\Om$-hard, mathematical constants $\\p $-hard."
   },
   {
@@ -561,6 +583,7 @@
      "key": "p00034"
     }
    ],
+   "lean_name": "gauge_bit_sign_sector",
    "statement": "\\textbf{One gauge bit closes the sign sector}: no C14-type marker exists --- $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A6). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7)."
   },
   {
@@ -585,6 +608,7 @@
      "key": "p00019"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{The two-level horizon law}: hardness is one mechanism at every scale --- a role is $\\Om$-hard when it lives at the Carrier's scale, $\\p$-hard when it lies beyond the Subject's own horizon $\\sqrt\\p$ inside its own shell; hardness attaches to roles, never to bare residues. The ladder: B8; certification: B9."
   },
   {
@@ -603,6 +627,7 @@
      "key": "p00168"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{The sign of the Boltzmann residue}: $k_B:=-\\hbar/c$, the sign fixed by the Hawking scaling $k_Bc=h$ read in the chart [chart]; the registered face is $|k_B|$ (B10)."
   },
   {
@@ -616,6 +641,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": "carrier_octant_sector",
    "statement": "\\textbf{The octant sector}: $C_8\\subset C_{4\\dS}$ exists exactly when $\\dS$ is even (14:C6)."
   },
   {
@@ -651,6 +677,7 @@
      "key": "p00092"
     }
    ],
+   "lean_name": "frame_subject_only",
    "statement": "The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto gx$ (A6). Shell data, capacity-first: $\\kap $ primitive, $\\p =4\\kap +1$, $\\im=-\\gen^\\kap $ (C7), $\\pi=2\\kap $, $e=\\gen^{\\,\\im}$; $\\gen$ the one nonsquare frame datum (C3, C8). Exponents of $\\gen$ are taken in $\\Zp$, a residue in an exponent standing for its lift $\\iota:\\F_\\p\\to\\{0,\\dots,\\p-1\\}$. The web closes on every shell: $2\\pi\\equiv-1$, $\\gen^{\\,\\pi}\\equiv-1$, $-\\pi=2^{-1}$ (N2)."
   },
   {
@@ -664,6 +691,7 @@
    ],
    "witness": "6:fourier.py",
    "refs": [],
+   "lean_name": "scale_shift_duality",
    "statement": "Scale-shift duality: dilation $x\\mapsto gx$ is phase evolution of the frame, advancing $t$; over the cycle it is the fractional Fourier transform, whose quarter-turn $Q_4$ is the discrete Fourier transform."
   },
   {
@@ -691,6 +719,7 @@
      "key": "p00048"
     }
    ],
+   "lean_name": "euclidean_lorentzian_dichotomy",
    "statement": "The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\\nu=\\gen$ (C1); in $\\F_\\p$, $\\nu=2^{-1}\\cdot(2\\gen)$, both classes fixed by the parity of $\\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8, D7), and $\\eta_{00}=-c^2$ is a chart artifact."
   },
   {
@@ -705,6 +734,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": null,
    "statement": "Observer $=$ embedded shell (frame); observation $=$ shared-core comparison of two phase cycles."
   },
   {
@@ -719,6 +749,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": null,
    "statement": "Oriented frame $=$ unimodular basis; two oriented frames differ by exactly one matrix of determinant one."
   },
   {
@@ -747,6 +778,7 @@
      "key": "p00045"
     }
    ],
+   "lean_name": null,
    "statement": "Gravity's $(3{+}1)$ tensor, the Riemann observer geometry and the quantum spinor structure are three readings of a shell's frame group $\\mathrm{SL}_2$ (C22), element by element, its three tori the scale-time, translation and boost freedoms; continuum shadow the declared $S^3$ (C23), spinor double cover the Clifford layer (D4). Falsifier: a registered space-time, observer or spinor freedom outside the three tori."
   },
   {
@@ -778,6 +810,7 @@
      "key": "p00175"
     }
    ],
+   "lean_name": "orientation_derived",
    "statement": "\\textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\\im^{\\dS}\\in\\{\\pm1\\}$); the oriented quarter-turn $\\im=-\\gen^\\kap $ is a selection, read by pullback covariance and count positivity; the joint flip $(\\gen,\\im,s)\\mapsto(\\gen^{-1},-\\im,-s)$ permutes the registration channels. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16."
   },
   {
@@ -799,6 +832,7 @@
      "key": "p00048"
     }
    ],
+   "lean_name": "square_class_parity",
    "statement": "For a primitive drive the squares are $\\langle \\gen^2\\rangle$: a residue's quadratic class is its drive-step parity. Registered transport is even, the one-way multiplier $\\gen$ odd, so the one-way speed is gauge and the two-way constant invariant. $[c^2]$ is even iff $\\dS$ is even, a relation certified by the unit realisation (D7). The Tsirelson $\\sqrt2=\\zeta_8+\\zeta_8^{-1}$ is its two-way symmetrisation."
   },
   {
@@ -827,6 +861,7 @@
      "key": "p00048"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{The Object frame is $(\\dt;\\,q,k,v)$}: every entry a Subject residue --- offset $\\dt$ (synchronisation datum), position $q$, winding $k$ (D2), rate $v$; one relative datum per frame datum. The momentum reading is one quarter-turn from the winding, $p=\\im\\,k$; the canonical commutator $[\\hat q,\\hat p]=\\im\\hbar$ composes the Subject's chart quarter-turn with the Carrier's action quantum (D7, B7)."
   },
   {
@@ -846,6 +881,7 @@
      "key": "p00051"
     }
    ],
+   "lean_name": "two_strata_of_probability",
    "statement": "A registered probability is a framed rational; a structural weight is an element of the parity-even cyclotomic subring. The strata coincide exactly on the stationary core-valued $Q_4$ sector, joined by two proved reductions and the stratum-sampling clause (D10). On a single Object the weights are uniform over the fibres (22-qm Rem.~borndomain); non-uniform statistics arrive through the engineered-core readout."
   },
   {
@@ -864,6 +900,7 @@
      "key": "p00051"
     }
    ],
+   "lean_name": "fibre_local_functionals",
    "statement": "\\textbf{Pair-tally uniqueness} (22-qm Prop.~gleason, the uniqueness of the pair tally on the stationary $Q_4$ sector): on the stationary core-valued $Q_4$ sector, tally-valued, fibre-additive, drive-invariant, parity-even registration functionals form the character cone fixed by the pure windings; adding channel-selectivity (assumed, not derived; the sampling clause D10) picks the Born ray. The minimal degree is forced; proof shape: 22-qm."
   },
   {
@@ -877,6 +914,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": "temperature_domain",
    "statement": "\\textbf{Temperature and the classical arity, derived}: the temperature domain is acceleration, $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, $\\Theta_P=E_P/|k_B|$, Unruh closing as a domain identity; neither mass nor temperature is primitive --- $M$-$L$-$T$-plus-thermal is the torsion-free shadow of the two-generators-plus-flag system (the mass primitive standing in for the flag, the thermal for $k_B$), classical dimensional analysis recovered in exponents and arity."
   },
   {
@@ -905,6 +943,7 @@
      "key": "p00028"
     }
    ],
+   "lean_name": "quarter_turn_odd_member",
    "statement": "\\textbf{The quarter-turn is the odd member of the $\\pm\\sqrt{-1}$ pair}: the two representatives have opposite integer parity (distinct from chronon parity, C8), and $e^{\\,\\im\\pi}:=\\gen^{\\,2\\kap\\,\\iota(\\im)^{2}}\\equiv(-1)^{\\iota(\\im)}$ (the lift $\\iota$ of C1), so $e^{\\,\\im\\pi}\\equiv-1$ holds exactly on the odd member. The conjugate chart toggles it: the parity names the matter--antimatter gauge (C7), and the selection is generator-independent within the chirality."
   },
   {
@@ -918,6 +957,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": "spinor_dichotomy",
    "statement": "\\textbf{The spinor dichotomy}: $\\kap$ odd $\\Leftrightarrow$ $C_{\\p-1}\\cong C_4\\times C_\\kap$ $\\Leftrightarrow$ $v_2(\\p-1)=2$ $\\Leftrightarrow$ $3\\kap r+4s\\equiv1\\ (\\mathrm{mod}\\ 4\\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\\min(v_2(\\p-1),v_2(\\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\\dS\\equiv2\\ (\\mathrm{mod}\\ 4)$. The midpoint event of a $\\kap$-odd shell: 38:C14."
   },
   {
@@ -936,6 +976,7 @@
      "key": "p00152"
     }
    ],
+   "lean_name": "hopf_section",
    "statement": "\\textbf{The Hopf section}: on the frames by elements (no group counted, Q20) the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; $\\mathrm{SL}_2$ obstructs at $-1$."
   },
   {
@@ -955,6 +996,7 @@
      "key": "p00043"
     }
    ],
+   "lean_name": "mass_energy_channel",
    "statement": "\\textbf{The mass--energy channel}: the winding sector $C_{\\p -1}$ meets the boost base $C_{\\p +1}$ in the sign alone and the spinor cover $C_{2(\\p +1)}$ in exactly $Q_4$, every $\\p =4\\kap +1$; the quarter is spinorial, $N(\\im)=\\im^{2}=-1$: the mass transport crosses the sheet; mass phase $=$ winding rate, one $Q_4$ datum (D2); Carrier instance $78^{58}=89=h$ on $\\Om =233$ (38:A4)."
   },
   {
@@ -973,6 +1015,7 @@
      "key": "p00040"
     }
    ],
+   "lean_name": "dilation_rigidity",
    "statement": "\\textbf{The dilation rigidity theorem}: static clock comparison is a register character $\\gen^{-\\Delta n}$; characters are rigid, so the strong-field dilation law is the unique exponential reading, zero coefficient freedom; the PPN temporal form admits no register character (transitivity defect exactly $4ab$); the cover halves the angle at every tick (C20)."
   },
   {
@@ -991,6 +1034,7 @@
      "key": "p00190"
     }
    ],
+   "lean_name": "frame_variety",
    "statement": "$\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$; the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of $\\mathrm{PSL}_2$, whose elements are frame moves, not registrations. For every $\\p=4\\kap+1$ of the totality each element is one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the variety: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19), split $C_{\\p -1}$ over $\\p (\\p +1)$ without."
   },
   {
@@ -1018,6 +1062,7 @@
      "key": "p00183"
     }
    ],
+   "lean_name": null,
    "statement": "$SU(2)=S^3$ is declared the continuum chart of the frame group (C27) [chart]. The group has the three element types of $\\mathrm{SL}_2(\\mathbb{R})$, $SU(2)$ only one; no finite datum marks the compact real form, and cycle closure selects none. Then the spinor sign gives $S^3$, not $SO(3)$ (C22), uniqueness is Poincar\\'e--Perelman [import], and de Sitter slicing has $S^3$ sections [import] (A7)."
   },
   {
@@ -1031,6 +1076,7 @@
    ],
    "witness": "13:epi.py",
    "refs": [],
+   "lean_name": null,
    "statement": "\\textbf{The third-order wall of $\\pi$}: for every prime $\\p\\ge5$ of the totality, $\\sigma_\\p=\\sum_{k<(\\p-1)/2}\\binom{2k}{k}/((2k+1)16^{k})$ satisfies $\\sigma_\\p\\equiv0\\ (\\mathrm{mod}\\ \\p^{2})$ (Sun, JNT \\textbf{131} (2011), (1.4)) and $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\ (\\mathrm{mod}\\ \\p)$: Sun's Conjecture 5.1, $\\sigma_\\p\\equiv(-1)^{(\\p-1)/2}(H_{\\p-1}/12+3\\p^{4}B_{\\p-5}/160)\\ (\\mathrm{mod}\\ \\p^{5})$ for $\\p>5$, proved by Hessami Pilehrood, Hessami Pilehrood and Tauraso (Int.\\ J.\\ Number Theory \\textbf{8} (2012), Thm.\\ 5 (44)), reduced mod $\\p^{3}$ with Glaisher's $H_{\\p-1}\\equiv-\\p^{2}B_{\\p-3}/3\\ (\\mathrm{mod}\\ \\p^{3})$; $\\p=5$ direct. Re-verified for all primes below $10^{4}$."
   },
   {
@@ -1050,6 +1096,7 @@
      "key": "p00040"
     }
    ],
+   "lean_name": "antipode_on_torus",
    "statement": "For $w^2=\\nu$ a nonsquare, the torsor map $\\mathbb{P}^1(\\F_\\p)\\to C_{\\p +1}$, $P\\mapsto u_P/\\bar u_P$ with $u_P$ the unique boost taking $0$ to $P$, is equivariant and sends the origin to $1$ and the antipode $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$. Origin and antipode are the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is the seam $\\p/2$ (1:Z1, 1:Z2)."
   },
   {
@@ -1063,6 +1110,7 @@
    ],
    "witness": "13:epi.py",
    "refs": [],
+   "lean_name": null,
    "statement": "The derangement chain $D_n/n!=\\sum_{k\\le n}(-1)^{k}/k!$ is the partial-sum chain of the E-function $e^{-z}$ at $1$; the arcsin and Machin chains are those of the G-functions $\\arcsin z$ at $1/2$ and $\\arctan z$ at $1/5$, $1/239$; $e^{\\pm1}\\in\\mathcal E$ and $\\pi,1/\\pi\\in\\mathcal G$, both rings (Fischler--Rivoal) [import]. The factorial rate $\\Theta(k/\\log k)$ against the geometric rate $\\Theta(k)$ of 13-epi E5 is that of E- against G-partial sums."
   },
   {
@@ -1077,6 +1125,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": "frame_group_one_form",
    "statement": "\\textbf{The frame group has one form}: on every shell $\\mathrm{SU}_2(\\F_{\\p^2}/\\F_\\p)=\\mathrm{SL}_2(\\F_\\p)$ for the Hermitian form $wJ$, $w^{\\p}=-w$, every element of finite order; the sphere $x^2+y^2+z^2+w^2=1$ and $ad-bc=1$ correspond point by point through the quarter-turn."
   },
   {
@@ -1110,6 +1159,7 @@
      "key": "p00153"
     }
    ],
+   "lean_name": "time_is_scale_dilation",
    "statement": "\\textbf{Time is the drive}: a Subject's clock is its drive $x\\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has no clock. A registered duration is the one-directional chronon count on the depth $\\p^{2}<\\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors."
   },
   {
@@ -1124,6 +1174,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": null,
    "statement": "\\textbf{Mass is winding rate} ($E=hf$ an identity); masslessness $\\Leftrightarrow$ drive-invariance; a mass is the non-split component the drive rotates, the part of a residue pair that Frobenius conjugation reverses, masslessness the split-torus eigen-alignment. Falsifier: a rest mass with no cycle winding, a massless drive-variant state, or a stationary state whose registered frequency is not its winding index ($E=hf$ failing)."
   },
   {
@@ -1148,6 +1199,7 @@
      "key": "p00043"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{Distance is decoherence}: the separation of two systems is their decoherence count in the observer's chart, the metric the graph metric of shared-core comparison --- the spatial reading of the one relational channel, the twin of D1 (time) and D2 (mass). Falsifier: a metric separation not monotone in the decoherence count of the relational channel."
   },
   {
@@ -1161,6 +1213,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": null,
    "statement": "\\textbf{Quantum}: matter is the phase character of a finite cycle; observation is shared-core comparison; the complex amplitude is forced by $Q_4$ ($\\im^2{=}{-}1$). Falsifier: a confirmed third-order interference $I_3\\neq0$, $S\\neq2\\sqrt2$, or real-amplitude network behaviour (22-qm P2, P3)."
   },
   {
@@ -1174,6 +1227,7 @@
    ],
    "witness": "21:validate_radiative.py",
    "refs": [],
+   "lean_name": null,
    "statement": "\\textbf{Gravity}: a cell-local change of frame is a gauge symmetry, and the connection compensating it is the field (the geometric/diffeomorphism frame). Falsifier: a source gravitating by other than its full mass, entanglement induced off the Newtonian rate, or $\\eta\\neq0$ (22-qm P1, C22)."
   },
   {
@@ -1187,6 +1241,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": null,
    "statement": "\\textbf{Forces}: the same recipe applied to the substrate's three \\emph{other} frame data, namely phase (EM), spinor (weak), and colour (strong); ``finish gauging the frame.'' Falsifier: a fifth force, a gauge group or charge outside the rank-five frame, or a fourth generation."
   },
   {
@@ -1207,6 +1262,7 @@
      "key": "p00165"
     }
    ],
+   "lean_name": null,
    "statement": "A unit is observer counts per substrate count, its atomic form the action quantum $\\hbar^2=-1$ (B7), its domain the unit-free order-four flag: unitful measures carry it, observables are flag-free, the absolute unit value $\\Om$-hard. The fundamental units are the four domain horizons (10-dim). Falsifier: an embedded observer registering an absolute unit value, or a unitful measure with no cross-frame reciprocal."
   },
   {
@@ -1230,6 +1286,7 @@
      "key": "p00114"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{Elementary is $\\Om$-hard}: an elementary particle is a large beyond-horizon residue, never observed at rest; the observable exception is the gauge sector's drive-invariant residue, the photon (G1, Z6); instantiated at $517\\times\\sqrt\\Om$ on a concrete shell (37-sim). Falsifier: an elementary particle with a resolved internal residue (substructure), or a massive drive-invariant gauge residue."
   },
   {
@@ -1244,6 +1301,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": null,
    "statement": "\\textbf{The observable is a small residue}: a bounded observer reads only small residues, so an observable stable object carries a small exact residue (particle $+$ binding wrap) --- the confined hadron, the light nucleus, the stable atom; decay is frame-normalisation toward it. Falsifier: a stable observable object carrying no small exact residue --- a stable coloured state, or strong/electromagnetic proton decay."
   },
   {
@@ -1258,6 +1316,7 @@
    ],
    "witness": "22:p22_quantum.py",
    "refs": [],
+   "lean_name": null,
    "statement": "A registration protocol samples one stratum of a drive-presented ensemble. Over complete joint recurrences the counts are forced exact tallies (22-qm Rem.~strata), on incomplete batches the largest-remainder gauge, shared by the quantum readout and the gravity crossover. Falsifier: outcome tallies over a complete joint recurrence that are not exact ratios, or a fixed-setting protocol sampling more than one stratum."
   },
   {
@@ -1293,6 +1352,7 @@
      "key": "p00044"
     }
    ],
+   "lean_name": null,
    "statement": "The Subject registers its past cone, one chronon per decoherence step (D1, D3), through the cone chart (C19, C22), fixing the antipode $[1{:}0]$, $-1$ on the torus (C25). Falsifier: a registration on the direct branch whose value is not the Object's drive state at $\\chron -k$ for its decoherence count $k$, read modulo $\\p -1$, or a registration off the past cone."
   },
   {
@@ -1321,6 +1381,7 @@
      "key": "p00043"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{Mass is dilation} (the harness face of D2): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20). Rest energy is the norm reading, $\\ker N=C_{\\p +1}$, boost-invariant. The lab charts it between the exact $C_4$ stations, the pair class $4\\gcd(\\dS,2\\kap +1)$ host-decided. Falsifier: D2's."
   },
   {
@@ -1340,6 +1401,7 @@
      "key": "p00058"
     }
    ],
+   "lean_name": null,
    "statement": "The entropy of the first law (E7) is the shell's record $\\kap(\\p+1)=(\\p^2-1)/4=|\\F_\\p^\\times|\\,|C_{\\p+1}|/4$, one $k_B$ per channel, $S_{\\mathrm{th}}=k_B\\,\\kap(\\p+1)$ [chart]: the count itself, not its logarithm. The record is the capacity of $\\F_{\\p^2}$, $\\p^2=4\\kap(\\p+1)+1$, as $\\dS$ is the Carrier's. Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$."
   },
   {
@@ -1375,6 +1437,7 @@
      "key": "p00179"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{Matter selects the orientation}: the joint flip of C7 is the matter--antimatter gauge, and the instance's matter content selects one orientation; the sector faces are G2 and G15--G17. Falsifier: a registered asymmetry between the two orientations not carried by the matter content."
   },
   {
@@ -1402,6 +1465,7 @@
      "key": "p00055"
     }
    ],
+   "lean_name": null,
    "statement": "The static clock ratio between two stations is the register character $\\gen^{-\\Delta n}$ of their offset (C21), $\\beta=\\gamma=1$ (E4, D1). Its registration dictionary is 38:C12 on a hosted pair and 38:C13 on the Carrier, its per-chronon rate the floor (38:C10--C11), the temporal face its half. Falsifier: a static clock ratio not fixed by $\\Delta n$ (the PPN temporal form, defect $4ab$)."
   },
   {
@@ -1416,6 +1480,7 @@
    ],
    "witness": "21:validate_fp_gauge.py",
    "refs": [],
+   "lean_name": "uniqueness_of_dynamics",
    "statement": "\\textbf{Uniqueness of the dynamics}: in every gauge sector the relevant gauge-invariant adjacency-local action is the unique curvature-square Casimir (Maxwell $F^2$, gravity Fierz--Pauli, Yang--Mills $\\mathrm{Tr}\\,F^2$) --- one adjacency-local uniqueness lemma, proven on the shell."
   },
   {
@@ -1435,6 +1500,7 @@
      "key": "p00052"
     }
    ],
+   "lean_name": "gravity_linear",
    "statement": "\\textbf{Gravity} (linear): the Coulomb law is gravity's own lattice Green's function; the field equation is the discrete Fierz--Pauli functional, the unique adjacency-local stiffness (E1). Universal attraction is the drive's single time arrow."
   },
   {
@@ -1453,6 +1519,7 @@
      "key": "p00043"
     }
    ],
+   "lean_name": "gravity_nonlinear_completion",
    "statement": "\\textbf{Gravity} (nonlinear completion): the relational shift-symmetry Ward identity forbids self-sourcing (what gravitates is winding rate, D2), so the static potential is harmonic and the completion is the unique scale-covariant exponential metric (Deser's bootstrap inapplicable); $\\beta=\\gamma=1$ and the classical tests exact, the first departures strong-field. Falsifier: a weak-field departure from $\\beta=\\gamma=1$, or a self-sourcing static potential."
   },
   {
@@ -1467,6 +1534,7 @@
    ],
    "witness": "21:validate_strongfield.py",
    "refs": [],
+   "lean_name": "gravity_floor_faces",
    "statement": "\\textbf{Gravity} (the floor's faces): collapse yields no event horizon and no singularity but an operationally black body at $r_f=r_s/\\ln\\Om$, clock rate $1/\\sqrt\\Om$, its interior a microscopic slip core. The global drive enters local physics only through the floor: preferred-frame parameters are $O(1/\\sqrt\\Om)\\sim3\\times10^{-62}$, Lense--Thirring at the GR value. Falsifier: a registered event horizon or singularity, or a preferred-frame parameter above $O(1/\\sqrt\\Om)$."
   },
   {
@@ -1494,6 +1562,7 @@
      "key": "p00130"
     }
    ],
+   "lean_name": "gravity_horizon_count",
    "statement": "\\textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\\p(\\p+1)$ and record $\\kap(\\p+1)$, so $\\kap(\\p+1)/A=\\kap/\\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\\p^2\\to\\Om$ the record law returns $(\\Om-1)/4=\\dS$, the imported entropy (A7). The chart reading $S=\\tfrac14A/\\ell_P^2$ is L5's. Corollary: the merger area law $\\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7."
   },
   {
@@ -1525,6 +1594,7 @@
      "key": "p00056"
     }
    ],
+   "lean_name": "gravity_horizon_triple",
    "statement": "\\textbf{Gravity} (horizon triple): the record is the registered state count $\\kap(\\p+1)=(A/4)(1-1/\\p )=M(M-1)$ (37:B5, 37:C7) on the rate face $M=(\\p +1)/2$ (D2, D14; $\\p =2M-1$ the count face), $d[\\kap(\\p+1)]/dM=\\p$ exactly. The temperature has two exact faces, the registration rate $T=(\\p +1)/\\p ^2$ (E5) and the response $T_{\\mathrm{resp}}=(d[\\kap(\\p+1)]/dM)^{-1}=1/\\p$, split by $1+1/\\p$. First law $dM=T_{\\mathrm{resp}}\\,d[\\kap(\\p+1)]=T\\,d[\\kap(\\p+1)]/(1+1/\\p )$; Smarr $2T_{\\mathrm{resp}}\\kap(\\p+1)=M(1-1/\\p )$, $2T\\kap(\\p+1)=M(1-1/\\p ^2)$; the chart's $dM=T\\,dS_{\\mathrm{th}}$, $M=2TS_{\\mathrm{th}}$ [import] to order $1/\\p$ (D15)."
   },
   {
@@ -1538,6 +1608,7 @@
    ],
    "witness": "21:validate_fold_echo.py",
    "refs": [],
+   "lean_name": "fold_is_chart_projection",
    "statement": "\\textbf{The fold is a chart projection}: the substrate coordinate $r$ is the decoherence count, the exponential reading the character $\\gen^{-\\Delta n(r)}$, and the exact datum at a shell of the radial partition is the pair $(r,\\gen^{-\\Delta n(r)})$, injective in $r$; the areal reading $R=re^{M/r}$ [chart] multiplies the count by the lifted character and forgets $r$ --- its two branches are two Carrier data (the residue product $r\\gen^{\\Delta}$ collides at $\\p =13,17,29$, the pair never), and the cut current $p_r=Q_r/A_r$ recovers $r$ from any exterior reading ($A_r=6(2r^2+2r+1)$ on $\\mathbb Z^3$, monotone). The fold-return average is fold-independent: $P_EFU^nF^{-1}P_E=P_EU^nP_E$ for every interior chart $F$, the period average $N^{-1}J_E$ (not $N_I^{-1}$), $P_EU^NP_E=P_E$ --- no echo criterion. The $r_f$-anchored statements are made in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Om /2)^2$ Planck masses [chart]."
   },
   {
@@ -1564,6 +1635,7 @@
      "key": "p00199"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{The registered adjacency chart} (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], C23's discrete twin. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one (E12); the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22)."
   },
   {
@@ -1586,6 +1658,7 @@
      "key": "p00198"
     }
    ],
+   "lean_name": "chart_count",
    "statement": "\\textbf{The chart count}: a homogeneous chart on the $\\Om$ registrations, flat to the horizon radius in $d$ dimensions, holds the $\\mathbb Z^{d}$ ball of that radius; for $d\\ge2$ the ball exceeds $\\Om$, for $d=1$ it fits. The one chart flat to the horizon radius is the drive's scale-time direction (E11); a three-chart of curvature radius $\\sqrt\\Om$ needs $\\Om^{3/2}$ cells (A2)."
   },
   {
@@ -1612,6 +1685,7 @@
      "key": "p00201"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{The strong-field wave operator} (declared): on the exponential reading (E4) the one wave operator is the chart's $\\Box_g$, 21-gravity's wave equation with the all-orders index $e^{2u}$ ($\\sqrt{-g}\\,g^{tt}=-e^{4u}$), acting on the cell's one phase. The chart is horizonless, continued to the floor $r_f=2M/\\ln\\Om$ where $e^{2u}=\\Om$ (E5) [chart]. The quoted ringdown is the eikonal limit (E14); the $(2,2,0)$ reading is open."
   },
   {
@@ -1634,6 +1708,7 @@
      "key": "p00200"
     }
    ],
+   "lean_name": "eikonal_pair_phase_mode",
    "statement": "\\textbf{The eikonal pair}: on the exponential reading (E4) the photon sphere sits at $r_c=2M$, $b_c=2eM$, and the orbital rate equals the Lyapunov rate, $\\Omega_c=\\lambda=1/(2eM)$, both $3\\sqrt3/(2e)$ of Schwarzschild's. The wave operator's $\\ell=2$ mode (E13) is $(0.4641-0.0923\\,i)/M$ [approx], $0.8\\%$ above the eikonal $(\\ell+\\tfrac12)/(2eM)$. Falsifier: that mode read as the remnant's $(2,2,0)$ oscillation, $+24\\%$ against Kerr, excluded by GW250114 [import]."
   },
   {
@@ -1660,6 +1735,7 @@
      "key": "p22028"
     }
    ],
+   "lean_name": null,
    "statement": "Quantum mechanics: the Born weighting on the Subject's ledger is one declared identification, that registration data are sample pairs, plus counting theorems (C8, C10, C11, 22:C13). Falsifier: outcome tallies on the stationary core-valued $Q_4$ sector that are not the pair-form ratios, or a real-amplitude network behaviour (22:C13)."
   },
   {
@@ -1678,6 +1754,7 @@
      "key": "p00059"
     }
    ],
+   "lean_name": "multibody_registration",
    "statement": "\\textbf{Multi-body registration}: an unequal-cycle composite returning below $\\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over every joint recurrence below $\\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel)."
   },
   {
@@ -1700,6 +1777,7 @@
      "key": "p00151"
     }
    ],
+   "lean_name": "wavefunction_folds",
    "statement": "The Object cycle decomposes by the $Q_4$ quotient, $x=\\im^{\\,r}\\gen^{\\,s}$: the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index; the fold is division-unique, a product iff $\\kap$ odd (C16). Fibres are the cosets $q_\\alpha\\cdot\\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum (22-qm Def.~measvectors): observation resolves cosets, never points within one."
   },
   {
@@ -1711,6 +1789,7 @@
    "sources": [],
    "witness": null,
    "refs": [],
+   "lean_name": "graded_registration_law",
    "statement": "\\textbf{The graded registration law}: an Object component $\\ell^{a}$ registers at depth $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$ --- $1$ absorbed (register, unique image), $2$ observable (odd $\\ell$: boost torus, unique home; $2^{a}>4$: off both tori), else beyond-quadratic; the sign always $\\{\\pm1\\}$. Visible iff $\\p^{d}<\\Om$; the cap is $2$ at saturating and minimal towers; opacity relational --- hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused."
   },
   {
@@ -1733,6 +1812,7 @@
      "key": "p00062"
     }
    ],
+   "lean_name": "binding_lift",
    "statement": "\\textbf{The binding lift}: a pair fuses iff cycles coprime, windings unit; else the F2 offsets stay drive-confined (22-qm B5, C15) --- the deuteron, $(4,4)$, spectrumless. Fusion carries the half-driven offsets onto the F4 rungs; pointer channels forced, Born lands with exact dephasing ($1+\\omega+\\omega^{2}=0$, $T'=516$). Energies $E_{s}=s\\,h/3$, stations $\\{0,58,116\\}$; cores odd$(\\q-1)$: hydrogen $(4,3)\\to C_{12}$, $\\kap_{O}=3$, ground first."
   },
   {
@@ -1768,6 +1848,7 @@
      "key": "p00116"
     }
    ],
+   "lean_name": "electromagnetism_exact",
    "statement": "Electromagnetism (exact), on the force realisation D6: charge $=$ quantised winding index; the photon is massless, the observable residue $2$ of the split torus $C_{\\Om-1}$ (two helicities $=$ two $\\F_\\Om$-fixed lines $=N(1{-}\\im)$; D2, D8); Maxwell is the unique \\emph{relevant} action (E1). The bare coupling: Z8."
   },
   {
@@ -1781,6 +1862,7 @@
    ],
    "witness": "27:p27_fields.py",
    "refs": [],
+   "lean_name": "weak_amplitudes",
    "statement": "\\textbf{Weak} (amplitudes): the chiral $V\\!-\\!A$ current and four-fermion $G_F=1/(\\sqrt2\\,v^2)$ derived; $W,Z$ scattering unitarised (equivalence theorem)."
   },
   {
@@ -1803,6 +1885,7 @@
      "key": "p00114"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{Weak} (scale): the lone scale is the non-split saturation scale, $v=m_P e^{-\\mathcal B}$, the exponent $\\mathcal B$ the cross-scale $\\beta$-function of the non-split channel, not the $\\mathrm{SU}(2)$ gauge coefficient ($b_2=19/6$ gives $10^{8}$~GeV). Value tagged: $v$, $\\Om$-hard as $\\Lambda_{\\mathrm{QCD}}$ (G6); the failing computation sums the $\\beta$-function over the $\\Om$-hard masses (Z6). Relation, $\\Om$-blind: the transmutation form."
   },
   {
@@ -1822,6 +1905,7 @@
      "key": "p00015"
     }
    ],
+   "lean_name": "strong_structure",
    "statement": "\\textbf{Strong} (structure): $\\SU(3)$ $=$ the special unitary transformations of a Hermitian three-form, its rank \\emph{forced} as the minimal triality frame (the cubic of $\\Om\\equiv5\\pmod{12}$, B5); the confining area law derived from the positivity of $S_\\rho$, the gluon the residue $0$ of the norm-one residue pairs (no $\\F_\\Om$-fixed line)."
   },
   {
@@ -1835,6 +1919,7 @@
    ],
    "witness": "27:p27_fields.py",
    "refs": [],
+   "lean_name": "strong_tension",
    "statement": "\\textbf{Strong} (tension): the string tension in finite units, $\\sigma=-\\ln c_1(\\beta)>0$, computed --- the finite-group area law gives $c_1$ as an exact character sum (no Haar, no $\\Om\\to\\infty$); closed form on $\\SU(2,\\F_3){=}2T$ (matching continuum $\\SU(2)$ through $O(\\beta^3)$), colour $c_1^{\\SU(3)}{=}\\tfrac\\beta{18}{+}\\tfrac{\\beta^2}{216}{+}\\cdots$."
   },
   {
@@ -1861,6 +1946,7 @@
      "key": "p00075"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{Strong} (scale): the cross-scale $\\beta$-function and the absolute $\\Lambda_{\\mathrm{QCD}}$ (dimensional transmutation, $\\sigma\\sim\\ln(1/\\beta)$). Value tagged: the absolute $\\Lambda_{\\mathrm{QCD}}$, in no embedded reader's window --- the failing computation is the $\\beta$-function integrated to the substrate scale over the $\\Om$-hard spectrum. Relation, $\\Om$-blind: $\\sigma\\sim\\ln(1/\\beta)$ and the ratios of G8--G10."
   },
   {
@@ -1874,6 +1960,7 @@
    ],
    "witness": "27:p27_fields.py",
    "refs": [],
+   "lean_name": "vanishing_strong_cp_angle",
    "statement": "\\textbf{Strong} (CP): the vacuum angle vanishes, $\\bar\\theta=\\theta+\\arg\\det M_q=0$, with no axion --- the colour action carries no substrate-native topological term and colour is drive-invariant ($\\theta=0$), and the Hermitian quark mass matrices have real determinant ($\\arg\\det M_q=0$); the CP phase $\\delta_{\\mathrm{CP}}$ sits in the up--down misalignment."
   },
   {
@@ -1893,6 +1980,7 @@
      "key": "p00070"
     }
    ],
+   "lean_name": "strong_hadron_spectrum",
    "statement": "\\textbf{Strong} (hadron spectrum): a baryon is the centre-neutral triality invariant $\\varepsilon_{abc}$ of $\\SU(3,\\F_2)$; the $\\SU(3)_F$ mass relations are exact scale-cancelling identities --- Gell-Mann--Okubo, decuplet equal spacing, Coleman--Glashow, the orderings $M_n{>}M_p$ and $M_\\Sigma{>}M_\\Lambda$, heavy-quark symmetry, the vector-nonet spacing; the decuplet--octet hyperfine is the colour-magnetic curvature invariant, $A_{\\mathrm{light}}{=}\\sqrt\\sigma\\,c_{\\mathrm{mag}}(\\beta)$ the spin-$2$ partner of the tension $c_1$ (G5). Formulas: 35-hadr."
   },
   {
@@ -1916,6 +2004,7 @@
      "key": "p00178"
     }
    ],
+   "lean_name": "strong_residue_series",
    "statement": "\\textbf{Strong} (the residue series): the observable baryon is the Carrier residue $1$, the determinant $\\Lambda^3(\\mathbf3){=}\\varepsilon_{abc}$, forced by the gluon residue $0$ ($N{=}3$ from $\\Lambda^N{=}\\det$); the meson is residue $1$ (the $q\\bar q$ trace); series closed: photon $2$, gluon $0$, baryon $1$, meson $1$ (G1). Selector, stability: the minimal-wrap state is the stable proton, decay frame-normalisation toward it (D9)."
   },
   {
@@ -1934,6 +2023,7 @@
      "key": "p00071"
     }
    ],
+   "lean_name": "strong_baryon_scale",
    "statement": "\\textbf{Strong} (the baryon scale): the absolute ground-state spectrum is the $\\Om$-hard scale $\\sqrt\\sigma{=}\\Lambda_{\\mathrm{QCD}}$ (G6) times sub-horizon eigenvalues; the baryon mass-over-scale is the computed confinement eigenvalue $M_N/\\sqrt\\sigma{=}E_0{=}2.232$ (the finite operator $H{=}|p|{+}\\sqrt\\sigma\\,r$, converged finite matrix; $4.6\\%$); the constituent ratios $\\{\\lambda_l,\\lambda_{\\mathrm{hf}}\\}$ are evaluated forward from $\\{N{=}3,\\beta\\}$ with no measured baryon mass, so the light-hadron spectrum is parameter-free over $\\sqrt\\sigma$; no new $\\Om$-hard residue."
   },
   {
@@ -1948,6 +2038,7 @@
    ],
    "witness": "27:p27_fields.py",
    "refs": [],
+   "lean_name": "standard_model_generation_spinor",
    "statement": "\\textbf{One generation} (content): $=$ the spinor $\\mathbf{16}$ of the rank-five frame --- all gauge reps, hypercharges, charges, anomaly-free, $\\nu_R$ --- recovered in the compact theory, where the frame is $\\C^3\\oplus\\C^2$, via the correspondence: the imported $\\mathrm{SO}(10)$ template evaluated on the realisation (27-fld B5)."
   },
   {
@@ -1962,6 +2053,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": "one_generation_origin",
    "statement": "Read with the quarter-turn ($4\\mid\\Om-1$), the Carrier's four representation charts are four directions; their reflection algebra has basis $e_S$, $S\\subseteq\\{1,2,3,4\\}$, $16$ elements, $e_Se_T=\\pm e_{S\\cup T}$ for disjoint $S,T$, else $0$. The quarter-turn as fifth direction maps $e_S\\mapsto e_S$ ($|S|$ even), $e_Se_5$ ($|S|$ odd) onto the even basis of five directions: the chiral spinor $\\mathbf{16}$. On the realisation 27:B5 matter is this spinor."
   },
   {
@@ -1993,6 +2085,7 @@
      "key": "p00114"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{One generation} (masses): its elementary particles' absolute masses are framed-transcendentals, $\\Om$-hard (D8, Z6). Value tagged: the sixteen absolute masses, in no embedded reader's window --- the failing computation is the winding of a beyond-horizon residue read at rest. Relations, $\\Om$-blind and certified: the mass \\emph{ratios} G16--G17."
   },
   {
@@ -2012,6 +2105,7 @@
      "key": "p27021"
     }
    ],
+   "lean_name": null,
    "statement": "Count/generate split: one bosonic carrier $+$ three fermion generations (the cubic $C_3$), chirality fixed by the drive, on the role-to-matter realisation (27:B6); $\\SO(10)$ unification forced by the relational ontology, the automorphism lemma reduced to the horizon (Z5)."
   },
   {
@@ -2030,6 +2124,7 @@
      "key": "p00114"
     }
    ],
+   "lean_name": "flavour_structure",
    "statement": "\\textbf{Flavour} (structure): the seesaw scale, $b$--$\\tau$ unification and the role-ladder mass ordering are derived; the observed spectrum is the projection of the one $\\mathbf{16}$. The mixing angles and phases reduce to the role-depth texture, the lopsided $\\sigma$, the trimaximal $C_3$ column and quark--lepton complementarity (28-flav C9), leaving the $\\Om$-hard phases $\\{\\delta_0,\\delta_\\nu,\\delta_{\\mathrm{CP}}\\}$ (Z6); the seesaw fixes $Q_\\nu{=}2/3$."
   },
   {
@@ -2049,6 +2144,7 @@
      "key": "p00189"
     }
    ],
+   "lean_name": "flavour_koide",
    "statement": "\\textbf{Flavour} (Koide): the charged-lepton ratio $Q=2/3$ is the cube-root generation orbit at the self-dual quarter-turn, $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, the value $\\rho^2=2^{-1}$ the quarter-turn realisation (28-flav B5; falsifier: $Q_\\ell$ off $\\tfrac23$ beyond the $\\tau$-mass tolerance $\\pm7\\times10^{-6}$); the winding-phase selection onto that orientation is bedrock, $\\Om$-hard in magnitude, its $\\Z_2$ sign the derived drive orientation (C7); the sub-horizon reading is $\\delta_0=Q/3=2/9$ (radians)."
   },
   {
@@ -2076,6 +2172,7 @@
      "key": "p00081"
     }
    ],
+   "lean_name": "flavour_exact_ratios",
    "statement": "\\textbf{Flavour} (exact ratios): Koide $2/3$ (G16), the factor $3$ of Georgi--Jarlskog, the squared amplitudes the split/non-split norms $N(1{-}\\im){=}2$, $N(1{-}\\omega){=}3$ on the realisation 28:B5 (G1, G4), trimaximal $|F_{jk}|^2{=}\\tfrac13$, maximal Jarlskog $J^2{=}\\tfrac1{108}$, the $\\lambda$-texture from role depths, and the charged sectors locked by $\\delta_\\ell{:}\\delta_d{:}\\delta_u=1{:}\\tfrac12{:}\\tfrac13$ to $\\delta_0$."
   },
   {
@@ -2099,6 +2196,7 @@
      "key": "p00114"
     }
    ],
+   "lean_name": "flavour_projection",
    "statement": "\\textbf{Flavour} (projection): the $\\mathbf{16}\\to$observed-spectrum projection map (through $C_3\\times Q_4\\times$ scale-wrap) is constructed, anchored at its unique drive-invariant total singlet $\\nu^c=\\Lambda^0$ (the $\\mathbf1$ of $\\mathbf{16}$), the matter twin of the photon (G1); the residual scale-wrap magnitude is the $\\Om$-hard mass set (Z6)."
   },
   {
@@ -2115,6 +2213,7 @@
      "key": "p00069"
     }
    ],
+   "lean_name": "superconductivity_structure",
    "statement": "\\textbf{Superconductivity} (structure): superconductivity is split-torus confinement, the electric/phase dual of colour (G4), the charge-$2$ condensate a phase-singlet reducing $\\mathrm{U}(1)$ to a residual $\\Z_2$ (flux $h/2e$) and the Abrikosov vortex the dual colour string whose line tension vanishes at the Kramers--Wannier self-dual point $\\beta_*=\\tfrac12\\ln(1+\\sqrt2)$ that is $T_c$."
   },
   {
@@ -2126,6 +2225,7 @@
    "sources": [],
    "witness": null,
    "refs": [],
+   "lean_name": "superconductivity_duality",
    "statement": "\\textbf{Superconductivity} (duality): the electric--magnetic duality is the $Q_4$ quarter-turn on the charge-flux lattice (charge$\\leftrightarrow$flux, Josephson$\\leftrightarrow$phase-slip), predicting a quantum current standard whose metrology triangle closes on $q_c^2=4$."
   },
   {
@@ -2150,6 +2250,7 @@
      "key": "p00202"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{Superconductivity} (scale): the absolute transition scale ($T_c\\propto\\omega_D$, the gap and vortex tension in physical units) is $\\Om$-hard, the family of $\\Lambda_{\\mathrm{QCD}}$ (G6) and $v$ (G3). Value tagged: the absolute $T_c$ (with $\\omega_D$), in no embedded reader's window --- the failing computation is the physical unit of the shell-exact ratios. Relations, $\\Om$-blind: the ratios and the charge--flux dictionary of G20."
   },
   {
@@ -2173,6 +2274,7 @@
      "key": "p00133"
     }
    ],
+   "lean_name": "cosmology_dark_sector",
    "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the channel-1 $H_0=67.4$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:B9), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4."
   },
   {
@@ -2186,6 +2288,7 @@
    ],
    "witness": "14:entropy.py [mixed]",
    "refs": [],
+   "lean_name": null,
    "statement": "The datum $\\dS$ is read on two faces by four instrument classes, concordantly (14-entr). Evidence is weighed on two registers: metrology under the circularity criterion (channel-disjoint from the fitting channel) and explanation by zero-freedom derivation. The numeral is $\\Om$-hard; the relations behind it ($\\Om=4\\dS+1$, $\\dS=A/4$) are $\\Om$-blind; the reading $\\dS\\sim10^{122}$ [chart] is the value's chart, not certified content."
   },
   {
@@ -2208,6 +2311,7 @@
      "key": "p00115"
     }
    ],
+   "lean_name": "octant_record_depth",
    "statement": "\\textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$); on the stellar age $13.61\\pm0.34$ Gyr, $H_0=68.2\\pm1.7$ ($2.4\\sigma$ from the ladder); $w=-1$ rigid --- a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias."
   },
   {
@@ -2230,6 +2334,7 @@
      "key": "p00085"
     }
    ],
+   "lean_name": "registrable_triangle_realisation",
    "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). Falsifier: a single typical object of the condensed-density sequence heavier than the over-closure bound and not horizon-bound (14:X5)."
   },
   {
@@ -2248,6 +2353,7 @@
      "key": "p00085"
     }
    ],
+   "lean_name": null,
    "statement": "\\textbf{The area law}: the projected horizon area in Planck cells is the full phase cycle, $A=4\\dS$ (chart: $4\\pi n_A=4\\dS$, $n_A=(r_H/\\ell_P)^2$); the Bekenstein--Hawking quarter $\\dS=A/4$ is the quarter-turn $Q_4$, the generative four of $\\Om=4\\dS+1$ and $\\p=4\\kap+1$; area is a Subject-projection property, the Carrier a torsor carrying none. Not a further channel (L2)."
   },
   {
@@ -2266,6 +2372,7 @@
      "key": "p00009"
     }
    ],
+   "lean_name": "primordial_tilt_realisation",
    "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A7), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$."
   },
   {
@@ -2286,6 +2393,7 @@
      "key": "p00021"
     }
    ],
+   "lean_name": null,
    "statement": "Every order-one constant reduces to two geometric numbers, the solid angle $4\\pi$ ($G$, $\\alpha_{\\mathrm{bare}}$, the $\\tfrac14$ law) and the cycle $2\\pi$ ($a_0$, horizon temperatures), both [chart] (C1). In the Carrier register the calibration congruence $4\\dS\\equiv-1$, the realisation, fixes them alone ($G=2\\dS$). The chart relations ($G=1/4\\pi\\varkappa$, $G=\\hbar c/m_P^2$) hold in the chart; no exact formula equates a chart constant to a residue."
   },
   {
@@ -2297,6 +2405,7 @@
    "sources": [],
    "witness": null,
    "refs": [],
+   "lean_name": null,
    "statement": "The master's rows are verdicted row by row, in exact arithmetic, on one instantiated Carrier, $\\Om=2{,}408{,}561$ (37-sim), at a dated snapshot. Those that hold there hold jointly in one finite structure: a consistency witness for the projection, not a proof of the physical case. Rows without an instance, or added or restated after the snapshot, are not exercised."
   },
   {
@@ -2319,6 +2428,7 @@
      "key": "p00187"
     }
    ],
+   "lean_name": "godel_vacuous",
    "statement": "G\\\"odel is vacuous over the finite $\\Om$: its theory is complete and decidable, and neither incompleteness theorem has an instance, since $\\Om$ interprets no Robinson $\\mathsf{Q}$ (25:C1, 25:C2, 25:C3). Incompleteness migrates to the comprehension horizon, the \\emph{horizon clause}, as a decomposition (25:G7). Its complexity face is imported (25:G3), its uniform certificate $\\Om$-hard (Z3), and its diagonal confined below $t(\\M)$ (Z9)."
   },
   {
@@ -2352,6 +2462,7 @@
      "key": "p00135"
     }
    ],
+   "lean_name": null,
    "statement": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a short derivation exists."
   },
   {
@@ -2377,6 +2488,7 @@
      "key": "p00112"
     }
    ],
+   "lean_name": null,
    "statement": "The bounded-observer certificate for each is $\\Om$-hard (Z4): the completed uniform check over all residues of the totality, in no embedded reader's window. $\\Om$-hardness is the absence of a host; on a hosted shell the same check is host-decided (37-sim; D8). Within capacity an embedded observer decides totality-level facts from internal state (two-record keystone): the horizon has two operational sides."
   },
   {
@@ -2401,6 +2513,7 @@
      "key": "p00135"
     }
    ],
+   "lean_name": null,
    "statement": "RH $=$ every cell of the cycle clean (20:D5); Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements frame-decided (Z10, Z11); the whole-state certificate $\\Om$-hard as a tally (20:Z1)."
   },
   {
@@ -2424,6 +2537,7 @@
      "key": "p00079"
     }
    ],
+   "lean_name": "simple_unification_forced",
    "statement": "The horizon \\emph{forces} structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to Observation (A4)."
   },
   {
@@ -2476,6 +2590,7 @@
      "key": "p00112"
     }
    ],
+   "lean_name": null,
    "statement": "The sixteen's absolute masses are $\\Om$-hard framed-transcendentals, the matter face of the horizon clause (Z2--Z4). Value tagged: the absolute masses (G13), in no embedded reader's window; the relations among them (G16--G18) are $\\Om$-blind. Classification ``elementary $=$ beyond-horizon'' is D8; the $\\mathbf{16}\\to$spectrum projection is G18; the gauge sector's drive-invariant residue (the photon, residue $2$) is the above-horizon, observable complement (D8, G1)."
   },
   {
@@ -2516,6 +2631,7 @@
      "key": "p00116"
     }
    ],
+   "lean_name": null,
    "statement": "The dark sector's cross-scale running is the \\emph{cosmological} face of the horizon clause. Value tagged: the running's absolute normalisation, $a_0$ at one epoch in physical units, equivalently the absolute scale of $H$, in no embedded reader's window; its uniform certificate is the factorisation of $\\Om-1$, shared with Z2--Z4, Z6 and Z8. The \\emph{shape} $a_0(z)\\propto H(z)$ is a relation, not $\\Om$-hard (P1)."
   },
   {
@@ -2555,6 +2671,7 @@
      "key": "p00115"
     }
    ],
+   "lean_name": null,
    "statement": "The fine-structure constant is the \\emph{electromagnetic} face of the scale operator: $\\alpha^{-1}(0)=4\\pi+\\sum_f\\tfrac{b_f}{2\\pi}\\ln(M_P/m_f)+\\Delta\\alpha_{\\mathrm{had}}$, $\\Om$-hard --- the bare $1/4\\pi$ framed-exact (the Gauss solid angle), the digit a log over the $\\Om$-hard masses (Z6) with cutoff $M_P$ tied to $\\Om$ (A7). The physical digit is in no embedded reader's window; the bare value and the sum's form are $\\Om$-blind. Of the family Z2/Z6/Z7/G3/G6."
   },
   {
@@ -2573,6 +2690,7 @@
      "key": "p00009"
     }
    ],
+   "lean_name": "no_compression_any_coding",
    "statement": "\\textbf{No compression}: the diagonal has no instance per symbol (25:F2), nor, coded a base-$a$ digit per symbol, from length $t(\\M)=d\\,k^{*}(\\M)<|\\M|$ on (25:F6). Below $t(\\M)$, decoders over $(\\F_\\p,+,\\times)$ give one coded 1024 base-32 symbols per element, more than $\\Om$'s elements hold (25:F7, 25:F8, A7). There fragment truth is definable from above (the Tarski reversal, 25:G5), and not from far below (25:G8)."
   },
   {
@@ -2586,6 +2704,7 @@
    ],
    "witness": null,
    "refs": [],
+   "lean_name": "shell_theorem",
    "statement": "On every shell $\\F_\\p\\subset\\F_{\\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:B4). Every mode of every vector lies on the self-dual line $\\Tr=1$, an eigenvector of the scale-shift with a $(\\p-1)$-th root of unity as eigenvalue: no off-line mode, $\\Om$-blind."
   },
   {
@@ -2604,6 +2723,7 @@
      "key": "p00112"
     }
    ],
+   "lean_name": null,
    "statement": "RH on a Carrier is the conjunction over its cycle's residues of the clean-cell predicate: residue $y$ the cell of heights from $2\\pi y$ to $2\\pi(y+1)$, clean when its zeros lie on the line, decided by Turing's certificate (20:D5, 20:F1); on a hosted Carrier the host decides every cell (20:F2); the uniform form is Z4. Falsifier: a cell in deficit."
   }
  ]

@@ -1,4 +1,3 @@
-import FrcCore.Theme.Field
 import FrcCore.Theme.Lorentz
 
 /-!
@@ -22,12 +21,14 @@ open FRC.Shell FRC.Lorentz
 variable {p : Nat} [Pos p]
 
 /-- 7:B6 — **a nontrivial translation fixes the antipode alone.** On the frame's line the translation `[x : y] ↦ [x + by : y]`
-with `b ≠ 0` fixes `[x : y]` exactly when `y = 0`: `x + by = x` forces `by = 0`, and the prime shell has no zero divisors. -/
-theorem translation_fixes_antipode (hp : FRC.Nat.isPrime p) (b x y : Shell p) (hb : b ≠ 0) : x + b * y = x ↔ y = 0 := by
+with `b ≠ 0` fixes `[x : y]` exactly when `y = 0`: `x + by = x` forces `by = 0`, and the frame's shell has no zero divisors
+(`Frame.mul_eq_zero`, the frame theme; the hypothesis is the frame, which makes the shell prime). -/
+theorem translation_fixes_antipode {κ : Nat} {g : Shell p} (F : Frame p κ g) (b x y : Shell p) (hb : b ≠ 0) :
+    x + b * y = x ↔ y = 0 := by
   constructor
   · intro h
     have h1 : b * y + x = 0 + x := by rw [add_comm, h, zero_add]
-    match FRC.Shell.Prime.mul_eq_zero hp (add_right_cancel h1) with
+    match F.mul_eq_zero (add_right_cancel h1) with
     | Or.inl e => exact absurd e hb
     | Or.inr e => exact e
   · intro h; rw [h, mul_zero, add_zero]

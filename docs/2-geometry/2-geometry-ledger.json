@@ -3,7 +3,7 @@
  "tree": "2-geometry-20260706",
  "title": "Geometry and Constants in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/sym18050751",
- "generated": "6 November 2026",
+ "generated": "8 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -124,6 +124,30 @@
      "source": "Prop.~\\ref{prop:shell-covariance}; rests on C1, B4\\newline \\pywit{geometry}{p02012}{C4}, \\leanwit{FrcCore}{p02012}{C4} \\lean{FRC.Geometry.label\\_covariance, FRC.Geometry.rho\\_adj\\_iff}",
      "key": "p02012",
      "name": "frame_covariance"
+    },
+    {
+     "label": "C5",
+     "predicate": "The edge metric of the completion: the distance between the vertices of latitudes $a,a'$ and phases $m,m'$ is $\\min(|a-a'|+\\delta(m,m'),a+a',2\\pi-a-a')$, with $\\delta$ the cyclic distance on $\\Phi_{\\p}$ and $\\delta=0$ at a pole; shortest paths follow a meridian and a latitude or pass through a pole; the diameter is $\\pi$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:edge-metric}\\newline \\pywit{geometry}{p02034}{C5}, \\leanwit{FrcCore}{p02034}{C5} \\lean{FRC.Complex.metric13}",
+     "key": "p02034",
+     "name": "edge_metric"
+    },
+    {
+     "label": "C6",
+     "predicate": "Curvature of the completion, $K(v)=1-\\deg v/2+\\sum_{f\\ni v}1/|f|$, for $\\p\\ge13$: zero at every vertex of latitude $2\\le a\\le\\pi-2$, $1/6$ on the latitudes $1$ and $\\pi-1$, $1-(\\p-1)/6$ at each pole; the total is $2$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:curvature}; rests on C2\\newline \\pywit{geometry}{p02036}{C6}, \\leanwit{FrcCore}{p02036}{C6} \\lean{FRC.Complex.curvature13, FRC.Geometry.euler\\_characteristic}",
+     "key": "p02036",
+     "name": "completion_curvature"
+    },
+    {
+     "label": "C7",
+     "predicate": "The flat band, for $\\p\\ge13$: for $2r\\le a\\le\\pi-2r$ the ball of radius $r$ about a vertex of latitude $a$ is isometric to the ball of radius $r$ of the square lattice; the observer origin, with $\\p-1$ neighbours and nonzero curvature, has no flat ball.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:flat-band}; rests on C5\\newline \\pywit{geometry}{p02037}{C7}, \\leanwit{FrcCore}{p02037}{C7} \\lean{FRC.Complex.flat13, FRC.Complex.metric13}",
+     "key": "p02037",
+     "name": "flat_band"
     }
    ]
   },
@@ -296,20 +320,6 @@
      "name": null
     }
    ]
-  },
-  {
-   "letter": "T",
-   "title": "Tasks",
-   "rows": [
-    {
-     "label": "T1",
-     "predicate": "The observer-local chart: a metric, geodesics and curvature on the completion, in which local Euclidean geometry would be written; deferred by the paper; no Gromov--Hausdorff statement is made or claimed.",
-     "tag": "O",
-     "source": "Section~\\ref{sec:discussion}",
-     "key": "p02034",
-     "name": null
-    }
-   ]
   }
  ],
  "legend": [
@@ -441,7 +451,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:C2, 2:C3 (Remark 3.4) — the counts: with `π = m + 1` phases-deep and `n = p − 1` phases, `|V| − |E| + |F| = 1` for the shell and `2` for its completion, written without subtraction: `(πn + 1) + πn = 2πn + 1` and `((π−1)n + 2) + πn = (2π−1)n + 2`."
+    "doc": "2:C2, 2:C3, 2:C6 (Remark 3.4) — the counts: with `π = m + 1` phases-deep and `n = p − 1` phases, `|V| − |E| + |F| = 1` for the shell and `2` for its completion, written without subtraction: `(πn + 1) + πn = 2πn + 1` and `((π−1)n + 2) + πn = (2π−1)n + 2`."
    },
    {
     "name": "FRC.Complex.counts13",
@@ -461,7 +471,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:C2, 2:C3 (Remark 3.4) — the counts: with `π = m + 1` phases-deep and `n = p − 1` phases, `|V| − |E| + |F| = 1` for the shell and `2` for its completion, written without subtraction: `(πn + 1) + πn = 2πn + 1` and `((π−1)n + 2) + πn = (2π−1)n + 2`."
+    "doc": "2:C2, 2:C3, 2:C6 (Remark 3.4) — the counts: with `π = m + 1` phases-deep and `n = p − 1` phases, `|V| − |E| + |F| = 1` for the shell and `2` for its completion, written without subtraction: `(πn + 1) + πn = 2πn + 1` and `((π−1)n + 2) + πn = (2π−1)n + 2`."
    },
    {
     "name": "FRC.Complex.closed13",
@@ -500,6 +510,57 @@
     "tier": 0,
     "ok": true,
     "doc": "2:B4, 2:C4 (Prop. 2.8) — `ρ_u` preserves the adjacency of the phase cycle (`n ≥ 3`) exactly when `u ≡ 1` or `u ≡ −1 (mod n)`."
+   }
+  ],
+  "C5": [
+   {
+    "name": "FRC.Complex.metric13",
+    "module": "FrcCore/Theme/Cells",
+    "line": 202,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "2:C5, 2:C7 [value] — on `𝔽₁₃` the distance formula is the graph distance of the completion: for every source `s` it vanishes at `s`, changes by at most one along every edge, and every other vertex has a neighbour one step closer. These three properties characterise the distance from `s` (induction on the formula's value). The diameter is `π = 6`, between the poles."
+   }
+  ],
+  "C6": [
+   {
+    "name": "FRC.Complex.curvature13",
+    "module": "FrcCore/Theme/Cells",
+    "line": 210,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "2:C6 [value] — on `𝔽₁₃` the curvature: zero on the band `2 ≤ a ≤ π − 2`, `1/6` on the latitudes `1` and `π − 1`, `1 − (p − 1)/6 = −1` at each pole (twelve times: `0`, `2`, `−12`); the total is `24/12 = 2`, the Euler characteristic."
+   },
+   {
+    "name": "FRC.Geometry.euler_characteristic",
+    "module": "FrcCore/Theme/Orbital",
+    "line": 22,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "2:C2, 2:C3, 2:C6 (Remark 3.4) — the counts: with `π = m + 1` phases-deep and `n = p − 1` phases, `|V| − |E| + |F| = 1` for the shell and `2` for its completion, written without subtraction: `(πn + 1) + πn = 2πn + 1` and `((π−1)n + 2) + πn = (2π−1)n + 2`."
+   }
+  ],
+  "C7": [
+   {
+    "name": "FRC.Complex.flat13",
+    "module": "FrcCore/Theme/Cells",
+    "line": 217,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "2:C7 [value] — on `𝔽₁₃` the band is a square grid: every vertex with `2 ≤ a ≤ 4` has four neighbours, pairwise at distance two (the unit ball of the square lattice), while each pole has `p − 1 = 12` neighbours."
+   },
+   {
+    "name": "FRC.Complex.metric13",
+    "module": "FrcCore/Theme/Cells",
+    "line": 202,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "2:C5, 2:C7 [value] — on `𝔽₁₃` the distance formula is the graph distance of the completion: for every source `s` it vanishes at `s`, changes by at most one along every edge, and every other vertex has a neighbour one step closer. These three properties characterise the distance from `s` (induction on the formula's value). The diameter is `π = 6`, between the poles."
    }
   ],
   "D1": [

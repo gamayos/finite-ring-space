@@ -102,7 +102,7 @@ def necessity_chain := @FRC.Ledger.p07042
 theorem registrable_depth : (∀ (n : Nat) (l : List Nat), FRC.Pigeonhole.NoDup l → (∀ (e : Nat), FRC.Pigeonhole.mem e l → e < n) → l.length ≤ n) ∧ ∀ (p S n : Nat), p % (2 : Nat) = (1 : Nat) → p * p < (4 : Nat) * S + (1 : Nat) → n ≤ p * p → n < (4 : Nat) * S + (1 : Nat) - (1 : Nat) :=
   @FRC.Ledger.p07049
 /-- 7:B6 (p07050) — The register: the capacity register is the ring $\Z_{\p}$, the additive cycle $C_{\p}$ of the $4\kap+1$ cells; its translations $z\mapsto z+b$ are the unipotent moves of the frame, and each nontrivial translation fixes exactly one direction of the frame's line, the antipode $[1:0]$. -/
-theorem register_cycle : ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ (b x y : FRC.Shell p), b ≠ (0 : FRC.Shell p) → (x + b * y = x ↔ y = (0 : FRC.Shell p)) :=
+theorem register_cycle : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (b x y : FRC.Shell p), b ≠ (0 : FRC.Shell p) → (x + b * y = x ↔ y = (0 : FRC.Shell p)) :=
   @FRC.Ledger.p07050
 set_option linter.defProp false in
 /-- 7:C1 (p07005) — The register square $\mathrm{Herm}_2(K)=\mathrm{Sym}^{2}(V)\oplus\Fp\,\eta J$ with $\det X=x_{0}^{2}-x_{1}^{2}-x_{3}^{2}+\gen x_{2}^{2}$; the map $\varphi$ is an isometry onto $Q_{\gen}$. -/

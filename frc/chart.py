@@ -317,3 +317,114 @@ def registrable_triangle(lam=LAMBDA_FIT, lp=PLANCK_LENGTH):
                 closed_vs_fit=closed / m_exit(exit_x(3.0, b_c13)), entry_m=10 ** x_lo, electron_beyond=x_lo - pos["electron"][0],
                 sgr_before=x_hi - pos["Sgr A*"][0], mean_c=sum(pos[n][1] - 3 * pos[n][0] for n in FIT) / len(FIT),
                 drift=(k_fit - 3) * (max(pos[n][0] for n in FIT) - min(pos[n][0] for n in FIT)))
+
+
+# ---- the octant paper's confrontation (16:C3–C5, 16:P1–P4; ticket T6, 8 November 2026) -----------------------------------------
+# The chart readings of 16-octant's blocks C, D and P: the rate read on the locus and its pulls, the entailed rate, the chart's own
+# product t H₀ and the Ω_Λ that accommodates a given product, the age–de Sitter deviation, the radiation and curvature roots of
+# t H_Λ = π/4, the chart's age and the octant bound at a (Ω_Λ, H₀) pair. Each is computed in floating point here and returned as
+# the exact rational of its double, so that the ledger frc/ledgers/p16_octant.py compares rationals and holds no float.
+def _rational(x):
+    """The exact rational of the double `x` (its shortest round-trip decimal)."""
+    return Q(repr(float(x)))
+
+
+def _inv_hubble_gyr(h0_kms):
+    """1/H₀ in Gyr for H₀ in km s⁻¹ Mpc⁻¹."""
+    return float(MPC_KM) / (float(h0_kms) * 1e9 * float(JULIAN_YEAR))
+
+
+def octant_rate(age, h0_fits):
+    """H₀ read on the locus at the age `age = (t, σ_t)` in Gyr, its error H₀ σ_t/t, and the pull (H_fit − H₀)/√(σ_fit² + err²)
+    of each determination in `h0_fits` (name → (H₀, σ)), km s⁻¹ Mpc⁻¹; the readings keyed "H0", "err" and "pull <name>"."""
+    h0 = locus() / (float(age[0]) * 1e9 * float(JULIAN_YEAR)) * float(MPC_KM)
+    err = h0 * float(age[1]) / float(age[0])
+    out = {"H0": _rational(h0), "err": _rational(err)}
+    for name, (value, sigma_fit) in h0_fits.items():
+        out["pull " + name] = _rational((float(value) - h0) / math.sqrt(float(sigma_fit) ** 2 + err ** 2))
+    return out
+
+
+def octant_entailed_rate(h0_kms, omega_l):
+    """The entailed rate at a (H₀, Ω_Λ) pair: H_Λ = H₀√Ω_Λ, its inverse 1/H_Λ in Gyr, and the rate the locus returns from it,
+    H_Λ/tanh(3π/8); keyed "H_Lambda", "inv_H_Lambda_Gyr", "H0_back"."""
+    h_lambda = float(h0_kms) * math.sqrt(float(omega_l))
+    return {"H_Lambda": _rational(h_lambda), "inv_H_Lambda_Gyr": _rational(_inv_hubble_gyr(h_lambda)),
+            "H0_back": _rational(h_lambda / tanh_octant())}
+
+
+def octant_product(omega_l):
+    """The flat chart's own product t H₀ = t H_Λ/√Ω_Λ at Ω_Λ."""
+    return _rational(lcdm_age(float(omega_l)) / math.sqrt(float(omega_l)))
+
+
+def octant_accommodating_omega(product, lo=0.5, hi=0.95, steps=80):
+    """The Ω_Λ at which the flat chart's product t H₀ equals `product`, by bisection on [lo, hi] (t H₀ increases with Ω_Λ)."""
+    target = float(product)
+    for _ in range(steps):
+        mid = (lo + hi) / 2
+        if lcdm_age(mid) / math.sqrt(mid) < target: lo = mid
+        else: hi = mid
+    return _rational((lo + hi) / 2)
+
+
+def octant_separation(omega_l, inv_h_lambda_gyr):
+    """The rate at which the octant bound falls behind the ΛCDM age, 1/t per Gyr: the age grows one Gyr per Gyr, the bound stays."""
+    return _rational(1 / (lcdm_age(float(omega_l)) * float(inv_h_lambda_gyr)))
+
+
+def octant_age_deviation(omega_l):
+    """The excess of the flat chart's age–de Sitter ratio t H_Λ over π/4 at Ω_Λ, as a fraction of π/4."""
+    return _rational(lcdm_age(float(omega_l)) / (math.pi / 4) - 1)
+
+
+def _age_ratio_radiation(omega_l, omega_r, n=4000):
+    """t H_Λ with radiation: √Ω_Λ · ∫₀¹ a da / √(Ω_m a + Ω_r + Ω_Λ a⁴), Ω_m = 1 − Ω_Λ − Ω_r (flat), by Simpson's rule after the
+    substitution a = u², which removes the √a behaviour of the integrand near a = 0: ∫₀¹ 2u³ du / √(Ω_m u² + Ω_r + Ω_Λ u⁸),
+    smooth on [0, 1]; the rule's error at n = 4000 is below 1e-13."""
+    om_m = 1 - omega_l - omega_r
+    f = lambda u: 2 * u ** 3 / math.sqrt(om_m * u ** 2 + omega_r + omega_l * u ** 8)
+    h = 1 / n
+    total = f(0) + f(1) + sum((4 if k % 2 else 2) * f(k * h) for k in range(1, n))
+    return math.sqrt(omega_l) * total * h / 3
+
+
+def _age_ratio_curved(omega_l, omega_k, n=4000):
+    """t H_Λ with curvature and no radiation: √Ω_Λ · ∫₀¹ da / √(Ω_m/a + Ω_k + Ω_Λ a²), Ω_m = 1 − Ω_Λ − Ω_k, after a = u²:
+    ∫₀¹ 2u² du / √(Ω_m + Ω_k u² + Ω_Λ u⁶), smooth on [0, 1], by Simpson's rule."""
+    om_m = 1 - omega_l - omega_k
+    f = lambda u: 2 * u ** 2 / math.sqrt(om_m + omega_k * u ** 2 + omega_l * u ** 6)
+    h = 1 / n
+    total = f(0) + f(1) + sum((4 if k % 2 else 2) * f(k * h) for k in range(1, n))
+    return math.sqrt(omega_l) * total * h / 3
+
+
+def _root(ratio, lo, hi, steps=60):
+    """The Ω_Λ at which the age ratio `ratio(Ω_Λ)` reaches π/4, by bisection on [lo, hi]."""
+    for _ in range(steps):
+        mid = (lo + hi) / 2
+        if ratio(mid) < math.pi / 4: lo = mid
+        else: hi = mid
+    return (lo + hi) / 2
+
+
+def octant_radiation_root(omega_r):
+    """The root of t H_Λ = π/4 in the flat chart with the radiation fraction Ω_r, on [0.68, 0.69]."""
+    return _rational(_root(lambda om: _age_ratio_radiation(om, float(omega_r)), 0.68, 0.69))
+
+
+def octant_curved_root(omega_k):
+    """The root of t H_Λ = π/4 in the chart with the curvature Ω_K and no radiation, on [0.67, 0.70]."""
+    return _rational(_root(lambda om: _age_ratio_curved(om, float(omega_k)), 0.67, 0.70))
+
+
+def octant_chart_age(omega_l, h0_kms):
+    """The flat chart's own age at a (Ω_Λ, H₀) pair, t = (t H_Λ)/H_Λ in Gyr, with 1/H_Λ in Gyr; keyed "inv_H_Lambda_Gyr", "age_Gyr"."""
+    inv = _inv_hubble_gyr(float(h0_kms) * math.sqrt(float(omega_l)))
+    return {"inv_H_Lambda_Gyr": _rational(inv), "age_Gyr": _rational(lcdm_age(float(omega_l)) * inv)}
+
+
+def octant_bound(omega_l, h0_kms):
+    """The octant bound t = (π/4)/H_Λ in Gyr at a (Ω_Λ, H₀) pair, H_Λ = H₀√Ω_Λ (the floating-point reading; the bracketed
+    bound is the ledger's own, from pi_bracket and sqrt_bracket)."""
+    return _rational((math.pi / 4) * _inv_hubble_gyr(float(h0_kms) * math.sqrt(float(omega_l))))

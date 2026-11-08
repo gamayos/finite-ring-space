@@ -16,7 +16,7 @@ shell and its completion (2:C2); the fixed-shell bound of the scale grids, its f
 namespace FRC
 namespace Geometry
 
-/-- 2:C2, 2:C3 (Remark 3.4) — the counts: with `π = m + 1` phases-deep and `n = p − 1` phases,
+/-- 2:C2, 2:C3, 2:C6 (Remark 3.4) — the counts: with `π = m + 1` phases-deep and `n = p − 1` phases,
 `|V| − |E| + |F| = 1` for the shell and `2` for its completion, written without subtraction:
 `(πn + 1) + πn = 2πn + 1` and `((π−1)n + 2) + πn = (2π−1)n + 2`. -/
 theorem euler_characteristic (m n : Nat) :

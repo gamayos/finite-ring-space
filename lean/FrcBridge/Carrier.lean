@@ -43,9 +43,9 @@ theorem from_master {Ω S : Nat} [Pos Ω] {g : Shell Ω} (F : Frame Ω S g) : Cl
   show 2 * x + 1 = 0
   rw [h, show (ofNat (2 * S) : Shell Ω) = Carrier.grav Ω S from rfl, hG2, neg_add]
 
-/-- From the paper's key `FRC.Dimensions.p10027` (10:E4). -/
+/-- From the paper's predicate `FRC.Dimensions.defining_congruences_pair_form` (10:E4, the key p10027; the names migration of 6 November 2026). -/
 theorem from_paper {Ω S : Nat} [Pos Ω] {g : Shell Ω} (F : Frame Ω S g) : Clause Ω S := by
-  obtain ⟨hG, hpair, _⟩ := FRC.Dimensions.p10027
+  obtain ⟨hG, hpair, _⟩ := FRC.Dimensions.defining_congruences_pair_form
   refine ⟨hG F, fun x y h => ?_⟩
   match Shell.instDecidableEq y 0 with
   | .isTrue hy =>
@@ -79,9 +79,9 @@ theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clau
     | .inl e => exact absurd e h4
     | .inr e => exact e
 
-/-- From the paper's key `FRC.Entropy.p14023` (14:C6). -/
+/-- From the paper's predicate `FRC.Entropy.octant_sector` (14:C6, the key p14023; the names migration of 6 November 2026). -/
 theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ :=
-  FRC.Entropy.p14023.2.1 F
+  FRC.Entropy.octant_sector.2.1 F
 
 end B14_14C6
 

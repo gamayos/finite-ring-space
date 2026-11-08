@@ -92,14 +92,14 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p02_geometry.ipynb",
         "label": "python",
-        "count": 21,
-        "title": "21 predicates checked, all passing: the notebook p02_geometry.ipynb on Google Colab, one cell per predicate"
+        "count": 24,
+        "title": "24 predicates checked, all passing: the notebook p02_geometry.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Geometry.lean",
         "label": "lean",
-        "count": 19,
-        "title": "19 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Geometry as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 22,
+        "title": "22 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Geometry as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Geometry.lean",
@@ -125,20 +125,20 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p03_causality.ipynb",
         "label": "python",
-        "count": 12,
-        "title": "12 predicates checked, all passing: the notebook p03_causality.ipynb on Google Colab, one cell per predicate"
+        "count": 14,
+        "title": "14 predicates checked, all passing: the notebook p03_causality.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Causality.lean",
         "label": "lean",
-        "count": 11,
-        "title": "11 predicates proved in the core (no axioms), 5 of them also on Mathlib: the core module Causality as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 13,
+        "title": "13 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Causality as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Causality.lean",
         "label": "lean-mathlib",
-        "count": 5,
-        "title": "5 predicates proved on Mathlib (classical), 5 of them also in the core: the module Causality as one file on Mathlib in Lean Live"
+        "count": 6,
+        "title": "6 predicates proved on Mathlib (classical), 6 of them also in the core: the module Causality as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -242,7 +242,7 @@ const PUBLICATIONS = [
   {
     "key": "7-st",
     "n": 7,
-    "title": "Emergent Lorentzian Space-Time over Finite Holographic Substrate",
+    "title": "Emergent Lorentzian Spacetime over Finite Holographic Substrate",
     "status": {
       "kind": "preprint"
     },
@@ -833,4 +833,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "7 November 2026";
+const GENERATED = "8 November 2026";

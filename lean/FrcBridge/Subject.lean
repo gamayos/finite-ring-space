@@ -39,8 +39,8 @@ def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop := g ^ (2 * κ) = -1
 /-- From the master's key `FRC.Ledger.p00021` (00:C1). -/
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := (FRC.Ledger.p00021 F).2.1
 
-/-- From the paper's key `FRC.Geometry.p02013` (2:D1). -/
-theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := FRC.Geometry.p02013 F
+/-- From the paper's key `FRC.Ledger.p02013` (2:D1; `Keys/Frame.lean` since the names migration of 6 November 2026). -/
+theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := FRC.Ledger.p02013 F
 
 end C1_2D1
 
@@ -54,9 +54,9 @@ def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop :=
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g :=
   ⟨(FRC.Ledger.p00150.1 F).1, fun h h2 => ((FRC.Ledger.p00150.1 F).2.2 h h2).2.1⟩
 
-/-- From the paper's key `FRC.Dirac.p08009` (8:B3). -/
+/-- From the paper's key `FRC.Ledger.p08009` (8:B3; `Keys/Dirac.lean` since the names migration of 6 November 2026). -/
 theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g :=
-  ⟨FRC.Dirac.p08009.1 F, fun _ h2 => (FRC.Dirac.p08009.2.2.2 F h2).2.1⟩
+  ⟨FRC.Ledger.p08009.1 F, fun _ h2 => (FRC.Ledger.p08009.2.2.2 F h2).2.1⟩
 
 end C3_8B3
 
@@ -70,9 +70,9 @@ def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop :=
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := fun h h2 =>
   ⟨((FRC.Ledger.p00150.1 F).2.2 h h2).1, ((FRC.Ledger.p00150.1 F).2.2 h h2).2.2⟩
 
-/-- From the paper's key `FRC.Dirac.p08049` (8:B4; p08010 retired on 1 November 2026). -/
+/-- From the paper's key `FRC.Ledger.p08049` (8:B4; p08010 retired on 1 November 2026). -/
 theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := fun _ h2 =>
-  FRC.Dirac.p08049.1 F h2
+  FRC.Ledger.p08049.1 F h2
 
 end C3_8B4
 
@@ -84,8 +84,8 @@ def Clause (p : Nat) [Pos p] (g : Shell p) : Prop := ∀ m : Nat, (∃ y : Shell
 /-- From the master's key `FRC.Ledger.p00028` (00:C8). -/
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p g := (FRC.Ledger.p00028.1 F).1
 
-/-- From the paper's key `FRC.Dirac.p08011` (8:B5). -/
-theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p g := FRC.Dirac.p08011 F
+/-- From the paper's key `FRC.Ledger.p08011` (8:B5). -/
+theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p g := FRC.Ledger.p08011 F
 
 end C8_8B5
 
@@ -98,9 +98,9 @@ def Clause (p : Nat) [Pos p] (g : Shell p) : Prop := ∀ y : Shell p, g * y = 1 
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p g :=
   (FRC.Ledger.p00028.1 F).2.2.1
 
-/-- From the paper's key `FRC.Dirac.p08012` (8:B6). -/
+/-- From the paper's key `FRC.Ledger.p08012` (8:B6). -/
 theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p g := fun _ hy =>
-  FRC.Dirac.p08012.2.2 F hy
+  FRC.Ledger.p08012.2.2 F hy
 
 end C8_8B6
 
@@ -113,11 +113,11 @@ def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop :=
 /-- From the master's key `FRC.Ledger.p00034` (00:C14). -/
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := (FRC.Ledger.p00034.1 F).1   -- the key's first conjunct since C14's rebinding of 9 October 2026
 
-/-- From 2:D6's key `FRC.Geometry.p02018`. -/
-theorem from_2D6 {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := FRC.Geometry.p02018.1 F
+/-- From 2:D6's key `FRC.Ledger.p02018`. -/
+theorem from_2D6 {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := FRC.Ledger.p02018.1 F
 
-/-- From 6:B2's key `FRC.Fourier.p06009`. -/
-theorem from_6B2 {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := FRC.Fourier.p06009 F
+/-- From 6:B2's key `FRC.Ledger.p06009`. -/
+theorem from_6B2 {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := FRC.Ledger.p06009 F
 
 end C14_Euler
 
@@ -135,12 +135,12 @@ theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clau
   obtain ⟨u, _, e, _, h1, h3, _⟩ := (FRC.Ledger.p00034.1 F).2.2.2.2 g' F'
   exact ⟨u, e, h1, h3⟩
 
-/-- From the paper's key `FRC.Epi.p13009` (13:B2), its orientation class, with `g' = g^u` found on the frame. -/
+/-- From the paper's key `FRC.Epi.orientation_transport_rule` (13:B2), its orientation class, with `g' = g^u` found on the frame. -/
 theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := fun g' F' => by
   obtain ⟨u, _, e⟩ := F.eq_pow_of_ne_zero F'.g_ne_zero
   refine ⟨u, e, fun h => ?_, fun h => ?_⟩
-  · rw [← e]; exact (FRC.Epi.p13009.2 F u).1 h
-  · rw [← e]; exact (FRC.Epi.p13009.2 F u).2 h
+  · rw [← e]; exact (FRC.Epi.orientation_transport_rule.2 F u).1 h
+  · rw [← e]; exact (FRC.Epi.orientation_transport_rule.2 F u).2 h
 
 end C14_13B2
 
@@ -154,7 +154,7 @@ def Clause (p : Nat) [Pos p] : Prop := ∀ x : Shell p, x ≠ 0 → x ^ (p + 1) 
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p := fun x hx e =>
   ((FRC.Ledger.p00040.1 (FRC.Subject.frame_isPrime F) F.quarter_turn_sq).1 x hx).1 e
 
-/-- From the paper's key `FRC.Dirac.p08041` (8:F4), with Fermat's `x^{p+1} = x²` and the inverse drive `g^{p−2}`. -/
+/-- From the paper's key `FRC.Ledger.p08041` (8:F4), with Fermat's `x^{p+1} = x²` and the inverse drive `g^{p−2}`. -/
 theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p := fun x hx e => by
   have hp := FRC.Subject.frame_isPrime F
   have hpm : p - 1 = p - 2 + 1 := by
@@ -167,7 +167,7 @@ theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Claus
       | k + 2, _ => rfl
     rw [e2, pow_add, Prime.fermat hp hx, one_mul, pow_two] at e
     exact e
-  exact (FRC.Dirac.p08041 F hinv).2 x hx2
+  exact (FRC.Ledger.p08041 F hinv).2 x hx2
 
 end C20_8F4
 
@@ -185,9 +185,9 @@ theorem from_theme : Clause :=
    (FRC.Subject.exponent_ladder.1 602140).2 (by decide),
    fun h => absurd ((FRC.Subject.exponent_ladder.1 3).1 h) (by decide), FRC.Subject.exponent_ladder.2.2⟩
 
-/-- From the paper's key `FRC.Dimensions.p10038` (10:G2). -/
+/-- From the paper's key `FRC.Dimensions.window_ladder_nested` (10:G2). -/
 theorem from_paper : Clause :=
-  match FRC.Dimensions.p10038 with
+  match FRC.Dimensions.window_ladder_nested with
   | ⟨h1, h2, h3, h4, h5, _⟩ => ⟨h1, h2, h3, h4, fun κ => (h5 κ).1.trans (h5 κ).2⟩
 
 end C13_10G2
