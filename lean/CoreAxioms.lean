@@ -2775,6 +2775,9 @@ import FrcBridge.Subject
 #print axioms FRC.Causal.square_shift
 #print axioms FRC.Causal.boost_transitive
 #print axioms FRC.Causal.time_to_space
+#print axioms FRC.Causal.window_exact
+#print axioms FRC.Causal.window_ghost
+#print axioms FRC.Causal.temporal_fiber
 #print axioms FRC.Causal.frame173
 #print axioms FRC.Causal.normOne13
 #print axioms FRC.Causal.shell173
@@ -3909,7 +3912,9 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p03013
 #print axioms FRC.Ledger.p03015
 #print axioms FRC.Ledger.p03017
+#print axioms FRC.Ledger.p03022
 #print axioms FRC.Ledger.p03025
+#print axioms FRC.Ledger.p03026
 #print axioms FRC.Ledger.p21001
 #print axioms FRC.Ledger.p21009
 #print axioms FRC.Ledger.p21017
@@ -4470,6 +4475,8 @@ import FrcBridge.Subject
 #print axioms FRC.Causality.causal_velocity
 #print axioms FRC.Causality.lorentz_generation
 #print axioms FRC.Causality.worked_shells_values
+#print axioms FRC.Causality.window_sharpness
+#print axioms FRC.Causality.temporal_fibres
 #print axioms FRC.Representation.adequate_inj
 #print axioms FRC.Representation.transition
 #print axioms FRC.Representation.transition_spec

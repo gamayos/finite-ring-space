@@ -16,6 +16,8 @@ import FrcMathlib.Theme.Flavour
 import FrcMathlib.Theme.Dark
 import FrcMathlib.Theme.Hadrons
 import FrcMathlib.Theme.Algebra
+import FrcMathlib.Theme.YangMills
+import FrcMathlib.Theme.Gauge
 import FrcMathlib.Keys.Extension
 import FrcMathlib.Keys.Projective
 import FrcMathlib.Keys.Fourier
@@ -27,6 +29,7 @@ import FrcMathlib.Keys.Gravity
 import FrcMathlib.Keys.Quantum
 import FrcMathlib.Keys.Horizon
 import FrcMathlib.Keys.Hadrons
+import FrcMathlib.Keys.Yangmills
 import FrcMathlib.Keys.Chart
 import FrcMathlib.Fourier
 import FrcMathlib.Algebra
@@ -49,3 +52,4 @@ import FrcMathlib.Flavour
 import FrcMathlib.Dark
 import FrcMathlib.Hadrons
 import FrcMathlib.Dirac
+import FrcMathlib.YangMills

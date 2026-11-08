@@ -11,7 +11,7 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The lattice determinations of $m(0^{++})/\\sig$ for $\\SU(3)$: the $r_0$ route with two inputs, $3.70(6)=5.73(9)\\times0.6462(30)$ and $3.63(10)=4.21(11)/1.160(6)$, and the direct continuum extrapolation $3.405(21)$, a spread of $9\\,\\%$; $T_c/\\sig=0.6462(30)$ ($\\SU(3)$), $0.7091(36)$ ($\\SU(2)$); the $r_0$ masses of $0^{++}$, $2^{++}$, $0^{-+}$ and $0^{++*}$.",
+     "predicate": "The lattice determinations of $m(0^{++})/\\sig$ for $\\SU(3)$: the $r_0$ route with two inputs, $3.70(6)=5.73(9)\\times0.6462(30)$ and $3.63(10)=4.21(11)/1.160(6)$, and the direct continuum extrapolation $3.405(21)$ with the first scalar excitation $5.855(41)$, a spread of $9\\,\\%$; $T_c/\\sig=0.6462(30)$ ($\\SU(3)$), $0.7091(36)$ ($\\SU(2)$); the $r_0$ masses of $0^{++}$, $2^{++}$, $0^{-+}$ and $0^{++*}$.",
      "tag": "I",
      "source": "Rem.~\\ref{rem:data}; \\citep{hasenbusch2004,lucini2004tc,morningstar1999,athenodorou2020}",
      "key": "p46001",
@@ -67,7 +67,7 @@
     },
     {
      "label": "A8",
-     "predicate": "Two results of the interactions paper: the character lift (near the identity the frame's character equals the compact group's, to the stated order) and the order $\\gcdop(3,q+1)$ of the centre of $\\SU(3,\\F_q)$.",
+     "predicate": "Two results of the interactions paper: the character lift (near the identity the frame's character equals the compact group's, to the stated order, with the lift's parametrisation imported as it stands) and the order $\\gcdop(3,q+1)$ of the centre of $\\SU(3,\\F_q)$.",
      "tag": "I",
      "source": "Prop.~\\ref{prop:fields}; \\citep{akhtman2026fields}",
      "key": "p46032",
@@ -75,9 +75,9 @@
     },
     {
      "label": "A9",
-     "predicate": "Steinberg's restriction theorem: for the finite frame and tensor degrees small compared with $q$, the invariants of $\\mathbf3^{\\otimes a}\\otimes\\bar{\\mathbf3}^{\\otimes b}$ are the algebraic group's, hence the compact multiplicities; verified by enumeration on $\\SU(3,\\F_2)$ over $\\F_4$ to degree four (C9).",
+     "predicate": "Steinberg's restriction theorem with the linkage principle: for the finite frame and $a+b+2\\le\\p$, the invariants of $\\mathbf3^{\\otimes a}\\otimes\\bar{\\mathbf3}^{\\otimes b}$ are the algebraic group's, hence the compact multiplicities (degrees to $8$ for $c_3$, $9$ for $c_8$; every Subject above $11$); the integer multiplicities verified on $\\SU(3,\\F_2)$ over $\\F_4$ to degree four (C9).",
      "tag": "I",
-     "source": "Prop.~\\ref{prop:mult}; \\citep{steinberg1963}",
+     "source": "Prop.~\\ref{prop:mult}; \\citep{steinberg1963,jantzen2003}",
      "key": "p46034",
      "name": null
     },
@@ -93,7 +93,7 @@
      "label": "A11",
      "predicate": "The $0^{++}$ channel of the strong-coupling expansion for $\\SU(3)$: $am=-4\\ln u-3u+9u^{2}-\\frac{27}{2}u^{3}-7u^{4}-\\frac{297}{2}u^{5}+\\frac{858827}{10240}u^{6}+\\frac{47641149}{71680}u^{7}$ in $u=c_3$; its coefficients are rationals of the same multiplicities as $c_3$, not recomputed here.",
      "tag": "I",
-     "source": "Prop.~\\ref{prop:plaquette}; \\citep{munster1981,langelage2008}",
+     "source": "Prop.~\\ref{prop:plaquette}; \\citep{munster1981,langelage2007}",
      "key": "p46039",
      "name": null
     },
@@ -113,7 +113,7 @@
    "rows": [
     {
      "label": "B1",
-     "predicate": "A registration of a state by its frame is a line of the state's space that every frame element maps to itself; the residue is the number of such lines: photon $2$ (the split torus on the plane), gluon $0$ (the colour frame on the adjoint), baryon $1$, meson $1$, glueball $1$. Falsifier: a registered state of residue $0$.",
+     "predicate": "A registration of a state, a channel with one singlet, by its frame is a line of the state's space that every frame element maps to itself; the residue is the number of such lines: photon $2$ (the split torus), gluon $0$ (the adjoint), baryon $1$, meson $1$, glueball $1$. Falsifier: a registered state of residue $0$.",
      "tag": "R",
      "source": "Real.~\\ref{real:residue}; \\citep{akhtman2026hadrons}",
      "key": "p46007",
@@ -121,7 +121,7 @@
     },
     {
      "label": "B2",
-     "predicate": "[chart] The chart's scale is read on the drive: a registered scale is a nonzero element $w$ of the Subject, two scales differ by the power $n$ with $\\gen^{n}=w_2/w_1$, and the chart's $\\ln(\\mu_2/\\mu_1)$ is read as $n\\ln\\gen$. The registration $\\mu\\mapsto w$ is the quantum paper's readout, not computed here.",
+     "predicate": "[chart] The chart's scale is read on the drive: a registered scale is a nonzero element $w$ of the Subject, two scales differ by the power $n$ with $\\gen^{n}=w_2/w_1$, and the chart's $\\ln(\\mu_2/\\mu_1)$ is read as $n\\ln\\gen$ within one window of the drive (a wrap adds $(\\p-1)\\ln\\gen$). The registration $\\mu\\mapsto w$ is the quantum paper's readout, not computed here.",
      "tag": "D",
      "source": "Def.~\\ref{def:scale}; \\citep{akhtman2026quantum}",
      "key": "p46008",
@@ -199,7 +199,7 @@
     },
     {
      "label": "C8",
-     "predicate": "[chart] The minimal wrap, declared: the gap is $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ (the hadron paper's operator with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$). Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). The values it must reproduce are the determinations of A1.",
+     "predicate": "[chart] The minimal wrap, the candidate operator for the gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$. Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). It must reproduce the determinations of A1; C12 and P3 record that it does not.",
      "tag": "D",
      "source": "Def.~\\ref{def:wrap}; \\citep{akhtman2026hadrons}\\newline \\pywit{yangmills}{p46017}{C8}",
      "key": "p46017",
@@ -215,9 +215,9 @@
     },
     {
      "label": "C10",
-     "predicate": "[chart] The short-range route is obstructed: with the declared coupling $\\alpha_s(\\sig)=1.007$ the two-adjoint term has $C=C_A\\alpha_s=3.02$, above the Herbst bounds $2/\\pi$ and $4/\\pi$, so the operator has no ground state; with the coupling run to the bound state's mass the fixed point exists only above a cutoff, $3.54$, $3.08$, $2.61$ at $1$, $\\frac12$, $\\frac14$ cells and none at $\\frac18$.",
+     "predicate": "[chart] The short-range route is obstructed: with the declared coupling $\\alpha_s(\\sig)=1.007$ the two-adjoint term has $C=C_A\\alpha_s=3.02$, above the Herbst bounds $2/\\pi$ and $4/\\pi$, so the cutoff cannot be removed; with the coupling run to the bound state's mass, fixed points exist above a threshold cutoff and none are found below: $3.54$, $3.08$, $2.61$ at $1$, $\\frac12$, $\\frac14$ cells.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:shortrange}; rests on A6, C4, C8, C9\\newline \\pywit{yangmills}{p46037}{C10}, \\leanwit{FrcCore}{p46037}{C10} \\lean{FRC.YangMills.herbst\\_comparison}",
+     "source": "Prop.~\\ref{prop:shortrange}; rests on A6, C4, C8, C9\\newline \\pywit{yangmills}{p46037}{C10}, \\leanwit{FrcCore}{p46037}{C10}, \\leanwit{FrcMathlib}{p46037}{C10} \\lean{FRC.YangMills.herbst\\_comparison, YangMills.herbst\\_real, YangMills.fixed\\_point\\_couplings}",
      "key": "p46037",
      "name": "short_range_obstructed"
     },
@@ -225,7 +225,7 @@
      "label": "C11",
      "predicate": "[chart] The plaquette channel is obstructed: with the series of A11 and the frame's $u=c_3(\\beta)$, $m/\\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$ ($\\beta=1$ to $3$), the orders agreeing within $1\\,\\%$; the bracket $3.4$--$3.7$ is reached only at $u=0.30$, where they disagree by $10\\,\\%$; the scaling region is $u\\approx0.42$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:plaquette}; rests on A7, A11, C7\\newline \\pywit{yangmills}{p46038}{C11}, \\leanwit{FrcCore}{p46038}{C11} \\lean{FRC.YangMills.plaquette\\_channel}",
+     "source": "Prop.~\\ref{prop:plaquette}; rests on A7, A11, C7\\newline \\pywit{yangmills}{p46038}{C11}, \\leanwit{FrcCore}{p46038}{C11}, \\leanwit{FrcMathlib}{p46038}{C11} \\lean{FRC.YangMills.plaquette\\_channel, YangMills.plaquette\\_values}",
      "key": "p46038",
      "name": "plaquette_channel_obstructed"
     },
@@ -233,7 +233,7 @@
      "label": "C12",
      "predicate": "[chart] The family of C8 against the lattice: $E_0=\\sqrt{a\\varkappa}\\,2.232$ by the dilation symmetry, $2.232$, $3.157$, $3.348$, $3.157$, $4.464$, $4.735$ for $a\\in\\{1,2\\}$, $\\varkappa\\in\\{1,2,\\frac94\\}$; none inside any determination's error; the nearest, $a=1$, $\\varkappa=\\frac94$, is $1.7\\,\\%$ below the direct value.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:family}; rests on A1, A10, C8, C9\\newline \\pywit{yangmills}{p46036}{C12}, \\leanwit{FrcCore}{p46036}{C12} \\lean{FRC.YangMills.wrap\\_family}",
+     "source": "Prop.~\\ref{prop:family}; rests on A1, A10, C8, C9\\newline \\pywit{yangmills}{p46036}{C12}, \\leanwit{FrcCore}{p46036}{C12}, \\leanwit{FrcMathlib}{p46036}{C12} \\lean{FRC.YangMills.wrap\\_family, YangMills.wrap\\_family\\_values}",
      "key": "p46036",
      "name": "wrap_family_misses"
     },
@@ -241,7 +241,7 @@
      "label": "C13",
      "predicate": "The two rationals of the one-loop coefficient are the frame's: the spin term $(2s)^{2}=-2\\,\\mathrm{Tr}_V(J_{12}^{2})$ is $0$, $1$, $4$ on the scalar, the Weyl spinor and the vector; the charge term $\\frac13$ is the leading Faulhaber coefficient of the scalar loop's midpoint sum $3\\sum_{k<N}(N-2k-1)^{2}=N(N^{2}-1)$, whose complete cycle $N=\\p$ vanishes on the shell. With C4 the species sum of A12 is $3b_0=33-2n_f$ (C5).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:rationals}; rests on A12, C4\\newline \\pywit{yangmills}{p46041}{C13}, \\leanwit{FrcCore}{p46041}{C13} \\lean{FRC.YangMills.spin\\_traces, FRC.YangMills.faulhaber\\_third, FRC.YangMills.faulhaber\\_residues, FRC.YangMills.complete\\_cycle\\_vanishes, FRC.YangMills.hughes\\_nielsen\\_sum}",
+     "source": "Prop.~\\ref{prop:rationals}; rests on A12, C4\\newline \\pywit{yangmills}{p46041}{C13}, \\leanwit{FrcCore}{p46041}{C13}, \\leanwit{FrcMathlib}{p46041}{C13} \\lean{FRC.YangMills.spin\\_traces, FRC.YangMills.faulhaber\\_third, FRC.YangMills.faulhaber\\_residues, FRC.YangMills.complete\\_cycle\\_vanishes, FRC.YangMills.hughes\\_nielsen\\_sum, YangMills.faulhaber\\_third\\_all}",
      "key": "p46041",
      "name": "one_loop_rationals"
     }
@@ -261,7 +261,7 @@
     },
     {
      "label": "X2",
-     "predicate": "Why only colour singlets are registered: under B1 a registered strongly interacting state has exactly one frame-invariant line, and the series of such states closes at the glueball (C3).",
+     "predicate": "Why only colour singlets are registered: under B1 each channel of the colour frame with one singlet has exactly one frame-invariant line, and the hadron paper's series of such channels ends at the glueball (C3); products with several singlets are sums of channels, not classified here.",
      "tag": "T",
      "source": "Sec.~\\ref{sec:discussion}~(X2); rests on B1, C3\\newline \\pywit{yangmills}{p46019}{X2}, \\leanwit{FrcCore}{p46019}{X2} \\lean{FRC.YangMills.residue\\_series\\_pieri, FRC.YangMills.glueball\\_singlet}",
      "key": "p46019",
@@ -285,7 +285,7 @@
     },
     {
      "label": "X5",
-     "predicate": "[chart] Why the finite theory needs no renormalisation and the continuum chart does: every sum of the finite theory is finite (B3), and matching the substrate's one scale to the chart's scales is $\\Om$-hard (Z1); the chart's counterterms are its account of that matching.",
+     "predicate": "[chart] Why the finite theory needs no ultraviolet renormalisation and the continuum chart does: every sum of the finite theory is finite (B3), so nothing diverges; the finite matching of the substrate's one scale to the chart's scales is $\\Om$-hard (Z1), and the chart's counterterms are its account of that matching.",
      "tag": "D",
      "source": "Sec.~\\ref{sec:discussion}~(X5)",
      "key": "p46022",
@@ -309,15 +309,15 @@
      "label": "P2",
      "predicate": "[chart] Between laboratory scales $1/\\alpha_s$ is linear in $\\ln\\mu$ with slope $b_0/2\\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\\alpha_s(\\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\\alpha_s(m_\\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:running}; rests on A3, A4, C5\\newline \\pywit{yangmills}{p46024}{P2}, \\leanwit{FrcCore}{p46024}{P2} \\lean{FRC.YangMills.running\\_one\\_loop, FRC.YangMills.b0\\_values}",
+     "source": "Prop.~\\ref{prop:running}; rests on A3, A4, C5\\newline \\pywit{yangmills}{p46024}{P2}, \\leanwit{FrcCore}{p46024}{P2}, \\leanwit{FrcMathlib}{p46024}{P2} \\lean{FRC.YangMills.running\\_one\\_loop, FRC.YangMills.b0\\_values, YangMills.two\\_loop\\_tau, YangMills.one\\_loop\\_tau}",
      "key": "p46024",
      "name": "running_prediction"
     },
     {
      "label": "P3",
-     "predicate": "[chart] The radial ratio of the operator form: $E_1/E_0=1.49$ for every $a$ and $\\varkappa$ by the dilation symmetry, a property of the operator form of C8, not of the frame, shared by every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured outside $1.49$ beyond its error; the nonrelativistic ladder gives $1.75$. Confrontation: the lattice $1.54(11)$, the nucleon $1.53$.",
+     "predicate": "[chart] The radial ratio of the operator form: $E_1/E_0=1.49$ for every $a$ and $\\varkappa$, a property of the operator form of C8 shared by every state the one-body wrap describes. Falsifier: a measured first radial ratio of such a state outside $1.49$ beyond its error. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ and favours the nonrelativistic $1.75$: the form fails for the glueball.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:radial}; rests on A1, C8, C12\\newline \\pywit{yangmills}{p46043}{P3}, \\leanwit{FrcCore}{p46043}{P3} \\lean{FRC.YangMills.radial\\_ratio}",
+     "source": "Prop.~\\ref{prop:radial}; rests on A1, C8, C12\\newline \\pywit{yangmills}{p46043}{P3}, \\leanwit{FrcCore}{p46043}{P3}, \\leanwit{FrcMathlib}{p46043}{P3} \\lean{FRC.YangMills.radial\\_ratio, YangMills.radial\\_ratio\\_confrontation}",
      "key": "p46043",
      "name": "radial_ratio_prediction"
     }
@@ -546,7 +546,7 @@
    {
     "name": "FRC.YangMills.c3_fractions",
     "module": "FrcCore/Theme/YangMills",
-    "line": 536,
+    "line": 434,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -555,7 +555,7 @@
    {
     "name": "FRC.YangMills.c3_readback",
     "module": "FrcCore/Theme/YangMills",
-    "line": 545,
+    "line": 443,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -564,7 +564,7 @@
    {
     "name": "FRC.YangMills.c2_lab",
     "module": "FrcCore/Theme/YangMills",
-    "line": 421,
+    "line": 422,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -586,40 +586,92 @@
    {
     "name": "FRC.YangMills.herbst_comparison",
     "module": "FrcCore/Theme/YangMills",
-    "line": 574,
+    "line": 472,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "46:C10 — `α_s(√σ) ∈ (1.0065, 1.0075)`, `C ∈ (3.015, 3.025)`, the Herbst values `2/π ∈ (0.636, 0.637)` and `4/π ∈ (1.273, 1.274)`; `C` exceeds both, and in the form without division, `π² > 6 ln 2` on the brackets (`L² > 6 (s + t)`)."
+   },
+   {
+    "name": "FRC.YangMills.herbst_real",
+    "module": "FrcMathlib/YangMills",
+    "line": 46,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "46:C10 — `YangMillsML.herbst_real`: the declared coupling `2π/(9 ln 2)` in `(1.0065, 1.0075)`, `C = 3α_s` in `(3.015, 3.025)` above `4/π` above `2/π`."
+   },
+   {
+    "name": "FRC.YangMills.fixed_point_couplings",
+    "module": "FrcMathlib/YangMills",
+    "line": 52,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "46:C10 — `YangMillsML.fixed_point_couplings`: the couplings `2π/(3 ln 2E)` at the chart's fixed points `E = 3.541`, `3.085`, `2.611`, all below `4/π`, the last within `0.5 %`."
    }
   ],
   "C11": [
    {
     "name": "FRC.YangMills.plaquette_channel",
     "module": "FrcCore/Theme/YangMills",
-    "line": 631,
+    "line": 529,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "46:C11 — at order `7`, `m/√σ ∈ (6.55, 6.65), (5.85, 5.95), (5.25, 5.35), (4.75, 4.85)` at `u = 0.06, 0.10, 0.15, 0.20` with the orders `3, 5, 7` within `1 %`; above `3.7` still at `u = 0.25`; at `u = 0.30` the order-`5` value lies in `(3.4, 3.7)`, the order-`7` value in `(3.5, 4.0)`, and the orders disagree by more than `9 %`. The frame's `u(β)`: `u(1) ∈ (0.0601, 0.0602)`, `u(3) ∈ (0.203, 0.2031)`, `u(6) ∈ (0.42, 0.43)`."
+   },
+   {
+    "name": "FRC.YangMills.plaquette_values",
+    "module": "FrcMathlib/YangMills",
+    "line": 60,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "46:C11 — `YangMillsML.plaquette_values`: the plaquette channel's `m/√σ` at `u = 0.06`–`0.30` with `Real.log`: `6.6`, `5.9`, `5.3`, `4.8` at order seven, and the orders' disagreement at `u = 0.30`."
    }
   ],
   "C12": [
    {
     "name": "FRC.YangMills.wrap_family",
     "module": "FrcCore/Theme/YangMills",
-    "line": 664,
+    "line": 562,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "46:C12 — the six values read `2.232, 3.157, 3.348, 3.157, 4.464, 4.735` (each within half a unit of its decimal); none lies inside any determination's error; every member is at least `0.057` from every central value, the distance of `(a, ϰ) = (1, 9/4)` from the direct value, which it falls below by `1.7 %` (`57/3405 ∈ (0.0165, 0.0175)`)."
+   },
+   {
+    "name": "FRC.YangMills.wrap_family_values",
+    "module": "FrcMathlib/YangMills",
+    "line": 72,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "46:C12 — `YangMillsML.wrap_family_values`: the six family values `√(aϰ) E₀` with `Real.sqrt` from the chart's `E₀ = 2.232`, none inside a determination's error, the nearest `1.7 %` below `3.405`."
    }
   ],
   "C13": [
    {
     "name": "FRC.YangMills.spin_traces",
     "module": "FrcCore/Theme/YangMills",
-    "line": 753,
+    "line": 651,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -628,7 +680,7 @@
    {
     "name": "FRC.YangMills.faulhaber_third",
     "module": "FrcCore/Theme/YangMills",
-    "line": 769,
+    "line": 667,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -637,7 +689,7 @@
    {
     "name": "FRC.YangMills.faulhaber_residues",
     "module": "FrcCore/Theme/YangMills",
-    "line": 773,
+    "line": 671,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -646,7 +698,7 @@
    {
     "name": "FRC.YangMills.complete_cycle_vanishes",
     "module": "FrcCore/Theme/YangMills",
-    "line": 779,
+    "line": 677,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -655,11 +707,24 @@
    {
     "name": "FRC.YangMills.hughes_nielsen_sum",
     "module": "FrcCore/Theme/YangMills",
-    "line": 786,
+    "line": 684,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "46:C13 — the species sum with the denominators cleared: `3 b₀ = C_A (3·(2s_V)² − 1) − n_f · 2T_F · (3·(2s_W)² − 1)` with `(2s_V)² = 4`, `(2s_W)² = 1`, `C_A = 3`, `2 T_F = 1` is `33 − 2 n_f`, the window rational `threeB0` of 46:C5, for every `n_f ≤ 200`."
+   },
+   {
+    "name": "FRC.YangMills.faulhaber_third_all",
+    "module": "FrcMathlib/YangMills",
+    "line": 29,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "46:C13 — `YangMillsML.faulhaber_third_all`: the Faulhaber identity `3 Σ_{k<N} (N − 2k − 1)² = N (N² − 1)` for every `N`; the core proves it for `N < 400` and as residues on the shell `173`."
    }
   ],
   "X1": [
@@ -675,7 +740,7 @@
    {
     "name": "FRC.YangMills.adjoint_no_invariant",
     "module": "FrcCore/Theme/YangMills",
-    "line": 714,
+    "line": 612,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -686,7 +751,7 @@
    {
     "name": "FRC.YangMills.residue_series_pieri",
     "module": "FrcCore/Theme/YangMills",
-    "line": 720,
+    "line": 618,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -715,7 +780,7 @@
    {
     "name": "FRC.YangMills.colour_factors_within",
     "module": "FrcCore/Theme/YangMills",
-    "line": 679,
+    "line": 577,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -735,7 +800,7 @@
    {
     "name": "FRC.YangMills.colour_factors_within",
     "module": "FrcCore/Theme/YangMills",
-    "line": 679,
+    "line": 577,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -746,7 +811,7 @@
    {
     "name": "FRC.YangMills.running_one_loop",
     "module": "FrcCore/Theme/YangMills",
-    "line": 703,
+    "line": 601,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -760,17 +825,56 @@
     "tier": 0,
     "ok": true,
     "doc": "46:C5, 46:P2 — the one-loop rational `b₀ = (11/3) C_A − (4/3) T_F n_f = 11 − 2n_f/3`: `9, 25/3, 23/3, 7` for `n_f = 3, 4, 5, 6` (`3 b₀ = 27, 25, 23, 21`)."
+   },
+   {
+    "name": "FRC.YangMills.two_loop_tau",
+    "module": "FrcMathlib/YangMills",
+    "line": 33,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "46:P2 — `YangMillsML.two_loop_tau`: the two-loop run from `α_s(M_Z) = 0.1180` to `m_τ` as the exact solution of the two-loop equation: `α_s(m_b)` in `(0.2235, 0.2237)`, `α_s(m_τ)` in `(0.3132, 0.3134)`."
+   },
+   {
+    "name": "FRC.YangMills.one_loop_tau",
+    "module": "FrcMathlib/YangMills",
+    "line": 40,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "46:P2 — `YangMillsML.one_loop_tau`: the one-loop law over `ℝ`: `α_s(m_τ)` in `(0.2785, 0.2795)`, `2.2` standard deviations below `0.312(15)`."
    }
   ],
   "P3": [
    {
     "name": "FRC.YangMills.radial_ratio",
     "module": "FrcCore/Theme/YangMills",
-    "line": 798,
+    "line": 699,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "46:P3 — `1491 ∈ [1432, 1656]`, less than half the error from the centre (`2·53 < 112`); the Airy ratio lies in `(1.74, 1.76)`, above the bracket's upper end; `1440/939` lies within `3 %` of `1.491`."
+    "doc": "46:P3 — against the determination of 1999, `1491 ∈ [1432, 1656]`, less than half the error from the centre (`2·53 < 112`), and the Airy ratio in `(1.74, 1.76)` above the bracket's upper end; against the continuum determination of 2020, `1720 ± 16`, the ratio `1491` lies more than fourteen errors below (`229 > 14·16`) while the Airy ratio `1748` (the chart's quotient of the zeros) lies within two (`28 < 32`); `1440/939` lies within `3 %` of `1.491`."
+   },
+   {
+    "name": "FRC.YangMills.radial_ratio_confrontation",
+    "module": "FrcMathlib/YangMills",
+    "line": 80,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "46:P3 — `YangMillsML.radial_ratio_confrontation`: the radial ratio `1.4915` against `1.544(112)`, `1.720(16)`, the Airy ratio and the nucleon, as rational brackets."
    }
   ]
  }

@@ -360,14 +360,19 @@ def block_F():
     airy = Q("4.08795") / Q("2.33811"); roper = Q(1440, 939)
     ok = Q("1.49") < q1 < Q("1.493") and abs(q1 - q1b) < Q("0.002") and Q("1.86") < q2 < Q("1.87")
     ok &= abs(q1 - rl) < drl / 2 and airy > rl + drl and Q("1.74") < airy < Q("1.76")
+    r20, dr20 = CY.LATTICE["m0pp_star_direct"][0] / CY.LATTICE["m0pp_over_sqrt_sigma_direct"][0], None            # the 2020 continuum ratio 5.855(41)/3.405(21)
+    dr20 = r20 * (Q(41, 5855) ** 2 + Q(21, 3405) ** 2) ** Q(1, 2) if False else Q("0.016")                        # its error, 0.016 (the quadrature of the two relative errors)
+    ok &= Q("1.715") < r20 < Q("1.725") and r20 - q1 > 14 * dr20 and abs(airy - r20) < 2 * dr20
     ok &= abs(roper - q1) < Q("0.03") * q1
     # 46:P3 (p46043)
     R.check("F4", "[chart] the radial ratio of the operator form: E₁/E₀ = 1.49 and E₂/E₀ = 1.86 for every a and ϰ (the dilation symmetry, the same "
             "on (1, 1) and (2, 9/4) to 10⁻³), a property of the chart's operator form and of nothing in the frame; against the lattice "
             "0⁺⁺*/0⁺⁺ = 1.54(11) it lies within half a standard deviation, while the nonrelativistic ladder's Airy ratio 1.75 lies outside the "
-            "bracket; the nucleon's N(1440)/N(939) = 1.53 lies within 3 %", ok,
-            f"E₁/E₀ = {CY.fmt(q1, 4)} ((2, 9/4): {CY.fmt(q1b, 4)}), E₂/E₀ = {CY.fmt(q2, 4)}, lattice {CY.fmt(rl)} ± {CY.fmt(drl)}, Airy {CY.fmt(airy, 4)}, "
-            f"Roper {CY.fmt(roper, 4)}", kind="CHART")
+            "bracket; the 2020 continuum determination 5.855(41)/3.405(21) = 1.72(2) (Athenodorou–Teper) excludes 1.49 by fourteen standard "
+            "deviations and lies within two of the Airy 1.75: the one-body form fails for the glueball, for every a and ϰ; the nucleon's "
+            "N(1440)/N(939) = 1.53 lies within 3 %", ok,
+            f"E₁/E₀ = {CY.fmt(q1, 4)} ((2, 9/4): {CY.fmt(q1b, 4)}), E₂/E₀ = {CY.fmt(q2, 4)}, lattice 1999 {CY.fmt(rl)} ± {CY.fmt(drl)}, "
+            f"2020 {CY.fmt(r20, 3)} ± {CY.fmt(dr20, 3)}, Airy {CY.fmt(airy, 4)}, Roper {CY.fmt(roper, 4)}", kind="CHART")
 
 
 # ------------------------------------------------------------------------------------------------------------
@@ -375,24 +380,37 @@ def block_F():
 def block_G():
     """Block G — the two routes of the former task T01 (the push of 8 November 2026), both obstructed."""
     # G1 route (a): a|p| + ϰr − C/max(r, r_c) with C = C_A α_s. The Herbst bound: bounded below iff C ≤ 2a/π. The declared coupling
-    #    α_s(√σ) = 1.007 gives C = 3.02 > 4/π: no ground state (the grid at r_c = 1 cell gives 1.8, falling without bound as r_c → 0).
+    #    α_s(√σ) = 1.007 gives C = 3.02 > 4/π: the cutoff cannot be removed (the grid at r_c = 1 cell gives 1.8, falling without bound as r_c → 0;
+    #    with the cutoff retained the operator has a ground state above −C/r_c).
     #    The coupling run to the bound state's mass gives a fixed point only above a cutoff: 3.54, 3.08, 2.61 at r_c = 1, 1/2, 1/4
     #    (in 1/√σ) and none at 1/8 — the number is the cutoff's, and the cell's size in units of 1/√σ is the chart's β
-    r = CY.short_range_route(cutoffs=(1.0, 0.5, 0.25, 0.125))
-    fp = r["fixed_points"]; dc = Q(repr(r["declared_coupling"]))
-    ok = Q("3.0") < dc < Q("3.05") and dc > Q(repr(r["herbst"][2])) and Q(repr(r["collapse_rc1"])) < Q("1.9")
-    ok &= fp[1.0] is not None and Q("3.5") < Q(repr(fp[1.0][0])) < Q("3.6")
-    ok &= fp[0.5] is not None and Q("3.0") < Q(repr(fp[0.5][0])) < Q("3.15")
-    ok &= fp[0.25] is not None and Q("2.55") < Q(repr(fp[0.25][0])) < Q("2.7")
-    ok &= fp[0.125] is None
-    ok &= all(v is None or Q(repr(v[1])) < Q(repr(r["herbst"][2])) for v in fp.values())        # every fixed point lies below the two-body bound
+    r = CY.short_range_review(); dc = r["declared"]; fp = r["fixed"]                           # every number an exact rational of the chart's float
+    ok = Q("3.0") < dc < Q("3.05") and dc > r["herbst_two"] and r["collapse_rc1"] < Q("1.9")
+    ok &= fp["1"] is not None and Q("3.5") < fp["1"][0] < Q("3.6")
+    ok &= fp["1/2"] is not None and Q("3.0") < fp["1/2"][0] < Q("3.15")
+    ok &= fp["1/4"] is not None and Q("2.55") < fp["1/4"][0] < Q("2.7")
+    ok &= fp["1/8"] is None
+    ok &= all(v is None or v[1] < r["herbst_two"] for v in fp.values())                        # every fixed point lies below the two-body bound
+    # the review of 8 November 2026: the regularised operator has a ground state at every cutoff (bounded below by −C/r_c); the collapse is
+    #    the cutoff's removal; a failing iteration is not a proof of no root — the roots by bisection, both branches, and the one-body form
+    coll = r["collapse"]
+    ok &= Q("0.3") < coll["1/2"] < Q("0.5") and Q("-1.6") < coll["1/4"] < Q("-1.4") and Q("-4.4") < coll["1/8"] < Q("-4.2")
+    ok &= all(coll[k] > r["bound"][k] for k in coll)                                            # the elementary lower bound −C/r_c
+    low = r["low"]
+    ok &= all(v is not None for v in low.values()) and Q("0.8") < low["1"] < Q("0.9") and Q("1.6") < low["1/4"] < Q("1.7")
+    ok &= r["scan_max"] < Q("-0.15")                                                            # at 1/8 cell the residual stays below −0.15 on the scan
+    one = r["one"]
+    ok &= one["1"] is None and Q("2.4") < one["2"] < Q("2.6") and Q("3.0") < one["10"] < Q("3.1")
     # 46:C10 (p46037)
     R.check("G1", "[chart] the short-range route is obstructed: with the declared coupling α_s(√σ) = 1.007 the two-adjoint term has C = C_A α_s = "
-            "3.02 above the Herbst bounds 2/π (one-body) and 4/π (two-body), so the operator has no ground state (1.8 at one cell of cutoff, "
-            "falling without bound); with the coupling run by the one-loop law to the bound state's mass the fixed point exists only above a "
-            "cutoff — 3.54, 3.08, 2.61 at r_c = 1, 1/2, 1/4 and none at 1/8 — so the eigenvalue is the cutoff's, and the cell's size in "
-            "units of 1/√σ is the chart's β, which no row fixes", ok,
-            f"C_declared = {CY.fmt(dc, 3)}, collapse {CY.fmt(r['collapse_rc1'])}; fixed points " +
+            "3.02 above the Herbst bounds 2/π (one-body) and 4/π (two-body), so the cutoff cannot be removed (E₀ = 1.8, 0.4, −1.5, −4.3 at "
+            "1, 1/2, 1/4, 1/8 cells, falling without bound; with the cutoff retained the operator is bounded below by −C/r_c); with the coupling "
+            "run by the one-loop law to the bound state's mass each form has fixed points above a threshold cutoff and none found below it — "
+            "two bodies: 3.54, 3.08, 2.61 at r_c = 1, 1/2, 1/4 (each with a lower second root) and none found at 1/8; one body: 2.5 at r_c = 2, "
+            "3.0 at r_c = 10, none at one cell — so the eigenvalue is the cutoff's, and the cell's size in units of 1/√σ is the chart's β, "
+            "which no row fixes", ok,
+            f"C_declared = {CY.fmt(dc, 3)}, collapse {CY.fmt(r['collapse_rc1'])}, {', '.join(CY.fmt(coll[k]) for k in ('1/2', '1/4', '1/8'))} at 1/2, 1/4, 1/8; "
+            f"lower roots {', '.join(CY.fmt(v) for v in low.values())}; one-body r_c = 2, 10: {CY.fmt(one['2'])}, {CY.fmt(one['10'])}; fixed points " +
             ", ".join(f"r_c={rc}: " + (f"E₀={CY.fmt(v[0])} (C={CY.fmt(v[1])})" if v else "none") for rc, v in fp.items()), kind="CHART")
 
     # G2 route (b): the 0⁺⁺ channel of the strong-coupling expansion (the plaquette, the closed fundamental loop) with Münster's series
@@ -403,7 +421,7 @@ def block_G():
     ok = Q("6.5") < v7["0.06"] < Q("6.7") and Q("5.9") < v7["0.10"] < Q("5.95") and Q("4.7") < v7["0.20"] < Q("4.8")
     ok &= all(sp[u] < Q("0.01") for u in ("0.06", "0.10", "0.15", "0.20")) and sp["0.30"] > Q("0.09")
     ok &= Q("3.5") < v7["0.30"] < Q("4.0") and all(v7[u] > Q("3.7") for u in ("0.06", "0.10", "0.15", "0.20", "0.25"))
-    ub = {b: Q(repr(float(u))) for b, u in pc["u_of_beta"].items()}
+    ub = dict(pc["u_of_beta"])                                                                  # exact rationals: u(β) = Σ c_k β^k
     ok &= Q("0.0601") < ub["1"] < Q("0.0602") and Q("0.203") < ub["3"] < Q("0.2031") and Q("0.42") < ub["6"] < Q("0.43")
     # 46:C11 (p46038)
     R.check("G2", "[chart] the plaquette channel is obstructed: with the imported 0⁺⁺ series to u⁷ and the frame's u = c₃(β), m/√σ = 6.6, 5.9, "

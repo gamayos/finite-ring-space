@@ -1,12 +1,12 @@
+import FrcCore.Theme.Brackets
 import FrcCore.Theme.Extension
 import FrcCore.Theme.Hadrons
-import FrcCore.Epi
 
 /-!
 # FrcCore.Theme.YangMills — the yangmills theme (46-yangmills, 7–8 November 2026)
 
 The exact content of *Yang–Mills and the Mass Gap over Finite Holographic Substrate* (tree `46-yangmills-20261107`) above
-the extension, frame, hadrons and epi themes, as `frc/yangmills.py`, `frc/chart_yangmills.py` and
+the extension, frame and hadrons themes and the window fractions of `Theme/Brackets.lean`, as `frc/yangmills.py`, `frc/chart_yangmills.py` and
 `frc/ledgers/p46_yangmills.py` compute it. Each theorem over a frame is a schema, instantiated on a shell of the totality
 (`p < √Ω`); the sweeps are bounded; every number is a natural number, an integer, a residue on the shell or a window fraction
 (1:D8, a pair of an integer and a positive natural read as the residue `a·b⁻¹` on every shell whose window holds it),
@@ -26,7 +26,7 @@ Pieri rule on Dynkin labels (`mult`, `moments`), the plaquette coefficient `c₃
 (`c3_fractions`) and as residues on the three laboratory Subjects and the `20` shells `13 ≤ p < 200` (`c3_readback`, every
 division an inverse on the shell), the `SU(2)` series beside the instance `2T = SU(2, 𝔽₃)` from its `24` Hurwitz units
 (`c2_lab`). The adjoint wrap's two plaquette layers (`adjoint_two_sheets`, 46:C9). The chains of the logarithm (the artanh
-chain with its geometric majorant, `lnBr`) and the Machin bracket of `π` (13-epi, `piBr`) read the chart's constants as
+chain with its geometric majorant, `lnBr`) and the six-place bracket of `π` (`piBr`), both in `Theme/Brackets.lean`, read the chart's constants as
 brackets of window fractions, and decide: the declared coupling against the Herbst value, `π² > 6 ln 2`
 (`herbst_comparison`, 46:C10); the plaquette channel's ratios, spreads and `u(β)` (`plaquette_channel`, 46:C11); the
 one-loop run from `M_Z` to `m_τ` (`running_one_loop`, 46:P2). The family of the minimal wrap against the lattice in
@@ -282,19 +282,20 @@ def ofInt : Int → Shell p
   | .ofNat n => Shell.ofNat n
   | .negSucc n => -(Shell.ofNat (n + 1))
 
-/-- The framed rational `a / d` on the shell: the residue `a · d⁻¹` (`FRC.Epi.inv`, the inverse by bounded search). -/
-def fr (a : Int) (d : Shell p) : Shell p := ofInt a * FRC.Epi.inv d
+/-- The inverse on the shell by bounded search (`0` for a non-unit), as 13-epi's `FRC.Epi.inv`; a theme imports no paper module. -/
+def invSearch (x : Shell p) : Nat → Shell p
+  | 0 => 0
+  | n + 1 => if x * Shell.ofNat n = 1 then Shell.ofNat n else invSearch x n
+
+def invS (x : Shell p) : Shell p := invSearch x p
+
+/-- The framed rational `a / d` on the shell: the residue `a · d⁻¹`. -/
+def fr (a : Int) (d : Shell p) : Shell p := ofInt a * invS d
 
 /-- The residue of `k!` on the shell. -/
 def factS : Nat → Shell p
   | 0 => 1
   | k + 1 => factS k * Shell.ofNat (k + 1)
-
-/-- The `k`-th entry of a list, or `d` past its end (`List.getD` carries `propext`; this does not). -/
-def nth {α : Type} (d : α) : List α → Nat → α
-  | [], _ => d
-  | x :: _, 0 => x
-  | _ :: xs, n + 1 => nth d xs n
 
 /-! ## Power series over the shell -/
 
@@ -321,11 +322,11 @@ def psInv (a : SP p) (a0inv : Shell p) : Nat → SP p
 `E[X^k] = ex k / 2^k` and `E[χ X^k] = exc k / 2^k`, so the denominator series has coefficients `ex k / (6^k k!)` and the
 numerator `exc k / (3 · 6^k k!)`; every division is an inverse on the shell. -/
 def c3Series (E EC : List Nat) (n : Nat) : SP p :=
-  let i6 : Shell p := FRC.Epi.inv 6
-  let i3 : Shell p := FRC.Epi.inv 3
-  let den : SP p := (List.range n).map fun k => Shell.ofNat (nth 0 E k) * i6 ^ k * FRC.Epi.inv (factS k)
-  let num : SP p := (List.range n).map fun k => Shell.ofNat (nth 0 EC k) * i6 ^ k * i3 * FRC.Epi.inv (factS k)
-  psMul num (psInv den (FRC.Epi.inv (psCoeff den 0)) n) n
+  let i6 : Shell p := invS 6
+  let i3 : Shell p := invS 3
+  let den : SP p := (List.range n).map fun k => Shell.ofNat (nth 0 E k) * i6 ^ k * invS (factS k)
+  let num : SP p := (List.range n).map fun k => Shell.ofNat (nth 0 EC k) * i6 ^ k * i3 * invS (factS k)
+  psMul num (psInv den (invS (psCoeff den 0)) n) n
 
 /-- The eight framed rationals `0, 1/18, 1/216, 0, −5/93312, −1/186624, 7/33592320, 59/604661760` on the shell, the
 denominators as products of the small primes. -/
@@ -397,11 +398,11 @@ theorem traces_2T :
 /-- The fundamental plaquette coefficient of a group with doublet moments `m_k = M_k / D` (`D = 1` for `SU(2)`'s
 multiplicities, `D = 24` for the trace sums of `2T`): `c = (1/2) Σ_k m_{k+1} (β/2)^k/k! / Σ_k m_k (β/2)^k/k!`. -/
 def c2Series (M : List Int) (D : Nat) (n : Nat) : SP p :=
-  let i2 : Shell p := FRC.Epi.inv 2
-  let iD : Shell p := FRC.Epi.inv (Shell.ofNat D)
-  let den : SP p := (List.range n).map fun k => ofInt (nth 0 M k) * iD * i2 ^ k * FRC.Epi.inv (factS k)
-  let num : SP p := (List.range n).map fun k => ofInt (nth 0 M (k + 1)) * iD * i2 ^ (k + 1) * FRC.Epi.inv (factS k)
-  psMul num (psInv den (FRC.Epi.inv (psCoeff den 0)) n) n
+  let i2 : Shell p := invS 2
+  let iD : Shell p := invS (Shell.ofNat D)
+  let den : SP p := (List.range n).map fun k => ofInt (nth 0 M k) * iD * i2 ^ k * invS (factS k)
+  let num : SP p := (List.range n).map fun k => ofInt (nth 0 M (k + 1)) * iD * i2 ^ (k + 1) * invS (factS k)
+  psMul num (psInv den (invS (psCoeff den 0)) n) n
 
 /-- `β/4 − β³/96 + β⁵/1536` on the shell. -/
 def c2Targets : SP p := [0, fr 1 (2 ^ 2), 0, fr (-1) (2 ^ 5 * 3), 0, fr 1 (2 ^ 9 * 3), 0]
@@ -420,110 +421,7 @@ def c2Check : Nat → Bool
 same coefficients through `β³`, the first difference at `β⁵`. -/
 theorem c2_lab : c2Check 13 = true ∧ c2Check 173 = true ∧ c2Check 1549 = true := by decide +kernel
 
-/-! ## Window fractions and the chains of the logarithm
-
-A window fraction `a/b` (1:D8, `FRC.Shell.Frame.frac_window`) is a pair of an integer and a positive natural; on every shell
-with `2|a|b < p` it is read as the residue `a·b⁻¹`, two such fractions with equal residues are equal, and their order is the
-order of the cross-products. Every comparison below is a comparison of cross-products in the integers. -/
-
-/-- A window fraction: numerator and positive denominator. -/
-abbrev WF := Int × Nat
-
-namespace WF
-
-def norm (x : WF) : WF :=
-  let g := Nat.gcd x.1.natAbs x.2
-  if g ≤ 1 then x else (x.1 / (g : Int), x.2 / g)
-def add (x y : WF) : WF := norm (x.1 * y.2 + y.1 * x.2, x.2 * y.2)
-def mul (x y : WF) : WF := norm (x.1 * y.1, x.2 * y.2)
-def neg (x : WF) : WF := (-x.1, x.2)
-def sub (x y : WF) : WF := add x (neg y)
-def ofNat (n : Nat) : WF := (n, 1)
-def frac (a : Int) (b : Nat) : WF := norm (a, b)
-/-- The reciprocal of a nonzero fraction. -/
-def inv (x : WF) : WF := if x.1 < 0 then (-(x.2 : Int), x.1.natAbs) else ((x.2 : Int), x.1.natAbs)
-def div (x y : WF) : WF := mul x (inv y)
-def lt (x y : WF) : Bool := decide (x.1 * (y.2 : Int) < y.1 * (x.2 : Int))
-def le (x y : WF) : Bool := decide (x.1 * (y.2 : Int) ≤ y.1 * (x.2 : Int))
-def pow (x : WF) : Nat → WF
-  | 0 => (1, 1)
-  | n + 1 => mul (pow x n) x
-def sumRange (f : Nat → WF) : Nat → WF
-  | 0 => (0, 1)
-  | n + 1 => add (sumRange f n) (f n)
-def max (x y : WF) : WF := if lt x y then y else x
-def min (x y : WF) : WF := if lt x y then x else y
-/-- The residue of the fraction on the shell. -/
-def read (x : WF) : Shell p := fr x.1 (Shell.ofNat x.2)
-
-end WF
-
-/-- A bracket `[lo, hi]` of window fractions. -/
-abbrev BR := WF × WF
-
-namespace BR
-def add (x y : BR) : BR := (WF.add x.1 y.1, WF.add x.2 y.2)
-def sub (x y : BR) : BR := (WF.sub x.1 y.2, WF.sub x.2 y.1)
-def smul (n : Nat) (x : BR) : BR := (WF.mul (WF.ofNat n) x.1, WF.mul (WF.ofNat n) x.2)
-/-- The bracket lies strictly inside `(lo, hi)`. -/
-def within (x : BR) (lo hi : WF) : Bool := WF.lt lo x.1 && WF.lt x.2 hi
-end BR
-
-/-- The artanh chain at stage `n`: `2 Σ_{k<n} y^{2k+1}/(2k+1)`, the frame's reading of `ln((1 + y)/(1 − y))` — a
-𝔽Q-native chain of geometric rate (13-epi's class of the Machin chain), its partial sums window fractions. -/
-def atanhChain (y : WF) (n : Nat) : WF :=
-  WF.mul (WF.ofNat 2) (WF.sumRange (fun k => WF.div (WF.pow y (2 * k + 1)) (WF.ofNat (2 * k + 1))) n)
-
-/-- The geometric majorant of the chain's remainder, `2 y^{2n+1} / ((2n + 1)(1 − y²))` for `0 ≤ y < 1`. -/
-def atanhTail (y : WF) (n : Nat) : WF :=
-  WF.div (WF.mul (WF.ofNat 2) (WF.pow y (2 * n + 1))) (WF.mul (WF.ofNat (2 * n + 1)) (WF.sub (WF.ofNat 1) (WF.mul y y)))
-
-/-- `x ≥ 1` written as `2^k · r` with `1 ≤ r < 2`: `(k, r)` (with the fuel `f`). -/
-def reduce2 (x : WF) : Nat → Nat × WF
-  | 0 => (0, x)
-  | f + 1 => if WF.lt x (WF.ofNat 2) then (0, x) else let (k, r) := reduce2 (WF.div x (WF.ofNat 2)) f; (k + 1, r)
-
-/-- The bracket of `ln x` for a window fraction `x ≥ 1` at stage `n`: `x = 2^k r`, `ln x = k ln 2 + ln r`, each logarithm
-read by the artanh chain at `y = (x − 1)/(x + 1) ≤ 1/3` with the chain's partial sum below and the sum plus the
-majorant above. -/
-def lnBr (x : WF) (n : Nat) : BR :=
-  let y2 := WF.frac 1 3
-  let l2 : BR := (atanhChain y2 n, WF.add (atanhChain y2 n) (atanhTail y2 n))
-  let (k, r) := reduce2 x 64
-  let y := WF.div (WF.sub r (WF.ofNat 1)) (WF.add r (WF.ofNat 1))
-  BR.add (BR.smul k l2) (atanhChain y n, WF.add (atanhChain y n) (atanhTail y n))
-
-/-- The Machin bracket of `π` of 13-epi (`FRC.Epi.piLo`, `piHi`; the width below `10⁻³⁶`), as a bracket of window fractions. -/
-def piBr : BR := ((FRC.Epi.piLo.1, FRC.Epi.piLo.2), (FRC.Epi.piHi.1, FRC.Epi.piHi.2))
-
-/-- The chains at stage `12`: `ln 2 ∈ (0.69314, 0.69315)`, `ln 3 ∈ (1.0986, 1.0987)`, `ln 5 ∈ (1.6094, 1.6095)`,
-`π ∈ (3.14159, 3.14160)`. -/
-theorem chain_readings :
-    BR.within (lnBr (WF.ofNat 2) 12) (WF.frac 69314 100000) (WF.frac 69315 100000) = true ∧
-    BR.within (lnBr (WF.ofNat 3) 12) (WF.frac 10986 10000) (WF.frac 10987 10000) = true ∧
-    BR.within (lnBr (WF.ofNat 5) 12) (WF.frac 16094 10000) (WF.frac 16095 10000) = true ∧
-    BR.within piBr (WF.frac 314159 100000) (WF.frac 314160 100000) = true := by
-  decide +kernel
-
 /-! ## The tension's coefficient as window fractions (46:C7) -/
-
-def wsCoeff (a : List WF) (k : Nat) : WF := nth (0, 1) a k
-
-def wsMul (a b : List WF) (n : Nat) : List WF :=
-  (List.range n).map fun k =>
-    (List.range (k + 1)).foldl (fun s i => WF.add s (WF.mul (wsCoeff a i) (wsCoeff b (k - i)))) (0, 1)
-
-def wsInv (a : List WF) (a0inv : WF) : Nat → List WF
-  | 0 => []
-  | n + 1 =>
-    let r := wsInv a a0inv n
-    if n = 0 then [a0inv]
-    else r ++ [WF.neg (WF.mul a0inv ((List.range n).foldl
-      (fun s i => WF.add s (WF.mul (wsCoeff a (i + 1)) (wsCoeff r (n - 1 - i)))) (0, 1)))]
-
-def fact : Nat → Nat
-  | 0 => 1
-  | k + 1 => fact k * (k + 1)
 
 /-- The series `c₃` of `c3Series`, computed in window fractions: the same division with the coefficients
 `ex k / (6^k k!)` and `exc k / (3 · 6^k k!)`. -/
@@ -552,7 +450,7 @@ theorem c3_readback :
 
 The chart's one-loop coupling at the one scale, `α_s(√σ) = 2π/(b₀ ln(√σ/Λ))` with `b₀ = 9` and `√σ/Λ = 2`, and the
 two-adjoint colour factor `C = C_A α_s`. Herbst's criterion for the chart operator `a|p| − C/r`: bounded below iff
-`C ≤ 2a/π`, so `2/π` for one body and `4/π` for two. Every quantity is a bracket of window fractions, `π` by the Machin
+`C ≤ 2a/π`, so `2/π` for one body and `4/π` for two. Every quantity is a bracket of window fractions, `π` by the six-place
 bracket and `ln 2` by the chain; the comparison `C > 4/π` is `π² > 6 ln 2`, decided on cross-products. -/
 
 /-- `α_s(√σ) = 2π/(9 ln 2)` as a bracket. -/
@@ -685,7 +583,7 @@ theorem colour_factors_within :
 
 `1/α_s(μ)` is linear in `ln μ` with slope `b₀/2π` between thresholds (the window rational `b₀ = 23/3` for five flavours,
 `25/3` for four, C5): `1/α(m_τ) = 1/α(M_Z) − (23/3) ln(M_Z/m_b)/(2π) − (25/3) ln(m_b/m_τ)/(2π)` with `α(M_Z) = 0.1180`,
-`M_Z = 91.1876`, `m_b = 4.18`, `m_τ = 1.77686` (A3). The logarithms are chains, `π` the Machin bracket. -/
+`M_Z = 91.1876`, `m_b = 4.18`, `m_τ = 1.77686` (A3). The logarithms are chains, `π` the six-place bracket. -/
 
 /-- The subtracted term `T = ((23/3) ℓ₁ + (25/3) ℓ₂)/(2π)` as a bracket, `ℓ₁ = ln(M_Z/m_b)`, `ℓ₂ = ln(m_b/m_τ)`. -/
 def runTerm : BR :=
@@ -770,7 +668,7 @@ theorem faulhaber_third : ∀ N, N < 400 → 3 * sq N = (N : Int) * ((N : Int) ^
   decide +kernel
 
 /-- 46:C13 — on the shell `173` the identity holds as residues for every `N < p`, `Σ = N(N² − 1) · 3⁻¹`. -/
-theorem faulhaber_residues : ∀ N, N < 173 → sqS (p := 173) N = Shell.ofNat N * (Shell.ofNat N ^ 2 + -1) * FRC.Epi.inv 3 := by
+theorem faulhaber_residues : ∀ N, N < 173 → sqS (p := 173) N = Shell.ofNat N * (Shell.ofNat N ^ 2 + -1) * invS 3 := by
   decide +kernel
 
 /-- 46:C13 — the complete cycle `N = p` vanishes on `13`, `173`, `1549` (the power sums over the shell vanish), while `N = 10`
@@ -790,14 +688,18 @@ theorem hughes_nielsen_sum : ∀ nf, nf < 201 → threeB0 nf = 3 * (3 * 4 - 1) -
 
 The ratios of the eigenvalues of the chart operator `a|p| + ϰr` are free of `a` and `ϰ` (the dilation symmetry). The chart's
 first radial ratio `E₁/E₀ = 1.4915` (the Lanczos computation of the chart file) is compared in thousandths with the lattice
-`0⁺⁺*/0⁺⁺ = 1.544 ± 0.112` (A1), with the nonrelativistic ladder's Airy ratio `a₂/a₁ ∈ (1.74, 1.76)` from the brackets
-`2.33 < a₁ < 2.34`, `4.08 < a₂ < 4.09` (the hadrons theme's `airy_sturm`), and with the nucleon's `1440/939`. -/
+determinations `0⁺⁺*/0⁺⁺ = 1.544 ± 0.112` (1999) and `5.855(41)/3.405(21) = 1.720 ± 0.016` (2020, A1), with the nonrelativistic
+ladder's Airy ratio `a₂/a₁ ∈ (1.74, 1.76)` from the brackets `2.33 < a₁ < 2.34`, `4.08 < a₂ < 4.09` (the hadrons theme's
+`airy_sturm`; the chart's quotient `1.748`), and with the nucleon's `1440/939`. -/
 
-/-- 46:P3 — `1491 ∈ [1432, 1656]`, less than half the error from the centre (`2·53 < 112`); the Airy ratio lies in
-`(1.74, 1.76)`, above the bracket's upper end; `1440/939` lies within `3 %` of `1.491`. -/
+/-- 46:P3 — against the determination of 1999, `1491 ∈ [1432, 1656]`, less than half the error from the centre (`2·53 < 112`),
+and the Airy ratio in `(1.74, 1.76)` above the bracket's upper end; against the continuum determination of 2020,
+`1720 ± 16`, the ratio `1491` lies more than fourteen errors below (`229 > 14·16`) while the Airy ratio `1748` (the chart's
+quotient of the zeros) lies within two (`28 < 32`); `1440/939` lies within `3 %` of `1.491`. -/
 theorem radial_ratio :
     1432 ≤ 1491 ∧ 1491 ≤ 1656 ∧ 2 * (1544 - 1491) < 112 ∧
     174 * 234 < 408 * 100 ∧ 409 * 100 < 176 * 233 ∧ 1656 < 1740 ∧
+    14 * 16 < 1720 - 1491 ∧ 1748 - 1720 < 2 * 16 ∧
     1491 * 939 < 1440 * 1000 ∧ 1440 * 1000 * 100 < 1491 * 939 * 103 := by
   decide
 

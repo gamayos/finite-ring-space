@@ -8412,6 +8412,61 @@ theorem time_to_space (F : Frame p κ g) {t : Shell p} (ht : t ≠ 0) :
 
 end frame
 
+/-! ## The window and the temporal fibres -/
+
+/-- 3:E3 — no point off the real cone inside the window. Read an integer point `(t, x, y, z)` through the absolute
+values of its coordinates, each at most `R`, with `3R² < p` and `νR² < p`. If `x² + y² + z² ≡ ν t² (mod p)`, that is
+`Q_ν ≡ 0`, then `x² + y² + z² = ν t²`: the point lies on the real cone of the integral form. -/
+theorem window_exact {p ν R x y z t : Nat} (hx : x ≤ R) (hy : y ≤ R) (hz : z ≤ R) (ht : t ≤ R)
+    (h3 : R * R + R * R + R * R < p) (hν : ν * (R * R) < p)
+    (h : (x * x + y * y + z * z) % p = (ν * (t * t)) % p) : x * x + y * y + z * z = ν * (t * t) := by
+  have hs : x * x + y * y + z * z < p :=
+    Nat.lt_of_le_of_lt (Nat.add_le_add (Nat.add_le_add (Nat.mul_le_mul hx hx) (Nat.mul_le_mul hy hy))
+      (Nat.mul_le_mul hz hz)) h3
+  have hu : ν * (t * t) < p := Nat.lt_of_le_of_lt (Nat.mul_le_mul_left ν (Nat.mul_le_mul ht ht)) hν
+  rw [Nat.mod_eq_of_lt hs, Nat.mod_eq_of_lt hu] at h
+  exact h
+
+/-- 3:E3 — the window is sharp below `√p`. When `p = a² + b²` with `a > 0`, the point `(t, x, y, z) = (0, a, b, 0)`
+satisfies `x² + y² + z² ≡ ν t² (mod p)` but not `x² + y² + z² = ν t²`: a null point of the shell off the real cone,
+with coordinates at most `b` and `b² < p`. -/
+theorem window_ghost {p ν a b : Nat} (ha : 0 < a) (hp : a * a + b * b = p) :
+    (a * a + b * b + 0 * 0) % p = (ν * (0 * 0)) % p ∧ a * a + b * b + 0 * 0 ≠ ν * (0 * 0) ∧ b * b < p := by
+  have haa : 0 < a * a := Nat.mul_pos ha ha
+  have hp0 : 0 < p := hp ▸ Nat.lt_of_lt_of_le haa (Nat.le_add_right (a * a) (b * b))
+  have e1 : a * a + b * b + 0 * 0 = p := by rw [Nat.mul_zero, Nat.add_zero, hp]
+  have e2 : ν * (0 * 0) = 0 := Nat.mul_zero ν
+  rw [e1, e2]
+  refine ⟨?_, ?_, ?_⟩
+  · rw [Nat.mod_self, Nat.zero_mod]
+    exact hp0
+  · exact fun h => Nat.lt_irrefl 0 (h ▸ hp0)
+  · exact hp ▸ Nat.lt_add_of_pos_left haa
+
+/-- 3:E4 — the null cone over the temporal plane: above each pair `(t, x)` lie `p − 1` null points of `Q_g`, and
+`2p − 1` above the origin, since the plane `x² − g t²` vanishes only at the origin. -/
+theorem temporal_fiber (F : Frame p κ g) (t x : Shell p) :
+    nsum (fun y => count (fun z => ofNat y * ofNat y + z * z = 0 + -(Q2 g t x))) p
+      = (p - 1) + (if t = 0 ∧ x = 0 then p else 0) := by
+  rw [conic_count F]
+  have hiff : (0 : Shell p) + -(Q2 g t x) = 0 ↔ (t = 0 ∧ x = 0) := ⟨fun h => by
+      have hq : Q2 g t x = 0 := by
+        calc Q2 g t x = Q2 g t x + (0 + -(Q2 g t x)) := by rw [h, add_zero]
+          _ = 0 := by rw [zero_add, add_neg]
+      have h' : x * x = g * (t * t) := by
+        unfold Q2 at hq
+        calc x * x = x * x + -(g * (t * t)) + g * (t * t) := by rw [add_assoc, neg_add, add_zero]
+          _ = g * (t * t) := by rw [hq, zero_add]
+      exact aniso_tx F (drive_nonsquare F) h',
+    fun h => by
+      have hq : Q2 g (0 : Shell p) 0 = 0 := by
+        unfold Q2
+        rw [mul_zero, mul_zero, neg_zero, add_zero]
+      rw [h.1, h.2, hq, neg_zero, add_zero]⟩
+  match (inferInstance : Decidable (t = 0 ∧ x = 0)) with
+  | isTrue h => rw [ite_eq_left (hiff.2 h), ite_eq_left h]
+  | isFalse h => rw [ite_eq_right (fun h' => h (hiff.1 h')), ite_eq_right h]
+
 /-! ## The worked shells -/
 
 /-- The frame of the laboratory Subject `𝔽₁₇₃`, drive `2`. -/
@@ -8485,9 +8540,15 @@ theorem p03015 : (∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -
 /-- p03017 — 3:D1. $\F_{13}$ and $\F_{173}$ [value]: on $\F_{13}$ the squares $\{1,3,4,9,10,12\}$ and the nonsquares $\{2,5,6,7,8,11\}$, $\g=2$, $X^{2}-2$ irreducible; $2041$ null vectors of $Q_{2}$, $2353$ for the Euclidean form, $4\,855\,201$ over $K$; $14$ boosts with $7$ velocities; on $\F_{173}$, $\g=2$, $5\,147\,961$ null vectors and $174$ boosts. -/
 theorem p03017 : FRC.Shell.Frame.nullCount (13 : Nat) (2 : Nat) = (2041 : Nat) ∧ FRC.Shell.Frame.nullCount (13 : Nat) (1 : Nat) = (2353 : Nat) ∧ FRC.Shell.Frame.normOneCount (13 : Nat) (2 : Nat) = (14 : Nat) ∧ FRC.Causal.formCount (2 : FRC.Shell (173 : Nat)) (0 : FRC.Shell (173 : Nat)) + (173 : Nat) * (173 : Nat) = (173 : Nat) * (173 : Nat) * (173 : Nat) + (173 : Nat) ∧ FRC.Causal.planeCount (2 : FRC.Shell (173 : Nat)) (1 : FRC.Shell (173 : Nat)) = (174 : Nat) :=
   And.intro @FRC.Shell.Frame.null13 (And.intro @FRC.Shell.Frame.euclid13 (And.intro @FRC.Causal.normOne13 (@FRC.Causal.shell173)))
+/-- p03022 — 3:E3. The window is sharp: no integer point with coordinates bounded by $R$, where $3R^{2}<\p$ and $\g R^{2}<\p$, is a null point of the shell off the real cone; for $\p=a^{2}+b^{2}$, $0<a\le b$, the point $(0,a,b,0)$ is one, so the least such half-width $R_{\star}$ has $\p\le\max(\g,3)R_{\star}^{2}$ and $R_{\star}\le b<\sqrt{\p}$. -/
+theorem p03022 : (∀ {p ν R x y z t : Nat}, x ≤ R → y ≤ R → z ≤ R → t ≤ R → R * R + R * R + R * R < p → ν * (R * R) < p → (x * x + y * y + z * z) % p = ν * (t * t) % p → x * x + y * y + z * z = ν * (t * t)) ∧ ∀ {p ν a b : Nat}, (0 : Nat) < a → a * a + b * b = p → (a * a + b * b + (0 : Nat) * (0 : Nat)) % p = ν * ((0 : Nat) * (0 : Nat)) % p ∧ a * a + b * b + (0 : Nat) * (0 : Nat) ≠ ν * ((0 : Nat) * (0 : Nat)) ∧ b * b < p :=
+  And.intro @FRC.Causal.window_exact (@FRC.Causal.window_ghost)
 /-- p03025 — 3:B8. The Subject's pair algebra: $K=\Fp(\eta)$, $\eta^{2}=\g$, has $\p^{2}$ elements, one for each register pair $(t,x)\mapsto x+\eta t$; its norm $x^{2}-\g t^{2}$ is multiplicative and is the temporal plane of $Q_{\g}$; the drive cycle and the norm-one cycle meet in $\pm1$. -/
 theorem p03025 : (∀ {p : Nat} [FRC.Pos p] (ν a b c d : FRC.Shell p), FRC.Shell.Frame.Q2 ν (a * d + b * c) (a * c + ν * (b * d)) = (a * a + -(ν * (b * b))) * (c * c + -(ν * (d * d)))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν γ : FRC.Shell p}, γ * γ + -(ν * ((0 : FRC.Shell p) * (0 : FRC.Shell p))) = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) ∨ γ = (-1 : FRC.Shell p) :=
   And.intro @FRC.Shell.Frame.norm_mul (@FRC.Causal.drive_meets_norm_one)
+/-- p03026 — 3:E4. The temporal fibres: above each nonzero pair $(t,x)$ the null cone of $Q_{\g}$ has $\p-1$ points, above the origin $2\p-1$; the null cone spreads evenly over the temporal plane. -/
+theorem p03026 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (t x : FRC.Shell p), FRC.Grav.nsum (fun y => FRC.Grav.count fun z => FRC.Shell.ofNat y * FRC.Shell.ofNat y + z * z = (0 : FRC.Shell p) + -FRC.Shell.Frame.Q2 g t x) p = p - (1 : Nat) + if t = (0 : FRC.Shell p) ∧ x = (0 : FRC.Shell p) then p else (0 : Nat) :=
+  @FRC.Causal.temporal_fiber
 /-- p21001 — 21:A1. The finite substrate: the torsor Carrier, coordinatized by a frame as $\F_\Omega$, its cardinality the Carrier identity $\Omega=4S+1$ with the measured $S\sim10^{122}$ (Planck units) locating the coherence horizon, with the phase cycle $C_{\Omega-1}$, the quarter-turn core $Q_4$, the drive (time is scale-dilation, each Subject's own), the coherence horizon $\sqrt\Omega$, and the resolution floor $1/\sqrt\Omega$. -/
 theorem p21001 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((4 : Nat) * κ) = (-1 : FRC.Shell p) ∧ FRC.Shell.ofNat ((4 : Nat) * κ) * FRC.Shell.ofNat ((4 : Nat) * κ) = (1 : FRC.Shell p) :=
   @FRC.Grav.calibration
@@ -8586,7 +8647,9 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p03013
 #print axioms FRC.Ledger.p03015
 #print axioms FRC.Ledger.p03017
+#print axioms FRC.Ledger.p03022
 #print axioms FRC.Ledger.p03025
+#print axioms FRC.Ledger.p03026
 #print axioms FRC.Ledger.p21001
 #print axioms FRC.Ledger.p21009
 #print axioms FRC.Ledger.p21017

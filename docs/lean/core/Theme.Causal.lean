@@ -495,6 +495,61 @@ theorem time_to_space (F : Frame p κ g) {t : Shell p} (ht : t ≠ 0) :
 
 end frame
 
+/-! ## The window and the temporal fibres -/
+
+/-- 3:E3 — no point off the real cone inside the window. Read an integer point `(t, x, y, z)` through the absolute
+values of its coordinates, each at most `R`, with `3R² < p` and `νR² < p`. If `x² + y² + z² ≡ ν t² (mod p)`, that is
+`Q_ν ≡ 0`, then `x² + y² + z² = ν t²`: the point lies on the real cone of the integral form. -/
+theorem window_exact {p ν R x y z t : Nat} (hx : x ≤ R) (hy : y ≤ R) (hz : z ≤ R) (ht : t ≤ R)
+    (h3 : R * R + R * R + R * R < p) (hν : ν * (R * R) < p)
+    (h : (x * x + y * y + z * z) % p = (ν * (t * t)) % p) : x * x + y * y + z * z = ν * (t * t) := by
+  have hs : x * x + y * y + z * z < p :=
+    Nat.lt_of_le_of_lt (Nat.add_le_add (Nat.add_le_add (Nat.mul_le_mul hx hx) (Nat.mul_le_mul hy hy))
+      (Nat.mul_le_mul hz hz)) h3
+  have hu : ν * (t * t) < p := Nat.lt_of_le_of_lt (Nat.mul_le_mul_left ν (Nat.mul_le_mul ht ht)) hν
+  rw [Nat.mod_eq_of_lt hs, Nat.mod_eq_of_lt hu] at h
+  exact h
+
+/-- 3:E3 — the window is sharp below `√p`. When `p = a² + b²` with `a > 0`, the point `(t, x, y, z) = (0, a, b, 0)`
+satisfies `x² + y² + z² ≡ ν t² (mod p)` but not `x² + y² + z² = ν t²`: a null point of the shell off the real cone,
+with coordinates at most `b` and `b² < p`. -/
+theorem window_ghost {p ν a b : Nat} (ha : 0 < a) (hp : a * a + b * b = p) :
+    (a * a + b * b + 0 * 0) % p = (ν * (0 * 0)) % p ∧ a * a + b * b + 0 * 0 ≠ ν * (0 * 0) ∧ b * b < p := by
+  have haa : 0 < a * a := Nat.mul_pos ha ha
+  have hp0 : 0 < p := hp ▸ Nat.lt_of_lt_of_le haa (Nat.le_add_right (a * a) (b * b))
+  have e1 : a * a + b * b + 0 * 0 = p := by rw [Nat.mul_zero, Nat.add_zero, hp]
+  have e2 : ν * (0 * 0) = 0 := Nat.mul_zero ν
+  rw [e1, e2]
+  refine ⟨?_, ?_, ?_⟩
+  · rw [Nat.mod_self, Nat.zero_mod]
+    exact hp0
+  · exact fun h => Nat.lt_irrefl 0 (h ▸ hp0)
+  · exact hp ▸ Nat.lt_add_of_pos_left haa
+
+/-- 3:E4 — the null cone over the temporal plane: above each pair `(t, x)` lie `p − 1` null points of `Q_g`, and
+`2p − 1` above the origin, since the plane `x² − g t²` vanishes only at the origin. -/
+theorem temporal_fiber (F : Frame p κ g) (t x : Shell p) :
+    nsum (fun y => count (fun z => ofNat y * ofNat y + z * z = 0 + -(Q2 g t x))) p
+      = (p - 1) + (if t = 0 ∧ x = 0 then p else 0) := by
+  rw [conic_count F]
+  have hiff : (0 : Shell p) + -(Q2 g t x) = 0 ↔ (t = 0 ∧ x = 0) := ⟨fun h => by
+      have hq : Q2 g t x = 0 := by
+        calc Q2 g t x = Q2 g t x + (0 + -(Q2 g t x)) := by rw [h, add_zero]
+          _ = 0 := by rw [zero_add, add_neg]
+      have h' : x * x = g * (t * t) := by
+        unfold Q2 at hq
+        calc x * x = x * x + -(g * (t * t)) + g * (t * t) := by rw [add_assoc, neg_add, add_zero]
+          _ = g * (t * t) := by rw [hq, zero_add]
+      exact aniso_tx F (drive_nonsquare F) h',
+    fun h => by
+      have hq : Q2 g (0 : Shell p) 0 = 0 := by
+        unfold Q2
+        rw [mul_zero, mul_zero, neg_zero, add_zero]
+      rw [h.1, h.2, hq, neg_zero, add_zero]⟩
+  match (inferInstance : Decidable (t = 0 ∧ x = 0)) with
+  | isTrue h => rw [ite_eq_left (hiff.2 h), ite_eq_left h]
+  | isFalse h => rw [ite_eq_right (fun h' => h (hiff.1 h')), ite_eq_right h]
+
 /-! ## The worked shells -/
 
 /-- The frame of the laboratory Subject `𝔽₁₇₃`, drive `2`. -/

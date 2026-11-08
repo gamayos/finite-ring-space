@@ -135,14 +135,17 @@
    "3:C2": "Causality",
    "3:C3": "Causality",
    "3:C4": "Causality",
-   "3:D1": "Causality"
+   "3:D1": "Causality",
+   "3:E3": "Causality",
+   "3:E4": "Causality"
   },
   "FrcMathlib": {
    "3:B2": "Causality",
    "3:B3": "Causality",
    "3:B5": "Causality",
    "3:C2": "Causality",
-   "3:C3": "Causality"
+   "3:C3": "Causality",
+   "3:E3": "Causality"
   }
  },
  "4-representation": {
@@ -1131,12 +1134,31 @@
   "module": "YangMills",
   "FrcCore": {
    "46:C1": "YangMills",
+   "46:C10": "YangMills",
+   "46:C11": "YangMills",
+   "46:C12": "YangMills",
+   "46:C13": "YangMills",
    "46:C2": "YangMills",
    "46:C3": "YangMills",
    "46:C4": "YangMills",
    "46:C5": "YangMills",
    "46:C6": "YangMills",
-   "46:C9": "YangMills"
+   "46:C7": "YangMills",
+   "46:C9": "YangMills",
+   "46:P1": "YangMills",
+   "46:P2": "YangMills",
+   "46:P3": "YangMills",
+   "46:X1": "YangMills",
+   "46:X2": "YangMills",
+   "46:X4": "YangMills"
+  },
+  "FrcMathlib": {
+   "46:C10": "YangMills",
+   "46:C11": "YangMills",
+   "46:C12": "YangMills",
+   "46:C13": "YangMills",
+   "46:P2": "YangMills",
+   "46:P3": "YangMills"
   }
  }
 }

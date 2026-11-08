@@ -34,7 +34,8 @@ LATTICE = dict(m0pp_over_Tc=(Q("5.73"), Q("0.09")),                # Hasenbusch�
                Tc_over_sqrt_sigma_su2=(Q("0.7091"), Q("0.0036")),
                r0m=dict(scalar=(Q("4.21"), Q("0.11")), tensor=(Q("5.85"), Q("0.02")), pseudoscalar=(Q("6.33"), Q("0.07"))),   # Morningstar–Peardon, r₀ m
                r0_sqrt_sigma=(Q("1.160"), Q("0.006")),             # Athenodorou–Teper, JHEP 11 (2020) 172, √σ = 1.160(6)/r₀
-               m0pp_over_sqrt_sigma_direct=(Q("3.405"), Q("0.021")))   # Athenodorou–Teper 2020, the continuum extrapolation in a²σ
+               m0pp_over_sqrt_sigma_direct=(Q("3.405"), Q("0.021")),   # Athenodorou–Teper 2020, the continuum extrapolation in a²σ
+               m0pp_star_direct=(Q("5.855"), Q("0.041")))              # Athenodorou–Teper 2020, Table 17: the first scalar excitation, m/√σ
 
 ALPHA_S = dict(MZ=(Q("0.1180"), Q("0.0009")), mtau=(Q("0.312"), Q("0.015")),
                scales=dict(MZ=Q("91.1876"), mb=Q("4.18"), mtau=Q("1.77686")))
@@ -211,9 +212,42 @@ def short_range_route(cutoffs=(1.0, 0.5, 0.25), a=2, kappa=2.0, CA=3, N=240, L=1
     return out
 
 
+def fixed_point_bisect(a, kappa, rc, lo, hi, CA=3, N=240, L=18, m=40, steps=30):
+    """[chart] The self-consistent bound state of a|p| + ϰr − C/max(r, r_c) with C = C_A α_s(E₀√σ): the root of g(E) = E₀(C(E)) − E
+    bracketed in [lo, hi] by bisection (the secant of short_range_route finds one root; this finds the one in a given bracket),
+    or None when g has one sign at both ends (the review of 8 November 2026: a failing iteration is not a proof of no root)."""
+    def g(E): return wrap_spectrum(a, kappa, 1, N, L, m, CA * alpha_s_one_loop(E), rc)[0] - E
+    glo, ghi = g(lo), g(hi)
+    if (glo > 0) == (ghi > 0): return None
+    for _ in range(steps):
+        mid = (lo + hi) / 2; gm = g(mid)
+        if (gm > 0) == (glo > 0): lo, glo = mid, gm
+        else: hi = mid
+    return (lo + hi) / 2
+
+
+def short_range_review():
+    """[chart] The numbers of 46:C10 after the review of 8 November 2026, every value an exact rational of its float and every key a
+    string, so that the ledger file (an exact tier, gate G09) handles no float: the declared coupling C = C_A α_s(√σ) and the two-body
+    Herbst value 4/π; the ground energy of 2|p| + 2r − C/max(r, r_c) at r_c = 1, 1/2, 1/4, 1/8 cells with the declared coupling, each
+    above the elementary bound −C/r_c; the two-body fixed points with the running coupling (the upper root by the secant of
+    short_range_route, the lower by bisection) at r_c = 1, 1/2, 1/4 and none at 1/8; the maximum of g(E) on a scan over
+    E ∈ [1.8, 6] at 1/8; the one-body form's roots at r_c = 2 and 10 and none at one cell."""
+    r = short_range_route(cutoffs=(1.0, 0.5, 0.25, 0.125)); dc = r["declared_coupling"]
+    def q(x): return None if x is None else Q(repr(float(x)))
+    rcs = {"1": 1.0, "1/2": 0.5, "1/4": 0.25, "1/8": 0.125}
+    collapse = {k: q(wrap_spectrum(2, 2.0, 1, 240, 18, 40, dc, rc)[0]) for k, rc in rcs.items()}
+    fixed = {k: ((q(v[0]), q(v[1])) if v else None) for k, v in ((k, r["fixed_points"][rc]) for k, rc in rcs.items())}
+    low = {k: q(fixed_point_bisect(2, 2.0, rc, lo, hi)) for k, rc, lo, hi in (("1", 1.0, 0.6, 1.0), ("1/2", 0.5, 0.9, 1.5), ("1/4", 0.25, 1.5, 2.0))}
+    scan = [wrap_spectrum(2, 2.0, 1, 240, 18, 40, 3 * alpha_s_one_loop(E), 0.125)[0] - E for E in (1.8, 2.0, 2.2, 2.3, 2.4, 2.6, 3.0, 4.0, 6.0)]
+    one = {k: q(fixed_point_bisect(1, 2.0, rc, lo, hi)) for k, rc, lo, hi in (("2", 2.0, 2.5, 3.0), ("10", 10.0, 3.0, 3.5), ("1", 1.0, 0.6, 8.0))}
+    return dict(declared=q(dc), herbst_two=q(r["herbst"][2]), collapse_rc1=q(r["collapse_rc1"]), collapse=collapse, fixed=fixed, low=low,
+                scan_max=q(max(scan)), one=one, bound={k: -q(dc) / Q(k) for k in rcs})
+
+
 MUNSTER_0PP = [Q(0), Q(-3), Q(9), Q(-27, 2), Q(-7), Q(-297, 2), Q(858827, 10240), Q(47641149, 71680)]
 # [import] the SU(3) 0⁺⁺ glueball mass of the strong-coupling expansion, a m = −4 ln u + Σ_k M_k u^k to u⁷, u = c₃ the fundamental
-# character coefficient (Münster, Nucl. Phys. B190 (1981) 439; as quoted by Langelage, Münster, Philipsen, JHEP 07 (2008) 036, eq. 2.16)
+# character coefficient (Münster, Nucl. Phys. B190 (1981) 439; as quoted by Langelage, Münster, Philipsen, PoS LATTICE2007 201, arXiv:0710.0512, eq. 2.16)
 
 
 def plaquette_channel(us=("0.06", "0.10", "0.15", "0.20", "0.25", "0.30"), betas=("1", "2", "3", "4", "5", "6")):

@@ -38,11 +38,13 @@ import FrcMathlib
 #print axioms FRC.Causality.gamma_ne_zero
 #print axioms FRC.Causality.gamma_velocity
 #print axioms FRC.Causality.velocity_addition
+#print axioms FRC.Causality.window_ghost_exists
 #print axioms FRC.Causality.nonexistence_causal_square_root
 #print axioms FRC.Causality.square_class_absorption
 #print axioms FRC.Causality.witt_decomposition
 #print axioms FRC.Causality.finite_boost
 #print axioms FRC.Causality.causal_velocity
+#print axioms FRC.Causality.window_sharpness
 #print axioms FRC.Dark.floor_value
 #print axioms FRC.Dark.running_floor
 #print axioms FRC.Dark.registration_root
@@ -1081,6 +1083,7 @@ import FrcMathlib
 #print axioms FRC.LedgerML.p03009
 #print axioms FRC.LedgerML.p03013
 #print axioms FRC.LedgerML.p03014
+#print axioms FRC.LedgerML.p03022
 #print axioms FRC.LedgerML.p06012
 #print axioms FRC.LedgerML.p06014
 #print axioms FRC.LedgerML.p06016
@@ -1708,6 +1711,7 @@ import FrcMathlib
 #print axioms FRC.Extension.gamma_ne_zero
 #print axioms FRC.Extension.gamma_velocity
 #print axioms FRC.Extension.velocity_addition
+#print axioms FRC.Extension.window_ghost_exists
 #print axioms FRC.FieldsML.roots_inclusion
 #print axioms FRC.FieldsML.wilson_weight_nonneg
 #print axioms FRC.FieldsML.area_law_positive

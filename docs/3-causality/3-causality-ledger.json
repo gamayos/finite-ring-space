@@ -11,7 +11,7 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "Finite-field algebra: $\\Fpx$ is cyclic of order $\\p-1$, with $(\\p-1)/2$ squares and $(\\p-1)/2$ nonsquares; $-1$ is a square for $\\p\\equiv1\\pmod4$; $X^{2}-\\nu$ is irreducible for a nonsquare $\\nu$; the multiplicative group of $\\F_{\\p^{2}}$ is cyclic.",
+     "predicate": "Finite-field algebra: $\\Fpx$ is cyclic of order $\\p-1$, with $(\\p-1)/2$ squares and $(\\p-1)/2$ nonsquares; $-1$ is a square for $\\p\\equiv1\\pmod4$; $X^{2}-\\nu$ is irreducible for a nonsquare $\\nu$; the multiplicative group of $\\F_{\\p^{2}}$ is cyclic; every prime $\\p\\equiv1\\pmod4$ is a sum of two squares (Fermat).",
      "tag": "I",
      "source": "\\cite{LidlNiederreiter1997}; 1:A1",
      "key": "p03001",
@@ -183,7 +183,7 @@
   },
   {
    "letter": "E",
-   "title": "The causal reading",
+   "title": "The causal reading and the window",
    "rows": [
     {
      "label": "E1",
@@ -200,20 +200,22 @@
      "source": "Rem.~\\ref{rem:local-correspondence}; 1:D8",
      "key": "p03019",
      "name": null
-    }
-   ]
-  },
-  {
-   "letter": "Y",
-   "title": "Hypotheses",
-   "rows": [
+    },
     {
-     "label": "Y1",
-     "predicate": "A density and discrepancy bound for the local correspondence of the Remark: how the window points of the shell's null cone distribute against the real light cone of the integral form; named by the paper as future work, not claimed, no witness.",
-     "tag": "O",
-     "source": "Remark~\\ref{rem:local-correspondence}",
+     "label": "E3",
+     "predicate": "The window is sharp: no integer point with coordinates bounded by $R$, where $3R^{2}<\\p$ and $\\g R^{2}<\\p$, is a null point of the shell off the real cone; for $\\p=a^{2}+b^{2}$, $0<a\\le b$, the point $(0,a,b,0)$ is one, so the least such half-width $R_{\\star}$ has $\\p\\le\\max(\\g,3)R_{\\star}^{2}$ and $R_{\\star}\\le b<\\sqrt{\\p}$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:window}(ii)\\newline \\pywit{causality}{p03022}{E3}, \\leanwit{FrcCore}{p03022}{E3}, \\leanwit{FrcMathlib}{p03022}{E3} \\lean{Causality.window\\_ghost\\_exists, FRC.Causal.window\\_exact, FRC.Causal.window\\_ghost}",
      "key": "p03022",
-     "name": null
+     "name": "window_sharpness"
+    },
+    {
+     "label": "E4",
+     "predicate": "The temporal fibres: above each nonzero pair $(t,x)$ the null cone of $Q_{\\g}$ has $\\p-1$ points, above the origin $2\\p-1$; the null cone spreads evenly over the temporal plane.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:window}(i); rests on B5\\newline \\pywit{causality}{p03026}{E4}, \\leanwit{FrcCore}{p03026}{E4} \\lean{FRC.Causal.temporal\\_fiber}",
+     "key": "p03026",
+     "name": "temporal_fibres"
     }
    ]
   }
@@ -709,7 +711,7 @@
    {
     "name": "FRC.Causal.normOne13",
     "module": "FrcCore/Theme/Causal",
-    "line": 504,
+    "line": 559,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -718,11 +720,55 @@
    {
     "name": "FRC.Causal.shell173",
     "module": "FrcCore/Theme/Causal",
-    "line": 508,
+    "line": 563,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "3:D1 [value] — `𝔽₁₇₃`, drive `2`: the null cone of `Q_2` has `173³ − 173² + 173 = 5 147 961` points and the boosts number `174`, from the general counts on the frame `(τ; 0, 1, 2)`."
+   }
+  ],
+  "E3": [
+   {
+    "name": "FRC.Causality.window_ghost_exists",
+    "module": "FrcMathlib/Causality",
+    "line": 77,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "3:E3 — a box off the window (the theorem lives in the extension theme)."
+   },
+   {
+    "name": "FRC.Causal.window_exact",
+    "module": "FrcCore/Theme/Causal",
+    "line": 503,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:E3 — no point off the real cone inside the window. Read an integer point `(t, x, y, z)` through the absolute values of its coordinates, each at most `R`, with `3R² < p` and `νR² < p`. If `x² + y² + z² ≡ ν t² (mod p)`, that is `Q_ν ≡ 0`, then `x² + y² + z² = ν t²`: the point lies on the real cone of the integral form."
+   },
+   {
+    "name": "FRC.Causal.window_ghost",
+    "module": "FrcCore/Theme/Causal",
+    "line": 516,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:E3 — the window is sharp below `√p`. When `p = a² + b²` with `a > 0`, the point `(t, x, y, z) = (0, a, b, 0)` satisfies `x² + y² + z² ≡ ν t² (mod p)` but not `x² + y² + z² = ν t²`: a null point of the shell off the real cone, with coordinates at most `b` and `b² < p`."
+   }
+  ],
+  "E4": [
+   {
+    "name": "FRC.Causal.temporal_fiber",
+    "module": "FrcCore/Theme/Causal",
+    "line": 531,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:E4 — the null cone over the temporal plane: above each pair `(t, x)` lie `p − 1` null points of `Q_g`, and `2p − 1` above the origin, since the plane `x² − g t²` vanishes only at the origin."
    }
   ]
  }

@@ -26,6 +26,9 @@ theorem p03013 : (∀ {F : Type u_1} [Field F] (ν γ b t x : F), γ ^ (2 : ℕ)
 /-- p03014 — 3:C3. Velocity: $\gamma\neq0$ on every boost; $v=-\nu b/\gamma\in\Fp$, the same for $\pm\zeta$, so $(\p+1)/2$ velocities; $\gamma^{2}(\nu-v^{2})=\nu$, the finite counterpart of $\gamma=1/\sqrt{1-\beta^{2}}$ with $\beta^{2}=v^{2}/\nu$; Einstein's law $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/\nu)$ exact, the denominator never zero. -/
 theorem p03014 : (∀ {F : Type u_1} [Field F] [Fintype F], Fintype.card F % (4 : ℕ) ≠ (3 : ℕ) → ∀ (ν γ b : F), ¬IsSquare ν → γ ^ (2 : ℕ) - ν * b ^ (2 : ℕ) = (1 : F) → γ ≠ (0 : F)) ∧ (∀ {F : Type u_2} [Field F] (ν γ b v : F), γ ^ (2 : ℕ) - ν * b ^ (2 : ℕ) = (1 : F) → v * γ = -(ν * b) → γ ^ (2 : ℕ) * (ν - v ^ (2 : ℕ)) = ν) ∧ ∀ {F : Type u_3} [Field F] (ν γ1 b1 γ2 b2 v1 v2 v12 : F), γ1 * γ2 ≠ (0 : F) → v1 * γ1 = -(ν * b1) → v2 * γ2 = -(ν * b2) → v12 * (γ1 * γ2 + ν * (b1 * b2)) = -(ν * (γ1 * b2 + b1 * γ2)) → v12 * (ν + v1 * v2) = ν * (v1 + v2) :=
   And.intro @FRC.Extension.gamma_ne_zero (And.intro @FRC.Extension.gamma_velocity (@FRC.Extension.velocity_addition))
+/-- p03022 — 3:E3. The window is sharp: no integer point with coordinates bounded by $R$, where $3R^{2}<\p$ and $\g R^{2}<\p$, is a null point of the shell off the real cone; for $\p=a^{2}+b^{2}$, $0<a\le b$, the point $(0,a,b,0)$ is one, so the least such half-width $R_{\star}$ has $\p\le\max(\g,3)R_{\star}^{2}$ and $R_{\star}\le b<\sqrt{\p}$. -/
+theorem p03022 : ∀ {p : ℕ} [hp : Fact (Nat.Prime p)], p % (4 : ℕ) = (1 : ℕ) → ∃ a b, (0 : ℕ) < a ∧ a * a + b * b = p ∧ b * b < p :=
+  @FRC.Extension.window_ghost_exists
 -- end keys
 
 end FRC.LedgerML

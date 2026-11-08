@@ -247,4 +247,21 @@ theorem velocity_addition (ν γ1 b1 γ2 b2 v1 v2 v12 : F) (hγ : γ1 * γ2 ≠ 
 
 end lorentz
 
+
+/-- 3:E3 — a box off the window (3-causality, Prop. prop:window): every prime `p ≡ 1 (mod 4)` is `a² + b²` with `a > 0` (Fermat), so the point
+`(0, a, b, 0)` has integral value `p ≡ 0`, off the real cone, with `b² < p`. -/
+theorem window_ghost_exists {p : ℕ} [hp : Fact p.Prime] (h4 : p % 4 = 1) :
+    ∃ a b : ℕ, 0 < a ∧ a * a + b * b = p ∧ b * b < p := by
+  obtain ⟨a, b, hab⟩ := Nat.Prime.sq_add_sq (p := p) (by omega)
+  have hp0 : 0 < p := hp.out.pos
+  rcases Nat.eq_zero_or_pos a with ha | ha
+  · subst ha
+    have hb : 0 < b := by
+      rcases Nat.eq_zero_or_pos b with hb | hb
+      · subst hb; simp at hab; omega
+      · exact hb
+    refine ⟨b, 0, hb, by nlinarith, by nlinarith⟩
+  · refine ⟨a, b, ha, by nlinarith, by nlinarith⟩
+
+
 end FRC.Extension
