@@ -31,7 +31,11 @@ brackets of window fractions, and decide: the declared coupling against the Herb
 (`herbst_comparison`, 46:C10); the plaquette channel's ratios, spreads and `u(β)` (`plaquette_channel`, 46:C11); the
 one-loop run from `M_Z` to `m_τ` (`running_one_loop`, 46:P2). The family of the minimal wrap against the lattice in
 thousandths (`wrap_family`, 46:C12) and the colour factors against LEP in hundredths (`colour_factors_within`, 46:P1, X4)
-are integer comparisons. The adjoint without an invariant line (`adjoint_no_invariant`, 46:X1). No axioms.
+are integer comparisons. The adjoint without an invariant line (`adjoint_no_invariant`, 46:X1). The two rationals of the
+one-loop coefficient (46:C13): the spin traces on the shell's modules (`spin_traces`), the Faulhaber third with its complete
+cycle vanishing (`faulhaber_third`, `faulhaber_residues`, `complete_cycle_vanishes`) and the species sum of Hughes–Nielsen
+with denominators cleared (`hughes_nielsen_sum`). The radial ratio of the operator form against the lattice, the Airy
+ladder and the nucleon, in thousandths (`radial_ratio`, 46:P3). No axioms.
 -/
 
 namespace FRC.YangMills
@@ -42,7 +46,7 @@ variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
 
 /-! ## The non-split torus fixes no line (46:C1) -/
 
-/-- 46:C1 — a norm-one element `a + b√ν` of the extension with `b ≠ 0`, `ν` a nonsquare, has no eigenvalue in the shell: a
+/-- 46:C1, 46:X1 — a norm-one element `a + b√ν` of the extension with `b ≠ 0`, `ν` a nonsquare, has no eigenvalue in the shell: a
 root `r` of its characteristic polynomial `x² − 2a x + 1` would give `(r − a)² = a² − 1 = ν b²`, so `ν = ((r − a)/b)²`, a
 square. Hence a non-scalar element of the non-split torus fixes no line of the shell plane, and the torus fixes none: the
 gluon, the residue `0` of the non-split torus, is never registered alone. -/
@@ -134,7 +138,7 @@ theorem admissible_sweep :
 
 /-! ## The residue series closes with the glueball (46:C3) -/
 
-/-- 46:C3 — by the singlet multiplicities of the tensor powers of the colour triplet (the hadrons theme's `moment6`, six
+/-- 46:C3, 46:X2 — by the singlet multiplicities of the tensor powers of the colour triplet (the hadrons theme's `moment6`, six
 times the multiplicity, computed as the constant term of the Weyl character polynomial — exact integers): the adjoint
 has no invariant (`E[χχ̄] − 1 = 0`, the gluon's residue `0`), `𝟛 ⊗ 𝟛 ⊗ 𝟛` has one singlet (`E[χ³] = 1`, the baryon),
 `𝟛 ⊗ 𝟛̄` one (`E[χχ̄] = 1`, the meson), and `𝟠 ⊗ 𝟠` one (`E[(χχ̄ − 1)²] = E[χ²χ̄²] − 2E[χχ̄] + 1 = 2 − 2 + 1 = 1`, the glueball):
@@ -166,7 +170,7 @@ theorem adjoint_two_sheets :
 
 /-! ## The Casimirs and the window rational (46:C4, C5) -/
 
-/-- 46:C4 — the Casimirs of the colour frame with denominators cleared: `2N C_F = N² − 1` gives `6 C_F = 8` (`C_F = 4/3`),
+/-- 46:C4, 46:X4, 46:P1 — the Casimirs of the colour frame with denominators cleared: `2N C_F = N² − 1` gives `6 C_F = 8` (`C_F = 4/3`),
 `C_A = N = 3`, `2 T_F = 1`, and `C_A / C_F = 2N² / (N² − 1)` gives `8 (C_A/C_F) = 18` (`9/4`). -/
 theorem casimirs :
     (3 * 3 - 1 : Int) = 8 ∧ 6 * 4 = 3 * 8 ∧ (2 * 3 * 3 : Int) = 18 ∧ 8 * 9 = 4 * 18 ∧ 2 * 1 = 2 := by
@@ -175,7 +179,7 @@ theorem casimirs :
 /-- The numerator of `3 b₀` for `n_f` flavours: `3 b₀ = 11 C_A − 4 T_F n_f = 33 − 2 n_f` at `N = 3`. -/
 def threeB0 (nf : Nat) : Int := 33 - 2 * nf
 
-/-- 46:C5 — the one-loop rational `b₀ = (11/3) C_A − (4/3) T_F n_f = 11 − 2n_f/3`: `9, 25/3, 23/3, 7` for `n_f = 3, 4, 5, 6`
+/-- 46:C5, 46:P2 — the one-loop rational `b₀ = (11/3) C_A − (4/3) T_F n_f = 11 − 2n_f/3`: `9, 25/3, 23/3, 7` for `n_f = 3, 4, 5, 6`
 (`3 b₀ = 27, 25, 23, 21`). -/
 theorem b0_values : threeB0 3 = 27 ∧ threeB0 4 = 25 ∧ threeB0 5 = 23 ∧ threeB0 6 = 21 := by
   decide
@@ -265,6 +269,7 @@ def ex (k : Nat) : Nat := (List.range (k + 1)).foldl (fun s j => s + choose k j 
 /-- `2^k · E[χ (Re χ)^k] = Σ_j C(k, j) · E[χ^{j+1} χ̄^{k−j}]`. -/
 def exc (k : Nat) : Nat := (List.range (k + 1)).foldl (fun s j => s + choose k j * mult (j + 1) (k - j)) 0
 
+/-- 46:C7 — the moment lists `(ex k)` and `(exc k)` for `k < 8`, from the Pieri multiplicities. -/
 theorem moments :
     (List.range 8).map ex = [1, 0, 2, 2, 12, 30, 130, 462] ∧
     (List.range 8).map exc = [0, 1, 1, 6, 15, 65, 231, 973] := by
@@ -285,12 +290,18 @@ def factS : Nat → Shell p
   | 0 => 1
   | k + 1 => factS k * Shell.ofNat (k + 1)
 
+/-- The `k`-th entry of a list, or `d` past its end (`List.getD` carries `propext`; this does not). -/
+def nth {α : Type} (d : α) : List α → Nat → α
+  | [], _ => d
+  | x :: _, 0 => x
+  | _ :: xs, n + 1 => nth d xs n
+
 /-! ## Power series over the shell -/
 
 /-- A power series over the shell, as its coefficient list. -/
 abbrev SP (p : Nat) := List (Shell p)
 
-def psCoeff (a : SP p) (k : Nat) : Shell p := a.getD k 0
+def psCoeff (a : SP p) (k : Nat) : Shell p := nth 0 a k
 
 /-- The product to order `n` (`n` coefficients). -/
 def psMul (a b : SP p) (n : Nat) : SP p :=
@@ -312,8 +323,8 @@ numerator `exc k / (3 · 6^k k!)`; every division is an inverse on the shell. -/
 def c3Series (E EC : List Nat) (n : Nat) : SP p :=
   let i6 : Shell p := FRC.Epi.inv 6
   let i3 : Shell p := FRC.Epi.inv 3
-  let den : SP p := (List.range n).map fun k => Shell.ofNat (E.getD k 0) * i6 ^ k * FRC.Epi.inv (factS k)
-  let num : SP p := (List.range n).map fun k => Shell.ofNat (EC.getD k 0) * i6 ^ k * i3 * FRC.Epi.inv (factS k)
+  let den : SP p := (List.range n).map fun k => Shell.ofNat (nth 0 E k) * i6 ^ k * FRC.Epi.inv (factS k)
+  let num : SP p := (List.range n).map fun k => Shell.ofNat (nth 0 EC k) * i6 ^ k * i3 * FRC.Epi.inv (factS k)
   psMul num (psInv den (FRC.Epi.inv (psCoeff den 0)) n) n
 
 /-- The eight framed rationals `0, 1/18, 1/216, 0, −5/93312, −1/186624, 7/33592320, 59/604661760` on the shell, the
@@ -383,13 +394,13 @@ theorem traces_2T :
     (List.range 8).map traceSum2T = [24, 0, 24, 0, 48, 0, 144, 0] := by
   decide
 
-/-- The fundamental plaquette coefficient of a group with doublet moments `m_k = M.getD k / D` (`D = 1` for `SU(2)`'s
+/-- The fundamental plaquette coefficient of a group with doublet moments `m_k = M_k / D` (`D = 1` for `SU(2)`'s
 multiplicities, `D = 24` for the trace sums of `2T`): `c = (1/2) Σ_k m_{k+1} (β/2)^k/k! / Σ_k m_k (β/2)^k/k!`. -/
 def c2Series (M : List Int) (D : Nat) (n : Nat) : SP p :=
   let i2 : Shell p := FRC.Epi.inv 2
   let iD : Shell p := FRC.Epi.inv (Shell.ofNat D)
-  let den : SP p := (List.range n).map fun k => ofInt (M.getD k 0) * iD * i2 ^ k * FRC.Epi.inv (factS k)
-  let num : SP p := (List.range n).map fun k => ofInt (M.getD (k + 1) 0) * iD * i2 ^ (k + 1) * FRC.Epi.inv (factS k)
+  let den : SP p := (List.range n).map fun k => ofInt (nth 0 M k) * iD * i2 ^ k * FRC.Epi.inv (factS k)
+  let num : SP p := (List.range n).map fun k => ofInt (nth 0 M (k + 1)) * iD * i2 ^ (k + 1) * FRC.Epi.inv (factS k)
   psMul num (psInv den (FRC.Epi.inv (psCoeff den 0)) n) n
 
 /-- `β/4 − β³/96 + β⁵/1536` on the shell. -/
@@ -405,6 +416,8 @@ def c2Check : Nat → Bool
     decide (c2Series (p := q + 1) [1, 0, 1, 0, 2, 0, 5, 0, 14] 1 7 = c2Targets) &&
     decide (c2Series (p := q + 1) [24, 0, 24, 0, 48, 0, 144, 0, 528] 24 7 = c2TTargets)
 
+/-- 46:C7 — `SU(2)`'s `β/4 − β³/96 + β⁵/1536` against `2T`'s `β/4 − β³/96 + β⁵/1280` on the three laboratory Subjects: the
+same coefficients through `β³`, the first difference at `β⁵`. -/
 theorem c2_lab : c2Check 13 = true ∧ c2Check 173 = true ∧ c2Check 1549 = true := by decide +kernel
 
 /-! ## Window fractions and the chains of the logarithm
@@ -494,7 +507,7 @@ theorem chain_readings :
 
 /-! ## The tension's coefficient as window fractions (46:C7) -/
 
-def wsCoeff (a : List WF) (k : Nat) : WF := a.getD k (0, 1)
+def wsCoeff (a : List WF) (k : Nat) : WF := nth (0, 1) a k
 
 def wsMul (a b : List WF) (n : Nat) : List WF :=
   (List.range n).map fun k =>
@@ -515,18 +528,18 @@ def fact : Nat → Nat
 /-- The series `c₃` of `c3Series`, computed in window fractions: the same division with the coefficients
 `ex k / (6^k k!)` and `exc k / (3 · 6^k k!)`. -/
 def c3WF (E EC : List Nat) (n : Nat) : List WF :=
-  let den := (List.range n).map fun k => WF.frac (E.getD k 0) (6 ^ k * fact k)
-  let num := (List.range n).map fun k => WF.frac (EC.getD k 0) (3 * 6 ^ k * fact k)
+  let den := (List.range n).map fun k => WF.frac ((nth 0 E k : Nat) : Int) (6 ^ k * fact k)
+  let num := (List.range n).map fun k => WF.frac ((nth 0 EC k : Nat) : Int) (3 * 6 ^ k * fact k)
   wsMul num (wsInv den (WF.inv (wsCoeff den 0)) n) n
 
-/-- The eight fractions of `c₃` modulo `β⁸`, from the multiplicities of `moments`. -/
+/-- 46:C7 — the eight fractions of `c₃` modulo `β⁸`, from the multiplicities of `moments`. -/
 theorem c3_fractions :
     c3WF [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 973] 8 =
       [(0, 1), WF.frac 1 (2 * 3 ^ 2), WF.frac 1 (2 ^ 3 * 3 ^ 3), (0, 1), WF.frac (-5) (2 ^ 7 * 3 ^ 6),
        WF.frac (-1) (2 ^ 8 * 3 ^ 6), WF.frac 7 (2 ^ 10 * 3 ^ 8 * 5), WF.frac 59 (2 ^ 11 * 3 ^ 10 * 5)] := by
   decide +kernel
 
-/-- The residue of every fraction of `c3_fractions` is the series' coefficient on the shell (`c3Check`): on the three
+/-- 46:C7 — the residue of every fraction of `c3_fractions` is the series' coefficient on the shell (`c3Check`): on the three
 laboratory Subjects and on the `20` shells `13 ≤ p < 200`; the shell `5` is blind to the coefficients of `β⁶` and `β⁷`,
 whose denominators it divides. -/
 theorem c3_readback :
@@ -580,7 +593,7 @@ def munster : List WF :=
 
 /-- `P_o(u) = Σ_{k=1}^{o} M_k u^k`. -/
 def polyP (o : Nat) (u : WF) : WF :=
-  (List.range o).foldl (fun s k => WF.add s (WF.mul (munster.getD (k + 1) (0, 1)) (WF.pow u (k + 1)))) (0, 1)
+  (List.range o).foldl (fun s k => WF.add s (WF.mul (nth (0, 1) munster (k + 1)) (WF.pow u (k + 1)))) (0, 1)
 
 /-- The bracket of `x = −ln u = ln(1/u)` by the chain. -/
 def xBr (u : WF) : BR := lnBr (WF.inv u) 12
@@ -707,5 +720,85 @@ the Pieri multiplicities. -/
 theorem residue_series_pieri : mult 3 0 = 1 ∧ mult 1 1 = 1 ∧ mult 2 2 - 2 * mult 1 1 + 1 = 1 := by
   decide
 
+
+/-! ## The two rationals of the one-loop coefficient (46:C13)
+
+Hughes and Nielsen write the one-loop coefficient as a sum over the field species of a paramagnetic spin term and a
+diamagnetic charge term, `b₀ = Σ (−1)^{2s} [(2s)² − 1/3] T(R)` (46:A12, imported). Both rationals are the frame's. The spin
+term is `(2s)² = −2 Tr_V(J₁₂²)`, `J₁₂` the generator of the rotation of the `(1, 2)`-plane on the field's module: on the
+vector `J₁₂ = e₁₂ − e₂₁`, on the Weyl spinor `(i/2) σ₃` with `i² = −1`, which the shell has (`p ≡ 1 (mod 4)`); the traces
+are decided on the laboratory Subjects with the doubled spinor generator `i σ₃`. The charge term is the leading Faulhaber
+coefficient of the scalar loop's midpoint sum, `3 Σ_{k<N} (N − 2k − 1)² = N (N² − 1)`: the chart's `∫₀¹ (1 − 2x)² dx = 1/3`
+is the leading coefficient, `−1/(3N²)` the finite-size term the chart discards, and the complete cycle `N = p` vanishes on
+the shell. With `C_A = 3`, `2 T_F = 1` the species sum gives `3 b₀ = 3(3·4 − 1) − n_f (3·1 − 1) = 33 − 2 n_f`, the window
+rational of 46:C5. -/
+
+/-- Square matrices over the shell as row lists. -/
+abbrev Mat (p : Nat) := List (List (Shell p))
+
+def mmul (A B : Mat p) : Mat p :=
+  A.map fun row => (List.range B.length).map fun j =>
+    (List.range row.length).foldl (fun s k => s + nth 0 row k * nth 0 (nth [] B k) j) 0
+
+def tr (A : Mat p) : Shell p := (List.range A.length).foldl (fun s k => s + nth 0 (nth [] A k) k) 0
+
+/-- The rotation generator of the `(1, 2)`-plane on the vector, `e₁₂ − e₂₁`. -/
+def jVec : Mat p := [[0, 1, 0, 0], [-1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+
+/-- Twice the generator on the Weyl spinor, `i σ₃`. -/
+def jWeyl (i : Shell p) : Mat p := [[i, 0], [0, -i]]
+
+/-- 46:C13 — the spin term `(2s)² = −2 Tr(J₁₂²)`: `4` on the vector, `1` on the Weyl spinor (`−Tr((iσ₃)²) = 2`, the generator
+doubled), `0` on the scalar, with `i = 5, 80, 88` the square roots of `−1` on `13`, `173`, `1549`. -/
+theorem spin_traces :
+    (-(2 * tr (mmul jVec jVec)) = (4 : Shell 13) ∧ (5 : Shell 13) * 5 = -1 ∧ -(tr (mmul (jWeyl 5) (jWeyl 5))) = (2 : Shell 13)) ∧
+    (-(2 * tr (mmul jVec jVec)) = (4 : Shell 173) ∧ (80 : Shell 173) * 80 = -1 ∧ -(tr (mmul (jWeyl 80) (jWeyl 80))) = (2 : Shell 173)) ∧
+    (-(2 * tr (mmul jVec jVec)) = (4 : Shell 1549) ∧ (88 : Shell 1549) * 88 = -1 ∧ -(tr (mmul (jWeyl 88) (jWeyl 88))) = (2 : Shell 1549)) ∧
+    tr (mmul ([[0]] : Mat 13) [[0]]) = 0 := by
+  decide +kernel
+
+/-- `Σ_{k<N} (N − 2k − 1)²` in the integers. -/
+def sq (N : Nat) : Int := (List.range N).foldl (fun (s : Int) (k : Nat) => s + ((N : Int) - 2 * (k : Int) - 1) ^ 2) (0 : Int)
+
+/-- The same sum on the shell. -/
+def sqS (N : Nat) : Shell p :=
+  (List.range N).foldl (fun (s : Shell p) (k : Nat) => s + (Shell.ofNat N + -((2 : Shell p) * Shell.ofNat k) + -(1 : Shell p)) ^ 2) 0
+
+/-- 46:C13 — the Faulhaber identity `3 Σ_{k<N} (N − 2k − 1)² = N (N² − 1)` for every `N < 400` in the integers: the leading
+coefficient `1/3` is the chart's `∫₀¹ (1 − 2x)² dx`, the lower term `−1/(3N²)` is what the chart discards. -/
+theorem faulhaber_third : ∀ N, N < 400 → 3 * sq N = (N : Int) * ((N : Int) ^ 2 - 1) := by
+  decide +kernel
+
+/-- 46:C13 — on the shell `173` the identity holds as residues for every `N < p`, `Σ = N(N² − 1) · 3⁻¹`. -/
+theorem faulhaber_residues : ∀ N, N < 173 → sqS (p := 173) N = Shell.ofNat N * (Shell.ofNat N ^ 2 + -1) * FRC.Epi.inv 3 := by
+  decide +kernel
+
+/-- 46:C13 — the complete cycle `N = p` vanishes on `13`, `173`, `1549` (the power sums over the shell vanish), while `N = 10`
+on `173` reads `330 = 10 · 99 / 3`: the third is never a complete residue sum, only the leading coefficient read in the
+window. -/
+theorem complete_cycle_vanishes :
+    sqS (p := 13) 13 = 0 ∧ sqS (p := 173) 173 = 0 ∧ sqS (p := 1549) 1549 = 0 ∧ sqS (p := 173) 10 = 330 := by
+  decide +kernel
+
+/-- 46:C13 — the species sum with the denominators cleared: `3 b₀ = C_A (3·(2s_V)² − 1) − n_f · 2T_F · (3·(2s_W)² − 1)` with
+`(2s_V)² = 4`, `(2s_W)² = 1`, `C_A = 3`, `2 T_F = 1` is `33 − 2 n_f`, the window rational `threeB0` of 46:C5, for every
+`n_f ≤ 200`. -/
+theorem hughes_nielsen_sum : ∀ nf, nf < 201 → threeB0 nf = 3 * (3 * 4 - 1) - (nf : Int) * 1 * (3 * 1 - 1) := by
+  decide +kernel
+
+/-! ## The radial ratio of the operator form (46:P3)
+
+The ratios of the eigenvalues of the chart operator `a|p| + ϰr` are free of `a` and `ϰ` (the dilation symmetry). The chart's
+first radial ratio `E₁/E₀ = 1.4915` (the Lanczos computation of the chart file) is compared in thousandths with the lattice
+`0⁺⁺*/0⁺⁺ = 1.544 ± 0.112` (A1), with the nonrelativistic ladder's Airy ratio `a₂/a₁ ∈ (1.74, 1.76)` from the brackets
+`2.33 < a₁ < 2.34`, `4.08 < a₂ < 4.09` (the hadrons theme's `airy_sturm`), and with the nucleon's `1440/939`. -/
+
+/-- 46:P3 — `1491 ∈ [1432, 1656]`, less than half the error from the centre (`2·53 < 112`); the Airy ratio lies in
+`(1.74, 1.76)`, above the bracket's upper end; `1440/939` lies within `3 %` of `1.491`. -/
+theorem radial_ratio :
+    1432 ≤ 1491 ∧ 1491 ≤ 1656 ∧ 2 * (1544 - 1491) < 112 ∧
+    174 * 234 < 408 * 100 ∧ 409 * 100 < 176 * 233 ∧ 1656 < 1740 ∧
+    1491 * 939 < 1440 * 1000 ∧ 1440 * 1000 * 100 < 1491 * 939 * 103 := by
+  decide
 
 end FRC.YangMills

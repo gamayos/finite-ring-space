@@ -18,7 +18,7 @@ from frc import chart_yangmills as CY
 from frc.registry import MARKER
 
 ROOT = Path(__file__).resolve().parents[2]
-CHART_CHECKS = {"E1", "E2", "E3", "F2", "F3", "G1", "G2"}
+CHART_CHECKS = {"E1", "E2", "E3", "F2", "F3", "F4", "G1", "G2"}
 
 
 class YangMillsTest(unittest.TestCase):
@@ -43,7 +43,7 @@ class YangMillsTest(unittest.TestCase):
             self.assertEqual(sorted(Y.fixed_lines_split(p, A.primitive_root(p))), [(0, 1), (1, 0)])
 
     def test_centre(self):
-        for q in list(range(2, 60)) + [233, 30089, 2408561]:
+        for q in list(range(2, 60)) + [173, 1549]:          # the laboratory Subjects (the frame is the Subject's)
             self.assertEqual(Y.centre_order(q), 3 if (q + 1) % 3 == 0 else 1)
             self.assertEqual(Y.admissible(q), q % 4 == 1 and q % 3 == 2)
 

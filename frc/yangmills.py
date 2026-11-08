@@ -2,7 +2,7 @@
 (7–8 November 2026; 46-yangmills-20261107/reports/study.md, Phases 1–2 and the repair of 8 November).
 
 The registrations of the colour frame and their Carrier residues (the non-split torus without a fixed line, the split
-torus with two, the centre Z_3 on Ω ≡ 5 (mod 12)), the residue series closed by the glueball (over F_4 by fixed vectors and
+torus with two, the centre Z_3 on the Subjects p ≡ 5 (mod 12)), the residue series closed by the glueball (over F_4 by fixed vectors and
 by the singlet multiplicities), the Casimirs and the one-loop rational b₀, the drive exponent (every winding rate is one
 power of the drive), the single-plaquette coefficients c₁(β) and c₈(β) as formal power series with rational coefficients
 (the multiplicities of the singlet in the tensor powers of the colour triplet, computed as constant terms of the Weyl

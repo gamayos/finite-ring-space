@@ -7,7 +7,7 @@ is written by hand from the draft and this file carries no generated-table marke
 (Phase 3 adds the markers and lets the tool write the table, the certificates and the notebook).
 
 The checks are EXACT or CHART, one kind per check. An EXACT check decides by finite-field, integer or rational arithmetic:
-the norm-one torus of F_p[√ν] on the laboratory Subjects and Carriers and its eigenvalues, the split torus's fixed lines,
+the norm-one torus of F_p[√ν] on the laboratory Subjects and its eigenvalues, the split torus's fixed lines,
 the arithmetic of the centre's order formula gcd(3, q + 1) and the centre of SU(3, F_2) by elements, the residue series over
 F_4 by linear algebra on SU(3, F_2) (the hadrons theme's group) and by the singlet multiplicities, the finite frame's own
 moments over F_4, the Casimirs and b₀ as rationals, the discrete logarithm on the shells, the plaquette coefficients c₃ and
@@ -23,11 +23,11 @@ the drive exponent's existence and uniqueness from the frame — over the extens
 ledger's JSON in Phase 3.
 
 The laboratory instances are the pairs (13, 233), (173, 30089) and (1549, 2408561), with a sweep over the shells p = 4κ + 1
-below 200 (the author's ruling of 7 November 2026); the third Carrier's torus (2 408 562 elements) runs by default since the
-audit of 8 November 2026 (about 15 s). No numeral above Ω ∼ 10¹²³ is
-formed; the orders of SU(3, F_Ω) are stated as magnitudes in the study, not computed here.
+below 200 (the author's ruling of 7 November 2026). The colour frame is the Subject's (the author's ruling of 8 November 2026):
+SU(3) over the Subject's quadratic extension F_p[√ν], with the full centre on the Subjects p ≡ 5 (mod 12); the Carrier has no
+frame and no extension, so no torus or group is formed over F_Ω. No numeral above Ω ∼ 10¹²³ is formed.
 
-    python3 -m frc.ledgers.p46_yangmills         every block, the census; exit 1 if a check fails (≈ 40 s: the third Carrier's torus 15 s, the F_4 linear algebra 12 s, the wrap spectrum 5 s)
+    python3 -m frc.ledgers.p46_yangmills         every block, the census; exit 1 if a check fails (≈ 25 s: the F_4 linear algebra 12 s, the wrap spectrum 5 s)
     python3 -m frc.ledgers.p46_yangmills A       one block (A to F)
     from frc.ledgers.p46_yangmills import R; R.predicate("46:C1")    one predicate: its blocks run once per session
 
@@ -39,7 +39,7 @@ Blocks:  A  the registrations of the colour frame: the tori, the centre, the res
          F  the minimal wrap (Phase 2, D5): the adjoint wrap, the operator family, the chart's tension ratio (46:C9, C12)
          G  the two routes of the former task T01, both obstructed (8 November 2026)                   (46:C10, C11)
 
-Checks: 19, of them 12 EXACT and 7 CHART (E1–E3, F2, F3, G1, G2).
+Checks: 21, of them 13 EXACT and 8 CHART (E1–E3, F2–F4, G1, G2).
 """
 import sys
 from fractions import Fraction as Q
@@ -58,33 +58,35 @@ KEYS = {"A1": "p46001", "A2": "p46002", "A3": "p46003", "A4": "p46004", "A5": "p
         "C9": "p46030",
         "X1": "p46018", "X2": "p46019", "X3": "p46020", "X4": "p46021", "X5": "p46022",
         "C10": "p46037", "C11": "p46038", "C12": "p46036", "A11": "p46039",   # the push on T01 (8 November 2026): the two obstructions, the family's miss, Münster's series
+        "A12": "p46040", "C13": "p46041", "T04": "p46042",                    # the push on T02 (8 November 2026): the Hughes–Nielsen form, the two rationals, the derivation of the form
+        "P3": "p46043",                                                       # T03 resolved (8 November 2026): the radial ratio of the operator form staked
         "P1": "p46023", "P2": "p46024", "Z1": "p46026",                       # p46027 (V1) retired 8 November 2026: block V deprecated
-        "T02": "p46029", "T03": "p46033"}                                     # p46025 (Y1) and p46028 (T01) retired 8 November 2026: Y1 withdrawn, T01 closed by obstruction
+        }                                                                     # p46025 (Y1), p46028 (T01), p46029 (T02), p46033 (T03) retired 8 November 2026: Y1 withdrawn, T01 closed by obstruction, T02 closed by C13, T03 by P3
 LEAN = {}                       # written by make_predicates/make_ledgers in Phase 3
 
 LEAN_ONLY = ()
 
 LEDGER = {
     "A1": "46:C1, 46:X1, 46:X2", "A2": "46:C1", "A3": "46:C2", "A4": "46:C3, 46:X2", "A5": "46:C3", "A6": "46:C2",
-    "B1": "46:C4, 46:X4", "B2": "46:C5",
+    "B1": "46:C4, 46:X4", "B2": "46:C5", "B3": "46:C13",
     "C1": "46:C6",
     "D1": "46:C7", "D2": "46:C7",
     "E1": "46:P1, 46:X4", "E2": "46:P2", "E3": "46:C8",
-    "F1": "46:C9", "F2": "46:C12", "F3": "46:C9",
+    "F1": "46:C9", "F2": "46:C12", "F3": "46:C9", "F4": "46:P3",
     "G1": "46:C10", "G2": "46:C11",
 }
 
 BLOCK = {"A": "the registrations of the colour frame: the non-split torus without a fixed line, the split torus with two, the centre Z_3 on the Subjects p ≡ 5 (mod 12), the residue series closed by the glueball",
-         "B": "the Casimirs of the frame and the window rational b₀",
+         "B": "the Casimirs of the frame, the window rational b₀ and the two rationals of the one-loop coefficient",
          "C": "the drive exponent: every winding rate is one power of the drive",
          "D": "the tension's coefficient: the single-plaquette coefficient to order β⁷ with rational coefficients",
          "E": "the chart: the LEP colour factors, the one-loop run between laboratory scales, the lattice anchors",
-         "F": "the minimal wrap: the adjoint plaquette coefficient is the square of the fundamental one up to the factor 9/8, with the ratio computed to order β⁴; the chart's operator family against the three lattice determinations; the chart's tension ratio",
+         "F": "the minimal wrap: the adjoint plaquette coefficient is the square of the fundamental one up to the factor 9/8, with the ratio computed to order β⁴; the chart's operator family against the three lattice determinations; the chart's tension ratio; the operator form's radial ratio against the lattice and the nucleon",
          "G": "the two routes of the former task T01: the short-range term collapses at the declared coupling and is the cutoff's number with the running one; the plaquette channel's series gives 4.8 or more where its orders agree"}
 
 PREDICATES = {"46:C1": "A1", "46:X1": "A1", "46:X2": "A1", "46:C2": "A3", "46:C3": "A4",
-              "46:C4": "B1", "46:X4": "B1", "46:C5": "B2", "46:C6": "C1", "46:C7": "D1",
-              "46:P1": "E1", "46:P2": "E2", "46:C8": "E3", "46:C9": "F1", "46:C12": "F2", "46:C10": "G1", "46:C11": "G2"}
+              "46:C4": "B1", "46:X4": "B1", "46:C5": "B2", "46:C13": "B3", "46:C6": "C1", "46:C7": "D1",
+              "46:P1": "E1", "46:P2": "E2", "46:C8": "E3", "46:C9": "F1", "46:C12": "F2", "46:P3": "F4", "46:C10": "G1", "46:C11": "G2"}
 
 R = Registry("46", "yangmills", LEDGER, PREDICATES, sources=[__file__])
 
@@ -100,11 +102,11 @@ def _nonsquare(p):
 @R.block("A", BLOCK["A"])
 def block_A():
     """Block A — the registrations of the colour frame."""
-    # A1 the non-split torus C_{p+1} of F_p[√ν] on the laboratory Subjects and Carriers: p + 1 norm-one elements, exactly two
+    # A1 the non-split torus C_{p+1} of F_p[√ν] on the laboratory Subjects: p + 1 norm-one elements, exactly two
     #    of them (the scalars ±1) with an eigenvalue in F_p; every other element's characteristic polynomial x² − 2a x + 1 has
     #    the nonsquare discriminant 4ν b², so no line of F_p² is fixed by the torus: the gluon, the residue 0, is never
     #    registered alone
-    shells = [p for p, _ in LAB] + [Om for _, Om in LAB]                      # the third Carrier's torus included (audit, 8 November)
+    shells = [p for p, _ in LAB]                                               # the Subjects only: the frame is the Subject's (8 November 2026)
     res = {}
     ok = True
     for p in shells:
@@ -113,8 +115,8 @@ def block_A():
     for p in SWEEP:
         n, k, _ = Y.fixed_lines_nonsplit(p, _nonsquare(p)); ok &= n == p + 1 and k == 2
     # 46:C1 (p46010), 46:X1 (p46018), 46:X2 (p46019)
-    R.check("A1", "the non-split torus has no shell eigenvalue: on the Subjects 13, 173, 1549 and the Carriers 233, 30089, 2408561 "
-            "(and the 21 shells below 200) the norm-one torus of F_p[√ν] has p + 1 elements, of which exactly the two scalars ±1 "
+    R.check("A1", "the non-split torus has no shell eigenvalue: on the Subjects 13, 173, 1549 "
+            "and the 21 shells below 200 the norm-one torus of F_p[√ν] has p + 1 elements, of which exactly the two scalars ±1 "
             "have an eigenvalue in F_p; every non-scalar element's characteristic polynomial x² − 2ax + 1 has the nonsquare "
             "discriminant 4νb², so no line of F_p² is mapped to itself by every element of the torus: the gluon's residue is 0", ok,
             ", ".join(f"{p}: {n} elements, {k} with an eigenvalue" for p, (n, k) in res.items()))
@@ -187,6 +189,26 @@ def block_B():
     R.check("B2", "the window rational b₀ = (11/3) C_A − (4/3) T_F n_f = 11 − 2n_f/3: 9, 25/3, 23/3, 7 for n_f = 3, 4, 5, 6, positive "
             "for every n_f ≤ 16 (asymptotic freedom's sign for the matter content n_f ≤ 16, 27-fields Proposition af) and negative from 17",
             ok, ", ".join(f"n_f={nf}: {vals[nf]}" for nf in (3, 4, 5, 6)))
+
+    # B3 the two rationals of the one-loop coefficient (the push on T02, 8 November 2026). Hughes–Nielsen: b₀ = Σ (−1)^{2s}[(2s)² − 1/3] T(R)
+    #    over the species, one complex scalar, one Weyl fermion, one real vector each once (46:A12, imported). The spin term (2s)² = −2 Tr(J₁₂²)
+    #    with J₁₂ = e₁₂ − e₂₁ on the vector and (i/2)σ₃ on the Weyl spinor; the charge term 1/3 the leading Faulhaber coefficient of the
+    #    scalar loop's midpoint sum 3 Σ_{k<N} (N − 2k − 1)² = N(N² − 1), whose complete cycle N = p vanishes on the shell
+    spin = {"scalar": Q(0), "Weyl": -2 * Q(2 * (Q(1, 2) ** 2) * -1), "vector": -2 * Q(2 * -1)}            # −2 Tr(J²): J² = −1/4·I₂ on the spinor, diag(−1, −1, 0, 0) on the vector
+    def species_sum(nf, ns=0): return 3 * (spin["vector"] - Q(1, 3)) - nf * (spin["Weyl"] - Q(1, 3)) - ns * Q(1, 2) * (spin["scalar"] - Q(1, 3))
+    def faul(N): return sum((N - 2 * k - 1) ** 2 for k in range(N))
+    ok = spin == {"scalar": 0, "Weyl": 1, "vector": 4} and all(species_sum(nf) == Y.b0(nf) for nf in range(0, 17))
+    ok &= all(3 * faul(N) == N * (N * N - 1) for N in range(1, 3000))
+    for p in (13, 173, 1549):
+        inv3 = pow(3, -1, p)
+        ok &= faul(p) % p == 0 and all(faul(N) % p == (N * (N * N - 1) * inv3) % p for N in range(1, min(p, 400)))
+    # 46:C13 (p46041)
+    R.check("B3", "the two rationals of the one-loop coefficient are the frame's: the spin term (2s)² = −2 Tr(J₁₂²) is 0, 1, 4 on the scalar, the "
+            "Weyl spinor and the vector; the charge term 1/3 is the leading Faulhaber coefficient of the scalar loop's midpoint sum, "
+            "3 Σ_{k<N} (N − 2k − 1)² = N(N² − 1) for every N (checked to 3000, and as residues on 13, 173, 1549), whose complete cycle N = p "
+            "vanishes on the shell; the species sum of Hughes–Nielsen with C_A = 3, T_F = 1/2 is 11 − 2n_f/3, the window rational of C5", ok,
+            f"spin terms {dict((k, str(v)) for k, v in spin.items())}; Σ_{{k<10}} = {faul(10)} = 10·99/3; Σ at N = p ≡ 0 on 13, 173, 1549; "
+            + ", ".join(f"n_f={nf}: {species_sum(nf)}" for nf in (0, 3, 6)))
 
 
 # ------------------------------------------------------------------------------------------------------------
@@ -329,6 +351,23 @@ def block_F():
             "(the first two inside the regime β ≪ 1): 1.978, 1.975, 1.977, 1.993, 2.019 — within 2 % of two fundamental wraps and equal to "
             "2 at none of the five; the chart's reading of F1's ratio (9/8)(1 − β/18 + …)", ok,
             ", ".join(f"β={b}: {CY.fmt(v, 4)}" for b, v in vals.items()), kind="CHART")
+
+    # F4 the radial ratio of the operator form (T03 resolved, 8 November 2026): E₁/E₀ and E₂/E₀ of a|p| + ϰr are free of a and ϰ (the dilation
+    #    symmetry); E₁/E₀ = 1.49 against the lattice 0⁺⁺*/0⁺⁺ = 1.54(11) (Morningstar–Peardon, r₀ masses) and the nucleon's N(1440)/N(939) = 1.53;
+    #    the nonrelativistic ladder p²/2 + r has the Airy ratio a₂/a₁ = 4.088/2.338 = 1.75, outside the lattice bracket
+    spec1 = CY.wrap_spectrum(1, 1, 3); spec2 = CY.wrap_spectrum(2, Q(9, 4), 3)
+    q1 = Q(repr(spec1[1])) / Q(repr(spec1[0])); q2 = Q(repr(spec1[2])) / Q(repr(spec1[0])); q1b = Q(repr(spec2[1])) / Q(repr(spec2[0]))
+    airy = Q("4.08795") / Q("2.33811"); roper = Q(1440, 939)
+    ok = Q("1.49") < q1 < Q("1.493") and abs(q1 - q1b) < Q("0.002") and Q("1.86") < q2 < Q("1.87")
+    ok &= abs(q1 - rl) < drl / 2 and airy > rl + drl and Q("1.74") < airy < Q("1.76")
+    ok &= abs(roper - q1) < Q("0.03") * q1
+    # 46:P3 (p46043)
+    R.check("F4", "[chart] the radial ratio of the operator form: E₁/E₀ = 1.49 and E₂/E₀ = 1.86 for every a and ϰ (the dilation symmetry, the same "
+            "on (1, 1) and (2, 9/4) to 10⁻³), a property of the chart's operator form and of nothing in the frame; against the lattice "
+            "0⁺⁺*/0⁺⁺ = 1.54(11) it lies within half a standard deviation, while the nonrelativistic ladder's Airy ratio 1.75 lies outside the "
+            "bracket; the nucleon's N(1440)/N(939) = 1.53 lies within 3 %", ok,
+            f"E₁/E₀ = {CY.fmt(q1, 4)} ((2, 9/4): {CY.fmt(q1b, 4)}), E₂/E₀ = {CY.fmt(q2, 4)}, lattice {CY.fmt(rl)} ± {CY.fmt(drl)}, Airy {CY.fmt(airy, 4)}, "
+            f"Roper {CY.fmt(roper, 4)}", kind="CHART")
 
 
 # ------------------------------------------------------------------------------------------------------------

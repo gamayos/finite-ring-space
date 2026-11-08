@@ -8459,6 +8459,109 @@ theorem xboost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1)
 
 end frame
 
+/-! ## The generation of the Lorentz group of the shell: the reduction to a spatial vector -/
+
+section frame
+variable {κ : Nat} {g : Shell p}
+
+/-- 3:C4 — the square shift: for `t ≠ 0` the residue `x = (1 + g t²)/2` makes `x² − g t²` the nonzero square `y²`,
+`y = (g t² − 1)/2`; `y ≠ 0` since `g t² = 1` would make the drive a square. -/
+theorem square_shift (F : Frame p κ g) {t : Shell p} (ht : t ≠ 0) :
+    ∃ x y : Shell p, y ≠ 0 ∧ x * x + -(g * (t * t)) = y * y := by
+  obtain ⟨h, hh⟩ := F.exists_inv F.two_ne_zero
+  have h2 : h + h = 1 := by rw [← two_mul', hh]
+  let u := g * (t * t)
+  have e : ((1 + u) * h) * ((1 + u) * h) + -u = ((u + -1) * h) * ((u + -1) * h) + u * ((h + h) * (h + h) + -1) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [u, h])
+      (.add (.mul (.mul (.add .one (.var 0)) (.var 1)) (.mul (.add .one (.var 0)) (.var 1))) (.neg (.var 0)))
+      (.add (.mul (.mul (.add (.var 0) (.neg .one)) (.var 1)) (.mul (.add (.var 0) (.neg .one)) (.var 1)))
+        (.mul (.var 0) (.add (.mul (.add (.var 1) (.var 1)) (.add (.var 1) (.var 1))) (.neg .one))))
+      (by decide +kernel)
+  refine ⟨(1 + u) * h, (u + -1) * h, fun hy => ?_, ?_⟩
+  · have hh0 : h ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hh, h0, mul_zero])
+    have hu : u + -1 = 0 := match F.mul_eq_zero hy with
+      | .inl e1 => e1
+      | .inr e2 => absurd e2 hh0
+    have hu1 : g * (t * t) = 1 := by
+      calc g * (t * t) = u + -1 + 1 := by rw [add_assoc, neg_add, add_zero]
+        _ = 1 := by rw [hu, zero_add]
+    obtain ⟨s, hs⟩ := F.exists_inv ht
+    exact drive_nonsquare F ⟨s, by
+      calc s * s = g * (t * t) * (s * s) := by rw [hu1, one_mul]
+        _ = g * ((t * s) * (t * s)) := by rw [mul_assoc, sq_mul t s]
+        _ = g := by rw [hs, mul_one, mul_one]⟩
+  · rw [e, h2, mul_one, add_neg, mul_zero, add_zero]
+
+/-- 3:C4 — the boosts act transitively on each level set of the plane `x² − g t² = m`, `m ≠ 0`: the boost
+`γ = (x₂x₁ − g t₂t₁)/m`, `b = (t₂x₁ − x₂t₁)/m` (the quotient of the two points in `𝔽_p(√g)`) carries `(t₁, x₁)` to
+`(t₂, x₂)`. -/
+theorem boost_transitive (F : Frame p κ g) {t₁ x₁ t₂ x₂ : Shell p}
+    (hm : Q2 g t₁ x₁ ≠ 0) (h12 : Q2 g t₁ x₁ = Q2 g t₂ x₂) :
+    ∃ γ b : Shell p, γ * γ + -(g * (b * b)) = 1 ∧ boostT g γ b t₁ x₁ = t₂ ∧ boostX g γ b t₁ x₁ = x₂ := by
+  obtain ⟨n, hn⟩ := F.exists_inv hm
+  let m := Q2 g t₁ x₁
+  have hm1 : m = x₁ * x₁ + -(g * (t₁ * t₁)) := rfl
+  have hm2 : m = x₂ * x₂ + -(g * (t₂ * t₂)) := h12
+  refine ⟨(x₂ * x₁ + -(g * (t₂ * t₁))) * n, (t₂ * x₁ + -(x₂ * t₁)) * n, ?_, ?_, ?_⟩
+  · -- Brahmagupta: (x₂x₁ − g t₂t₁)² − g (t₂x₁ − x₂t₁)² = (x₂² − g t₂²)(x₁² − g t₁²)
+    have e : ((x₂ * x₁ + -(g * (t₂ * t₁))) * n) * ((x₂ * x₁ + -(g * (t₂ * t₁))) * n)
+        + -(g * (((t₂ * x₁ + -(x₂ * t₁)) * n) * ((t₂ * x₁ + -(x₂ * t₁)) * n)))
+        = ((x₂ * x₂ + -(g * (t₂ * t₂))) * n) * ((x₁ * x₁ + -(g * (t₁ * t₁))) * n) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [x₁, t₁, x₂, t₂, g, n])
+        (.add (.mul (.mul (.add (.mul (.var 2) (.var 0)) (.neg (.mul (.var 4) (.mul (.var 3) (.var 1))))) (.var 5))
+                    (.mul (.add (.mul (.var 2) (.var 0)) (.neg (.mul (.var 4) (.mul (.var 3) (.var 1))))) (.var 5)))
+              (.neg (.mul (.var 4) (.mul (.mul (.add (.mul (.var 3) (.var 0)) (.neg (.mul (.var 2) (.var 1)))) (.var 5))
+                    (.mul (.add (.mul (.var 3) (.var 0)) (.neg (.mul (.var 2) (.var 1)))) (.var 5))))))
+        (.mul (.mul (.add (.mul (.var 2) (.var 2)) (.neg (.mul (.var 4) (.mul (.var 3) (.var 3))))) (.var 5))
+              (.mul (.add (.mul (.var 0) (.var 0)) (.neg (.mul (.var 4) (.mul (.var 1) (.var 1))))) (.var 5)))
+        (by decide +kernel)
+    rw [e, ← hm2, ← hm1]
+    show Q2 g t₁ x₁ * n * (Q2 g t₁ x₁ * n) = 1
+    rw [hn, mul_one]
+  · -- γ t₁ + b x₁ = t₂ (x₁² − g t₁²) / m
+    unfold boostT
+    have e : ((x₂ * x₁ + -(g * (t₂ * t₁))) * n) * t₁ + ((t₂ * x₁ + -(x₂ * t₁)) * n) * x₁
+        = t₂ * ((x₁ * x₁ + -(g * (t₁ * t₁))) * n) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [x₁, t₁, x₂, t₂, g, n])
+        (.add (.mul (.mul (.add (.mul (.var 2) (.var 0)) (.neg (.mul (.var 4) (.mul (.var 3) (.var 1))))) (.var 5)) (.var 1))
+              (.mul (.mul (.add (.mul (.var 3) (.var 0)) (.neg (.mul (.var 2) (.var 1)))) (.var 5)) (.var 0)))
+        (.mul (.var 3) (.mul (.add (.mul (.var 0) (.var 0)) (.neg (.mul (.var 4) (.mul (.var 1) (.var 1))))) (.var 5)))
+        (by decide +kernel)
+    rw [e, ← hm1]
+    show _ * (Q2 g t₁ x₁ * n) = _
+    rw [hn, mul_one]
+  · -- γ x₁ + g b t₁ = x₂ (x₁² − g t₁²) / m
+    unfold boostX
+    have e : ((x₂ * x₁ + -(g * (t₂ * t₁))) * n) * x₁ + g * (((t₂ * x₁ + -(x₂ * t₁)) * n) * t₁)
+        = x₂ * ((x₁ * x₁ + -(g * (t₁ * t₁))) * n) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [x₁, t₁, x₂, t₂, g, n])
+        (.add (.mul (.mul (.add (.mul (.var 2) (.var 0)) (.neg (.mul (.var 4) (.mul (.var 3) (.var 1))))) (.var 5)) (.var 0))
+              (.mul (.var 4) (.mul (.mul (.add (.mul (.var 3) (.var 0)) (.neg (.mul (.var 2) (.var 1)))) (.var 5)) (.var 1))))
+        (.mul (.var 2) (.mul (.add (.mul (.var 0) (.var 0)) (.neg (.mul (.var 4) (.mul (.var 1) (.var 1))))) (.var 5)))
+        (by decide +kernel)
+    rw [e, ← hm1]
+    show _ * (Q2 g t₁ x₁ * n) = _
+    rw [hn, mul_one]
+
+/-- 3:C4 — time to space: for `t ≠ 0` there are a residue `x` and a boost carrying `(t, x)` to `(0, y)` with `y ≠ 0`.
+With the spatial rotations, which give the spatial part any `x`-component (Witt), every non-null vector of `Q_g` is
+carried to a spatial one; the conjugates of the spatial reflections are then all the reflections, which generate
+`O(Q_g, 𝔽_p)` (Cartan–Dieudonné). -/
+theorem time_to_space (F : Frame p κ g) {t : Shell p} (ht : t ≠ 0) :
+    ∃ x y γ b : Shell p, y ≠ 0 ∧ γ * γ + -(g * (b * b)) = 1 ∧ boostT g γ b t x = 0 ∧ boostX g γ b t x = y := by
+  obtain ⟨x, y, hy, hxy⟩ := square_shift F ht
+  have hq : Q2 g t x = Q2 g 0 y := by
+    show x * x + -(g * (t * t)) = y * y + -(g * (0 * 0))
+    rw [hxy, mul_zero, mul_zero, neg_zero, add_zero]
+  have hm : Q2 g t x ≠ 0 := by
+    rw [hq]; show y * y + -(g * (0 * 0)) ≠ 0
+    rw [mul_zero, mul_zero, neg_zero, add_zero]
+    exact fun h => hy ((sq_eq_zero F).1 h)
+  obtain ⟨γ, b, hγ, h1, h2⟩ := boost_transitive F hm hq
+  exact ⟨x, y, γ, b, hy, hγ, h1, h2⟩
+
+end frame
+
 /-! ## The worked shells -/
 
 /-- The frame of the laboratory Subject `𝔽₁₇₃`, drive `2`. -/
@@ -8490,13 +8593,16 @@ namespace FRC.Ledger
 /-- p00030 — 00:C10. A registered probability is a framed rational; a structural weight is an element of the parity-even cyclotomic subring. The strata coincide exactly on the stationary core-valued $Q_4$ sector, joined by two proved reductions and the stratum-sampling clause (D10). On a single Object the weights are uniform over the fibres (22-qm Rem.~borndomain); non-uniform statistics arrive through the engineered-core readout. -/
 theorem p00030 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Extension.Ext p ν), (z.conj = z ↔ z.im = (0 : FRC.Shell p)) ∧ z + z.conj = FRC.Extension.Ext.ofShell z.trace) ∧ (∀ {p : Nat} [FRC.Pos p], (FRC.Extension.Wp + FRC.Extension.Wp.conj = FRC.Extension.Ext.ofShell (4 : FRC.Shell p) ∧ FRC.Extension.Wp * FRC.Extension.Wp.conj = FRC.Extension.Ext.ofShell (2 : FRC.Shell p) ∧ FRC.Extension.Wp.trace = (4 : FRC.Shell p) ∧ FRC.Extension.Wp.norm = (2 : FRC.Shell p)) ∧ (641 : Nat) % (8 : Nat) = (1 : Nat) ∧ (67 : FRC.Shell (641 : Nat)) * (67 : FRC.Shell (641 : Nat)) = (2 : FRC.Shell (641 : Nat)) ∧ (2 : FRC.Shell (641 : Nat)) + (67 : FRC.Shell (641 : Nat)) + ((2 : FRC.Shell (641 : Nat)) + (-67 : FRC.Shell (641 : Nat))) = (4 : FRC.Shell (641 : Nat)) ∧ ((2 : FRC.Shell (641 : Nat)) + (67 : FRC.Shell (641 : Nat))) * ((2 : FRC.Shell (641 : Nat)) + (-67 : FRC.Shell (641 : Nat))) = (2 : FRC.Shell (641 : Nat)) ∧ (3 : FRC.Shell (641 : Nat)) ^ (555 : Nat) = (67 : FRC.Shell (641 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ζ η : FRC.Shell p}, ζ ^ (8 : Nat) = (1 : FRC.Shell p) → ζ ^ (4 : Nat) ≠ (1 : FRC.Shell p) → ζ * η = (1 : FRC.Shell p) → (ζ + η) * (ζ + η) = (2 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν) (k m : Nat), z ^ k * z.conj ^ (k + m) + z.conj ^ k * z ^ (k + m) = FRC.Extension.Ext.ofShell (z.norm ^ k * (z ^ m).trace)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, (∀ (z : FRC.Extension.Ext p ν) (m : Nat), (z ^ (m + (2 : Nat))).trace + z.norm * (z ^ m).trace = z.trace * (z ^ (m + (1 : Nat))).trace) ∧ ((FRC.Extension.Wp ^ (0 : Nat)).trace = (2 : FRC.Shell p) ∧ (FRC.Extension.Wp ^ (1 : Nat)).trace = (4 : FRC.Shell p)) ∧ (FRC.Extension.Wp ^ (2 : Nat)).trace = (12 : FRC.Shell (641 : Nat)) ∧ (FRC.Extension.Wp ^ (3 : Nat)).trace = (40 : FRC.Shell (641 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ζ η : FRC.Shell p} (M : Nat), ζ ^ ((2 : Nat) * M) = (1 : FRC.Shell p) → ζ ^ M ≠ (1 : FRC.Shell p) → ζ * η = (1 : FRC.Shell p) → ∀ (θ : Nat), θ ≤ M → (2 : FRC.Shell p) + (ζ ^ (M - θ) + η ^ (M - θ)) = (2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ζ η : FRC.Shell p} (N : Nat), ζ ^ N = (1 : FRC.Shell p) → ζ * η = (1 : FRC.Shell p) → ζ * ζ ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun θ => (2 : FRC.Shell p) + (ζ ^ θ + η ^ θ)) N = FRC.Shell.ofNat N * (2 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun θ => (2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ)) N = FRC.Shell.ofNat N * (2 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun θ => ((2 : FRC.Shell p) + (ζ ^ θ + η ^ θ)) * ((2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ))) N = FRC.Shell.ofNat N * (2 : FRC.Shell p)) ∧ (∀ (n : Nat), n < (9 : Nat) → FRC.Extension.gridPoint n * FRC.Extension.gridPoint n ≤ (2 : Nat) * (9 : Nat) ^ n ∧ (2 : Nat) * (9 : Nat) ^ n < (FRC.Extension.gridPoint n + (1 : Nat)) * (FRC.Extension.gridPoint n + (1 : Nat))) ∧ (∀ (n : Nat), n < (8 : Nat) → (3 : Nat) * FRC.Extension.gridPoint n ≤ FRC.Extension.gridPoint (n + (1 : Nat)) ∧ FRC.Extension.gridPoint (n + (1 : Nat)) ≤ (3 : Nat) * FRC.Extension.gridPoint n + (2 : Nat)) ∧ ((2 : Nat) * (3 : Nat) ^ (4 : Nat) + FRC.Extension.gridPoint (4 : Nat)) * (54 : Nat) = (23 : Nat) * ((8 : Nat) * (3 : Nat) ^ (4 : Nat)) ∧ ((46 : Nat) * (46 : Nat) ≤ (3 : Nat) * (3 : Nat) ^ (6 : Nat) ∧ (3 : Nat) * (3 : Nat) ^ (6 : Nat) < (47 : Nat) * (47 : Nat)) ∧ (23 : Nat) + (23 : Nat) + (4 : Nat) + (4 : Nat) = (54 : Nat) ∧ FRC.Extension.largestRemainder (81 : Nat) (54 : Nat) [(23 : Nat), (23 : Nat), (4 : Nat), (4 : Nat)] = [(35 : Nat), (34 : Nat), (6 : Nat), (6 : Nat)] :=
   And.intro @FRC.Extension.two_way_tally (And.intro @FRC.Extension.core_weights (And.intro @FRC.Extension.root_two_two_way (And.intro @FRC.Extension.conjugate_pair_tally (And.intro @FRC.Extension.trace_recurrence (And.intro @FRC.Extension.dial_shift (And.intro @FRC.Extension.dial_tally (@FRC.Extension.framed_readout)))))))
-/-- p03007 — 3:B3. Square-class absorption: if $a_{j}/a_{0}\in S$ for all $j$ then $Q\simeq a_{0}\sum Y_{j}^{2}$ by $Y_{j}=w_{j}X_{j}$, $w_{j}^{2}=a_{j}/a_{0}$; no root of $a_{0}$ is needed, and none exists for $a_{0}\in N$. -/
+/-- p03006 — 3:B2. Nonexistence of a causal square root: no $s\in\Fp$ has $s^{2}=\nu$ for a nonsquare $\nu$; for $s\in\Fpx$ every coefficient of $-s^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=\im^{2}$), and the form is Euclidean. -/
+theorem p03006 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → ∀ (c : FRC.Shell p), c * c ≠ ν) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (c : FRC.Shell p), FRC.Shell.Frame.IsSquare (-(c * c)) :=
+  And.intro @FRC.Shell.Frame.no_causal_root (@FRC.Shell.Frame.neg_sq_is_square)
+/-- p03007 — 3:B3. Square-class absorption: if every $a_{j}/a_{0}$ is a square then $Q\simeq a_{0}\sum Y_{j}^{2}$ by $Y_{j}=w_{j}X_{j}$, $w_{j}^{2}=a_{j}/a_{0}$. -/
 theorem p03007 : ∀ {p : Nat} [FRC.Pos p] (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : FRC.Shell p), w1 * w1 * a0 = a1 → w2 * w2 * a0 = a2 → w3 * w3 * a0 = a3 → a0 * (x0 * x0) + a1 * (x1 * x1) + a2 * (x2 * x2) + a3 * (x3 * x3) = a0 * (x0 * x0 + w1 * x1 * (w1 * x1) + w2 * x2 * (w2 * x2) + w3 * x3 * (w3 * x3)) :=
   @FRC.Shell.Frame.absorb
 set_option linter.defProp false in
-/-- p03009 — 3:B5. The Witt decomposition: for $\nu\in N$ the plane $x^{2}-\nu t^{2}$ is anisotropic and $y^{2}+z^{2}=(y+\im z)(y-\im z)$ hyperbolic, so $Q_{\nu}$ has Witt index one; for $\nu=w^{2}$ the $(t,x)$-plane is hyperbolic too. In $K=\Fp(\eta)$, $\nu=\eta^{2}$ and $Q_{\nu}$ is hyperbolic: the extension dissolves the split. -/
+/-- p03009 — 3:B5. The Witt decomposition: for a nonsquare $\nu$ the plane $x^{2}-\nu t^{2}$ is anisotropic and $y^{2}+z^{2}=(y+\im z)(y-\im z)$ hyperbolic, so $Q_{\nu}$ has Witt index one; for $\nu=w^{2}$ the $(t,x)$-plane is hyperbolic too. In $K=\Fp(\eta)$, $\nu=\eta^{2}$ and $Q_{\nu}$ is hyperbolic: the extension dissolves the square-class separation. -/
 def p03009 := And.intro @FRC.Shell.Frame.aniso_tx (And.intro @FRC.Shell.Frame.null_yz (And.intro @FRC.Shell.Frame.null_tx_of_square (@FRC.Extension.Ext.w_sq)))
-/-- p03014 — 3:C3. Velocity: $\gamma\neq0$ on every boost; $v=-\nu b/\gamma\in\Fp$; $\gamma^{2}(\nu-v^{2})=\nu$, the finite $\gamma=1/\sqrt{1-\beta^{2}}$ with $\beta^{2}=v^{2}/\nu$ ($\beta$ itself is no residue of the shell); Einstein's law $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/\nu)$ exact, the denominator never zero. -/
+/-- p03014 — 3:C3. Velocity: $\gamma\neq0$ on every boost; $v=-\nu b/\gamma\in\Fp$, the same for $\pm\zeta$, so $(\p+1)/2$ velocities; $\gamma^{2}(\nu-v^{2})=\nu$, the finite counterpart of $\gamma=1/\sqrt{1-\beta^{2}}$ with $\beta^{2}=v^{2}/\nu$; Einstein's law $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/\nu)$ exact, the denominator never zero. -/
 theorem p03014 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν γ b : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → γ ≠ (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν γ b v : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → v * γ = -(ν * b) → γ * γ * (ν + -(v * v)) = ν) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν γ1 b1 γ2 b2 v1 v2 v12 : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → γ1 * γ1 + -(ν * (b1 * b1)) = (1 : FRC.Shell p) → γ2 * γ2 + -(ν * (b2 * b2)) = (1 : FRC.Shell p) → v1 * γ1 = -(ν * b1) → v2 * γ2 = -(ν * b2) → v12 * (γ1 * γ2 + ν * (b1 * b2)) = -(ν * (γ1 * b2 + b1 * γ2)) → v12 * (ν + v1 * v2) = ν * (v1 + v2) :=
   And.intro @FRC.Shell.Frame.gamma_ne_zero (And.intro @FRC.Shell.Frame.gamma_velocity (@FRC.Shell.Frame.velocity_addition))
 /-- p08012 — 8:B6. Norm growth and parity: one chronon of drive scales every Frobenius norm by the square $g^2$; the single-chronon multiplier is odd and has no square root in $\Fp$; the flip $g\mapsto g^{-1}$ preserves the parity class. -/
@@ -8552,28 +8658,25 @@ theorem p00176 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p00199 — 00:E12. \textbf{The chart count}: a homogeneous chart on the $\Om$ registrations, flat to the horizon radius in $d$ dimensions, holds the $\mathbb Z^{d}$ ball of that radius; for $d\ge2$ the ball exceeds $\Om$, for $d=1$ it fits. The one chart flat to the horizon radius is the drive's scale-time direction (E11); a three-chart of curvature radius $\sqrt\Om$ needs $\Om^{3/2}$ cells (A2). -/
 theorem p00199 : (∀ (R Ω : Nat), Ω < (R + (1 : Nat)) * (R + (1 : Nat)) → Ω < (2 : Nat) * (R * R) + (2 : Nat) * R + (1 : Nat)) ∧ (∀ (R Ω : Nat), Ω < (R + (1 : Nat)) * (R + (1 : Nat)) → (3 : Nat) * Ω < (4 : Nat) * (R * R * R) + (6 : Nat) * (R * R) + (8 : Nat) * R + (3 : Nat)) ∧ (∀ (R Ω : Nat), R * R ≤ Ω → (5 : Nat) ≤ Ω → (2 : Nat) ≤ R → (2 : Nat) * R + (1 : Nat) ≤ Ω) ∧ (1551 : Nat) * (1551 : Nat) ≤ (2408561 : Nat) ∧ (2408561 : Nat) < (1552 : Nat) * (1552 : Nat) ∧ ((4 : Nat) * ((121 : Nat) * (121 : Nat) * (121 : Nat)) + (6 : Nat) * ((121 : Nat) * (121 : Nat)) + (8 : Nat) * (121 : Nat) + (3 : Nat)) / (3 : Nat) = (2391687 : Nat) ∧ (2391687 : Nat) ≤ (2408561 : Nat) ∧ ((4 : Nat) * ((122 : Nat) * (122 : Nat) * (122 : Nat)) + (6 : Nat) * ((122 : Nat) * (122 : Nat)) + (8 : Nat) * (122 : Nat) + (3 : Nat)) / (3 : Nat) = (2451225 : Nat) ∧ (2408561 : Nat) < (2451225 : Nat) ∧ (2 : Nat) * ((1096 : Nat) * (1096 : Nat)) + (2 : Nat) * (1096 : Nat) + (1 : Nat) ≤ (2408561 : Nat) ∧ (2408561 : Nat) < (2 : Nat) * ((1097 : Nat) * (1097 : Nat)) + (2 : Nat) * (1097 : Nat) + (1 : Nat) ∧ (2 : Nat) * (1551 : Nat) + (1 : Nat) ≤ (2408561 : Nat) :=
   And.intro @FRC.Grav.chart_plane_overflows (And.intro @FRC.Grav.chart_space_overflows (And.intro @FRC.Grav.chart_line_fits (@FRC.Grav.chart_lab_instance)))
-/-- p03006 — 3:B2. Nonexistence of a causal square root: no $s\in\Fp$ has $s^{2}=\nu$ for $\nu\in N$; for $s\neq0$ every coefficient of $-s^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=\im^{2}$), the form Euclidean with $\p^{3}+\p^{2}-\p$ zeros; $s=0$ gives a degenerate form. -/
-theorem p03006 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → ∀ (c : FRC.Shell p), c * c ≠ ν) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (c : FRC.Shell p), FRC.Shell.Frame.IsSquare (-(c * c))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {w : FRC.Shell p}, w ≠ (0 : FRC.Shell p) → FRC.Causal.formCount (w * w) (0 : FRC.Shell p) + p = p * p * p + p * p :=
-  And.intro @FRC.Shell.Frame.no_causal_root (And.intro @FRC.Shell.Frame.neg_sq_is_square (@FRC.Causal.null_hyperbolic))
-/-- p03008 — 3:B4, 7:A8. The dichotomy lives on the shell: $\operatorname{disc}Q_{\nu}\equiv\nu$ (as $-1\in S$); for $\nu\in N$ the form is elliptic, Witt index one, with $\p^{3}-\p^{2}+\p$ null vectors; for $\nu\in S$ hyperbolic, Witt index two, with $\p^{3}+\p^{2}-\p$. -/
+/-- p03008 — 3:B4, 7:A8. The dichotomy lives on the shell: $\operatorname{disc}Q_{\nu}\equiv\nu$, as $-1$ is a square; for a nonsquare $\nu$ the form is elliptic, Witt index one, with $\p^{3}-\p^{2}+\p$ null vectors; for a square $\nu$ hyperbolic, Witt index two, with $\p^{3}+\p^{2}-\p$. -/
 theorem p03008 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → FRC.Causal.formCount ν (0 : FRC.Shell p) + p * p = p * p * p + p) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {w : FRC.Shell p}, w ≠ (0 : FRC.Shell p) → FRC.Causal.formCount (w * w) (0 : FRC.Shell p) + p = p * p * p + p * p) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → FRC.Causal.planeCount ν (0 : FRC.Shell p) = (1 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {w : FRC.Shell p}, w ≠ (0 : FRC.Shell p) → FRC.Causal.planeCount (w * w) (0 : FRC.Shell p) + (1 : Nat) = (2 : Nat) * p :=
   And.intro @FRC.Causal.null_elliptic (And.intro @FRC.Causal.null_hyperbolic (And.intro @FRC.Causal.plane_zero_aniso (@FRC.Causal.plane_zero_split)))
 /-- p03010 — 3:B6. The finite Lorentz group of the shell: $O(Q_{\g},\Fp)=O_{4}^{-}(\p)$ of order $2\p^{2}(\p^{4}-1)$, the $\p^{3}+\p$ points of the time sphere $Q_{\g}=-\g$ times $O(3,\Fp)$ of order $2\p(\p^{2}-1)$; every nonzero value of $Q_{\g}$ is taken $\p^{3}+\p$ times; over $K$ the group is $O_{4}^{+}(\p^{2})$. -/
 theorem p03010 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a : FRC.Shell p}, a ≠ (0 : FRC.Shell p) → FRC.Causal.formCount g a = p * p * p + p) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {c : FRC.Shell p}, c ≠ (0 : FRC.Shell p) → FRC.Causal.planeCount g c = p + (1 : Nat) :=
   And.intro @FRC.Causal.sphere_drive (@FRC.Causal.plane_nonzero)
-/-- p03011 — 3:B7, 7:A9. The causal classes: the null cone and the two classes of non-null vectors by the square class of $Q_{\g}(v)$, $(\p-1)(\p^{3}+\p)/2$ each, partition $\Fp^{4}$ and are invariant under $O(Q_{\g},\Fp)$ and rescaling; a similitude multiplies $Q_{\g}$ by $\g$ and exchanges the two non-null classes. -/
+/-- p03011 — 3:B7, 7:A9. The causal classes: the null cone and the two classes of non-null vectors by the square class of $Q_{\g}(X)$, $(\p-1)(\p^{3}+\p)/2$ each, partition $\Fp^{4}$ and are invariant under $O(Q_{\g},\Fp)$ and rescaling; the timelike class is that of $e_{t}$; a similitude multiplies $Q_{\g}$ by $\g$ and exchanges the two non-null classes. -/
 theorem p03011 : (∀ {p : Nat} [FRC.Pos p] (ν a b c t x y z : FRC.Shell p), a * a + b * b = ν → c * c = (-1 : FRC.Shell p) → -(ν * (c * z * (c * z))) + (a * x + -(b * y)) * (a * x + -(b * y)) + (b * x + a * y) * (b * x + a * y) + c * (ν * t) * (c * (ν * t)) = ν * (-(ν * (t * t)) + x * x + y * y + z * z)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {s : FRC.Shell p}, s ≠ (0 : FRC.Shell p) → (FRC.Shell.Frame.IsSquare s ↔ ¬FRC.Shell.Frame.IsSquare (g * s))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → FRC.Causal.formCount ν (0 : FRC.Shell p) + p * p = p * p * p + p :=
   And.intro @FRC.Causal.similitude (And.intro @FRC.Causal.class_flip (@FRC.Causal.null_elliptic))
-/-- p03013 — 3:C2, 7:A10. $\Lambda(\gamma,b)$ preserves $-\nu t^{2}+x^{2}$ exactly and $\Lambda(z_{1})\Lambda(z_{2})=\Lambda(z_{1}z_{2})$: for $\nu=\g$ the boosts are the norm-one cycle $N^{1}\simeq C_{\p+1}$, the non-split torus, and exhaust $SO$ in dimension $1{+}1$; with $\nu\in S$ the same construction is the split torus $C_{\p-1}$. -/
+/-- p03013 — 3:C2, 7:A10. $\Lambda(\gamma,b)$ preserves $-\nu t^{2}+x^{2}$ exactly and $\Lambda(\zeta_{1})\Lambda(\zeta_{2})=\Lambda(\zeta_{1}\zeta_{2})$: for $\nu=\g$ the boosts are the norm-one cycle $N^{1}\simeq C_{\p+1}$, the non-split torus, and exhaust the determinant-one isometries of the binary form; for a square $\nu$ the same construction is the split torus $C_{\p-1}$. -/
 theorem p03013 : (∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → ∀ (t x : FRC.Shell p), FRC.Shell.Frame.Q2 ν (FRC.Shell.Frame.boostT ν γ b t x) (FRC.Shell.Frame.boostX ν γ b t x) = FRC.Shell.Frame.Q2 ν t x) ∧ (∀ {p : Nat} [FRC.Pos p] (ν γ1 b1 γ2 b2 t x : FRC.Shell p), FRC.Shell.Frame.boostT ν γ1 b1 (FRC.Shell.Frame.boostT ν γ2 b2 t x) (FRC.Shell.Frame.boostX ν γ2 b2 t x) = FRC.Shell.Frame.boostT ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x) ∧ (∀ {p : Nat} [FRC.Pos p] (ν γ1 b1 γ2 b2 t x : FRC.Shell p), FRC.Shell.Frame.boostX ν γ1 b1 (FRC.Shell.Frame.boostT ν γ2 b2 t x) (FRC.Shell.Frame.boostX ν γ2 b2 t x) = FRC.Shell.Frame.boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x) ∧ (∀ {p : Nat} [FRC.Pos p] {ν γ1 b1 γ2 b2 : FRC.Shell p}, γ1 * γ1 + -(ν * (b1 * b1)) = (1 : FRC.Shell p) → γ2 * γ2 + -(ν * (b2 * b2)) = (1 : FRC.Shell p) → (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) + -(ν * ((γ1 * b2 + b1 * γ2) * (γ1 * b2 + b1 * γ2))) = (1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {c : FRC.Shell p}, c ≠ (0 : FRC.Shell p) → FRC.Causal.planeCount g c = p + (1 : Nat) :=
   And.intro @FRC.Shell.Frame.boost_preserves (And.intro @FRC.Shell.Frame.boost_comp_t (And.intro @FRC.Shell.Frame.boost_comp_x (And.intro @FRC.Shell.Frame.norm_one_mul (@FRC.Causal.plane_nonzero))))
-/-- p03015 — 3:C4. Dimension $1{+}3$: the $x$-boost $\Lambda\oplus I_{2}$ lies in $O(Q_{\g},\Fp)$; with the spatial reflections, which generate $O(3,\Fp)$, it moves the time vector over the whole time sphere, so together they generate $O(Q_{\g},\Fp)=O_{4}^{-}(\p)$. -/
-theorem p03015 : ∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → ∀ (t x y z : FRC.Shell p), FRC.Shell.Frame.Q2 ν (FRC.Shell.Frame.boostT ν γ b t x) (FRC.Shell.Frame.boostX ν γ b t x) + (y * y + z * z) = FRC.Shell.Frame.Q2 ν t x + (y * y + z * z) :=
-  @FRC.Causal.xboost_preserves
-/-- p03017 — 3:D1. $\F_{13}$ and $\F_{173}$ [value]: on $\F_{13}$, $S=\{1,3,4,9,10,12\}$, $N=\{2,5,6,7,8,11\}$, $\g=2$, $X^{2}-2$ irreducible; $2041$ null vectors of $Q_{2}$, $2353$ for the Euclidean form, $4\,855\,201$ over $K$; $14$ boosts with $7$ velocities; on $\F_{173}$, $\g=2$, $5\,147\,961$ null vectors and $174$ boosts. -/
+/-- p03015 — 3:C4. Generation: the $x$-boost $\Lambda\oplus I_{2}$ lies in $O(Q_{\g},\Fp)$, and with $O(3,\Fp)$ the $x$-boosts generate $O(Q_{\g},\Fp)=O_{4}^{-}(\p)$. By A2 it suffices to carry each non-null $u$ with $t\neq0$ to a spatial vector: $x=(1+\g t^{2})/2$ gives $x^{2}-\g t^{2}=w^{2}$, $w\neq0$, and one boost carries $(t,x)$ to $(0,w)$. -/
+theorem p03015 : (∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → ∀ (t x y z : FRC.Shell p), FRC.Shell.Frame.Q2 ν (FRC.Shell.Frame.boostT ν γ b t x) (FRC.Shell.Frame.boostX ν γ b t x) + (y * y + z * z) = FRC.Shell.Frame.Q2 ν t x + (y * y + z * z)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {t : FRC.Shell p}, t ≠ (0 : FRC.Shell p) → ∃ x y, y ≠ (0 : FRC.Shell p) ∧ x * x + -(g * (t * t)) = y * y) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {t₁ x₁ t₂ x₂ : FRC.Shell p}, FRC.Shell.Frame.Q2 g t₁ x₁ ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.Q2 g t₁ x₁ = FRC.Shell.Frame.Q2 g t₂ x₂ → ∃ γ b, γ * γ + -(g * (b * b)) = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.boostT g γ b t₁ x₁ = t₂ ∧ FRC.Shell.Frame.boostX g γ b t₁ x₁ = x₂) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {t : FRC.Shell p}, t ≠ (0 : FRC.Shell p) → ∃ x y γ b, y ≠ (0 : FRC.Shell p) ∧ γ * γ + -(g * (b * b)) = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.boostT g γ b t x = (0 : FRC.Shell p) ∧ FRC.Shell.Frame.boostX g γ b t x = y :=
+  And.intro @FRC.Causal.xboost_preserves (And.intro @FRC.Causal.square_shift (And.intro @FRC.Causal.boost_transitive (@FRC.Causal.time_to_space)))
+/-- p03017 — 3:D1. $\F_{13}$ and $\F_{173}$ [value]: on $\F_{13}$ the squares $\{1,3,4,9,10,12\}$ and the nonsquares $\{2,5,6,7,8,11\}$, $\g=2$, $X^{2}-2$ irreducible; $2041$ null vectors of $Q_{2}$, $2353$ for the Euclidean form, $4\,855\,201$ over $K$; $14$ boosts with $7$ velocities; on $\F_{173}$, $\g=2$, $5\,147\,961$ null vectors and $174$ boosts. -/
 theorem p03017 : FRC.Shell.Frame.nullCount (13 : Nat) (2 : Nat) = (2041 : Nat) ∧ FRC.Shell.Frame.nullCount (13 : Nat) (1 : Nat) = (2353 : Nat) ∧ FRC.Shell.Frame.normOneCount (13 : Nat) (2 : Nat) = (14 : Nat) ∧ FRC.Causal.formCount (2 : FRC.Shell (173 : Nat)) (0 : FRC.Shell (173 : Nat)) + (173 : Nat) * (173 : Nat) = (173 : Nat) * (173 : Nat) * (173 : Nat) + (173 : Nat) ∧ FRC.Causal.planeCount (2 : FRC.Shell (173 : Nat)) (1 : FRC.Shell (173 : Nat)) = (174 : Nat) :=
   And.intro @FRC.Shell.Frame.null13 (And.intro @FRC.Shell.Frame.euclid13 (And.intro @FRC.Causal.normOne13 (@FRC.Causal.shell173)))
-/-- p03025 — 3:B8. The Subject's pair algebra: $K=\Fp(\eta)$, $\eta^{2}=\g$, has $\p^{2}$ elements, one for each register pair $(t,x)\mapsto x+\eta t$; its norm $x^{2}-\g t^{2}$ is multiplicative and is the temporal plane of $Q_{\g}$; the drive cycle and the norm-one cycle meet in $\pm1$; the Carrier embeds the $\p^{2}$ pairs. -/
+/-- p03025 — 3:B8. The Subject's pair algebra: $K=\Fp(\eta)$, $\eta^{2}=\g$, has $\p^{2}$ elements, one for each register pair $(t,x)\mapsto x+\eta t$; its norm $x^{2}-\g t^{2}$ is multiplicative and is the temporal plane of $Q_{\g}$; the drive cycle and the norm-one cycle meet in $\pm1$. -/
 theorem p03025 : (∀ {p : Nat} [FRC.Pos p] (ν a b c d : FRC.Shell p), FRC.Shell.Frame.Q2 ν (a * d + b * c) (a * c + ν * (b * d)) = (a * a + -(ν * (b * b))) * (c * c + -(ν * (d * d)))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν γ : FRC.Shell p}, γ * γ + -(ν * ((0 : FRC.Shell p) * (0 : FRC.Shell p))) = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) ∨ γ = (-1 : FRC.Shell p) :=
   And.intro @FRC.Shell.Frame.norm_mul (@FRC.Causal.drive_meets_norm_one)
 /-- p21001 — 21:A1. The finite substrate: the torsor Carrier, coordinatized by a frame as $\F_\Omega$, its cardinality the Carrier identity $\Omega=4S+1$ with the measured $S\sim10^{122}$ (Planck units) locating the coherence horizon, with the phase cycle $C_{\Omega-1}$, the quarter-turn core $Q_4$, the drive (time is scale-dilation, each Subject's own), the coherence horizon $\sqrt\Omega$, and the resolution floor $1/\sqrt\Omega$. -/
@@ -8698,37 +8801,37 @@ end FRC
 
 namespace FRC.Causality
 -- Ledger predicates of 3-causality (generated by make_predicates.py from docs/3-causality/3-causality-ledger.json; edit the ledger, not this section)
-/-- 3:B2 (p03006) — Nonexistence of a causal square root: no $s\in\Fp$ has $s^{2}=\nu$ for $\nu\in N$; for $s\neq0$ every coefficient of $-s^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=\im^{2}$), the form Euclidean with $\p^{3}+\p^{2}-\p$ zeros; $s=0$ gives a degenerate form. -/
-theorem nonexistence_causal_square_root : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → ∀ (c : FRC.Shell p), c * c ≠ ν) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (c : FRC.Shell p), FRC.Shell.Frame.IsSquare (-(c * c))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {w : FRC.Shell p}, w ≠ (0 : FRC.Shell p) → FRC.Causal.formCount (w * w) (0 : FRC.Shell p) + p = p * p * p + p * p :=
+/-- 3:B2 (p03006) — Nonexistence of a causal square root: no $s\in\Fp$ has $s^{2}=\nu$ for a nonsquare $\nu$; for $s\in\Fpx$ every coefficient of $-s^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=\im^{2}$), and the form is Euclidean. -/
+theorem nonexistence_causal_square_root : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → ∀ (c : FRC.Shell p), c * c ≠ ν) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (c : FRC.Shell p), FRC.Shell.Frame.IsSquare (-(c * c)) :=
   @FRC.Ledger.p03006
-/-- 3:B3 (p03007) — Square-class absorption: if $a_{j}/a_{0}\in S$ for all $j$ then $Q\simeq a_{0}\sum Y_{j}^{2}$ by $Y_{j}=w_{j}X_{j}$, $w_{j}^{2}=a_{j}/a_{0}$; no root of $a_{0}$ is needed, and none exists for $a_{0}\in N$. -/
+/-- 3:B3 (p03007) — Square-class absorption: if every $a_{j}/a_{0}$ is a square then $Q\simeq a_{0}\sum Y_{j}^{2}$ by $Y_{j}=w_{j}X_{j}$, $w_{j}^{2}=a_{j}/a_{0}$. -/
 theorem square_class_absorption : ∀ {p : Nat} [FRC.Pos p] (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : FRC.Shell p), w1 * w1 * a0 = a1 → w2 * w2 * a0 = a2 → w3 * w3 * a0 = a3 → a0 * (x0 * x0) + a1 * (x1 * x1) + a2 * (x2 * x2) + a3 * (x3 * x3) = a0 * (x0 * x0 + w1 * x1 * (w1 * x1) + w2 * x2 * (w2 * x2) + w3 * x3 * (w3 * x3)) :=
   @FRC.Ledger.p03007
-/-- 3:B4 (p03008) — The dichotomy lives on the shell: $\operatorname{disc}Q_{\nu}\equiv\nu$ (as $-1\in S$); for $\nu\in N$ the form is elliptic, Witt index one, with $\p^{3}-\p^{2}+\p$ null vectors; for $\nu\in S$ hyperbolic, Witt index two, with $\p^{3}+\p^{2}-\p$. -/
+/-- 3:B4 (p03008) — The dichotomy lives on the shell: $\operatorname{disc}Q_{\nu}\equiv\nu$, as $-1$ is a square; for a nonsquare $\nu$ the form is elliptic, Witt index one, with $\p^{3}-\p^{2}+\p$ null vectors; for a square $\nu$ hyperbolic, Witt index two, with $\p^{3}+\p^{2}-\p$. -/
 theorem dichotomy_on_shell : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → FRC.Causal.formCount ν (0 : FRC.Shell p) + p * p = p * p * p + p) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {w : FRC.Shell p}, w ≠ (0 : FRC.Shell p) → FRC.Causal.formCount (w * w) (0 : FRC.Shell p) + p = p * p * p + p * p) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → FRC.Causal.planeCount ν (0 : FRC.Shell p) = (1 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {w : FRC.Shell p}, w ≠ (0 : FRC.Shell p) → FRC.Causal.planeCount (w * w) (0 : FRC.Shell p) + (1 : Nat) = (2 : Nat) * p :=
   @FRC.Ledger.p03008
 set_option linter.defProp false in
-/-- 3:B5 (p03009) — The Witt decomposition: for $\nu\in N$ the plane $x^{2}-\nu t^{2}$ is anisotropic and $y^{2}+z^{2}=(y+\im z)(y-\im z)$ hyperbolic, so $Q_{\nu}$ has Witt index one; for $\nu=w^{2}$ the $(t,x)$-plane is hyperbolic too. In $K=\Fp(\eta)$, $\nu=\eta^{2}$ and $Q_{\nu}$ is hyperbolic: the extension dissolves the split. -/
+/-- 3:B5 (p03009) — The Witt decomposition: for a nonsquare $\nu$ the plane $x^{2}-\nu t^{2}$ is anisotropic and $y^{2}+z^{2}=(y+\im z)(y-\im z)$ hyperbolic, so $Q_{\nu}$ has Witt index one; for $\nu=w^{2}$ the $(t,x)$-plane is hyperbolic too. In $K=\Fp(\eta)$, $\nu=\eta^{2}$ and $Q_{\nu}$ is hyperbolic: the extension dissolves the square-class separation. -/
 def witt_decomposition := @FRC.Ledger.p03009
 /-- 3:B6 (p03010) — The finite Lorentz group of the shell: $O(Q_{\g},\Fp)=O_{4}^{-}(\p)$ of order $2\p^{2}(\p^{4}-1)$, the $\p^{3}+\p$ points of the time sphere $Q_{\g}=-\g$ times $O(3,\Fp)$ of order $2\p(\p^{2}-1)$; every nonzero value of $Q_{\g}$ is taken $\p^{3}+\p$ times; over $K$ the group is $O_{4}^{+}(\p^{2})$. -/
 theorem finite_lorentz_group : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a : FRC.Shell p}, a ≠ (0 : FRC.Shell p) → FRC.Causal.formCount g a = p * p * p + p) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {c : FRC.Shell p}, c ≠ (0 : FRC.Shell p) → FRC.Causal.planeCount g c = p + (1 : Nat) :=
   @FRC.Ledger.p03010
-/-- 3:B7 (p03011) — The causal classes: the null cone and the two classes of non-null vectors by the square class of $Q_{\g}(v)$, $(\p-1)(\p^{3}+\p)/2$ each, partition $\Fp^{4}$ and are invariant under $O(Q_{\g},\Fp)$ and rescaling; a similitude multiplies $Q_{\g}$ by $\g$ and exchanges the two non-null classes. -/
+/-- 3:B7 (p03011) — The causal classes: the null cone and the two classes of non-null vectors by the square class of $Q_{\g}(X)$, $(\p-1)(\p^{3}+\p)/2$ each, partition $\Fp^{4}$ and are invariant under $O(Q_{\g},\Fp)$ and rescaling; the timelike class is that of $e_{t}$; a similitude multiplies $Q_{\g}$ by $\g$ and exchanges the two non-null classes. -/
 theorem causal_classes : (∀ {p : Nat} [FRC.Pos p] (ν a b c t x y z : FRC.Shell p), a * a + b * b = ν → c * c = (-1 : FRC.Shell p) → -(ν * (c * z * (c * z))) + (a * x + -(b * y)) * (a * x + -(b * y)) + (b * x + a * y) * (b * x + a * y) + c * (ν * t) * (c * (ν * t)) = ν * (-(ν * (t * t)) + x * x + y * y + z * z)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {s : FRC.Shell p}, s ≠ (0 : FRC.Shell p) → (FRC.Shell.Frame.IsSquare s ↔ ¬FRC.Shell.Frame.IsSquare (g * s))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → FRC.Causal.formCount ν (0 : FRC.Shell p) + p * p = p * p * p + p :=
   @FRC.Ledger.p03011
-/-- 3:B8 (p03025) — The Subject's pair algebra: $K=\Fp(\eta)$, $\eta^{2}=\g$, has $\p^{2}$ elements, one for each register pair $(t,x)\mapsto x+\eta t$; its norm $x^{2}-\g t^{2}$ is multiplicative and is the temporal plane of $Q_{\g}$; the drive cycle and the norm-one cycle meet in $\pm1$; the Carrier embeds the $\p^{2}$ pairs. -/
+/-- 3:B8 (p03025) — The Subject's pair algebra: $K=\Fp(\eta)$, $\eta^{2}=\g$, has $\p^{2}$ elements, one for each register pair $(t,x)\mapsto x+\eta t$; its norm $x^{2}-\g t^{2}$ is multiplicative and is the temporal plane of $Q_{\g}$; the drive cycle and the norm-one cycle meet in $\pm1$. -/
 theorem pair_algebra : (∀ {p : Nat} [FRC.Pos p] (ν a b c d : FRC.Shell p), FRC.Shell.Frame.Q2 ν (a * d + b * c) (a * c + ν * (b * d)) = (a * a + -(ν * (b * b))) * (c * c + -(ν * (d * d)))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν γ : FRC.Shell p}, γ * γ + -(ν * ((0 : FRC.Shell p) * (0 : FRC.Shell p))) = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) ∨ γ = (-1 : FRC.Shell p) :=
   @FRC.Ledger.p03025
-/-- 3:C2 (p03013) — $\Lambda(\gamma,b)$ preserves $-\nu t^{2}+x^{2}$ exactly and $\Lambda(z_{1})\Lambda(z_{2})=\Lambda(z_{1}z_{2})$: for $\nu=\g$ the boosts are the norm-one cycle $N^{1}\simeq C_{\p+1}$, the non-split torus, and exhaust $SO$ in dimension $1{+}1$; with $\nu\in S$ the same construction is the split torus $C_{\p-1}$. -/
+/-- 3:C2 (p03013) — $\Lambda(\gamma,b)$ preserves $-\nu t^{2}+x^{2}$ exactly and $\Lambda(\zeta_{1})\Lambda(\zeta_{2})=\Lambda(\zeta_{1}\zeta_{2})$: for $\nu=\g$ the boosts are the norm-one cycle $N^{1}\simeq C_{\p+1}$, the non-split torus, and exhaust the determinant-one isometries of the binary form; for a square $\nu$ the same construction is the split torus $C_{\p-1}$. -/
 theorem finite_boost : (∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → ∀ (t x : FRC.Shell p), FRC.Shell.Frame.Q2 ν (FRC.Shell.Frame.boostT ν γ b t x) (FRC.Shell.Frame.boostX ν γ b t x) = FRC.Shell.Frame.Q2 ν t x) ∧ (∀ {p : Nat} [FRC.Pos p] (ν γ1 b1 γ2 b2 t x : FRC.Shell p), FRC.Shell.Frame.boostT ν γ1 b1 (FRC.Shell.Frame.boostT ν γ2 b2 t x) (FRC.Shell.Frame.boostX ν γ2 b2 t x) = FRC.Shell.Frame.boostT ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x) ∧ (∀ {p : Nat} [FRC.Pos p] (ν γ1 b1 γ2 b2 t x : FRC.Shell p), FRC.Shell.Frame.boostX ν γ1 b1 (FRC.Shell.Frame.boostT ν γ2 b2 t x) (FRC.Shell.Frame.boostX ν γ2 b2 t x) = FRC.Shell.Frame.boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x) ∧ (∀ {p : Nat} [FRC.Pos p] {ν γ1 b1 γ2 b2 : FRC.Shell p}, γ1 * γ1 + -(ν * (b1 * b1)) = (1 : FRC.Shell p) → γ2 * γ2 + -(ν * (b2 * b2)) = (1 : FRC.Shell p) → (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) + -(ν * ((γ1 * b2 + b1 * γ2) * (γ1 * b2 + b1 * γ2))) = (1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {c : FRC.Shell p}, c ≠ (0 : FRC.Shell p) → FRC.Causal.planeCount g c = p + (1 : Nat) :=
   @FRC.Ledger.p03013
-/-- 3:C3 (p03014) — Velocity: $\gamma\neq0$ on every boost; $v=-\nu b/\gamma\in\Fp$; $\gamma^{2}(\nu-v^{2})=\nu$, the finite $\gamma=1/\sqrt{1-\beta^{2}}$ with $\beta^{2}=v^{2}/\nu$ ($\beta$ itself is no residue of the shell); Einstein's law $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/\nu)$ exact, the denominator never zero. -/
+/-- 3:C3 (p03014) — Velocity: $\gamma\neq0$ on every boost; $v=-\nu b/\gamma\in\Fp$, the same for $\pm\zeta$, so $(\p+1)/2$ velocities; $\gamma^{2}(\nu-v^{2})=\nu$, the finite counterpart of $\gamma=1/\sqrt{1-\beta^{2}}$ with $\beta^{2}=v^{2}/\nu$; Einstein's law $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/\nu)$ exact, the denominator never zero. -/
 theorem causal_velocity : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν γ b : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → γ ≠ (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν γ b v : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → v * γ = -(ν * b) → γ * γ * (ν + -(v * v)) = ν) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν γ1 b1 γ2 b2 v1 v2 v12 : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → γ1 * γ1 + -(ν * (b1 * b1)) = (1 : FRC.Shell p) → γ2 * γ2 + -(ν * (b2 * b2)) = (1 : FRC.Shell p) → v1 * γ1 = -(ν * b1) → v2 * γ2 = -(ν * b2) → v12 * (γ1 * γ2 + ν * (b1 * b2)) = -(ν * (γ1 * b2 + b1 * γ2)) → v12 * (ν + v1 * v2) = ν * (v1 + v2) :=
   @FRC.Ledger.p03014
-/-- 3:C4 (p03015) — Dimension $1{+}3$: the $x$-boost $\Lambda\oplus I_{2}$ lies in $O(Q_{\g},\Fp)$; with the spatial reflections, which generate $O(3,\Fp)$, it moves the time vector over the whole time sphere, so together they generate $O(Q_{\g},\Fp)=O_{4}^{-}(\p)$. -/
-theorem boost_in_dimension_four : ∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → ∀ (t x y z : FRC.Shell p), FRC.Shell.Frame.Q2 ν (FRC.Shell.Frame.boostT ν γ b t x) (FRC.Shell.Frame.boostX ν γ b t x) + (y * y + z * z) = FRC.Shell.Frame.Q2 ν t x + (y * y + z * z) :=
+/-- 3:C4 (p03015) — Generation: the $x$-boost $\Lambda\oplus I_{2}$ lies in $O(Q_{\g},\Fp)$, and with $O(3,\Fp)$ the $x$-boosts generate $O(Q_{\g},\Fp)=O_{4}^{-}(\p)$. By A2 it suffices to carry each non-null $u$ with $t\neq0$ to a spatial vector: $x=(1+\g t^{2})/2$ gives $x^{2}-\g t^{2}=w^{2}$, $w\neq0$, and one boost carries $(t,x)$ to $(0,w)$. -/
+theorem lorentz_generation : (∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → ∀ (t x y z : FRC.Shell p), FRC.Shell.Frame.Q2 ν (FRC.Shell.Frame.boostT ν γ b t x) (FRC.Shell.Frame.boostX ν γ b t x) + (y * y + z * z) = FRC.Shell.Frame.Q2 ν t x + (y * y + z * z)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {t : FRC.Shell p}, t ≠ (0 : FRC.Shell p) → ∃ x y, y ≠ (0 : FRC.Shell p) ∧ x * x + -(g * (t * t)) = y * y) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {t₁ x₁ t₂ x₂ : FRC.Shell p}, FRC.Shell.Frame.Q2 g t₁ x₁ ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.Q2 g t₁ x₁ = FRC.Shell.Frame.Q2 g t₂ x₂ → ∃ γ b, γ * γ + -(g * (b * b)) = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.boostT g γ b t₁ x₁ = t₂ ∧ FRC.Shell.Frame.boostX g γ b t₁ x₁ = x₂) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {t : FRC.Shell p}, t ≠ (0 : FRC.Shell p) → ∃ x y γ b, y ≠ (0 : FRC.Shell p) ∧ γ * γ + -(g * (b * b)) = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.boostT g γ b t x = (0 : FRC.Shell p) ∧ FRC.Shell.Frame.boostX g γ b t x = y :=
   @FRC.Ledger.p03015
-/-- 3:D1 (p03017) — $\F_{13}$ and $\F_{173}$ [value]: on $\F_{13}$, $S=\{1,3,4,9,10,12\}$, $N=\{2,5,6,7,8,11\}$, $\g=2$, $X^{2}-2$ irreducible; $2041$ null vectors of $Q_{2}$, $2353$ for the Euclidean form, $4\,855\,201$ over $K$; $14$ boosts with $7$ velocities; on $\F_{173}$, $\g=2$, $5\,147\,961$ null vectors and $174$ boosts. -/
+/-- 3:D1 (p03017) — $\F_{13}$ and $\F_{173}$ [value]: on $\F_{13}$ the squares $\{1,3,4,9,10,12\}$ and the nonsquares $\{2,5,6,7,8,11\}$, $\g=2$, $X^{2}-2$ irreducible; $2041$ null vectors of $Q_{2}$, $2353$ for the Euclidean form, $4\,855\,201$ over $K$; $14$ boosts with $7$ velocities; on $\F_{173}$, $\g=2$, $5\,147\,961$ null vectors and $174$ boosts. -/
 theorem worked_shells_values : FRC.Shell.Frame.nullCount (13 : Nat) (2 : Nat) = (2041 : Nat) ∧ FRC.Shell.Frame.nullCount (13 : Nat) (1 : Nat) = (2353 : Nat) ∧ FRC.Shell.Frame.normOneCount (13 : Nat) (2 : Nat) = (14 : Nat) ∧ FRC.Causal.formCount (2 : FRC.Shell (173 : Nat)) (0 : FRC.Shell (173 : Nat)) + (173 : Nat) * (173 : Nat) = (173 : Nat) * (173 : Nat) * (173 : Nat) + (173 : Nat) ∧ FRC.Causal.planeCount (2 : FRC.Shell (173 : Nat)) (1 : FRC.Shell (173 : Nat)) = (174 : Nat) :=
   @FRC.Ledger.p03017
 -- end ledger predicates
@@ -8744,5 +8847,5 @@ end FRC.Causality
 #print axioms FRC.Causality.pair_algebra
 #print axioms FRC.Causality.finite_boost
 #print axioms FRC.Causality.causal_velocity
-#print axioms FRC.Causality.boost_in_dimension_four
+#print axioms FRC.Causality.lorentz_generation
 #print axioms FRC.Causality.worked_shells_values
