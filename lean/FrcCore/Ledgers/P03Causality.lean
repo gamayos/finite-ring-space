@@ -1,4 +1,5 @@
 import FrcCore.Keys.Extension
+import FrcCore.Keys.Gravity
 
 /-!
 # FrcCore.Ledgers.P03Causality — the certificate of the ledger of 3-causality, core (ledger migration, task LM20)
@@ -28,6 +29,21 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 #guard_msgs in
 #print axioms FRC.Ledger.p03009
 
+-- 3:B6 (p03010)
+/-- info: 'FRC.Ledger.p03010' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p03010
+
+-- 3:B7 (p03011)
+/-- info: 'FRC.Ledger.p03011' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p03011
+
+-- 3:B8 (p03025)
+/-- info: 'FRC.Ledger.p03025' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p03025
+
 -- 3:C2 (p03013)
 /-- info: 'FRC.Ledger.p03013' does not depend on any axioms -/
 #guard_msgs in
@@ -37,6 +53,11 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 /-- info: 'FRC.Ledger.p03014' does not depend on any axioms -/
 #guard_msgs in
 #print axioms FRC.Ledger.p03014
+
+-- 3:C4 (p03015)
+/-- info: 'FRC.Ledger.p03015' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p03015
 
 -- 3:D1 (p03017)
 /-- info: 'FRC.Ledger.p03017' does not depend on any axioms -/

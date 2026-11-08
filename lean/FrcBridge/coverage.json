@@ -100,14 +100,14 @@
    "paper": "3:B4",
    "status": "no shared clause",
    "lean": null,
-   "note": "LM24: 3:B4's key counts zeros and tori on fixed shells; C3's key has no count"
+   "note": "LM24; restated 7 November 2026 (3-causality's minimal revision): 3:B4's key counts the null cone of the form on every frame (Theme/Causal.lean); C3's key has no count"
   },
   {
    "master": "C3",
    "paper": "3:C2",
    "status": "no shared clause",
    "lean": null,
-   "note": "LM24: 3:C2's key states the boosts and their composition; C3's key states no torus"
+   "note": "LM24; restated 7 November 2026: 3:C2's key states the boosts, their composition and the count p + 1 of the norm-one cycle; C3's key states no torus and no count"
   },
   {
    "master": "C3",
@@ -892,6 +892,13 @@
    "status": "shared theorem",
    "lean": "FRC.Diagonal.template_size, FRC.Diagonal.no_self_reading",
    "note": "20 October 2026 (25-gödel's migration, D4): G7's key conjoins the steps of the rows it rests on, among them F2's accounting and F3's self-quotation, both in Z9's key; Z9's key adds the dense coding and the threshold in digit form and the window's digit count, G7's reach_vanishes, length_horizon, part_collides and threshold_lt"
+  },
+  {
+   "master": "C3",
+   "paper": "3:B7",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "7 November 2026 (3-causality's minimal revision): 3:B7's key is the similitude that multiplies the form by the drive, the class flip under the drive and the null count (Theme/Causal.lean); C3's key has the isotropy criterion and the half class, no clause in common"
   }
  ]
 }

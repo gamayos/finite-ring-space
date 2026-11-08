@@ -1,0 +1,523 @@
+{
+ "paper": "46-ym",
+ "tree": "46-yangmills-20261107",
+ "title": "Yang–Mills and the Mass Gap over Finite Holographic Substrate",
+ "doi": null,
+ "generated": "8 November 2026",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "Inputs: imported and instance data",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "The lattice determinations of $m(0^{++})/\\sig$ for $\\SU(3)$: the $r_0$ route with two inputs, $3.70(6)=5.73(9)\\times0.6462(30)$ and $3.63(10)=4.21(11)/1.160(6)$, and the direct continuum extrapolation $3.405(21)$, a spread of $9\\,\\%$; $T_c/\\sig=0.6462(30)$ ($\\SU(3)$), $0.7091(36)$ ($\\SU(2)$); the $r_0$ masses of $0^{++}$, $2^{++}$, $0^{-+}$ and $0^{++*}$.",
+     "tag": "I",
+     "source": "Rem.~\\ref{rem:data}; \\citep{hasenbusch2004,lucini2004tc,morningstar1999,athenodorou2020}",
+     "key": "p46001",
+     "name": null
+    },
+    {
+     "label": "A2",
+     "predicate": "The colour factors measured at LEP: $C_A=2.89\\pm0.21$ and $C_F=1.30\\pm0.09$ from the four-jet angular correlations, $C_A/C_F=2.22\\pm0.11$ from the jet multiplicities.",
+     "tag": "I",
+     "source": "Rem.~\\ref{rem:data}; \\citep{kluth2006}",
+     "key": "p46002",
+     "name": null
+    },
+    {
+     "label": "A3",
+     "predicate": "The strong coupling at two laboratory scales, $\\alpha_s(M_Z)=0.1180(9)$ and $\\alpha_s(m_\\tau)=0.312(15)$, with the thresholds $M_Z$, $m_b$ and $m_\\tau$.",
+     "tag": "I",
+     "source": "Rem.~\\ref{rem:data}; \\citep{pdg}",
+     "key": "p46003",
+     "name": null
+    },
+    {
+     "label": "A4",
+     "predicate": "The one-loop coefficient $b_0=\\frac{11}{3}C_A-\\frac43T_Fn_f$ and, for the confrontation of P2 only, the two-loop coefficient $b_1=102-\\frac{38}{3}n_f$. The paper imports the forms; the coefficient $\\frac{11}{3}$ is not derived (T02).",
+     "tag": "I",
+     "source": "Rem.~\\ref{rem:data}; \\citep{grosswilczek1973,politzer1973}",
+     "key": "p46004",
+     "name": null
+    },
+    {
+     "label": "A5",
+     "predicate": "The laboratory instances: the Subjects $\\p=13$, $173$, $1549$ with their Carriers $\\Om=233$, $30089$, $2408561$ ($\\Om\\equiv5\\pmod{12}$), and the sweep over the $21$ shells $\\p=4\\kap+1$ below $200$.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:lab}",
+     "key": "p46005",
+     "name": null
+    },
+    {
+     "label": "A6",
+     "predicate": "Four results of the framework: time is the drive (a theorem), mass is winding rate with masslessness as drive-invariance, confinement is the wrap of $\\Om$-hard quark residues into exact hadron residues, and the gauge sector has one $\\Om$-hard scale.",
+     "tag": "I",
+     "source": "Prop.~\\ref{prop:corpus}; \\citep{akhtman2026spacetime,akhtman2026fields,akhtman2026hadrons}",
+     "key": "p46006",
+     "name": null
+    },
+    {
+     "label": "A7",
+     "predicate": "Wilson's lattice gauge theory: the plaquette action on the hypercubic lattice, its strong-coupling character expansion, and the area law $W(A)=c_3^{A}$ at strong coupling, whose chart reading is the tension $a^{2}\\sigma=-\\ln c_3$ in lattice units, within the expansion's convergence.",
+     "tag": "I",
+     "source": "Prop.~\\ref{prop:lgt}; \\citep{wilson1974,kogut1979}",
+     "key": "p46031",
+     "name": null
+    },
+    {
+     "label": "A8",
+     "predicate": "Two results of the interactions paper: the character lift (near the identity the frame's character equals the compact group's, to the stated order) and the order $\\gcdop(3,q+1)$ of the centre of $\\SU(3,\\F_q)$.",
+     "tag": "I",
+     "source": "Prop.~\\ref{prop:fields}; \\citep{akhtman2026fields}",
+     "key": "p46032",
+     "name": null
+    },
+    {
+     "label": "A9",
+     "predicate": "Steinberg's restriction theorem: for the finite frame and tensor degrees small compared with $q$, the invariants of $\\mathbf3^{\\otimes a}\\otimes\\bar{\\mathbf3}^{\\otimes b}$ are the algebraic group's, hence the compact multiplicities; verified by enumeration on $\\SU(3,\\F_2)$ over $\\F_4$ to degree four (C9).",
+     "tag": "I",
+     "source": "Prop.~\\ref{prop:mult}; \\citep{steinberg1963}",
+     "key": "p46034",
+     "name": null
+    },
+    {
+     "label": "A10",
+     "predicate": "Casimir scaling of the string tension at intermediate distance, $\\sigma_8/\\sigma_3=C_A/C_F=\\frac94$, the lattice's observation; a bounding value of the tension parameter of C8.",
+     "tag": "I",
+     "source": "Sec.~\\ref{sec:tension}; \\citep{bali2000}",
+     "key": "p46035",
+     "name": null
+    },
+    {
+     "label": "A11",
+     "predicate": "The $0^{++}$ channel of the strong-coupling expansion for $\\SU(3)$: $am=-4\\ln u-3u+9u^{2}-\\frac{27}{2}u^{3}-7u^{4}-\\frac{297}{2}u^{5}+\\frac{858827}{10240}u^{6}+\\frac{47641149}{71680}u^{7}$ in $u=c_3$; its coefficients are rationals of the same multiplicities as $c_3$, not recomputed here.",
+     "tag": "I",
+     "source": "Prop.~\\ref{prop:plaquette}; \\citep{munster1981,langelage2008}",
+     "key": "p46039",
+     "name": null
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "The finite theory and its readings",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "A registration of a state by its frame is a line of the state's space that every frame element maps to itself; the residue is the number of such lines: photon $2$ (the split torus on the plane), gluon $0$ (the colour frame on the adjoint), baryon $1$, meson $1$, glueball $1$. Falsifier: a registered state of residue $0$.",
+     "tag": "R",
+     "source": "Real.~\\ref{real:residue}; \\citep{akhtman2026hadrons}",
+     "key": "p46007",
+     "name": null
+    },
+    {
+     "label": "B2",
+     "predicate": "[chart] The chart's scale is read on the drive: a registered scale is a nonzero element $w$ of the Subject, two scales differ by the power $n$ with $\\gen^{n}=w_2/w_1$, and the chart's $\\ln(\\mu_2/\\mu_1)$ is read as $n\\ln\\gen$. The registration $\\mu\\mapsto w$ is the quantum paper's readout, not computed here.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:scale}; \\citep{akhtman2026quantum}",
+     "key": "p46008",
+     "name": null
+    },
+    {
+     "label": "B3",
+     "predicate": "The finite theory is the transfer form of lattice gauge theory on the substrate: the $\\SU(3,\\FOm)$ connection on the Subject's cells, the drive as the time step, the action in $\\Z[\\zeta_M]$ with the framed-rational readout. Its chart objects are the weight $e^{-\\beta S}$ with real $\\beta$, the wrap operator of C8 and the scale of B2.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:theory}; \\citep{akhtman2026fields,akhtman2026quantum}",
+     "key": "p46009",
+     "name": null
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "The registrations, the sub-horizon tower and the tension",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "The non-split torus has no shell eigenvalue. For every frame of the totality a norm-one element $a+b\\sqrt\\nu$ with $b\\neq0$ has no eigenvalue in $\\Fp$ (its discriminant $4\\nu b^{2}$ is a nonsquare), so no line of the plane is mapped to itself by every element of the torus; the split torus fixes exactly two lines.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:torus}; rests on A5, B1\\newline \\pywit{yangmills}{p46010}{C1}, \\leanwit{FrcCore}{p46010}{C1} \\lean{FRC.YangMills.no\\_shell\\_eigenvalue, FRC.YangMills.scalar\\_of\\_im\\_zero, FRC.YangMills.split\\_fixed\\_lines}",
+     "key": "p46010",
+     "name": "no_residue_zero_registration"
+    },
+    {
+     "label": "C2",
+     "predicate": "The triality centre: the centre's order $\\gcdop(3,q+1)$ is $3$ exactly when $q\\equiv2\\pmod3$, for a shell when $q\\equiv5\\pmod{12}$. The frame over each Carrier $233$, $30089$, $2408561$ has it, among the Subjects only $173$ does, and $12$ of $21$ shells below $200$ do; on $\\SU(3,\\F_2)$ it is found by enumeration. The Lean cell is the arithmetic of the order formula.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:centre}; rests on A5, A8\\newline \\pywit{yangmills}{p46011}{C2}, \\leanwit{FrcCore}{p46011}{C2} \\lean{FRC.YangMills.centre\\_sweep, FRC.YangMills.lab\\_centres}",
+     "key": "p46011",
+     "name": "triality_centre"
+    },
+    {
+     "label": "C3",
+     "predicate": "The residue series closes with the glueball. On the $216$ elements of $\\SU(3,\\F_2)$ over $\\F_4$ (no nontrivial character over $\\F_4$) the adjoint action fixes no nonzero traceless matrix (gluon $0$), the determinant is the one invariant of $\\Lambda^{3}$ (baryon $1$), and the commutants of the fundamental and the adjoint are one-dimensional (meson $1$, glueball $1$).",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:series}; rests on A9, B1\\newline \\pywit{yangmills}{p46012}{C3}, \\leanwit{FrcCore}{p46012}{C3} \\lean{FRC.YangMills.glueball\\_singlet}",
+     "key": "p46012",
+     "name": "residue_series_glueball"
+    },
+    {
+     "label": "C4",
+     "predicate": "The Casimir rationals of $\\mathfrak{su}(3)$, which the character lift assigns to the colour frame: $C_F=\\frac43$, $C_A=3$, $T_F=\\frac12$, $C_A/C_F=\\frac94$, and the colour factor of the three-quark singlet $\\sum\\lambda\\cdot\\lambda=-8$. The Lean cell is the arithmetic of the formula.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:casimirs}; rests on A8\\newline \\pywit{yangmills}{p46013}{C4}, \\leanwit{FrcCore}{p46013}{C4} \\lean{FRC.YangMills.casimirs}",
+     "key": "p46013",
+     "name": "colour_casimirs"
+    },
+    {
+     "label": "C5",
+     "predicate": "The window rational: $b_0=11-\\frac23n_f$ takes the values $9$, $\\frac{25}{3}$, $\\frac{23}{3}$, $7$ for $n_f=3,4,5,6$, is positive for every $n_f\\le16$ and negative for every $n_f$ from $17$ to $200$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:b0}; rests on A4, C4\\newline \\pywit{yangmills}{p46014}{C5}, \\leanwit{FrcCore}{p46014}{C5} \\lean{FRC.YangMills.b0\\_values, FRC.YangMills.b0\\_pos, FRC.YangMills.b0\\_seventeen, FRC.YangMills.b0\\_neg}",
+     "key": "p46014",
+     "name": "window_rational_b0"
+    },
+    {
+     "label": "C6",
+     "predicate": "The drive exponent. On every shell of the totality the powers of the drive permute the nonzero elements: each winding rate has one exponent below $\\p-1$, and exponents add modulo $\\p-1$ --- the discrete logarithm on the shell. The ledger file decides it on the Subjects and the sweep.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:exponent}; rests on A5\\newline \\pywit{yangmills}{p46015}{C6}, \\leanwit{FrcCore}{p46015}{C6} \\lean{FRC.YangMills.drive\\_exponent, FRC.YangMills.drive\\_exponent\\_unique, FRC.YangMills.drive\\_exponent\\_add}",
+     "key": "p46015",
+     "name": "drive_exponent_permutes"
+    },
+    {
+     "label": "C7",
+     "predicate": "The tension's coefficient to order $\\beta^{7}$: the fundamental plaquette coefficient of $\\SU(3)$ with the real Wilson action is $c_3=\\beta/18+\\beta^{2}/216-5\\beta^{4}/93312-\\dots$ modulo $\\beta^{8}$, every coefficient a rational built from the singlet multiplicities, which are the frame's in the degrees used (A9). The instance $2T$ agrees with $\\SU(2)$'s series through $\\beta^{3}$, first differing at $\\beta^{5}$.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:c1}; rests on A7, A9\\newline \\pywit{yangmills}{p46016}{C7}",
+     "key": "p46016",
+     "name": "tension_coefficient_series"
+    },
+    {
+     "label": "C8",
+     "predicate": "[chart] The minimal wrap, declared: the gap is $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ (the hadron paper's operator with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$). Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). The values it must reproduce are the determinations of A1.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:wrap}; \\citep{akhtman2026hadrons}\\newline \\pywit{yangmills}{p46017}{C8}",
+     "key": "p46017",
+     "name": "minimal_wrap_declared"
+    },
+    {
+     "label": "C9",
+     "predicate": "The adjoint wrap: the adjoint plaquette coefficient has $\\beta^{1}$ coefficient $0$ and $\\beta^{2}$ coefficient $\\frac{1}{288}=\\frac98(\\frac{1}{18})^{2}$, both identities holding on $\\SU(3,\\F_2)$ by enumeration; modulo $\\beta^{6}$, $c_8=\\frac98c_3^{2}(1-\\beta/18+\\beta^{2}/432+\\beta^{3}/2592)$: twice the fundamental string tension at leading order.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:adjoint}; rests on A9, C7\\newline \\pywit{yangmills}{p46030}{C9}, \\leanwit{FrcCore}{p46030}{C9} \\lean{FRC.YangMills.adjoint\\_two\\_sheets}",
+     "key": "p46030",
+     "name": "adjoint_wrap_two_sheets"
+    },
+    {
+     "label": "C10",
+     "predicate": "[chart] The short-range route is obstructed: with the declared coupling $\\alpha_s(\\sig)=1.007$ the two-adjoint term has $C=C_A\\alpha_s=3.02$, above the Herbst bounds $2/\\pi$ and $4/\\pi$, so the operator has no ground state; with the coupling run to the bound state's mass the fixed point exists only above a cutoff, $3.54$, $3.08$, $2.61$ at $1$, $\\frac12$, $\\frac14$ cells and none at $\\frac18$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:shortrange}; rests on A6, C4, C8, C9\\newline \\pywit{yangmills}{p46037}{C10}",
+     "key": "p46037",
+     "name": "short_range_obstructed"
+    },
+    {
+     "label": "C11",
+     "predicate": "[chart] The plaquette channel is obstructed: with the series of A11 and the frame's $u=c_3(\\beta)$, $m/\\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$ ($\\beta=1$ to $3$), the orders agreeing within $1\\,\\%$; the bracket $3.4$--$3.7$ is reached only at $u=0.30$, where they disagree by $10\\,\\%$; the scaling region is $u\\approx0.42$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:plaquette}; rests on A7, A11, C7\\newline \\pywit{yangmills}{p46038}{C11}",
+     "key": "p46038",
+     "name": "plaquette_channel_obstructed"
+    },
+    {
+     "label": "C12",
+     "predicate": "[chart] The family of C8 against the lattice: $E_0=\\sqrt{a\\varkappa}\\,2.232$ by the dilation symmetry, $2.232$, $3.157$, $3.348$, $3.157$, $4.464$, $4.735$ for $a\\in\\{1,2\\}$, $\\varkappa\\in\\{1,2,\\frac94\\}$; none inside any determination's error; the nearest, $a=1$, $\\varkappa=\\frac94$, is $1.7\\,\\%$ below the direct value.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:family}; rests on A1, A10, C8, C9\\newline \\pywit{yangmills}{p46036}{C12}",
+     "key": "p46036",
+     "name": "wrap_family_misses"
+    }
+   ]
+  },
+  {
+   "letter": "X",
+   "title": "What the construction explains",
+   "rows": [
+    {
+     "label": "X1",
+     "predicate": "Why the gluon is massless yet never seen alone: under the realisation B1 a gluon is drive-invariant (massless, A6) and its space has no frame-invariant line (C1, C3), so no registration singles it out. The row explicates the form of the confinement rule; it does not derive confinement.",
+     "tag": "T",
+     "source": "Sec.~\\ref{sec:discussion}~(X1); rests on A6, B1, C1, C3\\newline \\pywit{yangmills}{p46018}{X1}",
+     "key": "p46018",
+     "name": "gluon_massless_unregistered"
+    },
+    {
+     "label": "X2",
+     "predicate": "Why only colour singlets are registered: under B1 a registered strongly interacting state has exactly one frame-invariant line, and the series of such states closes at the glueball (C3).",
+     "tag": "T",
+     "source": "Sec.~\\ref{sec:discussion}~(X2); rests on B1, C3\\newline \\pywit{yangmills}{p46019}{X2}",
+     "key": "p46019",
+     "name": "singlets_only"
+    },
+    {
+     "label": "X3",
+     "predicate": "[chart] Why one scale fixes the whole spectrum: the gauge sector has one $\\Om$-hard scale, $\\sig$ (Z1); every exact quantity of the sector is a sub-horizon ratio from the frame (C4--C7, C9), and the gap's ratio is read from the chart's operator (C8).",
+     "tag": "D",
+     "source": "Sec.~\\ref{sec:discussion}~(X3)",
+     "key": "p46020",
+     "name": null
+    },
+    {
+     "label": "X4",
+     "predicate": "Why the colour factors take the values LEP measured: they are the Casimir rationals of the forced frame (C4), and the abelian alternative $C_A=0$, $C_F=1$ lies outside the measured brackets (A2).",
+     "tag": "T",
+     "source": "Sec.~\\ref{sec:discussion}~(X4); rests on A2, C4\\newline \\pywit{yangmills}{p46021}{X4}",
+     "key": "p46021",
+     "name": "casimirs_are_measured"
+    },
+    {
+     "label": "X5",
+     "predicate": "[chart] Why the finite theory needs no renormalisation and the continuum chart does: every sum over $\\FOm$ is finite (B3), and matching the substrate's one scale to the chart's scales is $\\Om$-hard (Z1); the chart's counterterms are its account of that matching.",
+     "tag": "D",
+     "source": "Sec.~\\ref{sec:discussion}~(X5)",
+     "key": "p46022",
+     "name": null
+    }
+   ]
+  },
+  {
+   "letter": "P",
+   "title": "The paper's two predictions, with their falsifiers and their present confrontations",
+   "rows": [
+    {
+     "label": "P1",
+     "predicate": "The colour factors of the strong interaction are $C_A=3$, $C_F=\\frac43$, $C_A/C_F=\\frac94$ (C4). Falsifier: a measured $C_A/C_F$ outside $\\frac94$ beyond its error. Confrontation: LEP's $2.89(21)$, $1.30(9)$, $2.22(11)$ (A2), each within one standard deviation.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:colour}; rests on A2, C4\\newline \\pywit{yangmills}{p46023}{P1}",
+     "key": "p46023",
+     "name": "colour_factors_prediction"
+    },
+    {
+     "label": "P2",
+     "predicate": "[chart] Between laboratory scales $1/\\alpha_s$ is linear in $\\ln\\mu$ with slope $b_0/2\\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\\alpha_s(\\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\\alpha_s(m_\\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:running}; rests on A3, A4, C5\\newline \\pywit{yangmills}{p46024}{P2}",
+     "key": "p46024",
+     "name": "running_prediction"
+    }
+   ]
+  },
+  {
+   "letter": "Z",
+   "title": "The $\\Om$-hard horizon",
+   "rows": [
+    {
+     "label": "Z1",
+     "predicate": "The one scale of the gauge sector, $\\sig$, which fixes $\\LQCD$ up to a sub-horizon ratio, is a quantity of the horizon of observation and is $\\Om$-hard: no bounded observer computes it, and the paper reads it from the lattice ($\\sig\\approx420$--$460$~MeV [import]). Every dimensionless quantity of the sector is a sub-horizon ratio.",
+     "tag": "Ω",
+     "source": "Prop.~\\ref{prop:scale}; \\citep{akhtman2026fields,akhtman2026hadrons}",
+     "key": "p46026",
+     "name": null
+    }
+   ]
+  },
+  {
+   "letter": "T",
+   "title": "Open tasks",
+   "rows": [
+    {
+     "label": "T02",
+     "predicate": "The window computation of the coefficient $\\frac{11}{3}$ of $b_0$: until it exists, A4 stays an import and C5 rests on it.",
+     "tag": "O",
+     "source": "Sec.~\\ref{sec:tower}",
+     "key": "p46029",
+     "name": null
+    },
+    {
+     "label": "T03",
+     "predicate": "Decide whether the radial ratio $E_1/E_0=1.49$ of the chart's wrap operator, against the lattice $0^{++*}/0^{++}=1.54(11)$, is staked; if so, state that it is a property of the operator form (C8), the same for every hadron's first radial excitation.",
+     "tag": "O",
+     "source": "Rem.~\\ref{rem:radial}",
+     "key": "p46033",
+     "name": null
+    }
+   ]
+  }
+ ],
+ "legend": [
+  {
+   "tag": "I",
+   "name": "Import",
+   "text": "A standard result, a framework result, or a measured datum used here without reproof."
+  },
+  {
+   "tag": "D",
+   "name": "Definition",
+   "text": "A naming, a declared dictionary, or a set-up move, carrying no empirical content; a [chart] definition is a declared continuum reading."
+  },
+  {
+   "tag": "R",
+   "name": "Realisation",
+   "text": "States what a physical term denotes on the substrate: constitutive, not interpretive, and carrying its falsifier."
+  },
+  {
+   "tag": "T",
+   "name": "Theorem",
+   "text": "Proved at the statement the source column names, which also lists the rows it rests on; machine-verified in exact arithmetic by the named check and, where a Lean cell is named, proved in the framework's axiom-free core."
+  },
+  {
+   "tag": "Ω",
+   "name": "$\\Om$-hard",
+   "text": "Decided by the totality; not closeable by a bounded observer; read from the chart."
+  },
+  {
+   "tag": "O",
+   "name": "Open",
+   "text": "A hypothesis not yet derived or a task not yet executed; only in blocks Y and T."
+  }
+ ],
+ "master": {},
+ "lean": {
+  "C1": [
+   {
+    "name": "FRC.YangMills.no_shell_eigenvalue",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 37,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C1 — a norm-one element `a + b√ν` of the extension with `b ≠ 0`, `ν` a nonsquare, has no eigenvalue in the shell: a root `r` of its characteristic polynomial `x² − 2a x + 1` would give `(r − a)² = a² − 1 = ν b²`, so `ν = ((r − a)/b)²`, a square. Hence a non-scalar element of the non-split torus fixes no line of the shell plane, and the torus fixes none: the gluon, the residue `0` of the non-split torus, is never registered alone."
+   },
+   {
+    "name": "FRC.YangMills.scalar_of_im_zero",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 58,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C1 — the two scalars `±1` are the only norm-one elements with `b = 0`: `a² = 1` forces `a = ±1`."
+   },
+   {
+    "name": "FRC.YangMills.split_fixed_lines",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 66,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C1 — the split torus `diag(g, g⁻¹)` fixes exactly the two coordinate lines of the projective line: a point `[x : y]` is fixed iff `g x · y = x · g⁻¹ y`, i.e. `(g² − 1) x y = 0`, i.e. `x y = 0` since `g² ≠ 1` (the drive is primitive of order `p − 1 > 2`). The photon's two helicities, residue `2`."
+   }
+  ],
+  "C2": [
+   {
+    "name": "FRC.YangMills.centre_sweep",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 103,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C2 — the arithmetic of the centre's order formula. Given that the centre of `SU(3, 𝔽_q)` is the norm-one cube roots of unity, `gcd(3, q + 1)` of them (27-fields Proposition su3, imported, not proved here), on every shell of the sweep below `200`, `q ≡ 5 (mod 12)` gives `Z₃` and `q ≡ 1 (mod 12)` the trivial centre, and the admissible residue `q ≡ 5 (mod 12)` is exactly `q ≡ 1 (mod 4)` (a shell) with `q ≡ 2 (mod 3)` (the triality centre). Kernel-decided over the range, so that no library lemma on `gcd` or `%` (which carry `propext`) enters."
+   },
+   {
+    "name": "FRC.YangMills.lab_centres",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 110,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C2 — the laboratory pairs: the Carriers `233`, `30089`, `2408561` carry the centre `Z₃`; of the Subjects, `173` does and `13`, `1549` do not."
+   }
+  ],
+  "C3": [
+   {
+    "name": "FRC.YangMills.glueball_singlet",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 123,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C3 — by the singlet multiplicities of the tensor powers of the colour triplet (the hadrons theme's `moment6`, six times the multiplicity, computed as the constant term of the Weyl character polynomial — exact integers): the adjoint has no invariant (`E[χχ̄] − 1 = 0`, the gluon's residue `0`), `𝟛 ⊗ 𝟛 ⊗ 𝟛` has one singlet (`E[χ³] = 1`, the baryon), `𝟛 ⊗ 𝟛̄` one (`E[χχ̄] = 1`, the meson), and `𝟠 ⊗ 𝟠` one (`E[(χχ̄ − 1)²] = E[χ²χ̄²] − 2E[χχ̄] + 1 = 2 − 2 + 1 = 1`, the glueball): photon `2`, gluon `0`, baryon `1`, meson `1`, glueball `1`."
+   }
+  ],
+  "C4": [
+   {
+    "name": "FRC.YangMills.casimirs",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 152,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C4 — the Casimirs of the colour frame with denominators cleared: `2N C_F = N² − 1` gives `6 C_F = 8` (`C_F = 4/3`), `C_A = N = 3`, `2 T_F = 1`, and `C_A / C_F = 2N² / (N² − 1)` gives `8 (C_A/C_F) = 18` (`9/4`)."
+   }
+  ],
+  "C5": [
+   {
+    "name": "FRC.YangMills.b0_values",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 161,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C5 — the one-loop rational `b₀ = (11/3) C_A − (4/3) T_F n_f = 11 − 2n_f/3`: `9, 25/3, 23/3, 7` for `n_f = 3, 4, 5, 6` (`3 b₀ = 27, 25, 23, 21`)."
+   },
+   {
+    "name": "FRC.YangMills.b0_pos",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 165,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C5 — `b₀ > 0` for every `n_f ≤ 16` (the sign the chart calls asymptotic freedom, for the matter content `n_f ≤ 16`)."
+   },
+   {
+    "name": "FRC.YangMills.b0_seventeen",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 169,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C5 — the sign flips at `n_f = 17`: `3 b₀ = −1`."
+   },
+   {
+    "name": "FRC.YangMills.b0_neg",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 173,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C5 — `b₀ < 0` for every `n_f` from `17` to `200` (a bounded sweep, kernel-decided)."
+   }
+  ],
+  "C6": [
+   {
+    "name": "FRC.YangMills.drive_exponent",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 180,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C6 — every winding rate `w ≠ 0` is one power of the drive: `w = gⁿ` for some `n < p − 1` (the discrete logarithm of 26-pnp, `FrameCore.eq_pow_of_ne_zero`)."
+   },
+   {
+    "name": "FRC.YangMills.drive_exponent_unique",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 184,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C6 — the exponent is unique below `p − 1` (`FrameCore.pow_inj`)."
+   },
+   {
+    "name": "FRC.YangMills.drive_exponent_add",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 189,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C6 — the exponent of a product is the sum of the exponents, read modulo `p − 1`."
+   }
+  ],
+  "C9": [
+   {
+    "name": "FRC.YangMills.adjoint_two_sheets",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 142,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C9 — the two multiplicity identities of the adjoint wrap: the `β¹` coefficient of the adjoint plaquette coefficient vanishes (`E[χ²χ̄] + E[χχ̄²] − E[χ] − E[χ̄] = 0`, no singlet in `𝟠 ⊗ 𝟛` or `𝟠 ⊗ 𝟛̄`), and `4 E[(χχ̄ − 1)(Re χ)²] = 2` (`E[χ³χ̄] + 2E[χ²χ̄²] + E[χχ̄³] − E[χ²] − 2E[χχ̄] − E[χ̄²] = 2`), so `c₈ = β²/288 + …`, the square of `c₃`'s `β/18` up to the factor `9/8`: the adjoint wrap is two fundamental wraps. Stated on the sixfold multiplicities `moment6`."
+   }
+  ]
+ }
+}

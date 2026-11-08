@@ -123,16 +123,16 @@ const PUBLICATIONS = [
     "schema": true,
     "links": [
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/3-causality/frc-3-causality.ipynb",
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p03_causality.ipynb",
         "label": "python",
         "count": 12,
-        "title": "12 predicates checked, all passing: the notebook frc-3-causality.ipynb on Google Colab, one cell per predicate"
+        "title": "12 predicates checked, all passing: the notebook p03_causality.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Causality.lean",
         "label": "lean",
-        "count": 7,
-        "title": "7 predicates proved in the core (no axioms), 5 of them also on Mathlib: the core module Causality as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 11,
+        "title": "11 predicates proved in the core (no axioms), 5 of them also on Mathlib: the core module Causality as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Causality.lean",
@@ -286,14 +286,14 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p08_dirac.ipynb",
         "label": "python",
-        "count": 48,
-        "title": "48 predicates checked, all passing: the notebook p08_dirac.ipynb on Google Colab, one cell per predicate"
+        "count": 49,
+        "title": "49 predicates checked, all passing: the notebook p08_dirac.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Dirac.lean",
         "label": "lean",
-        "count": 48,
-        "title": "48 predicates proved in the core (no axioms), 44 of them also on Mathlib: the core module Dirac as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 49,
+        "title": "49 predicates proved in the core (no axioms), 44 of them also on Mathlib: the core module Dirac as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Dirac.lean",
@@ -833,4 +833,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "6 November 2026";
+const GENERATED = "7 November 2026";

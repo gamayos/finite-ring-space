@@ -1,6 +1,5 @@
 import FrcCore.Keys.Carrier
 import FrcCore.Keys.Domain
-import FrcCore.Keys.Extension
 import FrcCore.Keys.Foundation
 import FrcCore.Keys.Gravity
 import FrcCore.Keys.Projective

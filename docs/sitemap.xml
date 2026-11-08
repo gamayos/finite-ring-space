@@ -349,7 +349,19 @@
     <lastmod>2026-11-07</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Theme.Causal.html</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Theme.Cayley.html</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Theme.Cells.html</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Theme.CharPoly.html</loc>
     <lastmod>2026-11-07</lastmod>
   </url>
   <url>
@@ -358,6 +370,10 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Dark.html</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Theme.Det.html</loc>
     <lastmod>2026-11-07</lastmod>
   </url>
   <url>
@@ -382,6 +398,10 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Drive.html</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Theme.Elim.html</loc>
     <lastmod>2026-11-07</lastmod>
   </url>
   <url>
@@ -510,6 +530,14 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Plane.html</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Theme.Poly.html</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Theme.Product.html</loc>
     <lastmod>2026-11-07</lastmod>
   </url>
   <url>
@@ -766,7 +794,7 @@
   </url>
   <url>
     <loc>https://finitering.space/py/causality.html</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-07</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/py/causality.make_notebook.html</loc>

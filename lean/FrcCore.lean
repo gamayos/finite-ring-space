@@ -58,6 +58,7 @@ import FrcCore.Theme.Pair
 import FrcCore.Theme.Hopf
 import FrcCore.Theme.Symbol
 import FrcCore.Theme.Gravity
+import FrcCore.Theme.Causal
 import FrcCore.Theme.Lattice
 import FrcCore.Theme.Drift
 import FrcCore.Theme.Relaxation
@@ -79,6 +80,7 @@ import FrcCore.Theme.Flavour
 import FrcCore.Theme.Dark
 import FrcCore.Theme.Hadrons
 import FrcCore.Theme.Super
+import FrcCore.Theme.YangMills
 import FrcCore.Keys.Domain
 import FrcCore.Keys.Frame
 import FrcCore.Keys.Extension
@@ -102,6 +104,7 @@ import FrcCore.Keys.Flavour
 import FrcCore.Keys.Dark
 import FrcCore.Keys.Hadrons
 import FrcCore.Keys.Super
+import FrcCore.Keys.Yangmills
 import FrcCore.Meridian
 import FrcCore.Fourier
 import FrcCore.Algebra
@@ -129,3 +132,4 @@ import FrcCore.Dirac
 import FrcCore.Flavour
 import FrcCore.Dark
 import FrcCore.Hadrons
+import FrcCore.YangMills

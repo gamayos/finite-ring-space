@@ -27,9 +27,6 @@ theorem p00190 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 set_option linter.defProp false in
 /-- p01009 — 1:C2. The frame group: $\langle T_a,S_m\rangle$ is the affine group of order $\p(\p-1)$, acting simply transitively on the frames $(a,b)$, $b\neq0$; the set of frames is a torsor under it. -/
 def p01009 := And.intro @FRC.Shell.Frame.Affine.simply_transitive (@FRC.Shell.Frame.frame_count)
-/-- p03011 — 3:B7, 7:A9. For $\nu$ a nonsquare the two classes of non-null vectors of $Q_{\nu}$ are equal in size, $(\p-1)(\p^{3}+\p)/2$ each, and invariant under the orthogonal group and under rescaling. -/
-theorem p03011 : ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a b : FRC.Shell p), a * a + b * b = ν → ∀ (x0 x1 x2 x3 : FRC.Shell p), FRC.Lorentz.Q ν (ν * x2) (a * x1 + -(b * x3)) x0 (b * x1 + a * x3) = ν * FRC.Lorentz.Q ν x0 x1 x2 x3 :=
-  @FRC.Lorentz.similitude
 set_option linter.defProp false in
 /-- p04015 — 4:C5. Charts of the shell itself: for $\mathcal Z=\Fp$ the charts respecting the arithmetic are the frames $x\mapsto a+bx$ (1:C2), $\p(\p-1)$ of them, and $\Psi_{m\to n}$ between two frames is the one affine map carrying the first to the second (simply transitive) --- the corpus's coordinate systems are the paper's charts. -/
 def p04015 := And.intro @FRC.Shell.Frame.Affine.simply_transitive (@FRC.Shell.Frame.frame_count)
