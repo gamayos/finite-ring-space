@@ -254,14 +254,14 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p07_spacetime.ipynb",
         "label": "python",
-        "count": 51,
-        "title": "51 predicates checked, all passing: the notebook p07_spacetime.ipynb on Google Colab, one cell per predicate"
+        "count": 52,
+        "title": "52 predicates checked, all passing: the notebook p07_spacetime.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Spacetime.lean",
         "label": "lean",
-        "count": 50,
-        "title": "50 predicates proved in the core (no axioms), 1 of them also on Mathlib: the core module Spacetime as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 51,
+        "title": "51 predicates proved in the core (no axioms), 1 of them also on Mathlib: the core module Spacetime as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Spacetime.lean",

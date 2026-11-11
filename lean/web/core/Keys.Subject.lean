@@ -3835,7 +3835,7 @@ theorem hermitian_wJ {w : Ext p ν} (hw : Ext.conj w = -w) : (M2x.wJ w).dagger =
     rw [e, hw]; exact Ext.ext (Shell.neg_neg w.re) (Shell.neg_neg w.im)
   exact M2x.ext' c0 cn (by show Ext.conj w = -w; exact hw) c0
 
-/-- 7:A14, 7:D1, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian
+/-- 7:A14, 7:D1, 7:X7, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian
 for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its
 entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`. -/
 theorem su2_eq_sl2 (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) {w : Ext p ν} (hw0 : w ≠ 0)
@@ -4192,7 +4192,7 @@ theorem register_det (x0 x1 x2 x3 : Shell p) : (X (ν := ν) x0 x1 x2 x3).det = 
 theorem register_hermitian (x0 x1 x2 x3 : Shell p) : (X (ν := ν) x0 x1 x2 x3).dagger = X x0 x1 x2 x3 :=
   MX.sound (envX ν x0 x1 x2 x3) (MX.tr (MX.conj (MXX 1))) (MXX 1) (by decide +kernel)
 
-/-- 7:C1, 7:D1 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`). -/
+/-- 7:C1, 7:D1, 7:X7 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`). -/
 theorem time_vector : (X (ν := ν) 0 0 1 0) = M2x.wJ Ext.w :=
   MX.sound (look [ν]) MXT ⟨XR.zero, ⟨.zero, .one⟩, XR.neg ⟨.zero, .one⟩, XR.zero⟩ (by decide +kernel)
 
@@ -4297,7 +4297,7 @@ theorem rank_two_det (u1 u2 v1 v2 : Ext p ν) :
     (let d := XR.add (XR.mul (XR.v 1) (XR.v 7)) (XR.neg (XR.mul (XR.v 3) (XR.v 5)))
      ⟨.add (.mul d.re d.re) (.neg (.mul (.var 0) (.mul d.im d.im))), .zero⟩) (by decide +kernel)
 
-/-- 7:B4, 7:X1, 7:C5 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose
+/-- 7:B4, 7:X1, 7:C5, 7:X7 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose
 sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane. -/
 theorem register_elliptic (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) (u1 u2 v1 v2 : Ext p ν)
     (h : (⟨u1 * Ext.conj u1 + v1 * Ext.conj v1, u1 * Ext.conj u2 + v1 * Ext.conj v2,
@@ -4312,7 +4312,7 @@ theorem register_elliptic (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) (u1
     | isFalse h1, _ => absurd hn (K.norm_ne_zero hν (Or.inl h1))
   exact ext_eq_of_add_neg_eq_zero hz
 
-/-- 7:B4, 7:X1, 7:C5 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`. -/
+/-- 7:B4, 7:X1, 7:C5, 7:X7 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`. -/
 theorem frame_hyperbolic (a b : Shell p) : (M2.det (⟨a, b, 0, 0⟩ : M2 p)) = 0 := by
   show a * 0 + -(b * 0) = 0
   rw [Shell.mul_zero, Shell.mul_zero, Shell.neg_zero, Shell.add_zero]
@@ -4359,7 +4359,7 @@ theorem two_squares (i h : Shell p) (hi : i * i = -1) (h2 : (1 + 1) * h = 1) :
 
 /-! ## The fibration (7:C7, C8) -/
 
-/-- 7:C7 — the stabiliser of the ray `η` in the frame moves: `[[a, b], [c, d]]` fixes `η` under `z ↦ (az + b)/(cz + d)`,
+/-- 7:C7, 7:X7 — the stabiliser of the ray `η` in the frame moves: `[[a, b], [c, d]]` fixes `η` under `z ↦ (az + b)/(cz + d)`,
 i.e. `aη + b = (cη + d)η`, exactly when `a = d` and `b = νc`: the norm-one torus `[[a, νc], [c, a]]` of A10. -/
 theorem ray_stabiliser (a b c d : Shell p) :
     (Ext.ofShell a * Ext.w + Ext.ofShell b : Ext p ν) = (Ext.ofShell c * Ext.w + Ext.ofShell d) * Ext.w ↔ a = d ∧ b = ν * c := by
@@ -4574,7 +4574,7 @@ theorem norm_neg_one : Ext.norm (-1 : Ext p ν) = 1 :=
 theorem negx_negx (M : M2x p ν) : negx (negx M) = M :=
   MX.sound (envAB M M) ⟨XR.neg (XR.neg (XR.v 1)), XR.neg (XR.neg (XR.v 3)), XR.neg (XR.neg (XR.v 5)), XR.neg (XR.neg (XR.v 7))⟩ (MX.v 1) (by decide +kernel)
 
-/-- 7:X4, 7:C2 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the
+/-- 7:X4, 7:C2, 7:X7 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the
 register square is `I` or `−I`. -/
 theorem kernel_pm (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 + 1 : Shell p) ≠ 0) (A : M2x p ν) (hdet : A.det = 1)
     (h0 : cong A (X 1 0 0 0) = X 1 0 0 0) (h1 : cong A (X 0 1 0 0) = X 0 1 0 0) (h3 : cong A (X 0 0 0 1) = X 0 0 0 1) :
@@ -4845,7 +4845,7 @@ def classCounts13 : Nat × Nat × Nat :=
         else if isSquare13 Δ then (acc.1 + 1, acc.2.1, acc.2.2)
         else (acc.1, acc.2.1, acc.2.2 + 1)
       else acc) acc) acc) acc) (0, 0, 0)
-/-- 7:C9, 7:X2 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant
+/-- 7:C9, 7:X2, 7:X7 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant
 classes with `12012`, `2028` and `12168` elements; divided by the `12` scalars these are the `1001` split classes, the identity
 with the `168` unipotent classes, and the `1014` non-split classes of `PGL₂(𝔽₁₃)`: the three terms of `class_equation_13`. -/
 theorem class_partition_13 : classCounts13 = (12012, 2028, 12168) ∧ 12012 = 12 * (13 * 14 * 11 / 2) ∧

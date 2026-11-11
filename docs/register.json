@@ -2,11 +2,11 @@
  "header": {
   "generated": "11 November 2026",
   "schema": "frc-register/2",
-  "rows": 1211,
-  "theorems": 1164,
+  "rows": 1212,
+  "theorems": 1165,
   "counts": {
-   "keys": 1164,
-   "rows": 1211,
+   "keys": 1165,
+   "rows": 1212,
    "shared": 45,
    "by_tag": {
     "D": 180,
@@ -14,7 +14,7 @@
     "I": 142,
     "O": 10,
     "R": 89,
-    "T": 712,
+    "T": 713,
     "Ω": 30
    }
   },
@@ -488,7 +488,7 @@
       "text": "States what a physical term denotes on the substrate: constitutive, not interpretive, and carrying its falsifier."
      }
     ],
-    "rows": 70
+    "rows": 71
    },
    {
     "key": "8-dirac",
@@ -11328,7 +11328,7 @@
    "check": {
     "href": "py/spacetime.html#p07011",
     "script": "p07_spacetime.py",
-    "line": 428,
+    "line": 450,
     "verdict": "pass"
    },
    "declarations": [
@@ -11365,7 +11365,7 @@
    "check": {
     "href": "py/spacetime.html#p07013",
     "script": "p07_spacetime.py",
-    "line": 436,
+    "line": 458,
     "verdict": "pass"
    },
    "declarations": [
@@ -11407,7 +11407,7 @@
    "check": {
     "href": "py/spacetime.html#p07014",
     "script": "p07_spacetime.py",
-    "line": 443,
+    "line": 465,
     "verdict": "pass"
    },
    "declarations": [
@@ -11439,7 +11439,7 @@
    "check": {
     "href": "py/spacetime.html#p07015",
     "script": "p07_spacetime.py",
-    "line": 450,
+    "line": 472,
     "verdict": "pass"
    },
    "declarations": [
@@ -11466,7 +11466,7 @@
    "check": {
     "href": "py/spacetime.html#p07033",
     "script": "p07_spacetime.py",
-    "line": 461,
+    "line": 483,
     "verdict": "pass"
    },
    "declarations": [
@@ -11523,7 +11523,7 @@
    "check": {
     "href": "py/spacetime.html#p07044",
     "script": "p07_spacetime.py",
-    "line": 471,
+    "line": 493,
     "verdict": "pass"
    },
    "declarations": [
@@ -11565,7 +11565,7 @@
    "check": {
     "href": "py/spacetime.html#p07046",
     "script": "p07_spacetime.py",
-    "line": 479,
+    "line": 501,
     "verdict": "pass"
    },
    "declarations": [
@@ -11607,7 +11607,7 @@
    "check": {
     "href": "py/spacetime.html#p07047",
     "script": "p07_spacetime.py",
-    "line": 494,
+    "line": 516,
     "verdict": "pass"
    },
    "declarations": [
@@ -11669,7 +11669,7 @@
    "check": {
     "href": "py/spacetime.html#p07052",
     "script": "p07_spacetime.py",
-    "line": 515,
+    "line": 537,
     "verdict": "pass"
    },
    "declarations": [
@@ -11733,7 +11733,7 @@
    "check": {
     "href": "py/spacetime.html#p07026",
     "script": "p07_spacetime.py",
-    "line": 534,
+    "line": 556,
     "verdict": "pass"
    },
    "declarations": [
@@ -11765,7 +11765,7 @@
    "check": {
     "href": "py/spacetime.html#p07054",
     "script": "p07_spacetime.py",
-    "line": 550,
+    "line": 572,
     "verdict": "pass"
    },
    "declarations": [
@@ -11937,7 +11937,7 @@
    "check": {
     "href": "py/spacetime.html#p07048",
     "script": "p07_spacetime.py",
-    "line": 479,
+    "line": 501,
     "verdict": "pass"
    },
    "declarations": [
@@ -11965,6 +11965,63 @@
    "aliases": [],
    "rows": [
     "7:X6"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p07057",
+   "origin": "07",
+   "statement": "Why this sky and no other: one temporal four-space and one sphere, the unit sphere $\\mathrm{SL}_2(\\Fp)$ of the frame's one quaternion algebra [import]; the three cycles and no other; two orbits on the cone, so the sphere fibres over the causal rays in one way, the third cycle the fibre and the spin cover the total space.",
+   "origin_row": "7:X7",
+   "tag": "T",
+   "name": "why_this_sky",
+   "tier": 0,
+   "check": {
+    "href": "py/spacetime.html#p07057",
+    "script": "p07_spacetime.py",
+    "line": 440,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Spin",
+     "name": "FRC.Spin.su2_eq_sl2"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lorentz",
+     "name": "FRC.Lorentz.frame_hyperbolic"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lorentz",
+     "name": "FRC.Lorentz.register_elliptic"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lorentz",
+     "name": "FRC.Lorentz.class_partition_13"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lorentz",
+     "name": "FRC.Lorentz.ray_stabiliser"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lorentz",
+     "name": "FRC.Lorentz.time_vector"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lorentz",
+     "name": "FRC.Lorentz.kernel_pm"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "7:X7"
    ],
    "realisations": []
   },
@@ -51114,7 +51171,7 @@
     "py": {
      "href": "py/spacetime.html#p07011",
      "script": "p07_spacetime.py",
-     "line": 428,
+     "line": 450,
      "verdict": "pass"
     },
     "lean": [
@@ -51166,7 +51223,7 @@
     "py": {
      "href": "py/spacetime.html#p07013",
      "script": "p07_spacetime.py",
-     "line": 436,
+     "line": 458,
      "verdict": "pass"
     },
     "lean": [
@@ -51226,7 +51283,7 @@
     "py": {
      "href": "py/spacetime.html#p07014",
      "script": "p07_spacetime.py",
-     "line": 443,
+     "line": 465,
      "verdict": "pass"
     },
     "lean": [
@@ -51270,7 +51327,7 @@
     "py": {
      "href": "py/spacetime.html#p07015",
      "script": "p07_spacetime.py",
-     "line": 450,
+     "line": 472,
      "verdict": "pass"
     },
     "lean": [
@@ -51306,7 +51363,7 @@
     "py": {
      "href": "py/spacetime.html#p07033",
      "script": "p07_spacetime.py",
-     "line": 461,
+     "line": 483,
      "verdict": "pass"
     },
     "lean": [
@@ -51386,7 +51443,7 @@
     "py": {
      "href": "py/spacetime.html#p07044",
      "script": "p07_spacetime.py",
-     "line": 471,
+     "line": 493,
      "verdict": "pass"
     },
     "lean": [
@@ -51456,7 +51513,7 @@
     "py": {
      "href": "py/spacetime.html#p07046",
      "script": "p07_spacetime.py",
-     "line": 479,
+     "line": 501,
      "verdict": "pass"
     },
     "lean": [
@@ -51517,7 +51574,7 @@
     "py": {
      "href": "py/spacetime.html#p07047",
      "script": "p07_spacetime.py",
-     "line": 494,
+     "line": 516,
      "verdict": "pass"
     },
     "lean": [
@@ -51612,7 +51669,7 @@
     "py": {
      "href": "py/spacetime.html#p07052",
      "script": "p07_spacetime.py",
-     "line": 515,
+     "line": 537,
      "verdict": "pass"
     },
     "lean": [
@@ -51707,7 +51764,7 @@
     "py": {
      "href": "py/spacetime.html#p07026",
      "script": "p07_spacetime.py",
-     "line": 534,
+     "line": 556,
      "verdict": "pass"
     },
     "lean": [
@@ -51758,7 +51815,7 @@
     "py": {
      "href": "py/spacetime.html#p07054",
      "script": "p07_spacetime.py",
-     "line": 550,
+     "line": 572,
      "verdict": "pass"
     },
     "lean": [
@@ -52012,7 +52069,7 @@
     "py": {
      "href": "py/spacetime.html#p07048",
      "script": "p07_spacetime.py",
-     "line": 479,
+     "line": 501,
      "verdict": "pass"
     },
     "lean": [
@@ -52058,6 +52115,100 @@
     "p07049"
    ],
    "text": "Why causality has an arrow: every embedded shell's chart count is a one-directional count on a cycle of one order for every observer, it orders the shell's revolutions, and the time reversal is not a Lorentz move. Cor. cor:explains(v); rests on A17, B5, F1, F3, F4 p07048, FrcCore{X6} FRC.Lorentz.no_time_reversal, FRC.Lorentz.no_reflection, FRC.Lorentz.no_inversion, FRC.Lorentz.drift_one_directional"
+  },
+  {
+   "paper": "7-st",
+   "no": 7,
+   "rid": "7:X7",
+   "key": "p07057",
+   "label": "X7",
+   "block": "X",
+   "tag": "T",
+   "name": null,
+   "lean_name": "why_this_sky",
+   "statement": "Why this sky and no other: one temporal four-space and one sphere, the unit sphere $\\mathrm{SL}_2(\\Fp)$ of the frame's one quaternion algebra [import]; the three cycles and no other; two orbits on the cone, so the sphere fibres over the causal rays in one way, the third cycle the fibre and the spin cover the total space.",
+   "source": "Cor.~\\ref{cor:explains}(vi); rests on A14, B4, C1, C2, C5, C6, C7, C8, C9, C10, D1\\newline \\pywit{spacetime}{p07057}{X7}, \\leanwit{FrcCore}{p07057}{X7} \\lean{FRC.Spin.su2\\_eq\\_sl2, FRC.Lorentz.frame\\_hyperbolic, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.class\\_partition\\_13, FRC.Lorentz.ray\\_stabiliser, FRC.Lorentz.time\\_vector, FRC.Lorentz.kernel\\_pm}",
+   "page": "7-spacetime/index.html#X7",
+   "witness": {
+    "py": {
+     "href": "py/spacetime.html#p07057",
+     "script": "p07_spacetime.py",
+     "line": 440,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Spin",
+      "name": "FRC.Spin.su2_eq_sl2",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Spin.su2_eq_sl2"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lorentz",
+      "name": "FRC.Lorentz.frame_hyperbolic",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Lorentz.frame_hyperbolic"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lorentz",
+      "name": "FRC.Lorentz.register_elliptic",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Lorentz.register_elliptic"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lorentz",
+      "name": "FRC.Lorentz.class_partition_13",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Lorentz.class_partition_13"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lorentz",
+      "name": "FRC.Lorentz.ray_stabiliser",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Lorentz.ray_stabiliser"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lorentz",
+      "name": "FRC.Lorentz.time_vector",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Lorentz.time_vector"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lorentz",
+      "name": "FRC.Lorentz.kernel_pm",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Lorentz.kernel_pm"
+     }
+    ]
+   },
+   "refs": [
+    "p00183",
+    "p07005",
+    "p07006",
+    "p07009",
+    "p07010",
+    "p07011",
+    "p07031",
+    "p07032",
+    "p07040",
+    "p07042",
+    "p07051"
+   ],
+   "text": "Why this sky and no other: one temporal four-space and one sphere, the unit sphere $\\mathrm{SL}_2(\\Fp)$ of the frame's one quaternion algebra [import]; the three cycles and no other; two orbits on the cone, so the sphere fibres over the causal rays in one way, the third cycle the fibre and the spin cover the total space. Cor. cor:explains(vi); rests on A14, B4, C1, C2, C5, C6, C7, C8, C9, C10, D1 p07057, FrcCore{X7} FRC.Spin.su2_eq_sl2, FRC.Lorentz.frame_hyperbolic, FRC.Lorentz.register_elliptic, FRC.Lorentz.class_partition_13, FRC.Lorentz.ray_stabiliser, FRC.Lorentz.time_vector, FRC.Lorentz.kernel_pm"
   },
   {
    "paper": "8-dirac",

@@ -3,7 +3,7 @@
  "tree": "7-spacetime-20261027",
  "title": "Emergent Lorentzian Spacetime over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202611.0720.v1",
- "generated": "10 November 2026",
+ "generated": "11 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -483,7 +483,7 @@
    "rows": [
     {
      "label": "E1",
-     "predicate": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure.",
+     "predicate": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, on a torus, in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure.",
      "tag": "D",
      "source": "Def.~\\ref{def:charts}",
      "key": "p07043",
@@ -588,6 +588,14 @@
      "source": "Cor.~\\ref{cor:explains}(v); rests on A17, B5, F1, F3, F4\\newline \\pywit{spacetime}{p07048}{X6}, \\leanwit{FrcCore}{p07048}{X6} \\lean{FRC.Lorentz.no\\_time\\_reversal, FRC.Lorentz.no\\_reflection, FRC.Lorentz.no\\_inversion, FRC.Lorentz.drift\\_one\\_directional}",
      "key": "p07048",
      "name": "why_arrow"
+    },
+    {
+     "label": "X7",
+     "predicate": "Why this sky and no other: one temporal four-space and one sphere, the unit sphere $\\mathrm{SL}_2(\\Fp)$ of the frame's one quaternion algebra [import]; the three cycles and no other; two orbits on the cone, so the sphere fibres over the causal rays in one way, the third cycle the fibre and the spin cover the total space.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:explains}(vi); rests on A14, B4, C1, C2, C5, C6, C7, C8, C9, C10, D1\\newline \\pywit{spacetime}{p07057}{X7}, \\leanwit{FrcCore}{p07057}{X7} \\lean{FRC.Spin.su2\\_eq\\_sl2, FRC.Lorentz.frame\\_hyperbolic, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.class\\_partition\\_13, FRC.Lorentz.ray\\_stabiliser, FRC.Lorentz.time\\_vector, FRC.Lorentz.kernel\\_pm}",
+     "key": "p07057",
+     "name": "why_this_sky"
     }
    ]
   },
@@ -950,7 +958,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:A14, 7:D1, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`."
+    "doc": "7:A14, 7:D1, 7:X7, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`."
    },
    {
     "name": "FRC.Spin.finite_order",
@@ -1378,7 +1386,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:B4, 7:X1, 7:C5 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
+    "doc": "7:B4, 7:X1, 7:C5, 7:X7 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
    },
    {
     "name": "FRC.Lorentz.frame_hyperbolic",
@@ -1387,7 +1395,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:B4, 7:X1, 7:C5 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
+    "doc": "7:B4, 7:X1, 7:C5, 7:X7 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
    }
   ],
   "B5": [
@@ -1447,7 +1455,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:C1, 7:D1 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`)."
+    "doc": "7:C1, 7:D1, 7:X7 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`)."
    }
   ],
   "C2": [
@@ -1485,7 +1493,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:X4, 7:C2 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the register square is `I` or `−I`."
+    "doc": "7:X4, 7:C2, 7:X7 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the register square is `I` or `−I`."
    }
   ],
   "C3": [
@@ -1572,7 +1580,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:B4, 7:X1, 7:C5 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
+    "doc": "7:B4, 7:X1, 7:C5, 7:X7 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
    },
    {
     "name": "FRC.Lorentz.frame_hyperbolic",
@@ -1581,7 +1589,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:B4, 7:X1, 7:C5 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
+    "doc": "7:B4, 7:X1, 7:C5, 7:X7 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
    }
   ],
   "C6": [
@@ -1612,7 +1620,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:C7 — the stabiliser of the ray `η` in the frame moves: `[[a, b], [c, d]]` fixes `η` under `z ↦ (az + b)/(cz + d)`, i.e. `aη + b = (cη + d)η`, exactly when `a = d` and `b = νc`: the norm-one torus `[[a, νc], [c, a]]` of A10."
+    "doc": "7:C7, 7:X7 — the stabiliser of the ray `η` in the frame moves: `[[a, b], [c, d]]` fixes `η` under `z ↦ (az + b)/(cz + d)`, i.e. `aη + b = (cη + d)η`, exactly when `a = d` and `b = νc`: the norm-one torus `[[a, νc], [c, a]]` of A10."
    },
    {
     "name": "FRC.Lorentz.minus_one_in_both",
@@ -1652,7 +1660,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:C9, 7:X2 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant classes with `12012`, `2028` and `12168` elements; divided by the `12` scalars these are the `1001` split classes, the identity with the `168` unipotent classes, and the `1014` non-split classes of `PGL₂(𝔽₁₃)`: the three terms of `class_equation_13`."
+    "doc": "7:C9, 7:X2, 7:X7 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant classes with `12012`, `2028` and `12168` elements; divided by the `12` scalars these are the `1001` split classes, the identity with the `168` unipotent classes, and the `1014` non-split classes of `PGL₂(𝔽₁₃)`: the three terms of `class_equation_13`."
    },
    {
     "name": "FRC.Lorentz.class_equation_13",
@@ -1728,7 +1736,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:A14, 7:D1, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`."
+    "doc": "7:A14, 7:D1, 7:X7, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`."
    },
    {
     "name": "FRC.Lorentz.time_vector",
@@ -1737,7 +1745,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:C1, 7:D1 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`)."
+    "doc": "7:C1, 7:D1, 7:X7 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`)."
    },
    {
     "name": "FRC.Spin.ad_preserves",
@@ -2038,7 +2046,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:B4, 7:X1, 7:C5 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
+    "doc": "7:B4, 7:X1, 7:C5, 7:X7 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
    },
    {
     "name": "FRC.Lorentz.frame_hyperbolic",
@@ -2047,7 +2055,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:B4, 7:X1, 7:C5 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
+    "doc": "7:B4, 7:X1, 7:C5, 7:X7 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
    }
   ],
   "X2": [
@@ -2058,7 +2066,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:C9, 7:X2 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant classes with `12012`, `2028` and `12168` elements; divided by the `12` scalars these are the `1001` split classes, the identity with the `168` unipotent classes, and the `1014` non-split classes of `PGL₂(𝔽₁₃)`: the three terms of `class_equation_13`."
+    "doc": "7:C9, 7:X2, 7:X7 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant classes with `12012`, `2028` and `12168` elements; divided by the `12` scalars these are the `1001` split classes, the identity with the `168` unipotent classes, and the `1014` non-split classes of `PGL₂(𝔽₁₃)`: the three terms of `class_equation_13`."
    },
    {
     "name": "FRC.Lorentz.class_equation_13",
@@ -2105,7 +2113,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:X4, 7:C2 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the register square is `I` or `−I`."
+    "doc": "7:X4, 7:C2, 7:X7 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the register square is `I` or `−I`."
    },
    {
     "name": "FRC.Lorentz.neg_one_trivial",
@@ -2164,6 +2172,71 @@
     "tier": 0,
     "ok": true,
     "doc": "7:F5, 7:X6, 7:F4, 7:A17 — **a count below the Carrier's cycle is its own residue**: the chart count of a duration `n < Ω − 1` is `n`."
+   }
+  ],
+  "X7": [
+   {
+    "name": "FRC.Spin.su2_eq_sl2",
+    "module": "FrcCore/Theme/Spin",
+    "line": 217,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:A14, 7:D1, 7:X7, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`."
+   },
+   {
+    "name": "FRC.Lorentz.frame_hyperbolic",
+    "module": "FrcCore/Theme/Lorentz",
+    "line": 218,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:B4, 7:X1, 7:C5, 7:X7 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`."
+   },
+   {
+    "name": "FRC.Lorentz.register_elliptic",
+    "module": "FrcCore/Theme/Lorentz",
+    "line": 204,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:B4, 7:X1, 7:C5, 7:X7 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane."
+   },
+   {
+    "name": "FRC.Lorentz.class_partition_13",
+    "module": "FrcCore/Theme/Lorentz",
+    "line": 753,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:C9, 7:X2, 7:X7 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant classes with `12012`, `2028` and `12168` elements; divided by the `12` scalars these are the `1001` split classes, the identity with the `168` unipotent classes, and the `1014` non-split classes of `PGL₂(𝔽₁₃)`: the three terms of `class_equation_13`."
+   },
+   {
+    "name": "FRC.Lorentz.ray_stabiliser",
+    "module": "FrcCore/Theme/Lorentz",
+    "line": 266,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:C7, 7:X7 — the stabiliser of the ray `η` in the frame moves: `[[a, b], [c, d]]` fixes `η` under `z ↦ (az + b)/(cz + d)`, i.e. `aη + b = (cη + d)η`, exactly when `a = d` and `b = νc`: the norm-one torus `[[a, νc], [c, a]]` of A10."
+   },
+   {
+    "name": "FRC.Lorentz.time_vector",
+    "module": "FrcCore/Theme/Lorentz",
+    "line": 98,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:C1, 7:D1, 7:X7 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`)."
+   },
+   {
+    "name": "FRC.Lorentz.kernel_pm",
+    "module": "FrcCore/Theme/Lorentz",
+    "line": 481,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:X4, 7:C2, 7:X7 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the register square is `I` or `−I`."
    }
   ],
   "P1": [

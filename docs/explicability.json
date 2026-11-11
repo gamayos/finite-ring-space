@@ -72,6 +72,20 @@
    "page": "7-spacetime/index.html"
   },
   {
+   "id": "7:X7",
+   "paper": "7-st",
+   "label": "X7",
+   "key": "p07057",
+   "tag": "T",
+   "lean_name": "why_this_sky",
+   "predicate": "Why this sky and no other: one temporal four-space and one sphere, the unit sphere $\\mathrm{SL}_2(\\Fp)$ of the frame's one quaternion algebra [import]; the three cycles and no other; two orbits on the cone, so the sphere fibres over the causal rays in one way, the third cycle the fibre and the spin cover the total space.",
+   "source": "Cor.~\\ref{cor:explains}(vi); rests on A14, B4, C1, C2, C5, C6, C7, C8, C9, C10, D1\\newline \\pywit{spacetime}{p07057}{X7}, \\leanwit{FrcCore}{p07057}{X7} \\lean{FRC.Spin.su2\\_eq\\_sl2, FRC.Lorentz.frame\\_hyperbolic, FRC.Lorentz.register\\_elliptic, FRC.Lorentz.class\\_partition\\_13, FRC.Lorentz.ray\\_stabiliser, FRC.Lorentz.time\\_vector, FRC.Lorentz.kernel\\_pm}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "7-spacetime/index.html"
+  },
+  {
    "id": "8:X1",
    "paper": "8-dirac",
    "label": "X1",

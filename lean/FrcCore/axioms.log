@@ -3832,6 +3832,7 @@
 'FRC.Ledger.p07051' does not depend on any axioms
 'FRC.Ledger.p07052' does not depend on any axioms
 'FRC.Ledger.p07054' does not depend on any axioms
+'FRC.Ledger.p07057' does not depend on any axioms
 'FRC.Ledger.p38051' does not depend on any axioms
 'FRC.Ledger.p00022' does not depend on any axioms
 'FRC.Ledger.p00189' does not depend on any axioms
@@ -5078,6 +5079,7 @@
 'FRC.Spacetime.why_spin_half' does not depend on any axioms
 'FRC.Spacetime.why_time_relational' does not depend on any axioms
 'FRC.Spacetime.why_arrow' does not depend on any axioms
+'FRC.Spacetime.why_this_sky' does not depend on any axioms
 'FRC.Spacetime.three_dimensions' does not depend on any axioms
 'FRC.Spacetime.floor_is_temperature' does not depend on any axioms
 'FRC.Quantum.characters_power_maps' does not depend on any axioms
