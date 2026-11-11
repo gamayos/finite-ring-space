@@ -5565,17 +5565,20 @@ the extension, frame and hadrons themes and the window fractions of `Theme/Brack
 `frc/ledgers/p46_yangmills.py` compute it. Each theorem over a frame is a schema, instantiated on a shell of the totality
 (`p < √Ω`); the sweeps are bounded; every number is a natural number, an integer, a residue on the shell or a window fraction
 (1:D8, a pair of an integer and a positive natural read as the residue `a·b⁻¹` on every shell whose window holds it),
-and every comparison is a comparison of cross-products in the integers. The colour frame is the Subject's: `SU(3)` over the
-Subject's quadratic extension, with the triality centre on the Subjects `p ≡ 5 (mod 12)`.
+and every comparison is a comparison of cross-products in the integers. Colour's triality is the Carrier's relation
+`Ω ≡ 5 (mod 12)` (46:B5). The Subject reads colour in its unitary frame, `SU(3)` over the Subject's quadratic extension, whose
+centre has order three where `3 ∣ p + 1`.
 
 The registrations (46:C1–C3): a norm-one element `a + b√ν` of the shell's quadratic extension with `b ≠ 0` has no eigenvalue
-in the shell (`no_shell_eigenvalue`, the non-split torus fixes no line, the gluon's residue is `0`), the split torus fixes
+in the shell (`no_shell_eigenvalue`, the norm-one cycle fixes no line, the gluon's residue is `0`), the split torus fixes
 exactly the two coordinate lines (`split_fixed_lines`, the photon's residue `2`); the centre of `SU(3, 𝔽_q)` has order
-`gcd(3, q + 1)`, `3` exactly on the Subjects `q ≡ 5 (mod 12)` (`centre_sweep`, `lab_centres`, `admissible_sweep` — the
-arithmetic of the order formula, the formula itself 27-fields Proposition su3); the residue series closes with the glueball
+`gcd(3, q + 1)`, `3` exactly where `3 ∣ q + 1` (`centre_sweep`, `lab_centres`, `full_centre_sweep` — the
+arithmetic of the order formula, the formula itself 27-fields Proposition su3), and the three laboratory Carriers are
+`5 (mod 12)` (`carrier_triality`); the residue series on the instance
 by the singlet multiplicities (`glueball_singlet` on the hadrons theme's constant terms, `residue_series_pieri` on the Pieri
 multiplicities, `mult_moment6` tying the two). The Casimir and one-loop rationals with denominators cleared (`casimirs`,
-`b0_values`, `b0_pos`, `b0_seventeen`, `b0_neg`, 46:C4, C5); the drive exponent (`drive_exponent`, `drive_exponent_unique`,
+`b0_values`, `b0_pos`, `b0_seventeen`, `b0_neg`, 46:C4, C5) and the Casimirs from the frame's torus exponents on the three Subjects
+(`casimir_exponents`, 46:C4, no lift); the drive exponent (`drive_exponent`, `drive_exponent_unique`,
 `drive_exponent_add`, 46:C6). The tension's coefficient (46:C7): the singlet multiplicities of `𝟛^{⊗m} ⊗ 𝟛̄^{⊗n}` by the
 Pieri rule on Dynkin labels (`mult`, `moments`), the plaquette coefficient `c₃` to `β⁷` as window fractions
 (`c3_fractions`) and as residues on the three laboratory Subjects and the `20` shells `13 ≤ p < 200` (`c3_readback`, every
@@ -5590,7 +5593,10 @@ are integer comparisons. The adjoint without an invariant line (`adjoint_no_inva
 one-loop coefficient (46:C13): the spin traces on the shell's modules (`spin_traces`), the Faulhaber third with its complete
 cycle vanishing (`faulhaber_third`, `faulhaber_residues`, `complete_cycle_vanishes`) and the species sum of Hughes–Nielsen
 with denominators cleared (`hughes_nielsen_sum`). The radial ratio of the operator form against the lattice, the Airy
-ladder and the nucleon, in thousandths (`radial_ratio`, 46:P3). No axioms.
+ladder and the nucleon, in thousandths (`radial_ratio`, 46:P3). The transfer tally on the three Subjects (46:C19): the orders of
+their frames, the three degrees whose inverses are the eigenvalues of the step with the frame's mean, and the bookkeeping of
+its spectrum (`subject_spectrum`), and the identity
+`Σ a χ(1) = 3` swept over `q ≤ 2000` (`degree_identity`); the gap `1/(q + 1)` of the transfer tally (`ring_gap`). No axioms.
 -/
 
 namespace FRC.YangMills
@@ -5599,12 +5605,12 @@ open FRC.Shell FRC.Shell.Frame
 
 variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
 
-/-! ## The non-split torus fixes no line (46:C1) -/
+/-! ## The norm-one cycle fixes no line (46:C1) -/
 
 /-- 46:C1, 46:X1 — a norm-one element `a + b√ν` of the extension with `b ≠ 0`, `ν` a nonsquare, has no eigenvalue in the shell: a
 root `r` of its characteristic polynomial `x² − 2a x + 1` would give `(r − a)² = a² − 1 = ν b²`, so `ν = ((r − a)/b)²`, a
-square. Hence a non-scalar element of the non-split torus fixes no line of the shell plane, and the torus fixes none: the
-gluon, the residue `0` of the non-split torus, is never registered alone. -/
+square. Hence a non-scalar element of the norm-one cycle fixes no line of the shell plane, and the cycle fixes none: the
+gluon, the residue `0` of the norm-one cycle, is never registered alone. -/
 theorem no_shell_eigenvalue (F : Frame p κ g) {ν a b r : Shell p} (hν : ¬IsSquare ν)
     (h : a * a + -(ν * (b * b)) = 1) (hb : b ≠ 0) (hr : r * r + -((a + a) * r) + 1 = 0) : False := by
   -- (r − a)² = (r² − 2ar + 1) + (a² − νb² − 1) + νb²
@@ -5664,12 +5670,12 @@ theorem split_fixed_lines (F : Frame p κ g) {x y s : Shell p} (hs : g * s = 1) 
     | .inl hx => rw [hx, mul_zero, zero_mul, zero_mul]
     | .inr hy => rw [hy, mul_zero, mul_zero, mul_zero]
 
-/-! ## The triality centre (46:C2) -/
+/-! ## The centre of the unitary frame and the Carrier's triality (46:C2) -/
 
 /-- 46:C2 — the arithmetic of the centre's order formula. Given that the centre of `SU(3, 𝔽_q)` is the norm-one cube roots
 of unity, `gcd(3, q + 1)` of them (27-fields Proposition su3, imported, not proved here), on every shell of the sweep below
-`200`, `q ≡ 5 (mod 12)` gives `Z₃` and `q ≡ 1 (mod 12)` the trivial centre, and the admissible residue `q ≡ 5 (mod 12)` is
-exactly `q ≡ 1 (mod 4)` (a shell) with `q ≡ 2 (mod 3)` (the triality centre). Kernel-decided over the range, so that no
+`200`, `q ≡ 5 (mod 12)` gives `Z₃` and `q ≡ 1 (mod 12)` the trivial centre, and the residue `q ≡ 5 (mod 12)` is
+exactly `q ≡ 1 (mod 4)` (a shell) with `q ≡ 2 (mod 3)` (the centre of order three). Kernel-decided over the range, so that no
 library lemma on `gcd` or `%` (which carry `propext`) enters. -/
 theorem centre_sweep :
     ∀ q, q < 200 → (q % 12 = 5 → Nat.gcd 3 (q + 1) = 3) ∧ (q % 12 = 1 → Nat.gcd 3 (q + 1) = 1) ∧
@@ -5685,15 +5691,28 @@ theorem lab_centres :
 
 /-- 46:C2 — of the `21` shells `p = 4κ + 1` below `200`, the `12` with `p ≡ 5 (mod 12)` carry the centre `Z₃` and the other
 `9` do not. -/
-theorem admissible_sweep :
+theorem full_centre_sweep :
     ([5, 17, 29, 41, 53, 89, 101, 113, 137, 149, 173, 197].all fun q => q % 12 == 5 && Nat.gcd 3 (q + 1) == 3) = true ∧
     ([13, 37, 61, 73, 97, 109, 157, 181, 193].all fun q => q % 12 == 1 && Nat.gcd 3 (q + 1) == 1) = true ∧
     [5, 17, 29, 41, 53, 89, 101, 113, 137, 149, 173, 197].length + [13, 37, 61, 73, 97, 109, 157, 181, 193].length = 21 := by
   decide
 
-/-! ## The residue series closes with the glueball (46:C3) -/
+/-- 46:C2, 46:B5 — colour's triality is the Carrier's relation: each of the three laboratory Carriers is `5 (mod 12)`, so `3`
+divides `Ω + 1` and not `Ω − 1`. The cube roots of unity are the pairs `(0, 1)` and `(−1, −1)` of residues, `a + bω` with
+`ω² = −ω − 1` and the norm `a² − ab + b²`: both have norm `1`, `(0, 1)² = (−1, −1)` and `(0, 1)·(−1, −1) = (1, 0)`. The product
+of `(a, b)` and `(c, d)` is `(ac − bd, ad + bc − bd)`. -/
+theorem carrier_triality :
+    233 % 12 = 5 ∧ 30089 % 12 = 5 ∧ 2408561 % 12 = 5 ∧
+    (233 + 1) % 3 = 0 ∧ (30089 + 1) % 3 = 0 ∧ (2408561 + 1) % 3 = 0 ∧
+    (233 - 1) % 3 = 1 ∧ (30089 - 1) % 3 = 1 ∧ (2408561 - 1) % 3 = 1 ∧
+    ((0 : Int) * 0 - 0 * 1 + 1 * 1 = 1 ∧ (-1 : Int) * (-1) - (-1) * (-1) + (-1) * (-1) = 1) ∧
+    ((0 : Int) * 0 - 1 * 1 = -1 ∧ (0 : Int) * 1 + 1 * 0 - 1 * 1 = -1) ∧
+    ((0 : Int) * (-1) - 1 * (-1) = 1 ∧ (0 : Int) * (-1) + 1 * (-1) - 1 * (-1) = 0) := by
+  decide
 
-/-- 46:C3, 46:X2 — by the singlet multiplicities of the tensor powers of the colour triplet (the hadrons theme's `moment6`, six
+/-! ## The residue series on the instance (46:C3) -/
+
+/-- 46:C3, 46:X2 — by the singlet multiplicities of the tensor powers of the triplet (the hadrons theme's `moment6`, six
 times the multiplicity, computed as the constant term of the Weyl character polynomial — exact integers): the adjoint
 has no invariant (`E[χχ̄] − 1 = 0`, the gluon's residue `0`), `𝟛 ⊗ 𝟛 ⊗ 𝟛` has one singlet (`E[χ³] = 1`, the baryon),
 `𝟛 ⊗ 𝟛̄` one (`E[χχ̄] = 1`, the meson), and `𝟠 ⊗ 𝟠` one (`E[(χχ̄ − 1)²] = E[χ²χ̄²] − 2E[χχ̄] + 1 = 2 − 2 + 1 = 1`, the glueball):
@@ -5725,10 +5744,23 @@ theorem adjoint_two_sheets :
 
 /-! ## The Casimirs and the window rational (46:C4, C5) -/
 
-/-- 46:C4, 46:X4, 46:P1 — the Casimirs of the colour frame with denominators cleared: `2N C_F = N² − 1` gives `6 C_F = 8` (`C_F = 4/3`),
+/-- 46:C4, 46:X4, 46:P1 — the Casimirs of the unitary frame with denominators cleared: `2N C_F = N² − 1` gives `6 C_F = 8` (`C_F = 4/3`),
 `C_A = N = 3`, `2 T_F = 1`, and `C_A / C_F = 2N² / (N² − 1)` gives `8 (C_A/C_F) = 18` (`9/4`). -/
 theorem casimirs :
     (3 * 3 - 1 : Int) = 8 ∧ 6 * 4 = 3 * 8 ∧ (2 * 3 * 3 : Int) = 18 ∧ 8 * 9 = 4 * 18 ∧ 2 * 1 = 2 := by
+  decide
+
+/-- 46:C4 — the Casimir rationals from the frame's torus exponents, with no lift (round 03, 9 November 2026). A torus element of the
+unitary frame acts on the fundamental with the eigenvalue exponents `(a, b, −a−b)` and on the adjoint with their six differences and
+two zeros; the second moment of the adjoint's exponents is six times the fundamental's, `2((a−b)² + (2a+b)² + (a+2b)²) =
+6(a² + b² + (a+b)²)`, which is `T_A/T_F = 6` and hence `C_A/C_F = 9/4`. On the Subject `13` the split torus has the exponents
+`(n, 12n, −13n)` modulo `168`: `2((11n)² + (14n)² + (25n)²) = 6(n² + (12n)² + (13n)²)` for every `n < 168` (`1884 n² = 6 · 314 n²`);
+at `n = 1` likewise on `173` (`(1, 172, −173)`) and `1549` (`(1, 1548, −1549)`). The identity for every exponent pair is the
+Mathlib cell `YangMillsML.casimir_exponents_all`. -/
+theorem casimir_exponents :
+    (List.range 168).all (fun n => 2 * ((11 * n) ^ 2 + (14 * n) ^ 2 + (25 * n) ^ 2) == 6 * (n ^ 2 + (12 * n) ^ 2 + (13 * n) ^ 2)) = true ∧
+    2 * (171 ^ 2 + 174 ^ 2 + 345 ^ 2) = 6 * (1 + 172 ^ 2 + 173 ^ 2) ∧
+    2 * (1547 ^ 2 + 1550 ^ 2 + 3097 ^ 2) = 6 * (1 + 1548 ^ 2 + 1549 ^ 2) := by
   decide
 
 /-- The numerator of `3 b₀` for `n_f` flavours: `3 b₀ = 11 C_A − 4 T_F n_f = 33 − 2 n_f` at `N = 3`. -/
@@ -5768,7 +5800,7 @@ theorem drive_exponent_add (F : Frame p κ g) (m n : Nat) :
     g ^ m * g ^ n = g ^ ((m + n) % (p - 1)) := by
   rw [← pow_add, F.pow_mod]
 
-/-! ## The singlet multiplicities of the colour triplet, by the Pieri rule
+/-! ## The singlet multiplicities of the triplet, by the Pieri rule
 
 An irreducible representation of `SU(3)` is a pair of Dynkin labels `(a, b)` (the triplet `(1, 0)`, its conjugate `(0, 1)`,
 the adjoint `(1, 1)`). Tensoring with the triplet adds one box to the Young diagram: `(a, b) ↦ (a + 1, b)`, `(a − 1, b + 1)`
@@ -5899,6 +5931,27 @@ theorem c3_lab : c3Check 13 = true ∧ c3Check 173 = true ∧ c3Check 1549 = tru
 
 theorem c3_sweep :
     [13, 17, 29, 37, 41, 53, 61, 73, 89, 97, 101, 109, 113, 137, 149, 157, 173, 181, 193, 197].all c3Check = true := by
+  decide +kernel
+
+/-- The five decisions of `series_window` on the shell `13`, as one Boolean (so that the theorem's statement re-elaborates). -/
+def windowCheck : Bool :=
+  decide ((c3Series (p := 13) [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 974] 8).take 7
+      = (c3Series (p := 13) [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 973] 8).take 7) &&
+  decide (psCoeff (c3Series (p := 13) [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 974] 8) 7
+      ≠ psCoeff (c3Series (p := 13) [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 973] 8) 7) &&
+  decide (psCoeff (c3Series (p := 13) [1, 0, 2, 2, 12] [0, 1, 1, 6, 20] 5) 4 = 0) &&
+  decide (psCoeff (c3Series (p := 13) [1, 0, 2, 2, 12] [0, 1, 1, 6, 15] 5) 4 = psCoeff (c3Targets (p := 13)) 4) &&
+  decide (psCoeff (c3Targets (p := 13)) 4 ≠ 0)
+
+/-- 46:C14 — the series' window, the corollary of A9 (the push on T06, 9 November 2026). The `β^k` coefficient of `c₃` is built from
+the invariant counts of degree `≤ k + 1` (`exc k` has degree `k + 1`, `ex k` degree `k`), so on a Subject `p`, where the frame's counts
+equal the compact ones through degree `p − 2` (A9), the frame's series equals the compact one through `β^{p−3}`: `β^{10}` on `13`,
+`β^{170}` on `173`, `β^{1546}` on `1549`, all beyond the `β^7` computed. Decided on the shell `13`: raising the degree-`8` count
+`exc 7` by one leaves the coefficients of `β^0`…`β^6` unchanged and moves `β^7`; and the instance's departure at degree `5`
+(`M(4,1) = M(1,4) = 4` against `3`, so `exc 4 = 20` against `15`) puts the instance's `β^4` coefficient at `0`, where the compact one is
+`−5/93312` (`c3Targets`), a nonzero residue on the shell; the five decisions are the Boolean `windowCheck`. -/
+theorem series_window :
+    (13 - 3 = 10 ∧ 7 ≤ 13 - 3 ∧ 7 ≤ 173 - 3 ∧ 7 ≤ 1549 - 3 ∧ 7 ≤ 13 - 4) ∧ windowCheck = true := by
   decide +kernel
 
 /-! ## The instance `2T` against `SU(2)` (46:C7, second clause)
@@ -6243,20 +6296,264 @@ theorem hughes_nielsen_sum : ∀ nf, nf < 201 → threeB0 nf = 3 * (3 * 4 - 1) -
 
 The ratios of the eigenvalues of the chart operator `a|p| + ϰr` are free of `a` and `ϰ` (the dilation symmetry). The chart's
 first radial ratio `E₁/E₀ = 1.4915` (the Lanczos computation of the chart file) is compared in thousandths with the lattice
-determinations `0⁺⁺*/0⁺⁺ = 1.544 ± 0.112` (1999) and `5.855(41)/3.405(21) = 1.720 ± 0.016` (2020, A1), with the nonrelativistic
+determinations `0⁺⁺*/0⁺⁺ = 1.544 ± 0.112` (1999) and `5.855(41)/3.405(21) = 1.720 ± 0.016` (2020, A1; the error takes the two
+masses as uncorrelated, and the largest error any correlation allows, the two terms added, is `0.0227`), with the nonrelativistic
 ladder's Airy ratio `a₂/a₁ ∈ (1.74, 1.76)` from the brackets `2.33 < a₁ < 2.34`, `4.08 < a₂ < 4.09` (the hadrons theme's
 `airy_sturm`; the chart's quotient `1.748`), and with the nucleon's `1440/939`. -/
 
 /-- 46:P3 — against the determination of 1999, `1491 ∈ [1432, 1656]`, less than half the error from the centre (`2·53 < 112`),
 and the Airy ratio in `(1.74, 1.76)` above the bracket's upper end; against the continuum determination of 2020,
-`1720 ± 16`, the ratio `1491` lies more than fourteen errors below (`229 > 14·16`) while the Airy ratio `1748` (the chart's
-quotient of the zeros) lies within two (`28 < 32`); `1440/939` lies within `3 %` of `1.491`. -/
+`1720 ± 16`, the ratio `1491` lies more than fourteen errors below (`229 > 14·16`), and more than ten of the largest error any
+correlation of the two masses allows (`0.0227`, in ten-thousandths `227`: `10·227 < 17195 − 14915`), while the Airy ratio `1748`
+(the chart's quotient of the zeros) lies within two of the quoted error (`28 < 32`); `1440/939` lies within `3 %` of `1.491`. -/
 theorem radial_ratio :
     1432 ≤ 1491 ∧ 1491 ≤ 1656 ∧ 2 * (1544 - 1491) < 112 ∧
     174 * 234 < 408 * 100 ∧ 409 * 100 < 176 * 233 ∧ 1656 < 1740 ∧
-    14 * 16 < 1720 - 1491 ∧ 1748 - 1720 < 2 * 16 ∧
+    14 * 16 < 1720 - 1491 ∧ 10 * 227 < 17195 - 14915 ∧ 1748 - 1720 < 2 * 16 ∧
     1491 * 939 < 1440 * 1000 ∧ 1440 * 1000 * 100 < 1491 * 939 * 103 := by
   decide
+
+/-! ## The frame's window and its first departure (46:C15)
+
+For `p > 3` the frame's invariant counts in `3^{⊗a} ⊗ 3̄^{⊗b}` are the compact ones through degree `2p − 1`, and the Frobenius
+tensor `v_p` at `(4p − 4, 1)` lies beyond them (46-yangmills, Theorem thm:window), so the first departure `d_*` lies in
+`[2p, 4p − 3]`. The finite ingredients decided here on the shell `13`: the binomial table of the row-operation identity, `C(m + r, r)`
+modulo `13` for `m = 11, 12` with `r ≤ 25` and for `m = 24, 25` with `r ≤ 12`, nonzero exactly at the stated `r`; the weights
+`(25, 11, 11)` of the words of `v_13`, unequal and congruent modulo `p + 1 = 14`; the bounds on the three Subjects; the orders of the
+series' window; and the small fields' first degrees `5 = 4·2 − 3`, `9 = 4·3 − 3`. -/
+
+/-- `C(m + r, r)` by the recurrence `C(m + r, r) = C(m + r − 1, r − 1) (m + r) / r`, the division exact. -/
+def binomShift (m : Nat) : Nat → Nat
+  | 0 => 1
+  | r + 1 => binomShift m r * (m + r + 1) / (r + 1)
+
+/-- The residues `C(m + r, r) mod p` for `r ≤ R`. -/
+def binomRow (p m R : Nat) : List Nat := (List.range (R + 1)).map (fun r => binomShift m r % p)
+
+/-- The pattern of the proof of 46:C15 for `q = p`: for `m = p − 2` the residues are `1, p − 1` at `r = 0, 1` and again at `r = p, p + 1`;
+for `m = p − 1` they are `1` at `r = 0, p`; for `m = 2p − 2` (`r ≤ p − 1`) `1, p − 1` at `r = 0, 1`; for `m = 2p − 1` only `1` at `r = 0`. -/
+def expectedRow (p m R : Nat) : List Nat :=
+  (List.range (R + 1)).map (fun r =>
+    if m = p - 2 then (if r = 0 ∨ r = p then 1 else if r = 1 ∨ r = p + 1 then p - 1 else 0)
+    else if m = p - 1 then (if r = 0 ∨ r = p then 1 else 0)
+    else if m = 2 * p - 2 then (if r = 0 then 1 else if r = 1 then p - 1 else 0)
+    else (if r = 0 then 1 else 0))
+
+/-- 46:C15 — on the shell `13`: the four rows of the binomial table are the proof's pattern; the weights `(25, 11, 11)` of `v_13`'s
+words are unequal, with `25 − 11 = 14 = p + 1`; the first departure lies in `[26, 49]` on `13`, `[346, 689]` on `173`,
+`[3098, 6193]` on `1549`; the series' window is `β^{24}, β^{23}` on `13`, beyond the `β^{7}` computed; and `4q − 3` is `5`, `9` at
+`q = 2, 3`. -/
+theorem frame_window :
+    binomRow 13 11 25 = expectedRow 13 11 25 ∧ binomRow 13 12 25 = expectedRow 13 12 25 ∧
+    binomRow 13 24 12 = expectedRow 13 24 12 ∧ binomRow 13 25 12 = expectedRow 13 25 12 ∧
+    (2 * 13 - 1 ≠ 13 - 2 ∧ (2 * 13 - 1) - (13 - 2) = 13 + 1) ∧
+    (2 * 13 = 26 ∧ 4 * 13 - 3 = 49 ∧ 2 * 173 = 346 ∧ 4 * 173 - 3 = 689 ∧ 2 * 1549 = 3098 ∧ 4 * 1549 - 3 = 6193) ∧
+    (2 * 13 - 2 = 24 ∧ 2 * 13 - 3 = 23 ∧ 7 < 2 * 13 - 3) ∧ (4 * 2 - 3 = 5 ∧ 4 * 3 - 3 = 9) := by
+  decide
+
+/-! ## The spectral amplitude of a plaquette (46:B4, C16, C17, C18)
+
+The amplitude `w(U) = Σ ι(λ_j(U_s))` of 46-yangmills, Definition def:amplitude, takes its values in the cyclotomic ring `Z[ζ_M]`,
+`M = lcm(q² − 1, q² − q + 1)`; on the enumerable instance `q = 2` the ring is `Z[ζ₃]`, written here as integer pairs `a + b z` with
+`z² = −1 − z`. Decided here: the conductors and their gcds with the Carriers' cycles on the three Subjects, the non-split orders
+prime to those cycles, the centre of order `3` on `173` only (Proposition prop:amplitude(iv)); the identity `2η + η⁻² = 3η` for
+`η³ = 1` and the arithmetic `z ≠ 1`, `1 + z + z² = 0` behind the vanishing of a sum fixed by multiplication by `z` (the trivial channel annihilated); the instance's distribution
+`64 · (3 + 3z + 3z²) = 0` with its moments `8, 24, 72` (Theorem thm:amplitude); and the bookkeeping of the transfer tally's
+spectrum `144, 36, 0, −72` with multiplicities `9, 36, 144, 27` (Theorem thm:transfer). The enumeration over `F_4` is the python
+check's. -/
+
+/-- `Z[ζ₃]` as pairs `a + b z`, `z² = −1 − z`: the product. -/
+def z3Mul (x y : Int × Int) : Int × Int := (x.1 * y.1 - x.2 * y.2, x.1 * y.2 + x.2 * y.1 - x.2 * y.2)
+
+/-- The inverse-phase conjugation `z ↦ z² = −1 − z`. -/
+def z3Conj (x : Int × Int) : Int × Int := (x.1 - x.2, -x.2)
+
+/-- The norm `w · w̄` of a pair, an integer. -/
+def z3Norm (x : Int × Int) : Int := (z3Mul x (z3Conj x)).1
+
+/-- 46:C16 — the conductors `M = lcm(p² − 1, p² − p + 1)` on the Subjects, their gcds with the Carriers' cycles `Ω − 1`, the non-split
+orders `p² − p + 1` prime to the cycles (`157` against `232` on the Subject `13`), the centre of order `3` on `173` only; and in `Z[ζ₃]`
+the singular identity `2η + η⁻² = 3η` for `η = z, z²`, the conjugation `z ↦ z²`, `z³ = 1`, `z ≠ 1` and `1 + z + z² = 0`. -/
+theorem spectral_amplitude :
+    (Nat.lcm (13 * 13 - 1) (13 * 13 - 13 + 1) = 26376 ∧ Nat.lcm (173 * 173 - 1) (173 * 173 - 173 + 1) = 296855832 ∧
+     Nat.lcm (1549 * 1549 - 1) (1549 * 1549 - 1549 + 1) = 5753408488200) ∧
+    (Nat.gcd 26376 232 = 8 ∧ Nat.gcd 296855832 30088 = 8 ∧ Nat.gcd 5753408488200 2408560 = 40) ∧
+    (13 * 13 - 13 + 1 = 157 ∧ Nat.gcd 157 232 = 1 ∧ Nat.gcd (173 * 173 - 173 + 1) 30088 = 1 ∧ Nat.gcd (1549 * 1549 - 1549 + 1) 2408560 = 1) ∧
+    ((13 + 1) % 3 ≠ 0 ∧ (173 + 1) % 3 = 0 ∧ (1549 + 1) % 3 ≠ 0 ∧ (2 + 1) % 3 = 0) ∧
+    (z3Mul (0, 1) (0, 1) = (-1, -1) ∧ z3Mul (z3Mul (0, 1) (0, 1)) (0, 1) = (1, 0) ∧ z3Conj (0, 1) = (-1, -1)) ∧
+    (((0 : Int), (1 : Int)) ≠ (1, 0) ∧ (1 : Int) + 0 + -1 = 0 ∧ (0 : Int) + 1 + -1 = 0) ∧      -- z ≠ 1 and 1 + z + z² = 0: a sum fixed by z vanishes
+    (z3Mul (2, 0) (0, 1) = (0, 2) ∧ z3Mul (0, 2) (0, 1) = (-2, -2) ∧
+     (0, 2).1 + (0, 1).1 = (0, 3).1 ∧ (0, 2).2 + (0, 1).2 = (0, 3).2 ∧            -- 2z + z⁻² = 2z + z = 3z
+     (-2, -2).1 + (-1, -1).1 = (-3, -3).1 ∧ (-2, -2).2 + (-1, -1).2 = (-3, -3).2) := by   -- 2z² + z⁻⁴ = 2z² + z² = 3z²
+  decide
+
+/-- 46:C17 — the instance's distribution: the values `3, 3z, 3z²` on `64` elements each and `0` on `24` sum to zero,
+`64 · (3 + 3z + 3z²) = 0`; every nonzero value has norm `9`, so the moments are `192 · 9 / 216 = 8`, `192 · 27 / 216 = 24` (the cubes of
+`3, 3z, 3z²` are all `27`) and `192 · 81 / 216 = 72`; the invariant counts the moments are set against are `1, 1, 2`. -/
+theorem instance_amplitude :
+    (64 * ((3 : Int) + 0 + -3) = 0 ∧ 64 * ((0 : Int) + 3 + -3) = 0) ∧
+    (z3Norm (3, 0) = 9 ∧ z3Norm (0, 3) = 9 ∧ z3Norm (-3, -3) = 9 ∧ z3Norm (0, 0) = 0) ∧
+    (z3Mul (z3Mul (0, 3) (0, 3)) (0, 3) = (27, 0) ∧ z3Mul (z3Mul (-3, -3) (-3, -3)) (-3, -3) = (27, 0)) ∧
+    (192 * 9 = 8 * 216 ∧ 192 * 27 = 24 * 216 ∧ 192 * 81 = 72 * 216 ∧ 64 + 64 + 64 + 24 = 216) ∧
+    (8 ≠ 1 ∧ 24 ≠ 1 ∧ 72 ≠ 2) := by
+  decide
+
+/-- 46:C18 — the transfer tally on the instance, the step of one plaquette with the frame's mean: the multiplicities `9, 36, 144, 27`
+of the eigenvalues `2/3, 1/6, 0, −1/3` sum to `216`; the eigenvalues are the integers `144, 36, 0, −72` of the matrix `216 K` over
+`216`; with the denominators cleared by `6` the trace is `tr K = 3`, and by `36` it is `tr K² = 8`, which is the sum `192 · 9` of
+the norms of the `216` amplitudes over `216`; `(3x + 1)(6x − 1)(3x − 2) = 54x³ − 27x² − 9x + 2`, so the annihilating polynomial
+has distinct roots; and `−1/3 < 0`. -/
+theorem instance_transfer :
+    (9 + 36 + 144 + 27 = 216) ∧
+    (2 * 216 = 3 * 144 ∧ 1 * 216 = 6 * 36 ∧ (-1 : Int) * 216 = 3 * (-72)) ∧
+    (4 * 9 + 1 * 36 + 0 * 144 + (-2 : Int) * 27 = 6 * 3) ∧
+    (4 * 4 * 9 + 1 * 1 * 36 + 0 + (2 : Int) * 2 * 27 = 36 * 8 ∧ 8 * 216 = 192 * 9) ∧
+    (3 * 6 * 3 = (54 : Int) ∧ 3 * 6 * (-2) + 3 * (-1) * 3 + 1 * 6 * 3 = (-27 : Int) ∧
+     3 * (-1) * (-2) + 1 * 6 * (-2) + 1 * (-1) * 3 = (-9 : Int) ∧ 1 * (-1) * (-2) = (2 : Int)) ∧
+    ((-2 : Int) < 0 ∧ (-2 : Int) < 1 ∧ (1 : Int) < 4) := by
+  decide
+
+/-! ### The transfer tally on the Subjects (46:C19, 10 November 2026)
+
+The amplitude expands as `w = χ₁ + χ₂ − χ₃` in the first members of the three families of degrees `q² − q + 1`, `q³ + 1`,
+`(q + 1)² (q − 1)` of the generic character table of `SU(3, q)` (the python side's exact character sums; the paper's Theorem thm:subjects).
+The transfer tally is the step of one plaquette with the frame's mean, and its nonzero eigenvalues are `a_χ / χ(1)`: `1/d₁`, `1/d₂`,
+`−1/d₃`. Decided here: the orders of the three Subjects' frames, the three degrees, and the bookkeeping of the spectrum — the
+degrees divide the order, `tr K = d₁ + d₂ − d₃ = 3`, `tr K² = Σ a² = 3`, a zero eigenvalue of positive multiplicity, the degrees
+positive and increasing (`subject_spectrum`); and the polynomial identity `Σ a χ(1) = 3`, that is
+`(q² − q + 1) + (q³ + 1) = (q + 1)² (q − 1) + 3`, swept over `1 ≤ q ≤ 2000` (`degree_identity`). The coefficients themselves are the
+python computation's. -/
+
+/-- The order of `SU(3, 𝔽_q)`: `q³ (q + 1)² (q − 1) (q² − q + 1)`. This and `degs`, `spectrumOK`, `gapOK` are instantiated on the
+laboratory frames only, where the order is below the totality's count. -/
+def su3Order (q : Nat) : Int := (q ^ 3 * (q + 1) ^ 2 * (q - 1) * (q * q - q + 1) : Nat)
+
+/-- The three degrees of the expansion `w = χ₁ + χ₂ − χ₃`: `q² − q + 1`, `q³ + 1`, `(q + 1)² (q − 1)`. -/
+def degs (q : Nat) : Int × Int × Int := ((q * q - q + 1 : Nat), (q ^ 3 + 1 : Nat), ((q + 1) ^ 2 * (q - 1) : Nat))
+
+/-- The bookkeeping of the spectrum of the step on one frame, whose nonzero eigenvalues are `1/d₁, 1/d₂, −1/d₃`: the degrees divide
+the order, `tr K = Σ a d = d₁ + d₂ − d₃ = 3`, `tr K² = Σ a² = 3`, a zero eigenvalue of positive multiplicity
+(`d₁² + d₂² + d₃² < |G|`), and `0 < d₁ < d₂ < d₃`, so the three eigenvalues are distinct and the third is negative. -/
+def spectrumOK (q : Nat) : Bool :=
+  let G := su3Order q; let (d1, d2, d3) := degs q
+  G % d1 == 0 && G % d2 == 0 && G % d3 == 0 && d1 + d2 - d3 == 3 && (1 : Int) * 1 + 1 * 1 + (-1) * (-1) == 3 &&
+  d1 * d1 + d2 * d2 + d3 * d3 < G && 0 < d1 && d1 < d2 && d2 < d3
+
+/-- 46:C19 — the transfer tally on the Subjects: the orders `811 273 008`, `802 332 524 681 473 968`, `33 144 476 289 365 359 469 790 000`
+of the frames on `13`, `173`, `1549`; the degrees `157, 2198, 2352`; `29 757, 5 177 718, 5 207 472`;
+`2 397 853, 3 716 672 150, 3 719 070 000`, whose inverses with the signs `+, +, −` are the eigenvalues of the step with the frame's
+mean; and the bookkeeping of the spectrum on each. -/
+theorem subject_spectrum :
+    (su3Order 13 = 811273008 ∧ su3Order 173 = 802332524681473968 ∧ su3Order 1549 = 33144476289365359469790000) ∧
+    (degs 13 = (157, 2198, 2352) ∧ degs 173 = (29757, 5177718, 5207472) ∧ degs 1549 = (2397853, 3716672150, 3719070000)) ∧
+    (spectrumOK 13 = true ∧ spectrumOK 173 = true ∧ spectrumOK 1549 = true) := by
+  decide
+
+/-- The identity `Σ a χ(1) = 3` of the expansion, `(q² − q + 1) + (q³ + 1) = (q + 1)² (q − 1) + 3`, on `q = k + 1` for `k < n`. -/
+def degreeSweep (n : Nat) : Bool :=
+  (List.range n).all (fun k => let q := k + 1; (q * q - q + 1) + (q ^ 3 + 1) == (q + 1) ^ 2 * (q - 1) + 3)
+
+/-- 46:C19 — the identity `Σ a χ(1) = 3 = w(1)` swept over `1 ≤ q ≤ 2000`. -/
+theorem degree_identity : degreeSweep 2000 = true := by
+  decide +kernel
+
+/-- The gap of the transfer tally on one frame, on the degrees: `d₂ = (q + 1) d₁`, `d₃ = (q + 1)(q² − 1)` and `0 < d₁ < d₂ < d₃`,
+so the eigenvalues `1/d₁ > 1/d₂ > 1/d₃` of the step have the gap `d₁/d₂ = 1/(q + 1)`; and the degrees are `1, 1, −1` modulo `q`,
+so the three multipliers `1/d₁, 1/d₂, −1/d₃` of one plaquette reduce to `1`. -/
+def gapOK (q : Nat) : Bool :=
+  let (d1, d2, d3) := degs q; let c : Int := (q : Nat)
+  d2 == ((q + 1 : Nat) : Int) * d1 && d3 == ((q + 1 : Nat) : Int) * ((q * q - 1 : Nat) : Int) &&
+  0 < d1 && d1 < d2 && d2 < d3 && d1 % c == 1 && d2 % c == 1 && (d3 + 1) % c == 0
+
+/-- 46:C20 — the gap of the transfer tally is `1/(q + 1)` on the seven frames of 46:C19: `1/14`, `1/174`, `1/1550` on the Subjects. -/
+theorem ring_gap :
+    (gapOK 3 = true ∧ gapOK 4 = true ∧ gapOK 5 = true ∧ gapOK 7 = true ∧ gapOK 13 = true ∧ gapOK 173 = true ∧ gapOK 1549 = true) ∧
+    ((degs 13).2.1 = 14 * (degs 13).1 ∧ (degs 173).2.1 = 174 * (degs 173).1 ∧ (degs 1549).2.1 = 1550 * (degs 1549).1) := by
+  decide
+
+/-- 46:C21 — the spectrum in `2π = p − 1` on the three Subjects, `π = 6, 86, 774`: `d₁ = 4π² + 2π + 1`, `d₂ = (2π + 2) d₁` and
+`d₃ = 8π(π + 1)²`, so the gap of the transfer tally is `1/(2π + 2)`; and `2π + 2` has the residue `1` on the shell. -/
+theorem spectrum_in_pi :
+    (13 = 2 * 6 + 1 ∧ 173 = 2 * 86 + 1 ∧ 1549 = 2 * 774 + 1) ∧
+    ((degs 13).1 = 4 * 6 * 6 + 2 * 6 + 1 ∧ (degs 173).1 = 4 * 86 * 86 + 2 * 86 + 1 ∧
+      (degs 1549).1 = 4 * 774 * 774 + 2 * 774 + 1) ∧
+    ((degs 13).2.1 = (2 * 6 + 2) * (degs 13).1 ∧ (degs 173).2.1 = (2 * 86 + 2) * (degs 173).1 ∧
+      (degs 1549).2.1 = (2 * 774 + 2) * (degs 1549).1) ∧
+    ((degs 13).2.2 = 8 * 6 * (6 + 1) * (6 + 1) ∧ (degs 173).2.2 = 8 * 86 * (86 + 1) * (86 + 1) ∧
+      (degs 1549).2.2 = 8 * 774 * (774 + 1) * (774 + 1)) ∧
+    ((2 * 6 + 2) % 13 = 1 ∧ (2 * 86 + 2) % 173 = 1 ∧ (2 * 774 + 2) % 1549 = 1) := by
+  decide
+
+/-- 46:C22 — the product channels, the arithmetic of the counts. The binomial inversion of the compact counts `1, 1, 2, 6, 23`
+gives the fixed dimensions `0, 1, 2, 8` of `8^{⊗n}` on a Subject, and of the instance's counts `1, 1, 2, 11, 92` gives `7` and `57`.
+A fixed subspace of dimension `2` has `p² + 1` invariant lines, `170`, `29930`, `2399402` on the Subjects; on the instance
+`(4^d − 1)/3` gives `5`, `5461`, `21845` for `d = 2, 7, 8`; and the degree `8` lies in the window `2p − 1` of the Subject `13`. -/
+theorem product_channel_counts :
+    ((1 : Int) - 1 = 0 ∧ (2 : Int) - 2 * 1 + 1 = 1 ∧ (6 : Int) - 3 * 2 + 3 * 1 - 1 = 2 ∧ (23 : Int) - 4 * 6 + 6 * 2 - 4 * 1 + 1 = 8) ∧
+    ((11 : Int) - 3 * 2 + 3 * 1 - 1 = 7 ∧ (92 : Int) - 4 * 11 + 6 * 2 - 4 * 1 + 1 = 57) ∧
+    (13 * 13 + 1 = 170 ∧ 173 * 173 + 1 = 29930 ∧ 1549 * 1549 + 1 = 2399402) ∧
+    ((13 * 13 - 1) * 170 = 13 * 13 * 13 * 13 - 1 ∧ 13 * 13 * 13 * 13 + 13 * 13 + 1 = 28731) ∧
+    ((4 ^ 2 - 1) / 3 = 5 ∧ (4 ^ 7 - 1) / 3 = 5461 ∧ (4 ^ 8 - 1) / 3 = 21845) ∧
+    (8 ≤ 2 * 13 - 1) := by
+  decide
+
+/-- The residues of `χ₁, χ₂, χ₃` on a frame element with the eigenvalues `μ, 1, μ⁻¹` of a Subject `p`, from the table's
+entries: the degrees at `μ = 1`; `(1 − q)a + a⁻²`, `(q + 1)a` and `0` at `a = −1`, the eigenvalues `−1, −1, 1`; and `1`,
+`μ + μ⁻¹`, `0` elsewhere. Here `q = p` and `mui` is `μ⁻¹`. -/
+def ubChars (p mu mui : Nat) : Nat × Nat × Nat :=
+  if mu == 1 then ((p * p - p + 1) % p, (p * p * p + 1) % p, ((p + 1) * (p + 1) * (p - 1)) % p)
+  else if mu == p - 1 then (((p - 1) + 1) % p, (p * p - (p + 1)) % p, 0)
+  else (1, (mu + mui) % p, 0)
+
+/-- The tally's residue at the boundary classes of `x` and `y`; the three multipliers of a step are `1` on the shell. -/
+def ubTally (p x xi y yi : Nat) : Nat :=
+  let (a1, a2, a3) := ubChars p x xi
+  let (b1, b2, b3) := ubChars p y yi
+  (a1 * b1 + a2 * b2 + a3 * b3) % p
+
+/-- The five powers `1 + xy + (xy)⁻¹ + x y⁻¹ + x⁻¹ y`. -/
+def ubFive (p x xi y yi : Nat) : Nat := (1 + (x * y) % p + (xi * yi) % p + (x * yi) % p + (xi * y) % p) % p
+
+/-- A length is regular when neither boundary class is that of `1` or of `−1`. -/
+def ubRegular (p x y : Nat) : Bool := x != 1 && x != p - 1 && y != 1 && y != p - 1
+
+/-- On every regular length among the next `fuel` steps the tally is the five powers. -/
+def ubSweep (p gj gji gk gki : Nat) : Nat → Nat → Nat → Nat → Nat → Bool
+  | 0, _, _, _, _ => true
+  | fuel + 1, x, xi, y, yi =>
+    let x' := (x * gj) % p; let xi' := (xi * gji) % p; let y' := (y * gk) % p; let yi' := (yi * gki) % p
+    (!(ubRegular p x' y') || ubTally p x' xi' y' yi' == ubFive p x' xi' y' yi') && ubSweep p gj gji gk gki fuel x' xi' y' yi'
+
+/-- The tally at the next `fuel` lengths. -/
+def ubValues (p gj gji gk gki : Nat) : Nat → Nat → Nat → Nat → Nat → List Nat
+  | 0, _, _, _, _ => []
+  | fuel + 1, x, xi, y, yi =>
+    let x' := (x * gj) % p; let xi' := (xi * gji) % p; let y' := (y * gk) % p; let yi' := (yi * gki) % p
+    ubTally p x' xi' y' yi' :: ubValues p gj gji gk gki fuel x' xi' y' yi'
+
+/-- The lengths among the next `fuel` that are not regular; `n` counts the steps taken. -/
+def ubOthers (p gj gk : Nat) : Nat → Nat → Nat → Nat → List Nat
+  | 0, _, _, _ => []
+  | fuel + 1, n, x, y =>
+    let x' := (x * gj) % p; let y' := (y * gk) % p
+    if ubRegular p x' y' then ubOthers p gj gk fuel (n + 1) x' y' else (n + 1) :: ubOthers p gj gk fuel (n + 1) x' y'
+
+/-- 46:C23 — the tally of the ring with the same boundary links at every step, of the eigenvalues `g^{±j}, 1` and `g^{±k}, 1` with
+`g = 2` and `(j, k) = (1, 2)`; after `n` steps the boundary classes are those of `x = 2^n` and `y = 4^n`. (1) The inverses of `2`
+and `4` on the three Subjects. (2) On `13` the tally at the lengths `1` to `12`. (3) On the Subjects `13`, `173`, `1549` the tally
+is the five powers at every regular length of the drive's cycle. (4) The other lengths: four on each Subject, the multiples of `3`,
+`43` and `387`. (5) At the length of the cycle the boundary links are units and the tally is `3`. Every product is reduced at once;
+the largest numeral formed is the degree `(p + 1)²(p − 1)`. -/
+theorem uniform_boundary_tally :
+    ((2 * 7) % 13 = 1 ∧ (4 * 10) % 13 = 1 ∧ (2 * 87) % 173 = 1 ∧ (4 * 130) % 173 = 1 ∧
+      (2 * 775) % 1549 = 1 ∧ (4 * 1162) % 1549 = 1) ∧
+    ubValues 13 2 7 4 10 12 1 1 1 1 = [10, 0, 0, 2, 5, 12, 5, 2, 0, 0, 10, 3] ∧
+    (ubSweep 13 2 7 4 10 12 1 1 1 1 = true ∧ ubSweep 173 2 87 4 130 172 1 1 1 1 = true ∧
+      ubSweep 1549 2 775 4 1162 1548 1 1 1 1 = true) ∧
+    (ubOthers 13 2 4 12 0 1 1 = [3, 6, 9, 12] ∧ ubOthers 173 2 4 172 0 1 1 = [43, 86, 129, 172] ∧
+      ubOthers 1549 2 4 1548 0 1 1 = [387, 774, 1161, 1548]) ∧
+    (ubTally 13 1 1 1 1 = 3 ∧ ubTally 173 1 1 1 1 = 3 ∧ ubTally 1549 1 1 1 1 = 3) := by
+  decide +kernel
 
 end FRC.YangMills
 
@@ -6273,18 +6570,18 @@ that every row carrying the key asserts, proved from the themes alone. The paper
 namespace FRC.Ledger
 
 -- Keys of the yangmills theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
-/-- p46010 — 46:C1. The non-split torus has no shell eigenvalue. For every frame of the totality a norm-one element $a+b\sqrt\nu$ with $b\neq0$ has no eigenvalue in $\Fp$ (its discriminant $4\nu b^{2}$ is a nonsquare), so no line of the plane is mapped to itself by every element of the torus; the split torus fixes exactly two lines. -/
+/-- p46010 — 46:C1. The norm-one cycle has no shell eigenvalue. For every frame of the totality a norm-one element $a+b\sqrt\nu$ with $b\neq0$ has no eigenvalue in $\Fp$ (its discriminant $4\nu b^{2}$ is a nonsquare), so no line of the plane is mapped to itself by every element of the cycle; the split torus fixes exactly two lines. -/
 theorem p46010 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν a b r : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → a * a + -(ν * (b * b)) = (1 : FRC.Shell p) → b ≠ (0 : FRC.Shell p) → r * r + -((a + a) * r) + (1 : FRC.Shell p) = (0 : FRC.Shell p) → False) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν a b : FRC.Shell p}, a * a + -(ν * (b * b)) = (1 : FRC.Shell p) → b = (0 : FRC.Shell p) → a = (1 : FRC.Shell p) ∨ a = (-1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x y s : FRC.Shell p}, g * s = (1 : FRC.Shell p) → (g * x * y = x * (s * y) ↔ x * y = (0 : FRC.Shell p)) :=
   And.intro @FRC.YangMills.no_shell_eigenvalue (And.intro @FRC.YangMills.scalar_of_im_zero (@FRC.YangMills.split_fixed_lines))
-/-- p46011 — 46:C2. The triality centre: the centre's order $\gcdop(3,q+1)$ is $3$ exactly when $q\equiv2\pmod3$, for a shell when $q\equiv5\pmod{12}$. Among the Subjects $173$ has it, $13$ and $1549$ do not, and $12$ of $21$ shells below $200$ do; on $\SU(3,\F_2)$ it is found by enumeration. The Lean cell is the arithmetic of the order formula. -/
-theorem p46011 : (∀ (q : Nat), q < (200 : Nat) → (q % (12 : Nat) = (5 : Nat) → Nat.gcd (3 : Nat) (q + (1 : Nat)) = (3 : Nat)) ∧ (q % (12 : Nat) = (1 : Nat) → Nat.gcd (3 : Nat) (q + (1 : Nat)) = (1 : Nat)) ∧ (q % (12 : Nat) = (5 : Nat) ↔ q % (4 : Nat) = (1 : Nat) ∧ q % (3 : Nat) = (2 : Nat))) ∧ (Nat.gcd (3 : Nat) ((13 : Nat) + (1 : Nat)) = (1 : Nat) ∧ Nat.gcd (3 : Nat) ((173 : Nat) + (1 : Nat)) = (3 : Nat) ∧ Nat.gcd (3 : Nat) ((1549 : Nat) + (1 : Nat)) = (1 : Nat) ∧ (13 : Nat) % (12 : Nat) = (1 : Nat) ∧ (173 : Nat) % (12 : Nat) = (5 : Nat) ∧ (1549 : Nat) % (12 : Nat) = (1 : Nat)) ∧ ([(5 : Nat), (17 : Nat), (29 : Nat), (41 : Nat), (53 : Nat), (89 : Nat), (101 : Nat), (113 : Nat), (137 : Nat), (149 : Nat), (173 : Nat), (197 : Nat)].all fun q => q % (12 : Nat) == (5 : Nat) && Nat.gcd (3 : Nat) (q + (1 : Nat)) == (3 : Nat)) = true ∧ ([(13 : Nat), (37 : Nat), (61 : Nat), (73 : Nat), (97 : Nat), (109 : Nat), (157 : Nat), (181 : Nat), (193 : Nat)].all fun q => q % (12 : Nat) == (1 : Nat) && Nat.gcd (3 : Nat) (q + (1 : Nat)) == (1 : Nat)) = true ∧ [(5 : Nat), (17 : Nat), (29 : Nat), (41 : Nat), (53 : Nat), (89 : Nat), (101 : Nat), (113 : Nat), (137 : Nat), (149 : Nat), (173 : Nat), (197 : Nat)].length + [(13 : Nat), (37 : Nat), (61 : Nat), (73 : Nat), (97 : Nat), (109 : Nat), (157 : Nat), (181 : Nat), (193 : Nat)].length = (21 : Nat) :=
-  And.intro @FRC.YangMills.centre_sweep (And.intro @FRC.YangMills.lab_centres (@FRC.YangMills.admissible_sweep))
-/-- p46012 — 46:C3. The residue series closes with the glueball. On the $216$ elements of $\SU(3,\F_2)$ over $\F_4$ (no nontrivial character over $\F_4$) the adjoint action fixes no nonzero traceless matrix (gluon $0$), the determinant is the one invariant of $\Lambda^{3}$ (baryon $1$), and the commutants of the fundamental and the adjoint are one-dimensional (meson $1$, glueball $1$). -/
+/-- p46011 — 46:C2. The centre of the unitary frame: its order $\gcdop(3,q+1)$ is $3$ exactly when $q\equiv2\pmod3$. Among the Subjects $173$ has it, $13$ and $1549$ do not, and $12$ of $21$ shells below $200$ do; on $\SU(3,\F_2)$ it is found by enumeration. The three Carriers are $5$ modulo $12$ (B5). The Lean cell is the arithmetic of the order formula. -/
+theorem p46011 : (∀ (q : Nat), q < (200 : Nat) → (q % (12 : Nat) = (5 : Nat) → Nat.gcd (3 : Nat) (q + (1 : Nat)) = (3 : Nat)) ∧ (q % (12 : Nat) = (1 : Nat) → Nat.gcd (3 : Nat) (q + (1 : Nat)) = (1 : Nat)) ∧ (q % (12 : Nat) = (5 : Nat) ↔ q % (4 : Nat) = (1 : Nat) ∧ q % (3 : Nat) = (2 : Nat))) ∧ (Nat.gcd (3 : Nat) ((13 : Nat) + (1 : Nat)) = (1 : Nat) ∧ Nat.gcd (3 : Nat) ((173 : Nat) + (1 : Nat)) = (3 : Nat) ∧ Nat.gcd (3 : Nat) ((1549 : Nat) + (1 : Nat)) = (1 : Nat) ∧ (13 : Nat) % (12 : Nat) = (1 : Nat) ∧ (173 : Nat) % (12 : Nat) = (5 : Nat) ∧ (1549 : Nat) % (12 : Nat) = (1 : Nat)) ∧ (([(5 : Nat), (17 : Nat), (29 : Nat), (41 : Nat), (53 : Nat), (89 : Nat), (101 : Nat), (113 : Nat), (137 : Nat), (149 : Nat), (173 : Nat), (197 : Nat)].all fun q => q % (12 : Nat) == (5 : Nat) && Nat.gcd (3 : Nat) (q + (1 : Nat)) == (3 : Nat)) = true ∧ ([(13 : Nat), (37 : Nat), (61 : Nat), (73 : Nat), (97 : Nat), (109 : Nat), (157 : Nat), (181 : Nat), (193 : Nat)].all fun q => q % (12 : Nat) == (1 : Nat) && Nat.gcd (3 : Nat) (q + (1 : Nat)) == (1 : Nat)) = true ∧ [(5 : Nat), (17 : Nat), (29 : Nat), (41 : Nat), (53 : Nat), (89 : Nat), (101 : Nat), (113 : Nat), (137 : Nat), (149 : Nat), (173 : Nat), (197 : Nat)].length + [(13 : Nat), (37 : Nat), (61 : Nat), (73 : Nat), (97 : Nat), (109 : Nat), (157 : Nat), (181 : Nat), (193 : Nat)].length = (21 : Nat)) ∧ (233 : Nat) % (12 : Nat) = (5 : Nat) ∧ (30089 : Nat) % (12 : Nat) = (5 : Nat) ∧ (2408561 : Nat) % (12 : Nat) = (5 : Nat) ∧ ((233 : Nat) + (1 : Nat)) % (3 : Nat) = (0 : Nat) ∧ ((30089 : Nat) + (1 : Nat)) % (3 : Nat) = (0 : Nat) ∧ ((2408561 : Nat) + (1 : Nat)) % (3 : Nat) = (0 : Nat) ∧ ((233 : Nat) - (1 : Nat)) % (3 : Nat) = (1 : Nat) ∧ ((30089 : Nat) - (1 : Nat)) % (3 : Nat) = (1 : Nat) ∧ ((2408561 : Nat) - (1 : Nat)) % (3 : Nat) = (1 : Nat) ∧ ((0 : Int) * (0 : Int) - (0 : Int) * (1 : Int) + (1 : Int) * (1 : Int) = (1 : Int) ∧ (-1 : Int) * (-1 : Int) - (-1 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (1 : Int)) ∧ ((0 : Int) * (0 : Int) - (1 : Int) * (1 : Int) = (-1 : Int) ∧ (0 : Int) * (1 : Int) + (1 : Int) * (0 : Int) - (1 : Int) * (1 : Int) = (-1 : Int)) ∧ (0 : Int) * (-1 : Int) - (1 : Int) * (-1 : Int) = (1 : Int) ∧ (0 : Int) * (-1 : Int) + (1 : Int) * (-1 : Int) - (1 : Int) * (-1 : Int) = (0 : Int) :=
+  And.intro @FRC.YangMills.centre_sweep (And.intro @FRC.YangMills.lab_centres (And.intro @FRC.YangMills.full_centre_sweep (@FRC.YangMills.carrier_triality)))
+/-- p46012 — 46:C3. The residue series on the instance. On the $216$ elements of $\SU(3,\F_2)$ over $\F_4$ (no nontrivial character over $\F_4$) the adjoint action fixes no nonzero traceless matrix (gluon $0$), the determinant is the one invariant of $\Lambda^{3}$ (baryon $1$), and the commutants of the fundamental and the adjoint are one-dimensional (meson $1$, glueball $1$). -/
 theorem p46012 : FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) - (6 : Int) = (0 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (0 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (2 : Nat) - (2 : Int) * FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) + (6 : Int) = (6 : Int) * (1 : Int) :=
   @FRC.YangMills.glueball_singlet
-/-- p46013 — 46:C4. The Casimir rationals of $\mathfrak{su}(3)$, which the character lift assigns to the colour frame: $C_F=\frac43$, $C_A=3$, $T_F=\frac12$, $C_A/C_F=\frac94$, and the colour factor of the three-quark singlet $\sum\lambda\cdot\lambda=-8$. The Lean cell is the arithmetic of the formula. -/
-theorem p46013 : (3 : Int) * (3 : Int) - (1 : Int) = (8 : Int) ∧ (6 : Nat) * (4 : Nat) = (3 : Nat) * (8 : Nat) ∧ (2 : Int) * (3 : Int) * (3 : Int) = (18 : Int) ∧ (8 : Nat) * (9 : Nat) = (4 : Nat) * (18 : Nat) ∧ (2 : Nat) * (1 : Nat) = (2 : Nat) :=
-  @FRC.YangMills.casimirs
+/-- p46013 — 46:C4. The Casimir rationals of the unitary frame from its torus exponents (C6): on the fundamental $(a,b,-a-b)$, on the adjoint their differences and two zeros; the second moments are $2$ and $12$ times $a^{2}+ab+b^{2}$, so $T_A/T_F=6$ and, with the chart's normalisation $T_F=\frac12$, $C_F=\frac43$, $C_A=3$, $C_A/C_F=\frac94$; the three-quark singlet's colour factor is $-8$. No lift enters. -/
+theorem p46013 : ((3 : Int) * (3 : Int) - (1 : Int) = (8 : Int) ∧ (6 : Nat) * (4 : Nat) = (3 : Nat) * (8 : Nat) ∧ (2 : Int) * (3 : Int) * (3 : Int) = (18 : Int) ∧ (8 : Nat) * (9 : Nat) = (4 : Nat) * (18 : Nat) ∧ (2 : Nat) * (1 : Nat) = (2 : Nat)) ∧ ((List.range (168 : Nat)).all fun n => (2 : Nat) * (((11 : Nat) * n) ^ (2 : Nat) + ((14 : Nat) * n) ^ (2 : Nat) + ((25 : Nat) * n) ^ (2 : Nat)) == (6 : Nat) * (n ^ (2 : Nat) + ((12 : Nat) * n) ^ (2 : Nat) + ((13 : Nat) * n) ^ (2 : Nat))) = true ∧ (2 : Nat) * ((171 : Nat) ^ (2 : Nat) + (174 : Nat) ^ (2 : Nat) + (345 : Nat) ^ (2 : Nat)) = (6 : Nat) * ((1 : Nat) + (172 : Nat) ^ (2 : Nat) + (173 : Nat) ^ (2 : Nat)) ∧ (2 : Nat) * ((1547 : Nat) ^ (2 : Nat) + (1550 : Nat) ^ (2 : Nat) + (3097 : Nat) ^ (2 : Nat)) = (6 : Nat) * ((1 : Nat) + (1548 : Nat) ^ (2 : Nat) + (1549 : Nat) ^ (2 : Nat)) :=
+  And.intro @FRC.YangMills.casimirs (@FRC.YangMills.casimir_exponents)
 /-- p46014 — 46:C5. The window rational: $b_0=11-\frac23n_f$ takes the values $9$, $\frac{25}{3}$, $\frac{23}{3}$, $7$ for $n_f=3,4,5,6$, is positive for every $n_f\le16$ and negative for every $n_f$ from $17$ to $200$. -/
 theorem p46014 : (FRC.YangMills.threeB0 (3 : Nat) = (27 : Int) ∧ FRC.YangMills.threeB0 (4 : Nat) = (25 : Int) ∧ FRC.YangMills.threeB0 (5 : Nat) = (23 : Int) ∧ FRC.YangMills.threeB0 (6 : Nat) = (21 : Int)) ∧ (∀ (nf : Nat), nf < (17 : Nat) → (0 : Int) < FRC.YangMills.threeB0 nf) ∧ FRC.YangMills.threeB0 (17 : Nat) = (-1 : Int) ∧ ∀ (nf : Nat), nf < (201 : Nat) → (17 : Nat) ≤ nf → FRC.YangMills.threeB0 nf < (0 : Int) :=
   And.intro @FRC.YangMills.b0_values (And.intro @FRC.YangMills.b0_pos (And.intro @FRC.YangMills.b0_seventeen (@FRC.YangMills.b0_neg)))
@@ -6297,16 +6594,16 @@ theorem p46016 : (List.map FRC.YangMills.ex (List.range (8 : Nat)) = [(1 : Nat),
 /-- p46018 — 46:X1. Why the gluon is massless yet never seen alone: under the realisation B1 a gluon is drive-invariant (massless, A6) and its space has no frame-invariant line (C1, C3), so no registration singles it out. The row explicates the form of the confinement rule; it does not derive confinement. -/
 theorem p46018 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν a b r : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → a * a + -(ν * (b * b)) = (1 : FRC.Shell p) → b ≠ (0 : FRC.Shell p) → r * r + -((a + a) * r) + (1 : FRC.Shell p) = (0 : FRC.Shell p) → False) ∧ FRC.YangMills.mult (1 : Nat) (1 : Nat) = (1 : Nat) ∧ FRC.YangMills.mult (1 : Nat) (1 : Nat) - (1 : Nat) = (0 : Nat) ∧ FRC.YangMills.lookup ((1 : Nat), (1 : Nat)) (FRC.YangMills.powers3 (2 : Nat)) = (0 : Nat) ∧ FRC.YangMills.lookup ((1 : Nat), (1 : Nat)) (FRC.YangMills.tensor3 [(((0 : Nat), (1 : Nat)), (1 : Nat))]) = (1 : Nat) :=
   And.intro @FRC.YangMills.no_shell_eigenvalue (@FRC.YangMills.adjoint_no_invariant)
-/-- p46019 — 46:X2. Why only colour singlets are registered: under B1 each channel of the colour frame with one singlet has exactly one frame-invariant line, and the hadron paper's series of such channels ends at the glueball (C3); products with several singlets are sums of channels, not classified here. -/
+/-- p46019 — 46:X2. Why only colour singlets are registered: under B1 each channel of the unitary frame, a space whose frame-fixed subspace is a line, has exactly one frame-invariant line, and the hadron paper's series of such channels ends at the glueball (C3); products whose fixed subspace is larger are sums of channels, counted in C22. -/
 theorem p46019 : (FRC.YangMills.mult (3 : Nat) (0 : Nat) = (1 : Nat) ∧ FRC.YangMills.mult (1 : Nat) (1 : Nat) = (1 : Nat) ∧ FRC.YangMills.mult (2 : Nat) (2 : Nat) - (2 : Nat) * FRC.YangMills.mult (1 : Nat) (1 : Nat) + (1 : Nat) = (1 : Nat)) ∧ FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) - (6 : Int) = (0 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (0 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (2 : Nat) - (2 : Int) * FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) + (6 : Int) = (6 : Int) * (1 : Int) :=
   And.intro @FRC.YangMills.residue_series_pieri (@FRC.YangMills.glueball_singlet)
-/-- p46021 — 46:X4. Why the colour factors take the values LEP measured: they are the Casimir rationals of the forced frame (C4), and the abelian alternative $C_A=0$, $C_F=1$ lies outside the measured brackets (A2). -/
+/-- p46021 — 46:X4. Why the colour factors take the values LEP measured: they are the second moments of the unitary frame's torus exponents (C4), and the abelian alternative $C_A=0$, $C_F=1$ lies outside the measured brackets (A2). -/
 theorem p46021 : ((3 : Int) * (3 : Int) - (1 : Int) = (8 : Int) ∧ (6 : Nat) * (4 : Nat) = (3 : Nat) * (8 : Nat) ∧ (2 : Int) * (3 : Int) * (3 : Int) = (18 : Int) ∧ (8 : Nat) * (9 : Nat) = (4 : Nat) * (18 : Nat) ∧ (2 : Nat) * (1 : Nat) = (2 : Nat)) ∧ (268 : Nat) ≤ (300 : Nat) ∧ (300 : Nat) ≤ (310 : Nat) ∧ (3 : Nat) * (121 : Nat) ≤ (400 : Nat) ∧ (400 : Nat) ≤ (3 : Nat) * (139 : Nat) ∧ (4 : Nat) * (211 : Nat) ≤ (900 : Nat) ∧ (900 : Nat) ≤ (4 : Nat) * (233 : Nat) ∧ (0 : Nat) < (268 : Nat) ∧ (100 : Nat) < (121 : Nat) :=
   And.intro @FRC.YangMills.casimirs (@FRC.YangMills.colour_factors_within)
 /-- p46023 — 46:P1. The colour factors of the strong interaction are $C_A=3$, $C_F=\frac43$, $C_A/C_F=\frac94$ (C4). Falsifier: a measured $C_A/C_F$ outside $\frac94$ beyond its error. Confrontation: LEP's $2.89(21)$, $1.30(9)$, $2.22(11)$ (A2), each within one standard deviation. -/
 theorem p46023 : ((3 : Int) * (3 : Int) - (1 : Int) = (8 : Int) ∧ (6 : Nat) * (4 : Nat) = (3 : Nat) * (8 : Nat) ∧ (2 : Int) * (3 : Int) * (3 : Int) = (18 : Int) ∧ (8 : Nat) * (9 : Nat) = (4 : Nat) * (18 : Nat) ∧ (2 : Nat) * (1 : Nat) = (2 : Nat)) ∧ (268 : Nat) ≤ (300 : Nat) ∧ (300 : Nat) ≤ (310 : Nat) ∧ (3 : Nat) * (121 : Nat) ≤ (400 : Nat) ∧ (400 : Nat) ≤ (3 : Nat) * (139 : Nat) ∧ (4 : Nat) * (211 : Nat) ≤ (900 : Nat) ∧ (900 : Nat) ≤ (4 : Nat) * (233 : Nat) ∧ (0 : Nat) < (268 : Nat) ∧ (100 : Nat) < (121 : Nat) :=
   And.intro @FRC.YangMills.casimirs (@FRC.YangMills.colour_factors_within)
-/-- p46024 — 46:P2. [chart] Between laboratory scales $1/\alpha_s$ is linear in $\ln\mu$ with slope $b_0/2\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\alpha_s(\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\alpha_s(m_\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$. -/
+/-- p46024 — 46:P2. [chart] Between laboratory scales $1/\alpha_s$ is linear in $\ln(\mu/\mu_0)$ with slope $b_0/2\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\alpha_s(\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\alpha_s(m_\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$. -/
 theorem p46024 : (FRC.YangMills.alphaTau.within (FRC.YangMills.WF.frac (2785 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (2795 : Int) (10000 : Nat)) = true ∧ (FRC.YangMills.WF.frac (215 : Int) (100 : Nat)).lt (((FRC.YangMills.WF.frac (312 : Int) (1000 : Nat)).sub FRC.YangMills.alphaTau.snd).div (FRC.YangMills.WF.frac (15 : Int) (1000 : Nat))) = true ∧ (((FRC.YangMills.WF.frac (312 : Int) (1000 : Nat)).sub FRC.YangMills.alphaTau.fst).div (FRC.YangMills.WF.frac (15 : Int) (1000 : Nat))).lt (FRC.YangMills.WF.frac (225 : Int) (100 : Nat)) = true ∧ FRC.YangMills.threeB0 (5 : Nat) = (23 : Int) ∧ FRC.YangMills.threeB0 (4 : Nat) = (25 : Int)) ∧ FRC.YangMills.threeB0 (3 : Nat) = (27 : Int) ∧ FRC.YangMills.threeB0 (4 : Nat) = (25 : Int) ∧ FRC.YangMills.threeB0 (5 : Nat) = (23 : Int) ∧ FRC.YangMills.threeB0 (6 : Nat) = (21 : Int) :=
   And.intro @FRC.YangMills.running_one_loop (@FRC.YangMills.b0_values)
 /-- p46030 — 46:C9. The adjoint wrap: the adjoint plaquette coefficient has $\beta^{1}$ coefficient $0$ and $\beta^{2}$ coefficient $\frac{1}{288}=\frac98(\frac{1}{18})^{2}$, both identities holding on $\SU(3,\F_2)$ by enumeration; modulo $\beta^{6}$, $c_8=\frac98c_3^{2}(1-\beta/18+\beta^{2}/432+\beta^{3}/2592)$: twice the fundamental string tension at leading order. -/
@@ -6315,18 +6612,48 @@ theorem p46030 : FRC.Hadrons.moment6 (2 : Nat) (1 : Nat) + FRC.Hadrons.moment6 (
 /-- p46036 — 46:C12. [chart] The family of C8 against the lattice: $E_0=\sqrt{a\varkappa}\,2.232$ by the dilation symmetry, $2.232$, $3.157$, $3.348$, $3.157$, $4.464$, $4.735$ for $a\in\{1,2\}$, $\varkappa\in\{1,2,\frac94\}$; none inside any determination's error; the nearest, $a=1$, $\varkappa=\frac94$, is $1.7\,\%$ below the direct value. -/
 theorem p46036 : ((FRC.YangMills.family.zip [(2232 : Nat), (3157 : Nat), (3348 : Nat), (3157 : Nat), (4464 : Nat), (4735 : Nat)]).all fun x => decide (((2 : Nat) * x.snd - (1 : Nat)) ^ (2 : Nat) < FRC.YangMills.famSq x.fst.fst x.fst.snd ∧ FRC.YangMills.famSq x.fst.fst x.fst.snd < ((2 : Nat) * x.snd + (1 : Nat)) ^ (2 : Nat))) = true ∧ (FRC.YangMills.family.all fun m => FRC.YangMills.determinations.all fun d => decide (FRC.YangMills.famSq m.fst m.snd < (4 : Nat) * (d.fst - d.snd) ^ (2 : Nat) ∨ (4 : Nat) * (d.fst + d.snd) ^ (2 : Nat) < FRC.YangMills.famSq m.fst m.snd)) = true ∧ (FRC.YangMills.family.all fun m => FRC.YangMills.determinations.all fun d => decide (FRC.YangMills.famSq m.fst m.snd ≤ (4 : Nat) * (d.fst - (57 : Nat)) ^ (2 : Nat) ∨ (4 : Nat) * (d.fst + (57 : Nat)) ^ (2 : Nat) ≤ FRC.YangMills.famSq m.fst m.snd)) = true ∧ FRC.YangMills.famSq (1 : Nat) (9 : Nat) = ((2 : Nat) * (3348 : Nat)) ^ (2 : Nat) ∧ (3348 : Nat) + (57 : Nat) = (3405 : Nat) ∧ (165 : Nat) * (3405 : Nat) < (57 : Nat) * (10000 : Nat) ∧ (57 : Nat) * (10000 : Nat) < (175 : Nat) * (3405 : Nat) :=
   @FRC.YangMills.wrap_family
-/-- p46037 — 46:C10. [chart] The short-range route is obstructed: with the declared coupling $\alpha_s(\sig)=1.007$ the two-adjoint term has $C=C_A\alpha_s=3.02$, above the Herbst bounds $2/\pi$ and $4/\pi$, so the cutoff cannot be removed; with the coupling run to the bound state's mass, fixed points exist above a threshold cutoff and none are found below: $3.54$, $3.08$, $2.61$ at $1$, $\frac12$, $\frac14$ cells. -/
+/-- p46037 — 46:C10. [chart] The short-range route of the chart fails: with the declared coupling $\alpha_s(\sig)=1.007$ the two-adjoint term has $C=C_A\alpha_s=3.02$, above the Herbst bounds $2/\pi$ and $4/\pi$, so the cutoff cannot be removed; with the coupling run to the bound state's mass, fixed points $3.54$, $3.08$, $2.61$ at $r_c=1$, $\frac12$, $\frac14$ and none found at $\frac18$ (a scan of $149$ energies). -/
 theorem p46037 : FRC.YangMills.alphaDeclared.within (FRC.YangMills.WF.frac (10065 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (10075 : Int) (10000 : Nat)) = true ∧ FRC.YangMills.couplingC.within (FRC.YangMills.WF.frac (3015 : Int) (1000 : Nat)) (FRC.YangMills.WF.frac (3025 : Int) (1000 : Nat)) = true ∧ FRC.YangMills.herbstOne.within (FRC.YangMills.WF.frac (636 : Int) (1000 : Nat)) (FRC.YangMills.WF.frac (637 : Int) (1000 : Nat)) = true ∧ FRC.YangMills.herbstTwo.within (FRC.YangMills.WF.frac (1273 : Int) (1000 : Nat)) (FRC.YangMills.WF.frac (1274 : Int) (1000 : Nat)) = true ∧ FRC.YangMills.herbstTwo.snd.lt FRC.YangMills.couplingC.fst = true ∧ FRC.YangMills.herbstOne.snd.lt FRC.YangMills.couplingC.fst = true ∧ ((FRC.YangMills.WF.ofNat (6 : Nat)).mul (FRC.YangMills.lnBr (FRC.YangMills.WF.ofNat (2 : Nat)) (12 : Nat)).snd).lt (FRC.YangMills.piBr.fst.mul FRC.YangMills.piBr.fst) = true :=
   @FRC.YangMills.herbst_comparison
-/-- p46038 — 46:C11. [chart] The plaquette channel is obstructed: with the series of A11 and the frame's $u=c_3(\beta)$, $m/\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$ ($\beta=1$ to $3$), the orders agreeing within $1\,\%$; the bracket $3.4$--$3.7$ is reached only at $u=0.30$, where they disagree by $10\,\%$; the scaling region is $u\approx0.42$. -/
+/-- p46038 — 46:C11. [chart] The plaquette channel of the chart fails: with A11's series and $u=c_3(\beta)$ (C7), $m/\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$, the orders $3$, $5$, $7$ agreeing within $1\,\%$; at $u=0.30$ they give $3.97$, $3.59$, $3.78$, the fifth alone in $3.4$--$3.7$; the scaling region is $u\approx0.42$. -/
 theorem p46038 : FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (3 : Int) (50 : Nat)) (FRC.YangMills.WF.frac (655 : Int) (100 : Nat)) (FRC.YangMills.WF.frac (665 : Int) (100 : Nat)) = true ∧ FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (1 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (585 : Int) (100 : Nat)) (FRC.YangMills.WF.frac (595 : Int) (100 : Nat)) = true ∧ FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (3 : Int) (20 : Nat)) (FRC.YangMills.WF.frac (525 : Int) (100 : Nat)) (FRC.YangMills.WF.frac (535 : Int) (100 : Nat)) = true ∧ FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (1 : Int) (5 : Nat)) (FRC.YangMills.WF.frac (475 : Int) (100 : Nat)) (FRC.YangMills.WF.frac (485 : Int) (100 : Nat)) = true ∧ ([FRC.YangMills.WF.frac (3 : Int) (50 : Nat), FRC.YangMills.WF.frac (1 : Int) (10 : Nat), FRC.YangMills.WF.frac (3 : Int) (20 : Nat), FRC.YangMills.WF.frac (1 : Int) (5 : Nat)].all fun u => (FRC.YangMills.spreadHi u).lt (FRC.YangMills.WF.frac (1 : Int) (100 : Nat))) = true ∧ FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (1 : Int) (4 : Nat)) (FRC.YangMills.WF.frac (37 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (5 : Int) (1 : Nat)) = true ∧ FRC.YangMills.ratioWithin (5 : Nat) (FRC.YangMills.WF.frac (3 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (34 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (37 : Int) (10 : Nat)) = true ∧ FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (3 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (35 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (4 : Int) (1 : Nat)) = true ∧ (FRC.YangMills.WF.frac (9 : Int) (100 : Nat)).lt (FRC.YangMills.spreadLo (FRC.YangMills.WF.frac (3 : Int) (10 : Nat))) = true ∧ (FRC.YangMills.WF.frac (601 : Int) (10000 : Nat)).lt (FRC.YangMills.uOfBeta (1 : Nat)) = true ∧ (FRC.YangMills.uOfBeta (1 : Nat)).lt (FRC.YangMills.WF.frac (602 : Int) (10000 : Nat)) = true ∧ (FRC.YangMills.WF.frac (203 : Int) (1000 : Nat)).lt (FRC.YangMills.uOfBeta (3 : Nat)) = true ∧ (FRC.YangMills.uOfBeta (3 : Nat)).lt (FRC.YangMills.WF.frac (2031 : Int) (10000 : Nat)) = true ∧ (FRC.YangMills.WF.frac (42 : Int) (100 : Nat)).lt (FRC.YangMills.uOfBeta (6 : Nat)) = true ∧ (FRC.YangMills.uOfBeta (6 : Nat)).lt (FRC.YangMills.WF.frac (43 : Int) (100 : Nat)) = true :=
   @FRC.YangMills.plaquette_channel
 /-- p46041 — 46:C13. The two rationals of the one-loop coefficient are the frame's: the spin term $(2s)^{2}=-2\,\mathrm{Tr}_V(J_{12}^{2})$ is $0$, $1$, $4$ on the scalar, the Weyl spinor and the vector; the charge term $\frac13$ is the leading Faulhaber coefficient of the scalar loop's midpoint sum $3\sum_{k<N}(N-2k-1)^{2}=N(N^{2}-1)$, whose complete cycle $N=\p$ vanishes on the shell. With C4 the species sum of A12 is $3b_0=33-2n_f$ (C5). -/
 theorem p46041 : ((-((2 : FRC.Shell (13 : Nat)) * FRC.YangMills.tr (FRC.YangMills.mmul FRC.YangMills.jVec FRC.YangMills.jVec)) = (4 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ -FRC.YangMills.tr (FRC.YangMills.mmul (FRC.YangMills.jWeyl (5 : FRC.Shell (13 : Nat))) (FRC.YangMills.jWeyl (5 : FRC.Shell (13 : Nat)))) = (2 : FRC.Shell (13 : Nat))) ∧ (-((2 : FRC.Shell (173 : Nat)) * FRC.YangMills.tr (FRC.YangMills.mmul FRC.YangMills.jVec FRC.YangMills.jVec)) = (4 : FRC.Shell (173 : Nat)) ∧ (80 : FRC.Shell (173 : Nat)) * (80 : FRC.Shell (173 : Nat)) = (-1 : FRC.Shell (173 : Nat)) ∧ -FRC.YangMills.tr (FRC.YangMills.mmul (FRC.YangMills.jWeyl (80 : FRC.Shell (173 : Nat))) (FRC.YangMills.jWeyl (80 : FRC.Shell (173 : Nat)))) = (2 : FRC.Shell (173 : Nat))) ∧ (-((2 : FRC.Shell (1549 : Nat)) * FRC.YangMills.tr (FRC.YangMills.mmul FRC.YangMills.jVec FRC.YangMills.jVec)) = (4 : FRC.Shell (1549 : Nat)) ∧ (88 : FRC.Shell (1549 : Nat)) * (88 : FRC.Shell (1549 : Nat)) = (-1 : FRC.Shell (1549 : Nat)) ∧ -FRC.YangMills.tr (FRC.YangMills.mmul (FRC.YangMills.jWeyl (88 : FRC.Shell (1549 : Nat))) (FRC.YangMills.jWeyl (88 : FRC.Shell (1549 : Nat)))) = (2 : FRC.Shell (1549 : Nat))) ∧ FRC.YangMills.tr (FRC.YangMills.mmul [[(0 : FRC.Shell (13 : Nat))]] [[(0 : FRC.Shell (13 : Nat))]]) = (0 : FRC.Shell (13 : Nat))) ∧ (∀ (N : Nat), N < (400 : Nat) → (3 : Int) * FRC.YangMills.sq N = ↑N * (↑N ^ (2 : Nat) - (1 : Int))) ∧ (∀ (N : Nat), N < (173 : Nat) → FRC.YangMills.sqS N = FRC.Shell.ofNat N * (FRC.Shell.ofNat N ^ (2 : Nat) + (-1 : FRC.Shell (173 : Nat))) * FRC.YangMills.invS (3 : FRC.Shell (173 : Nat))) ∧ (FRC.YangMills.sqS (13 : Nat) = (0 : FRC.Shell (13 : Nat)) ∧ FRC.YangMills.sqS (173 : Nat) = (0 : FRC.Shell (173 : Nat)) ∧ FRC.YangMills.sqS (1549 : Nat) = (0 : FRC.Shell (1549 : Nat)) ∧ FRC.YangMills.sqS (10 : Nat) = (330 : FRC.Shell (173 : Nat))) ∧ ∀ (nf : Nat), nf < (201 : Nat) → FRC.YangMills.threeB0 nf = (3 : Int) * ((3 : Int) * (4 : Int) - (1 : Int)) - ↑nf * (1 : Int) * ((3 : Int) * (1 : Int) - (1 : Int)) :=
   And.intro @FRC.YangMills.spin_traces (And.intro @FRC.YangMills.faulhaber_third (And.intro @FRC.YangMills.faulhaber_residues (And.intro @FRC.YangMills.complete_cycle_vanishes (@FRC.YangMills.hughes_nielsen_sum))))
-/-- p46043 — 46:P3. [chart] The radial ratio of the operator form: $E_1/E_0=1.49$ for every $a$ and $\varkappa$, a property of the operator form of C8 shared by every state the one-body wrap describes. Falsifier: a measured first radial ratio of such a state outside $1.49$ beyond its error. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ and favours the nonrelativistic $1.75$: the form fails for the glueball. -/
-theorem p46043 : (1432 : Nat) ≤ (1491 : Nat) ∧ (1491 : Nat) ≤ (1656 : Nat) ∧ (2 : Nat) * ((1544 : Nat) - (1491 : Nat)) < (112 : Nat) ∧ (174 : Nat) * (234 : Nat) < (408 : Nat) * (100 : Nat) ∧ (409 : Nat) * (100 : Nat) < (176 : Nat) * (233 : Nat) ∧ (1656 : Nat) < (1740 : Nat) ∧ (14 : Nat) * (16 : Nat) < (1720 : Nat) - (1491 : Nat) ∧ (1748 : Nat) - (1720 : Nat) < (2 : Nat) * (16 : Nat) ∧ (1491 : Nat) * (939 : Nat) < (1440 : Nat) * (1000 : Nat) ∧ (1440 : Nat) * (1000 : Nat) * (100 : Nat) < (1491 : Nat) * (939 : Nat) * (103 : Nat) :=
+/-- p46043 — 46:P3. [chart] The radial ratio of the operator form: $E_1/E_0\approx1.49$ for every $a$ and $\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball. -/
+theorem p46043 : (1432 : Nat) ≤ (1491 : Nat) ∧ (1491 : Nat) ≤ (1656 : Nat) ∧ (2 : Nat) * ((1544 : Nat) - (1491 : Nat)) < (112 : Nat) ∧ (174 : Nat) * (234 : Nat) < (408 : Nat) * (100 : Nat) ∧ (409 : Nat) * (100 : Nat) < (176 : Nat) * (233 : Nat) ∧ (1656 : Nat) < (1740 : Nat) ∧ (14 : Nat) * (16 : Nat) < (1720 : Nat) - (1491 : Nat) ∧ (10 : Nat) * (227 : Nat) < (17195 : Nat) - (14915 : Nat) ∧ (1748 : Nat) - (1720 : Nat) < (2 : Nat) * (16 : Nat) ∧ (1491 : Nat) * (939 : Nat) < (1440 : Nat) * (1000 : Nat) ∧ (1440 : Nat) * (1000 : Nat) * (100 : Nat) < (1491 : Nat) * (939 : Nat) * (103 : Nat) :=
   @FRC.YangMills.radial_ratio
+/-- p46051 — 46:C14. The series' window: the $\beta^{k}$ coefficient of $c_3$ uses the invariant counts of degree $\le k+1$, that of $c_8$ degree $\le k+2$, so the frame's series equal the compact ones through $\beta^{\p-3}$, $\beta^{\p-4}$ by A9 and $\beta^{2\p-2}$, $\beta^{2\p-3}$ by C15; on the instance $M(4,1)=4$ against $3$ puts $c_3$'s $\beta^{4}$ at $0$ and $c_8$'s $\beta^{3}$ at $1/1728$. -/
+theorem p46051 : ((13 : Nat) - (3 : Nat) = (10 : Nat) ∧ (7 : Nat) ≤ (13 : Nat) - (3 : Nat) ∧ (7 : Nat) ≤ (173 : Nat) - (3 : Nat) ∧ (7 : Nat) ≤ (1549 : Nat) - (3 : Nat) ∧ (7 : Nat) ≤ (13 : Nat) - (4 : Nat)) ∧ FRC.YangMills.windowCheck = true :=
+  @FRC.YangMills.series_window
+/-- p46053 — 46:C15. The frame's window and first departure: for odd $\p$ the frame's invariants in $\mathbf3^{\otimes a}\otimes\bar{\mathbf3}^{\otimes b}$ are the compact ones through degree $2\p-1$ (the coordinate $\SU(2)$ subgroups, A13), and the Frobenius tensor $v_\p$ at $(4\p-4,1)$ lies beyond them, so the first departure $d_*$ has $2\p\le d_*\le4\p-3$: $[26,49]$ on $\F_{13}$, $[346,689]$ on $\F_{173}$; $d_*=5$, $9$ on $\F_2$, $\F_3$. -/
+theorem p46053 : FRC.YangMills.binomRow (13 : Nat) (11 : Nat) (25 : Nat) = FRC.YangMills.expectedRow (13 : Nat) (11 : Nat) (25 : Nat) ∧ FRC.YangMills.binomRow (13 : Nat) (12 : Nat) (25 : Nat) = FRC.YangMills.expectedRow (13 : Nat) (12 : Nat) (25 : Nat) ∧ FRC.YangMills.binomRow (13 : Nat) (24 : Nat) (12 : Nat) = FRC.YangMills.expectedRow (13 : Nat) (24 : Nat) (12 : Nat) ∧ FRC.YangMills.binomRow (13 : Nat) (25 : Nat) (12 : Nat) = FRC.YangMills.expectedRow (13 : Nat) (25 : Nat) (12 : Nat) ∧ ((2 : Nat) * (13 : Nat) - (1 : Nat) ≠ (13 : Nat) - (2 : Nat) ∧ (2 : Nat) * (13 : Nat) - (1 : Nat) - ((13 : Nat) - (2 : Nat)) = (13 : Nat) + (1 : Nat)) ∧ ((2 : Nat) * (13 : Nat) = (26 : Nat) ∧ (4 : Nat) * (13 : Nat) - (3 : Nat) = (49 : Nat) ∧ (2 : Nat) * (173 : Nat) = (346 : Nat) ∧ (4 : Nat) * (173 : Nat) - (3 : Nat) = (689 : Nat) ∧ (2 : Nat) * (1549 : Nat) = (3098 : Nat) ∧ (4 : Nat) * (1549 : Nat) - (3 : Nat) = (6193 : Nat)) ∧ ((2 : Nat) * (13 : Nat) - (2 : Nat) = (24 : Nat) ∧ (2 : Nat) * (13 : Nat) - (3 : Nat) = (23 : Nat) ∧ (7 : Nat) < (2 : Nat) * (13 : Nat) - (3 : Nat)) ∧ (4 : Nat) * (2 : Nat) - (3 : Nat) = (5 : Nat) ∧ (4 : Nat) * (3 : Nat) - (3 : Nat) = (9 : Nat) :=
+  @FRC.YangMills.frame_window
+/-- p46056 — 46:C16. The amplitude's finite properties: every eigenvalue of the frame lies in $\F_{q^{6}}$ with order dividing $M$; $w$ is a class function, $w(U^{-1})=\overline{w(U)}$, $w(zU)=\iota(z)w(U)$ for central $z$, and reduces to $\operatorname{Tr}U$; if $\p$ divides the order of $U$ then $U_s$ has eigenvalues $(\lambda,\lambda,\lambda^{-2})$, $\lambda^{q+1}=1$, so $w(U)=2\eta+\eta^{-2}$ and every unipotent has $w=3$; if $3\mid q+1$ then $\langle w\rangle=0$ (B3). -/
+theorem p46056 : (((13 : Nat) * (13 : Nat) - (1 : Nat)).lcm ((13 : Nat) * (13 : Nat) - (13 : Nat) + (1 : Nat)) = (26376 : Nat) ∧ ((173 : Nat) * (173 : Nat) - (1 : Nat)).lcm ((173 : Nat) * (173 : Nat) - (173 : Nat) + (1 : Nat)) = (296855832 : Nat) ∧ ((1549 : Nat) * (1549 : Nat) - (1 : Nat)).lcm ((1549 : Nat) * (1549 : Nat) - (1549 : Nat) + (1 : Nat)) = (5753408488200 : Nat)) ∧ (Nat.gcd (26376 : Nat) (232 : Nat) = (8 : Nat) ∧ Nat.gcd (296855832 : Nat) (30088 : Nat) = (8 : Nat) ∧ Nat.gcd (5753408488200 : Nat) (2408560 : Nat) = (40 : Nat)) ∧ ((13 : Nat) * (13 : Nat) - (13 : Nat) + (1 : Nat) = (157 : Nat) ∧ Nat.gcd (157 : Nat) (232 : Nat) = (1 : Nat) ∧ ((173 : Nat) * (173 : Nat) - (173 : Nat) + (1 : Nat)).gcd (30088 : Nat) = (1 : Nat) ∧ ((1549 : Nat) * (1549 : Nat) - (1549 : Nat) + (1 : Nat)).gcd (2408560 : Nat) = (1 : Nat)) ∧ (((13 : Nat) + (1 : Nat)) % (3 : Nat) ≠ (0 : Nat) ∧ ((173 : Nat) + (1 : Nat)) % (3 : Nat) = (0 : Nat) ∧ ((1549 : Nat) + (1 : Nat)) % (3 : Nat) ≠ (0 : Nat) ∧ ((2 : Nat) + (1 : Nat)) % (3 : Nat) = (0 : Nat)) ∧ (FRC.YangMills.z3Mul ((0 : Int), (1 : Int)) ((0 : Int), (1 : Int)) = ((-1 : Int), (-1 : Int)) ∧ FRC.YangMills.z3Mul (FRC.YangMills.z3Mul ((0 : Int), (1 : Int)) ((0 : Int), (1 : Int))) ((0 : Int), (1 : Int)) = ((1 : Int), (0 : Int)) ∧ FRC.YangMills.z3Conj ((0 : Int), (1 : Int)) = ((-1 : Int), (-1 : Int))) ∧ (((0 : Int), (1 : Int)) ≠ ((1 : Int), (0 : Int)) ∧ (1 : Int) + (0 : Int) + (-1 : Int) = (0 : Int) ∧ (0 : Int) + (1 : Int) + (-1 : Int) = (0 : Int)) ∧ FRC.YangMills.z3Mul ((2 : Int), (0 : Int)) ((0 : Int), (1 : Int)) = ((0 : Int), (2 : Int)) ∧ FRC.YangMills.z3Mul ((0 : Int), (2 : Int)) ((0 : Int), (1 : Int)) = ((-2 : Int), (-2 : Int)) ∧ ((0 : Nat), (2 : Nat)).fst + ((0 : Nat), (1 : Nat)).fst = ((0 : Nat), (3 : Nat)).fst ∧ ((0 : Nat), (2 : Nat)).snd + ((0 : Nat), (1 : Nat)).snd = ((0 : Nat), (3 : Nat)).snd ∧ ((-2 : Int), (-2 : Int)).fst + ((-1 : Int), (-1 : Int)).fst = ((-3 : Int), (-3 : Int)).fst ∧ ((-2 : Int), (-2 : Int)).snd + ((-1 : Int), (-1 : Int)).snd = ((-3 : Int), (-3 : Int)).snd :=
+  @FRC.YangMills.spectral_amplitude
+/-- p46057 — 46:C17. The amplitude on the instance: on $\SU(3,\F_2)$ the values $3$, $3\zeta_3$, $3\zeta_3^{2}$ on $64$ elements each and $0$ on $24$; the moments $\frac1{216}\sum w^{a}\bar w^{b}$ at $(1,1)$, $(3,0)$, $(2,2)$ are $8$, $24$, $72$, not the invariant counts $1$, $1$, $2$ (C3); two involutions with $w=3$ have a product with $w=0$: $w$ is no complex character. -/
+theorem p46057 : ((64 : Int) * ((3 : Int) + (0 : Int) + (-3 : Int)) = (0 : Int) ∧ (64 : Int) * ((0 : Int) + (3 : Int) + (-3 : Int)) = (0 : Int)) ∧ (FRC.YangMills.z3Norm ((3 : Int), (0 : Int)) = (9 : Int) ∧ FRC.YangMills.z3Norm ((0 : Int), (3 : Int)) = (9 : Int) ∧ FRC.YangMills.z3Norm ((-3 : Int), (-3 : Int)) = (9 : Int) ∧ FRC.YangMills.z3Norm ((0 : Int), (0 : Int)) = (0 : Int)) ∧ (FRC.YangMills.z3Mul (FRC.YangMills.z3Mul ((0 : Int), (3 : Int)) ((0 : Int), (3 : Int))) ((0 : Int), (3 : Int)) = ((27 : Int), (0 : Int)) ∧ FRC.YangMills.z3Mul (FRC.YangMills.z3Mul ((-3 : Int), (-3 : Int)) ((-3 : Int), (-3 : Int))) ((-3 : Int), (-3 : Int)) = ((27 : Int), (0 : Int))) ∧ ((192 : Nat) * (9 : Nat) = (8 : Nat) * (216 : Nat) ∧ (192 : Nat) * (27 : Nat) = (24 : Nat) * (216 : Nat) ∧ (192 : Nat) * (81 : Nat) = (72 : Nat) * (216 : Nat) ∧ (64 : Nat) + (64 : Nat) + (64 : Nat) + (24 : Nat) = (216 : Nat)) ∧ (8 : Nat) ≠ (1 : Nat) ∧ (24 : Nat) ≠ (1 : Nat) ∧ (72 : Nat) ≠ (2 : Nat) :=
+  @FRC.YangMills.instance_amplitude
+/-- p46058 — 46:C18. The transfer tally on the instance: on $\SU(3,\F_2)$ the step of one plaquette, $(Kf)(x)=\langle w(x^{-1}y)f(y)\rangle_y$ (B3), has the eigenvalues $\frac23$, $\frac16$, $0$, $-\frac13$ with multiplicities $9$, $36$, $144$, $27$ ($K(3K+1)(6K-1)(3K-2)=0$, $\operatorname{tr}K=3$); the trivial channel is annihilated, $K\mathbf1=0$ (C16), so the tally has no ratio to it; with the eigenvalue $-\frac13$ it is not a positive operator. -/
+theorem p46058 : (9 : Nat) + (36 : Nat) + (144 : Nat) + (27 : Nat) = (216 : Nat) ∧ ((2 : Nat) * (216 : Nat) = (3 : Nat) * (144 : Nat) ∧ (1 : Nat) * (216 : Nat) = (6 : Nat) * (36 : Nat) ∧ (-1 : Int) * (216 : Int) = (3 : Int) * (-72 : Int)) ∧ (4 : Int) * (9 : Int) + (1 : Int) * (36 : Int) + (0 : Int) * (144 : Int) + (-2 : Int) * (27 : Int) = (6 : Int) * (3 : Int) ∧ ((4 : Int) * (4 : Int) * (9 : Int) + (1 : Int) * (1 : Int) * (36 : Int) + (0 : Int) + (2 : Int) * (2 : Int) * (27 : Int) = (36 : Int) * (8 : Int) ∧ (8 : Nat) * (216 : Nat) = (192 : Nat) * (9 : Nat)) ∧ ((3 : Int) * (6 : Int) * (3 : Int) = (54 : Int) ∧ (3 : Int) * (6 : Int) * (-2 : Int) + (3 : Int) * (-1 : Int) * (3 : Int) + (1 : Int) * (6 : Int) * (3 : Int) = (-27 : Int) ∧ (3 : Int) * (-1 : Int) * (-2 : Int) + (1 : Int) * (6 : Int) * (-2 : Int) + (1 : Int) * (-1 : Int) * (3 : Int) = (-9 : Int) ∧ (1 : Int) * (-1 : Int) * (-2 : Int) = (2 : Int)) ∧ (-2 : Int) < (0 : Int) ∧ (-2 : Int) < (1 : Int) ∧ (1 : Int) < (4 : Int) :=
+  @FRC.YangMills.instance_transfer
+/-- p46061 — 46:C19. The transfer tally on the Subjects: on $q=3,4,5,7,13,173,1549$ by exact integer arithmetic $w=\chi_{q^2-q+1}+\chi_{q^3+1}-\chi_{(q+1)^2(q-1)}$ (first members of the three families, A15), so the step $K$ (B3) has the eigenvalues $\frac1{q^2-q+1}$, $\frac1{q^3+1}$, $-\frac1{(q+1)^2(q-1)}$, $0$ with multiplicities the squared degrees; the frame's mean of $w$ is $0$, moment $3$; $K$ not positive. -/
+theorem p46061 : ((FRC.YangMills.su3Order (13 : Nat) = (811273008 : Int) ∧ FRC.YangMills.su3Order (173 : Nat) = (802332524681473968 : Int) ∧ FRC.YangMills.su3Order (1549 : Nat) = (33144476289365359469790000 : Int)) ∧ (FRC.YangMills.degs (13 : Nat) = ((157 : Int), (2198 : Int), (2352 : Int)) ∧ FRC.YangMills.degs (173 : Nat) = ((29757 : Int), (5177718 : Int), (5207472 : Int)) ∧ FRC.YangMills.degs (1549 : Nat) = ((2397853 : Int), (3716672150 : Int), (3719070000 : Int))) ∧ FRC.YangMills.spectrumOK (13 : Nat) = true ∧ FRC.YangMills.spectrumOK (173 : Nat) = true ∧ FRC.YangMills.spectrumOK (1549 : Nat) = true) ∧ FRC.YangMills.degreeSweep (2000 : Nat) = true :=
+  And.intro @FRC.YangMills.subject_spectrum (@FRC.YangMills.degree_identity)
+/-- p46062 — 46:C20. The tally of the ring of plaquettes and the transfer tally's gap: on the frames of C19 the tally sums three characters' terms $\chi(h_1)\chi(h_2^{-1})$ on the boundary classes; one plaquette multiplies each by its eigenvalue; the largest eigenvalue belongs to one character and is $q+1$ times the next. Modulo $\p$ the eigenvalues are $1$ and at fixed classes the tally is the same for every length. -/
+theorem p46062 : (FRC.YangMills.gapOK (3 : Nat) = true ∧ FRC.YangMills.gapOK (4 : Nat) = true ∧ FRC.YangMills.gapOK (5 : Nat) = true ∧ FRC.YangMills.gapOK (7 : Nat) = true ∧ FRC.YangMills.gapOK (13 : Nat) = true ∧ FRC.YangMills.gapOK (173 : Nat) = true ∧ FRC.YangMills.gapOK (1549 : Nat) = true) ∧ (FRC.YangMills.degs (13 : Nat)).snd.fst = (14 : Int) * (FRC.YangMills.degs (13 : Nat)).fst ∧ (FRC.YangMills.degs (173 : Nat)).snd.fst = (174 : Int) * (FRC.YangMills.degs (173 : Nat)).fst ∧ (FRC.YangMills.degs (1549 : Nat)).snd.fst = (1550 : Int) * (FRC.YangMills.degs (1549 : Nat)).fst :=
+  @FRC.YangMills.ring_gap
+/-- p46064 — 46:C21. The spectrum in $2\pi=\p-1$, the shell's phase cycle, certified by $2\pi\equiv-1$ and $\p$-hard: on the three Subjects $d_1=4\pi^{2}+2\pi+1$, $d_2=(2\pi+2)d_1$, $d_3=8\pi(\pi+1)^{2}$, and the gap of the transfer tally is $1/(2\pi+2)$, a pure number, one expression on every Subject, with the residue $1$ on the shell. [chart] $0.1207$ at the classical $\pi$. -/
+theorem p46064 : ((13 : Nat) = (2 : Nat) * (6 : Nat) + (1 : Nat) ∧ (173 : Nat) = (2 : Nat) * (86 : Nat) + (1 : Nat) ∧ (1549 : Nat) = (2 : Nat) * (774 : Nat) + (1 : Nat)) ∧ ((FRC.YangMills.degs (13 : Nat)).fst = (4 : Int) * (6 : Int) * (6 : Int) + (2 : Int) * (6 : Int) + (1 : Int) ∧ (FRC.YangMills.degs (173 : Nat)).fst = (4 : Int) * (86 : Int) * (86 : Int) + (2 : Int) * (86 : Int) + (1 : Int) ∧ (FRC.YangMills.degs (1549 : Nat)).fst = (4 : Int) * (774 : Int) * (774 : Int) + (2 : Int) * (774 : Int) + (1 : Int)) ∧ ((FRC.YangMills.degs (13 : Nat)).snd.fst = ((2 : Int) * (6 : Int) + (2 : Int)) * (FRC.YangMills.degs (13 : Nat)).fst ∧ (FRC.YangMills.degs (173 : Nat)).snd.fst = ((2 : Int) * (86 : Int) + (2 : Int)) * (FRC.YangMills.degs (173 : Nat)).fst ∧ (FRC.YangMills.degs (1549 : Nat)).snd.fst = ((2 : Int) * (774 : Int) + (2 : Int)) * (FRC.YangMills.degs (1549 : Nat)).fst) ∧ ((FRC.YangMills.degs (13 : Nat)).snd.snd = (8 : Int) * (6 : Int) * ((6 : Int) + (1 : Int)) * ((6 : Int) + (1 : Int)) ∧ (FRC.YangMills.degs (173 : Nat)).snd.snd = (8 : Int) * (86 : Int) * ((86 : Int) + (1 : Int)) * ((86 : Int) + (1 : Int)) ∧ (FRC.YangMills.degs (1549 : Nat)).snd.snd = (8 : Int) * (774 : Int) * ((774 : Int) + (1 : Int)) * ((774 : Int) + (1 : Int))) ∧ ((2 : Nat) * (6 : Nat) + (2 : Nat)) % (13 : Nat) = (1 : Nat) ∧ ((2 : Nat) * (86 : Nat) + (2 : Nat)) % (173 : Nat) = (1 : Nat) ∧ ((2 : Nat) * (774 : Nat) + (2 : Nat)) % (1549 : Nat) = (1 : Nat) :=
+  @FRC.YangMills.spectrum_in_pi
+/-- p46065 — 46:C22. The product channels: where $3$ is invertible the frame fixes $A_n=\sum_k(-1)^{n-k}\binom nkM(k,k)$ dimensions of $\mathbf8^{\otimes n}$. On every Subject two mesons and three gluons have $d=2$ and $\p^{2}+1$ invariant lines, a meson with a glueball $d=3$, two glueballs $d=8$. On $\SU(3,\F_2)$ three gluons have $d=7$ and two glueballs $d=57$: the instance departs beyond degree $4$. -/
+theorem p46065 : ((1 : Int) - (1 : Int) = (0 : Int) ∧ (2 : Int) - (2 : Int) * (1 : Int) + (1 : Int) = (1 : Int) ∧ (6 : Int) - (3 : Int) * (2 : Int) + (3 : Int) * (1 : Int) - (1 : Int) = (2 : Int) ∧ (23 : Int) - (4 : Int) * (6 : Int) + (6 : Int) * (2 : Int) - (4 : Int) * (1 : Int) + (1 : Int) = (8 : Int)) ∧ ((11 : Int) - (3 : Int) * (2 : Int) + (3 : Int) * (1 : Int) - (1 : Int) = (7 : Int) ∧ (92 : Int) - (4 : Int) * (11 : Int) + (6 : Int) * (2 : Int) - (4 : Int) * (1 : Int) + (1 : Int) = (57 : Int)) ∧ ((13 : Nat) * (13 : Nat) + (1 : Nat) = (170 : Nat) ∧ (173 : Nat) * (173 : Nat) + (1 : Nat) = (29930 : Nat) ∧ (1549 : Nat) * (1549 : Nat) + (1 : Nat) = (2399402 : Nat)) ∧ (((13 : Nat) * (13 : Nat) - (1 : Nat)) * (170 : Nat) = (13 : Nat) * (13 : Nat) * (13 : Nat) * (13 : Nat) - (1 : Nat) ∧ (13 : Nat) * (13 : Nat) * (13 : Nat) * (13 : Nat) + (13 : Nat) * (13 : Nat) + (1 : Nat) = (28731 : Nat)) ∧ (((4 : Nat) ^ (2 : Nat) - (1 : Nat)) / (3 : Nat) = (5 : Nat) ∧ ((4 : Nat) ^ (7 : Nat) - (1 : Nat)) / (3 : Nat) = (5461 : Nat) ∧ ((4 : Nat) ^ (8 : Nat) - (1 : Nat)) / (3 : Nat) = (21845 : Nat)) ∧ (8 : Nat) ≤ (2 : Nat) * (13 : Nat) - (1 : Nat) :=
+  @FRC.YangMills.product_channel_counts
+/-- p46066 — 46:C23. The tally with the same boundary links at every step, of the eigenvalues $g^{\pm j},1$ and $g^{\pm k},1$: the boundary classes of C20 move with the length $n$. On the three Subjects the tally reads $1+g^{(j+k)n}+g^{-(j+k)n}+g^{(j-k)n}+g^{-(j-k)n}$ at every regular length, with stated values at the others and the period $\p-1$. The exponents are the links'; the three multipliers add none. -/
+theorem p46066 : ((2 : Nat) * (7 : Nat) % (13 : Nat) = (1 : Nat) ∧ (4 : Nat) * (10 : Nat) % (13 : Nat) = (1 : Nat) ∧ (2 : Nat) * (87 : Nat) % (173 : Nat) = (1 : Nat) ∧ (4 : Nat) * (130 : Nat) % (173 : Nat) = (1 : Nat) ∧ (2 : Nat) * (775 : Nat) % (1549 : Nat) = (1 : Nat) ∧ (4 : Nat) * (1162 : Nat) % (1549 : Nat) = (1 : Nat)) ∧ FRC.YangMills.ubValues (13 : Nat) (2 : Nat) (7 : Nat) (4 : Nat) (10 : Nat) (12 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) = [(10 : Nat), (0 : Nat), (0 : Nat), (2 : Nat), (5 : Nat), (12 : Nat), (5 : Nat), (2 : Nat), (0 : Nat), (0 : Nat), (10 : Nat), (3 : Nat)] ∧ (FRC.YangMills.ubSweep (13 : Nat) (2 : Nat) (7 : Nat) (4 : Nat) (10 : Nat) (12 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) = true ∧ FRC.YangMills.ubSweep (173 : Nat) (2 : Nat) (87 : Nat) (4 : Nat) (130 : Nat) (172 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) = true ∧ FRC.YangMills.ubSweep (1549 : Nat) (2 : Nat) (775 : Nat) (4 : Nat) (1162 : Nat) (1548 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) = true) ∧ (FRC.YangMills.ubOthers (13 : Nat) (2 : Nat) (4 : Nat) (12 : Nat) (0 : Nat) (1 : Nat) (1 : Nat) = [(3 : Nat), (6 : Nat), (9 : Nat), (12 : Nat)] ∧ FRC.YangMills.ubOthers (173 : Nat) (2 : Nat) (4 : Nat) (172 : Nat) (0 : Nat) (1 : Nat) (1 : Nat) = [(43 : Nat), (86 : Nat), (129 : Nat), (172 : Nat)] ∧ FRC.YangMills.ubOthers (1549 : Nat) (2 : Nat) (4 : Nat) (1548 : Nat) (0 : Nat) (1 : Nat) (1 : Nat) = [(387 : Nat), (774 : Nat), (1161 : Nat), (1548 : Nat)]) ∧ FRC.YangMills.ubTally (13 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) = (3 : Nat) ∧ FRC.YangMills.ubTally (173 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) = (3 : Nat) ∧ FRC.YangMills.ubTally (1549 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) = (3 : Nat) :=
+  @FRC.YangMills.uniform_boundary_tally
 -- end keys
 
 end FRC.Ledger
@@ -6350,3 +6677,13 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p46038
 #print axioms FRC.Ledger.p46041
 #print axioms FRC.Ledger.p46043
+#print axioms FRC.Ledger.p46051
+#print axioms FRC.Ledger.p46053
+#print axioms FRC.Ledger.p46056
+#print axioms FRC.Ledger.p46057
+#print axioms FRC.Ledger.p46058
+#print axioms FRC.Ledger.p46061
+#print axioms FRC.Ledger.p46062
+#print axioms FRC.Ledger.p46064
+#print axioms FRC.Ledger.p46065
+#print axioms FRC.Ledger.p46066

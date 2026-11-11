@@ -10,17 +10,20 @@ the extension, frame and hadrons themes and the window fractions of `Theme/Brack
 `frc/ledgers/p46_yangmills.py` compute it. Each theorem over a frame is a schema, instantiated on a shell of the totality
 (`p < √Ω`); the sweeps are bounded; every number is a natural number, an integer, a residue on the shell or a window fraction
 (1:D8, a pair of an integer and a positive natural read as the residue `a·b⁻¹` on every shell whose window holds it),
-and every comparison is a comparison of cross-products in the integers. The colour frame is the Subject's: `SU(3)` over the
-Subject's quadratic extension, with the triality centre on the Subjects `p ≡ 5 (mod 12)`.
+and every comparison is a comparison of cross-products in the integers. Colour's triality is the Carrier's relation
+`Ω ≡ 5 (mod 12)` (46:B5). The Subject reads colour in its unitary frame, `SU(3)` over the Subject's quadratic extension, whose
+centre has order three where `3 ∣ p + 1`.
 
 The registrations (46:C1–C3): a norm-one element `a + b√ν` of the shell's quadratic extension with `b ≠ 0` has no eigenvalue
-in the shell (`no_shell_eigenvalue`, the non-split torus fixes no line, the gluon's residue is `0`), the split torus fixes
+in the shell (`no_shell_eigenvalue`, the norm-one cycle fixes no line, the gluon's residue is `0`), the split torus fixes
 exactly the two coordinate lines (`split_fixed_lines`, the photon's residue `2`); the centre of `SU(3, 𝔽_q)` has order
-`gcd(3, q + 1)`, `3` exactly on the Subjects `q ≡ 5 (mod 12)` (`centre_sweep`, `lab_centres`, `admissible_sweep` — the
-arithmetic of the order formula, the formula itself 27-fields Proposition su3); the residue series closes with the glueball
+`gcd(3, q + 1)`, `3` exactly where `3 ∣ q + 1` (`centre_sweep`, `lab_centres`, `full_centre_sweep` — the
+arithmetic of the order formula, the formula itself 27-fields Proposition su3), and the three laboratory Carriers are
+`5 (mod 12)` (`carrier_triality`); the residue series on the instance
 by the singlet multiplicities (`glueball_singlet` on the hadrons theme's constant terms, `residue_series_pieri` on the Pieri
 multiplicities, `mult_moment6` tying the two). The Casimir and one-loop rationals with denominators cleared (`casimirs`,
-`b0_values`, `b0_pos`, `b0_seventeen`, `b0_neg`, 46:C4, C5); the drive exponent (`drive_exponent`, `drive_exponent_unique`,
+`b0_values`, `b0_pos`, `b0_seventeen`, `b0_neg`, 46:C4, C5) and the Casimirs from the frame's torus exponents on the three Subjects
+(`casimir_exponents`, 46:C4, no lift); the drive exponent (`drive_exponent`, `drive_exponent_unique`,
 `drive_exponent_add`, 46:C6). The tension's coefficient (46:C7): the singlet multiplicities of `𝟛^{⊗m} ⊗ 𝟛̄^{⊗n}` by the
 Pieri rule on Dynkin labels (`mult`, `moments`), the plaquette coefficient `c₃` to `β⁷` as window fractions
 (`c3_fractions`) and as residues on the three laboratory Subjects and the `20` shells `13 ≤ p < 200` (`c3_readback`, every
@@ -35,7 +38,10 @@ are integer comparisons. The adjoint without an invariant line (`adjoint_no_inva
 one-loop coefficient (46:C13): the spin traces on the shell's modules (`spin_traces`), the Faulhaber third with its complete
 cycle vanishing (`faulhaber_third`, `faulhaber_residues`, `complete_cycle_vanishes`) and the species sum of Hughes–Nielsen
 with denominators cleared (`hughes_nielsen_sum`). The radial ratio of the operator form against the lattice, the Airy
-ladder and the nucleon, in thousandths (`radial_ratio`, 46:P3). No axioms.
+ladder and the nucleon, in thousandths (`radial_ratio`, 46:P3). The transfer tally on the three Subjects (46:C19): the orders of
+their frames, the three degrees whose inverses are the eigenvalues of the step with the frame's mean, and the bookkeeping of
+its spectrum (`subject_spectrum`), and the identity
+`Σ a χ(1) = 3` swept over `q ≤ 2000` (`degree_identity`); the gap `1/(q + 1)` of the transfer tally (`ring_gap`). No axioms.
 -/
 
 namespace FRC.YangMills
@@ -44,12 +50,12 @@ open FRC.Shell FRC.Shell.Frame
 
 variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
 
-/-! ## The non-split torus fixes no line (46:C1) -/
+/-! ## The norm-one cycle fixes no line (46:C1) -/
 
 /-- 46:C1, 46:X1 — a norm-one element `a + b√ν` of the extension with `b ≠ 0`, `ν` a nonsquare, has no eigenvalue in the shell: a
 root `r` of its characteristic polynomial `x² − 2a x + 1` would give `(r − a)² = a² − 1 = ν b²`, so `ν = ((r − a)/b)²`, a
-square. Hence a non-scalar element of the non-split torus fixes no line of the shell plane, and the torus fixes none: the
-gluon, the residue `0` of the non-split torus, is never registered alone. -/
+square. Hence a non-scalar element of the norm-one cycle fixes no line of the shell plane, and the cycle fixes none: the
+gluon, the residue `0` of the norm-one cycle, is never registered alone. -/
 theorem no_shell_eigenvalue (F : Frame p κ g) {ν a b r : Shell p} (hν : ¬IsSquare ν)
     (h : a * a + -(ν * (b * b)) = 1) (hb : b ≠ 0) (hr : r * r + -((a + a) * r) + 1 = 0) : False := by
   -- (r − a)² = (r² − 2ar + 1) + (a² − νb² − 1) + νb²
@@ -109,12 +115,12 @@ theorem split_fixed_lines (F : Frame p κ g) {x y s : Shell p} (hs : g * s = 1) 
     | .inl hx => rw [hx, mul_zero, zero_mul, zero_mul]
     | .inr hy => rw [hy, mul_zero, mul_zero, mul_zero]
 
-/-! ## The triality centre (46:C2) -/
+/-! ## The centre of the unitary frame and the Carrier's triality (46:C2) -/
 
 /-- 46:C2 — the arithmetic of the centre's order formula. Given that the centre of `SU(3, 𝔽_q)` is the norm-one cube roots
 of unity, `gcd(3, q + 1)` of them (27-fields Proposition su3, imported, not proved here), on every shell of the sweep below
-`200`, `q ≡ 5 (mod 12)` gives `Z₃` and `q ≡ 1 (mod 12)` the trivial centre, and the admissible residue `q ≡ 5 (mod 12)` is
-exactly `q ≡ 1 (mod 4)` (a shell) with `q ≡ 2 (mod 3)` (the triality centre). Kernel-decided over the range, so that no
+`200`, `q ≡ 5 (mod 12)` gives `Z₃` and `q ≡ 1 (mod 12)` the trivial centre, and the residue `q ≡ 5 (mod 12)` is
+exactly `q ≡ 1 (mod 4)` (a shell) with `q ≡ 2 (mod 3)` (the centre of order three). Kernel-decided over the range, so that no
 library lemma on `gcd` or `%` (which carry `propext`) enters. -/
 theorem centre_sweep :
     ∀ q, q < 200 → (q % 12 = 5 → Nat.gcd 3 (q + 1) = 3) ∧ (q % 12 = 1 → Nat.gcd 3 (q + 1) = 1) ∧
@@ -130,15 +136,28 @@ theorem lab_centres :
 
 /-- 46:C2 — of the `21` shells `p = 4κ + 1` below `200`, the `12` with `p ≡ 5 (mod 12)` carry the centre `Z₃` and the other
 `9` do not. -/
-theorem admissible_sweep :
+theorem full_centre_sweep :
     ([5, 17, 29, 41, 53, 89, 101, 113, 137, 149, 173, 197].all fun q => q % 12 == 5 && Nat.gcd 3 (q + 1) == 3) = true ∧
     ([13, 37, 61, 73, 97, 109, 157, 181, 193].all fun q => q % 12 == 1 && Nat.gcd 3 (q + 1) == 1) = true ∧
     [5, 17, 29, 41, 53, 89, 101, 113, 137, 149, 173, 197].length + [13, 37, 61, 73, 97, 109, 157, 181, 193].length = 21 := by
   decide
 
-/-! ## The residue series closes with the glueball (46:C3) -/
+/-- 46:C2, 46:B5 — colour's triality is the Carrier's relation: each of the three laboratory Carriers is `5 (mod 12)`, so `3`
+divides `Ω + 1` and not `Ω − 1`. The cube roots of unity are the pairs `(0, 1)` and `(−1, −1)` of residues, `a + bω` with
+`ω² = −ω − 1` and the norm `a² − ab + b²`: both have norm `1`, `(0, 1)² = (−1, −1)` and `(0, 1)·(−1, −1) = (1, 0)`. The product
+of `(a, b)` and `(c, d)` is `(ac − bd, ad + bc − bd)`. -/
+theorem carrier_triality :
+    233 % 12 = 5 ∧ 30089 % 12 = 5 ∧ 2408561 % 12 = 5 ∧
+    (233 + 1) % 3 = 0 ∧ (30089 + 1) % 3 = 0 ∧ (2408561 + 1) % 3 = 0 ∧
+    (233 - 1) % 3 = 1 ∧ (30089 - 1) % 3 = 1 ∧ (2408561 - 1) % 3 = 1 ∧
+    ((0 : Int) * 0 - 0 * 1 + 1 * 1 = 1 ∧ (-1 : Int) * (-1) - (-1) * (-1) + (-1) * (-1) = 1) ∧
+    ((0 : Int) * 0 - 1 * 1 = -1 ∧ (0 : Int) * 1 + 1 * 0 - 1 * 1 = -1) ∧
+    ((0 : Int) * (-1) - 1 * (-1) = 1 ∧ (0 : Int) * (-1) + 1 * (-1) - 1 * (-1) = 0) := by
+  decide
 
-/-- 46:C3, 46:X2 — by the singlet multiplicities of the tensor powers of the colour triplet (the hadrons theme's `moment6`, six
+/-! ## The residue series on the instance (46:C3) -/
+
+/-- 46:C3, 46:X2 — by the singlet multiplicities of the tensor powers of the triplet (the hadrons theme's `moment6`, six
 times the multiplicity, computed as the constant term of the Weyl character polynomial — exact integers): the adjoint
 has no invariant (`E[χχ̄] − 1 = 0`, the gluon's residue `0`), `𝟛 ⊗ 𝟛 ⊗ 𝟛` has one singlet (`E[χ³] = 1`, the baryon),
 `𝟛 ⊗ 𝟛̄` one (`E[χχ̄] = 1`, the meson), and `𝟠 ⊗ 𝟠` one (`E[(χχ̄ − 1)²] = E[χ²χ̄²] − 2E[χχ̄] + 1 = 2 − 2 + 1 = 1`, the glueball):
@@ -170,10 +189,23 @@ theorem adjoint_two_sheets :
 
 /-! ## The Casimirs and the window rational (46:C4, C5) -/
 
-/-- 46:C4, 46:X4, 46:P1 — the Casimirs of the colour frame with denominators cleared: `2N C_F = N² − 1` gives `6 C_F = 8` (`C_F = 4/3`),
+/-- 46:C4, 46:X4, 46:P1 — the Casimirs of the unitary frame with denominators cleared: `2N C_F = N² − 1` gives `6 C_F = 8` (`C_F = 4/3`),
 `C_A = N = 3`, `2 T_F = 1`, and `C_A / C_F = 2N² / (N² − 1)` gives `8 (C_A/C_F) = 18` (`9/4`). -/
 theorem casimirs :
     (3 * 3 - 1 : Int) = 8 ∧ 6 * 4 = 3 * 8 ∧ (2 * 3 * 3 : Int) = 18 ∧ 8 * 9 = 4 * 18 ∧ 2 * 1 = 2 := by
+  decide
+
+/-- 46:C4 — the Casimir rationals from the frame's torus exponents, with no lift (round 03, 9 November 2026). A torus element of the
+unitary frame acts on the fundamental with the eigenvalue exponents `(a, b, −a−b)` and on the adjoint with their six differences and
+two zeros; the second moment of the adjoint's exponents is six times the fundamental's, `2((a−b)² + (2a+b)² + (a+2b)²) =
+6(a² + b² + (a+b)²)`, which is `T_A/T_F = 6` and hence `C_A/C_F = 9/4`. On the Subject `13` the split torus has the exponents
+`(n, 12n, −13n)` modulo `168`: `2((11n)² + (14n)² + (25n)²) = 6(n² + (12n)² + (13n)²)` for every `n < 168` (`1884 n² = 6 · 314 n²`);
+at `n = 1` likewise on `173` (`(1, 172, −173)`) and `1549` (`(1, 1548, −1549)`). The identity for every exponent pair is the
+Mathlib cell `YangMillsML.casimir_exponents_all`. -/
+theorem casimir_exponents :
+    (List.range 168).all (fun n => 2 * ((11 * n) ^ 2 + (14 * n) ^ 2 + (25 * n) ^ 2) == 6 * (n ^ 2 + (12 * n) ^ 2 + (13 * n) ^ 2)) = true ∧
+    2 * (171 ^ 2 + 174 ^ 2 + 345 ^ 2) = 6 * (1 + 172 ^ 2 + 173 ^ 2) ∧
+    2 * (1547 ^ 2 + 1550 ^ 2 + 3097 ^ 2) = 6 * (1 + 1548 ^ 2 + 1549 ^ 2) := by
   decide
 
 /-- The numerator of `3 b₀` for `n_f` flavours: `3 b₀ = 11 C_A − 4 T_F n_f = 33 − 2 n_f` at `N = 3`. -/
@@ -213,7 +245,7 @@ theorem drive_exponent_add (F : Frame p κ g) (m n : Nat) :
     g ^ m * g ^ n = g ^ ((m + n) % (p - 1)) := by
   rw [← pow_add, F.pow_mod]
 
-/-! ## The singlet multiplicities of the colour triplet, by the Pieri rule
+/-! ## The singlet multiplicities of the triplet, by the Pieri rule
 
 An irreducible representation of `SU(3)` is a pair of Dynkin labels `(a, b)` (the triplet `(1, 0)`, its conjugate `(0, 1)`,
 the adjoint `(1, 1)`). Tensoring with the triplet adds one box to the Young diagram: `(a, b) ↦ (a + 1, b)`, `(a − 1, b + 1)`
@@ -344,6 +376,27 @@ theorem c3_lab : c3Check 13 = true ∧ c3Check 173 = true ∧ c3Check 1549 = tru
 
 theorem c3_sweep :
     [13, 17, 29, 37, 41, 53, 61, 73, 89, 97, 101, 109, 113, 137, 149, 157, 173, 181, 193, 197].all c3Check = true := by
+  decide +kernel
+
+/-- The five decisions of `series_window` on the shell `13`, as one Boolean (so that the theorem's statement re-elaborates). -/
+def windowCheck : Bool :=
+  decide ((c3Series (p := 13) [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 974] 8).take 7
+      = (c3Series (p := 13) [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 973] 8).take 7) &&
+  decide (psCoeff (c3Series (p := 13) [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 974] 8) 7
+      ≠ psCoeff (c3Series (p := 13) [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 973] 8) 7) &&
+  decide (psCoeff (c3Series (p := 13) [1, 0, 2, 2, 12] [0, 1, 1, 6, 20] 5) 4 = 0) &&
+  decide (psCoeff (c3Series (p := 13) [1, 0, 2, 2, 12] [0, 1, 1, 6, 15] 5) 4 = psCoeff (c3Targets (p := 13)) 4) &&
+  decide (psCoeff (c3Targets (p := 13)) 4 ≠ 0)
+
+/-- 46:C14 — the series' window, the corollary of A9 (the push on T06, 9 November 2026). The `β^k` coefficient of `c₃` is built from
+the invariant counts of degree `≤ k + 1` (`exc k` has degree `k + 1`, `ex k` degree `k`), so on a Subject `p`, where the frame's counts
+equal the compact ones through degree `p − 2` (A9), the frame's series equals the compact one through `β^{p−3}`: `β^{10}` on `13`,
+`β^{170}` on `173`, `β^{1546}` on `1549`, all beyond the `β^7` computed. Decided on the shell `13`: raising the degree-`8` count
+`exc 7` by one leaves the coefficients of `β^0`…`β^6` unchanged and moves `β^7`; and the instance's departure at degree `5`
+(`M(4,1) = M(1,4) = 4` against `3`, so `exc 4 = 20` against `15`) puts the instance's `β^4` coefficient at `0`, where the compact one is
+`−5/93312` (`c3Targets`), a nonzero residue on the shell; the five decisions are the Boolean `windowCheck`. -/
+theorem series_window :
+    (13 - 3 = 10 ∧ 7 ≤ 13 - 3 ∧ 7 ≤ 173 - 3 ∧ 7 ≤ 1549 - 3 ∧ 7 ≤ 13 - 4) ∧ windowCheck = true := by
   decide +kernel
 
 /-! ## The instance `2T` against `SU(2)` (46:C7, second clause)
@@ -688,19 +741,263 @@ theorem hughes_nielsen_sum : ∀ nf, nf < 201 → threeB0 nf = 3 * (3 * 4 - 1) -
 
 The ratios of the eigenvalues of the chart operator `a|p| + ϰr` are free of `a` and `ϰ` (the dilation symmetry). The chart's
 first radial ratio `E₁/E₀ = 1.4915` (the Lanczos computation of the chart file) is compared in thousandths with the lattice
-determinations `0⁺⁺*/0⁺⁺ = 1.544 ± 0.112` (1999) and `5.855(41)/3.405(21) = 1.720 ± 0.016` (2020, A1), with the nonrelativistic
+determinations `0⁺⁺*/0⁺⁺ = 1.544 ± 0.112` (1999) and `5.855(41)/3.405(21) = 1.720 ± 0.016` (2020, A1; the error takes the two
+masses as uncorrelated, and the largest error any correlation allows, the two terms added, is `0.0227`), with the nonrelativistic
 ladder's Airy ratio `a₂/a₁ ∈ (1.74, 1.76)` from the brackets `2.33 < a₁ < 2.34`, `4.08 < a₂ < 4.09` (the hadrons theme's
 `airy_sturm`; the chart's quotient `1.748`), and with the nucleon's `1440/939`. -/
 
 /-- 46:P3 — against the determination of 1999, `1491 ∈ [1432, 1656]`, less than half the error from the centre (`2·53 < 112`),
 and the Airy ratio in `(1.74, 1.76)` above the bracket's upper end; against the continuum determination of 2020,
-`1720 ± 16`, the ratio `1491` lies more than fourteen errors below (`229 > 14·16`) while the Airy ratio `1748` (the chart's
-quotient of the zeros) lies within two (`28 < 32`); `1440/939` lies within `3 %` of `1.491`. -/
+`1720 ± 16`, the ratio `1491` lies more than fourteen errors below (`229 > 14·16`), and more than ten of the largest error any
+correlation of the two masses allows (`0.0227`, in ten-thousandths `227`: `10·227 < 17195 − 14915`), while the Airy ratio `1748`
+(the chart's quotient of the zeros) lies within two of the quoted error (`28 < 32`); `1440/939` lies within `3 %` of `1.491`. -/
 theorem radial_ratio :
     1432 ≤ 1491 ∧ 1491 ≤ 1656 ∧ 2 * (1544 - 1491) < 112 ∧
     174 * 234 < 408 * 100 ∧ 409 * 100 < 176 * 233 ∧ 1656 < 1740 ∧
-    14 * 16 < 1720 - 1491 ∧ 1748 - 1720 < 2 * 16 ∧
+    14 * 16 < 1720 - 1491 ∧ 10 * 227 < 17195 - 14915 ∧ 1748 - 1720 < 2 * 16 ∧
     1491 * 939 < 1440 * 1000 ∧ 1440 * 1000 * 100 < 1491 * 939 * 103 := by
   decide
+
+/-! ## The frame's window and its first departure (46:C15)
+
+For `p > 3` the frame's invariant counts in `3^{⊗a} ⊗ 3̄^{⊗b}` are the compact ones through degree `2p − 1`, and the Frobenius
+tensor `v_p` at `(4p − 4, 1)` lies beyond them (46-yangmills, Theorem thm:window), so the first departure `d_*` lies in
+`[2p, 4p − 3]`. The finite ingredients decided here on the shell `13`: the binomial table of the row-operation identity, `C(m + r, r)`
+modulo `13` for `m = 11, 12` with `r ≤ 25` and for `m = 24, 25` with `r ≤ 12`, nonzero exactly at the stated `r`; the weights
+`(25, 11, 11)` of the words of `v_13`, unequal and congruent modulo `p + 1 = 14`; the bounds on the three Subjects; the orders of the
+series' window; and the small fields' first degrees `5 = 4·2 − 3`, `9 = 4·3 − 3`. -/
+
+/-- `C(m + r, r)` by the recurrence `C(m + r, r) = C(m + r − 1, r − 1) (m + r) / r`, the division exact. -/
+def binomShift (m : Nat) : Nat → Nat
+  | 0 => 1
+  | r + 1 => binomShift m r * (m + r + 1) / (r + 1)
+
+/-- The residues `C(m + r, r) mod p` for `r ≤ R`. -/
+def binomRow (p m R : Nat) : List Nat := (List.range (R + 1)).map (fun r => binomShift m r % p)
+
+/-- The pattern of the proof of 46:C15 for `q = p`: for `m = p − 2` the residues are `1, p − 1` at `r = 0, 1` and again at `r = p, p + 1`;
+for `m = p − 1` they are `1` at `r = 0, p`; for `m = 2p − 2` (`r ≤ p − 1`) `1, p − 1` at `r = 0, 1`; for `m = 2p − 1` only `1` at `r = 0`. -/
+def expectedRow (p m R : Nat) : List Nat :=
+  (List.range (R + 1)).map (fun r =>
+    if m = p - 2 then (if r = 0 ∨ r = p then 1 else if r = 1 ∨ r = p + 1 then p - 1 else 0)
+    else if m = p - 1 then (if r = 0 ∨ r = p then 1 else 0)
+    else if m = 2 * p - 2 then (if r = 0 then 1 else if r = 1 then p - 1 else 0)
+    else (if r = 0 then 1 else 0))
+
+/-- 46:C15 — on the shell `13`: the four rows of the binomial table are the proof's pattern; the weights `(25, 11, 11)` of `v_13`'s
+words are unequal, with `25 − 11 = 14 = p + 1`; the first departure lies in `[26, 49]` on `13`, `[346, 689]` on `173`,
+`[3098, 6193]` on `1549`; the series' window is `β^{24}, β^{23}` on `13`, beyond the `β^{7}` computed; and `4q − 3` is `5`, `9` at
+`q = 2, 3`. -/
+theorem frame_window :
+    binomRow 13 11 25 = expectedRow 13 11 25 ∧ binomRow 13 12 25 = expectedRow 13 12 25 ∧
+    binomRow 13 24 12 = expectedRow 13 24 12 ∧ binomRow 13 25 12 = expectedRow 13 25 12 ∧
+    (2 * 13 - 1 ≠ 13 - 2 ∧ (2 * 13 - 1) - (13 - 2) = 13 + 1) ∧
+    (2 * 13 = 26 ∧ 4 * 13 - 3 = 49 ∧ 2 * 173 = 346 ∧ 4 * 173 - 3 = 689 ∧ 2 * 1549 = 3098 ∧ 4 * 1549 - 3 = 6193) ∧
+    (2 * 13 - 2 = 24 ∧ 2 * 13 - 3 = 23 ∧ 7 < 2 * 13 - 3) ∧ (4 * 2 - 3 = 5 ∧ 4 * 3 - 3 = 9) := by
+  decide
+
+/-! ## The spectral amplitude of a plaquette (46:B4, C16, C17, C18)
+
+The amplitude `w(U) = Σ ι(λ_j(U_s))` of 46-yangmills, Definition def:amplitude, takes its values in the cyclotomic ring `Z[ζ_M]`,
+`M = lcm(q² − 1, q² − q + 1)`; on the enumerable instance `q = 2` the ring is `Z[ζ₃]`, written here as integer pairs `a + b z` with
+`z² = −1 − z`. Decided here: the conductors and their gcds with the Carriers' cycles on the three Subjects, the non-split orders
+prime to those cycles, the centre of order `3` on `173` only (Proposition prop:amplitude(iv)); the identity `2η + η⁻² = 3η` for
+`η³ = 1` and the arithmetic `z ≠ 1`, `1 + z + z² = 0` behind the vanishing of a sum fixed by multiplication by `z` (the trivial channel annihilated); the instance's distribution
+`64 · (3 + 3z + 3z²) = 0` with its moments `8, 24, 72` (Theorem thm:amplitude); and the bookkeeping of the transfer tally's
+spectrum `144, 36, 0, −72` with multiplicities `9, 36, 144, 27` (Theorem thm:transfer). The enumeration over `F_4` is the python
+check's. -/
+
+/-- `Z[ζ₃]` as pairs `a + b z`, `z² = −1 − z`: the product. -/
+def z3Mul (x y : Int × Int) : Int × Int := (x.1 * y.1 - x.2 * y.2, x.1 * y.2 + x.2 * y.1 - x.2 * y.2)
+
+/-- The inverse-phase conjugation `z ↦ z² = −1 − z`. -/
+def z3Conj (x : Int × Int) : Int × Int := (x.1 - x.2, -x.2)
+
+/-- The norm `w · w̄` of a pair, an integer. -/
+def z3Norm (x : Int × Int) : Int := (z3Mul x (z3Conj x)).1
+
+/-- 46:C16 — the conductors `M = lcm(p² − 1, p² − p + 1)` on the Subjects, their gcds with the Carriers' cycles `Ω − 1`, the non-split
+orders `p² − p + 1` prime to the cycles (`157` against `232` on the Subject `13`), the centre of order `3` on `173` only; and in `Z[ζ₃]`
+the singular identity `2η + η⁻² = 3η` for `η = z, z²`, the conjugation `z ↦ z²`, `z³ = 1`, `z ≠ 1` and `1 + z + z² = 0`. -/
+theorem spectral_amplitude :
+    (Nat.lcm (13 * 13 - 1) (13 * 13 - 13 + 1) = 26376 ∧ Nat.lcm (173 * 173 - 1) (173 * 173 - 173 + 1) = 296855832 ∧
+     Nat.lcm (1549 * 1549 - 1) (1549 * 1549 - 1549 + 1) = 5753408488200) ∧
+    (Nat.gcd 26376 232 = 8 ∧ Nat.gcd 296855832 30088 = 8 ∧ Nat.gcd 5753408488200 2408560 = 40) ∧
+    (13 * 13 - 13 + 1 = 157 ∧ Nat.gcd 157 232 = 1 ∧ Nat.gcd (173 * 173 - 173 + 1) 30088 = 1 ∧ Nat.gcd (1549 * 1549 - 1549 + 1) 2408560 = 1) ∧
+    ((13 + 1) % 3 ≠ 0 ∧ (173 + 1) % 3 = 0 ∧ (1549 + 1) % 3 ≠ 0 ∧ (2 + 1) % 3 = 0) ∧
+    (z3Mul (0, 1) (0, 1) = (-1, -1) ∧ z3Mul (z3Mul (0, 1) (0, 1)) (0, 1) = (1, 0) ∧ z3Conj (0, 1) = (-1, -1)) ∧
+    (((0 : Int), (1 : Int)) ≠ (1, 0) ∧ (1 : Int) + 0 + -1 = 0 ∧ (0 : Int) + 1 + -1 = 0) ∧      -- z ≠ 1 and 1 + z + z² = 0: a sum fixed by z vanishes
+    (z3Mul (2, 0) (0, 1) = (0, 2) ∧ z3Mul (0, 2) (0, 1) = (-2, -2) ∧
+     (0, 2).1 + (0, 1).1 = (0, 3).1 ∧ (0, 2).2 + (0, 1).2 = (0, 3).2 ∧            -- 2z + z⁻² = 2z + z = 3z
+     (-2, -2).1 + (-1, -1).1 = (-3, -3).1 ∧ (-2, -2).2 + (-1, -1).2 = (-3, -3).2) := by   -- 2z² + z⁻⁴ = 2z² + z² = 3z²
+  decide
+
+/-- 46:C17 — the instance's distribution: the values `3, 3z, 3z²` on `64` elements each and `0` on `24` sum to zero,
+`64 · (3 + 3z + 3z²) = 0`; every nonzero value has norm `9`, so the moments are `192 · 9 / 216 = 8`, `192 · 27 / 216 = 24` (the cubes of
+`3, 3z, 3z²` are all `27`) and `192 · 81 / 216 = 72`; the invariant counts the moments are set against are `1, 1, 2`. -/
+theorem instance_amplitude :
+    (64 * ((3 : Int) + 0 + -3) = 0 ∧ 64 * ((0 : Int) + 3 + -3) = 0) ∧
+    (z3Norm (3, 0) = 9 ∧ z3Norm (0, 3) = 9 ∧ z3Norm (-3, -3) = 9 ∧ z3Norm (0, 0) = 0) ∧
+    (z3Mul (z3Mul (0, 3) (0, 3)) (0, 3) = (27, 0) ∧ z3Mul (z3Mul (-3, -3) (-3, -3)) (-3, -3) = (27, 0)) ∧
+    (192 * 9 = 8 * 216 ∧ 192 * 27 = 24 * 216 ∧ 192 * 81 = 72 * 216 ∧ 64 + 64 + 64 + 24 = 216) ∧
+    (8 ≠ 1 ∧ 24 ≠ 1 ∧ 72 ≠ 2) := by
+  decide
+
+/-- 46:C18 — the transfer tally on the instance, the step of one plaquette with the frame's mean: the multiplicities `9, 36, 144, 27`
+of the eigenvalues `2/3, 1/6, 0, −1/3` sum to `216`; the eigenvalues are the integers `144, 36, 0, −72` of the matrix `216 K` over
+`216`; with the denominators cleared by `6` the trace is `tr K = 3`, and by `36` it is `tr K² = 8`, which is the sum `192 · 9` of
+the norms of the `216` amplitudes over `216`; `(3x + 1)(6x − 1)(3x − 2) = 54x³ − 27x² − 9x + 2`, so the annihilating polynomial
+has distinct roots; and `−1/3 < 0`. -/
+theorem instance_transfer :
+    (9 + 36 + 144 + 27 = 216) ∧
+    (2 * 216 = 3 * 144 ∧ 1 * 216 = 6 * 36 ∧ (-1 : Int) * 216 = 3 * (-72)) ∧
+    (4 * 9 + 1 * 36 + 0 * 144 + (-2 : Int) * 27 = 6 * 3) ∧
+    (4 * 4 * 9 + 1 * 1 * 36 + 0 + (2 : Int) * 2 * 27 = 36 * 8 ∧ 8 * 216 = 192 * 9) ∧
+    (3 * 6 * 3 = (54 : Int) ∧ 3 * 6 * (-2) + 3 * (-1) * 3 + 1 * 6 * 3 = (-27 : Int) ∧
+     3 * (-1) * (-2) + 1 * 6 * (-2) + 1 * (-1) * 3 = (-9 : Int) ∧ 1 * (-1) * (-2) = (2 : Int)) ∧
+    ((-2 : Int) < 0 ∧ (-2 : Int) < 1 ∧ (1 : Int) < 4) := by
+  decide
+
+/-! ### The transfer tally on the Subjects (46:C19, 10 November 2026)
+
+The amplitude expands as `w = χ₁ + χ₂ − χ₃` in the first members of the three families of degrees `q² − q + 1`, `q³ + 1`,
+`(q + 1)² (q − 1)` of the generic character table of `SU(3, q)` (the python side's exact character sums; the paper's Theorem thm:subjects).
+The transfer tally is the step of one plaquette with the frame's mean, and its nonzero eigenvalues are `a_χ / χ(1)`: `1/d₁`, `1/d₂`,
+`−1/d₃`. Decided here: the orders of the three Subjects' frames, the three degrees, and the bookkeeping of the spectrum — the
+degrees divide the order, `tr K = d₁ + d₂ − d₃ = 3`, `tr K² = Σ a² = 3`, a zero eigenvalue of positive multiplicity, the degrees
+positive and increasing (`subject_spectrum`); and the polynomial identity `Σ a χ(1) = 3`, that is
+`(q² − q + 1) + (q³ + 1) = (q + 1)² (q − 1) + 3`, swept over `1 ≤ q ≤ 2000` (`degree_identity`). The coefficients themselves are the
+python computation's. -/
+
+/-- The order of `SU(3, 𝔽_q)`: `q³ (q + 1)² (q − 1) (q² − q + 1)`. This and `degs`, `spectrumOK`, `gapOK` are instantiated on the
+laboratory frames only, where the order is below the totality's count. -/
+def su3Order (q : Nat) : Int := (q ^ 3 * (q + 1) ^ 2 * (q - 1) * (q * q - q + 1) : Nat)
+
+/-- The three degrees of the expansion `w = χ₁ + χ₂ − χ₃`: `q² − q + 1`, `q³ + 1`, `(q + 1)² (q − 1)`. -/
+def degs (q : Nat) : Int × Int × Int := ((q * q - q + 1 : Nat), (q ^ 3 + 1 : Nat), ((q + 1) ^ 2 * (q - 1) : Nat))
+
+/-- The bookkeeping of the spectrum of the step on one frame, whose nonzero eigenvalues are `1/d₁, 1/d₂, −1/d₃`: the degrees divide
+the order, `tr K = Σ a d = d₁ + d₂ − d₃ = 3`, `tr K² = Σ a² = 3`, a zero eigenvalue of positive multiplicity
+(`d₁² + d₂² + d₃² < |G|`), and `0 < d₁ < d₂ < d₃`, so the three eigenvalues are distinct and the third is negative. -/
+def spectrumOK (q : Nat) : Bool :=
+  let G := su3Order q; let (d1, d2, d3) := degs q
+  G % d1 == 0 && G % d2 == 0 && G % d3 == 0 && d1 + d2 - d3 == 3 && (1 : Int) * 1 + 1 * 1 + (-1) * (-1) == 3 &&
+  d1 * d1 + d2 * d2 + d3 * d3 < G && 0 < d1 && d1 < d2 && d2 < d3
+
+/-- 46:C19 — the transfer tally on the Subjects: the orders `811 273 008`, `802 332 524 681 473 968`, `33 144 476 289 365 359 469 790 000`
+of the frames on `13`, `173`, `1549`; the degrees `157, 2198, 2352`; `29 757, 5 177 718, 5 207 472`;
+`2 397 853, 3 716 672 150, 3 719 070 000`, whose inverses with the signs `+, +, −` are the eigenvalues of the step with the frame's
+mean; and the bookkeeping of the spectrum on each. -/
+theorem subject_spectrum :
+    (su3Order 13 = 811273008 ∧ su3Order 173 = 802332524681473968 ∧ su3Order 1549 = 33144476289365359469790000) ∧
+    (degs 13 = (157, 2198, 2352) ∧ degs 173 = (29757, 5177718, 5207472) ∧ degs 1549 = (2397853, 3716672150, 3719070000)) ∧
+    (spectrumOK 13 = true ∧ spectrumOK 173 = true ∧ spectrumOK 1549 = true) := by
+  decide
+
+/-- The identity `Σ a χ(1) = 3` of the expansion, `(q² − q + 1) + (q³ + 1) = (q + 1)² (q − 1) + 3`, on `q = k + 1` for `k < n`. -/
+def degreeSweep (n : Nat) : Bool :=
+  (List.range n).all (fun k => let q := k + 1; (q * q - q + 1) + (q ^ 3 + 1) == (q + 1) ^ 2 * (q - 1) + 3)
+
+/-- 46:C19 — the identity `Σ a χ(1) = 3 = w(1)` swept over `1 ≤ q ≤ 2000`. -/
+theorem degree_identity : degreeSweep 2000 = true := by
+  decide +kernel
+
+/-- The gap of the transfer tally on one frame, on the degrees: `d₂ = (q + 1) d₁`, `d₃ = (q + 1)(q² − 1)` and `0 < d₁ < d₂ < d₃`,
+so the eigenvalues `1/d₁ > 1/d₂ > 1/d₃` of the step have the gap `d₁/d₂ = 1/(q + 1)`; and the degrees are `1, 1, −1` modulo `q`,
+so the three multipliers `1/d₁, 1/d₂, −1/d₃` of one plaquette reduce to `1`. -/
+def gapOK (q : Nat) : Bool :=
+  let (d1, d2, d3) := degs q; let c : Int := (q : Nat)
+  d2 == ((q + 1 : Nat) : Int) * d1 && d3 == ((q + 1 : Nat) : Int) * ((q * q - 1 : Nat) : Int) &&
+  0 < d1 && d1 < d2 && d2 < d3 && d1 % c == 1 && d2 % c == 1 && (d3 + 1) % c == 0
+
+/-- 46:C20 — the gap of the transfer tally is `1/(q + 1)` on the seven frames of 46:C19: `1/14`, `1/174`, `1/1550` on the Subjects. -/
+theorem ring_gap :
+    (gapOK 3 = true ∧ gapOK 4 = true ∧ gapOK 5 = true ∧ gapOK 7 = true ∧ gapOK 13 = true ∧ gapOK 173 = true ∧ gapOK 1549 = true) ∧
+    ((degs 13).2.1 = 14 * (degs 13).1 ∧ (degs 173).2.1 = 174 * (degs 173).1 ∧ (degs 1549).2.1 = 1550 * (degs 1549).1) := by
+  decide
+
+/-- 46:C21 — the spectrum in `2π = p − 1` on the three Subjects, `π = 6, 86, 774`: `d₁ = 4π² + 2π + 1`, `d₂ = (2π + 2) d₁` and
+`d₃ = 8π(π + 1)²`, so the gap of the transfer tally is `1/(2π + 2)`; and `2π + 2` has the residue `1` on the shell. -/
+theorem spectrum_in_pi :
+    (13 = 2 * 6 + 1 ∧ 173 = 2 * 86 + 1 ∧ 1549 = 2 * 774 + 1) ∧
+    ((degs 13).1 = 4 * 6 * 6 + 2 * 6 + 1 ∧ (degs 173).1 = 4 * 86 * 86 + 2 * 86 + 1 ∧
+      (degs 1549).1 = 4 * 774 * 774 + 2 * 774 + 1) ∧
+    ((degs 13).2.1 = (2 * 6 + 2) * (degs 13).1 ∧ (degs 173).2.1 = (2 * 86 + 2) * (degs 173).1 ∧
+      (degs 1549).2.1 = (2 * 774 + 2) * (degs 1549).1) ∧
+    ((degs 13).2.2 = 8 * 6 * (6 + 1) * (6 + 1) ∧ (degs 173).2.2 = 8 * 86 * (86 + 1) * (86 + 1) ∧
+      (degs 1549).2.2 = 8 * 774 * (774 + 1) * (774 + 1)) ∧
+    ((2 * 6 + 2) % 13 = 1 ∧ (2 * 86 + 2) % 173 = 1 ∧ (2 * 774 + 2) % 1549 = 1) := by
+  decide
+
+/-- 46:C22 — the product channels, the arithmetic of the counts. The binomial inversion of the compact counts `1, 1, 2, 6, 23`
+gives the fixed dimensions `0, 1, 2, 8` of `8^{⊗n}` on a Subject, and of the instance's counts `1, 1, 2, 11, 92` gives `7` and `57`.
+A fixed subspace of dimension `2` has `p² + 1` invariant lines, `170`, `29930`, `2399402` on the Subjects; on the instance
+`(4^d − 1)/3` gives `5`, `5461`, `21845` for `d = 2, 7, 8`; and the degree `8` lies in the window `2p − 1` of the Subject `13`. -/
+theorem product_channel_counts :
+    ((1 : Int) - 1 = 0 ∧ (2 : Int) - 2 * 1 + 1 = 1 ∧ (6 : Int) - 3 * 2 + 3 * 1 - 1 = 2 ∧ (23 : Int) - 4 * 6 + 6 * 2 - 4 * 1 + 1 = 8) ∧
+    ((11 : Int) - 3 * 2 + 3 * 1 - 1 = 7 ∧ (92 : Int) - 4 * 11 + 6 * 2 - 4 * 1 + 1 = 57) ∧
+    (13 * 13 + 1 = 170 ∧ 173 * 173 + 1 = 29930 ∧ 1549 * 1549 + 1 = 2399402) ∧
+    ((13 * 13 - 1) * 170 = 13 * 13 * 13 * 13 - 1 ∧ 13 * 13 * 13 * 13 + 13 * 13 + 1 = 28731) ∧
+    ((4 ^ 2 - 1) / 3 = 5 ∧ (4 ^ 7 - 1) / 3 = 5461 ∧ (4 ^ 8 - 1) / 3 = 21845) ∧
+    (8 ≤ 2 * 13 - 1) := by
+  decide
+
+/-- The residues of `χ₁, χ₂, χ₃` on a frame element with the eigenvalues `μ, 1, μ⁻¹` of a Subject `p`, from the table's
+entries: the degrees at `μ = 1`; `(1 − q)a + a⁻²`, `(q + 1)a` and `0` at `a = −1`, the eigenvalues `−1, −1, 1`; and `1`,
+`μ + μ⁻¹`, `0` elsewhere. Here `q = p` and `mui` is `μ⁻¹`. -/
+def ubChars (p mu mui : Nat) : Nat × Nat × Nat :=
+  if mu == 1 then ((p * p - p + 1) % p, (p * p * p + 1) % p, ((p + 1) * (p + 1) * (p - 1)) % p)
+  else if mu == p - 1 then (((p - 1) + 1) % p, (p * p - (p + 1)) % p, 0)
+  else (1, (mu + mui) % p, 0)
+
+/-- The tally's residue at the boundary classes of `x` and `y`; the three multipliers of a step are `1` on the shell. -/
+def ubTally (p x xi y yi : Nat) : Nat :=
+  let (a1, a2, a3) := ubChars p x xi
+  let (b1, b2, b3) := ubChars p y yi
+  (a1 * b1 + a2 * b2 + a3 * b3) % p
+
+/-- The five powers `1 + xy + (xy)⁻¹ + x y⁻¹ + x⁻¹ y`. -/
+def ubFive (p x xi y yi : Nat) : Nat := (1 + (x * y) % p + (xi * yi) % p + (x * yi) % p + (xi * y) % p) % p
+
+/-- A length is regular when neither boundary class is that of `1` or of `−1`. -/
+def ubRegular (p x y : Nat) : Bool := x != 1 && x != p - 1 && y != 1 && y != p - 1
+
+/-- On every regular length among the next `fuel` steps the tally is the five powers. -/
+def ubSweep (p gj gji gk gki : Nat) : Nat → Nat → Nat → Nat → Nat → Bool
+  | 0, _, _, _, _ => true
+  | fuel + 1, x, xi, y, yi =>
+    let x' := (x * gj) % p; let xi' := (xi * gji) % p; let y' := (y * gk) % p; let yi' := (yi * gki) % p
+    (!(ubRegular p x' y') || ubTally p x' xi' y' yi' == ubFive p x' xi' y' yi') && ubSweep p gj gji gk gki fuel x' xi' y' yi'
+
+/-- The tally at the next `fuel` lengths. -/
+def ubValues (p gj gji gk gki : Nat) : Nat → Nat → Nat → Nat → Nat → List Nat
+  | 0, _, _, _, _ => []
+  | fuel + 1, x, xi, y, yi =>
+    let x' := (x * gj) % p; let xi' := (xi * gji) % p; let y' := (y * gk) % p; let yi' := (yi * gki) % p
+    ubTally p x' xi' y' yi' :: ubValues p gj gji gk gki fuel x' xi' y' yi'
+
+/-- The lengths among the next `fuel` that are not regular; `n` counts the steps taken. -/
+def ubOthers (p gj gk : Nat) : Nat → Nat → Nat → Nat → List Nat
+  | 0, _, _, _ => []
+  | fuel + 1, n, x, y =>
+    let x' := (x * gj) % p; let y' := (y * gk) % p
+    if ubRegular p x' y' then ubOthers p gj gk fuel (n + 1) x' y' else (n + 1) :: ubOthers p gj gk fuel (n + 1) x' y'
+
+/-- 46:C23 — the tally of the ring with the same boundary links at every step, of the eigenvalues `g^{±j}, 1` and `g^{±k}, 1` with
+`g = 2` and `(j, k) = (1, 2)`; after `n` steps the boundary classes are those of `x = 2^n` and `y = 4^n`. (1) The inverses of `2`
+and `4` on the three Subjects. (2) On `13` the tally at the lengths `1` to `12`. (3) On the Subjects `13`, `173`, `1549` the tally
+is the five powers at every regular length of the drive's cycle. (4) The other lengths: four on each Subject, the multiples of `3`,
+`43` and `387`. (5) At the length of the cycle the boundary links are units and the tally is `3`. Every product is reduced at once;
+the largest numeral formed is the degree `(p + 1)²(p − 1)`. -/
+theorem uniform_boundary_tally :
+    ((2 * 7) % 13 = 1 ∧ (4 * 10) % 13 = 1 ∧ (2 * 87) % 173 = 1 ∧ (4 * 130) % 173 = 1 ∧
+      (2 * 775) % 1549 = 1 ∧ (4 * 1162) % 1549 = 1) ∧
+    ubValues 13 2 7 4 10 12 1 1 1 1 = [10, 0, 0, 2, 5, 12, 5, 2, 0, 0, 10, 3] ∧
+    (ubSweep 13 2 7 4 10 12 1 1 1 1 = true ∧ ubSweep 173 2 87 4 130 172 1 1 1 1 = true ∧
+      ubSweep 1549 2 775 4 1162 1548 1 1 1 1 = true) ∧
+    (ubOthers 13 2 4 12 0 1 1 = [3, 6, 9, 12] ∧ ubOthers 173 2 4 172 0 1 1 = [43, 86, 129, 172] ∧
+      ubOthers 1549 2 4 1548 0 1 1 = [387, 774, 1161, 1548]) ∧
+    (ubTally 13 1 1 1 1 = 3 ∧ ubTally 173 1 1 1 1 = 3 ∧ ubTally 1549 1 1 1 1 = 3) := by
+  decide +kernel
 
 end FRC.YangMills

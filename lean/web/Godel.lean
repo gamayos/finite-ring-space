@@ -439,7 +439,7 @@ theorem p25020 : ∀ (s K : ℕ), (2 : ℕ) ≤ s → ∑ i ∈ Finset.range (K 
 /-- p25036 — 25:H2. Finiteness, the finite direction: for finite $\M$ the full second-order theory $\ThSO(\M)$ is decidable. A second-order quantifier over $k$-ary relations ranges over the $2^{m^{k}}$ subsets of $\M^{k}$, and exhaustive evaluation decides every second-order sentence. Cited definitions (not proofs): FRC.Logic.decideAllRelations. -/
 theorem p25036 : ∀ (M : Type u_1) [Fintype M] [DecidableEq M] (k : ℕ), Fintype.card (Finset (Fin k → M)) = (2 : ℕ) ^ Fintype.card M ^ k :=
   @FRC.Logic.card_relations
-/-- p25038 — 25:H4. Determinacy meets effectivity only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or effectivity over a fragment. Finitude delivers both, at grade (ii). -/
+/-- p25038 — 25:H4. Determinacy meets decidability only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or an effective axiomatisation of a fragment. Finitude delivers both, at grade (ii). -/
 theorem p25038 : ∀ (M : Type u_1) [Fintype M] [DecidableEq M] (k : ℕ), Fintype.card (Finset (Fin k → M)) = (2 : ℕ) ^ Fintype.card M ^ k :=
   @FRC.Logic.card_relations
 /-- p25048 — 25:F4. Density: $m$ has $d$ base-$a$ digits. An injective coding of length-$n$ strings by $k$-tuples, $k\ge1$, needs $m^{k}\ge a^{n}$, so $n<dk$. In F2's $\delta(u)=\exists v\,(\mathrm{Diag}(u,v)\wedge\theta(v))$ let $v$ have $k$ coordinates and $u$ have $k_{1}$. Each coordinate of $v$ is named three times, each of $u$ once. So $\lvert\delta\rvert\ge2c(k)+c(k+k_{1})$, and $\lambda=\delta(\ulcorner\delta\urcorner)$ has $\lvert\lambda\rvert\ge3c(k)+k_{1}$, $c(j)$ the total length of the $j$ shortest names. -/
@@ -560,8 +560,8 @@ theorem density : ∀ {A : Type u_1} {M : Type u_2} [Fintype A] [Fintype M] (n k
 /-- 25:H2 (p25036) — Finiteness, the finite direction: for finite $\M$ the full second-order theory $\ThSO(\M)$ is decidable. A second-order quantifier over $k$-ary relations ranges over the $2^{m^{k}}$ subsets of $\M^{k}$, and exhaustive evaluation decides every second-order sentence. Cited definitions (not proofs): FRC.Godel.decideAllRelations. -/
 theorem finiteness_finite_direction : ∀ (M : Type u_1) [Fintype M] [DecidableEq M] (k : ℕ), Fintype.card (Finset (Fin k → M)) = (2 : ℕ) ^ Fintype.card M ^ k :=
   @FRC.LedgerML.p25036
-/-- 25:H4 (p25038) — Determinacy meets effectivity only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or effectivity over a fragment. Finitude delivers both, at grade (ii). -/
-theorem determinacy_meets_effectivity_finite : ∀ (M : Type u_1) [Fintype M] [DecidableEq M] (k : ℕ), Fintype.card (Finset (Fin k → M)) = (2 : ℕ) ^ Fintype.card M ^ k :=
+/-- 25:H4 (p25038) — Determinacy meets decidability only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or an effective axiomatisation of a fragment. Finitude delivers both, at grade (ii). -/
+theorem determinacy_meets_decidability_finite : ∀ (M : Type u_1) [Fintype M] [DecidableEq M] (k : ℕ), Fintype.card (Finset (Fin k → M)) = (2 : ℕ) ^ Fintype.card M ^ k :=
   @FRC.LedgerML.p25038
 -- end ledger predicates
 
@@ -578,4 +578,4 @@ end FRC.Godel
 #print axioms FRC.Godel.vanishing_reach
 #print axioms FRC.Godel.density
 #print axioms FRC.Godel.finiteness_finite_direction
-#print axioms FRC.Godel.determinacy_meets_effectivity_finite
+#print axioms FRC.Godel.determinacy_meets_decidability_finite

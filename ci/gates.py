@@ -14,7 +14,9 @@ G10  size budgets (decision Q03), on framework files and migrated ledgers only: 
 G12  every keyed declaration of a migrated ledger has a python marker and a notebook cell, or is declared Lean-only
      (task LM21): each row of the ledger file's table LEAN has its predicate in the registry's PREDICATES, a marker on
      the deciding check and a notebook cell with its key as id, unless LEAN_ONLY lists it; and the parts that
-     ci/make_ledgers.py generates (the table, the notebook's cells, the certificates) are current.
+     ci/make_ledgers.py generates (the table, the notebook's cells, the certificates) are current. A paper whose ledger
+     is on the site (docs/<paper>/<paper>-ledger.json) has a migrated ledger file: a file frc/ledgers/p*.py that names
+     such a paper and lacks the generated table fails (11 November 2026).
 G13  every migrated ledger's notebook executes green, with cell ids equal to keys (task LM20): a migrated ledger is a
      ledger file under frc/ledgers/ (a paper's) or frc/ledgers/master/ (a master block's, from LM22) with the table
      ci/make_ledgers.py generates; its notebook's code cells are one per
@@ -229,6 +231,10 @@ def make_ledgers():
 def g12():
     import importlib, json
     files = migrated()
+    for f in (sorted((ROOT / "frc" / "ledgers").glob("p*.py")) if (ROOT / "frc" / "ledgers").exists() else []):   # a paper on the site has a migrated ledger file
+        m = re.search(r'^PAPER = "([^"]+)"', f.read_text(encoding="utf-8"), re.M)
+        if f not in files and m and (ROOT / "docs" / m.group(1) / f"{m.group(1)}-ledger.json").exists():
+            fail("G12", f"{f.name}: the ledger of {m.group(1)} is on the site and the file has no generated table (the two marker lines of ci/make_ledgers.py), so it has no notebook and no certificate")
     if not files: return 0
     if not (ROOT / "docs").is_dir() or not (ROOT / "lean" / "make_predicates.py").exists():
         fail("G12", "docs/ or lean/ is missing: the generated parts of the migrated ledgers cannot be checked"); return len(files)

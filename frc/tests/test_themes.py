@@ -92,6 +92,18 @@ class GateTest(unittest.TestCase):
             self.assertIn("FAIL G13", out)
         finally: shutil.rmtree(d)
 
+    def test_g12_catches_a_public_ledger_without_its_table(self):
+        d = self.scratch()
+        try:
+            (Path(d) / "frc" / "ledgers" / "p99_toy.py").write_text('from frc import arith\nPAPER = "99-toy"\n')
+            code, out = self.run_gates(d)
+            self.assertNotIn("p99_toy.py: the ledger of 99-toy", out)             # no ledger of the paper on the site: nothing to migrate
+            (Path(d) / "docs" / "99-toy").mkdir(parents=True); (Path(d) / "docs" / "99-toy" / "99-toy-ledger.json").write_text("{}")
+            code, out = self.run_gates(d)
+            self.assertEqual(code, 1, out)
+            self.assertIn("FAIL G12: p99_toy.py: the ledger of 99-toy is on the site and the file has no generated table", out)
+        finally: shutil.rmtree(d)
+
     def test_g12_catches_a_declaration_without_its_marker(self):
         d = self.scratch()
         try:

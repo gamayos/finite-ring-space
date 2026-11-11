@@ -8,6 +8,7 @@ window ladder, every residue found without a generator. Exact integers only, the
     triality_roots(Om)        every root of x² + x + 1, by search
     octant(Om)                ζ = a^((Ω−1)/8) with a = half_power(Ω): an element of order eight, or None when 8 ∤ Ω − 1
     tsirelson(z, Om)          (ζ + ζ⁷)² mod Ω
+    marks(Om, j)              the marks of level j, the roots of x^(2^j) = −1, generator-free; [] when 2^(j+1) ∤ Ω − 1
     horizon(p)                the Subject's horizon ⌊√p⌋: the largest x with x² ≤ p
     quarter_root(Om)          the Carrier's quarter-root window: the largest x with x⁴ < Ω
     coherence(Om)             the coherence window: the largest x with x² < Ω
@@ -35,6 +36,16 @@ def tsirelson(z, Om):
     """(ζ + ζ⁷)² mod Ω: 2 when ζ⁴ = −1 (Carrier.lean, `tsirelson`)."""
     s = (z + pow(z, 7, Om)) % Om
     return s * s % Om
+
+
+def marks(Om, j):
+    """The marks of level j (master B15): the residues x with x^(2^j) = −1, as a^(k(Ω−1)/2^(j+1)) for the odd k below
+    2^(j+1), with a^((Ω−1)/2) = −1 (Carrier.lean, `two_power_tower`, existence backward). The empty list when
+    2^(j+1) ∤ Ω − 1. Level 0 is [Ω − 1], level 1 the quarter-turn pair, level 2 the four elements of order eight."""
+    e = 2 ** (j + 1)
+    if (Om - 1) % e: return []
+    a = half_power(Om)
+    return sorted(pow(a, k * ((Om - 1) // e), Om) for k in range(1, e, 2))
 
 
 def register(S):

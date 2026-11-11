@@ -357,7 +357,7 @@
    "rows": [
     {
      "label": "H1",
-     "predicate": "The effectivity clause: among consistent, effectively axiomatised theories, interpreting $\\mathsf{Q}$ forces incompleteness. $\\Th(\\N)$ is complete at grade (i) only, presentable by nothing. Presburger arithmetic separates unbounded iteration from coding power: it is complete and decidable. Incompleteness tracks an effective description confronting a domain that codes its own syntax.",
+     "predicate": "Effective axiomatisability: among consistent, effectively axiomatised theories, interpreting $\\mathsf{Q}$ forces incompleteness. $\\Th(\\N)$ is complete at grade (i) only, presentable by nothing. Presburger arithmetic separates unbounded iteration from coding power: it is complete and decidable. Incompleteness tracks an effective description confronting a domain that codes its own syntax.",
      "tag": "D",
      "source": "Section~\\ref{sec:finiteness}; A1, A2",
      "key": "p25035",
@@ -381,11 +381,11 @@
     },
     {
      "label": "H4",
-     "predicate": "Determinacy meets effectivity only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or effectivity over a fragment. Finitude delivers both, at grade (ii).",
+     "predicate": "Determinacy meets decidability only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or an effective axiomatisation of a fragment. Finitude delivers both, at grade (ii).",
      "tag": "T",
      "source": "Cor.~\\ref{cor:determinacy}; H2, H3\\newline \\pywit{godel}{p25038}{H4}, \\leanwit{FrcCore}{p25038}{H4}, \\leanwit{FrcMathlib}{p25038}{H4} \\lean{Godel.card\\_relations, FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete}",
      "key": "p25038",
-     "name": "determinacy_meets_effectivity_finite"
+     "name": "determinacy_meets_decidability_finite"
     },
     {
      "label": "H5",
@@ -419,7 +419,7 @@
     },
     {
      "label": "J3",
-     "predicate": "The diagnosis: the effectivity hypothesis is the agent, abstracted. The excess of truth over certificates is information about the certifier's finitude, not about the cardinality of the world. Consequences are drawn for Hilbert's programme, for the anti-mechanist argument and for the platonist moral. The row is a reading argued from J2.",
+     "predicate": "The diagnosis: the hypothesis of effective axiomatisation is the agent, abstracted. The excess of truth over certificates is information about the certifier's finitude, not about the cardinality of the world. Consequences are drawn for Hilbert's programme, for the anti-mechanist argument and for the platonist moral. The row is a reading argued from J2.",
      "tag": "D",
      "source": "Section~\\ref{sec:neutrality}; J2",
      "key": "p25042",

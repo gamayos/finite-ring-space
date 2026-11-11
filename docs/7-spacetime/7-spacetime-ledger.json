@@ -3,7 +3,7 @@
  "tree": "7-spacetime-20261027",
  "title": "Emergent Lorentzian Spacetime over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202611.0720.v1",
- "generated": "8 November 2026",
+ "generated": "10 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -1325,7 +1325,7 @@
    {
     "name": "FRC.Carrier.register",
     "module": "FrcCore/Theme/Carrier",
-    "line": 245,
+    "line": 246,
     "axioms": [],
     "tier": 0,
     "ok": true,

@@ -7293,6 +7293,7 @@ bound, the quarter-turn criterion.
 * **B10, one gauge bit.** `−1` a square; the square class blind to the pair `x ↔ −x`; integer parity flipped by it;
   the faces `x²` pair-invariant and `{ħ, −ħ}` two distinct roots of `−1`.
 * **B14, the octant sector.** An element of order eight exists iff `S` is even.
+* **B15, the two-power tower.** The marks of level `j`, the roots of `x^(2^j) = −1`: existence, order, bound, squaring.
 
 Since task LM24 the chart's generic lemmas (`chart_gt_two`, the octant sector, the Tsirelson square, the half-square
 behind `c_exists_iff`, the parity flip) are `Shell.Prime`'s in `Theme/Field.lean`; the old names here are aliases.
@@ -7603,6 +7604,65 @@ theorem sign_sector {Ω : Nat} [Pos Ω] (S : Nat) (hp : FRC.Nat.isPrime Ω) (hS 
 theorem octant {Ω : Nat} [Pos Ω] (S : Nat) (hp : FRC.Nat.isPrime Ω) (hS : Ω = 4 * S + 1) :
     (∃ ζ : Shell Ω, ζ ^ 8 = 1 ∧ ζ ^ 4 ≠ 1) ↔ S % 2 = 0 :=
   octant_sector hp hS
+
+/-! ## B15: the two-power tower -/
+
+/-- The count of a power is the power of the count. -/
+theorem count_pow (a : Nat) : ∀ m, (ofNat (a ^ m) : Shell Ω) = ofNat a ^ m
+  | 0 => rfl
+  | m + 1 => by rw [Nat.pow_succ, ← ofNat_mul, count_pow a m, pow_succ]
+
+/-- `(−1)^m = 1` only for an even `m`, on a shell of more than two residues. -/
+theorem even_of_neg_one_pow (h2 : 2 < Ω) {m : Nat} (e : (-1 : Shell Ω) ^ m = 1) : m % 2 = 0 :=
+  match Nat.decEq (m % 2) 0 with
+  | .isTrue h => h
+  | .isFalse h => by rw [neg_one_pow, ite_eq_right h] at e; exact absurd e (neg_one_ne_one h2)
+
+/-- Squaring takes a mark of level `j + 1`, a root of `x^(2^(j+1)) = −1`, to a mark of level `j`. -/
+theorem sq_mark {j : Nat} {x : Shell Ω} (h : x ^ 2 ^ (j + 1) = -1) : (x * x) ^ 2 ^ j = -1 := by
+  rw [FRC.Nat.pow_succ', Nat.mul_comm, Nat.two_mul, pow_add, ← mul_pow] at h; exact h
+
+/-- The order of a mark of level `j` is `2^(j+1)`: an exponent that returns `1` is a multiple of it. -/
+theorem mark_order (h2 : 2 < Ω) : ∀ (j : Nat) (x : Shell Ω), x ^ 2 ^ j = -1 → ∀ m : Nat, x ^ m = 1 → 2 ^ (j + 1) ∣ m
+  | 0, x, h, m, hm => by
+    rw [show x = -1 by rw [← pow_one x]; exact h] at hm
+    exact (FRC.Nat.dvd_iff_mod (by decide : 0 < 2)).2 (even_of_neg_one_pow h2 hm)
+  | j + 1, x, h, m, hm => by
+    obtain ⟨c, hc⟩ := mark_order h2 j (x * x) (sq_mark h) m (by rw [mul_pow, hm, one_mul])
+    have hc2 : (-1 : Shell Ω) ^ c = 1 := by rw [← h, ← pow_mul, ← hc]; exact hm
+    obtain ⟨d, hd⟩ := (FRC.Nat.dvd_iff_mod (by decide : 0 < 2)).2 (even_of_neg_one_pow h2 hc2)
+    exact ⟨d, by rw [hc, hd, ← FRC.Nat.mul_assoc, ← FRC.Nat.pow_succ']⟩
+
+/-- **B15 (p00204), the two-power tower**, on the chart `Ω = 4S + 1`, `Ω` prime, without a generator; a shell is the
+chart with `κ` for `S`. The count `Ω − 1` is `−1` and its square is `1`. A mark of level `j` is a root of `x^(2^j) = −1`:
+one exists iff `2^(j+1) ∣ 4S` (Fermat forward, `a^k` with `a^(2S) = −1` backward); its order is `2^(j+1)`; no count `y`
+with `y^(2^j) < Ω − 1` is one, since that power does not wrap; squaring takes level `j + 1` to level `j`. -/
+theorem two_power_tower {Ω : Nat} [Pos Ω] (S : Nat) (hp : FRC.Nat.isPrime Ω) (hS : Ω = 4 * S + 1) :
+    (ofNat (Ω - 1) : Shell Ω) = -1 ∧ (ofNat (Ω - 1) : Shell Ω) * ofNat (Ω - 1) = 1 ∧
+    (∀ j : Nat, (∃ x : Shell Ω, x ^ 2 ^ j = -1) ↔ 2 ^ (j + 1) ∣ 4 * S) ∧
+    (∀ (j : Nat) (x : Shell Ω), x ^ 2 ^ j = -1 → x ^ 2 ^ (j + 1) = 1 ∧ ∀ m : Nat, x ^ m = 1 → 2 ^ (j + 1) ∣ m) ∧
+    (∀ j y : Nat, y ^ 2 ^ j < Ω - 1 → (ofNat y : Shell Ω) ^ 2 ^ j ≠ -1) ∧
+    (∀ (j : Nat) (x : Shell Ω), x ^ 2 ^ (j + 1) = -1 → (x * x) ^ 2 ^ j = -1) := by
+  have h2 := chart_gt_two hp hS
+  have h1 : 1 < Ω := Nat.lt_trans (by decide) h2
+  have hlt : Ω - 1 < Ω := Nat.sub_lt (Nat.lt_trans (by decide) h1) (by decide)
+  have hc : (ofNat (Ω - 1) : Shell Ω) = -1 :=
+    ext (by show (Ω - 1) % Ω = (Ω - 1 % Ω) % Ω; rw [FRC.Nat.mod_eq_of_lt h1])
+  refine ⟨hc, by rw [hc, neg_mul_neg, one_mul], fun j => ⟨fun ⟨x, hx⟩ => ?_, fun ⟨k, hk⟩ => ?_⟩,
+    fun j x h => ⟨by rw [FRC.Nat.pow_succ', pow_mul, h, pow_two, neg_mul_neg, one_mul], mark_order h2 j x h⟩,
+    fun j y h e => ?_, fun _ _ h => sq_mark h⟩
+  · have h0 : x ≠ 0 := fun e => neg_one_ne_zero hp (by
+      rw [← hx, e, ← FRC.Nat.sub_add_cancel (FRC.Nat.pos_pow_of_pos j (by decide : 0 < 2)), pow_succ, mul_zero])
+    have h := mark_order h2 j x hx (Ω - 1) (fermat hp h0)
+    rw [hS, FRC.Nat.add_sub_cancel] at h; exact h
+  · obtain ⟨a, ha⟩ := exists_pow_half hp (n := 2 * S) (by rw [hS, ← FRC.Nat.mul_assoc])
+    have e : 2 * S = 2 ^ j * k := Nat.eq_of_mul_eq_mul_left (by decide : 0 < 2) (by
+      rw [← FRC.Nat.mul_assoc, ← FRC.Nat.mul_assoc, Nat.mul_comm 2 (2 ^ j)]; exact hk)
+    exact ⟨a ^ k, by rw [← pow_mul, Nat.mul_comm, ← e]; exact ha⟩
+  · rw [← count_pow, ← hc] at e
+    have v : y ^ 2 ^ j % Ω = (Ω - 1) % Ω := val_injective e
+    rw [FRC.Nat.mod_eq_of_lt (Nat.lt_trans h hlt), FRC.Nat.mod_eq_of_lt hlt] at v
+    exact absurd v (Nat.ne_of_lt h)
 
 /-! ## Old names (task LM24): the chart's lemmas are `Shell.Prime`'s, in `Theme/Field.lean` -/
 
@@ -12190,7 +12250,7 @@ theorem p00034 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p00040 — 00:C20. \textbf{The mass--energy channel}: the winding sector $C_{\p -1}$ meets the boost base $C_{\p +1}$ in the sign alone and the spinor cover $C_{2(\p +1)}$ in exactly $Q_4$, every $\p =4\kap +1$; the quarter is spinorial, $N(\im)=\im^{2}=-1$: the mass transport crosses the sheet; mass phase $=$ winding rate, one $Q_4$ datum (D2); Carrier instance $78^{58}=89=h$ on $\Om =233$ (38:A4). -/
 theorem p00040 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {h : FRC.Shell p}, h * h = (-1 : FRC.Shell p) → (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ (p + (1 : Nat)) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p))) ∧ (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ ((2 : Nat) * (p + (1 : Nat))) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = h ∨ x = -h)) ∧ h ^ (p + (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (78 : FRC.Shell (233 : Nat)) ^ (58 : Nat) = (89 : FRC.Shell (233 : Nat)) ∧ (89 : FRC.Shell (233 : Nat)) * (89 : FRC.Shell (233 : Nat)) = (-1 : FRC.Shell (233 : Nat)) :=
   And.intro @FRC.Subject.channel (@FRC.Subject.channel_233)
-/-- p00042 — 7:A17, 00:D1. Time is the drive: each Subject's clock is its own drive $x\mapsto\gen x$. A chronon is one drive step; a registered duration is the count of chronons, the Subject's chart count, injective on every registrable depth; the Carrier has no clock. -/
+/-- p00042 — 7:A17, 00:D1. \textbf{Time is the drive}: a Subject's clock is its drive $x\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has no clock. A registered duration is the one-directional chronon count on the depth $\p^{2}<\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors. -/
 theorem p00042 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) ∧ g ^ FRC.Shell.Frame.halfPeriod κ = (-1 : FRC.Shell p) ∧ -FRC.Shell.ofNat (FRC.Shell.Frame.halfPeriod κ) * (2 : FRC.Shell p) = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) ∧ (∃ y, y * y = (0 : FRC.Shell p)) ∧ (∃ y, y * y = (1 : FRC.Shell p)) ∧ ¬∃ y, y * y = g) ∧ (∀ (Om n : Nat), n < Om - (1 : Nat) → n % (Om - (1 : Nat)) = n) ∧ (∀ (p S n : Nat), p % (2 : Nat) = (1 : Nat) → p * p < (4 : Nat) * S + (1 : Nat) → n ≤ p * p → n < (4 : Nat) * S + (1 : Nat) - (1 : Nat)) ∧ (13 : Nat) * (13 : Nat) < (232 : Nat) ∧ (173 : Nat) * (173 : Nat) < (30088 : Nat) ∧ (1549 : Nat) * (1549 : Nat) < (2408560 : Nat) ∧ (13 : Nat) * (13 : Nat) < (180 : Nat) ∧ (13 : Nat) * (13 : Nat) < (696 : Nat) ∧ (173 : Nat) * (173 : Nat) < (1293784 : Nat) ∧ (1549 : Nat) * (1549 : Nat) < (932112720 : Nat) ∧ (13 : Nat) * (13 : Nat) < (180 : Nat) :=
   And.intro @FRC.Subject.frame_web (And.intro @FRC.Lorentz.drift_one_directional (And.intro @FRC.Lorentz.nesting_depth (@FRC.Lorentz.drift_instance_pairs)))
 /-- p00139 — 7:A15, 00:C25. For $w^2=\nu$ a nonsquare, the torsor map $\mathbb{P}^1(\F_\p)\to C_{\p +1}$, $P\mapsto u_P/\bar u_P$ with $u_P$ the unique boost taking $0$ to $P$, is equivariant and sends the origin to $1$ and the antipode $[1{:}0]$ to $-1=\zeta^{(\p +1)/2}$. Origin and antipode are the sign pair $C_{\p -1}\cap C_{\p +1}$ (C20), exchanged by the torus's unique involution $q\mapsto\nu/q$. On the additive cycle the antipode is the seam $\p/2$ (1:Z1, 1:Z2). -/
@@ -12327,6 +12387,9 @@ theorem p00168 : ∀ {Ω : Nat} [FRC.Pos Ω] (S : Nat), FRC.Nat.isPrime Ω → �
 /-- p00170 — 00:B14. \textbf{The octant sector}: $C_8\subset C_{4\dS}$ exists exactly when $\dS$ is even (14:C6). -/
 theorem p00170 : ∀ {Ω : Nat} [FRC.Pos Ω] (S : Nat), FRC.Nat.isPrime Ω → Ω = (4 : Nat) * S + (1 : Nat) → ((∃ ζ, ζ ^ (8 : Nat) = (1 : FRC.Shell Ω) ∧ ζ ^ (4 : Nat) ≠ (1 : FRC.Shell Ω)) ↔ S % (2 : Nat) = (0 : Nat)) :=
   @FRC.Carrier.octant
+/-- p00204 — 00:B15. \textbf{The two-power tower}: in $\F_\Om$ the count $\Om-1$ is $-1$. Its $2^{j}$-th roots, the marks of level $j$, exist exactly when $2^{j+1}\mid4\dS$ and have order $2^{j+1}$; no count $y$ with $y^{2^{j}}<\Om-1$ is one (B8). Squaring raises a mark one level and closes at $(\Om-1)^{2}=1$. Levels $1$, $2$: B3, B14; on a shell, $\kap$ for $\dS$. -/
+theorem p00204 : ∀ {Ω : Nat} [FRC.Pos Ω] (S : Nat), FRC.Nat.isPrime Ω → Ω = (4 : Nat) * S + (1 : Nat) → FRC.Shell.ofNat (Ω - (1 : Nat)) = (-1 : FRC.Shell Ω) ∧ FRC.Shell.ofNat (Ω - (1 : Nat)) * FRC.Shell.ofNat (Ω - (1 : Nat)) = (1 : FRC.Shell Ω) ∧ (∀ (j : Nat), (∃ x, x ^ (2 : Nat) ^ j = (-1 : FRC.Shell Ω)) ↔ (2 : Nat) ^ (j + (1 : Nat)) ∣ (4 : Nat) * S) ∧ (∀ (j : Nat) (x : FRC.Shell Ω), x ^ (2 : Nat) ^ j = (-1 : FRC.Shell Ω) → x ^ (2 : Nat) ^ (j + (1 : Nat)) = (1 : FRC.Shell Ω) ∧ ∀ (m : Nat), x ^ m = (1 : FRC.Shell Ω) → (2 : Nat) ^ (j + (1 : Nat)) ∣ m) ∧ (∀ (j y : Nat), y ^ (2 : Nat) ^ j < Ω - (1 : Nat) → FRC.Shell.ofNat y ^ (2 : Nat) ^ j ≠ (-1 : FRC.Shell Ω)) ∧ ∀ (j : Nat) (x : FRC.Shell Ω), x ^ (2 : Nat) ^ (j + (1 : Nat)) = (-1 : FRC.Shell Ω) → (x * x) ^ (2 : Nat) ^ j = (-1 : FRC.Shell Ω) :=
+  @FRC.Carrier.two_power_tower
 -- end keys
 
 end FRC.Ledger

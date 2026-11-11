@@ -780,7 +780,7 @@ import FrcMathlib
 #print axioms FRC.Godel.vanishing_reach
 #print axioms FRC.Godel.density
 #print axioms FRC.Godel.finiteness_finite_direction
-#print axioms FRC.Godel.determinacy_meets_effectivity_finite
+#print axioms FRC.Godel.determinacy_meets_decidability_finite
 #print axioms FRC.Gravity.calibration_congruence
 #print axioms FRC.Gravity.newton_register
 #print axioms FRC.Gravity.hbar_register
@@ -1196,6 +1196,7 @@ import FrcMathlib
 #print axioms FRC.LedgerML.p22044
 #print axioms FRC.LedgerML.p22051
 #print axioms FRC.LedgerML.p22053
+#print axioms FRC.LedgerML.p46013
 #print axioms FRC.LedgerML.p46041
 #print axioms FRC.LedgerML.p46043
 #print axioms FRC.Master.scale_import
@@ -2133,7 +2134,9 @@ import FrcMathlib
 #print axioms FRC.YangMillsML.sq
 #print axioms FRC.YangMillsML.sq_succ_succ
 #print axioms FRC.YangMillsML.faulhaber_third_all
+#print axioms FRC.YangMillsML.casimir_exponents_all
 #print axioms FRC.YangMillsML.radial_ratio_confrontation
+#print axioms FRC.YangMills.casimir_exponents_all
 #print axioms FRC.YangMills.faulhaber_third_all
 #print axioms FRC.YangMills.two_loop_tau
 #print axioms FRC.YangMills.one_loop_tau
@@ -2142,8 +2145,9 @@ import FrcMathlib
 #print axioms FRC.YangMills.plaquette_values
 #print axioms FRC.YangMills.wrap_family_values
 #print axioms FRC.YangMills.radial_ratio_confrontation
-#print axioms FRC.YangMills.short_range_obstructed
-#print axioms FRC.YangMills.plaquette_channel_obstructed
+#print axioms FRC.YangMills.colour_casimirs
+#print axioms FRC.YangMills.short_range_fails
+#print axioms FRC.YangMills.plaquette_channel_fails
 #print axioms FRC.YangMills.wrap_family_misses
 #print axioms FRC.YangMills.one_loop_rationals
 #print axioms FRC.YangMills.running_prediction

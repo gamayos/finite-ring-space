@@ -1,5 +1,5 @@
 {
- "generated": "8 November 2026",
+ "generated": "11 November 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -265,7 +265,7 @@
    "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the scale import from the measured $\\Lambda$ \\citep{planck}), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$), ACT DR6 $-0.026\\pm0.003$ ($-2.9\\sigma$) and the SPT--Planck--ACT combination $-0.0321\\pm0.0033$ ($-0.8\\sigma$), under $\\Lambda$CDM; $0.24\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
    "source": "Prop.~\\ref{prop:primordial}\\newline \\pywit{gravity}{p21060}{P8}, \\leanwit{FrcMathlib}{p21060}{P8}; rests on A8, C18, 00:L8 \\lean{Gravity.tilt\\_bracket}",
    "master": [
-    "L8"
+    "Y10"
    ],
    "restated": [],
    "witnessed": false,
@@ -810,7 +810,7 @@
    "key": "p46024",
    "tag": "T",
    "lean_name": "running_prediction",
-   "predicate": "[chart] Between laboratory scales $1/\\alpha_s$ is linear in $\\ln\\mu$ with slope $b_0/2\\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\\alpha_s(\\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\\alpha_s(m_\\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$.",
+   "predicate": "[chart] Between laboratory scales $1/\\alpha_s$ is linear in $\\ln(\\mu/\\mu_0)$ with slope $b_0/2\\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\\alpha_s(\\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\\alpha_s(m_\\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$.",
    "source": "Prop.~\\ref{prop:running}; rests on A3, A4, C5\\newline \\pywit{yangmills}{p46024}{P2}, \\leanwit{FrcCore}{p46024}{P2}, \\leanwit{FrcMathlib}{p46024}{P2} \\lean{FRC.YangMills.running\\_one\\_loop, FRC.YangMills.b0\\_values, YangMills.two\\_loop\\_tau, YangMills.one\\_loop\\_tau}",
    "master": [],
    "restated": [],
@@ -824,7 +824,7 @@
    "key": "p46043",
    "tag": "T",
    "lean_name": "radial_ratio_prediction",
-   "predicate": "[chart] The radial ratio of the operator form: $E_1/E_0=1.49$ for every $a$ and $\\varkappa$, a property of the operator form of C8 shared by every state the one-body wrap describes. Falsifier: a measured first radial ratio of such a state outside $1.49$ beyond its error. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ and favours the nonrelativistic $1.75$: the form fails for the glueball.",
+   "predicate": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
    "source": "Prop.~\\ref{prop:radial}; rests on A1, C8, C12\\newline \\pywit{yangmills}{p46043}{P3}, \\leanwit{FrcCore}{p46043}{P3}, \\leanwit{FrcMathlib}{p46043}{P3} \\lean{FRC.YangMills.radial\\_ratio, YangMills.radial\\_ratio\\_confrontation}",
    "master": [],
    "restated": [],

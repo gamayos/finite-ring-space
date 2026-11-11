@@ -8,6 +8,7 @@ from frc.foundation import half_power, quarter_turn, quarter_turns, square_roots
 from frc.foundation import (successor_orbit, principal_ideal, is_complete, zero_divisors, element_order, drive,
                             collision)
 from frc.carrier import capacity, register, octant, tsirelson, triality_roots, horizon, quarter_root, coherence
+from frc import carrier
 
 PRIMES = [p for p in range(3, 1200) if arith.is_prime(p)]
 
@@ -84,6 +85,18 @@ class CarrierTest(unittest.TestCase):
             if z is not None:
                 self.assertIn(z, eight); self.assertEqual(tsirelson(z, Om), 2)
             if Om > 3: self.assertEqual(bool(triality_roots(Om)), Om % 3 == 1)
+
+    def test_marks(self):
+        for Om in (p for p in PRIMES if p % 4 == 1):
+            j = 0
+            while True:                                                                        # every level up to the first empty one
+                found = [x for x in range(1, Om) if pow(x, 2 ** j, Om) == Om - 1]              # the roots of x^(2^j) = −1, by search
+                self.assertEqual(carrier.marks(Om, j), found)
+                self.assertEqual(bool(found), (Om - 1) % 2 ** (j + 1) == 0)
+                self.assertEqual(len(found), 2 ** j if found else 0)
+                if not found: break
+                j += 1
+        self.assertEqual(carrier.marks(2408561, 1), [18688, 2408561 - 18688])
 
     def test_windows(self):
         for n in range(1, 3000):

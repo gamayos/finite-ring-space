@@ -18,7 +18,7 @@ file as a numeral: the anchors are ratios.
     b1(nf), two_loop(...), run_to_tau_two_loop()   the imported two-loop coefficient and the two-loop run (a chart reading)
     wrap_spectrum(a, kappa, k, N, L)      the lowest k eigenvalues of the chart operator a|p| + ϰ r on N sites (35-hadrons C17's construction)
     wrap_family()                         the candidate operators of D5 against the three lattice determinations [chart]
-    short_range_route(), plaquette_channel()   the two routes of the former task T01, both obstructed (8 November 2026) [chart]
+    short_range_route(), plaquette_channel()   the two chart routes of the former task T01, both failing (8 November 2026) [chart]
     adjoint_ratio(beta)                   the chart's tension ratio σ₈/σ₃ = ln c₈ / ln c₃ at a real β in the regime β ≪ 1
 """
 import math
@@ -231,18 +231,21 @@ def short_range_review():
     string, so that the ledger file (an exact tier, gate G09) handles no float: the declared coupling C = C_A α_s(√σ) and the two-body
     Herbst value 4/π; the ground energy of 2|p| + 2r − C/max(r, r_c) at r_c = 1, 1/2, 1/4, 1/8 cells with the declared coupling, each
     above the elementary bound −C/r_c; the two-body fixed points with the running coupling (the upper root by the secant of
-    short_range_route, the lower by bisection) at r_c = 1, 1/2, 1/4 and none at 1/8; the maximum of g(E) on a scan over
-    E ∈ [1.8, 6] at 1/8; the one-body form's roots at r_c = 2 and 10 and none at one cell."""
+    short_range_route, the lower by bisection) at r_c = 1, 1/2, 1/4 and none at 1/8; the maximum of g(E) on a scan of 149 energies
+    E ∈ [0.6, 8] (step 0.05) at 1/8, the energy at which it is reached and the count (a sampled finding, no theorem of no root;
+    the review of 8 November 2026, second round); the one-body form's roots at r_c = 2 and 10 and none found at one cell."""
     r = short_range_route(cutoffs=(1.0, 0.5, 0.25, 0.125)); dc = r["declared_coupling"]
     def q(x): return None if x is None else Q(repr(float(x)))
     rcs = {"1": 1.0, "1/2": 0.5, "1/4": 0.25, "1/8": 0.125}
     collapse = {k: q(wrap_spectrum(2, 2.0, 1, 240, 18, 40, dc, rc)[0]) for k, rc in rcs.items()}
     fixed = {k: ((q(v[0]), q(v[1])) if v else None) for k, v in ((k, r["fixed_points"][rc]) for k, rc in rcs.items())}
     low = {k: q(fixed_point_bisect(2, 2.0, rc, lo, hi)) for k, rc, lo, hi in (("1", 1.0, 0.6, 1.0), ("1/2", 0.5, 0.9, 1.5), ("1/4", 0.25, 1.5, 2.0))}
-    scan = [wrap_spectrum(2, 2.0, 1, 240, 18, 40, 3 * alpha_s_one_loop(E), 0.125)[0] - E for E in (1.8, 2.0, 2.2, 2.3, 2.4, 2.6, 3.0, 4.0, 6.0)]
+    energies = [Q(6, 10) + Q(k, 20) for k in range(149)]                                      # 0.6, 0.65, …, 8.0
+    scan = [wrap_spectrum(2, 2.0, 1, 240, 18, 40, 3 * alpha_s_one_loop(float(E)), 0.125)[0] - float(E) for E in energies]
+    i_max = max(range(len(scan)), key=lambda i: scan[i])
     one = {k: q(fixed_point_bisect(1, 2.0, rc, lo, hi)) for k, rc, lo, hi in (("2", 2.0, 2.5, 3.0), ("10", 10.0, 3.0, 3.5), ("1", 1.0, 0.6, 8.0))}
     return dict(declared=q(dc), herbst_two=q(r["herbst"][2]), collapse_rc1=q(r["collapse_rc1"]), collapse=collapse, fixed=fixed, low=low,
-                scan_max=q(max(scan)), one=one, bound={k: -q(dc) / Q(k) for k in rcs})
+                scan_max=q(scan[i_max]), scan_at=energies[i_max], scan_n=len(scan), one=one, bound={k: -q(dc) / Q(k) for k in rcs})
 
 
 MUNSTER_0PP = [Q(0), Q(-3), Q(9), Q(-27, 2), Q(-7), Q(-297, 2), Q(858827, 10240), Q(47641149, 71680)]

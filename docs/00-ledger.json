@@ -1,5 +1,5 @@
 {
- "generated": "8 November 2026",
+ "generated": "11 November 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -19,7 +19,7 @@
   "G": "ground — the single given that conditions the discourse",
   "T": "theorem — derived within the framework",
   "D": "definition — a naming or set-up move, no empirical content",
-  "R": "realisation — what a physical term denotes in the substrate; forced (A8), each row stating the falsifier that kills it",
+  "R": "realisation — a Subject count read in a Carrier unit (D7), stating the falsifier that kills it; a naming of a Subject structure by a physical term keeps `R` until its prediction row stands",
   "I": "import — a standard result or measured datum, used without reproof",
   "Ω": "Ω-hard — a value in no embedded reader's window, not closeable by a bounded observer; host-decided on any laboratory Carrier; never applied to a relation",
   "O": "open — genuinely unresolved"
@@ -645,6 +645,33 @@
    "statement": "\\textbf{The octant sector}: $C_8\\subset C_{4\\dS}$ exists exactly when $\\dS$ is even (14:C6)."
   },
   {
+   "label": "B15",
+   "name": "The two-power tower",
+   "block": "B",
+   "key": "p00204",
+   "tag": "T",
+   "sources": [
+    "14-entr"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "B3",
+     "key": "p00013"
+    },
+    {
+     "label": "B8",
+     "key": "p00166"
+    },
+    {
+     "label": "B14",
+     "key": "p00170"
+    }
+   ],
+   "lean_name": "two_power_tower",
+   "statement": "\\textbf{The two-power tower}: in $\\F_\\Om$ the count $\\Om-1$ is $-1$. Its $2^{j}$-th roots, the marks of level $j$, exist exactly when $2^{j+1}\\mid4\\dS$ and have order $2^{j+1}$; no count $y$ with $y^{2^{j}}<\\Om-1$ is one (B8). Squaring raises a mark one level and closes at $(\\Om-1)^{2}=1$. Levels $1$, $2$: B3, B14; on a shell, $\\kap$ for $\\dS$."
+  },
+  {
    "label": "C1",
    "name": "The frame, Subject-only: (τ;0,1,g)",
    "block": "C",
@@ -854,7 +881,7 @@
     },
     {
      "label": "D2",
-     "key": "p00043"
+     "key": "p00207"
     },
     {
      "label": "D7",
@@ -993,7 +1020,7 @@
    "refs": [
     {
      "label": "D2",
-     "key": "p00043"
+     "key": "p00207"
     }
    ],
    "lean_name": "mass_energy_channel",
@@ -1166,16 +1193,22 @@
    "label": "D2",
    "name": "Mass is winding rate (E=hf an identity)",
    "block": "D",
-   "key": "p00043",
-   "tag": "R",
+   "key": "p00207",
+   "tag": "T",
    "sources": [
     "27-fld",
-    "28-flav"
+    "28-flav",
+    "10-dim"
    ],
-   "witness": null,
-   "refs": [],
+   "witness": "10:dimensions.py, 27:p27_fields.py",
+   "refs": [
+    {
+     "label": "D7",
+     "key": "p00048"
+    }
+   ],
    "lean_name": null,
-   "statement": "\\textbf{Mass is winding rate} ($E=hf$ an identity); masslessness $\\Leftrightarrow$ drive-invariance; a mass is the non-split component the drive rotates, the part of a residue pair that Frobenius conjugation reverses, masslessness the split-torus eigen-alignment. Falsifier: a rest mass with no cycle winding, a massless drive-variant state, or a stationary state whose registered frequency is not its winding index ($E=hf$ failing)."
+   "statement": "\\textbf{Mass is winding rate} ($E=hf$ an identity, by D7 and 10:D6); masslessness $\\Leftrightarrow$ drive-invariance (27:C2)."
   },
   {
    "label": "D3",
@@ -1196,7 +1229,7 @@
     },
     {
      "label": "D2",
-     "key": "p00043"
+     "key": "p00207"
     }
    ],
    "lean_name": null,
@@ -1246,7 +1279,7 @@
   },
   {
    "label": "D7",
-   "name": "A unit of measure is a reciprocal cross-frame relation",
+   "name": "A physical quantity is a count read in a unit",
    "block": "D",
    "key": "p00048",
    "tag": "R",
@@ -1263,7 +1296,7 @@
     }
    ],
    "lean_name": null,
-   "statement": "A unit is observer counts per substrate count, its atomic form the action quantum $\\hbar^2=-1$ (B7), its domain the unit-free order-four flag: unitful measures carry it, observables are flag-free, the absolute unit value $\\Om$-hard. The fundamental units are the four domain horizons (10-dim). Falsifier: an embedded observer registering an absolute unit value, or a unitful measure with no cross-frame reciprocal."
+   "statement": "A physical quantity is a Subject count read in a Carrier unit. The count is a residue with a domain label. The unit is a product of the horizons $\\ell_P$, $t_P$ and $\\hbar$ (B7), its absolute value $\\Om$-hard. Falsifier: an embedded observer registering an absolute unit value, or a closed expression adding a count to a unitful measure without $\\hbar$."
   },
   {
    "label": "D8",
@@ -1278,6 +1311,10 @@
    "witness": null,
    "refs": [
     {
+     "label": "D7",
+     "key": "p00048"
+    },
+    {
      "label": "G1",
      "key": "p00178"
     },
@@ -1287,7 +1324,7 @@
     }
    ],
    "lean_name": null,
-   "statement": "\\textbf{Elementary is $\\Om$-hard}: an elementary particle is a large beyond-horizon residue, never observed at rest; the observable exception is the gauge sector's drive-invariant residue, the photon (G1, Z6); instantiated at $517\\times\\sqrt\\Om$ on a concrete shell (37-sim). Falsifier: an elementary particle with a resolved internal residue (substructure), or a massive drive-invariant gauge residue."
+   "statement": "\\textbf{Elementary is $\\Om$-hard}: an elementary particle's residue is an absolute Carrier value (D7), beyond the horizon, never observed at rest; the observable exception is the gauge sector's drive-invariant residue, the photon (G1, Z6); instantiated at $517\\times\\sqrt\\Om$ on a concrete shell (37-sim). Falsifier: an elementary particle with a resolved internal residue (substructure), or a massive drive-invariant gauge residue."
   },
   {
    "label": "D9",
@@ -1300,9 +1337,14 @@
     "28-flav"
    ],
    "witness": null,
-   "refs": [],
+   "refs": [
+    {
+     "label": "D7",
+     "key": "p00048"
+    }
+   ],
    "lean_name": null,
-   "statement": "\\textbf{The observable is a small residue}: a bounded observer reads only small residues, so an observable stable object carries a small exact residue (particle $+$ binding wrap) --- the confined hadron, the light nucleus, the stable atom; decay is frame-normalisation toward it. Falsifier: a stable observable object carrying no small exact residue --- a stable coloured state, or strong/electromagnetic proton decay."
+   "statement": "\\textbf{The observable is a small residue}: an observable is a Subject count (D7), so an observable stable object carries a small exact residue (particle $+$ binding wrap) --- the confined hadron, the light nucleus, the stable atom; decay is frame-normalisation toward it. Falsifier: a stable observable object carrying no small exact residue --- a stable coloured state, or strong/electromagnetic proton decay."
   },
   {
    "label": "D10",
@@ -1360,7 +1402,7 @@
    "name": "Mass is dilation",
    "block": "D",
    "key": "p00184",
-   "tag": "R",
+   "tag": "T",
    "sources": [
     "38-s13",
     "22-qm",
@@ -1378,11 +1420,15 @@
     },
     {
      "label": "D2",
-     "key": "p00043"
+     "key": "p00207"
+    },
+    {
+     "label": "D7",
+     "key": "p00048"
     }
    ],
    "lean_name": null,
-   "statement": "\\textbf{Mass is dilation} (the harness face of D2): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20). Rest energy is the norm reading, $\\ker N=C_{\\p +1}$, boost-invariant. The lab charts it between the exact $C_4$ stations, the pair class $4\\gcd(\\dS,2\\kap +1)$ host-decided. Falsifier: D2's."
+   "statement": "\\textbf{Mass is dilation} (the harness face of D2, over D7): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20). Rest energy is the norm reading, $\\ker N=C_{\\p +1}$, boost-invariant. The lab charts it between the exact $C_4$ stations, the pair class $4\\gcd(\\dS,2\\kap +1)$ host-decided."
   },
   {
    "label": "D15",
@@ -1402,7 +1448,7 @@
     }
    ],
    "lean_name": null,
-   "statement": "The entropy of the first law (E7) is the shell's record $\\kap(\\p+1)=(\\p^2-1)/4=|\\F_\\p^\\times|\\,|C_{\\p+1}|/4$, one $k_B$ per channel, $S_{\\mathrm{th}}=k_B\\,\\kap(\\p+1)$ [chart]: the count itself, not its logarithm. The record is the capacity of $\\F_{\\p^2}$, $\\p^2=4\\kap(\\p+1)+1$, as $\\dS$ is the Carrier's. Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$."
+   "statement": "The first law's entropy (E7) is the shell's record $\\kap(\\p+1)=(\\p^2-1)/4=|\\F_\\p^\\times|\\,|C_{\\p+1}|/4$, per channel one $k_B$, the quartet's pairing constant (10:E1), $S_{\\mathrm{th}}=k_B\\,\\kap(\\p+1)$ [chart]: the count itself, not its logarithm. It is the capacity of $\\F_{\\p^2}$, $\\p^2=4\\kap(\\p+1)+1$, as $\\dS$ is the Carrier's. Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$."
   },
   {
    "label": "D16",
@@ -1469,6 +1515,26 @@
    "statement": "The static clock ratio between two stations is the register character $\\gen^{-\\Delta n}$ of their offset (C21), $\\beta=\\gamma=1$ (E4, D1). Its registration dictionary is 38:C12 on a hosted pair and 38:C13 on the Carrier, its per-chronon rate the floor (38:C10--C11), the temporal face its half. Falsifier: a static clock ratio not fixed by $\\Delta n$ (the PPN temporal form, defect $4ab$)."
   },
   {
+   "label": "D18",
+   "name": "Mass is the non-split component",
+   "block": "D",
+   "key": "p00208",
+   "tag": "R",
+   "sources": [
+    "27-fld",
+    "28-flav"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "D2",
+     "key": "p00207"
+    }
+   ],
+   "lean_name": null,
+   "statement": "\\textbf{Mass is the non-split component}: a mass (D2) is the non-split component the drive rotates, the part of a residue pair that Frobenius conjugation reverses, masslessness the split-torus eigen-alignment. Falsifier: a rest mass with no cycle winding, or a massless drive-variant state."
+  },
+  {
    "label": "E1",
    "name": "Uniqueness of the dynamics",
    "block": "E",
@@ -1516,7 +1582,7 @@
    "refs": [
     {
      "label": "D2",
-     "key": "p00043"
+     "key": "p00207"
     }
    ],
    "lean_name": "gravity_nonlinear_completion",
@@ -1579,7 +1645,7 @@
    "refs": [
     {
      "label": "D2",
-     "key": "p00043"
+     "key": "p00207"
     },
     {
      "label": "D14",
@@ -1829,7 +1895,7 @@
    "refs": [
     {
      "label": "D2",
-     "key": "p00043"
+     "key": "p00207"
     },
     {
      "label": "D6",
@@ -2357,25 +2423,6 @@
    "statement": "\\textbf{The area law}: the projected horizon area in Planck cells is the full phase cycle, $A=4\\dS$ (chart: $4\\pi n_A=4\\dS$, $n_A=(r_H/\\ell_P)^2$); the Bekenstein--Hawking quarter $\\dS=A/4$ is the quarter-turn $Q_4$, the generative four of $\\Om=4\\dS+1$ and $\\p=4\\kap+1$; area is a Subject-projection property, the Carrier a torsor carrying none. Not a further channel (L2)."
   },
   {
-   "label": "L8",
-   "name": "The primordial tilt",
-   "block": "L",
-   "key": "p00148",
-   "tag": "R",
-   "sources": [
-    "21-grav"
-   ],
-   "witness": "21:validate_primordial.py",
-   "refs": [
-    {
-     "label": "A7",
-     "key": "p00009"
-    }
-   ],
-   "lean_name": "primordial_tilt_realisation",
-   "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A7), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$."
-  },
-  {
    "label": "N2",
    "name": "Parameter-freeness",
    "block": "N",
@@ -2407,6 +2454,87 @@
    "refs": [],
    "lean_name": null,
    "statement": "The master's rows are verdicted row by row, in exact arithmetic, on one instantiated Carrier, $\\Om=2{,}408{,}561$ (37-sim), at a dated snapshot. Those that hold there hold jointly in one finite structure: a consistency witness for the projection, not a proof of the physical case. Rows without an instance, or added or restated after the snapshot, are not exercised."
+  },
+  {
+   "label": "Y8",
+   "name": "The scale tour",
+   "block": "Y",
+   "key": "p00205",
+   "tag": "O",
+   "sources": [
+    "14-entr"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "A3",
+     "key": "p00003"
+    },
+    {
+     "label": "B6",
+     "key": "p00016"
+    },
+    {
+     "label": "B8",
+     "key": "p00166"
+    },
+    {
+     "label": "B12",
+     "key": "p00167"
+    },
+    {
+     "label": "B15",
+     "key": "p00204"
+    }
+   ],
+   "lean_name": null,
+   "statement": "\\textbf{The scale tour}: four entities, four moves. The Host, the unit $1$, composes the Object of $\\q$ units (B6). Three squares: Object to Subject, $\\q^2<\\p$; Subject to Carrier, $\\p^2<\\Om$ (B8); the Carrier's count to the Host, $(\\Om-1)^2=1$ (B15). In $\\F_\\Om$, $\\dS$ even: the marks of orders $8$, $4$, $2$, $1$. Waits on one law relating the three squares (A3, B12)."
+  },
+  {
+   "label": "Y9",
+   "name": "The degree of consciousness",
+   "block": "Y",
+   "key": "p00206",
+   "tag": "O",
+   "sources": [
+    "4-rep"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "A4",
+     "key": "p00197"
+    },
+    {
+     "label": "B8",
+     "key": "p00166"
+    },
+    {
+     "label": "C4",
+     "key": "p00024"
+    }
+   ],
+   "lean_name": null,
+   "statement": "\\textbf{The degree of consciousness}: every system that constitutes a Subject (C4) has a degree of consciousness, monotone in its coherent cardinality $\\p_c$ and bounded by saturation, $\\p_c^2<\\Om$ (B8): a cell, an organism, a colony, a biosphere, a star. The Carrier has none (A4). Waits on a procedure that measures $\\p_c$ and on one unit across levels."
+  },
+  {
+   "label": "Y10",
+   "name": "The primordial tilt",
+   "block": "Y",
+   "key": "p00148",
+   "tag": "O",
+   "sources": [
+    "21-grav"
+   ],
+   "witness": "21:validate_primordial.py",
+   "refs": [
+    {
+     "label": "A7",
+     "key": "p00009"
+    }
+   ],
+   "lean_name": "primordial_tilt_realisation",
+   "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a hypothesis fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A7), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$."
   },
   {
    "label": "Z1",

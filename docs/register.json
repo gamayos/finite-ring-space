@@ -1,20 +1,20 @@
 {
  "header": {
-  "generated": "8 November 2026",
+  "generated": "11 November 2026",
   "schema": "frc-register/2",
-  "rows": 1193,
-  "theorems": 1146,
+  "rows": 1211,
+  "theorems": 1164,
   "counts": {
-   "keys": 1146,
-   "rows": 1193,
+   "keys": 1164,
+   "rows": 1211,
    "shared": 45,
    "by_tag": {
-    "D": 179,
+    "D": 180,
     "G": 1,
-    "I": 139,
-    "O": 8,
-    "R": 90,
-    "T": 699,
+    "I": 142,
+    "O": 10,
+    "R": 89,
+    "T": 712,
     "Ω": 30
    }
   },
@@ -81,7 +81,7 @@
      }
     ],
     "legend": [],
-    "rows": 124
+    "rows": 128
    },
    {
     "key": "1-alg",
@@ -1554,10 +1554,6 @@
      {
       "letter": "Z",
       "title": "The $\\Om$-hard horizon"
-     },
-     {
-      "letter": "T",
-      "title": "Open tasks"
      }
     ],
     "legend": [
@@ -1585,14 +1581,9 @@
       "tag": "Ω",
       "name": "$\\Om$-hard",
       "text": "Decided by the totality; not closeable by a bounded observer; read from the chart."
-     },
-     {
-      "tag": "O",
-      "name": "Open",
-      "text": "A hypothesis not yet derived or a task not yet executed; only in blocks Y and T."
      }
     ],
-    "rows": 38
+    "rows": 52
    }
   ],
   "tags": {
@@ -1617,7 +1608,7 @@
    "theorems": "one entry per key (LM12): its canonical statement (the row of its ledger of origin, the key's prefix), the origin, the tag, the Lean tier, the deciding check and declarations, the aliases that resolve to it, the rows that write it, and for a theorem the realisations its statement names (Q21)",
    "superseded": "the keys that left the public ledgers (corrected, split, merged or returned home), each with its live successor keys and nothing else (decision Q19)"
   },
-  "superseded": 136
+  "superseded": 137
  },
  "theorems": [
   {
@@ -2050,7 +2041,7 @@
    "check": {
     "href": "py/master.carrier.html#p00015",
     "script": "frc/ledgers/master/carrier.py",
-    "line": 94,
+    "line": 97,
     "verdict": "pass"
    },
    "declarations": [
@@ -2095,7 +2086,7 @@
    "check": {
     "href": "py/master.carrier.html#p00165",
     "script": "frc/ledgers/master/carrier.py",
-    "line": 120,
+    "line": 123,
     "verdict": "pass"
    },
    "declarations": [
@@ -2130,7 +2121,7 @@
    "check": {
     "href": "py/master.carrier.html#p00166",
     "script": "frc/ledgers/master/carrier.py",
-    "line": 170,
+    "line": 173,
     "verdict": "pass"
    },
    "declarations": [
@@ -2174,7 +2165,7 @@
    "check": {
     "href": "py/master.carrier.html#p00168",
     "script": "frc/ledgers/master/carrier.py",
-    "line": 198,
+    "line": 201,
     "verdict": "pass"
    },
    "declarations": [
@@ -2231,7 +2222,7 @@
    "check": {
     "href": "py/master.carrier.html#p00170",
     "script": "frc/ledgers/master/carrier.py",
-    "line": 220,
+    "line": 223,
     "verdict": "pass"
    },
    "declarations": [
@@ -2248,6 +2239,33 @@
    "realisations": []
   },
   {
+   "key": "p00204",
+   "origin": "00",
+   "statement": "\\textbf{The two-power tower}: in $\\F_\\Om$ the count $\\Om-1$ is $-1$. Its $2^{j}$-th roots, the marks of level $j$, exist exactly when $2^{j+1}\\mid4\\dS$ and have order $2^{j+1}$; no count $y$ with $y^{2^{j}}<\\Om-1$ is one (B8). Squaring raises a mark one level and closes at $(\\Om-1)^{2}=1$. Levels $1$, $2$: B3, B14; on a shell, $\\kap$ for $\\dS$.",
+   "origin_row": "00:B15",
+   "tag": "T",
+   "name": "two_power_tower",
+   "tier": 0,
+   "check": {
+    "href": "py/master.carrier.html#p00204",
+    "script": "frc/ledgers/master/carrier.py",
+    "line": 291,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.two_power_tower"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "00:B15"
+   ],
+   "realisations": []
+  },
+  {
    "key": "p00021",
    "origin": "00",
    "statement": "The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto gx$ (A6). Shell data, capacity-first: $\\kap $ primitive, $\\p =4\\kap +1$, $\\im=-\\gen^\\kap $ (C7), $\\pi=2\\kap $, $e=\\gen^{\\,\\im}$; $\\gen$ the one nonsquare frame datum (C3, C8). Exponents of $\\gen$ are taken in $\\Zp$, a residue in an exponent standing for its lift $\\iota:\\F_\\p\\to\\{0,\\dots,\\p-1\\}$. The web closes on every shell: $2\\pi\\equiv-1$, $\\gen^{\\,\\pi}\\equiv-1$, $-\\pi=2^{-1}$ (N2).",
@@ -2258,7 +2276,7 @@
    "check": {
     "href": "py/master.subject.html#p00021",
     "script": "frc/ledgers/master/subject.py",
-    "line": 116,
+    "line": 121,
     "verdict": "pass"
    },
    "declarations": [
@@ -2318,7 +2336,7 @@
    "check": {
     "href": "py/master.subject.html#p00150",
     "script": "frc/ledgers/master/subject.py",
-    "line": 146,
+    "line": 151,
     "verdict": "pass"
    },
    "declarations": [
@@ -2433,7 +2451,7 @@
    "check": {
     "href": "py/master.subject.html#p00028",
     "script": "frc/ledgers/master/subject.py",
-    "line": 185,
+    "line": 190,
     "verdict": "pass"
    },
    "declarations": [
@@ -2662,7 +2680,7 @@
    "check": {
     "href": "py/master.subject.html#p00034",
     "script": "frc/ledgers/master/subject.py",
-    "line": 235,
+    "line": 240,
     "verdict": "pass"
    },
    "declarations": [
@@ -2689,7 +2707,7 @@
    "check": {
     "href": "py/master.subject.html#p00151",
     "script": "frc/ledgers/master/subject.py",
-    "line": 259,
+    "line": 264,
     "verdict": "pass"
    },
    "declarations": [
@@ -2754,7 +2772,7 @@
    "check": {
     "href": "py/master.subject.html#p00040",
     "script": "frc/ledgers/master/subject.py",
-    "line": 302,
+    "line": 307,
     "verdict": "pass"
    },
    "declarations": [
@@ -2768,9 +2786,7 @@
    "rows": [
     "00:C20"
    ],
-   "realisations": [
-    "p00043"
-   ]
+   "realisations": []
   },
   {
    "key": "p00041",
@@ -2919,7 +2935,7 @@
    "check": {
     "href": "py/master.subject.html#p00139",
     "script": "frc/ledgers/master/subject.py",
-    "line": 366,
+    "line": 371,
     "verdict": "pass"
    },
    "declarations": [
@@ -3030,12 +3046,17 @@
    "name": "time_is_scale_dilation",
    "tier": 0,
    "check": {
-    "href": "py/spacetime.html#p00042",
-    "script": "p07_spacetime.py",
-    "line": 263,
+    "href": "py/master.subject.html#p00042",
+    "script": "frc/ledgers/master/subject.py",
+    "line": 423,
     "verdict": "pass"
    },
    "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Master",
+     "name": "FRC.Master.time_is_scale_dilation"
+    },
     {
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Subject",
@@ -3067,18 +3088,23 @@
    ]
   },
   {
-   "key": "p00043",
+   "key": "p00207",
    "origin": "00",
-   "statement": "\\textbf{Mass is winding rate} ($E=hf$ an identity); masslessness $\\Leftrightarrow$ drive-invariance; a mass is the non-split component the drive rotates, the part of a residue pair that Frobenius conjugation reverses, masslessness the split-torus eigen-alignment. Falsifier: a rest mass with no cycle winding, a massless drive-variant state, or a stationary state whose registered frequency is not its winding index ($E=hf$ failing).",
+   "statement": "\\textbf{Mass is winding rate} ($E=hf$ an identity, by D7 and 10:D6); masslessness $\\Leftrightarrow$ drive-invariance (27:C2).",
    "origin_row": "00:D2",
-   "tag": "R",
+   "tag": "T",
    "name": null,
    "tier": null,
-   "check": null,
+   "check": {
+    "script": "10:dimensions.py, 27:p27_fields.py"
+   },
    "declarations": [],
    "aliases": [],
    "rows": [
     "00:D2"
+   ],
+   "realisations": [
+    "p00048"
    ]
   },
   {
@@ -3147,7 +3173,7 @@
   {
    "key": "p00048",
    "origin": "00",
-   "statement": "A unit is observer counts per substrate count, its atomic form the action quantum $\\hbar^2=-1$ (B7), its domain the unit-free order-four flag: unitful measures carry it, observables are flag-free, the absolute unit value $\\Om$-hard. The fundamental units are the four domain horizons (10-dim). Falsifier: an embedded observer registering an absolute unit value, or a unitful measure with no cross-frame reciprocal.",
+   "statement": "A physical quantity is a Subject count read in a Carrier unit. The count is a residue with a domain label. The unit is a product of the horizons $\\ell_P$, $t_P$ and $\\hbar$ (B7), its absolute value $\\Om$-hard. Falsifier: an embedded observer registering an absolute unit value, or a closed expression adding a count to a unitful measure without $\\hbar$.",
    "origin_row": "00:D7",
    "tag": "R",
    "name": null,
@@ -3164,7 +3190,7 @@
   {
    "key": "p00049",
    "origin": "00",
-   "statement": "\\textbf{Elementary is $\\Om$-hard}: an elementary particle is a large beyond-horizon residue, never observed at rest; the observable exception is the gauge sector's drive-invariant residue, the photon (G1, Z6); instantiated at $517\\times\\sqrt\\Om$ on a concrete shell (37-sim). Falsifier: an elementary particle with a resolved internal residue (substructure), or a massive drive-invariant gauge residue.",
+   "statement": "\\textbf{Elementary is $\\Om$-hard}: an elementary particle's residue is an absolute Carrier value (D7), beyond the horizon, never observed at rest; the observable exception is the gauge sector's drive-invariant residue, the photon (G1, Z6); instantiated at $517\\times\\sqrt\\Om$ on a concrete shell (37-sim). Falsifier: an elementary particle with a resolved internal residue (substructure), or a massive drive-invariant gauge residue.",
    "origin_row": "00:D8",
    "tag": "R",
    "name": null,
@@ -3179,7 +3205,7 @@
   {
    "key": "p00050",
    "origin": "00",
-   "statement": "\\textbf{The observable is a small residue}: a bounded observer reads only small residues, so an observable stable object carries a small exact residue (particle $+$ binding wrap) --- the confined hadron, the light nucleus, the stable atom; decay is frame-normalisation toward it. Falsifier: a stable observable object carrying no small exact residue --- a stable coloured state, or strong/electromagnetic proton decay.",
+   "statement": "\\textbf{The observable is a small residue}: an observable is a Subject count (D7), so an observable stable object carries a small exact residue (particle $+$ binding wrap) --- the confined hadron, the light nucleus, the stable atom; decay is frame-normalisation toward it. Falsifier: a stable observable object carrying no small exact residue --- a stable coloured state, or strong/electromagnetic proton decay.",
    "origin_row": "00:D9",
    "tag": "R",
    "name": null,
@@ -3229,9 +3255,9 @@
   {
    "key": "p00184",
    "origin": "00",
-   "statement": "\\textbf{Mass is dilation} (the harness face of D2): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20). Rest energy is the norm reading, $\\ker N=C_{\\p +1}$, boost-invariant. The lab charts it between the exact $C_4$ stations, the pair class $4\\gcd(\\dS,2\\kap +1)$ host-decided. Falsifier: D2's.",
+   "statement": "\\textbf{Mass is dilation} (the harness face of D2, over D7): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20). Rest energy is the norm reading, $\\ker N=C_{\\p +1}$, boost-invariant. The lab charts it between the exact $C_4$ stations, the pair class $4\\gcd(\\dS,2\\kap +1)$ host-decided.",
    "origin_row": "00:D14",
-   "tag": "R",
+   "tag": "T",
    "name": null,
    "tier": null,
    "check": null,
@@ -3239,12 +3265,15 @@
    "aliases": [],
    "rows": [
     "00:D14"
+   ],
+   "realisations": [
+    "p00048"
    ]
   },
   {
    "key": "p00153",
    "origin": "00",
-   "statement": "The entropy of the first law (E7) is the shell's record $\\kap(\\p+1)=(\\p^2-1)/4=|\\F_\\p^\\times|\\,|C_{\\p+1}|/4$, one $k_B$ per channel, $S_{\\mathrm{th}}=k_B\\,\\kap(\\p+1)$ [chart]: the count itself, not its logarithm. The record is the capacity of $\\F_{\\p^2}$, $\\p^2=4\\kap(\\p+1)+1$, as $\\dS$ is the Carrier's. Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$.",
+   "statement": "The first law's entropy (E7) is the shell's record $\\kap(\\p+1)=(\\p^2-1)/4=|\\F_\\p^\\times|\\,|C_{\\p+1}|/4$, per channel one $k_B$, the quartet's pairing constant (10:E1), $S_{\\mathrm{th}}=k_B\\,\\kap(\\p+1)$ [chart]: the count itself, not its logarithm. It is the capacity of $\\F_{\\p^2}$, $\\p^2=4\\kap(\\p+1)+1$, as $\\dS$ is the Carrier's. Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$.",
    "origin_row": "00:D15",
    "tag": "R",
    "name": null,
@@ -3285,6 +3314,21 @@
    "aliases": [],
    "rows": [
     "00:D17"
+   ]
+  },
+  {
+   "key": "p00208",
+   "origin": "00",
+   "statement": "\\textbf{Mass is the non-split component}: a mass (D2) is the non-split component the drive rotates, the part of a residue pair that Frobenius conjugation reverses, masslessness the split-torus eigen-alignment. Falsifier: a rest mass with no cycle winding, or a massless drive-variant state.",
+   "origin_row": "00:D18",
+   "tag": "R",
+   "name": null,
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "00:D18"
    ]
   },
   {
@@ -3446,10 +3490,8 @@
     "00:E7"
    ],
    "realisations": [
-    "p00043",
     "p00056",
-    "p00153",
-    "p00184"
+    "p00153"
    ]
   },
   {
@@ -3714,7 +3756,6 @@
     "00:G1"
    ],
    "realisations": [
-    "p00043",
     "p00047",
     "p00049"
    ]
@@ -4353,32 +4394,6 @@
    ]
   },
   {
-   "key": "p00148",
-   "origin": "00",
-   "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A7), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$.",
-   "origin_row": "00:L8",
-   "tag": "R",
-   "name": "primordial_tilt_realisation",
-   "tier": 2,
-   "check": {
-    "href": "py/master.chart.html#p00148",
-    "script": "frc/ledgers/master/chart.py",
-    "line": 178,
-    "verdict": "pass"
-   },
-   "declarations": [
-    {
-     "lib": "FrcMathlib",
-     "module": "FrcMathlib/Master",
-     "name": "FRC.Master.primordial_tilt_realisation"
-    }
-   ],
-   "aliases": [],
-   "rows": [
-    "00:L8"
-   ]
-  },
-  {
    "key": "p00092",
    "origin": "00",
    "statement": "Every order-one constant reduces to two geometric numbers, the solid angle $4\\pi$ ($G$, $\\alpha_{\\mathrm{bare}}$, the $\\tfrac14$ law) and the cycle $2\\pi$ ($a_0$, horizon temperatures), both [chart] (C1). In the Carrier register the calibration congruence $4\\dS\\equiv-1$, the realisation, fixes them alone ($G=2\\dS$). The chart relations ($G=1/4\\pi\\varkappa$, $G=\\hbar c/m_P^2$) hold in the chart; no exact formula equates a chart constant to a residue.",
@@ -4534,6 +4549,62 @@
    "realisations": [
     "p00047",
     "p27012"
+   ]
+  },
+  {
+   "key": "p00205",
+   "origin": "00",
+   "statement": "\\textbf{The scale tour}: four entities, four moves. The Host, the unit $1$, composes the Object of $\\q$ units (B6). Three squares: Object to Subject, $\\q^2<\\p$; Subject to Carrier, $\\p^2<\\Om$ (B8); the Carrier's count to the Host, $(\\Om-1)^2=1$ (B15). In $\\F_\\Om$, $\\dS$ even: the marks of orders $8$, $4$, $2$, $1$. Waits on one law relating the three squares (A3, B12).",
+   "origin_row": "00:Y8",
+   "tag": "O",
+   "name": null,
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "00:Y8"
+   ]
+  },
+  {
+   "key": "p00206",
+   "origin": "00",
+   "statement": "\\textbf{The degree of consciousness}: every system that constitutes a Subject (C4) has a degree of consciousness, monotone in its coherent cardinality $\\p_c$ and bounded by saturation, $\\p_c^2<\\Om$ (B8): a cell, an organism, a colony, a biosphere, a star. The Carrier has none (A4). Waits on a procedure that measures $\\p_c$ and on one unit across levels.",
+   "origin_row": "00:Y9",
+   "tag": "O",
+   "name": null,
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "00:Y9"
+   ]
+  },
+  {
+   "key": "p00148",
+   "origin": "00",
+   "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a hypothesis fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A7), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$.",
+   "origin_row": "00:Y10",
+   "tag": "O",
+   "name": "primordial_tilt_realisation",
+   "tier": 2,
+   "check": {
+    "href": "py/master.chart.html#p00148",
+    "script": "frc/ledgers/master/chart.py",
+    "line": 178,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/Master",
+     "name": "FRC.Master.primordial_tilt_realisation"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "00:Y10"
    ]
   },
   {
@@ -11429,7 +11500,7 @@
   {
    "key": "p07043",
    "origin": "07",
-   "statement": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure.",
+   "statement": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, on a torus, in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure.",
    "origin_row": "7:E1",
    "tag": "D",
    "name": null,
@@ -20987,9 +21058,7 @@
    "rows": [
     "21:C18"
    ],
-   "realisations": [
-    "p00148"
-   ]
+   "realisations": []
   },
   {
    "key": "p21064",
@@ -21645,9 +21714,7 @@
    "rows": [
     "21:P8"
    ],
-   "realisations": [
-    "p00148"
-   ]
+   "realisations": []
   },
   {
    "key": "p21041",
@@ -25256,7 +25323,7 @@
   {
    "key": "p25035",
    "origin": "25",
-   "statement": "The effectivity clause: among consistent, effectively axiomatised theories, interpreting $\\mathsf{Q}$ forces incompleteness. $\\Th(\\N)$ is complete at grade (i) only, presentable by nothing. Presburger arithmetic separates unbounded iteration from coding power: it is complete and decidable. Incompleteness tracks an effective description confronting a domain that codes its own syntax.",
+   "statement": "Effective axiomatisability: among consistent, effectively axiomatised theories, interpreting $\\mathsf{Q}$ forces incompleteness. $\\Th(\\N)$ is complete at grade (i) only, presentable by nothing. Presburger arithmetic separates unbounded iteration from coding power: it is complete and decidable. Incompleteness tracks an effective description confronting a domain that codes its own syntax.",
    "origin_row": "25:H1",
    "tag": "D",
    "name": null,
@@ -25328,10 +25395,10 @@
   {
    "key": "p25038",
    "origin": "25",
-   "statement": "Determinacy meets effectivity only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or effectivity over a fragment. Finitude delivers both, at grade (ii).",
+   "statement": "Determinacy meets decidability only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or an effective axiomatisation of a fragment. Finitude delivers both, at grade (ii).",
    "origin_row": "25:H4",
    "tag": "T",
-   "name": "determinacy_meets_effectivity_finite",
+   "name": "determinacy_meets_decidability_finite",
    "tier": 0,
    "check": {
     "href": "py/godel.html#p25038",
@@ -25449,7 +25516,7 @@
   {
    "key": "p25042",
    "origin": "25",
-   "statement": "The diagnosis: the effectivity hypothesis is the agent, abstracted. The excess of truth over certificates is information about the certifier's finitude, not about the cardinality of the world. Consequences are drawn for Hilbert's programme, for the anti-mechanist argument and for the platonist moral. The row is a reading argued from J2.",
+   "statement": "The diagnosis: the hypothesis of effective axiomatisation is the agent, abstracted. The excess of truth over certificates is information about the certifier's finitude, not about the cardinality of the world. Consequences are drawn for Hilbert's programme, for the anti-mechanist argument and for the platonist moral. The row is a reading argued from J2.",
    "origin_row": "25:J3",
    "tag": "D",
    "name": null,
@@ -34642,7 +34709,7 @@
   {
    "key": "p46005",
    "origin": "46",
-   "statement": "The laboratory instances: the Subjects $\\p=13$, $173$, $1549$ with their Carriers $\\Om=233$, $30089$, $2408561$, and the sweep over the $21$ shells $\\p=4\\kap+1$ below $200$; the colour frame's full centre needs $\\p\\equiv5\\pmod{12}$, which the Subject $173$ and $12$ of the $21$ shells satisfy.",
+   "statement": "The laboratory instances: the Subjects $\\p=13$, $173$, $1549$ with their Carriers $\\Om=233$, $30089$, $2408561$, and the sweep over the $21$ shells $\\p=4\\kap+1$ below $200$. The three Carriers are $5$ modulo $12$ (B5). The unitary frame's centre has order three where $3$ divides $\\p+1$, on the Subject $173$ and $12$ of the $21$ shells.",
    "origin_row": "46:A5",
    "tag": "D",
    "name": null,
@@ -34687,7 +34754,7 @@
   {
    "key": "p46032",
    "origin": "46",
-   "statement": "Two results of the interactions paper: the character lift (near the identity the frame's character equals the compact group's, to the stated order, with the lift's parametrisation imported as it stands) and the order $\\gcdop(3,q+1)$ of the centre of $\\SU(3,\\F_q)$.",
+   "statement": "Two results of the interactions paper: the character lift (near the identity the frame's character equals the compact group's, to the stated order; the lift's parametrisation is imported as it stands and is not unitary as it stands, its repair the interactions paper's) and the order $\\gcdop(3,q+1)$ of the centre of $\\SU(3,\\F_q)$.",
    "origin_row": "46:A8",
    "tag": "I",
    "name": null,
@@ -34760,9 +34827,54 @@
    ]
   },
   {
+   "key": "p46052",
+   "origin": "46",
+   "statement": "Finite Schur--Weyl duality: over a field with more than $r$ elements the slot permutations span the commutant of $\\mathrm{SL}(V)$ on $V^{\\otimes r}$ (Benson--Doty, Cor.~4.4); the characteristic-free first fundamental theorem: the algebraic group's tensor invariants are spanned by the pairing-and-determinant tensors (de Concini--Procesi); the good-filtration count: tensor products of $V$, $V^{*}$ have good filtrations, their invariants the compact singlet multiplicity (Jantzen II.4.16, 4.21). For C15.",
+   "origin_row": "46:A13",
+   "tag": "I",
+   "name": null,
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "46:A13"
+   ]
+  },
+  {
+   "key": "p46059",
+   "origin": "46",
+   "statement": "Green's theorem: for a finite group and a representation over $\\bar\\F_q$, the sum of the images under a fixed identification $\\iota$ of the eigenvalues is a virtual complex character (Green 1955); the central convolution by it, taken with the group's mean, acts on the $\\chi$-block of $\\C[G]$ as $a_\\chi/\\chi(1)$ with multiplicity $\\chi(1)^2$. For C19, C20.",
+   "origin_row": "46:A14",
+   "tag": "I",
+   "name": null,
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "46:A14"
+   ]
+  },
+  {
+   "key": "p46060",
+   "origin": "46",
+   "statement": "The generic character table of $\\SU(3,q)$ (Simpson and Frame 1973; CHEVIE): eight class types with centralizer orders and ten character families in the parameter $q$; verified at import by brute force at $q=2,3$ and by the orthogonality relations at nine $q$. For C19, C20, C23.",
+   "origin_row": "46:A15",
+   "tag": "I",
+   "name": null,
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "46:A15"
+   ]
+  },
+  {
    "key": "p46007",
    "origin": "46",
-   "statement": "A registration of a state, a channel with one singlet, by its frame is a line of the state's space that every frame element maps to itself; the residue is the number of such lines: photon $2$ (the split torus), gluon $0$ (the adjoint), baryon $1$, meson $1$, glueball $1$. Falsifier: a registered state of residue $0$.",
+   "statement": "A registration of a state by its frame is a line of the state's space that every frame element maps to itself; the residue is the number of such lines: photon $2$ (the split torus: two invariant lines with nontrivial characters, no fixed vector), gluon $0$ (the adjoint), baryon, meson and glueball $1$ (one fixed line each). Falsifier: a registered state of residue $0$.",
    "origin_row": "46:B1",
    "tag": "R",
    "name": null,
@@ -34792,7 +34904,7 @@
   {
    "key": "p46009",
    "origin": "46",
-   "statement": "The finite theory is the transfer form of lattice gauge theory on the substrate: the $\\SU(3,\\Fp)$ connection on the Subject's cells, the drive as the time step, the action in $\\Z[\\zeta_M]$ with the framed-rational readout. Its chart objects are the weight $e^{-\\beta S}$ with real $\\beta$, the wrap operator of C8 and the scale of B2.",
+   "statement": "The finite theory is the transfer form of lattice gauge theory along the drive: a ring of plaquettes; the tally is the frame's mean over the rungs of the amplitudes (B4), its paired weight registered once; the gap: the transfer tally's second eigenvalue over its first. [chart]: counts of frame moves above $\\Om\\sim10^{123}$, the hypercubic lattice (A7), the wrap operator (C8), the scale (B2).",
    "origin_row": "46:B3",
    "tag": "D",
    "name": null,
@@ -34805,9 +34917,39 @@
    ]
   },
   {
+   "key": "p46055",
+   "origin": "46",
+   "statement": "The spectral amplitude of a plaquette: $M=\\operatorname{lcm}(q^{2}-1,q^{2}-q+1)$, a chosen identification $\\iota$ of the roots of unity of order dividing $M$ in $\\F_{q^{6}}$ with the powers of $\\zeta_M$; for $U=U_sU_n$ by powers, $w(U)=\\sum_j\\iota(\\lambda_j)$ over the eigenvalues of $U_s$; a configuration's amplitude $\\prod_\\square w(U_\\square)$, a tally's paired weight $Z\\bar Z$. The configurations and the registered quantity are B3's.",
+   "origin_row": "46:B4",
+   "tag": "D",
+   "name": null,
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "46:B4"
+   ]
+  },
+  {
+   "key": "p46063",
+   "origin": "46",
+   "statement": "Colour is the Carrier's. Its triality is the Carrier's relation $\\Om\\equiv5\\pmod{12}$, so $x^{2}+x+1$ has no root modulo $\\Om$. Every Subject reads colour in its unitary frame, $\\SU(3)$ over its own extension, a type that the realisation takes from the relation. Falsifier: a registered state on which the triality acts nontrivially, or colour factors off those of a unitary frame of degree three (P1).",
+   "origin_row": "46:B5",
+   "tag": "R",
+   "name": null,
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "46:B5"
+   ]
+  },
+  {
    "key": "p46010",
    "origin": "46",
-   "statement": "The non-split torus has no shell eigenvalue. For every frame of the totality a norm-one element $a+b\\sqrt\\nu$ with $b\\neq0$ has no eigenvalue in $\\Fp$ (its discriminant $4\\nu b^{2}$ is a nonsquare), so no line of the plane is mapped to itself by every element of the torus; the split torus fixes exactly two lines.",
+   "statement": "The norm-one cycle has no shell eigenvalue. For every frame of the totality a norm-one element $a+b\\sqrt\\nu$ with $b\\neq0$ has no eigenvalue in $\\Fp$ (its discriminant $4\\nu b^{2}$ is a nonsquare), so no line of the plane is mapped to itself by every element of the cycle; the split torus fixes exactly two lines.",
    "origin_row": "46:C1",
    "tag": "T",
    "name": "no_residue_zero_registration",
@@ -34815,7 +34957,7 @@
    "check": {
     "href": "py/yangmills.html#p46010",
     "script": "p46_yangmills.py",
-    "line": 117,
+    "line": 116,
     "verdict": "pass"
    },
    "declarations": [
@@ -34846,7 +34988,7 @@
   {
    "key": "p46011",
    "origin": "46",
-   "statement": "The triality centre: the centre's order $\\gcdop(3,q+1)$ is $3$ exactly when $q\\equiv2\\pmod3$, for a shell when $q\\equiv5\\pmod{12}$. Among the Subjects $173$ has it, $13$ and $1549$ do not, and $12$ of $21$ shells below $200$ do; on $\\SU(3,\\F_2)$ it is found by enumeration. The Lean cell is the arithmetic of the order formula.",
+   "statement": "The centre of the unitary frame: its order $\\gcdop(3,q+1)$ is $3$ exactly when $q\\equiv2\\pmod3$. Among the Subjects $173$ has it, $13$ and $1549$ do not, and $12$ of $21$ shells below $200$ do; on $\\SU(3,\\F_2)$ it is found by enumeration. The three Carriers are $5$ modulo $12$ (B5). The Lean cell is the arithmetic of the order formula.",
    "origin_row": "46:C2",
    "tag": "T",
    "name": "triality_centre",
@@ -34854,7 +34996,7 @@
    "check": {
     "href": "py/yangmills.html#p46011",
     "script": "p46_yangmills.py",
-    "line": 138,
+    "line": 140,
     "verdict": "pass"
    },
    "declarations": [
@@ -34871,19 +35013,26 @@
     {
      "lib": "FrcCore",
      "module": "FrcCore/Theme/YangMills",
-     "name": "FRC.YangMills.admissible_sweep"
+     "name": "FRC.YangMills.full_centre_sweep"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.carrier_triality"
     }
    ],
    "aliases": [],
    "rows": [
     "46:C2"
    ],
-   "realisations": []
+   "realisations": [
+    "p46063"
+   ]
   },
   {
    "key": "p46012",
    "origin": "46",
-   "statement": "The residue series closes with the glueball. On the $216$ elements of $\\SU(3,\\F_2)$ over $\\F_4$ (no nontrivial character over $\\F_4$) the adjoint action fixes no nonzero traceless matrix (gluon $0$), the determinant is the one invariant of $\\Lambda^{3}$ (baryon $1$), and the commutants of the fundamental and the adjoint are one-dimensional (meson $1$, glueball $1$).",
+   "statement": "The residue series on the instance. On the $216$ elements of $\\SU(3,\\F_2)$ over $\\F_4$ (no nontrivial character over $\\F_4$) the adjoint action fixes no nonzero traceless matrix (gluon $0$), the determinant is the one invariant of $\\Lambda^{3}$ (baryon $1$), and the commutants of the fundamental and the adjoint are one-dimensional (meson $1$, glueball $1$).",
    "origin_row": "46:C3",
    "tag": "T",
    "name": "residue_series_glueball",
@@ -34891,7 +35040,7 @@
    "check": {
     "href": "py/yangmills.html#p46012",
     "script": "p46_yangmills.py",
-    "line": 149,
+    "line": 152,
     "verdict": "pass"
    },
    "declarations": [
@@ -34912,7 +35061,7 @@
   {
    "key": "p46013",
    "origin": "46",
-   "statement": "The Casimir rationals of $\\mathfrak{su}(3)$, which the character lift assigns to the colour frame: $C_F=\\frac43$, $C_A=3$, $T_F=\\frac12$, $C_A/C_F=\\frac94$, and the colour factor of the three-quark singlet $\\sum\\lambda\\cdot\\lambda=-8$. The Lean cell is the arithmetic of the formula.",
+   "statement": "The Casimir rationals of the unitary frame from its torus exponents (C6): on the fundamental $(a,b,-a-b)$, on the adjoint their differences and two zeros; the second moments are $2$ and $12$ times $a^{2}+ab+b^{2}$, so $T_A/T_F=6$ and, with the chart's normalisation $T_F=\\frac12$, $C_F=\\frac43$, $C_A=3$, $C_A/C_F=\\frac94$; the three-quark singlet's colour factor is $-8$. No lift enters.",
    "origin_row": "46:C4",
    "tag": "T",
    "name": "colour_casimirs",
@@ -34920,7 +35069,7 @@
    "check": {
     "href": "py/yangmills.html#p46013",
     "script": "p46_yangmills.py",
-    "line": 181,
+    "line": 188,
     "verdict": "pass"
    },
    "declarations": [
@@ -34928,6 +35077,16 @@
      "lib": "FrcCore",
      "module": "FrcCore/Theme/YangMills",
      "name": "FRC.YangMills.casimirs"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.casimir_exponents"
+    },
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/YangMills",
+     "name": "FRC.YangMills.casimir_exponents_all"
     }
    ],
    "aliases": [],
@@ -34947,7 +35106,7 @@
    "check": {
     "href": "py/yangmills.html#p46014",
     "script": "p46_yangmills.py",
-    "line": 188,
+    "line": 197,
     "verdict": "pass"
    },
    "declarations": [
@@ -34989,7 +35148,7 @@
    "check": {
     "href": "py/yangmills.html#p46015",
     "script": "p46_yangmills.py",
-    "line": 225,
+    "line": 234,
     "verdict": "pass"
    },
    "declarations": [
@@ -35026,7 +35185,7 @@
    "check": {
     "href": "py/yangmills.html#p46016",
     "script": "p46_yangmills.py",
-    "line": 238,
+    "line": 247,
     "verdict": "pass"
    },
    "declarations": [
@@ -35060,7 +35219,7 @@
   {
    "key": "p46017",
    "origin": "46",
-   "statement": "[chart] The minimal wrap, the candidate operator for the gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$. Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). It must reproduce the determinations of A1; C12 and P3 record that it does not.",
+   "statement": "[chart] The minimal wrap, the candidate operator for the mass gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$. Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). It must reproduce the determinations of A1; C12 and P3 record that it does not.",
    "origin_row": "46:C8",
    "tag": "D",
    "name": "minimal_wrap_declared",
@@ -35068,7 +35227,7 @@
    "check": {
     "href": "py/yangmills.html#p46017",
     "script": "p46_yangmills.py",
-    "line": 283,
+    "line": 341,
     "verdict": "pass"
    },
    "declarations": [],
@@ -35088,7 +35247,7 @@
    "check": {
     "href": "py/yangmills.html#p46030",
     "script": "p46_yangmills.py",
-    "line": 311,
+    "line": 369,
     "verdict": "pass"
    },
    "declarations": [
@@ -35107,15 +35266,15 @@
   {
    "key": "p46037",
    "origin": "46",
-   "statement": "[chart] The short-range route is obstructed: with the declared coupling $\\alpha_s(\\sig)=1.007$ the two-adjoint term has $C=C_A\\alpha_s=3.02$, above the Herbst bounds $2/\\pi$ and $4/\\pi$, so the cutoff cannot be removed; with the coupling run to the bound state's mass, fixed points exist above a threshold cutoff and none are found below: $3.54$, $3.08$, $2.61$ at $1$, $\\frac12$, $\\frac14$ cells.",
+   "statement": "[chart] The short-range route of the chart fails: with the declared coupling $\\alpha_s(\\sig)=1.007$ the two-adjoint term has $C=C_A\\alpha_s=3.02$, above the Herbst bounds $2/\\pi$ and $4/\\pi$, so the cutoff cannot be removed; with the coupling run to the bound state's mass, fixed points $3.54$, $3.08$, $2.61$ at $r_c=1$, $\\frac12$, $\\frac14$ and none found at $\\frac18$ (a scan of $149$ energies).",
    "origin_row": "46:C10",
    "tag": "T",
-   "name": "short_range_obstructed",
+   "name": "short_range_fails",
    "tier": 0,
    "check": {
     "href": "py/yangmills.html#p46037",
     "script": "p46_yangmills.py",
-    "line": 404,
+    "line": 466,
     "verdict": "pass"
    },
    "declarations": [
@@ -35144,15 +35303,15 @@
   {
    "key": "p46038",
    "origin": "46",
-   "statement": "[chart] The plaquette channel is obstructed: with the series of A11 and the frame's $u=c_3(\\beta)$, $m/\\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$ ($\\beta=1$ to $3$), the orders agreeing within $1\\,\\%$; the bracket $3.4$--$3.7$ is reached only at $u=0.30$, where they disagree by $10\\,\\%$; the scaling region is $u\\approx0.42$.",
+   "statement": "[chart] The plaquette channel of the chart fails: with A11's series and $u=c_3(\\beta)$ (C7), $m/\\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$, the orders $3$, $5$, $7$ agreeing within $1\\,\\%$; at $u=0.30$ they give $3.97$, $3.59$, $3.78$, the fifth alone in $3.4$--$3.7$; the scaling region is $u\\approx0.42$.",
    "origin_row": "46:C11",
    "tag": "T",
-   "name": "plaquette_channel_obstructed",
+   "name": "plaquette_channel_fails",
    "tier": 0,
    "check": {
     "href": "py/yangmills.html#p46038",
     "script": "p46_yangmills.py",
-    "line": 426,
+    "line": 493,
     "verdict": "pass"
    },
    "declarations": [
@@ -35184,7 +35343,7 @@
    "check": {
     "href": "py/yangmills.html#p46036",
     "script": "p46_yangmills.py",
-    "line": 335,
+    "line": 393,
     "verdict": "pass"
    },
    "declarations": [
@@ -35216,7 +35375,7 @@
    "check": {
     "href": "py/yangmills.html#p46041",
     "script": "p46_yangmills.py",
-    "line": 205,
+    "line": 214,
     "verdict": "pass"
    },
    "declarations": [
@@ -35258,6 +35417,283 @@
    "realisations": []
   },
   {
+   "key": "p46051",
+   "origin": "46",
+   "statement": "The series' window: the $\\beta^{k}$ coefficient of $c_3$ uses the invariant counts of degree $\\le k+1$, that of $c_8$ degree $\\le k+2$, so the frame's series equal the compact ones through $\\beta^{\\p-3}$, $\\beta^{\\p-4}$ by A9 and $\\beta^{2\\p-2}$, $\\beta^{2\\p-3}$ by C15; on the instance $M(4,1)=4$ against $3$ puts $c_3$'s $\\beta^{4}$ at $0$ and $c_8$'s $\\beta^{3}$ at $1/1728$.",
+   "origin_row": "46:C14",
+   "tag": "T",
+   "name": "series_window_corollary",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46051",
+    "script": "p46_yangmills.py",
+    "line": 272,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.series_window"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:C14"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p46053",
+   "origin": "46",
+   "statement": "The frame's window and first departure: for odd $\\p$ the frame's invariants in $\\mathbf3^{\\otimes a}\\otimes\\bar{\\mathbf3}^{\\otimes b}$ are the compact ones through degree $2\\p-1$ (the coordinate $\\SU(2)$ subgroups, A13), and the Frobenius tensor $v_\\p$ at $(4\\p-4,1)$ lies beyond them, so the first departure $d_*$ has $2\\p\\le d_*\\le4\\p-3$: $[26,49]$ on $\\F_{13}$, $[346,689]$ on $\\F_{173}$; $d_*=5$, $9$ on $\\F_2$, $\\F_3$.",
+   "origin_row": "46:C15",
+   "tag": "T",
+   "name": "frame_window_theorem",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46053",
+    "script": "p46_yangmills.py",
+    "line": 300,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.frame_window"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:C15"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p46056",
+   "origin": "46",
+   "statement": "The amplitude's finite properties: every eigenvalue of the frame lies in $\\F_{q^{6}}$ with order dividing $M$; $w$ is a class function, $w(U^{-1})=\\overline{w(U)}$, $w(zU)=\\iota(z)w(U)$ for central $z$, and reduces to $\\operatorname{Tr}U$; if $\\p$ divides the order of $U$ then $U_s$ has eigenvalues $(\\lambda,\\lambda,\\lambda^{-2})$, $\\lambda^{q+1}=1$, so $w(U)=2\\eta+\\eta^{-2}$ and every unipotent has $w=3$; if $3\\mid q+1$ then $\\langle w\\rangle=0$ (B3).",
+   "origin_row": "46:C16",
+   "tag": "T",
+   "name": "spectral_amplitude_theorem",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46056",
+    "script": "p46_yangmills.py",
+    "line": 526,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.spectral_amplitude"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:C16"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p46057",
+   "origin": "46",
+   "statement": "The amplitude on the instance: on $\\SU(3,\\F_2)$ the values $3$, $3\\zeta_3$, $3\\zeta_3^{2}$ on $64$ elements each and $0$ on $24$; the moments $\\frac1{216}\\sum w^{a}\\bar w^{b}$ at $(1,1)$, $(3,0)$, $(2,2)$ are $8$, $24$, $72$, not the invariant counts $1$, $1$, $2$ (C3); two involutions with $w=3$ have a product with $w=0$: $w$ is no complex character.",
+   "origin_row": "46:C17",
+   "tag": "T",
+   "name": "instance_amplitude_theorem",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46057",
+    "script": "p46_yangmills.py",
+    "line": 548,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.instance_amplitude"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:C17"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p46058",
+   "origin": "46",
+   "statement": "The transfer tally on the instance: on $\\SU(3,\\F_2)$ the step of one plaquette, $(Kf)(x)=\\langle w(x^{-1}y)f(y)\\rangle_y$ (B3), has the eigenvalues $\\frac23$, $\\frac16$, $0$, $-\\frac13$ with multiplicities $9$, $36$, $144$, $27$ ($K(3K+1)(6K-1)(3K-2)=0$, $\\operatorname{tr}K=3$); the trivial channel is annihilated, $K\\mathbf1=0$ (C16), so the tally has no ratio to it; with the eigenvalue $-\\frac13$ it is not a positive operator.",
+   "origin_row": "46:C18",
+   "tag": "T",
+   "name": "instance_transfer_theorem",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46058",
+    "script": "p46_yangmills.py",
+    "line": 570,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.instance_transfer"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:C18"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p46061",
+   "origin": "46",
+   "statement": "The transfer tally on the Subjects: on $q=3,4,5,7,13,173,1549$ by exact integer arithmetic $w=\\chi_{q^2-q+1}+\\chi_{q^3+1}-\\chi_{(q+1)^2(q-1)}$ (first members of the three families, A15), so the step $K$ (B3) has the eigenvalues $\\frac1{q^2-q+1}$, $\\frac1{q^3+1}$, $-\\frac1{(q+1)^2(q-1)}$, $0$ with multiplicities the squared degrees; the frame's mean of $w$ is $0$, moment $3$; $K$ not positive.",
+   "origin_row": "46:C19",
+   "tag": "T",
+   "name": "subject_spectrum_theorem",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46061",
+    "script": "p46_yangmills.py",
+    "line": 600,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.subject_spectrum"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.degree_identity"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:C19"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p46062",
+   "origin": "46",
+   "statement": "The tally of the ring of plaquettes and the transfer tally's gap: on the frames of C19 the tally sums three characters' terms $\\chi(h_1)\\chi(h_2^{-1})$ on the boundary classes; one plaquette multiplies each by its eigenvalue; the largest eigenvalue belongs to one character and is $q+1$ times the next. Modulo $\\p$ the eigenvalues are $1$ and at fixed classes the tally is the same for every length.",
+   "origin_row": "46:C20",
+   "tag": "T",
+   "name": "ring_gap_theorem",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46062",
+    "script": "p46_yangmills.py",
+    "line": 649,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.ring_gap"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:C20"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p46064",
+   "origin": "46",
+   "statement": "The spectrum in $2\\pi=\\p-1$, the shell's phase cycle, certified by $2\\pi\\equiv-1$ and $\\p$-hard: on the three Subjects $d_1=4\\pi^{2}+2\\pi+1$, $d_2=(2\\pi+2)d_1$, $d_3=8\\pi(\\pi+1)^{2}$, and the gap of the transfer tally is $1/(2\\pi+2)$, a pure number, one expression on every Subject, with the residue $1$ on the shell. [chart] $0.1207$ at the classical $\\pi$.",
+   "origin_row": "46:C21",
+   "tag": "T",
+   "name": "spectrum_in_two_pi",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46064",
+    "script": "p46_yangmills.py",
+    "line": 670,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.spectrum_in_pi"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:C21"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p46065",
+   "origin": "46",
+   "statement": "The product channels: where $3$ is invertible the frame fixes $A_n=\\sum_k(-1)^{n-k}\\binom nkM(k,k)$ dimensions of $\\mathbf8^{\\otimes n}$. On every Subject two mesons and three gluons have $d=2$ and $\\p^{2}+1$ invariant lines, a meson with a glueball $d=3$, two glueballs $d=8$. On $\\SU(3,\\F_2)$ three gluons have $d=7$ and two glueballs $d=57$: the instance departs beyond degree $4$.",
+   "origin_row": "46:C22",
+   "tag": "T",
+   "name": "product_channels",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46065",
+    "script": "p46_yangmills.py",
+    "line": 680,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.product_channel_counts"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:C22"
+   ],
+   "realisations": [
+    "p46007"
+   ]
+  },
+  {
+   "key": "p46066",
+   "origin": "46",
+   "statement": "The tally with the same boundary links at every step, of the eigenvalues $g^{\\pm j},1$ and $g^{\\pm k},1$: the boundary classes of C20 move with the length $n$. On the three Subjects the tally reads $1+g^{(j+k)n}+g^{-(j+k)n}+g^{(j-k)n}+g^{-(j-k)n}$ at every regular length, with stated values at the others and the period $\\p-1$. The exponents are the links'; the three multipliers add none.",
+   "origin_row": "46:C23",
+   "tag": "T",
+   "name": "uniform_boundary",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46066",
+    "script": "p46_yangmills.py",
+    "line": 697,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.uniform_boundary_tally"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:C23"
+   ],
+   "realisations": []
+  },
+  {
    "key": "p46023",
    "origin": "46",
    "statement": "The colour factors of the strong interaction are $C_A=3$, $C_F=\\frac43$, $C_A/C_F=\\frac94$ (C4). Falsifier: a measured $C_A/C_F$ outside $\\frac94$ beyond its error. Confrontation: LEP's $2.89(21)$, $1.30(9)$, $2.22(11)$ (A2), each within one standard deviation.",
@@ -35268,7 +35704,7 @@
    "check": {
     "href": "py/yangmills.html#p46023",
     "script": "p46_yangmills.py",
-    "line": 260,
+    "line": 318,
     "verdict": "pass"
    },
    "declarations": [
@@ -35292,7 +35728,7 @@
   {
    "key": "p46024",
    "origin": "46",
-   "statement": "[chart] Between laboratory scales $1/\\alpha_s$ is linear in $\\ln\\mu$ with slope $b_0/2\\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\\alpha_s(\\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\\alpha_s(m_\\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$.",
+   "statement": "[chart] Between laboratory scales $1/\\alpha_s$ is linear in $\\ln(\\mu/\\mu_0)$ with slope $b_0/2\\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\\alpha_s(\\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\\alpha_s(m_\\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$.",
    "origin_row": "46:P2",
    "tag": "T",
    "name": "running_prediction",
@@ -35300,7 +35736,7 @@
    "check": {
     "href": "py/yangmills.html#p46024",
     "script": "p46_yangmills.py",
-    "line": 272,
+    "line": 330,
     "verdict": "pass"
    },
    "declarations": [
@@ -35334,7 +35770,7 @@
   {
    "key": "p46043",
    "origin": "46",
-   "statement": "[chart] The radial ratio of the operator form: $E_1/E_0=1.49$ for every $a$ and $\\varkappa$, a property of the operator form of C8 shared by every state the one-body wrap describes. Falsifier: a measured first radial ratio of such a state outside $1.49$ beyond its error. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ and favours the nonrelativistic $1.75$: the form fails for the glueball.",
+   "statement": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
    "origin_row": "46:P3",
    "tag": "T",
    "name": "radial_ratio_prediction",
@@ -35342,7 +35778,7 @@
    "check": {
     "href": "py/yangmills.html#p46043",
     "script": "p46_yangmills.py",
-    "line": 367,
+    "line": 426,
     "verdict": "pass"
    },
    "declarations": [
@@ -35364,21 +35800,6 @@
    "realisations": []
   },
   {
-   "key": "p46042",
-   "origin": "46",
-   "statement": "The derivation of the form A12 from the finite theory: the vacuum energy of the transfer form (B3) in a background connection, its levels on the shell, and the coefficient of the quadratic term against the chart's logarithm read on the drive (B2). Until it exists, A12 stays an import and C5 rests on A4.",
-   "origin_row": "46:T04",
-   "tag": "O",
-   "name": null,
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "46:T04"
-   ]
-  },
-  {
    "key": "p46018",
    "origin": "46",
    "statement": "Why the gluon is massless yet never seen alone: under the realisation B1 a gluon is drive-invariant (massless, A6) and its space has no frame-invariant line (C1, C3), so no registration singles it out. The row explicates the form of the confinement rule; it does not derive confinement.",
@@ -35389,7 +35810,7 @@
    "check": {
     "href": "py/yangmills.html#p46018",
     "script": "p46_yangmills.py",
-    "line": 117,
+    "line": 116,
     "verdict": "pass"
    },
    "declarations": [
@@ -35415,7 +35836,7 @@
   {
    "key": "p46019",
    "origin": "46",
-   "statement": "Why only colour singlets are registered: under B1 each channel of the colour frame with one singlet has exactly one frame-invariant line, and the hadron paper's series of such channels ends at the glueball (C3); products with several singlets are sums of channels, not classified here.",
+   "statement": "Why only colour singlets are registered: under B1 each channel of the unitary frame, a space whose frame-fixed subspace is a line, has exactly one frame-invariant line, and the hadron paper's series of such channels ends at the glueball (C3); products whose fixed subspace is larger are sums of channels, counted in C22.",
    "origin_row": "46:X2",
    "tag": "T",
    "name": "singlets_only",
@@ -35423,7 +35844,7 @@
    "check": {
     "href": "py/yangmills.html#p46019",
     "script": "p46_yangmills.py",
-    "line": 117,
+    "line": 116,
     "verdict": "pass"
    },
    "declarations": [
@@ -35449,7 +35870,7 @@
   {
    "key": "p46020",
    "origin": "46",
-   "statement": "[chart] Why one scale fixes the whole spectrum: the gauge sector has one $\\Om$-hard scale, $\\sig$ (Z1); every exact quantity of the sector is a sub-horizon ratio from the frame (C4--C7, C9), and the gap's ratio is read from the chart's operator (C8).",
+   "statement": "[chart] Why the sector has one scale: the gauge sector has one $\\Om$-hard scale, $\\sig$ (Z1); every exact quantity of the sector is a sub-horizon ratio from the frame (C4--C7, C9); the ratio $\\Delta/\\sig$ is a quantity of the chart's lattice, which the candidate operator (C8) does not supply (C12, P3).",
    "origin_row": "46:X3",
    "tag": "D",
    "name": null,
@@ -35464,7 +35885,7 @@
   {
    "key": "p46021",
    "origin": "46",
-   "statement": "Why the colour factors take the values LEP measured: they are the Casimir rationals of the forced frame (C4), and the abelian alternative $C_A=0$, $C_F=1$ lies outside the measured brackets (A2).",
+   "statement": "Why the colour factors take the values LEP measured: they are the second moments of the unitary frame's torus exponents (C4), and the abelian alternative $C_A=0$, $C_F=1$ lies outside the measured brackets (A2).",
    "origin_row": "46:X4",
    "tag": "T",
    "name": "casimirs_are_measured",
@@ -35472,7 +35893,7 @@
    "check": {
     "href": "py/yangmills.html#p46021",
     "script": "p46_yangmills.py",
-    "line": 181,
+    "line": 188,
     "verdict": "pass"
    },
    "declarations": [
@@ -35496,7 +35917,7 @@
   {
    "key": "p46022",
    "origin": "46",
-   "statement": "[chart] Why the finite theory needs no ultraviolet renormalisation and the continuum chart does: every sum of the finite theory is finite (B3), so nothing diverges; the finite matching of the substrate's one scale to the chart's scales is $\\Om$-hard (Z1), and the chart's counterterms are its account of that matching.",
+   "statement": "[chart] Why the finite theory needs no ultraviolet renormalisation and the continuum chart does: every tally of the finite theory is a mean over a finite frame (B3), so nothing diverges; the finite matching of the substrate's one scale to the chart's scales is $\\Om$-hard (Z1), and the chart's counterterms are its account of that matching.",
    "origin_row": "46:X5",
    "tag": "D",
    "name": null,
@@ -35511,7 +35932,7 @@
   {
    "key": "p46026",
    "origin": "46",
-   "statement": "The one scale of the gauge sector, $\\sig$, which fixes $\\LQCD$ up to a sub-horizon ratio, is a quantity of the horizon of observation and is $\\Om$-hard: no bounded observer computes it, and the paper reads it from the lattice ($\\sig\\approx420$--$460$~MeV [import]). Every dimensionless quantity of the sector is a sub-horizon ratio.",
+   "statement": "The one scale of the gauge sector, $\\sig$, which fixes $\\LQCD$ up to a sub-horizon ratio, is $\\Om$-hard: no bounded observer computes its absolute value, its ratio to the Planck energy. The paper reads its numeral from the lattice ($\\sig\\approx420$--$460$~MeV [import]). Every dimensionless quantity of the sector is a sub-horizon ratio.",
    "origin_row": "46:Z1",
    "tag": "Ω",
    "name": null,
@@ -35633,7 +36054,8 @@
    "successors": [
     "p00028",
     "p00034",
-    "p00043",
+    "p00207",
+    "p00208",
     "p38054"
    ]
   },
@@ -35641,6 +36063,13 @@
    "key": "p00039",
    "successors": [
     "p00190"
+   ]
+  },
+  {
+   "key": "p00043",
+   "successors": [
+    "p00207",
+    "p00208"
    ]
   },
   {
@@ -35837,10 +36266,11 @@
    "key": "p00145",
    "successors": [
     "p00009",
-    "p00043",
     "p00064",
     "p00166",
     "p00191",
+    "p00207",
+    "p00208",
     "p14046",
     "p14047",
     "p14048"
@@ -35901,10 +36331,11 @@
    "key": "p00177",
    "successors": [
     "p00009",
-    "p00043",
     "p00064",
     "p00166",
     "p00191",
+    "p00207",
+    "p00208",
     "p14046",
     "p14047",
     "p14048"
@@ -36877,7 +37308,7 @@
     "py": {
      "href": "py/master.carrier.html#p00015",
      "script": "frc/ledgers/master/carrier.py",
-     "line": 94,
+     "line": 97,
      "verdict": "pass"
     },
     "lean": [
@@ -36947,7 +37378,7 @@
     "py": {
      "href": "py/master.carrier.html#p00165",
      "script": "frc/ledgers/master/carrier.py",
-     "line": 120,
+     "line": 123,
      "verdict": "pass"
     },
     "lean": [
@@ -36991,7 +37422,7 @@
     "py": {
      "href": "py/master.carrier.html#p00166",
      "script": "frc/ledgers/master/carrier.py",
-     "line": 170,
+     "line": 173,
      "verdict": "pass"
     },
     "lean": [
@@ -37062,7 +37493,7 @@
     "py": {
      "href": "py/master.carrier.html#p00168",
      "script": "frc/ledgers/master/carrier.py",
-     "line": 198,
+     "line": 201,
      "verdict": "pass"
     },
     "lean": [
@@ -37162,7 +37593,7 @@
     "py": {
      "href": "py/master.carrier.html#p00170",
      "script": "frc/ledgers/master/carrier.py",
-     "line": 220,
+     "line": 223,
      "verdict": "pass"
     },
     "lean": [
@@ -37187,6 +37618,48 @@
   {
    "paper": "00",
    "no": 0,
+   "rid": "00:B15",
+   "key": "p00204",
+   "label": "B15",
+   "block": "B",
+   "tag": "T",
+   "name": "The two-power tower",
+   "lean_name": "two_power_tower",
+   "statement": "\\textbf{The two-power tower}: in $\\F_\\Om$ the count $\\Om-1$ is $-1$. Its $2^{j}$-th roots, the marks of level $j$, exist exactly when $2^{j+1}\\mid4\\dS$ and have order $2^{j+1}$; no count $y$ with $y^{2^{j}}<\\Om-1$ is one (B8). Squaring raises a mark one level and closes at $(\\Om-1)^{2}=1$. Levels $1$, $2$: B3, B14; on a shell, $\\kap$ for $\\dS$.",
+   "source": "14-entr",
+   "page": "ledger.html#B15",
+   "witness": {
+    "script": null,
+    "py": {
+     "href": "py/master.carrier.html#p00204",
+     "script": "frc/ledgers/master/carrier.py",
+     "line": 291,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.two_power_tower",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Master.html#FRC.Master.two_power_tower"
+     }
+    ]
+   },
+   "refs": [
+    "p00013",
+    "p00166",
+    "p00170"
+   ],
+   "sources": [
+    "14-entr"
+   ],
+   "text": "The two-power tower: The two-power tower: in $\\F_\\Om$ the count $\\Om-1$ is $-1$. Its $2^{j}$-th roots, the marks of level $j$, exist exactly when $2^{j+1}\\mid4\\dS$ and have order $2^{j+1}$; no count $y$ with $y^{2^{j}}<\\Om-1$ is one (B8). Squaring raises a mark one level and closes at $(\\Om-1)^{2}=1$. Levels $1$, $2$: B3, B14; on a shell, $\\kap$ for $\\dS$. 14-entr"
+  },
+  {
+   "paper": "00",
+   "no": 0,
    "rid": "00:C1",
    "key": "p00021",
    "label": "C1",
@@ -37202,7 +37675,7 @@
     "py": {
      "href": "py/master.subject.html#p00021",
      "script": "frc/ledgers/master/subject.py",
-     "line": 116,
+     "line": 121,
      "verdict": "pass"
     },
     "lean": [
@@ -37285,7 +37758,7 @@
     "py": {
      "href": "py/master.subject.html#p00150",
      "script": "frc/ledgers/master/subject.py",
-     "line": 146,
+     "line": 151,
      "verdict": "pass"
     },
     "lean": [
@@ -37453,7 +37926,7 @@
     "py": {
      "href": "py/master.subject.html#p00028",
      "script": "frc/ledgers/master/subject.py",
-     "line": 185,
+     "line": 190,
      "verdict": "pass"
     },
     "lean": [
@@ -37497,9 +37970,9 @@
     "lean": []
    },
    "refs": [
-    "p00043",
     "p00048",
-    "p00165"
+    "p00165",
+    "p00207"
    ],
    "sources": [
     "22-qm",
@@ -37645,7 +38118,7 @@
     "py": {
      "href": "py/master.subject.html#p00034",
      "script": "frc/ledgers/master/subject.py",
-     "line": 235,
+     "line": 240,
      "verdict": "pass"
     },
     "lean": [
@@ -37689,7 +38162,7 @@
     "py": {
      "href": "py/master.subject.html#p00151",
      "script": "frc/ledgers/master/subject.py",
-     "line": 259,
+     "line": 264,
      "verdict": "pass"
     },
     "lean": [
@@ -37769,7 +38242,7 @@
     "py": {
      "href": "py/master.subject.html#p00040",
      "script": "frc/ledgers/master/subject.py",
-     "line": 302,
+     "line": 307,
      "verdict": "pass"
     },
     "lean": [
@@ -37784,7 +38257,7 @@
     ]
    },
    "refs": [
-    "p00043",
+    "p00207",
     "p38004"
    ],
    "sources": [
@@ -37944,7 +38417,7 @@
     "py": {
      "href": "py/master.subject.html#p00139",
      "script": "frc/ledgers/master/subject.py",
-     "line": 366,
+     "line": 371,
      "verdict": "pass"
     },
     "lean": [
@@ -38049,8 +38522,22 @@
    "page": "ledger.html#D1",
    "witness": {
     "script": "7:p07_spacetime.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "py/master.subject.html#p00042",
+     "script": "frc/ledgers/master/subject.py",
+     "line": 423,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Master",
+      "name": "FRC.Master.time_is_scale_dilation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Master.html#FRC.Master.time_is_scale_dilation"
+     }
+    ]
    },
    "refs": [
     "p00008",
@@ -38073,26 +38560,31 @@
    "paper": "00",
    "no": 0,
    "rid": "00:D2",
-   "key": "p00043",
+   "key": "p00207",
    "label": "D2",
    "block": "D",
-   "tag": "R",
+   "tag": "T",
    "name": "Mass is winding rate (E=hf an identity)",
    "lean_name": null,
-   "statement": "\\textbf{Mass is winding rate} ($E=hf$ an identity); masslessness $\\Leftrightarrow$ drive-invariance; a mass is the non-split component the drive rotates, the part of a residue pair that Frobenius conjugation reverses, masslessness the split-torus eigen-alignment. Falsifier: a rest mass with no cycle winding, a massless drive-variant state, or a stationary state whose registered frequency is not its winding index ($E=hf$ failing).",
-   "source": "27-fld, 28-flav",
+   "statement": "\\textbf{Mass is winding rate} ($E=hf$ an identity, by D7 and 10:D6); masslessness $\\Leftrightarrow$ drive-invariance (27:C2).",
+   "source": "27-fld, 28-flav, 10-dim",
    "page": "ledger.html#D2",
    "witness": {
-    "script": null,
+    "script": "10:dimensions.py, 27:p27_fields.py",
     "py": null,
     "lean": []
    },
-   "refs": [],
+   "refs": [
+    "p00048",
+    "p10022",
+    "p27014"
+   ],
    "sources": [
     "27-fld",
-    "28-flav"
+    "28-flav",
+    "10-dim"
    ],
-   "text": "Mass is winding rate (E=hf an identity): Mass is winding rate ($E=hf$ an identity); masslessness $\\Leftrightarrow$ drive-invariance; a mass is the non-split component the drive rotates, the part of a residue pair that Frobenius conjugation reverses, masslessness the split-torus eigen-alignment. Falsifier: a rest mass with no cycle winding, a massless drive-variant state, or a stationary state whose registered frequency is not its winding index ($E=hf$ failing). 27-fld, 28-flav"
+   "text": "Mass is winding rate (E=hf an identity): Mass is winding rate ($E=hf$ an identity, by D7 and 10:D6); masslessness $\\Leftrightarrow$ drive-invariance (27:C2). 27-fld, 28-flav, 10-dim 10:dimensions.py, 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -38114,7 +38606,7 @@
    },
    "refs": [
     "p00042",
-    "p00043"
+    "p00207"
    ],
    "sources": [
     "21-grav",
@@ -38209,9 +38701,9 @@
    "label": "D7",
    "block": "D",
    "tag": "R",
-   "name": "A unit of measure is a reciprocal cross-frame relation",
+   "name": "A physical quantity is a count read in a unit",
    "lean_name": null,
-   "statement": "A unit is observer counts per substrate count, its atomic form the action quantum $\\hbar^2=-1$ (B7), its domain the unit-free order-four flag: unitful measures carry it, observables are flag-free, the absolute unit value $\\Om$-hard. The fundamental units are the four domain horizons (10-dim). Falsifier: an embedded observer registering an absolute unit value, or a unitful measure with no cross-frame reciprocal.",
+   "statement": "A physical quantity is a Subject count read in a Carrier unit. The count is a residue with a domain label. The unit is a product of the horizons $\\ell_P$, $t_P$ and $\\hbar$ (B7), its absolute value $\\Om$-hard. Falsifier: an embedded observer registering an absolute unit value, or a closed expression adding a count to a unitful measure without $\\hbar$.",
    "source": "10-dim, 20-rh, 22-qm",
    "page": "ledger.html#D7",
    "witness": {
@@ -38227,7 +38719,7 @@
     "20-rh",
     "22-qm"
    ],
-   "text": "A unit of measure is a reciprocal cross-frame relation: A unit is observer counts per substrate count, its atomic form the action quantum $\\hbar^2=-1$ (B7), its domain the unit-free order-four flag: unitful measures carry it, observables are flag-free, the absolute unit value $\\Om$-hard. The fundamental units are the four domain horizons (10-dim). Falsifier: an embedded observer registering an absolute unit value, or a unitful measure with no cross-frame reciprocal. 10-dim, 20-rh, 22-qm 10:dimensions.py"
+   "text": "A physical quantity is a count read in a unit: A physical quantity is a Subject count read in a Carrier unit. The count is a residue with a domain label. The unit is a product of the horizons $\\ell_P$, $t_P$ and $\\hbar$ (B7), its absolute value $\\Om$-hard. Falsifier: an embedded observer registering an absolute unit value, or a closed expression adding a count to a unitful measure without $\\hbar$. 10-dim, 20-rh, 22-qm 10:dimensions.py"
   },
   {
    "paper": "00",
@@ -38239,7 +38731,7 @@
    "tag": "R",
    "name": "Elementary is Ω-hard",
    "lean_name": null,
-   "statement": "\\textbf{Elementary is $\\Om$-hard}: an elementary particle is a large beyond-horizon residue, never observed at rest; the observable exception is the gauge sector's drive-invariant residue, the photon (G1, Z6); instantiated at $517\\times\\sqrt\\Om$ on a concrete shell (37-sim). Falsifier: an elementary particle with a resolved internal residue (substructure), or a massive drive-invariant gauge residue.",
+   "statement": "\\textbf{Elementary is $\\Om$-hard}: an elementary particle's residue is an absolute Carrier value (D7), beyond the horizon, never observed at rest; the observable exception is the gauge sector's drive-invariant residue, the photon (G1, Z6); instantiated at $517\\times\\sqrt\\Om$ on a concrete shell (37-sim). Falsifier: an elementary particle with a resolved internal residue (substructure), or a massive drive-invariant gauge residue.",
    "source": "28-flav, 27-fld",
    "page": "ledger.html#D8",
    "witness": {
@@ -38248,6 +38740,7 @@
     "lean": []
    },
    "refs": [
+    "p00048",
     "p00114",
     "p00178"
    ],
@@ -38255,7 +38748,7 @@
     "28-flav",
     "27-fld"
    ],
-   "text": "Elementary is Ω-hard: Elementary is $\\Om$-hard: an elementary particle is a large beyond-horizon residue, never observed at rest; the observable exception is the gauge sector's drive-invariant residue, the photon (G1, Z6); instantiated at $517\\times\\sqrt\\Om$ on a concrete shell (37-sim). Falsifier: an elementary particle with a resolved internal residue (substructure), or a massive drive-invariant gauge residue. 28-flav, 27-fld"
+   "text": "Elementary is Ω-hard: Elementary is $\\Om$-hard: an elementary particle's residue is an absolute Carrier value (D7), beyond the horizon, never observed at rest; the observable exception is the gauge sector's drive-invariant residue, the photon (G1, Z6); instantiated at $517\\times\\sqrt\\Om$ on a concrete shell (37-sim). Falsifier: an elementary particle with a resolved internal residue (substructure), or a massive drive-invariant gauge residue. 28-flav, 27-fld"
   },
   {
    "paper": "00",
@@ -38267,7 +38760,7 @@
    "tag": "R",
    "name": "The observable is a small residue",
    "lean_name": null,
-   "statement": "\\textbf{The observable is a small residue}: a bounded observer reads only small residues, so an observable stable object carries a small exact residue (particle $+$ binding wrap) --- the confined hadron, the light nucleus, the stable atom; decay is frame-normalisation toward it. Falsifier: a stable observable object carrying no small exact residue --- a stable coloured state, or strong/electromagnetic proton decay.",
+   "statement": "\\textbf{The observable is a small residue}: an observable is a Subject count (D7), so an observable stable object carries a small exact residue (particle $+$ binding wrap) --- the confined hadron, the light nucleus, the stable atom; decay is frame-normalisation toward it. Falsifier: a stable observable object carrying no small exact residue --- a stable coloured state, or strong/electromagnetic proton decay.",
    "source": "27-fld, 28-flav",
    "page": "ledger.html#D9",
    "witness": {
@@ -38275,12 +38768,14 @@
     "py": null,
     "lean": []
    },
-   "refs": [],
+   "refs": [
+    "p00048"
+   ],
    "sources": [
     "27-fld",
     "28-flav"
    ],
-   "text": "The observable is a small residue: The observable is a small residue: a bounded observer reads only small residues, so an observable stable object carries a small exact residue (particle $+$ binding wrap) — the confined hadron, the light nucleus, the stable atom; decay is frame-normalisation toward it. Falsifier: a stable observable object carrying no small exact residue — a stable coloured state, or strong/electromagnetic proton decay. 27-fld, 28-flav"
+   "text": "The observable is a small residue: The observable is a small residue: an observable is a Subject count (D7), so an observable stable object carries a small exact residue (particle $+$ binding wrap) — the confined hadron, the light nucleus, the stable atom; decay is frame-normalisation toward it. Falsifier: a stable observable object carrying no small exact residue — a stable coloured state, or strong/electromagnetic proton decay. 27-fld, 28-flav"
   },
   {
    "paper": "00",
@@ -38345,10 +38840,10 @@
    "key": "p00184",
    "label": "D14",
    "block": "D",
-   "tag": "R",
+   "tag": "T",
    "name": "Mass is dilation",
    "lean_name": null,
-   "statement": "\\textbf{Mass is dilation} (the harness face of D2): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20). Rest energy is the norm reading, $\\ker N=C_{\\p +1}$, boost-invariant. The lab charts it between the exact $C_4$ stations, the pair class $4\\gcd(\\dS,2\\kap +1)$ host-decided. Falsifier: D2's.",
+   "statement": "\\textbf{Mass is dilation} (the harness face of D2, over D7): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20). Rest energy is the norm reading, $\\ker N=C_{\\p +1}$, boost-invariant. The lab charts it between the exact $C_4$ stations, the pair class $4\\gcd(\\dS,2\\kap +1)$ host-decided.",
    "source": "38-s13, 22-qm, 21-grav",
    "page": "ledger.html#D14",
    "witness": {
@@ -38358,15 +38853,16 @@
    },
    "refs": [
     "p00040",
-    "p00043",
-    "p00190"
+    "p00048",
+    "p00190",
+    "p00207"
    ],
    "sources": [
     "38-s13",
     "22-qm",
     "21-grav"
    ],
-   "text": "Mass is dilation: Mass is dilation (the harness face of D2): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20). Rest energy is the norm reading, $\\ker N=C_{\\p +1}$, boost-invariant. The lab charts it between the exact $C_4$ stations, the pair class $4\\gcd(\\dS,2\\kap +1)$ host-decided. Falsifier: D2's. 38-s13, 22-qm, 21-grav"
+   "text": "Mass is dilation: Mass is dilation (the harness face of D2, over D7): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20). Rest energy is the norm reading, $\\ker N=C_{\\p +1}$, boost-invariant. The lab charts it between the exact $C_4$ stations, the pair class $4\\gcd(\\dS,2\\kap +1)$ host-decided. 38-s13, 22-qm, 21-grav"
   },
   {
    "paper": "00",
@@ -38378,7 +38874,7 @@
    "tag": "R",
    "name": "Thermodynamic entropy is the channel count",
    "lean_name": null,
-   "statement": "The entropy of the first law (E7) is the shell's record $\\kap(\\p+1)=(\\p^2-1)/4=|\\F_\\p^\\times|\\,|C_{\\p+1}|/4$, one $k_B$ per channel, $S_{\\mathrm{th}}=k_B\\,\\kap(\\p+1)$ [chart]: the count itself, not its logarithm. The record is the capacity of $\\F_{\\p^2}$, $\\p^2=4\\kap(\\p+1)+1$, as $\\dS$ is the Carrier's. Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$.",
+   "statement": "The first law's entropy (E7) is the shell's record $\\kap(\\p+1)=(\\p^2-1)/4=|\\F_\\p^\\times|\\,|C_{\\p+1}|/4$, per channel one $k_B$, the quartet's pairing constant (10:E1), $S_{\\mathrm{th}}=k_B\\,\\kap(\\p+1)$ [chart]: the count itself, not its logarithm. It is the capacity of $\\F_{\\p^2}$, $\\p^2=4\\kap(\\p+1)+1$, as $\\dS$ is the Carrier's. Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$.",
    "source": "21-grav, 22-qm",
    "page": "ledger.html#D15",
    "witness": {
@@ -38387,13 +38883,14 @@
     "lean": []
    },
    "refs": [
-    "p00058"
+    "p00058",
+    "p10024"
    ],
    "sources": [
     "21-grav",
     "22-qm"
    ],
-   "text": "Thermodynamic entropy is the channel count: The entropy of the first law (E7) is the shell's record $\\kap(\\p+1)=(\\p^2-1)/4=|\\F_\\p^\\times| |C_{\\p+1}|/4$, one $k_B$ per channel, $S_{\\mathrm{th}}=k_B \\kap(\\p+1)$ [chart]: the count itself, not its logarithm. The record is the capacity of $\\F_{\\p^2}$, $\\p^2=4\\kap(\\p+1)+1$, as $\\dS$ is the Carrier's. Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$. 21-grav, 22-qm"
+   "text": "Thermodynamic entropy is the channel count: The first law's entropy (E7) is the shell's record $\\kap(\\p+1)=(\\p^2-1)/4=|\\F_\\p^\\times| |C_{\\p+1}|/4$, per channel one $k_B$, the quartet's pairing constant (10:E1), $S_{\\mathrm{th}}=k_B \\kap(\\p+1)$ [chart]: the count itself, not its logarithm. It is the capacity of $\\F_{\\p^2}$, $\\p^2=4\\kap(\\p+1)+1$, as $\\dS$ is the Carrier's. Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$. 21-grav, 22-qm"
   },
   {
    "paper": "00",
@@ -38458,6 +38955,33 @@
     "21-grav"
    ],
    "text": "Gravitational time dilation is literal: The static clock ratio between two stations is the register character $\\gen^{-\\Delta n}$ of their offset (C21), $\\beta=\\gamma=1$ (E4, D1). Its registration dictionary is 38:C12 on a hosted pair and 38:C13 on the Carrier, its per-chronon rate the floor (38:C10–C11), the temporal face its half. Falsifier: a static clock ratio not fixed by $\\Delta n$ (the PPN temporal form, defect $4ab$). 38-s13, 21-grav"
+  },
+  {
+   "paper": "00",
+   "no": 0,
+   "rid": "00:D18",
+   "key": "p00208",
+   "label": "D18",
+   "block": "D",
+   "tag": "R",
+   "name": "Mass is the non-split component",
+   "lean_name": null,
+   "statement": "\\textbf{Mass is the non-split component}: a mass (D2) is the non-split component the drive rotates, the part of a residue pair that Frobenius conjugation reverses, masslessness the split-torus eigen-alignment. Falsifier: a rest mass with no cycle winding, or a massless drive-variant state.",
+   "source": "27-fld, 28-flav",
+   "page": "ledger.html#D18",
+   "witness": {
+    "script": null,
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00207"
+   ],
+   "sources": [
+    "27-fld",
+    "28-flav"
+   ],
+   "text": "Mass is the non-split component: Mass is the non-split component: a mass (D2) is the non-split component the drive rotates, the part of a residue pair that Frobenius conjugation reverses, masslessness the split-torus eigen-alignment. Falsifier: a rest mass with no cycle winding, or a massless drive-variant state. 27-fld, 28-flav"
   },
   {
    "paper": "00",
@@ -38572,7 +39096,7 @@
     ]
    },
    "refs": [
-    "p00043"
+    "p00207"
    ],
    "sources": [
     "21-grav"
@@ -38694,10 +39218,10 @@
     ]
    },
    "refs": [
-    "p00043",
     "p00056",
     "p00153",
-    "p00184"
+    "p00184",
+    "p00207"
    ],
    "sources": [
     "21-grav",
@@ -39103,11 +39627,11 @@
     ]
    },
    "refs": [
-    "p00043",
     "p00047",
     "p00049",
     "p00052",
-    "p00116"
+    "p00116",
+    "p00207"
    ],
    "sources": [
     "27-fld",
@@ -40041,46 +40565,6 @@
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:L8",
-   "key": "p00148",
-   "label": "L8",
-   "block": "L",
-   "tag": "R",
-   "name": "The primordial tilt",
-   "lean_name": "primordial_tilt_realisation",
-   "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A7), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$.",
-   "source": "21-grav",
-   "page": "ledger.html#L8",
-   "witness": {
-    "script": "21:validate_primordial.py",
-    "py": {
-     "href": "py/master.chart.html#p00148",
-     "script": "frc/ledgers/master/chart.py",
-     "line": 178,
-     "verdict": "pass"
-    },
-    "lean": [
-     {
-      "lib": "FrcMathlib",
-      "module": "FrcMathlib/Master",
-      "name": "FRC.Master.primordial_tilt_realisation",
-      "tier": 2,
-      "ok": true,
-      "page": "lean/ml/Master.html#FRC.Master.primordial_tilt_realisation"
-     }
-    ]
-   },
-   "refs": [
-    "p00009"
-   ],
-   "sources": [
-    "21-grav"
-   ],
-   "text": "The primordial tilt: $n_s=1$ is the scale-dilation fixed point (Harrison–Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A7), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$. 21-grav 21:validate_primordial.py"
-  },
-  {
-   "paper": "00",
-   "no": 0,
    "rid": "00:N2",
    "key": "p00092",
    "label": "N2",
@@ -40312,6 +40796,104 @@
     "35-hadr"
    ],
    "text": "Exclusion predictions: No fourth generation, no fifth force, an empty desert, no TeV supersymmetry, no new dark-matter particle, no beyond-SM $(g{-}2)_\\mu$, and the proton effectively stable ($\\tau_p\\gtrsim10^{45}$ yr; G9). Entailed by the closed ladder of the rank-five frame ($\\dim\\Lambda^{\\mathrm{even}}=16$, D6), given the role-to-matter realisation (27:B6, 27:C10) and completeness (A3). Falsifier: any excluded object observed. Confrontation: none observed. 27-fld (B6/C10), 32-dark, 35-hadr 27:p27_fields.py"
+  },
+  {
+   "paper": "00",
+   "no": 0,
+   "rid": "00:Y8",
+   "key": "p00205",
+   "label": "Y8",
+   "block": "Y",
+   "tag": "O",
+   "name": "The scale tour",
+   "lean_name": null,
+   "statement": "\\textbf{The scale tour}: four entities, four moves. The Host, the unit $1$, composes the Object of $\\q$ units (B6). Three squares: Object to Subject, $\\q^2<\\p$; Subject to Carrier, $\\p^2<\\Om$ (B8); the Carrier's count to the Host, $(\\Om-1)^2=1$ (B15). In $\\F_\\Om$, $\\dS$ even: the marks of orders $8$, $4$, $2$, $1$. Waits on one law relating the three squares (A3, B12).",
+   "source": "14-entr",
+   "page": "ledger.html#Y8",
+   "witness": {
+    "script": null,
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00003",
+    "p00016",
+    "p00166",
+    "p00167",
+    "p00204"
+   ],
+   "sources": [
+    "14-entr"
+   ],
+   "text": "The scale tour: The scale tour: four entities, four moves. The Host, the unit $1$, composes the Object of $\\q$ units (B6). Three squares: Object to Subject, $\\q^2<\\p$; Subject to Carrier, $\\p^2<\\Om$ (B8); the Carrier's count to the Host, $(\\Om-1)^2=1$ (B15). In $\\F_\\Om$, $\\dS$ even: the marks of orders $8$, $4$, $2$, $1$. Waits on one law relating the three squares (A3, B12). 14-entr"
+  },
+  {
+   "paper": "00",
+   "no": 0,
+   "rid": "00:Y9",
+   "key": "p00206",
+   "label": "Y9",
+   "block": "Y",
+   "tag": "O",
+   "name": "The degree of consciousness",
+   "lean_name": null,
+   "statement": "\\textbf{The degree of consciousness}: every system that constitutes a Subject (C4) has a degree of consciousness, monotone in its coherent cardinality $\\p_c$ and bounded by saturation, $\\p_c^2<\\Om$ (B8): a cell, an organism, a colony, a biosphere, a star. The Carrier has none (A4). Waits on a procedure that measures $\\p_c$ and on one unit across levels.",
+   "source": "4-rep",
+   "page": "ledger.html#Y9",
+   "witness": {
+    "script": null,
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00024",
+    "p00166",
+    "p00197"
+   ],
+   "sources": [
+    "4-rep"
+   ],
+   "text": "The degree of consciousness: The degree of consciousness: every system that constitutes a Subject (C4) has a degree of consciousness, monotone in its coherent cardinality $\\p_c$ and bounded by saturation, $\\p_c^2<\\Om$ (B8): a cell, an organism, a colony, a biosphere, a star. The Carrier has none (A4). Waits on a procedure that measures $\\p_c$ and on one unit across levels. 4-rep"
+  },
+  {
+   "paper": "00",
+   "no": 0,
+   "rid": "00:Y10",
+   "key": "p00148",
+   "label": "Y10",
+   "block": "Y",
+   "tag": "O",
+   "name": "The primordial tilt",
+   "lean_name": "primordial_tilt_realisation",
+   "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a hypothesis fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A7), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$.",
+   "source": "21-grav",
+   "page": "ledger.html#Y10",
+   "witness": {
+    "script": "21:validate_primordial.py",
+    "py": {
+     "href": "py/master.chart.html#p00148",
+     "script": "frc/ledgers/master/chart.py",
+     "line": 178,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/Master",
+      "name": "FRC.Master.primordial_tilt_realisation",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Master.html#FRC.Master.primordial_tilt_realisation"
+     }
+    ]
+   },
+   "refs": [
+    "p00009"
+   ],
+   "sources": [
+    "21-grav"
+   ],
+   "text": "The primordial tilt: $n_s=1$ is the scale-dilation fixed point (Harrison–Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a hypothesis fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A7), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$. 21-grav 21:validate_primordial.py"
   },
   {
    "paper": "00",
@@ -46639,7 +47221,7 @@
    "name": null,
    "lean_name": "four_cycle_generated",
    "statement": "$\\Wt^{2}=-J$, $\\Ft^{2}=J$, $\\Ft^{4}=I$: the normalized operator generates the four-cycle, on the six shells of Table~\\ref{tab:checks}.",
-   "source": "Lem.~\\ref{lem:W-square}, Prop.~\\ref{prop:F-cycle}\\newline \\pywit{fourier}{p06012}{B5}, \\leanwit{FrcCore}{p06012}{B5}, \\leanwit{FrcMathlib}{p06012}{B5} \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_sq', FRC.Shell.Frame.F\\_sq, FRC.Shell.Frame.J\\_sq}",
+   "source": "Prop.~\\ref{prop:F-cycle}\\newline \\pywit{fourier}{p06012}{B5}, \\leanwit{FrcCore}{p06012}{B5}, \\leanwit{FrcMathlib}{p06012}{B5} \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_sq', FRC.Shell.Frame.F\\_sq, FRC.Shell.Frame.J\\_sq}",
    "page": "6-fourier/index.html#B5",
    "witness": {
     "py": {
@@ -46686,7 +47268,7 @@
    "refs": [
     "p00022"
    ],
-   "text": "$\\Wt^{2}=-J$, $\\Ft^{2}=J$, $\\Ft^{4}=I$: the normalized operator generates the four-cycle, on the six shells of Table tab:checks. Lem. lem:W-square, Prop. prop:F-cycle p06012, FrcCore{B5}, FrcMathlib{B5} Fourier.shell_relations, FRC.Shell.Frame.W_sq', FRC.Shell.Frame.F_sq, FRC.Shell.Frame.J_sq"
+   "text": "$\\Wt^{2}=-J$, $\\Ft^{2}=J$, $\\Ft^{4}=I$: the normalized operator generates the four-cycle, on the six shells of Table tab:checks. Prop. prop:F-cycle p06012, FrcCore{B5}, FrcMathlib{B5} Fourier.shell_relations, FRC.Shell.Frame.W_sq', FRC.Shell.Frame.F_sq, FRC.Shell.Frame.J_sq"
   },
   {
    "paper": "6-four",
@@ -47646,7 +48228,7 @@
    "name": null,
    "lean_name": "scale_shift_covariance",
    "statement": "Scale-shift covariance: $S_r(M_m)=M_{m+r}$ for all $m$ and $r$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section~\\ref{sec:examples}).",
-   "source": "Prop.~\\ref{prop:meridian-scale}, Cor.~\\ref{cor:effective-step}\\newline \\pywit{fourier}{p06027}{D4}, \\leanwit{FrcCore}{p06027}{D4} \\lean{FRC.Shell.meridian\\_scale, FRC.Shell.meridian\\_step, FRC.Shell.scale\\_periodic, FRC.Shell.ladder13}",
+   "source": "Prop.~\\ref{prop:meridian-scale}\\newline \\pywit{fourier}{p06027}{D4}, \\leanwit{FrcCore}{p06027}{D4} \\lean{FRC.Shell.meridian\\_scale, FRC.Shell.meridian\\_step, FRC.Shell.scale\\_periodic, FRC.Shell.ladder13}",
    "page": "6-fourier/index.html#D4",
    "witness": {
     "py": {
@@ -47694,7 +48276,7 @@
     "p00022",
     "p06005"
    ],
-   "text": "Scale-shift covariance: $S_r(M_m)=M_{m+r}$ for all $m$ and $r$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section sec:examples). Prop. prop:meridian-scale, Cor. cor:effective-step p06027, FrcCore{D4} FRC.Shell.meridian_scale, FRC.Shell.meridian_step, FRC.Shell.scale_periodic, FRC.Shell.ladder13"
+   "text": "Scale-shift covariance: $S_r(M_m)=M_{m+r}$ for all $m$ and $r$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section sec:examples). Prop. prop:meridian-scale p06027, FrcCore{D4} FRC.Shell.meridian_scale, FRC.Shell.meridian_step, FRC.Shell.scale_periodic, FRC.Shell.ladder13"
   },
   {
    "paper": "6-four",
@@ -50777,7 +51359,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure.",
+   "statement": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of \\cite{akhtman2026s13}, on a torus, in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure.",
    "source": "Def.~\\ref{def:charts}",
    "page": "7-spacetime/index.html#E1",
    "witness": {
@@ -50785,7 +51367,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of [akhtman2026s13], in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure. Def. def:charts"
+   "text": "The drawing conventions of the figures: finite sets placed on a circle, on the orbital sphere of [akhtman2026s13], on a torus, in the laboratory's sky chart of the fibration [chart] and its host view of the cone [chart]; no row rests on a figure. Def. def:charts"
   },
   {
    "paper": "7-st",
@@ -63404,7 +63986,7 @@
    },
    "refs": [
     "p00040",
-    "p00043",
+    "p00207",
     "p21016"
    ],
    "text": "Mass is winding rate: the per-cell rate identification, one $Q_4$ datum in the channel $C_{\\p-1}\\cap C_{2(\\p+1)}=Q_4$, tested against its falsifier at the instance [s13]; $E=mc^2=hf$ an identity; the composite coefficient $m$ is derived (C1), not constitutive. Def. def:mass, pre:mass"
@@ -66226,8 +66808,8 @@
    },
    "refs": [
     "p00042",
-    "p00043",
     "p00184",
+    "p00207",
     "p22055"
    ],
    "text": "Energy is the winding index: the drive generator is the Hamiltonian, the index $k$ sits in the place of $E$, and $U^{-t}$ is the finite $e^{-\\mathrm{i}Et/\\hbar}$. Falsifier: a stationary state whose registered frequency is not its winding index ($E=hf$ failing), or vacuum dispersion (P4). Prop. prop:stationary, Rem. rem:energy"
@@ -70803,7 +71385,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The effectivity clause: among consistent, effectively axiomatised theories, interpreting $\\mathsf{Q}$ forces incompleteness. $\\Th(\\N)$ is complete at grade (i) only, presentable by nothing. Presburger arithmetic separates unbounded iteration from coding power: it is complete and decidable. Incompleteness tracks an effective description confronting a domain that codes its own syntax.",
+   "statement": "Effective axiomatisability: among consistent, effectively axiomatised theories, interpreting $\\mathsf{Q}$ forces incompleteness. $\\Th(\\N)$ is complete at grade (i) only, presentable by nothing. Presburger arithmetic separates unbounded iteration from coding power: it is complete and decidable. Incompleteness tracks an effective description confronting a domain that codes its own syntax.",
    "source": "Section~\\ref{sec:finiteness}; A1, A2",
    "page": "25-godel/index.html#H1",
    "witness": {
@@ -70814,7 +71396,7 @@
     "p25001",
     "p25002"
    ],
-   "text": "The effectivity clause: among consistent, effectively axiomatised theories, interpreting $\\mathsf{Q}$ forces incompleteness. $\\Th(\\N)$ is complete at grade (i) only, presentable by nothing. Presburger arithmetic separates unbounded iteration from coding power: it is complete and decidable. Incompleteness tracks an effective description confronting a domain that codes its own syntax. Section sec:finiteness; A1, A2"
+   "text": "Effective axiomatisability: among consistent, effectively axiomatised theories, interpreting $\\mathsf{Q}$ forces incompleteness. $\\Th(\\N)$ is complete at grade (i) only, presentable by nothing. Presburger arithmetic separates unbounded iteration from coding power: it is complete and decidable. Incompleteness tracks an effective description confronting a domain that codes its own syntax. Section sec:finiteness; A1, A2"
   },
   {
    "paper": "25-göd",
@@ -70905,8 +71487,8 @@
    "block": "H",
    "tag": "T",
    "name": null,
-   "lean_name": "determinacy_meets_effectivity_finite",
-   "statement": "Determinacy meets effectivity only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or effectivity over a fragment. Finitude delivers both, at grade (ii).",
+   "lean_name": "determinacy_meets_decidability_finite",
+   "statement": "Determinacy meets decidability only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or an effective axiomatisation of a fragment. Finitude delivers both, at grade (ii).",
    "source": "Cor.~\\ref{cor:determinacy}; H2, H3\\newline \\pywit{godel}{p25038}{H4}, \\leanwit{FrcCore}{p25038}{H4}, \\leanwit{FrcMathlib}{p25038}{H4} \\lean{Godel.card\\_relations, FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete}",
    "page": "25-godel/index.html#H4",
    "witness": {
@@ -70947,7 +71529,7 @@
     "p25036",
     "p25037"
    ],
-   "text": "Determinacy meets effectivity only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or effectivity over a fragment. Finitude delivers both, at grade (ii). Cor. cor:determinacy; H2, H3 p25038, FrcCore{H4}, FrcMathlib{H4} Godel.card_relations, FRC.Logic.so_theory_decidable, FRC.Logic.so_theory_complete"
+   "text": "Determinacy meets decidability only on the finite. The structures whose entire theory, second-order included under full semantics, is decidable are exactly the finite ones, in H3's sense of infinite (H2, H3). Infinite structures offer determinacy at grade (i) or an effective axiomatisation of a fragment. Finitude delivers both, at grade (ii). Cor. cor:determinacy; H2, H3 p25038, FrcCore{H4}, FrcMathlib{H4} Godel.card_relations, FRC.Logic.so_theory_decidable, FRC.Logic.so_theory_complete"
   },
   {
    "paper": "25-göd",
@@ -71077,7 +71659,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The diagnosis: the effectivity hypothesis is the agent, abstracted. The excess of truth over certificates is information about the certifier's finitude, not about the cardinality of the world. Consequences are drawn for Hilbert's programme, for the anti-mechanist argument and for the platonist moral. The row is a reading argued from J2.",
+   "statement": "The diagnosis: the hypothesis of effective axiomatisation is the agent, abstracted. The excess of truth over certificates is information about the certifier's finitude, not about the cardinality of the world. Consequences are drawn for Hilbert's programme, for the anti-mechanist argument and for the platonist moral. The row is a reading argued from J2.",
    "source": "Section~\\ref{sec:neutrality}; J2",
    "page": "25-godel/index.html#J3",
    "witness": {
@@ -71087,7 +71669,7 @@
    "refs": [
     "p25041"
    ],
-   "text": "The diagnosis: the effectivity hypothesis is the agent, abstracted. The excess of truth over certificates is information about the certifier's finitude, not about the cardinality of the world. Consequences are drawn for Hilbert's programme, for the anti-mechanist argument and for the platonist moral. The row is a reading argued from J2. Section sec:neutrality; J2"
+   "text": "The diagnosis: the hypothesis of effective axiomatisation is the agent, abstracted. The excess of truth over certificates is information about the certifier's finitude, not about the cardinality of the world. Consequences are drawn for Hilbert's programme, for the anti-mechanist argument and for the platonist moral. The row is a reading argued from J2. Section sec:neutrality; J2"
   },
   {
    "paper": "25-göd",
@@ -73193,8 +73775,8 @@
     "lean": []
    },
    "refs": [
-    "p00043",
-    "p00155"
+    "p00155",
+    "p00207"
    ],
    "text": "One fermion generation is the spinor $\\mathbf{16}$ of the rank-five internal frame $\\C^3\\oplus\\C^2$; mass is winding rate. \\Ssec:matter"
   },
@@ -84434,15 +85016,17 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The laboratory instances: the Subjects $\\p=13$, $173$, $1549$ with their Carriers $\\Om=233$, $30089$, $2408561$, and the sweep over the $21$ shells $\\p=4\\kap+1$ below $200$; the colour frame's full centre needs $\\p\\equiv5\\pmod{12}$, which the Subject $173$ and $12$ of the $21$ shells satisfy.",
+   "statement": "The laboratory instances: the Subjects $\\p=13$, $173$, $1549$ with their Carriers $\\Om=233$, $30089$, $2408561$, and the sweep over the $21$ shells $\\p=4\\kap+1$ below $200$. The three Carriers are $5$ modulo $12$ (B5). The unitary frame's centre has order three where $3$ divides $\\p+1$, on the Subject $173$ and $12$ of the $21$ shells.",
    "source": "Def.~\\ref{def:lab}",
    "page": "46-yangmills/index.html#A5",
    "witness": {
     "py": null,
     "lean": []
    },
-   "refs": [],
-   "text": "The laboratory instances: the Subjects $\\p=13$, $173$, $1549$ with their Carriers $\\Om=233$, $30089$, $2408561$, and the sweep over the $21$ shells $\\p=4\\kap+1$ below $200$; the colour frame's full centre needs $\\p\\equiv5\\pmod{12}$, which the Subject $173$ and $12$ of the $21$ shells satisfy. Def. def:lab"
+   "refs": [
+    "p46063"
+   ],
+   "text": "The laboratory instances: the Subjects $\\p=13$, $173$, $1549$ with their Carriers $\\Om=233$, $30089$, $2408561$, and the sweep over the $21$ shells $\\p=4\\kap+1$ below $200$. The three Carriers are $5$ modulo $12$ (B5). The unitary frame's centre has order three where $3$ divides $\\p+1$, on the Subject $173$ and $12$ of the $21$ shells. Def. def:lab"
   },
   {
    "paper": "46-ym",
@@ -84494,7 +85078,7 @@
    "tag": "I",
    "name": null,
    "lean_name": null,
-   "statement": "Two results of the interactions paper: the character lift (near the identity the frame's character equals the compact group's, to the stated order, with the lift's parametrisation imported as it stands) and the order $\\gcdop(3,q+1)$ of the centre of $\\SU(3,\\F_q)$.",
+   "statement": "Two results of the interactions paper: the character lift (near the identity the frame's character equals the compact group's, to the stated order; the lift's parametrisation is imported as it stands and is not unitary as it stands, its repair the interactions paper's) and the order $\\gcdop(3,q+1)$ of the centre of $\\SU(3,\\F_q)$.",
    "source": "Prop.~\\ref{prop:fields}; \\citep{akhtman2026fields}",
    "page": "46-yangmills/index.html#A8",
    "witness": {
@@ -84502,7 +85086,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "Two results of the interactions paper: the character lift (near the identity the frame's character equals the compact group's, to the stated order, with the lift's parametrisation imported as it stands) and the order $\\gcdop(3,q+1)$ of the centre of $\\SU(3,\\F_q)$. Prop. prop:fields; [akhtman2026fields]"
+   "text": "Two results of the interactions paper: the character lift (near the identity the frame's character equals the compact group's, to the stated order; the lift's parametrisation is imported as it stands and is not unitary as it stands, its repair the interactions paper's) and the order $\\gcdop(3,q+1)$ of the centre of $\\SU(3,\\F_q)$. Prop. prop:fields; [akhtman2026fields]"
   },
   {
    "paper": "46-ym",
@@ -84593,6 +85177,75 @@
   {
    "paper": "46-ym",
    "no": 46,
+   "rid": "46:A13",
+   "key": "p46052",
+   "label": "A13",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "lean_name": null,
+   "statement": "Finite Schur--Weyl duality: over a field with more than $r$ elements the slot permutations span the commutant of $\\mathrm{SL}(V)$ on $V^{\\otimes r}$ (Benson--Doty, Cor.~4.4); the characteristic-free first fundamental theorem: the algebraic group's tensor invariants are spanned by the pairing-and-determinant tensors (de Concini--Procesi); the good-filtration count: tensor products of $V$, $V^{*}$ have good filtrations, their invariants the compact singlet multiplicity (Jantzen II.4.16, 4.21). For C15.",
+   "source": "Thm.~\\ref{thm:window}; \\citep{bensondoty2009,cruz2019,deconcini1976,jantzen2003}",
+   "page": "46-yangmills/index.html#A13",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p46053"
+   ],
+   "text": "Finite Schur–Weyl duality: over a field with more than $r$ elements the slot permutations span the commutant of $\\mathrm{SL}(V)$ on $V^{\\otimes r}$ (Benson–Doty, Cor. 4.4); the characteristic-free first fundamental theorem: the algebraic group's tensor invariants are spanned by the pairing-and-determinant tensors (de Concini–Procesi); the good-filtration count: tensor products of $V$, $V^{*}$ have good filtrations, their invariants the compact singlet multiplicity (Jantzen II.4.16, 4.21). For C15. Thm. thm:window; [bensondoty2009,cruz2019,deconcini1976,jantzen2003]"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:A14",
+   "key": "p46059",
+   "label": "A14",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "lean_name": null,
+   "statement": "Green's theorem: for a finite group and a representation over $\\bar\\F_q$, the sum of the images under a fixed identification $\\iota$ of the eigenvalues is a virtual complex character (Green 1955); the central convolution by it, taken with the group's mean, acts on the $\\chi$-block of $\\C[G]$ as $a_\\chi/\\chi(1)$ with multiplicity $\\chi(1)^2$. For C19, C20.",
+   "source": "Thm.~\\ref{thm:subjects}; \\citep{green1955,quillen1972}",
+   "page": "46-yangmills/index.html#A14",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p46061",
+    "p46062"
+   ],
+   "text": "Green's theorem: for a finite group and a representation over $\\bar\\F_q$, the sum of the images under a fixed identification $\\iota$ of the eigenvalues is a virtual complex character (Green 1955); the central convolution by it, taken with the group's mean, acts on the $\\chi$-block of $\\C[G]$ as $a_\\chi/\\chi(1)$ with multiplicity $\\chi(1)^2$. For C19, C20. Thm. thm:subjects; [green1955,quillen1972]"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:A15",
+   "key": "p46060",
+   "label": "A15",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "lean_name": null,
+   "statement": "The generic character table of $\\SU(3,q)$ (Simpson and Frame 1973; CHEVIE): eight class types with centralizer orders and ten character families in the parameter $q$; verified at import by brute force at $q=2,3$ and by the orthogonality relations at nine $q$. For C19, C20, C23.",
+   "source": "Thm.~\\ref{thm:subjects}; \\citep{simpsonframe1973,chevie1996}",
+   "page": "46-yangmills/index.html#A15",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p46061",
+    "p46062",
+    "p46066"
+   ],
+   "text": "The generic character table of $\\SU(3,q)$ (Simpson and Frame 1973; CHEVIE): eight class types with centralizer orders and ten character families in the parameter $q$; verified at import by brute force at $q=2,3$ and by the orthogonality relations at nine $q$. For C19, C20, C23. Thm. thm:subjects; [simpsonframe1973,chevie1996]"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
    "rid": "46:B1",
    "key": "p46007",
    "label": "B1",
@@ -84600,7 +85253,7 @@
    "tag": "R",
    "name": null,
    "lean_name": null,
-   "statement": "A registration of a state, a channel with one singlet, by its frame is a line of the state's space that every frame element maps to itself; the residue is the number of such lines: photon $2$ (the split torus), gluon $0$ (the adjoint), baryon $1$, meson $1$, glueball $1$. Falsifier: a registered state of residue $0$.",
+   "statement": "A registration of a state by its frame is a line of the state's space that every frame element maps to itself; the residue is the number of such lines: photon $2$ (the split torus: two invariant lines with nontrivial characters, no fixed vector), gluon $0$ (the adjoint), baryon, meson and glueball $1$ (one fixed line each). Falsifier: a registered state of residue $0$.",
    "source": "Real.~\\ref{real:residue}; \\citep{akhtman2026hadrons}",
    "page": "46-yangmills/index.html#B1",
    "witness": {
@@ -84608,7 +85261,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "A registration of a state, a channel with one singlet, by its frame is a line of the state's space that every frame element maps to itself; the residue is the number of such lines: photon $2$ (the split torus), gluon $0$ (the adjoint), baryon $1$, meson $1$, glueball $1$. Falsifier: a registered state of residue $0$. Real. real:residue; [akhtman2026hadrons]"
+   "text": "A registration of a state by its frame is a line of the state's space that every frame element maps to itself; the residue is the number of such lines: photon $2$ (the split torus: two invariant lines with nontrivial characters, no fixed vector), gluon $0$ (the adjoint), baryon, meson and glueball $1$ (one fixed line each). Falsifier: a registered state of residue $0$. Real. real:residue; [akhtman2026hadrons]"
   },
   {
    "paper": "46-ym",
@@ -84640,7 +85293,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The finite theory is the transfer form of lattice gauge theory on the substrate: the $\\SU(3,\\Fp)$ connection on the Subject's cells, the drive as the time step, the action in $\\Z[\\zeta_M]$ with the framed-rational readout. Its chart objects are the weight $e^{-\\beta S}$ with real $\\beta$, the wrap operator of C8 and the scale of B2.",
+   "statement": "The finite theory is the transfer form of lattice gauge theory along the drive: a ring of plaquettes; the tally is the frame's mean over the rungs of the amplitudes (B4), its paired weight registered once; the gap: the transfer tally's second eigenvalue over its first. [chart]: counts of frame moves above $\\Om\\sim10^{123}$, the hypercubic lattice (A7), the wrap operator (C8), the scale (B2).",
    "source": "Def.~\\ref{def:theory}; \\citep{akhtman2026fields,akhtman2026quantum}",
    "page": "46-yangmills/index.html#B3",
    "witness": {
@@ -84649,9 +85302,55 @@
    },
    "refs": [
     "p46008",
-    "p46017"
+    "p46017",
+    "p46031",
+    "p46055"
    ],
-   "text": "The finite theory is the transfer form of lattice gauge theory on the substrate: the $\\SU(3,\\Fp)$ connection on the Subject's cells, the drive as the time step, the action in $\\Z[\\zeta_M]$ with the framed-rational readout. Its chart objects are the weight $e^{-\\beta S}$ with real $\\beta$, the wrap operator of C8 and the scale of B2. Def. def:theory; [akhtman2026fields,akhtman2026quantum]"
+   "text": "The finite theory is the transfer form of lattice gauge theory along the drive: a ring of plaquettes; the tally is the frame's mean over the rungs of the amplitudes (B4), its paired weight registered once; the gap: the transfer tally's second eigenvalue over its first. [chart]: counts of frame moves above $\\Om\\sim10^{123}$, the hypercubic lattice (A7), the wrap operator (C8), the scale (B2). Def. def:theory; [akhtman2026fields,akhtman2026quantum]"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:B4",
+   "key": "p46055",
+   "label": "B4",
+   "block": "B",
+   "tag": "D",
+   "name": null,
+   "lean_name": null,
+   "statement": "The spectral amplitude of a plaquette: $M=\\operatorname{lcm}(q^{2}-1,q^{2}-q+1)$, a chosen identification $\\iota$ of the roots of unity of order dividing $M$ in $\\F_{q^{6}}$ with the powers of $\\zeta_M$; for $U=U_sU_n$ by powers, $w(U)=\\sum_j\\iota(\\lambda_j)$ over the eigenvalues of $U_s$; a configuration's amplitude $\\prod_\\square w(U_\\square)$, a tally's paired weight $Z\\bar Z$. The configurations and the registered quantity are B3's.",
+   "source": "Def.~\\ref{def:amplitude}; \\citep{luebeck2020}",
+   "page": "46-yangmills/index.html#B4",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p46009"
+   ],
+   "text": "The spectral amplitude of a plaquette: $M=\\operatorname{lcm}(q^{2}-1,q^{2}-q+1)$, a chosen identification $\\iota$ of the roots of unity of order dividing $M$ in $\\F_{q^{6}}$ with the powers of $\\zeta_M$; for $U=U_sU_n$ by powers, $w(U)=\\sum_j\\iota(\\lambda_j)$ over the eigenvalues of $U_s$; a configuration's amplitude $\\prod_\\square w(U_\\square)$, a tally's paired weight $Z\\bar Z$. The configurations and the registered quantity are B3's. Def. def:amplitude; [luebeck2020]"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:B5",
+   "key": "p46063",
+   "label": "B5",
+   "block": "B",
+   "tag": "R",
+   "name": null,
+   "lean_name": null,
+   "statement": "Colour is the Carrier's. Its triality is the Carrier's relation $\\Om\\equiv5\\pmod{12}$, so $x^{2}+x+1$ has no root modulo $\\Om$. Every Subject reads colour in its unitary frame, $\\SU(3)$ over its own extension, a type that the realisation takes from the relation. Falsifier: a registered state on which the triality acts nontrivially, or colour factors off those of a unitary frame of degree three (P1).",
+   "source": "Real.~\\ref{real:colour}; \\citep{akhtman2026fields}",
+   "page": "46-yangmills/index.html#B5",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p46023"
+   ],
+   "text": "Colour is the Carrier's. Its triality is the Carrier's relation $\\Om\\equiv5\\pmod{12}$, so $x^{2}+x+1$ has no root modulo $\\Om$. Every Subject reads colour in its unitary frame, $\\SU(3)$ over its own extension, a type that the realisation takes from the relation. Falsifier: a registered state on which the triality acts nontrivially, or colour factors off those of a unitary frame of degree three (P1). Real. real:colour; [akhtman2026fields]"
   },
   {
    "paper": "46-ym",
@@ -84663,14 +85362,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "no_residue_zero_registration",
-   "statement": "The non-split torus has no shell eigenvalue. For every frame of the totality a norm-one element $a+b\\sqrt\\nu$ with $b\\neq0$ has no eigenvalue in $\\Fp$ (its discriminant $4\\nu b^{2}$ is a nonsquare), so no line of the plane is mapped to itself by every element of the torus; the split torus fixes exactly two lines.",
+   "statement": "The norm-one cycle has no shell eigenvalue. For every frame of the totality a norm-one element $a+b\\sqrt\\nu$ with $b\\neq0$ has no eigenvalue in $\\Fp$ (its discriminant $4\\nu b^{2}$ is a nonsquare), so no line of the plane is mapped to itself by every element of the cycle; the split torus fixes exactly two lines.",
    "source": "Prop.~\\ref{prop:torus}; rests on A5, B1\\newline \\pywit{yangmills}{p46010}{C1}, \\leanwit{FrcCore}{p46010}{C1} \\lean{FRC.YangMills.no\\_shell\\_eigenvalue, FRC.YangMills.scalar\\_of\\_im\\_zero, FRC.YangMills.split\\_fixed\\_lines}",
    "page": "46-yangmills/index.html#C1",
    "witness": {
     "py": {
      "href": "py/yangmills.html#p46010",
      "script": "p46_yangmills.py",
-     "line": 117,
+     "line": 116,
      "verdict": "pass"
     },
     "lean": [
@@ -84704,7 +85403,7 @@
     "p46005",
     "p46007"
    ],
-   "text": "The non-split torus has no shell eigenvalue. For every frame of the totality a norm-one element $a+b\\sqrt\\nu$ with $b\\neq0$ has no eigenvalue in $\\Fp$ (its discriminant $4\\nu b^{2}$ is a nonsquare), so no line of the plane is mapped to itself by every element of the torus; the split torus fixes exactly two lines. Prop. prop:torus; rests on A5, B1 p46010, FrcCore{C1} FRC.YangMills.no_shell_eigenvalue, FRC.YangMills.scalar_of_im_zero, FRC.YangMills.split_fixed_lines"
+   "text": "The norm-one cycle has no shell eigenvalue. For every frame of the totality a norm-one element $a+b\\sqrt\\nu$ with $b\\neq0$ has no eigenvalue in $\\Fp$ (its discriminant $4\\nu b^{2}$ is a nonsquare), so no line of the plane is mapped to itself by every element of the cycle; the split torus fixes exactly two lines. Prop. prop:torus; rests on A5, B1 p46010, FrcCore{C1} FRC.YangMills.no_shell_eigenvalue, FRC.YangMills.scalar_of_im_zero, FRC.YangMills.split_fixed_lines"
   },
   {
    "paper": "46-ym",
@@ -84716,14 +85415,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "triality_centre",
-   "statement": "The triality centre: the centre's order $\\gcdop(3,q+1)$ is $3$ exactly when $q\\equiv2\\pmod3$, for a shell when $q\\equiv5\\pmod{12}$. Among the Subjects $173$ has it, $13$ and $1549$ do not, and $12$ of $21$ shells below $200$ do; on $\\SU(3,\\F_2)$ it is found by enumeration. The Lean cell is the arithmetic of the order formula.",
-   "source": "Prop.~\\ref{prop:centre}; rests on A5, A8\\newline \\pywit{yangmills}{p46011}{C2}, \\leanwit{FrcCore}{p46011}{C2} \\lean{FRC.YangMills.centre\\_sweep, FRC.YangMills.lab\\_centres, FRC.YangMills.admissible\\_sweep}",
+   "statement": "The centre of the unitary frame: its order $\\gcdop(3,q+1)$ is $3$ exactly when $q\\equiv2\\pmod3$. Among the Subjects $173$ has it, $13$ and $1549$ do not, and $12$ of $21$ shells below $200$ do; on $\\SU(3,\\F_2)$ it is found by enumeration. The three Carriers are $5$ modulo $12$ (B5). The Lean cell is the arithmetic of the order formula.",
+   "source": "Prop.~\\ref{prop:centre}; rests on A5, A8, B5\\newline \\pywit{yangmills}{p46011}{C2}, \\leanwit{FrcCore}{p46011}{C2} \\lean{FRC.YangMills.centre\\_sweep, FRC.YangMills.lab\\_centres, FRC.YangMills.full\\_centre\\_sweep, FRC.YangMills.carrier\\_triality}",
    "page": "46-yangmills/index.html#C2",
    "witness": {
     "py": {
      "href": "py/yangmills.html#p46011",
      "script": "p46_yangmills.py",
-     "line": 138,
+     "line": 140,
      "verdict": "pass"
     },
     "lean": [
@@ -84746,18 +85445,27 @@
      {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/YangMills",
-      "name": "FRC.YangMills.admissible_sweep",
+      "name": "FRC.YangMills.full_centre_sweep",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Theme.html#FRC.YangMills.admissible_sweep"
+      "page": "lean/core/Theme.html#FRC.YangMills.full_centre_sweep"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.carrier_triality",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.carrier_triality"
      }
     ]
    },
    "refs": [
     "p46005",
-    "p46032"
+    "p46032",
+    "p46063"
    ],
-   "text": "The triality centre: the centre's order $\\gcdop(3,q+1)$ is $3$ exactly when $q\\equiv2\\pmod3$, for a shell when $q\\equiv5\\pmod{12}$. Among the Subjects $173$ has it, $13$ and $1549$ do not, and $12$ of $21$ shells below $200$ do; on $\\SU(3,\\F_2)$ it is found by enumeration. The Lean cell is the arithmetic of the order formula. Prop. prop:centre; rests on A5, A8 p46011, FrcCore{C2} FRC.YangMills.centre_sweep, FRC.YangMills.lab_centres, FRC.YangMills.admissible_sweep"
+   "text": "The centre of the unitary frame: its order $\\gcdop(3,q+1)$ is $3$ exactly when $q\\equiv2\\pmod3$. Among the Subjects $173$ has it, $13$ and $1549$ do not, and $12$ of $21$ shells below $200$ do; on $\\SU(3,\\F_2)$ it is found by enumeration. The three Carriers are $5$ modulo $12$ (B5). The Lean cell is the arithmetic of the order formula. Prop. prop:centre; rests on A5, A8, B5 p46011, FrcCore{C2} FRC.YangMills.centre_sweep, FRC.YangMills.lab_centres, FRC.YangMills.full_centre_sweep, FRC.YangMills.carrier_triality"
   },
   {
    "paper": "46-ym",
@@ -84769,14 +85477,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "residue_series_glueball",
-   "statement": "The residue series closes with the glueball. On the $216$ elements of $\\SU(3,\\F_2)$ over $\\F_4$ (no nontrivial character over $\\F_4$) the adjoint action fixes no nonzero traceless matrix (gluon $0$), the determinant is the one invariant of $\\Lambda^{3}$ (baryon $1$), and the commutants of the fundamental and the adjoint are one-dimensional (meson $1$, glueball $1$).",
+   "statement": "The residue series on the instance. On the $216$ elements of $\\SU(3,\\F_2)$ over $\\F_4$ (no nontrivial character over $\\F_4$) the adjoint action fixes no nonzero traceless matrix (gluon $0$), the determinant is the one invariant of $\\Lambda^{3}$ (baryon $1$), and the commutants of the fundamental and the adjoint are one-dimensional (meson $1$, glueball $1$).",
    "source": "Thm.~\\ref{thm:series}; rests on A9, B1\\newline \\pywit{yangmills}{p46012}{C3}, \\leanwit{FrcCore}{p46012}{C3} \\lean{FRC.YangMills.glueball\\_singlet}",
    "page": "46-yangmills/index.html#C3",
    "witness": {
     "py": {
      "href": "py/yangmills.html#p46012",
      "script": "p46_yangmills.py",
-     "line": 149,
+     "line": 152,
      "verdict": "pass"
     },
     "lean": [
@@ -84794,7 +85502,7 @@
     "p46007",
     "p46034"
    ],
-   "text": "The residue series closes with the glueball. On the $216$ elements of $\\SU(3,\\F_2)$ over $\\F_4$ (no nontrivial character over $\\F_4$) the adjoint action fixes no nonzero traceless matrix (gluon $0$), the determinant is the one invariant of $\\Lambda^{3}$ (baryon $1$), and the commutants of the fundamental and the adjoint are one-dimensional (meson $1$, glueball $1$). Thm. thm:series; rests on A9, B1 p46012, FrcCore{C3} FRC.YangMills.glueball_singlet"
+   "text": "The residue series on the instance. On the $216$ elements of $\\SU(3,\\F_2)$ over $\\F_4$ (no nontrivial character over $\\F_4$) the adjoint action fixes no nonzero traceless matrix (gluon $0$), the determinant is the one invariant of $\\Lambda^{3}$ (baryon $1$), and the commutants of the fundamental and the adjoint are one-dimensional (meson $1$, glueball $1$). Thm. thm:series; rests on A9, B1 p46012, FrcCore{C3} FRC.YangMills.glueball_singlet"
   },
   {
    "paper": "46-ym",
@@ -84806,14 +85514,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "colour_casimirs",
-   "statement": "The Casimir rationals of $\\mathfrak{su}(3)$, which the character lift assigns to the colour frame: $C_F=\\frac43$, $C_A=3$, $T_F=\\frac12$, $C_A/C_F=\\frac94$, and the colour factor of the three-quark singlet $\\sum\\lambda\\cdot\\lambda=-8$. The Lean cell is the arithmetic of the formula.",
-   "source": "Prop.~\\ref{prop:casimirs}; rests on A8\\newline \\pywit{yangmills}{p46013}{C4}, \\leanwit{FrcCore}{p46013}{C4} \\lean{FRC.YangMills.casimirs}",
+   "statement": "The Casimir rationals of the unitary frame from its torus exponents (C6): on the fundamental $(a,b,-a-b)$, on the adjoint their differences and two zeros; the second moments are $2$ and $12$ times $a^{2}+ab+b^{2}$, so $T_A/T_F=6$ and, with the chart's normalisation $T_F=\\frac12$, $C_F=\\frac43$, $C_A=3$, $C_A/C_F=\\frac94$; the three-quark singlet's colour factor is $-8$. No lift enters.",
+   "source": "Prop.~\\ref{prop:casimirs}; rests on B3, C6\\newline \\pywit{yangmills}{p46013}{C4}, \\leanwit{FrcCore}{p46013}{C4}, \\leanwit{FrcMathlib}{p46013}{C4} \\lean{FRC.YangMills.casimirs, FRC.YangMills.casimir\\_exponents, YangMills.casimir\\_exponents\\_all}",
    "page": "46-yangmills/index.html#C4",
    "witness": {
     "py": {
      "href": "py/yangmills.html#p46013",
      "script": "p46_yangmills.py",
-     "line": 181,
+     "line": 188,
      "verdict": "pass"
     },
     "lean": [
@@ -84824,13 +85532,30 @@
       "tier": 0,
       "ok": true,
       "page": "lean/core/Theme.html#FRC.YangMills.casimirs"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.casimir_exponents",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.casimir_exponents"
+     },
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/YangMills",
+      "name": "FRC.YangMills.casimir_exponents_all",
+      "tier": 1,
+      "ok": true,
+      "page": "lean/ml/YangMills.html#FRC.YangMills.casimir_exponents_all"
      }
     ]
    },
    "refs": [
-    "p46032"
+    "p46009",
+    "p46015"
    ],
-   "text": "The Casimir rationals of $\\mathfrak{su}(3)$, which the character lift assigns to the colour frame: $C_F=\\frac43$, $C_A=3$, $T_F=\\frac12$, $C_A/C_F=\\frac94$, and the colour factor of the three-quark singlet $\\sum\\lambda\\cdot\\lambda=-8$. The Lean cell is the arithmetic of the formula. Prop. prop:casimirs; rests on A8 p46013, FrcCore{C4} FRC.YangMills.casimirs"
+   "text": "The Casimir rationals of the unitary frame from its torus exponents (C6): on the fundamental $(a,b,-a-b)$, on the adjoint their differences and two zeros; the second moments are $2$ and $12$ times $a^{2}+ab+b^{2}$, so $T_A/T_F=6$ and, with the chart's normalisation $T_F=\\frac12$, $C_F=\\frac43$, $C_A=3$, $C_A/C_F=\\frac94$; the three-quark singlet's colour factor is $-8$. No lift enters. Prop. prop:casimirs; rests on B3, C6 p46013, FrcCore{C4}, FrcMathlib{C4} FRC.YangMills.casimirs, FRC.YangMills.casimir_exponents, YangMills.casimir_exponents_all"
   },
   {
    "paper": "46-ym",
@@ -84849,7 +85574,7 @@
     "py": {
      "href": "py/yangmills.html#p46014",
      "script": "p46_yangmills.py",
-     "line": 188,
+     "line": 197,
      "verdict": "pass"
     },
     "lean": [
@@ -84910,7 +85635,7 @@
     "py": {
      "href": "py/yangmills.html#p46015",
      "script": "p46_yangmills.py",
-     "line": 225,
+     "line": 234,
      "verdict": "pass"
     },
     "lean": [
@@ -84962,7 +85687,7 @@
     "py": {
      "href": "py/yangmills.html#p46016",
      "script": "p46_yangmills.py",
-     "line": 238,
+     "line": 247,
      "verdict": "pass"
     },
     "lean": [
@@ -85016,14 +85741,14 @@
    "tag": "D",
    "name": null,
    "lean_name": "minimal_wrap_declared",
-   "statement": "[chart] The minimal wrap, the candidate operator for the gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$. Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). It must reproduce the determinations of A1; C12 and P3 record that it does not.",
+   "statement": "[chart] The minimal wrap, the candidate operator for the mass gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$. Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). It must reproduce the determinations of A1; C12 and P3 record that it does not.",
    "source": "Def.~\\ref{def:wrap}; \\citep{akhtman2026hadrons}\\newline \\pywit{yangmills}{p46017}{C8}",
    "page": "46-yangmills/index.html#C8",
    "witness": {
     "py": {
      "href": "py/yangmills.html#p46017",
      "script": "p46_yangmills.py",
-     "line": 283,
+     "line": 341,
      "verdict": "pass"
     },
     "lean": []
@@ -85035,7 +85760,7 @@
     "p46036",
     "p46043"
    ],
-   "text": "[chart] The minimal wrap, the candidate operator for the gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$. Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). It must reproduce the determinations of A1; C12 and P3 record that it does not. Def. def:wrap; [akhtman2026hadrons] p46017"
+   "text": "[chart] The minimal wrap, the candidate operator for the mass gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$. Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). It must reproduce the determinations of A1; C12 and P3 record that it does not. Def. def:wrap; [akhtman2026hadrons] p46017"
   },
   {
    "paper": "46-ym",
@@ -85054,7 +85779,7 @@
     "py": {
      "href": "py/yangmills.html#p46030",
      "script": "p46_yangmills.py",
-     "line": 311,
+     "line": 369,
      "verdict": "pass"
     },
     "lean": [
@@ -85083,15 +85808,15 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "lean_name": "short_range_obstructed",
-   "statement": "[chart] The short-range route is obstructed: with the declared coupling $\\alpha_s(\\sig)=1.007$ the two-adjoint term has $C=C_A\\alpha_s=3.02$, above the Herbst bounds $2/\\pi$ and $4/\\pi$, so the cutoff cannot be removed; with the coupling run to the bound state's mass, fixed points exist above a threshold cutoff and none are found below: $3.54$, $3.08$, $2.61$ at $1$, $\\frac12$, $\\frac14$ cells.",
+   "lean_name": "short_range_fails",
+   "statement": "[chart] The short-range route of the chart fails: with the declared coupling $\\alpha_s(\\sig)=1.007$ the two-adjoint term has $C=C_A\\alpha_s=3.02$, above the Herbst bounds $2/\\pi$ and $4/\\pi$, so the cutoff cannot be removed; with the coupling run to the bound state's mass, fixed points $3.54$, $3.08$, $2.61$ at $r_c=1$, $\\frac12$, $\\frac14$ and none found at $\\frac18$ (a scan of $149$ energies).",
    "source": "Prop.~\\ref{prop:shortrange}; rests on A6, C4, C8, C9\\newline \\pywit{yangmills}{p46037}{C10}, \\leanwit{FrcCore}{p46037}{C10}, \\leanwit{FrcMathlib}{p46037}{C10} \\lean{FRC.YangMills.herbst\\_comparison, YangMills.herbst\\_real, YangMills.fixed\\_point\\_couplings}",
    "page": "46-yangmills/index.html#C10",
    "witness": {
     "py": {
      "href": "py/yangmills.html#p46037",
      "script": "p46_yangmills.py",
-     "line": 404,
+     "line": 466,
      "verdict": "pass"
     },
     "lean": [
@@ -85127,7 +85852,7 @@
     "p46017",
     "p46030"
    ],
-   "text": "[chart] The short-range route is obstructed: with the declared coupling $\\alpha_s(\\sig)=1.007$ the two-adjoint term has $C=C_A\\alpha_s=3.02$, above the Herbst bounds $2/\\pi$ and $4/\\pi$, so the cutoff cannot be removed; with the coupling run to the bound state's mass, fixed points exist above a threshold cutoff and none are found below: $3.54$, $3.08$, $2.61$ at $1$, $\\frac12$, $\\frac14$ cells. Prop. prop:shortrange; rests on A6, C4, C8, C9 p46037, FrcCore{C10}, FrcMathlib{C10} FRC.YangMills.herbst_comparison, YangMills.herbst_real, YangMills.fixed_point_couplings"
+   "text": "[chart] The short-range route of the chart fails: with the declared coupling $\\alpha_s(\\sig)=1.007$ the two-adjoint term has $C=C_A\\alpha_s=3.02$, above the Herbst bounds $2/\\pi$ and $4/\\pi$, so the cutoff cannot be removed; with the coupling run to the bound state's mass, fixed points $3.54$, $3.08$, $2.61$ at $r_c=1$, $\\frac12$, $\\frac14$ and none found at $\\frac18$ (a scan of $149$ energies). Prop. prop:shortrange; rests on A6, C4, C8, C9 p46037, FrcCore{C10}, FrcMathlib{C10} FRC.YangMills.herbst_comparison, YangMills.herbst_real, YangMills.fixed_point_couplings"
   },
   {
    "paper": "46-ym",
@@ -85138,15 +85863,15 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "lean_name": "plaquette_channel_obstructed",
-   "statement": "[chart] The plaquette channel is obstructed: with the series of A11 and the frame's $u=c_3(\\beta)$, $m/\\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$ ($\\beta=1$ to $3$), the orders agreeing within $1\\,\\%$; the bracket $3.4$--$3.7$ is reached only at $u=0.30$, where they disagree by $10\\,\\%$; the scaling region is $u\\approx0.42$.",
+   "lean_name": "plaquette_channel_fails",
+   "statement": "[chart] The plaquette channel of the chart fails: with A11's series and $u=c_3(\\beta)$ (C7), $m/\\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$, the orders $3$, $5$, $7$ agreeing within $1\\,\\%$; at $u=0.30$ they give $3.97$, $3.59$, $3.78$, the fifth alone in $3.4$--$3.7$; the scaling region is $u\\approx0.42$.",
    "source": "Prop.~\\ref{prop:plaquette}; rests on A7, A11, C7\\newline \\pywit{yangmills}{p46038}{C11}, \\leanwit{FrcCore}{p46038}{C11}, \\leanwit{FrcMathlib}{p46038}{C11} \\lean{FRC.YangMills.plaquette\\_channel, YangMills.plaquette\\_values}",
    "page": "46-yangmills/index.html#C11",
    "witness": {
     "py": {
      "href": "py/yangmills.html#p46038",
      "script": "p46_yangmills.py",
-     "line": 426,
+     "line": 493,
      "verdict": "pass"
     },
     "lean": [
@@ -85173,7 +85898,7 @@
     "p46031",
     "p46039"
    ],
-   "text": "[chart] The plaquette channel is obstructed: with the series of A11 and the frame's $u=c_3(\\beta)$, $m/\\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$ ($\\beta=1$ to $3$), the orders agreeing within $1 %$; the bracket $3.4$–$3.7$ is reached only at $u=0.30$, where they disagree by $10 %$; the scaling region is $u\\approx0.42$. Prop. prop:plaquette; rests on A7, A11, C7 p46038, FrcCore{C11}, FrcMathlib{C11} FRC.YangMills.plaquette_channel, YangMills.plaquette_values"
+   "text": "[chart] The plaquette channel of the chart fails: with A11's series and $u=c_3(\\beta)$ (C7), $m/\\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$, the orders $3$, $5$, $7$ agreeing within $1 %$; at $u=0.30$ they give $3.97$, $3.59$, $3.78$, the fifth alone in $3.4$–$3.7$; the scaling region is $u\\approx0.42$. Prop. prop:plaquette; rests on A7, A11, C7 p46038, FrcCore{C11}, FrcMathlib{C11} FRC.YangMills.plaquette_channel, YangMills.plaquette_values"
   },
   {
    "paper": "46-ym",
@@ -85192,7 +85917,7 @@
     "py": {
      "href": "py/yangmills.html#p46036",
      "script": "p46_yangmills.py",
-     "line": 335,
+     "line": 393,
      "verdict": "pass"
     },
     "lean": [
@@ -85239,7 +85964,7 @@
     "py": {
      "href": "py/yangmills.html#p46041",
      "script": "p46_yangmills.py",
-     "line": 205,
+     "line": 214,
      "verdict": "pass"
     },
     "lean": [
@@ -85303,6 +86028,394 @@
   {
    "paper": "46-ym",
    "no": 46,
+   "rid": "46:C14",
+   "key": "p46051",
+   "label": "C14",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "series_window_corollary",
+   "statement": "The series' window: the $\\beta^{k}$ coefficient of $c_3$ uses the invariant counts of degree $\\le k+1$, that of $c_8$ degree $\\le k+2$, so the frame's series equal the compact ones through $\\beta^{\\p-3}$, $\\beta^{\\p-4}$ by A9 and $\\beta^{2\\p-2}$, $\\beta^{2\\p-3}$ by C15; on the instance $M(4,1)=4$ against $3$ puts $c_3$'s $\\beta^{4}$ at $0$ and $c_8$'s $\\beta^{3}$ at $1/1728$.",
+   "source": "Cor.~\\ref{cor:window}; rests on A9, C7, C9, C15\\newline \\pywit{yangmills}{p46051}{C14}, \\leanwit{FrcCore}{p46051}{C14} \\lean{FRC.YangMills.series\\_window}",
+   "page": "46-yangmills/index.html#C14",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46051",
+     "script": "p46_yangmills.py",
+     "line": 272,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.series_window",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.series_window"
+     }
+    ]
+   },
+   "refs": [
+    "p46016",
+    "p46030",
+    "p46034",
+    "p46053"
+   ],
+   "text": "The series' window: the $\\beta^{k}$ coefficient of $c_3$ uses the invariant counts of degree $\\le k+1$, that of $c_8$ degree $\\le k+2$, so the frame's series equal the compact ones through $\\beta^{\\p-3}$, $\\beta^{\\p-4}$ by A9 and $\\beta^{2\\p-2}$, $\\beta^{2\\p-3}$ by C15; on the instance $M(4,1)=4$ against $3$ puts $c_3$'s $\\beta^{4}$ at $0$ and $c_8$'s $\\beta^{3}$ at $1/1728$. Cor. cor:window; rests on A9, C7, C9, C15 p46051, FrcCore{C14} FRC.YangMills.series_window"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:C15",
+   "key": "p46053",
+   "label": "C15",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "frame_window_theorem",
+   "statement": "The frame's window and first departure: for odd $\\p$ the frame's invariants in $\\mathbf3^{\\otimes a}\\otimes\\bar{\\mathbf3}^{\\otimes b}$ are the compact ones through degree $2\\p-1$ (the coordinate $\\SU(2)$ subgroups, A13), and the Frobenius tensor $v_\\p$ at $(4\\p-4,1)$ lies beyond them, so the first departure $d_*$ has $2\\p\\le d_*\\le4\\p-3$: $[26,49]$ on $\\F_{13}$, $[346,689]$ on $\\F_{173}$; $d_*=5$, $9$ on $\\F_2$, $\\F_3$.",
+   "source": "Thm.~\\ref{thm:window}; rests on A13, C9\\newline \\pywit{yangmills}{p46053}{C15}, \\leanwit{FrcCore}{p46053}{C15} \\lean{FRC.YangMills.frame\\_window}",
+   "page": "46-yangmills/index.html#C15",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46053",
+     "script": "p46_yangmills.py",
+     "line": 300,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.frame_window",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.frame_window"
+     }
+    ]
+   },
+   "refs": [
+    "p46030",
+    "p46052"
+   ],
+   "text": "The frame's window and first departure: for odd $\\p$ the frame's invariants in $\\mathbf3^{\\otimes a}\\otimes\\bar{\\mathbf3}^{\\otimes b}$ are the compact ones through degree $2\\p-1$ (the coordinate $\\SU(2)$ subgroups, A13), and the Frobenius tensor $v_\\p$ at $(4\\p-4,1)$ lies beyond them, so the first departure $d_*$ has $2\\p\\le d_*\\le4\\p-3$: $[26,49]$ on $\\F_{13}$, $[346,689]$ on $\\F_{173}$; $d_*=5$, $9$ on $\\F_2$, $\\F_3$. Thm. thm:window; rests on A13, C9 p46053, FrcCore{C15} FRC.YangMills.frame_window"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:C16",
+   "key": "p46056",
+   "label": "C16",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "spectral_amplitude_theorem",
+   "statement": "The amplitude's finite properties: every eigenvalue of the frame lies in $\\F_{q^{6}}$ with order dividing $M$; $w$ is a class function, $w(U^{-1})=\\overline{w(U)}$, $w(zU)=\\iota(z)w(U)$ for central $z$, and reduces to $\\operatorname{Tr}U$; if $\\p$ divides the order of $U$ then $U_s$ has eigenvalues $(\\lambda,\\lambda,\\lambda^{-2})$, $\\lambda^{q+1}=1$, so $w(U)=2\\eta+\\eta^{-2}$ and every unipotent has $w=3$; if $3\\mid q+1$ then $\\langle w\\rangle=0$ (B3).",
+   "source": "Prop.~\\ref{prop:amplitude}; rests on B3, B4\\newline \\pywit{yangmills}{p46056}{C16}, \\leanwit{FrcCore}{p46056}{C16} \\lean{FRC.YangMills.spectral\\_amplitude}",
+   "page": "46-yangmills/index.html#C16",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46056",
+     "script": "p46_yangmills.py",
+     "line": 526,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.spectral_amplitude",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.spectral_amplitude"
+     }
+    ]
+   },
+   "refs": [
+    "p46009",
+    "p46055"
+   ],
+   "text": "The amplitude's finite properties: every eigenvalue of the frame lies in $\\F_{q^{6}}$ with order dividing $M$; $w$ is a class function, $w(U^{-1})=\\overline{w(U)}$, $w(zU)=\\iota(z)w(U)$ for central $z$, and reduces to $\\operatorname{Tr}U$; if $\\p$ divides the order of $U$ then $U_s$ has eigenvalues $(\\lambda,\\lambda,\\lambda^{-2})$, $\\lambda^{q+1}=1$, so $w(U)=2\\eta+\\eta^{-2}$ and every unipotent has $w=3$; if $3\\mid q+1$ then $\\langle w\\rangle=0$ (B3). Prop. prop:amplitude; rests on B3, B4 p46056, FrcCore{C16} FRC.YangMills.spectral_amplitude"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:C17",
+   "key": "p46057",
+   "label": "C17",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "instance_amplitude_theorem",
+   "statement": "The amplitude on the instance: on $\\SU(3,\\F_2)$ the values $3$, $3\\zeta_3$, $3\\zeta_3^{2}$ on $64$ elements each and $0$ on $24$; the moments $\\frac1{216}\\sum w^{a}\\bar w^{b}$ at $(1,1)$, $(3,0)$, $(2,2)$ are $8$, $24$, $72$, not the invariant counts $1$, $1$, $2$ (C3); two involutions with $w=3$ have a product with $w=0$: $w$ is no complex character.",
+   "source": "Thm.~\\ref{thm:amplitude}; rests on B4, C3, C16\\newline \\pywit{yangmills}{p46057}{C17}, \\leanwit{FrcCore}{p46057}{C17} \\lean{FRC.YangMills.instance\\_amplitude}",
+   "page": "46-yangmills/index.html#C17",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46057",
+     "script": "p46_yangmills.py",
+     "line": 548,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.instance_amplitude",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.instance_amplitude"
+     }
+    ]
+   },
+   "refs": [
+    "p46012",
+    "p46055",
+    "p46056"
+   ],
+   "text": "The amplitude on the instance: on $\\SU(3,\\F_2)$ the values $3$, $3\\zeta_3$, $3\\zeta_3^{2}$ on $64$ elements each and $0$ on $24$; the moments $\\frac1{216}\\sum w^{a}\\bar w^{b}$ at $(1,1)$, $(3,0)$, $(2,2)$ are $8$, $24$, $72$, not the invariant counts $1$, $1$, $2$ (C3); two involutions with $w=3$ have a product with $w=0$: $w$ is no complex character. Thm. thm:amplitude; rests on B4, C3, C16 p46057, FrcCore{C17} FRC.YangMills.instance_amplitude"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:C18",
+   "key": "p46058",
+   "label": "C18",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "instance_transfer_theorem",
+   "statement": "The transfer tally on the instance: on $\\SU(3,\\F_2)$ the step of one plaquette, $(Kf)(x)=\\langle w(x^{-1}y)f(y)\\rangle_y$ (B3), has the eigenvalues $\\frac23$, $\\frac16$, $0$, $-\\frac13$ with multiplicities $9$, $36$, $144$, $27$ ($K(3K+1)(6K-1)(3K-2)=0$, $\\operatorname{tr}K=3$); the trivial channel is annihilated, $K\\mathbf1=0$ (C16), so the tally has no ratio to it; with the eigenvalue $-\\frac13$ it is not a positive operator.",
+   "source": "Thm.~\\ref{thm:transfer}; rests on B3, B4, C16, C17\\newline \\pywit{yangmills}{p46058}{C18}, \\leanwit{FrcCore}{p46058}{C18} \\lean{FRC.YangMills.instance\\_transfer}",
+   "page": "46-yangmills/index.html#C18",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46058",
+     "script": "p46_yangmills.py",
+     "line": 570,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.instance_transfer",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.instance_transfer"
+     }
+    ]
+   },
+   "refs": [
+    "p46009",
+    "p46055",
+    "p46056",
+    "p46057"
+   ],
+   "text": "The transfer tally on the instance: on $\\SU(3,\\F_2)$ the step of one plaquette, $(Kf)(x)=\\langle w(x^{-1}y)f(y)\\rangle_y$ (B3), has the eigenvalues $\\frac23$, $\\frac16$, $0$, $-\\frac13$ with multiplicities $9$, $36$, $144$, $27$ ($K(3K+1)(6K-1)(3K-2)=0$, $\\operatorname{tr}K=3$); the trivial channel is annihilated, $K\\mathbf1=0$ (C16), so the tally has no ratio to it; with the eigenvalue $-\\frac13$ it is not a positive operator. Thm. thm:transfer; rests on B3, B4, C16, C17 p46058, FrcCore{C18} FRC.YangMills.instance_transfer"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:C19",
+   "key": "p46061",
+   "label": "C19",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "subject_spectrum_theorem",
+   "statement": "The transfer tally on the Subjects: on $q=3,4,5,7,13,173,1549$ by exact integer arithmetic $w=\\chi_{q^2-q+1}+\\chi_{q^3+1}-\\chi_{(q+1)^2(q-1)}$ (first members of the three families, A15), so the step $K$ (B3) has the eigenvalues $\\frac1{q^2-q+1}$, $\\frac1{q^3+1}$, $-\\frac1{(q+1)^2(q-1)}$, $0$ with multiplicities the squared degrees; the frame's mean of $w$ is $0$, moment $3$; $K$ not positive.",
+   "source": "Thm.~\\ref{thm:subjects}; rests on A14, A15, B3, B4, C16\\newline \\pywit{yangmills}{p46061}{C19}, \\leanwit{FrcCore}{p46061}{C19} \\lean{FRC.YangMills.subject\\_spectrum, FRC.YangMills.degree\\_identity}",
+   "page": "46-yangmills/index.html#C19",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46061",
+     "script": "p46_yangmills.py",
+     "line": 600,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.subject_spectrum",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.subject_spectrum"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.degree_identity",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.degree_identity"
+     }
+    ]
+   },
+   "refs": [
+    "p46009",
+    "p46055",
+    "p46056",
+    "p46059",
+    "p46060"
+   ],
+   "text": "The transfer tally on the Subjects: on $q=3,4,5,7,13,173,1549$ by exact integer arithmetic $w=\\chi_{q^2-q+1}+\\chi_{q^3+1}-\\chi_{(q+1)^2(q-1)}$ (first members of the three families, A15), so the step $K$ (B3) has the eigenvalues $\\frac1{q^2-q+1}$, $\\frac1{q^3+1}$, $-\\frac1{(q+1)^2(q-1)}$, $0$ with multiplicities the squared degrees; the frame's mean of $w$ is $0$, moment $3$; $K$ not positive. Thm. thm:subjects; rests on A14, A15, B3, B4, C16 p46061, FrcCore{C19} FRC.YangMills.subject_spectrum, FRC.YangMills.degree_identity"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:C20",
+   "key": "p46062",
+   "label": "C20",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "ring_gap_theorem",
+   "statement": "The tally of the ring of plaquettes and the transfer tally's gap: on the frames of C19 the tally sums three characters' terms $\\chi(h_1)\\chi(h_2^{-1})$ on the boundary classes; one plaquette multiplies each by its eigenvalue; the largest eigenvalue belongs to one character and is $q+1$ times the next. Modulo $\\p$ the eigenvalues are $1$ and at fixed classes the tally is the same for every length.",
+   "source": "Thm.~\\ref{thm:ring}; rests on A14, A15, B3, C19\\newline \\pywit{yangmills}{p46062}{C20}, \\leanwit{FrcCore}{p46062}{C20} \\lean{FRC.YangMills.ring\\_gap}",
+   "page": "46-yangmills/index.html#C20",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46062",
+     "script": "p46_yangmills.py",
+     "line": 649,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.ring_gap",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.ring_gap"
+     }
+    ]
+   },
+   "refs": [
+    "p46009",
+    "p46059",
+    "p46060",
+    "p46061"
+   ],
+   "text": "The tally of the ring of plaquettes and the transfer tally's gap: on the frames of C19 the tally sums three characters' terms $\\chi(h_1)\\chi(h_2^{-1})$ on the boundary classes; one plaquette multiplies each by its eigenvalue; the largest eigenvalue belongs to one character and is $q+1$ times the next. Modulo $\\p$ the eigenvalues are $1$ and at fixed classes the tally is the same for every length. Thm. thm:ring; rests on A14, A15, B3, C19 p46062, FrcCore{C20} FRC.YangMills.ring_gap"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:C21",
+   "key": "p46064",
+   "label": "C21",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "spectrum_in_two_pi",
+   "statement": "The spectrum in $2\\pi=\\p-1$, the shell's phase cycle, certified by $2\\pi\\equiv-1$ and $\\p$-hard: on the three Subjects $d_1=4\\pi^{2}+2\\pi+1$, $d_2=(2\\pi+2)d_1$, $d_3=8\\pi(\\pi+1)^{2}$, and the gap of the transfer tally is $1/(2\\pi+2)$, a pure number, one expression on every Subject, with the residue $1$ on the shell. [chart] $0.1207$ at the classical $\\pi$.",
+   "source": "Cor.~\\ref{cor:pi}; rests on C20\\newline \\pywit{yangmills}{p46064}{C21}, \\leanwit{FrcCore}{p46064}{C21} \\lean{FRC.YangMills.spectrum\\_in\\_pi}",
+   "page": "46-yangmills/index.html#C21",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46064",
+     "script": "p46_yangmills.py",
+     "line": 670,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.spectrum_in_pi",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.spectrum_in_pi"
+     }
+    ]
+   },
+   "refs": [
+    "p46062"
+   ],
+   "text": "The spectrum in $2\\pi=\\p-1$, the shell's phase cycle, certified by $2\\pi\\equiv-1$ and $\\p$-hard: on the three Subjects $d_1=4\\pi^{2}+2\\pi+1$, $d_2=(2\\pi+2)d_1$, $d_3=8\\pi(\\pi+1)^{2}$, and the gap of the transfer tally is $1/(2\\pi+2)$, a pure number, one expression on every Subject, with the residue $1$ on the shell. [chart] $0.1207$ at the classical $\\pi$. Cor. cor:pi; rests on C20 p46064, FrcCore{C21} FRC.YangMills.spectrum_in_pi"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:C22",
+   "key": "p46065",
+   "label": "C22",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "product_channels",
+   "statement": "The product channels: where $3$ is invertible the frame fixes $A_n=\\sum_k(-1)^{n-k}\\binom nkM(k,k)$ dimensions of $\\mathbf8^{\\otimes n}$. On every Subject two mesons and three gluons have $d=2$ and $\\p^{2}+1$ invariant lines, a meson with a glueball $d=3$, two glueballs $d=8$. On $\\SU(3,\\F_2)$ three gluons have $d=7$ and two glueballs $d=57$: the instance departs beyond degree $4$.",
+   "source": "Prop.~\\ref{prop:products}; rests on B1, C3, C15\\newline \\pywit{yangmills}{p46065}{C22}, \\leanwit{FrcCore}{p46065}{C22} \\lean{FRC.YangMills.product\\_channel\\_counts}",
+   "page": "46-yangmills/index.html#C22",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46065",
+     "script": "p46_yangmills.py",
+     "line": 680,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.product_channel_counts",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.product_channel_counts"
+     }
+    ]
+   },
+   "refs": [
+    "p46007",
+    "p46012",
+    "p46053"
+   ],
+   "text": "The product channels: where $3$ is invertible the frame fixes $A_n=\\sum_k(-1)^{n-k}\\binom nkM(k,k)$ dimensions of $\\mathbf8^{\\otimes n}$. On every Subject two mesons and three gluons have $d=2$ and $\\p^{2}+1$ invariant lines, a meson with a glueball $d=3$, two glueballs $d=8$. On $\\SU(3,\\F_2)$ three gluons have $d=7$ and two glueballs $d=57$: the instance departs beyond degree $4$. Prop. prop:products; rests on B1, C3, C15 p46065, FrcCore{C22} FRC.YangMills.product_channel_counts"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:C23",
+   "key": "p46066",
+   "label": "C23",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "uniform_boundary",
+   "statement": "The tally with the same boundary links at every step, of the eigenvalues $g^{\\pm j},1$ and $g^{\\pm k},1$: the boundary classes of C20 move with the length $n$. On the three Subjects the tally reads $1+g^{(j+k)n}+g^{-(j+k)n}+g^{(j-k)n}+g^{-(j-k)n}$ at every regular length, with stated values at the others and the period $\\p-1$. The exponents are the links'; the three multipliers add none.",
+   "source": "Prop.~\\ref{prop:uniform}; rests on A15, C20\\newline \\pywit{yangmills}{p46066}{C23}, \\leanwit{FrcCore}{p46066}{C23} \\lean{FRC.YangMills.uniform\\_boundary\\_tally}",
+   "page": "46-yangmills/index.html#C23",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46066",
+     "script": "p46_yangmills.py",
+     "line": 697,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.uniform_boundary_tally",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.uniform_boundary_tally"
+     }
+    ]
+   },
+   "refs": [
+    "p46060",
+    "p46062"
+   ],
+   "text": "The tally with the same boundary links at every step, of the eigenvalues $g^{\\pm j},1$ and $g^{\\pm k},1$: the boundary classes of C20 move with the length $n$. On the three Subjects the tally reads $1+g^{(j+k)n}+g^{-(j+k)n}+g^{(j-k)n}+g^{-(j-k)n}$ at every regular length, with stated values at the others and the period $\\p-1$. The exponents are the links'; the three multipliers add none. Prop. prop:uniform; rests on A15, C20 p46066, FrcCore{C23} FRC.YangMills.uniform_boundary_tally"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
    "rid": "46:P1",
    "key": "p46023",
    "label": "P1",
@@ -85317,7 +86430,7 @@
     "py": {
      "href": "py/yangmills.html#p46023",
      "script": "p46_yangmills.py",
-     "line": 260,
+     "line": 318,
      "verdict": "pass"
     },
     "lean": [
@@ -85355,14 +86468,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "running_prediction",
-   "statement": "[chart] Between laboratory scales $1/\\alpha_s$ is linear in $\\ln\\mu$ with slope $b_0/2\\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\\alpha_s(\\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\\alpha_s(m_\\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$.",
+   "statement": "[chart] Between laboratory scales $1/\\alpha_s$ is linear in $\\ln(\\mu/\\mu_0)$ with slope $b_0/2\\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\\alpha_s(\\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\\alpha_s(m_\\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$.",
    "source": "Prop.~\\ref{prop:running}; rests on A3, A4, C5\\newline \\pywit{yangmills}{p46024}{P2}, \\leanwit{FrcCore}{p46024}{P2}, \\leanwit{FrcMathlib}{p46024}{P2} \\lean{FRC.YangMills.running\\_one\\_loop, FRC.YangMills.b0\\_values, YangMills.two\\_loop\\_tau, YangMills.one\\_loop\\_tau}",
    "page": "46-yangmills/index.html#P2",
    "witness": {
     "py": {
      "href": "py/yangmills.html#p46024",
      "script": "p46_yangmills.py",
-     "line": 272,
+     "line": 330,
      "verdict": "pass"
     },
     "lean": [
@@ -85405,7 +86518,7 @@
     "p46004",
     "p46014"
    ],
-   "text": "[chart] Between laboratory scales $1/\\alpha_s$ is linear in $\\ln\\mu$ with slope $b_0/2\\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\\alpha_s(\\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\\alpha_s(m_\\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$. Prop. prop:running; rests on A3, A4, C5 p46024, FrcCore{P2}, FrcMathlib{P2} FRC.YangMills.running_one_loop, FRC.YangMills.b0_values, YangMills.two_loop_tau, YangMills.one_loop_tau"
+   "text": "[chart] Between laboratory scales $1/\\alpha_s$ is linear in $\\ln(\\mu/\\mu_0)$ with slope $b_0/2\\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\\alpha_s(\\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\\alpha_s(m_\\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$. Prop. prop:running; rests on A3, A4, C5 p46024, FrcCore{P2}, FrcMathlib{P2} FRC.YangMills.running_one_loop, FRC.YangMills.b0_values, YangMills.two_loop_tau, YangMills.one_loop_tau"
   },
   {
    "paper": "46-ym",
@@ -85417,14 +86530,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "radial_ratio_prediction",
-   "statement": "[chart] The radial ratio of the operator form: $E_1/E_0=1.49$ for every $a$ and $\\varkappa$, a property of the operator form of C8 shared by every state the one-body wrap describes. Falsifier: a measured first radial ratio of such a state outside $1.49$ beyond its error. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ and favours the nonrelativistic $1.75$: the form fails for the glueball.",
+   "statement": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
    "source": "Prop.~\\ref{prop:radial}; rests on A1, C8, C12\\newline \\pywit{yangmills}{p46043}{P3}, \\leanwit{FrcCore}{p46043}{P3}, \\leanwit{FrcMathlib}{p46043}{P3} \\lean{FRC.YangMills.radial\\_ratio, YangMills.radial\\_ratio\\_confrontation}",
    "page": "46-yangmills/index.html#P3",
    "witness": {
     "py": {
      "href": "py/yangmills.html#p46043",
      "script": "p46_yangmills.py",
-     "line": 367,
+     "line": 426,
      "verdict": "pass"
     },
     "lean": [
@@ -85451,33 +86564,7 @@
     "p46017",
     "p46036"
    ],
-   "text": "[chart] The radial ratio of the operator form: $E_1/E_0=1.49$ for every $a$ and $\\varkappa$, a property of the operator form of C8 shared by every state the one-body wrap describes. Falsifier: a measured first radial ratio of such a state outside $1.49$ beyond its error. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ and favours the nonrelativistic $1.75$: the form fails for the glueball. Prop. prop:radial; rests on A1, C8, C12 p46043, FrcCore{P3}, FrcMathlib{P3} FRC.YangMills.radial_ratio, YangMills.radial_ratio_confrontation"
-  },
-  {
-   "paper": "46-ym",
-   "no": 46,
-   "rid": "46:T04",
-   "key": "p46042",
-   "label": "T04",
-   "block": "T",
-   "tag": "O",
-   "name": null,
-   "lean_name": null,
-   "statement": "The derivation of the form A12 from the finite theory: the vacuum energy of the transfer form (B3) in a background connection, its levels on the shell, and the coefficient of the quadratic term against the chart's logarithm read on the drive (B2). Until it exists, A12 stays an import and C5 rests on A4.",
-   "source": "Prop.~\\ref{prop:rationals}",
-   "page": "46-yangmills/index.html#T04",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p46004",
-    "p46008",
-    "p46009",
-    "p46014",
-    "p46040"
-   ],
-   "text": "The derivation of the form A12 from the finite theory: the vacuum energy of the transfer form (B3) in a background connection, its levels on the shell, and the coefficient of the quadratic term against the chart's logarithm read on the drive (B2). Until it exists, A12 stays an import and C5 rests on A4. Prop. prop:rationals"
+   "text": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball. Prop. prop:radial; rests on A1, C8, C12 p46043, FrcCore{P3}, FrcMathlib{P3} FRC.YangMills.radial_ratio, YangMills.radial_ratio_confrontation"
   },
   {
    "paper": "46-ym",
@@ -85496,7 +86583,7 @@
     "py": {
      "href": "py/yangmills.html#p46018",
      "script": "p46_yangmills.py",
-     "line": 117,
+     "line": 116,
      "verdict": "pass"
     },
     "lean": [
@@ -85536,14 +86623,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "singlets_only",
-   "statement": "Why only colour singlets are registered: under B1 each channel of the colour frame with one singlet has exactly one frame-invariant line, and the hadron paper's series of such channels ends at the glueball (C3); products with several singlets are sums of channels, not classified here.",
-   "source": "Sec.~\\ref{sec:discussion}~(X2); rests on B1, C3\\newline \\pywit{yangmills}{p46019}{X2}, \\leanwit{FrcCore}{p46019}{X2} \\lean{FRC.YangMills.residue\\_series\\_pieri, FRC.YangMills.glueball\\_singlet}",
+   "statement": "Why only colour singlets are registered: under B1 each channel of the unitary frame, a space whose frame-fixed subspace is a line, has exactly one frame-invariant line, and the hadron paper's series of such channels ends at the glueball (C3); products whose fixed subspace is larger are sums of channels, counted in C22.",
+   "source": "Sec.~\\ref{sec:discussion}~(X2); rests on B1, C3, C22\\newline \\pywit{yangmills}{p46019}{X2}, \\leanwit{FrcCore}{p46019}{X2} \\lean{FRC.YangMills.residue\\_series\\_pieri, FRC.YangMills.glueball\\_singlet}",
    "page": "46-yangmills/index.html#X2",
    "witness": {
     "py": {
      "href": "py/yangmills.html#p46019",
      "script": "p46_yangmills.py",
-     "line": 117,
+     "line": 116,
      "verdict": "pass"
     },
     "lean": [
@@ -85567,9 +86654,10 @@
    },
    "refs": [
     "p46007",
-    "p46012"
+    "p46012",
+    "p46065"
    ],
-   "text": "Why only colour singlets are registered: under B1 each channel of the colour frame with one singlet has exactly one frame-invariant line, and the hadron paper's series of such channels ends at the glueball (C3); products with several singlets are sums of channels, not classified here. Sec. sec:discussion (X2); rests on B1, C3 p46019, FrcCore{X2} FRC.YangMills.residue_series_pieri, FRC.YangMills.glueball_singlet"
+   "text": "Why only colour singlets are registered: under B1 each channel of the unitary frame, a space whose frame-fixed subspace is a line, has exactly one frame-invariant line, and the hadron paper's series of such channels ends at the glueball (C3); products whose fixed subspace is larger are sums of channels, counted in C22. Sec. sec:discussion (X2); rests on B1, C3, C22 p46019, FrcCore{X2} FRC.YangMills.residue_series_pieri, FRC.YangMills.glueball_singlet"
   },
   {
    "paper": "46-ym",
@@ -85581,7 +86669,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "[chart] Why one scale fixes the whole spectrum: the gauge sector has one $\\Om$-hard scale, $\\sig$ (Z1); every exact quantity of the sector is a sub-horizon ratio from the frame (C4--C7, C9), and the gap's ratio is read from the chart's operator (C8).",
+   "statement": "[chart] Why the sector has one scale: the gauge sector has one $\\Om$-hard scale, $\\sig$ (Z1); every exact quantity of the sector is a sub-horizon ratio from the frame (C4--C7, C9); the ratio $\\Delta/\\sig$ is a quantity of the chart's lattice, which the candidate operator (C8) does not supply (C12, P3).",
    "source": "Sec.~\\ref{sec:discussion}~(X3)",
    "page": "46-yangmills/index.html#X3",
    "witness": {
@@ -85593,9 +86681,11 @@
     "p46016",
     "p46017",
     "p46026",
-    "p46030"
+    "p46030",
+    "p46036",
+    "p46043"
    ],
-   "text": "[chart] Why one scale fixes the whole spectrum: the gauge sector has one $\\Om$-hard scale, $\\sig$ (Z1); every exact quantity of the sector is a sub-horizon ratio from the frame (C4–C7, C9), and the gap's ratio is read from the chart's operator (C8). Sec. sec:discussion (X3)"
+   "text": "[chart] Why the sector has one scale: the gauge sector has one $\\Om$-hard scale, $\\sig$ (Z1); every exact quantity of the sector is a sub-horizon ratio from the frame (C4–C7, C9); the ratio $\\Delta/\\sig$ is a quantity of the chart's lattice, which the candidate operator (C8) does not supply (C12, P3). Sec. sec:discussion (X3)"
   },
   {
    "paper": "46-ym",
@@ -85607,14 +86697,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "casimirs_are_measured",
-   "statement": "Why the colour factors take the values LEP measured: they are the Casimir rationals of the forced frame (C4), and the abelian alternative $C_A=0$, $C_F=1$ lies outside the measured brackets (A2).",
+   "statement": "Why the colour factors take the values LEP measured: they are the second moments of the unitary frame's torus exponents (C4), and the abelian alternative $C_A=0$, $C_F=1$ lies outside the measured brackets (A2).",
    "source": "Sec.~\\ref{sec:discussion}~(X4); rests on A2, C4\\newline \\pywit{yangmills}{p46021}{X4}, \\leanwit{FrcCore}{p46021}{X4} \\lean{FRC.YangMills.casimirs, FRC.YangMills.colour\\_factors\\_within}",
    "page": "46-yangmills/index.html#X4",
    "witness": {
     "py": {
      "href": "py/yangmills.html#p46021",
      "script": "p46_yangmills.py",
-     "line": 181,
+     "line": 188,
      "verdict": "pass"
     },
     "lean": [
@@ -85640,7 +86730,7 @@
     "p46002",
     "p46013"
    ],
-   "text": "Why the colour factors take the values LEP measured: they are the Casimir rationals of the forced frame (C4), and the abelian alternative $C_A=0$, $C_F=1$ lies outside the measured brackets (A2). Sec. sec:discussion (X4); rests on A2, C4 p46021, FrcCore{X4} FRC.YangMills.casimirs, FRC.YangMills.colour_factors_within"
+   "text": "Why the colour factors take the values LEP measured: they are the second moments of the unitary frame's torus exponents (C4), and the abelian alternative $C_A=0$, $C_F=1$ lies outside the measured brackets (A2). Sec. sec:discussion (X4); rests on A2, C4 p46021, FrcCore{X4} FRC.YangMills.casimirs, FRC.YangMills.colour_factors_within"
   },
   {
    "paper": "46-ym",
@@ -85652,7 +86742,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "[chart] Why the finite theory needs no ultraviolet renormalisation and the continuum chart does: every sum of the finite theory is finite (B3), so nothing diverges; the finite matching of the substrate's one scale to the chart's scales is $\\Om$-hard (Z1), and the chart's counterterms are its account of that matching.",
+   "statement": "[chart] Why the finite theory needs no ultraviolet renormalisation and the continuum chart does: every tally of the finite theory is a mean over a finite frame (B3), so nothing diverges; the finite matching of the substrate's one scale to the chart's scales is $\\Om$-hard (Z1), and the chart's counterterms are its account of that matching.",
    "source": "Sec.~\\ref{sec:discussion}~(X5)",
    "page": "46-yangmills/index.html#X5",
    "witness": {
@@ -85663,7 +86753,7 @@
     "p46009",
     "p46026"
    ],
-   "text": "[chart] Why the finite theory needs no ultraviolet renormalisation and the continuum chart does: every sum of the finite theory is finite (B3), so nothing diverges; the finite matching of the substrate's one scale to the chart's scales is $\\Om$-hard (Z1), and the chart's counterterms are its account of that matching. Sec. sec:discussion (X5)"
+   "text": "[chart] Why the finite theory needs no ultraviolet renormalisation and the continuum chart does: every tally of the finite theory is a mean over a finite frame (B3), so nothing diverges; the finite matching of the substrate's one scale to the chart's scales is $\\Om$-hard (Z1), and the chart's counterterms are its account of that matching. Sec. sec:discussion (X5)"
   },
   {
    "paper": "46-ym",
@@ -85675,7 +86765,7 @@
    "tag": "Ω",
    "name": null,
    "lean_name": null,
-   "statement": "The one scale of the gauge sector, $\\sig$, which fixes $\\LQCD$ up to a sub-horizon ratio, is a quantity of the horizon of observation and is $\\Om$-hard: no bounded observer computes it, and the paper reads it from the lattice ($\\sig\\approx420$--$460$~MeV [import]). Every dimensionless quantity of the sector is a sub-horizon ratio.",
+   "statement": "The one scale of the gauge sector, $\\sig$, which fixes $\\LQCD$ up to a sub-horizon ratio, is $\\Om$-hard: no bounded observer computes its absolute value, its ratio to the Planck energy. The paper reads its numeral from the lattice ($\\sig\\approx420$--$460$~MeV [import]). Every dimensionless quantity of the sector is a sub-horizon ratio.",
    "source": "Prop.~\\ref{prop:scale}; \\citep{akhtman2026fields,akhtman2026hadrons}",
    "page": "46-yangmills/index.html#Z1",
    "witness": {
@@ -85683,7 +86773,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The one scale of the gauge sector, $\\sig$, which fixes $\\LQCD$ up to a sub-horizon ratio, is a quantity of the horizon of observation and is $\\Om$-hard: no bounded observer computes it, and the paper reads it from the lattice ($\\sig\\approx420$–$460$ MeV [import]). Every dimensionless quantity of the sector is a sub-horizon ratio. Prop. prop:scale; [akhtman2026fields,akhtman2026hadrons]"
+   "text": "The one scale of the gauge sector, $\\sig$, which fixes $\\LQCD$ up to a sub-horizon ratio, is $\\Om$-hard: no bounded observer computes its absolute value, its ratio to the Planck energy. The paper reads its numeral from the lattice ($\\sig\\approx420$–$460$ MeV [import]). Every dimensionless quantity of the sector is a sub-horizon ratio. Prop. prop:scale; [akhtman2026fields,akhtman2026hadrons]"
   }
  ]
 }

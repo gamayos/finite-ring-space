@@ -26,6 +26,9 @@ theorem p00168 : ∀ {Ω : Nat} [FRC.Pos Ω] (S : Nat), FRC.Nat.isPrime Ω → �
 /-- p00170 — 00:B14. \textbf{The octant sector}: $C_8\subset C_{4\dS}$ exists exactly when $\dS$ is even (14:C6). -/
 theorem p00170 : ∀ {Ω : Nat} [FRC.Pos Ω] (S : Nat), FRC.Nat.isPrime Ω → Ω = (4 : Nat) * S + (1 : Nat) → ((∃ ζ, ζ ^ (8 : Nat) = (1 : FRC.Shell Ω) ∧ ζ ^ (4 : Nat) ≠ (1 : FRC.Shell Ω)) ↔ S % (2 : Nat) = (0 : Nat)) :=
   @FRC.Carrier.octant
+/-- p00204 — 00:B15. \textbf{The two-power tower}: in $\F_\Om$ the count $\Om-1$ is $-1$. Its $2^{j}$-th roots, the marks of level $j$, exist exactly when $2^{j+1}\mid4\dS$ and have order $2^{j+1}$; no count $y$ with $y^{2^{j}}<\Om-1$ is one (B8). Squaring raises a mark one level and closes at $(\Om-1)^{2}=1$. Levels $1$, $2$: B3, B14; on a shell, $\kap$ for $\dS$. -/
+theorem p00204 : ∀ {Ω : Nat} [FRC.Pos Ω] (S : Nat), FRC.Nat.isPrime Ω → Ω = (4 : Nat) * S + (1 : Nat) → FRC.Shell.ofNat (Ω - (1 : Nat)) = (-1 : FRC.Shell Ω) ∧ FRC.Shell.ofNat (Ω - (1 : Nat)) * FRC.Shell.ofNat (Ω - (1 : Nat)) = (1 : FRC.Shell Ω) ∧ (∀ (j : Nat), (∃ x, x ^ (2 : Nat) ^ j = (-1 : FRC.Shell Ω)) ↔ (2 : Nat) ^ (j + (1 : Nat)) ∣ (4 : Nat) * S) ∧ (∀ (j : Nat) (x : FRC.Shell Ω), x ^ (2 : Nat) ^ j = (-1 : FRC.Shell Ω) → x ^ (2 : Nat) ^ (j + (1 : Nat)) = (1 : FRC.Shell Ω) ∧ ∀ (m : Nat), x ^ m = (1 : FRC.Shell Ω) → (2 : Nat) ^ (j + (1 : Nat)) ∣ m) ∧ (∀ (j y : Nat), y ^ (2 : Nat) ^ j < Ω - (1 : Nat) → FRC.Shell.ofNat y ^ (2 : Nat) ^ j ≠ (-1 : FRC.Shell Ω)) ∧ ∀ (j : Nat) (x : FRC.Shell Ω), x ^ (2 : Nat) ^ (j + (1 : Nat)) = (-1 : FRC.Shell Ω) → (x * x) ^ (2 : Nat) ^ j = (-1 : FRC.Shell Ω) :=
+  @FRC.Carrier.two_power_tower
 -- end keys
 
 end FRC.Ledger

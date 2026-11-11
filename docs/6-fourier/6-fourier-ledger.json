@@ -3,7 +3,7 @@
  "tree": "6-fourier-20260716",
  "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
- "generated": "6 November 2026",
+ "generated": "11 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -99,7 +99,7 @@
      "label": "B5",
      "predicate": "$\\Wt^{2}=-J$, $\\Ft^{2}=J$, $\\Ft^{4}=I$: the normalized operator generates the four-cycle, on the six shells of Table~\\ref{tab:checks}.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:W-square}, Prop.~\\ref{prop:F-cycle}\\newline \\pywit{fourier}{p06012}{B5}, \\leanwit{FrcCore}{p06012}{B5}, \\leanwit{FrcMathlib}{p06012}{B5} \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_sq', FRC.Shell.Frame.F\\_sq, FRC.Shell.Frame.J\\_sq}",
+     "source": "Prop.~\\ref{prop:F-cycle}\\newline \\pywit{fourier}{p06012}{B5}, \\leanwit{FrcCore}{p06012}{B5}, \\leanwit{FrcMathlib}{p06012}{B5} \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_sq', FRC.Shell.Frame.F\\_sq, FRC.Shell.Frame.J\\_sq}",
      "key": "p06012",
      "name": "four_cycle_generated"
     },
@@ -239,7 +239,7 @@
      "label": "D4",
      "predicate": "Scale-shift covariance: $S_r(M_m)=M_{m+r}$ for all $m$ and $r$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section~\\ref{sec:examples}).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:meridian-scale}, Cor.~\\ref{cor:effective-step}\\newline \\pywit{fourier}{p06027}{D4}, \\leanwit{FrcCore}{p06027}{D4} \\lean{FRC.Shell.meridian\\_scale, FRC.Shell.meridian\\_step, FRC.Shell.scale\\_periodic, FRC.Shell.ladder13}",
+     "source": "Prop.~\\ref{prop:meridian-scale}\\newline \\pywit{fourier}{p06027}{D4}, \\leanwit{FrcCore}{p06027}{D4} \\lean{FRC.Shell.meridian\\_scale, FRC.Shell.meridian\\_step, FRC.Shell.scale\\_periodic, FRC.Shell.ladder13}",
      "key": "p06027",
      "name": "scale_shift_covariance"
     },

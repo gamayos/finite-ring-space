@@ -607,8 +607,8 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p28_flavour.ipynb",
         "label": "python",
-        "count": 34,
-        "title": "34 predicates checked, all passing: the notebook p28_flavour.ipynb on Google Colab, one cell per predicate"
+        "count": 35,
+        "title": "35 predicates checked, all passing: the notebook p28_flavour.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Flavour.lean",
@@ -833,4 +833,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "8 November 2026";
+const GENERATED = "11 November 2026";

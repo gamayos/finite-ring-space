@@ -45,7 +45,14 @@ class YangMillsTest(unittest.TestCase):
     def test_centre(self):
         for q in list(range(2, 60)) + [173, 1549]:          # the laboratory Subjects (the frame is the Subject's)
             self.assertEqual(Y.centre_order(q), 3 if (q + 1) % 3 == 0 else 1)
-            self.assertEqual(Y.admissible(q), q % 4 == 1 and q % 3 == 2)
+            self.assertEqual(Y.full_centre(q), q % 3 == 2)
+
+    def test_carrier_triality(self):
+        for _, Om in Y.LAB_PAIRS:                            # colour's triality is the Carrier's relation Ω ≡ 5 (mod 12) (46:B5)
+            c = Y.carrier_triality(Om); self.assertTrue(c["ok"], c)
+        self.assertTrue(Y.carrier_triality(173)["ok"])       # 173 ≡ 5 (mod 12)
+        for p in (13, 1549):                                 # 3 | p − 1: the cube roots of unity are residues of the shell
+            c = Y.carrier_triality(p); self.assertFalse(c["ok"]); self.assertFalse(c["5 mod 12"])
 
     def test_residue_series(self):
         F, G = Y.H.colour_group()
@@ -70,6 +77,17 @@ class YangMillsTest(unittest.TestCase):
         c = Y.casimirs(3); self.assertEqual((c["C_F"], c["C_A"], c["T_F"], c["ratio"]), (Q(4, 3), 3, Q(1, 2), Q(9, 4)))
         for nf in range(0, 20): self.assertEqual(Y.b0(nf), 11 - Q(2 * nf, 3))
         self.assertEqual(Y.casimirs(2)["C_F"], Q(3, 4))
+        e = Y.casimirs_from_exponents()                                       # round 03: the frame's own source, no lift
+        self.assertEqual((e["form_F"], e["form_A"], e["ratio_T"], e["T_A"]), ((2, 2, 2), (12, 12, 12), 6, 3))
+        self.assertEqual((e["C_F"], e["C_A"], e["ratio"], e["singlet"]), (Q(4, 3), 3, Q(9, 4), -8))
+        for p in (13, 173, 1549):
+            s = Y.split_torus_exponents(p); self.assertEqual(s["ratio"], 6); self.assertEqual(sum(s["exponents"]) % (p * p - 1), 0)
+        self.assertEqual(Y.split_torus_exponents(13)["exponents"], [1, 12, 155])
+
+    def test_series_window(self):
+        w = Y.series_window(6)
+        self.assertEqual({d: w["first_changed"][d] for d in range(2, 8)}, {2: (1, 0), 3: (2, 1), 4: (3, 2), 5: (4, 3), 6: (5, 4), 7: (None, 5)})
+        self.assertEqual(w["window"][13], (10, 9))
 
     def test_drive_exponent(self):
         for p in (13, 173):
@@ -138,6 +156,81 @@ class YangMillsTest(unittest.TestCase):
         self.assertTrue(all(T[u]["orders"][7] > 4.7 for u in ("0.06", "0.10", "0.15", "0.20")))
         self.assertLess(T["0.30"]["orders"][7], 4.0)
         self.assertAlmostEqual(float(pc["u_of_beta"]["1"]), 0.06013, places=5)      # against the exact SU(3) integral (0.06013)
+
+    def test_frame_window(self):
+        self.assertEqual(Y.first_departure_bounds(13), (26, 49)); self.assertEqual(Y.frame_window_orders(13), (25, 24, 23))
+        for q in (2, 3, 13): self.assertEqual(Y.binomial_table(q, q), Y.binomial_table_expected(q, q))
+        self.assertEqual(Y.row_identity(2), (162, 0)); self.assertTrue(Y.frobenius_tensor_fixed(2))
+        self.assertEqual(Y.frobenius_weights(3), [(1, 1, 5), (1, 5, 1), (5, 1, 1)]); self.assertEqual(len(Y.frobenius_tensor(3)), 1008)
+        M = Y.frame_counts_small_field(2, 5); self.assertEqual(M[(4, 1)], 4); self.assertEqual(M[(2, 2)], 2); self.assertEqual(M[(3, 0)], 1)
+
+    def test_spectral_amplitude(self):
+        self.assertEqual(Y.conductor(2), 3); self.assertEqual(Y.conductor(13), 26376)
+        self.assertEqual(Y.z3_mul((0, 1), (0, 1)), (-1, -1)); self.assertEqual(Y.z3_conj((0, 1)), (-1, -1)); self.assertEqual(Y.z3_pow((0, 1), 3), (1, 0))
+        n, E, pw = Y.nonsplit_amplitude_exponents(13); self.assertEqual((n, E), (157, [1, 12, 144])); self.assertEqual(pw[0], 3); self.assertEqual(len(pw), 7)
+        self.assertTrue(all(t["gcd_nonsplit_cycle"] == 1 for t in Y.subject_phase_table()))
+        amp = Y.spectral_amplitude_instance()
+        self.assertEqual(amp["distribution"], {(3, 0): 64, (0, 3): 64, (-3, -3): 64, (0, 0): 24}); self.assertEqual(amp["sum"], (0, 0))
+        self.assertEqual(amp["moments"][(1, 1)], (8, 0)); self.assertEqual(amp["classes"], 16)
+        T = Y.transfer_tally_instance(amp)
+        self.assertTrue(T["annihilated"] and T["K_one_zero"]); self.assertEqual(T["multiplicities"], {144: 9, 36: 36, 0: 144, -72: 27})
+        self.assertEqual(Y.transfer_annihilator_coefficients(), [0, 373248, -7776, -108, 1])
+        from fractions import Fraction
+        self.assertEqual(T["mean"]["eigenvalues"], {Fraction(2, 3): 9, Fraction(1, 6): 36, Fraction(0): 144, Fraction(-1, 3): 27})   # the step K = A/216
+        self.assertEqual((T["mean"]["trace"], T["mean"]["trace2"]), ((3, 0), (8, 0))); self.assertEqual(Y.transfer_annihilator_mean(), [0, 2, -9, -27, 54])
+
+    def test_subject_spectrum(self):
+        expansion = {"a1": 1, "a2": 1, "a3": -1, "moment": 3, "trivial": 0}
+        for q in (3, 4, 5, 7, 13, 173, 1549): self.assertEqual(Y.amplitude_coefficients(q), expansion)
+        for q in (3, 5, 13):
+            d = Y.amplitude_coefficients_direct(q); self.assertEqual({k: d[k] for k in expansion}, expansion)
+        self.assertEqual(Y.amplitude_coefficients_direct(13)["classes"], 184)
+        s = Y.transfer_spectrum_subject(13); self.assertTrue(s["ok"]); self.assertEqual(s["levels"], (5167344, 369096, -344929)); self.assertEqual(s["zero"], 800885251)
+        from fractions import Fraction
+        self.assertEqual(s["eigenvalues"], (Fraction(1, 157), Fraction(1, 2198), Fraction(-1, 2352)))                 # the eigenvalues of the step with the frame's mean
+        self.assertEqual(Y.transfer_spectrum_subject(1549)["eigenvalues"], (Fraction(1, 2397853), Fraction(1, 3716672150), Fraction(-1, 3719070000)))
+        self.assertEqual(Y.transfer_spectrum_subject(1549)["levels"], (13822563889181430000, 8917783154310600, -8912033462496097))
+        self.assertEqual(Y.transfer_spectrum_subject(3)["levels"], (864, 216, -189)); self.assertEqual(Y.su3_order(3), 6048)
+
+    def test_ring(self):
+        from fractions import Fraction
+        for q in (3, 4, 5, 7, 13, 173, 1549):
+            g = Y.ring_gap(q); self.assertTrue(g["ok"]); self.assertEqual(g["gap"], Fraction(1, q + 1))
+            self.assertEqual(g["third"], Fraction(q * q - q + 1, (q + 1) ** 2 * (q - 1)))
+        self.assertEqual(Y.ring_step(13)["multipliers"], (Fraction(1, 157), Fraction(1, 2198), Fraction(-1, 2352)))
+        self.assertIsNone(Y.split_torus_characters(3, 1)); self.assertIsNone(Y.split_torus_characters(13, 6))
+        self.assertEqual(Y.split_torus_characters(13, 1), {"chi1": (0,), "chi2": (1, 11), "chi3": ()})
+        h = Fraction(1, 2198)
+        self.assertEqual(Y.ring_step_split(13, 1, 2), {0: Fraction(1, 157), 11: h, 3: h, 9: h, 1: h})
+        for p, v in ((13, 10), (173, 163), (1549, 1367)):                       # the tally modulo p, the same for every length of the ring
+            r = Y.ring_residue(p, 1, 2); self.assertTrue(r["ok"]); self.assertEqual((r["tally"], r["paired"]), (v, v * v % p))
+        self.assertEqual(Y.ring_residue(7, 1, 2, g=3)["tally"], 0)              # 7/344 at q = 7, the direct mean over the rungs
+        G = Y.ring_gluing_instance(); self.assertTrue(G["ok"]); self.assertEqual(G["values"][0]["mean"], (8, 0))
+        self.assertEqual(G["values"][0]["brute"], (373248, 0))                  # the same as a sum over the 216² pairs of rungs
+
+    def test_spectrum_in_pi(self):
+        from fractions import Fraction
+        for p, pi in ((13, 6), (173, 86), (1549, 774)):                         # 46:C21, the spectrum in 2π = p − 1
+            s = Y.spectrum_in_pi(p); self.assertTrue(s["ok"]); self.assertEqual(s["pi"], pi)
+            self.assertEqual(s["gap"], Fraction(1, 2 * pi + 2)); self.assertEqual(s["degrees"][2], 8 * pi * (pi + 1) ** 2)
+            self.assertTrue(Fraction(12072, 100000) < s["chart"][0] < s["chart"][1] < Fraction(12073, 100000))
+        self.assertEqual(Y.spectrum_in_pi(13)["degrees"], (157, 2198, 2352))
+
+    def test_product_channels(self):
+        pc = Y.product_channels(); self.assertTrue(pc["ok"])                    # 46:C22
+        self.assertEqual(pc["A"], [1, 0, 1, 2, 8]); self.assertEqual(pc["instance"]["fixed"], [0, 1, 7, 57])
+        self.assertEqual(pc["channels"]["two glueballs"], (8, 57))
+        self.assertEqual(Y.frame_counts_small_field(2, 8, pairs=[(3, 3), (4, 4)]), {(3, 3): 11, (4, 4): 92})    # the same counts by the solver on words
+
+    def test_uniform_boundary(self):
+        u = Y.uniform_boundary_tally(13, 1, 2); self.assertTrue(u["ok"])        # 46:C23
+        self.assertEqual(u["values"], (10, 0, 0, 2, 5, 12, 5, 2, 0, 0, 10, 3)); self.assertEqual(u["others"], (3, 6, 9, 12))
+        self.assertEqual(u["paired"][:4], (9, 0, 0, 4))
+        self.assertEqual(Y.table_type4(13, 7), {"eigenvalues": (7, 7, 0), "chi1": [(-12, 7), (1, 0)], "chi2": [(14, 7)], "chi3": []})
+        for p, first in ((173, 43), (1549, 387)):
+            v = Y.uniform_boundary_tally(p, 1, 2); self.assertTrue(v["ok"]); self.assertEqual(v["others"], (first, 2 * first, 3 * first, 4 * first))
+        w = Y.uniform_boundary_tally(13, 2, 3); self.assertTrue(w["ok"]); self.assertEqual(len(w["others"]), 4 + 6 - 2)
+        self.assertEqual(w["values"][11], 3)
 
     def test_ledger_green_and_markers(self):
         from frc.ledgers import p46_yangmills as L

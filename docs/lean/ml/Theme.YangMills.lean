@@ -42,20 +42,30 @@ theorem faulhaber_third_all (N : ℕ) : 3 * sq N = (N : ℤ) * ((N : ℤ) ^ 2 - 
     push_cast
     ring
 
+/-- 46:C4 — the Casimir rationals from the frame's torus exponents, for every exponent pair: the second moment of the adjoint's
+exponents (the six differences of the fundamental's `(a, b, −a−b)`) is six times the fundamental's, `T_A/T_F = 6`, hence
+`C_A/C_F = 9/4` with no lift; the core decides it on the Subjects `13`, `173`, `1549`. -/
+theorem casimir_exponents_all (a b : ℤ) :
+    2 * ((a - b) ^ 2 + (2 * a + b) ^ 2 + (a + 2 * b) ^ 2) = 6 * (a ^ 2 + b ^ 2 + (a + b) ^ 2) := by
+  ring
+
 /-! ## 46:P3 — the radial ratio's confrontations -/
 
 /-- 46:P3 [chart] — **the radial ratio against the lattice**, as rational brackets. With the chart's reading
 `E₁/E₀ = 1.4915` of the operator form (`chart_yangmills.wrap_spectrum`, the same on every `a`, `ϰ`): it lies within half a
 standard deviation of the 1999 ratio `1.544(112)` (`6.50(44)/4.21(11)`, Morningstar–Peardon); the 2020 ratio `1.720(16)`
-(`5.855(41)/3.405(21)`, Athenodorou–Teper) excludes it by more than `14` standard deviations, while the nonrelativistic
-Airy ratio `4.08795/2.33811` (`FRC.HadronsML.airy_ratio`, in `(1.748, 1.7485)`) lies within two of them; the nucleon's
-`1440/939` lies within `3 %` of the reading. -/
+(`5.855(41)/3.405(21)`, Athenodorou–Teper; its error `0.016` takes the two masses as uncorrelated) excludes it by more than `14`
+standard deviations, and by more than `10` of the largest error any correlation allows, the two propagated terms added
+(`41/3405 + 5855·21/3405²`, the anticorrelated case); the nonrelativistic Airy ratio `4.08795/2.33811`
+(`FRC.HadronsML.airy_ratio`, in `(1.748, 1.7485)`) lies within two of the quoted error; the nucleon's `1440/939` lies within
+`3 %` of the reading. -/
 theorem radial_ratio_confrontation (r : ℚ) (hr : r = 1.4915) :
-    |r - 1.544| < 0.5 * 0.112 ∧ 14 * 0.016 < 1.720 - r ∧ |(4.08795 : ℚ) / 2.33811 - 1.720| < 2 * 0.016 ∧
+    |r - 1.544| < 0.5 * 0.112 ∧ 14 * 0.016 < 1.720 - r ∧ 10 * ((41 : ℚ) / 3405 + 5855 * 21 / 3405 ^ 2) < 5855 / 3405 - r ∧
+    |(4.08795 : ℚ) / 2.33811 - 1.720| < 2 * 0.016 ∧
     (1.748 : ℚ) < 4.08795 / 2.33811 ∧ |(1440 : ℚ) / 939 - r| < 0.03 * r := by
   subst hr
   have h := FRC.HadronsML.airy_ratio
-  refine ⟨by rw [abs_lt]; constructor <;> norm_num, by norm_num, by rw [abs_lt]; constructor <;> linarith [h.1, h.2], h.1, ?_⟩
+  refine ⟨by rw [abs_lt]; constructor <;> norm_num, by norm_num, by norm_num, by rw [abs_lt]; constructor <;> linarith [h.1, h.2], h.1, ?_⟩
   rw [abs_lt]; constructor <;> norm_num
 
 end FRC.YangMillsML
