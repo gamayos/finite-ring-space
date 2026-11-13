@@ -3725,6 +3725,7 @@
 'FRC.YangMills.running_one_loop' does not depend on any axioms
 'FRC.YangMills.adjoint_no_invariant' does not depend on any axioms
 'FRC.YangMills.residue_series_pieri' does not depend on any axioms
+'FRC.YangMills.residue_zero_states' does not depend on any axioms
 'FRC.YangMills.mmul' does not depend on any axioms
 'FRC.YangMills.tr' does not depend on any axioms
 'FRC.YangMills.jVec' does not depend on any axioms
@@ -3756,6 +3757,12 @@
 'FRC.YangMills.cycleMat' does not depend on any axioms
 'FRC.YangMills.cycleFacts' does not depend on any axioms
 'FRC.YangMills.frame_cycle_trace' does not depend on any axioms
+'FRC.YangMills.pmTr' does not depend on any axioms
+'FRC.YangMills.pmConj' does not depend on any axioms
+'FRC.YangMills.antiDiag' does not depend on any axioms
+'FRC.YangMills.rootMat' does not depend on any axioms
+'FRC.YangMills.rootFacts' does not depend on any axioms
+'FRC.YangMills.frame_root_elements' does not depend on any axioms
 'FRC.YangMills.instance_amplitude' does not depend on any axioms
 'FRC.YangMills.instance_transfer' does not depend on any axioms
 'FRC.YangMills.su3Order' does not depend on any axioms
@@ -4341,6 +4348,7 @@
 'FRC.Ledger.p46023' does not depend on any axioms
 'FRC.Ledger.p46024' does not depend on any axioms
 'FRC.Ledger.p46030' does not depend on any axioms
+'FRC.Ledger.p46034' does not depend on any axioms
 'FRC.Ledger.p46036' does not depend on any axioms
 'FRC.Ledger.p46037' does not depend on any axioms
 'FRC.Ledger.p46041' does not depend on any axioms
@@ -4359,6 +4367,7 @@
 'FRC.Ledger.p46068' does not depend on any axioms
 'FRC.Ledger.p46071' does not depend on any axioms
 'FRC.Ledger.p46072' does not depend on any axioms
+'FRC.Ledger.p46076' does not depend on any axioms
 'FRC.Shell.meridian' does not depend on any axioms
 'FRC.Shell.scale' does not depend on any axioms
 'FRC.Shell.map_scale_aux' does not depend on any axioms
@@ -5363,6 +5372,7 @@
 'FRC.Hadrons.vector_meson_nonet_spacing' does not depend on any axioms
 'FRC.Hadrons.absolute_octet_decuplet_spectrum' does not depend on any axioms
 'FRC.Hadrons.strange_constituent_gap' does not depend on any axioms
+'FRC.YangMills.frame_multiplicities' does not depend on any axioms
 'FRC.YangMills.no_residue_zero_registration' does not depend on any axioms
 'FRC.YangMills.triality_centre' does not depend on any axioms
 'FRC.YangMills.residue_series_glueball' does not depend on any axioms
@@ -5394,6 +5404,7 @@
 'FRC.YangMills.colour_factors_prediction' does not depend on any axioms
 'FRC.YangMills.running_prediction' does not depend on any axioms
 'FRC.YangMills.radial_ratio_prediction' does not depend on any axioms
+'FRC.YangMills.no_free_quark_or_gluon' does not depend on any axioms
 'FRC.Master.finitude' does not depend on any axioms
 'FRC.Master.completeness_of_totality' does not depend on any axioms
 'FRC.Master.incompleteness_of_observation' does not depend on any axioms

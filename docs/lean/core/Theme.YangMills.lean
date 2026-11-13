@@ -666,7 +666,7 @@ theorem running_one_loop :
     threeB0 5 = 23 ∧ threeB0 4 = 25 := by
   decide +kernel
 
-/-! ## The explanations (46:X1, X2) -/
+/-! ## The explanations (46:X1, X2) and the states of residue 0 (46:P4) -/
 
 /-- 46:X1 — the adjoint has no invariant: `𝟛 ⊗ 𝟛̄` has one singlet (the trace) and the adjoint `𝟠` is its complement,
 `E[χχ̄] − 1 = 0`; with `no_shell_eigenvalue` (the torus fixes no line) no registration singles a gluon out. -/
@@ -677,6 +677,11 @@ theorem adjoint_no_invariant : mult 1 1 = 1 ∧ mult 1 1 - 1 = 0 ∧ lookup (1, 
 /-- 46:X2 — one invariant line each: baryon `E[χ³] = 1`, meson `E[χχ̄] = 1`, glueball `E[(χχ̄ − 1)²] = 2 − 2 + 1 = 1`, by
 the Pieri multiplicities. -/
 theorem residue_series_pieri : mult 3 0 = 1 ∧ mult 1 1 = 1 ∧ mult 2 2 - 2 * mult 1 1 + 1 = 1 := by
+  decide
+
+/-- 46:P4 — a quark and a gluon are states of residue `0`: the triplet and its dual have no singlet, `mult 1 0 = mult 0 1 = 0`,
+and the adjoint has none, `mult 1 1 - 1 = 0`, by the Pieri multiplicities. -/
+theorem residue_zero_states : mult 1 0 = 0 ∧ mult 0 1 = 0 ∧ mult 1 1 - 1 = 0 := by
   decide
 
 
@@ -804,7 +809,7 @@ theorem frame_window :
     (2 * 13 - 2 = 24 ∧ 2 * 13 - 3 = 23 ∧ 7 < 2 * 13 - 3) ∧ (4 * 2 - 3 = 5 ∧ 4 * 3 - 3 = 9) := by
   decide
 
-/-! ## The spectral amplitude of a plaquette (46:B4, C16, C17, C18)
+/-! ## The spectral amplitude of a plaquette (46:B4, C16, C17, C18) and the frame's root elements (46:A9)
 
 The amplitude `w(U)` of 46-yangmills, Definition def:amplitude, the sum of the three phases of the class of `U_s`, takes its values in the
 cyclotomic ring of two formal roots of unity, of the orders `q² − 1` and `q² − q + 1`; on the enumerable instance `q = 2` the ring is `Z[ζ₃]`, written here as integer pairs `a + b z` with
@@ -911,6 +916,50 @@ theorem frame_cycle_trace :
       pmPow 64 (cycleMat 173 166 160) 4251 ≠ pmScal 1 ∧ pmPow 64 (cycleMat 173 166 160) 2289 ≠ pmScal 1 ∧
       pmPow 64 (cycleMat 173 166 160) 273 ≠ pmScal 1) ∧
     (cycleFacts 1549 1275 523 2397853 = true ∧ cycleMat 1549 1275 523 ≠ pmScal 1) := by
+  decide +kernel
+
+/-! ### The frame's root elements (46:A9)
+
+Proposition prop:mult(iii) of 46-yangmills uses the elements `x(λ, μ) = 1 + λE₀₁ − λ̄E₁₂ + μE₀₂`, `μ + μ̄ + λλ̄ = 0`, of the frame of the
+Hermitian form `ξ₀η̄₂ + ξ₁η̄₁ + ξ₂η̄₀`, and their transposes. Decided here on the three Subjects, over the plane `F_p(√2)`: the two
+elements at `(λ, μ) = (1, −1/2 + √2)` and `(√2, 1 + √2)`, with `−1/2` the residue `(p − 1)/2`, have determinant `1` and preserve the
+form, as do their transposes; `6` is invertible on the shell; the plane has more than `a + b + min(a, b)` elements for every degree
+`a + b ≤ 2p − 1`; and the degree `9` of the python check satisfies `9 + 2 ≤ 13`, the smallest Subject. The counts of the fixed vectors are the python check's. -/
+
+/-- The transpose of a `3 × 3` matrix over the plane. -/
+def pmTr {p : Nat} [Pos p] (A : PMat p) : PMat p := (List.range 9).map fun n => pmGet A (3 * (n % 3) + n / 3)
+
+/-- The entrywise conjugate, the Frobenius of the plane over the shell. -/
+def pmConj {p : Nat} [Pos p] (A : PMat p) : PMat p := A.map Ext.conj
+
+/-- The matrix of the Hermitian form `ξ₀η̄₂ + ξ₁η̄₁ + ξ₂η̄₀`. -/
+def antiDiag (p : Nat) [Pos p] : PMat p := [0, 0, 1, 0, 1, 0, 1, 0, 0]
+
+/-- The root element `x(λ, μ) = 1 + λE₀₁ − λ̄E₁₂ + μE₀₂`. -/
+def rootMat {p : Nat} [Pos p] (l m : Ext p 2) : PMat p := [1, l, m, 0, 1, -(Ext.conj l), 0, 0, 1]
+
+/-- The facts of one root element `x = x(λ, μ)`: `μ + μ̄ + λλ̄ = 0`; `det x = 1`; `xᵀ J x̄ = J`; the transpose satisfies the same
+equation; `x ≠ 1`. -/
+def rootFacts {p : Nat} [Pos p] (l m : Ext p 2) : Bool :=
+  let x := rootMat l m
+  decide (m + Ext.conj m + l * Ext.conj l = 0)
+    && decide (pmDet x = 1)
+    && decide (pmMul (pmMul (pmTr x) (antiDiag p)) (pmConj x) = antiDiag p)
+    && decide (pmMul (pmMul x (antiDiag p)) (pmConj (pmTr x)) = antiDiag p)
+    && decide (x ≠ pmScal 1)
+
+/-- 46:A9 — the frame's root elements on the three Subjects, where `−1/2` is the residue `6`, `86`, `774`: `x(1, −1/2 + √2)` and
+`x(√2, 1 + √2)` have determinant `1` and preserve the Hermitian form of the antidiagonal, as do their transposes; `6` is invertible
+on the shell, with the inverses `11`, `29`, `1291`; `(2p − 1) + (p − 1) < p²`, so the plane has more than `a + b + min(a, b)` elements
+through the degree `2p − 1`; and `9 + 2 ≤ 13`. -/
+theorem frame_root_elements :
+    (rootFacts (planePoint 13 1 0) (planePoint 13 6 1) = true ∧ rootFacts (planePoint 13 0 1) (planePoint 13 1 1) = true) ∧
+    (rootFacts (planePoint 173 1 0) (planePoint 173 86 1) = true ∧ rootFacts (planePoint 173 0 1) (planePoint 173 1 1) = true) ∧
+    (rootFacts (planePoint 1549 1 0) (planePoint 1549 774 1) = true ∧
+      rootFacts (planePoint 1549 0 1) (planePoint 1549 1 1) = true) ∧
+    ((6 : Shell 13) * 11 = 1 ∧ (6 : Shell 173) * 29 = 1 ∧ (6 : Shell 1549) * 1291 = 1) ∧
+    (25 + 12 < 13 * 13 ∧ 345 + 172 < 173 * 173 ∧ 3097 + 1548 < 1549 * 1549) ∧
+    9 + 2 ≤ 13 := by
   decide +kernel
 
 end FrameCycle

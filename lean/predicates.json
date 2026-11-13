@@ -1138,6 +1138,7 @@
  "46-yangmills": {
   "module": "YangMills",
   "FrcCore": {
+   "46:A9": "YangMills",
    "46:C1": "YangMills",
    "46:C10": "YangMills",
    "46:C11": "YangMills",
@@ -1166,6 +1167,7 @@
    "46:P1": "YangMills",
    "46:P2": "YangMills",
    "46:P3": "YangMills",
+   "46:P4": "YangMills",
    "46:X1": "YangMills",
    "46:X2": "YangMills",
    "46:X4": "YangMills"

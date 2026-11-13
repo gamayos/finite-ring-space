@@ -3738,6 +3738,7 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.running_one_loop
 #print axioms FRC.YangMills.adjoint_no_invariant
 #print axioms FRC.YangMills.residue_series_pieri
+#print axioms FRC.YangMills.residue_zero_states
 #print axioms FRC.YangMills.mmul
 #print axioms FRC.YangMills.tr
 #print axioms FRC.YangMills.jVec
@@ -3769,6 +3770,12 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.cycleMat
 #print axioms FRC.YangMills.cycleFacts
 #print axioms FRC.YangMills.frame_cycle_trace
+#print axioms FRC.YangMills.pmTr
+#print axioms FRC.YangMills.pmConj
+#print axioms FRC.YangMills.antiDiag
+#print axioms FRC.YangMills.rootMat
+#print axioms FRC.YangMills.rootFacts
+#print axioms FRC.YangMills.frame_root_elements
 #print axioms FRC.YangMills.instance_amplitude
 #print axioms FRC.YangMills.instance_transfer
 #print axioms FRC.YangMills.su3Order
@@ -4354,6 +4361,7 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p46023
 #print axioms FRC.Ledger.p46024
 #print axioms FRC.Ledger.p46030
+#print axioms FRC.Ledger.p46034
 #print axioms FRC.Ledger.p46036
 #print axioms FRC.Ledger.p46037
 #print axioms FRC.Ledger.p46041
@@ -4372,6 +4380,7 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p46068
 #print axioms FRC.Ledger.p46071
 #print axioms FRC.Ledger.p46072
+#print axioms FRC.Ledger.p46076
 #print axioms FRC.Shell.meridian
 #print axioms FRC.Shell.scale
 #print axioms FRC.Shell.map_scale_aux
@@ -5376,6 +5385,7 @@ import FrcBridge.Subject
 #print axioms FRC.Hadrons.vector_meson_nonet_spacing
 #print axioms FRC.Hadrons.absolute_octet_decuplet_spectrum
 #print axioms FRC.Hadrons.strange_constituent_gap
+#print axioms FRC.YangMills.frame_multiplicities
 #print axioms FRC.YangMills.no_residue_zero_registration
 #print axioms FRC.YangMills.triality_centre
 #print axioms FRC.YangMills.residue_series_glueball
@@ -5407,6 +5417,7 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.colour_factors_prediction
 #print axioms FRC.YangMills.running_prediction
 #print axioms FRC.YangMills.radial_ratio_prediction
+#print axioms FRC.YangMills.no_free_quark_or_gluon
 #print axioms FRC.Master.finitude
 #print axioms FRC.Master.completeness_of_totality
 #print axioms FRC.Master.incompleteness_of_observation

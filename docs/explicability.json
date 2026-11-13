@@ -1,5 +1,5 @@
 {
- "generated": "12 November 2026",
+ "generated": "13 November 2026",
  "rows": [
   {
    "id": "00:X1",
@@ -1229,7 +1229,7 @@
    "key": "p46018",
    "tag": "T",
    "lean_name": "gluon_massless_unregistered",
-   "predicate": "Why the gluon is massless yet never seen alone: under the realisation B1 a gluon is drive-invariant (massless, A6) and its space has no frame-invariant line (C1, C3), so no registration singles it out. The row explicates the form of the confinement rule; it does not derive confinement.",
+   "predicate": "Why the gluon is massless yet never seen alone: under B1 a gluon is drive-invariant (massless, A6) and its space has no frame-invariant line (C1, C3), so no registration singles it out. The row explicates the form of the confinement rule; it does not derive confinement.",
    "source": "Sec.~\\ref{sec:discussion}~(X1); rests on A6, B1, C1, C3\\newline \\pywit{yangmills}{p46018}{X1}, \\leanwit{FrcCore}{p46018}{X1} \\lean{FRC.YangMills.no\\_shell\\_eigenvalue, FRC.YangMills.adjoint\\_no\\_invariant}",
    "master": [],
    "restated": [],

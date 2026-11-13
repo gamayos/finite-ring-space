@@ -1,5 +1,5 @@
 {
- "generated": "12 November 2026",
+ "generated": "13 November 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -811,7 +811,7 @@
    "tag": "T",
    "lean_name": "colour_factors_prediction",
    "predicate": "The colour factors of the strong interaction are $C_A=3$, $C_F=\\frac43$, $C_A/C_F=\\frac94$ (C4). Falsifier: a measured $C_A/C_F$ outside $\\frac94$ beyond its error. Confrontation: LEP's $2.89(21)$, $1.30(9)$, $2.22(11)$ (A2), each within one standard deviation.",
-   "source": "Prop.~\\ref{prop:colour}; rests on A2, C4\\newline \\pywit{yangmills}{p46023}{P1}, \\leanwit{FrcCore}{p46023}{P1} \\lean{FRC.YangMills.casimirs, FRC.YangMills.colour\\_factors\\_within}",
+   "source": "Prop.~\\ref{prop:colour}; rests on A2, B5, C4\\newline \\pywit{yangmills}{p46023}{P1}, \\leanwit{FrcCore}{p46023}{P1} \\lean{FRC.YangMills.casimirs, FRC.YangMills.colour\\_factors\\_within}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -825,7 +825,7 @@
    "tag": "T",
    "lean_name": "running_prediction",
    "predicate": "[chart] Between laboratory scales $1/\\alpha_s$ is linear in $\\ln(\\mu/\\mu_0)$ with slope $b_0/2\\pi$, $b_0$ the window rational (C5, A4). Falsifier: a measured $1/\\alpha_s(\\mu)$ off the linear law beyond the imported two-loop correction. Confrontation: one loop gives $\\alpha_s(m_\\tau)=0.279$ against $0.312(15)$, $2.2$ standard deviations below; with the imported $b_1$ the run gives $0.313$.",
-   "source": "Prop.~\\ref{prop:running}; rests on A3, A4, C5\\newline \\pywit{yangmills}{p46024}{P2}, \\leanwit{FrcCore}{p46024}{P2}, \\leanwit{FrcMathlib}{p46024}{P2} \\lean{FRC.YangMills.running\\_one\\_loop, FRC.YangMills.b0\\_values, YangMills.two\\_loop\\_tau, YangMills.one\\_loop\\_tau}",
+   "source": "Prop.~\\ref{prop:running}; rests on A3, A4, B5, C5\\newline \\pywit{yangmills}{p46024}{P2}, \\leanwit{FrcCore}{p46024}{P2}, \\leanwit{FrcMathlib}{p46024}{P2} \\lean{FRC.YangMills.running\\_one\\_loop, FRC.YangMills.b0\\_values, YangMills.two\\_loop\\_tau, YangMills.one\\_loop\\_tau}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -840,6 +840,20 @@
    "lean_name": "radial_ratio_prediction",
    "predicate": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
    "source": "Prop.~\\ref{prop:radial}; rests on A1, C8, C12\\newline \\pywit{yangmills}{p46043}{P3}, \\leanwit{FrcCore}{p46043}{P3}, \\leanwit{FrcMathlib}{p46043}{P3} \\lean{FRC.YangMills.radial\\_ratio, YangMills.radial\\_ratio\\_confrontation}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "46-yangmills/index.html"
+  },
+  {
+   "id": "46:P4",
+   "paper": "46-ym",
+   "label": "P4",
+   "key": "p46076",
+   "tag": "T",
+   "lean_name": "no_free_quark_or_gluon",
+   "predicate": "No state of residue $0$ is registered in isolation: on every Subject the triplet and the adjoint of the unitary frame have no invariant line (A9), so there is no free quark and no free gluon. Falsifier: a confirmed free particle that carries colour, such as a fractional electric charge. Confrontation: the searches for free quarks are negative (A19).",
+   "source": "Prop.~\\ref{prop:free}; rests on A6, A9, A19, B1, B5\\newline \\pywit{yangmills}{p46076}{P4}, \\leanwit{FrcCore}{p46076}{P4} \\lean{FRC.YangMills.residue\\_zero\\_states}",
    "master": [],
    "restated": [],
    "witnessed": false,
