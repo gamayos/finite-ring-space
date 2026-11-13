@@ -120,7 +120,7 @@ theorem gravitational_channel_entangles : (∀ (φ : ℝ), (Complex.exp (↑(φ 
 /-- 22:C25 (p22041) — Values exist only as Subject-relative quotient phases, and the construction attains the Tsirelson strength $2\sqrt2$ [chart] as a ring identity; Kochen--Specker therefore poses no separate threat to a theory that denies frame-independent values while carrying full quantum correlation strength. -/
 theorem values_subject_relative_phases : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ) :=
   @FRC.LedgerML.p22041
-/-- 22:X1 (p22044) — \textbf{The Born rule} is a coincidence count on its stationary domain, where it is uniform and is the unique window lift of its Carrier shadow; its quadratic form is the pair-count identity (C7), not a postulate, and the non-uniform statistics are read through the ninth realisation and the framed readout (C11). -/
+/-- 22:X1 (p22044) — \textbf{The Born rule} is a coincidence count on its stationary domain, where it is uniform and is the unique window lift of its Carrier shadow; its quadratic form is the pair-count identity (C7), not a postulate, and the non-uniform statistics are read through the stratum-sampling realisation B9 and the framed readout (C11). -/
 theorem born_rule_coincidence_count : ∀ (z : GaussianInt), z * star z = ↑(Zsqrtd.norm z) ∧ (0 : ℤ) ≤ Zsqrtd.norm z :=
   @FRC.LedgerML.p22044
 /-- 22:X7 (p22050) — \textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\zeta_8+\zeta_8^{-1})=2\sqrt2$ [chart], so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary. -/

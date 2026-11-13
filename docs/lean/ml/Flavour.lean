@@ -116,7 +116,7 @@ theorem reactor_angle_leading_order : ∀ (Vus s13 : ℝ), Vus = 0.2243 → s13 
 /-- 28:C10 (p28021) — TM2 selected: the trivial $C_3$ character $(1,1,1)/\sqrt3$ is the protected column, so $\cos\delta_{\mathrm{CP}}$ is locked to $\theta_{23}$ by \eqref{eq:tm2}; the magic Jarlskog $J=1/(6\sqrt3)$ is maximal CP, the sign fixed by the drive. -/
 theorem tm2_selected : ((1 : ℝ) / ((6 : ℝ) * √(3 : ℝ)) = √(3 : ℝ) / (18 : ℝ) ∧ ((1 : ℝ) / ((6 : ℝ) * √(3 : ℝ))) ^ (2 : ℕ) = (1 / 108 : ℝ)) ∧ (∀ (s13 : ℝ), Real.cos ((2 : ℝ) * (Real.pi / (4 : ℝ))) / Real.sin ((2 : ℝ) * (Real.pi / (4 : ℝ))) * (((1 : ℝ) - (2 : ℝ) * s13 ^ (2 : ℕ)) / (s13 * √((2 : ℝ) - (3 : ℝ) * s13 ^ (2 : ℕ)))) = (0 : ℝ) ∧ Real.arccos (0 : ℝ) = Real.pi / (2 : ℝ)) ∧ ∀ (s13sq : ℚ), s13sq = 2215e-5 → 0.3408 < (1 : ℚ) / ((3 : ℚ) * ((1 : ℚ) - s13sq)) ∧ (1 : ℚ) / ((3 : ℚ) * ((1 : ℚ) - s13sq)) < 0.3410 ∧ 0.307 < (1 : ℚ) / ((3 : ℚ) * ((1 : ℚ) - s13sq)) :=
   @FRC.LedgerML.p28021
-/-- 28:X1 (p28025) — \textbf{The Koide ratio} is exactly $2/3$ given the quarter-turn realisation B5, the cube-root generation orbit bisected at the quarter-turn ($\rho^2=2^{-1}$), an exact value rather than an unexplained empirical coincidence. -/
+/-- 28:X1 (p28025) — \textbf{The Koide ratio} is exactly $2/3$ given the quarter-turn naming B5, the cube-root generation orbit bisected at the quarter-turn ($\rho^2=2^{-1}$), an exact value rather than an unexplained empirical coincidence. -/
 theorem koide_ratio_quarter_turn : ∀ (me mmu mtau : ℝ), me = 0.51099895 → mmu = 105.6583755 → mtau = 1776.86 → |(me + mmu + mtau) / (√me + √mmu + √mtau) ^ (2 : ℕ) - (2 / 3 : ℝ)| < (1 / 100000 : ℝ) :=
   @FRC.LedgerML.p28025
 /-- 28:X2 (p28026) — \textbf{The up-quark Koide value} is $5/6$ in framed arithmetic ($0.849$ in the working scheme, $0.832$ with pole masses), the cube-root colour norm $r_u^2=N(1-\omega)=3$ against the colourless $N(1-i)=2$, a ratio where the Standard Model carries no relation at all. -/
@@ -143,7 +143,7 @@ theorem reactor_angle_complementarity : ∀ (Vus s13 : ℝ), Vus = 0.2243 → s1
 /-- 28:X10 (p28034) — \textbf{Near-maximal leptonic CP} is the cube-root phase: $\mathrm{Im}\,\omega=\sqrt3/2$ gives the maximal Jarlskog $J=1/(6\sqrt3)$, so the cubic reappears as CP violation rather than a free phase fitted to data. -/
 theorem near_maximal_leptonic_cp : (1 : ℝ) / ((6 : ℝ) * √(3 : ℝ)) = √(3 : ℝ) / (18 : ℝ) ∧ ((1 : ℝ) / ((6 : ℝ) * √(3 : ℝ))) ^ (2 : ℕ) = (1 / 108 : ℝ) :=
   @FRC.LedgerML.p28034
-/-- 28:X11 (p28035) — \textbf{The neutrino spectrum} (a near-massless lightest state, $\sum m_\nu\simeq59\,$meV on the normal branch) follows from colourlessness fixing $Q_\nu=2/3$, the transpose fixed point under the alignment $M_R\propto m_D$ (Y1) and the boundary branch that selects the ordering (B6), rather than three independent neutrino masses. -/
+/-- 28:X11 (p28035) — \textbf{The neutrino spectrum} (a near-massless lightest state, $\sum m_\nu\simeq59\,$meV on the normal branch) follows from colourlessness fixing $Q_\nu=2/3$, the transpose fixed point under the alignment $M_R\propto m_D$ (Y1) and the boundary branch that selects the ordering (Y2), rather than three independent neutrino masses. -/
 theorem neutrino_spectrum : ∀ (dm21 dm31 : ℝ), dm21 = 749e-7 → dm31 = 2513e-6 → 587e-4 < √dm21 + √dm31 ∧ √dm21 + √dm31 < 589e-4 :=
   @FRC.LedgerML.p28035
 /-- 28:P1 (p28036) — Charged-lepton Koide $Q_\ell=2/3$ exact on B5 (measured $0.666661\pm0.000007$); $m_e=0.5106$ vs $0.5110$ MeV. Falsifier: a lepton-mass shift of $Q_\ell$ off $2/3$ beyond the $\tau$-mass tolerance. -/
@@ -155,7 +155,7 @@ theorem up_quark_koide_prediction : (0.8489 < (2.16 + (1270 : ℝ) + (172570 : �
 /-- 28:P3 (p28038) — Cabibbo $V_{us}=|\sqrt{m_d/m_s}-e^{i\varphi}\sqrt{m_u/m_c}|$: leading term $0.224^{+0.011}_{-0.004}$ vs $0.2243$ ($0.3\%$), the up term $\pm0.04$ with $\varphi$ open. Falsifier: no $\varphi$ satisfying the relation within the input band. -/
 theorem cabibbo : ∀ (md ms mu mc Vus : ℝ), md = 4.67 → ms = 93.4 → mu = 2.16 → mc = (1270 : ℝ) → Vus = 0.2243 → 0.2236 < √(md / ms) ∧ √(md / ms) < 0.22361 ∧ |√(md / ms) - Vus| < 35e-4 * Vus ∧ 0.2273 < √(md / ms + mu / mc) ∧ √(md / ms + mu / mc) < 0.2275 :=
   @FRC.LedgerML.p28038
-/-- 28:P5 (p28039) — Normal neutrino ordering, from $Q_\nu=2/3$, the two $\Delta m^2$ and the boundary branch (B6); the signed circulant solves both orderings (C11b). Falsifier: inverted ordering. -/
+/-- 28:P5 (p28039) — Normal neutrino ordering, from $Q_\nu=2/3$, the two $\Delta m^2$ and the boundary branch (Y2); the signed circulant solves both orderings (C11b). Falsifier: inverted ordering. -/
 theorem normal_neutrino_ordering : ∀ (dm21 dm31 : ℝ), dm21 = 749e-7 → dm31 = 2513e-6 → 587e-4 < √dm21 + √dm31 ∧ √dm21 + √dm31 < 589e-4 :=
   @FRC.LedgerML.p28039
 /-- 28:P6 (p28040) — Mass-sum floor $\sum m_\nu=58.8$ meV at NuFIT~6.0 ($m_1{=}0$, $m_2{=}8.65$, $m_3{=}50.13$ meV), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological $\sum m_\nu<0.058$ eV. -/
