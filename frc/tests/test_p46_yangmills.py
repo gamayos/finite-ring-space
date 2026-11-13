@@ -18,7 +18,7 @@ from frc import chart_yangmills as CY
 from frc.registry import MARKER
 
 ROOT = Path(__file__).resolve().parents[2]
-CHART_CHECKS = {"E1", "E2", "E3", "F2", "F3", "F4", "G1", "G2"}
+CHART_CHECKS = {"E1", "E2", "E3", "E4", "F2", "F3", "F4", "G1", "G2"}
 
 
 class YangMillsTest(unittest.TestCase):
@@ -98,14 +98,14 @@ class YangMillsTest(unittest.TestCase):
         s2 = Y.c1_series(2, 9)
         # I₂(β)/I₁(β) = β/4 − β³/96 + β⁵/1536 − β⁷/23040 + …, from the Bessel series of interactions
         bes = I.bessel_ratio_series(1, 9)
-        self.assertEqual(s2, bes)
+        self.assertEqual(s2, [c * 4 ** k for k, c in enumerate(bes)])                 # Wilson's coupling of SU(2) is 4ϑ
         s3 = Y.c1_series(3, 7)
-        self.assertEqual(s3[:3], [Q(0), Q(1, 18), Q(1, 216)])
+        self.assertEqual(s3[:3], [Q(0), Q(1, 3), Q(1, 6)])
         s2t, tr = Y.c1_series_2T(7); self.assertEqual(sum(tr.values()), 24)
         # the finite-group rational function N(x)/D(x) in x = e^{β/2} of interactions.c1_from_traces, expanded at β = 0.1
         N, D = I.c1_from_traces(tr, 2); beta = 0.1; x = math.exp(beta / 2)
         val = sum(float(c) * x ** k for k, c in enumerate(N)) / sum(float(c) * x ** k for k, c in enumerate(D))
-        ser = sum(float(c) * beta ** k for k, c in enumerate(s2t))
+        ser = sum(float(c) * (beta / 4) ** k for k, c in enumerate(s2t))
         self.assertAlmostEqual(val, ser, places=9)
 
     def test_chart(self):
@@ -113,19 +113,19 @@ class YangMillsTest(unittest.TestCase):
         v, dv = CY.m0pp_over_sqrt_sigma(); self.assertTrue(Q("3.69") < v < Q("3.71"))
 
     def test_adjoint_series(self):
-        # the adjoint coefficient by an independent route: E[(χχ̄ − 1) X^k] from the moments directly, and c₈ = Σ_k m_k (β/3)^k/k! / (8 Σ_k E[X^k] (β/3)^k/k!)
+        # the adjoint coefficient by an independent route: E[(χχ̄ − 1) X^k] from the moments directly, and c₈ = Σ_k m_k (2ϑ)^k/k! / (8 Σ_k E[X^k] (2ϑ)^k/k!)
         from math import comb, factorial
         E = I.su3_moment
         mX = [sum(comb(k, j) * E(j, k - j) for j in range(k + 1)) / Q(2 ** k) for k in range(7)]
         m8 = [sum(comb(k, j) * (E(j + 1, k - j + 1) - E(j, k - j)) for j in range(k + 1)) / Q(2 ** k) for k in range(7)]
-        num = [m8[k] / Q(3) ** k / factorial(k) / 8 for k in range(6)]; den = [mX[k] / Q(3) ** k / factorial(k) for k in range(6)]
+        num = [m8[k] * 2 ** k / factorial(k) / 8 for k in range(6)]; den = [mX[k] * 2 ** k / factorial(k) for k in range(6)]
         self.assertEqual(I.ps_div(num, den, 6), Y.c_adj_series(8)[:6])
         self.assertEqual(m8[1], 0); self.assertEqual(m8[2], Q(1, 2))                 # no singlet in 8 ⊗ 3, 8 ⊗ 3̄; E[χ₈ (Re χ)²] = 1/2
-        s = Y.adjoint_wrap_excess(3); self.assertEqual(s[:3], [Q(0), Q(1, 18), Q(-1, 1296)])
+        s = Y.adjoint_wrap_excess(3); self.assertEqual(s[:3], [Q(0), Q(1, 3), Q(-1, 36)])
         # the log-free ratio c₈/c₃² by an independent division of the two series
         c3 = Y.c1_series(3, 8); c8 = Y.c_adj_series(8)
         r = I.ps_div(c8[2:], I.ps_mul(c3[1:], c3[1:], 6), 5)
-        self.assertEqual(r, Y.adjoint_over_fundamental_squared(5)); self.assertEqual(r[0], Q(9, 8)); self.assertEqual(r[1] / r[0], Q(-1, 18))
+        self.assertEqual(r, Y.adjoint_over_fundamental_squared(5)); self.assertEqual(r[0], Q(9, 8)); self.assertEqual(r[1] / r[0], Q(-1, 3))
 
     def test_frame_moments_f4(self):
         # the finite frame's own moments over F_4 against the compact multiplicities, and the generating pair
@@ -136,8 +136,8 @@ class YangMillsTest(unittest.TestCase):
         self.assertEqual(m[(1, 1)], (1, 1)); self.assertEqual(m[(3, 0)], (1, 1)); self.assertEqual(m[(2, 1)], (0, 0))
         # the centre of SU(3, F_2) by elements
         self.assertEqual(len(Y.H.centre(F, G)), 3)
-        # the excess series against the floats: σ₈ − 2σ₃ + ln(9/8) at β = 0.5
-        k, s3, s8 = CY.adjoint_ratio(0.5); self.assertAlmostEqual(s8 - 2 * s3 + math.log(9 / 8), sum(float(c) * 0.5 ** i for i, c in enumerate(Y.adjoint_wrap_excess(4))), places=4)
+        # the excess series against the floats: σ₈ − 2σ₃ + ln(9/8) at ϑ = 0.05
+        k, s3, s8 = CY.adjoint_ratio(0.05); self.assertAlmostEqual(s8 - 2 * s3 + math.log(9 / 8), sum(float(c) * 0.05 ** i for i, c in enumerate(Y.adjoint_wrap_excess(4))), places=4)
 
     def test_wrap_spectrum(self):
         from frc import chart_hadrons as CH
@@ -152,10 +152,12 @@ class YangMillsTest(unittest.TestCase):
         self.assertLess(r["collapse_rc1"], 1.9)
         self.assertAlmostEqual(r["fixed_points"][1.0][0], 3.54, places=1); self.assertAlmostEqual(r["fixed_points"][0.5][0], 3.08, places=1)
         pc = CY.plaquette_channel(); T = pc["table"]
-        self.assertAlmostEqual(T["0.06"]["leading"], 4 * math.sqrt(-math.log(0.06)), places=9)   # the paper's leading term
-        self.assertTrue(all(T[u]["orders"][7] > 4.7 for u in ("0.06", "0.10", "0.15", "0.20")))
-        self.assertLess(T["0.30"]["orders"][7], 4.0)
-        self.assertAlmostEqual(float(pc["u_of_beta"]["1"]), 0.06013, places=5)      # against the exact SU(3) integral (0.06013)
+        self.assertAlmostEqual(T[9]["leading"], 4 * math.sqrt(-math.log(T[9]["u"])), places=9)   # the paper's leading term
+        self.assertTrue(all(T[n]["orders"][7] > 5.0 for n in (9, 8, 7, 6)))
+        self.assertLess(T[3]["orders"][7], 4.0)
+        self.assertEqual(pc["unity"]["exact"], Q(23, 54))                           # the computed terms at channel unity
+        self.assertAlmostEqual(sum(float(c) / 6 ** k for k, c in enumerate(Y.c1_series(3, 8))), 0.06013, places=5)      # against the exact SU(3) integral at Wilson's β = 1
+        cc = CY.chart_cells(); self.assertTrue(cc["law"]); self.assertAlmostEqual(cc["step"], 0.09657, places=5)
 
     def test_frame_window(self):
         self.assertEqual(Y.first_departure_bounds(13), (26, 49)); self.assertEqual(Y.frame_window_orders(13), (25, 24, 23))
@@ -165,7 +167,6 @@ class YangMillsTest(unittest.TestCase):
         M = Y.frame_counts_small_field(2, 5); self.assertEqual(M[(4, 1)], 4); self.assertEqual(M[(2, 2)], 2); self.assertEqual(M[(3, 0)], 1)
 
     def test_spectral_amplitude(self):
-        self.assertEqual(Y.conductor(2), 3); self.assertEqual(Y.conductor(13), 26376)
         self.assertEqual(Y.z3_mul((0, 1), (0, 1)), (-1, -1)); self.assertEqual(Y.z3_conj((0, 1)), (-1, -1)); self.assertEqual(Y.z3_pow((0, 1), 3), (1, 0))
         n, E, pw = Y.nonsplit_amplitude_exponents(13); self.assertEqual((n, E), (157, [1, 12, 144])); self.assertEqual(pw[0], 3); self.assertEqual(len(pw), 7)
         self.assertTrue(all(t["gcd_nonsplit_cycle"] == 1 for t in Y.subject_phase_table()))
@@ -185,6 +186,9 @@ class YangMillsTest(unittest.TestCase):
         for q in (3, 5, 13):
             d = Y.amplitude_coefficients_direct(q); self.assertEqual({k: d[k] for k in expansion}, expansion)
         self.assertEqual(Y.amplitude_coefficients_direct(13)["classes"], 184)
+        for q in (3, 4, 5, 8, 9):                                                # the identity of the proof, class by class
+            i = Y.amplitude_identity_classwise(q); self.assertTrue(i["ok"]); self.assertEqual(i["failures"], 0)
+        self.assertEqual(len(Y.su3_class_list(13)[0]), 184)
         s = Y.transfer_spectrum_subject(13); self.assertTrue(s["ok"]); self.assertEqual(s["levels"], (5167344, 369096, -344929)); self.assertEqual(s["zero"], 800885251)
         from fractions import Fraction
         self.assertEqual(s["eigenvalues"], (Fraction(1, 157), Fraction(1, 2198), Fraction(-1, 2352)))                 # the eigenvalues of the step with the frame's mean
@@ -213,6 +217,7 @@ class YangMillsTest(unittest.TestCase):
         for p, pi in ((13, 6), (173, 86), (1549, 774)):                         # 46:C21, the spectrum in 2π = p − 1
             s = Y.spectrum_in_pi(p); self.assertTrue(s["ok"]); self.assertEqual(s["pi"], pi)
             self.assertEqual(s["gap"], Fraction(1, 2 * pi + 2)); self.assertEqual(s["degrees"][2], 8 * pi * (pi + 1) ** 2)
+            self.assertEqual(s["cycles"], (2 * pi * (2 * pi + 2), s["degrees"][0]))             # the orders of the two cycles in 2π
             self.assertTrue(Fraction(12072, 100000) < s["chart"][0] < s["chart"][1] < Fraction(12073, 100000))
         self.assertEqual(Y.spectrum_in_pi(13)["degrees"], (157, 2198, 2352))
 
@@ -225,12 +230,34 @@ class YangMillsTest(unittest.TestCase):
     def test_uniform_boundary(self):
         u = Y.uniform_boundary_tally(13, 1, 2); self.assertTrue(u["ok"])        # 46:C23
         self.assertEqual(u["values"], (10, 0, 0, 2, 5, 12, 5, 2, 0, 0, 10, 3)); self.assertEqual(u["others"], (3, 6, 9, 12))
-        self.assertEqual(u["paired"][:4], (9, 0, 0, 4))
+        self.assertEqual(u["paired"], (9, 0, 0, 4, 12, 1, 12, 4, 0, 0, 9, 9)); self.assertEqual(u["five"], (10, 0, 1, 2, 5, 10, 5, 2, 1, 0, 10, 5))
+        self.assertEqual(u["period"], 12); self.assertEqual(u["coefficients"], (3, 5, 11, 5, 2, 4, 11, 4, 2, 5, 11, 5))
+        self.assertEqual(Y.uniform_boundary_tally(13, 2, 4)["period"], 6)
         self.assertEqual(Y.table_type4(13, 7), {"eigenvalues": (7, 7, 0), "chi1": [(-12, 7), (1, 0)], "chi2": [(14, 7)], "chi3": []})
         for p, first in ((173, 43), (1549, 387)):
             v = Y.uniform_boundary_tally(p, 1, 2); self.assertTrue(v["ok"]); self.assertEqual(v["others"], (first, 2 * first, 3 * first, 4 * first))
         w = Y.uniform_boundary_tally(13, 2, 3); self.assertTrue(w["ok"]); self.assertEqual(len(w["others"]), 4 + 6 - 2)
         self.assertEqual(w["values"][11], 3)
+
+    def test_three_rings(self):
+        for q in (3, 4, 5, 7, 8, 9, 11, 13, 16, 17):                             # 46:C25
+            self.assertEqual(Y.triple_multiplicities(q), Y.triple_multiplicity_forms(q))
+        t = Y.three_rings_tally(13, 1, 2, 3); self.assertTrue(t["ok"])
+        self.assertEqual(t["W"], (6, 0, 0, 0, 9, 1, 9, 0, 0, 0, 6, 6)); self.assertEqual(t["regular"], (1, 5, 7, 11))
+        self.assertEqual([Y.three_rings_tally(p, 1, 2, 3)["W"][0] for p in (13, 173, 1549)], [6, 25, 616])
+        self.assertEqual([Y.three_rings_tally(p, 1, 2, 3)["n122"] for p in (13, 173, 1549)], [2, 4, 2])
+        self.assertEqual(Y.three_rings_tally(13, 1, 2, 4)["regular"], (1, 2, 4, 5, 7, 8, 10, 11))
+
+    def test_window_readings(self):
+        w = Y.window_readings(13)                                                # 46:C24
+        self.assertEqual((w["pairs"], w["nonzero"], len(w["zero"])), (351, 117, 52))
+        self.assertEqual(w["count"], {(1, 13): 2574, (13, 1): 2574}); self.assertEqual((w["agree"], w["bound"], w["shift"]), (True, True, True))
+        self.assertEqual(w["residues"][0][:3], [0, 9, 11])                       # ϑ/3 + ϑ²/6: 3⁻¹ = 9 and 6⁻¹ = 11 on 13
+
+    def test_shell_series(self):
+        s = Y.shell_series(13, 25)                                               # 46:C26
+        self.assertEqual(s["h"][:12], [0, 1, 1, 0, 8, 11, 8, 10, 6, 8, 10, 2]); self.assertTrue(s["product"]); self.assertFalse(any(s["power"]))
+        self.assertTrue(all(x == 0 for x in s["h"][12:22]) and s["h"][22:] == [1, 3, 3])   # the integers read 0 from the order 12 through 21
 
     def test_ledger_green_and_markers(self):
         from frc.ledgers import p46_yangmills as L

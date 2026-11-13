@@ -29,7 +29,7 @@ hierarchy; the finite content — the congruences, the octant on every framed sh
 decided by the kernel — is proved with no axioms in `FrcCore/Entropy.lean`. Since the ledger migration (task LM30) the
 octant's chart theorems — the conversion, the brackets of `tanh(3π/8)`, the landing and the locus — live in the
 chart theme, `FrcMathlib/Theme/Chart.lean`, as `FRC.Chart.*`; the old names below are aliases. What is outside both modules: the
-realisation premises of the octant lemma (A4 reciprocity, A5 the equatorial horizon, B6 the closure budget, B7
+premises of the octant lemma outside its arithmetic (A4 reciprocity, A5 the equatorial horizon, Y1 the closure budget, B7
 the depth rule) — the modules decide the lemma's arithmetic, clause (iv) and the closure count, not its
 realisation content; and the chart identities marked [chart] or [ΛCDM] below are identities of the continuum
 reading, with no finite content of their own.
@@ -165,8 +165,8 @@ equivalence). -/
 theorem octant_sector_iff (S : ℕ) : 8 ∣ 4 * S ↔ Even S := by
   rw [Nat.even_iff, Nat.dvd_iff_mod_eq_zero]; omega
 
-/-- 14:C5, 14:B6 — the closure count, clauses (iii)–(iv): given B6's accounting (a two-way registration of
-depth `x` costs `2x` of the one-way budget `S`; the realisation, not formalised), the closable depths are exactly
+/-- 14:C5, 14:Y1 — the closure count, clauses (iii)–(iv): given Y1's accounting (a two-way registration of
+depth `x` costs `2x` of the one-way budget `S`; the hypothesis, not formalised), the closable depths are exactly
 `x ≤ S/2`, and on a Carrier with `S` even the octant count `S/2` closes the budget, `2 · (S/2) = S`. -/
 theorem closure_budget (S : ℕ) :
     (∀ x, 2 * x ≤ S ↔ x ≤ S / 2) ∧ (Even S → 2 * (S / 2) = S) := by
@@ -784,7 +784,7 @@ theorem carrier_congruences_certified : ((4 : ℕ) * (602140 : ℕ) + (1 : ℕ) 
 /-- 14:B2 (p14010) — The angle--count dictionary: $2\pi$ the full cycle, $h=2\pi\hbar$; every angular numeral is the chart face of a count ($\pi/4\leftrightarrow\dS/2$ chronons). -/
 theorem angle_count_dictionary : ∀ (S : ℝ), Real.pi / ((2 : ℝ) * Real.pi) * ((4 : ℝ) * S) = (2 : ℝ) * S ∧ Real.pi / (2 : ℝ) / ((2 : ℝ) * Real.pi) * ((4 : ℝ) * S) = S ∧ Real.pi / (4 : ℝ) / ((2 : ℝ) * Real.pi) * ((4 : ℝ) * S) = S / (2 : ℝ) :=
   @FRC.Entropy.dictionary
-/-- 14:B8 (p14016) — The effective-fluid correspondence behind P4: the rival chart's continuity law $\dot\rho_\Lambda+3H(\rho_\Lambda+p_\Lambda)=0$ \lcdm{} with $\dot\rho_\Lambda=0$ gives $w=-1$; and the single-component clause --- the framework's dark sector is derived with no second dark-energy component available, so an observed $w_{\mathrm{eff}}\neq-1$ cannot be reassigned to an extra evolving fluid. The clause makes P4's falsifier total rather than escapable. -/
+/-- 14:B8 (p14016) — The effective-fluid correspondence behind P4: with $\dot\rho_\Lambda=0$ the rival chart's continuity law (A9) gives $w=-1$ exactly; and the single-component clause --- the framework's dark sector is derived (32-dark C11, 21-gravity C14) with no second dark-energy component available, so an observed $w_{\mathrm{eff}}\neq-1$ cannot be reassigned to an extra evolving fluid. The clause makes P4's falsifier total rather than escapable. -/
 theorem effective_fluid_correspondence : ∀ (H ρ p ρ' : ℝ), H ≠ (0 : ℝ) → ρ ≠ (0 : ℝ) → ρ' = (0 : ℝ) → ρ' + (3 : ℝ) * H * (ρ + p) = (0 : ℝ) → p = -ρ ∧ p / ρ = (-1 : ℝ) :=
   @FRC.Entropy.fluid_w
 /-- 14:B9 (p14017) — The area law: the projected horizon area in Planck cells is the full phase cycle, $A=4\dS$ \apx{} at the horizon ($4\pi n_A=4\dS$, $n_A=(r_H/\lP)^{2}$ \apx); the Bekenstein--Hawking quarter $\dS=A/4$ is the quarter-turn $Q_4$, the generative four of $\Om=4\dS+1$ and $\p=4\kap+1$; area is a Subject-projection property, the Carrier carrying none. -/
@@ -811,7 +811,7 @@ theorem non_channels : ∀ (Ω S : ℕ) (p : ℝ), Ω = (4 : ℕ) * S + (1 : ℕ
 /-- 14:C3 (p14020) — The same-channel demotion: $t_0H_\Lambda=\tfrac23\artanh\sqrt{\Omega_\Lambda}$ \lcdm{} depends on the one fitted parameter, so the $0.2\%$ landing on $\pi/4$ restates the fit (by B5). Cited definitions (not proofs): FRC.Entropy.lcdmAge. -/
 theorem same_channel_demotion : (∀ (Ωm ΩΛ H0 t : ℝ), (0 : ℝ) < Ωm → (0 : ℝ) < ΩΛ → Ωm + ΩΛ = (1 : ℝ) → (0 : ℝ) < H0 → (0 : ℝ) < t → (FRC.Entropy.lcdmScale Ωm ΩΛ (H0 * √ΩΛ) t = (1 : ℝ) ↔ t * (H0 * √ΩΛ) = FRC.Entropy.lcdmAge ΩΛ)) ∧ 0.7870 < FRC.Entropy.lcdmAge 0.685 ∧ FRC.Entropy.lcdmAge 0.685 < 0.7871 ∧ 21e-4 * (Real.pi / (4 : ℝ)) < FRC.Entropy.lcdmAge 0.685 - Real.pi / (4 : ℝ) ∧ FRC.Entropy.lcdmAge 0.685 - Real.pi / (4 : ℝ) < 22e-4 * (Real.pi / (4 : ℝ)) :=
   And.intro @FRC.Entropy.lcdm_age (@FRC.Entropy.age_bracket)
-/-- 14:C5 (p14022) — The octant lemma: the measured age is $\dS/2$ chronons, $(\pi/4)\,r_H/c$ in the chart \apx; the halving and the sector are exact through the enumerated realisation set $B_{\mathrm{oct}}=\{$A4, A5, B2, B3, B6, B7$\}$, the same class as the constants correspondence. -/
+/-- 14:C5 (p14022) — The octant lemma: the measured age is $\dS/2$ chronons, $(\pi/4)\,r_H/c$ in the chart \apx; the halving and the sector are exact through the enumerated set $B_{\mathrm{oct}}=\{$A4, A5, B2, B3, B7, Y1$\}$, the same class as the constants correspondence; the lemma is conditioned on the hypothesis Y1. -/
 theorem octant_lemma : (∀ (S r c : ℝ), S ≠ (0 : ℝ) → S / (2 : ℝ) / ((4 : ℝ) * S) * ((2 : ℝ) * Real.pi * r / c) = Real.pi / (4 : ℝ) * r / c) ∧ ∀ (S : ℕ), (∀ (x : ℕ), (2 : ℕ) * x ≤ S ↔ x ≤ S / (2 : ℕ)) ∧ (Even S → (2 : ℕ) * (S / (2 : ℕ)) = S) :=
   And.intro @FRC.Entropy.octant_chart (@FRC.Entropy.closure_budget)
 set_option linter.defProp false in

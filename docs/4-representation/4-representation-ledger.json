@@ -3,7 +3,7 @@
  "tree": "4-deepfrc-20251217",
  "title": "Universal Latent Representation in FRC",
  "doi": "https://doi.org/10.3390/e28010040",
- "generated": "6 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -148,14 +148,6 @@
    "title": "The reading",
    "rows": [
     {
-     "label": "D1",
-     "predicate": "Foundational embeddings are adequate representations of one finite latent domain: cross-modal alignment, transferability and semantic coherence are the bijections $\\Psi_{m\\to n}$ (C1), consequences of the shared domain, not of architecture; the empirical record (A4) is their registered consequence. Falsifier: two adequate embeddings of one domain with no bijective translation on the resolved states.",
-     "tag": "R",
-     "source": "Section~\\ref{sec:UST}; Section~\\ref{subsec:frcAlignment}; 00:A10",
-     "key": "p04016",
-     "name": null
-    },
-    {
      "label": "D2",
      "predicate": "Scope and limits: the theorem uses the finiteness of $\\mathcal Z$ alone, no algebraic or geometric property of $\\mathcal U_t$; the shell as host is the ontology's claim (A3); optimisation decides when a representation is recovered, not which; non-stationary or weakly factorisable data may admit none; coordinate alignment may be intractable; nonlinearity as expansion and depth as shell complexity are analogies (Y1).",
      "tag": "D",
@@ -214,6 +206,14 @@
      "source": "Section~\\ref{sec:conclusion}",
      "key": "p04024",
      "name": null
+    },
+    {
+     "label": "Y2",
+     "predicate": "Foundational embeddings are adequate representations of one finite latent domain: cross-modal alignment, transferability and semantic coherence are the bijections $\\Psi_{m\\to n}$ (C1), consequences of the shared domain, not of architecture; the empirical record (A4) is their registered consequence. Falsifier: two adequate embeddings of one domain with no bijective translation on the resolved states.",
+     "tag": "O",
+     "source": "Section~\\ref{sec:UST}; Section~\\ref{subsec:frcAlignment}; 00:A10",
+     "key": "p04016",
+     "name": null
     }
    ]
   },
@@ -247,11 +247,6 @@
    "tag": "T",
    "name": "Theorem",
    "text": "Derived, and machine-verified in exact arithmetic by the named witness."
-  },
-  {
-   "tag": "R",
-   "name": "Realisation",
-   "text": "States what a physical term denotes in the substrate: constitutive, not interpretive, and carrying its falsifier."
   },
   {
    "tag": "O",

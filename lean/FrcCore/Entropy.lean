@@ -23,8 +23,8 @@ the multiplicative fusion of coprime cycles (B13). Decided by the kernel: the oc
 on `𝔽₁₃` and `𝔽₂₉`, the characters `ζ₈` of the Carriers `233` and `2 408 561`; the laboratory Carrier —
 `S = 602 140` even, `≡ 1 (mod 3)`, `4S + 1` prime (A2); the capacity axis `𝔽₅`, no shell at `κ = 2`, `𝔽₁₃` at
 hydrogen, `12N + 1` prime at `N = 1, 3` and not at `N = 2` (C10, B10); the nesting `37 → 1373 → 2 408 561` and
-the bound `N ≤ 3` on the laboratory Carrier (B10). The realisation premises of the octant lemma (A4, A5, B6,
-B7) are outside this module: it decides the lemma's arithmetic. Every declaration is checked to depend on no
+the bound `N ≤ 3` on the laboratory Carrier (B10). The premises of the octant lemma outside its arithmetic (A4, A5, B7,
+Y1) are outside this module: it decides the lemma's arithmetic. Every declaration is checked to depend on no
 axiom (`check_core_axioms.py`).
 
 Since the ledger migration (task LM17) the octant character and its converse live in the frame theme (`Orbit.lean`)
@@ -72,8 +72,8 @@ integer count on every admissible Carrier. -/
 theorem octant_count (S m : Nat) (h : S = 2 * m) : 2 * (2 * S) = 4 * S ∧ 8 * m = 4 * S :=
   ⟨by rw [← FRC.Nat.mul_assoc], by rw [h, ← FRC.Nat.mul_assoc]⟩
 
-/-- 14:C5, 14:B6 — the closure count: given B6's accounting (a two-way registration of depth `x` costs `2x` of
-the one-way budget `S = 2m`; the realisation, not formalised), the closable depths are exactly `x ≤ m`, and the
+/-- 14:C5, 14:Y1 — the closure count: given Y1's accounting (a two-way registration of depth `x` costs `2x` of
+the one-way budget `S = 2m`; the hypothesis, not formalised), the closable depths are exactly `x ≤ m`, and the
 octant `x = m` closes the budget. -/
 theorem closure_count (m x : Nat) : 2 * x ≤ 2 * m ↔ x ≤ m := by
   constructor
@@ -479,7 +479,7 @@ theorem non_channels : ∀ (S : Nat), ((4 : Nat) * S + (1 : Nat)) % (4 : Nat) = 
 /-- 14:C4 (p14021) — The concordance: five evidence readings return $\sqrt{\dS}=(1.3\text{--}1.8)\times10^{61}$ \apx, $\pm17\%$ half-range on the count face, factor $1.9$ on $\dS$; the gauge reading 4a is displayed and excluded from every statistic. -/
 theorem concordance_five_readings : ((119 : Nat) ≤ (127 : Nat) ∧ (127 : Nat) ≤ (166 : Nat) ∧ (119 : Nat) ≤ (133 : Nat) ∧ (133 : Nat) ≤ (166 : Nat) ∧ (119 : Nat) ≤ (164 : Nat) ∧ (164 : Nat) ≤ (166 : Nat)) ∧ ((16 : Nat) * ((166 : Nat) + (119 : Nat)) < (100 : Nat) * ((166 : Nat) - (119 : Nat)) ∧ (100 : Nat) * ((166 : Nat) - (119 : Nat)) < (17 : Nat) * ((166 : Nat) + (119 : Nat))) ∧ ((19 : Nat) * ((119 : Nat) * (119 : Nat)) < (10 : Nat) * ((166 : Nat) * (166 : Nat)) ∧ (10 : Nat) * ((166 : Nat) * (166 : Nat)) < (20 : Nat) * ((119 : Nat) * (119 : Nat))) ∧ ((736 : Nat) * (1616255 : Nat) < (1190 : Nat) * (1000000 : Nat) ∧ (1190 : Nat) * (1000000 : Nat) < (737 : Nat) * (1616255 : Nat) ∧ (1027 : Nat) * (1616255 : Nat) < (1660 : Nat) * (1000000 : Nat) ∧ (1660 : Nat) * (1000000 : Nat) < (1028 : Nat) * (1616255 : Nat)) ∧ ((1772 : Nat) * (1772 : Nat) < (3141592 : Nat) ∧ (3141593 : Nat) < (1773 : Nat) * (1773 : Nat)) ∧ (1300000 : Nat) < (1772 : Nat) * (736 : Nat) ∧ (1773 : Nat) * (737 : Nat) < (1310000 : Nat) ∧ (1800000 : Nat) < (1772 : Nat) * (1027 : Nat) ∧ (1773 : Nat) * (1028 : Nat) < (1830000 : Nat) :=
   @FRC.Entropy.concordance
-/-- 14:C5 (p14022) — The octant lemma: the measured age is $\dS/2$ chronons, $(\pi/4)\,r_H/c$ in the chart \apx; the halving and the sector are exact through the enumerated realisation set $B_{\mathrm{oct}}=\{$A4, A5, B2, B3, B6, B7$\}$, the same class as the constants correspondence. -/
+/-- 14:C5 (p14022) — The octant lemma: the measured age is $\dS/2$ chronons, $(\pi/4)\,r_H/c$ in the chart \apx; the halving and the sector are exact through the enumerated set $B_{\mathrm{oct}}=\{$A4, A5, B2, B3, B7, Y1$\}$, the same class as the constants correspondence; the lemma is conditioned on the hypothesis Y1. -/
 theorem octant_lemma : (∀ (m x : Nat), (2 : Nat) * x ≤ (2 : Nat) * m ↔ x ≤ m) ∧ ∀ (S m : Nat), S = (2 : Nat) * m → (2 : Nat) * ((2 : Nat) * S) = (4 : Nat) * S ∧ (8 : Nat) * m = (4 : Nat) * S :=
   And.intro @FRC.Entropy.closure_count (@FRC.Entropy.octant_count)
 /-- 14:C6 (p14023) — The octant sector: $C_{8}\subset C_{4\dS}$ exists exactly when $\dS$ is even, its character $\zeta_8$ the residue the Tsirelson identity carries; the octant count $\dS/2$ is an integer on every admissible Carrier. -/

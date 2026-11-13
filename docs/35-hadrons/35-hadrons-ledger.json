@@ -3,7 +3,7 @@
  "tree": "35-hadrons-20260629",
  "title": "Ground-State Light Hadron Spectroscopy over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202506.1507.v2",
- "generated": "6 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -43,7 +43,7 @@
     },
     {
      "label": "A5",
-     "predicate": "The observable is a small residue: confinement is the frame-normalisation wrapping $\\Om$-hard quark residues into small exact hadron residues.",
+     "predicate": "The confinement wrap: confinement is the frame-normalisation wrapping $\\Om$-hard quark residues into small exact hadron residues; the observable as a small residue is B5 (the master's D9).",
      "tag": "I",
      "source": "\\cite{akhtman2026fields}",
      "key": "p35005",
@@ -85,46 +85,46 @@
   },
   {
    "letter": "B",
-   "title": "Realisations: mathematics $\\to$ physics (the forced identifications, each with its falsifier)",
+   "title": "The constitutive moves: the colour algebra, three namings, and the master's residue reading",
    "rows": [
     {
      "label": "B1",
-     "predicate": "A baryon is the totally antisymmetric $\\varepsilon_{abc}$ invariant of the colour $\\mathbf 3$; colour-singlet $=$ centre-neutral, triality $0\\,(\\mathrm{mod}\\,3)$ (A2). Falsifier: an asymptotic state of non-zero triality (a free quark or coloured hadron).",
-     "tag": "R",
-     "source": "\\S\\ref{sec:colour}",
+     "predicate": "A baryon is the totally antisymmetric $\\varepsilon_{abc}$ invariant of the colour $\\mathbf 3$; colour-singlet $=$ centre-neutral, triality $0\\,(\\mathrm{mod}\\,3)$: the standard colour algebra (A2), the registration of singlets alone the theorem X2 of 46-yangmills. Its exposures are P4 and P5.",
+     "tag": "I",
+     "source": "\\S\\ref{sec:colour}; A2",
      "key": "p35010",
      "name": null
     },
     {
      "label": "B2",
-     "predicate": "A constituent quark is the wrapped composite, a current-quark seed dressed by a fixed share of the confinement wrap (A5, A6). Falsifier: constituent masses not one seed plus a fixed wrap share across the octet and decuplet (P2, P10 failing).",
-     "tag": "R",
+     "predicate": "A constituent quark is the wrapped composite, a current-quark seed dressed by a fixed share of the confinement wrap (A5, A6): the hadron model's naming. Falsifier: constituent masses not one seed plus a fixed wrap share across the octet and decuplet; its prediction rows are P2 and P10.",
+     "tag": "D",
      "source": "\\S\\ref{sec:colour}",
      "key": "p35011",
      "name": null
     },
     {
      "label": "B3",
-     "predicate": "The chromomagnetic hyperfine interaction is the quark spin coupled to the colour curvature two-form, the spin-two partner of the string-tension plaquette (A2, A7). Falsifier: $A_{\\mathrm{light}}/\\sig$ failing to track one character sum across the heavy-quark series.",
-     "tag": "R",
+     "predicate": "The chromomagnetic hyperfine interaction is the quark spin coupled to the colour curvature two-form, the spin-two partner of the string-tension plaquette: the imported mechanism (A7) read in the colour frame (A2). Falsifier: $A_{\\mathrm{light}}/\\sig$ failing to track one character sum across the heavy-quark series; its prediction rows are P3 and P7.",
+     "tag": "D",
      "source": "\\S\\ref{sec:hyperfine}",
      "key": "p35012",
      "name": null
     },
     {
      "label": "B4",
-     "predicate": "The strange seed enters $f_{\\mathrm{fl}}$ additively at leading order, one wrap increment per strange constituent, set by the $\\chi_3$ current-mass ratio (A6). Falsifier: a non-linear strangeness dependence, breaking the equal decuplet spacing.",
-     "tag": "R",
+     "predicate": "The strange seed enters $f_{\\mathrm{fl}}$ additively at leading order, one wrap increment per strange constituent, set by the $\\chi_3$ current-mass ratio (A6): a declared leading-order rule. Falsifier: a non-linear strangeness dependence, breaking the equal decuplet spacing; its prediction rows are P1, P2, P8, P9 and P11.",
+     "tag": "D",
      "source": "\\S\\ref{sec:flavour}",
      "key": "p35013",
      "name": null
     },
     {
      "label": "B5",
-     "predicate": "The observable is a Carrier residue and stability is its indicator: a stable colourless object sits at a small exact residue (the minimal-wrap proton, the light nuclei), decay being frame-normalisation toward it. Falsifier: a stable colourless $B=1$ state below the proton, or strong/electromagnetic proton decay.",
+     "predicate": "The observable is a Carrier residue and stability is its indicator: a stable colourless object sits at a small exact residue (the minimal-wrap proton, the light nuclei), decay being frame-normalisation toward it (the master's D9, 00:D9). Falsifier: a stable colourless $B=1$ state below the proton, or strong/electromagnetic proton decay.",
      "tag": "R",
-     "source": "\\S\\ref{sec:residue}",
-     "key": "p35014",
+     "source": "\\S\\ref{sec:residue}; \\href{https://finitering.space/ledger.html#D9}{00:D9}",
+     "key": "p00050",
      "name": null
     }
    ]
@@ -622,6 +622,7 @@
    "G8"
   ],
   "B5": [
+   "D9",
    "G9"
   ],
   "C15": [

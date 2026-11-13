@@ -279,6 +279,7 @@
 'FRC.Domain.Lift.classical_arity' does not depend on any axioms
 'FRC.Domain.Lift.reduce' does not depend on any axioms
 'FRC.Domain.Lift.modular_shadow' does not depend on any axioms
+'FRC.Domain.Lift.mass_energy_frequency' does not depend on any axioms
 'FRC.Shell.Frame.Affine.apply' does not depend on any axioms
 'FRC.Shell.Frame.Affine.ext'' does not depend on any axioms
 'FRC.Shell.Frame.Affine.one' does not depend on any axioms
@@ -2524,6 +2525,7 @@
 'FRC.Subject.torus_antipode' does not depend on any axioms
 'FRC.Subject.antipode_generator' does not depend on any axioms
 'FRC.Subject.boost_unique' does not depend on any axioms
+'FRC.Subject.pair_class' does not depend on any axioms
 'FRC.Pair.tower_solvable' does not depend on any axioms
 'FRC.Pair.window' does not depend on any axioms
 'FRC.Pair.window_sum' does not depend on any axioms
@@ -3711,8 +3713,8 @@
 'FRC.YangMills.ratioWithin' does not depend on any axioms
 'FRC.YangMills.spreadHi' does not depend on any axioms
 'FRC.YangMills.spreadLo' does not depend on any axioms
-'FRC.YangMills.uOfBeta' does not depend on any axioms
-'FRC.YangMills.plaquette_channel' does not depend on any axioms
+'FRC.YangMills.uAtUnity' does not depend on any axioms
+'FRC.YangMills.plaquette_cells' does not depend on any axioms
 'FRC.YangMills.famSq' does not depend on any axioms
 'FRC.YangMills.family' does not depend on any axioms
 'FRC.YangMills.determinations' does not depend on any axioms
@@ -3743,6 +3745,17 @@
 'FRC.YangMills.z3Conj' does not depend on any axioms
 'FRC.YangMills.z3Norm' does not depend on any axioms
 'FRC.YangMills.spectral_amplitude' does not depend on any axioms
+'FRC.YangMills.pmGet' does not depend on any axioms
+'FRC.YangMills.pmMul' does not depend on any axioms
+'FRC.YangMills.pmAdd' does not depend on any axioms
+'FRC.YangMills.pmScal' does not depend on any axioms
+'FRC.YangMills.pmPow' does not depend on any axioms
+'FRC.YangMills.pmTrace' does not depend on any axioms
+'FRC.YangMills.pmDet' does not depend on any axioms
+'FRC.YangMills.planePoint' does not depend on any axioms
+'FRC.YangMills.cycleMat' does not depend on any axioms
+'FRC.YangMills.cycleFacts' does not depend on any axioms
+'FRC.YangMills.frame_cycle_trace' does not depend on any axioms
 'FRC.YangMills.instance_amplitude' does not depend on any axioms
 'FRC.YangMills.instance_transfer' does not depend on any axioms
 'FRC.YangMills.su3Order' does not depend on any axioms
@@ -3753,6 +3766,11 @@
 'FRC.YangMills.degree_identity' does not depend on any axioms
 'FRC.YangMills.gapOK' does not depend on any axioms
 'FRC.YangMills.ring_gap' does not depend on any axioms
+'FRC.YangMills.planeConj_add' does not depend on any axioms
+'FRC.YangMills.planeTally' does not depend on any axioms
+'FRC.YangMills.ring_tally_plane' does not depend on any axioms
+'FRC.YangMills.planeExample' does not depend on any axioms
+'FRC.YangMills.ring_tally_outside_shell' does not depend on any axioms
 'FRC.YangMills.spectrum_in_pi' does not depend on any axioms
 'FRC.YangMills.product_channel_counts' does not depend on any axioms
 'FRC.YangMills.ubChars' does not depend on any axioms
@@ -3763,6 +3781,17 @@
 'FRC.YangMills.ubValues' does not depend on any axioms
 'FRC.YangMills.ubOthers' does not depend on any axioms
 'FRC.YangMills.uniform_boundary_tally' does not depend on any axioms
+'FRC.YangMills.wrFact' does not depend on any axioms
+'FRC.YangMills.window_readings' does not depend on any axioms
+'FRC.YangMills.trTally' does not depend on any axioms
+'FRC.YangMills.trReading' does not depend on any axioms
+'FRC.YangMills.trRegular' does not depend on any axioms
+'FRC.YangMills.trSweep' does not depend on any axioms
+'FRC.YangMills.trValues' does not depend on any axioms
+'FRC.YangMills.three_rings_reading' does not depend on any axioms
+'FRC.YangMills.hurwitzH' does not depend on any axioms
+'FRC.YangMills.truncSums' does not depend on any axioms
+'FRC.YangMills.shell_series_readings' does not depend on any axioms
 'FRC.Ledger.p00032' does not depend on any axioms
 'FRC.Ledger.p01004' does not depend on any axioms
 'FRC.Ledger.p01005' does not depend on any axioms
@@ -3832,6 +3861,7 @@
 'FRC.Ledger.p07051' does not depend on any axioms
 'FRC.Ledger.p07052' does not depend on any axioms
 'FRC.Ledger.p07054' does not depend on any axioms
+'FRC.Ledger.p07057' does not depend on any axioms
 'FRC.Ledger.p38051' does not depend on any axioms
 'FRC.Ledger.p00022' does not depend on any axioms
 'FRC.Ledger.p00189' does not depend on any axioms
@@ -3978,6 +4008,7 @@
 'FRC.Ledger.p00164' does not depend on any axioms
 'FRC.Ledger.p00188' does not depend on any axioms
 'FRC.Ledger.p00197' does not depend on any axioms
+'FRC.Ledger.p21011' does not depend on any axioms
 'FRC.Ledger.p26038' does not depend on any axioms
 'FRC.Ledger.p01011' does not depend on any axioms
 'FRC.Ledger.p01015' does not depend on any axioms
@@ -4001,6 +4032,7 @@
 'FRC.Ledger.p00139' does not depend on any axioms
 'FRC.Ledger.p00150' does not depend on any axioms
 'FRC.Ledger.p00151' does not depend on any axioms
+'FRC.Ledger.p00184' does not depend on any axioms
 'FRC.Ledger.p07044' does not depend on any axioms
 'FRC.Ledger.p38001' does not depend on any axioms
 'FRC.Ledger.p38002' does not depend on any axioms
@@ -4047,6 +4079,7 @@
 'FRC.Ledger.p03013' does not depend on any axioms
 'FRC.Ledger.p03015' does not depend on any axioms
 'FRC.Ledger.p03017' does not depend on any axioms
+'FRC.Ledger.p03018' does not depend on any axioms
 'FRC.Ledger.p03022' does not depend on any axioms
 'FRC.Ledger.p03025' does not depend on any axioms
 'FRC.Ledger.p03026' does not depend on any axioms
@@ -4310,7 +4343,6 @@
 'FRC.Ledger.p46030' does not depend on any axioms
 'FRC.Ledger.p46036' does not depend on any axioms
 'FRC.Ledger.p46037' does not depend on any axioms
-'FRC.Ledger.p46038' does not depend on any axioms
 'FRC.Ledger.p46041' does not depend on any axioms
 'FRC.Ledger.p46043' does not depend on any axioms
 'FRC.Ledger.p46051' does not depend on any axioms
@@ -4323,6 +4355,10 @@
 'FRC.Ledger.p46064' does not depend on any axioms
 'FRC.Ledger.p46065' does not depend on any axioms
 'FRC.Ledger.p46066' does not depend on any axioms
+'FRC.Ledger.p46067' does not depend on any axioms
+'FRC.Ledger.p46068' does not depend on any axioms
+'FRC.Ledger.p46071' does not depend on any axioms
+'FRC.Ledger.p46072' does not depend on any axioms
 'FRC.Shell.meridian' does not depend on any axioms
 'FRC.Shell.scale' does not depend on any axioms
 'FRC.Shell.map_scale_aux' does not depend on any axioms
@@ -4631,6 +4667,7 @@
 'FRC.Causality.causal_velocity' does not depend on any axioms
 'FRC.Causality.lorentz_generation' does not depend on any axioms
 'FRC.Causality.worked_shells_values' does not depend on any axioms
+'FRC.Causality.algebraic_causality' does not depend on any axioms
 'FRC.Causality.window_sharpness' does not depend on any axioms
 'FRC.Causality.temporal_fibres' does not depend on any axioms
 'FRC.Representation.adequate_inj' does not depend on any axioms
@@ -5078,6 +5115,7 @@
 'FRC.Spacetime.why_spin_half' does not depend on any axioms
 'FRC.Spacetime.why_time_relational' does not depend on any axioms
 'FRC.Spacetime.why_arrow' does not depend on any axioms
+'FRC.Spacetime.why_this_sky' does not depend on any axioms
 'FRC.Spacetime.three_dimensions' does not depend on any axioms
 'FRC.Spacetime.floor_is_temperature' does not depend on any axioms
 'FRC.Quantum.characters_power_maps' does not depend on any axioms
@@ -5334,7 +5372,7 @@
 'FRC.YangMills.tension_coefficient_series' does not depend on any axioms
 'FRC.YangMills.adjoint_wrap_two_sheets' does not depend on any axioms
 'FRC.YangMills.short_range_fails' does not depend on any axioms
-'FRC.YangMills.plaquette_channel_fails' does not depend on any axioms
+'FRC.YangMills.plaquette_channel_cells' does not depend on any axioms
 'FRC.YangMills.wrap_family_misses' does not depend on any axioms
 'FRC.YangMills.one_loop_rationals' does not depend on any axioms
 'FRC.YangMills.series_window_corollary' does not depend on any axioms
@@ -5347,6 +5385,9 @@
 'FRC.YangMills.spectrum_in_two_pi' does not depend on any axioms
 'FRC.YangMills.product_channels' does not depend on any axioms
 'FRC.YangMills.uniform_boundary' does not depend on any axioms
+'FRC.YangMills.readings_of_window' does not depend on any axioms
+'FRC.YangMills.three_rings' does not depend on any axioms
+'FRC.YangMills.series_on_shell' does not depend on any axioms
 'FRC.YangMills.gluon_massless_unregistered' does not depend on any axioms
 'FRC.YangMills.singlets_only' does not depend on any axioms
 'FRC.YangMills.casimirs_are_measured' does not depend on any axioms
@@ -5383,6 +5424,8 @@
 'FRC.Master.antipode_on_torus' does not depend on any axioms
 'FRC.Master.frame_group_one_form' does not depend on any axioms
 'FRC.Master.time_is_scale_dilation' does not depend on any axioms
+'FRC.Master.mass_is_winding_rate' does not depend on any axioms
+'FRC.Master.mass_is_dilation' does not depend on any axioms
 'FRC.Master.uniqueness_of_dynamics' does not depend on any axioms
 'FRC.Master.gravity_linear' does not depend on any axioms
 'FRC.Master.gravity_nonlinear_completion' does not depend on any axioms

@@ -2,7 +2,7 @@
 """The framework's gates G09, G10, G12, G13, G14, G15 and G19 (ledger migration, tasks LM14, LM20, LM21, LM33 and LM34,
 5–7 October 2026).
 
-    python3 ci/gates.py [all|g09|g10|g12|g13|g14|g15|g19] [--root=PATH] [--release=PAPER]
+    python3 ci/gates.py [all|g09|g10|g12|g13|g14|g15|g19] [--root=PATH] [--release=PAPER] [--tickets=FILE]
 
 G09  imports follow the layers of the theme map (frc/themes.py): a file imports only files of lower rank, or the files
      listed before it in its own theme; a ledger file imports themes; nothing imports a ledger file. The exact tiers have
@@ -16,7 +16,12 @@ G12  every keyed declaration of a migrated ledger has a python marker and a note
      the deciding check and a notebook cell with its key as id, unless LEAN_ONLY lists it; and the parts that
      ci/make_ledgers.py generates (the table, the notebook's cells, the certificates) are current. A paper whose ledger
      is on the site (docs/<paper>/<paper>-ledger.json) has a migrated ledger file: a file frc/ledgers/p*.py that names
-     such a paper and lacks the generated table fails (11 November 2026).
+     such a paper and lacks the generated table has no python check on the site. A missing python check files a ticket
+     and does not fail the gate (11 November 2026): a ledger file without the table, a keyed declaration without a
+     python check, without a marker or without a notebook cell. A stale generated part fails. A ticket is the line
+     `TN (open) [Gate G12: …]`, appended to the tickets register: the file of --tickets=FILE, else the newest
+     tickets-*.md of a corpus beside the repository. An open ticket with the same text is not filed again, and
+     without a register the ticket is printed only.
 G13  every migrated ledger's notebook executes green, with cell ids equal to keys (task LM20): a migrated ledger is a
      ledger file under frc/ledgers/ (a paper's) or frc/ledgers/master/ (a master block's, from LM22) with the table
      ci/make_ledgers.py generates; its notebook's code cells are one per
@@ -49,11 +54,38 @@ ROOT = Path(next((a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--ro
 sys.path.insert(0, str(ROOT))
 from frc import themes as TM                                    # noqa: E402
 
-FAILS, REPORTS = [], []
+FAILS, REPORTS, TICKETS = [], [], []
 
 
 def fail(gate, msg): FAILS.append(f"{gate}: {msg}")
 def report(gate, msg): REPORTS.append(f"{gate} (report): {msg}")
+def ticket(gate, msg, closes): TICKETS.append((gate, msg, closes))
+
+
+def tickets_register():
+    """The tickets register: the file of --tickets=FILE, else the newest tickets-*.md of a corpus beside the repository
+    (<corpus>/00-master-*/reports/), else None. A scratch tree (--root=PATH) has no corpus beside it."""
+    arg = next((a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--tickets=")), None)
+    if arg: return Path(arg)
+    found = sorted(ROOT.parent.glob("*/00-master-*/reports/tickets-*.md"), key=lambda p: p.name)
+    return found[-1] if found else None
+
+
+def file_tickets():
+    """One output line per ticket of the run. With a register, a ticket whose text no open ticket carries is appended as
+    `TN (open) [Gate G: text. Filed by ci/gates.py on <date>. Closes with …]`, N the next free number."""
+    import datetime
+    reg, out = tickets_register(), []
+    for gate, msg, closes in TICKETS:
+        head = f"Gate {gate}: {msg}"
+        if reg is None or not reg.exists(): out.append(f"TICKET {gate}: {msg} (no tickets register: not filed)"); continue
+        text = reg.read_text(encoding="utf-8")
+        m = re.search(r"^T(\d+) \(open\) \[" + re.escape(head), text, re.M)
+        if m: out.append(f"TICKET {gate}: {msg} (T{m.group(1)}, open in {reg.name})"); continue
+        n = 1 + max([int(x) for x in re.findall(r"^T(\d+) \(", text, re.M)] or [0]); d = datetime.date.today()
+        reg.write_text(text.rstrip("\n") + f"\n\nT{n} (open) [{head}. Filed by ci/gates.py on {d.day} {d:%B %Y}. Closes with {closes}.]\n", encoding="utf-8")
+        out.append(f"TICKET {gate}: {msg} (T{n}, filed in {reg.name})")
+    return out
 
 
 # ---- the map: every framework file with its theme, rank and place in its theme ---------------------------------------
@@ -234,7 +266,8 @@ def g12():
     for f in (sorted((ROOT / "frc" / "ledgers").glob("p*.py")) if (ROOT / "frc" / "ledgers").exists() else []):   # a paper on the site has a migrated ledger file
         m = re.search(r'^PAPER = "([^"]+)"', f.read_text(encoding="utf-8"), re.M)
         if f not in files and m and (ROOT / "docs" / m.group(1) / f"{m.group(1)}-ledger.json").exists():
-            fail("G12", f"{f.name}: the ledger of {m.group(1)} is on the site and the file has no generated table (the two marker lines of ci/make_ledgers.py), so it has no notebook and no certificate")
+            ticket("G12", f"{f.name}: the ledger of {m.group(1)} is on the site and the file has no generated table (the two marker lines of ci/make_ledgers.py), so it has no notebook and no certificate",
+                   "the ledger file migrated: the table, the notebook and the certificates of ci/make_ledgers.py")
     if not files: return 0
     if not (ROOT / "docs").is_dir() or not (ROOT / "lean" / "make_predicates.py").exists():
         fail("G12", "docs/ or lean/ is missing: the generated parts of the migrated ledgers cannot be checked"); return len(files)
@@ -249,9 +282,11 @@ def g12():
         for label in L.LEAN:
             lab, key = f"{L.R.paper}:{label}", L.KEYS[label]
             if label in L.LEAN_ONLY: continue
-            if lab not in L.R.predicates: fail("G12", f"{f.name}: {lab} ({key}) has a Lean declaration, no python check, and is not declared Lean-only"); continue
-            if lab not in marks: fail("G12", f"{f.name}: {lab} ({key}) has no marker on its deciding check {L.R.predicates[lab]}")
-            if key not in cells: fail("G12", f"{nbp.name}: no cell {key} for {lab}")
+            if lab not in L.R.predicates:                                    # a missing python check files a ticket (11 November 2026)
+                ticket("G12", f"{f.name}: {lab} ({key}) has a Lean declaration, no python check, and is not declared Lean-only",
+                       "a python check of the predicate with its marker, or the label in LEAN_ONLY"); continue
+            if lab not in marks: ticket("G12", f"{f.name}: {lab} ({key}) has no marker on its deciding check {L.R.predicates[lab]}", "the marker on the deciding check")
+            if key not in cells: ticket("G12", f"{nbp.name}: no cell {key} for {lab}", "a ci/make_ledgers.py run, which writes the notebook's cells")
         for label in L.LEAN_ONLY:
             if label not in L.LEAN: fail("G12", f"{f.name}: {label} is declared Lean-only and has no Lean declaration")
     return len(files)
@@ -466,8 +501,9 @@ def main():
     n15 = g15() if which in ("all", "g15") else 0
     n19 = g19(fw) if which in ("all", "g19") else 0
     for r in REPORTS: print(r)
+    for t in file_tickets(): print(t)
     for f in FAILS: print("FAIL", f)
-    print(f"gates {which}: {len(fw)} framework files; {n12} migrated ledger(s) checked (G12); {n13} notebook(s) executed (G13); {n14} bridge pair(s) covered (G14); {n15} pinned paper(s) (G15); {n19} core theorems scanned (G19); {len(REPORTS)} report(s); "
+    print(f"gates {which}: {len(fw)} framework files; {n12} migrated ledger(s) checked (G12); {n13} notebook(s) executed (G13); {n14} bridge pair(s) covered (G14); {n15} pinned paper(s) (G15); {n19} core theorems scanned (G19); {len(REPORTS)} report(s); {len(TICKETS)} ticket(s); "
           + ("green" if not FAILS else f"{len(FAILS)} failure(s)"))
     sys.exit(1 if FAILS else 0)
 

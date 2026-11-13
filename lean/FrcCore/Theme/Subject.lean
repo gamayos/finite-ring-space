@@ -786,4 +786,10 @@ theorem boost_unique (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y =
 
 end torus
 
+/-- 00:D14 — the pair class `gcd(Ω − 1, 2(p + 1)) = 4 gcd(S, 2κ + 1)` on the laboratory pairs `(13, 233)`, `(173, 30089)`,
+`(1549, 2408561)`: `4`, `4`, `20`. The host decides it: the Subject `13` has the class `28` in the Carrier `29`. -/
+theorem pair_class : (Nat.gcd 232 28 = 4 * Nat.gcd 58 7 ∧ Nat.gcd 30088 348 = 4 * Nat.gcd 7522 87 ∧
+    Nat.gcd 2408560 3100 = 4 * Nat.gcd 602140 775) ∧ (Nat.gcd 232 28 = 4 ∧ Nat.gcd 30088 348 = 4 ∧ Nat.gcd 2408560 3100 = 20) ∧
+    Nat.gcd 28 28 = 28 := by decide
+
 end FRC.Subject

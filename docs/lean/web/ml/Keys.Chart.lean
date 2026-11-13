@@ -3448,7 +3448,8 @@ end FRC.AlgebraML
 The chart clauses of 46-yangmills on Mathlib's reals, beside the core's window-fraction brackets (`FrcCore/Theme/YangMills.lean`,
 no axioms): the two-loop run of the coupling as the exact implicit solution of the two-loop equation and the one-loop law
 over `ℝ` (46:P2), the Herbst comparison of the declared coupling and the couplings at the chart's fixed points (46:C10), the
-plaquette channel's values with `Real.log` (46:C11) and the operator family's values with `Real.sqrt` (46:C12). The chart's
+plaquette channel at the chart's cells with `Real.log` (46:C11), the operator family's values with `Real.sqrt` (46:C12) and the gap
+of the transfer tally at the classical `π` (46:C21). The chart's
 own numbers that no formula fixes — the eigenvalue reading `2.232` and the fixed-point roots `3.541`, `3.085`, `2.611` of the
 grid operator — enter as hypotheses or literals, the chart's readings, as `35:C17`'s `2.2322` does in
 `FrcMathlib/Theme/Hadrons.lean`; the theorems certify every number built on them. Every bracket is certified from `π` to
@@ -3839,37 +3840,7 @@ theorem fixed_point_couplings :
     rw [this, div_lt_iff₀ (by positivity)]; nlinarith
   exact ⟨hC0.1, hC0.2, hC1.1, hC1.2, hC2.1, hC2.2, by linarith [hC2.2], by linarith [hC2.1]⟩
 
-set_option maxHeartbeats 2000000 in
-/-- The series bracket of `log (0.06)` after `6` terms, mantissa `2^4`. -/
-theorem logb_u06 : (-0.0408219947 : ℝ) - 4 * log 2 ≤ log (0.06) ∧ log (0.06) ≤ (-0.0408219943 : ℝ) - 4 * log 2 := by
-  simpa using log_mantissa_bracket (0.06) 4 6 (-0.0408219947 : ℝ) (-0.0408219943 : ℝ) (by norm_num) (by norm_num)
-    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
-
-set_option maxHeartbeats 2000000 in
-/-- The series bracket of `log (0.10)` after `13` terms, mantissa `2^3`. -/
-theorem logb_u10 : (-0.2231435516 : ℝ) - 3 * log 2 ≤ log (0.10) ∧ log (0.10) ≤ (-0.223143551 : ℝ) - 3 * log 2 := by
-  simpa using log_mantissa_bracket (0.10) 3 13 (-0.2231435516 : ℝ) (-0.223143551 : ℝ) (by norm_num) (by norm_num)
-    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
-
-set_option maxHeartbeats 2000000 in
-/-- The series bracket of `log (0.15)` after `23` terms, mantissa `2^2`. -/
-theorem logb_u15 : (-0.5108256243 : ℝ) - 2 * log 2 ≤ log (0.15) ∧ log (0.15) ≤ (-0.5108256232 : ℝ) - 2 * log 2 := by
-  simpa using log_mantissa_bracket (0.15) 2 23 (-0.5108256243 : ℝ) (-0.5108256232 : ℝ) (by norm_num) (by norm_num)
-    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
-
-set_option maxHeartbeats 2000000 in
-/-- The series bracket of `log (0.20)` after `13` terms, mantissa `2^2`. -/
-theorem logb_u20 : (-0.2231435516 : ℝ) - 2 * log 2 ≤ log (0.20) ∧ log (0.20) ≤ (-0.223143551 : ℝ) - 2 * log 2 := by
-  simpa using log_mantissa_bracket (0.20) 2 13 (-0.2231435516 : ℝ) (-0.223143551 : ℝ) (by norm_num) (by norm_num)
-    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
-
-set_option maxHeartbeats 2000000 in
-/-- The series bracket of `log (0.30)` after `23` terms, mantissa `2^1`. -/
-theorem logb_u30 : (-0.5108256243 : ℝ) - log 2 ≤ log (0.30) ∧ log (0.30) ≤ (-0.5108256232 : ℝ) - log 2 := by
-  simpa using log_mantissa_bracket (0.30) 1 23 (-0.5108256243 : ℝ) (-0.5108256232 : ℝ) (by norm_num) (by norm_num)
-    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
-
-/-! ## 46:C11 — the plaquette channel's values -/
+/-! ## 46:C11 — the imported series and the ratio -/
 
 /-- The imported `0⁺⁺` series of the strong-coupling expansion to order `u^n` (Münster 1981, as quoted by Langelage,
 Münster and Philipsen 2007, eq. 2.16): `Σ_{k=1}^{n} M_k u^k` with `M = (−3, 9, −27/2, −7, −297/2, 858827/10240, 47641149/71680)`. -/
@@ -3898,59 +3869,619 @@ theorem ratio_bracket (u P Llo Lhi slo shi lo hi : ℝ) (hL : Llo ≤ -log u ∧
     rw [div_le_div_iff₀ hspos hslo]
     nlinarith [hs_lo, hL.2, hP, hspos, hLpos]
 
-/-- 46:C11 [chart] — **the plaquette channel's values.** With the series to order `u⁷`, `m/√σ` lies in `(6.61, 6.63)`,
-`(5.91, 5.93)`, `(5.28, 5.30)`, `(4.76, 4.77)` at `u = 0.06`, `0.10`, `0.15`, `0.20` (the row's `6.6`, `5.9`, `5.3`, `4.8`), every one
-above the lattice bracket `3.4`–`3.7`; at `u = 0.30` the orders `3`, `5`, `7` give `(3.97, 3.98)`, `(3.59, 3.60)`, `(3.78, 3.79)`:
-only the fifth order reaches the bracket, and the orders disagree by more than `9 %` of the seventh. The frame's `u = c₃(β)`
-at these `u` is the core's (`FrcCore/Theme/YangMills.lean`, `plaquette_channel`). -/
-theorem plaquette_values :
-    (6.61 : ℝ) ≤ ratio 0.06 (P7 0.06) ∧ ratio 0.06 (P7 0.06) ≤ (6.63 : ℝ) ∧
-    (5.91 : ℝ) ≤ ratio 0.10 (P7 0.10) ∧ ratio 0.10 (P7 0.10) ≤ (5.93 : ℝ) ∧
-    (5.28 : ℝ) ≤ ratio 0.15 (P7 0.15) ∧ ratio 0.15 (P7 0.15) ≤ (5.3 : ℝ) ∧
-    (4.76 : ℝ) ≤ ratio 0.20 (P7 0.20) ∧ ratio 0.20 (P7 0.20) ≤ (4.77 : ℝ) ∧
-    (3.97 : ℝ) ≤ ratio 0.30 (P3 0.30) ∧ ratio 0.30 (P3 0.30) ≤ (3.98 : ℝ) ∧
-    (3.59 : ℝ) ≤ ratio 0.30 (P5 0.30) ∧ ratio 0.30 (P5 0.30) ≤ (3.6 : ℝ) ∧
-    (3.78 : ℝ) ≤ ratio 0.30 (P7 0.30) ∧ ratio 0.30 (P7 0.30) ≤ (3.79 : ℝ) ∧
-    0.09 * ratio 0.30 (P7 0.30) < ratio 0.30 (P3 0.30) - ratio 0.30 (P5 0.30) := by
+/-! ## 46:C11 — the plaquette channel at the chart's cells -/
+
+/-- The step of the chart's cells in the stiffness (46:B6): the one-loop law of powers with `b₀ = 11` and the drive `g = 2`
+lowers the stiffness by `11 ln 2/(8π²)` from one cell to the next. -/
+noncomputable def cellStep : ℝ := 11 * log 2 / (8 * π ^ 2)
+
+/-- The stiffness of the chart's cell `n` (46:B6): `ϑ_n = 1 − n · 11 ln 2/(8π²)`; the cell `0` is channel unity. -/
+noncomputable def cellStiffness (n : ℕ) : ℝ := 1 - n * cellStep
+
+/-- The computed terms of the frame's fundamental plaquette coefficient, through `ϑ⁷` (46:C7):
+`ϑ/3 + ϑ²/6 − 5ϑ⁴/72 − ϑ⁵/24 + 7ϑ⁶/720 + 59ϑ⁷/2160`. -/
+noncomputable def c3terms (t : ℝ) : ℝ :=
+  t / 3 + t ^ 2 / 6 - 5 / 72 * t ^ 4 - 1 / 24 * t ^ 5 + 7 / 720 * t ^ 6 + 59 / 2160 * t ^ 7
+
+/-- The chart's `u` at the cell `n`: the sum of the computed terms at the cell's stiffness. -/
+noncomputable def cellU (n : ℕ) : ℝ := c3terms (cellStiffness n)
+
+/-- The step between `0.096566906` and `0.0965669688`, from Mathlib's brackets of `ln 2` and of `π`. -/
+theorem cellStep_bracket : (0.096566906 : ℝ) ≤ cellStep ∧ cellStep ≤ (0.0965669688 : ℝ) := by
   have hl1 := log_two_gt_d9
   have hl2 := log_two_lt_d9
-  have hu0 := logb_u06
-  have hLu0 : (5626821431 / 2000000000 : ℝ) ≤ -log 0.06 ∧ -log 0.06 ≤ (28134107179 / 10000000000 : ℝ) := by
-    constructor <;> linarith [hu0.1, hu0.2]
-  have hr0 := ratio_bracket 0.06 (P7 0.06) (5626821431 / 2000000000 : ℝ) (28134107179 / 10000000000 : ℝ) (16773223 / 10000000 : ℝ) (8386613 / 5000000 : ℝ) (6.61 : ℝ) (6.63 : ℝ) hLu0
-    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num [P7, P5, P3]) (by norm_num [P7, P5, P3]) (by norm_num [P7, P5, P3])
-  have hu1 := logb_u10
-  have hLu1 : (23025850919 / 10000000000 : ℝ) ≤ -log 0.10 ∧ -log 0.10 ≤ (1151292547 / 500000000 : ℝ) := by
-    constructor <;> linarith [hu1.1, hu1.2]
-  have hr1 := ratio_bracket 0.10 (P7 0.10) (23025850919 / 10000000000 : ℝ) (1151292547 / 500000000 : ℝ) (1517427 / 1000000 : ℝ) (15174273 / 10000000 : ℝ) (5.91 : ℝ) (5.93 : ℝ) hLu1
-    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num [P7, P5, P3]) (by norm_num [P7, P5, P3]) (by norm_num [P7, P5, P3])
-  have hu2 := logb_u15
-  have hLu2 : (9485599919 / 5000000000 : ℝ) ≤ -log 0.15 ∧ -log 0.15 ≤ (18971199859 / 10000000000 : ℝ) := by
-    constructor <;> linarith [hu2.1, hu2.2]
-  have hr2 := ratio_bracket 0.15 (P7 0.15) (9485599919 / 5000000000 : ℝ) (18971199859 / 10000000000 : ℝ) (3443399 / 2500000 : ℝ) (13773599 / 10000000 : ℝ) (5.28 : ℝ) (5.3 : ℝ) hLu2
-    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num [P7, P5, P3]) (by norm_num [P7, P5, P3]) (by norm_num [P7, P5, P3])
-  have hu3 := logb_u20
-  have hLu3 : (4023594779 / 2500000000 : ℝ) ≤ -log 0.20 ∧ -log 0.20 ≤ (4023594783 / 2500000000 : ℝ) := by
-    constructor <;> linarith [hu3.1, hu3.2]
-  have hr3 := ratio_bracket 0.20 (P7 0.20) (4023594779 / 2500000000 : ℝ) (4023594783 / 2500000000 : ℝ) (12686361 / 10000000 : ℝ) (3171591 / 2500000 : ℝ) (4.76 : ℝ) (4.77 : ℝ) hLu3
-    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num [P7, P5, P3]) (by norm_num [P7, P5, P3]) (by norm_num [P7, P5, P3])
-  have hu4 := logb_u30
-  have hLu4 : (2407945607 / 2000000000 : ℝ) ≤ -log 0.30 ∧ -log 0.30 ≤ (12039728051 / 10000000000 : ℝ) := by
-    constructor <;> linarith [hu4.1, hu4.2]
-  have hr4 := ratio_bracket 0.30 (P3 0.30) (2407945607 / 2000000000 : ℝ) (12039728051 / 10000000000 : ℝ) (1371571 / 1250000 : ℝ) (10972571 / 10000000 : ℝ) (3.97 : ℝ) (3.98 : ℝ) hLu4
-    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num [P3, P5, P3]) (by norm_num [P3, P5, P3]) (by norm_num [P3, P5, P3])
-  have hu5 := logb_u30
-  have hLu5 : (2407945607 / 2000000000 : ℝ) ≤ -log 0.30 ∧ -log 0.30 ≤ (12039728051 / 10000000000 : ℝ) := by
-    constructor <;> linarith [hu5.1, hu5.2]
-  have hr5 := ratio_bracket 0.30 (P5 0.30) (2407945607 / 2000000000 : ℝ) (12039728051 / 10000000000 : ℝ) (1371571 / 1250000 : ℝ) (10972571 / 10000000 : ℝ) (3.59 : ℝ) (3.6 : ℝ) hLu5
-    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num [P5, P5, P3]) (by norm_num [P5, P5, P3]) (by norm_num [P5, P5, P3])
-  have hu6 := logb_u30
-  have hLu6 : (2407945607 / 2000000000 : ℝ) ≤ -log 0.30 ∧ -log 0.30 ≤ (12039728051 / 10000000000 : ℝ) := by
-    constructor <;> linarith [hu6.1, hu6.2]
-  have hr6 := ratio_bracket 0.30 (P7 0.30) (2407945607 / 2000000000 : ℝ) (12039728051 / 10000000000 : ℝ) (1371571 / 1250000 : ℝ) (10972571 / 10000000 : ℝ) (3.78 : ℝ) (3.79 : ℝ) hLu6
-    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num [P7, P5, P3]) (by norm_num [P7, P5, P3]) (by norm_num [P7, P5, P3])
-  refine ⟨hr0.1, hr0.2, hr1.1, hr1.2, hr2.1, hr2.2, hr3.1, hr3.2, hr4.1, hr4.2, hr5.1, hr5.2, hr6.1, hr6.2, ?_⟩
-  linarith [hr4.1, hr5.2, hr6.2]
+  have hp1 := pi_gt_d6
+  have hp2 := pi_lt_d6
+  have hp0 : (0 : ℝ) < π := pi_pos
+  have hsq1 : (9.8696002 : ℝ) < π ^ 2 := by nlinarith [hp1, hp0]
+  have hsq2 : π ^ 2 < (9.8696066 : ℝ) := by nlinarith [hp2, hp0]
+  have hpos : (0 : ℝ) < 8 * π ^ 2 := by positivity
+  unfold cellStep
+  constructor
+  · rw [le_div_iff₀ hpos]; linarith
+  · rw [div_le_iff₀ hpos]; linarith
+
+/-- The stiffness of the cell `n` between `1 − n · 0.0965669688` and `1 − n · 0.096566906`. -/
+theorem cellStiffness_bracket (n : ℕ) :
+    1 - n * (0.0965669688 : ℝ) ≤ cellStiffness n ∧ cellStiffness n ≤ 1 - n * (0.096566906 : ℝ) := by
+  have h := cellStep_bracket
+  have hn : (0 : ℝ) ≤ n := Nat.cast_nonneg n
+  have h1 := mul_le_mul_of_nonneg_left h.1 hn
+  have h2 := mul_le_mul_of_nonneg_left h.2 hn
+  unfold cellStiffness
+  constructor <;> linarith
+
+/-- The computed terms on an interval `0 ≤ a ≤ t ≤ b`: each term at the end its sign selects. -/
+theorem c3terms_bracket (t a b : ℝ) (ha : 0 ≤ a) (hat : a ≤ t) (htb : t ≤ b) :
+    a / 3 + a ^ 2 / 6 - 5 / 72 * b ^ 4 - 1 / 24 * b ^ 5 + 7 / 720 * a ^ 6 + 59 / 2160 * a ^ 7 ≤ c3terms t ∧
+    c3terms t ≤ b / 3 + b ^ 2 / 6 - 5 / 72 * a ^ 4 - 1 / 24 * a ^ 5 + 7 / 720 * b ^ 6 + 59 / 2160 * b ^ 7 := by
+  have ht : 0 ≤ t := le_trans ha hat
+  have a2 := pow_le_pow_left₀ ha hat 2
+  have a4 := pow_le_pow_left₀ ha hat 4
+  have a5 := pow_le_pow_left₀ ha hat 5
+  have a6 := pow_le_pow_left₀ ha hat 6
+  have a7 := pow_le_pow_left₀ ha hat 7
+  have b2 := pow_le_pow_left₀ ht htb 2
+  have b4 := pow_le_pow_left₀ ht htb 4
+  have b5 := pow_le_pow_left₀ ht htb 5
+  have b6 := pow_le_pow_left₀ ht htb 6
+  have b7 := pow_le_pow_left₀ ht htb 7
+  unfold c3terms
+  constructor <;> linarith
+
+/-- The three orders of the imported series on an interval `0 ≤ a ≤ u ≤ b`: each term at the end its sign selects. -/
+theorem P_bracket (u a b : ℝ) (ha : 0 ≤ a) (hau : a ≤ u) (hub : u ≤ b) :
+    (-3 * b + 9 * a ^ 2 - 27 / 2 * b ^ 3 ≤ P3 u ∧ P3 u ≤ -3 * a + 9 * b ^ 2 - 27 / 2 * a ^ 3) ∧
+    (-3 * b + 9 * a ^ 2 - 27 / 2 * b ^ 3 - 7 * b ^ 4 - 297 / 2 * b ^ 5 ≤ P5 u ∧
+      P5 u ≤ -3 * a + 9 * b ^ 2 - 27 / 2 * a ^ 3 - 7 * a ^ 4 - 297 / 2 * a ^ 5) ∧
+    (-3 * b + 9 * a ^ 2 - 27 / 2 * b ^ 3 - 7 * b ^ 4 - 297 / 2 * b ^ 5 + 858827 / 10240 * a ^ 6 + 47641149 / 71680 * a ^ 7 ≤ P7 u ∧
+      P7 u ≤ -3 * a + 9 * b ^ 2 - 27 / 2 * a ^ 3 - 7 * a ^ 4 - 297 / 2 * a ^ 5 + 858827 / 10240 * b ^ 6 + 47641149 / 71680 * b ^ 7) := by
+  have hu : 0 ≤ u := le_trans ha hau
+  have a2 := pow_le_pow_left₀ ha hau 2
+  have a3 := pow_le_pow_left₀ ha hau 3
+  have a4 := pow_le_pow_left₀ ha hau 4
+  have a5 := pow_le_pow_left₀ ha hau 5
+  have a6 := pow_le_pow_left₀ ha hau 6
+  have a7 := pow_le_pow_left₀ ha hau 7
+  have b2 := pow_le_pow_left₀ hu hub 2
+  have b3 := pow_le_pow_left₀ hu hub 3
+  have b4 := pow_le_pow_left₀ hu hub 4
+  have b5 := pow_le_pow_left₀ hu hub 5
+  have b6 := pow_le_pow_left₀ hu hub 6
+  have b7 := pow_le_pow_left₀ hu hub 7
+  unfold P7 P5 P3
+  refine ⟨⟨by linarith, by linarith⟩, ⟨by linarith, by linarith⟩, ⟨by linarith, by linarith⟩⟩
+
+/-- A bracket of `ratio u P` from brackets `Llo ≤ −log u ≤ Lhi` and `Plo ≤ P ≤ Phi` and rational square-root ends
+`slo² < Llo`, `Lhi < shi²`. -/
+theorem ratio_bracket_Icc (u P Llo Lhi Plo Phi slo shi lo hi : ℝ) (hL : Llo ≤ -log u ∧ -log u ≤ Lhi)
+    (hPb : Plo ≤ P ∧ P ≤ Phi) (hslo : 0 < slo) (hs1 : slo ^ 2 < Llo) (hshi : 0 < shi) (hs2 : Lhi < shi ^ 2)
+    (hP : 0 < 4 * Llo + Plo) (hlo : lo ≤ (4 * Llo + Plo) / shi) (hhi : (4 * Lhi + Phi) / slo ≤ hi) :
+    lo ≤ ratio u P ∧ ratio u P ≤ hi := by
+  have hs_lo : slo < √(-log u) := by rw [lt_sqrt hslo.le]; linarith [hL.1]
+  have hs_hi : √(-log u) < shi := by rw [sqrt_lt' hshi]; linarith [hL.2]
+  have hspos : 0 < √(-log u) := lt_trans hslo hs_lo
+  have hnum : 0 < 4 * (-log u) + P := by linarith [hL.1, hPb.1]
+  unfold ratio
+  constructor
+  · refine le_trans hlo ?_
+    rw [div_le_div_iff₀ hshi hspos]
+    nlinarith [mul_nonneg hP.le (sub_nonneg.2 hs_hi.le),
+      mul_nonneg (by linarith [hL.1, hPb.1] : (0 : ℝ) ≤ 4 * (-log u) + P - (4 * Llo + Plo)) hshi.le]
+  · refine le_trans ?_ hhi
+    rw [div_le_div_iff₀ hspos hslo]
+    nlinarith [mul_nonneg hnum.le (sub_nonneg.2 hs_lo.le),
+      mul_nonneg (by linarith [hL.2, hPb.2] : (0 : ℝ) ≤ 4 * Lhi + Phi - (4 * (-log u) + P)) hspos.le]
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.04646)` after `12` terms, mantissa `2^4`. -/
+theorem logb_cell9a : (-0.2965748555 : ℝ) - 4 * log 2 ≤ log (0.04646) ∧ log (0.04646) ≤ (-0.296574799 : ℝ) - 4 * log 2 := by
+  simpa using log_mantissa_bracket (0.04646) 4 12 (-0.2965748555 : ℝ) (-0.296574799 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.04647)` after `12` terms, mantissa `2^4`. -/
+theorem logb_cell9b : (-0.2963596395 : ℝ) - 4 * log 2 ≤ log (0.04647) ∧ log (0.04647) ≤ (-0.2963595835 : ℝ) - 4 * log 2 := by
+  simpa using log_mantissa_bracket (0.04647) 4 12 (-0.2963596395 : ℝ) (-0.2963595835 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.08423)` after `14` terms, mantissa `2^3`. -/
+theorem logb_cell8a : (-0.3947626548 : ℝ) - 3 * log 2 ≤ log (0.08423) ∧ log (0.08423) ≤ (-0.3947625055 : ℝ) - 3 * log 2 := by
+  simpa using log_mantissa_bracket (0.08423) 3 14 (-0.3947626548 : ℝ) (-0.3947625055 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.08424)` after `14` terms, mantissa `2^3`. -/
+theorem logb_cell8b : (-0.3946439391 : ℝ) - 3 * log 2 ≤ log (0.08424) ∧ log (0.08424) ≤ (-0.3946437903 : ℝ) - 3 * log 2 := by
+  simpa using log_mantissa_bracket (0.08424) 3 14 (-0.3946439391 : ℝ) (-0.3946437903 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.12461)` after `2` terms, mantissa `2^3`. -/
+theorem logb_cell7a : (-0.0031248977 : ℝ) - 3 * log 2 ≤ log (0.12461) ∧ log (0.12461) ≤ (-0.0031248367 : ℝ) - 3 * log 2 := by
+  simpa using log_mantissa_bracket (0.12461) 3 2 (-0.0031248977 : ℝ) (-0.0031248367 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.12462)` after `2` terms, mantissa `2^3`. -/
+theorem logb_cell7b : (-0.003044649 : ℝ) - 3 * log 2 ≤ log (0.12462) ∧ log (0.12462) ≤ (-0.0030445926 : ℝ) - 3 * log 2 := by
+  simpa using log_mantissa_bracket (0.12462) 3 2 (-0.003044649 : ℝ) (-0.0030445926 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.16707)` after `14` terms, mantissa `2^2`. -/
+theorem logb_cell6a : (-0.4030481223 : ℝ) - 2 * log 2 ≤ log (0.16707) ∧ log (0.16707) ≤ (-0.4030479283 : ℝ) - 2 * log 2 := by
+  simpa using log_mantissa_bracket (0.16707) 2 14 (-0.4030481223 : ℝ) (-0.4030479283 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.16708)` after `14` terms, mantissa `2^2`. -/
+theorem logb_cell6b : (-0.4029882688 : ℝ) - 2 * log 2 ≤ log (0.16708) ∧ log (0.16708) ≤ (-0.4029880751 : ℝ) - 2 * log 2 := by
+  simpa using log_mantissa_bracket (0.16708) 2 14 (-0.4029882688 : ℝ) (-0.4029880751 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.25528)` after `23` terms, mantissa `2^1`. -/
+theorem logb_cell4a : (-0.6722471836 : ℝ) - log 2 ≤ log (0.25528) ∧ log (0.25528) ≤ (-0.6722470436 : ℝ) - log 2 := by
+  simpa using log_mantissa_bracket (0.25528) 1 23 (-0.6722471836 : ℝ) (-0.6722470436 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.2553)` after `23` terms, mantissa `2^1`. -/
+theorem logb_cell4b : (-0.6721688412 : ℝ) - log 2 ≤ log (0.2553) ∧ log (0.2553) ≤ (-0.6721687015 : ℝ) - log 2 := by
+  simpa using log_mantissa_bracket (0.2553) 1 23 (-0.6721688412 : ℝ) (-0.6721687015 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.29938)` after `18` terms, mantissa `2^1`. -/
+theorem logb_cell3a : (-0.5128944752 : ℝ) - log 2 ≤ log (0.29938) ∧ log (0.29938) ≤ (-0.5128943777 : ℝ) - log 2 := by
+  simpa using log_mantissa_bracket (0.29938) 1 18 (-0.5128944752 : ℝ) (-0.5128943777 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.29939)` after `18` terms, mantissa `2^1`. -/
+theorem logb_cell3b : (-0.5128610733 : ℝ) - log 2 ≤ log (0.29939) ∧ log (0.29939) ≤ (-0.512860976 : ℝ) - log 2 := by
+  simpa using log_mantissa_bracket (0.29939) 1 18 (-0.5128610733 : ℝ) (-0.512860976 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.34254)` after `14` terms, mantissa `2^1`. -/
+theorem logb_cell2a : (-0.3782196998 : ℝ) - log 2 ≤ log (0.34254) ∧ log (0.34254) ≤ (-0.378219613 : ℝ) - log 2 := by
+  simpa using log_mantissa_bracket (0.34254) 1 14 (-0.3782196998 : ℝ) (-0.378219613 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (0.34255)` after `14` terms, mantissa `2^1`. -/
+theorem logb_cell2b : (-0.3781905065 : ℝ) - log 2 ≤ log (0.34255) ∧ log (0.34255) ≤ (-0.3781904198 : ℝ) - log 2 := by
+  simpa using log_mantissa_bracket (0.34255) 1 14 (-0.3781905065 : ℝ) (-0.3781904198 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 4000000 in
+/-- The series bracket of `log (23 / 54)` after `8` terms, mantissa `2^1`. -/
+theorem logb_cell0a : (-0.1603426861 : ℝ) - log 2 ≤ log (23 / 54) ∧ log (23 / 54) ≤ (-0.1603426053 : ℝ) - log 2 := by
+  simpa using log_mantissa_bracket (23 / 54) 1 8 (-0.1603426861 : ℝ) (-0.1603426053 : ℝ) (by norm_num) (by norm_num)
+    (by norm_num [sum_range_succ]) (by norm_num [sum_range_succ])
+
+set_option maxHeartbeats 1000000 in
+/-- The cell `n = 9`: the stiffness lies in `[0.13089728, 0.130897846]`, `u` in `[0.04646, 0.04647]`, and the orders `3`, `5`, `7` in the stated brackets. -/
+theorem cell9_ratios :
+    ((6.93 : ℝ) ≤ ratio (cellU 9) (P3 (cellU 9)) ∧ ratio (cellU 9) (P3 (cellU 9)) ≤ (6.94 : ℝ)) ∧
+    ((6.93 : ℝ) ≤ ratio (cellU 9) (P5 (cellU 9)) ∧ ratio (cellU 9) (P5 (cellU 9)) ≤ (6.94 : ℝ)) ∧
+    ((6.93 : ℝ) ≤ ratio (cellU 9) (P7 (cellU 9)) ∧ ratio (cellU 9) (P7 (cellU 9)) ≤ (6.94 : ℝ)) := by
+  have hθ : (0.13089728 : ℝ) ≤ cellStiffness 9 ∧ cellStiffness 9 ≤ (0.130897846 : ℝ) := by
+    have h := cellStiffness_bracket 9
+    push_cast at h
+    constructor <;> linarith [h.1, h.2]
+  have hc := c3terms_bracket (cellStiffness 9) (0.13089728 : ℝ) (0.130897846 : ℝ) (by norm_num) hθ.1 hθ.2
+  have hu : (0.04646 : ℝ) ≤ cellU 9 ∧ cellU 9 ≤ (0.04647 : ℝ) := by
+    unfold cellU
+    constructor
+    · refine le_trans ?_ hc.1; norm_num
+    · refine le_trans hc.2 ?_; norm_num
+  have hua : (0 : ℝ) < 0.04646 := by norm_num
+  have hla := Real.log_le_log hua hu.1
+  have hlb := Real.log_le_log (lt_of_lt_of_le hua hu.1) hu.2
+  have hl1 := log_two_gt_d9
+  have hl2 := log_two_lt_d9
+  have hA := logb_cell9a
+  have hB := logb_cell9b
+  have hL : (3.0689483047 : ℝ) ≤ -log (cellU 9) ∧ -log (cellU 9) ≤ (3.0691635787 : ℝ) := by
+    constructor <;> linarith [hA.1, hA.2, hB.1, hB.2]
+  have hP := P_bracket (cellU 9) (0.04646 : ℝ) (0.04647 : ℝ) (by norm_num) hu.1 hu.2
+  have hP3 : (-0.1213379426 : ℝ) ≤ P3 (cellU 9) ∧ P3 (cellU 9) ≤ (-0.1212987045 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.1.1; norm_num
+    · refine le_trans hP.1.2 ?_; norm_num
+  have hr3 := ratio_bracket_Icc (cellU 9) (P3 (cellU 9)) (3.0689483047 : ℝ) (3.0691635787 : ℝ) (-0.1213379426 : ℝ) (-0.1212987045 : ℝ) (1.7518413 : ℝ) (1.751903 : ℝ) (6.93 : ℝ) (6.94 : ℝ) hL hP3
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP5 : (-0.1214027658 : ℝ) ≤ P5 (cellU 9) ∧ P5 (cellU 9) ≤ (-0.1213634649 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.1.1; norm_num
+    · refine le_trans hP.2.1.2 ?_; norm_num
+  have hr5 := ratio_bracket_Icc (cellU 9) (P5 (cellU 9)) (3.0689483047 : ℝ) (3.0691635787 : ℝ) (-0.1214027658 : ℝ) (-0.1213634649 : ℝ) (1.7518413 : ℝ) (1.751903 : ℝ) (6.93 : ℝ) (6.94 : ℝ) hL hP5
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP7 : (-0.1214016118 : ℝ) ≤ P7 (cellU 9) ∧ P7 (cellU 9) ≤ (-0.1213623093 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.2.1; norm_num
+    · refine le_trans hP.2.2.2 ?_; norm_num
+  have hr7 := ratio_bracket_Icc (cellU 9) (P7 (cellU 9)) (3.0689483047 : ℝ) (3.0691635787 : ℝ) (-0.1214016118 : ℝ) (-0.1213623093 : ℝ) (1.7518413 : ℝ) (1.751903 : ℝ) (6.93 : ℝ) (6.94 : ℝ) hL hP7
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  exact ⟨hr3, hr5, hr7⟩
+
+set_option maxHeartbeats 1000000 in
+/-- The cell `n = 8`: the stiffness lies in `[0.227464249, 0.227464752]`, `u` in `[0.08423, 0.08424]`, and the orders `3`, `5`, `7` in the stated brackets. -/
+theorem cell8_ratios :
+    ((6.16 : ℝ) ≤ ratio (cellU 8) (P3 (cellU 8)) ∧ ratio (cellU 8) (P3 (cellU 8)) ≤ (6.17 : ℝ)) ∧
+    ((6.16 : ℝ) ≤ ratio (cellU 8) (P5 (cellU 8)) ∧ ratio (cellU 8) (P5 (cellU 8)) ≤ (6.17 : ℝ)) ∧
+    ((6.16 : ℝ) ≤ ratio (cellU 8) (P7 (cellU 8)) ∧ ratio (cellU 8) (P7 (cellU 8)) ≤ (6.17 : ℝ)) := by
+  have hθ : (0.227464249 : ℝ) ≤ cellStiffness 8 ∧ cellStiffness 8 ≤ (0.227464752 : ℝ) := by
+    have h := cellStiffness_bracket 8
+    push_cast at h
+    constructor <;> linarith [h.1, h.2]
+  have hc := c3terms_bracket (cellStiffness 8) (0.227464249 : ℝ) (0.227464752 : ℝ) (by norm_num) hθ.1 hθ.2
+  have hu : (0.08423 : ℝ) ≤ cellU 8 ∧ cellU 8 ≤ (0.08424 : ℝ) := by
+    unfold cellU
+    constructor
+    · refine le_trans ?_ hc.1; norm_num
+    · refine le_trans hc.2 ?_; norm_num
+  have hua : (0 : ℝ) < 0.08423 := by norm_num
+  have hla := Real.log_le_log hua hu.1
+  have hlb := Real.log_le_log (lt_of_lt_of_le hua hu.1) hu.2
+  have hl1 := log_two_gt_d9
+  have hl2 := log_two_lt_d9
+  have hA := logb_cell8a
+  have hB := logb_cell8b
+  have hL : (2.4740853312 : ℝ) ≤ -log (cellU 8) ∧ -log (cellU 8) ≤ (2.4742041972 : ℝ) := by
+    constructor <;> linarith [hA.1, hA.2, hB.1, hB.2]
+  have hP := P_bracket (cellU 8) (0.08423 : ℝ) (0.08424 : ℝ) (by norm_num) hu.1 hu.2
+  have hP3 : (-0.1969380484 : ℝ) ≤ P3 (cellU 8) ∧ P3 (cellU 8) ≤ (-0.1968900123 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.1.1; norm_num
+    · refine le_trans hP.1.2 ?_; norm_num
+  have hr3 := ratio_bracket_Icc (cellU 8) (P3 (cellU 8)) (2.4740853312 : ℝ) (2.4742041972 : ℝ) (-0.1969380484 : ℝ) (-0.1968900123 : ℝ) (1.5729224 : ℝ) (1.5729605 : ℝ) (6.16 : ℝ) (6.17 : ℝ) hL hP3
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP5 : (-0.1979205261 : ℝ) ≤ P5 (cellU 8) ∧ P5 (cellU 8) ≤ (-0.1978719488 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.1.1; norm_num
+    · refine le_trans hP.2.1.2 ?_; norm_num
+  have hr5 := ratio_bracket_Icc (cellU 8) (P5 (cellU 8)) (2.4740853312 : ℝ) (2.4742041972 : ℝ) (-0.1979205261 : ℝ) (-0.1978719488 : ℝ) (1.5729224 : ℝ) (1.5729605 : ℝ) (6.16 : ℝ) (6.17 : ℝ) hL hP5
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP7 : (-0.1978705836 : ℝ) ≤ P7 (cellU 8) ∧ P7 (cellU 8) ≤ (-0.1978219684 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.2.1; norm_num
+    · refine le_trans hP.2.2.2 ?_; norm_num
+  have hr7 := ratio_bracket_Icc (cellU 8) (P7 (cellU 8)) (2.4740853312 : ℝ) (2.4742041972 : ℝ) (-0.1978705836 : ℝ) (-0.1978219684 : ℝ) (1.5729224 : ℝ) (1.5729605 : ℝ) (6.16 : ℝ) (6.17 : ℝ) hL hP7
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  exact ⟨hr3, hr5, hr7⟩
+
+set_option maxHeartbeats 1000000 in
+/-- The cell `n = 7`: the stiffness lies in `[0.324031218, 0.324031658]`, `u` in `[0.12461, 0.12462]`, and the orders `3`, `5`, `7` in the stated brackets. -/
+theorem cell7_ratios :
+    ((5.59 : ℝ) ≤ ratio (cellU 7) (P3 (cellU 7)) ∧ ratio (cellU 7) (P3 (cellU 7)) ≤ (5.6 : ℝ)) ∧
+    ((5.58 : ℝ) ≤ ratio (cellU 7) (P5 (cellU 7)) ∧ ratio (cellU 7) (P5 (cellU 7)) ≤ (5.59 : ℝ)) ∧
+    ((5.58 : ℝ) ≤ ratio (cellU 7) (P7 (cellU 7)) ∧ ratio (cellU 7) (P7 (cellU 7)) ≤ (5.59 : ℝ)) := by
+  have hθ : (0.324031218 : ℝ) ≤ cellStiffness 7 ∧ cellStiffness 7 ≤ (0.324031658 : ℝ) := by
+    have h := cellStiffness_bracket 7
+    push_cast at h
+    constructor <;> linarith [h.1, h.2]
+  have hc := c3terms_bracket (cellStiffness 7) (0.324031218 : ℝ) (0.324031658 : ℝ) (by norm_num) hθ.1 hθ.2
+  have hu : (0.12461 : ℝ) ≤ cellU 7 ∧ cellU 7 ≤ (0.12462 : ℝ) := by
+    unfold cellU
+    constructor
+    · refine le_trans ?_ hc.1; norm_num
+    · refine le_trans hc.2 ?_; norm_num
+  have hua : (0 : ℝ) < 0.12461 := by norm_num
+  have hla := Real.log_le_log hua hu.1
+  have hlb := Real.log_le_log (lt_of_lt_of_le hua hu.1) hu.2
+  have hl1 := log_two_gt_d9
+  have hl2 := log_two_lt_d9
+  have hA := logb_cell7a
+  have hB := logb_cell7b
+  have hL : (2.0824861335 : ℝ) ≤ -log (cellU 7) ∧ -log (cellU 7) ≤ (2.0825664401 : ℝ) := by
+    constructor <;> linarith [hA.1, hA.2, hB.1, hB.2]
+  have hP := P_bracket (cellU 7) (0.12461 : ℝ) (0.12462 : ℝ) (by norm_num) hu.1 hu.2
+  have hP3 : (-0.2602385802 : ℝ) ≤ P3 (cellU 7) ∧ P3 (cellU 7) ≤ (-0.2601798602 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.1.1; norm_num
+    · refine le_trans hP.1.2 ?_; norm_num
+  have hr3 := ratio_bracket_Icc (cellU 7) (P3 (cellU 7)) (2.0824861335 : ℝ) (2.0825664401 : ℝ) (-0.2602385802 : ℝ) (-0.2601798602 : ℝ) (1.443082 : ℝ) (1.4431101 : ℝ) (5.59 : ℝ) (5.6 : ℝ) hL hP3
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP5 : (-0.2663902715 : ℝ) ≤ P5 (cellU 7) ∧ P5 (cellU 7) ≤ (-0.2663292191 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.1.1; norm_num
+    · refine le_trans hP.2.1.2 ?_; norm_num
+  have hr5 := ratio_bracket_Icc (cellU 7) (P5 (cellU 7)) (2.0824861335 : ℝ) (2.0825664401 : ℝ) (-0.2663902715 : ℝ) (-0.2663292191 : ℝ) (1.443082 : ℝ) (1.4431101 : ℝ) (5.58 : ℝ) (5.59 : ℝ) hL hP5
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP7 : (-0.26576621 : ℝ) ≤ P7 (cellU 7) ∧ P7 (cellU 7) ≤ (-0.2657048322 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.2.1; norm_num
+    · refine le_trans hP.2.2.2 ?_; norm_num
+  have hr7 := ratio_bracket_Icc (cellU 7) (P7 (cellU 7)) (2.0824861335 : ℝ) (2.0825664401 : ℝ) (-0.26576621 : ℝ) (-0.2657048322 : ℝ) (1.443082 : ℝ) (1.4431101 : ℝ) (5.58 : ℝ) (5.59 : ℝ) hL hP7
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  exact ⟨hr3, hr5, hr7⟩
+
+set_option maxHeartbeats 1000000 in
+/-- The cell `n = 6`: the stiffness lies in `[0.420598187, 0.420598564]`, `u` in `[0.16707, 0.16708]`, and the orders `3`, `5`, `7` in the stated brackets. -/
+theorem cell6_ratios :
+    ((5.11 : ℝ) ≤ ratio (cellU 6) (P3 (cellU 6)) ∧ ratio (cellU 6) (P3 (cellU 6)) ≤ (5.12 : ℝ)) ∧
+    ((5.09 : ℝ) ≤ ratio (cellU 6) (P5 (cellU 6)) ∧ ratio (cellU 6) (P5 (cellU 6)) ≤ (5.1 : ℝ)) ∧
+    ((5.1 : ℝ) ≤ ratio (cellU 6) (P7 (cellU 6)) ∧ ratio (cellU 6) (P7 (cellU 6)) ≤ (5.11 : ℝ)) := by
+  have hθ : (0.420598187 : ℝ) ≤ cellStiffness 6 ∧ cellStiffness 6 ≤ (0.420598564 : ℝ) := by
+    have h := cellStiffness_bracket 6
+    push_cast at h
+    constructor <;> linarith [h.1, h.2]
+  have hc := c3terms_bracket (cellStiffness 6) (0.420598187 : ℝ) (0.420598564 : ℝ) (by norm_num) hθ.1 hθ.2
+  have hu : (0.16707 : ℝ) ≤ cellU 6 ∧ cellU 6 ≤ (0.16708 : ℝ) := by
+    unfold cellU
+    constructor
+    · refine le_trans ?_ hc.1; norm_num
+    · refine le_trans hc.2 ?_; norm_num
+  have hua : (0 : ℝ) < 0.16707 := by norm_num
+  have hla := Real.log_le_log hua hu.1
+  have hlb := Real.log_le_log (lt_of_lt_of_le hua hu.1) hu.2
+  have hl1 := log_two_gt_d9
+  have hl2 := log_two_lt_d9
+  have hA := logb_cell6a
+  have hB := logb_cell6b
+  have hL : (1.7892824357 : ℝ) ≤ -log (cellU 6) ∧ -log (cellU 6) ≤ (1.7893424839 : ℝ) := by
+    constructor <;> linarith [hA.1, hA.2, hB.1, hB.2]
+  have hP := P_bracket (cellU 6) (0.16707 : ℝ) (0.16708 : ℝ) (by norm_num) hu.1 hu.2
+  have hP3 : (-0.3129946901 : ℝ) ≤ P3 (cellU 6) ∧ P3 (cellU 6) ≤ (-0.3129233113 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.1.1; norm_num
+    · refine le_trans hP.1.2 ?_; norm_num
+  have hr3 := ratio_bracket_Icc (cellU 6) (P3 (cellU 6)) (1.7892824357 : ℝ) (1.7893424839 : ℝ) (-0.3129946901 : ℝ) (-0.3129233113 : ℝ) (1.3376405 : ℝ) (1.3376632 : ℝ) (5.11 : ℝ) (5.12 : ℝ) hL hP3
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP5 : (-0.3377849098 : ℝ) ≤ P5 (cellU 6) ∧ P5 (cellU 6) ≤ (-0.3377064397 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.1.1; norm_num
+    · refine le_trans hP.2.1.2 ?_; norm_num
+  have hr5 := ratio_bracket_Icc (cellU 6) (P5 (cellU 6)) (1.7892824357 : ℝ) (1.7893424839 : ℝ) (-0.3377849098 : ℝ) (-0.3377064397 : ℝ) (1.3376405 : ℝ) (1.3376632 : ℝ) (5.09 : ℝ) (5.1 : ℝ) hL hP5
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP7 : (-0.3335462709 : ℝ) ≤ P7 (cellU 6) ∧ P7 (cellU 6) ≤ (-0.3334661337 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.2.1; norm_num
+    · refine le_trans hP.2.2.2 ?_; norm_num
+  have hr7 := ratio_bracket_Icc (cellU 6) (P7 (cellU 6)) (1.7892824357 : ℝ) (1.7893424839 : ℝ) (-0.3335462709 : ℝ) (-0.3334661337 : ℝ) (1.3376405 : ℝ) (1.3376632 : ℝ) (5.1 : ℝ) (5.11 : ℝ) hL hP7
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  exact ⟨hr3, hr5, hr7⟩
+
+set_option maxHeartbeats 1000000 in
+/-- The cell `n = 4`: the stiffness lies in `[0.613732124, 0.613732376]`, `u` in `[0.25528, 0.2553]`, and the orders `3`, `5`, `7` in the stated brackets. -/
+theorem cell4_ratios :
+    ((4.32 : ℝ) ≤ ratio (cellU 4) (P3 (cellU 4)) ∧ ratio (cellU 4) (P3 (cellU 4)) ≤ (4.33 : ℝ)) ∧
+    ((4.16 : ℝ) ≤ ratio (cellU 4) (P5 (cellU 4)) ∧ ratio (cellU 4) (P5 (cellU 4)) ≤ (4.17 : ℝ)) ∧
+    ((4.22 : ℝ) ≤ ratio (cellU 4) (P7 (cellU 4)) ∧ ratio (cellU 4) (P7 (cellU 4)) ≤ (4.23 : ℝ)) := by
+  have hθ : (0.613732124 : ℝ) ≤ cellStiffness 4 ∧ cellStiffness 4 ≤ (0.613732376 : ℝ) := by
+    have h := cellStiffness_bracket 4
+    push_cast at h
+    constructor <;> linarith [h.1, h.2]
+  have hc := c3terms_bracket (cellStiffness 4) (0.613732124 : ℝ) (0.613732376 : ℝ) (by norm_num) hθ.1 hθ.2
+  have hu : (0.25528 : ℝ) ≤ cellU 4 ∧ cellU 4 ≤ (0.2553 : ℝ) := by
+    unfold cellU
+    constructor
+    · refine le_trans ?_ hc.1; norm_num
+    · refine le_trans hc.2 ?_; norm_num
+  have hua : (0 : ℝ) < 0.25528 := by norm_num
+  have hla := Real.log_le_log hua hu.1
+  have hlb := Real.log_le_log (lt_of_lt_of_le hua hu.1) hu.2
+  have hl1 := log_two_gt_d9
+  have hl2 := log_two_lt_d9
+  have hA := logb_cell4a
+  have hB := logb_cell4b
+  have hL : (1.3653158818 : ℝ) ≤ -log (cellU 4) ∧ -log (cellU 4) ≤ (1.3653943644 : ℝ) := by
+    constructor <;> linarith [hA.1, hA.2, hB.1, hB.2]
+  have hP := P_bracket (cellU 4) (0.25528 : ℝ) (0.2553 : ℝ) (by norm_num) hu.1 hu.2
+  have hP3 : (-0.4040286405 : ℝ) ≤ P3 (cellU 4) ∧ P3 (cellU 4) ≤ (-0.4038239459 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.1.1; norm_num
+    · refine le_trans hP.1.2 ?_; norm_num
+  have hr3 := ratio_bracket_Icc (cellU 4) (P3 (cellU 4)) (1.3653158818 : ℝ) (1.3653943644 : ℝ) (-0.4040286405 : ℝ) (-0.4038239459 : ℝ) (1.1684672 : ℝ) (1.1685011 : ℝ) (4.32 : ℝ) (4.33 : ℝ) hL hP3
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP5 : (-0.5948232665 : ℝ) ≤ P5 (cellU 4) ∧ P5 (cellU 4) ≤ (-0.594546179 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.1.1; norm_num
+    · refine le_trans hP.2.1.2 ?_; norm_num
+  have hr5 := ratio_bracket_Icc (cellU 4) (P5 (cellU 4)) (1.3653158818 : ℝ) (1.3653943644 : ℝ) (-0.5948232665 : ℝ) (-0.594546179 : ℝ) (1.1684672 : ℝ) (1.1685011 : ℝ) (4.16 : ℝ) (4.17 : ℝ) hL hP5
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP7 : (-0.5246544374 : ℝ) ≤ P7 (cellU 4) ∧ P7 (cellU 4) ≤ (-0.5243406784 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.2.1; norm_num
+    · refine le_trans hP.2.2.2 ?_; norm_num
+  have hr7 := ratio_bracket_Icc (cellU 4) (P7 (cellU 4)) (1.3653158818 : ℝ) (1.3653943644 : ℝ) (-0.5246544374 : ℝ) (-0.5243406784 : ℝ) (1.1684672 : ℝ) (1.1685011 : ℝ) (4.22 : ℝ) (4.23 : ℝ) hL hP7
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  exact ⟨hr3, hr5, hr7⟩
+
+set_option maxHeartbeats 1000000 in
+/-- The cell `n = 3`: the stiffness lies in `[0.710299093, 0.710299282]`, `u` in `[0.29938, 0.29939]`, and the orders `3`, `5`, `7` in the stated brackets. -/
+theorem cell3_ratios :
+    ((3.97 : ℝ) ≤ ratio (cellU 3) (P3 (cellU 3)) ∧ ratio (cellU 3) (P3 (cellU 3)) ≤ (3.98 : ℝ)) ∧
+    ((3.6 : ℝ) ≤ ratio (cellU 3) (P5 (cellU 3)) ∧ ratio (cellU 3) (P5 (cellU 3)) ≤ (3.61 : ℝ)) ∧
+    ((3.78 : ℝ) ≤ ratio (cellU 3) (P7 (cellU 3)) ∧ ratio (cellU 3) (P7 (cellU 3)) ≤ (3.79 : ℝ)) := by
+  have hθ : (0.710299093 : ℝ) ≤ cellStiffness 3 ∧ cellStiffness 3 ≤ (0.710299282 : ℝ) := by
+    have h := cellStiffness_bracket 3
+    push_cast at h
+    constructor <;> linarith [h.1, h.2]
+  have hc := c3terms_bracket (cellStiffness 3) (0.710299093 : ℝ) (0.710299282 : ℝ) (by norm_num) hθ.1 hθ.2
+  have hu : (0.29938 : ℝ) ≤ cellU 3 ∧ cellU 3 ≤ (0.29939 : ℝ) := by
+    unfold cellU
+    constructor
+    · refine le_trans ?_ hc.1; norm_num
+    · refine le_trans hc.2 ?_; norm_num
+  have hua : (0 : ℝ) < 0.29938 := by norm_num
+  have hla := Real.log_le_log hua hu.1
+  have hlb := Real.log_le_log (lt_of_lt_of_le hua hu.1) hu.2
+  have hl1 := log_two_gt_d9
+  have hl2 := log_two_lt_d9
+  have hA := logb_cell3a
+  have hB := logb_cell3b
+  have hL : (1.2060081563 : ℝ) ≤ -log (cellU 3) ∧ -log (cellU 3) ≤ (1.206041656 : ℝ) := by
+    constructor <;> linarith [hA.1, hA.2, hB.1, hB.2]
+  have hP := P_bracket (cellU 3) (0.29938 : ℝ) (0.29939 : ℝ) (by norm_num) hu.1 hu.2
+  have hP3 : (-0.4537956084 : ℝ) ≤ P3 (cellU 3) ∧ P3 (cellU 3) ≤ (-0.4536754183 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.1.1; norm_num
+    · refine le_trans hP.1.2 ?_; norm_num
+  have hr3 := ratio_bracket_Icc (cellU 3) (P3 (cellU 3)) (1.2060081563 : ℝ) (1.206041656 : ℝ) (-0.4537956084 : ℝ) (-0.4536754183 : ℝ) (1.0981839 : ℝ) (1.0981994 : ℝ) (3.97 : ℝ) (3.98 : ℝ) hL hP3
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP5 : (-0.8672370496 : ℝ) ≤ P5 (cellU 3) ∧ P5 (cellU 3) ≤ (-0.867049695 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.1.1; norm_num
+    · refine le_trans hP.2.1.2 ?_; norm_num
+  have hr5 := ratio_bracket_Icc (cellU 3) (P5 (cellU 3)) (1.2060081563 : ℝ) (1.206041656 : ℝ) (-0.8672370496 : ℝ) (-0.867049695 : ℝ) (1.0981839 : ℝ) (1.0981994 : ℝ) (3.6 : ℝ) (3.61 : ℝ) hL hP5
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP7 : (-0.6635839986 : ℝ) ≤ P7 (cellU 3) ∧ P7 (cellU 3) ≤ (-0.6633510393 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.2.1; norm_num
+    · refine le_trans hP.2.2.2 ?_; norm_num
+  have hr7 := ratio_bracket_Icc (cellU 3) (P7 (cellU 3)) (1.2060081563 : ℝ) (1.206041656 : ℝ) (-0.6635839986 : ℝ) (-0.6633510393 : ℝ) (1.0981839 : ℝ) (1.0981994 : ℝ) (3.78 : ℝ) (3.79 : ℝ) hL hP7
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  exact ⟨hr3, hr5, hr7⟩
+
+set_option maxHeartbeats 1000000 in
+/-- The cell `n = 2`: the stiffness lies in `[0.806866062, 0.806866188]`, `u` in `[0.34254, 0.34255]`, and the orders `3`, `5`, `7` in the stated brackets. -/
+theorem cell2_ratios :
+    ((3.64 : ℝ) ≤ ratio (cellU 2) (P3 (cellU 2)) ∧ ratio (cellU 2) (P3 (cellU 2)) ≤ (3.65 : ℝ)) ∧
+    ((2.87 : ℝ) ≤ ratio (cellU 2) (P5 (cellU 2)) ∧ ratio (cellU 2) (P5 (cellU 2)) ≤ (2.88 : ℝ)) ∧
+    ((3.35 : ℝ) ≤ ratio (cellU 2) (P7 (cellU 2)) ∧ ratio (cellU 2) (P7 (cellU 2)) ≤ (3.37 : ℝ)) := by
+  have hθ : (0.806866062 : ℝ) ≤ cellStiffness 2 ∧ cellStiffness 2 ≤ (0.806866188 : ℝ) := by
+    have h := cellStiffness_bracket 2
+    push_cast at h
+    constructor <;> linarith [h.1, h.2]
+  have hc := c3terms_bracket (cellStiffness 2) (0.806866062 : ℝ) (0.806866188 : ℝ) (by norm_num) hθ.1 hθ.2
+  have hu : (0.34254 : ℝ) ≤ cellU 2 ∧ cellU 2 ≤ (0.34255 : ℝ) := by
+    unfold cellU
+    constructor
+    · refine le_trans ?_ hc.1; norm_num
+    · refine le_trans hc.2 ?_; norm_num
+  have hua : (0 : ℝ) < 0.34254 := by norm_num
+  have hla := Real.log_le_log hua hu.1
+  have hlb := Real.log_le_log (lt_of_lt_of_le hua hu.1) hu.2
+  have hl1 := log_two_gt_d9
+  have hl2 := log_two_lt_d9
+  have hA := logb_cell2a
+  have hB := logb_cell2b
+  have hL : (1.0713376001 : ℝ) ≤ -log (cellU 2) ∧ -log (cellU 2) ≤ (1.0713668806 : ℝ) := by
+    constructor <;> linarith [hA.1, hA.2, hB.1, hB.2]
+  have hP := P_bracket (cellU 2) (0.34254 : ℝ) (0.34255 : ℝ) (by norm_num) hu.1 hu.2
+  have hP3 : (-0.5142794889 : ℝ) ≤ P3 (cellU 2) ∧ P3 (cellU 2) ≤ (-0.5141403092 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.1.1; norm_num
+    · refine le_trans hP.1.2 ?_; norm_num
+  have hr3 := ratio_bracket_Icc (cellU 2) (P3 (cellU 2)) (1.0713376001 : ℝ) (1.0713668806 : ℝ) (-0.5142794889 : ℝ) (-0.5141403092 : ℝ) (1.0350542 : ℝ) (1.0350687 : ℝ) (3.64 : ℝ) (3.65 : ℝ) hL hP3
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP5 : (-1.3110613267 : ℝ) ≤ P5 (cellU 2) ∧ P5 (cellU 2) ≤ (-1.3108086655 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.1.1; norm_num
+    · refine le_trans hP.2.1.2 ?_; norm_num
+  have hr5 := ratio_bracket_Icc (cellU 2) (P5 (cellU 2)) (1.0713376001 : ℝ) (1.0713668806 : ℝ) (-1.3110613267 : ℝ) (-1.3108086655 : ℝ) (1.0350542 : ℝ) (1.0350687 : ℝ) (2.87 : ℝ) (2.88 : ℝ) hL hP5
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP7 : (-0.807822877 : ℝ) ≤ P7 (cellU 2) ∧ P7 (cellU 2) ≤ (-0.8074713231 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.2.1; norm_num
+    · refine le_trans hP.2.2.2 ?_; norm_num
+  have hr7 := ratio_bracket_Icc (cellU 2) (P7 (cellU 2)) (1.0713376001 : ℝ) (1.0713668806 : ℝ) (-0.807822877 : ℝ) (-0.8074713231 : ℝ) (1.0350542 : ℝ) (1.0350687 : ℝ) (3.35 : ℝ) (3.37 : ℝ) hL hP7
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  exact ⟨hr3, hr5, hr7⟩
+
+set_option maxHeartbeats 1000000 in
+/-- Channel unity, the cell `n = 0`: the stiffness is `1`, the computed terms sum to `u = 23/54`, and the orders `3`, `5`, `7` lie in the stated brackets. -/
+theorem cell0_ratios :
+    ((2.95 : ℝ) ≤ ratio (cellU 0) (P3 (cellU 0)) ∧ ratio (cellU 0) (P3 (cellU 0)) ≤ (2.96 : ℝ)) ∧
+    ((0.44 : ℝ) ≤ ratio (cellU 0) (P5 (cellU 0)) ∧ ratio (cellU 0) (P5 (cellU 0)) ≤ (0.45 : ℝ)) ∧
+    ((2.81 : ℝ) ≤ ratio (cellU 0) (P7 (cellU 0)) ∧ ratio (cellU 0) (P7 (cellU 0)) ≤ (2.82 : ℝ)) := by
+  have he : cellU 0 = 23 / 54 := by norm_num [cellU, cellStiffness, c3terms]
+  have hu : (23 / 54 : ℝ) ≤ cellU 0 ∧ cellU 0 ≤ (23 / 54 : ℝ) := ⟨he.ge, he.le⟩
+  have hua : (0 : ℝ) < 23 / 54 := by norm_num
+  have hla := Real.log_le_log hua hu.1
+  have hlb := Real.log_le_log (lt_of_lt_of_le hua hu.1) hu.2
+  have hl1 := log_two_gt_d9
+  have hl2 := log_two_lt_d9
+  have hA := logb_cell0a
+  have hB := logb_cell0a
+  have hL : (0.8534897856 : ℝ) ≤ -log (cellU 0) ∧ -log (cellU 0) ≤ (0.8534898669 : ℝ) := by
+    constructor <;> linarith [hA.1, hA.2, hB.1, hB.2]
+  have hP := P_bracket (cellU 0) (23 / 54 : ℝ) (23 / 54 : ℝ) (by norm_num) hu.1 hu.2
+  have hP3 : (-0.6881858711 : ℝ) ≤ P3 (cellU 0) ∧ P3 (cellU 0) ≤ (-0.688185871 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.1.1; norm_num
+    · refine le_trans hP.1.2 ?_; norm_num
+  have hr3 := ratio_bracket_Icc (cellU 0) (P3 (cellU 0)) (0.8534897856 : ℝ) (0.8534898669 : ℝ) (-0.6881858711 : ℝ) (-0.688185871 : ℝ) (0.923845 : ℝ) (0.9238453 : ℝ) (2.95 : ℝ) (2.96 : ℝ) hL hP3
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP5 : (-3.0001582079 : ℝ) ≤ P5 (cellU 0) ∧ P5 (cellU 0) ≤ (-3.0001582078 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.1.1; norm_num
+    · refine le_trans hP.2.1.2 ?_; norm_num
+  have hr5 := ratio_bracket_Icc (cellU 0) (P5 (cellU 0)) (0.8534897856 : ℝ) (0.8534898669 : ℝ) (-3.0001582079 : ℝ) (-3.0001582078 : ℝ) (0.923845 : ℝ) (0.9238453 : ℝ) (0.44 : ℝ) (0.45 : ℝ) hL hP5
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have hP7 : (-0.8092802977 : ℝ) ≤ P7 (cellU 0) ∧ P7 (cellU 0) ≤ (-0.8092802976 : ℝ) := by
+    constructor
+    · refine le_trans ?_ hP.2.2.1; norm_num
+    · refine le_trans hP.2.2.2 ?_; norm_num
+  have hr7 := ratio_bracket_Icc (cellU 0) (P7 (cellU 0)) (0.8534897856 : ℝ) (0.8534898669 : ℝ) (-0.8092802977 : ℝ) (-0.8092802976 : ℝ) (0.923845 : ℝ) (0.9238453 : ℝ) (2.81 : ℝ) (2.82 : ℝ) hL hP7
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  exact ⟨hr3, hr5, hr7⟩
+
+/-- 46:C11 [chart] — **the plaquette channel at the chart's cells.** With the stiffness `ϑ_n = 1 − n · 11 ln 2/(8π²)` of the cell
+`n` (46:B6), `u` the sum of the computed terms of the frame's `c₃` through `ϑ⁷` at that stiffness (46:C7), the imported series
+to the orders `3`, `5`, `7` (46:A11) and the tension at leading order, `m/√σ = (−4 ln u + P)/√(−ln u)` lies, order by order, in
+`(6.93, 6.94)`, `(6.93, 6.94)`, `(6.93, 6.94)` at `n = 9`,
+`(6.16, 6.17)`, `(6.16, 6.17)`, `(6.16, 6.17)` at `n = 8`,
+`(5.59, 5.6)`, `(5.58, 5.59)`, `(5.58, 5.59)` at `n = 7`,
+`(5.11, 5.12)`, `(5.09, 5.1)`, `(5.1, 5.11)` at `n = 6`,
+`(4.32, 4.33)`, `(4.16, 4.17)`, `(4.22, 4.23)` at `n = 4`,
+`(3.97, 3.98)`, `(3.6, 3.61)`, `(3.78, 3.79)` at `n = 3`,
+`(3.64, 3.65)`, `(2.87, 2.88)`, `(3.35, 3.37)` at `n = 2`,
+and at channel unity, where `u = 23/54`, in `(2.95, 2.96)`, `(0.44, 0.45)`, `(2.81, 2.82)`.
+At the cells `n = 9, 8, 7, 6` the orders `3` and `5` lie within `1 %` of the seventh; at `n = 4` the three orders lie above `3.7`;
+at `n = 3` the fifth order alone lies in the lattice bracket `(3.4, 3.7)`; at `n = 2` the third order alone does. -/
+theorem plaquette_cells_values :
+    (cellU 0 = 23 / 54) ∧
+    ((6.93 : ℝ) ≤ ratio (cellU 9) (P3 (cellU 9)) ∧ ratio (cellU 9) (P3 (cellU 9)) ≤ (6.94 : ℝ) ∧ (6.93 : ℝ) ≤ ratio (cellU 9) (P5 (cellU 9)) ∧ ratio (cellU 9) (P5 (cellU 9)) ≤ (6.94 : ℝ) ∧ (6.93 : ℝ) ≤ ratio (cellU 9) (P7 (cellU 9)) ∧ ratio (cellU 9) (P7 (cellU 9)) ≤ (6.94 : ℝ)) ∧
+    ((6.16 : ℝ) ≤ ratio (cellU 8) (P3 (cellU 8)) ∧ ratio (cellU 8) (P3 (cellU 8)) ≤ (6.17 : ℝ) ∧ (6.16 : ℝ) ≤ ratio (cellU 8) (P5 (cellU 8)) ∧ ratio (cellU 8) (P5 (cellU 8)) ≤ (6.17 : ℝ) ∧ (6.16 : ℝ) ≤ ratio (cellU 8) (P7 (cellU 8)) ∧ ratio (cellU 8) (P7 (cellU 8)) ≤ (6.17 : ℝ)) ∧
+    ((5.59 : ℝ) ≤ ratio (cellU 7) (P3 (cellU 7)) ∧ ratio (cellU 7) (P3 (cellU 7)) ≤ (5.6 : ℝ) ∧ (5.58 : ℝ) ≤ ratio (cellU 7) (P5 (cellU 7)) ∧ ratio (cellU 7) (P5 (cellU 7)) ≤ (5.59 : ℝ) ∧ (5.58 : ℝ) ≤ ratio (cellU 7) (P7 (cellU 7)) ∧ ratio (cellU 7) (P7 (cellU 7)) ≤ (5.59 : ℝ)) ∧
+    ((5.11 : ℝ) ≤ ratio (cellU 6) (P3 (cellU 6)) ∧ ratio (cellU 6) (P3 (cellU 6)) ≤ (5.12 : ℝ) ∧ (5.09 : ℝ) ≤ ratio (cellU 6) (P5 (cellU 6)) ∧ ratio (cellU 6) (P5 (cellU 6)) ≤ (5.1 : ℝ) ∧ (5.1 : ℝ) ≤ ratio (cellU 6) (P7 (cellU 6)) ∧ ratio (cellU 6) (P7 (cellU 6)) ≤ (5.11 : ℝ)) ∧
+    ((4.32 : ℝ) ≤ ratio (cellU 4) (P3 (cellU 4)) ∧ ratio (cellU 4) (P3 (cellU 4)) ≤ (4.33 : ℝ) ∧ (4.16 : ℝ) ≤ ratio (cellU 4) (P5 (cellU 4)) ∧ ratio (cellU 4) (P5 (cellU 4)) ≤ (4.17 : ℝ) ∧ (4.22 : ℝ) ≤ ratio (cellU 4) (P7 (cellU 4)) ∧ ratio (cellU 4) (P7 (cellU 4)) ≤ (4.23 : ℝ)) ∧
+    ((3.97 : ℝ) ≤ ratio (cellU 3) (P3 (cellU 3)) ∧ ratio (cellU 3) (P3 (cellU 3)) ≤ (3.98 : ℝ) ∧ (3.6 : ℝ) ≤ ratio (cellU 3) (P5 (cellU 3)) ∧ ratio (cellU 3) (P5 (cellU 3)) ≤ (3.61 : ℝ) ∧ (3.78 : ℝ) ≤ ratio (cellU 3) (P7 (cellU 3)) ∧ ratio (cellU 3) (P7 (cellU 3)) ≤ (3.79 : ℝ)) ∧
+    ((3.64 : ℝ) ≤ ratio (cellU 2) (P3 (cellU 2)) ∧ ratio (cellU 2) (P3 (cellU 2)) ≤ (3.65 : ℝ) ∧ (2.87 : ℝ) ≤ ratio (cellU 2) (P5 (cellU 2)) ∧ ratio (cellU 2) (P5 (cellU 2)) ≤ (2.88 : ℝ) ∧ (3.35 : ℝ) ≤ ratio (cellU 2) (P7 (cellU 2)) ∧ ratio (cellU 2) (P7 (cellU 2)) ≤ (3.37 : ℝ)) ∧
+    ((2.95 : ℝ) ≤ ratio (cellU 0) (P3 (cellU 0)) ∧ ratio (cellU 0) (P3 (cellU 0)) ≤ (2.96 : ℝ) ∧ (0.44 : ℝ) ≤ ratio (cellU 0) (P5 (cellU 0)) ∧ ratio (cellU 0) (P5 (cellU 0)) ≤ (0.45 : ℝ) ∧ (2.81 : ℝ) ≤ ratio (cellU 0) (P7 (cellU 0)) ∧ ratio (cellU 0) (P7 (cellU 0)) ≤ (2.82 : ℝ)) ∧
+    (|ratio (cellU 9) (P3 (cellU 9)) - ratio (cellU 9) (P7 (cellU 9))| < 0.01 * ratio (cellU 9) (P7 (cellU 9)) ∧ |ratio (cellU 9) (P5 (cellU 9)) - ratio (cellU 9) (P7 (cellU 9))| < 0.01 * ratio (cellU 9) (P7 (cellU 9))) ∧
+    (|ratio (cellU 8) (P3 (cellU 8)) - ratio (cellU 8) (P7 (cellU 8))| < 0.01 * ratio (cellU 8) (P7 (cellU 8)) ∧ |ratio (cellU 8) (P5 (cellU 8)) - ratio (cellU 8) (P7 (cellU 8))| < 0.01 * ratio (cellU 8) (P7 (cellU 8))) ∧
+    (|ratio (cellU 7) (P3 (cellU 7)) - ratio (cellU 7) (P7 (cellU 7))| < 0.01 * ratio (cellU 7) (P7 (cellU 7)) ∧ |ratio (cellU 7) (P5 (cellU 7)) - ratio (cellU 7) (P7 (cellU 7))| < 0.01 * ratio (cellU 7) (P7 (cellU 7))) ∧
+    (|ratio (cellU 6) (P3 (cellU 6)) - ratio (cellU 6) (P7 (cellU 6))| < 0.01 * ratio (cellU 6) (P7 (cellU 6)) ∧ |ratio (cellU 6) (P5 (cellU 6)) - ratio (cellU 6) (P7 (cellU 6))| < 0.01 * ratio (cellU 6) (P7 (cellU 6))) ∧
+    ((3.7 : ℝ) < ratio (cellU 4) (P3 (cellU 4)) ∧ (3.7 : ℝ) < ratio (cellU 4) (P5 (cellU 4)) ∧ (3.7 : ℝ) < ratio (cellU 4) (P7 (cellU 4))) ∧
+    ((3.4 : ℝ) < ratio (cellU 3) (P5 (cellU 3)) ∧ ratio (cellU 3) (P5 (cellU 3)) < (3.7 : ℝ) ∧ (3.7 : ℝ) < ratio (cellU 3) (P3 (cellU 3)) ∧ (3.7 : ℝ) < ratio (cellU 3) (P7 (cellU 3))) ∧
+    ((3.4 : ℝ) < ratio (cellU 2) (P3 (cellU 2)) ∧ ratio (cellU 2) (P3 (cellU 2)) < (3.7 : ℝ) ∧ ratio (cellU 2) (P5 (cellU 2)) < (3.4 : ℝ) ∧ ratio (cellU 2) (P7 (cellU 2)) < (3.4 : ℝ)) := by
+  have h9 := cell9_ratios
+  have h8 := cell8_ratios
+  have h7 := cell7_ratios
+  have h6 := cell6_ratios
+  have h4 := cell4_ratios
+  have h3 := cell3_ratios
+  have h2 := cell2_ratios
+  have h0 := cell0_ratios
+  have he : cellU 0 = 23 / 54 := by norm_num [cellU, cellStiffness, c3terms]
+  refine ⟨he, ⟨h9.1.1, h9.1.2, h9.2.1.1, h9.2.1.2, h9.2.2.1, h9.2.2.2⟩, ⟨h8.1.1, h8.1.2, h8.2.1.1, h8.2.1.2, h8.2.2.1, h8.2.2.2⟩, ⟨h7.1.1, h7.1.2, h7.2.1.1, h7.2.1.2, h7.2.2.1, h7.2.2.2⟩, ⟨h6.1.1, h6.1.2, h6.2.1.1, h6.2.1.2, h6.2.2.1, h6.2.2.2⟩, ⟨h4.1.1, h4.1.2, h4.2.1.1, h4.2.1.2, h4.2.2.1, h4.2.2.2⟩, ⟨h3.1.1, h3.1.2, h3.2.1.1, h3.2.1.2, h3.2.2.1, h3.2.2.2⟩, ⟨h2.1.1, h2.1.2, h2.2.1.1, h2.2.1.2, h2.2.2.1, h2.2.2.2⟩, ⟨h0.1.1, h0.1.2, h0.2.1.1, h0.2.1.2, h0.2.2.1, h0.2.2.2⟩, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · constructor <;> rw [abs_lt] <;> constructor <;> linarith [h9.1.1, h9.1.2, h9.2.1.1, h9.2.1.2, h9.2.2.1, h9.2.2.2]
+  · constructor <;> rw [abs_lt] <;> constructor <;> linarith [h8.1.1, h8.1.2, h8.2.1.1, h8.2.1.2, h8.2.2.1, h8.2.2.2]
+  · constructor <;> rw [abs_lt] <;> constructor <;> linarith [h7.1.1, h7.1.2, h7.2.1.1, h7.2.1.2, h7.2.2.1, h7.2.2.2]
+  · constructor <;> rw [abs_lt] <;> constructor <;> linarith [h6.1.1, h6.1.2, h6.2.1.1, h6.2.1.2, h6.2.2.1, h6.2.2.2]
+  · exact ⟨by linarith [h4.1.1], by linarith [h4.2.1.1], by linarith [h4.2.2.1]⟩
+  · exact ⟨by linarith [h3.2.1.1], by linarith [h3.2.1.2], by linarith [h3.1.1], by linarith [h3.2.2.1]⟩
+  · exact ⟨by linarith [h2.1.1], by linarith [h2.1.2], by linarith [h2.2.1.2], by linarith [h2.2.2.2]⟩
+
+/-! ## 46:C21 — the gap of the transfer tally at the classical `π` -/
+
+/-- 46:C21 [chart] — **the gap at the classical `π`.** The gap of the transfer tally is `1/(2π + 2)` in the shell's `2π = p − 1`;
+read at the classical `π` the expression lies in `(0.12072, 0.12073)`, the row's `0.1207`. -/
+theorem gap_at_classical_pi : (0.12072 : ℝ) < 1 / (2 * π + 2) ∧ 1 / (2 * π + 2) < (0.12073 : ℝ) := by
+  have hp1 := pi_gt_d4
+  have hp2 := pi_lt_d4
+  have hpos : (0 : ℝ) < 2 * π + 2 := by positivity
+  constructor
+  · rw [lt_div_iff₀ hpos]; linarith
+  · rw [div_lt_iff₀ hpos]; linarith
 
 /-! ## 46:C12 — the operator family's values -/
 
@@ -3997,13 +4528,13 @@ namespace FRC.LedgerML
 /-- p00009 — 00:A7. Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\Om=4\dS+1$. Its chart numeral is $\dS=\pi(r_H/\ell_P)^2=3.3\times10^{122}$ [chart] at $r_H=c/H_\Lambda$ (14-entr), so $\Om=1.3\times10^{123}$ [chart]. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2. -/
 theorem p00009 : ∀ (Λ ℓP r S Ω : ℝ), Λ = 1088e-55 → ℓP = 1616255e-41 → r ^ (2 : ℕ) = (3 : ℝ) / Λ → S = Real.pi * (r / ℓP) ^ (2 : ℕ) → Ω = (4 : ℝ) * S + (1 : ℝ) → 331e120 < S ∧ S < 332e120 ∧ 132e121 < Ω ∧ Ω < 133e121 :=
   @FRC.Chart.scale_import
-/-- p00087 — 00:L4. The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\sim}1.8\times10^{8}M_\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). Falsifier: a single typical object of the condensed-density sequence heavier than the over-closure bound and not horizon-bound (14:X5). -/
+/-- p00087 — 00:X3. The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\sim}1.8\times10^{8}M_\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). Falsifier: a single typical object of the condensed-density sequence heavier than the over-closure bound and not horizon-bound (14:X5). -/
 theorem p00087 : (∀ (S x : ℝ), (0 : ℝ) < x → S = Real.pi * x ^ (2 : ℕ) → x = √(S / Real.pi) ∧ √S = √Real.pi * x) ∧ ∀ (M R G c ρ₀ : ℝ), (0 : ℝ) < c → (0 : ℝ) < G → (0 : ℝ) < M → M = ρ₀ * R ^ (3 : ℕ) → R = (2 : ℝ) * G * M / c ^ (2 : ℕ) → (0 : ℝ) < ρ₀ ∧ M ^ (2 : ℕ) = c ^ (6 : ℕ) / ((8 : ℝ) * G ^ (3 : ℕ) * ρ₀) :=
   And.intro @FRC.Chart.count_face (@FRC.Chart.wall_exit)
 /-- p00091 — 00:P4. No fourth generation, no fifth force, an empty desert, no TeV supersymmetry, no new dark-matter particle, no beyond-SM $(g{-}2)_\mu$, and the proton effectively stable ($\tau_p\gtrsim10^{45}$ yr; G9). Entailed by the closed ladder of the rank-five frame ($\dim\Lambda^{\mathrm{even}}=16$, D6), given the role-to-matter realisation (27:B6, 27:C10) and completeness (A3). Falsifier: any excluded object observed. Confrontation: none observed. -/
 theorem p00091 : (∀ (ainv s2 as b1 b2 b3 MZ : ℝ), ainv = 127.951 → s2 = 0.23121 → as = 0.1179 → b1 = (41 / 10 : ℝ) → b2 = (-19 / 6 : ℝ) → b3 = (-7 : ℝ) → MZ = 91.1876 → |(1 : ℝ) / as - b3 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2)) - (s2 * ainv - b2 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2)))| / (s2 * ainv - b2 * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) < (1 / 5 : ℝ) ∧ (10 : ℝ) ^ (12 : ℕ) < MZ * Real.exp ((2 : ℝ) * Real.pi * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) ∧ MZ * Real.exp ((2 : ℝ) * Real.pi * (((3 / 5 : ℝ) * ((1 : ℝ) - s2) * ainv - s2 * ainv) / (b1 - b2))) < (10 : ℝ) ^ (14 : ℕ)) ∧ (∀ (mp a hbar yr : ℚ), mp = 0.938 → a = (1 / 40 : ℚ) → hbar = 6582e-28 → yr = 3156e4 → (10 : ℚ) ^ (45 : ℕ) ≤ 122e17 ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr ∧ (10 : ℚ) ^ (34 : ℕ) < 1e16 ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr ∧ ∀ (M M' : ℚ), (0 : ℚ) < M → (0 : ℚ) < M' → M' ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr / (M ^ (4 : ℕ) / (a ^ (2 : ℕ) * mp ^ (5 : ℕ)) * hbar / yr) = (M' / M) ^ (4 : ℕ)) ∧ StrictMonoOn (fun x => x / ((1 : ℝ) - Real.exp (-√x))) (Set.Ioi (0 : ℝ)) :=
   And.intro @FRC.FieldsML.running_near_miss (And.intro @FRC.FieldsML.proton_lifetime (@FRC.DarkML.rar_monotone))
-/-- p00133 — 00:P1. The acceleration floor tracks the drive rate, $a_0(z)\propto H(z)$: a relation, $\Om$-blind, derived from L1 under the gravity realisation (D5); the knee shifts and the Tully--Fisher zero-point evolves as $E(z)^{1/4}$. Falsifier: a floor constant in redshift, or tracking other than $H(z)$. Confrontation (43-muse): MUSE-DARK III excludes a constant floor to $z=1.3$; RC100 implies the local floor by $z\simeq2$, pending refit. -/
+/-- p00133 — 00:P1. The acceleration floor tracks the drive rate, $a_0(z)\propto H(z)$: a relation, $\Om$-blind, derived from X1 under the gauge principle (D5); the knee shifts and the Tully--Fisher zero-point evolves as $E(z)^{1/4}$. Falsifier: a floor constant in redshift, or tracking other than $H(z)$. Confrontation (43-muse): MUSE-DARK III excludes a constant floor to $z=1.3$; RC100 implies the local floor by $z\simeq2$, pending refit. -/
 theorem p00133 : ∀ (c G M : ℝ) (H a v : ℝ → ℝ) (z : ℝ), (0 : ℝ) < c → (0 : ℝ) < G → (0 : ℝ) < M → (0 : ℝ) < H (0 : ℝ) → (0 : ℝ) < H z → (∀ (z : ℝ), a z = c * H z / ((2 : ℝ) * Real.pi)) → (0 : ℝ) < v (0 : ℝ) → (0 : ℝ) < v z → (∀ (z : ℝ), v z ^ (4 : ℕ) = G * M * a z) → a z / a (0 : ℝ) = H z / H (0 : ℝ) ∧ v z / v (0 : ℝ) = (H z / H (0 : ℝ)) ^ (1 / 4 : ℝ) :=
   @FRC.Chart.running_floor
 /-- p00148 — 00:Y10. $n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\pi^2/\ln\Om$ [chart], $\ln\Om$ the e-fold count of the frame's scale range from $1/\sqrt\Om$ to $\sqrt\Om$, a hypothesis fixed by the measured tilt: $-0.0348$ [approx] at $\ln\Om=283.5$ (A7), $+0.07\sigma$ from Planck 2018's $-0.0351\pm0.0042$ [import]. The count $\tfrac12\ln\Om$ is excluded at $8.2\sigma$. Falsifier: a Planck-resolution deviation from $-\pi^2/\ln\Om$. -/
@@ -4012,13 +4543,13 @@ theorem p00148 : (3481e-5 < Real.pi ^ (2 : ℕ) / 283.5 ∧ Real.pi ^ (2 : ℕ) 
 /-- p00180 — 00:P3. \textbf{Flavour} (targets): the Georgi--Jarlskog double ratio $9$; the locks of G17 read in the $\overline{\mathrm{MS}}$ scheme; the $m_1{=}0$ floor, $\sum m_\nu=58.8$ meV at NuFIT 6.0, on the boundary-branch realisation (28:B6). Falsifier: inverted ordering, a degenerate spectrum, or $\sum m_\nu$ off $58.8$ meV beyond the fit's tolerance. Confrontation: the data give $10.4\pm0.5$, an open $15\%$ tension (28:X5). -/
 theorem p00180 : (∀ (me mmu md ms : ℚ), me = 0.51099895 → mmu = 105.6583755 → md = 4.67 → ms = 93.4 → 10.3 < mmu / me / (ms / md) ∧ mmu / me / (ms / md) < 10.5 ∧ (9 : ℚ) * 1.10 < mmu / me / (ms / md) ∧ mmu / me / (ms / md) < (9 : ℚ) * 1.20) ∧ ∀ (dm21 dm31 : ℝ), dm21 = 749e-7 → dm31 = 2513e-6 → 587e-4 < √dm21 + √dm31 ∧ √dm21 + √dm31 < 589e-4 :=
   And.intro @FRC.FlavourML.gj_ratio (@FRC.FlavourML.neutrino_floor)
-/-- p00192 — 00:L1. The synchronisation floor $a_0=cH_0/2\pi$ fixes the acceleration scale parameter-free: the $2\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\times10^{-10}$ [chart] at the channel-1 $H_0=67.4$ (L3), tied to $H(z)$, not $\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:B9), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4. -/
+/-- p00192 — 00:X1. The synchronisation floor $a_0=cH_0/2\pi$ fixes the acceleration scale parameter-free: the $2\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\times10^{-10}$ [chart] at the channel-1 $H_0=67.4$ (X2), tied to $H(z)$, not $\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:B9), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4. -/
 theorem p00192 : (∀ (c H0 : ℝ), c = (299792458 : ℝ) → H0 = 674e2 / 30856775814913673e6 → 104e-12 < c * H0 / ((2 : ℝ) * Real.pi) ∧ c * H0 / ((2 : ℝ) * Real.pi) < 105e-12 ∧ 0.868 < c * H0 / ((2 : ℝ) * Real.pi) / 12e-11 ∧ c * H0 / ((2 : ℝ) * Real.pi) / 12e-11 < 0.870 ∧ 0.65 < (12e-11 - c * H0 / ((2 : ℝ) * Real.pi)) / 24e-12 ∧ (12e-11 - c * H0 / ((2 : ℝ) * Real.pi)) / 24e-12 < 0.67) ∧ ∀ (c H0 : ℝ), c = (299792458 : ℝ) → H0 = 674e2 / 30856775814913673e6 → 104e-12 < c * H0 / ((2 : ℝ) * Real.pi) ∧ c * H0 / ((2 : ℝ) * Real.pi) < 1045e-13 :=
   And.intro @FRC.Chart.floor_value (@FRC.Chart.floor_fine)
-/-- p00193 — 00:L3. \textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\dS/2$ chronons $=13.79$ Gyr ($(\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\Omega_\Lambda=\tanh^2(3\pi/8)=0.684$ (chart; $0.19\sigma$); on the stellar age $13.61\pm0.34$ Gyr, $H_0=68.2\pm1.7$ ($2.4\sigma$ from the ladder); $w=-1$ rigid --- a confirmed drift falsifies $\Lambda\sim1/\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\propto H(z)$ (Z7), the ladder bias. -/
+/-- p00193 — 00:X2. \textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\dS/2$ chronons $=13.79$ Gyr ($(\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\Omega_\Lambda=\tanh^2(3\pi/8)=0.684$ (chart; $0.19\sigma$); on the stellar age $13.61\pm0.34$ Gyr, $H_0=68.2\pm1.7$ ($2.4\sigma$ from the ladder); $w=-1$ rigid --- a confirmed drift falsifies $\Lambda\sim1/\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\propto H(z)$ (Z7), the ladder bias. -/
 theorem p00193 : (∀ (S r c : ℝ), S ≠ (0 : ℝ) → S / (2 : ℝ) / ((4 : ℝ) * S) * ((2 : ℝ) * Real.pi * r / c) = Real.pi / (4 : ℝ) * r / c) ∧ (0.68368 < Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) ∧ Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) < 0.68369 ∧ 0.18 * 7e-3 < 0.685 - Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) ∧ 0.685 - Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) < 0.19 * 7e-3) ∧ (0.186 * 7e-3 < 0.685 - Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) ∧ 0.685 - Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) < 0.19 * 7e-3) ∧ (∀ (t H0 HΛ Ω : ℝ), t * HΛ = Real.pi / (4 : ℝ) → HΛ = H0 * √Ω → Ω = Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ))) ∧ (0.9498 < Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ∧ Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) < 0.9499) ∧ (FRC.Chart.lcdmAge (Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ)) = Real.pi / (4 : ℝ) ∧ ∀ (Ω : ℝ), (0 : ℝ) ≤ Ω → Ω < (1 : ℝ) → FRC.Chart.lcdmAge Ω = Real.pi / (4 : ℝ) → Ω = Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ)) ∧ (∀ (t H0 : ℝ), t = 1379e7 * (365.25 * (86400 : ℝ)) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) → 67.35 < H0 * 30856775814913673e3 ∧ H0 * 30856775814913673e3 < 67.36) ∧ ∀ (t H0 : ℝ), t = 1361e7 * (365.25 * (86400 : ℝ)) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) → 68.24 < H0 * 30856775814913673e3 ∧ H0 * 30856775814913673e3 < 68.25 ∧ 1.70 < H0 * 30856775814913673e3 * (0.34 / 13.61) ∧ H0 * 30856775814913673e3 * (0.34 / 13.61) < 1.71 ∧ 2.40 < (73.0 - H0 * 30856775814913673e3) / √(1.7 ^ (2 : ℕ) + 1.0 ^ (2 : ℕ)) ∧ (73.0 - H0 * 30856775814913673e3) / √(1.7 ^ (2 : ℕ) + 1.0 ^ (2 : ℕ)) < 2.42 :=
   And.intro @FRC.Chart.octant_chart (And.intro @FRC.Chart.landing_bracket (And.intro @FRC.Chart.landing_fine (And.intro @FRC.Chart.age_rate_locus (And.intro @FRC.Chart.locus_bracket (And.intro @FRC.Chart.octant_inversion (And.intro @FRC.Chart.hubble_landing (@FRC.Chart.hubble_stellar)))))))
-/-- p00201 — 00:E14. \textbf{The eikonal pair}: on the exponential reading (E4) the photon sphere sits at $r_c=2M$, $b_c=2eM$, and the orbital rate equals the Lyapunov rate, $\Omega_c=\lambda=1/(2eM)$, both $3\sqrt3/(2e)$ of Schwarzschild's. The wave operator's $\ell=2$ mode (E13) is $(0.4641-0.0923\,i)/M$ [approx], $0.8\%$ above the eikonal $(\ell+\tfrac12)/(2eM)$. Falsifier: that mode read as the remnant's $(2,2,0)$ oscillation, $+24\%$ against Kerr, excluded by GW250114 [import]. -/
+/-- p00201 — 00:P5. \textbf{The eikonal pair}: on the exponential reading (E4) the photon sphere sits at $r_c=2M$, $b_c=2eM$, and the orbital rate equals the Lyapunov rate, $\Omega_c=\lambda=1/(2eM)$, both $3\sqrt3/(2e)$ of Schwarzschild's. The wave operator's $\ell=2$ mode (E13) is $(0.4641-0.0923\,i)/M$ [approx]. Falsifier: the remnant's $(2,2,0)$ oscillation at that mode, $+24\%$ against Kerr. Confrontation: GW250114 [import] excludes that reading; the $(2,2,0)$ reading is open (21:P1). -/
 theorem p00201 : (∀ (M : ℝ), (0 : ℝ) < M → (∀ (r : ℝ), r ≠ (0 : ℝ) → HasDerivAt (fun r => r ^ (2 : ℕ) * Real.exp ((4 : ℝ) * M / r)) (Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) * r - (4 : ℝ) * M)) r) ∧ (∀ (r : ℝ), Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) * r - (4 : ℝ) * M) = (0 : ℝ) ↔ r = (2 : ℝ) * M) ∧ (∀ (r : ℝ), r ≠ (0 : ℝ) → HasDerivAt (fun r => Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) * r - (4 : ℝ) * M)) (Real.exp ((4 : ℝ) * M / r) * ((2 : ℝ) - (4 : ℝ) * M * ((2 : ℝ) * r - (4 : ℝ) * M) / r ^ (2 : ℕ))) r) ∧ Real.exp ((4 : ℝ) * M / ((2 : ℝ) * M)) * ((2 : ℝ) - (4 : ℝ) * M * ((2 : ℝ) * ((2 : ℝ) * M) - (4 : ℝ) * M) / ((2 : ℝ) * M) ^ (2 : ℕ)) = (2 : ℝ) * Real.exp (2 : ℝ) ∧ ((2 : ℝ) * M) ^ (2 : ℕ) * Real.exp ((4 : ℝ) * M / ((2 : ℝ) * M)) = ((2 : ℝ) * Real.exp (1 : ℝ) * M) ^ (2 : ℕ) ∧ Real.exp (-((4 : ℝ) * M / ((2 : ℝ) * M))) * ((2 : ℝ) * Real.exp (2 : ℝ)) / ((2 : ℝ) * (((2 : ℝ) * M) ^ (2 : ℕ) * Real.exp ((4 : ℝ) * M / ((2 : ℝ) * M)))) = ((1 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ) * M)) ^ (2 : ℕ) ∧ (1 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ) * M) / ((1 : ℝ) / ((3 : ℝ) * √(3 : ℝ) * M)) = (3 : ℝ) * √(3 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ))) ∧ 1.0462 < (2 : ℝ) * Real.exp (1 : ℝ) / ((3 : ℝ) * √(3 : ℝ)) ∧ (2 : ℝ) * Real.exp (1 : ℝ) / ((3 : ℝ) * √(3 : ℝ)) < 1.0463 ∧ 0.9557 < (3 : ℝ) * √(3 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ)) ∧ (3 : ℝ) * √(3 : ℝ) / ((2 : ℝ) * Real.exp (1 : ℝ)) < 0.9558 ∧ 2.46 < ((4 : ℝ) * Real.exp (1 : ℝ) - (6 : ℝ) * √(3 : ℝ)) * 5.12 ∧ ((4 : ℝ) * Real.exp (1 : ℝ) - (6 : ℝ) * √(3 : ℝ)) * 5.12 < 2.47 :=
   And.intro @FRC.Strong.eikonal_pair (@FRC.Strong.shadow_bracket)
 /-- p01028 — 1:E4. Continuous symmetry, the abelian case: $\Fpx\simeq C_{\p-1}$ is a $\pi/(\p-1)$-net of $U(1)$ under $k\mapsto e^{2\pi\im k/(\p-1)}$; the rounding of a framed turn $u/v$ to $C_{\p-1}$ lies within half a step, and its group-law defect is at most one step. -/
@@ -4318,9 +4849,12 @@ theorem p46036 : ∀ (E₀ : ℝ), E₀ = 2.232 → 3.156 < √(2 : ℝ) * E₀ 
 /-- p46037 — 46:C10. [chart] The short-range route of the chart fails: with the declared coupling $\alpha_s(\sig)=1.007$ the two-adjoint term has $C=C_A\alpha_s=3.02$, above the Herbst bounds $2/\pi$ and $4/\pi$, so the cutoff cannot be removed; with the coupling run to the bound state's mass, fixed points $3.54$, $3.08$, $2.61$ at $r_c=1$, $\frac12$, $\frac14$ and none found at $\frac18$ (a scan of $149$ energies). -/
 theorem p46037 : (1.0065 < (2 : ℝ) * Real.pi / ((9 : ℝ) * Real.log (2 : ℝ)) ∧ (2 : ℝ) * Real.pi / ((9 : ℝ) * Real.log (2 : ℝ)) < 1.0075 ∧ 3.015 < (3 : ℝ) * ((2 : ℝ) * Real.pi / ((9 : ℝ) * Real.log (2 : ℝ))) ∧ (3 : ℝ) * ((2 : ℝ) * Real.pi / ((9 : ℝ) * Real.log (2 : ℝ))) < 3.025 ∧ (4 : ℝ) / Real.pi < (3 : ℝ) * ((2 : ℝ) * Real.pi / ((9 : ℝ) * Real.log (2 : ℝ))) ∧ (2 : ℝ) / Real.pi < (4 : ℝ) / Real.pi ∧ (6 : ℝ) * Real.log (2 : ℝ) < Real.pi ^ (2 : ℕ)) ∧ 1.0698 < (2 : ℝ) * Real.pi / ((3 : ℝ) * Real.log ((2 : ℝ) * 3.541)) ∧ (2 : ℝ) * Real.pi / ((3 : ℝ) * Real.log ((2 : ℝ) * 3.541)) < 1.07 ∧ 1.1508 < (2 : ℝ) * Real.pi / ((3 : ℝ) * Real.log ((2 : ℝ) * 3.085)) ∧ (2 : ℝ) * Real.pi / ((3 : ℝ) * Real.log ((2 : ℝ) * 3.085)) < 1.1511 ∧ 1.267 < (2 : ℝ) * Real.pi / ((3 : ℝ) * Real.log ((2 : ℝ) * 2.611)) ∧ (2 : ℝ) * Real.pi / ((3 : ℝ) * Real.log ((2 : ℝ) * 2.611)) < 1.2672 ∧ (2 : ℝ) * Real.pi / ((3 : ℝ) * Real.log ((2 : ℝ) * 2.611)) < (4 : ℝ) / Real.pi ∧ 0.995 * ((4 : ℝ) / Real.pi) < (2 : ℝ) * Real.pi / ((3 : ℝ) * Real.log ((2 : ℝ) * 2.611)) :=
   And.intro @FRC.YangMillsML.herbst_real (@FRC.YangMillsML.fixed_point_couplings)
-/-- p46038 — 46:C11. [chart] The plaquette channel of the chart fails: with A11's series and $u=c_3(\beta)$ (C7), $m/\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$, the orders $3$, $5$, $7$ agreeing within $1\,\%$; at $u=0.30$ they give $3.97$, $3.59$, $3.78$, the fifth alone in $3.4$--$3.7$; the scaling region is $u\approx0.42$. -/
-theorem p46038 : 6.61 ≤ FRC.YangMillsML.ratio 6e-2 (FRC.YangMillsML.P7 6e-2) ∧ FRC.YangMillsML.ratio 6e-2 (FRC.YangMillsML.P7 6e-2) ≤ 6.63 ∧ 5.91 ≤ FRC.YangMillsML.ratio 0.10 (FRC.YangMillsML.P7 0.10) ∧ FRC.YangMillsML.ratio 0.10 (FRC.YangMillsML.P7 0.10) ≤ 5.93 ∧ 5.28 ≤ FRC.YangMillsML.ratio 0.15 (FRC.YangMillsML.P7 0.15) ∧ FRC.YangMillsML.ratio 0.15 (FRC.YangMillsML.P7 0.15) ≤ 5.3 ∧ 4.76 ≤ FRC.YangMillsML.ratio 0.20 (FRC.YangMillsML.P7 0.20) ∧ FRC.YangMillsML.ratio 0.20 (FRC.YangMillsML.P7 0.20) ≤ 4.77 ∧ 3.97 ≤ FRC.YangMillsML.ratio 0.30 (FRC.YangMillsML.P3 0.30) ∧ FRC.YangMillsML.ratio 0.30 (FRC.YangMillsML.P3 0.30) ≤ 3.98 ∧ 3.59 ≤ FRC.YangMillsML.ratio 0.30 (FRC.YangMillsML.P5 0.30) ∧ FRC.YangMillsML.ratio 0.30 (FRC.YangMillsML.P5 0.30) ≤ 3.6 ∧ 3.78 ≤ FRC.YangMillsML.ratio 0.30 (FRC.YangMillsML.P7 0.30) ∧ FRC.YangMillsML.ratio 0.30 (FRC.YangMillsML.P7 0.30) ≤ 3.79 ∧ 9e-2 * FRC.YangMillsML.ratio 0.30 (FRC.YangMillsML.P7 0.30) < FRC.YangMillsML.ratio 0.30 (FRC.YangMillsML.P3 0.30) - FRC.YangMillsML.ratio 0.30 (FRC.YangMillsML.P5 0.30) :=
-  @FRC.YangMillsML.plaquette_values
+/-- p46064 — 46:C21. The spectrum in $2\pi=\p-1$, the shell's phase cycle, certified by $2\pi\equiv-1$ and $\p$-hard: on the three Subjects $d_1=4\pi^{2}+2\pi+1$, $d_2=(2\pi+2)d_1$, $d_3=8\pi(\pi+1)^{2}$, and the gap of the transfer tally is $1/(2\pi+2)$, a pure number, one expression on every Subject, with the residue $1$ on the shell. [chart] $0.1207$ at the classical $\pi$. -/
+theorem p46064 : 0.12072 < (1 : ℝ) / ((2 : ℝ) * Real.pi + (2 : ℝ)) ∧ (1 : ℝ) / ((2 : ℝ) * Real.pi + (2 : ℝ)) < 0.12073 :=
+  @FRC.YangMillsML.gap_at_classical_pi
+/-- p46071 — 46:C11. [chart] The plaquette channel of the chart fails: with A11's series and $u$ the sum of $c_3$ through $\stf^{7}$ at B6's cells, $m/\sig=6.9$, $6.2$, $5.6$, $5.1$ for $n=9,\dots,6$, orders $3,5,7$ within $1\,\%$; at $n=3$: $3.98$, $3.60$, $3.79$, the fifth alone in $3.4$--$3.7$; at channel unity, $u=\frac{23}{54}$, $2.95$, $0.45$, $2.82$. -/
+theorem p46071 : FRC.YangMillsML.cellU (0 : ℕ) = (23 / 54 : ℝ) ∧ (6.93 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (9 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (9 : ℕ))) ≤ 6.94 ∧ 6.93 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (9 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (9 : ℕ))) ≤ 6.94 ∧ 6.93 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (9 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (9 : ℕ))) ≤ 6.94) ∧ (6.16 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (8 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (8 : ℕ))) ≤ 6.17 ∧ 6.16 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (8 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (8 : ℕ))) ≤ 6.17 ∧ 6.16 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (8 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (8 : ℕ))) ≤ 6.17) ∧ (5.59 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (7 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (7 : ℕ))) ≤ 5.6 ∧ 5.58 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (7 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (7 : ℕ))) ≤ 5.59 ∧ 5.58 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (7 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (7 : ℕ))) ≤ 5.59) ∧ (5.11 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (6 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (6 : ℕ))) ≤ 5.12 ∧ 5.09 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (6 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (6 : ℕ))) ≤ 5.1 ∧ 5.1 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (6 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (6 : ℕ))) ≤ 5.11) ∧ (4.32 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (4 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (4 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (4 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (4 : ℕ))) ≤ 4.33 ∧ 4.16 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (4 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (4 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (4 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (4 : ℕ))) ≤ 4.17 ∧ 4.22 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (4 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (4 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (4 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (4 : ℕ))) ≤ 4.23) ∧ (3.97 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (3 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (3 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (3 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (3 : ℕ))) ≤ 3.98 ∧ 3.6 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (3 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (3 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (3 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (3 : ℕ))) ≤ 3.61 ∧ 3.78 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (3 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (3 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (3 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (3 : ℕ))) ≤ 3.79) ∧ (3.64 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (2 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (2 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (2 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (2 : ℕ))) ≤ 3.65 ∧ 2.87 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (2 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (2 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (2 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (2 : ℕ))) ≤ 2.88 ∧ 3.35 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (2 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (2 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (2 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (2 : ℕ))) ≤ 3.37) ∧ (2.95 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (0 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (0 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (0 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (0 : ℕ))) ≤ 2.96 ∧ 0.44 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (0 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (0 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (0 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (0 : ℕ))) ≤ 0.45 ∧ 2.81 ≤ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (0 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (0 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (0 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (0 : ℕ))) ≤ 2.82) ∧ (|FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (9 : ℕ))) - FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (9 : ℕ)))| < 1e-2 * FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (9 : ℕ))) ∧ |FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (9 : ℕ))) - FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (9 : ℕ)))| < 1e-2 * FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (9 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (9 : ℕ)))) ∧ (|FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (8 : ℕ))) - FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (8 : ℕ)))| < 1e-2 * FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (8 : ℕ))) ∧ |FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (8 : ℕ))) - FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (8 : ℕ)))| < 1e-2 * FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (8 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (8 : ℕ)))) ∧ (|FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (7 : ℕ))) - FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (7 : ℕ)))| < 1e-2 * FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (7 : ℕ))) ∧ |FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (7 : ℕ))) - FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (7 : ℕ)))| < 1e-2 * FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (7 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (7 : ℕ)))) ∧ (|FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (6 : ℕ))) - FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (6 : ℕ)))| < 1e-2 * FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (6 : ℕ))) ∧ |FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (6 : ℕ))) - FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (6 : ℕ)))| < 1e-2 * FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (6 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (6 : ℕ)))) ∧ (3.7 < FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (4 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (4 : ℕ))) ∧ 3.7 < FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (4 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (4 : ℕ))) ∧ 3.7 < FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (4 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (4 : ℕ)))) ∧ (3.4 < FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (3 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (3 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (3 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (3 : ℕ))) < 3.7 ∧ 3.7 < FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (3 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (3 : ℕ))) ∧ 3.7 < FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (3 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (3 : ℕ)))) ∧ 3.4 < FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (2 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (2 : ℕ))) ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (2 : ℕ)) (FRC.YangMillsML.P3 (FRC.YangMillsML.cellU (2 : ℕ))) < 3.7 ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (2 : ℕ)) (FRC.YangMillsML.P5 (FRC.YangMillsML.cellU (2 : ℕ))) < 3.4 ∧ FRC.YangMillsML.ratio (FRC.YangMillsML.cellU (2 : ℕ)) (FRC.YangMillsML.P7 (FRC.YangMillsML.cellU (2 : ℕ))) < 3.4 :=
+  @FRC.YangMillsML.plaquette_cells_values
 -- end keys
 
 end FRC.LedgerML
@@ -4434,4 +4968,5 @@ end FRC.LedgerML
 #print axioms FRC.LedgerML.p46024
 #print axioms FRC.LedgerML.p46036
 #print axioms FRC.LedgerML.p46037
-#print axioms FRC.LedgerML.p46038
+#print axioms FRC.LedgerML.p46064
+#print axioms FRC.LedgerML.p46071

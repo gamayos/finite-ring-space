@@ -171,7 +171,7 @@
  },
  {
   "id": "est.W4",
-  "rows": "14:P4",
+  "rows": "14:B8, 14:P4",
   "block": "est",
   "script": "entropy",
   "label": "the rigid equation of state: with ρ′ = 0 the conservation law ρ′ + 3H(ρ + p) = 0 gives p = −ρ, w = p/ρ = −1 exactly (Fraction arithmetic on sample H, ρ; every sample), no w₀w_a freedom",

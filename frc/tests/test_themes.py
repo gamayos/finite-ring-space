@@ -48,8 +48,8 @@ GATE_CASES = {
 
 
 class GateTest(unittest.TestCase):
-    def run_gates(self, root):
-        r = subprocess.run([sys.executable, "-B", str(ROOT / "ci" / "gates.py"), "all", f"--root={root}"], capture_output=True, text=True)
+    def run_gates(self, root, *args):
+        r = subprocess.run([sys.executable, "-B", str(ROOT / "ci" / "gates.py"), "all", f"--root={root}", *args], capture_output=True, text=True)
         return r.returncode, r.stdout
 
     def scratch(self):
@@ -92,19 +92,26 @@ class GateTest(unittest.TestCase):
             self.assertIn("FAIL G13", out)
         finally: shutil.rmtree(d)
 
-    def test_g12_catches_a_public_ledger_without_its_table(self):
-        d = self.scratch()
+    def test_g12_tickets_a_public_ledger_without_its_table(self):
+        d = self.scratch(); reg = Path(d) / "tickets-toy.md"; msg = "p99_toy.py: the ledger of 99-toy is on the site and the file has no generated table"
         try:
             (Path(d) / "frc" / "ledgers" / "p99_toy.py").write_text('from frc import arith\nPAPER = "99-toy"\n')
             code, out = self.run_gates(d)
             self.assertNotIn("p99_toy.py: the ledger of 99-toy", out)             # no ledger of the paper on the site: nothing to migrate
             (Path(d) / "docs" / "99-toy").mkdir(parents=True); (Path(d) / "docs" / "99-toy" / "99-toy-ledger.json").write_text("{}")
-            code, out = self.run_gates(d)
-            self.assertEqual(code, 1, out)
-            self.assertIn("FAIL G12: p99_toy.py: the ledger of 99-toy is on the site and the file has no generated table", out)
+            code, out = self.run_gates(d)                                         # a missing python check is a ticket and no failure
+            self.assertIn(f"TICKET G12: {msg}", out); self.assertIn("(no tickets register: not filed)", out)
+            self.assertNotIn("FAIL G12", out); self.assertIn("1 ticket(s)", out)
+            reg.write_text("# Tickets\n\nT7 (closed) [an older ticket]\n")
+            code, out = self.run_gates(d, f"--tickets={reg}")                      # with a register the ticket is filed once
+            self.assertIn("(T8, filed in tickets-toy.md)", out)
+            filed = reg.read_text()
+            self.assertIn(f"\n\nT8 (open) [Gate G12: {msg}", filed); self.assertIn("Closes with the ledger file migrated", filed)
+            code, out = self.run_gates(d, f"--tickets={reg}")
+            self.assertIn("(T8, open in tickets-toy.md)", out); self.assertEqual(reg.read_text(), filed)
         finally: shutil.rmtree(d)
 
-    def test_g12_catches_a_declaration_without_its_marker(self):
+    def test_g12_tickets_a_declaration_without_its_marker(self):
         d = self.scratch()
         try:
             shutil.copytree(ROOT / "frc" / "ledgers", Path(d) / "frc" / "ledgers", dirs_exist_ok=True, ignore=shutil.ignore_patterns("__pycache__"))
@@ -118,8 +125,8 @@ class GateTest(unittest.TestCase):
             f = Path(d) / "frc" / "ledgers" / "p03_causality.py"
             f.write_text(f.read_text(encoding="utf-8").replace("    # 3:B3 (p03007)\n", ""), encoding="utf-8")
             code, out = self.run_gates(d)
-            self.assertEqual(code, 1, out)
-            self.assertIn("FAIL G12: p03_causality.py: 3:B3 (p03007) has no marker", out)
+            self.assertIn("TICKET G12: p03_causality.py: 3:B3 (p03007) has no marker", out)
+            self.assertNotIn("FAIL G12: p03_causality.py: 3:B3 (p03007) has no marker", out)
         finally: shutil.rmtree(d)
 
     def test_the_repository_is_green(self):

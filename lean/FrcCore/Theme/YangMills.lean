@@ -25,13 +25,13 @@ multiplicities, `mult_moment6` tying the two). The Casimir and one-loop rational
 `b0_values`, `b0_pos`, `b0_seventeen`, `b0_neg`, 46:C4, C5) and the Casimirs from the frame's torus exponents on the three Subjects
 (`casimir_exponents`, 46:C4, no lift); the drive exponent (`drive_exponent`, `drive_exponent_unique`,
 `drive_exponent_add`, 46:C6). The tension's coefficient (46:C7): the singlet multiplicities of `𝟛^{⊗m} ⊗ 𝟛̄^{⊗n}` by the
-Pieri rule on Dynkin labels (`mult`, `moments`), the plaquette coefficient `c₃` to `β⁷` as window fractions
+Pieri rule on Dynkin labels (`mult`, `moments`), the plaquette coefficient `c₃` to `ϑ⁷` as window fractions
 (`c3_fractions`) and as residues on the three laboratory Subjects and the `20` shells `13 ≤ p < 200` (`c3_readback`, every
 division an inverse on the shell), the `SU(2)` series beside the instance `2T = SU(2, 𝔽₃)` from its `24` Hurwitz units
 (`c2_lab`). The adjoint wrap's two plaquette layers (`adjoint_two_sheets`, 46:C9). The chains of the logarithm (the artanh
 chain with its geometric majorant, `lnBr`) and the six-place bracket of `π` (`piBr`), both in `Theme/Brackets.lean`, read the chart's constants as
 brackets of window fractions, and decide: the declared coupling against the Herbst value, `π² > 6 ln 2`
-(`herbst_comparison`, 46:C10); the plaquette channel's ratios, spreads and `u(β)` (`plaquette_channel`, 46:C11); the
+(`herbst_comparison`, 46:C10); the plaquette channel's ratios and spreads at the chart's cells (`plaquette_cells`, 46:C11); the
 one-loop run from `M_Z` to `m_τ` (`running_one_loop`, 46:P2). The family of the minimal wrap against the lattice in
 thousandths (`wrap_family`, 46:C12) and the colour factors against LEP in hundredths (`colour_factors_within`, 46:P1, X4)
 are integer comparisons. The adjoint without an invariant line (`adjoint_no_invariant`, 46:X1). The two rationals of the
@@ -41,7 +41,9 @@ with denominators cleared (`hughes_nielsen_sum`). The radial ratio of the operat
 ladder and the nucleon, in thousandths (`radial_ratio`, 46:P3). The transfer tally on the three Subjects (46:C19): the orders of
 their frames, the three degrees whose inverses are the eigenvalues of the step with the frame's mean, and the bookkeeping of
 its spectrum (`subject_spectrum`), and the identity
-`Σ a χ(1) = 3` swept over `q ≤ 2000` (`degree_identity`); the gap `1/(q + 1)` of the transfer tally (`ring_gap`). No axioms.
+`Σ a χ(1) = 3` swept over `q ≤ 2000` (`degree_identity`); the gap `1/(q + 1)` of the transfer tally (`ring_gap`); the reduced
+tally of the ring in the quadratic extension, its conjugate and its norm (`ring_tally_plane`), and the example at a boundary
+class with eigenvalues outside the shell on the three Subjects (`ring_tally_outside_shell`). No axioms.
 -/
 
 namespace FRC.YangMills
@@ -169,17 +171,17 @@ theorem glueball_singlet :
 
 /-! ## The adjoint wrap (46:C9, Phase 2)
 
-The plaquette coefficient of a representation `R` is computed to order `β⁷` with coefficients that are rationals built from
+The plaquette coefficient of a representation `R` is computed to order `ϑ⁷` with coefficients that are rationals built from
 the singlet multiplicities `E[χ^a χ̄^b]` of the tensor powers of the triplet (`frc/yangmills.py`). For the adjoint, `χ₈ = χχ̄ − 1`,
-the `β¹` coefficient is `E[χ₈ Re χ]`, which vanishes (the trivial representation occurs `0` times in `𝟠 ⊗ 𝟛` and in `𝟠 ⊗ 𝟛̄`), and
-the `β²` coefficient is `E[χ₈ (Re χ)²] = (E[χ³χ̄] + 2E[χ²χ̄²] + E[χχ̄³] − E[χ²] − 2E[χχ̄] − E[χ̄²])/4 = (0 + 4 + 0 − 0 − 2 − 0)/4 = 1/2`:
-the adjoint coefficient is `β²/288 + …`, the square of the fundamental's `β/18` up to the factor `9/8` — the adjoint wrap
+the `ϑ¹` coefficient is `E[χ₈ Re χ]`, which vanishes (the trivial representation occurs `0` times in `𝟠 ⊗ 𝟛` and in `𝟠 ⊗ 𝟛̄`), and
+the `ϑ²` coefficient is `E[χ₈ (Re χ)²] = (E[χ³χ̄] + 2E[χ²χ̄²] + E[χχ̄³] − E[χ²] − 2E[χχ̄] − E[χ̄²])/4 = (0 + 4 + 0 − 0 − 2 − 0)/4 = 1/2`:
+the adjoint coefficient is `ϑ²/8 + …`, the square of the fundamental's `ϑ/3` up to the factor `9/8` — the adjoint wrap
 needs two fundamental plaquette layers. Both multiplicity identities below are decided by the kernel on the constant terms;
 the same two numbers hold on the enumerable instance `SU(3, 𝔽₂)` over `𝔽₄` by enumeration (ledger check F1). -/
 
-/-- 46:C9 — the two multiplicity identities of the adjoint wrap: the `β¹` coefficient of the adjoint plaquette coefficient
+/-- 46:C9 — the two multiplicity identities of the adjoint wrap: the `ϑ¹` coefficient of the adjoint plaquette coefficient
 vanishes (`E[χ²χ̄] + E[χχ̄²] − E[χ] − E[χ̄] = 0`, no singlet in `𝟠 ⊗ 𝟛` or `𝟠 ⊗ 𝟛̄`), and `4 E[(χχ̄ − 1)(Re χ)²] = 2`
-(`E[χ³χ̄] + 2E[χ²χ̄²] + E[χχ̄³] − E[χ²] − 2E[χχ̄] − E[χ̄²] = 2`), so `c₈ = β²/288 + …`, the square of `c₃`'s `β/18` up to
+(`E[χ³χ̄] + 2E[χ²χ̄²] + E[χχ̄³] − E[χ²] − 2E[χχ̄] − E[χ̄²] = 2`), so `c₈ = ϑ²/8 + …`, the square of `c₃`'s `ϑ/3` up to
 the factor `9/8`: the adjoint wrap is two fundamental wraps. Stated on the sixfold multiplicities `moment6`. -/
 theorem adjoint_two_sheets :
     FRC.Hadrons.moment6 2 1 + FRC.Hadrons.moment6 1 2 - FRC.Hadrons.moment6 1 0 - FRC.Hadrons.moment6 0 1 = 0 ∧
@@ -349,22 +351,21 @@ def psInv (a : SP p) (a0inv : Shell p) : Nat → SP p
     if n = 0 then [a0inv]
     else r ++ [-(a0inv * (List.range n).foldl (fun s i => s + psCoeff a (i + 1) * psCoeff r (n - 1 - i)) 0)]
 
-/-- The fundamental plaquette coefficient of `SU(3)` with the real Wilson action on the shell, from the moment lists
-`E = (ex k)` and `EC = (exc k)`: `c₃ = (1/3) Σ_k E[χ X^k] (β/3)^k/k! / Σ_k E[X^k] (β/3)^k/k!`, `X = Re χ`, with
-`E[X^k] = ex k / 2^k` and `E[χ X^k] = exc k / 2^k`, so the denominator series has coefficients `ex k / (6^k k!)` and the
-numerator `exc k / (3 · 6^k k!)`; every division is an inverse on the shell. -/
+/-- The fundamental plaquette coefficient of `SU(3)` in the stiffness `ϑ` of the connection (46:A16) on the shell, from the
+moment lists `E = (ex k)` and `EC = (exc k)`: `c₃ = (1/3) Σ_k E[χ X^k] (2ϑ)^k/k! / Σ_k E[X^k] (2ϑ)^k/k!`, `X = Re χ`, with
+`E[X^k] = ex k / 2^k` and `E[χ X^k] = exc k / 2^k`, so the denominator series has coefficients `ex k / k!` and the
+numerator `exc k / (3 · k!)`; every division is an inverse on the shell. -/
 def c3Series (E EC : List Nat) (n : Nat) : SP p :=
-  let i6 : Shell p := invS 6
   let i3 : Shell p := invS 3
-  let den : SP p := (List.range n).map fun k => Shell.ofNat (nth 0 E k) * i6 ^ k * invS (factS k)
-  let num : SP p := (List.range n).map fun k => Shell.ofNat (nth 0 EC k) * i6 ^ k * i3 * invS (factS k)
+  let den : SP p := (List.range n).map fun k => Shell.ofNat (nth 0 E k) * invS (factS k)
+  let num : SP p := (List.range n).map fun k => Shell.ofNat (nth 0 EC k) * i3 * invS (factS k)
   psMul num (psInv den (invS (psCoeff den 0)) n) n
 
-/-- The eight framed rationals `0, 1/18, 1/216, 0, −5/93312, −1/186624, 7/33592320, 59/604661760` on the shell, the
-denominators as products of the small primes. -/
+/-- The eight framed rationals `0, 1/3, 1/6, 0, −5/72, −1/24, 7/720, 59/2160` on the shell, the denominators as products
+of the small primes. -/
 def c3Targets : SP p :=
-  [0, fr 1 (2 * 3 ^ 2), fr 1 (2 ^ 3 * 3 ^ 3), 0, fr (-5) (2 ^ 7 * 3 ^ 6), fr (-1) (2 ^ 8 * 3 ^ 6),
-   fr 7 (2 ^ 10 * 3 ^ 8 * 5), fr 59 (2 ^ 11 * 3 ^ 10 * 5)]
+  [0, fr 1 3, fr 1 (2 * 3), 0, fr (-5) (2 ^ 3 * 3 ^ 2), fr (-1) (2 ^ 3 * 3),
+   fr 7 (2 ^ 4 * 3 ^ 2 * 5), fr 59 (2 ^ 4 * 3 ^ 3 * 5)]
 
 /-- The decision on one shell `p = q + 1`. -/
 def c3Check : Nat → Bool
@@ -388,13 +389,13 @@ def windowCheck : Bool :=
   decide (psCoeff (c3Series (p := 13) [1, 0, 2, 2, 12] [0, 1, 1, 6, 15] 5) 4 = psCoeff (c3Targets (p := 13)) 4) &&
   decide (psCoeff (c3Targets (p := 13)) 4 ≠ 0)
 
-/-- 46:C14 — the series' window, the corollary of A9 (the push on T06, 9 November 2026). The `β^k` coefficient of `c₃` is built from
+/-- 46:C14 — the series' window, the corollary of A9 (the push on T06, 9 November 2026). The `ϑ^k` coefficient of `c₃` is built from
 the invariant counts of degree `≤ k + 1` (`exc k` has degree `k + 1`, `ex k` degree `k`), so on a Subject `p`, where the frame's counts
-equal the compact ones through degree `p − 2` (A9), the frame's series equals the compact one through `β^{p−3}`: `β^{10}` on `13`,
-`β^{170}` on `173`, `β^{1546}` on `1549`, all beyond the `β^7` computed. Decided on the shell `13`: raising the degree-`8` count
-`exc 7` by one leaves the coefficients of `β^0`…`β^6` unchanged and moves `β^7`; and the instance's departure at degree `5`
-(`M(4,1) = M(1,4) = 4` against `3`, so `exc 4 = 20` against `15`) puts the instance's `β^4` coefficient at `0`, where the compact one is
-`−5/93312` (`c3Targets`), a nonzero residue on the shell; the five decisions are the Boolean `windowCheck`. -/
+equal the compact ones through degree `p − 2` (A9), the frame's series equals the compact one through `ϑ^{p−3}`: `ϑ^{10}` on `13`,
+`ϑ^{170}` on `173`, `ϑ^{1546}` on `1549`, all beyond the `ϑ^7` computed. Decided on the shell `13`: raising the degree-`8` count
+`exc 7` by one leaves the coefficients of `ϑ^0`…`ϑ^6` unchanged and moves `ϑ^7`; and the instance's departure at degree `5`
+(`M(4,1) = M(1,4) = 4` against `3`, so `exc 4 = 20` against `15`) puts the instance's `ϑ^4` coefficient at `0`, where the compact one is
+`−5/72` (`c3Targets`), a nonzero residue on the shell; the five decisions are the Boolean `windowCheck`. -/
 theorem series_window :
     (13 - 3 = 10 ∧ 7 ≤ 13 - 3 ∧ 7 ≤ 173 - 3 ∧ 7 ≤ 1549 - 3 ∧ 7 ≤ 13 - 4) ∧ windowCheck = true := by
   decide +kernel
@@ -449,19 +450,19 @@ theorem traces_2T :
   decide
 
 /-- The fundamental plaquette coefficient of a group with doublet moments `m_k = M_k / D` (`D = 1` for `SU(2)`'s
-multiplicities, `D = 24` for the trace sums of `2T`): `c = (1/2) Σ_k m_{k+1} (β/2)^k/k! / Σ_k m_k (β/2)^k/k!`. -/
+multiplicities, `D = 24` for the trace sums of `2T`): `c = (1/2) Σ_k m_{k+1} (2ϑ)^k/k! / Σ_k m_k (2ϑ)^k/k!` in the stiffness, Wilson's coupling being `4ϑ`. -/
 def c2Series (M : List Int) (D : Nat) (n : Nat) : SP p :=
   let i2 : Shell p := invS 2
   let iD : Shell p := invS (Shell.ofNat D)
-  let den : SP p := (List.range n).map fun k => ofInt (nth 0 M k) * iD * i2 ^ k * invS (factS k)
-  let num : SP p := (List.range n).map fun k => ofInt (nth 0 M (k + 1)) * iD * i2 ^ (k + 1) * invS (factS k)
+  let den : SP p := (List.range n).map fun k => ofInt (nth 0 M k) * iD * 2 ^ k * invS (factS k)
+  let num : SP p := (List.range n).map fun k => ofInt (nth 0 M (k + 1)) * iD * i2 * 2 ^ k * invS (factS k)
   psMul num (psInv den (invS (psCoeff den 0)) n) n
 
-/-- `β/4 − β³/96 + β⁵/1536` on the shell. -/
-def c2Targets : SP p := [0, fr 1 (2 ^ 2), 0, fr (-1) (2 ^ 5 * 3), 0, fr 1 (2 ^ 9 * 3), 0]
+/-- `ϑ − 2ϑ³/3 + 2ϑ⁵/3` on the shell. -/
+def c2Targets : SP p := [0, 1, 0, fr (-2) 3, 0, fr 2 3, 0]
 
-/-- `β/4 − β³/96 + β⁵/1280` on the shell. -/
-def c2TTargets : SP p := [0, fr 1 (2 ^ 2), 0, fr (-1) (2 ^ 5 * 3), 0, fr 1 (2 ^ 8 * 5), 0]
+/-- `ϑ − 2ϑ³/3 + 4ϑ⁵/5` on the shell. -/
+def c2TTargets : SP p := [0, 1, 0, fr (-2) 3, 0, fr 4 5, 0]
 
 /-- The decision on one shell: `SU(2)` from the Catalan multiplicities, `2T` from its trace sums over `24`. -/
 def c2Check : Nat → Bool
@@ -470,33 +471,33 @@ def c2Check : Nat → Bool
     decide (c2Series (p := q + 1) [1, 0, 1, 0, 2, 0, 5, 0, 14] 1 7 = c2Targets) &&
     decide (c2Series (p := q + 1) [24, 0, 24, 0, 48, 0, 144, 0, 528] 24 7 = c2TTargets)
 
-/-- 46:C7 — `SU(2)`'s `β/4 − β³/96 + β⁵/1536` against `2T`'s `β/4 − β³/96 + β⁵/1280` on the three laboratory Subjects: the
-same coefficients through `β³`, the first difference at `β⁵`. -/
+/-- 46:C7 — `SU(2)`'s `ϑ − 2ϑ³/3 + 2ϑ⁵/3` against `2T`'s `ϑ − 2ϑ³/3 + 4ϑ⁵/5` on the three laboratory Subjects: the
+same coefficients through `ϑ³`, the first difference at `ϑ⁵`. -/
 theorem c2_lab : c2Check 13 = true ∧ c2Check 173 = true ∧ c2Check 1549 = true := by decide +kernel
 
 /-! ## The tension's coefficient as window fractions (46:C7) -/
 
 /-- The series `c₃` of `c3Series`, computed in window fractions: the same division with the coefficients
-`ex k / (6^k k!)` and `exc k / (3 · 6^k k!)`. -/
+`ex k / k!` and `exc k / (3 · k!)`. -/
 def c3WF (E EC : List Nat) (n : Nat) : List WF :=
-  let den := (List.range n).map fun k => WF.frac ((nth 0 E k : Nat) : Int) (6 ^ k * fact k)
-  let num := (List.range n).map fun k => WF.frac ((nth 0 EC k : Nat) : Int) (3 * 6 ^ k * fact k)
+  let den := (List.range n).map fun k => WF.frac ((nth 0 E k : Nat) : Int) (fact k)
+  let num := (List.range n).map fun k => WF.frac ((nth 0 EC k : Nat) : Int) (3 * fact k)
   wsMul num (wsInv den (WF.inv (wsCoeff den 0)) n) n
 
-/-- 46:C7 — the eight fractions of `c₃` modulo `β⁸`, from the multiplicities of `moments`. -/
+/-- 46:C7 — the eight fractions of `c₃` modulo `ϑ⁸`, from the multiplicities of `moments`. -/
 theorem c3_fractions :
     c3WF [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 973] 8 =
-      [(0, 1), WF.frac 1 (2 * 3 ^ 2), WF.frac 1 (2 ^ 3 * 3 ^ 3), (0, 1), WF.frac (-5) (2 ^ 7 * 3 ^ 6),
-       WF.frac (-1) (2 ^ 8 * 3 ^ 6), WF.frac 7 (2 ^ 10 * 3 ^ 8 * 5), WF.frac 59 (2 ^ 11 * 3 ^ 10 * 5)] := by
+      [(0, 1), WF.frac 1 3, WF.frac 1 (2 * 3), (0, 1), WF.frac (-5) (2 ^ 3 * 3 ^ 2),
+       WF.frac (-1) (2 ^ 3 * 3), WF.frac 7 (2 ^ 4 * 3 ^ 2 * 5), WF.frac 59 (2 ^ 4 * 3 ^ 3 * 5)] := by
   decide +kernel
 
 /-- 46:C7 — the residue of every fraction of `c3_fractions` is the series' coefficient on the shell (`c3Check`): on the three
-laboratory Subjects and on the `20` shells `13 ≤ p < 200`; the shell `5` is blind to the coefficients of `β⁶` and `β⁷`,
+laboratory Subjects and on the `20` shells `13 ≤ p < 200`; the shell `5` is blind to the coefficients of `ϑ⁶` and `ϑ⁷`,
 whose denominators it divides. -/
 theorem c3_readback :
     c3Check 13 = true ∧ c3Check 173 = true ∧ c3Check 1549 = true ∧
     [13, 17, 29, 37, 41, 53, 61, 73, 89, 97, 101, 109, 113, 137, 149, 157, 173, 181, 193, 197].all c3Check = true ∧
-    (2 ^ 10 * 3 ^ 8 * 5 : Shell 5) = 0 := by
+    (2 ^ 4 * 3 ^ 2 * 5 : Shell 5) = 0 := by
   exact ⟨c3_lab.1, c3_lab.2.1, c3_lab.2.2, c3_sweep, by decide⟩
 
 /-! ## The short-range route: the declared coupling against the Herbst bound (46:C10)
@@ -570,28 +571,35 @@ def spreadLo (u : WF) : WF :=
   let a := polyP 3 u; let b := polyP 5 u; let c := polyP 7 u
   WF.div (WF.sub (WF.max a (WF.max b c)) (WF.min a (WF.min b c))) (WF.add (WF.mul (WF.ofNat 4) (xBr u).2) c)
 
-/-- The frame's `u(β) = c₃(β)` from the fractions of `c3_fractions`. -/
-def uOfBeta (β : Nat) : WF :=
+/-- The sum of the computed terms of `c₃` through `ϑ⁷` at channel unity, `ϑ = 1`: the sum of the fractions of `c3_fractions`. -/
+def uAtUnity : WF :=
   let c := c3WF [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 973] 8
-  (List.range 8).foldl (fun s k => WF.add s (WF.mul (wsCoeff c k) (WF.pow (WF.ofNat β) k))) (0, 1)
+  (List.range 8).foldl (fun s k => WF.add s (wsCoeff c k)) (0, 1)
 
-/-- 46:C11 — at order `7`, `m/√σ ∈ (6.55, 6.65), (5.85, 5.95), (5.25, 5.35), (4.75, 4.85)` at `u = 0.06, 0.10, 0.15, 0.20`
-with the orders `3, 5, 7` within `1 %`; above `3.7` still at `u = 0.25`; at `u = 0.30` the order-`5` value lies in
-`(3.4, 3.7)`, the order-`7` value in `(3.5, 4.0)`, and the orders disagree by more than `9 %`. The frame's `u(β)`:
-`u(1) ∈ (0.0601, 0.0602)`, `u(3) ∈ (0.203, 0.2031)`, `u(6) ∈ (0.42, 0.43)`. -/
-theorem plaquette_channel :
-    ratioWithin 7 (WF.frac 3 50) (WF.frac 655 100) (WF.frac 665 100) = true ∧
-    ratioWithin 7 (WF.frac 1 10) (WF.frac 585 100) (WF.frac 595 100) = true ∧
-    ratioWithin 7 (WF.frac 3 20) (WF.frac 525 100) (WF.frac 535 100) = true ∧
-    ratioWithin 7 (WF.frac 1 5) (WF.frac 475 100) (WF.frac 485 100) = true ∧
-    ([WF.frac 3 50, WF.frac 1 10, WF.frac 3 20, WF.frac 1 5].all fun u => WF.lt (spreadHi u) (WF.frac 1 100)) = true ∧
-    ratioWithin 7 (WF.frac 1 4) (WF.frac 37 10) (WF.frac 5 1) = true ∧
-    ratioWithin 5 (WF.frac 3 10) (WF.frac 34 10) (WF.frac 37 10) = true ∧
-    ratioWithin 7 (WF.frac 3 10) (WF.frac 35 10) (WF.frac 4 1) = true ∧
-    WF.lt (WF.frac 9 100) (spreadLo (WF.frac 3 10)) = true ∧
-    WF.lt (WF.frac 601 10000) (uOfBeta 1) = true ∧ WF.lt (uOfBeta 1) (WF.frac 602 10000) = true ∧
-    WF.lt (WF.frac 203 1000) (uOfBeta 3) = true ∧ WF.lt (uOfBeta 3) (WF.frac 2031 10000) = true ∧
-    WF.lt (WF.frac 42 100) (uOfBeta 6) = true ∧ WF.lt (uOfBeta 6) (WF.frac 43 100) = true := by
+/-- 46:C11 — the plaquette channel at the chart's cells (46:B6), at the cells' `u` to four decimals, `u = 0.0465, 0.0842,
+0.1246, 0.1671` for `n = 9, 8, 7, 6`: at order `7`, `m/√σ ∈ (6.85, 6.95), (6.15, 6.25), (5.55, 5.65), (5.05, 5.15)`, with the
+orders `3, 5, 7` within `1 %`; at `n = 4` (`u = 0.2553`) the three orders lie above `3.7`; at `n = 3` (`u = 0.2994`) the
+order-`5` value lies in `(3.4, 3.7)` and the orders `3` and `7` above `3.7`; at `n = 2` (`u = 0.3425`) the order-`3` value
+lies in `(3.4, 3.7)` and the orders `5` and `7` below `3.4`; at channel unity `u = 23/54` exactly, and the orders `3, 5, 7`
+lie in `(2.9, 3.0), (0.4, 0.5), (2.8, 2.9)`. That the abscissae are the cells' `u`, the sums of the computed terms of `c₃` through `ϑ⁷` at the cells' stiffness, is the chart check of the
+ledger file and a theorem on Mathlib (`FRC.YangMillsML.plaquette_cells_values`). -/
+theorem plaquette_cells :
+    ratioWithin 7 (WF.frac 465 10000) (WF.frac 685 100) (WF.frac 695 100) = true ∧
+    ratioWithin 7 (WF.frac 842 10000) (WF.frac 615 100) (WF.frac 625 100) = true ∧
+    ratioWithin 7 (WF.frac 1246 10000) (WF.frac 555 100) (WF.frac 565 100) = true ∧
+    ratioWithin 7 (WF.frac 1671 10000) (WF.frac 505 100) (WF.frac 515 100) = true ∧
+    ([WF.frac 465 10000, WF.frac 842 10000, WF.frac 1246 10000, WF.frac 1671 10000].all fun u => WF.lt (spreadHi u) (WF.frac 1 100)) = true ∧
+    ([3, 5, 7].all fun o => ratioWithin o (WF.frac 2553 10000) (WF.frac 37 10) (WF.frac 5 1)) = true ∧
+    ratioWithin 3 (WF.frac 2994 10000) (WF.frac 37 10) (WF.frac 41 10) = true ∧
+    ratioWithin 5 (WF.frac 2994 10000) (WF.frac 34 10) (WF.frac 37 10) = true ∧
+    ratioWithin 7 (WF.frac 2994 10000) (WF.frac 37 10) (WF.frac 4 1) = true ∧
+    ratioWithin 3 (WF.frac 3425 10000) (WF.frac 34 10) (WF.frac 37 10) = true ∧
+    ratioWithin 5 (WF.frac 3425 10000) (WF.frac 25 10) (WF.frac 34 10) = true ∧
+    ratioWithin 7 (WF.frac 3425 10000) (WF.frac 3 1) (WF.frac 34 10) = true ∧
+    uAtUnity = WF.frac 23 54 ∧
+    ratioWithin 3 (WF.frac 23 54) (WF.frac 29 10) (WF.frac 3 1) = true ∧
+    ratioWithin 5 (WF.frac 23 54) (WF.frac 4 10) (WF.frac 5 10) = true ∧
+    ratioWithin 7 (WF.frac 23 54) (WF.frac 28 10) (WF.frac 29 10) = true := by
   decide +kernel
 
 /-! ## The family of the minimal wrap against the lattice (46:C12)
@@ -786,7 +794,7 @@ def expectedRow (p m R : Nat) : List Nat :=
 
 /-- 46:C15 — on the shell `13`: the four rows of the binomial table are the proof's pattern; the weights `(25, 11, 11)` of `v_13`'s
 words are unequal, with `25 − 11 = 14 = p + 1`; the first departure lies in `[26, 49]` on `13`, `[346, 689]` on `173`,
-`[3098, 6193]` on `1549`; the series' window is `β^{24}, β^{23}` on `13`, beyond the `β^{7}` computed; and `4q − 3` is `5`, `9` at
+`[3098, 6193]` on `1549`; the series' window is `ϑ^{24}, ϑ^{23}` on `13`, beyond the `ϑ^{7}` computed; and `4q − 3` is `5`, `9` at
 `q = 2, 3`. -/
 theorem frame_window :
     binomRow 13 11 25 = expectedRow 13 11 25 ∧ binomRow 13 12 25 = expectedRow 13 12 25 ∧
@@ -798,10 +806,10 @@ theorem frame_window :
 
 /-! ## The spectral amplitude of a plaquette (46:B4, C16, C17, C18)
 
-The amplitude `w(U) = Σ ι(λ_j(U_s))` of 46-yangmills, Definition def:amplitude, takes its values in the cyclotomic ring `Z[ζ_M]`,
-`M = lcm(q² − 1, q² − q + 1)`; on the enumerable instance `q = 2` the ring is `Z[ζ₃]`, written here as integer pairs `a + b z` with
-`z² = −1 − z`. Decided here: the conductors and their gcds with the Carriers' cycles on the three Subjects, the non-split orders
-prime to those cycles, the centre of order `3` on `173` only (Proposition prop:amplitude(iv)); the identity `2η + η⁻² = 3η` for
+The amplitude `w(U)` of 46-yangmills, Definition def:amplitude, the sum of the three phases of the class of `U_s`, takes its values in the
+cyclotomic ring of two formal roots of unity, of the orders `q² − 1` and `q² − q + 1`; on the enumerable instance `q = 2` the ring is `Z[ζ₃]`, written here as integer pairs `a + b z` with
+`z² = −1 − z`. Decided here: the plane's cycles `p² − 1` and their gcds with the Carriers' cycles on the three Subjects, the orders
+`p² − p + 1` of the second cycle prime to those cycles, the second cycle in the arithmetic of the plane (`frame_cycle_trace`), the centre of order `3` on `173` only (Proposition prop:amplitude(iv)); the identity `2η + η⁻² = 3η` for
 `η³ = 1` and the arithmetic `z ≠ 1`, `1 + z + z² = 0` behind the vanishing of a sum fixed by multiplication by `z` (the trivial channel annihilated); the instance's distribution
 `64 · (3 + 3z + 3z²) = 0` with its moments `8, 24, 72` (Theorem thm:amplitude); and the bookkeeping of the transfer tally's
 spectrum `144, 36, 0, −72` with multiplicities `9, 36, 144, 27` (Theorem thm:transfer). The enumeration over `F_4` is the python
@@ -816,13 +824,12 @@ def z3Conj (x : Int × Int) : Int × Int := (x.1 - x.2, -x.2)
 /-- The norm `w · w̄` of a pair, an integer. -/
 def z3Norm (x : Int × Int) : Int := (z3Mul x (z3Conj x)).1
 
-/-- 46:C16 — the conductors `M = lcm(p² − 1, p² − p + 1)` on the Subjects, their gcds with the Carriers' cycles `Ω − 1`, the non-split
-orders `p² − p + 1` prime to the cycles (`157` against `232` on the Subject `13`), the centre of order `3` on `173` only; and in `Z[ζ₃]`
+/-- 46:C16 — the plane's cycles `p² − 1` on the Subjects, their gcds with the Carriers' cycles `Ω − 1`, the orders
+`p² − p + 1` of the second cycle prime to the cycles (`157` against `232` on the Subject `13`), the centre of order `3` on `173` only; and in `Z[ζ₃]`
 the singular identity `2η + η⁻² = 3η` for `η = z, z²`, the conjugation `z ↦ z²`, `z³ = 1`, `z ≠ 1` and `1 + z + z² = 0`. -/
 theorem spectral_amplitude :
-    (Nat.lcm (13 * 13 - 1) (13 * 13 - 13 + 1) = 26376 ∧ Nat.lcm (173 * 173 - 1) (173 * 173 - 173 + 1) = 296855832 ∧
-     Nat.lcm (1549 * 1549 - 1) (1549 * 1549 - 1549 + 1) = 5753408488200) ∧
-    (Nat.gcd 26376 232 = 8 ∧ Nat.gcd 296855832 30088 = 8 ∧ Nat.gcd 5753408488200 2408560 = 40) ∧
+    (13 * 13 - 1 = 168 ∧ 173 * 173 - 1 = 29928 ∧ 1549 * 1549 - 1 = 2399400) ∧
+    (Nat.gcd 168 232 = 8 ∧ Nat.gcd 29928 30088 = 8 ∧ Nat.gcd 2399400 2408560 = 40) ∧
     (13 * 13 - 13 + 1 = 157 ∧ Nat.gcd 157 232 = 1 ∧ Nat.gcd (173 * 173 - 173 + 1) 30088 = 1 ∧ Nat.gcd (1549 * 1549 - 1549 + 1) 2408560 = 1) ∧
     ((13 + 1) % 3 ≠ 0 ∧ (173 + 1) % 3 = 0 ∧ (1549 + 1) % 3 ≠ 0 ∧ (2 + 1) % 3 = 0) ∧
     (z3Mul (0, 1) (0, 1) = (-1, -1) ∧ z3Mul (z3Mul (0, 1) (0, 1)) (0, 1) = (1, 0) ∧ z3Conj (0, 1) = (-1, -1)) ∧
@@ -831,6 +838,82 @@ theorem spectral_amplitude :
      (0, 2).1 + (0, 1).1 = (0, 3).1 ∧ (0, 2).2 + (0, 1).2 = (0, 3).2 ∧            -- 2z + z⁻² = 2z + z = 3z
      (-2, -2).1 + (-1, -1).1 = (-3, -3).1 ∧ (-2, -2).2 + (-1, -1).2 = (-3, -3).2) := by   -- 2z² + z⁻⁴ = 2z² + z² = 3z²
   decide
+
+section FrameCycle
+open FRC.Extension
+
+/-- A 3×3 matrix over the plane `F_p(√2)`: the list of its nine entries, by rows. -/
+abbrev PMat (p : Nat) [Pos p] := List (Ext p 2)
+
+/-- The entry of a matrix at a position `0, …, 8`. -/
+def pmGet {p : Nat} [Pos p] : PMat p → Nat → Ext p 2
+  | [], _ => 0
+  | a :: _, 0 => a
+  | _ :: l, n + 1 => pmGet l n
+
+/-- The product of two 3×3 matrices over the plane. -/
+def pmMul {p : Nat} [Pos p] (A B : PMat p) : PMat p :=
+  (List.range 9).map fun n =>
+    pmGet A (3 * (n / 3)) * pmGet B (n % 3) + pmGet A (3 * (n / 3) + 1) * pmGet B (3 + n % 3)
+      + pmGet A (3 * (n / 3) + 2) * pmGet B (6 + n % 3)
+
+/-- The sum of two matrices, and the scalar matrix of a point of the plane. -/
+def pmAdd {p : Nat} [Pos p] (A B : PMat p) : PMat p := List.zipWith (· + ·) A B
+def pmScal {p : Nat} [Pos p] (c : Ext p 2) : PMat p := [c, 0, 0, 0, c, 0, 0, 0, c]
+
+/-- `A ^ n` by squaring. The first argument is an encoding: it bounds the number of binary digits of `n`, and `64` covers every
+exponent of this file. -/
+def pmPow {p : Nat} [Pos p] : Nat → PMat p → Nat → PMat p
+  | 0, _, _ => pmScal 1
+  | f + 1, A, n => if n = 0 then pmScal 1 else
+      if n % 2 = 1 then pmMul A (pmPow f (pmMul A A) (n / 2)) else pmPow f (pmMul A A) (n / 2)
+
+/-- The trace and the determinant. -/
+def pmTrace {p : Nat} [Pos p] (A : PMat p) : Ext p 2 := pmGet A 0 + pmGet A 4 + pmGet A 8
+def pmDet {p : Nat} [Pos p] (A : PMat p) : Ext p 2 :=
+  pmGet A 0 * (pmGet A 4 * pmGet A 8 + -(pmGet A 5 * pmGet A 7))
+    + -(pmGet A 1 * (pmGet A 3 * pmGet A 8 + -(pmGet A 5 * pmGet A 6)))
+    + pmGet A 2 * (pmGet A 3 * pmGet A 7 + -(pmGet A 4 * pmGet A 6))
+
+/-- The element `a + b√2` of `F_p(√2)`. -/
+def planePoint (p : Nat) [Pos p] (a b : Shell p) : Ext p 2 := ⟨a, b⟩
+
+/-- The companion matrix of `x³ − t x² + t̄ x − 1`, for a point `t = (a, b)` of the plane. -/
+def cycleMat (p : Nat) [Pos p] (a b : Shell p) : PMat p := [0, 0, 1, 1, 0, planePoint p (-a) b, 0, 1, planePoint p a b]
+
+/-- The facts of one Subject, for `C = cycleMat p a b`, `m = p² − p + 1`, `D = C^(p²)` and `E = C^(m − p)`, the inverse of
+`C^p`: `C^m = 1`; `D − C` is invertible, so `C` has no eigenvalue on the plane; and `C`, `D`, `E` have the sum `t·1`, the sum
+of pairwise products `t̄·1` and the product `1`. The three are then the roots of `x³ − t x² + t̄ x − 1`, and
+`C^k + D^k + E^k = (Tr C^k)·1` for every power. -/
+def cycleFacts (p : Nat) [Pos p] (a b : Shell p) (m : Nat) : Bool :=
+  let C := cycleMat p a b
+  let D := pmPow 64 C (p * p)
+  let E := pmPow 64 C (m - p)
+  let t : Ext p 2 := planePoint p a b
+  decide (pmPow 64 C m = pmScal 1) && decide (pmDet (pmAdd D (pmMul (pmScal (-1)) C)) ≠ 0)
+    && decide (pmAdd (pmAdd C D) E = pmScal t)
+    && decide (pmAdd (pmAdd (pmMul C D) (pmMul D E)) (pmMul E C) = pmScal (Ext.conj t))
+    && decide (pmMul (pmMul C D) E = pmScal 1)
+
+/-- 46:C16 — the second cycle on the three Subjects, in the arithmetic of the plane `F_p(√2)` alone, for a matrix with the
+characteristic polynomial of a generator of that cycle: the companion matrix `C` of `x³ − t x² + t̄ x − 1`, `t = (9, 4)`,
+`(166, 160)`, `(1275, 523)`. A frame element with this characteristic polynomial is conjugate to `C` over the plane, and the
+statements do not change under conjugation. `C` has the order `p² − p + 1 = 157`, `29757`, `2397853` (a power `C^(m/r)` is not
+`1` for the prime divisors `r` of `m`) and no eigenvalue on the plane. `C`, `C^(p²)` and `C^(−p)` are the three roots of the
+polynomial: their sum is `t·1`, the sum of their pairwise products `t̄·1` and their product `1`, so
+`C^k + C^(kp²) + C^(−kp) = (Tr C^k)·1` for every power. On `173` the power `C^(m/3)` is the central point `(86, 155)` of
+order `3`. -/
+theorem frame_cycle_trace :
+    (cycleFacts 13 9 4 157 = true ∧ cycleMat 13 9 4 ≠ pmScal 1) ∧
+    (cycleFacts 173 166 160 29757 = true ∧
+      pmPow 64 (cycleMat 173 166 160) 9919 = pmScal (planePoint 173 86 155) ∧ planePoint 173 86 155 ≠ 1 ∧
+      planePoint 173 86 155 * planePoint 173 86 155 * planePoint 173 86 155 = 1 ∧
+      pmPow 64 (cycleMat 173 166 160) 4251 ≠ pmScal 1 ∧ pmPow 64 (cycleMat 173 166 160) 2289 ≠ pmScal 1 ∧
+      pmPow 64 (cycleMat 173 166 160) 273 ≠ pmScal 1) ∧
+    (cycleFacts 1549 1275 523 2397853 = true ∧ cycleMat 1549 1275 523 ≠ pmScal 1) := by
+  decide +kernel
+
+end FrameCycle
 
 /-- 46:C17 — the instance's distribution: the values `3, 3z, 3z²` on `64` elements each and `0` on `24` sum to zero,
 `64 · (3 + 3z + 3z²) = 0`; every nonzero value has norm `9`, so the moments are `192 · 9 / 216 = 8`, `192 · 27 / 216 = 24` (the cubes of
@@ -916,6 +999,69 @@ theorem ring_gap :
     ((degs 13).2.1 = 14 * (degs 13).1 ∧ (degs 173).2.1 = 174 * (degs 173).1 ∧ (degs 1549).2.1 = 1550 * (degs 1549).1) := by
   decide
 
+section Plane
+open FRC.Extension
+
+variable {ν : Shell p}
+
+/-- The conjugation of the quadratic extension is additive. -/
+theorem planeConj_add (z z' : Ext p ν) : Ext.conj (z + z') = Ext.conj z + Ext.conj z' :=
+  Ext.ext rfl (Shell.neg_add_rev _ _)
+
+/-- The reduced tally of the ring in the quadratic extension `K` of a Subject, at boundary classes with the reduced character
+values `a₁, a₂, a₃` at `h₁` and `b₁, b₂, b₃` at `h₂`: `Σ aᵢ · conj bᵢ`. Every coefficient reads `1`, and a character takes at
+`h⁻¹` the conjugate of its value at `h`. -/
+def planeTally (a1 a2 a3 b1 b2 b3 : Ext p ν) : Ext p ν :=
+  a1 * Ext.conj b1 + a2 * Ext.conj b2 + a3 * Ext.conj b3
+
+/-- 46:C20 — the reduced tally of the ring on pairs `a + b√ν`, for every modulus `p` and every `ν`; for a nonsquare `ν` of a
+Subject the pairs are its quadratic extension `K`. The six arguments are reduced character values that take at `h⁻¹` the
+conjugate of their value at `h`; that they do is the table's identity, checked class by class in the ledger file. (1) The
+conjugate of the reduced tally is the tally formed at the conjugate values. (2) The product of the two is the norm of the
+reduced tally, an element of the shell. -/
+theorem ring_tally_plane (a1 a2 a3 b1 b2 b3 : Ext p ν) :
+    Ext.conj (planeTally a1 a2 a3 b1 b2 b3)
+      = planeTally (Ext.conj a1) (Ext.conj a2) (Ext.conj a3) (Ext.conj b1) (Ext.conj b2) (Ext.conj b3) ∧
+    planeTally a1 a2 a3 b1 b2 b3
+        * planeTally (Ext.conj a1) (Ext.conj a2) (Ext.conj a3) (Ext.conj b1) (Ext.conj b2) (Ext.conj b3)
+      = Ext.ofShell (Ext.norm (planeTally a1 a2 a3 b1 b2 b3)) := by
+  have h : Ext.conj (planeTally a1 a2 a3 b1 b2 b3)
+      = planeTally (Ext.conj a1) (Ext.conj a2) (Ext.conj a3) (Ext.conj b1) (Ext.conj b2) (Ext.conj b3) := by
+    unfold planeTally
+    rw [planeConj_add, planeConj_add, Ext.conj_mul, Ext.conj_mul, Ext.conj_mul]
+  exact ⟨h, by rw [← h]; exact Ext.mul_conj _⟩
+
+end Plane
+
+/-- The reduced tally at `h₁ = s₁`, with the reduced characters `1`, `2 + 2⁻¹`, `0`, and at `h₂` of the eigenvalues `√2`,
+`−√2/2`, `−1`, with the reduced characters `−1`, `√2/2`, `0`, on a Subject `p` where `2` is a nonsquare; `h` is the residue of
+`2⁻¹`. -/
+def planeExample (p : Nat) [Pos p] (h : Shell p) : FRC.Extension.Ext p 2 :=
+  planeTally 1 (FRC.Extension.Ext.ofShell (2 + h)) 0 (FRC.Extension.Ext.ofShell (-1)) ⟨0, h⟩ 0
+
+/-- 46:C20 — the tally of the ring at a boundary class with eigenvalues outside the shell, on the three Subjects, in
+`K = F_p(√2)` on pairs `(a, b) = a + b√2`. (1) `2` is a nonsquare, by Euler's criterion, and the residues of `2⁻¹`. (2) The
+eigenvalues `√2`, `−√2/2`, `−1` of `h₂`: their product is `1`, the second is the inverse of the conjugate of the first, the third
+times the first is its conjugate, and the first plus the second is `√2/2`. (3) The reduced tally is `−1 − (5/4)√2`: `(12, 2)`,
+`(172, 42)`, `(1548, 386)`, outside the shell, with the second coordinate the residue of `−5/4`. (4) Its norm, the reduced
+paired weight, is `6`, `106`, `966`, the residue of `−17/8`. Every power is taken by repeated multiplication of residues. -/
+theorem ring_tally_outside_shell :
+    ((2 : Shell 13) ^ 6 + 1 = 0 ∧ (2 : Shell 173) ^ 86 + 1 = 0 ∧ (2 : Shell 1549) ^ 774 + 1 = 0) ∧
+    ((2 : Shell 13) * 7 = 1 ∧ (2 : Shell 173) * 87 = 1 ∧ (2 : Shell 1549) * 775 = 1) ∧
+    ((planePoint 13 0 1 * planePoint 13 0 (-7) * planePoint 13 (-1) 0 = 1 ∧ FRC.Extension.Ext.conj (planePoint 13 0 1) * planePoint 13 0 (-7) = 1 ∧
+        planePoint 13 (-1) 0 * planePoint 13 0 1 = FRC.Extension.Ext.conj (planePoint 13 0 1) ∧ planePoint 13 0 1 + planePoint 13 0 (-7) = planePoint 13 0 7) ∧
+      (planePoint 173 0 1 * planePoint 173 0 (-87) * planePoint 173 (-1) 0 = 1 ∧ FRC.Extension.Ext.conj (planePoint 173 0 1) * planePoint 173 0 (-87) = 1 ∧
+        planePoint 173 (-1) 0 * planePoint 173 0 1 = FRC.Extension.Ext.conj (planePoint 173 0 1) ∧ planePoint 173 0 1 + planePoint 173 0 (-87) = planePoint 173 0 87) ∧
+      (planePoint 1549 0 1 * planePoint 1549 0 (-775) * planePoint 1549 (-1) 0 = 1 ∧ FRC.Extension.Ext.conj (planePoint 1549 0 1) * planePoint 1549 0 (-775) = 1 ∧
+        planePoint 1549 (-1) 0 * planePoint 1549 0 1 = FRC.Extension.Ext.conj (planePoint 1549 0 1) ∧ planePoint 1549 0 1 + planePoint 1549 0 (-775) = planePoint 1549 0 775)) ∧
+    (planeExample 13 7 = planePoint 13 12 2 ∧ planeExample 173 87 = planePoint 173 172 42 ∧ planeExample 1549 775 = planePoint 1549 1548 386) ∧
+    ((planeExample 13 7).im ≠ 0 ∧ (planeExample 173 87).im ≠ 0 ∧ (planeExample 1549 775).im ≠ 0) ∧
+    ((4 : Shell 13) * 2 + 5 = 0 ∧ (4 : Shell 173) * 42 + 5 = 0 ∧ (4 : Shell 1549) * 386 + 5 = 0) ∧
+    (FRC.Extension.Ext.norm (planeExample 13 7) = 6 ∧ FRC.Extension.Ext.norm (planeExample 173 87) = 106 ∧
+      FRC.Extension.Ext.norm (planeExample 1549 775) = 966) ∧
+    ((8 : Shell 13) * 6 + 17 = 0 ∧ (8 : Shell 173) * 106 + 17 = 0 ∧ (8 : Shell 1549) * 966 + 17 = 0) := by
+  decide +kernel
+
 /-- 46:C21 — the spectrum in `2π = p − 1` on the three Subjects, `π = 6, 86, 774`: `d₁ = 4π² + 2π + 1`, `d₂ = (2π + 2) d₁` and
 `d₃ = 8π(π + 1)²`, so the gap of the transfer tally is `1/(2π + 2)`; and `2π + 2` has the residue `1` on the shell. -/
 theorem spectrum_in_pi :
@@ -998,6 +1144,100 @@ theorem uniform_boundary_tally :
     (ubOthers 13 2 4 12 0 1 1 = [3, 6, 9, 12] ∧ ubOthers 173 2 4 172 0 1 1 = [43, 86, 129, 172] ∧
       ubOthers 1549 2 4 1548 0 1 1 = [387, 774, 1161, 1548]) ∧
     (ubTally 13 1 1 1 1 = 3 ∧ ubTally 173 1 1 1 1 = 3 ∧ ubTally 1549 1 1 1 1 = 3) := by
+  decide +kernel
+
+/-- The residue of `k!` modulo `p`, every product reduced at once. -/
+def wrFact (p : Nat) : Nat → Nat
+  | 0 => 1
+  | k + 1 => (wrFact p k * (k + 1)) % p
+
+/-- 46:C24 — what a reading keeps of the window. (1) The pair `(1, 13)` has `13!/(840 · 120 · 24) = 2574 = 13 · 198` invariants (the
+hook formula on `(5, 4, 4)`), so the count reads `0` on the Subject `13`. (2) On the Subjects `13`, `173`, `1549` the factorial
+`(p − 1)!` reads `p − 1`, and `2` and `3` have inverses: the factors `2`, `3` and `1, …, p − 1` of the denominators of the series'
+coefficients below `ϑ^p` are units of the shell, and these coefficients are computed in its arithmetic. (3) `p!` reads `0`: from
+`ϑ^p` on no reading is stated. -/
+theorem window_readings : (6227020800 = 2574 * (840 * 120 * 24) ∧ 2574 = 13 * 198) ∧
+    (wrFact 13 12 = 12 ∧ wrFact 173 172 = 172 ∧ wrFact 1549 1548 = 1548) ∧
+    ((2 * 7) % 13 = 1 ∧ (3 * 9) % 13 = 1 ∧ (2 * 87) % 173 = 1 ∧ (3 * 58) % 173 = 1 ∧
+      (2 * 775) % 1549 = 1 ∧ (3 * 1033) % 1549 = 1) ∧
+    (wrFact 13 13 = 0 ∧ wrFact 173 173 = 0 ∧ wrFact 1549 1549 = 0) := by decide +kernel
+
+/-- The residue of the tally of three rings on common links at three classes of the split torus, of the eigenvalues `x, 1, x⁻¹`,
+`y, 1, y⁻¹` and `z, 1, z⁻¹`: the three characters read `1`, `x + x⁻¹` and `0`, and the triples of the first two characters have
+`1`, `0`, `n122` and `n222` invariants. -/
+def trTally (p n122 n222 x xi y yi z zi : Nat) : Nat :=
+  let cx := (x + xi) % p; let cy := (y + yi) % p; let cz := (z + zi) % p
+  (1 + n122 * ((cx * cy) % p + (cx * cz) % p + (cy * cz) % p) + (n222 % p) * (((cx * cy) % p * cz) % p)) % p
+
+/-- The expression `1 + n122 (c_x c_y + c_x c_z + c_y c_z)` with `c_m = m + m⁻¹`. -/
+def trReading (p n122 x xi y yi z zi : Nat) : Nat :=
+  let cx := (x + xi) % p; let cy := (y + yi) % p; let cz := (z + zi) % p
+  (1 + n122 * ((cx * cy) % p + (cx * cz) % p + (cy * cz) % p)) % p
+
+/-- The three classes are regular when none is that of `1` or of `−1`. -/
+def trRegular (p x y z : Nat) : Bool := x != 1 && x != p - 1 && y != 1 && y != p - 1 && z != 1 && z != p - 1
+
+/-- At every one of the next `fuel` lengths whose three classes are regular the tally is the expression. -/
+def trSweep (p n122 n222 gj gji gk gki gl gli : Nat) : Nat → Nat → Nat → Nat → Nat → Nat → Nat → Bool
+  | 0, _, _, _, _, _, _ => true
+  | fuel + 1, x, xi, y, yi, z, zi =>
+    let x' := (x * gj) % p; let xi' := (xi * gji) % p; let y' := (y * gk) % p; let yi' := (yi * gki) % p
+    let z' := (z * gl) % p; let zi' := (zi * gli) % p
+    (!(trRegular p x' y' z') || trTally p n122 n222 x' xi' y' yi' z' zi' == trReading p n122 x' xi' y' yi' z' zi') &&
+      trSweep p n122 n222 gj gji gk gki gl gli fuel x' xi' y' yi' z' zi'
+
+/-- The lengths among the next `fuel` whose three classes are regular, each with its residue; `n` counts the steps taken. -/
+def trValues (p n122 gj gji gk gki gl gli : Nat) : Nat → Nat → Nat → Nat → Nat → Nat → Nat → Nat → List (Nat × Nat)
+  | 0, _, _, _, _, _, _, _ => []
+  | fuel + 1, n, x, xi, y, yi, z, zi =>
+    let x' := (x * gj) % p; let xi' := (xi * gji) % p; let y' := (y * gk) % p; let yi' := (yi * gki) % p
+    let z' := (z * gl) % p; let zi' := (zi * gli) % p
+    if trRegular p x' y' z' then
+      (n + 1, trReading p n122 x' xi' y' yi' z' zi') :: trValues p n122 gj gji gk gki gl gli fuel (n + 1) x' xi' y' yi' z' zi'
+    else trValues p n122 gj gji gk gki gl gli fuel (n + 1) x' xi' y' yi' z' zi'
+
+/-- 46:C25 — three rings on common links, each with the same boundary link at every step, of the eigenvalues `g^{±j}, 1` with `g = 2` and
+`j = 1, 2, 3`; after `n` steps the boundary classes are those of `2^n`, `4^n` and `8^n`. (1) The inverses of `8` on the three Subjects.
+(2) The count of invariants of the second character alone, `p` on `13` and `1549` and `3p` on `173`, has the residue `0`. (3) On
+`13` the regular lengths and their residues. (4) On the Subjects `13`, `173`, `1549` the tally is the expression at every regular
+length of the drive's cycle. (5) The first length reads `6`, `25` and `616`. Every product is reduced at once. -/
+theorem three_rings_reading :
+    ((8 * 5) % 13 = 1 ∧ (8 * 65) % 173 = 1 ∧ (8 * 581) % 1549 = 1) ∧
+    (13 % 13 = 0 ∧ (3 * 173) % 173 = 0 ∧ 1549 % 1549 = 0) ∧
+    trValues 13 2 2 7 4 10 8 5 12 0 1 1 1 1 1 1 = [(1, 6), (5, 9), (7, 9), (11, 6)] ∧
+    (trSweep 13 2 13 2 7 4 10 8 5 12 1 1 1 1 1 1 = true ∧ trSweep 173 4 519 2 87 4 130 8 65 172 1 1 1 1 1 1 = true ∧
+      trSweep 1549 2 1549 2 775 4 1162 8 581 1548 1 1 1 1 1 1 = true) ∧
+    (trReading 13 2 2 7 4 10 8 5 = 6 ∧ trReading 173 4 2 87 4 130 8 65 = 25 ∧
+      trReading 1549 2 2 775 4 1162 8 581 = 616) := by decide +kernel
+
+/-! ## The series on the shell (46:C26) -/
+
+/-- The integers `h_k` of `d_R c_R = Σ h_k ϑ^k/k!`, `k < m`, from the counts `n_k` and `d_k`:
+`h_k = n_k − Σ_{j=1}^{k} C(k, j) d_j h_{k−j}`, a recursion with no division. -/
+def hurwitzH (n d : List Int) : Nat → List Int
+  | 0 => []
+  | k + 1 =>
+    let h := hurwitzH n d k
+    h ++ [nth 0 n k - (List.range k).foldl (fun s j => s + ((choose k (j + 1) : Nat) : Int) * nth 0 d (j + 1) * nth 0 h (k - (j + 1))) 0]
+
+/-- The two truncated sums of `c₃` at channel unity on the shell: `Σ_{k<m} n_k/(3 k!)` and `Σ_{k<m} d_k/k!`. -/
+def truncSums (E EC : List Nat) (m : Nat) : Shell p × Shell p :=
+  ((List.range m).foldl (fun (s : Shell p) (k : Nat) => s + Shell.ofNat (nth 0 EC k) * invS 3 * invS (factS k)) 0,
+   (List.range m).foldl (fun (s : Shell p) (k : Nat) => s + Shell.ofNat (nth 0 E k) * invS (factS k)) 0)
+
+/-- 46:C26 — the series on the shell. (1) The integers `h_k` of `3c₃` and of `8c₈` for `k < 8`, from the counts. (2) `p!` reads `0`
+on the three laboratory Subjects, so the `p`-th power of the stiffness reads `0` in the divided-power algebra of the series. (3) On the Subject `13`
+at channel unity the sum of the coefficients of `c₃` below `ϑ¹³` reads `6`, and the quotient of the two truncated sums reads `4`. -/
+theorem shell_series_readings :
+    (hurwitzH [0, 1, 1, 6, 15, 65, 231, 973] [1, 0, 2, 2, 12, 30, 130, 462] 8 = [0, 1, 1, 0, -5, -15, 21, 413] ∧
+     hurwitzH [0, 0, 2, 4, 24, 80, 372, 1512] [1, 0, 2, 2, 12, 30, 130, 462] 8 = [0, 0, 2, 4, 0, -40, -148, 252]) ∧
+    (wrFact 13 13 = 0 ∧ wrFact 173 173 = 0 ∧ wrFact 1549 1549 = 0) ∧
+    ((c3Series (p := 13) [1, 0, 2, 2, 12, 30, 130, 462, 1946, 7980, 34776, 153120, 694056]
+        [0, 1, 1, 6, 15, 65, 231, 973, 3990, 17388, 76560, 347028, 1597167] 13).foldl (fun (s x : Shell 13) => s + x) 0 = 6 ∧
+     (truncSums (p := 13) [1, 0, 2, 2, 12, 30, 130, 462, 1946, 7980, 34776, 153120, 694056]
+        [0, 1, 1, 6, 15, 65, 231, 973, 3990, 17388, 76560, 347028, 1597167] 13).1 *
+       invS (truncSums (p := 13) [1, 0, 2, 2, 12, 30, 130, 462, 1946, 7980, 34776, 153120, 694056]
+        [0, 1, 1, 6, 15, 65, 231, 973, 3990, 17388, 76560, 347028, 1597167] 13).2 = 4) := by
   decide +kernel
 
 end FRC.YangMills

@@ -2896,7 +2896,7 @@ theorem ofShell_im (a : Shell p) : (ofShell a : Ext p ν).im = 0 := rfl
 theorem conj_re (z : Ext p ν) : (conj z).re = z.re := rfl
 theorem conj_im (z : Ext p ν) : (conj z).im = -z.im := rfl
 
-/-- 8:A2, 3:B5 — `w² = ν`. -/
+/-- 8:A2, 3:B5, 3:E1 — `w² = ν`. -/
 theorem w_sq : (w : Ext p ν) * w = ofShell ν :=
   ext (by show 0 * 0 + ν * (1 * 1) = ν; rw [Shell.zero_mul, Shell.one_mul, Shell.mul_one, Shell.zero_add])
       (by show 0 * 1 + 1 * 0 = 0; rw [Shell.zero_mul, Shell.mul_zero, Shell.zero_add])
@@ -3127,12 +3127,12 @@ variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
 /-- `x` is a square: `x = y·y` for some residue `y`. -/
 def IsSquare (x : Shell p) : Prop := ∃ y : Shell p, y * y = x
 
-/-- 3:B2 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`. -/
+/-- 3:B2, 3:E1 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`. -/
 theorem no_causal_root {ν : Shell p} (h : ¬IsSquare ν) (c : Shell p) : c * c ≠ ν := fun e => h ⟨c, e⟩
 
 theorem sq_mul (a b : Shell p) : (a * b) * (a * b) = (a * a) * (b * b) := mul_mul_mul_comm a b a b
 
-/-- 3:B2 (Thm. nonexistence, the consequence) — `−c²` is a square on every shell: `−c² = (i·c)²` with `i² = −1`;
+/-- 3:B2, 3:E1 (Thm. nonexistence, the consequence) — `−c²` is a square on every shell: `−c² = (i·c)²` with `i² = −1`;
 so with `c ≠ 0` every coefficient of `−c² t² + x² + y² + z²` is a square and the form is Euclidean. -/
 theorem neg_sq_is_square (F : Frame p κ g) (c : Shell p) : IsSquare (-(c * c)) :=
   ⟨quarterTurn g κ * c, by rw [sq_mul, F.quarter_turn_sq, neg_one_mul]⟩
@@ -3243,7 +3243,7 @@ theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 b2 x, ← mul_assoc ν (b1 * b2) x,
     add_comm (ν * (b1 * γ2 * t)) (ν * (b1 * b2) * x), add_add_add_comm]
 
-/-- 7:A10, 3:C2, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
+/-- 7:A10, 3:C2, 3:E1, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
 theorem norm_one_mul {ν γ1 b1 γ2 b2 : Shell p} (h1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1)
     (h2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1) :
     (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) +
@@ -3835,7 +3835,7 @@ theorem hermitian_wJ {w : Ext p ν} (hw : Ext.conj w = -w) : (M2x.wJ w).dagger =
     rw [e, hw]; exact Ext.ext (Shell.neg_neg w.re) (Shell.neg_neg w.im)
   exact M2x.ext' c0 cn (by show Ext.conj w = -w; exact hw) c0
 
-/-- 7:A14, 7:D1, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian
+/-- 7:A14, 7:D1, 7:X7, 00:C27 — **the frame group has one form.** On a field shell, `ν` a nonsquare and `w ≠ 0` (the form `wJ` is Hermitian
 for `conj w = −w`, `hermitian_wJ`): a matrix over `𝔽_{p²}` of determinant one is unitary for `wJ` exactly when its
 entries are fixed by the Frobenius conjugation, i.e. lie in `𝔽_p` — `SU₂(𝔽_{p²}/𝔽_p) = SL₂(𝔽_p)`. -/
 theorem su2_eq_sl2 (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) {w : Ext p ν} (hw0 : w ≠ 0)
@@ -4192,7 +4192,7 @@ theorem register_det (x0 x1 x2 x3 : Shell p) : (X (ν := ν) x0 x1 x2 x3).det = 
 theorem register_hermitian (x0 x1 x2 x3 : Shell p) : (X (ν := ν) x0 x1 x2 x3).dagger = X x0 x1 x2 x3 :=
   MX.sound (envX ν x0 x1 x2 x3) (MX.tr (MX.conj (MXX 1))) (MXX 1) (by decide +kernel)
 
-/-- 7:C1, 7:D1 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`). -/
+/-- 7:C1, 7:D1, 7:X7 — the time vector `X(0, 0, 1, 0)` is the Hermitian form `ηJ` of 00:C27 (`Theme/Spin.lean`). -/
 theorem time_vector : (X (ν := ν) 0 0 1 0) = M2x.wJ Ext.w :=
   MX.sound (look [ν]) MXT ⟨XR.zero, ⟨.zero, .one⟩, XR.neg ⟨.zero, .one⟩, XR.zero⟩ (by decide +kernel)
 
@@ -4297,7 +4297,7 @@ theorem rank_two_det (u1 u2 v1 v2 : Ext p ν) :
     (let d := XR.add (XR.mul (XR.v 1) (XR.v 7)) (XR.neg (XR.mul (XR.v 3) (XR.v 5)))
      ⟨.add (.mul d.re d.re) (.neg (.mul (.var 0) (.mul d.im d.im))), .zero⟩) (by decide +kernel)
 
-/-- 7:B4, 7:X1, 7:C5 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose
+/-- 7:B4, 7:X1, 7:C5, 7:X7 — **the register square is elliptic**: on a field shell with `ν` a nonsquare, two null points `u u†`, `v v†` whose
 sum is null have proportional vectors, `u₁ v₂ = u₂ v₁`: the null cone contains no totally isotropic plane. -/
 theorem register_elliptic (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) (u1 u2 v1 v2 : Ext p ν)
     (h : (⟨u1 * Ext.conj u1 + v1 * Ext.conj v1, u1 * Ext.conj u2 + v1 * Ext.conj v2,
@@ -4312,7 +4312,7 @@ theorem register_elliptic (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) (u1
     | isFalse h1, _ => absurd hn (K.norm_ne_zero hν (Or.inl h1))
   exact ext_eq_of_add_neg_eq_zero hz
 
-/-- 7:B4, 7:X1, 7:C5 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`. -/
+/-- 7:B4, 7:X1, 7:C5, 7:X7 — **the frame quadric is hyperbolic**: the matrices `[[a, b], [0, 0]]` form a totally isotropic plane of `det` on `M₂(𝔽_p)`. -/
 theorem frame_hyperbolic (a b : Shell p) : (M2.det (⟨a, b, 0, 0⟩ : M2 p)) = 0 := by
   show a * 0 + -(b * 0) = 0
   rw [Shell.mul_zero, Shell.mul_zero, Shell.neg_zero, Shell.add_zero]
@@ -4359,7 +4359,7 @@ theorem two_squares (i h : Shell p) (hi : i * i = -1) (h2 : (1 + 1) * h = 1) :
 
 /-! ## The fibration (7:C7, C8) -/
 
-/-- 7:C7 — the stabiliser of the ray `η` in the frame moves: `[[a, b], [c, d]]` fixes `η` under `z ↦ (az + b)/(cz + d)`,
+/-- 7:C7, 7:X7 — the stabiliser of the ray `η` in the frame moves: `[[a, b], [c, d]]` fixes `η` under `z ↦ (az + b)/(cz + d)`,
 i.e. `aη + b = (cη + d)η`, exactly when `a = d` and `b = νc`: the norm-one torus `[[a, νc], [c, a]]` of A10. -/
 theorem ray_stabiliser (a b c d : Shell p) :
     (Ext.ofShell a * Ext.w + Ext.ofShell b : Ext p ν) = (Ext.ofShell c * Ext.w + Ext.ofShell d) * Ext.w ↔ a = d ∧ b = ν * c := by
@@ -4574,7 +4574,7 @@ theorem norm_neg_one : Ext.norm (-1 : Ext p ν) = 1 :=
 theorem negx_negx (M : M2x p ν) : negx (negx M) = M :=
   MX.sound (envAB M M) ⟨XR.neg (XR.neg (XR.v 1)), XR.neg (XR.neg (XR.v 3)), XR.neg (XR.neg (XR.v 5)), XR.neg (XR.neg (XR.v 7))⟩ (MX.v 1) (by decide +kernel)
 
-/-- 7:X4, 7:C2 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the
+/-- 7:X4, 7:C2, 7:X7 — **the kernel of the congruence is `±I`**: a matrix of determinant one fixing the four basis vectors of the
 register square is `I` or `−I`. -/
 theorem kernel_pm (K : Fld p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 + 1 : Shell p) ≠ 0) (A : M2x p ν) (hdet : A.det = 1)
     (h0 : cong A (X 1 0 0 0) = X 1 0 0 0) (h1 : cong A (X 0 1 0 0) = X 0 1 0 0) (h3 : cong A (X 0 0 0 1) = X 0 0 0 1) :
@@ -4845,7 +4845,7 @@ def classCounts13 : Nat × Nat × Nat :=
         else if isSquare13 Δ then (acc.1 + 1, acc.2.1, acc.2.2)
         else (acc.1, acc.2.1, acc.2.2 + 1)
       else acc) acc) acc) acc) (0, 0, 0)
-/-- 7:C9, 7:X2 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant
+/-- 7:C9, 7:X2, 7:X7 — **the class equation by elements at `p = 13`.** The `26208` invertible matrices fall into the three discriminant
 classes with `12012`, `2028` and `12168` elements; divided by the `12` scalars these are the `1001` split classes, the identity
 with the `168` unipotent classes, and the `1014` non-split classes of `PGL₂(𝔽₁₃)`: the three terms of `class_equation_13`. -/
 theorem class_partition_13 : classCounts13 = (12012, 2028, 12168) ∧ 12012 = 12 * (13 * 14 * 11 / 2) ∧
@@ -6417,6 +6417,12 @@ theorem boost_unique (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y =
 
 end torus
 
+/-- 00:D14 — the pair class `gcd(Ω − 1, 2(p + 1)) = 4 gcd(S, 2κ + 1)` on the laboratory pairs `(13, 233)`, `(173, 30089)`,
+`(1549, 2408561)`: `4`, `4`, `20`. The host decides it: the Subject `13` has the class `28` in the Carrier `29`. -/
+theorem pair_class : (Nat.gcd 232 28 = 4 * Nat.gcd 58 7 ∧ Nat.gcd 30088 348 = 4 * Nat.gcd 7522 87 ∧
+    Nat.gcd 2408560 3100 = 4 * Nat.gcd 602140 775) ∧ (Nat.gcd 232 28 = 4 ∧ Nat.gcd 30088 348 = 4 ∧ Nat.gcd 2408560 3100 = 20) ∧
+    Nat.gcd 28 28 = 28 := by decide
+
 end FRC.Subject
 
 /-! inlined: FrcCore/Theme/Pair.lean -/
@@ -7190,7 +7196,7 @@ theorem p00034 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p00040 — 00:C20. \textbf{The mass--energy channel}: the winding sector $C_{\p -1}$ meets the boost base $C_{\p +1}$ in the sign alone and the spinor cover $C_{2(\p +1)}$ in exactly $Q_4$, every $\p =4\kap +1$; the quarter is spinorial, $N(\im)=\im^{2}=-1$: the mass transport crosses the sheet; mass phase $=$ winding rate, one $Q_4$ datum (D2); Carrier instance $78^{58}=89=h$ on $\Om =233$ (38:A4). -/
 theorem p00040 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {h : FRC.Shell p}, h * h = (-1 : FRC.Shell p) → (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ (p + (1 : Nat)) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p))) ∧ (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ ((2 : Nat) * (p + (1 : Nat))) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = h ∨ x = -h)) ∧ h ^ (p + (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (78 : FRC.Shell (233 : Nat)) ^ (58 : Nat) = (89 : FRC.Shell (233 : Nat)) ∧ (89 : FRC.Shell (233 : Nat)) * (89 : FRC.Shell (233 : Nat)) = (-1 : FRC.Shell (233 : Nat)) :=
   And.intro @FRC.Subject.channel (@FRC.Subject.channel_233)
-/-- p00042 — 7:A17, 00:D1. \textbf{Time is the drive}: a Subject's clock is its drive $x\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has no clock. A registered duration is the one-directional chronon count on the depth $\p^{2}<\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors. -/
+/-- p00042 — 7:A17, 00:D1. \textbf{Time is the drive}: a Subject's clock is its drive $x\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has none. A registered duration is the one-directional chronon count on the depth $\p^{2}<\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors (F2). -/
 theorem p00042 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) ∧ g ^ FRC.Shell.Frame.halfPeriod κ = (-1 : FRC.Shell p) ∧ -FRC.Shell.ofNat (FRC.Shell.Frame.halfPeriod κ) * (2 : FRC.Shell p) = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) ∧ (∃ y, y * y = (0 : FRC.Shell p)) ∧ (∃ y, y * y = (1 : FRC.Shell p)) ∧ ¬∃ y, y * y = g) ∧ (∀ (Om n : Nat), n < Om - (1 : Nat) → n % (Om - (1 : Nat)) = n) ∧ (∀ (p S n : Nat), p % (2 : Nat) = (1 : Nat) → p * p < (4 : Nat) * S + (1 : Nat) → n ≤ p * p → n < (4 : Nat) * S + (1 : Nat) - (1 : Nat)) ∧ (13 : Nat) * (13 : Nat) < (232 : Nat) ∧ (173 : Nat) * (173 : Nat) < (30088 : Nat) ∧ (1549 : Nat) * (1549 : Nat) < (2408560 : Nat) ∧ (13 : Nat) * (13 : Nat) < (180 : Nat) ∧ (13 : Nat) * (13 : Nat) < (696 : Nat) ∧ (173 : Nat) * (173 : Nat) < (1293784 : Nat) ∧ (1549 : Nat) * (1549 : Nat) < (932112720 : Nat) ∧ (13 : Nat) * (13 : Nat) < (180 : Nat) :=
   And.intro @FRC.Subject.frame_web (And.intro @FRC.Lorentz.drift_one_directional (And.intro @FRC.Lorentz.nesting_depth (@FRC.Lorentz.drift_instance_pairs)))
 /-- p00139 — 7:A15, 00:C25. For $w^2=\nu$ a nonsquare, the torsor map $\mathbb{P}^1(\F_\p)\to C_{\p +1}$, $P\mapsto u_P/\bar u_P$ with $u_P$ the unique boost taking $0$ to $P$, is equivariant and sends the origin to $1$ and the antipode $[1{:}0]$ to $-1=\zeta^{(\p +1)/2}$. Origin and antipode are the sign pair $C_{\p -1}\cap C_{\p +1}$ (C20), exchanged by the torus's unique involution $q\mapsto\nu/q$. On the additive cycle the antipode is the seam $\p/2$ (1:Z1, 1:Z2). -/
@@ -7202,6 +7208,9 @@ theorem p00150 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p00151 — 00:C16. \textbf{The spinor dichotomy}: $\kap$ odd $\Leftrightarrow$ $C_{\p-1}\cong C_4\times C_\kap$ $\Leftrightarrow$ $v_2(\p-1)=2$ $\Leftrightarrow$ $3\kap r+4s\equiv1\ (\mathrm{mod}\ 4\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\min(v_2(\p-1),v_2(\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\dS\equiv2\ (\mathrm{mod}\ 4)$. The midpoint event of a $\kap$-odd shell: 38:C14. -/
 theorem p00151 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (κ % (2 : Nat) = (1 : Nat) ↔ (p - (1 : Nat)) % (8 : Nat) ≠ (0 : Nat)) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∀ (r s r' s' : Nat), r < (4 : Nat) → s < κ → r' < (4 : Nat) → s' < κ → FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = FRC.Shell.Frame.quarterTurn g κ ^ r' * (g ^ (4 : Nat)) ^ s' → r = r' ∧ s = s') ∧ (κ % (2 : Nat) = (1 : Nat) → ∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → ∃ r s, r < (4 : Nat) ∧ s < κ ∧ FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = x) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∃ r s, r < (4 : Nat) ∧ s < κ ∧ ((3 : Nat) * κ * r + (4 : Nat) * s) % ((4 : Nat) * κ) = (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → κ % (2 : Nat) = (0 : Nat) → ∀ (φ : FRC.Shell p → Nat × Nat), (∀ (x y : FRC.Shell p), x ≠ (0 : FRC.Shell p) → y ≠ (0 : FRC.Shell p) → φ (x * y) = (((φ x).fst + (φ y).fst) % (4 : Nat), ((φ x).snd + (φ y).snd) % κ)) → ¬∀ (x y : FRC.Shell p), x ≠ (0 : FRC.Shell p) → y ≠ (0 : FRC.Shell p) → φ x = φ y → x = y) ∧ (∀ (a b u w m : Nat), u % (2 : Nat) = (1 : Nat) → w % (2 : Nat) = (1 : Nat) → m ≤ a → m ≤ b → m = a ∨ m = b → (2 : Nat) ^ m ∣ (2 : Nat) ^ a * u ∧ (2 : Nat) ^ m ∣ (2 : Nat) ^ b * w ∧ ¬((2 : Nat) ^ (m + (1 : Nat)) ∣ (2 : Nat) ^ a * u ∧ (2 : Nat) ^ (m + (1 : Nat)) ∣ (2 : Nat) ^ b * w) ∧ (2 : Nat) ^ m * (2 : Nat) ^ (b - m) = (2 : Nat) ^ b) ∧ ∀ (S b w : Nat), w % (2 : Nat) = (1 : Nat) → (4 : Nat) * S = (2 : Nat) ^ b * w → ((2 : Nat) ^ b = (8 : Nat) ↔ S % (4 : Nat) = (2 : Nat)) :=
   And.intro @FRC.Subject.spinor (And.intro @FRC.Subject.no_iso (@FRC.Subject.two_part))
+/-- p00184 — 00:D14. \textbf{Mass is dilation} (the harness face of D2, over D7): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20). Rest energy is the norm reading, $\ker N=C_{\p +1}$, boost-invariant. The lab charts it between the exact $C_4$ stations, the pair class $4\gcd(\dS,2\kap +1)$ host-decided. -/
+theorem p00184 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {h : FRC.Shell p}, h * h = (-1 : FRC.Shell p) → (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ (p + (1 : Nat)) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p))) ∧ (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ ((2 : Nat) * (p + (1 : Nat))) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = h ∨ x = -h)) ∧ h ^ (p + (1 : Nat)) = (-1 : FRC.Shell p)) ∧ ((78 : FRC.Shell (233 : Nat)) ^ (58 : Nat) = (89 : FRC.Shell (233 : Nat)) ∧ (89 : FRC.Shell (233 : Nat)) * (89 : FRC.Shell (233 : Nat)) = (-1 : FRC.Shell (233 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] (ν a b c d : FRC.Shell p), FRC.Shell.Frame.Q2 ν (a * d + b * c) (a * c + ν * (b * d)) = (a * a + -(ν * (b * b))) * (c * c + -(ν * (d * d)))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → ∀ {u : FRC.Extension.Ext p ν}, u.norm ≠ (0 : FRC.Shell p) → (FRC.Subject.ratio u).norm = (1 : FRC.Shell p)) ∧ (Nat.gcd (232 : Nat) (28 : Nat) = (4 : Nat) * Nat.gcd (58 : Nat) (7 : Nat) ∧ Nat.gcd (30088 : Nat) (348 : Nat) = (4 : Nat) * Nat.gcd (7522 : Nat) (87 : Nat) ∧ Nat.gcd (2408560 : Nat) (3100 : Nat) = (4 : Nat) * Nat.gcd (602140 : Nat) (775 : Nat)) ∧ (Nat.gcd (232 : Nat) (28 : Nat) = (4 : Nat) ∧ Nat.gcd (30088 : Nat) (348 : Nat) = (4 : Nat) ∧ Nat.gcd (2408560 : Nat) (3100 : Nat) = (20 : Nat)) ∧ Nat.gcd (28 : Nat) (28 : Nat) = (28 : Nat) :=
+  And.intro @FRC.Subject.channel (And.intro @FRC.Subject.channel_233 (And.intro @FRC.Shell.Frame.norm_mul (And.intro @FRC.Subject.norm_ratio (@FRC.Subject.pair_class))))
 /-- p07044 — 7:F1. Every embedded shell drifts against its own chart of the Carrier by $1/(\Om-1)$ of the cycle per chronon and $\kap/\dS$ per revolution, below $1/(\sqrt{\Om}+1)$ exactly when $\p^{2}<\Om$ [chart]; the cycle's order $\Om-1$ is the same for every Subject, and no rate between two Subjects is defined. -/
 theorem p07044 : ∀ {p Ω κ S : Nat}, p = (4 : Nat) * κ + (1 : Nat) → Ω = (4 : Nat) * S + (1 : Nat) → κ * ((4 : Nat) * S) = S * (p - (1 : Nat)) ∧ (4 : Nat) * S = Ω - (1 : Nat) ∧ (2 : Nat) * (Ω - (1 : Nat)) = (8 : Nat) * S :=
   @FRC.Pair.leak_rate
@@ -7308,6 +7317,7 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p00139
 #print axioms FRC.Ledger.p00150
 #print axioms FRC.Ledger.p00151
+#print axioms FRC.Ledger.p00184
 #print axioms FRC.Ledger.p07044
 #print axioms FRC.Ledger.p38001
 #print axioms FRC.Ledger.p38002

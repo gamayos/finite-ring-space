@@ -1,4 +1,5 @@
 import FrcCore.Cycle
+import FrcCore.Theme.Quadratic
 import FrcCore.Theme.Extension
 import FrcCore.Theme.Projective
 import FrcCore.Theme.Subject
@@ -67,6 +68,9 @@ theorem p03015 : (∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -
 /-- p03017 — 3:D1. $\F_{13}$ and $\F_{173}$ [value]: on $\F_{13}$ the squares $\{1,3,4,9,10,12\}$ and the nonsquares $\{2,5,6,7,8,11\}$, $\g=2$, $X^{2}-2$ irreducible; $2041$ null vectors of $Q_{2}$, $2353$ for the Euclidean form, $4\,855\,201$ over $K$; $14$ boosts with $7$ velocities; on $\F_{173}$, $\g=2$, $5\,147\,961$ null vectors and $174$ boosts. -/
 theorem p03017 : FRC.Shell.Frame.nullCount (13 : Nat) (2 : Nat) = (2041 : Nat) ∧ FRC.Shell.Frame.nullCount (13 : Nat) (1 : Nat) = (2353 : Nat) ∧ FRC.Shell.Frame.normOneCount (13 : Nat) (2 : Nat) = (14 : Nat) ∧ FRC.Causal.formCount (2 : FRC.Shell (173 : Nat)) (0 : FRC.Shell (173 : Nat)) + (173 : Nat) * (173 : Nat) = (173 : Nat) * (173 : Nat) * (173 : Nat) + (173 : Nat) ∧ FRC.Causal.planeCount (2 : FRC.Shell (173 : Nat)) (1 : FRC.Shell (173 : Nat)) = (174 : Nat) :=
   And.intro @FRC.Shell.Frame.null13 (And.intro @FRC.Shell.Frame.euclid13 (And.intro @FRC.Causal.normOne13 (@FRC.Causal.shell173)))
+set_option linter.defProp false in
+/-- p03018 — 3:E1. Causality is algebraic and lives on the Subject's shell: the time axis carries the drive's nonsquare class, the null cone and the two non-null classes are its invariant separation (B7), the boosts the non-split torus (C2); the root $\eta$ lives in the pair algebra, never in a further shell; the arrow is the drift (A6). -/
+def p03018 := And.intro @FRC.Shell.Frame.neg_sq_is_square (And.intro @FRC.Shell.Frame.no_causal_root (And.intro @FRC.Causal.similitude (And.intro @FRC.Causal.class_flip (And.intro @FRC.Causal.null_elliptic (And.intro @FRC.Shell.Frame.norm_one_mul (And.intro @FRC.Causal.plane_nonzero (@FRC.Extension.Ext.w_sq)))))))
 /-- p03022 — 3:E3. The window is sharp: no integer point with coordinates bounded by $R$, where $3R^{2}<\p$ and $\g R^{2}<\p$, is a null point of the shell off the real cone; for $\p=a^{2}+b^{2}$, $0<a\le b$, the point $(0,a,b,0)$ is one, so the least such half-width $R_{\star}$ has $\p\le\max(\g,3)R_{\star}^{2}$ and $R_{\star}\le b<\sqrt{\p}$. -/
 theorem p03022 : (∀ {p ν R x y z t : Nat}, x ≤ R → y ≤ R → z ≤ R → t ≤ R → R * R + R * R + R * R < p → ν * (R * R) < p → (x * x + y * y + z * z) % p = ν * (t * t) % p → x * x + y * y + z * z = ν * (t * t)) ∧ ∀ {p ν a b : Nat}, (0 : Nat) < a → a * a + b * b = p → (a * a + b * b + (0 : Nat) * (0 : Nat)) % p = ν * ((0 : Nat) * (0 : Nat)) % p ∧ a * a + b * b + (0 : Nat) * (0 : Nat) ≠ ν * ((0 : Nat) * (0 : Nat)) ∧ b * b < p :=
   And.intro @FRC.Causal.window_exact (@FRC.Causal.window_ghost)

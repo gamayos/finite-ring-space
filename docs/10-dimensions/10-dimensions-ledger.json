@@ -3,7 +3,7 @@
  "tree": "10-dimensions-20260720",
  "title": "Dimensional Analysis over Finite Holographic Substrate",
  "doi": "https://doi.org/10.3390/e28101122",
- "generated": "6 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -189,10 +189,10 @@
     },
     {
      "label": "D5",
-     "predicate": "The unit flag: the Planck constants carry the flag, $[h]=\\unithbar=\\Iq$ --- the anchoring of the action quantum to the order-four flag, the realisation content of the paper. Falsifier: one empirically closed expression that adds an observer count to a unitful measure without the conversion quantum (an energy to a frequency, a momentum to a wavenumber).",
+     "predicate": "The unit association (00:D7): a unit of measure is a reciprocal relation between two count systems, counts of one frame per count of another, the unit flag its domain form; the Planck constants carry the flag, $[h]=\\unithbar=\\Iq$, the action quantum anchored to the order-four flag; the Planck relation the one interface introducing energy without a mass primitive. Falsifier: an empirically closed expression that adds an observer count to a unitful measure without the conversion quantum, or an absolute unit value registered by an embedded observer.",
      "tag": "R",
-     "source": "Prop.~\\ref{prop:h-domain}, \\S\\ref{sec:domains-flag}",
-     "key": "p10021",
+     "source": "Prop.~\\ref{prop:h-domain}, Rems.~\\ref{rem:units-reciprocal}, \\ref{rem:classical-energy}, \\S\\ref{sec:domains-flag}; \\href{https://finitering.space/ledger.html#D7}{00:D7}",
+     "key": "p00048",
      "name": null
     },
     {
@@ -202,14 +202,6 @@
      "source": "Props.~\\ref{prop:energy-domain}, \\ref{prop:action-domain}, Cor.~\\ref{cor:flag-horizon}, Rem.~\\ref{rem:saturation}\\newline \\pywit{dimensions}{p10022}{D6}, \\leanwit{FrcCore}{p10022}{D6}, \\leanwit{FrcMathlib}{p10022}{D6} \\lean{Dimensions.flagged\\_readings, Dimensions.flag\\_inaccessible, FRC.Dimensions.flagged\\_readings, FRC.Dimensions.flag\\_inaccessible13}",
      "key": "p10022",
      "name": "flagged_readings_counts"
-    },
-    {
-     "label": "D7",
-     "predicate": "A unit of measure is a reciprocal relation between two count systems, counts of one frame per count of another; the unit flag is its domain form, the register crossing made algebraic; the Planck relation the unique interface introducing energy without a mass primitive. Falsifier: an absolute unit value registered by an embedded observer, or a unitful measure carrying no cross-frame reciprocal.",
-     "tag": "R",
-     "source": "Rems.~\\ref{rem:units-reciprocal}, \\ref{rem:classical-energy}",
-     "key": "p10023",
-     "name": null
     }
    ]
   },
@@ -219,8 +211,8 @@
    "rows": [
     {
      "label": "E1",
-     "predicate": "The quartet: the primitive triple $\\{\\lP,\\tPl,\\hbar\\}$ --- the two anchored horizons, flag-free re-anchorings of the two primal charts, $[\\lP]=\\unitL$, $[\\tPl]=\\unitT$, and the crossing quantum --- with the dual horizons their crossed images, $\\pP=\\hbar/\\lP$, $\\EP=\\hbar/\\tPl$; the four horizons occupy the four domains, flag positions $(0,0,1,1)$; the pairing constants $c=\\lP/\\tPl=\\EP/\\pP$, $\\hbar=\\lP\\pP=\\tPl\\EP$, $|k_B|=\\pP\\tPl$, and $G$ the one datum not internal to the square. The fundamental units are the Carrier's horizons. Falsifiers: a fifth algebraically independent relation within the quartet lattice; a measured variation of the dimensionless ratios of the constants.",
-     "tag": "R",
+     "predicate": "The quartet: the primitive triple $\\{\\lP,\\tPl,\\hbar\\}$ --- the two anchored horizons, flag-free re-anchorings of the two primal charts, $[\\lP]=\\unitL$, $[\\tPl]=\\unitT$, and the crossing quantum --- with the dual horizons their crossed images, $\\pP=\\hbar/\\lP$, $\\EP=\\hbar/\\tPl$; the four horizons occupy the four domains, flag positions $(0,0,1,1)$; the pairing constants $c=\\lP/\\tPl=\\EP/\\pP$, $\\hbar=\\lP\\pP=\\tPl\\EP$, $|k_B|=\\pP\\tPl$, and $G$ the one datum not internal to the square. The fundamental units are the Carrier's horizons, the unit association of D5 (00:D7). Falsifiers: a fifth algebraically independent relation within the quartet lattice (E2); a measured variation of the dimensionless ratios of the constants (P2).",
+     "tag": "D",
      "source": "Def.~\\ref{def:quartet}, Rem.~\\ref{cor:domain-complete}, Def.~\\ref{def:pairing}, \\S\\ref{sec:quartet}",
      "key": "p10024",
      "name": null
@@ -259,7 +251,7 @@
     },
     {
      "label": "E6",
-     "predicate": "The residue assignments: the unit face (the Planck chart, each horizon the unit of its domain as E1 realises it; $c=1$, $\\hbar=1$ its labels) and the residue face (the square-root horizon band, $\\hbar^{2}=\\Om-1$, $k_B^{2}=\\Om-2$); the mass scale's two typed faces, the monomial $m_P^{2}=\\hbar c/G$ in $\\{\\pm k_B\\}$ and the horizon declaration $m_P^{2}\\,\\hat=\\,\\Om$, never composed.",
+     "predicate": "The residue assignments: the unit face (the Planck chart, each horizon the unit of its domain as E1 declares it; $c=1$, $\\hbar=1$ its labels) and the residue face (the square-root horizon band, $\\hbar^{2}=\\Om-1$, $k_B^{2}=\\Om-2$); the mass scale's two typed faces, the monomial $m_P^{2}=\\hbar c/G$ in $\\{\\pm k_B\\}$ and the horizon declaration $m_P^{2}\\,\\hat=\\,\\Om$, never composed.",
      "tag": "D",
      "source": "\\S\\ref{sec:instantiation} (the residue assignments); rests on E4, E5",
      "key": "p10029",
@@ -487,7 +479,7 @@
   "F3": [
    "C12"
   ],
-  "D7": [
+  "D5": [
    "D7"
   ],
   "A2": [

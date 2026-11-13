@@ -3,7 +3,7 @@
  "tree": "38-s13-20260801",
  "title": "Exact Quantum Dynamics on (13,233)",
  "doi": "https://doi.org/10.20944/preprints202608.0390.v1",
- "generated": "6 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -43,10 +43,10 @@
     },
     {
      "label": "A5",
-     "predicate": "The naming $\\{\\hbar,h\\}$ and the constant loci of Fig.~\\ref{fig:rings}: the registration reading of \\cite{geometry,dimensions}; consumed once, by the registration orientation $\\iota:\\im\\mapsto\\hbar$ (Proposition~\\ref{th:register}); proofs consume A4 alone.",
+     "predicate": "The naming $\\{\\hbar,h\\}$ and the constant loci of Fig.~\\ref{fig:rings}: the unit association of the master's D7 (00:D7), a Subject count read in a Carrier unit, at the instance; the registration orientation $\\iota:\\im\\mapsto\\hbar$ (Proposition~\\ref{th:register}). Falsifier: D7's, an embedded observer registering an absolute unit value.",
      "tag": "R",
-     "source": "Fig.~\\ref{fig:rings}",
-     "key": "p38005",
+     "source": "Fig.~\\ref{fig:rings}; \\href{https://finitering.space/ledger.html#D7}{00:D7}",
+     "key": "p00048",
      "name": null
     },
     {
@@ -231,9 +231,9 @@
     },
     {
      "label": "C11",
-     "predicate": "The floor reading: the leak completes one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$ (the T16 dictionary of 21-grav), so its cyclic rate is $H_{0}/2\\pi$ and its acceleration face $cH_{0}/2\\pi=a_{0}$, the synchronisation floor (32-dark B3, master L1; at the instance $a_{0}=c/(\\Om-1)$, 37-sim). The pair's gravitational face is the registration floor, $\\kap$-free, hosted at every scale; the apsidal reading (C7, Reading~\\ref{rd:apse}) is the same leak on one shell's cycle. Falsifier: L1's, a measured floor off $cH_{0}/2\\pi$.",
-     "tag": "R",
-     "source": "\\S\\ref{sec:reality}",
+     "predicate": "The floor reading: the leak completes one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$ (the dictionary of 21-gravity), so its cyclic rate is $H_{0}/2\\pi$ and its acceleration face $cH_{0}/2\\pi=a_{0}$, the synchronisation floor (32-dark B3, master L1; at the instance $a_{0}=c/(\\Om-1)$, 37-sim) [chart]. The pair's gravitational face is the registration floor, $\\kap$-free, hosted at every scale; the apsidal reading (C7, Reading~\\ref{rd:apse}) is the same leak on one shell's cycle. Falsifier: L1's, a measured floor off $cH_{0}/2\\pi$.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:reality}\\newline \\pywit{s13}{p38045}{C11}; rests on 32:B3, C10, 00:L1",
      "key": "p38045",
      "name": null
     },
@@ -341,17 +341,17 @@
     },
     {
      "label": "D10",
-     "predicate": "The quadrature reading: $M_{0}/M_{3}$ the two quadratures of $F=E+iB$ \\cite{dirac}.",
-     "tag": "R",
+     "predicate": "The quadrature reading: $M_{0}/M_{3}$ the two quadratures of $F=E+iB$ \\cite{dirac}: a dictionary entry, consumed by C2.",
+     "tag": "D",
      "source": "\\S\\ref{sec:meridians}",
      "key": "p38034",
      "name": null
     },
     {
      "label": "D11",
-     "predicate": "The headline realisation: $i\\hbar\\,\\partial_t\\psi=\\hat H\\psi\\ \\rightleftharpoons\\ \\psi_{\\chron+1}=\\gen\\psi_{\\chron}=i(3\\psi_{\\chron})$.",
-     "tag": "R",
-     "source": "\\S\\ref{sec:register}",
+     "predicate": "The Schr\\\"odinger correspondence at the instance: $i\\hbar\\,\\partial_t\\psi=\\hat H\\psi\\ \\rightleftharpoons\\ \\psi_{\\chron+1}=\\gen\\psi_{\\chron}=i(3\\psi_{\\chron})$ [chart], the chronon-indexed evolution with the drive as generator (8-dirac F3) and $\\hbar$ by the unit association (A5, the master's D7); $\\gen=\\im\\cdot3$ exact on $\\F_{13}$.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:register}\\newline \\pywit{s13}{p38035}{D11}; rests on A1, A5, 8:F3",
      "key": "p38035",
      "name": null
     },
@@ -395,7 +395,7 @@
     },
     {
      "label": "X3",
-     "predicate": "\\textbf{The acceleration floor $a_{0}=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10; C11, the realisation); at the instance $a_{0}=c/(\\Om-1)$.",
+     "predicate": "\\textbf{The acceleration floor $a_{0}=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10, C11); at the instance $a_{0}=c/(\\Om-1)$.",
      "tag": "T",
      "source": "\\S\\ref{sec:reality}\\newline \\pywit{s13}{p38048}{X3}, \\leanwit{FrcCore}{p38048}{X3}, \\leanwit{FrcMathlib}{p38048}{X3}; rests on C10, C11 \\lean{FRC.Pair.leak\\_rate, S13.floor\\_value}",
      "key": "p38048",
@@ -471,13 +471,16 @@
    "C16"
   ],
   "C11": [
-   "L1"
+   "X1"
   ],
   "P1": [
-   "L1"
+   "X1"
   ],
   "X3": [
-   "L1"
+   "X1"
+  ],
+  "A5": [
+   "D7"
   ]
  },
  "lean": {

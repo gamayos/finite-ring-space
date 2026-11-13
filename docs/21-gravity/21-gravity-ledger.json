@@ -3,7 +3,7 @@
  "tree": "21-gravity-20260623",
  "title": "Gravitation as the Relaxation of Frame Drift over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1018.v3",
- "generated": "11 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -77,84 +77,84 @@
   },
   {
    "letter": "B",
-   "title": "Realisations: mathematics as physics (the constitutive moves)",
+   "title": "The constitutive moves: namings, and the theorems that state them",
    "rows": [
     {
      "label": "B1",
-     "predicate": "Gravity is the relaxation of forced frame drift: a field has no proper ideals, so every embedded massive shell is non-ideal and its frame drifts; reducing the mutual drift (raising coherence) is identically motion toward smaller separation.",
-     "tag": "R",
+     "predicate": "Gravity is the relaxation of forced frame drift: a field has no proper ideals, so every embedded massive shell is non-ideal and its frame drifts (7-spacetime F1); reducing the mutual drift (raising coherence) is identically motion toward smaller separation (00:D3). Its prediction rows are P1--P4.",
+     "tag": "D",
      "source": "\\S\\ref{sec:intro},\\,\\ref{sec:premises}",
      "key": "p21010",
      "name": null
     },
     {
      "label": "B2",
-     "predicate": "Mass is winding rate: the per-cell rate identification, one $Q_4$ datum in the channel $C_{\\p-1}\\cap C_{2(\\p+1)}=Q_4$, tested against its falsifier at the instance \\cite{s13}; $E=mc^2=hf$ an identity; the composite coefficient $m$ is derived (C1), not constitutive.",
-     "tag": "R",
-     "source": "Def.~\\ref{def:mass},~\\ref{pre:mass}",
+     "predicate": "Mass is winding rate (00:D2): the per-cell rate identification, one $Q_4$ datum in the channel $C_{\\p-1}\\cap C_{2(\\p+1)}=Q_4$, tested against its falsifier at the instance \\cite{s13}; $E=mc^2=hf$ an identity; the composite coefficient $m$ is derived (C1), not constitutive.",
+     "tag": "T",
+     "source": "Def.~\\ref{def:mass},~\\ref{pre:mass}; \\href{https://finitering.space/ledger.html#D2}{00:D2}",
      "key": "p21011",
      "name": null
     },
     {
      "label": "B3",
-     "predicate": "Distance is decoherence, counted in the relational steps of the observer's chart.",
+     "predicate": "Distance is decoherence, counted in the relational steps of the observer's chart (00:D3).",
      "tag": "R",
-     "source": "Def.~\\ref{pre:dist}",
-     "key": "p21012",
+     "source": "Def.~\\ref{pre:dist}; \\href{https://finitering.space/ledger.html#D3}{00:D3}",
+     "key": "p00044",
      "name": null
     },
     {
      "label": "B4",
-     "predicate": "Channel unity: the clock tick (temporal correlation) and the decoherence count (spatial correlation) are two readings of one capacity.",
-     "tag": "R",
+     "predicate": "Channel unity: the clock tick (temporal correlation) and the decoherence count (spatial correlation) are two readings of one capacity, a cell being one degree of freedom.",
+     "tag": "T",
      "source": "Lem.~\\ref{pre:unity}",
      "key": "p21013",
      "name": null
     },
     {
      "label": "B5",
-     "predicate": "The single realisation: the objects we weigh are coherent composites.",
-     "tag": "R",
+     "predicate": "The objects we weigh are coherent composites: the naming behind the coefficient $m$ (C1). Falsifier: the $\\sqrt m$ coupling of an incoherent source; its prediction rows are 22-quantum's P1 and C22.",
+     "tag": "D",
      "source": "\\S\\ref{sec:premises}",
      "key": "p21014",
      "name": null
     },
     {
      "label": "B6",
-     "predicate": "A cell-local change of frame data is the gauge symmetry, its compensating connection the field; the source's conservation is that gauge invariance.",
-     "tag": "R",
-     "source": "Prop.~\\ref{prop:gaugeact}",
-     "key": "p21015",
+     "predicate": "A cell-local change of frame data is the gauge symmetry, its compensating connection the field; the source's conservation is that gauge invariance (00:D5).",
+     "tag": "D",
+     "source": "Prop.~\\ref{prop:gaugeact}; \\href{https://finitering.space/ledger.html#D5}{00:D5}",
+     "key": "p00046",
      "name": null
     },
     {
      "label": "B7",
-     "predicate": "The count of the registration set at the operational cut is the coordinate area in Planck cells, $|R_\\partial|=4\\pi r_f^{2}/\\ell_P^{2}$ up to the solid-angle recalibration of the chart. Falsifier: a collapsed object whose externally resolvable capacity is measured at the Bekenstein--Hawking value.",
-     "tag": "R",
-     "source": "Thm.~\\ref{thm:area}",
+     "predicate": "The count of the registration set at the operational cut is the coordinate area in Planck cells, $|R_\\partial|=4\\pi r_f^{2}/\\ell_P^{2}$ up to the solid-angle recalibration of the chart: the count of C13 read in the unit $\\ell_P^{2}$ (00:D7). Falsifier: a collapsed object whose externally resolvable capacity is measured at the Bekenstein--Hawking value.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:area}; rests on C13; \\href{https://finitering.space/ledger.html#D7}{00:D7}",
      "key": "p21065",
      "name": null
     },
     {
      "label": "B8",
-     "predicate": "The cosmological constant is the curvature of the wrapped finite chart. Falsifier: $w\\neq-1$, or a negative or scale-varying $\\Lambda$.",
-     "tag": "R",
+     "predicate": "The cosmological constant is the curvature of the wrapped finite chart (one key with 32-dark B7). Falsifier: $w\\neq-1$, or a negative or scale-varying $\\Lambda$; its prediction rows are C14 and 14-entropy's P4.",
+     "tag": "D",
      "source": "\\S\\ref{sec:discussion}, App.~\\ref{app:floor}",
      "key": "p32014",
      "name": null
     },
     {
      "label": "B9",
-     "predicate": "The masking barrier is the coincidence amplitude: registration fails when the killed noise walk first traverses the signal's amplitude $\\sqrt x$, coefficient one. Falsifier: an approach to Newton departing from $1-e^{-\\sqrt x}$ beyond the binned-RAR uncertainty, or a knee displaced from $cH_0/2\\pi$.",
-     "tag": "R",
+     "predicate": "The masking barrier is the coincidence amplitude: registration fails when the killed noise walk first traverses the signal's amplitude $\\sqrt x$, coefficient one (one key with 32-dark B8). Falsifier: an approach to Newton departing from $1-e^{-\\sqrt x}$ beyond the binned-RAR uncertainty, or a knee displaced from $cH_0/2\\pi$; its prediction row is P4.",
+     "tag": "D",
      "source": "Prop.~\\ref{prop:crossover}",
      "key": "p32015",
      "name": null
     },
     {
      "label": "B10",
-     "predicate": "One drift rate for every observer: every Subject's chronon is one step of the Carrier's phase cycle $C_{4S}$, so the registered rate of the drive is the Hubble rate for every observer; the arithmetic defines no rate between two Subjects, the drive being each Subject's own (A1). Falsifier: a floor that differs between observers at one epoch, at fixed $\\Omega$.",
-     "tag": "R",
+     "predicate": "One drift rate for every observer: every Subject's chronon is one step of the Carrier's phase cycle $C_{4S}$, so the registered rate of the drive is the Hubble rate for every observer; the arithmetic defines no rate between two Subjects, the drive being each Subject's own (A1); one key with 7-spacetime's F6. Falsifier: a floor that differs between observers at one epoch, at fixed $\\Omega$; its prediction row is P5.",
+     "tag": "D",
      "source": "Prop.~\\ref{prop:afloor}",
      "key": "p21069",
      "name": null
@@ -436,14 +436,6 @@
      "name": "no_graviton_quantisation_problem"
     },
     {
-     "label": "X6",
-     "predicate": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported. Falsifier: large-angle power at the unwrapped chart's value.",
-     "tag": "R",
-     "source": "Prop.~\\ref{prop:primordial}; rests on A2, C14, C18",
-     "key": "p21046",
-     "name": null
-    },
-    {
      "label": "X7",
      "predicate": "\\textbf{The equivalence principle} is an identity, not a postulate.",
      "tag": "T",
@@ -532,6 +524,20 @@
    ]
   },
   {
+   "letter": "Y",
+   "title": "Hypotheses: a reading chosen by a datum, open until a derivation or an independent datum decides it",
+   "rows": [
+    {
+     "label": "Y1",
+     "predicate": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) read as the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. The datum chose the reading, so the same datum cannot confront it; a hypothesis until a derivation or an independent datum decides it. Falsifier: large-angle power at the unwrapped chart's value.",
+     "tag": "O",
+     "source": "Prop.~\\ref{prop:primordial}; rests on A2, C14, C18",
+     "key": "p21046",
+     "name": null
+    }
+   ]
+  },
+  {
    "letter": "Z",
    "title": "Horizon: the residue beyond the bounded observer",
    "rows": [
@@ -566,6 +572,11 @@
    "tag": "R",
    "name": "Realisation",
    "text": "States what a physical term denotes on the substrate: constitutive, not interpretive, and carrying its falsifier."
+  },
+  {
+   "tag": "O",
+   "name": "Open",
+   "text": "A hypothesis a theorem is conditioned on, which a datum chose: open until a derivation or an independent datum decides it (block Y)."
   },
   {
    "tag": "Ω",
@@ -639,16 +650,16 @@
    "D15"
   ],
   "C19": [
-   "L1"
+   "X1"
   ],
   "P3": [
-   "L1"
+   "X1"
   ],
   "C22": [
    "E11"
   ],
   "P1": [
-   "E14"
+   "P5"
   ]
  },
  "lean": {

@@ -3,7 +3,7 @@
  "tree": "32-dark-20260627",
  "title": "The Dark Sector over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1689.v1",
- "generated": "6 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -69,44 +69,44 @@
   },
   {
    "letter": "B",
-   "title": "Realisations and conventions: mathematics $\\to$ physics (the forced identifications, each with its falsifier, and one definition)",
+   "title": "The constitutive moves: namings with their falsifiers, one theorem, one realisation and one convention",
    "rows": [
     {
      "label": "B1",
-     "predicate": "Gravitation is the synchronisation of elementary clocks; distance is decoherence. Falsifier: a gravitating species supplying the galactic \\emph{and} cosmological abundance (\\S\\ref{sec:discussion}), or entanglement induced off the Newtonian rate.",
-     "tag": "R",
+     "predicate": "Gravitation is the synchronisation of elementary clocks, the relaxation of forced frame drift (21-gravity B1); distance is decoherence (the master's D3, 00:D3). Falsifier: a gravitating species supplying the galactic \\emph{and} cosmological abundance (\\S\\ref{sec:discussion}), or entanglement induced off the Newtonian rate; its prediction row is P6.",
+     "tag": "D",
      "source": "\\S\\ref{sub:substrate}",
      "key": "p32008",
      "name": null
     },
     {
      "label": "B2",
-     "predicate": "Mass is winding rate, $E=hf$; an acceleration advances phase at the rate $g/c$. Falsifier: a knee that does not track $H(z)$ (P1), or a rest mass with no winding.",
-     "tag": "R",
-     "source": "\\S\\ref{sub:substrate},\\,\\ref{sub:floor}",
+     "predicate": "Mass is winding rate, $E=hf$ (the master's D2, 00:D2); an acceleration $g$ winds the local phase at the cyclic frequency $g/c$, the first step of the floor derivation (C2). Falsifier: a knee that does not track $H(z)$ (P1), or a rest mass with no winding.",
+     "tag": "T",
+     "source": "\\S\\ref{sub:substrate},\\,\\ref{sub:floor}; \\href{https://finitering.space/ledger.html#D2}{00:D2}",
      "key": "p32009",
      "name": null
     },
     {
      "label": "B3",
-     "predicate": "The acceleration floor is the phase-coherence threshold $g/c=\\Hzero/2\\pi$: the winding frequency reaches the drive's cyclic frequency (one radian of phase per Hubble time). Falsifier: a measured floor off $c\\Hzero/2\\pi$ beyond the $H_0$ uncertainty, or a floor that is directional or density-dependent (P6).",
-     "tag": "R",
+     "predicate": "The acceleration floor is the phase-coherence threshold $g/c=\\Hzero/2\\pi$: the winding frequency reaches the drive's cyclic frequency (one radian of phase per Hubble time); the dark sector's first naming, consumed by C2 and by the master's L1. Falsifier: a measured floor off $c\\Hzero/2\\pi$ beyond the $H_0$ uncertainty, or a floor that is directional or density-dependent; its prediction rows are P1 and P6.",
+     "tag": "D",
      "source": "\\S\\ref{sub:floor}",
      "key": "p32010",
      "name": null
     },
     {
      "label": "B4",
-     "predicate": "Below the floor the registered force is read as an amplitude in the conjugate chart, the conserved flux as a count. Falsifier: a sub-floor law other than the geometric mean $\\sqrt{\\gb\\az}$ at $x\\ll1$, e.g.\\ the wide-binary knee failing P3.",
-     "tag": "R",
+     "predicate": "Below the floor the registered force is read as an amplitude in the conjugate chart, the conserved flux as a count: the second naming, consumed by C4. Falsifier: a sub-floor law other than the geometric mean $\\sqrt{\\gb\\az}$ at $x\\ll1$, e.g.\\ the wide-binary knee failing; its prediction row is P3.",
+     "tag": "D",
      "source": "\\S\\ref{sub:tworeadings},\\,\\ref{sub:geomean}",
      "key": "p32011",
      "name": null
     },
     {
      "label": "B5",
-     "predicate": "The intrinsic scatter is the spread $\\delta\\alpha$ of the source's collective phase, read through the chart angle; its identification with the disk's dynamical temperature is the conjecture Y2. Falsifier: an intrinsic scatter that does not follow $\\tan\\alpha(x)$, i.e.\\ no rise into the deep regime at fixed $\\delta\\alpha$ (P2).",
-     "tag": "R",
+     "predicate": "The intrinsic scatter is the spread $\\delta\\alpha$ of the source's collective phase, read through the chart angle: a naming; its identification with the disk's dynamical temperature is the conjecture Y2. Falsifier: an intrinsic scatter that does not follow $\\tan\\alpha(x)$, i.e.\\ no rise into the deep regime at fixed $\\delta\\alpha$; its prediction row is P2.",
+     "tag": "D",
      "source": "\\S\\ref{sub:scatterderiv}",
      "key": "p32012",
      "name": null
@@ -121,16 +121,16 @@
     },
     {
      "label": "B7",
-     "predicate": "The cosmological constant is the curvature of the wrapped finite chart. Falsifier: $w\\neq-1$, or a negative or scale-varying $\\Lambda$ (C11).",
-     "tag": "R",
+     "predicate": "The cosmological constant is the curvature of the wrapped finite chart (one key with 21-gravity B8). Falsifier: $w\\neq-1$, or a negative or scale-varying $\\Lambda$; its prediction rows are C11 and 14-entropy's P4.",
+     "tag": "D",
      "source": "\\S\\ref{sub:lambda}",
      "key": "p32014",
      "name": null
     },
     {
      "label": "B8",
-     "predicate": "The masking barrier is the coincidence amplitude: registration fails when the killed noise walk first traverses the signal's amplitude $\\sqrt x$ in the metric $\\delta_A$ the floor rate induces, coefficient one. Falsifier: an approach to Newton departing from $1-e^{-\\sqrt x}$ beyond the binned-RAR uncertainty (the simple rational form differs by up to $0.05$ in $\\gobs/\\gb$ at $\\gb\\approx5\\az$), or a knee displaced from $c\\Hzero/2\\pi$ ($\\kappa^{2}\\neq1$).",
-     "tag": "R",
+     "predicate": "The masking barrier is the coincidence amplitude: registration fails when the killed noise walk first traverses the signal's amplitude $\\sqrt x$ in the metric $\\delta_A$ the floor rate induces, coefficient one. Falsifier: an approach to Newton departing from $1-e^{-\\sqrt x}$ beyond the binned-RAR uncertainty (the simple rational form differs by up to $0.05$ in $\\gobs/\\gb$ at $\\gb\\approx5\\az$), or a knee displaced from $c\\Hzero/2\\pi$ ($\\kappa^{2}\\neq1$); one key with 21-gravity B9, its prediction row C6.",
+     "tag": "D",
      "source": "Prop.~\\ref{prop:passage}, Eq.~\\eqref{eq:norm}; its confrontation in \\S\\ref{sub:rar}",
      "key": "p32015",
      "name": null
@@ -487,7 +487,7 @@
   ],
   "C2": [
    "N2",
-   "L1"
+   "X1"
   ],
   "P1": [
    "P1"
@@ -502,13 +502,13 @@
    "E3"
   ],
   "C4": [
-   "L1"
+   "X1"
   ],
   "C5": [
-   "L1"
+   "X1"
   ],
   "C6": [
-   "L1"
+   "X1"
   ]
  },
  "lean": {

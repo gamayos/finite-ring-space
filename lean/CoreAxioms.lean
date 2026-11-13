@@ -292,6 +292,7 @@ import FrcBridge.Subject
 #print axioms FRC.Domain.Lift.classical_arity
 #print axioms FRC.Domain.Lift.reduce
 #print axioms FRC.Domain.Lift.modular_shadow
+#print axioms FRC.Domain.Lift.mass_energy_frequency
 #print axioms FRC.Shell.Frame.Affine.apply
 #print axioms FRC.Shell.Frame.Affine.ext'
 #print axioms FRC.Shell.Frame.Affine.one
@@ -2537,6 +2538,7 @@ import FrcBridge.Subject
 #print axioms FRC.Subject.torus_antipode
 #print axioms FRC.Subject.antipode_generator
 #print axioms FRC.Subject.boost_unique
+#print axioms FRC.Subject.pair_class
 #print axioms FRC.Pair.tower_solvable
 #print axioms FRC.Pair.window
 #print axioms FRC.Pair.window_sum
@@ -3724,8 +3726,8 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.ratioWithin
 #print axioms FRC.YangMills.spreadHi
 #print axioms FRC.YangMills.spreadLo
-#print axioms FRC.YangMills.uOfBeta
-#print axioms FRC.YangMills.plaquette_channel
+#print axioms FRC.YangMills.uAtUnity
+#print axioms FRC.YangMills.plaquette_cells
 #print axioms FRC.YangMills.famSq
 #print axioms FRC.YangMills.family
 #print axioms FRC.YangMills.determinations
@@ -3756,6 +3758,17 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.z3Conj
 #print axioms FRC.YangMills.z3Norm
 #print axioms FRC.YangMills.spectral_amplitude
+#print axioms FRC.YangMills.pmGet
+#print axioms FRC.YangMills.pmMul
+#print axioms FRC.YangMills.pmAdd
+#print axioms FRC.YangMills.pmScal
+#print axioms FRC.YangMills.pmPow
+#print axioms FRC.YangMills.pmTrace
+#print axioms FRC.YangMills.pmDet
+#print axioms FRC.YangMills.planePoint
+#print axioms FRC.YangMills.cycleMat
+#print axioms FRC.YangMills.cycleFacts
+#print axioms FRC.YangMills.frame_cycle_trace
 #print axioms FRC.YangMills.instance_amplitude
 #print axioms FRC.YangMills.instance_transfer
 #print axioms FRC.YangMills.su3Order
@@ -3766,6 +3779,11 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.degree_identity
 #print axioms FRC.YangMills.gapOK
 #print axioms FRC.YangMills.ring_gap
+#print axioms FRC.YangMills.planeConj_add
+#print axioms FRC.YangMills.planeTally
+#print axioms FRC.YangMills.ring_tally_plane
+#print axioms FRC.YangMills.planeExample
+#print axioms FRC.YangMills.ring_tally_outside_shell
 #print axioms FRC.YangMills.spectrum_in_pi
 #print axioms FRC.YangMills.product_channel_counts
 #print axioms FRC.YangMills.ubChars
@@ -3776,6 +3794,17 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.ubValues
 #print axioms FRC.YangMills.ubOthers
 #print axioms FRC.YangMills.uniform_boundary_tally
+#print axioms FRC.YangMills.wrFact
+#print axioms FRC.YangMills.window_readings
+#print axioms FRC.YangMills.trTally
+#print axioms FRC.YangMills.trReading
+#print axioms FRC.YangMills.trRegular
+#print axioms FRC.YangMills.trSweep
+#print axioms FRC.YangMills.trValues
+#print axioms FRC.YangMills.three_rings_reading
+#print axioms FRC.YangMills.hurwitzH
+#print axioms FRC.YangMills.truncSums
+#print axioms FRC.YangMills.shell_series_readings
 #print axioms FRC.Ledger.p00032
 #print axioms FRC.Ledger.p01004
 #print axioms FRC.Ledger.p01005
@@ -3845,6 +3874,7 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p07051
 #print axioms FRC.Ledger.p07052
 #print axioms FRC.Ledger.p07054
+#print axioms FRC.Ledger.p07057
 #print axioms FRC.Ledger.p38051
 #print axioms FRC.Ledger.p00022
 #print axioms FRC.Ledger.p00189
@@ -3991,6 +4021,7 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p00164
 #print axioms FRC.Ledger.p00188
 #print axioms FRC.Ledger.p00197
+#print axioms FRC.Ledger.p21011
 #print axioms FRC.Ledger.p26038
 #print axioms FRC.Ledger.p01011
 #print axioms FRC.Ledger.p01015
@@ -4014,6 +4045,7 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p00139
 #print axioms FRC.Ledger.p00150
 #print axioms FRC.Ledger.p00151
+#print axioms FRC.Ledger.p00184
 #print axioms FRC.Ledger.p07044
 #print axioms FRC.Ledger.p38001
 #print axioms FRC.Ledger.p38002
@@ -4060,6 +4092,7 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p03013
 #print axioms FRC.Ledger.p03015
 #print axioms FRC.Ledger.p03017
+#print axioms FRC.Ledger.p03018
 #print axioms FRC.Ledger.p03022
 #print axioms FRC.Ledger.p03025
 #print axioms FRC.Ledger.p03026
@@ -4323,7 +4356,6 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p46030
 #print axioms FRC.Ledger.p46036
 #print axioms FRC.Ledger.p46037
-#print axioms FRC.Ledger.p46038
 #print axioms FRC.Ledger.p46041
 #print axioms FRC.Ledger.p46043
 #print axioms FRC.Ledger.p46051
@@ -4336,6 +4368,10 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p46064
 #print axioms FRC.Ledger.p46065
 #print axioms FRC.Ledger.p46066
+#print axioms FRC.Ledger.p46067
+#print axioms FRC.Ledger.p46068
+#print axioms FRC.Ledger.p46071
+#print axioms FRC.Ledger.p46072
 #print axioms FRC.Shell.meridian
 #print axioms FRC.Shell.scale
 #print axioms FRC.Shell.map_scale_aux
@@ -4644,6 +4680,7 @@ import FrcBridge.Subject
 #print axioms FRC.Causality.causal_velocity
 #print axioms FRC.Causality.lorentz_generation
 #print axioms FRC.Causality.worked_shells_values
+#print axioms FRC.Causality.algebraic_causality
 #print axioms FRC.Causality.window_sharpness
 #print axioms FRC.Causality.temporal_fibres
 #print axioms FRC.Representation.adequate_inj
@@ -5091,6 +5128,7 @@ import FrcBridge.Subject
 #print axioms FRC.Spacetime.why_spin_half
 #print axioms FRC.Spacetime.why_time_relational
 #print axioms FRC.Spacetime.why_arrow
+#print axioms FRC.Spacetime.why_this_sky
 #print axioms FRC.Spacetime.three_dimensions
 #print axioms FRC.Spacetime.floor_is_temperature
 #print axioms FRC.Quantum.characters_power_maps
@@ -5347,7 +5385,7 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.tension_coefficient_series
 #print axioms FRC.YangMills.adjoint_wrap_two_sheets
 #print axioms FRC.YangMills.short_range_fails
-#print axioms FRC.YangMills.plaquette_channel_fails
+#print axioms FRC.YangMills.plaquette_channel_cells
 #print axioms FRC.YangMills.wrap_family_misses
 #print axioms FRC.YangMills.one_loop_rationals
 #print axioms FRC.YangMills.series_window_corollary
@@ -5360,6 +5398,9 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.spectrum_in_two_pi
 #print axioms FRC.YangMills.product_channels
 #print axioms FRC.YangMills.uniform_boundary
+#print axioms FRC.YangMills.readings_of_window
+#print axioms FRC.YangMills.three_rings
+#print axioms FRC.YangMills.series_on_shell
 #print axioms FRC.YangMills.gluon_massless_unregistered
 #print axioms FRC.YangMills.singlets_only
 #print axioms FRC.YangMills.casimirs_are_measured
@@ -5396,6 +5437,8 @@ import FrcBridge.Subject
 #print axioms FRC.Master.antipode_on_torus
 #print axioms FRC.Master.frame_group_one_form
 #print axioms FRC.Master.time_is_scale_dilation
+#print axioms FRC.Master.mass_is_winding_rate
+#print axioms FRC.Master.mass_is_dilation
 #print axioms FRC.Master.uniqueness_of_dynamics
 #print axioms FRC.Master.gravity_linear
 #print axioms FRC.Master.gravity_nonlinear_completion

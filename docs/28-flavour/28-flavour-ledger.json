@@ -3,7 +3,7 @@
  "tree": "28-flavour-20260626",
  "title": "Fermion Flavour Sector over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.2124.v1",
- "generated": "6 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -61,54 +61,46 @@
   },
   {
    "letter": "B",
-   "title": "Realisations: mathematics $\\to$ physics",
+   "title": "The constitutive moves: namings, and the theorem that states the generations",
    "rows": [
     {
      "label": "B1",
-     "predicate": "Matter is the circulant amplitude matrix $\\sqrt M$; a mass is the squared modulus of a generation amplitude (the Born square). Falsifier: a charged-lepton spectrum departing from the circulant Koide form at improved precision (present agreement $6\\times10^{-6}$).",
-     "tag": "R",
+     "predicate": "Matter is the circulant amplitude matrix $\\sqrt M$; a mass is the squared modulus of a generation amplitude (the Born square): the paper's one identification, the Born tally of the master's F1 read on the generation amplitudes. Falsifier: a charged-lepton spectrum departing from the circulant Koide form at improved precision (present agreement $6\\times10^{-6}$); its prediction row is P1.",
+     "tag": "D",
      "source": "\\cite{akhtman2026quantum}",
      "key": "p28007",
      "name": null
     },
     {
      "label": "B2",
-     "predicate": "The three generations are the Frobenius $C_3$ Galois orbit: identical in every gauge number, differing only in mass. Falsifier: a fourth generation, or two generations differing in any gauge number.",
-     "tag": "R",
-     "source": "\\cite{akhtman2026fields}",
+     "predicate": "The three generations are the Frobenius $C_3$ Galois orbit: identical in every gauge number, differing only in mass; the closure $5\\to1$ of the role ladder (27-fields C10: three generations and no fourth) with the triality centre of the master's B4 gives the orbit (the master's G14). Falsifier: a fourth generation, or two generations differing in any gauge number.",
+     "tag": "T",
+     "source": "\\cite{akhtman2026fields}; rests on 27:C10, 00:B4",
      "key": "p28008",
      "name": null
     },
     {
      "label": "B3",
-     "predicate": "The role depths $(0,1,2)$ of the closed ladder are the Froggatt--Nielsen flavour charges. Falsifier: a confirmed departure of the Wolfenstein hierarchy from the depth ladder $(0,1,2)$, e.g.\\ $V_{us}$ outside the band of the Gatto relation for every phase $\\varphi$.",
-     "tag": "R",
+     "predicate": "The role depths $(0,1,2)$ of the closed ladder are the Froggatt--Nielsen flavour charges: a naming, the Cabibbo band its prediction row (P3, with X3 and X4). Falsifier: a confirmed departure of the Wolfenstein hierarchy from the depth ladder $(0,1,2)$, e.g.\\ $V_{us}$ outside the band of the Gatto relation for every phase $\\varphi$.",
+     "tag": "D",
      "source": "\\cite{akhtman2026pnp}",
      "key": "p28009",
      "name": null
     },
     {
      "label": "B4",
-     "predicate": "The colour excess of the quark amplitudes is the Georgi--Jarlskog Clebsch $\\Nc=3$; the squared amplitude is the cyclotomic norm $N(1-\\zeta_n)$. Falsifier: a quark-to-lepton amplitude ratio departing from the $\\Nc=3$ Clebsch at improved precision.",
-     "tag": "R",
+     "predicate": "The colour excess of the quark amplitudes is the Georgi--Jarlskog Clebsch $\\Nc=3$; the squared amplitudes are the cyclotomic norms $N(1-\\zeta_n)$, the theorem C4. Falsifier: a quark-to-lepton amplitude ratio departing from the $\\Nc=3$ Clebsch at improved precision; its prediction row is P2.",
+     "tag": "D",
      "source": "\\cite{akhtman2026fields}",
      "key": "p28010",
      "name": null
     },
     {
      "label": "B5",
-     "predicate": "A colourless sector (charged leptons, neutrinos) carries the undressed quarter-turn amplitude $r=\\sqrt2$, i.e.\\ $Q=2/3$. Falsifier: $Q_\\ell\\neq2/3$ at improved charged-lepton precision; for neutrinos, inverted ordering, a degenerate spectrum, or $\\sum m_\\nu\\gtrsim120$\\,meV.",
-     "tag": "R",
+     "predicate": "A colourless sector (charged leptons, neutrinos) carries the undressed quarter-turn amplitude $r=\\sqrt2$, i.e.\\ $Q=2/3$: the one input of the Koide chain (C2), the root two the two-way symmetrisation of the master's C8. Falsifier: $Q_\\ell\\neq2/3$ at improved charged-lepton precision; for neutrinos, inverted ordering, a degenerate spectrum, or $\\sum m_\\nu\\gtrsim120$\\,meV; its prediction rows are P1 and P5, with X1.",
+     "tag": "D",
      "source": "\\cite{akhtman2026fields}",
      "key": "p28011",
-     "name": null
-    },
-    {
-     "label": "B6",
-     "predicate": "Drive-invariant boundary branch: the lightest colourless neutrino sits at the quarter-turn zero (as the electron), selecting the normal near-$m_1{=}0$ branch. Falsifier: inverted ordering.",
-     "tag": "R",
-     "source": "\\S\\ref{sec:neutrino}",
-     "key": "p28051",
      "name": null
     }
    ]
@@ -127,7 +119,7 @@
     },
     {
      "label": "C2",
-     "predicate": "$Q=2/3\\Leftrightarrow r=\\sqrt2\\Leftrightarrow\\rho^2=\\tfrac12$ (the equivalence an identity); the value $\\rho^2=\\tfrac12$ is the realisation B5.",
+     "predicate": "$Q=2/3\\Leftrightarrow r=\\sqrt2\\Leftrightarrow\\rho^2=\\tfrac12$ (the equivalence an identity); the value $\\rho^2=\\tfrac12$ is the naming B5.",
      "tag": "T",
      "source": "\\S\\ref{sec:koide}\\newline \\pywit{flavour}{p28013}{C2}, \\leanwit{FrcCore}{p28013}{C2}; rests on C1 \\lean{FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Flavour.eigen\\_sumsq}",
      "key": "p28013",
@@ -207,7 +199,7 @@
     },
     {
      "label": "C11b",
-     "predicate": "Both orderings solved: the signed $r_\\nu=\\sqrt2$ circulant solves both neutrino orderings exactly, so the boundary branch (B6) is the sole ordering assumption.",
+     "predicate": "Both orderings solved: the signed $r_\\nu=\\sqrt2$ circulant solves both neutrino orderings exactly, so the boundary branch (Y2) is the sole ordering assumption.",
      "tag": "T",
      "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28050}{C11b}, \\leanwit{FrcCore}{p28050}{C11b}; rests on B5, C11 \\lean{FRC.Interactions.koide\\_two\\_thirds, FRC.Flavour.eigen\\_sumsq}",
      "key": "p28050",
@@ -229,7 +221,7 @@
    "rows": [
     {
      "label": "X1",
-     "predicate": "\\textbf{The Koide ratio} is exactly $2/3$ given the quarter-turn realisation B5, the cube-root generation orbit bisected at the quarter-turn ($\\rho^2=2^{-1}$), an exact value rather than an unexplained empirical coincidence.",
+     "predicate": "\\textbf{The Koide ratio} is exactly $2/3$ given the quarter-turn naming B5, the cube-root generation orbit bisected at the quarter-turn ($\\rho^2=2^{-1}$), an exact value rather than an unexplained empirical coincidence.",
      "tag": "T",
      "source": "Proposition~\\ref{prop:koide}\\newline \\pywit{flavour}{p28025}{X1}, \\leanwit{FrcCore}{p28025}{X1}, \\leanwit{FrcMathlib}{p28025}{X1} \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half, Flavour.koide\\_measured}",
      "key": "p28025",
@@ -309,7 +301,7 @@
     },
     {
      "label": "X11",
-     "predicate": "\\textbf{The neutrino spectrum} (a near-massless lightest state, $\\sum m_\\nu\\simeq59\\,$meV on the normal branch) follows from colourlessness fixing $Q_\\nu=2/3$, the transpose fixed point under the alignment $M_R\\propto m_D$ (Y1) and the boundary branch that selects the ordering (B6), rather than three independent neutrino masses.",
+     "predicate": "\\textbf{The neutrino spectrum} (a near-massless lightest state, $\\sum m_\\nu\\simeq59\\,$meV on the normal branch) follows from colourlessness fixing $Q_\\nu=2/3$, the transpose fixed point under the alignment $M_R\\propto m_D$ (Y1) and the boundary branch that selects the ordering (Y2), rather than three independent neutrino masses.",
      "tag": "T",
      "source": "Proposition~\\ref{prop:transpose}, \\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28035}{X11}, \\leanwit{FrcCore}{p28035}{X11}, \\leanwit{FrcMathlib}{p28035}{X11} \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.seesaw\\_circulant, FRC.Flavour.circ\\_eigen, Flavour.neutrino\\_floor}",
      "key": "p28035",
@@ -347,9 +339,9 @@
     },
     {
      "label": "P5",
-     "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$, the two $\\Delta m^2$ and the boundary branch (B6); the signed circulant solves both orderings (C11b). Falsifier: inverted ordering.",
+     "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$, the two $\\Delta m^2$ and the boundary branch (Y2); the signed circulant solves both orderings (C11b). Falsifier: inverted ordering.",
      "tag": "T",
-     "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28039}{P5}, \\leanwit{FrcCore}{p28039}{P5}, \\leanwit{FrcMathlib}{p28039}{P5}; rests on A6, B5, C11 \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.circ\\_transpose, Flavour.neutrino\\_floor}",
+     "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28039}{P5}, \\leanwit{FrcCore}{p28039}{P5}, \\leanwit{FrcMathlib}{p28039}{P5}; rests on A6, B5, C11, Y2 \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.circ\\_transpose, Flavour.neutrino\\_floor}",
      "key": "p28039",
      "name": "normal_neutrino_ordering"
     },
@@ -357,7 +349,7 @@
      "label": "P6",
      "predicate": "Mass-sum floor $\\sum m_\\nu=58.8$ meV at NuFIT~6.0 ($m_1{=}0$, $m_2{=}8.65$, $m_3{=}50.13$ meV), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological $\\sum m_\\nu<0.058$ eV.",
      "tag": "T",
-     "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28040}{P6}, \\leanwit{FrcMathlib}{p28040}{P6}; rests on A6, B5, B6, C11, Y1 \\lean{Flavour.neutrino\\_floor}",
+     "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28040}{P6}, \\leanwit{FrcMathlib}{p28040}{P6}; rests on A6, B5, C11, Y1, Y2 \\lean{Flavour.neutrino\\_floor}",
      "key": "p28040",
      "name": "mass_sum_floor"
     },
@@ -365,7 +357,7 @@
      "label": "P7",
      "predicate": "Effective Majorana mass $m_{\\beta\\beta}{\\simeq}1.5$--$3.7$ meV (NO, at $m_1=0$, over the relative Majorana phase; $1.2$--$4.0$ meV with the fitted $m_1=0.36$ meV). Falsifier: a $0\\nu\\beta\\beta$ signal at the inverted scale $15$--$50$ meV.",
      "tag": "T",
-     "source": "C11\\newline \\pywit{flavour}{p28041}{P7}, \\leanwit{FrcMathlib}{p28041}{P7}; rests on B6, Y1 \\lean{Flavour.majorana\\_band}",
+     "source": "C11\\newline \\pywit{flavour}{p28041}{P7}, \\leanwit{FrcMathlib}{p28041}{P7}; rests on Y1, Y2 \\lean{Flavour.majorana\\_band}",
      "key": "p28041",
      "name": "effective_majorana_mass"
     },
@@ -449,6 +441,14 @@
      "tag": "O",
      "source": "Prop.~\\ref{prop:transpose}",
      "key": "p28052",
+     "name": null
+    },
+    {
+     "label": "Y2",
+     "predicate": "The drive-invariant boundary branch: the lightest colourless neutrino sits at the quarter-turn zero (as the electron), selecting the normal near-$m_1{=}0$ branch; the sole ordering assumption (C11b), a hypothesis tested by one datum. Falsifier: inverted ordering (P5).",
+     "tag": "O",
+     "source": "\\S\\ref{sec:neutrino}",
+     "key": "p28051",
      "name": null
     }
    ]

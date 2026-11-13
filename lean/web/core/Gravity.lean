@@ -6857,7 +6857,7 @@ theorem ofShell_im (a : Shell p) : (ofShell a : Ext p ν).im = 0 := rfl
 theorem conj_re (z : Ext p ν) : (conj z).re = z.re := rfl
 theorem conj_im (z : Ext p ν) : (conj z).im = -z.im := rfl
 
-/-- 8:A2, 3:B5 — `w² = ν`. -/
+/-- 8:A2, 3:B5, 3:E1 — `w² = ν`. -/
 theorem w_sq : (w : Ext p ν) * w = ofShell ν :=
   ext (by show 0 * 0 + ν * (1 * 1) = ν; rw [Shell.zero_mul, Shell.one_mul, Shell.mul_one, Shell.zero_add])
       (by show 0 * 1 + 1 * 0 = 0; rw [Shell.zero_mul, Shell.mul_zero, Shell.zero_add])
@@ -7088,12 +7088,12 @@ variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
 /-- `x` is a square: `x = y·y` for some residue `y`. -/
 def IsSquare (x : Shell p) : Prop := ∃ y : Shell p, y * y = x
 
-/-- 3:B2 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`. -/
+/-- 3:B2, 3:E1 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`. -/
 theorem no_causal_root {ν : Shell p} (h : ¬IsSquare ν) (c : Shell p) : c * c ≠ ν := fun e => h ⟨c, e⟩
 
 theorem sq_mul (a b : Shell p) : (a * b) * (a * b) = (a * a) * (b * b) := mul_mul_mul_comm a b a b
 
-/-- 3:B2 (Thm. nonexistence, the consequence) — `−c²` is a square on every shell: `−c² = (i·c)²` with `i² = −1`;
+/-- 3:B2, 3:E1 (Thm. nonexistence, the consequence) — `−c²` is a square on every shell: `−c² = (i·c)²` with `i² = −1`;
 so with `c ≠ 0` every coefficient of `−c² t² + x² + y² + z²` is a square and the form is Euclidean. -/
 theorem neg_sq_is_square (F : Frame p κ g) (c : Shell p) : IsSquare (-(c * c)) :=
   ⟨quarterTurn g κ * c, by rw [sq_mul, F.quarter_turn_sq, neg_one_mul]⟩
@@ -7204,7 +7204,7 @@ theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
     ← mul_assoc b1 b2 x, ← mul_assoc ν (b1 * b2) x,
     add_comm (ν * (b1 * γ2 * t)) (ν * (b1 * b2) * x), add_add_add_comm]
 
-/-- 7:A10, 3:C2, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
+/-- 7:A10, 3:C2, 3:E1, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
 theorem norm_one_mul {ν γ1 b1 γ2 b2 : Shell p} (h1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1)
     (h2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1) :
     (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) +
@@ -9114,6 +9114,12 @@ theorem boost_unique (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y =
     _ = Extension.Ext.ofShell (c * inv ν) * dir ν x y := by rw [h, ← Extension.Ext.mul_assoc, Extension.Ext.ofShell_mul, mul_comm (inv ν) c]
 
 end torus
+
+/-- 00:D14 — the pair class `gcd(Ω − 1, 2(p + 1)) = 4 gcd(S, 2κ + 1)` on the laboratory pairs `(13, 233)`, `(173, 30089)`,
+`(1549, 2408561)`: `4`, `4`, `20`. The host decides it: the Subject `13` has the class `28` in the Carrier `29`. -/
+theorem pair_class : (Nat.gcd 232 28 = 4 * Nat.gcd 58 7 ∧ Nat.gcd 30088 348 = 4 * Nat.gcd 7522 87 ∧
+    Nat.gcd 2408560 3100 = 4 * Nat.gcd 602140 775) ∧ (Nat.gcd 232 28 = 4 ∧ Nat.gcd 30088 348 = 4 ∧ Nat.gcd 2408560 3100 = 20) ∧
+    Nat.gcd 28 28 = 28 := by decide
 
 end FRC.Subject
 
@@ -12823,7 +12829,7 @@ theorem form_count (F : Frame p κ g) (ν a : Shell p) : formCount ν a = p * p 
     rw [nsum_congr p (fun x _ => hx t x), nsum_add, nsum_const, nsum_mul_left]
   rw [nsum_congr p ht, nsum_add, nsum_const, nsum_mul_left, Nat.mul_assoc]
 
-/-- 3:B4, 3:B7 — the null cone of `Q_ν` for a nonsquare `ν`: `p³ − p² + p` points, the elliptic count (written
+/-- 3:B4, 3:B7, 3:E1 — the null cone of `Q_ν` for a nonsquare `ν`: `p³ − p² + p` points, the elliptic count (written
 `N + p² = p³ + p`). -/
 theorem null_elliptic (F : Frame p κ g) {ν : Shell p} (hν : ¬IsSquare ν) : formCount ν 0 + p * p = p * p * p + p := by
   rw [form_count F, plane_zero_aniso F hν, Nat.mul_one, Nat.add_right_comm, ← Nat.mul_succ]
@@ -12956,7 +12962,7 @@ theorem plane_const (F : Frame p κ g) {c : Shell p} (hc : c ≠ 0) : planeCount
       _ = planeCount g (-1) := plane_swap F hg (-1)
       _ = planeCount g 1 := h1
 
-/-- 3:C2, 3:B6 — for the drive `g` the plane `x² − g t²` takes every nonzero value `p + 1` times: the norm-one cycle of
+/-- 3:C2, 3:B6, 3:E1 — for the drive `g` the plane `x² − g t²` takes every nonzero value `p + 1` times: the norm-one cycle of
 `𝔽_p(√g)` (the boosts, `γ² − g b² = 1`) has `p + 1` elements. -/
 theorem plane_nonzero (F : Frame p κ g) {c : Shell p} (hc : c ≠ 0) : planeCount g c = p + 1 := by
   rw [plane_const F hc]
@@ -12988,7 +12994,7 @@ end frame
 section frame
 variable {κ : Nat} {g : Shell p}
 
-/-- 3:B7 — the similitude `(t, x, y, z) ↦ (cz, ax − by, bx + ay, cνt)` with `a² + b² = ν` and `c² = −1` multiplies
+/-- 3:B7, 3:E1 — the similitude `(t, x, y, z) ↦ (cz, ax − by, bx + ay, cνt)` with `a² + b² = ν` and `c² = −1` multiplies
 `Q_ν = −ν t² + x² + y² + z²` by `ν`. -/
 theorem similitude (ν a b c t x y z : Shell p) (hab : a * a + b * b = ν) (hc : c * c = -1) :
     -(ν * ((c * z) * (c * z))) + (a * x + -(b * y)) * (a * x + -(b * y)) + (b * x + a * y) * (b * x + a * y)
@@ -13011,7 +13017,7 @@ theorem similitude (ν a b c t x y z : Shell p) (hab : a * a + b * b = ν) (hc :
   have h2 : a * a + b * b + -ν = 0 := by rw [hab, add_neg]
   rw [e, h1, h2, zero_mul, zero_mul, add_zero, add_zero]
 
-/-- 3:B7 — multiplication by the drive exchanges the two square classes of the nonzero residues. -/
+/-- 3:B7, 3:E1 — multiplication by the drive exchanges the two square classes of the nonzero residues. -/
 theorem class_flip (F : Frame p κ g) {s : Shell p} (hs : s ≠ 0) : IsSquare s ↔ ¬IsSquare (g * s) := by
   obtain ⟨k, _, hk⟩ := F.eq_pow_of_ne_zero hs
   have hgs : g * s = g ^ (k + 1) := by rw [← hk, Shell.pow_succ, mul_comm]
@@ -13406,6 +13412,9 @@ theorem p03015 : (∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -
 /-- p03017 — 3:D1. $\F_{13}$ and $\F_{173}$ [value]: on $\F_{13}$ the squares $\{1,3,4,9,10,12\}$ and the nonsquares $\{2,5,6,7,8,11\}$, $\g=2$, $X^{2}-2$ irreducible; $2041$ null vectors of $Q_{2}$, $2353$ for the Euclidean form, $4\,855\,201$ over $K$; $14$ boosts with $7$ velocities; on $\F_{173}$, $\g=2$, $5\,147\,961$ null vectors and $174$ boosts. -/
 theorem p03017 : FRC.Shell.Frame.nullCount (13 : Nat) (2 : Nat) = (2041 : Nat) ∧ FRC.Shell.Frame.nullCount (13 : Nat) (1 : Nat) = (2353 : Nat) ∧ FRC.Shell.Frame.normOneCount (13 : Nat) (2 : Nat) = (14 : Nat) ∧ FRC.Causal.formCount (2 : FRC.Shell (173 : Nat)) (0 : FRC.Shell (173 : Nat)) + (173 : Nat) * (173 : Nat) = (173 : Nat) * (173 : Nat) * (173 : Nat) + (173 : Nat) ∧ FRC.Causal.planeCount (2 : FRC.Shell (173 : Nat)) (1 : FRC.Shell (173 : Nat)) = (174 : Nat) :=
   And.intro @FRC.Shell.Frame.null13 (And.intro @FRC.Shell.Frame.euclid13 (And.intro @FRC.Causal.normOne13 (@FRC.Causal.shell173)))
+set_option linter.defProp false in
+/-- p03018 — 3:E1. Causality is algebraic and lives on the Subject's shell: the time axis carries the drive's nonsquare class, the null cone and the two non-null classes are its invariant separation (B7), the boosts the non-split torus (C2); the root $\eta$ lives in the pair algebra, never in a further shell; the arrow is the drift (A6). -/
+def p03018 := And.intro @FRC.Shell.Frame.neg_sq_is_square (And.intro @FRC.Shell.Frame.no_causal_root (And.intro @FRC.Causal.similitude (And.intro @FRC.Causal.class_flip (And.intro @FRC.Causal.null_elliptic (And.intro @FRC.Shell.Frame.norm_one_mul (And.intro @FRC.Causal.plane_nonzero (@FRC.Extension.Ext.w_sq)))))))
 /-- p03022 — 3:E3. The window is sharp: no integer point with coordinates bounded by $R$, where $3R^{2}<\p$ and $\g R^{2}<\p$, is a null point of the shell off the real cone; for $\p=a^{2}+b^{2}$, $0<a\le b$, the point $(0,a,b,0)$ is one, so the least such half-width $R_{\star}$ has $\p\le\max(\g,3)R_{\star}^{2}$ and $R_{\star}\le b<\sqrt{\p}$. -/
 theorem p03022 : (∀ {p ν R x y z t : Nat}, x ≤ R → y ≤ R → z ≤ R → t ≤ R → R * R + R * R + R * R < p → ν * (R * R) < p → (x * x + y * y + z * z) % p = ν * (t * t) % p → x * x + y * y + z * z = ν * (t * t)) ∧ ∀ {p ν a b : Nat}, (0 : Nat) < a → a * a + b * b = p → (a * a + b * b + (0 : Nat) * (0 : Nat)) % p = ν * ((0 : Nat) * (0 : Nat)) % p ∧ a * a + b * b + (0 : Nat) * (0 : Nat) ≠ ν * ((0 : Nat) * (0 : Nat)) ∧ b * b < p :=
   And.intro @FRC.Causal.window_exact (@FRC.Causal.window_ghost)

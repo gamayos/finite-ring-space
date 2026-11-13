@@ -4,7 +4,7 @@
 The registrations of the unitary frame (the norm-one cycle without a fixed line, the split torus with two, the centre of
 order gcd(3, p + 1)), colour's triality as the Carrier's relation Ω ≡ 5 (mod 12) (46:B5), the residue series on the instance (over F_4 by fixed vectors and
 by the singlet multiplicities), the Casimirs and the one-loop rational b₀, the drive exponent (every winding rate is one
-power of the drive), the single-plaquette coefficients c₁(β) and c₈(β) as formal power series with rational coefficients
+power of the drive), the single-plaquette coefficients c₁(ϑ) and c₈(ϑ) as formal power series with rational coefficients
 (the multiplicities of the singlet in the tensor powers of the triplet, computed as constant terms of the Weyl
 character polynomials, 27-fields Lemma charlift carrying them to the finite frame), the finite frame's own moments over
 F_4, and the exact finite instance 2T = SU(2, F_3) — the arithmetic that frc/ledgers/p46_yangmills.py decides with, every
@@ -30,11 +30,11 @@ side is lean/FrcCore/Theme/YangMills.lean.
     casimirs(N), b0(nf, N)                 C_F, C_A, T_F, C_A/C_F; b₀ = (11/3) C_A − (4/3) T_F n_f
     drive_exponent(p, g), drive_exponents_unique(p)
                                            the discrete logarithm of every nonzero residue to a generator, and its uniqueness
-    c1_series(N, n), c1_series_2T(n)       c₁(β), the fundamental plaquette coefficient, as a formal power series in β (Fractions)
+    c1_series(N, n), c1_series_2T(n)       c₁(ϑ), the fundamental plaquette coefficient, as a formal power series in the stiffness ϑ (Fractions)
                                            from the singlet multiplicities of SU(N) (N = 2, 3) and for 2T from its 24 unit quaternions
-    c_adj_series(n)                        c₈(β), the adjoint plaquette coefficient: β²/288 + β³/2592 − β⁵/186624 − …
-    adjoint_over_fundamental_squared(n)    c₈ / c₃² = (9/8)(1 − β/18 + β²/432 + β³/2592 + …): the adjoint wrap is two fundamental
-                                           wraps up to the rational factor 9/8, the ratio to order β⁴ (no logarithm)
+    c_adj_series(n)                        c₈(ϑ), the adjoint plaquette coefficient: ϑ²/8 + ϑ³/12 − ϑ⁵/24 − …
+    adjoint_over_fundamental_squared(n)    c₈ / c₃² = (9/8)(1 − ϑ/3 + ϑ²/12 + ϑ³/12 + …): the adjoint wrap is two fundamental
+                                           wraps up to the rational factor 9/8, the ratio to order ϑ⁴ (no logarithm)
     adjoint_wrap_excess(n)                 the formal series 2L(e) − L(d), L(u) = Σ (−1)^{k+1} u^k/k, whose chart reading is
                                            σ₈ − 2σ₃ + ln(9/8)
     small_frame(q), frobenius_tensor(q), row_identity(q), binomial_table(q, p), frame_counts_small_field(q, degree),
@@ -43,16 +43,16 @@ side is lean/FrcCore/Theme/YangMills.lean.
                                            the Frobenius tensor v_q at (4q − 4, 1), the row-operation identity and the binomial table
                                            behind its invariance, the finite counts M(a, b) at q = 2, 3 (numpy, exact), and the
                                            bounds 2p ≤ d_* ≤ 4p − 3 with the series' orders 2p − 2, 2p − 3
-    conductor(q), subject_phase_table(), nonsplit_amplitude_exponents(q), semisimple_part(F, U, p), eigenvalues_in_f_q2(F, S),
+    subject_phase_table(), nonsplit_amplitude_exponents(q), semisimple_part(F, U, p), eigenvalues_in_f_q2(F, S),
     spectral_amplitude_instance(), transfer_tally_instance(), z3_mul, z3_conj, z3_pow
-                                           the spectral amplitude of a plaquette (46:B4, C16, C17, C18): the conductor M = lcm(q² − 1,
-                                           q² − q + 1) and the phase table of the Subjects, the Jordan parts by powers, the amplitude
+                                           the spectral amplitude of a plaquette (46:B4, C16, C17, C18): the plane's cycle and the
+                                           phase table of the Subjects, the Jordan parts by powers, the amplitude
                                            w(U) = Σ ι(λ_j(U_s)) in Z[ζ₃] on the 216 elements with its distribution and moments, and the
                                            transfer tally K, the step of one plaquette with the frame's mean, with its exact spectrum 2/3, 1/6, 0, −1/3
     su3_order(q), amplitude_coefficients(q), amplitude_coefficients_direct(q), transfer_spectrum_subject(q)
                                            the transfer tally on the Subjects (46:C19): the amplitude's character expansion
                                            w = χ₁ + χ₂ − χ₃ from the generic character table of SU(3, q) by exact character sums over
-                                           the class types (and from the explicit class list, traced down from Z[ζ_N]), the eigenvalues
+                                           the class types (and from the explicit class list, traced down from its exponent tables), the eigenvalues
                                            1/(q²−q+1), 1/(q³+1), −1/((q+1)²(q−1)) of the mean with multiplicities the squared degrees
 """
 from fractions import Fraction as Q
@@ -377,9 +377,10 @@ def drive_exponents_unique(p, g=None):
 
 # ---- the single-plaquette coefficient as an exact series ------------------------------------------------------------------
 def _series_from_moments(mX, mchiX, d, n):
-    """c₁ = (1/d) Σ_k E[χ X^k] (β/d)^k/k! / Σ_k E[X^k] (β/d)^k/k!, X = Re χ, to order n (coefficient lists in β)."""
-    num = [Q(mchiX[k], d) / Q(d) ** k / _fact(k) for k in range(n)]
-    den = [Q(mX[k]) / Q(d) ** k / _fact(k) for k in range(n)]
+    """c₁ = (1/d) Σ_k E[χ X^k] (2ϑ)^k/k! / Σ_k E[X^k] (2ϑ)^k/k!, X = Re χ, to order n: coefficient lists in the stiffness ϑ of
+    the connection (46:A16). Wilson's coupling of SU(d) is 2dϑ, so its plaquette term is 2ϑX."""
+    num = [Q(mchiX[k], d) * 2 ** k / _fact(k) for k in range(n)]
+    den = [Q(mX[k]) * 2 ** k / _fact(k) for k in range(n)]
     return I.ps_div(num, den, n)
 
 
@@ -397,10 +398,10 @@ def _su2_moment(k):
 
 
 def c1_series(N, n=7):
-    """The fundamental plaquette coefficient with the real Wilson action (Re χ_f), N = 2 or 3, as a polynomial in β to order n
-    (the series modulo β^{n+1}), every coefficient a rational built from the singlet multiplicities E[χ^a χ̄^b] of the tensor powers of the
+    """The fundamental plaquette coefficient with the plaquette term 2ϑ Re χ_f, N = 2 or 3, as a polynomial in the stiffness ϑ to order n
+    (the series modulo ϑ^{n+1}), every coefficient a rational built from the singlet multiplicities E[χ^a χ̄^b] of the tensor powers of the
     fundamental (interactions.su3_moment, the constant terms of the Weyl character polynomials; the Catalan numbers for SU(2)).
-    SU(2): β/4 − β³/96 + β⁵/1536 − …(the chart reads the series as I₂(β)/I₁(β)); SU(3): β/18 + β²/216 − 5β⁴/93312 − …"""
+    SU(2): ϑ − 2ϑ³/3 + 2ϑ⁵/3 − … (the chart reads the series as I₂/I₁ at Wilson's coupling 4ϑ); SU(3): ϑ/3 + ϑ²/6 − 5ϑ⁴/72 − …"""
     if N == 2:
         mX = [_su2_moment(k) for k in range(n + 1)]
         return _series_from_moments(mX, mX[1:] + [_su2_moment(n + 1)], 2, n)
@@ -413,9 +414,9 @@ def c1_series(N, n=7):
 
 
 def c_adj_series(n=8):
-    """The adjoint plaquette coefficient with the real Wilson action, χ₈ = χχ̄ − 1, to order n in β with rational coefficients
-    from the singlet multiplicities: β²/288 + β³/2592 + 0·β⁴ − β⁵/186624 − …. The β¹ coefficient vanishes (no singlet
-    in 8 ⊗ 3 or 8 ⊗ 3̄) and the β² coefficient is E[(χχ̄ − 1)(Re χ)²]/18 with E[(χχ̄ − 1)(Re χ)²] = 1/2: the adjoint wrap needs two
+    """The adjoint plaquette coefficient with the plaquette term 2ϑ Re χ, χ₈ = χχ̄ − 1, to order n in ϑ with rational coefficients
+    from the singlet multiplicities: ϑ²/8 + ϑ³/12 + 0·ϑ⁴ − ϑ⁵/24 − …. The ϑ¹ coefficient vanishes (no singlet
+    in 8 ⊗ 3 or 8 ⊗ 3̄) and the ϑ² coefficient is E[(χχ̄ − 1)(Re χ)²]/4 with E[(χχ̄ − 1)(Re χ)²] = 1/2: the adjoint wrap needs two
     fundamental plaquette layers (46:C9). The enumerable instance's own moments (frame_moments_f4) give the same two numbers over F_4."""
     E = I.su3_moment
     mX = [sum(comb(k, j) * E(j, k - j) for j in range(k + 1)) / Q(2 ** k) for k in range(n + 1)]
@@ -438,11 +439,11 @@ def _c8_from(E, n):
 
 
 def series_window(n=8):
-    """46:C14 — the series' window, the corollary of A9 (the push on T06, 9 November 2026). The β^k coefficient of c₃ is built from
+    """46:C14 — the series' window, the corollary of A9 (the push on T06, 9 November 2026). The ϑ^k coefficient of c₃ is built from
     the invariant counts E(a, b) of degree a + b ≤ k + 1 (the numerator's E[χ X^k] has degree k + 1, the denominator's E[X^k] degree k)
     and that of c₈ from degree ≤ k + 2, so where the frame's counts equal the compact ones through degree p − 2 (A9) the frame's
-    series equal the compact ones through β^{p−3} and β^{p−4}. Witnessed by perturbation: raising every count of degree d by one
-    leaves c₃'s coefficients below β^{d−1} and c₈'s below β^{d−2} unchanged and moves the next; the windows of the Subjects."""
+    series equal the compact ones through ϑ^{p−3} and ϑ^{p−4}. Witnessed by perturbation: raising every count of degree d by one
+    leaves c₃'s coefficients below ϑ^{d−1} and c₈'s below ϑ^{d−2} unchanged and moves the next; the windows of the Subjects."""
     E = I.su3_moment
     base3, base8 = _c3_from(E, n), _c8_from(E, n)
     first = {}
@@ -459,8 +460,8 @@ def series_window(n=8):
 def instance_series_departure(F=None, G=None):
     """46:C14 — the instance's departure: on SU(3, F_2), where A9 is silent (p − 2 = 0), the frame's invariant counts agree with the
     compact ones through degree 4 (frame_moments_f4) and depart at degree 5, M(4, 1) = M(1, 4) = 4 against 3 (the other degree-5
-    pairs vanish on both sides, the centre Z_3 acting by a nontrivial scalar); the instance's own series therefore depart at β⁴ (c₃)
-    and β³ (c₈): c₃'s β⁴ coefficient is 0 against −5/93312 and c₈'s β³ is 1/1728 against 1/2592."""
+    pairs vanish on both sides, the centre Z_3 acting by a nontrivial scalar); the instance's own series therefore depart at ϑ⁴ (c₃)
+    and ϑ³ (c₈): c₃'s ϑ⁴ coefficient is 0 against −5/72 and c₈'s ϑ³ is 1/8 against 1/12."""
     F, G = (F, G) if F else H.colour_group()
     gens = generators(F, G)
     m41, m14 = frame_moment_f4(F, G, 4, 1, gens), frame_moment_f4(F, G, 1, 4, gens)
@@ -762,8 +763,75 @@ def first_departure_bounds(p):
 
 def frame_window_orders(p):
     """The orders through which the frame's series equal the compact ones by 46:C15: the counts through degree 2p − 1, c₃ through
-    β^{2p−2}, c₈ through β^{2p−3} — (25, 24, 23) on the Subject 13."""
+    ϑ^{2p−2}, c₈ through ϑ^{2p−3} — (25, 24, 23) on the Subject 13."""
     return (2 * p - 1, 2 * p - 2, 2 * p - 3)
+
+
+def series_residues(E, R, n, p):
+    """The coefficients of ϑ^0, …, ϑ^{n−1} of c_R modulo p, n ≤ p, by the recursion of the quotient on residues. E(a, b) is the
+    count of the pair (a, b) and enters as its residue; R is 3 for c₃ and 8 for c₈ (χ₈ = χχ̄ − 1). The numerator's coefficient
+    of ϑ^k is Σ_j C(k, j) E(·) / (R · k!) and the denominator's is Σ_j C(k, j) E(j, k − j) / k!, with the constant
+    term 1. The binomial weights are built by Pascal's rule modulo p, the factors R and 1, …, n − 1 are inverted modulo p,
+    and every product and every sum is reduced at once."""
+    assert n <= p
+    inv = lambda x: pow(x, p - 2, p)
+    e = lambda a, b: E(a, b) % p
+    f, row, num, den, out = 1, [1], [], [], []
+    for k in range(n):
+        if k:
+            f = f * k % p
+            row = [1] + [(row[j - 1] + row[j]) % p for j in range(1, k)] + [1]
+        s = inv(f)
+        mX = mR = 0
+        for j in range(k + 1):
+            mX = (mX + row[j] * e(j, k - j)) % p
+            mR = (mR + row[j] * (e(j + 1, k - j) if R == 3 else (e(j + 1, k - j + 1) - e(j, k - j)) % p)) % p
+        num.append(mR * inv(R) % p * s % p); den.append(mX * s % p)
+    for k in range(n):
+        c = num[k]
+        for i in range(1, k + 1): c = (c - den[i] * out[k - i]) % p
+        out.append(c)
+    return out
+
+
+def window_readings(p):
+    """46:C24: what a reading modulo p keeps of the window of 46:C15 on the Subject p = 13. The counts C(a, b) of the pairs of
+    degree a + b ≤ 2p − 1 are integers, equal to the frame's; `zero` lists the pairs whose nonzero count is a multiple of p, by
+    degree. Below ϑ^p the coefficients of c₃ and c₈ are computed in the arithmetic of the shell: `residues` holds the p
+    coefficients of each series from series_residues. `agree` says that they are the residues of the rational coefficients,
+    `bound` that the denominators of these divide 3 · k! and 8 · k!, and `shift` that the residues of the rational
+    coefficients are the same when every count moves by a multiple of p. From ϑ^p on a coefficient contains counts divided by
+    k!, which reads 0, and the function returns no reading of it. The rational coefficients are formed below ϑ^p only; on 13
+    every numeral formed stays below 10^30. On 13: 351 pairs, 117 nonzero, 52 of them multiples of 13, the first (1, 13) with
+    2574 = 13 · 198."""
+    C = {(a, b): I.su3_moment(a, b) for a in range(2 * p) for b in range(2 * p - a)}
+    nonzero = [k for k in C if C[k]]
+    zero = sorted((k for k in nonzero if C[k] % p == 0), key=lambda k: (sum(k), k))
+    E = lambda a, b: C[(a, b)]
+    def res(c):
+        assert all(x.denominator % p for x in c)
+        return [x.numerator % p * pow(x.denominator, p - 2, p) % p for x in c]
+    c3, c8 = _c3_from(E, p), _c8_from(E, p)
+    residues = (series_residues(E, 3, p, p), series_residues(E, 8, p, p))
+    moved = lambda a, b: C[(a, b)] + p * (1 + a + 2 * b)
+    return {"pairs": len(C), "nonzero": len(nonzero), "zero": zero, "count": {k: C[k] for k in zero[:2]}, "residues": residues,
+            "agree": (res(c3), res(c8)) == residues,
+            "bound": all((d * _fact(k)) % x.denominator == 0 for d, c in ((3, c3), (8, c8)) for k, x in enumerate(c)),
+            "shift": (res(_c3_from(moved, p)), res(_c8_from(moved, p))) == residues}
+
+
+def shell_series(p, K):
+    """46:C26: 3c₃ = Σ h_k ϑ^k/k! on the shell p, for k < K. The counts d_k = E[(χ + χ̄)^k] and n_k = E[χ (χ + χ̄)^k] as residues, the integers
+    h_k by h_k = n_k − Σ_j C(k, j) d_j h_{k−j} (no division), and the p-th power of the series under the binomial convolution."""
+    E = I.su3_moment
+    d = [sum(comb(k, j) * E(j, k - j) for j in range(k + 1)) % p for k in range(K)]
+    n = [sum(comb(k, j) * E(j + 1, k - j) for j in range(k + 1)) % p for k in range(K)]
+    mul = lambda f, g: [sum(comb(k, j) * f[j] * g[k - j] for j in range(k + 1)) % p for k in range(K)]
+    h = []
+    for k in range(K): h.append((n[k] - sum(comb(k, j) * d[j] * h[k - j] for j in range(1, k + 1))) % p)
+    q = h
+    for _ in range(p - 1): q = mul(q, h)
+    return {"d": d, "n": n, "h": h, "power": q, "product": mul(h, d) == n}
 
 
 def _ps_log1p(u, n):
@@ -776,7 +844,7 @@ def _ps_log1p(u, n):
 
 
 def adjoint_over_fundamental_squared(n=6):
-    """The ratio c₈ / c₃² to order n in β: 9/8 − β/16 + β²/384 + β³/2304 + … = (9/8)(1 − β/18 + β²/432 + β³/2592 + 7β⁴/933120
+    """The ratio c₈ / c₃² to order n in ϑ: 9/8 − 3ϑ/8 + 3ϑ²/32 + 3ϑ³/32 + … = (9/8)(1 − ϑ/3 + ϑ²/12 + ϑ³/12 + 7ϑ⁴/720
     − …). The adjoint wrap is two fundamental wraps at leading order, up to the rational factor 9/8 — the log-free form of 46:C9.
     Returns the coefficient list of the ratio."""
     c3 = c1_series(3, n + 3); c8 = c_adj_series(n + 3)
@@ -784,19 +852,19 @@ def adjoint_over_fundamental_squared(n=6):
 
 
 def adjoint_wrap_excess(n=5):
-    """The series s(β) = 2 L(e) − L(d) to order n, L(u) = Σ_{k≥1} (−1)^{k+1} u^k/k, with c₃ = (β/18)(1 + e(β)) and c₈ = (β²/288)(1 + d(β)):
-    s = β/18 − β²/1296 − β³/2187 − 521β⁴/16796160 − …, exact rationals. Its chart reading (chart_yangmills.adjoint_ratio) is
+    """The series s(ϑ) = 2 L(e) − L(d) to order n, L(u) = Σ_{k≥1} (−1)^{k+1} u^k/k, with c₃ = (ϑ/3)(1 + e(ϑ)) and c₈ = (ϑ²/8)(1 + d(ϑ)):
+    s = ϑ/3 − ϑ²/36 − 8ϑ³/81 − 521ϑ⁴/12960 − …, exact rationals. Its chart reading (chart_yangmills.adjoint_ratio) is
     σ₈ − 2σ₃ + ln(9/8) for the tensions σ_R = −ln c_R; the exact tier states the ratio adjoint_over_fundamental_squared instead."""
     c3 = c1_series(3, n + 3); c8 = c_adj_series(n + 3)
-    e = ([Q(0)] + [18 * c for c in c3[2:]])[:n + 1]
-    d = ([Q(0)] + [288 * c for c in c8[3:]])[:n + 1]
+    e = ([Q(0)] + [3 * c for c in c3[2:]])[:n + 1]
+    d = ([Q(0)] + [8 * c for c in c8[3:]])[:n + 1]
     L3 = _ps_log1p(e, n + 1); L8 = _ps_log1p(d, n + 1)
     return [2 * L3[i] - L8[i] for i in range(n + 1)]
 
 
 def c1_series_2T(n=7):
-    """c₁(β) for the binary tetrahedral group 2T = SU(2, F_3) from the traces of its 24 unit quaternions (interactions.
-    binary_tetrahedral): the multiset {2: 1, −2: 1, 0: 6, 1: 8, −1: 8}; β/4 − β³/96 + β⁵/1280 + …"""
+    """c₁(ϑ) for the binary tetrahedral group 2T = SU(2, F_3) from the traces of its 24 unit quaternions (interactions.
+    binary_tetrahedral): the multiset {2: 1, −2: 1, 0: 6, 1: 8, −1: 8}; ϑ − 2ϑ³/3 + 4ϑ⁵/5 + …"""
     tr = {}
     for q in I.binary_tetrahedral():
         t = int(2 * q[0]); tr[t] = tr.get(t, 0) + 1
@@ -806,7 +874,7 @@ def c1_series_2T(n=7):
 
 
 # ---- the spectral amplitude of a plaquette and the transfer tally on the instance (46:B4, C16, C17, C18; 9 November 2026) ----
-# The tally ring Z[ζ_3] (the ring of the instance q = 2, where M = lcm(3, 3) = 3) as integer pairs (a, b) = a + b z with
+# The tally ring Z[ζ_3] (the ring of the instance q = 2, where both cycles have 3 elements) as integer pairs (a, b) = a + b z with
 # z² = −1 − z; the inverse-phase conjugation sends z to z². Every function below is integer or finite-field arithmetic.
 
 def z3_mul(x, y):
@@ -827,32 +895,25 @@ def z3_pow(x, k):
     return r
 
 
-def conductor(q):
-    """M = lcm(q² − 1, q² − q + 1): every eigenvalue of an element of SU(3, F_q) has order dividing M (Prop. prop:amplitude(i))."""
-    a, b = q * q - 1, q * q - q + 1
-    return a * b // gcd(a, b)
-
-
 def subject_phase_table(pairs=None):
-    """For the laboratory pairs (p, Ω): the conductor M(p), gcd(M, Ω − 1), whether 3 | p + 1 (a central element of order 3, Prop.
-    prop:amplitude(iv)) and the order q² − q + 1 of the non-split torus against the Carrier's cycle Ω − 1 (gcd)."""
+    """For the laboratory pairs (p, Ω): the plane's cycle p² − 1, gcd(p² − 1, Ω − 1), whether 3 | p + 1 (a central element of order 3, Prop.
+    prop:amplitude(iv)) and the order q² − q + 1 of the second cycle against the Carrier's cycle Ω − 1 (gcd)."""
     pairs = pairs or LAB_PAIRS
     out = []
     for p, Om in pairs:
-        M = conductor(p); ns = p * p - p + 1
-        out.append({"p": p, "Omega": Om, "M": M, "gcd_M_cycle": gcd(M, Om - 1), "centre3": (p + 1) % 3 == 0,
+        n2 = p * p - 1; ns = p * p - p + 1
+        out.append({"p": p, "Omega": Om, "plane": n2, "gcd_plane_cycle": gcd(n2, Om - 1), "centre3": (p + 1) % 3 == 0,
                     "nonsplit": ns, "gcd_nonsplit_cycle": gcd(ns, Om - 1)})
     return out
 
 
 def nonsplit_amplitude_exponents(q):
-    """A generator of the non-split torus of SU(3, F_q) has the eigenvalues λ, λ^{q²}, λ^{q⁴} with λ of order n = q² − q + 1 in
-    F_{q⁶} (the F_{q²}-conjugates; λ^{−q} = λ^{q⁴} since −q ≡ q⁴ (mod n)); its amplitude is ζ + ζ^{q²} + ζ^{q⁴} for ζ = ι(λ) of order n.
+    """A generator C of the second cycle of SU(3, F_q), of order n = q² − q + 1, has the three phases ζ, ζ^{−q}, ζ^{q²}, ζ a formal
+    root of unity of order n (Definition def:amplitude); its amplitude is their sum, written here with the exponents 1, q², −q mod n.
     Returns (n, the three exponents mod n, the exponent multiset of the paired weight w·w̄): on the Subject 13, n = 157,
     (1, 12, 144) and {0: 3, 11, 14, 25, 132, 143, 146: 1 each} — six distinct nontrivial phases, so the paired weight is not rational."""
     n = q * q - q + 1
-    E = [1 % n, (q * q) % n, (q ** 4) % n]
-    assert (-q) % n == E[2], "λ^{−q} is the third conjugate"
+    E = [1 % n, (q * q) % n, (-q) % n]
     pw = {}
     for a in E:
         for b in E:
@@ -1076,7 +1137,7 @@ def transfer_annihilator_mean():
 #        χ₃ ((q+1)²(q−1)): 1: (q+1)²(q−1) ζ_d^l   2: −(q+1) ζ_d^l   3: −ζ_d^{l1}   8: −(ζ_m^x + ζ_m^{−qx} + ζ_m^{q²x})
 #      |G| a_χ = Σ_C |C| w(C) conj(χ(C)) is a rational integer (Green's theorem, 46:A14); each product is a sum of terms c ζ_n^{L(l)}
 #      with L linear in the parameters, and Σ_{l ∈ Z/n} ζ_n^{cl} = n [n | c], the non-regular parameters removed by inclusion–exclusion
-#      (amplitude_coefficients). The same five sums from the explicit class list, as exponent tables in Z[ζ_N], N = lcm(q²−1, m),
+#      (amplitude_coefficients). The same five sums from the explicit class list, as exponent tables modulo N = lcm(q²−1, m),
 #      traced to Z through the Ramanujan sums c_N(e) = Σ_{t | gcd(e,N)} t μ(N/t), Tr(S) = φ(N) S for rational S
 #      (amplitude_coefficients_direct, the cross-check for enumerable class lists).
 
@@ -1164,11 +1225,11 @@ def _divisors(f):
     return out
 
 
-def amplitude_coefficients_direct(q):
-    """The same five sums from the explicit class list (every class with its size and its values as exponent tables over ζ_N,
-    N = lcm(q² − 1, q² − q + 1)), each weighted sum S collected as an exponent table in Z[ζ_N] and traced to Z: Tr(ζ_N^e) = c_N(e) =
-    Σ_{t | gcd(e, N)} t μ(N/t), S = Tr(S)/φ(N) for rational S (the division asserted exact). For enumerable class lists (q ≤ 13)."""
-    assert 3 <= q <= 16
+def su3_class_list(q):
+    """The explicit class list of SU(3, F_q), q ≥ 3, from the generic table (46:A15): (classes, N), every class as (size, w, χ₁, χ₂,
+    χ₃) with each value a list of (coefficient, exponent); one exponent modulo N = lcm(q² − 1, q² − q + 1) encodes the exponents of the two cycles. The sizes sum to the order of the
+    frame."""
+    assert q >= 3
     d = gcd(q + 1, 3); m = q * q - q + 1; n1 = q + 1; n2 = q * q - 1; N = n2 * m // gcd(n2, m); G = su3_order(q)
     u1, u2, u3, u4 = N // d, N // n1, N // n2, N // m
     classes = []       # (size, w, chi1, chi2, chi3) with each value a list of (coefficient, exponent mod N)
@@ -1195,6 +1256,28 @@ def amplitude_coefficients_direct(q):
             w = [(1, u4 * x), (1, u4 * ((-q * x) % m)), (1, u4 * ((q * q * x) % m))]
             classes.append((G // m, w, [], [], [(-c, e) for c, e in w]))
     assert sum(c[0] for c in classes) == G
+    return classes, N
+
+
+def amplitude_identity_classwise(q):
+    """The identity w = χ₁ + χ₂ − χ₃ class by class (46:C19, the proof of Theorem thm:subjects): on every class of su3_class_list
+    the exponent table of w equals that of χ₁ + χ₂ − χ₃. Returns the number of classes and of failures."""
+    classes, N = su3_class_list(q)
+
+    def table(terms):
+        t = {}
+        for c, e in terms: t[e % N] = t.get(e % N, 0) + c
+        return {e: c for e, c in t.items() if c}
+    bad = sum(1 for size, w, c1, c2, c3 in classes if table(w) != table(c1 + c2 + [(-c, e) for c, e in c3]))
+    return {"q": q, "classes": len(classes), "failures": bad, "ok": bad == 0}
+
+
+def amplitude_coefficients_direct(q):
+    """The same five sums from the explicit class list (su3_class_list), each weighted sum S collected as an exponent table modulo
+    N and traced to Z by c_N(e) = Σ_{t | gcd(e, N)} t μ(N/t), S = (traced sum)/φ(N) for rational S (the division asserted
+    exact). For enumerable class lists (q ≤ 16)."""
+    assert 3 <= q <= 16
+    classes, N = su3_class_list(q); G = su3_order(q)
     fN = _factor(N); phiN = 1
     for p, e in fN.items(): phiN *= (p - 1) * p ** (e - 1)
     divs = _divisors(fN)
@@ -1292,6 +1375,8 @@ def spectrum_in_pi(p):
     """The spectrum of the transfer tally in 2π = p − 1, the phase cycle of the Subject's shell (46:C21), p = 4κ + 1: with π = 2κ,
     d₁ = 4π² + 2π + 1, d₂ = (2π + 2) d₁, d₃ = 8π(π + 1)², the gap 1/(2π + 2) and the third ratio (4π² + 2π + 1)/(8π(π + 1)²), pure
     numbers of the Subject and one expression on every Subject; 2π ≡ −1 and 2π + 2 ≡ 1 modulo p, the residue 1 of 46:C20.
+    The two cycles of Definition def:amplitude have the orders p² − 1 = 2π(2π + 2) and p² − p + 1 = 4π² + 2π + 1, the numeral
+    of d₁; the order of a cycle is the modulus of its exponents and is not reduced on the shell.
     [chart] With the classical π enclosed in (3.1415926, 3.1415927) the gap lies in (0.12072, 0.12073) and reads 0.1207; the
     enclosure is rational, and no float decides anything."""
     assert p % 4 == 1 and p >= 13
@@ -1303,9 +1388,10 @@ def spectrum_in_pi(p):
               "third_degree": d3 == 8 * pi * (pi + 1) ** 2,
               "gap": g["gap"] == Q(1, 2 * pi + 2), "third_ratio": g["third"] == Q(4 * pi * pi + 2 * pi + 1, 8 * pi * (pi + 1) ** 2),
               "two_pi_is_minus_one": (2 * pi + 1) % p == 0, "two_pi_plus_two_is_one": (2 * pi + 2) % p == 1,
+              "first_cycle": p * p - 1 == 2 * pi * (2 * pi + 2), "second_cycle": p * p - p + 1 == 4 * pi * pi + 2 * pi + 1 == d1,
               "chart_numeral": Q(12072, 10 ** 5) < chart[0] < chart[1] < Q(12073, 10 ** 5)}
-    return {"p": p, "pi": pi, "degrees": (d1, d2, d3), "gap": g["gap"], "third": g["third"], "chart": chart, "checks": checks,
-            "ok": g["ok"] and all(checks.values())}
+    return {"p": p, "pi": pi, "degrees": (d1, d2, d3), "cycles": (p * p - 1, p * p - p + 1), "gap": g["gap"], "third": g["third"],
+            "chart": chart, "checks": checks, "ok": g["ok"] and all(checks.values())}
 
 
 def instance_adjoint_fixed(nmax=4):
@@ -1516,7 +1602,10 @@ def uniform_boundary_tally(p, j, k, g=2):
     the tally's residue is W(n) = Σ_i χ̄_i(t^n) χ̄_i(b^{−n}). Returns W(1), …, W(p−1), the lengths that are not regular and the
     checks: at every regular length W(n) = 1 + g^{(j+k)n} + g^{−(j+k)n} + g^{(j−k)n} + g^{−(j−k)n}; the other lengths are those
     with 2jn ≡ 0 or 2kn ≡ 0 (mod p−1), gcd(2j, p−1) + gcd(2k, p−1) − gcd(2j, 2k, p−1) of them, with the values 1 + c(y), −c(y),
-    3, 1, −1 of the proposition, c(m) = m + m^{−1}; W(p−1) = 3; W(1) is the tally of ring_residue. Every power is taken modulo p."""
+    3, 1, −1 of the proposition, c(m) = m + m^{−1}; W(p−1) = 3; W(1) is the tally of ring_residue. Every power is taken modulo p.
+    The whole period (items iv and v): the least period of W is P = (p−1)/gcd(j, k, p−1), W = 3 at the multiples of P, and P is a
+    period of the paired weight; for p − 1 ≤ 200 the coefficients F_r of W(n) = Σ_r F_r g^{rn} are returned, and F_r = 0 unless
+    gcd(j, k, p−1) divides r. "five" is the five-term expression at every length, regular or not."""
     q = p; N = p - 1; h = (q + 1) // 2
     assert (2 * j) % N and (2 * k) % N, "the links lie in classes s_j, s_k"
     rr = ring_residue(p, j, k, g); assert rr["ok"]                      # g generates the units; the multipliers have the residue 1
@@ -1556,8 +1645,19 @@ def uniform_boundary_tally(p, j, k, g=2):
               "other_values": all(W[n - 1] == listed(xs[n - 1], ys[n - 1]) for n in others),
               "cycle_is_three": W[N - 1] == 3,
               "first_length_is_the_ring_residue": W[0] == rr["tally"]}
-    return {"p": p, "g": g, "j": j, "k": k, "values": tuple(W), "paired": tuple(w * w % p for w in W), "others": others,
-            "checks": checks, "ok": all(checks.values())}
+    step = gcd(gcd(j, k), N); P = N // step; paired = tuple(w * w % p for w in W)
+    least = lambda v: next(d for d in range(1, N + 1) if N % d == 0 and all(v[i] == v[(i + d) % N] for i in range(N)))
+    coefficients = None
+    if N <= 200:                                                         # W(n) = Σ_r F_r g^{rn}, F_r = (p−1)^{−1} Σ_n W(n) g^{−rn}
+        gi, inv = pow(g, -1, p), pow(N, -1, p)
+        coefficients = tuple(inv * sum(W[n - 1] * pow(gi, (r * n) % N, p) for n in range(1, N + 1)) % p for r in range(N))
+    checks["least_period"] = least(W) == P and all(W[n - 1] == 3 for n in range(P, N + 1, P))
+    checks["period_of_the_paired_weight"] = all(paired[i] == paired[(i + P) % N] for i in range(N))
+    checks["coefficients"] = coefficients is None or (
+        all(F == 0 for r, F in enumerate(coefficients) if r % step)
+        and all(sum(F * pow(g, (r * n) % N, p) for r, F in enumerate(coefficients)) % p == W[n - 1] for n in range(1, N + 1)))
+    return {"p": p, "g": g, "j": j, "k": k, "values": tuple(W), "paired": paired, "others": others, "period": P,
+            "five": tuple(five(n) for n in range(1, N + 1)), "coefficients": coefficients, "checks": checks, "ok": all(checks.values())}
 
 
 def ring_gluing_instance(amp=None, words=None):
@@ -1604,3 +1704,93 @@ def ring_gluing_instance(amp=None, words=None):
     ok &= values[1]["brute"] == values[2]["brute"] and values[1]["h1"] == values[2]["h1"] == z     # two words with the boundary products (z, 1)
     ok &= sum(1 for v in values if v["brute"] != (0, 0)) >= 5
     return {"values": values, "ok": ok}
+
+
+# ---- three rings on common links (46:C25) ------------------------------------------------------------------------------------
+
+def triple_multiplicities(q):
+    """46:C25: the numbers N(i, j, k), i ≤ j ≤ k, of invariants of SU(3, F_q) in the product of three of the characters χ₁, χ₂, χ₃ of
+    46:C19: the frame's mean of χ_i χ_j χ_k, from the class list (su3_class_list). Each weighted sum is collected as an exponent
+    table modulo N and traced to Z, as in amplitude_coefficients_direct; the two divisions are asserted exact."""
+    classes, N = su3_class_list(q); G = su3_order(q)
+    fN = _factor(N); phiN = 1
+    for pp, e in fN.items(): phiN *= (pp - 1) * pp ** (e - 1)
+    divs = _divisors(fN)
+
+    def mu(n):
+        f = _factor(n)
+        return 0 if any(e > 1 for e in f.values()) else (-1) ** len(f)
+    mus = {t: mu(N // t) for t in divs}; ram = {}
+
+    def c_N(e):
+        g = gcd(e, N)
+        if g not in ram: ram[g] = sum(t * mus[t] for t in divs if g % t == 0)
+        return ram[g]
+
+    def mult(a, b):
+        t = {}
+        for ca, ea in a:
+            for cb, eb in b: t[(ea + eb) % N] = t.get((ea + eb) % N, 0) + ca * cb
+        return [(c, e) for e, c in t.items() if c]
+    out = {}
+    for i in (1, 2, 3):
+        for j in range(i, 4):
+            pair = [mult(cl[1 + i], cl[1 + j]) for cl in classes]
+            for k in range(j, 4):
+                tr = sum(cl[0] * sum(c * c_N(e) for c, e in mult(pr, cl[1 + k])) for cl, pr in zip(classes, pair))
+                assert tr % phiN == 0 and (tr // phiN) % G == 0, (q, i, j, k)
+                out[(i, j, k)] = tr // phiN // G
+    return out
+
+
+def triple_multiplicity_forms(q):
+    """46:C25: the forms of N(i, j, k) in q, for gcd(3, q + 1) = 1 and for gcd(3, q + 1) = 3."""
+    if gcd(3, q + 1) == 1:
+        return {(1, 1, 1): 1, (1, 1, 2): 0, (1, 1, 3): 0, (1, 2, 2): 2, (1, 2, 3): 1, (1, 3, 3): 1,
+                (2, 2, 2): q, (2, 2, 3): q + 1, (2, 3, 3): q + 2, (3, 3, 3): q + 1}
+    return {(1, 1, 1): 1, (1, 1, 2): 0, (1, 1, 3): 0, (1, 2, 2): 4, (1, 2, 3): 3, (1, 3, 3): 3,
+            (2, 2, 2): 3 * q, (2, 2, 3): 3 * q + 3, (2, 3, 3): 3 * q + 6, (3, 3, 3): 3 * q + 7}
+
+
+def three_rings_tally(p, j, k, l, g=2):
+    """46:C25 on a Subject p: three rings of n plaquettes on n common links, each with the same boundary link at every step, in
+    the classes s_j, s_k, s_l of split_torus_characters. After n steps the boundary classes are those of the eigenvalues x, 1, x^{−1}
+    with x = g^{jn}, g^{kn}, g^{ln}. The coefficients have the residue 1 at every length (ring_residue), so the tally's residue is
+    W(n) = Σ N(a, b, c) χ̄_a χ̄_b χ̄_c over the ordered triples, with the residues of the multiplicities
+    (triple_multiplicity_forms) and of the characters, read from the table as in uniform_boundary_tally. Returns W(1), …, W(p−1),
+    the lengths whose three classes are regular and the checks: at every such length
+    W(n) = 1 + N(1,2,2) (c_x c_y + c_x c_z + c_y c_z), c_m = m + m^{−1}; N(2,2,2) has the residue 0; with unit links, at the
+    length p − 1, W = 6. Every power is taken modulo p."""
+    q = p; N = p - 1; h = (q + 1) // 2
+    assert all((2 * e) % N for e in (j, k, l)), "the links lie in classes s_j, s_k, s_l"
+    rr = ring_residue(p, j, k, g); assert rr["ok"]                      # g generates the units; the multipliers have the residue 1
+    deg = tuple(d % p for d in ring_step(q)["degrees"])
+    t4 = table_type4(q, h)
+    assert sorted(t4["eigenvalues"]) == [0, h, h], "the eigenvalues −1, −1, 1"
+    minus = tuple(sum(-c if e else c for c, e in t4[name]) % p for name in ("chi1", "chi2", "chi3"))
+
+    def chars(e):                                                        # the class of the eigenvalues g^e, 1, g^{−e}
+        x = pow(g, e % N, p)
+        if x == 1: return deg
+        if x == p - 1: return minus
+        st = split_torus_characters(q, e % N)
+        return tuple(sum(pow(g, m, p) for m in st[name]) % p for name in ("chi1", "chi2", "chi3"))
+    forms = triple_multiplicity_forms(q); nbar = {key: v % p for key, v in forms.items()}
+    c = lambda m: (m + pow(m, -1, p)) % p
+    W, regular = [], []
+    for n in range(1, N + 1):
+        X, Y, Z = chars(j * n), chars(k * n), chars(l * n)
+        W.append(sum(nbar[tuple(sorted((a, b, cc)))] * X[a - 1] * Y[b - 1] * Z[cc - 1]
+                     for a in (1, 2, 3) for b in (1, 2, 3) for cc in (1, 2, 3)) % p)
+        regular.append(all(pow(g, (e * n) % N, p) not in (1, p - 1) for e in (j, k, l)))
+
+    def reading(n):
+        x, y, z = (pow(g, (e * n) % N, p) for e in (j, k, l))
+        return (1 + nbar[(1, 2, 2)] * (c(x) * c(y) + c(x) * c(z) + c(y) * c(z))) % p
+    checks = {"table_at_the_unit_and_at_minus_one": deg == (1, 1, p - 1) and minus == (0, p - 1, 0),
+              "regular_lengths_are_three_products": all(W[n - 1] == reading(n) for n in range(1, N + 1) if regular[n - 1]),
+              "the_triple_222_reads_zero": forms[(2, 2, 2)] % p == 0 and nbar[(1, 1, 1)] == 1 and nbar[(1, 1, 2)] == 0,
+              "unit_links_read_six": W[N - 1] == 6 % p,
+              "some_length_is_regular": any(regular)}
+    return {"p": p, "j": j, "k": k, "l": l, "g": g, "W": tuple(W), "regular": tuple(n for n in range(1, N + 1) if regular[n - 1]),
+            "n122": nbar[(1, 2, 2)], "checks": checks, "ok": all(checks.values())}

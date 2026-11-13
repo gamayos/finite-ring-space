@@ -3,7 +3,7 @@
  "tree": "27-fields-20260625",
  "title": "Standard-Model Interactions over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1328.v1",
- "generated": "6 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -61,54 +61,54 @@
   },
   {
    "letter": "B",
-   "title": "Realisations: mathematics as physics (the constitutive moves)",
+   "title": "The constitutive moves: namings, each with the theorem that carries it",
    "rows": [
     {
      "label": "B1",
-     "predicate": "A cell-local change of an internal frame datum is a gauge symmetry; the connection that compensates it is the gauge field.",
-     "tag": "R",
-     "source": "\\S\\ref{sec:recipe},\\,\\ref{sec:roles}",
-     "key": "p27007",
+     "predicate": "A cell-local change of an internal frame datum is a gauge symmetry; the connection that compensates it is the gauge field: the gauge principle of the master's D5 (00:D5, with its falsifier) and of 21-gravity's B6, read on the internal frame data; its prediction row here is P2.",
+     "tag": "D",
+     "source": "\\S\\ref{sec:recipe},\\,\\ref{sec:roles}; \\href{https://finitering.space/ledger.html#D5}{00:D5}",
+     "key": "p00046",
      "name": null
     },
     {
      "label": "B2",
-     "predicate": "The multiplicative phase frame gauged is electromagnetism: charge is the winding index, masslessness is drive-invariance.",
-     "tag": "R",
+     "predicate": "The multiplicative phase frame gauged is electromagnetism: charge is the winding index, and masslessness is drive-invariance, the theorem C2 (the master's D2); its prediction row is P9, its exposure X11.",
+     "tag": "D",
      "source": "\\S\\ref{sec:em}",
      "key": "p27008",
      "name": null
     },
     {
      "label": "B3",
-     "predicate": "The spinorial frame gauged is the weak interaction: chirality is the drive-coherent versus drive-rotated split of the spinor winding.",
-     "tag": "R",
+     "predicate": "The spinorial frame gauged is the weak interaction: chirality is the drive-coherent versus drive-rotated split of the spinor winding; C5 and C6 consume it, and its exposure is the Weinberg angle X4, $\\sin^2\\sW=3/8$ at the unification point.",
+     "tag": "D",
      "source": "\\S\\ref{sec:weak}",
      "key": "p27009",
      "name": null
     },
     {
      "label": "B4",
-     "predicate": "The colour frame gauged is the strong interaction: confinement is the saturation that closes the channel at the ladder's $5\\!\\to\\!1$ return.",
-     "tag": "R",
+     "predicate": "The colour frame gauged is the strong interaction: confinement is the saturation that closes the channel at the ladder's $5\\!\\to\\!1$ return (C10); colour itself is the Carrier's triality (46-yangmills B5), this row its gauging (C7); its prediction row is P9.",
+     "tag": "D",
      "source": "\\S\\ref{sec:strong}",
      "key": "p27010",
      "name": null
     },
     {
      "label": "B5",
-     "predicate": "One fermion generation is the spinor $\\mathbf{16}$ of the rank-five internal frame $\\C^3\\oplus\\C^2$; mass is winding rate.",
-     "tag": "R",
+     "predicate": "One fermion generation is the spinor $\\mathbf{16}$ of the rank-five internal frame $\\C^3\\oplus\\C^2$: the naming whose content C8 and X8 derive from the template import A4; its prediction rows are P2, P5, P6 and P8. Mass is winding rate is the master's theorem D2 (00:D2), not a clause of this row.",
+     "tag": "D",
      "source": "\\S\\ref{sec:matter}",
      "key": "p27011",
      "name": null
     },
     {
      "label": "B6",
-     "predicate": "The four primitive arithmetic roles are the frame data of the four interactions; the non-generative counting role is the bosonic carrier and the three generative roles the three generations.",
-     "tag": "R",
-     "source": "\\S\\ref{sec:roles}",
-     "key": "p27012",
+     "predicate": "The four primitive arithmetic roles are the frame data of the four interactions; the non-generative counting role is the bosonic carrier and the three generative roles the three generations: the master's D6 (00:D6), of which B2--B4 are the three instances. Falsifier: a fifth force, a gauge group or charge outside the rank-five frame, or a fourth generation (C10); its prediction rows are P1 and P6.",
+     "tag": "D",
+     "source": "\\S\\ref{sec:roles}; \\href{https://finitering.space/ledger.html#D6}{00:D6}",
+     "key": "p00047",
      "name": null
     }
    ]
@@ -151,7 +151,7 @@
     },
     {
      "label": "C5",
-     "predicate": "The propagating neutral spectrum and custodial $\\rho=1$: the Hessian of $S_\\rho$ at the broken vacuum gives massive $W^\\pm,Z$ against a massless photon, $\\rho=1$ as $\\det\\equiv0$, $M_W^2/M_Z^2=\\cos^2\\sW$, which is $5/8$ at the unification point (Prop.~\\ref{prop:running}); the imported electroweak template (A4) evaluated on the realisation B3.",
+     "predicate": "The propagating neutral spectrum and custodial $\\rho=1$: the Hessian of $S_\\rho$ at the broken vacuum gives massive $W^\\pm,Z$ against a massless photon, $\\rho=1$ as $\\det\\equiv0$, $M_W^2/M_Z^2=\\cos^2\\sW$, which is $5/8$ at the unification point (Prop.~\\ref{prop:running}); the imported electroweak template (A4) evaluated on the naming B3.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:rho}\\newline \\pywit{fields}{p27017}{C5}, \\leanwit{FrcCore}{p27017}{C5}; rests on C4 \\lean{FRC.Interactions.hessian\\_neutral, FRC.Interactions.hessian\\_full, FRC.Interactions.five\\_eighths}",
      "key": "p27017",
@@ -159,7 +159,7 @@
     },
     {
      "label": "C6",
-     "predicate": "The Weinberg trace formula $\\sin^2\\sW=\\Tr(T_3^2)/\\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\\sqrt2\\,v^2)$; the imported template (A4) evaluated on the realisations B3, B5.",
+     "predicate": "The Weinberg trace formula $\\sin^2\\sW=\\Tr(T_3^2)/\\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\\sqrt2\\,v^2)$; the imported template (A4) evaluated on the namings B3, B5.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:angle}, Cor.~\\ref{cor:fermi}\\newline \\pywit{fields}{p27018}{C6}, \\leanwit{FrcCore}{p27018}{C6}, \\leanwit{FrcMathlib}{p27018}{C6} \\lean{FRC.Interactions.weinberg\\_angle, FRC.Interactions.one\\_generation, Fields.fermi\\_constant}",
      "key": "p27018",
@@ -175,7 +175,7 @@
     },
     {
      "label": "C8",
-     "predicate": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the realisation B5.",
+     "predicate": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the naming B5.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:gen}\\newline \\pywit{fields}{p27020}{C8}, \\leanwit{FrcCore}{p27020}{C8}; rests on 00:G12 \\lean{FRC.Interactions.one\\_generation}",
      "key": "p27020",
@@ -191,7 +191,7 @@
     },
     {
      "label": "C10",
-     "predicate": "The closure of the four primitive roles ($5\\!\\to\\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter realisation (B6).",
+     "predicate": "The closure of the four primitive roles ($5\\!\\to\\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter naming (B6).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:threegen}, Prop.~\\ref{prop:chiralsel}\\newline \\pywit{fields}{p27022}{C10}, \\leanwit{FrcCore}{p27022}{C10}; rests on A4 \\lean{FRC.Ladder.tower\\_reduces}",
      "key": "p27022",
@@ -207,9 +207,9 @@
     },
     {
      "label": "C12",
-     "predicate": "The resolvable-window reconstruction: the low-curvature Yang--Mills kinetic operator with the coefficient $I_\\rho/(2d_\\rho)=1/(2n)$ and the residue $O(\\epsilon^4+1/\\Omega)$ (Theorem~\\ref{thm:corrYM}), and the uniform window expectation bound $O(H/\\Omega)$ (Theorem~\\ref{thm:corrwindow}, proof at sketch level) [chart]. \\emph{Falsifier:} a window observable of the finite action that departs from the Yang--Mills operator at the matched coupling beyond the stated residue.",
-     "tag": "R",
-     "source": "Thm.~\\ref{thm:corrYM},~\\ref{thm:corrwindow}\\newline \\pywit{fields}{p27049}{C12}; rests on B1, C1",
+     "predicate": "The resolvable-window reconstruction: the low-curvature Yang--Mills kinetic operator with the coefficient $I_\\rho/(2d_\\rho)=1/(2n)$ and the residue $O(\\epsilon^4+1/\\Omega)$ (Theorem~\\ref{thm:corrYM}) [chart]; the uniform window expectation bound is the open row Y2. Falsifier: a window observable of the finite action that departs from the Yang--Mills operator at the matched coupling beyond the stated residue.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:corrYM}\\newline \\pywit{fields}{p27049}{C12}; rests on B1, C1",
      "key": "p27049",
      "name": null
     }
@@ -245,7 +245,7 @@
     },
     {
      "label": "X4",
-     "predicate": "\\textbf{The Weinberg angle} is the exact rational $\\sin^2\\sW=3/8$ at the unification point, fixed by the charge spectrum of the realised generation (B5) with the group-theoretic step imported (A4), not a free parameter measured into the theory.",
+     "predicate": "\\textbf{The Weinberg angle} is the exact rational $\\sin^2\\sW=3/8$ at the unification point, fixed by the charge spectrum of the generation named in B5 with the group-theoretic step imported (A4), not a free parameter measured into the theory.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:angle}, Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27027}{X4}, \\leanwit{FrcCore}{p27027}{X4} \\lean{FRC.Interactions.weinberg\\_angle}",
      "key": "p27027",
@@ -277,7 +277,7 @@
     },
     {
      "label": "X8",
-     "predicate": "\\textbf{One complete generation} is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content.",
+     "predicate": "\\textbf{One complete generation} is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the declared content.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27031}{X8}, \\leanwit{FrcCore}{p27031}{X8}; rests on 00:Z2, 00:Z3, 00:Z4 \\lean{FRC.Interactions.one\\_generation, FRC.Interactions.offblock\\_automorphism, FRC.Interactions.torsion\\_beyond\\_horizon}",
      "key": "p27031",
@@ -403,7 +403,7 @@
   },
   {
    "letter": "Y",
-   "title": "Hypotheses: the conjecture stated ahead of derivation",
+   "title": "Hypotheses: the conjecture and the bound stated ahead of derivation",
    "rows": [
     {
      "label": "Y1",
@@ -411,6 +411,14 @@
      "tag": "O",
      "source": "Rem.~\\ref{rmk:masscons}",
      "key": "p27048",
+     "name": null
+    },
+    {
+     "label": "Y2",
+     "predicate": "The uniform window expectation bound: on at most $H$ links in the low-curvature ball the finite and the compact Yang--Mills window effective expectations agree to $C(n)\\,H\\,(\\epsilon^4+1/\\Omega)$ at the matched coupling (Theorem~\\ref{thm:corrwindow}) [chart]. The proof is at sketch level; its quadrature step and the linear growth of the per-link residue are checked (C12's check), and the row is open until the proof is written. Exposure: a window observable off the bound at the matched coupling.",
+     "tag": "O",
+     "source": "Thm.~\\ref{thm:corrwindow}; rests on C1, C12",
+     "key": "p27050",
      "name": null
     }
    ]
@@ -457,6 +465,7 @@
    "G12"
   ],
   "B1": [
+   "D5",
    "D6"
   ],
   "C2": [
@@ -530,6 +539,9 @@
   "X7": [
    "G4",
    "G5"
+  ],
+  "B6": [
+   "D6"
   ]
  },
  "lean": {

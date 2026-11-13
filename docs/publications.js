@@ -125,14 +125,14 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p03_causality.ipynb",
         "label": "python",
-        "count": 14,
-        "title": "14 predicates checked, all passing: the notebook p03_causality.ipynb on Google Colab, one cell per predicate"
+        "count": 15,
+        "title": "15 predicates checked, all passing: the notebook p03_causality.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Causality.lean",
         "label": "lean",
-        "count": 13,
-        "title": "13 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Causality as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 14,
+        "title": "14 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Causality as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Causality.lean",
@@ -254,14 +254,14 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p07_spacetime.ipynb",
         "label": "python",
-        "count": 51,
-        "title": "51 predicates checked, all passing: the notebook p07_spacetime.ipynb on Google Colab, one cell per predicate"
+        "count": 53,
+        "title": "53 predicates checked, all passing: the notebook p07_spacetime.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Spacetime.lean",
         "label": "lean",
-        "count": 50,
-        "title": "50 predicates proved in the core (no axioms), 1 of them also on Mathlib: the core module Spacetime as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 51,
+        "title": "51 predicates proved in the core (no axioms), 1 of them also on Mathlib: the core module Spacetime as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Spacetime.lean",
@@ -286,8 +286,8 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p08_dirac.ipynb",
         "label": "python",
-        "count": 49,
-        "title": "49 predicates checked, all passing: the notebook p08_dirac.ipynb on Google Colab, one cell per predicate"
+        "count": 51,
+        "title": "51 predicates checked, all passing: the notebook p08_dirac.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Dirac.lean",
@@ -383,8 +383,8 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/14-entropy/frc-14-entropy.ipynb",
         "label": "python",
-        "count": 27,
-        "title": "27 predicates checked, all passing: the notebook frc-14-entropy.ipynb on Google Colab, one cell per predicate"
+        "count": 28,
+        "title": "28 predicates checked, all passing: the notebook frc-14-entropy.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Entropy.lean",
@@ -729,8 +729,8 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p38_s13.ipynb",
         "label": "python",
-        "count": 41,
-        "title": "41 predicates checked, all passing: the notebook p38_s13.ipynb on Google Colab, one cell per predicate"
+        "count": 43,
+        "title": "43 predicates checked, all passing: the notebook p38_s13.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/S13.lean",
@@ -833,4 +833,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "11 November 2026";
+const GENERATED = "12 November 2026";

@@ -2236,7 +2236,7 @@ theorem ofShell_im (a : Shell p) : (ofShell a : Ext p ν).im = 0 := rfl
 theorem conj_re (z : Ext p ν) : (conj z).re = z.re := rfl
 theorem conj_im (z : Ext p ν) : (conj z).im = -z.im := rfl
 
-/-- 8:A2, 3:B5 — `w² = ν`. -/
+/-- 8:A2, 3:B5, 3:E1 — `w² = ν`. -/
 theorem w_sq : (w : Ext p ν) * w = ofShell ν :=
   ext (by show 0 * 0 + ν * (1 * 1) = ν; rw [Shell.zero_mul, Shell.one_mul, Shell.mul_one, Shell.zero_add])
       (by show 0 * 1 + 1 * 0 = 0; rw [Shell.zero_mul, Shell.mul_zero, Shell.zero_add])

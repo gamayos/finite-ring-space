@@ -1,5 +1,5 @@
 {
- "generated": "11 November 2026",
+ "generated": "12 November 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -12,6 +12,7 @@
   "N": "Synthesis: exclusions and parameter-freeness",
   "P": "Predictions (the master's falsifiable exposures; the papers' P blocks carry theirs)",
   "T": "Tasks: the development roadmap (stated surfaces, proofs or executions outstanding)",
+  "X": "Explicability (the master's explanations of established numerals; the papers' X blocks carry theirs)",
   "Y": "Conjectures (stated ahead of derivation; promotion re-homes a row in its thematic block)",
   "Z": "The horizon (the limits of the bounded observer)"
  },
@@ -784,7 +785,7 @@
    "name": "One frame group, three sectors",
    "block": "C",
    "key": "p00171",
-   "tag": "R",
+   "tag": "D",
    "sources": [
     "21-grav",
     "20-rh",
@@ -806,7 +807,7 @@
     }
    ],
    "lean_name": null,
-   "statement": "Gravity's $(3{+}1)$ tensor, the Riemann observer geometry and the quantum spinor structure are three readings of a shell's frame group $\\mathrm{SL}_2$ (C22), element by element, its three tori the scale-time, translation and boost freedoms; continuum shadow the declared $S^3$ (C23), spinor double cover the Clifford layer (D4). Falsifier: a registered space-time, observer or spinor freedom outside the three tori."
+   "statement": "Gravity's $(3{+}1)$ tensor, the Riemann observer geometry and the quantum spinor structure are three readings of a shell's frame group $\\mathrm{SL}_2$ (C22, 7:X7), its three tori the scale-time, translation and boost freedoms; continuum shadow the declared $S^3$ (C23), spinor double cover the Clifford layer (D4). Falsifier: a registered space-time, observer or spinor freedom outside the three tori (7:P1)."
   },
   {
    "label": "C7",
@@ -881,7 +882,7 @@
     },
     {
      "label": "D2",
-     "key": "p00207"
+     "key": "p21011"
     },
     {
      "label": "D7",
@@ -1020,7 +1021,7 @@
    "refs": [
     {
      "label": "D2",
-     "key": "p00207"
+     "key": "p21011"
     }
    ],
    "lean_name": "mass_energy_channel",
@@ -1184,16 +1185,20 @@
     {
      "label": "D15",
      "key": "p00153"
+    },
+    {
+     "label": "F2",
+     "key": "p00191"
     }
    ],
    "lean_name": "time_is_scale_dilation",
-   "statement": "\\textbf{Time is the drive}: a Subject's clock is its drive $x\\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has no clock. A registered duration is the one-directional chronon count on the depth $\\p^{2}<\\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors."
+   "statement": "\\textbf{Time is the drive}: a Subject's clock is its drive $x\\mapsto gx$, a chronon one step (C1); the timeless Carrier (A6, A4) has none. A registered duration is the one-directional chronon count on the depth $\\p^{2}<\\Om-1$ (7:F4): a record that gains and never recurs, its entropy (D15) non-decreasing (7:F5). A composite's conserved offset is observer-derived, its group the arena's divisors (F2)."
   },
   {
    "label": "D2",
    "name": "Mass is winding rate (E=hf an identity)",
    "block": "D",
-   "key": "p00207",
+   "key": "p21011",
    "tag": "T",
    "sources": [
     "27-fld",
@@ -1207,7 +1212,7 @@
      "key": "p00048"
     }
    ],
-   "lean_name": null,
+   "lean_name": "mass_is_winding_rate",
    "statement": "\\textbf{Mass is winding rate} ($E=hf$ an identity, by D7 and 10:D6); masslessness $\\Leftrightarrow$ drive-invariance (27:C2)."
   },
   {
@@ -1229,7 +1234,7 @@
     },
     {
      "label": "D2",
-     "key": "p00207"
+     "key": "p21011"
     }
    ],
    "lean_name": null,
@@ -1240,42 +1245,56 @@
    "name": "Quantum: matter is the phase character of a finite cycle",
    "block": "D",
    "key": "p00045",
-   "tag": "R",
+   "tag": "D",
    "sources": [
     "22-qm"
    ],
    "witness": null,
    "refs": [],
    "lean_name": null,
-   "statement": "\\textbf{Quantum}: matter is the phase character of a finite cycle; observation is shared-core comparison; the complex amplitude is forced by $Q_4$ ($\\im^2{=}{-}1$). Falsifier: a confirmed third-order interference $I_3\\neq0$, $S\\neq2\\sqrt2$, or real-amplitude network behaviour (22-qm P2, P3)."
+   "statement": "\\textbf{Quantum}: matter is the phase character of a finite cycle (22:B1); observation is shared-core comparison (22:B3). The amplitude ring the shared core forces is 22:C13's theorem. Falsifier: a confirmed third-order interference $I_3\\neq0$, $S\\neq2\\sqrt2$, or real-amplitude network behaviour (22-qm P2, P3)."
   },
   {
    "label": "D5",
    "name": "Gravity: a cell-local change of frame is a gauge symmetry",
    "block": "D",
    "key": "p00046",
-   "tag": "R",
+   "tag": "D",
    "sources": [
     "21-grav"
    ],
    "witness": "21:validate_radiative.py",
-   "refs": [],
+   "refs": [
+    {
+     "label": "P1",
+     "key": "p00133"
+    },
+    {
+     "label": "P2",
+     "key": "p00061"
+    }
+   ],
    "lean_name": null,
-   "statement": "\\textbf{Gravity}: a cell-local change of frame is a gauge symmetry, and the connection compensating it is the field (the geometric/diffeomorphism frame). Falsifier: a source gravitating by other than its full mass, entanglement induced off the Newtonian rate, or $\\eta\\neq0$ (22-qm P1, C22)."
+   "statement": "\\textbf{Gravity}: a cell-local change of frame is a gauge symmetry, and the connection compensating it is the field (the geometric/diffeomorphism frame). Falsifier: a source gravitating by other than its full mass, entanglement induced off the Newtonian rate, or $\\eta\\neq0$ (22-qm P1, C22; P1, P2)."
   },
   {
    "label": "D6",
    "name": "Forces: the same recipe applied to the substrate's three other",
    "block": "D",
    "key": "p00047",
-   "tag": "R",
+   "tag": "D",
    "sources": [
     "27-fld"
    ],
    "witness": null,
-   "refs": [],
+   "refs": [
+    {
+     "label": "P4",
+     "key": "p00091"
+    }
+   ],
    "lean_name": null,
-   "statement": "\\textbf{Forces}: the same recipe applied to the substrate's three \\emph{other} frame data, namely phase (EM), spinor (weak), and colour (strong); ``finish gauging the frame.'' Falsifier: a fifth force, a gauge group or charge outside the rank-five frame, or a fourth generation."
+   "statement": "\\textbf{Forces}: the same recipe applied to the substrate's three \\emph{other} frame data, namely phase (EM), spinor (weak), and colour (strong); ``finish gauging the frame.'' Falsifier: a fifth force, a gauge group or charge outside the rank-five frame, or a fourth generation (27:C10; P4)."
   },
   {
    "label": "D7",
@@ -1420,14 +1439,14 @@
     },
     {
      "label": "D2",
-     "key": "p00207"
+     "key": "p21011"
     },
     {
      "label": "D7",
      "key": "p00048"
     }
    ],
-   "lean_name": null,
+   "lean_name": "mass_is_dilation",
    "statement": "\\textbf{Mass is dilation} (the harness face of D2, over D7): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20). Rest energy is the norm reading, $\\ker N=C_{\\p +1}$, boost-invariant. The lab charts it between the exact $C_4$ stations, the pair class $4\\gcd(\\dS,2\\kap +1)$ host-decided."
   },
   {
@@ -1435,7 +1454,7 @@
    "name": "Thermodynamic entropy is the channel count",
    "block": "D",
    "key": "p00153",
-   "tag": "R",
+   "tag": "T",
    "sources": [
     "21-grav",
     "22-qm"
@@ -1443,12 +1462,16 @@
    "witness": null,
    "refs": [
     {
+     "label": "D7",
+     "key": "p00048"
+    },
+    {
      "label": "E7",
      "key": "p00058"
     }
    ],
-   "lean_name": null,
-   "statement": "The first law's entropy (E7) is the shell's record $\\kap(\\p+1)=(\\p^2-1)/4=|\\F_\\p^\\times|\\,|C_{\\p+1}|/4$, per channel one $k_B$, the quartet's pairing constant (10:E1), $S_{\\mathrm{th}}=k_B\\,\\kap(\\p+1)$ [chart]: the count itself, not its logarithm. It is the capacity of $\\F_{\\p^2}$, $\\p^2=4\\kap(\\p+1)+1$, as $\\dS$ is the Carrier's. Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$."
+   "lean_name": "entropy_is_channel_count",
+   "statement": "The first law's entropy (E7) is the record $\\kap(\\p+1)=(\\p^2-1)/4=|\\F_\\p^\\times|\\,|C_{\\p+1}|/4$ (7:B5), one $k_B$ per channel (D7), the quartet's pairing constant (10:E1), $S_{\\mathrm{th}}=k_B\\,\\kap(\\p+1)$ [chart]: the count, not its logarithm. It is the capacity of $\\F_{\\p^2}$, $\\p^2=4\\kap(\\p+1)+1$, as $\\dS$ is the Carrier's. Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$."
   },
   {
    "label": "D16",
@@ -1485,54 +1508,6 @@
    ],
    "lean_name": null,
    "statement": "\\textbf{Matter selects the orientation}: the joint flip of C7 is the matter--antimatter gauge, and the instance's matter content selects one orientation; the sector faces are G2 and G15--G17. Falsifier: a registered asymmetry between the two orientations not carried by the matter content."
-  },
-  {
-   "label": "D17",
-   "name": "Gravitational time dilation is literal",
-   "block": "D",
-   "key": "p00185",
-   "tag": "R",
-   "sources": [
-    "38-s13",
-    "21-grav"
-   ],
-   "witness": null,
-   "refs": [
-    {
-     "label": "C21",
-     "key": "p00041"
-    },
-    {
-     "label": "D1",
-     "key": "p00042"
-    },
-    {
-     "label": "E4",
-     "key": "p00055"
-    }
-   ],
-   "lean_name": null,
-   "statement": "The static clock ratio between two stations is the register character $\\gen^{-\\Delta n}$ of their offset (C21), $\\beta=\\gamma=1$ (E4, D1). Its registration dictionary is 38:C12 on a hosted pair and 38:C13 on the Carrier, its per-chronon rate the floor (38:C10--C11), the temporal face its half. Falsifier: a static clock ratio not fixed by $\\Delta n$ (the PPN temporal form, defect $4ab$)."
-  },
-  {
-   "label": "D18",
-   "name": "Mass is the non-split component",
-   "block": "D",
-   "key": "p00208",
-   "tag": "R",
-   "sources": [
-    "27-fld",
-    "28-flav"
-   ],
-   "witness": null,
-   "refs": [
-    {
-     "label": "D2",
-     "key": "p00207"
-    }
-   ],
-   "lean_name": null,
-   "statement": "\\textbf{Mass is the non-split component}: a mass (D2) is the non-split component the drive rotates, the part of a residue pair that Frobenius conjugation reverses, masslessness the split-torus eigen-alignment. Falsifier: a rest mass with no cycle winding, or a massless drive-variant state."
   },
   {
    "label": "E1",
@@ -1574,7 +1549,7 @@
    "name": "Gravity (nonlinear completion)",
    "block": "E",
    "key": "p00055",
-   "tag": "R",
+   "tag": "T",
    "sources": [
     "21-grav"
    ],
@@ -1582,7 +1557,7 @@
    "refs": [
     {
      "label": "D2",
-     "key": "p00207"
+     "key": "p21011"
     }
    ],
    "lean_name": "gravity_nonlinear_completion",
@@ -1593,7 +1568,7 @@
    "name": "Gravity (the floor's faces)",
    "block": "E",
    "key": "p00056",
-   "tag": "R",
+   "tag": "T",
    "sources": [
     "21-grav",
     "22-qm"
@@ -1645,7 +1620,7 @@
    "refs": [
     {
      "label": "D2",
-     "key": "p00207"
+     "key": "p21011"
     },
     {
      "label": "D14",
@@ -1747,42 +1722,19 @@
      "key": "p00056"
     },
     {
-     "label": "E14",
+     "label": "P5",
      "key": "p00201"
     }
    ],
    "lean_name": null,
-   "statement": "\\textbf{The strong-field wave operator} (declared): on the exponential reading (E4) the one wave operator is the chart's $\\Box_g$, 21-gravity's wave equation with the all-orders index $e^{2u}$ ($\\sqrt{-g}\\,g^{tt}=-e^{4u}$), acting on the cell's one phase. The chart is horizonless, continued to the floor $r_f=2M/\\ln\\Om$ where $e^{2u}=\\Om$ (E5) [chart]. The quoted ringdown is the eikonal limit (E14); the $(2,2,0)$ reading is open."
-  },
-  {
-   "label": "E14",
-   "name": "The eikonal pair and the phase mode",
-   "block": "E",
-   "key": "p00201",
-   "tag": "R",
-   "sources": [
-    "21-grav"
-   ],
-   "witness": null,
-   "refs": [
-    {
-     "label": "E4",
-     "key": "p00055"
-    },
-    {
-     "label": "E13",
-     "key": "p00200"
-    }
-   ],
-   "lean_name": "eikonal_pair_phase_mode",
-   "statement": "\\textbf{The eikonal pair}: on the exponential reading (E4) the photon sphere sits at $r_c=2M$, $b_c=2eM$, and the orbital rate equals the Lyapunov rate, $\\Omega_c=\\lambda=1/(2eM)$, both $3\\sqrt3/(2e)$ of Schwarzschild's. The wave operator's $\\ell=2$ mode (E13) is $(0.4641-0.0923\\,i)/M$ [approx], $0.8\\%$ above the eikonal $(\\ell+\\tfrac12)/(2eM)$. Falsifier: that mode read as the remnant's $(2,2,0)$ oscillation, $+24\\%$ against Kerr, excluded by GW250114 [import]."
+   "statement": "\\textbf{The strong-field wave operator} (declared): on the exponential reading (E4) the one wave operator is the chart's $\\Box_g$, 21-gravity's wave equation with the all-orders index $e^{2u}$ ($\\sqrt{-g}\\,g^{tt}=-e^{4u}$), acting on the cell's one phase. The chart is horizonless, continued to the floor $r_f=2M/\\ln\\Om$ where $e^{2u}=\\Om$ (E5) [chart]. The quoted ringdown is the eikonal limit (P5); the $(2,2,0)$ reading is open."
   },
   {
    "label": "F1",
-   "name": "Quantum mechanics: the Born weighting on the Subject's ledger",
+   "name": "The Born tally",
    "block": "F",
    "key": "p00059",
-   "tag": "R",
+   "tag": "D",
    "sources": [
     "22-qm"
    ],
@@ -1802,7 +1754,7 @@
     }
    ],
    "lean_name": null,
-   "statement": "Quantum mechanics: the Born weighting on the Subject's ledger is one declared identification, that registration data are sample pairs, plus counting theorems (C8, C10, C11, 22:C13). Falsifier: outcome tallies on the stationary core-valued $Q_4$ sector that are not the pair-form ratios, or a real-amplitude network behaviour (22:C13)."
+   "statement": "\\textbf{The Born tally}: registration data are sample pairs, and the Born weighting is their coincidence count on the Subject's ledger (22:B4); the counting theorems are C8, C10, C11 and 22:C13. Falsifier: outcome tallies on the stationary core-valued $Q_4$ sector that are not the pair-form ratios, or real-amplitude network behaviour (22-qm P2, P3)."
   },
   {
    "label": "F2",
@@ -1895,7 +1847,7 @@
    "refs": [
     {
      "label": "D2",
-     "key": "p00207"
+     "key": "p21011"
     },
     {
      "label": "D6",
@@ -2320,30 +2272,6 @@
    "statement": "\\textbf{Superconductivity} (scale): the absolute transition scale ($T_c\\propto\\omega_D$, the gap and vortex tension in physical units) is $\\Om$-hard, the family of $\\Lambda_{\\mathrm{QCD}}$ (G6) and $v$ (G3). Value tagged: the absolute $T_c$ (with $\\omega_D$), in no embedded reader's window --- the failing computation is the physical unit of the shell-exact ratios. Relations, $\\Om$-blind: the ratios and the charge--flux dictionary of G20."
   },
   {
-   "label": "L1",
-   "name": "Cosmology (the dark sector)",
-   "block": "L",
-   "key": "p00192",
-   "tag": "R",
-   "sources": [
-    "32-dark",
-    "21-grav"
-   ],
-   "witness": "21:validate_rar.py",
-   "refs": [
-    {
-     "label": "L3",
-     "key": "p00193"
-    },
-    {
-     "label": "P1",
-     "key": "p00133"
-    }
-   ],
-   "lean_name": "cosmology_dark_sector",
-   "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the channel-1 $H_0=67.4$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:B9), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4."
-  },
-  {
    "label": "L2",
    "name": "Metrology of the import",
    "block": "L",
@@ -2356,52 +2284,6 @@
    "refs": [],
    "lean_name": null,
    "statement": "The datum $\\dS$ is read on two faces by four instrument classes, concordantly (14-entr). Evidence is weighed on two registers: metrology under the circularity criterion (channel-disjoint from the fitting channel) and explanation by zero-freedom derivation. The numeral is $\\Om$-hard; the relations behind it ($\\Om=4\\dS+1$, $\\dS=A/4$) are $\\Om$-blind; the reading $\\dS\\sim10^{122}$ [chart] is the value's chart, not certified content."
-  },
-  {
-   "label": "L3",
-   "name": "The octant record depth and its outputs",
-   "block": "L",
-   "key": "p00193",
-   "tag": "R",
-   "sources": [
-    "14-entr"
-   ],
-   "witness": "14:entropy.py [mixed]",
-   "refs": [
-    {
-     "label": "B14",
-     "key": "p00170"
-    },
-    {
-     "label": "Z7",
-     "key": "p00115"
-    }
-   ],
-   "lean_name": "octant_record_depth",
-   "statement": "\\textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$); on the stellar age $13.61\\pm0.34$ Gyr, $H_0=68.2\\pm1.7$ ($2.4\\sigma$ from the ladder); $w=-1$ rigid --- a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias."
-  },
-  {
-   "label": "L4",
-   "name": "The registrable triangle",
-   "block": "L",
-   "key": "p00087",
-   "tag": "R",
-   "sources": [
-    "14-entr"
-   ],
-   "witness": "14:entropy.py [mixed]",
-   "refs": [
-    {
-     "label": "A2",
-     "key": "p00004"
-    },
-    {
-     "label": "L2",
-     "key": "p00085"
-    }
-   ],
-   "lean_name": "registrable_triangle_realisation",
-   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). Falsifier: a single typical object of the condensed-density sequence heavier than the over-closure bound and not horizon-bound (14:X5)."
   },
   {
    "label": "L5",
@@ -2454,6 +2336,76 @@
    "refs": [],
    "lean_name": null,
    "statement": "The master's rows are verdicted row by row, in exact arithmetic, on one instantiated Carrier, $\\Om=2{,}408{,}561$ (37-sim), at a dated snapshot. Those that hold there hold jointly in one finite structure: a consistency witness for the projection, not a proof of the physical case. Rows without an instance, or added or restated after the snapshot, are not exercised."
+  },
+  {
+   "label": "X1",
+   "name": "Cosmology (the dark sector)",
+   "block": "X",
+   "key": "p00192",
+   "tag": "T",
+   "sources": [
+    "32-dark",
+    "21-grav"
+   ],
+   "witness": "21:validate_rar.py",
+   "refs": [
+    {
+     "label": "P1",
+     "key": "p00133"
+    },
+    {
+     "label": "X2",
+     "key": "p00193"
+    }
+   ],
+   "lean_name": "cosmology_dark_sector",
+   "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the channel-1 $H_0=67.4$ (X2), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:B9), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4."
+  },
+  {
+   "label": "X2",
+   "name": "The octant record depth and its outputs",
+   "block": "X",
+   "key": "p00193",
+   "tag": "T",
+   "sources": [
+    "14-entr"
+   ],
+   "witness": "14:entropy.py [mixed]",
+   "refs": [
+    {
+     "label": "B14",
+     "key": "p00170"
+    },
+    {
+     "label": "Z7",
+     "key": "p00115"
+    }
+   ],
+   "lean_name": "octant_record_depth",
+   "statement": "\\textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$); on the stellar age $13.61\\pm0.34$ Gyr, $H_0=68.2\\pm1.7$ ($2.4\\sigma$ from the ladder); $w=-1$ rigid --- a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias."
+  },
+  {
+   "label": "X3",
+   "name": "The registrable triangle",
+   "block": "X",
+   "key": "p00087",
+   "tag": "T",
+   "sources": [
+    "14-entr"
+   ],
+   "witness": "14:entropy.py [mixed]",
+   "refs": [
+    {
+     "label": "A2",
+     "key": "p00004"
+    },
+    {
+     "label": "L2",
+     "key": "p00085"
+    }
+   ],
+   "lean_name": "registrable_triangle_realisation",
+   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). Falsifier: a single typical object of the condensed-density sequence heavier than the over-closure bound and not horizon-bound (14:X5)."
   },
   {
    "label": "Y8",

@@ -3,7 +3,7 @@
  "tree": "14-entropy-20260722",
  "title": "De Sitter Entropy Estimates over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
- "generated": "6 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -72,17 +72,25 @@
      "source": "\\citep{planck2018,riess2022,freedman2021,mcgaugh2016,ciocan2026,valcin2026,vandenberg2013,egan2010}",
      "key": "p14008",
      "name": null
+    },
+    {
+     "label": "A9",
+     "predicate": "The continuity law of the rival chart's effective fluid, $\\dot\\rho_\\Lambda+3H(\\rho_\\Lambda+p_\\Lambda)=0$ \\lcdm, the conservation law P4 confronts; confrontation only.",
+     "tag": "I",
+     "source": "\\S\\ref{sec:import}",
+     "key": "p14049",
+     "name": null
     }
    ]
   },
   {
    "letter": "B",
-   "title": "Realisations and conventions: mathematics as metrology",
+   "title": "Namings, conventions and the capacity axis: mathematics as metrology",
    "rows": [
     {
      "label": "B1",
-     "predicate": "The calibration faces: the observed $\\Lambda\\sim1/\\Om$ and $H\\sim\\Om^{-1/2}$ \\apx{} are the two chart faces of the import, carrying no evidential weight of their own.",
-     "tag": "R",
+     "predicate": "The calibration faces: the observed $\\Lambda\\sim1/\\Om$ and $H\\sim\\Om^{-1/2}$ \\apx{} are the two chart faces of the import (A1--A3), carrying no evidential weight of their own.",
+     "tag": "I",
      "source": "\\S\\ref{sec:import}",
      "key": "p14009",
      "name": null
@@ -97,16 +105,16 @@
     },
     {
      "label": "B3",
-     "predicate": "Age as a totality datum: the measured age is the frame-invariant horizon depth, registered as a count in the Subject register; the datum is the supremum of closable depth --- the saturation clause: saturated by the totality's causal record, approached by material inventories. The registered depth is what the stellar-age ladder measures (channel 4); its $0.2\\%$ degeneracy with the rival chart's $t_0$ at the present chronon is a coincidence of charts (P2), not part of the identification.",
-     "tag": "R",
+     "predicate": "Age as a totality datum: the measured age is the frame-invariant horizon depth, registered as a count in the Subject register; the datum is the supremum of closable depth --- the saturation clause: saturated by the totality's causal record, approached by material inventories. The registered depth is what the stellar-age ladder measures (channel 4); its $0.2\\%$ degeneracy with the rival chart's $t_0$ at the present chronon is a coincidence of charts (P2), not part of the naming. Its prediction rows are P2 and P3.",
+     "tag": "D",
      "source": "\\S\\ref{sec:notchannels}",
      "key": "p14011",
      "name": null
     },
     {
      "label": "B4",
-     "predicate": "The registered-rate role: the $H$ in the floor value is the observer's registered rate, the Subject-only-frame doctrine, giving $a_0(z)\\propto H(z)$ --- falsifiable physical content, graded a realisation.",
-     "tag": "R",
+     "predicate": "The registered-rate role: the $H$ in the floor value is the observer's registered rate, the Subject-only-frame doctrine, giving $a_0(z)\\propto H(z)$; its prediction row is P1 (00:P1, 32-dark P1).",
+     "tag": "D",
      "source": "\\S\\ref{sec:open}",
      "key": "p14012",
      "name": null
@@ -120,26 +128,18 @@
      "name": null
     },
     {
-     "label": "B6",
-     "predicate": "The closure budget: the horizon depth of Lemma~\\ref{lem:octant}(i) is the total reciprocal-registration budget --- out and back draw on one quarter-sector count and the exchange must close within it. An FRC closure realisation, not an import of chart geometry; its continuum shadow \\apx{} is the causal diamond of the static patch. Member of $B_{\\mathrm{oct}}$; presently single-use (see the lemma remark).",
-     "tag": "R",
-     "source": "\\S\\ref{sec:octant}",
-     "key": "p14014",
-     "name": null
-    },
-    {
      "label": "B7",
-     "predicate": "The depth register rule: an instrument reads either a rate/curvature (a ratio of co-chained counts, the one-way gauge cancelling) or a depth (a registration whose count is the datum); the A4 halving binds depth registrations only, and no spatial instrument registers totality depth. The conversion of a spatial arc into temporal depth by $c$ is part of this rule --- the reciprocal unit relation, declared, not chart-derived (proper distance over $c$ is not automatically radar time in curved geometry). Classifies every table row; the classification could fail empirically, so the rule is graded a realisation.",
-     "tag": "R",
+     "predicate": "The depth register rule: an instrument reads either a rate/curvature (a ratio of co-chained counts, the one-way gauge cancelling) or a depth (a registration whose count is the datum); the A4 halving binds depth registrations only, and no spatial instrument registers totality depth. The conversion of a spatial arc into temporal depth by $c$ is part of this rule --- the reciprocal unit relation, declared, not chart-derived (proper distance over $c$ is not automatically radar time in curved geometry). Classifies every table row; the master carries the classification as L2. Its prediction rows are P2 and P3.",
+     "tag": "D",
      "source": "\\S\\ref{sec:registers}",
      "key": "p14015",
      "name": null
     },
     {
      "label": "B8",
-     "predicate": "The effective-fluid correspondence behind P4: the rival chart's continuity law $\\dot\\rho_\\Lambda+3H(\\rho_\\Lambda+p_\\Lambda)=0$ \\lcdm{} with $\\dot\\rho_\\Lambda=0$ gives $w=-1$; and the single-component clause --- the framework's dark sector is derived with no second dark-energy component available, so an observed $w_{\\mathrm{eff}}\\neq-1$ cannot be reassigned to an extra evolving fluid. The clause makes P4's falsifier total rather than escapable.",
-     "tag": "R",
-     "source": "\\S\\ref{sec:import}\\newline \\leanwit{FrcMathlib}{p14016}{B8} \\lean{Entropy.fluid\\_w}",
+     "predicate": "The effective-fluid correspondence behind P4: with $\\dot\\rho_\\Lambda=0$ the rival chart's continuity law (A9) gives $w=-1$ exactly; and the single-component clause --- the framework's dark sector is derived (32-dark C11, 21-gravity C14) with no second dark-energy component available, so an observed $w_{\\mathrm{eff}}\\neq-1$ cannot be reassigned to an extra evolving fluid. The clause makes P4's falsifier total rather than escapable.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:import}; rests on A9\\newline \\pywit{entropy}{p14016}{B8}, \\leanwit{FrcMathlib}{p14016}{B8} \\lean{Entropy.fluid\\_w}",
      "key": "p14016",
      "name": "effective_fluid_correspondence"
     },
@@ -223,7 +223,7 @@
     },
     {
      "label": "C5",
-     "predicate": "The octant lemma: the measured age is $\\dS/2$ chronons, $(\\pi/4)\\,r_H/c$ in the chart \\apx; the halving and the sector are exact through the enumerated realisation set $B_{\\mathrm{oct}}=\\{$A4, A5, B2, B3, B6, B7$\\}$, the same class as the constants correspondence.",
+     "predicate": "The octant lemma: the measured age is $\\dS/2$ chronons, $(\\pi/4)\\,r_H/c$ in the chart \\apx; the halving and the sector are exact through the enumerated set $B_{\\mathrm{oct}}=\\{$A4, A5, B2, B3, B7, Y1$\\}$, the same class as the constants correspondence; the lemma is conditioned on the hypothesis Y1.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:octant}\\newline \\pywit{entropy}{p14022}{C5}, \\leanwit{FrcCore}{p14022}{C5}, \\leanwit{FrcMathlib}{p14022}{C5} \\lean{Entropy.octant\\_chart, Entropy.closure\\_budget, FRC.Entropy.closure\\_count, FRC.Entropy.octant\\_count}",
      "key": "p14022",
@@ -373,9 +373,23 @@
      "label": "P4",
      "predicate": "\\textbf{(Lead.)} The dark-energy equation of state is rigid: $\\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8). Status: DESI-era combined fits prefer evolving dark energy at $3$--$4.2\\sigma$ \\citep{desi2025}, contested by reanalyses (\\S\\ref{sec:import}). Falsifier: confirmed evolution of $w$, which kills $\\Lambda\\sim1/\\Om$ outright and exposes P2 through $\\Lambda$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:import}; rests on A1, A8, B1\\newline \\pywit{entropy}{p14039}{P4}, \\leanwit{FrcMathlib}{p14039}{P4} \\lean{Entropy.fluid\\_w}",
+     "source": "\\S\\ref{sec:import}; rests on A1, A8, A9, B1, B8\\newline \\pywit{entropy}{p14039}{P4}, \\leanwit{FrcMathlib}{p14039}{P4} \\lean{Entropy.fluid\\_w}",
      "key": "p14039",
      "name": "rigid_dark_energy_eos"
+    }
+   ]
+  },
+  {
+   "letter": "Y",
+   "title": "Hypotheses: a reading a theorem is conditioned on, open until a derivation or an independent datum decides it",
+   "rows": [
+    {
+     "label": "Y1",
+     "predicate": "The closure budget: the horizon depth of Lemma~\\ref{lem:octant}(i) is the total reciprocal-registration budget --- out and back draw on one quarter-sector count and the exchange must close within it. A hypothesis of the paper, not an import of chart geometry; its continuum shadow \\apx{} is the causal diamond of the static patch. The one postulate of the octant lemma, member of $B_{\\mathrm{oct}}$, consumed by C5 and through it by $\\Omega_\\Lambda$. Task: the fixed-point derivation (the out-and-back counts agree at $0$, $\\pi/4$ and $\\pi/2$ alone), which makes the row a theorem.",
+     "tag": "O",
+     "source": "\\S\\ref{sec:octant}",
+     "key": "p14014",
+     "name": null
     }
    ]
   },
@@ -443,7 +457,7 @@
    "L2"
   ],
   "C9": [
-   "L4"
+   "X3"
   ],
   "B9": [
    "L5"
@@ -462,25 +476,25 @@
    "C16"
   ],
   "A6": [
-   "L1"
+   "X1"
   ],
   "X2": [
-   "L1"
+   "X1"
   ],
   "C5": [
-   "L3"
+   "X2"
   ],
   "C7": [
-   "L3"
+   "X2"
   ],
   "P2": [
-   "L3"
+   "X2"
   ],
   "P3": [
-   "L3"
+   "X2"
   ],
   "P4": [
-   "L3"
+   "X2"
   ]
  },
  "lean": {
@@ -904,7 +918,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:C5, 14:B6 — the closure count, clauses (iii)–(iv): given B6's accounting (a two-way registration of depth `x` costs `2x` of the one-way budget `S`; the realisation, not formalised), the closable depths are exactly `x ≤ S/2`, and on a Carrier with `S` even the octant count `S/2` closes the budget, `2 · (S/2) = S`."
+    "doc": "14:C5, 14:Y1 — the closure count, clauses (iii)–(iv): given Y1's accounting (a two-way registration of depth `x` costs `2x` of the one-way budget `S`; the hypothesis, not formalised), the closable depths are exactly `x ≤ S/2`, and on a Carrier with `S` even the octant count `S/2` closes the budget, `2 · (S/2) = S`."
    },
    {
     "name": "FRC.Entropy.closure_count",
@@ -913,7 +927,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "14:C5, 14:B6 — the closure count: given B6's accounting (a two-way registration of depth `x` costs `2x` of the one-way budget `S = 2m`; the realisation, not formalised), the closable depths are exactly `x ≤ m`, and the octant `x = m` closes the budget."
+    "doc": "14:C5, 14:Y1 — the closure count: given Y1's accounting (a two-way registration of depth `x` costs `2x` of the one-way budget `S = 2m`; the hypothesis, not formalised), the closable depths are exactly `x ≤ m`, and the octant `x = m` closes the budget."
    },
    {
     "name": "FRC.Entropy.octant_count",

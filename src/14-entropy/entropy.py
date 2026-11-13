@@ -54,7 +54,7 @@ LEDGER = {
     "est.L0": "14:X1",
     "est.H7": "14:X7, 14:X8",
     "est.S8": "14:P2, 14:X8",
-    "est.W4": "14:P4",
+    "est.W4": "14:B8, 14:P4",
     # block tri (triangle.py, the paper's make-wedge-2.py)
     "tri.A": "14:C5, 14:C8, 14:C9",
     "tri.D": "14:C9, 14:X5",
@@ -114,7 +114,7 @@ PREDICATES = {
     "14:X2": "est.L1", "14:X3": "est.A1", "14:X5": "tri.D", "14:X6": "est.A1",
     "14:P1": "est.P1", "14:P2": "est.P2", "14:P3": "est.P3",
     "14:B11": "win.W", "14:B12": "win.L", "14:B13": "win.S",
-    "14:C2": "est.N2", "14:X4": "est.O4", "14:X1": "est.L0", "14:X7": "est.H7", "14:X8": "est.S8", "14:P4": "est.W4",
+    "14:C2": "est.N2", "14:X4": "est.O4", "14:X1": "est.L0", "14:X7": "est.H7", "14:X8": "est.S8", "14:P4": "est.W4", "14:B8": "est.W4",
 }
 _FAM = [None, None]
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
@@ -599,7 +599,7 @@ def block_est():
         0.07 < sep < 0.075 and abs(sep - 0.0725) < 0.0005)
     chk("degenerate to 0.2 % now (13.80 against 13.79), 7 % apart one Gyr on: the bound separates black-hole cosmology's interior completions from the finite reading empirically",
         abs(13.80 / 13.79 - 1) < 0.0025 and abs((13.80 + 1) / 13.79 - 1 - sep) < 0.003)
-    # 14:P4 (p14039)
+    # 14:B8 (p14016), 14:P4 (p14039)
     family("est", "W4")
     w_ok = True
     for Hs, rho in ((_Fr(7, 10), _Fr(3, 2)), (_Fr(1, 3), _Fr(5)), (_Fr(13, 7), _Fr(2, 9))):

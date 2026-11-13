@@ -3,7 +3,7 @@
  "tree": "22-quantum-20260625",
  "title": "Quantum Observation over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1160.v3",
- "generated": "6 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -93,78 +93,78 @@
   },
   {
    "letter": "B",
-   "title": "Realisations: mathematics $\\to$ physics (the forced identifications, each with its falsifier)",
+   "title": "The constitutive moves: namings, the theorems that state them, and one realisation",
    "rows": [
     {
      "label": "B1",
-     "predicate": "The wave function is phase: a pure state is a winding (character) of the Object cycle, and the chart point and the wave share one finite arithmetic domain. Falsifier: a confirmed third-order interference $I_3\\neq0$ (P2).",
-     "tag": "R",
+     "predicate": "The wave function is phase: a pure state is a winding (character) of the Object cycle, and the chart point and the wave share one finite arithmetic domain (the master's D4, 00:D4). Falsifier: a confirmed third-order interference $I_3\\neq0$; its prediction row is P2.",
+     "tag": "D",
      "source": "\\S\\ref{sec:wavefunction}, Lem.~\\ref{lem:powermaps}",
      "key": "p22009",
      "name": null
     },
     {
      "label": "B2",
-     "predicate": "Energy is the winding index: the drive generator is the Hamiltonian, the index $k$ sits in the place of $E$, and $U^{-t}$ is the finite $e^{-\\mathrm{i}Et/\\hbar}$. Falsifier: a stationary state whose registered frequency is not its winding index ($E=hf$ failing), or vacuum dispersion (P4).",
-     "tag": "R",
-     "source": "Prop.~\\ref{prop:stationary}, Rem.~\\ref{rem:energy}",
+     "predicate": "Energy is the winding index (the master's D2, 00:D2): the drive generator is the Hamiltonian (00:D1), the index $k$ sits in the place of $E$, and $U^{-t}$ is the finite $e^{-\\mathrm{i}Et/\\hbar}$, the chronon-indexed evolution of 8-dirac's F3. Falsifier: a stationary state whose registered frequency is not its winding index ($E=hf$ failing), or vacuum dispersion (P4).",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:stationary}, Rem.~\\ref{rem:energy}; rests on 00:D1, 00:D2, 8:F3; \\href{https://finitering.space/ledger.html#D2}{00:D2}",
      "key": "p22010",
      "name": null
     },
     {
      "label": "B3",
-     "predicate": "The amplitude is Object-to-Subject projection: observation is the Subject's quotient of the Object cycle by the shared core, and the amplitude is the Hermitian projection onto the transported pointer wave. Falsifier: an outcome frequency not quadratic in the projected amplitude (the counting Born rule C10 failing).",
-     "tag": "R",
+     "predicate": "The amplitude is Object-to-Subject projection: observation is the Subject's quotient of the Object cycle by the shared core (the master's D4, 00:D4), and the amplitude is the Hermitian projection onto the transported pointer wave (Definition~\\ref{def:measvectors}). Falsifier: an outcome frequency not quadratic in the projected amplitude (the counting Born rule C10 failing); its prediction row is P3.",
+     "tag": "D",
      "source": "\\S\\ref{sec:observation}, Def.~\\ref{def:measvectors}",
      "key": "p22011",
      "name": null
     },
     {
      "label": "B4",
-     "predicate": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: a registered frequency on the stationary sector away from the uniform count, or a non-uniform frequency off the pair count (C7), beyond the protocol's statistical allowance.",
-     "tag": "R",
-     "source": "Def.~\\ref{def:ledger}, Prop.~\\ref{prop:paircount}",
-     "key": "p22012",
+     "predicate": "Probability is a coincidence count, kept in the Subject's tally ring $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate; the Born tally of the master's F1, its quadratic form the pair-count identity (C7). Falsifier: a registered frequency on the stationary sector away from the uniform count, or a non-uniform frequency off the pair count (C7), beyond the protocol's statistical allowance; its prediction rows are P2 and P3.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:ledger}, Prop.~\\ref{prop:paircount}; \\href{https://finitering.space/ledger.html#F1}{00:F1}",
+     "key": "p00059",
      "name": null
     },
     {
      "label": "B5",
-     "predicate": "Composition is conservation: one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit, and an incoherent ensemble of offsets, phase or winding, is prepared sector-diagonal (Proposition~\\ref{prop:unequal}(iii)). Falsifier: a CHSH value significantly above $2\\sqrt2$ [chart], a Bell-state correlator off the singlet law, or network behaviour outside Proposition~\\ref{thm:table}.",
-     "tag": "R",
-     "source": "Prop.~\\ref{prop:offset}, Def.~\\ref{def:composite}, Prop.~\\ref{prop:unequal}(iii)",
+     "predicate": "Composition is conservation: one drive conserves the relative offset of a pair (Proposition~\\ref{prop:offset}), a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit (Definition~\\ref{def:composite}, the one declared clause), and an incoherent ensemble of offsets, phase or winding, is prepared sector-diagonal (Proposition~\\ref{prop:unequal}(iii)). Falsifier: a CHSH value significantly above $2\\sqrt2$ [chart], a Bell-state correlator off the singlet law, or network behaviour outside Proposition~\\ref{thm:table} (P3).",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:offset}, Def.~\\ref{def:composite}, Prop.~\\ref{prop:unequal}(iii); rests on C15, C26",
      "key": "p22013",
      "name": null
     },
     {
      "label": "B6",
-     "predicate": "Collapse is re-metrisation: a registration restricts the Subject's relational chart to a fibre and nothing else, since distance is decoherence. Falsifier: a post-registration state other than the L\\\"uders restriction, or spontaneous collapse (C20).",
-     "tag": "R",
-     "source": "Rem.~\\ref{rem:collapse}",
+     "predicate": "Collapse is re-metrisation: a registration restricts the Subject's relational chart to a fibre and nothing else, the L\\\"uders update (C5), since distance is decoherence (the master's D3, 00:D3); no spontaneous collapse is C20. Falsifier: a post-registration state other than the L\\\"uders restriction, or spontaneous collapse (C20).",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:collapse}; rests on 00:D3, C5, C20",
      "key": "p22014",
      "name": null
     },
     {
      "label": "B7",
-     "predicate": "Measurement settings are relational repositionings of the analyser along the Carrier, $u\\mapsto \\gen^{-j}u$: shifts of the Object offset $\\dt$. Falsifier: a setting dependence of the CHSH correlator not expressible as an offset shift.",
-     "tag": "R",
+     "predicate": "Measurement settings are relational repositionings of the analyser along the Carrier, $u\\mapsto \\gen^{-j}u$: shifts of the Object offset $\\dt$ (Definition~\\ref{def:chshsettings}). Falsifier: a setting dependence of the CHSH correlator not expressible as an offset shift; its prediction row is P3.",
+     "tag": "D",
      "source": "Def.~\\ref{def:chshsettings}",
      "key": "p22015",
      "name": null
     },
     {
      "label": "B8",
-     "predicate": "Gravity entangles by \\emph{reciprocal synchronisation}, phase-drift relaxation \\citep{akhtman2026gravity} as conditional phase. Spread is by winding, not phase, with no weight-one offset; every cell gravitates; a locked pair carries one step phase per coupling step per branch, a spread pair its offset times it (C21). Falsifier: entanglement of spread-free sources off the Newtonian rate, force not by full mass, $\\eta\\neq0$ (P1, C22).",
-     "tag": "R",
-     "source": "\\S\\ref{sec:gravchannel}, Prop.~\\ref{prop:bmvmech}, Prop.~\\ref{prop:fcoh}",
+     "predicate": "Gravity entangles by \\emph{reciprocal synchronisation}: the relaxation of phase drift between masses \\citep{akhtman2026gravity} (21-gravity B1) read as conditional phase, the mechanism derived (Propositions~\\ref{prop:bmvmech}, \\ref{prop:fcoh}), under the declared per-pair clause of Definition~\\ref{def:spread}: spread is by winding, not phase, with no weight-one offset; every cell gravitates; a locked pair carries one step phase per coupling step per branch, a spread pair its offset times it (C21). Falsifier: entanglement of spread-free sources off the Newtonian rate, force not by full mass, $\\eta\\neq0$ (P1, C22).",
+     "tag": "T",
+     "source": "\\S\\ref{sec:gravchannel}, Prop.~\\ref{prop:bmvmech}, Prop.~\\ref{prop:fcoh}; rests on 21:B1, 00:D5",
      "key": "p22016",
      "name": null
     },
     {
      "label": "B9",
-     "predicate": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers the readout grid point of Definition~\\ref{def:readout}, one stratum of the setting ensemble. Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance.",
+     "predicate": "The registered frequency at a fixed setting is the framed readout of the structural weight at the protocol's resolution: a protocol of $B$ runs registers the readout grid point of Definition~\\ref{def:readout}, one stratum of the setting ensemble (the master's sampling clause D10). Falsifier: fixed-setting frequencies that differ from the structural weight beyond the protocol's resolution and its stated statistical allowance.",
      "tag": "R",
-     "source": "Rem.~\\ref{rem:strata}, Rem.~\\ref{rem:borndomain}, Def.~\\ref{def:readout}",
-     "key": "p22062",
+     "source": "Rem.~\\ref{rem:strata}, Rem.~\\ref{rem:borndomain}, Def.~\\ref{def:readout}; \\href{https://finitering.space/ledger.html#D10}{00:D10}",
+     "key": "p00051",
      "name": null
     }
    ]
@@ -453,7 +453,7 @@
    "rows": [
     {
      "label": "X1",
-     "predicate": "\\textbf{The Born rule} is a coincidence count on its stationary domain, where it is uniform and is the unique window lift of its Carrier shadow; its quadratic form is the pair-count identity (C7), not a postulate, and the non-uniform statistics are read through the ninth realisation and the framed readout (C11).",
+     "predicate": "\\textbf{The Born rule} is a coincidence count on its stationary domain, where it is uniform and is the unique window lift of its Carrier shadow; its quadratic form is the pair-count identity (C7), not a postulate, and the non-uniform statistics are read through the stratum-sampling realisation B9 and the framed readout (C11).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}\\newline \\pywit{quantum}{p22044}{X1}, \\leanwit{FrcCore}{p22044}{X1}, \\leanwit{FrcMathlib}{p22044}{X1} \\lean{FRC.Observation.window\\_lift, FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Extension.two\\_way\\_tally, Quantum.pair\\_count\\_tally}",
      "key": "p22044",
@@ -674,6 +674,12 @@
   ],
   "P4": [
    "C20"
+  ],
+  "B4": [
+   "F1"
+  ],
+  "B9": [
+   "D10"
   ]
  },
  "lean": {

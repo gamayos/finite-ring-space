@@ -134,6 +134,11 @@ theorem modular_shadow :
     reduce 1373 343 flag = (0, 343) ∧ reduce 1373 343 (flag * flag * flag * flag) = (0, 0) ∧ reduce 1373 343 (flag * flag) = (0, 686) ∧
     reduce 1373 343 (flag * flag * flag) = (0, 1029) ∧ reduce 1373 343 mass = (1371, 344) := by decide
 
+/-- 00:D2 — `E = hf` in the domain lattice: `[E] = [ħ][T]⁻¹`, the phase count `[E][T][ħ]⁻¹` is neutral, and
+`[m] = [E][c]⁻² = [ħ][T]⁻¹[c]⁻²`, so a mass reads the count that a frequency reads. -/
+theorem mass_energy_frequency : energy = hbar * T⁻¹ ∧ energy * T * hbar⁻¹ = 1 ∧ mass = energy * speed⁻¹ * speed⁻¹ ∧
+    mass = hbar * T⁻¹ * speed⁻¹ * speed⁻¹ := by decide
+
 end Lift
 
 end FRC.Domain

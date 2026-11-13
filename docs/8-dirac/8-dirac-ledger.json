@@ -3,7 +3,7 @@
  "tree": "8-dirac-20260709",
  "title": "Schrödinger and Dirac Dynamics",
  "doi": "https://doi.org/10.20944/preprints202510.1486.v2",
- "generated": "7 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -121,9 +121,9 @@
     },
     {
      "label": "B8",
-     "predicate": "One-way and two-way transport: comparison readings are even drive steps, the one-way single-chronon multiplier odd, and light-like transport carries no registered velocity, only its square class. Falsifier: a registered one-way velocity, or a two-way constant that changes under the synchronisation gauge.",
-     "tag": "R",
-     "source": "Real.~\\ref{rem:oneway}; rests on B6",
+     "predicate": "One-way and two-way transport: comparison readings are even drive steps, the one-way single-chronon multiplier odd, and light-like transport carries no registered velocity, only its square class (00:C8). Falsifier: a registered one-way velocity, or a two-way constant that changes under the synchronisation gauge.",
+     "tag": "T",
+     "source": "Prop.~\\ref{rem:oneway}; rests on B5, B6; \\href{https://finitering.space/ledger.html#C8}{00:C8}\\newline \\pywit{dirac}{p08014}{B8}",
      "key": "p08014",
      "name": null
     }
@@ -373,9 +373,9 @@
     },
     {
      "label": "D13",
-     "predicate": "Mass is winding rate: the finite Dirac equation equates the meridional development rate of the spinor field to the mass times the field, $E=hf$ an identity. Falsifier: a rest mass with no cycle winding, or a stationary state whose registered frequency is not its winding index.",
-     "tag": "R",
-     "source": "Real.~\\ref{rem:mass-winding}; rests on D3",
+     "predicate": "Mass is winding rate, the Dirac form (00:D2): the finite Dirac equation balances the meridional development of the spinor field against the mass times the field; the Cayley step advances a translation-invariant spinor by the mass phase alone, one step of the third cycle per chronon, as the drive advances a character by its winding index (F3); $E=hf$ an identity.",
+     "tag": "T",
+     "source": "Prop.~\\ref{rem:mass-winding}; rests on D3, D10; \\href{https://finitering.space/ledger.html#D2}{00:D2}\\newline \\pywit{dirac}{p08033}{D13}",
      "key": "p08033",
      "name": null
     },
@@ -536,14 +536,6 @@
      "name": "two_evolution_sectors_one_space"
     },
     {
-     "label": "F5",
-     "predicate": "The shell reading: Schr\\\"odinger dynamics is the exact zonal evolution, Dirac dynamics the exact meridional development; the drive cycle holds the free evolution, the register the kinetic periods, the third cycle the interactions, masses and boosts; the light cone is a square-class boundary. Falsifier: a registered dynamics with a phase outside the cycles, or a mass without winding.",
-     "tag": "R",
-     "source": "Real.~\\ref{rem:thesis}; rests on A4, B6, D5, D13, F3, F6",
-     "key": "p08042",
-     "name": null
-    },
-    {
      "label": "F6",
      "predicate": "The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\\varphi(-m)$ on the third cycle and the mass phases fill it once; the spectra meet in $\\{\\pm1\\}$; the Hamiltonian form has the two eigenvalues $\\varphi(\\pm\\im\\nu m)$, a conjugate pair. Decided at $\\p=13$ and $173$.",
      "tag": "T",
@@ -615,11 +607,6 @@
    "tag": "T",
    "name": "Theorem",
    "text": "Proved at the statement the source column names, machine-verified in exact arithmetic by the named witness."
-  },
-  {
-   "tag": "R",
-   "name": "Realisation",
-   "text": "States what a physical term denotes on the substrate: constitutive, not interpretive, and carrying its falsifier."
   },
   {
    "tag": "O",
@@ -2103,7 +2090,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:A10, 3:C2, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
+    "doc": "7:A10, 3:C2, 3:E1, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
    }
   ],
   "D16": [

@@ -3,7 +3,7 @@
  "tree": "3-causality-20260510",
  "title": "Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/e27111098",
- "generated": "8 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -187,11 +187,11 @@
    "rows": [
     {
      "label": "E1",
-     "predicate": "Causality is algebraic and lives on the Subject's shell: the time axis carries the drive's nonsquare class, the null cone and the two non-null classes are its invariant separation (B7), the boosts the non-split torus (C2); the root $\\eta$ lives in the pair algebra, never in a further shell; the arrow is the drift (A6). Falsifier: a registered one-way velocity.",
-     "tag": "R",
-     "source": "Section~\\ref{sec:outlook}; 8:B8",
+     "predicate": "Causality is algebraic and lives on the Subject's shell: the time axis carries the drive's nonsquare class, the null cone and the two non-null classes are its invariant separation (B7), the boosts the non-split torus (C2); the root $\\eta$ lives in the pair algebra, never in a further shell; the arrow is the drift (A6).",
+     "tag": "T",
+     "source": "Section~\\ref{sec:outlook}; rests on A6, B7, C2; 7:X1, 7:X6, 8:D5\\newline \\pywit{causality}{p03018}{E1}, \\leanwit{FrcCore}{p03018}{E1} \\lean{FRC.Shell.Frame.neg\\_sq\\_is\\_square, FRC.Shell.Frame.no\\_causal\\_root, FRC.Causal.similitude, FRC.Causal.class\\_flip, FRC.Causal.null\\_elliptic, FRC.Shell.Frame.norm\\_one\\_mul, FRC.Causal.plane\\_nonzero, FRC.Extension.Ext.w\\_sq}",
      "key": "p03018",
-     "name": null
+     "name": "algebraic_causality"
     },
     {
      "label": "E2",
@@ -237,9 +237,9 @@
    "text": "Derived, and machine-verified in exact arithmetic by the named witness."
   },
   {
-   "tag": "R",
-   "name": "Realisation",
-   "text": "States what a physical term denotes in the substrate: constitutive, not interpretive, and carrying its falsifier."
+   "tag": "O",
+   "name": "Open",
+   "text": "Genuinely unresolved."
   }
  ],
  "master": {
@@ -301,7 +301,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "3:B2 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`."
+    "doc": "3:B2, 3:E1 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`."
    },
    {
     "name": "FRC.Shell.Frame.neg_sq_is_square",
@@ -310,7 +310,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "3:B2 (Thm. nonexistence, the consequence) — `−c²` is a square on every shell: `−c² = (i·c)²` with `i² = −1`; so with `c ≠ 0` every coefficient of `−c² t² + x² + y² + z²` is a square and the form is Euclidean."
+    "doc": "3:B2, 3:E1 (Thm. nonexistence, the consequence) — `−c²` is a square on every shell: `−c² = (i·c)²` with `i² = −1`; so with `c ≠ 0` every coefficient of `−c² t² + x² + y² + z²` is a square and the form is Euclidean."
    }
   ],
   "B3": [
@@ -344,7 +344,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "3:B4, 3:B7 — the null cone of `Q_ν` for a nonsquare `ν`: `p³ − p² + p` points, the elliptic count (written `N + p² = p³ + p`)."
+    "doc": "3:B4, 3:B7, 3:E1 — the null cone of `Q_ν` for a nonsquare `ν`: `p³ − p² + p` points, the elliptic count (written `N + p² = p³ + p`)."
    },
    {
     "name": "FRC.Causal.null_hyperbolic",
@@ -422,7 +422,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:A2, 3:B5 — `w² = ν`."
+    "doc": "8:A2, 3:B5, 3:E1 — `w² = ν`."
    }
   ],
   "B6": [
@@ -442,7 +442,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "3:C2, 3:B6 — for the drive `g` the plane `x² − g t²` takes every nonzero value `p + 1` times: the norm-one cycle of `𝔽_p(√g)` (the boosts, `γ² − g b² = 1`) has `p + 1` elements."
+    "doc": "3:C2, 3:B6, 3:E1 — for the drive `g` the plane `x² − g t²` takes every nonzero value `p + 1` times: the norm-one cycle of `𝔽_p(√g)` (the boosts, `γ² − g b² = 1`) has `p + 1` elements."
    }
   ],
   "B7": [
@@ -453,7 +453,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "3:B7 — the similitude `(t, x, y, z) ↦ (cz, ax − by, bx + ay, cνt)` with `a² + b² = ν` and `c² = −1` multiplies `Q_ν = −ν t² + x² + y² + z²` by `ν`."
+    "doc": "3:B7, 3:E1 — the similitude `(t, x, y, z) ↦ (cz, ax − by, bx + ay, cνt)` with `a² + b² = ν` and `c² = −1` multiplies `Q_ν = −ν t² + x² + y² + z²` by `ν`."
    },
    {
     "name": "FRC.Causal.class_flip",
@@ -462,7 +462,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "3:B7 — multiplication by the drive exchanges the two square classes of the nonzero residues."
+    "doc": "3:B7, 3:E1 — multiplication by the drive exchanges the two square classes of the nonzero residues."
    },
    {
     "name": "FRC.Causal.null_elliptic",
@@ -471,7 +471,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "3:B4, 3:B7 — the null cone of `Q_ν` for a nonsquare `ν`: `p³ − p² + p` points, the elliptic count (written `N + p² = p³ + p`)."
+    "doc": "3:B4, 3:B7, 3:E1 — the null cone of `Q_ν` for a nonsquare `ν`: `p³ − p² + p` points, the elliptic count (written `N + p² = p³ + p`)."
    }
   ],
   "B8": [
@@ -567,7 +567,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "7:A10, 3:C2, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
+    "doc": "7:A10, 3:C2, 3:E1, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
    },
    {
     "name": "FRC.Causal.plane_nonzero",
@@ -576,7 +576,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "3:C2, 3:B6 — for the drive `g` the plane `x² − g t²` takes every nonzero value `p + 1` times: the norm-one cycle of `𝔽_p(√g)` (the boosts, `γ² − g b² = 1`) has `p + 1` elements."
+    "doc": "3:C2, 3:B6, 3:E1 — for the drive `g` the plane `x² − g t²` takes every nonzero value `p + 1` times: the norm-one cycle of `𝔽_p(√g)` (the boosts, `γ² − g b² = 1`) has `p + 1` elements."
    }
   ],
   "C3": [
@@ -720,6 +720,80 @@
     "tier": 0,
     "ok": true,
     "doc": "3:D1 [value] — `𝔽₁₇₃`, drive `2`: the null cone of `Q_2` has `173³ − 173² + 173 = 5 147 961` points and the boosts number `174`, from the general counts on the frame `(τ; 0, 1, 2)`."
+   }
+  ],
+  "E1": [
+   {
+    "name": "FRC.Shell.Frame.neg_sq_is_square",
+    "module": "FrcCore/Theme/Extension",
+    "line": 150,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B2, 3:E1 (Thm. nonexistence, the consequence) — `−c²` is a square on every shell: `−c² = (i·c)²` with `i² = −1`; so with `c ≠ 0` every coefficient of `−c² t² + x² + y² + z²` is a square and the form is Euclidean."
+   },
+   {
+    "name": "FRC.Shell.Frame.no_causal_root",
+    "module": "FrcCore/Theme/Extension",
+    "line": 144,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B2, 3:E1 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`."
+   },
+   {
+    "name": "FRC.Causal.similitude",
+    "module": "FrcCore/Theme/Causal",
+    "line": 345,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B7, 3:E1 — the similitude `(t, x, y, z) ↦ (cz, ax − by, bx + ay, cνt)` with `a² + b² = ν` and `c² = −1` multiplies `Q_ν = −ν t² + x² + y² + z²` by `ν`."
+   },
+   {
+    "name": "FRC.Causal.class_flip",
+    "module": "FrcCore/Theme/Causal",
+    "line": 367,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B7, 3:E1 — multiplication by the drive exchanges the two square classes of the nonzero residues."
+   },
+   {
+    "name": "FRC.Causal.null_elliptic",
+    "module": "FrcCore/Theme/Causal",
+    "line": 180,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B4, 3:B7, 3:E1 — the null cone of `Q_ν` for a nonsquare `ν`: `p³ − p² + p` points, the elliptic count (written `N + p² = p³ + p`)."
+   },
+   {
+    "name": "FRC.Shell.Frame.norm_one_mul",
+    "module": "FrcCore/Theme/Extension",
+    "line": 260,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "7:A10, 3:C2, 3:E1, 8:D15 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
+   },
+   {
+    "name": "FRC.Causal.plane_nonzero",
+    "module": "FrcCore/Theme/Causal",
+    "line": 313,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:C2, 3:B6, 3:E1 — for the drive `g` the plane `x² − g t²` takes every nonzero value `p + 1` times: the norm-one cycle of `𝔽_p(√g)` (the boosts, `γ² − g b² = 1`) has `p + 1` elements."
+   },
+   {
+    "name": "FRC.Extension.Ext.w_sq",
+    "module": "FrcCore/Theme/Quadratic",
+    "line": 69,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:A2, 3:B5, 3:E1 — `w² = ν`."
    }
   ],
   "E3": [

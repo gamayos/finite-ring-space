@@ -1,3 +1,4 @@
+import FrcCore.Keys.Foundation
 import FrcCore.Keys.Subject
 
 /-!
@@ -47,3 +48,13 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 /-- info: 'FRC.Ledger.p00042' does not depend on any axioms -/
 #guard_msgs in
 #print axioms FRC.Ledger.p00042
+
+-- 00:D2 (p21011)
+/-- info: 'FRC.Ledger.p21011' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p21011
+
+-- 00:D14 (p00184)
+/-- info: 'FRC.Ledger.p00184' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p00184

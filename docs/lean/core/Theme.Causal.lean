@@ -175,7 +175,7 @@ theorem form_count (F : Frame p κ g) (ν a : Shell p) : formCount ν a = p * p 
     rw [nsum_congr p (fun x _ => hx t x), nsum_add, nsum_const, nsum_mul_left]
   rw [nsum_congr p ht, nsum_add, nsum_const, nsum_mul_left, Nat.mul_assoc]
 
-/-- 3:B4, 3:B7 — the null cone of `Q_ν` for a nonsquare `ν`: `p³ − p² + p` points, the elliptic count (written
+/-- 3:B4, 3:B7, 3:E1 — the null cone of `Q_ν` for a nonsquare `ν`: `p³ − p² + p` points, the elliptic count (written
 `N + p² = p³ + p`). -/
 theorem null_elliptic (F : Frame p κ g) {ν : Shell p} (hν : ¬IsSquare ν) : formCount ν 0 + p * p = p * p * p + p := by
   rw [form_count F, plane_zero_aniso F hν, Nat.mul_one, Nat.add_right_comm, ← Nat.mul_succ]
@@ -308,7 +308,7 @@ theorem plane_const (F : Frame p κ g) {c : Shell p} (hc : c ≠ 0) : planeCount
       _ = planeCount g (-1) := plane_swap F hg (-1)
       _ = planeCount g 1 := h1
 
-/-- 3:C2, 3:B6 — for the drive `g` the plane `x² − g t²` takes every nonzero value `p + 1` times: the norm-one cycle of
+/-- 3:C2, 3:B6, 3:E1 — for the drive `g` the plane `x² − g t²` takes every nonzero value `p + 1` times: the norm-one cycle of
 `𝔽_p(√g)` (the boosts, `γ² − g b² = 1`) has `p + 1` elements. -/
 theorem plane_nonzero (F : Frame p κ g) {c : Shell p} (hc : c ≠ 0) : planeCount g c = p + 1 := by
   rw [plane_const F hc]
@@ -340,7 +340,7 @@ end frame
 section frame
 variable {κ : Nat} {g : Shell p}
 
-/-- 3:B7 — the similitude `(t, x, y, z) ↦ (cz, ax − by, bx + ay, cνt)` with `a² + b² = ν` and `c² = −1` multiplies
+/-- 3:B7, 3:E1 — the similitude `(t, x, y, z) ↦ (cz, ax − by, bx + ay, cνt)` with `a² + b² = ν` and `c² = −1` multiplies
 `Q_ν = −ν t² + x² + y² + z²` by `ν`. -/
 theorem similitude (ν a b c t x y z : Shell p) (hab : a * a + b * b = ν) (hc : c * c = -1) :
     -(ν * ((c * z) * (c * z))) + (a * x + -(b * y)) * (a * x + -(b * y)) + (b * x + a * y) * (b * x + a * y)
@@ -363,7 +363,7 @@ theorem similitude (ν a b c t x y z : Shell p) (hab : a * a + b * b = ν) (hc :
   have h2 : a * a + b * b + -ν = 0 := by rw [hab, add_neg]
   rw [e, h1, h2, zero_mul, zero_mul, add_zero, add_zero]
 
-/-- 3:B7 — multiplication by the drive exchanges the two square classes of the nonzero residues. -/
+/-- 3:B7, 3:E1 — multiplication by the drive exchanges the two square classes of the nonzero residues. -/
 theorem class_flip (F : Frame p κ g) {s : Shell p} (hs : s ≠ 0) : IsSquare s ↔ ¬IsSquare (g * s) := by
   obtain ⟨k, _, hk⟩ := F.eq_pow_of_ne_zero hs
   have hgs : g * s = g ^ (k + 1) := by rw [← hk, Shell.pow_succ, mul_comm]

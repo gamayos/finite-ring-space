@@ -3,7 +3,7 @@
  "tree": "46-yangmills-20261107",
  "title": "Yang–Mills and the Mass Gap over Finite Holographic Substrate",
  "doi": null,
- "generated": "11 November 2026",
+ "generated": "12 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -91,7 +91,7 @@
     },
     {
      "label": "A11",
-     "predicate": "The $0^{++}$ channel of the strong-coupling expansion for $\\SU(3)$: $am=-4\\ln u-3u+9u^{2}-\\frac{27}{2}u^{3}-7u^{4}-\\frac{297}{2}u^{5}+\\frac{858827}{10240}u^{6}+\\frac{47641149}{71680}u^{7}$ in $u=c_3$; its coefficients are rationals of the same multiplicities as $c_3$, not recomputed here.",
+     "predicate": "The $0^{++}$ channel of the strong-coupling expansion for $\\SU(3)$: $am=-4\\ln u-3u+9u^{2}-\\frac{27}{2}u^{3}-7u^{4}-\\frac{297}{2}u^{5}+\\frac{858827}{10240}u^{6}+\\frac{47641149}{71680}u^{7}$ in the chart's fundamental plaquette coefficient $u$; its coefficients are rationals of the same multiplicities as $c_3$, not recomputed here.",
      "tag": "I",
      "source": "Prop.~\\ref{prop:plaquette}; \\citep{munster1981,langelage2007}",
      "key": "p46039",
@@ -115,7 +115,7 @@
     },
     {
      "label": "A14",
-     "predicate": "Green's theorem: for a finite group and a representation over $\\bar\\F_q$, the sum of the images under a fixed identification $\\iota$ of the eigenvalues is a virtual complex character (Green 1955); the central convolution by it, taken with the group's mean, acts on the $\\chi$-block of $\\C[G]$ as $a_\\chi/\\chi(1)$ with multiplicity $\\chi(1)^2$. For C19, C20.",
+     "predicate": "Green's theorem: for a finite group and a representation over a finite field, the sum of roots of unity that lift the eigenvalues is a virtual character (Green 1955); the central convolution by it, taken with the group's mean, acts on the block of an irreducible character $\\chi$ as $a_\\chi/\\chi(1)$ with multiplicity $\\chi(1)^2$. For C19, C20.",
      "tag": "I",
      "source": "Thm.~\\ref{thm:subjects}; \\citep{green1955,quillen1972}",
      "key": "p46059",
@@ -123,10 +123,18 @@
     },
     {
      "label": "A15",
-     "predicate": "The generic character table of $\\SU(3,q)$ (Simpson and Frame 1973; CHEVIE): eight class types with centralizer orders and ten character families in the parameter $q$; verified at import by brute force at $q=2,3$ and by the orthogonality relations at nine $q$. For C19, C20, C23.",
+     "predicate": "The generic character table of $\\SU(3,q)$ (Simpson and Frame 1973; CHEVIE): eight class types with centralizer orders and ten character families in the parameter $q$; verified at import by brute force at $q=2,3$ and by the orthogonality relations at nine $q$. For C16, C19, C20, C23, C25.",
      "tag": "I",
      "source": "Thm.~\\ref{thm:subjects}; \\citep{simpsonframe1973,chevie1996}",
      "key": "p46060",
+     "name": null
+    },
+    {
+     "label": "A16",
+     "predicate": "The stiffness of the connection (the interactions paper): the coefficient of the action, counted in action quanta $\\hbar$ per link per chronon; by channel unity it is $1$ and the bare coupling is $\\alpha=1/4\\pi$, a canonical normalisation and not a measured coupling. Wilson's coupling is $\\beta=2N\\stf$: $6$ on the colour frame at channel unity. The plaquette term is $\\stf(\\chi+\\bar\\chi)$.",
+     "tag": "I",
+     "source": "Prop.~\\ref{prop:stiffness}; \\citep{akhtman2026fields,wilson1974,kogut1979}",
+     "key": "p46069",
      "name": null
     }
    ]
@@ -161,7 +169,7 @@
     },
     {
      "label": "B4",
-     "predicate": "The spectral amplitude of a plaquette: $M=\\operatorname{lcm}(q^{2}-1,q^{2}-q+1)$, a chosen identification $\\iota$ of the roots of unity of order dividing $M$ in $\\F_{q^{6}}$ with the powers of $\\zeta_M$; for $U=U_sU_n$ by powers, $w(U)=\\sum_j\\iota(\\lambda_j)$ over the eigenvalues of $U_s$; a configuration's amplitude $\\prod_\\square w(U_\\square)$, a tally's paired weight $Z\\bar Z$. The configurations and the registered quantity are B3's.",
+     "predicate": "The spectral amplitude of a plaquette: roots of unity of orders $q^{2}-1$ and $q^{2}-q+1$ for two cycles, the units of $\\F_{q^{2}}$ and the powers of a frame element $C$ with no eigenvalue there; $w(U)$ sums the three phases of the class of $U_s$; a configuration's amplitude $\\prod_\\square w(U_\\square)$, a tally's paired weight $Z\\bar Z$. B3 declares the configurations and the registered quantity.",
      "tag": "D",
      "source": "Def.~\\ref{def:amplitude}; \\citep{luebeck2020}",
      "key": "p46055",
@@ -174,6 +182,14 @@
      "source": "Real.~\\ref{real:colour}; \\citep{akhtman2026fields}",
      "key": "p46063",
      "name": null
+    },
+    {
+     "label": "B6",
+     "predicate": "[chart] The chart's cells. The one-loop law (A4) is a law of powers, $W(w_2)/W(w_1)=(w_1/w_2)^{b_0}$ with $W=e^{-8\\pi^{2}\\stf}$. A scale $n$ drive steps below channel unity (A16, B2) has $W$ higher by $\\gen^{\\,b_0n}$ and the stiffness $\\stf_n=1-n\\,b_0\\ln\\gen/8\\pi^{2}$. For $b_0=11$, $\\gen=2$ one step is $0.0966$, positive through $n=10$. The running is $\\Om$-hard and the law an extrapolation.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:cells}; \\citep{akhtman2026fields}\\newline \\pywit{yangmills}{p46070}{B6}",
+     "key": "p46070",
+     "name": "chart_cells"
     }
    ]
   },
@@ -231,9 +247,9 @@
     },
     {
      "label": "C7",
-     "predicate": "The tension's coefficient to order $\\beta^{7}$: the fundamental plaquette coefficient of $\\SU(3)$ with the real Wilson action is $c_3=\\beta/18+\\beta^{2}/216-5\\beta^{4}/93312-\\dots$ modulo $\\beta^{8}$, every coefficient a rational built from the singlet multiplicities, which are the frame's in the degrees used (A9). The instance $2T$ agrees with $\\SU(2)$'s series through $\\beta^{3}$, first differing at $\\beta^{5}$.",
+     "predicate": "The tension's coefficient to order $\\stf^{7}$: the fundamental plaquette coefficient of $\\SU(3)$ in the stiffness (A16) is $c_3=\\stf/3+\\stf^{2}/6-5\\stf^{4}/72-\\dots$ modulo $\\stf^{8}$, every coefficient a rational built from the singlet multiplicities, the frame's in the degrees used (A9); the computed terms sum to $\\frac{23}{54}$ at channel unity. The instance $2T$ agrees with $\\SU(2)$'s series through $\\stf^{3}$, first differing at $\\stf^{5}$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:c1}; rests on A7, A9\\newline \\pywit{yangmills}{p46016}{C7}, \\leanwit{FrcCore}{p46016}{C7} \\lean{FRC.YangMills.moments, FRC.YangMills.c3\\_fractions, FRC.YangMills.c3\\_readback, FRC.YangMills.c2\\_lab}",
+     "source": "Thm.~\\ref{thm:c1}; rests on A7, A9, A16\\newline \\pywit{yangmills}{p46016}{C7}, \\leanwit{FrcCore}{p46016}{C7} \\lean{FRC.YangMills.moments, FRC.YangMills.c3\\_fractions, FRC.YangMills.c3\\_readback, FRC.YangMills.c2\\_lab}",
      "key": "p46016",
      "name": "tension_coefficient_series"
     },
@@ -247,7 +263,7 @@
     },
     {
      "label": "C9",
-     "predicate": "The adjoint wrap: the adjoint plaquette coefficient has $\\beta^{1}$ coefficient $0$ and $\\beta^{2}$ coefficient $\\frac{1}{288}=\\frac98(\\frac{1}{18})^{2}$, both identities holding on $\\SU(3,\\F_2)$ by enumeration; modulo $\\beta^{6}$, $c_8=\\frac98c_3^{2}(1-\\beta/18+\\beta^{2}/432+\\beta^{3}/2592)$: twice the fundamental string tension at leading order.",
+     "predicate": "The adjoint wrap: the adjoint plaquette coefficient has $\\stf^{1}$ coefficient $0$ and $\\stf^{2}$ coefficient $\\frac18=\\frac98(\\frac13)^{2}$, both identities holding on $\\SU(3,\\F_2)$ by enumeration; modulo $\\stf^{6}$, $c_8=\\frac98c_3^{2}(1-\\stf/3+\\stf^{2}/12+\\stf^{3}/12)$: twice the fundamental string tension at leading order.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:adjoint}; rests on A9, C7\\newline \\pywit{yangmills}{p46030}{C9}, \\leanwit{FrcCore}{p46030}{C9} \\lean{FRC.YangMills.adjoint\\_two\\_sheets}",
      "key": "p46030",
@@ -263,11 +279,11 @@
     },
     {
      "label": "C11",
-     "predicate": "[chart] The plaquette channel of the chart fails: with A11's series and $u=c_3(\\beta)$ (C7), $m/\\sig=6.6$, $5.9$, $5.3$, $4.8$ at $u=0.06$, $0.10$, $0.15$, $0.20$, the orders $3$, $5$, $7$ agreeing within $1\\,\\%$; at $u=0.30$ they give $3.97$, $3.59$, $3.78$, the fifth alone in $3.4$--$3.7$; the scaling region is $u\\approx0.42$.",
+     "predicate": "[chart] The plaquette channel of the chart fails: with A11's series and $u$ the sum of $c_3$ through $\\stf^{7}$ at B6's cells, $m/\\sig=6.9$, $6.2$, $5.6$, $5.1$ for $n=9,\\dots,6$, orders $3,5,7$ within $1\\,\\%$; at $n=3$: $3.98$, $3.60$, $3.79$, the fifth alone in $3.4$--$3.7$; at channel unity, $u=\\frac{23}{54}$, $2.95$, $0.45$, $2.82$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:plaquette}; rests on A7, A11, C7\\newline \\pywit{yangmills}{p46038}{C11}, \\leanwit{FrcCore}{p46038}{C11}, \\leanwit{FrcMathlib}{p46038}{C11} \\lean{FRC.YangMills.plaquette\\_channel, YangMills.plaquette\\_values}",
-     "key": "p46038",
-     "name": "plaquette_channel_fails"
+     "source": "Prop.~\\ref{prop:plaquette}; rests on A7, A11, B6, C7\\newline \\pywit{yangmills}{p46071}{C11}, \\leanwit{FrcCore}{p46071}{C11}, \\leanwit{FrcMathlib}{p46071}{C11} \\lean{FRC.YangMills.plaquette\\_cells, YangMills.plaquette\\_cells\\_values}",
+     "key": "p46071",
+     "name": "plaquette_channel_cells"
     },
     {
      "label": "C12",
@@ -287,7 +303,7 @@
     },
     {
      "label": "C14",
-     "predicate": "The series' window: the $\\beta^{k}$ coefficient of $c_3$ uses the invariant counts of degree $\\le k+1$, that of $c_8$ degree $\\le k+2$, so the frame's series equal the compact ones through $\\beta^{\\p-3}$, $\\beta^{\\p-4}$ by A9 and $\\beta^{2\\p-2}$, $\\beta^{2\\p-3}$ by C15; on the instance $M(4,1)=4$ against $3$ puts $c_3$'s $\\beta^{4}$ at $0$ and $c_8$'s $\\beta^{3}$ at $1/1728$.",
+     "predicate": "The series' window: the $\\stf^{k}$ coefficient of $c_3$ uses the invariant counts of degree $\\le k+1$, that of $c_8$ degree $\\le k+2$, so the frame's coefficients are built from the compact counts through $\\stf^{\\p-3}$, $\\stf^{\\p-4}$ by A9 and $\\stf^{2\\p-2}$, $\\stf^{2\\p-3}$ by C15; on the instance $M(4,1)=4$ against $3$ puts $c_3$'s $\\stf^{4}$ at $0$ and $c_8$'s $\\stf^{3}$ at $1/8$.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:window}; rests on A9, C7, C9, C15\\newline \\pywit{yangmills}{p46051}{C14}, \\leanwit{FrcCore}{p46051}{C14} \\lean{FRC.YangMills.series\\_window}",
      "key": "p46051",
@@ -303,15 +319,15 @@
     },
     {
      "label": "C16",
-     "predicate": "The amplitude's finite properties: every eigenvalue of the frame lies in $\\F_{q^{6}}$ with order dividing $M$; $w$ is a class function, $w(U^{-1})=\\overline{w(U)}$, $w(zU)=\\iota(z)w(U)$ for central $z$, and reduces to $\\operatorname{Tr}U$; if $\\p$ divides the order of $U$ then $U_s$ has eigenvalues $(\\lambda,\\lambda,\\lambda^{-2})$, $\\lambda^{q+1}=1$, so $w(U)=2\\eta+\\eta^{-2}$ and every unipotent has $w=3$; if $3\\mid q+1$ then $\\langle w\\rangle=0$ (B3).",
+     "predicate": "The amplitude's finite properties: $U_s$ has three eigenvalues in $\\F_{q^{2}}$, or none and an order dividing $q^{2}-q+1$; $w$ is a class function, $w(U^{-1})=\\overline{w(U)}$, $w(zU)=\\iota(z)w(U)$ for central $z$, and reduces to $\\operatorname{Tr}U$; if $\\p$ divides the order of $U$ then $U_s$ has eigenvalues $(\\lambda,\\lambda,\\lambda^{-2})$, $\\lambda^{q+1}=1$, so $w(U)=2\\eta+\\eta^{-2}$ and every unipotent has $w=3$; if $3\\mid q+1$ then $\\langle w\\rangle=0$ (B3).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:amplitude}; rests on B3, B4\\newline \\pywit{yangmills}{p46056}{C16}, \\leanwit{FrcCore}{p46056}{C16} \\lean{FRC.YangMills.spectral\\_amplitude}",
+     "source": "Prop.~\\ref{prop:amplitude}; rests on A15, B3, B4\\newline \\pywit{yangmills}{p46056}{C16}, \\leanwit{FrcCore}{p46056}{C16} \\lean{FRC.YangMills.spectral\\_amplitude, FRC.YangMills.frame\\_cycle\\_trace}",
      "key": "p46056",
      "name": "spectral_amplitude_theorem"
     },
     {
      "label": "C17",
-     "predicate": "The amplitude on the instance: on $\\SU(3,\\F_2)$ the values $3$, $3\\zeta_3$, $3\\zeta_3^{2}$ on $64$ elements each and $0$ on $24$; the moments $\\frac1{216}\\sum w^{a}\\bar w^{b}$ at $(1,1)$, $(3,0)$, $(2,2)$ are $8$, $24$, $72$, not the invariant counts $1$, $1$, $2$ (C3); two involutions with $w=3$ have a product with $w=0$: $w$ is no complex character.",
+     "predicate": "The amplitude on $\\SU(3,\\F_2)$ takes the values $3$, $3\\zeta_3$, $3\\zeta_3^{2}$ on $64$ elements each and $0$ on $24$; the moments $\\frac1{216}\\sum w^{a}\\bar w^{b}$ at $(1,1)$, $(3,0)$, $(2,2)$ are $8$, $24$, $72$, not the invariant counts $1$, $1$, $2$ (C3); two involutions with $w=3$ have a product with $w=0$: $w$ is no character over $\\Q(\\zeta_3)$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:amplitude}; rests on B4, C3, C16\\newline \\pywit{yangmills}{p46057}{C17}, \\leanwit{FrcCore}{p46057}{C17} \\lean{FRC.YangMills.instance\\_amplitude}",
      "key": "p46057",
@@ -327,17 +343,17 @@
     },
     {
      "label": "C19",
-     "predicate": "The transfer tally on the Subjects: on $q=3,4,5,7,13,173,1549$ by exact integer arithmetic $w=\\chi_{q^2-q+1}+\\chi_{q^3+1}-\\chi_{(q+1)^2(q-1)}$ (first members of the three families, A15), so the step $K$ (B3) has the eigenvalues $\\frac1{q^2-q+1}$, $\\frac1{q^3+1}$, $-\\frac1{(q+1)^2(q-1)}$, $0$ with multiplicities the squared degrees; the frame's mean of $w$ is $0$, moment $3$; $K$ not positive.",
+     "predicate": "The transfer tally on the Subjects: for every prime power $q\\ge3$, on each class type of A15, $w=\\chi_{q^2-q+1}+\\chi_{q^3+1}-\\chi_{(q+1)^2(q-1)}$ (first members of the three families, A15), so the step $K$ (B3) has the eigenvalues $\\frac1{q^2-q+1}$, $\\frac1{q^3+1}$, $-\\frac1{(q+1)^2(q-1)}$, $0$ with multiplicities the squared degrees; the frame's mean of $w$ is $0$, moment $3$; $K$ not positive.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:subjects}; rests on A14, A15, B3, B4, C16\\newline \\pywit{yangmills}{p46061}{C19}, \\leanwit{FrcCore}{p46061}{C19} \\lean{FRC.YangMills.subject\\_spectrum, FRC.YangMills.degree\\_identity}",
+     "source": "Thm.~\\ref{thm:subjects}; rests on A15, B3, B4, C16\\newline \\pywit{yangmills}{p46061}{C19}, \\leanwit{FrcCore}{p46061}{C19} \\lean{FRC.YangMills.subject\\_spectrum, FRC.YangMills.degree\\_identity}",
      "key": "p46061",
      "name": "subject_spectrum_theorem"
     },
     {
      "label": "C20",
-     "predicate": "The tally of the ring of plaquettes and the transfer tally's gap: on the frames of C19 the tally sums three characters' terms $\\chi(h_1)\\chi(h_2^{-1})$ on the boundary classes; one plaquette multiplies each by its eigenvalue; the largest eigenvalue belongs to one character and is $q+1$ times the next. Modulo $\\p$ the eigenvalues are $1$ and at fixed classes the tally is the same for every length.",
+     "predicate": "On C19's frames the ring's tally sums three characters' terms $\\chi(h_1)\\chi(h_2^{-1})$ on the boundary classes; one plaquette multiplies each by its eigenvalue; the largest, one character's, is $q+1$ times the next: the transfer tally's gap $1/(q+1)$. Modulo $\\p$ the eigenvalues are $1$ and at fixed classes the reduced tally is the same for every length; the paired weight reduces to a residue of the shell.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:ring}; rests on A14, A15, B3, C19\\newline \\pywit{yangmills}{p46062}{C20}, \\leanwit{FrcCore}{p46062}{C20} \\lean{FRC.YangMills.ring\\_gap}",
+     "source": "Thm.~\\ref{thm:ring}; rests on A15, B3, C19\\newline \\pywit{yangmills}{p46062}{C20}, \\leanwit{FrcCore}{p46062}{C20} \\lean{FRC.YangMills.ring\\_gap, FRC.YangMills.ring\\_tally\\_plane, FRC.YangMills.ring\\_tally\\_outside\\_shell}",
      "key": "p46062",
      "name": "ring_gap_theorem"
     },
@@ -345,7 +361,7 @@
      "label": "C21",
      "predicate": "The spectrum in $2\\pi=\\p-1$, the shell's phase cycle, certified by $2\\pi\\equiv-1$ and $\\p$-hard: on the three Subjects $d_1=4\\pi^{2}+2\\pi+1$, $d_2=(2\\pi+2)d_1$, $d_3=8\\pi(\\pi+1)^{2}$, and the gap of the transfer tally is $1/(2\\pi+2)$, a pure number, one expression on every Subject, with the residue $1$ on the shell. [chart] $0.1207$ at the classical $\\pi$.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:pi}; rests on C20\\newline \\pywit{yangmills}{p46064}{C21}, \\leanwit{FrcCore}{p46064}{C21} \\lean{FRC.YangMills.spectrum\\_in\\_pi}",
+     "source": "Cor.~\\ref{cor:pi}; rests on C20\\newline \\pywit{yangmills}{p46064}{C21}, \\leanwit{FrcCore}{p46064}{C21}, \\leanwit{FrcMathlib}{p46064}{C21} \\lean{FRC.YangMills.spectrum\\_in\\_pi, YangMills.gap\\_at\\_classical\\_pi}",
      "key": "p46064",
      "name": "spectrum_in_two_pi"
     },
@@ -359,11 +375,35 @@
     },
     {
      "label": "C23",
-     "predicate": "The tally with the same boundary links at every step, of the eigenvalues $g^{\\pm j},1$ and $g^{\\pm k},1$: the boundary classes of C20 move with the length $n$. On the three Subjects the tally reads $1+g^{(j+k)n}+g^{-(j+k)n}+g^{(j-k)n}+g^{-(j-k)n}$ at every regular length, with stated values at the others and the period $\\p-1$. The exponents are the links'; the three multipliers add none.",
+     "predicate": "The tally with the same boundary links at every step, of the eigenvalues $g^{\\pm j},1$ and $g^{\\pm k},1$: the boundary classes of C20 move with the length $n$. On every Subject it reads $1+g^{(j+k)n}+g^{-(j+k)n}+g^{(j-k)n}+g^{-(j-k)n}$ at every regular length, with stated values at the others and the least period $(\\p-1)/\\gcdop(j,k,\\p-1)$. Every exponent is a multiple of $\\gcdop(j,k,\\p-1)$; the three multipliers add none.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:uniform}; rests on A15, C20\\newline \\pywit{yangmills}{p46066}{C23}, \\leanwit{FrcCore}{p46066}{C23} \\lean{FRC.YangMills.uniform\\_boundary\\_tally}",
      "key": "p46066",
      "name": "uniform_boundary"
+    },
+    {
+     "label": "C24",
+     "predicate": "What a reading keeps of the window: the counts of C15 are equal as integers, and on $\\F_{13}$ the pair $(1,13)$ has $2574=13\\cdot198$ independent invariants and reads $0$, with $52$ of the $117$ nonzero counts. The coefficients of C14 below $\\stf^{\\p}$ have values in the Subject's arithmetic; from $\\stf^{\\p}$ on they contain a factorial that reads $0$, and the paper states no reading.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:window}, Thm.~\\ref{thm:window}; rests on B3, C14, C15\\newline \\pywit{yangmills}{p46067}{C24}, \\leanwit{FrcCore}{p46067}{C24} \\lean{FRC.YangMills.window\\_readings}",
+     "key": "p46067",
+     "name": "readings_of_window"
+    },
+    {
+     "label": "C25",
+     "predicate": "Three rings of $n$ plaquettes on $n$ common links. For every prime power $q\\ge3$ the tally sums $\\chi_i(h_1)\\chi_j(h_2)\\chi_k(h_3)$ on the boundary classes with the invariant counts of the triples of characters; the mean of $w^{3}$ is $6$. On every Subject, on split classes of the eigenvalues $x^{\\pm1},1$, $y^{\\pm1},1$, $z^{\\pm1},1$, it reads $1+N_{122}(c(x)c(y)+c(x)c(z)+c(y)c(z))$, $c(m)=m+m^{-1}$, $N_{122}=2$ or $4$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:triple}; rests on A15, B3, C20\\newline \\pywit{yangmills}{p46068}{C25}, \\leanwit{FrcCore}{p46068}{C25} \\lean{FRC.YangMills.three\\_rings\\_reading}",
+     "key": "p46068",
+     "name": "three_rings"
+    },
+    {
+     "label": "C26",
+     "predicate": "The series on the shell: $d_R\\,c_R=\\sum_kh_k\\stf^{k}/k!$ with integers $h_k$ ($0,1,1,0,-5,-15,21,413$ for $c_3$) from a recursion without division, on residues at every order. In the divided-power algebra on a Subject $f(0)=0$ gives $f^{\\p}=0$, so a reading that respects sums and products sends $\\stf$ to $0$; at channel unity on $\\F_{13}$ the truncated sum reads $6$, the quotient of truncated sums $4$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:hurwitz}; rests on C7, C9, C14\\newline \\pywit{yangmills}{p46072}{C26}, \\leanwit{FrcCore}{p46072}{C26} \\lean{FRC.YangMills.shell\\_series\\_readings}",
+     "key": "p46072",
+     "name": "series_on_shell"
     }
    ]
   },
@@ -477,7 +517,7 @@
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Proved at the statement the source column names, which also lists the rows it rests on; machine-verified in exact arithmetic by the named check and, where a Lean cell is named, proved in the framework's axiom-free core."
+   "text": "Proved at the statement the source column names, which also lists the rows it rests on; machine-verified in exact arithmetic by the named check and, where a Lean cell is named, its arithmetic is proved in the framework's axiom-free core. A \\textsf{leanML} cell names a theorem on Mathlib as well."
   },
   {
    "tag": "Ω",
@@ -491,7 +531,7 @@
    {
     "name": "FRC.YangMills.no_shell_eigenvalue",
     "module": "FrcCore/Theme/YangMills",
-    "line": 59,
+    "line": 61,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -500,7 +540,7 @@
    {
     "name": "FRC.YangMills.scalar_of_im_zero",
     "module": "FrcCore/Theme/YangMills",
-    "line": 80,
+    "line": 82,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -509,7 +549,7 @@
    {
     "name": "FRC.YangMills.split_fixed_lines",
     "module": "FrcCore/Theme/YangMills",
-    "line": 88,
+    "line": 90,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -520,7 +560,7 @@
    {
     "name": "FRC.YangMills.centre_sweep",
     "module": "FrcCore/Theme/YangMills",
-    "line": 125,
+    "line": 127,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -529,7 +569,7 @@
    {
     "name": "FRC.YangMills.lab_centres",
     "module": "FrcCore/Theme/YangMills",
-    "line": 132,
+    "line": 134,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -538,7 +578,7 @@
    {
     "name": "FRC.YangMills.full_centre_sweep",
     "module": "FrcCore/Theme/YangMills",
-    "line": 139,
+    "line": 141,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -547,7 +587,7 @@
    {
     "name": "FRC.YangMills.carrier_triality",
     "module": "FrcCore/Theme/YangMills",
-    "line": 149,
+    "line": 151,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -558,7 +598,7 @@
    {
     "name": "FRC.YangMills.glueball_singlet",
     "module": "FrcCore/Theme/YangMills",
-    "line": 165,
+    "line": 167,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -569,7 +609,7 @@
    {
     "name": "FRC.YangMills.casimirs",
     "module": "FrcCore/Theme/YangMills",
-    "line": 194,
+    "line": 196,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -578,7 +618,7 @@
    {
     "name": "FRC.YangMills.casimir_exponents",
     "module": "FrcCore/Theme/YangMills",
-    "line": 205,
+    "line": 207,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -601,7 +641,7 @@
    {
     "name": "FRC.YangMills.b0_values",
     "module": "FrcCore/Theme/YangMills",
-    "line": 216,
+    "line": 218,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -610,7 +650,7 @@
    {
     "name": "FRC.YangMills.b0_pos",
     "module": "FrcCore/Theme/YangMills",
-    "line": 220,
+    "line": 222,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -619,7 +659,7 @@
    {
     "name": "FRC.YangMills.b0_seventeen",
     "module": "FrcCore/Theme/YangMills",
-    "line": 224,
+    "line": 226,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -628,7 +668,7 @@
    {
     "name": "FRC.YangMills.b0_neg",
     "module": "FrcCore/Theme/YangMills",
-    "line": 228,
+    "line": 230,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -639,7 +679,7 @@
    {
     "name": "FRC.YangMills.drive_exponent",
     "module": "FrcCore/Theme/YangMills",
-    "line": 235,
+    "line": 237,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -648,7 +688,7 @@
    {
     "name": "FRC.YangMills.drive_exponent_unique",
     "module": "FrcCore/Theme/YangMills",
-    "line": 239,
+    "line": 241,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -657,7 +697,7 @@
    {
     "name": "FRC.YangMills.drive_exponent_add",
     "module": "FrcCore/Theme/YangMills",
-    "line": 244,
+    "line": 246,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -668,7 +708,7 @@
    {
     "name": "FRC.YangMills.moments",
     "module": "FrcCore/Theme/YangMills",
-    "line": 305,
+    "line": 307,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -677,47 +717,47 @@
    {
     "name": "FRC.YangMills.c3_fractions",
     "module": "FrcCore/Theme/YangMills",
-    "line": 487,
+    "line": 488,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "46:C7 — the eight fractions of `c₃` modulo `β⁸`, from the multiplicities of `moments`."
+    "doc": "46:C7 — the eight fractions of `c₃` modulo `ϑ⁸`, from the multiplicities of `moments`."
    },
    {
     "name": "FRC.YangMills.c3_readback",
     "module": "FrcCore/Theme/YangMills",
-    "line": 496,
+    "line": 497,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "46:C7 — the residue of every fraction of `c3_fractions` is the series' coefficient on the shell (`c3Check`): on the three laboratory Subjects and on the `20` shells `13 ≤ p < 200`; the shell `5` is blind to the coefficients of `β⁶` and `β⁷`, whose denominators it divides."
+    "doc": "46:C7 — the residue of every fraction of `c3_fractions` is the series' coefficient on the shell (`c3Check`): on the three laboratory Subjects and on the `20` shells `13 ≤ p < 200`; the shell `5` is blind to the coefficients of `ϑ⁶` and `ϑ⁷`, whose denominators it divides."
    },
    {
     "name": "FRC.YangMills.c2_lab",
     "module": "FrcCore/Theme/YangMills",
-    "line": 475,
+    "line": 476,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "46:C7 — `SU(2)`'s `β/4 − β³/96 + β⁵/1536` against `2T`'s `β/4 − β³/96 + β⁵/1280` on the three laboratory Subjects: the same coefficients through `β³`, the first difference at `β⁵`."
+    "doc": "46:C7 — `SU(2)`'s `ϑ − 2ϑ³/3 + 2ϑ⁵/3` against `2T`'s `ϑ − 2ϑ³/3 + 4ϑ⁵/5` on the three laboratory Subjects: the same coefficients through `ϑ³`, the first difference at `ϑ⁵`."
    }
   ],
   "C9": [
    {
     "name": "FRC.YangMills.adjoint_two_sheets",
     "module": "FrcCore/Theme/YangMills",
-    "line": 184,
+    "line": 186,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "46:C9 — the two multiplicity identities of the adjoint wrap: the `β¹` coefficient of the adjoint plaquette coefficient vanishes (`E[χ²χ̄] + E[χχ̄²] − E[χ] − E[χ̄] = 0`, no singlet in `𝟠 ⊗ 𝟛` or `𝟠 ⊗ 𝟛̄`), and `4 E[(χχ̄ − 1)(Re χ)²] = 2` (`E[χ³χ̄] + 2E[χ²χ̄²] + E[χχ̄³] − E[χ²] − 2E[χχ̄] − E[χ̄²] = 2`), so `c₈ = β²/288 + …`, the square of `c₃`'s `β/18` up to the factor `9/8`: the adjoint wrap is two fundamental wraps. Stated on the sixfold multiplicities `moment6`."
+    "doc": "46:C9 — the two multiplicity identities of the adjoint wrap: the `ϑ¹` coefficient of the adjoint plaquette coefficient vanishes (`E[χ²χ̄] + E[χχ̄²] − E[χ] − E[χ̄] = 0`, no singlet in `𝟠 ⊗ 𝟛` or `𝟠 ⊗ 𝟛̄`), and `4 E[(χχ̄ − 1)(Re χ)²] = 2` (`E[χ³χ̄] + 2E[χ²χ̄²] + E[χχ̄³] − E[χ²] − 2E[χχ̄] − E[χ̄²] = 2`), so `c₈ = ϑ²/8 + …`, the square of `c₃`'s `ϑ/3` up to the factor `9/8`: the adjoint wrap is two fundamental wraps. Stated on the sixfold multiplicities `moment6`."
    }
   ],
   "C10": [
    {
     "name": "FRC.YangMills.herbst_comparison",
     "module": "FrcCore/Theme/YangMills",
-    "line": 525,
+    "line": 526,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -752,16 +792,16 @@
   ],
   "C11": [
    {
-    "name": "FRC.YangMills.plaquette_channel",
+    "name": "FRC.YangMills.plaquette_cells",
     "module": "FrcCore/Theme/YangMills",
-    "line": 582,
+    "line": 586,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "46:C11 — at order `7`, `m/√σ ∈ (6.55, 6.65), (5.85, 5.95), (5.25, 5.35), (4.75, 4.85)` at `u = 0.06, 0.10, 0.15, 0.20` with the orders `3, 5, 7` within `1 %`; above `3.7` still at `u = 0.25`; at `u = 0.30` the order-`5` value lies in `(3.4, 3.7)`, the order-`7` value in `(3.5, 4.0)`, and the orders disagree by more than `9 %`. The frame's `u(β)`: `u(1) ∈ (0.0601, 0.0602)`, `u(3) ∈ (0.203, 0.2031)`, `u(6) ∈ (0.42, 0.43)`."
+    "doc": "46:C11 — the plaquette channel at the chart's cells (46:B6), at the cells' `u` to four decimals, `u = 0.0465, 0.0842, 0.1246, 0.1671` for `n = 9, 8, 7, 6`: at order `7`, `m/√σ ∈ (6.85, 6.95), (6.15, 6.25), (5.55, 5.65), (5.05, 5.15)`, with the orders `3, 5, 7` within `1 %`; at `n = 4` (`u = 0.2553`) the three orders lie above `3.7`; at `n = 3` (`u = 0.2994`) the order-`5` value lies in `(3.4, 3.7)` and the orders `3` and `7` above `3.7`; at `n = 2` (`u = 0.3425`) the order-`3` value lies in `(3.4, 3.7)` and the orders `5` and `7` below `3.4`; at channel unity `u = 23/54` exactly, and the orders `3, 5, 7` lie in `(2.9, 3.0), (0.4, 0.5), (2.8, 2.9)`. That the abscissae are the cells' `u`, the sums of the computed terms of `c₃` through `ϑ⁷` at the cells' stiffness, is the chart check of the ledger file and a theorem on Mathlib (`FRC.YangMillsML.plaquette_cells_values`)."
    },
    {
-    "name": "FRC.YangMills.plaquette_values",
+    "name": "FRC.YangMills.plaquette_cells_values",
     "module": "FrcMathlib/YangMills",
     "line": 65,
     "axioms": [
@@ -771,14 +811,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "46:C11 — `YangMillsML.plaquette_values`: the plaquette channel's `m/√σ` at `u = 0.06`–`0.30` with `Real.log`: `6.6`, `5.9`, `5.3`, `4.8` at order seven, and the orders' disagreement at `u = 0.30`."
+    "doc": "46:C11 — `YangMillsML.plaquette_cells_values`: the plaquette channel's `m/√σ` at the chart's cells over the reals, the cells' stiffness from `π` and `ln 2`, `u` the sum of the computed terms of `c₃` through `ϑ⁷`: `6.9`, `6.2`, `5.6`, `5.1` at `n = 9, 8, 7, 6` with the orders within `1 %`, the orders' disagreement at `n = 3` and at `n = 2`, and `2.95`, `0.45`, `2.82` at channel unity, where `u = 23/54`."
    }
   ],
   "C12": [
    {
     "name": "FRC.YangMills.wrap_family",
     "module": "FrcCore/Theme/YangMills",
-    "line": 615,
+    "line": 623,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -787,7 +827,7 @@
    {
     "name": "FRC.YangMills.wrap_family_values",
     "module": "FrcMathlib/YangMills",
-    "line": 77,
+    "line": 89,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -802,7 +842,7 @@
    {
     "name": "FRC.YangMills.spin_traces",
     "module": "FrcCore/Theme/YangMills",
-    "line": 704,
+    "line": 712,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -811,7 +851,7 @@
    {
     "name": "FRC.YangMills.faulhaber_third",
     "module": "FrcCore/Theme/YangMills",
-    "line": 720,
+    "line": 728,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -820,7 +860,7 @@
    {
     "name": "FRC.YangMills.faulhaber_residues",
     "module": "FrcCore/Theme/YangMills",
-    "line": 724,
+    "line": 732,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -829,7 +869,7 @@
    {
     "name": "FRC.YangMills.complete_cycle_vanishes",
     "module": "FrcCore/Theme/YangMills",
-    "line": 730,
+    "line": 738,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -838,7 +878,7 @@
    {
     "name": "FRC.YangMills.hughes_nielsen_sum",
     "module": "FrcCore/Theme/YangMills",
-    "line": 737,
+    "line": 745,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -862,40 +902,49 @@
    {
     "name": "FRC.YangMills.series_window",
     "module": "FrcCore/Theme/YangMills",
-    "line": 398,
+    "line": 399,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "46:C14 — the series' window, the corollary of A9 (the push on T06, 9 November 2026). The `β^k` coefficient of `c₃` is built from the invariant counts of degree `≤ k + 1` (`exc k` has degree `k + 1`, `ex k` degree `k`), so on a Subject `p`, where the frame's counts equal the compact ones through degree `p − 2` (A9), the frame's series equals the compact one through `β^{p−3}`: `β^{10}` on `13`, `β^{170}` on `173`, `β^{1546}` on `1549`, all beyond the `β^7` computed. Decided on the shell `13`: raising the degree-`8` count `exc 7` by one leaves the coefficients of `β^0`…`β^6` unchanged and moves `β^7`; and the instance's departure at degree `5` (`M(4,1) = M(1,4) = 4` against `3`, so `exc 4 = 20` against `15`) puts the instance's `β^4` coefficient at `0`, where the compact one is `−5/93312` (`c3Targets`), a nonzero residue on the shell; the five decisions are the Boolean `windowCheck`."
+    "doc": "46:C14 — the series' window, the corollary of A9 (the push on T06, 9 November 2026). The `ϑ^k` coefficient of `c₃` is built from the invariant counts of degree `≤ k + 1` (`exc k` has degree `k + 1`, `ex k` degree `k`), so on a Subject `p`, where the frame's counts equal the compact ones through degree `p − 2` (A9), the frame's series equals the compact one through `ϑ^{p−3}`: `ϑ^{10}` on `13`, `ϑ^{170}` on `173`, `ϑ^{1546}` on `1549`, all beyond the `ϑ^7` computed. Decided on the shell `13`: raising the degree-`8` count `exc 7` by one leaves the coefficients of `ϑ^0`…`ϑ^6` unchanged and moves `ϑ^7`; and the instance's departure at degree `5` (`M(4,1) = M(1,4) = 4` against `3`, so `exc 4 = 20` against `15`) puts the instance's `ϑ^4` coefficient at `0`, where the compact one is `−5/72` (`c3Targets`), a nonzero residue on the shell; the five decisions are the Boolean `windowCheck`."
    }
   ],
   "C15": [
    {
     "name": "FRC.YangMills.frame_window",
     "module": "FrcCore/Theme/YangMills",
-    "line": 791,
+    "line": 799,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "46:C15 — on the shell `13`: the four rows of the binomial table are the proof's pattern; the weights `(25, 11, 11)` of `v_13`'s words are unequal, with `25 − 11 = 14 = p + 1`; the first departure lies in `[26, 49]` on `13`, `[346, 689]` on `173`, `[3098, 6193]` on `1549`; the series' window is `β^{24}, β^{23}` on `13`, beyond the `β^{7}` computed; and `4q − 3` is `5`, `9` at `q = 2, 3`."
+    "doc": "46:C15 — on the shell `13`: the four rows of the binomial table are the proof's pattern; the weights `(25, 11, 11)` of `v_13`'s words are unequal, with `25 − 11 = 14 = p + 1`; the first departure lies in `[26, 49]` on `13`, `[346, 689]` on `173`, `[3098, 6193]` on `1549`; the series' window is `ϑ^{24}, ϑ^{23}` on `13`, beyond the `ϑ^{7}` computed; and `4q − 3` is `5`, `9` at `q = 2, 3`."
    }
   ],
   "C16": [
    {
     "name": "FRC.YangMills.spectral_amplitude",
     "module": "FrcCore/Theme/YangMills",
-    "line": 822,
+    "line": 830,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "46:C16 — the conductors `M = lcm(p² − 1, p² − p + 1)` on the Subjects, their gcds with the Carriers' cycles `Ω − 1`, the non-split orders `p² − p + 1` prime to the cycles (`157` against `232` on the Subject `13`), the centre of order `3` on `173` only; and in `Z[ζ₃]` the singular identity `2η + η⁻² = 3η` for `η = z, z²`, the conjugation `z ↦ z²`, `z³ = 1`, `z ≠ 1` and `1 + z + z² = 0`."
+    "doc": "46:C16 — the plane's cycles `p² − 1` on the Subjects, their gcds with the Carriers' cycles `Ω − 1`, the orders `p² − p + 1` of the second cycle prime to the cycles (`157` against `232` on the Subject `13`), the centre of order `3` on `173` only; and in `Z[ζ₃]` the singular identity `2η + η⁻² = 3η` for `η = z, z²`, the conjugation `z ↦ z²`, `z³ = 1`, `z ≠ 1` and `1 + z + z² = 0`."
+   },
+   {
+    "name": "FRC.YangMills.frame_cycle_trace",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 906,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C16 — the second cycle on the three Subjects, in the arithmetic of the plane `F_p(√2)` alone, for a matrix with the characteristic polynomial of a generator of that cycle: the companion matrix `C` of `x³ − t x² + t̄ x − 1`, `t = (9, 4)`, `(166, 160)`, `(1275, 523)`. A frame element with this characteristic polynomial is conjugate to `C` over the plane, and the statements do not change under conjugation. `C` has the order `p² − p + 1 = 157`, `29757`, `2397853` (a power `C^(m/r)` is not `1` for the prime divisors `r` of `m`) and no eigenvalue on the plane. `C`, `C^(p²)` and `C^(−p)` are the three roots of the polynomial: their sum is `t·1`, the sum of their pairwise products `t̄·1` and their product `1`, so `C^k + C^(kp²) + C^(−kp) = (Tr C^k)·1` for every power. On `173` the power `C^(m/3)` is the central point `(86, 155)` of order `3`."
    }
   ],
   "C17": [
    {
     "name": "FRC.YangMills.instance_amplitude",
     "module": "FrcCore/Theme/YangMills",
-    "line": 838,
+    "line": 921,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -906,7 +955,7 @@
    {
     "name": "FRC.YangMills.instance_transfer",
     "module": "FrcCore/Theme/YangMills",
-    "line": 851,
+    "line": 934,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -917,7 +966,7 @@
    {
     "name": "FRC.YangMills.subject_spectrum",
     "module": "FrcCore/Theme/YangMills",
-    "line": 891,
+    "line": 974,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -926,7 +975,7 @@
    {
     "name": "FRC.YangMills.degree_identity",
     "module": "FrcCore/Theme/YangMills",
-    "line": 902,
+    "line": 985,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -937,29 +986,60 @@
    {
     "name": "FRC.YangMills.ring_gap",
     "module": "FrcCore/Theme/YangMills",
-    "line": 914,
+    "line": 997,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "46:C20 — the gap of the transfer tally is `1/(q + 1)` on the seven frames of 46:C19: `1/14`, `1/174`, `1/1550` on the Subjects."
+   },
+   {
+    "name": "FRC.YangMills.ring_tally_plane",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 1022,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C20 — the reduced tally of the ring on pairs `a + b√ν`, for every modulus `p` and every `ν`; for a nonsquare `ν` of a Subject the pairs are its quadratic extension `K`. The six arguments are reduced character values that take at `h⁻¹` the conjugate of their value at `h`; that they do is the table's identity, checked class by class in the ledger file. (1) The conjugate of the reduced tally is the tally formed at the conjugate values. (2) The product of the two is the norm of the reduced tally, an element of the shell."
+   },
+   {
+    "name": "FRC.YangMills.ring_tally_outside_shell",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 1048,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C20 — the tally of the ring at a boundary class with eigenvalues outside the shell, on the three Subjects, in `K = F_p(√2)` on pairs `(a, b) = a + b√2`. (1) `2` is a nonsquare, by Euler's criterion, and the residues of `2⁻¹`. (2) The eigenvalues `√2`, `−√2/2`, `−1` of `h₂`: their product is `1`, the second is the inverse of the conjugate of the first, the third times the first is its conjugate, and the first plus the second is `√2/2`. (3) The reduced tally is `−1 − (5/4)√2`: `(12, 2)`, `(172, 42)`, `(1548, 386)`, outside the shell, with the second coordinate the residue of `−5/4`. (4) Its norm, the reduced paired weight, is `6`, `106`, `966`, the residue of `−17/8`. Every power is taken by repeated multiplication of residues."
    }
   ],
   "C21": [
    {
     "name": "FRC.YangMills.spectrum_in_pi",
     "module": "FrcCore/Theme/YangMills",
-    "line": 921,
+    "line": 1067,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "46:C21 — the spectrum in `2π = p − 1` on the three Subjects, `π = 6, 86, 774`: `d₁ = 4π² + 2π + 1`, `d₂ = (2π + 2) d₁` and `d₃ = 8π(π + 1)²`, so the gap of the transfer tally is `1/(2π + 2)`; and `2π + 2` has the residue `1` on the shell."
+   },
+   {
+    "name": "FRC.YangMills.gap_at_classical_pi",
+    "module": "FrcMathlib/YangMills",
+    "line": 85,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "46:C21 — `YangMillsML.gap_at_classical_pi`: the gap `1/(2π + 2)` of the transfer tally read at the classical `π`, in `(0.12072, 0.12073)`."
    }
   ],
   "C22": [
    {
     "name": "FRC.YangMills.product_channel_counts",
     "module": "FrcCore/Theme/YangMills",
-    "line": 936,
+    "line": 1082,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -970,18 +1050,51 @@
    {
     "name": "FRC.YangMills.uniform_boundary_tally",
     "module": "FrcCore/Theme/YangMills",
-    "line": 992,
+    "line": 1138,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "46:C23 — the tally of the ring with the same boundary links at every step, of the eigenvalues `g^{±j}, 1` and `g^{±k}, 1` with `g = 2` and `(j, k) = (1, 2)`; after `n` steps the boundary classes are those of `x = 2^n` and `y = 4^n`. (1) The inverses of `2` and `4` on the three Subjects. (2) On `13` the tally at the lengths `1` to `12`. (3) On the Subjects `13`, `173`, `1549` the tally is the five powers at every regular length of the drive's cycle. (4) The other lengths: four on each Subject, the multiples of `3`, `43` and `387`. (5) At the length of the cycle the boundary links are units and the tally is `3`. Every product is reduced at once; the largest numeral formed is the degree `(p + 1)²(p − 1)`."
    }
   ],
+  "C24": [
+   {
+    "name": "FRC.YangMills.window_readings",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 1159,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C24 — what a reading keeps of the window. (1) The pair `(1, 13)` has `13!/(840 · 120 · 24) = 2574 = 13 · 198` invariants (the hook formula on `(5, 4, 4)`), so the count reads `0` on the Subject `13`. (2) On the Subjects `13`, `173`, `1549` the factorial `(p − 1)!` reads `p − 1`, and `2` and `3` have inverses: the factors `2`, `3` and `1, …, p − 1` of the denominators of the series' coefficients below `ϑ^p` are units of the shell, and these coefficients are computed in its arithmetic. (3) `p!` reads `0`: from `ϑ^p` on no reading is stated."
+   }
+  ],
+  "C25": [
+   {
+    "name": "FRC.YangMills.three_rings_reading",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 1204,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C25 — three rings on common links, each with the same boundary link at every step, of the eigenvalues `g^{±j}, 1` with `g = 2` and `j = 1, 2, 3`; after `n` steps the boundary classes are those of `2^n`, `4^n` and `8^n`. (1) The inverses of `8` on the three Subjects. (2) The count of invariants of the second character alone, `p` on `13` and `1549` and `3p` on `173`, has the residue `0`. (3) On `13` the regular lengths and their residues. (4) On the Subjects `13`, `173`, `1549` the tally is the expression at every regular length of the drive's cycle. (5) The first length reads `6`, `25` and `616`. Every product is reduced at once."
+   }
+  ],
+  "C26": [
+   {
+    "name": "FRC.YangMills.shell_series_readings",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 1231,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C26 — the series on the shell. (1) The integers `h_k` of `3c₃` and of `8c₈` for `k < 8`, from the counts. (2) `p!` reads `0` on the three laboratory Subjects, so the `p`-th power of the stiffness reads `0` in the divided-power algebra of the series. (3) On the Subject `13` at channel unity the sum of the coefficients of `c₃` below `ϑ¹³` reads `6`, and the quotient of the two truncated sums reads `4`."
+   }
+  ],
   "X1": [
    {
     "name": "FRC.YangMills.no_shell_eigenvalue",
     "module": "FrcCore/Theme/YangMills",
-    "line": 59,
+    "line": 61,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -990,7 +1103,7 @@
    {
     "name": "FRC.YangMills.adjoint_no_invariant",
     "module": "FrcCore/Theme/YangMills",
-    "line": 665,
+    "line": 673,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1001,7 +1114,7 @@
    {
     "name": "FRC.YangMills.residue_series_pieri",
     "module": "FrcCore/Theme/YangMills",
-    "line": 671,
+    "line": 679,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1010,7 +1123,7 @@
    {
     "name": "FRC.YangMills.glueball_singlet",
     "module": "FrcCore/Theme/YangMills",
-    "line": 165,
+    "line": 167,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1021,7 +1134,7 @@
    {
     "name": "FRC.YangMills.casimirs",
     "module": "FrcCore/Theme/YangMills",
-    "line": 194,
+    "line": 196,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1030,7 +1143,7 @@
    {
     "name": "FRC.YangMills.colour_factors_within",
     "module": "FrcCore/Theme/YangMills",
-    "line": 630,
+    "line": 638,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1041,7 +1154,7 @@
    {
     "name": "FRC.YangMills.casimirs",
     "module": "FrcCore/Theme/YangMills",
-    "line": 194,
+    "line": 196,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1050,7 +1163,7 @@
    {
     "name": "FRC.YangMills.colour_factors_within",
     "module": "FrcCore/Theme/YangMills",
-    "line": 630,
+    "line": 638,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1061,7 +1174,7 @@
    {
     "name": "FRC.YangMills.running_one_loop",
     "module": "FrcCore/Theme/YangMills",
-    "line": 654,
+    "line": 662,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1070,7 +1183,7 @@
    {
     "name": "FRC.YangMills.b0_values",
     "module": "FrcCore/Theme/YangMills",
-    "line": 216,
+    "line": 218,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1107,7 +1220,7 @@
    {
     "name": "FRC.YangMills.radial_ratio",
     "module": "FrcCore/Theme/YangMills",
-    "line": 754,
+    "line": 762,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1116,7 +1229,7 @@
    {
     "name": "FRC.YangMills.radial_ratio_confrontation",
     "module": "FrcMathlib/YangMills",
-    "line": 85,
+    "line": 97,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

@@ -19,7 +19,7 @@ file as a numeral: the anchors are ratios.
     wrap_spectrum(a, kappa, k, N, L)      the lowest k eigenvalues of the chart operator a|p| + ϰ r on N sites (35-hadrons C17's construction)
     wrap_family()                         the candidate operators of D5 against the three lattice determinations [chart]
     short_range_route(), plaquette_channel()   the two chart routes of the former task T01, both failing (8 November 2026) [chart]
-    adjoint_ratio(beta)                   the chart's tension ratio σ₈/σ₃ = ln c₈ / ln c₃ at a real β in the regime β ≪ 1
+    adjoint_ratio(theta)                  the chart's tension ratio σ₈/σ₃ = ln c₈ / ln c₃ at the stiffness ϑ of a cell
 """
 import math
 from fractions import Fraction as Q
@@ -191,7 +191,7 @@ def short_range_route(cutoffs=(1.0, 0.5, 0.25), a=2, kappa=2.0, CA=3, N=240, L=1
     g(E) = E₀(C(E)) − E) for each cutoff; and the declared coupling at the one scale, C = C_A α_s(√σ) = 3.02, at r_c = 1.
     Returns the Herbst bounds, the collapse value, and (E₀, C) per cutoff or None where the iteration runs away (E₀ ≤ Λ/√σ = 1/2,
     where the one-loop law has no value). The result of 8 November 2026: 3.54, 3.09, 2.61 at r_c = 1, 1/2, 1/4 and no fixed
-    point at 1/8 — the eigenvalue is the cutoff's, and the cell's size in units of 1/√σ is the chart's β."""
+    point at 1/8 — the eigenvalue is the cutoff's, and the cell's size in units of 1/√σ is set by the stiffness of the cell."""
     def ground(C, rc): return wrap_spectrum(a, kappa, 1, N, L, m, C, rc)[0]
     declared = CA * alpha_s_one_loop(1.0)
     out = dict(herbst=dict(HERBST), declared_coupling=declared, collapse_rc1=ground(declared, 1.0), fixed_points={})
@@ -253,22 +253,35 @@ MUNSTER_0PP = [Q(0), Q(-3), Q(9), Q(-27, 2), Q(-7), Q(-297, 2), Q(858827, 10240)
 # character coefficient (Münster, Nucl. Phys. B190 (1981) 439; as quoted by Langelage, Münster, Philipsen, PoS LATTICE2007 201, arXiv:0710.0512, eq. 2.16)
 
 
-def plaquette_channel(us=("0.06", "0.10", "0.15", "0.20", "0.25", "0.30"), betas=("1", "2", "3", "4", "5", "6")):
+def chart_cells(ns=range(11), b0=11, g=2):
+    """[chart] 46:B6: the stiffness of the chart's cells. The one-loop law is a law of powers, W(w₂)/W(w₁) = (w₁/w₂)^{b₀} for
+    W = e^{−8π²ϑ}: a scale lower by gⁿ has W higher by g^{b₀n}, and W = e^{−8π²} at channel unity. The stiffness is the chart's
+    logarithm of 1/W in the unit 8π², ϑ_n = 1 − n b₀ ln g / 8π². Returns the cells {n: ϑ_n}, the step, the number of steps to
+    W = 1, whether the logarithm of the powers gives the same ϑ_n, and the cell's size a√σ = √(−ln c₃) on the computed terms."""
+    S0 = 8 * math.pi ** 2; step = b0 * math.log(g) / S0
+    cells = {n: 1 - n * step for n in ns}
+    law = all(abs(-(-S0 + b0 * n * math.log(g)) / S0 - cells[n]) < 1e-12 for n in cells)
+    c3 = Y.c1_series(3, 8)
+    size = {n: math.sqrt(-math.log(sum(float(x) * cells[n] ** k for k, x in enumerate(c3)))) for n in cells}
+    return dict(cells=cells, step=step, steps_to_one=1 / step, law=law, size=size)
+
+
+def plaquette_channel(ns=(9, 8, 7, 6, 4, 3, 2)):
     """[chart] T01 route (b): the 0⁺⁺ channel of the strong-coupling expansion — the closed fundamental loop, the adjoint string's
     own excitation at strong coupling — beyond the leading term −4 ln u of the paper's Section 6. m/√σ = a m / √(a²σ) with the
     imported mass series MUNSTER_0PP by order (1, 3, 5, 7) and the tension at leading order a²σ = −ln u (46:A7; the known u⁴–u⁸
-    corrections move it below 0.5 % for u ≤ 0.2). The frame's u = c₃(β) from the β⁷ list of 46:C7 at the listed β. Returns the
-    table, the order spread per u, and u(β)."""
-    c = Y.c1_series(3, 8)
-    def u_of_beta(b): return sum(c[k] * Q(b) ** k for k in range(len(c)))
+    corrections move it below 0.5 % for u ≤ 0.2). The frame's u = c₃ from the ϑ⁷ list of 46:C7 at the chart's cells (46:B6) and
+    at channel unity, where u is the exact sum 23/54. Returns the table by cell, with u and the order spread, and the row of
+    channel unity."""
+    c = Y.c1_series(3, 8); th = chart_cells()["cells"]
     def am(u, order): return -4 * math.log(u) + sum(float(MUNSTER_0PP[k]) * u ** k for k in range(1, order + 1))
-    table = {}
-    for s in us:
-        u = float(Q(s)); sig = math.sqrt(-math.log(u))
+    def row(u):
+        sig = math.sqrt(-math.log(u))
         vals = {o: am(u, o) / sig for o in (1, 3, 5, 7)}
         hi = [vals[o] for o in (3, 5, 7)]
-        table[s] = dict(leading=4 * sig, orders=vals, spread=max(hi) - min(hi))        # the spread of the orders 3, 5, 7
-    return dict(table=table, u_of_beta={b: u_of_beta(b) for b in betas})
+        return dict(u=u, leading=4 * sig, orders=vals, spread=max(hi) - min(hi))        # the spread of the orders 3, 5, 7
+    u1 = sum(c)                                                                        # the exact sum at channel unity
+    return dict(table={n: row(sum(float(x) * th[n] ** k for k, x in enumerate(c))) for n in ns}, unity=dict(row(float(u1)), exact=u1))
 
 
 def wrap_family(spec=None):
@@ -276,7 +289,7 @@ def wrap_family(spec=None):
     candidate's E₀ = Δ/√σ by the dilation symmetry of the chart operator, E₀(a|p| + ϰr) = √(aϰ) E₀(|p| + r), against the three
     lattice determinations of m(0⁺⁺)/√σ (m0pp_determinations): a ∈ {1, 2} (the one-body form of 35-hadrons C17; one |p| per
     massless constituent — both the chart's kinematics), ϰ ∈ {1, 2, 9/4} (one fundamental wrap; the adjoint wrap, two fundamental
-    wraps up to the factor 9/8, with the ratio computed to order β⁴ in the regime β ≪ 1 — yangmills.adjoint_over_fundamental_squared; Casimir
+    wraps up to the factor 9/8, with the ratio computed to order ϑ⁴ — yangmills.adjoint_over_fundamental_squared; Casimir
     scaling C_A/C_F, the chart's intermediate-distance import). Returns the table with each candidate's offset from each
     determination, the ϰ-free radial ratios E₁/E₀, E₂/E₀, the lattice radial ratio, and the effective tension each determination
     would need (none of them a frame value)."""
@@ -297,16 +310,17 @@ def wrap_family(spec=None):
                 kappa_eff=kappa_eff)
 
 
-def adjoint_ratio_table(betas=("0.1", "0.5", "1", "2", "3")):
-    """[chart] adjoint_ratio at a list of real β given as decimal strings: {β: σ₈/σ₃}; the chart tier forms the floats."""
-    return {b: adjoint_ratio(float(b))[0] for b in betas}
+def adjoint_ratio_table(ns=(10, 9, 8, 7, 6, 5)):
+    """[chart] adjoint_ratio at the chart's cells (46:B6): {n: σ₈/σ₃}; the chart tier forms the floats."""
+    th = chart_cells()["cells"]
+    return {n: adjoint_ratio(th[n])[0] for n in ns}
 
 
-def adjoint_ratio(beta, n=8):
-    """[chart] The chart's tension ratio σ₈/σ₃ = ln c₈(β) / ln c₃(β) at a real β in the regime β ≪ 1, from the exact series c₃, c₈
-    of yangmills (the logarithm is the chart's): 1.978, 1.9745, 1.9774, 1.9934, 2.0188 at β = 0.1, 0.5, 1, 2, 3. Returns the
+def adjoint_ratio(theta, n=8):
+    """[chart] The chart's tension ratio σ₈/σ₃ = ln c₈(ϑ) / ln c₃(ϑ) at the stiffness ϑ of a cell, from the exact series c₃, c₈
+    of yangmills (the logarithm is the chart's): 1.976, 1.976, 1.982, 1.992, 2.006, 2.022 at the cells n = 10 to 5. Returns the
     ratio and the two tensions."""
     c3 = Y.c1_series(3, n); c8 = Y.c_adj_series(n)
-    s3 = -math.log(sum(float(c) * beta ** k for k, c in enumerate(c3)))
-    s8 = -math.log(sum(float(c) * beta ** k for k, c in enumerate(c8)))
+    s3 = -math.log(sum(float(c) * theta ** k for k, c in enumerate(c3)))
+    s8 = -math.log(sum(float(c) * theta ** k for k, c in enumerate(c8)))
     return s8 / s3, s3, s8

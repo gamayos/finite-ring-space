@@ -139,6 +139,7 @@
    "3:C3": "Causality",
    "3:C4": "Causality",
    "3:D1": "Causality",
+   "3:E1": "Causality",
    "3:E3": "Causality",
    "3:E4": "Causality"
   },
@@ -1126,7 +1127,8 @@
    "7:X2": "Spacetime",
    "7:X4": "Spacetime",
    "7:X5": "Spacetime",
-   "7:X6": "Spacetime"
+   "7:X6": "Spacetime",
+   "7:X7": "Spacetime"
   },
   "FrcMathlib": {
    "7:A31": "Spacetime",
@@ -1152,6 +1154,9 @@
    "46:C21": "YangMills",
    "46:C22": "YangMills",
    "46:C23": "YangMills",
+   "46:C24": "YangMills",
+   "46:C25": "YangMills",
+   "46:C26": "YangMills",
    "46:C3": "YangMills",
    "46:C4": "YangMills",
    "46:C5": "YangMills",
@@ -1170,6 +1175,7 @@
    "46:C11": "YangMills",
    "46:C12": "YangMills",
    "46:C13": "YangMills",
+   "46:C21": "YangMills",
    "46:C4": "YangMills",
    "46:P2": "YangMills",
    "46:P3": "YangMills"

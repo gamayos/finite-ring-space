@@ -253,6 +253,11 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 #guard_msgs in
 #print axioms FRC.Ledger.p07048
 
+-- 7:X7 (p07057)
+/-- info: 'FRC.Ledger.p07057' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p07057
+
 -- 7:P1 (p07026)
 /-- info: 'FRC.Ledger.p07026' does not depend on any axioms -/
 #guard_msgs in
