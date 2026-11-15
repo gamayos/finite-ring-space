@@ -51,9 +51,9 @@
     },
     {
      "label": "A6",
-     "predicate": "Four results of the framework: time is the drive (a theorem), mass is winding rate with masslessness as drive-invariance, confinement is the wrap of $\\Om$-hard quark residues into exact hadron residues, and the gauge sector has one $\\Om$-hard scale.",
+     "predicate": "Four results of the framework: time is the drive (a theorem), mass is winding rate with masslessness as drive-invariance and rest energy as phase advance per chronon, confinement is the wrap of $\\Om$-hard quark residues into exact hadron residues, and the gauge sector has one $\\Om$-hard scale.",
      "tag": "I",
-     "source": "Prop.~\\ref{prop:corpus}; \\citep{akhtman2026spacetime,akhtman2026fields,akhtman2026hadrons}",
+     "source": "Prop.~\\ref{prop:corpus}; \\citep{akhtman2026spacetime,akhtman2026fields,akhtman2026quantum,akhtman2026hadrons}",
      "key": "p46006",
      "name": null
     },
@@ -263,7 +263,7 @@
     },
     {
      "label": "C6",
-     "predicate": "The drive exponent. On every shell of the totality the powers of the drive permute the nonzero elements: each winding rate has one exponent below $\\p-1$, and exponents add modulo $\\p-1$ --- the discrete logarithm on the shell. The ledger file decides it on the Subjects and the sweep.",
+     "predicate": "The drive exponent. On every shell of the totality the powers of the drive permute the nonzero elements: each registered scale has one exponent below $\\p-1$, and exponents add modulo $\\p-1$ --- the discrete logarithm on the shell. The ledger file decides it on the Subjects and the sweep.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:exponent}; rests on A5\\newline \\pywit{yangmills}{p46015}{C6}, \\leanwit{FrcCore}{p46015}{C6} \\lean{FRC.YangMills.drive\\_exponent, FRC.YangMills.drive\\_exponent\\_unique, FRC.YangMills.drive\\_exponent\\_add}",
      "key": "p46015",
@@ -428,6 +428,14 @@
      "source": "Prop.~\\ref{prop:hurwitz}; rests on C7, C9, C14\\newline \\pywit{yangmills}{p46072}{C26}, \\leanwit{FrcCore}{p46072}{C26} \\lean{FRC.YangMills.shell\\_series\\_readings}",
      "key": "p46072",
      "name": "series_on_shell"
+    },
+    {
+     "label": "C27",
+     "predicate": "The tally with a norm-one link at every step, of the eigenvalues $u^{j},u^{j},u^{-2j}$ and $u^{k},u^{k},u^{-2k}$. On every Subject the reduced tally is $2u^{(j-k)n}+u^{(j+2k)n}+u^{-(2j+k)n}+u^{-2(j-k)n}$ at every regular length, a point of the plane, with stated values at the others and the period $(\\p+1)/\\gcdop(j,k,\\p+1)$. With one link on each torus it moves on both cycles.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:normone}; rests on A15, C20\\newline \\pywit{yangmills}{p46077}{C27}, \\leanwit{FrcCore}{p46077}{C27} \\lean{FRC.YangMills.norm\\_one\\_link\\_tally}",
+     "key": "p46077",
+     "name": "norm_one_boundary"
     }
    ]
   },
@@ -557,8 +565,8 @@
   "A9": [
    {
     "name": "FRC.YangMills.frame_root_elements",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 955,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 209,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -569,7 +577,7 @@
    {
     "name": "FRC.YangMills.no_shell_eigenvalue",
     "module": "FrcCore/Theme/YangMills",
-    "line": 61,
+    "line": 57,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -578,7 +586,7 @@
    {
     "name": "FRC.YangMills.scalar_of_im_zero",
     "module": "FrcCore/Theme/YangMills",
-    "line": 82,
+    "line": 78,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -587,7 +595,7 @@
    {
     "name": "FRC.YangMills.split_fixed_lines",
     "module": "FrcCore/Theme/YangMills",
-    "line": 90,
+    "line": 86,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -598,7 +606,7 @@
    {
     "name": "FRC.YangMills.centre_sweep",
     "module": "FrcCore/Theme/YangMills",
-    "line": 127,
+    "line": 123,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -607,7 +615,7 @@
    {
     "name": "FRC.YangMills.lab_centres",
     "module": "FrcCore/Theme/YangMills",
-    "line": 134,
+    "line": 130,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -616,7 +624,7 @@
    {
     "name": "FRC.YangMills.full_centre_sweep",
     "module": "FrcCore/Theme/YangMills",
-    "line": 141,
+    "line": 137,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -625,7 +633,7 @@
    {
     "name": "FRC.YangMills.carrier_triality",
     "module": "FrcCore/Theme/YangMills",
-    "line": 151,
+    "line": 147,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -636,7 +644,7 @@
    {
     "name": "FRC.YangMills.glueball_singlet",
     "module": "FrcCore/Theme/YangMills",
-    "line": 167,
+    "line": 163,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -647,7 +655,7 @@
    {
     "name": "FRC.YangMills.casimirs",
     "module": "FrcCore/Theme/YangMills",
-    "line": 196,
+    "line": 192,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -656,7 +664,7 @@
    {
     "name": "FRC.YangMills.casimir_exponents",
     "module": "FrcCore/Theme/YangMills",
-    "line": 207,
+    "line": 203,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -679,7 +687,7 @@
    {
     "name": "FRC.YangMills.b0_values",
     "module": "FrcCore/Theme/YangMills",
-    "line": 218,
+    "line": 214,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -688,7 +696,7 @@
    {
     "name": "FRC.YangMills.b0_pos",
     "module": "FrcCore/Theme/YangMills",
-    "line": 222,
+    "line": 218,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -697,7 +705,7 @@
    {
     "name": "FRC.YangMills.b0_seventeen",
     "module": "FrcCore/Theme/YangMills",
-    "line": 226,
+    "line": 222,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -706,7 +714,7 @@
    {
     "name": "FRC.YangMills.b0_neg",
     "module": "FrcCore/Theme/YangMills",
-    "line": 230,
+    "line": 226,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -717,16 +725,16 @@
    {
     "name": "FRC.YangMills.drive_exponent",
     "module": "FrcCore/Theme/YangMills",
-    "line": 237,
+    "line": 233,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "46:C6 — every winding rate `w ≠ 0` is one power of the drive: `w = gⁿ` for some `n < p − 1` (the discrete logarithm of 26-pnp, `FrameCore.eq_pow_of_ne_zero`)."
+    "doc": "46:C6 — every registered scale `w ≠ 0` is one power of the drive: `w = gⁿ` for some `n < p − 1` (the discrete logarithm of 26-pnp, `FrameCore.eq_pow_of_ne_zero`)."
    },
    {
     "name": "FRC.YangMills.drive_exponent_unique",
     "module": "FrcCore/Theme/YangMills",
-    "line": 241,
+    "line": 237,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -735,7 +743,7 @@
    {
     "name": "FRC.YangMills.drive_exponent_add",
     "module": "FrcCore/Theme/YangMills",
-    "line": 246,
+    "line": 242,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -746,7 +754,7 @@
    {
     "name": "FRC.YangMills.moments",
     "module": "FrcCore/Theme/YangMills",
-    "line": 307,
+    "line": 303,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -755,7 +763,7 @@
    {
     "name": "FRC.YangMills.c3_fractions",
     "module": "FrcCore/Theme/YangMills",
-    "line": 488,
+    "line": 484,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -764,7 +772,7 @@
    {
     "name": "FRC.YangMills.c3_readback",
     "module": "FrcCore/Theme/YangMills",
-    "line": 497,
+    "line": 493,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -773,7 +781,7 @@
    {
     "name": "FRC.YangMills.c2_lab",
     "module": "FrcCore/Theme/YangMills",
-    "line": 476,
+    "line": 472,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -784,7 +792,7 @@
    {
     "name": "FRC.YangMills.adjoint_two_sheets",
     "module": "FrcCore/Theme/YangMills",
-    "line": 186,
+    "line": 182,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -795,7 +803,7 @@
    {
     "name": "FRC.YangMills.herbst_comparison",
     "module": "FrcCore/Theme/YangMills",
-    "line": 526,
+    "line": 522,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -832,7 +840,7 @@
    {
     "name": "FRC.YangMills.plaquette_cells",
     "module": "FrcCore/Theme/YangMills",
-    "line": 586,
+    "line": 582,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -856,7 +864,7 @@
    {
     "name": "FRC.YangMills.wrap_family",
     "module": "FrcCore/Theme/YangMills",
-    "line": 623,
+    "line": 619,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -880,7 +888,7 @@
    {
     "name": "FRC.YangMills.spin_traces",
     "module": "FrcCore/Theme/YangMills",
-    "line": 717,
+    "line": 713,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -889,7 +897,7 @@
    {
     "name": "FRC.YangMills.faulhaber_third",
     "module": "FrcCore/Theme/YangMills",
-    "line": 733,
+    "line": 729,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -898,7 +906,7 @@
    {
     "name": "FRC.YangMills.faulhaber_residues",
     "module": "FrcCore/Theme/YangMills",
-    "line": 737,
+    "line": 733,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -907,7 +915,7 @@
    {
     "name": "FRC.YangMills.complete_cycle_vanishes",
     "module": "FrcCore/Theme/YangMills",
-    "line": 743,
+    "line": 739,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -916,7 +924,7 @@
    {
     "name": "FRC.YangMills.hughes_nielsen_sum",
     "module": "FrcCore/Theme/YangMills",
-    "line": 750,
+    "line": 746,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -940,7 +948,7 @@
    {
     "name": "FRC.YangMills.series_window",
     "module": "FrcCore/Theme/YangMills",
-    "line": 399,
+    "line": 395,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -950,8 +958,8 @@
   "C15": [
    {
     "name": "FRC.YangMills.frame_window",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 804,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 58,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -961,8 +969,8 @@
   "C16": [
    {
     "name": "FRC.YangMills.spectral_amplitude",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 835,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 89,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -970,8 +978,8 @@
    },
    {
     "name": "FRC.YangMills.frame_cycle_trace",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 911,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 165,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -981,8 +989,8 @@
   "C17": [
    {
     "name": "FRC.YangMills.instance_amplitude",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 970,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 224,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -992,8 +1000,8 @@
   "C18": [
    {
     "name": "FRC.YangMills.instance_transfer",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 983,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 237,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1003,8 +1011,8 @@
   "C19": [
    {
     "name": "FRC.YangMills.subject_spectrum",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 1023,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 277,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1012,8 +1020,8 @@
    },
    {
     "name": "FRC.YangMills.degree_identity",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 1034,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 288,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1023,8 +1031,8 @@
   "C20": [
    {
     "name": "FRC.YangMills.ring_gap",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 1046,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 300,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1032,8 +1040,8 @@
    },
    {
     "name": "FRC.YangMills.ring_tally_plane",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 1071,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 325,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1041,8 +1049,8 @@
    },
    {
     "name": "FRC.YangMills.ring_tally_outside_shell",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 1097,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 351,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1052,8 +1060,8 @@
   "C21": [
    {
     "name": "FRC.YangMills.spectrum_in_pi",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 1116,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 370,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1076,8 +1084,8 @@
   "C22": [
    {
     "name": "FRC.YangMills.product_channel_counts",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 1131,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 385,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1087,8 +1095,8 @@
   "C23": [
    {
     "name": "FRC.YangMills.uniform_boundary_tally",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 1187,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 441,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1098,8 +1106,8 @@
   "C24": [
    {
     "name": "FRC.YangMills.window_readings",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 1208,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 462,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1109,8 +1117,8 @@
   "C25": [
    {
     "name": "FRC.YangMills.three_rings_reading",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 1253,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 507,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1120,19 +1128,30 @@
   "C26": [
    {
     "name": "FRC.YangMills.shell_series_readings",
-    "module": "FrcCore/Theme/YangMills",
-    "line": 1280,
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 534,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "46:C26 — the series on the shell. (1) The integers `h_k` of `3c₃` and of `8c₈` for `k < 8`, from the counts. (2) `p!` reads `0` on the three laboratory Subjects, so the `p`-th power of the stiffness reads `0` in the divided-power algebra of the series. (3) On the Subject `13` at channel unity the sum of the coefficients of `c₃` below `ϑ¹³` reads `6`, and the quotient of the two truncated sums reads `4`."
    }
   ],
+  "C27": [
+   {
+    "name": "FRC.YangMills.norm_one_link_tally",
+    "module": "FrcCore/Theme/Plaquette",
+    "line": 673,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C27 — the tally of the ring with a norm-one link at every step, of the eigenvalues `u^j, u^j, u^{−2j}` and `u^k, u^k, u^{−2k}` with `(j, k) = (1, 2)`, in the plane `F_p(√2)` on pairs `(a, b) = a + b√2`; after `n` steps the boundary classes are those of `x = u^n` and `y = u^{2n}`. (1) `u = 3 + 2√2` on `13` and `173` and `u = 1459 + 1276√2` on `1549` have the norm `1` and the order `p + 1`. (2) On `13` the reduced tally at the lengths `1` to `14`, and its norms, the reduced paired weight. (3) On the Subjects `13`, `173`, `1549` the reduced tally is the four powers at every regular length of the norm-one cycle. (4) The other lengths: the multiples of `7`, `29` and `775`. (5) With unit links the tally is `3`. (6) One link on each torus, of the eigenvalues `2, 1, 2⁻¹` and `u, u, u⁻²`: on `13` the first six lengths, the expression `y² + (1 + x + x⁻¹) y⁻¹` at every regular length of the whole period `84`, and the value `3` at the length `84`; on `173` and `1549` the expression at every regular length among the first `1740` and `3100`. (7) The period `L = 84`, `14964`, `1199700` of (6) is the least one on the three Subjects: the length `L` reads `3`, and no length `L/r`, `r` a prime divisor of `L`, reads `3`. Every product is reduced at once."
+   }
+  ],
   "X1": [
    {
     "name": "FRC.YangMills.no_shell_eigenvalue",
     "module": "FrcCore/Theme/YangMills",
-    "line": 61,
+    "line": 57,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1141,7 +1160,7 @@
    {
     "name": "FRC.YangMills.adjoint_no_invariant",
     "module": "FrcCore/Theme/YangMills",
-    "line": 673,
+    "line": 669,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1152,7 +1171,7 @@
    {
     "name": "FRC.YangMills.residue_series_pieri",
     "module": "FrcCore/Theme/YangMills",
-    "line": 679,
+    "line": 675,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1161,7 +1180,7 @@
    {
     "name": "FRC.YangMills.glueball_singlet",
     "module": "FrcCore/Theme/YangMills",
-    "line": 167,
+    "line": 163,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1172,7 +1191,7 @@
    {
     "name": "FRC.YangMills.casimirs",
     "module": "FrcCore/Theme/YangMills",
-    "line": 196,
+    "line": 192,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1181,7 +1200,7 @@
    {
     "name": "FRC.YangMills.colour_factors_within",
     "module": "FrcCore/Theme/YangMills",
-    "line": 638,
+    "line": 634,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1192,7 +1211,7 @@
    {
     "name": "FRC.YangMills.casimirs",
     "module": "FrcCore/Theme/YangMills",
-    "line": 196,
+    "line": 192,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1201,7 +1220,7 @@
    {
     "name": "FRC.YangMills.colour_factors_within",
     "module": "FrcCore/Theme/YangMills",
-    "line": 638,
+    "line": 634,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1212,7 +1231,7 @@
    {
     "name": "FRC.YangMills.running_one_loop",
     "module": "FrcCore/Theme/YangMills",
-    "line": 662,
+    "line": 658,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1221,7 +1240,7 @@
    {
     "name": "FRC.YangMills.b0_values",
     "module": "FrcCore/Theme/YangMills",
-    "line": 218,
+    "line": 214,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1258,7 +1277,7 @@
    {
     "name": "FRC.YangMills.radial_ratio",
     "module": "FrcCore/Theme/YangMills",
-    "line": 767,
+    "line": 763,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1282,7 +1301,7 @@
    {
     "name": "FRC.YangMills.residue_zero_states",
     "module": "FrcCore/Theme/YangMills",
-    "line": 684,
+    "line": 680,
     "axioms": [],
     "tier": 0,
     "ok": true,

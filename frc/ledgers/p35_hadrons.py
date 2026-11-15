@@ -1,50 +1,52 @@
-"""p35_hadrons — the ledger file of 35-hadrons (the 35-hadrons migration, 19 October 2026).
+"""p35_hadrons — the ledger file of 35-hadrons (the migration of 19 October 2026; the paper's revisions of 14 and 15 November 2026).
 
 "Ground-State Light Hadron Spectroscopy over Finite Substrate" (Akhtman and Voether, preprint 2026). The paper's predicate
 ledger is docs/35-hadrons/35-hadrons-ledger.json. This file binds its python-witnessed predicates to the framework: the table
 of keys (generated from the ledger by ci/make_ledgers.py) and the checks of seven blocks. The exact checks call the hadrons
-theme (frc/hadrons.py) over the interactions theme's colour field F_4, unitary frames, Haar moments and polynomials; the
-readings of the PDG masses and of the finite operators' decimals call the chart theme (frc/chart_hadrons.py) and compare
+theme (frc/hadrons.py) over the interactions theme's colour field F_4, unitary frames, Weyl moments and polynomials; the
+readings of the measured masses and of the chart's decimals call the chart theme (frc/chart_hadrons.py) and compare
 them with rational bounds. Each check names the predicate(s) it witnesses (LEDGER) and carries a `# 35:XN (<key>)` marker
 when it decides one (PREDICATES).
 
 The checks are EXACT or CHART, one kind per check. An EXACT check decides by finite-field, integer or rational arithmetic:
-SU(3, F_2) over F_4 by frames with its centre and the colourless content of Λ•(3), the Weyl constant terms of SU(3), the
-relations as zero polynomials over their parameters, the Casimir, spin and charge rationals, the admissible shells, and
-Sturm's count of the finite confinement operator in Fractions; no float decides anything. A CHART check is a reading of
-the PDG masses or of the finite operators' decimals, every float converted exactly before the comparison; its label carries
-"[chart]". The paper's own classes were EXACT, MIXED, PROFINITE and CHART, one per package record (src/35-hadrons, fifteen
-scripts and the figure script run by hadcommon.py): a MIXED record is an exact check here and a chart check, a PROFINITE
-record an exact Sturm bracket and the chart's decimals. FAMILY names the package record each check reproduces, None for
-the checks beyond the package (A5 the flavour cube, F1 the exact brackets). The figure script is not reproduced; the
-package stays the paper's published witness until its release pins the framework.
+SU(3, F_2) over F_4 by frames with its centre, the lines the frame maps to themselves, the fixed vectors of the products of
+triplets, the Weyl constant terms of SU(3), the relations as zero polynomials over their parameters, the Casimir, spin and
+charge rationals, and Sturm's count of the nonrelativistic matrix in Fractions; no float decides anything. A CHART check is
+a reading of the measured masses or of an operator's decimals, every float converted exactly before the comparison; its
+label carries "[chart]". A row with an exact clause and a reading is decided by one check and corroborated by the other
+(35:C16 by B7 with D10 and E1; 35:C17 by F3 with F1 and F2; 35:C24 by F6 with F7; 35:C25 by F8 with F9).
+
+FAMILY names the record of the paper's package (src/35-hadrons, fifteen scripts and the figure script) from which a check
+descends, None for a check without one. The package witnesses the paper as published before the revision; the figure
+script is not reproduced.
 
 The Lean side: the theorems of the hadrons theme (lean/FrcCore/Theme/Hadrons.lean) over the interactions theme's colour
 sector (Theme/Fields.lean), the readings on Mathlib (lean/FrcMathlib/Theme/Hadrons.lean); the keys in Keys/Hadrons.lean of
 both libraries, the certificates Ledgers/P35Hadrons.lean.
 
-The one Ω-hard scale √σ = 440 MeV enters once, declared in the chart data, and only the chart readings use it; the
-electromagnetic coupling α is the imported constant. The shells 53, 173, 389, 1373 are the laboratory shells of the
-discriminator; no numeral above Ω ∼ 10¹²³ is formed.
+The one Ω-hard scale √(ħcσ) = 440 MeV enters once, declared in the chart data, and only chart readings use it; the
+electromagnetic coupling α is the imported constant. A mass is stated in MeV/c² and an energy in MeV, and no constant is
+set to 1. The body's Hamiltonian is computed on the paper's declared grid, 600 sites of [0, 30]. The laboratory Subjects
+are 13, 173 and 1549 and the laboratory Carriers 233, 30089 and 2408561; no numeral above Ω ∼ 10¹²³ is formed.
 
-    python3 -m frc.ledgers.p35_hadrons         every block, the census; exit 1 if a check fails (≈ 15 s, the Sturm count 9 s)
+    python3 -m frc.ledgers.p35_hadrons         every block, the census; exit 1 if a check fails (≈ 12 s: the Sturm count, the register of 1549)
     python3 -m frc.ledgers.p35_hadrons B       one block (A to G)
     from frc.ledgers.p35_hadrons import R; R.predicate("35:C2")    one predicate: its blocks run once per session
 
-Blocks:  A  the colour frame: SU(3, F_2), its centre, the colourless content, the meson contraction, the moments   (35:C1, X2, C15, X1, X3, X7, P4, C18, C14, C6, C23, P5)
-         B  the relations as identities: GMO, the spacing, the third difference, the links, CG, the vector nonet, the gap and the split   (35:C2, X4, C3, X5, C11, C12, C7, X10, X12, C16, C17)
-         C  the colour–spin–charge arithmetic: the colour factor, the spin pattern, the Σ–Λ correlators, the charges   (35:C4, C5, X6, C9, X9, C13)
-         D  the PDG confrontations                                                          (35:P1, P2, P8, C12, P6, C8, X8, C10, C22, X11, P7, P3, P9, P10, P11)
-         E  the single scale: the admissible shells, the residual orders, the ratios at √σ (35:C23, Z1, C20, X13)
-         F  the finite operators: the exact Sturm brackets, the Airy decimals, E₀, the forward landing   (35:C16, C17, C19)
-         G  the electromagnetic magnitude                                                   (35:C21)
+Blocks:  A  the colour frame: SU(3, F_2), its centre, the registrations, the pairing line, the adjoint channel, the cube   (35:C1, X2, C15, X1, X3, X7, P4, C18, C14, P5)
+         B  the relations as identities: GMO, the spacing, the second order, the links, CG, the vector nonet, the gap and the split, the heavy-quark relation, the scaling   (35:C2, X4, C3, X5, C11, C12, C7, X10, X12, C16, C10, X11, X13)
+         C  the colour, spin and charge arithmetic                                          (35:C4, C5, X6, C9, X9, C13, C8, X8)
+         D  the readings of the measured masses                                            (35:P1, P2, C20, C12, P6, P7, P3, P9, P10, C16)
+         E  the measured ratios at the imported scale                                      (35:C16)
+         F  the operators and the winding law: the exact Sturm brackets, the Airy decimals, the body's Hamiltonian, the joint solution, the radial ratio, the law, the register   (35:C17, C19, P12, C24, C25)
+         G  the scale: the electromagnetic magnitude, the Carrier register                 (35:C21, C26, C27)
 
-Checks: 34, of them 18 EXACT and 16 CHART (D1–D10, E2, E3, F2, F3, F4, G1). The notebook frc/ledgers/p35_hadrons.ipynb
-runs one predicate per cell, the cell's id its key (gate G13).
+Checks: 41, of them 23 EXACT and 18 CHART (D1–D10, E1, F2–F5, F7, F9, G1). The notebook frc/ledgers/p35_hadrons.ipynb runs one
+predicate per cell, the cell's id its key (gate G13).
 """
 import sys
 from fractions import Fraction as Q
-from math import comb
+from math import comb, gcd
 
 from frc.registry import Registry
 from frc import interactions as I
@@ -53,61 +55,62 @@ from frc import chart_hadrons as CH
 
 # ---- generated by ci/make_ledgers.py from docs/35-hadrons/35-hadrons-ledger.json; edit the ledger, not this table ----
 PAPER = "35-hadrons"
-KEYS = {"A1": "p35001", "A2": "p35002", "A3": "p35003", "A4": "p35004", "A5": "p35005", "A6": "p35006", "A7": "p35007", "A8": "p35008", "A9": "p35009", "B1": "p35010", "B2": "p35011", "B3": "p35012", "B4": "p35013", "B5": "p00050", "C1": "p35015", "C2": "p35016", "C3": "p35017", "C4": "p35018", "C5": "p35019", "C6": "p35020", "C7": "p35021", "C8": "p35022", "C9": "p35023", "C10": "p35024", "C11": "p35025", "C12": "p35026", "C13": "p35027", "C14": "p35028", "C15": "p35029", "C16": "p35030", "C17": "p35031", "C18": "p35032", "C19": "p35033", "C20": "p35034", "C21": "p35035", "C22": "p35036", "C23": "p35037", "X1": "p35038", "X2": "p35039", "X3": "p35040", "X4": "p35041", "X5": "p35042", "X6": "p35043", "X7": "p35044", "X8": "p35045", "X9": "p35046", "X10": "p35047", "X11": "p35048", "X12": "p35049", "X13": "p35050", "P1": "p35051", "P2": "p35052", "P3": "p35053", "P4": "p35054", "P5": "p35055", "P6": "p35056", "P7": "p35057", "P8": "p35058", "P9": "p35059", "P10": "p35060", "P11": "p35061", "V1": "p35062", "V2": "p35063", "Z1": "p35065"}       # every row of the ledger: its label and its accession key
-LEAN = {"C1": "core", "C2": "core, ml", "C3": "core, ml", "C4": "core, ml", "C5": "core, ml", "C6": "core, ml", "C7": "core, ml", "C8": "core, ml", "C9": "core, ml", "C10": "ml", "C11": "core, ml", "C12": "core, ml", "C13": "core, ml", "C14": "core, ml", "C15": "core", "C16": "core, ml", "C17": "core, ml", "C18": "core, ml", "C19": "core, ml", "C20": "core, ml", "C21": "core, ml", "C22": "ml", "C23": "core, ml", "X1": "core", "X2": "core", "X3": "core", "X4": "core, ml", "X5": "core, ml", "X6": "core, ml", "X7": "core", "X8": "core, ml", "X9": "core, ml", "X10": "core, ml", "X11": "ml", "X12": "core, ml", "X13": "core, ml", "P1": "core, ml", "P2": "core, ml", "P3": "core, ml", "P4": "core", "P5": "core", "P6": "core, ml", "P7": "ml", "P8": "core, ml", "P9": "core, ml", "P10": "core, ml", "P11": "core, ml"}       # the rows with a Lean declaration: the libraries whose key files prove them
+KEYS = {"A1": "p35001", "A2": "p35002", "A3": "p35003", "A4": "p35004", "A5": "p35005", "A6": "p35006", "A7": "p35007", "A8": "p35008", "A9": "p35009", "A10": "p35066", "A11": "p35077", "B1": "p35010", "B2": "p35011", "B3": "p35012", "B4": "p35013", "B5": "p00050", "B6": "p35067", "B7": "p35068", "B8": "p35069", "C1": "p35015", "C2": "p35016", "C3": "p35017", "C4": "p35018", "C5": "p35019", "C7": "p35021", "C8": "p35022", "C9": "p35023", "C10": "p35024", "C11": "p35025", "C12": "p35026", "C13": "p35027", "C14": "p35028", "C15": "p35029", "C16": "p35030", "C17": "p35031", "C18": "p35032", "C19": "p35033", "C20": "p35034", "C21": "p35035", "C24": "p35075", "C25": "p35076", "C26": "p35078", "C27": "p35080", "X1": "p35038", "X2": "p35039", "X3": "p35040", "X4": "p35041", "X5": "p35042", "X6": "p35043", "X7": "p35044", "X8": "p35045", "X9": "p35046", "X10": "p35047", "X11": "p35048", "X12": "p35049", "X13": "p35050", "P1": "p35051", "P2": "p35052", "P3": "p35053", "P4": "p35054", "P5": "p35055", "P6": "p35056", "P7": "p35057", "P9": "p35059", "P10": "p35060", "P12": "p35070", "Y1": "p35079", "T2": "p35072", "T3": "p35073", "T4": "p35074", "Z1": "p35065"}       # every row of the ledger: its label and its accession key
+LEAN = {"C1": "core", "C2": "core, ml", "C3": "core, ml", "C4": "core, ml", "C5": "core, ml", "C7": "core, ml", "C8": "core, ml", "C9": "core, ml", "C10": "core, ml", "C11": "core, ml", "C12": "core, ml", "C13": "core, ml", "C14": "core", "C15": "core", "C16": "core, ml", "C17": "core, ml", "C18": "core, ml", "C19": "core, ml", "C20": "core, ml", "C21": "core, ml", "C24": "core, ml", "C25": "core, ml", "C26": "core", "C27": "core", "X1": "core", "X2": "core", "X3": "core", "X4": "core, ml", "X5": "core, ml", "X6": "core, ml", "X7": "core", "X8": "core, ml", "X9": "core, ml", "X10": "core, ml", "X11": "core, ml", "X12": "core, ml", "X13": "core, ml", "P1": "core, ml", "P2": "core, ml", "P3": "core, ml", "P4": "core", "P5": "core", "P6": "core, ml", "P7": "core, ml", "P9": "core, ml", "P10": "core, ml", "P12": "ml"}       # the rows with a Lean declaration: the libraries whose key files prove them
 # ---- end of the generated table ----
 
 LEAN_ONLY = ()                  # the predicates with a Lean declaration and no python check (gate G12): none
 
 # The paper's predicate ledger (predicates cited as 35:XN): the predicate(s) each check witnesses.
 LEDGER = {
-    "A1": "35:C1, 35:X2", "A2": "35:C15, 35:X1, 35:X3, 35:X7, 35:P4", "A3": "35:C18, 35:X12", "A4": "35:C14, 35:C6, 35:C23", "A5": "35:P5",
-    "B1": "35:C2, 35:X4, 35:P1", "B2": "35:C3, 35:X5, 35:P2", "B3": "35:C11, 35:P8", "B4": "35:C12", "B5": "35:C7, 35:X10, 35:P6",
-    "B6": "35:X12, 35:C18, 35:P9", "B7": "35:C16, 35:C17, 35:P10, 35:P11",
-    "C1": "35:C4, 35:X6", "C2": "35:C5, 35:X6, 35:P3", "C3": "35:C9, 35:X9", "C4": "35:C13, 35:C8, 35:X8, 35:C21",
-    "D1": "35:P1", "D2": "35:P2", "D3": "35:P8", "D4": "35:C12", "D5": "35:P6, 35:C8, 35:X8, 35:C9, 35:X9",
-    "D6": "35:C10, 35:C22, 35:X11, 35:P7", "D7": "35:P3, 35:C6", "D8": "35:P9, 35:C18, 35:X12", "D9": "35:P10", "D10": "35:P11, 35:C16",
-    "E1": "35:C23, 35:Z1, 35:C20, 35:X13", "E2": "35:C20", "E3": "35:X13, 35:C16, 35:C23",
-    "F1": "35:C16", "F2": "35:C16", "F3": "35:C17", "F4": "35:C19",
-    "G1": "35:C21, 35:C13",
+    "A1": "35:C1, 35:X2", "A2": "35:C15, 35:X1, 35:X3, 35:X7, 35:P4", "A3": "35:C18", "A4": "35:C14", "A5": "35:P5",
+    "B1": "35:C2, 35:X4", "B2": "35:C3, 35:X5", "B3": "35:C11", "B4": "35:C12", "B5": "35:C7, 35:X10", "B6": "35:X12, 35:C18",
+    "B7": "35:C16", "B8": "35:C10, 35:X11", "B9": "35:X13",
+    "C1": "35:C4, 35:X6", "C2": "35:C5, 35:X6", "C3": "35:C9, 35:X9", "C4": "35:C13, 35:C8, 35:X8",
+    "D1": "35:P1", "D2": "35:P2", "D3": "35:C20", "D4": "35:C12", "D5": "35:P6, 35:C8, 35:X8, 35:C9, 35:X9", "D6": "35:P7, 35:X11",
+    "D7": "35:P3", "D8": "35:P9, 35:X12", "D9": "35:P10", "D10": "35:C16",
+    "E1": "35:C16",
+    "F1": "35:C17", "F2": "35:C17", "F3": "35:C17", "F4": "35:C19", "F5": "35:P12", "F6": "35:C24", "F7": "35:C24", "F8": "35:C25",
+    "F9": "35:C25",
+    "G1": "35:C21", "G2": "35:C26", "G3": "35:C27",
 }
 
-# the package record (had.<script>) each check reproduces; None for the two checks beyond the package
+# the record of the paper's package (had.<script>) from which each check descends; None for a check without one
 FAMILY = {
     "A1": "su3_singlet", "A2": "carrier_residue", "A3": "vector_nonet", "A4": "em_heavy_cmag", "A5": None,
     "B1": "su3f_relations", "B2": "su3f_relations", "B3": "su3f_second_order", "B4": "su3f_second_order", "B5": "isospin_cottingham",
-    "B6": "vector_nonet", "B7": "confinement_completion",
+    "B6": "vector_nonet", "B7": "confinement_completion", "B8": None, "B9": None,
     "C1": "hyperfine_charsum", "C2": "hyperfine_charsum", "C3": "isospin_cottingham", "C4": "em_heavy_cmag",
     "D1": "su3f_relations", "D2": "su3f_relations", "D3": "su3f_second_order", "D4": "su3f_second_order", "D5": "isospin_cottingham",
     "D6": "heavy_flavour", "D7": "hyperfine_charsum", "D8": "vector_nonet", "D9": "absolute_masses", "D10": "confinement_completion",
-    "E1": "subhorizon_resolution", "E2": "subhorizon_resolution", "E3": "confinement_completion",
-    "F1": None, "F2": "final_resolution", "F3": "confinement_closure", "F4": "forward_eigenvalues",
-    "G1": "em_heavy_cmag",
+    "E1": "subhorizon_resolution",
+    "F1": None, "F2": "final_resolution", "F3": "confinement_closure", "F4": "forward_eigenvalues", "F5": None, "F6": None, "F7": None,
+    "F8": None, "F9": None,
+    "G1": "em_heavy_cmag", "G2": None, "G3": None,
 }
 
-BLOCK = {"A": "the colour frame: SU(3, F_2) by frames, its centre, the colourless content of Λ•(3), the meson contraction, the Weyl moments",
-         "B": "the relations as identities: Gell-Mann–Okubo, the spacing, the third difference, the links, Coleman–Glashow, the vector nonet, the gap and the split",
-         "C": "the colour–spin–charge arithmetic: the colour factor, the spin pattern, the Σ–Λ correlators, the charge structure",
-         "D": "the PDG confrontations: the relations, the hyperfine constant, the orderings, heavy flavour, the vector nonet, the anchored spectrum, the gap",
-         "E": "the single scale: the admissible shells, the residual orders, the ratios at √σ",
-         "F": "the finite confinement operators: the exact Sturm brackets, the Airy decimals, the baryon eigenvalue, the forward landing",
-         "G": "the electromagnetic magnitude: α √σ against the lattice QED splitting"}
+BLOCK = {"A": "the colour frame: SU(3, F_2) by frames, its centre, the lines it maps to themselves, the pairing line, the adjoint channel, the flavour cube",
+         "B": "the relations as identities: Gell-Mann–Okubo, the spacing, the second order, the links, Coleman–Glashow, the vector nonet, the gap and the split, the heavy-quark relation, the scaling with the masses",
+         "C": "the colour, spin and charge arithmetic: the colour factor, the spin pattern, the Σ–Λ correlators, the charge sums",
+         "D": "the readings of the measured masses: the thresholds and residuals of the relations, the second order, the links, the heavy mesons, the anchored spectrum",
+         "E": "the measured ratios at the imported scale √(ħcσ) = 440 MeV",
+         "F": "the operators and the winding law: the exact Sturm brackets, the Airy decimals, the readings of the body's Hamiltonian, the joint solution, the radial ratio, the winding law in the Carrier register and its readings, the register's Hamiltonian against the drive",
+         "G": "the scale: α √(ħcσ) against the lattice's electromagnetic part, and the scale in the Carrier register"}
 
 # the deciding check of each witnessed predicate (the other checks that touch it are corroboration)
 PREDICATES = {
-    "35:C1": "A1", "35:C2": "B1", "35:C3": "B2", "35:C4": "C1", "35:C5": "C2", "35:C6": "A4", "35:C7": "B5", "35:C8": "D5",
-    "35:C9": "C3", "35:C10": "D6", "35:C11": "B3", "35:C12": "B4", "35:C13": "C4", "35:C14": "A4", "35:C15": "A2", "35:C16": "F1",
-    "35:C17": "F3", "35:C18": "A3", "35:C19": "F4", "35:C20": "E2", "35:C21": "G1", "35:C22": "D6", "35:C23": "E1",
-    "35:X1": "A2", "35:X2": "A1", "35:X3": "A2", "35:X4": "B1", "35:X5": "B2", "35:X6": "C2", "35:X7": "A2", "35:X8": "D5",
-    "35:X9": "C3", "35:X10": "B5", "35:X11": "D6", "35:X12": "B6", "35:X13": "E3",
-    "35:P1": "D1", "35:P2": "D2", "35:P3": "D7", "35:P4": "A2", "35:P5": "A5", "35:P6": "D5", "35:P7": "D6", "35:P8": "D3",
-    "35:P9": "D8", "35:P10": "D9", "35:P11": "D10",
-    "35:Z1": "E1",
+    "35:C1": "A1", "35:C2": "B1", "35:C3": "B2", "35:C4": "C1", "35:C5": "C2", "35:C7": "B5", "35:C8": "C4", "35:C9": "C3",
+    "35:C10": "B8", "35:C11": "B3", "35:C12": "B4", "35:C13": "C4", "35:C14": "A4", "35:C15": "A2", "35:C16": "B7",
+    "35:C17": "F3", "35:C18": "A3", "35:C19": "F4", "35:C20": "D3", "35:C21": "G1", "35:C24": "F6", "35:C25": "F8", "35:C26": "G2", "35:C27": "G3",
+    "35:X1": "A2", "35:X2": "A1", "35:X3": "A2", "35:X4": "B1", "35:X5": "B2", "35:X6": "C2", "35:X7": "A2", "35:X8": "C4",
+    "35:X9": "C3", "35:X10": "B5", "35:X11": "B8", "35:X12": "B6", "35:X13": "B9",
+    "35:P1": "D1", "35:P2": "D2", "35:P3": "D7", "35:P4": "A2", "35:P5": "A5", "35:P6": "D5", "35:P7": "D6", "35:P9": "D8",
+    "35:P10": "D9", "35:P12": "F5",
 }
 
 R = Registry("35", "hadrons", LEDGER, PREDICATES, sources=[__file__])
 
-SHELLS = (53, 173, 389, 1373)                           # the laboratory shells of the discriminator
+SUBJECTS = (13, 173, 1549)                              # the laboratory Subjects
 
 
 def _within(x, centre, tol):
@@ -129,148 +132,179 @@ def _f(x, nd=3, sign=False):
 
 
 # ------------------------------------------------------------------------------------------------------------
-# block A: the colour frame (35:C1, X2, C15, X1, X3, X7, P4, C18, X12, C14, C6, C23, P5)
+# block A: the colour frame (35:C1, X2, C15, X1, X3, X7, P4, C18, C14, P5)
 @R.block("A", BLOCK["A"])
 def block_A():
     """Block A — the colour frame over F_4: A1–A5 exact."""
-    # A1 SU(3, F_2) over F_4 by orthonormal frames: 36 unit vectors, |U(3, 2)| = 648, |SU(3, 2)| = 216; g†g = I and det g = 1
-    #    on every element; the centre is the three scalars I, wI, w²I (the cube roots of unity, Z_3 triality), by the full
-    #    commutation table and as the commutant of diag(1, w, w²) and the permutation U₁
+    # A1 SU(3, F_2) over F_4 by orthonormal frames: 36 unit vectors, |U(3, 2)| = 648, |SU(3, 2)| = 216 = q³(q³ + 1)(q² − 1) at
+    #    q = 2; g†g = I and det g = 1 on every element; the centre is the three scalars I, wI, w²I, by the full commutation
+    #    table and as the commutant of diag(1, w, w²) and the permutation U₁; gcd(3, p + 1) on the laboratory Subjects
     F, G = H.colour_group()
     u3 = I.unitary_frames(F, 3, det_one=False)
     scal = H.colour_scalars(F); cen = H.centre(F, G)
     D1 = tuple(tuple(x if i == j else F.zero for j in range(3)) for i, x in enumerate([F.one, (0, 1), (1, 1)]))
     U1 = tuple(tuple(F.one if i + j == 2 else F.zero for j in range(3)) for i in range(3))
     com = H.commutant(F, G, [D1, U1])
-    ok = I.unit_vectors(F, 3) == 36 and len(u3) == 648 and len(G) == 216 and H.hermitian_invariant(F, G)
-    ok &= all(I.det(F, g) == F.one for g in G) and sorted(cen) == sorted(scal) and len(scal) == 3 and sorted(com) == sorted(scal)
-    ok &= D1 in G and U1 in G and all(F.mul(x[0][0], F.mul(x[0][0], x[0][0])) == F.one for x in scal)
+    q = 2; centres = [gcd(3, p + 1) for p in SUBJECTS]
+    ok = I.unit_vectors(F, 3) == 36 and len(u3) == 648 and len(G) == 216 == q ** 3 * (q ** 3 + 1) * (q ** 2 - 1) and H.hermitian_invariant(F, G)
+    ok &= all(I.det(F, g) == F.one for g in G) and sorted(cen) == sorted(scal) and len(scal) == 3 == gcd(3, q + 1) and sorted(com) == sorted(scal)
+    ok &= D1 in G and U1 in G and all(F.mul(x[0][0], F.mul(x[0][0], x[0][0])) == F.one for x in scal) and centres == [1, 3, 1]
     # 35:C1 (p35015), 35:X2 (p35039)
-    R.check("A1", "colour SU(3, F_2) built exactly over F_4 by orthonormal frames: 36 unit vectors, 648 frames (U(3, 2)), 216 of "
-            "determinant one; g†g = I and det g = 1 on every element; the centre is the three scalars I, wI, w²I (Z_3, colour "
-            "triality) by the full commutation table and as the commutant of diag(1, w, w²) and the permutation U₁: the "
-            "colour-singlet baryon is the centre-neutral ε_abc invariant, triality 0", ok,
-            f"|U| = {len(u3)}, |SU| = {len(G)}, centre {len(cen)} scalars, commutant {len(com)}")
+    R.check("A1", "the unitary frame SU(3, F_2), built over F_4 by orthonormal frames: 36 unit vectors, 648 frames of U(3, 2), 216 of "
+            "determinant one, the value of q³(q³ + 1)(q² − 1) at q = 2; g†g = I and det g = 1 on every element, so the contraction "
+            "ε_abc of three triplets is invariant, the determinant line Λ³(3); the centre is the three scalars I, wI, w²I, by the "
+            "full commutation table and as the commutant of diag(1, w, w²) and a permutation, in agreement with gcd(3, q + 1) = 3; "
+            "on the laboratory Subjects 13, 173, 1549 the centre order gcd(3, p + 1) is 1, 3, 1", ok,
+            f"|U| = {len(u3)}, |SU| = {len(G)}, centre {len(cen)} scalars, commutant {len(com)}, gcd(3, p + 1) = {centres}")
 
-    # A2 the colourless content of Λ•(3): no nonzero vector fixed by the group on the fundamental (a quark has residue 0), none on
-    #    Λ²(3) by the 2 × 2 minors and by the conjugate action (the diquark), det g = 1 on all (Λ³ = det, the baryon, residue 1):
-    #    (1, 0, 0, 1); the dimensions 1, 3, 3, 1; the trialities of qqq and q q̄ are 0; the determinant is the only colourless
-    #    escape, at k = N = 3: the proton is the minimal residue-1 colourless object
+    # A2 the registrations among the exterior powers: the fixed vectors of Λ^k(3) span dimensions (1, 0, 0, 1); the frame maps no
+    #    line of the triplet to itself, none of Λ²(3) (by the 2 × 2 minors and by the conjugate action); det g = 1 on every element,
+    #    so Λ³(3) is fixed, and so is the conjugate line Λ³(3̄) (one fixed vector of 3̄ ⊗ 3̄ ⊗ 3̄); |G/[G, G]| = 4 is coprime to
+    #    |F_4^×| = 3, so a line the frame maps to itself is a line it fixes; the trialities of qqq and q q̄ are 0, a quark's is 1
     content = H.colourless_content(F, G)
-    ok = content == (1, 0, 0, 1) and [1, 3, 3, 1] == [comb(3, k) for k in range(4)]
+    inv = [len(H.invariant_lines(F, G)), len(H.invariant_lines(F, G, lambda g: H.wedge2(F, g))),
+           len(H.invariant_lines(F, G, lambda g: H.conj_matrix(F, g)))]
+    ab = H.abelianisation_order(F, G); cube, anticube = H.fixed_dim(F, G, 3, 0), H.fixed_dim(F, G, 0, 3)
+    ok = content == (1, 0, 0, 1) and [1, 3, 3, 1] == [comb(3, k) for k in range(4)] and inv == [0, 0, 0] and len(H.lines(F)) == 21
+    ok &= ab == 4 and gcd(ab, 3) == 1 and cube == 1 and anticube == 1
     ok &= H.triality(3, 0) == 0 and H.triality(1, 1) == 0 and H.triality(1, 0) == 1 and H.triality(2, 0) == 2
     # 35:C15 (p35029), 35:X1 (p35038), 35:X3 (p35040), 35:X7 (p35044), 35:P4 (p35054)
-    R.check("A2", "the baryon is the Carrier residue 1: the colourless content of Λ•(3) on SU(3, F_2) is (1, 0, 0, 1) — no nonzero "
-            "vector of the fundamental fixed by the group (a quark has residue 0), none of Λ²(3) (the minors and the conjugate "
-            "action agree; the diquark), det g = 1 on every element (Λ³ = det, the one invariant, baryon number); the only "
-            "colourless escape is the determinant at k = N = 3, and the trialities of qqq and q q̄ are 0 while a quark's is 1: "
-            "the baryon is three quarks and the proton the minimal residue-1 wrap, with no lighter B = 1 residue", ok,
-            f"content {content}; fixed on 3: {content[1]}, on Λ²: {content[2]}")
+    R.check("A2", "the baryon's residue is 1: on SU(3, F_2) the fixed vectors of Λ^k(3) span dimensions (1, 0, 0, 1); of the 21 lines "
+            "of the triplet the frame maps none to itself, and none of Λ²(3), by the minors and by the conjugate action; det g = 1 on "
+            "every element, so the determinant line Λ³(3) is fixed, and the conjugate line Λ³(3̄) with it; the abelianisation of the "
+            "frame has order 4, coprime to 3, so a line that the frame maps to itself is a line that it fixes; among the exterior "
+            "powers the determinant line is the one registration beside the vacuum, at three quarks; the trialities of qqq and q q̄ "
+            "are 0 and a quark's is 1", ok,
+            f"content {content}; invariant lines on 3, Λ², 3̄: {inv}; |G/[G, G]| = {ab}; fixed in 3⊗3⊗3: {cube}, in 3̄⊗3̄⊗3̄: {anticube}")
 
-    # A3 the meson contraction: g†g = I on all 216 elements is the invariance of the Hermitian form on the basis pairs, so the q q̄
-    #    contraction v^a w̄_a is the one-dimensional invariant of 3 ⊗ 3̄ = 1 ⊕ 8 (the singlet once, by the moments); triality
-    #    1 + 2 ≡ 0, residue 1, B = 0; the residue series photon 2, gluon 0, baryon 1, meson 1
+    # A3 the pairing line: g†g = I on all 216 elements is the invariance of the Hermitian form, so the contraction v^a w̄_a is a
+    #    fixed vector of 3 ⊗ 3̄; the matrices X with g X g† = X for every g are the scalars alone (dimension 1, trace 1 ≠ 0): the
+    #    pairing line is the one line of 3 ⊗ 3̄ that the frame fixes; the classical singlet count E[χχ̄] = 1; triality 1 + 2 ≡ 0
     E, c = H.weyl_moments()
-    ok = H.hermitian_invariant(F, G) and c["singlet_3x3bar"] == 1 and H.triality(1, 1) == 0 and content[3] == 1
+    pair_dim, pair_scalar = H.pairing_fixed_dim(F, G)
+    ok = H.hermitian_invariant(F, G) and (pair_dim, pair_scalar) == (1, True) and H.fixed_dim(F, G, 1, 1) == 1
+    ok &= c["singlet_3x3bar"] == 1 and H.triality(1, 1) == 0 and content[3] == 1
     # 35:C18 (p35032)
-    R.check("A3", "the meson is the Carrier residue 1 with B = 0: g†g = I on every element of SU(3, F_2) is the invariance of the "
-            "Hermitian form on the basis pairs, so the q q̄ contraction is the one invariant of 3 ⊗ 3̄ = 1 ⊕ 8 (one singlet, "
-            "E[χχ̄] = 1), triality 1 + 2 ≡ 0; with the baryon's determinant (A2) the residue series closes: photon 2, gluon 0, "
-            "baryon 1, meson 1", ok, f"E[χχ̄] = {E[(1, 1)]}, Hermitian form invariant on all {len(G)}")
+    R.check("A3", "the meson's residue is 1: g†g = I on every element of SU(3, F_2) is the invariance of the Hermitian form, so the "
+            "q q̄ contraction is a fixed vector of 3 ⊗ 3̄; the matrices fixed by g X g† are the scalars alone, of trace 1, so the "
+            "pairing line is the one line of the product that the frame fixes (the classical count: one singlet, E[χχ̄] = 1); "
+            "triality 1 + 2 ≡ 0; with the determinant line (A2) the series reads baryon 1, meson 1", ok,
+            f"fixed matrices: dimension {pair_dim}, the scalars {pair_scalar}; E[χχ̄] = {E[(1, 1)]}")
 
-    # A4 the adjoint channel by the Weyl constant terms: E[χχ̄] = 1, E[χ²] = 0, the adjoint 8 = χχ̄ − 1 once in 3 ⊗ 3̄
-    #    (E[χ²χ̄²] − E[χχ̄] = 1) and absent from 3 ⊗ 3 (E[χ³χ̄] − E[χ²] = 0); the single-plaquette coefficients c₁ = β/(2N²) = β/18
-    #    (the fundamental, O(β)) and c_adj = β²/(2N)² = β²/36 (the adjoint, O(β²), one order finer than the tension)
-    c1, cadj = H.character_coefficients(3)
+    # A4 the adjoint channel: in the classical count (the Weyl constant terms of SU(3)) the adjoint 8 = χχ̄ − 1 occurs once in
+    #    3 ⊗ 3̄ (E[χ²χ̄²] − E[χχ̄] = 1) and not in 3 ⊗ 3 (E[χ³χ̄] − E[χ²] = 0); on SU(3, F_2) over F_4, by elimination: the frame
+    #    fixes the pairing line and no traceless matrix (A3), the invariant maps of 3 ⊗ 3̄ to itself (the fixed vectors of
+    #    3 ⊗ 3 ⊗ 3̄ ⊗ 3̄) span dimension 2, and no nonzero invariant map takes 3 ⊗ 3̄ to 3 ⊗ 3 (the fixed vectors of 3³ ⊗ 3̄)
     ok = c["adjoint_in_3x3bar"] == 1 and c["adjoint_in_3x3"] == 0 and c["singlet_3x3bar"] == 1 and c["singlet_3x3"] == 0
-    ok &= c1 == Q(1, 18) and cadj == Q(1, 36) and E[(2, 2)] == 2 and E[(3, 1)] == 0
-    # 35:C14 (p35028), 35:C6 (p35020)
-    R.check("A4", "c_mag is the adjoint-channel plaquette sum: by the Weyl constant terms the adjoint 8 sits once in 3 ⊗ 3̄ "
-            "(E[χ²χ̄²] − E[χχ̄] = 2 − 1 = 1) and is absent from 3 ⊗ 3 (E[χ³χ̄] − E[χ²] = 0 − 0), so the colour-magnetic coefficient "
-            "enters at O(β²) with the leading coefficient β²/(2N)² = β²/36, one order finer than the tension's c₁ = β/(2N²) = β/18 "
-            "of the fundamental channel; the dimensionless pattern is exact, the absolute A_light = √σ c_mag carries the Ω-hard "
-            "scale (Z1)", ok, f"moments {dict((k, v) for k, v in E.items() if k in [(1, 1), (2, 0), (2, 2), (3, 1)])}; c₁ {c1} β, c_adj {cadj} β²")
+    ok &= E[(2, 2)] == 2 and E[(3, 1)] == 0
+    self_maps, cross_maps, sym_fixed = H.fixed_dim(F, G, 2, 2), H.fixed_dim(F, G, 3, 1), H.fixed_dim(F, G, 2, 0)
+    ok &= (self_maps, cross_maps, sym_fixed) == (2, 0, 0) and (pair_dim, pair_scalar) == (1, True)
+    # 35:C14 (p35028)
+    R.check("A4", "the adjoint channel: in the classical count the adjoint 8 occurs once in 3 ⊗ 3̄ (E[χ²χ̄²] − E[χχ̄] = 2 − 1) and not "
+            "in 3 ⊗ 3 (E[χ³χ̄] − E[χ²] = 0 − 0); on SU(3, F_2), by elimination over F_4, the frame fixes the pairing line of 3 ⊗ 3̄ "
+            "and no traceless matrix, the invariant maps of 3 ⊗ 3̄ to itself span dimension 2, and no nonzero invariant map takes "
+            "3 ⊗ 3̄ to 3 ⊗ 3", ok,
+            f"moments {dict((k, v) for k, v in E.items() if k in [(1, 1), (2, 0), (2, 2), (3, 1)])}; invariant maps: {self_maps}, {cross_maps}; fixed in 3 ⊗ 3: {sym_fixed}")
 
     # A5 the flavour cube 3 ⊗ 3 ⊗ 3 = 10 ⊕ 8 ⊕ 8 ⊕ 1 by the moments: one singlet (E[χ³] = 1), the adjoint twice (E[χ⁴χ̄] − E[χ³] = 2),
     #    Σ m² = E[χ³χ̄³] = 6 = 1 + 2² + 1 so the remaining ten dimensions are one irreducible; 27 = 10 + 8 + 8 + 1; the symmetric
-    #    spin–flavour cube Sym³(6) has C(8, 3) = 56 = 10·4 + 8·2 states: no multiplet beyond the 8 and the 10 at leading order
+    #    spin–flavour cube Sym³(6) has C(8, 3) = 56 = 10·4 + 8·2 states: no ground-state multiplet beyond the 8 and the 10
     mults, dim27, dim56, split56 = H.flavour_cube()
-    ok = mults == {"1": 1, "8": 2, "10": 1} and dim27 == 27 == 10 + 8 + 8 + 1 and dim56 == 56 == split56 and c["sum_sq_cube"] == 6
+    ok = mults == {"1": 1, "8": 2, "10": 1} and dim27 == 27 == 10 + 8 + 8 + 1 and dim56 == 56 == split56 == comb(8, 3) and c["sum_sq_cube"] == 6
     # 35:P5 (p35055)
-    R.check("A5", "no exotic light multiplets beyond the 8 and the 10 at leading wrap order: the flavour cube 3 ⊗ 3 ⊗ 3 is 10 ⊕ 8 ⊕ 8 ⊕ 1 "
-            "by the Weyl constant terms (one singlet E[χ³] = 1, the adjoint twice E[χ⁴χ̄] − E[χ³] = 2, the squared multiplicities "
+    R.check("A5", "no ground-state light baryon multiplet beyond the 8 and the 10: the flavour cube 3 ⊗ 3 ⊗ 3 is 10 ⊕ 8 ⊕ 8 ⊕ 1 by the "
+            "Weyl constant terms (one singlet E[χ³] = 1, the adjoint twice E[χ⁴χ̄] − E[χ³] = 2, the squared multiplicities "
             "E[χ³χ̄³] = 6 = 1 + 4 + 1, so the remaining ten dimensions are one irreducible), 27 = 10 + 8 + 8 + 1; the symmetric "
-            "spin–flavour cube Sym³(6) has 56 = 10·4 + 8·2 states", ok, f"multiplicities {mults}, Σm² = {c['sum_sq_cube']}, 56 = {split56}")
+            "cube of three flavours and two spins has 56 = 10·4 + 8·2 states", ok, f"multiplicities {mults}, Σm² = {c['sum_sq_cube']}, 56 = {split56}")
 
 
 # ------------------------------------------------------------------------------------------------------------
-# block B: the relations as identities (35:C2, X4, C3, X5, C11, C12, C7, X10, X12, C16, C17)
+# block B: the relations as identities (35:C2, X4, C3, X5, C11, C12, C7, X10, X12, C16, C10, X11, X13)
 @R.block("B", BLOCK["B"])
 def block_B():
-    """Block B — the relations as zero polynomials over their parameters: B1–B7 exact."""
-    # B1 Gell-Mann–Okubo: with M = M₀ + aY + b[I(I+1) − Y²/4] on the octet, 2N + 2Ξ − 3Λ − Σ is the zero polynomial in (M₀, a, b):
-    #    the relation holds for every value of the scale and the breaking parameters
+    """Block B — the relations as zero polynomials over their parameters: B1–B9 exact."""
+    # B1 Gell-Mann–Okubo: with M = M₀ + aY + b[I(I+1) − Y²/4] on the octet, 2N + 2Ξ − 3Λ − Σ is the zero polynomial in (M₀, a, b)
     g = H.gmo_vector()
     # 35:C2 (p35016), 35:X4 (p35041)
-    R.check("B1", "Gell-Mann–Okubo ½(N + Ξ) = ¼(3Λ + Σ) is an exact scale-cancelling identity: with the octet operator "
+    R.check("B1", "Gell-Mann–Okubo ½(N + Ξ) = ¼(3Λ + Σ) is an identity of the first-order octet operator: with "
             "M = M₀ + aY + b[I(I+1) − Y²/4] the combination 2N + 2Ξ − 3Λ − Σ is the zero polynomial in (M₀, a, b), so the "
-            "relation holds for every scale and every breaking parameter — a derived sum rule of linear flavour breaking", g.is_zero(),
-            f"2N + 2Ξ − 3Λ − Σ = {g}")
+            "relation holds for every value of the scale and of the breaking parameters", g.is_zero(), f"2N + 2Ξ − 3Λ − Σ = {g}")
 
     # B2 decuplet equal spacing: with M = α + β n_s both second differences Δ − 2Σ* + Ξ* and Σ* − 2Ξ* + Ω are zero polynomials
     d1, d2 = H.spacing_vectors()
     # 35:C3 (p35017), 35:X5 (p35042)
-    R.check("B2", "the decuplet is equally spaced because the strange seed enters the wrap additively: with M = α + β n_s the two "
-            "second differences Δ − 2Σ* + Ξ* and Σ* − 2Ξ* + Ω are zero polynomials in (α, β); the common spacing is "
-            "β = (M_Ω − M_Δ)/3, one strange-seed wrap increment", d1.is_zero() and d2.is_zero(), f"{d1}, {d2}")
+    R.check("B2", "the decuplet is equally spaced at first order because the strange quark enters the mass additively: with "
+            "M = α + β n_s the two second differences Δ − 2Σ* + Ξ* and Σ* − 2Ξ* + Ω are zero polynomials in (α, β); the common "
+            "spacing is β = (M_Ω − M_Δ)/3", d1.is_zero() and d2.is_zero(), f"{d1}, {d2}")
 
-    # B3 the third difference: in the linear-seed pairwise-hyperfine model (A_ij = A (m/m_i)(m/m_j), r = m/m_s, every decuplet pair
-    #    +1/4) M_Δ − 3M_Σ* + 3M_Ξ* − M_Ω is the zero polynomial in (M₀, d, A, r)
-    t = H.third_difference()
+    # B3 the second order of the pairwise model (A = v_ll, r = m_l/m_s, every decuplet pair +1/4): the octet residual
+    #    ½(N + Ξ) − ¼(3Λ + Σ) is (A/8)(1 − r)² and both decuplet second differences are (A/4)(1 − r)², so the third difference
+    #    vanishes; with independent pair coefficients the same combinations are ⅛ and ¼ of v_ll − 2v_ls + v_ss
+    t = H.third_difference(); so = H.second_order(); sp = H.second_order_pairs()
+    ok = t.is_zero() and all(x.is_zero() for x in so) and all(x.is_zero() for x in sp)
     # 35:C11 (p35025)
-    R.check("B3", "the second-order decuplet relation M_Δ − 3M_Σ* + 3M_Ξ* − M_Ω = 0: in the linear-seed pairwise-hyperfine model "
-            "(A_ij = A (m/m_i)(m/m_j), r = m/m_s, every decuplet pair S_i·S_j = +1/4) the third difference is the zero polynomial "
-            "in (M₀, d, A, r), parameter-free", t.is_zero(), f"third difference = {t}")
+    R.check("B3", "the second order of the pairwise model: the octet residual ½(N + Ξ) − ¼(3Λ + Σ) is ⅛ v_ll (1 − z)² and both decuplet "
+            "second differences are ¼ v_ll (1 − z)², z = m_l/m_s, so the third difference M_Δ − 3M_Σ* + 3M_Ξ* − M_Ω vanishes; all "
+            "four are zero polynomials in the model's parameters, and with independent pair coefficients the octet residual and "
+            "the second differences are ⅛ and ¼ of v_ll − 2v_ls + v_ss", ok, f"third difference {t}; second order {', '.join(str(x) for x in so)}")
 
     # B4 the octet–decuplet hyperfine links: (M_Σ − M_Λ) − (2/3)[(M_Δ − M_N) − (M_Σ* − M_Σ)] and (M_Σ* − M_Σ) − (M_Ξ* − M_Ξ) are
     #    zero polynomials in the same model (the octet correlators −3/4, +1/4, −1 of block C)
     l1, l2 = H.hyperfine_links()
     # 35:C12 (p35026)
     R.check("B4", "the octet–decuplet hyperfine links M_Σ − M_Λ = (2/3)[(M_Δ − M_N) − (M_Σ* − M_Σ)] and M_Σ* − M_Σ = M_Ξ* − M_Ξ are "
-            "parameter-free: both differences are zero polynomials in (M₀, d, A, r) of the linear-seed pairwise-hyperfine model, "
-            "with the octet correlators S_u·S_d = −3/4 (Λ), +1/4 (Σ) and the strange coupling −1 (Σ), the decuplet pairs +1/4",
+            "identities of the pairwise model: both differences are zero polynomials in (M₀, d, A, r), with the octet correlators "
+            "S_u·S_d = −3/4 (Λ), +1/4 (Σ), the strange coupling −1 (Σ) and the decuplet pairs +1/4",
             l1.is_zero() and l2.is_zero(), f"{l1}, {l2}")
 
-    # B5 Coleman–Glashow: counting the d − u content, n − p = δ, Ξ⁻ − Ξ⁰ = δ, Σ⁻ − Σ⁺ = 2δ, so (n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) is the
-    #    zero polynomial in the one-body unit δ; the two-body electromagnetic term cancels in the same count
-    cg = H.coleman_glashow()
+    # B5 Coleman–Glashow: for the mass term, n − p = δ, Ξ⁻ − Ξ⁰ = δ, Σ⁻ − Σ⁺ = 2δ, so (n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) is the zero
+    #    polynomial in δ = m_d − m_u; the same combination of the one-body sums Σ Q_i² and of the two-body sums Σ_{i<j} Q_iQ_j of
+    #    the six states vanishes, so an electromagnetic term with flavour-blind coefficients keeps the identity
+    cg = H.coleman_glashow(); sums, one, two = H.coleman_glashow_sums()
+    ok = cg.is_zero() and one == 0 and two == 0 and len(sums) == 6
     # 35:C7 (p35021), 35:X10 (p35047)
-    R.check("B5", "Coleman–Glashow (n − p) + (Ξ⁻ − Ξ⁰) = Σ⁻ − Σ⁺ is an exact one-body identity: counting the d − u content, "
-            "n − p = δ, Ξ⁻ − Ξ⁰ = δ, Σ⁻ − Σ⁺ = 2δ, so the combination is the zero polynomial in the one-body unit "
-            "δ = δ_d − δ_u (the mass seed and the one-body electromagnetic self-energy together), the two-body term cancelling",
-            cg.is_zero(), f"(n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) = {cg}")
+    R.check("B5", "Coleman–Glashow (n − p) + (Ξ⁻ − Ξ⁰) = Σ⁻ − Σ⁺ is an identity of the mass term, of the one-body charge sums and of "
+            "the two-body charge sums: n − p = δ, Ξ⁻ − Ξ⁰ = δ, Σ⁻ − Σ⁺ = 2δ with δ = m_d − m_u, and the same combination of Σ Q_i² "
+            "and of Σ_{i<j} Q_iQ_j over the six states is zero", ok,
+            f"mass term {cg}; one-body {one}, two-body {two}; " + ", ".join(f"{k} ({a}, {b})" for k, (a, b) in sums.items()))
 
-    # B6 the vector nonet: with M = a + b n_s on the spin-1 nonet, 2M_K* − M_ρ − M_φ is the zero polynomial in (a, b); the same
-    #    frame and the same colour-magnetic operator as the baryons (the spin shift common to the nonet)
+    # B6 the vector nonet: with M = a + b n_s on the spin-1 nonet, 2M_K* − M_ρ − M_φ is the zero polynomial in (a, b)
     v = H.vector_spacing()
     # 35:X12 (p35049)
-    R.check("B6", "the vector mesons space equally, 2M_K* = M_ρ + M_φ: with M = a + b n_s on the spin-1 nonet (the hyperfine a "
-            "common shift) the combination 2K* − ρ − φ is the zero polynomial in (a, b), the vector analogue of the decuplet "
-            "spacing on the same frame, with the meson residue 1 and B = 0 (A3)", v.is_zero(), f"2K* − ρ − φ = {v}")
+    R.check("B6", "the vector mesons space equally, 2M_K* = M_ρ + M_φ: with M = a + b n_s on the spin-1 nonet the combination "
+            "2K* − ρ − φ is the zero polynomial in (a, b), an identity of linear strangeness", v.is_zero(), f"2K* − ρ − φ = {v}")
 
     # B7 the gap and the split: M_Λ − M_N − (m_s − m_l) is the zero polynomial with M_N = 3m_l − (3/4)v_ll and
-    #    M_Λ = 2m_l + m_s − (3/4)v_ll (the strange quark hyperfine-decoupled in Λ, both correlator sums −3/4), and the spin split
-    #    inverts: (M_N + M_Δ)/6 = λ_l, M_Δ − M_N = (3/2)λ_hf; every baryon's correlator sum is its multiplet's g_spin
+    #    M_Λ = 2m_l + m_s − (3/4)v_ll (the hyperfine term cancels in the gap), and the split inverts: (M_N + M_Δ)/6 = m_l,
+    #    M_Δ − M_N = (3/2)v_ll; every baryon's correlator sum is its multiplet's g_spin
     gap = H.gap_identity(); s1, s2 = H.spin_split()
     ok = gap.is_zero() and s1.is_zero() and s2.is_zero() and H.correlator_sums()
-    R.check("B7", "the Λ–N gap is the strange constituent excess and the spin split inverts: M_Λ − M_N − (m_s − m_l) is the zero "
-            "polynomial (both carry the hyperfine −(3/4)v_ll, the strange quark decoupled in Λ), (M_N + M_Δ)/6 − λ_l and "
-            "(M_Δ − M_N) − (3/2)λ_hf are zero polynomials; every octet and decuplet correlator sum equals its multiplet's "
+    # 35:C16 (p35030)
+    R.check("B7", "the constituent parameters from three masses: M_N = 3m_l − (3/4)v_ll, M_Δ = 3m_l + (3/4)v_ll and "
+            "M_Λ − M_N = m_s − m_l, the hyperfine term cancelling in the gap: M_Λ − M_N − (m_s − m_l), (M_N + M_Δ)/6 − m_l and "
+            "(M_Δ − M_N) − (3/2)v_ll are zero polynomials; every octet and decuplet correlator sum equals its multiplet's "
             "g_spin, −3/4 and +3/4", ok, f"gap {gap}, split {s1}, {s2}")
+
+    # B8 the heavy-quark relation in the pairwise model: Λ_Q = m_Q + 2m_l − (3/4)v_ll (the light pair at spin 0, no hyperfine term
+    #    with the heavy quark); a heavy meson has M_P = m_Q + m_l − (3/4)w_Q and M_V = m_Q + m_l + (1/4)w_Q, so its spin average
+    #    M̄ = ¼(M_P + 3M_V) is m_Q + m_l; (M_Λb − M_Λc) − (m_b − m_c) and (M_Λb − M_Λc) − (M̄_B − M̄_D) are zero polynomials
+    h1, h2 = H.hqs_identity()
+    # 35:C10 (p35024), 35:X11 (p35048)
+    R.check("B8", "the heavy-quark relation: Λ_Q holds a spin-0 light pair, so the heavy quark has no hyperfine term, and in the "
+            "pairwise model M_Λb − M_Λc = m_b − m_c = M̄_B − M̄_D with M̄ = ¼(M_P + 3M_V) the spin average of a heavy meson: both "
+            "differences are zero polynomials in (m_b, m_c, m_l, v_ll, w_b, w_c)", h1.is_zero() and h2.is_zero(), f"{h1}, {h2}")
+
+    # B9 the scaling: every mass expression of the models is of degree one in its dimensionful parameters, so every relation
+    #    among masses that the paper proves is homogeneous and holds for every value of the scale
+    masses = H.model_masses()
+    # 35:X13 (p35050)
+    R.check("B9", "the spectrum rests on one scale: every mass expression of the paper's models is of degree one in its dimensionful "
+            "parameters, so each relation among masses is homogeneous in the masses and holds for every value of the scale",
+            H.scales_with_masses() and len(masses) >= 24, f"{len(masses)} mass expressions, each of degree one")
 
 
 # ------------------------------------------------------------------------------------------------------------
-# block C: the colour–spin–charge arithmetic (35:C4, X6, C5, P3, C9, X9, C13, C8, X8, C21)
+# block C: the colour, spin and charge arithmetic (35:C4, X6, C5, C9, X9, C13, C8, X8)
 @R.block("C", BLOCK["C"])
 def block_C():
     """Block C — exact rational arithmetic: C1–C4."""
@@ -284,262 +318,324 @@ def block_C():
             f"C₂ = {c2}, ΣT·T = {sTT}, Σλ·λ = {sll}, per pair {per}")
 
     # C2 the spin pattern g_spin = ½S(S+1) − 9/8: octet −3/4, decuplet +3/4, separation 3/2; the eigenvalues of Σ(λ·λ)(S·S) on
-    #    the singlet (−8/3)g = +2 (octet), −2 (decuplet); M_10 − M_8 = (3/2)A_light with A_light = −(8/3)κ_hf: the decuplet
-    #    heavier by a derived sign
+    #    the singlet (−8/3)g = +2 (octet), −2 (decuplet); M_10 − M_8 = (3/2)A_light with A_light = −(8/3)κ_hf
     e8, e10, sep, de = H.hyperfine_eigenvalues()
     ok = H.g_spin(1) == Q(-3, 4) and H.g_spin(3) == Q(3, 4) and sep == Q(3, 2) and e8 == 2 and e10 == -2 and de == -4
     # 35:C5 (p35019), 35:X6 (p35043)
     R.check("C2", "the hyperfine pattern is exact: g_spin = ½S(S+1) − 9/8 is −3/4 on the octet and +3/4 on the decuplet, the "
             "separation 3/2; the eigenvalues of Σ(λ_i·λ_j)(S_i·S_j) on the singlet are (−8/3)g = +2 and −2; so "
-            "M_10 − M_8 = (3/2)A_light with A_light = −(8/3)κ_hf, the decuplet heavier than the octet by the colour-magnetic "
-            "curvature invariant, a derived sign and pattern", ok, f"g = {H.g_spin(1)}, {H.g_spin(3)}; eigenvalues {e8}, {e10}; separation {sep}")
+            "M_10 − M_8 = (3/2)A_light with A_light = −(8/3)κ_hf: the decuplet is heavier than the octet by the colour-magnetic "
+            "term, a sign and a pattern", ok, f"g = {H.g_spin(1)}, {H.g_spin(3)}; eigenvalues {e8}, {e10}; separation {sep}")
 
     # C3 the Σ–Λ fine structure: the light pair S_u·S_d is −3/4 at spin 0 (Λ) and +1/4 at spin 1 (Σ); the strange coupling
-    #    S_s·(S_u + S_d) at total spin ½ is 0 for the spin-0 pair and −1 for the spin-1 pair; so M_Σ − M_Λ = a_ll(1/4 + 3/4) +
-    #    a_ls(−1 − 0) = a_ll − a_ls = a_ll(1 − m_l/m_s) > 0 for m_s > m_l: Σ heavier, derived
+    #    S_s·(S_u + S_d) at total spin ½ is 0 for the spin-0 pair and −1 for the spin-1 pair; so M_Σ − M_Λ = v_ll − v_ls =
+    #    v_ll(1 − m_l/m_s) > 0 for m_s > m_l
     pc = H.pair_correlators()
     diff_ll, diff_ls = pc["ud_spin1"] - pc["ud_spin0"], pc["s_pair_sigma"] - pc["s_pair_lambda"]
     ok = pc == dict(ud_spin0=Q(-3, 4), ud_spin1=Q(1, 4), s_pair_lambda=Q(0), s_pair_sigma=Q(-1)) and diff_ll == 1 and diff_ls == -1
     # 35:C9 (p35023), 35:X9 (p35046)
-    R.check("C3", "Σ is heavier than Λ by hyperfine fine structure of two states of identical quark content: the light pair's "
+    R.check("C3", "Σ is heavier than Λ by the hyperfine fine structure of two states of identical quark content: the light pair's "
             "S_u·S_d is −3/4 at spin 0 (Λ) and +1/4 at spin 1 (Σ), the strange coupling S_s·(S_u + S_d) at total spin ½ is 0 and −1, "
-            "so M_Σ − M_Λ = a_ll·1 + a_ls·(−1) = a_ll − a_ls = a_ll(1 − m_l/m_s), positive for m_s > m_l", ok,
+            "so M_Σ − M_Λ = v_ll − v_ls = v_ll(1 − m_l/m_s), positive for m_s > m_l", ok,
             f"correlators {dict((k, str(v)) for k, v in pc.items())}")
 
-    # C4 the charge structure: one-body Σ Q² is 1 for uud and 2/3 for udd, two-body Σ_{i<j} Q_iQ_j is 0 and −1/3; both differences
-    #    p − n are +1/3: the electromagnetic term makes the proton heavier; Δ_EM = α √σ × this structure × O(1), so its magnitude
-    #    reduces to the imported α and √σ (no new residue)
+    # C4 the charge sums: one-body Σ Q² is 1 for uud and 2/3 for udd, two-body Σ_{i<j} Q_iQ_j is 0 and −1/3; both differences
+    #    p − n are +1/3: with positive coefficients each electromagnetic term favours the proton by one third of its unit, so
+    #    M_n > M_p is equivalent to a d − u mass difference above the electromagnetic terms; the sums of the six states of
+    #    Coleman–Glashow are exact rationals
     qp = [H.QUARK_CHARGE[q] for q in "uud"]; qn = [H.QUARK_CHARGE[q] for q in "udd"]
     (op, tp), (on, tn) = H.charge_structure(qp), H.charge_structure(qn)
+    sums, one, two = H.coleman_glashow_sums()
     ok = (op, tp) == (1, 0) and (on, tn) == (Q(2, 3), Q(-1, 3)) and op - on == Q(1, 3) and tp - tn == Q(1, 3) and op > on
-    # 35:C13 (p35027)
-    R.check("C4", "the electromagnetic splitting structure is exact: one-body Σ Q² = 1 for the proton (uud) and 2/3 for the neutron "
-            "(udd), two-body Σ_{i<j} Q_iQ_j = 0 and −1/3, both differences p − n equal to +1/3 — the electromagnetic term makes "
-            "the proton heavier; Δ_EM = α √σ × this structure, its magnitude the imported α (A9) times √σ (A3), no new residue", ok,
-            f"p: ({op}, {tp}); n: ({on}, {tn})")
+    ok &= sums["p"] == (op, tp) and sums["n"] == (on, tn) and len(sums) == 6
+    # 35:C13 (p35027), 35:C8 (p35022), 35:X8 (p35045)
+    R.check("C4", "the charge structure of the electromagnetic splitting: the one-body sum Σ Q_i² is 1 for the proton (uud) and 2/3 "
+            "for the neutron (udd), the two-body sum Σ_{i<j} Q_iQ_j is 0 and −1/3, so with positive coefficients both sums favour the "
+            "proton by 1/3 of their unit and M_n > M_p is equivalent to a d − u mass difference above the electromagnetic terms; "
+            "the sums of the six states of the Coleman–Glashow identity are exact rationals", ok,
+            f"p: ({op}, {tp}); n: ({on}, {tn}); differences {op - on}, {tp - tn}")
 
 
 # ------------------------------------------------------------------------------------------------------------
-# block D: the PDG confrontations (35:P1, P2, P8, C12, P6, C8, X8, C9, X9, C10, C22, X11, P7, P3, C6, P9, C18, X12, P10, P11, C16)
+# block D: the readings of the measured masses (35:P1, P2, C20, C12, P6, C8, X8, C9, X9, P7, X11, P3, P9, X12, P10, C16)
 @R.block("D", BLOCK["D"])
 def block_D():
-    """Block D — the readings of the PDG masses: D1–D10 chart."""
-    c = CH.confrontations()
-    # D1 [chart] GMO on the isospin-averaged PDG masses: the residual 0.57 % (in (0.56, 0.58) %), the bounded second order
-    r = c["gmo"]["residual"]
+    """Block D — the readings of the measured masses: D1–D10 chart."""
+    c = CH.confrontations(); th = CH.thresholds()
+    # D1 [chart] GMO on the isospin-averaged masses: ε_s = (M_Λ − M_N)/M_N = 0.188, the threshold ε_s²(M_Ξ − M_N) = 13.4 MeV/c², the
+    #    residual of ½(N + Ξ) against ¼(3Λ + Σ) 6.4 MeV/c², 0.57 %
+    o = th["octet"]; r = c["gmo"]["residual"]
+    ok = _between(th["eps"], "0.188", "0.1883") and _between(o["threshold"], "13.4", "13.5") and _between(-o["residual"], "6.4", "6.5")
+    ok &= abs(o["residual"]) < o["threshold"] and _between(r, "0.0056", "0.0058")
     # 35:P1 (p35051)
-    R.check("D1", "[chart] Gell-Mann–Okubo holds on the PDG masses to 0.57 %: ½(N + Ξ) against ¼(3Λ + Σ), the residual in (0.56, 0.58) %, "
-            "the bounded second-order (27-plet) insertion", _between(r, "0.0056", "0.0058"), f"residual {_pct(r, 3)} %", kind="CHART")
+    R.check("D1", "[chart] Gell-Mann–Okubo against the measured masses: with ε_s = (M_Λ − M_N)/M_N = 0.188 the threshold "
+            "ε_s²(M_Ξ − M_N) is 13.4 MeV/c², and the residual of ½(N + Ξ) against ¼(3Λ + Σ) is 6.4 MeV/c², 0.57 %, below it", ok,
+            f"ε_s {_f(th['eps'], 4)}, threshold {_f(o['threshold'], 2)} MeV/c², residual {_f(o['residual'], 3, True)} MeV/c² ({_pct(r, 3)} %)", kind="CHART")
 
-    # D2 [chart] the decuplet spacings 152.6, 148.8, 139.1 MeV, the mean β = 146.8, the spread 9.2 % (in (9.2, 9.21) %), the
-    #    spacings decreasing with strangeness (the second-order curvature)
-    sp = c["spacing"]
-    ok = _between(sp["beta"], "146.8", "146.85") and _between(sp["spread"], "0.092", "0.0921") and sp["spacings"][0] > sp["spacings"][1] > sp["spacings"][2]
-    ok &= _between(sp["strange_step"], "189.6", "189.7")
+    # D2 [chart] the decuplet: the threshold ε_s²(M_Ω − M_Δ) = 15.6 MeV/c²; the residuals of Σ* = ½(Δ + Ξ*) and Ξ* = ½(Σ* + Ω) are 1.9 and
+    #    4.9 MeV/c²; the spacings 152.57, 148.83, 139.05 MeV/c², their mean 146.8; the second differences −3.7 and −9.8 MeV/c²
+    d = th["decuplet"]; sp = c["spacing"]; so = CH.second_order_reading()
+    ok = _between(d["threshold"], "15.6", "15.7") and _between(d["residuals"][0], "1.85", "1.95") and _between(d["residuals"][1], "4.85", "4.95")
+    ok &= all(abs(x) < d["threshold"] for x in d["residuals"]) and _between(sp["beta"], "146.8", "146.85")
+    ok &= all(_within(x, y, "0.01") for x, y in zip(sp["spacings"], ("152.57", "148.83", "139.05")))
+    ok &= _between(so["second"][0], "-3.75", "-3.65") and _between(so["second"][1], "-9.85", "-9.75")
     # 35:P2 (p35052)
-    R.check("D2", "[chart] the decuplet equal spacing on the PDG masses: the spacings 152.6, 148.8, 139.1 MeV, the mean increment "
-            "β = (M_Ω − M_Δ)/3 = 146.8 MeV, the spread (max − min)/β = 9.2 %, decreasing with strangeness — the second order "
-            "the third-difference relation (P8) closes; the octet strange step (Ξ − N)/2 = 189.7 MeV", ok,
-            f"spacings {', '.join(_f(x, 2) for x in sp['spacings'])}, β {_f(sp['beta'], 2)}, spread {_pct(sp['spread'], 2)} %", kind="CHART")
+    R.check("D2", "[chart] the decuplet equal spacing against the measured masses: the threshold ε_s²(M_Ω − M_Δ) is 15.6 MeV/c², and the "
+            "residuals of M_Σ* = ½(M_Δ + M_Ξ*) and of M_Ξ* = ½(M_Σ* + M_Ω) are 1.9 and 4.9 MeV/c², below it; the spacings are 152.57, "
+            "148.83 and 139.05 MeV/c² with the mean 146.8 MeV/c², and the second differences −3.7 and −9.8 MeV/c²", ok,
+            f"threshold {_f(d['threshold'], 2)}, residuals {_f(d['residuals'][0], 3)}, {_f(d['residuals'][1], 3)}; spacings {', '.join(_f(x, 2) for x in sp['spacings'])}", kind="CHART")
 
-    # D3 [chart] the third difference on PDG: M_Δ − 3M_Σ* + 3M_Ξ* − M_Ω = 6.05 MeV, 0.36 % of M_Ω (in (0.36, 0.363) %)
-    t = c["third"]
-    ok = _between(t["value"], "6.0", "6.1") and _between(t["relative"], "0.0036", "0.00363")
-    # 35:P8 (p35058)
-    R.check("D3", "[chart] the second-order decuplet relation holds on the PDG masses to 6.05 MeV, 0.36 % of the scale: "
-            "M_Δ − 3M_Σ* + 3M_Ξ* − M_Ω in (6.0, 6.1) MeV, halving the first-order 9.2 % spread's 13.5 MeV", ok,
-            f"{_f(t['value'], 2)} MeV, {_pct(t['relative'], 3)} %", kind="CHART")
+    # D3 [chart] the second order against the data: at the anchored constituents the pairwise model gives an octet residual of
+    #    +2.6 MeV/c² and decuplet second differences of +5.3 MeV/c²; the measured values are −6.4 and −3.7, −9.8 MeV/c², each of the opposite
+    #    sign; the measured third difference is 6.05 MeV/c²
+    ok = _between(so["model_octet"], "2.6", "2.7") and _between(so["model_decuplet"], "5.2", "5.3") and so["model_decuplet"] == 2 * so["model_octet"]
+    ok &= _between(so["octet"], "-6.5", "-6.4") and so["octet"] < 0 < so["model_octet"] and all(x < 0 < so["model_decuplet"] for x in so["second"])
+    ok &= so["third"] == Q("6.05")
+    # 35:C20 (p35034)
+    R.check("D3", "[chart] the second order against the data: at the anchored constituents the pairwise model gives an octet residual "
+            "of +2.6 MeV/c² and decuplet second differences of +5.3 MeV/c²; the measured values are −6.4 and −3.7, −9.8 MeV/c², each of the "
+            "opposite sign; the measured third difference is 6.05 MeV/c²", ok,
+            f"model {_f(so['model_octet'], 2, True)}, {_f(so['model_decuplet'], 2, True)}; measured {_f(so['octet'], 2, True)}, {_f(so['second'][0], 2, True)}, {_f(so['second'][1], 2, True)}; third {_f(so['third'], 2)}", kind="CHART")
 
-    # D4 [chart] the links on PDG: 77.5 against 67.8 MeV (12.5 %), 191.4 against 215.1 MeV (−12.4 %): the wavefunction wrap correction
+    # D4 [chart] the links on the measured masses: 77.5 against 67.8 MeV/c² and 191.4 against 215.1 MeV/c²
     lk = c["links"]
-    ok = _between(lk["rel1"], "0.125", "0.1252") and _between(lk["rel2"], "-0.124", "-0.1238")
-    R.check("D4", "[chart] the octet–decuplet hyperfine links on the PDG masses hold to 12.5 % and −12.4 %: M_Σ − M_Λ = 77.5 against "
-            "(2/3)[(M_Δ − M_N) − (M_Σ* − M_Σ)] = 67.8 MeV, M_Σ* − M_Σ = 191.4 against M_Ξ* − M_Ξ = 215.1 MeV, the residual the "
-            "wavefunction wrap correction beyond the 1/(m_i m_j) hyperfine", ok,
+    ok = _between(lk["l1"], "77.4", "77.6") and _between(lk["r1"], "67.7", "67.9") and _between(lk["l2"], "191.4", "191.5") and _between(lk["r2"], "215.0", "215.2")
+    ok &= _between(lk["rel1"], "0.125", "0.1252") and _between(lk["rel2"], "-0.124", "-0.1238")
+    R.check("D4", "[chart] the octet–decuplet hyperfine links on the measured masses: M_Σ − M_Λ = 77.5 against "
+            "(2/3)[(M_Δ − M_N) − (M_Σ* − M_Σ)] = 67.8 MeV/c², and M_Σ* − M_Σ = 191.4 against M_Ξ* − M_Ξ = 215.1 MeV/c², an agreement at "
+            "12 %", ok,
             f"{_f(lk['l1'], 1)} vs {_f(lk['r1'], 1)} ({_pct(lk['rel1'], 1)} %); {_f(lk['l2'], 1)} vs {_f(lk['r2'], 1)} ({_pct(lk['rel2'], 1)} %)", kind="CHART")
 
-    # D5 [chart] Coleman–Glashow on the charged PDG masses: 8.143 against 8.079 MeV, 0.79 % (in (0.79, 0.80) %); n − p = 1.293 > 0
-    #    (the d − u seed wins over the charge-squared term, which favours p: C4); Σ⁰ − Λ = 76.96 > 0 (the spin-1 pair: C3)
-    cg = c["cg"]
-    ok = _between(cg["residual"], "0.0079", "0.0080") and cg["n_minus_p"] == Q("1.293") and cg["n_minus_p"] > 0 and cg["sigma0_minus_lambda"] > 0
-    ok &= _between(cg["sigma0_minus_lambda"], "76.9", "77.0") and _between(cg["lhs"], "8.14", "8.15") and _between(cg["rhs"], "8.07", "8.08")
-    # 35:P6 (p35056), 35:C8 (p35022), 35:X8 (p35045)
-    R.check("D5", "[chart] the isospin splittings obey Coleman–Glashow to 0.79 %: (n − p) + (Ξ⁻ − Ξ⁰) = 8.143 against "
-            "Σ⁻ − Σ⁺ = 8.079 MeV, the residual the two-body electromagnetic term; the neutron is heavier, n − p = 1.293 MeV > 0, "
-            "although the charge-squared term favours the proton (Σ Q² = 1 against 2/3), so the d − u seed exceeds it and "
-            "m_d > m_u; Σ⁰ − Λ = 76.96 MeV > 0, the spin-1 light pair heavier (C3)", ok,
-            f"CG {_f(cg['lhs'], 3)} vs {_f(cg['rhs'], 3)} ({_pct(cg['residual'], 2)} %); n − p {_f(cg['n_minus_p'], 3)}; Σ⁰ − Λ {_f(cg['sigma0_minus_lambda'], 2)}", kind="CHART")
+    # D5 [chart] Coleman–Glashow on the charged masses: 8.14(21) against 8.08(8) MeV/c², the difference 0.06 within the errors;
+    #    n − p = 1.293 > 0; the lattice parts +2.52(30) and −1.00(16) MeV/c² sum to 1.52, within their error of 1.293, the mass part
+    #    above the electromagnetic part; Σ⁰ − Λ = 76.96 > 0
+    cg = c["cg"]; ce = CH.cg_within_error(); lat = CH.np_lattice()
+    ok = _between(cg["lhs"], "8.14", "8.15") and _between(cg["rhs"], "8.07", "8.08") and ce["within"] and ce["err_lhs"] == Q("0.21") and ce["err_rhs"] == Q("0.08")
+    ok &= cg["n_minus_p"] == Q("1.293") and cg["n_minus_p"] > 0 and lat["within"] and lat["qcd_above_qed"] and lat["total"] == Q("1.52")
+    ok &= _between(cg["sigma0_minus_lambda"], "76.9", "77.0")
+    # 35:P6 (p35056)
+    R.check("D5", "[chart] the isospin splittings against Coleman–Glashow: (n − p) + (Ξ⁻ − Ξ⁰) = 8.14(21) against Σ⁻ − Σ⁺ = 8.08(8) MeV/c², "
+            "the difference of the two sides within their measurement error; the neutron is heavier, n − p = 1.293 MeV/c², and the "
+            "lattice's parts +2.52(30) MeV/c² from the quark masses and −1.00(16) MeV/c² from electromagnetism sum to it within their "
+            "error; Σ⁰ − Λ = 76.96 MeV/c² > 0", ok,
+            f"CG {_f(cg['lhs'], 3)} vs {_f(cg['rhs'], 3)}, difference {_f(ce['difference'], 3)}; n − p {_f(cg['n_minus_p'], 3)}, lattice sum {_f(lat['total'], 2)}; Σ⁰ − Λ {_f(cg['sigma0_minus_lambda'], 2)}", kind="CHART")
 
-    # D6 [chart] heavy-quark symmetry on PDG: M_Λb − M_Λc = 3333.1 against M_B − M_D = 3414.8 MeV (−2.4 %); the 1/m_Q hyperfine ratio
-    #    (Σ_c* − Σ_c)/(Σ* − Σ) = 0.339 ≈ m_s/m_c (constituent): the heavy-quark spin decouples, Λ_Q a spin-0 light diquark; the heavy
-    #    absolute masses m_Q + O(√σ) reduce to the imported scales
-    hv = c["heavy"]
-    ok = _between(hv["residual"], "-0.024", "-0.0239") and _between(hv["ratio"], "0.339", "0.3391") and _between(hv["baryon"], "3333.1", "3333.2") and _between(hv["meson"], "3414.8", "3414.9")
-    # 35:C10 (p35024), 35:C22 (p35036), 35:X11 (p35048), 35:P7 (p35057)
-    R.check("D6", "[chart] the heavy baryons follow heavy-quark symmetry: M_Λb − M_Λc = 3333.1 against M_B − M_D = 3414.8 MeV "
-            "(−2.4 %), the two differences one quantity m_b − m_c because the heavy-quark spin decouples (a_iQ ∼ 1/m_Q) and Λ_Q "
-            "carries a spin-0 light diquark; the 1/m_Q hyperfine ratio (Σ_c* − Σ_c)/(Σ* − Σ) = 0.339 ≈ m_s/m_c; the heavy absolute "
-            "masses m_Q + O(√σ) reduce to the imported scales, no new residue", ok,
-            f"{_f(hv['baryon'], 1)} vs {_f(hv['meson'], 1)} ({_pct(hv['residual'], 2)} %); ratio {_f(hv['ratio'], 4)}", kind="CHART")
+    # D6 [chart] the heavy-quark relation with isospin-averaged mesons: M_Λb − M_Λc = 3333.1 against M̄_B − M̄_D = 3340.2 MeV/c², the
+    #    residual −7.1 MeV/c², 0.21 %, below (ħσ/c³)(1/m_c − 1/m_b) = 75 MeV/c² with m_c = 1709, m_b = 5043 MeV/c²; the pseudoscalars alone give
+    #    3412.3 MeV/c² (the hyperfine shifts −106 and −34 MeV/c²); Λ_b from Λ_c at 5626.7 MeV/c²; the hyperfine ratio 0.339 against
+    #    m_s/m_c = 0.315
+    hv = CH.heavy_averaged()
+    ok = _between(hv["baryon"], "3333.1", "3333.2") and _between(hv["meson"], "3340.2", "3340.3") and _between(hv["residual"], "-7.15", "-7.05")
+    ok &= _between(hv["relative"], "-0.0022", "-0.0021") and _between(hv["omitted"], "74.5", "75.5") and abs(hv["residual"]) < hv["omitted"]
+    ok &= _between(hv["m_c"], "1708.5", "1709.5") and _between(hv["m_b"], "5042.5", "5043.5") and _between(hv["pseudoscalar"], "3412.3", "3412.4")
+    ok &= _between(hv["shift_D"], "-106.5", "-105.5") and _between(hv["shift_B"], "-34.5", "-33.5") and _between(hv["Lb_pred"], "5626.65", "5626.75")
+    ok &= _between(hv["ratio"], "0.339", "0.3391") and _between(hv["ms_over_mc"], "0.315", "0.3152")
+    # 35:P7 (p35057)
+    R.check("D6", "[chart] the heavy-quark relation with isospin-averaged mesons: M_Λb − M_Λc = 3333.1 against M̄_B − M̄_D = 3340.2 MeV/c², a "
+            "residual of −7.1 MeV/c², 0.21 %, below (ħσ/c³)(1/m_c − 1/m_b) = 75 MeV/c² at the imported scale (m_c = 1709, m_b = 5043 MeV/c² from "
+            "Λ_c and Λ_b); the pseudoscalar masses alone give 3412.3 MeV/c², with hyperfine shifts of −106 and −34 MeV/c²; the relation "
+            "puts Λ_b at 5626.7 MeV/c²; the hyperfine ratio (Σ_c* − Σ_c)/(Σ* − Σ) = 0.339 against m_s/m_c = 0.315", ok,
+            f"{_f(hv['baryon'], 2)} vs {_f(hv['meson'], 2)} ({_f(hv['residual'], 2, True)} MeV/c², {_pct(hv['relative'], 3, True)} %); omitted {_f(hv['omitted'], 1)}; ratio {_f(hv['ratio'], 4)}", kind="CHART")
 
-    # D7 [chart] the hyperfine constant: A_light = (2/3)(M_Δ − M_N) = 195.4 MeV; the light-light pair M_Σ* − M_Σ = 191.4 MeV of the
-    #    same order (equality needs the constituent-mass ratio)
-    hf = c["hyperfine"]
-    ok = _between(hf["A_light"], "195.3", "195.4") and _between(hf["ll_pair"], "191.4", "191.5")
+    # D7 [chart] the hyperfine constant: M_Δ − M_N = 293.1 MeV/c² > 0, A_light = (2/3)(M_Δ − M_N) = 195.4 MeV/c²
+    hf = c["hyperfine"]; m = CH.pdg(); split = m["Del"] - m["N"]
+    ok = _between(hf["A_light"], "195.3", "195.4") and _between(split, "293.05", "293.15") and split > 0 and hf["A_light"] == Q(2, 3) * split
     # 35:P3 (p35053)
-    R.check("D7", "[chart] the hyperfine pattern on the PDG masses: A_light = (2/3)(M_Δ − M_N) = 195.4 MeV (the paper's ≃ 195), the "
-            "separation (3/2)A_light = M_Δ − M_N; the light-light pair M_Σ* − M_Σ = 191.4 MeV of the same order, the strange "
-            "spectator's 1/(m_l m_s) correction the difference", ok, f"A_light {_f(hf['A_light'], 2)}, Σ* − Σ {_f(hf['ll_pair'], 2)} MeV", kind="CHART")
+    R.check("D7", "[chart] the hyperfine pattern against the measured masses: the spin-3/2 multiplet lies above the spin-1/2 one, "
+            "M_Δ − M_N = 293.1 MeV/c², which gives A_light = (2/3)(M_Δ − M_N) = 195.4 MeV/c²", ok,
+            f"M_Δ − M_N {_f(split, 2)}, A_light {_f(hf['A_light'], 2)} MeV/c²", kind="CHART")
 
-    # D8 [chart] the vector nonet on PDG: (2K* − ρ − φ)/(ρ + φ) = −0.42 %; K* predicted (ρ + φ)/2 = 897.4 against 893.6 (+0.42 %),
-    #    ω predicted = ρ against 782.7 (−0.95 %), both under 1 %; the strange increment b = 122.1 MeV
-    v = c["vector"]
-    ok = _between(v["residual"], "-0.0042", "-0.0041") and v["Ks_pred"] == Q("897.36") and abs(v["Ks_rel"]) < Q("0.005") and abs(v["ome_rel"]) < Q("0.01")
-    ok &= v["b"] == Q("122.1")
+    # D8 [chart] the vector nonet: the threshold ε_s²(M_φ − M_ρ) = 8.7 MeV/c²; K* − ½(ρ + φ) = −3.75 MeV/c², 0.42 %; ω − ρ = 7.4 MeV/c², the
+    #    ideally mixed ω at −0.95 %; the predicted K* = 897.4 MeV/c²
+    v = c["vector"]; tv = th["vector"]
+    ok = _between(tv["threshold"], "8.6", "8.7") and tv["residual"] == Q("-3.75") and abs(tv["residual"]) < tv["threshold"] and tv["omega"] == Q("7.4")
+    ok &= _between(v["residual"], "-0.0042", "-0.0041") and v["Ks_pred"] == Q("897.36") and _between(v["ome_rel"], "-0.0096", "-0.0094")
     # 35:P9 (p35059)
-    R.check("D8", "[chart] the vector nonet on the PDG masses: 2M_K* against M_ρ + M_φ to −0.42 %; with ρ and φ anchored the predicted "
-            "K* = (M_ρ + M_φ)/2 = 897.4 MeV lands within 0.5 % of 893.6 and the ideally mixed ω = ρ within 1 % of 782.7; the strange "
-            "increment b = (M_φ − M_ρ)/2 = 122.1 MeV (the baryon Λ–N gap 176.8, D10: the two-body and three-body confinement "
-            "eigenvalues differ on the same √σ)", ok,
-            f"residual {_pct(v['residual'], 2)} %, K* {_f(v['Ks_pred'], 1)} ({_pct(v['Ks_rel'], 2, True)} %), ω {_pct(v['ome_rel'], 2, True)} %", kind="CHART")
+    R.check("D8", "[chart] the vector equal spacing against the measured masses: the threshold ε_s²(M_φ − M_ρ) is 8.7 MeV/c², and the "
+            "residual of M_K* = ½(M_ρ + M_φ) is 3.75 MeV/c², 0.42 %, below it (the predicted K* at 897.4 MeV/c²); the ideally mixed ω lies "
+            "7.4 MeV/c² above ρ, at −0.95 %", ok,
+            f"threshold {_f(tv['threshold'], 2)}, residual {_f(tv['residual'], 2, True)} MeV/c² ({_pct(v['residual'], 2)} %), ω − ρ {_f(tv['omega'], 2)}", kind="CHART")
 
-    # D9 [chart] the anchored spectrum: from N, Λ, Δ the constituents m_l = 361.8 MeV, m_s/m_l = 1.4885, v_ll/m_l = 0.540; the five
-    #    predictions Σ −1.12 %, Ξ +0.87 %, Σ* −0.57 %, Ξ* −0.44 %, Ω +0.56 %, all within 1.12 % (the paper's 1.1 %)
+    # D9 [chart] the anchored spectrum: from N, Λ, Δ the five other masses, the residuals between −13.3 and +11.5 MeV/c², at most
+    #    1.2 %, below the threshold ε_s²(M_Ω − M_N) = 26 MeV/c²
     (ml, ms, vll, vls, vss), table, res, worst = CH.anchored_spectrum()
-    ok = _between(ml, "361.8", "361.9") and _between(ms / ml, "1.488", "1.489") and _between(vll / ml, "0.540", "0.5401") and worst < Q("0.0112")
-    ok &= all(res[t] == 0 for t in ("N", "Lam", "Del")) and _between(worst, "0.0111", "0.0112")
+    mev = {t: frc - meas for t, (frc, meas) in table.items() if t not in ("N", "Lam", "Del")}
+    ok = all(res[t] == 0 for t in ("N", "Lam", "Del")) and len(mev) == 5 and _between(worst, "0.0111", "0.012")
+    ok &= _between(min(mev.values()), "-13.35", "-13.25") and _between(max(mev.values()), "11.45", "11.55")
+    ok &= _between(th["anchors"]["threshold"], "25.5", "26.5") and all(abs(x) < th["anchors"]["threshold"] for x in mev.values())
     # 35:P10 (p35060)
-    R.check("D9", "[chart] the absolute octet and decuplet from one scale and two ratios: anchored to N, Λ, Δ the constituents are "
-            "m_l = 361.8 MeV, m_s/m_l = 1.4885 and v_ll/m_l = 0.540; the five parameter-free predictions land within 1.12 % of PDG "
-            "(Σ −1.12, Ξ +0.87, Σ* −0.57, Ξ* −0.44, Ω +0.56 %), the residuals traced to the strange-wrap and Σ–Λ hyperfine orders", ok,
-            "; ".join(f"{t} {_pct(res[t], 2, True)} %" for t in res if t not in ("N", "Lam", "Del")) + f"; m_l {_f(ml, 1)}, m_s/m_l {_f(ms / ml, 4)}, v_ll/m_l {_f(vll / ml, 4)}", kind="CHART")
+    R.check("D9", "[chart] five octet and decuplet masses from the anchors N, Λ and Δ: the residuals lie between −13.3 and +11.5 MeV/c², "
+            "at most 1.2 %, below the threshold ε_s²(M_Ω − M_N) = 26 MeV/c²", ok,
+            "; ".join(f"{t} {_f(mev[t], 1, True)} MeV/c² ({_pct(res[t], 2, True)} %)" for t in mev) + f"; threshold {_f(th['anchors']['threshold'], 1)}", kind="CHART")
 
-    # D10 [chart] the Λ–N gap on PDG: M_Λ − M_N = 176.7645 MeV exactly on the declared masses, the strange constituent excess m_s − m_l
-    #    (B7), hyperfine- and scale-free; (m_s − m_l)/√σ = 0.40 at √σ = 440
+    # D10 [chart] the constituent parameters: m_l = 361.8 MeV/c², m_s/m_l = 1.489, v_ll = 195.4 MeV/c²; the gap M_Λ − M_N = 176.8 MeV/c² is
+    #    m_s − m_l exactly on the declared masses
     ss = CH.single_scale()
-    ok = ss["gap"] == Q("176.7645") and ss["m_s"] - ss["m_l"] == ss["gap"] and _between(ss["gap_over_s"], "0.401", "0.402")
-    # 35:P11 (p35061)
-    R.check("D10", "[chart] the Λ–N gap is the strange constituent excess: M_Λ − M_N = 176.8 MeV on the PDG masses equals m_s − m_l of "
-            "the anchored constituents exactly (the hyperfine −(3/4)v_ll cancels, B7), hyperfine- and scale-free; "
-            "(m_s − m_l)/√σ = 0.40 at √σ = 440 MeV", ok, f"gap {_f(ss['gap'], 4)} MeV, /√σ {_f(ss['gap_over_s'], 4)}", kind="CHART")
+    ok = _between(ml, "361.75", "361.85") and _between(ms / ml, "1.4885", "1.4895") and _between(vll, "195.35", "195.45")
+    ok &= ss["gap"] == Q("176.7645") and ss["m_s"] - ss["m_l"] == ss["gap"]
+    R.check("D10", "[chart] the constituent parameters from the measured masses of N, Λ and Δ: m_l = 361.8 MeV/c², m_s/m_l = 1.489 and "
+            "v_ll = 195.4 MeV/c²; the measured gap M_Λ − M_N = 176.8 MeV/c² equals m_s − m_l", ok,
+            f"m_l {_f(ml, 2)}, m_s/m_l {_f(ms / ml, 4)}, v_ll {_f(vll, 2)}, gap {_f(ss['gap'], 4)} MeV/c²", kind="CHART")
 
 
 # ------------------------------------------------------------------------------------------------------------
-# block E: the single scale (35:C23, Z1, C20, X13, C16)
+# block E: the measured ratios at the imported scale (35:C16)
 @R.block("E", BLOCK["E"])
 def block_E():
-    """Block E — the discriminator and the ratios: E1 exact, E2 and E3 chart."""
-    # E1 the colour rank is shell-independent: on every admissible shell Ω = 12k + 5, Ω + 1 = 3(4k + 2), so 3 | Ω + 1 (and 2 | Ω + 1,
-    #    Ω + 1 ≡ 2 mod 4): the triality frame N = 3 on every shell; the four laboratory shells 53, 173, 389, 1373 are admissible; the
-    #    character-sum coefficients 1/18, 1/36 depend on N alone — every dimensionless baryon quantity is Ω-stable; Ω enters only
-    #    through the one scale √σ, declared once in the chart data
-    ok = H.admissible_shells(range(2000)) and H.shells_ok(SHELLS) and H.character_coefficients(3) == (Q(1, 18), Q(1, 36))
-    ok &= [k for k, v in CH.DATA["scales"].items() if k == "sqrt_sigma"] == ["sqrt_sigma"]
-    # 35:C23 (p35037), 35:Z1 (p35065)
-    R.check("E1", "the colour rank is shell-independent and the sector introduces no Ω-hard residue of its own: on every admissible "
-            "shell Ω = 12k + 5 the successor 3(4k + 2) is divisible by 3 (k < 2000 checked, the identity for all k in the core), the "
-            "laboratory shells 53, 173, 389, 1373 included, so the triality frame N = 3 and the coefficients β/18, β²/36 carry no Ω; "
-            "the dimensionless A_light/√σ is Ω-stable, sub-horizon; the one Ω-hard input is the imported scale √σ (A3), declared "
-            "once in the chart data, the electromagnetic α (A9) an imported constant", ok, f"shells {SHELLS}, coefficients {H.character_coefficients(3)}")
-
-    # E2 [chart] the second-order residuals are O(ε_s²) of the leading splittings: the GMO residual over the octet strange splitting
-    #    Ξ − N is 0.017, the third difference over the decuplet spacing 0.041 — a convergent small-parameter expansion, ε_s ≈ 0.13–0.2
-    ro = CH.residual_orders()
-    ok = _between(ro["gmo"], "0.0169", "0.0171") and _between(ro["third"], "0.0412", "0.0413")
-    # 35:C20 (p35034)
-    R.check("E2", "[chart] the second-order SU(3)_F residuals are sub-horizon: the Gell-Mann–Okubo residual is 0.017 of the octet "
-            "strange splitting Ξ − N and the decuplet third difference 0.041 of the spacing, both O(ε_s²) of a convergent "
-            "strange-breaking expansion with ε_s ≈ 0.13–0.2, Ω-stable", ok, f"{_f(ro['gmo'], 4)}, {_f(ro['third'], 4)}", kind="CHART")
-
-    # E3 [chart] the single-scale readings at √σ = 440 MeV: λ_l = m_l/√σ = 0.822, m_s/m_l = 1.4885, λ_hf = v_ll/√σ = 0.444,
-    #    M_N/√σ = 2.134, (m_s − m_l)/√σ = 0.402: the three anchored masses as one Ω-hard scale and three sub-horizon numbers
+    """Block E — the measured ratios at the imported scale: E1 chart."""
+    # E1 [chart] at √(ħcσ) = 440 MeV: λ_N = M_N c²/√(ħcσ) = 2.134, λ_l = m_l c²/√(ħcσ) = 0.822, λ_hf = v_ll c²/√(ħcσ) = 0.444; the scale is declared once
     ss = CH.single_scale()
-    ok = _between(ss["lam_l"], "0.822", "0.8224") and _between(ss["ms_over_ml"], "1.488", "1.489") and _between(ss["lam_hf"], "0.444", "0.4441")
-    ok &= _between(ss["mN_over_s"], "2.133", "2.134") and _between(ss["gap_over_s"], "0.401", "0.402")
-    # 35:X13 (p35050)
-    R.check("E3", "[chart] the spectrum rests on one scale: at √σ = 440 MeV the anchored constituents read λ_l = m_l/√σ = 0.822, "
-            "m_s/m_l = 1.4885, λ_hf = v_ll/√σ = 0.444, M_N/√σ = 2.134 and (m_s − m_l)/√σ = 0.402 — every dimensionless mass ratio "
-            "a sub-horizon number, the absolute scale the lone Ω-hard residue", ok,
-            f"λ_l {_f(ss['lam_l'], 4)}, m_s/m_l {_f(ss['ms_over_ml'], 4)}, λ_hf {_f(ss['lam_hf'], 4)}, M_N/√σ {_f(ss['mN_over_s'], 4)}", kind="CHART")
+    ok = _between(ss["mN_over_s"], "2.1335", "2.1345") and _between(ss["lam_l"], "0.8215", "0.8225") and _between(ss["lam_hf"], "0.4435", "0.4445")
+    ok &= CH.DATA["scales"]["sqrt_sigma"] == 440
+    R.check("E1", "[chart] the measured ratios at the imported scale √(ħcσ) = 440 MeV: λ_N = M_N c²/√(ħcσ) = 2.134, "
+            "λ_l = m_l c²/√(ħcσ) = 0.822 and λ_hf = v_ll c²/√(ħcσ) = 0.444", ok,
+            f"λ_N {_f(ss['mN_over_s'], 4)}, λ_l {_f(ss['lam_l'], 4)}, λ_hf {_f(ss['lam_hf'], 4)}", kind="CHART")
 
 
 # ------------------------------------------------------------------------------------------------------------
-# block F: the finite confinement operators (35:C16, C17, C19)
+# block F: the operators and the winding law (35:C17, C19, P12, C24, C25)
 @R.block("F", BLOCK["F"])
 def block_F():
-    """Block F — the finite operators: F1 exact (Sturm in Fractions), F2–F4 chart."""
-    # F1 the finite-stage spectrum is exact: on the grid N = 4000, L = 30 the tridiagonal H^(N) = −u'' + x u has, by Sturm's count in
-    #    exact rational arithmetic, exactly one eigenvalue in each of (2.338, 2.339), (4.087, 4.088), (5.520, 5.521), (6.786, 6.787):
-    #    the counts (0, 1), (1, 2), (2, 3), (3, 4) at the brackets' ends
+    """Block F — the operators and the winding law: F1, F6, F8 exact; F2–F5, F7, F9 chart."""
+    # F1 the nonrelativistic matrix: on N = 4000 sites of [0, 30] the tridiagonal −u'' + x u has, by Sturm's count in exact
+    #    rational arithmetic, exactly one eigenvalue in each of (2.338, 2.339) and (4.087, 4.088): the counts (0, 1), (1, 2)
     N, L = CH.DATA["grid"]["airy"]
-    br = [("2.338", "2.339"), ("4.087", "4.088"), ("5.520", "5.521"), ("6.786", "6.787")]
+    br = [("2.338", "2.339"), ("4.087", "4.088")]
     counts = H.sturm_brackets(N, L, br)
-    ok = counts == [(k, k + 1) for k in range(4)]
-    # 35:C16 (p35030)
-    R.check("F1", "the finite-stage confinement eigenvalues are exact: Sturm's count of the tridiagonal H^(N) = −u'' + x u on "
-            "N = 4000 sites of [0, 30], in exact rational arithmetic, places exactly one eigenvalue in each of (2.338, 2.339), "
-            "(4.087, 4.088), (5.520, 5.521) and (6.786, 6.787) — the finite spectrum at the decimals of the Airy zeros; the "
-            "single-scale reduction M_H = √σ λ_H reads the three anchors as one Ω-hard scale and three sub-horizon numbers (E3), "
-            "and M_Λ − M_N = m_s − m_l exactly (B7)", ok, f"counts at the bracket ends {counts}")
+    ok = counts == [(0, 1), (1, 2)] and (N, L) == (4000, 30)
+    R.check("F1", "the nonrelativistic matrix, the second-difference Laplacian plus the positions on 4000 sites of [0, 30], has exactly "
+            "one eigenvalue in each of (2.338, 2.339) and (4.087, 4.088), by Sturm's count in exact rational arithmetic", ok,
+            f"counts at the bracket ends {counts}")
 
-    # F2 [chart] the decimals: the four eigenvalues by bisection 2.33810, 4.08793, 5.52053, 6.78666 against the Airy zeros 2.33811,
-    #    4.08795, 5.52056, 6.78671 (within 5 × 10⁻⁵, the grid's accuracy); ε₁/ε₀ = 1.7484, pure and scale-free
+    # F2 [chart] the decimals: the two eigenvalues by bisection 2.33810, 4.08793, each within 5 × 10⁻⁵ below its Airy zero; their
+    #    ratio 1.748
     eps, zeros, diff, ratio = CH.airy_readout()
-    ok = all(abs(Q(d)) < Q("5e-5") for d in diff) and _within(ratio, "1.7484", "0.00005") and all(Q(d) < 0 for d in diff)
-    R.check("F2", "[chart] the finite-grid eigenvalues of H^(N) at N = 4000, L = 30 read 2.3381, 4.0879, 5.5205, 6.7867 against the "
-            "Airy zeros 2.33811, 4.08795, 5.52056, 6.78671, each within 5 × 10⁻⁵ below its zero (the grid's accuracy); the level "
-            "ratio ε₁/ε₀ = 1.7484 is pure and scale-free, a kind-(b) sub-horizon number", ok,
-            f"{[round(e, 5) for e in eps]}, ratio {ratio:.4f}", kind="CHART")
+    ok = all(abs(Q(d_)) < Q("5e-5") for d_ in diff) and _within(ratio, "1.7484", "0.00005") and all(Q(d_) < 0 for d_ in diff)
+    R.check("F2", "[chart] the eigenvalues of the nonrelativistic matrix on 4000 sites read 2.3381 and 4.0879, each within 5 × 10⁻⁵ "
+            "below its Airy zero, and their ratio reads 1.748", ok, f"{[round(e, 5) for e in eps[:2]]}, ratio {ratio:.4f}", kind="CHART")
 
-    # F3 [chart] the baryon scale is a computed eigenvalue: E₀ of H_G = |p| + r on the grid (600, 30) is 2.2320, within 0.001 of the
-    #    converged 2.232 (the package's tower 2.2316, 2.2320, 2.2322, 2.2322 at N = 300..2200); E₁/E₀ = 1.49; M_N = E₀√σ = 982 MeV at
-    #    √σ = 440, 4.6 % above 938.9, exact at √σ = 420.7 MeV inside the lattice band 420–447
-    fl = CH.forward_landing()
-    E0, E1 = fl["E0"], fl["E1"]; s = CH.DATA["scales"]["sqrt_sigma"]; mN = CH.pdg()["N"]
-    MN_pred = Q(E0) * s; excess = (MN_pred - mN) / mN; sig_exact = mN / Q(E0)
-    ok = _within(E0, "2.232", "0.001") and _between(E1 / E0, "1.491", "1.492") and _between(MN_pred, "981", "983")
-    ok &= _between(excess, "0.045", "0.047") and _between(sig_exact, "420", "421")
+    # F3 [chart] the body's Hamiltonian on the declared grid (600 sites of [0, 30]): E₀ = 2.232, E₁ = 3.329, the contact value
+    #    C = (u₁/x₁)² = 3.50; the squares of the two levels over π/2 read 3.17 and 7.06, where the winding law has 3 and 7
+    hr = CH.hamiltonian_readings()
+    ok = CH.DATA["grid"]["rel"] == (600, 30) and _between(hr["E0"], "2.2315", "2.2325") and _between(hr["E1"], "3.3285", "3.3295")
+    ok &= _between(hr["C"], "3.495", "3.505") and _between(hr["sq0"], "3.165", "3.175") and _between(hr["sq1"], "7.055", "7.065")
+    ok &= _between(hr["ratio"], "1.485", "1.495")
     # 35:C17 (p35031)
-    R.check("F3", "[chart] the baryon scale is the computed finite eigenvalue, no baryon mass entering: E₀ of H_G = |p| + r on the grid "
-            "N = 600, L = 30 (|p| = T^{1/2} diagonal in the sine basis, the lowest pair by a Lanczos iteration) is 2.2320, within "
-            "0.001 of the converged 2.232; E₁/E₀ = 1.49; M_N = E₀√σ = 982 MeV at √σ = 440 predicts the nucleon to 4.6 %, exact at "
-            "√σ = 420.7 MeV inside the lattice band; λ_l = (M_N + M_Δ)/(6√σ) and λ_hf = 2(M_Δ − M_N)/(3√σ) then follow (B7, E3)", ok,
-            f"E₀ {E0:.5f}, E₁/E₀ {E1 / E0:.4f}, M_N {_f(MN_pred, 0)} MeV ({_pct(excess, 1)} %), √σ exact {_f(sig_exact, 1)}", kind="CHART")
+    R.check("F3", "[chart] the readings of the body's Hamiltonian (c|p| + σr)/√(ħcσ) on 600 sites of [0, 30]: E₀ = 2.232, E₁ = 3.329 "
+            "and the contact value C = (u₁/x₁)² = 3.50; the squares of the two levels over π/2 read 3.17 and 7.06, where the "
+            "winding law has 3 and 7, and their ratio reads 1.49", ok,
+            f"E₀ {hr['E0']:.5f}, E₁ {hr['E1']:.5f}, C {hr['C']:.4f}, squares over π/2 {hr['sq0']:.4f} and {hr['sq1']:.4f}, ratio {hr['ratio']:.4f}", kind="CHART")
 
-    # F4 [chart] the forward landing on the grid (600, 30): |u'(0)|² of the nonrelativistic ground state 0.999 → 1 (the Airy
-    #    normalisation identity), the relativistic contact 3.50, F_rel = 3.50 (3.52 on the package's N = 3000 grid); α_s(√σ) =
-    #    2π/(9 ln 2) = 1.007 against the hyperfine-required 0.93 (within 12 %); v_ll/m_l = (2ρ/9)F_rel α_s/λ_l² = 0.536 (target
-    #    0.540), λ_hf = 0.440 within 7 % of 0.444 at α_s = 0.93 and 0.474 at 1.00; λ_l = (E₀ + (3/4)λ_hf)/3 = 0.855 within 7 % of 0.822
-    t = CH.DATA["targets"]
-    ok = _within(fl["contact_nr"], 1, "0.002") and _between(fl["F_rel"], "3.49", "3.52") and _between(fl["alpha_s"], "1.00", "1.01")
-    ok &= abs(Q(fl["hf"]["lam_hf"]) - t["lam_hf"]) / t["lam_hf"] < Q("0.07") and abs(Q(fl["hf"]["vm"]) - t["vm"]) / t["vm"] < Q("0.01")
-    ok &= abs(Q(fl["transmutation"]["lam_hf"]) - t["lam_hf"]) / t["lam_hf"] < Q("0.08") and abs(Q(fl["lam_l_fwd"]) - t["lam_l"]) / t["lam_l"] < Q("0.07")
-    ok &= abs(Q(fl["alpha_s"]) - t["alpha_s_hf"]) / Q(fl["alpha_s"]) < Q("0.12") and _within(fl["eps0"], "2.3379", "0.0002")
+    # F4 [chart] the joint solution on the winding law: 3λ_l − ¾λ_hf = λ_N with λ_N = √(3π/2), and λ_hf λ_l = (2ρ/9) C α_s with
+    #    ρ = ½, C of the declared grid and α_s = 2π/(9 ln 2) = 1.007, give λ_hf = 0.466, λ_l = 0.840 and (M_Δ − M_N)/M_N = 0.322
+    #    against the measured 0.312 (0.289 with the Δ pole); the measured ratio corresponds to α_s = 0.97, 3.5 % below
+    js = CH.joint_solution_law()
+    ok = _between(js["alpha_s"], "1.0065", "1.0075") and _between(js["lam_hf"], "0.4655", "0.4665") and _between(js["lam_l"], "0.8395", "0.8405")
+    ok &= _between(js["ratio"], "0.3215", "0.3225") and _between(js["measured"], "0.3115", "0.3125") and _between(js["pole"], "0.2885", "0.2895")
+    ok &= _between(js["alpha_needed"], "0.965", "0.975") and _between(1 - Q(js["alpha_needed"]) / Q(js["alpha_s"]), "0.03", "0.04")
+    ok &= abs(Q(js["residual_nucleon"])) < Q("1e-12") and abs(Q(js["residual_rule"])) < Q("1e-12") and js["lam_hf"] > 0 and js["lam_l"] > 0
     # 35:C19 (p35033)
-    R.check("F4", "[chart] the constituent eigenvalues evaluated forward from {N = 3, β} with no measured baryon mass: on the grid "
-            "N = 600, L = 30 the nonrelativistic contact |u'(0)|² = 0.999 → 1 (the Airy normalisation identity), the relativistic "
-            "enhancement F_rel = 3.50 (3.52 at N = 3000), the transmutation-pinned α_s(√σ) = 2π/(9 ln 2) = 1.007 within 12 % of the "
-            "hyperfine-required 0.93; v_ll/m_l = (2ρ/9)F_rel α_s/λ_l² = 0.536 against 0.540, λ_hf = 0.440 within 7 % of 0.444 at "
-            "α_s = 0.93 (0.474 at 1.00), λ_l = (E₀ + (3/4)λ_hf)/3 = 0.855 within 7 % of 0.822: constituent-model accuracy, the margin "
-            "the linear-potential approximation", ok,
-            f"|u'(0)|² {fl['contact_nr']:.4f}, F_rel {fl['F_rel']:.3f}, α_s {fl['alpha_s']:.3f}, v/m {fl['hf']['vm']:.3f}, λ_hf {fl['hf']['lam_hf']:.3f}/{fl['transmutation']['lam_hf']:.3f}, λ_l {fl['lam_l_fwd']:.3f}", kind="CHART")
+    R.check("F4", "[chart] the joint solution on 600 sites: the nucleon's reading 3λ_l − ¾λ_hf = λ_N of the winding law and the contact "
+            "rule λ_hf λ_l = (2ρ/9) C α_s, with ρ = ½ and α_s = 2π/(9 ln 2) = 1.007, have the positive solution λ_hf = 0.466, "
+            "λ_l = 0.840, which gives (M_Δ − M_N)/M_N = 0.322 against the measured 0.312 (0.289 with the real part of the Δ pole), no "
+            "measured mass entering; the measured ratio corresponds to α_s = 0.97, 3.5 % below the declared value", ok,
+            f"α_s {js['alpha_s']:.4f}, λ_hf {js['lam_hf']:.5f}, λ_l {js['lam_l']:.5f}, ratio {js['ratio']:.5f} (measured {_f(js['measured'], 4)}, pole {_f(js['pole'], 4)}), α_s needed {js['alpha_needed']:.4f}", kind="CHART")
+
+    # F5 [chart] the radial ratio of the winding law: λ₁/λ₀ = √(7/3) = 1.53 against N(1440)/N: it lies inside the Breit–Wigner
+    #    range 1.50 to 1.57 and above the pole ratio 1.46, so the two readings are not on one side and the falsifier has not fired
+    rr = CH.radial_ratio_law()
+    ok = _between(rr["ratio"], "1.525", "1.535") and _within(rr["law"], rr["ratio"], "1e-12") and _between(rr["bw_lo"], "1.495", "1.505")
+    ok &= _between(rr["bw_hi"], "1.565", "1.575") and _between(rr["bw"], "1.53", "1.54") and _between(rr["pole"], "1.455", "1.465")
+    ok &= Q(rr["pole"]) < Q(rr["ratio"]) and Q(rr["bw_lo"]) < Q(rr["ratio"]) < Q(rr["bw_hi"])
+    ok &= Q("1.527") ** 2 < Q(7, 3) < Q("1.528") ** 2
+    # 35:P12 (p35070)
+    R.check("F5", "[chart] the radial ratio of the nucleon under the winding law: √(7/3) = 1.53 against the measured N(1440) over N, "
+            "1.50 to 1.57 by the Breit–Wigner mass (nominally 1.53) and 1.46 by the pole; the law's ratio lies inside the "
+            "Breit–Wigner range and above the pole's, so the falsifier has not fired", ok,
+            f"√(7/3) {rr['ratio']:.4f}; Breit–Wigner {_f(rr['bw_lo'], 3)} to {_f(rr['bw_hi'], 3)} ({_f(rr['bw'], 3)}); pole {_f(rr['pole'], 3)}", kind="CHART")
+
+    # F6 the winding law in the Carrier register: on the three laboratory Carriers 4c⁴ ≡ 1 for both roots c of 2⁻¹ and h = −ħ is
+    #    the other root of −1, so 4M²c⁴ ≡ N·hcσ is M² ≡ N·hcσ; on the three laboratory Subjects the residues (4k + 3)κ satisfy
+    #    4·(4k + 3)κ + (4k + 3) ≡ 0 and a radial step adds 4κ = p − 1
+    regs = {Om: H.winding_register(Om) for Om in H.CARRIERS}
+    subs = {p: H.winding_residues(p) for p in SUBJECTS}
+    ok = H.CARRIERS == (233, 30089, 2408561) and all(f4 == [1, 1] and all(pr == (Om - 1, 0) for pr in pairs) and law for Om, (f4, pairs, law) in regs.items())
+    ok &= all(step and all(c for _, c in res) and res[0][0] == 3 * kap % p for p, (kap, res, step) in subs.items())
+    # 35:C24 (p35075)
+    R.check("F6", "the winding law in the Carrier register: on the Carriers 233, 30089 and 2408561, for both roots c of 2⁻¹, 4c⁴ ≡ 1, and "
+            "h = −ħ is the other root of −1, so that 4M²c⁴ ≡ N·hcσ is M² ≡ N·hcσ (checked for N = 3, 7, 11 on a sample of tensions); on "
+            "the Subjects 13, 173 and 1549 the residues (4k + 3)κ satisfy 4·(4k + 3)κ + (4k + 3) ≡ 0, and a radial step adds 4κ = p − 1", ok,
+            "; ".join(f"Ω {Om}: 4c⁴ {f4}" for Om, (f4, _, _) in regs.items()) + "; " + "; ".join(f"p {p}: κ {kap}, residues {[r for r, _ in res]}" for p, (kap, res, _) in subs.items()))
+
+    # F7 [chart] the readings of the winding law: λ_N = √(3π/2) = 2.171; the scale √(ħcσ) = M_N c²/λ_N = 432.5 MeV with the nucleon
+    #    mass; at the imported 440 MeV the law gives 955 MeV/c² for the nucleon, 1.7 % above the measured 938.9 MeV/c²
+    wr = CH.winding_readings()
+    ok = _between(wr["lam_N"], "2.1705", "2.1715") and _between(wr["scale"], "432.45", "432.55") and _between(wr["MN_at_scale"], "954.5", "955.5")
+    ok &= _between(wr["excess"], "0.0165", "0.0175") and _between(wr["measured"], "2.1335", "2.1345")
+    R.check("F7", "[chart] the readings of the winding law: λ_N = √(3π/2) = 2.171; with the nucleon mass the scale reads "
+            "√(ħcσ) = M_N c²/λ_N = 432.5 MeV, and at the imported 440 MeV the law gives 955 MeV/c² for the nucleon, 1.7 % above the "
+            "measured 938.9 MeV/c²", ok,
+            f"λ_N {wr['lam_N']:.5f}, scale {wr['scale']:.2f} MeV, M_N {wr['MN_at_scale']:.1f} MeV/c² ({_pct(wr['excess'], 2)} %)", kind="CHART")
+
+    # F8 the Hamiltonian of the register against the drive, on the three laboratory Subjects with the drive 2: over F_q, q the
+    #    least prime ≡ 1 (mod p), the commutator on the odd function δ₁ − δ₋₁ is not zero at the residue 2; on 13 the formula
+    #    equals the matrices' value; the odd functions carry the 2κ odd exponents of the drive, none a multiple of 2κ, and no
+    #    odd power of the drive is 1 or −1
+    com = {p: H.register_commutator(p, 2) for p in SUBJECTS}
+    odd = {p: H.drive_odd_classes(p, 2) for p in SUBJECTS}
+    _, direct = H.register_commutator_direct(13, 2)
+    ok = all(v != 0 for _, _, v in com.values()) and direct[2] == com[13][2] and [q for q, _, _ in com.values()] == [53, 347, 6197]
+    ok &= all(n == (p - 1) // 2 and real == 0 and units == 0 for p, (n, real, units) in odd.items())
+    # 35:C25 (p35076)
+    R.check("F8", "the Hamiltonian of the register |X| + F⁻¹|X|F against the drive, on the Subjects 13, 173 and 1549 with the drive 2: over "
+            "F_q, q the least prime ≡ 1 (mod p), the commutator on the odd function δ₁ − δ₋₁ is not zero at the residue 2 (on 13 the "
+            "formula equals the matrices' value); the odd functions carry the 2κ odd exponents of the drive, none a multiple of 2κ, "
+            "and no odd power of the drive is 1 or −1", ok,
+            "; ".join(f"p {p}: q {q}, value {v}" for p, (q, _, v) in com.items()) + "; odd exponents " + ", ".join(str(n) for n, _, _ in odd.values()))
+
+    # F9 [chart] the lowest level of the register's Hamiltonian on the odd functions, in the unit √(2π/p) with the chart's π:
+    #    2.252, 2.232, 2.232 on 13, 173, 1549; the second level lies more than 1 above it, so the lowest level is simple
+    lv = {p: CH.register_levels(p) for p in SUBJECTS}
+    ok = _between(lv[13]["E0"], "2.2515", "2.2525") and _between(lv[173]["E0"], "2.2315", "2.2325") and _between(lv[1549]["E0"], "2.2315", "2.2325")
+    ok &= all(Q(v["E1"]) - Q(v["E0"]) > 1 and v["dim"] == (p - 1) // 2 for p, v in lv.items())
+    R.check("F9", "[chart] the lowest level of the register's Hamiltonian on the odd functions of the Subjects 13, 173 and 1549, in the unit "
+            "√(2π/p) with the chart's π: 2.252, 2.232 and 2.232; on each the second level lies more than 1 above it, so the lowest "
+            "level is simple", ok,
+            "; ".join(f"p {p}: {v['E0']:.4f}, {v['E1']:.4f}" for p, v in lv.items()), kind="CHART")
 
 
 # ------------------------------------------------------------------------------------------------------------
-# block G: the electromagnetic magnitude (35:C21, C13)
+# block G: the scale (35:C21, C26, C27)
 @R.block("G", BLOCK["G"])
 def block_G():
-    """Block G — the magnitude reading: G1 chart."""
-    # G1 [chart] Δ_EM = α √σ × structure: the one-body difference p − n of 1/3 (C4) at α = 1/137.036 and √σ = 440 MeV is 1.07 MeV, within
-    #    10 % of the lattice QED part of M_n − M_p (1.00 MeV in magnitude, Borsányi et al. 2015); the magnitude reduces to the imported
-    #    α and √σ, no new residue; Coleman–Glashow and the orderings are derived (B5, C3, C4, D5)
-    em = CH.em_magnitude()
-    ok = _between(em["value"], "1.07", "1.08") and abs(em["relative"]) < Q("0.1")
+    """Block G — the scale: G1 chart (the electromagnetic magnitude), G2 and G3 exact (the Carrier register)."""
+    # G1 [chart] one third of the unit α √(ħcσ) at α = 1/137.036 and √(ħcσ) = 440 MeV is 1.07 MeV, within the error of the rest
+    #    energy of the lattice's electromagnetic part of M_n − M_p, 1.00(16) MeV in magnitude
+    em = CH.em_magnitude(); lat = CH.DATA["lattice_np"]
+    ok = _between(em["value"], "1.065", "1.075") and em["qed"] == -lat["qed"] == Q("1.00") and abs(em["value"] - em["qed"]) < lat["qed_err"]
     # 35:C21 (p35035)
-    R.check("G1", "[chart] the electromagnetic splitting magnitude reduces to the imported α and √σ: the one-body charge difference 1/3 "
-            "(C4) times α √σ at α = 1/137.036 and √σ = 440 MeV is 1.07 MeV, within 10 % of the lattice QED part of M_n − M_p "
-            "(1.00 MeV in magnitude); no new residue; Coleman–Glashow and the two orderings are derived (B5, C3, D5)", ok,
-            f"α√σ/3 = {_f(em['value'], 3)} MeV ({_pct(em['relative'], 1, True)} % of 1.00)", kind="CHART")
+    R.check("G1", "[chart] the electromagnetic magnitude: one third of the unit α √(ħcσ), at α = 1/137.036 and the imported "
+            "√(ħcσ) = 440 MeV, is 1.07 MeV, the size of the rest energy of the lattice's electromagnetic part of M_n − M_p, 1.00(16) MeV", ok,
+            f"α√(ħcσ)/3 = {_f(em['value'], 3)} MeV against 1.00(16)", kind="CHART")
+
+    # G2 the scale in the Carrier register: on the three laboratory Carriers, for both roots ħ of −1 and both roots c of 2⁻¹,
+    #    (ħc)² ≡ −2⁻¹ ≡ 2S, so the fourth power of the scale √(ħcσ) is 2S σ²
+    sc = {Om: H.scale_register(Om) for Om in H.CARRIERS}
+    ok = all(len(rows) == 4 and all(sq == twoS for _, _, sq in rows) and fourth and twoS == (Om - 1) // 2 for Om, (rows, twoS, fourth) in sc.items())
+    # 35:C26 (p35078)
+    R.check("G2", "the scale in the Carrier register: on the Carriers 233, 30089 and 2408561, for both roots ħ of −1 and both roots c of "
+            "2⁻¹, (ħc)² ≡ −2⁻¹ ≡ 2S, so the fourth power of the scale √(ħcσ) is 2S σ² (checked on a sample of tensions)", ok,
+            "; ".join(f"Ω {Om}: 2S {twoS}" for Om, (_, twoS, _) in sc.items()))
+
+    # G3 no choice of the roots enters the winding law: on the three laboratory Carriers, with G ≡ −2⁻¹, the Planck mass squared
+    #    ħc/G is 2hc for both roots ħ of −1 and both roots c of 2⁻¹, so M² ≡ N·hcσ reads (M/m_P)² ≡ N·σ/2 and (Mc²)² ≡ N·S·ħcσ
+    rf = {Om: H.winding_root_free(Om) for Om in H.CARRIERS}
+    ok = all(len(rows) == 4 and all(same for _, _, same in rows) and g and ratios for rows, g, ratios in rf.values())
+    # 35:C27 (p35080)
+    R.check("G3", "no choice of the roots enters the winding law: on the Carriers 233, 30089 and 2408561, with 2G + 1 ≡ 0, the Planck "
+            "mass squared ħc/G is 2hc for both roots ħ of −1 and both roots c of 2⁻¹, so M² ≡ N·hcσ reads (M/m_P)² ≡ N·σ/2 and "
+            "(Mc²)² ≡ N·S·ħcσ (checked on the counts 3, 7, 11 and a sample of tensions)", ok,
+            "; ".join(f"Ω {Om}: 2hc {sorted({2 * (Om - h) * c % Om for h, c, _ in rows})}" for Om, (rows, _, _) in rf.items()))
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 /-! FrcCore — the FRC substrate from first principles, one file for the live instance (no Mathlib,
-no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Cycle, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Fractional, Theme.Lifts, Theme.Dichotomy, Theme.Rotations, Theme.Heisenberg, Theme.Spectra, Theme.Exclusivity, Theme.Shift, Theme.Quadratic, Theme.Extension, Theme.Domain, Theme.Spin, Theme.Lorentz, Theme.Register, Poly, Theme.Numbers, Theme.Logic, Theme.SecondOrder, Theme.Formation, Theme.Reach, Theme.Diagonal, Theme.Threshold, Theme.Sets, Theme.Equivariant, Theme.Transfer, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Framed, Theme.Quaternion, Theme.Carrier, Theme.Subject, Theme.Pair, Theme.Hopf, Theme.Symbol, Theme.Gravity, Theme.Lattice, Theme.Drift, Theme.Relaxation, Theme.Window, Theme.Static, Theme.Quantum, Theme.Observation, Theme.Interference, Theme.Composite, Theme.Unitary, Theme.Interactions, Theme.Fields, Theme.Horizon, Theme.Zeros, Theme.Ladder, Theme.Flavour, Theme.Dark, Theme.Hadrons, Theme.Super, Theme.Brackets, Theme.YangMills, Theme.Strata, Theme.Calibration, Theme.Tally, Theme.Causal, Keys.Fourier, Instances, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Theme.Orbital, Keys.Algebra, Keys.Foundation, Algebra, Epi, Dimensions, Quaternion, Keys.Extension, Keys.Gravity, Causality, Representation, Keys.Logic, Reductio, Godel, Finitism, Theme.Cells, Keys.Geometry, Geometry, Complex, Theme.Dirac, Theme.Packed, Theme.Plane, Theme.Hermitian, Theme.Operator, Theme.Unipotent, Theme.Spinor, Theme.Loss, Theme.Det, Theme.Elim, Theme.Cayley, Theme.Product, Theme.Poly, Theme.CharPoly, Keys.Horizon, Rh, Entropy, Keys.Relaxation, Gravity, Keys.Dirac, Keys.Operator, Dirac, Keys.Subject, S13, Keys.Quantum, Quantum, Pnp, Keys.Interactions, Fields, Keys.Flavour, Flavour, Keys.Dark, Dark, Keys.Hadrons, Hadrons, Keys.Carrier, Keys.Domain, Spacetime, Keys.Yangmills, YangMills, Keys.Super, Master)
+no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Cycle, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Fractional, Theme.Lifts, Theme.Dichotomy, Theme.Rotations, Theme.Heisenberg, Theme.Spectra, Theme.Exclusivity, Theme.Shift, Theme.Quadratic, Theme.Extension, Theme.Domain, Theme.Spin, Theme.Lorentz, Theme.Register, Poly, Theme.Numbers, Theme.Logic, Theme.SecondOrder, Theme.Formation, Theme.Reach, Theme.Diagonal, Theme.Threshold, Theme.Sets, Theme.Equivariant, Theme.Transfer, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Framed, Theme.Quaternion, Theme.Carrier, Theme.Subject, Theme.Pair, Theme.Hopf, Theme.Symbol, Theme.Gravity, Theme.Lattice, Theme.Drift, Theme.Relaxation, Theme.Window, Theme.Static, Theme.Quantum, Theme.Observation, Theme.Interference, Theme.Composite, Theme.Unitary, Theme.Interactions, Theme.Fields, Theme.Horizon, Theme.Zeros, Theme.Ladder, Theme.Flavour, Theme.Dark, Theme.Hadrons, Theme.Super, Theme.Brackets, Theme.YangMills, Theme.Plaquette, Theme.Strata, Theme.Calibration, Theme.Tally, Theme.Causal, Keys.Fourier, Instances, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Theme.Orbital, Keys.Algebra, Keys.Foundation, Algebra, Epi, Dimensions, Quaternion, Keys.Extension, Keys.Gravity, Causality, Representation, Keys.Logic, Reductio, Godel, Finitism, Theme.Cells, Keys.Geometry, Geometry, Complex, Theme.Dirac, Theme.Packed, Theme.Plane, Theme.Hermitian, Theme.Operator, Theme.Unipotent, Theme.Spinor, Theme.Loss, Theme.Det, Theme.Elim, Theme.Cayley, Theme.Product, Theme.Poly, Theme.CharPoly, Keys.Horizon, Rh, Entropy, Keys.Relaxation, Gravity, Keys.Dirac, Keys.Operator, Dirac, Keys.Subject, S13, Keys.Quantum, Quantum, Pnp, Keys.Interactions, Fields, Keys.Flavour, Flavour, Keys.Dark, Dark, Keys.Hadrons, Hadrons, Keys.Carrier, Keys.Domain, Spacetime, Keys.Yangmills, YangMills, Keys.Super, Master)
 by make_core_web.py; the modules' own headers follow. Check any declaration with `#print axioms`. -/
 
 /-! inlined: FrcCore/Nat.lean -/
@@ -26466,18 +26466,23 @@ end FRC.Dark
 /-! inlined: FrcCore/Theme/Hadrons.lean -/
 
 /-!
-# FrcCore.Theme.Hadrons — the hadrons theme (35-hadrons, 19 October 2026)
+# FrcCore.Theme.Hadrons — the hadrons theme (35-hadrons, 19 October 2026; revised 14 and 15 November 2026)
 
 The exact content of *Ground-State Light Hadron Spectroscopy over Finite Substrate* (tree `35-hadrons-20260629`) above the
 interactions theme's colour sector over `𝔽₄` (`Theme/Fields.lean`), as `frc/hadrons.py` and `frc/ledgers/p35_hadrons.py`
 compute it: the colour group `SU(3, 2)` built by orthonormal frames and its centre (`colour_group`, 35:C1), the colourless
-content `(1, 0, 0, 1)` of the exterior algebra `Λ•(𝟛)` (`colourless_content`, 35:C15), the meson contraction
-(`meson_invariant`, 35:C18), the Weyl constant terms of `SU(3)` — the representation content behind the character sums
-(`adjoint_channel`, 35:C14) and the flavour cube `𝟛⊗𝟛⊗𝟛 = 𝟙𝟘 ⊕ 𝟠 ⊕ 𝟠 ⊕ 𝟙` (`flavour_cube`, 35:P5) — the Casimir, spin
+content `(1, 0, 0, 1)` of the exterior algebra `Λ•(𝟛)` (`colourless_content`, 35:C15), the lines the frame maps to
+themselves (`no_invariant_line`, 35:C15), the meson contraction (`meson_invariant`, 35:C18), the Weyl constant terms of
+`SU(3)` — the classical count of the adjoint channel (`adjoint_channel`, 35:C14) and the flavour cube `𝟛⊗𝟛⊗𝟛 = 𝟙𝟘 ⊕ 𝟠 ⊕ 𝟠 ⊕ 𝟙` (`flavour_cube`, 35:P5) — the Casimir, spin
 and charge arithmetic with cleared denominators (`colour_factor`, `spin_pattern`, `sigma_lambda`, `charge_structure`,
-35:C4, C5, C9, C13), the flavour and isospin relations as ring identities on the shell (`gmo`, `spacing`,
-`third_difference`, `hyperfine_links`, `coleman_glashow`, `vector_spacing`, `lambda_n_gap`, `spin_split`), the admissible
-shells (`admissible_shells`, 35:C20) and Sturm's count of the finite confinement operator (`airy_sturm`, 35:C16).
+35:C4, C5, C9, C13), the charge sums of Coleman–Glashow (`cg_charge_sums`, 35:C7), the flavour and isospin relations as
+ring identities on the shell (`gmo`, `spacing`, `third_difference`, `hyperfine_links`, `coleman_glashow`, `vector_spacing`,
+`lambda_n_gap`, `spin_split`), the second order of the pairwise model (`second_order`, 35:C11), the heavy-quark relation
+(`hqs_identity`, 35:C10), the shells `Ω ≡ 5 (mod 12)` (`admissible_shells`), Sturm's count of the nonrelativistic matrix
+(`airy_sturm`, 35:C17), the Carrier register on the laboratory Carriers `233`, `30089` and `2408561` — the scale
+(`scale_register`, 35:C26) and the winding law with its residues on the Subjects `13`, `173` and `1549`
+(`winding_register`, 35:C24) — and the drive against the register's Hamiltonian on those Subjects (`no_real_class`,
+35:C25).
 Kernel-decided throughout (`decide +kernel`); no axioms (`check_core_axioms.py`).
 -/
 
@@ -26553,6 +26558,21 @@ theorem colourless_content :
     [1, fixed1.length, fixed2.length, 1] = [1, 0, 0, 1] ∧ 1 + 3 + 3 + 1 = 2 ^ 3 := by
   decide +kernel
 
+/-- The multiple `x v` of a vector. -/
+def sv (x : F4) (v : List F4) : List F4 := v.map (fun c => x * c)
+
+/-- The nonzero vectors whose line every element maps to itself, on `𝟛` and on `Λ²(𝟛) ≅ 𝟛̄`: `g v` is `v`, `w v` or `w² v`. -/
+def invline1 : List (List F4) :=
+  vecs.filter (fun v => !(v == zero3) && su3.all (fun g => mv g v == v || mv g v == sv w v || mv g v == sv w2 v))
+def invline2 : List (List F4) :=
+  vecs.filter (fun v => !(v == zero3) && su3.all (fun g => mv (conjm g) v == v || mv (conjm g) v == sv w v || mv (conjm g) v == sv w2 v))
+
+/-- 35:C15, 35:X1 — no line of the triplet `𝟛` and no line of `Λ²(𝟛) ≅ 𝟛̄` is mapped to itself by every element of
+`SU(3, 2)`: no nonzero vector `v` has `g v ∈ {v, w v, w² v}` for all `216` elements. A registration is a line that the
+frame maps to itself, so a single quark and a diquark have residue `0`. -/
+theorem no_invariant_line : invline1.length = 0 ∧ invline2.length = 0 := by
+  decide +kernel
+
 /-- 35:C18, 35:X12 — the meson contraction: `g†g = I` for every element is the invariance of the Hermitian form on the basis pairs,
 `⟨g e_i, g e_j⟩ = (g†g)_{ij} = δ_{ij}`, so the `q q̄` contraction `v^a w̄_a` is the one-dimensional invariant of
 `𝟛 ⊗ 𝟛̄`; the triality of `q q̄` is `1 + 2 ≡ 0`, of `qqq` is `3 ≡ 0` (mod 3). -/
@@ -26597,10 +26617,10 @@ def weyl : LP :=
 /-- `6 E[χ^a χ̄^b]`: the constant term of `|Δ|² χ^a χ̄^b` (the Weyl integration formula; the Haar moment is one sixth). -/
 def moment6 (a b : Nat) : Int := ct (lpMul (lpMul weyl (lpPow chi a)) (lpPow chib b))
 
-/-- 35:C14, 35:C6, 35:C23 — the representation content behind the character sums, as Haar moments by the Weyl constant term:
+/-- 35:C14 — the classical count of the adjoint channel, as moments of `SU(3)` by the Weyl constant term:
 `E[χχ̄] = 1` (`𝟛 ⊗ 𝟛̄` has one singlet), `E[χ²] = 0` (`𝟛 ⊗ 𝟛` has none), `E[χ²χ̄²] − E[χχ̄] = 1` (the adjoint `𝟠 = χχ̄ − 1`
-sits in `𝟛 ⊗ 𝟛̄` once), `E[χ³χ̄] − E[χ²] = 0` (`𝟠` is absent from `𝟛 ⊗ 𝟛`). The single-plaquette coefficients
-`c₁ = β/(2N²) = β/18` and `c_adj = β²/(2N)² = β²/36` at `N = 3`. -/
+sits in `𝟛 ⊗ 𝟛̄` once), `E[χ³χ̄] − E[χ²] = 0` (`𝟠` is absent from `𝟛 ⊗ 𝟛`). The last two clauses are the integers
+`2·3² = 18` and `(2·3)² = 36`. -/
 theorem adjoint_channel :
     moment6 1 1 = 6 * 1 ∧ moment6 2 0 = 0 ∧ moment6 2 2 - moment6 1 1 = 6 * 1 ∧ moment6 3 1 - moment6 2 0 = 0 ∧
     2 * 3 ^ 2 = 18 ∧ (2 * 3) ^ 2 = 36 := by
@@ -26641,7 +26661,7 @@ theorem sigma_lambda :
     (3 - 4 * (0 * 1) - 3 : Int) = 0 ∧ (3 - 4 * (1 * 2) - 3 : Int) = -8 := by
   decide
 
-/-- 35:C8, 35:C13, 35:X8, 35:C21 — the charge structure with `9Q²` integral (`Q_u = 2/3`, `Q_d = −1/3`): one-body
+/-- 35:C8, 35:C13, 35:C21, 35:X8 — the charge structure with `9Q²` integral (`Q_u = 2/3`, `Q_d = −1/3`): one-body
 `9 Σ Q² = 4 + 4 + 1 = 9` for the proton (`1`) and `4 + 1 + 1 = 6` for the neutron (`2/3`); two-body
 `9 Σ_{i<j} Q_iQ_j = 4 − 2 − 2 = 0` for the proton and `−2 − 2 + 1 = −3` for the neutron (`−1/3`); both differences
 `p − n` positive (`+3`, `+3`, that is `+1/3` each): the electromagnetic term makes the proton heavier. -/
@@ -26650,7 +26670,17 @@ theorem charge_structure :
     (2 * (-1) + 2 * (-1) + (-1) * (-1) : Int) = -3 ∧ (9 - 6 : Int) = 3 ∧ (0 - (-3) : Int) = 3 ∧ 0 < (3 : Int) := by
   decide
 
-/-! ## The flavour and isospin relations as ring identities on the shell (35:C2, C3, C7, C11, C12, C16, C17, C18)
+/-- 35:C7, 35:C13 — the charge sums of the six states of Coleman–Glashow with `9Q²` integral (`p = uud`, `n = udd`, `Ξ⁰ = uss`,
+`Ξ⁻ = dss`, `Σ⁺ = uus`, `Σ⁻ = dds`): the one-body sums `9 Σ Q²` are `9, 6, 6, 3, 9, 3` and the two-body sums
+`9 Σ_{i<j} Q_iQ_j` are `0, −3, −3, 3, 0, 3`; for each, `(n − p) + (Ξ⁻ − Ξ⁰) = Σ⁻ − Σ⁺`. -/
+theorem cg_charge_sums :
+    (4 + 4 + 1 : Int) = 9 ∧ (4 + 1 + 1 : Int) = 6 ∧ (4 + 1 + 1 : Int) = 6 ∧ (1 + 1 + 1 : Int) = 3 ∧ (4 + 4 + 1 : Int) = 9 ∧ (1 + 1 + 1 : Int) = 3 ∧
+    (2 * 2 + 2 * (-1) + 2 * (-1) : Int) = 0 ∧ (2 * (-1) + 2 * (-1) + (-1) * (-1) : Int) = -3 ∧
+    (2 * (-1) + (2 * (-1)) + (-1) * (-1) : Int) = -3 ∧ ((-1) * (-1) + (-1) * (-1) + (-1) * (-1) : Int) = 3 ∧
+    (6 - 9 : Int) + (3 - 6) = 3 - 9 ∧ ((-3) - 0 : Int) + (3 - (-3)) = 3 - 0 := by
+  decide
+
+/-! ## The flavour and isospin relations as ring identities on the shell (35:C2, C3, C7, C10, C11, C12, C16, C18, C19)
 
 Every mass is a named expression in the shell's ring; a relation is `RE.sound`'s normalisation of both sides, so it holds on
 every shell for every value of the parameters. Coefficients are written as repeated sums (`a + a + a` for `3a`), the dark
@@ -26672,7 +26702,7 @@ def octS (m _a c : Shell p) : Shell p := m + (c + c + c + c)
 /-- `Ξ`: `Y = −1`, `I = 1/2`: `M₀ − a + b/2`. -/
 def octX (m a c : Shell p) : Shell p := m + -a + c
 
-/-- 35:C2, 35:X4, 35:P1 — Gell-Mann–Okubo as a ring identity: `2N + 2Ξ − 3Λ − Σ = 0` for every `M₀, a, c`; the scale and the breaking parameters cancel. -/
+/-- 35:C2, 35:X4, 35:X13, 35:P1 — Gell-Mann–Okubo as a ring identity: `2N + 2Ξ − 3Λ − Σ = 0` for every `M₀, a, c`; the scale and the breaking parameters cancel. -/
 theorem gmo (m a c : Shell p) :
     octN m a c + octN m a c + (octX m a c + octX m a c) + -(octL m a c + octL m a c + octL m a c) + -octS m a c = 0 :=
   RE.sound (look [m, a, c]) (.add (.add (.add (.add (.add (.add (.var 0) (.var 1)) (.var 2)) (.add (.add (.var 0) (.var 1)) (.var 2))) (.add (.add (.add (.var 0) (.neg (.var 1))) (.var 2)) (.add (.add (.var 0) (.neg (.var 1))) (.var 2)))) (.neg (.add (.add (.var 0) (.var 0)) (.var 0)))) (.neg (.add (.var 0) (.add (.add (.add (.var 2) (.var 2)) (.var 2)) (.var 2))))) .zero (by decide +kernel)
@@ -26691,14 +26721,14 @@ def decXs (m b : Shell p) : Shell p := m + b + b
 /-- `Ω`, `n_s = 3`. -/
 def decO (m b : Shell p) : Shell p := m + b + b + b
 
-/-- 35:C3, 35:X5, 35:P2 — decuplet equal spacing as a ring identity: the two second differences `Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` vanish for every `α, β`. -/
+/-- 35:C3, 35:X5, 35:X13, 35:P2 — decuplet equal spacing as a ring identity: the two second differences `Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` vanish for every `α, β`. -/
 theorem spacing (m b : Shell p) :
     decD m b + -(decSs m b + decSs m b) + decXs m b = 0 ∧
     decSs m b + -(decXs m b + decXs m b) + decO m b = 0 :=
   ⟨RE.sound (look [m, b]) (.add (.add (.var 0) (.neg (.add (.add (.var 0) (.var 1)) (.add (.var 0) (.var 1))))) (.add (.add (.var 0) (.var 1)) (.var 1))) .zero (by decide +kernel),
    RE.sound (look [m, b]) (.add (.add (.add (.var 0) (.var 1)) (.neg (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.add (.add (.var 0) (.var 1)) (.var 1))))) (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.var 1))) .zero (by decide +kernel)⟩
 
-/-! ### The linear-seed pairwise-hyperfine model, `A_ij = A (m/m_i)(m/m_j)`, `r = m/m_s`, with `A = 4a` so that the quarter
+/-! ### The pairwise hyperfine model, `A_ij = A (m/m_i)(m/m_j)`, `r = m/m_s`, with `A = 4a` so that the quarter
 correlators `±1/4`, `−3/4` are integral: the decuplet pairs `+1/4`, the octet as in `Theme/Hadrons`'s `sigma_lambda` -/
 
 /-- `Δ = M₀ + 3A/4`. -/
@@ -26725,7 +26755,7 @@ def hfS (m d a r : Shell p) : Shell p := m + d + a + -(a * r + a * r + a * r + a
 /-- `Ξ = M₀ + 2d + A(r²/4 − r)`. -/
 def hfX (m d a r : Shell p) : Shell p := m + d + d + a * r * r + -(a * r + a * r + a * r + a * r)
 
-/-- 35:C11, 35:P8 — the decuplet third difference vanishes identically in the model: `Δ − 3Σ* + 3Ξ* − Ω = 0` for every `M₀, d, A, r`. -/
+/-- 35:C11 — the decuplet third difference vanishes identically in the model: `Δ − 3Σ* + 3Ξ* − Ω = 0` for every `M₀, d, A, r`. -/
 theorem third_difference (m d a r : Shell p) :
     hfD m d a r + -(hfSs m d a r + hfSs m d a r + hfSs m d a r) + (hfXs m d a r + hfXs m d a r + hfXs m d a r) + -hfO m d a r = 0 :=
   RE.sound (look [m, d, a, r]) (.add (.add (.add (.add (.var 0) (.add (.add (.var 2) (.var 2)) (.var 2))) (.neg (.add (.add (.add (.add (.add (.var 0) (.var 1)) (.var 2)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))) (.add (.add (.add (.var 0) (.var 1)) (.var 2)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))))) (.add (.add (.add (.var 0) (.var 1)) (.var 2)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))))))) (.add (.add (.add (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))) (.mul (.mul (.var 2) (.var 3)) (.var 3))) (.add (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))) (.mul (.mul (.var 2) (.var 3)) (.var 3)))) (.add (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))) (.mul (.mul (.var 2) (.var 3)) (.var 3))))) (.neg (.add (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.var 1)) (.add (.add (.mul (.mul (.var 2) (.var 3)) (.var 3)) (.mul (.mul (.var 2) (.var 3)) (.var 3))) (.mul (.mul (.var 2) (.var 3)) (.var 3)))))) .zero (by decide +kernel)
@@ -26739,7 +26769,7 @@ theorem hyperfine_links (m d a r : Shell p) :
 
 /-! ### Isospin, the vector nonet, the gap and the split -/
 
-/-- 35:C7, 35:X10, 35:P6 — Coleman–Glashow as a one-body identity: counting the `d − u` content, `n − p = δ`, `Ξ⁻ − Ξ⁰ = δ`, `Σ⁻ − Σ⁺ = 2δ`, so `(n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) = 0` for every one-body unit `δ`. -/
+/-- 35:C7, 35:X10, 35:X13, 35:P6 — Coleman–Glashow as a one-body identity: counting the `d − u` content, `n − p = δ`, `Ξ⁻ − Ξ⁰ = δ`, `Σ⁻ − Σ⁺ = 2δ`, so `(n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) = 0` for every one-body unit `δ`. -/
 theorem coleman_glashow (δ : Shell p) :
     δ + δ + -(δ + δ) = 0 :=
   RE.sound (look [δ]) (.add (.add (.var 0) (.var 0)) (.neg (.add (.var 0) (.var 0)))) .zero (by decide +kernel)
@@ -26753,7 +26783,7 @@ def vecKs (a b : Shell p) : Shell p := a + b
 /-- `φ`, `n_s = 2`. -/
 def vecPhi (a b : Shell p) : Shell p := a + b + b
 
-/-- 35:C18, 35:X12, 35:P9 — the vector-nonet equal spacing as a ring identity: `2K* − ρ − φ = 0` for every `a, b`. -/
+/-- 35:C18, 35:X12, 35:X13, 35:P9 — the vector-nonet equal spacing as a ring identity: `2K* − ρ − φ = 0` for every `a, b`. -/
 theorem vector_spacing (a b : Shell p) :
     vecKs a b + vecKs a b + -vecRho a b + -vecPhi a b = 0 :=
   RE.sound (look [a, b]) (.add (.add (.add (.add (.var 0) (.var 1)) (.add (.var 0) (.var 1))) (.neg (.var 0))) (.neg (.add (.add (.var 0) (.var 1)) (.var 1)))) .zero (by decide +kernel)
@@ -26764,29 +26794,57 @@ def massL (l s u : Shell p) : Shell p := l + l + s + -(u + u + u)
 /-- `M_N = 3m_l − 3u`, the same hyperfine. -/
 def massN (l _s u : Shell p) : Shell p := l + l + l + -(u + u + u)
 
-/-- 35:C16, 35:P11, 35:P10 — the Λ–N gap is the strange constituent excess: `M_Λ − M_N = m_s − m_l` for every `l, s, u`, the hyperfine cancelling. -/
+/-- 35:C16, 35:P10 — the Λ–N gap is the strange constituent excess: `M_Λ − M_N = m_s − m_l` for every `l, s, u`, the hyperfine cancelling. -/
 theorem lambda_n_gap (l s u : Shell p) :
     massL l s u + -massN l s u = s + -l :=
   RE.sound (look [l, s, u]) (.add (.add (.add (.add (.var 0) (.var 0)) (.var 1)) (.neg (.add (.add (.var 2) (.var 2)) (.var 2)))) (.neg (.add (.add (.add (.var 0) (.var 0)) (.var 0)) (.neg (.add (.add (.var 2) (.var 2)) (.var 2)))))) (.add (.var 1) (.neg (.var 0))) (by decide +kernel)
 
-/-- `M_N/√σ = 3λ_l − 3f` with `λ_hf = 4f`. -/
+/-- `M_N c²/√(ħcσ) = 3λ_l − 3f` with `λ_hf = 4f`. -/
 def splitN (l f : Shell p) : Shell p := l + l + l + -(f + f + f)
 
-/-- `M_Δ/√σ = 3λ_l + 3f`. -/
+/-- `M_Δ c²/√(ħcσ) = 3λ_l + 3f`. -/
 def splitD (l f : Shell p) : Shell p := l + l + l + (f + f + f)
 
-/-- 35:C17, 35:C19, 35:C16, 35:P10 — the exact spin split inverts: `M_N + M_Δ = 6λ_l` and `M_Δ − M_N = 6f = (3/2)λ_hf`, so `λ_l = (M_N + M_Δ)/6` and `λ_hf = (2/3)(M_Δ − M_N)`. -/
+/-- 35:C16, 35:C19, 35:P10 — the exact spin split inverts: `M_N + M_Δ = 6λ_l` and `M_Δ − M_N = 6f = (3/2)λ_hf`, so `λ_l = (M_N + M_Δ)/6` and `λ_hf = (2/3)(M_Δ − M_N)`. -/
 theorem spin_split (l f : Shell p) :
     splitN l f + splitD l f = l + l + l + l + l + l ∧
     splitD l f + -splitN l f = f + f + f + f + f + f :=
   ⟨RE.sound (look [l, f]) (.add (.add (.add (.add (.var 0) (.var 0)) (.var 0)) (.neg (.add (.add (.var 1) (.var 1)) (.var 1)))) (.add (.add (.add (.var 0) (.var 0)) (.var 0)) (.add (.add (.var 1) (.var 1)) (.var 1)))) (.add (.add (.add (.add (.add (.var 0) (.var 0)) (.var 0)) (.var 0)) (.var 0)) (.var 0)) (by decide +kernel),
    RE.sound (look [l, f]) (.add (.add (.add (.add (.var 0) (.var 0)) (.var 0)) (.add (.add (.var 1) (.var 1)) (.var 1))) (.neg (.add (.add (.add (.var 0) (.var 0)) (.var 0)) (.neg (.add (.add (.var 1) (.var 1)) (.var 1)))))) (.add (.add (.add (.add (.add (.var 1) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (by decide +kernel)⟩
 
+/-- 35:C11, 35:C20 — the second order of the pairwise model, with `A = 4a` and `r = m_l/m_s`: both decuplet second differences
+`Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` equal `a(1 − r)² = (A/4)(1 − r)²`, and `2N + 2Ξ − 3Λ − Σ = 2a(1 − r)²`, that is the octet
+residual `½(N + Ξ) − ¼(3Λ + Σ) = (A/8)(1 − r)²`; for every `M₀, d, A, r`. -/
+theorem second_order (m d a r : Shell p) :
+    hfD m d a r + -(hfSs m d a r + hfSs m d a r) + hfXs m d a r = a + -(a * r + a * r) + a * r * r ∧
+    hfSs m d a r + -(hfXs m d a r + hfXs m d a r) + hfO m d a r = a + -(a * r + a * r) + a * r * r ∧
+    hfN m d a r + hfN m d a r + (hfX m d a r + hfX m d a r) + -(hfL m d a r + hfL m d a r + hfL m d a r) + -hfS m d a r = a + -(a * r + a * r) + a * r * r + (a + -(a * r + a * r) + a * r * r) :=
+  ⟨RE.sound (look [m, d, a, r]) (.add (.add (.add (.var 0) (.add (.add (.var 2) (.var 2)) (.var 2))) (.neg (.add (.add (.add (.add (.var 0) (.var 1)) (.var 2)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))) (.add (.add (.add (.var 0) (.var 1)) (.var 2)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))))))) (.add (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))) (.mul (.mul (.var 2) (.var 3)) (.var 3)))) (.add (.add (.var 2) (.neg (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))))) (.mul (.mul (.var 2) (.var 3)) (.var 3))) (by decide +kernel),
+   RE.sound (look [m, d, a, r]) (.add (.add (.add (.add (.add (.var 0) (.var 1)) (.var 2)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))) (.neg (.add (.add (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))) (.mul (.mul (.var 2) (.var 3)) (.var 3))) (.add (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))) (.mul (.mul (.var 2) (.var 3)) (.var 3)))))) (.add (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.var 1)) (.add (.add (.mul (.mul (.var 2) (.var 3)) (.var 3)) (.mul (.mul (.var 2) (.var 3)) (.var 3))) (.mul (.mul (.var 2) (.var 3)) (.var 3))))) (.add (.add (.var 2) (.neg (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))))) (.mul (.mul (.var 2) (.var 3)) (.var 3))) (by decide +kernel),
+   RE.sound (look [m, d, a, r]) (.add (.add (.add (.add (.add (.var 0) (.neg (.add (.add (.var 2) (.var 2)) (.var 2)))) (.add (.var 0) (.neg (.add (.add (.var 2) (.var 2)) (.var 2))))) (.add (.add (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.mul (.mul (.var 2) (.var 3)) (.var 3))) (.neg (.add (.add (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))) (.mul (.var 2) (.var 3))) (.mul (.var 2) (.var 3))))) (.add (.add (.add (.add (.var 0) (.var 1)) (.var 1)) (.mul (.mul (.var 2) (.var 3)) (.var 3))) (.neg (.add (.add (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))) (.mul (.var 2) (.var 3))) (.mul (.var 2) (.var 3))))))) (.neg (.add (.add (.add (.add (.var 0) (.var 1)) (.neg (.add (.add (.var 2) (.var 2)) (.var 2)))) (.add (.add (.var 0) (.var 1)) (.neg (.add (.add (.var 2) (.var 2)) (.var 2))))) (.add (.add (.var 0) (.var 1)) (.neg (.add (.add (.var 2) (.var 2)) (.var 2))))))) (.neg (.add (.add (.add (.var 0) (.var 1)) (.var 2)) (.neg (.add (.add (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))) (.mul (.var 2) (.var 3))) (.mul (.var 2) (.var 3))))))) (.add (.add (.add (.var 2) (.neg (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))))) (.mul (.mul (.var 2) (.var 3)) (.var 3))) (.add (.add (.var 2) (.neg (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))))) (.mul (.mul (.var 2) (.var 3)) (.var 3)))) (by decide +kernel)⟩
 
-/-! ## The admissible shells (35:C20, C23, X13, Z1) -/
+/-- `M_{Λ_Q} = m_Q + 2m_l − 3u` with `v_ll = 4u`: the light pair at spin `0`, no hyperfine term with the heavy quark. -/
+def massLQ (q l u : Shell p) : Shell p := q + l + l + -(u + u + u)
 
-/-- 35:C20, 35:C23, 35:X13, 35:Z1 — the colour rank is shell-independent: on every admissible shell `Ω ≡ 5 (mod 12)`,
-`3 ∣ Ω + 1` (`12k + 6 = 3(4k + 2)`); the four laboratory shells `53, 173, 389, 1373` are admissible. -/
+/-- The pseudoscalar heavy meson, `M_P = m_Q + m_l − 3w` with `w_Q = 4w` (the correlator `−3/4`). -/
+def mesP (q l w : Shell p) : Shell p := q + l + -(w + w + w)
+
+/-- The vector heavy meson, `M_V = m_Q + m_l + w` (the correlator `+1/4`). -/
+def mesV (q l w : Shell p) : Shell p := q + l + w
+
+/-- 35:C10, 35:X11, 35:P7 — the heavy-quark relation in the pairwise model: `M_{Λ_b} − M_{Λ_c} = m_b − m_c`, and the spin
+averages of the heavy mesons give the same difference, `(M_P + 3M_V)_B − (M_P + 3M_V)_D = 4(M_{Λ_b} − M_{Λ_c})`, for every
+value of the masses and of the hyperfine coefficients. -/
+theorem hqs_identity (b c l u wb wc : Shell p) :
+    massLQ b l u + -massLQ c l u = b + -c ∧
+    mesP b l wb + (mesV b l wb + mesV b l wb + mesV b l wb) + -(mesP c l wc + (mesV c l wc + mesV c l wc + mesV c l wc)) = massLQ b l u + -massLQ c l u + (massLQ b l u + -massLQ c l u) + (massLQ b l u + -massLQ c l u) + (massLQ b l u + -massLQ c l u) :=
+  ⟨RE.sound (look [b, c, l, u, wb, wc]) (.add (.add (.add (.add (.var 0) (.var 2)) (.var 2)) (.neg (.add (.add (.var 3) (.var 3)) (.var 3)))) (.neg (.add (.add (.add (.var 1) (.var 2)) (.var 2)) (.neg (.add (.add (.var 3) (.var 3)) (.var 3)))))) (.add (.var 0) (.neg (.var 1))) (by decide +kernel),
+   RE.sound (look [b, c, l, u, wb, wc]) (.add (.add (.add (.add (.var 0) (.var 2)) (.neg (.add (.add (.var 4) (.var 4)) (.var 4)))) (.add (.add (.add (.add (.var 0) (.var 2)) (.var 4)) (.add (.add (.var 0) (.var 2)) (.var 4))) (.add (.add (.var 0) (.var 2)) (.var 4)))) (.neg (.add (.add (.add (.var 1) (.var 2)) (.neg (.add (.add (.var 5) (.var 5)) (.var 5)))) (.add (.add (.add (.add (.var 1) (.var 2)) (.var 5)) (.add (.add (.var 1) (.var 2)) (.var 5))) (.add (.add (.var 1) (.var 2)) (.var 5)))))) (.add (.add (.add (.add (.add (.add (.add (.var 0) (.var 2)) (.var 2)) (.neg (.add (.add (.var 3) (.var 3)) (.var 3)))) (.neg (.add (.add (.add (.var 1) (.var 2)) (.var 2)) (.neg (.add (.add (.var 3) (.var 3)) (.var 3)))))) (.add (.add (.add (.add (.var 0) (.var 2)) (.var 2)) (.neg (.add (.add (.var 3) (.var 3)) (.var 3)))) (.neg (.add (.add (.add (.var 1) (.var 2)) (.var 2)) (.neg (.add (.add (.var 3) (.var 3)) (.var 3))))))) (.add (.add (.add (.add (.var 0) (.var 2)) (.var 2)) (.neg (.add (.add (.var 3) (.var 3)) (.var 3)))) (.neg (.add (.add (.add (.var 1) (.var 2)) (.var 2)) (.neg (.add (.add (.var 3) (.var 3)) (.var 3))))))) (.add (.add (.add (.add (.var 0) (.var 2)) (.var 2)) (.neg (.add (.add (.var 3) (.var 3)) (.var 3)))) (.neg (.add (.add (.add (.var 1) (.var 2)) (.var 2)) (.neg (.add (.add (.var 3) (.var 3)) (.var 3))))))) (by decide +kernel)⟩
+
+/-! ## The admissible shells -/
+
+/-- On every shell `Ω ≡ 5 (mod 12)`, `3 ∣ Ω + 1` (`12k + 6 = 3(4k + 2)`); the shells `53, 173, 389, 1373` satisfy both
+congruences. -/
 theorem admissible_shells :
     (∀ k : Nat, (12 * k + 5 + 1) % 3 = 0) ∧ [53, 173, 389, 1373].all (fun n => n % 12 == 5 && (n + 1) % 3 == 0) = true :=
   ⟨fun k => by
@@ -26812,15 +26870,120 @@ def sturmAux (N L : Nat) (μ : Int) : Nat → Int × Int × Nat
 eigenvalue `ε` of the grid operator corresponds to `μ = (N + 1) L² ε`. -/
 def sturm (N L : Nat) (μ : Int) : Nat := (sturmAux N L μ N).2.2
 
-/-- 35:C16 — the finite confinement operator `H^{(N)} = −u'' + x u` on `N = 200` sites of `[0, 16]`: Sturm's count of the
+/-- 35:C17 — the nonrelativistic matrix `H^{(N)} = −u'' + x u` on `N = 200` sites of `[0, 16]`: Sturm's count of the
 integer tridiagonal `201³ T + 16³ K` at `μ = 201 · 256 · ε` places exactly one eigenvalue in `(2.33, 2.34)`, one in
-`(4.08, 4.09)`, one in `(5.51, 5.52)` and one in `(6.77, 6.79)`: the finite-stage spectrum sits at the decimals of the Airy
-zeros to the grid's accuracy (the readout `2.338, 4.088, 5.521, 6.787` is the chart's). -/
+`(4.08, 4.09)`, one in `(5.51, 5.52)` and one in `(6.77, 6.79)`: the spectrum sits at the decimals of the Airy zeros to
+the grid's accuracy (the readout `2.338, 4.088, 5.521, 6.787` is the chart's). -/
 theorem airy_sturm :
     sturm 200 16 (201 * 256 * 233 / 100) = 0 ∧ sturm 200 16 (201 * 256 * 234 / 100) = 1 ∧
     sturm 200 16 (201 * 256 * 408 / 100) = 1 ∧ sturm 200 16 (201 * 256 * 409 / 100) = 2 ∧
     sturm 200 16 (201 * 256 * 551 / 100) = 2 ∧ sturm 200 16 (201 * 256 * 552 / 100) = 3 ∧
     sturm 200 16 (201 * 256 * 677 / 100) = 3 ∧ sturm 200 16 (201 * 256 * 679 / 100) = 4 := by
+  decide +kernel
+
+/-! ## The Carrier register: the scale and the winding law (35:C24, C26, C27) -/
+
+/-- The laboratory Carriers `Ω = 4S + 1` with a root `ħ` of `−1` and a root `c` of `2⁻¹`: `(Ω, S, ħ, c)`. The other root
+of each pair is `Ω − ħ`, `Ω − c`. -/
+def registers : List (Nat × Nat × Nat × Nat) :=
+  [(233, 58, 89, 74), (30089, 7522, 8086, 2324), (2408561, 602140, 18688, 171106)]
+
+/-- On a Carrier of `registers`: `Ω = 4S + 1`; `ħ² ≡ −1` and `2c² ≡ 1` for both roots of each pair; `(ħc)² ≡ 2S` for the
+four pairs of roots; `2S + 2⁻¹ ≡ 0`, with `2⁻¹ = 2S + 1`; and, for the tensions `σ = 1, 2, 3, 5, Ω − 7`, `(ħcσ)² ≡ 2S σ²`. -/
+def scaleOk (r : Nat × Nat × Nat × Nat) : Bool :=
+  let (Om, S, h, c) := r
+  Om == 4 * S + 1 &&
+  [h, Om - h].all (fun x => (x * x + 1) % Om == 0) && [c, Om - c].all (fun y => 2 * y * y % Om == 1) &&
+  [h, Om - h].all (fun x => [c, Om - c].all (fun y => (x * y % Om) * (x * y % Om) % Om == 2 * S &&
+    [1, 2, 3, 5, Om - 7].all (fun sg => (x * y % Om * sg % Om) * (x * y % Om * sg % Om) % Om == 2 * S * (sg * sg % Om) % Om))) &&
+  2 * (2 * S + 1) % Om == 1 && (2 * S + (2 * S + 1)) % Om == 0
+
+/-- 35:C26 — the scale in the Carrier register, on the Carriers `233`, `30089` and `2408561`: for both roots `ħ` of `−1` and
+both roots `c` of `2⁻¹`, `(ħc)² ≡ −2⁻¹ ≡ 2S`, so the fourth power of the scale `√(ħcσ)` is `2S σ²`. -/
+theorem scale_register : registers.all scaleOk = true := by
+  decide +kernel
+
+/-- On a Carrier of `registers`: `4c⁴ ≡ 1` for both roots `c`; the partner `h = −ħ` of each root `ħ` is a root of `−1`
+with `h + ħ ≡ 0`; and, for the counts `N = 3, 7, 11` and the tensions `σ = 1, 2, 3, 5, Ω − 7`, the residue `N h c σ`
+satisfies `4c⁴ · (N h c σ) ≡ N h c σ`: the relation `4M²c⁴ ≡ N hcσ` is `M² ≡ N hcσ`. -/
+def windingOk (r : Nat × Nat × Nat × Nat) : Bool :=
+  let (Om, _, h, c) := r
+  [c, Om - c].all (fun y => 4 * ((y * y % Om) * (y * y % Om) % Om) % Om == 1) &&
+  [h, Om - h].all (fun x => ((Om - x) * (Om - x) + 1) % Om == 0 && (x + (Om - x)) % Om == 0) &&
+  [h, Om - h].all (fun x => [c, Om - c].all (fun y => [3, 7, 11].all (fun n => [1, 2, 3, 5, Om - 7].all (fun sg =>
+    4 * ((y * y % Om) * (y * y % Om) % Om) % Om * (n * (Om - x) % Om * y % Om * sg % Om) % Om == n * (Om - x) % Om * y % Om * sg % Om))))
+
+/-- The laboratory Subjects `p = 4κ + 1`: `(p, κ)`. -/
+def subjects : List (Nat × Nat) := [(13, 3), (173, 43), (1549, 387)]
+
+/-- On a Subject of `subjects`: `p = 4κ + 1`; for the radial counts `k = 0, 1, 2` the residue `λ² = (4k + 3)κ` satisfies
+`4λ² + (4k + 3) ≡ 0`; and one radial step adds `4κ = p − 1`, one turn of the drive's cycle. -/
+def residuesOk (r : Nat × Nat) : Bool :=
+  let (p, kap) := r
+  p == 4 * kap + 1 && [0, 1, 2].all (fun k => (4 * ((4 * k + 3) * kap % p) + (4 * k + 3)) % p == 0) &&
+  (4 * 1 + 3) * kap - (4 * 0 + 3) * kap == p - 1
+
+/-- 35:C24 — the winding law in the Carrier register, on the Carriers `233`, `30089` and `2408561`: `4c⁴ ≡ 1` and `h = −ħ` is
+the partner of `ħ` in the root pair of `−1`, so `4M²c⁴ ≡ N hcσ` reads `M² ≡ N hcσ`. On the Subjects `13`, `173` and `1549`
+the squares of the ratios are the residues `(4k + 3)κ`, with `4κ = p − 1` for each radial step. -/
+theorem winding_register : registers.all windingOk = true ∧ subjects.all residuesOk = true := by
+  decide +kernel
+
+/-- On a Carrier of `registers`, with `G = 2S` the residue of `2G + 1 ≡ 0`: for both roots `ħ` and both roots `c`, the
+Planck mass squared `ħc/G` is `2hc`, that is `G · 2hc ≡ ħc`; and, for the counts `N = 3, 7, 11` and the tensions
+`σ = 1, 2, 3, 5, Ω − 7`, the residue `M² = N h c σ` satisfies `2M² ≡ N σ · 2hc` and `M² c⁴ ≡ N S · ħcσ`. -/
+def rootFreeOk (r : Nat × Nat × Nat × Nat) : Bool :=
+  let (Om, S, h, c) := r
+  (2 * (2 * S) + 1) % Om == 0 &&
+  [h, Om - h].all (fun x => [c, Om - c].all (fun y =>
+    2 * S * (2 * ((Om - x) * y % Om) % Om) % Om == x * y % Om &&
+    [3, 7, 11].all (fun n => [1, 2, 3, 5, Om - 7].all (fun sg =>
+      2 * (n * (Om - x) % Om * y % Om * sg % Om) % Om == n * sg % Om * (2 * ((Om - x) * y % Om) % Om) % Om &&
+      (n * (Om - x) % Om * y % Om * sg % Om) * ((y * y % Om) * (y * y % Om) % Om) % Om == n * S % Om * (x * y % Om * sg % Om) % Om))))
+
+/-- 35:C27 — no choice of the roots enters the winding law, on the Carriers `233`, `30089` and `2408561`: with `2G + 1 ≡ 0`
+the Planck mass squared `ħc/G` is `2hc` for both roots `ħ` of `−1` and both roots `c` of `2⁻¹`, so `M² ≡ N hcσ` reads
+`(M/m_P)² ≡ N σ/2` and `(Mc²)² ≡ N S · ħcσ`. -/
+theorem winding_no_root : registers.all rootFreeOk = true := by
+  decide +kernel
+
+/-! ## The drive against the register's Hamiltonian (35:C25) -/
+
+/-- The odd powers `g, g³, g⁵, …` of the drive modulo `p`, `k` of them from the residue `x`: none is `1` or `p − 1`. -/
+def oddOk (p g : Nat) : Nat → Nat → Bool
+  | 0, _ => true
+  | k + 1, x => (x != 1 && x != p - 1) && oddOk p g k ((x * g % p) * g % p)
+
+/-- The powers `g, g², …, gᵏ` of the drive modulo `p` from the residue `x`: none is `1`. -/
+def noUnit (p g : Nat) : Nat → Nat → Bool
+  | 0, _ => true
+  | k + 1, x => (x != 1) && noUnit p g k (x * g % p)
+
+/-- The kernel sum `Σ_y min(y, p − y) · bʸ` modulo `q`: `n` terms from the index `y`, with `u = bʸ`. -/
+def kernelSum (p q b : Nat) : Nat → Nat → Nat → Nat
+  | 0, _, _ => 0
+  | n + 1, y, u => (min y (p - y) * u + kernelSum p q b n (y + 1) (u * b % q)) % q
+
+/-- `bⁿ` modulo `q`. -/
+def powMod (b q : Nat) : Nat → Nat
+  | 0 => 1 % q
+  | n + 1 => powMod b q n * b % q
+
+/-- Over `𝔽_q`, with `ζ` of order `p`: `p` times the commutator of the register's Hamiltonian `|X| + F⁻¹|X|F` with the
+drive `2`, on the odd function `δ₁ − δ₋₁`, at the residue `2`: `p(|2| − 1) + K(ζ²) − K(ζ⁴)`, `K` the kernel sum. -/
+def registerCommutator (p q r : Nat) : Nat :=
+  (p + kernelSum p q (r * r % q) p 0 1 + (q - kernelSum p q (r * r % q * r % q * r % q) p 0 1)) % q
+
+/-- 35:C25 — on the Subjects `13`, `173` and `1549` with the drive `2`: the drive has the order `p − 1`, and no odd power of it
+below `p − 1` is `1` or `−1`, so no odd class of the drive is real; over `𝔽_q`, `q = 53, 347, 6197` the least prime
+`≡ 1 (mod p)` and `ζ = 16, 4, 16` of order `p`, the commutator of the register's Hamiltonian with the drive on the odd
+function `δ₁ − δ₋₁` reads `34`, `174`, `4364` at the residue `2`: it is not zero. -/
+theorem no_real_class :
+    oddOk 13 2 6 2 = true ∧ oddOk 173 2 86 2 = true ∧ oddOk 1549 2 774 2 = true ∧
+    noUnit 13 2 11 2 = true ∧ noUnit 173 2 171 2 = true ∧ noUnit 1549 2 1547 2 = true ∧
+    (53 % 13 = 1 ∧ powMod 16 53 13 = 1 ∧ registerCommutator 13 53 16 = 34) ∧
+    (347 % 173 = 1 ∧ powMod 4 347 173 = 1 ∧ registerCommutator 173 347 4 = 174) ∧
+    (6197 % 1549 = 1 ∧ powMod 16 6197 1549 = 1 ∧ registerCommutator 1549 6197 16 = 4364) := by
   decide +kernel
 
 end FRC.Hadrons
@@ -27171,12 +27334,8 @@ are integer comparisons. The adjoint without an invariant line (`adjoint_no_inva
 one-loop coefficient (46:C13): the spin traces on the shell's modules (`spin_traces`), the Faulhaber third with its complete
 cycle vanishing (`faulhaber_third`, `faulhaber_residues`, `complete_cycle_vanishes`) and the species sum of Hughes–Nielsen
 with denominators cleared (`hughes_nielsen_sum`). The radial ratio of the operator form against the lattice, the Airy
-ladder and the nucleon, in thousandths (`radial_ratio`, 46:P3). The transfer tally on the three Subjects (46:C19): the orders of
-their frames, the three degrees whose inverses are the eigenvalues of the step with the frame's mean, and the bookkeeping of
-its spectrum (`subject_spectrum`), and the identity
-`Σ a χ(1) = 3` swept over `q ≤ 2000` (`degree_identity`); the gap `1/(q + 1)` of the transfer tally (`ring_gap`); the reduced
-tally of the ring in the quadratic extension, its conjugate and its norm (`ring_tally_plane`), and the example at a boundary
-class with eigenvalues outside the shell on the three Subjects (`ring_tally_outside_shell`). No axioms.
+ladder and the nucleon, in thousandths (`radial_ratio`, 46:P3). The frame's window, the spectral amplitude of a plaquette, the transfer tally and the tallies of the ring
+(46:A9, C15 to C27) are in `Theme/Plaquette.lean`, the theme's third core file (13 November 2026). No axioms.
 -/
 
 namespace FRC.YangMills
@@ -27365,7 +27524,7 @@ theorem b0_neg : ∀ nf, nf < 201 → 17 ≤ nf → threeB0 nf < 0 := by
 
 /-! ## The drive exponent (46:C6) -/
 
-/-- 46:C6 — every winding rate `w ≠ 0` is one power of the drive: `w = gⁿ` for some `n < p − 1` (the discrete logarithm of
+/-- 46:C6 — every registered scale `w ≠ 0` is one power of the drive: `w = gⁿ` for some `n < p − 1` (the discrete logarithm of
 26-pnp, `FrameCore.eq_pow_of_ne_zero`). -/
 theorem drive_exponent (F : Frame p κ g) {w : Shell p} (hw : w ≠ 0) : ∃ n, n < p - 1 ∧ g ^ n = w :=
   F.eq_pow_of_ne_zero hw
@@ -27904,6 +28063,35 @@ theorem radial_ratio :
     1491 * 939 < 1440 * 1000 ∧ 1440 * 1000 * 100 < 1491 * 939 * 103 := by
   decide
 
+end FRC.YangMills
+
+/-! inlined: FrcCore/Theme/Plaquette.lean -/
+
+/-!
+# FrcCore.Theme.Plaquette — the frame's window, the spectral amplitude of a plaquette and the tallies of the ring (the yangmills theme's third file, 13 November 2026)
+
+Split from `Theme/YangMills.lean` on 13 November 2026 with every declaration as it stood, in the namespace `FRC.YangMills`, as
+`frc/plaquette.py`, `frc/yangmills.py` and `frc/ledgers/p46_yangmills.py` compute it. The frame's window and its first
+departure on the shell `13` (`frame_window`, 46:C15). The spectral amplitude of a plaquette (`spectral_amplitude`,
+`frame_cycle_trace`, 46:C16), the frame's root elements (`frame_root_elements`, 46:A9), the instance's distribution and its
+transfer tally (`instance_amplitude`, 46:C17; `instance_transfer`, 46:C18). The transfer tally on the three Subjects (46:C19):
+the orders of their frames, the three degrees whose inverses are the eigenvalues of the step with the frame's mean, and the
+bookkeeping of its spectrum (`subject_spectrum`), and the identity `Σ a χ(1) = 3` swept over `q ≤ 2000` (`degree_identity`);
+the gap `1/(q + 1)` of the transfer tally (`ring_gap`); the reduced tally of the ring in the quadratic extension, its
+conjugate and its norm (`ring_tally_plane`), and the example at a boundary class with eigenvalues outside the shell on the
+three Subjects (`ring_tally_outside_shell`); the tally with a norm-one link at every step, in the plane, on the three Subjects
+(`norm_one_link_tally`, 46:C27). The spectrum in `2π` (`spectrum_in_pi`, 46:C21), the product channels
+(`product_channel_counts`, 46:C22), the tally with the same boundary link at every step (`uniform_boundary_tally`, 46:C23),
+what a reading keeps of the window (`window_readings`, 46:C24), three rings on common links (`three_rings_reading`, 46:C25)
+and the series on the shell (`shell_series_readings`, 46:C26). No axioms.
+-/
+
+namespace FRC.YangMills
+
+open FRC.Shell FRC.Shell.Frame
+
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
 /-! ## The frame's window and its first departure (46:C15)
 
 For `p > 3` the frame's invariant counts in `3^{⊗a} ⊗ 3̄^{⊗b}` are the compact ones through degree `2p − 1`, and the Frobenius
@@ -28421,6 +28609,159 @@ theorem shell_series_readings :
        invS (truncSums (p := 13) [1, 0, 2, 2, 12, 30, 130, 462, 1946, 7980, 34776, 153120, 694056]
         [0, 1, 1, 6, 15, 65, 231, 973, 3990, 17388, 76560, 347028, 1597167] 13).2 = 4) := by
   decide +kernel
+
+/-- The product of two points of the plane `F_p(√2)`, pairs `(a, b) = a + b√2`, every product reduced at once. -/
+def noMul (p : Nat) (z w : Nat × Nat) : Nat × Nat :=
+  ((z.1 * w.1 + 2 * (z.2 * w.2)) % p, (z.1 * w.2 + z.2 * w.1) % p)
+
+/-- The sum of two points of the plane. -/
+def noAdd (p : Nat) (z w : Nat × Nat) : Nat × Nat := ((z.1 + w.1) % p, (z.2 + w.2) % p)
+
+/-- The conjugate of a point; on the norm-one cycle it is the inverse. -/
+def noConj (p : Nat) (z : Nat × Nat) : Nat × Nat := (z.1, (p - z.2) % p)
+
+/-- The norm of a point, a residue of the shell. -/
+def noNorm (p : Nat) (z : Nat × Nat) : Nat := (z.1 * z.1 + (p - (2 * (z.2 * z.2)) % p)) % p
+
+/-- The power `z^n` by repeated multiplication. -/
+def noPow (p : Nat) (z : Nat × Nat) : Nat → Nat × Nat
+  | 0 => (1, 0)
+  | n + 1 => noMul p (noPow p z n) z
+
+/-- A point of the norm-one cycle is central in the frame when its cube is `1`. -/
+def noCentral (p : Nat) (x : Nat × Nat) : Bool := noMul p (noMul p x x) x == (1, 0)
+
+/-- The reductions of the three characters at the class of the eigenvalues `x, x, x⁻²`, `x` of norm one: `x + x⁻²`, `x`, `0` off
+the centre, and `x`, `x`, `−x` on it, where the degrees read `1`, `1`, `−1`. -/
+def noChars (p : Nat) (x : Nat × Nat) : (Nat × Nat) × (Nat × Nat) × (Nat × Nat) :=
+  let xi := noConj p x
+  if noCentral p x then (x, x, ((p - x.1) % p, (p - x.2) % p)) else (noAdd p x (noMul p xi xi), x, (0, 0))
+
+/-- The reduced tally of the ring at the boundary classes of `x` and `y`: the characters at `x` times those at `y⁻¹`; every
+coefficient reads `1`. -/
+def noTally (p : Nat) (x y : Nat × Nat) : Nat × Nat :=
+  let (a1, a2, a3) := noChars p x
+  let (b1, b2, b3) := noChars p (noConj p y)
+  noAdd p (noAdd p (noMul p a1 b1) (noMul p a2 b2)) (noMul p a3 b3)
+
+/-- The four powers `2 x y⁻¹ + x y² + x⁻² y⁻¹ + x⁻² y²`. -/
+def noFour (p : Nat) (x y : Nat × Nat) : Nat × Nat :=
+  let xi := noConj p x; let yi := noConj p y
+  let xy := noMul p x yi
+  noAdd p (noAdd p (noAdd p xy xy) (noMul p x (noMul p y y)))
+    (noAdd p (noMul p (noMul p xi xi) yi) (noMul p (noMul p xi xi) (noMul p y y)))
+
+/-- A length is regular when neither boundary class is central. -/
+def noRegular (p : Nat) (x y : Nat × Nat) : Bool := !(noCentral p x) && !(noCentral p y)
+
+/-- On every regular length among the next `fuel` steps the reduced tally is the four powers. -/
+def noSweep (p : Nat) (uj uk : Nat × Nat) : Nat → Nat × Nat → Nat × Nat → Bool
+  | 0, _, _ => true
+  | fuel + 1, x, y =>
+    let x' := noMul p x uj; let y' := noMul p y uk
+    (!(noRegular p x' y') || noTally p x' y' == noFour p x' y') && noSweep p uj uk fuel x' y'
+
+/-- The reduced tally at the next `fuel` lengths. -/
+def noValues (p : Nat) (uj uk : Nat × Nat) : Nat → Nat × Nat → Nat × Nat → List (Nat × Nat)
+  | 0, _, _ => []
+  | fuel + 1, x, y =>
+    let x' := noMul p x uj; let y' := noMul p y uk
+    noTally p x' y' :: noValues p uj uk fuel x' y'
+
+/-- The lengths among the next `fuel` that are not regular; `n` counts the steps taken. -/
+def noOthers (p : Nat) (uj uk : Nat × Nat) : Nat → Nat → Nat × Nat → Nat × Nat → List Nat
+  | 0, _, _, _ => []
+  | fuel + 1, n, x, y =>
+    let x' := noMul p x uj; let y' := noMul p y uk
+    if noRegular p x' y' then noOthers p uj uk fuel (n + 1) x' y' else (n + 1) :: noOthers p uj uk fuel (n + 1) x' y'
+
+/-- The reductions of the three characters at the class of the eigenvalues `x, 1, x⁻¹` of the split torus, `x` a residue of the
+shell with the inverse `xi`: `1`, `x + x⁻¹`, `0`; the degrees `1`, `1`, `−1` at `x = 1`; and `0`, `−1`, `0` at `x = −1`. -/
+def mxChars (p x xi : Nat) : Nat × Nat × Nat :=
+  if x == 1 then (1, 1, p - 1) else if x == p - 1 then (0, p - 1, 0) else (1, (x + xi) % p, 0)
+
+/-- The reduced tally with one link on each torus: the characters at the class of `x` on the split torus times those at `y⁻¹`
+on the norm-one cycle. -/
+def mxTally (p x xi : Nat) (y : Nat × Nat) : Nat × Nat :=
+  let (a1, a2, a3) := mxChars p x xi
+  let (b1, b2, b3) := noChars p (noConj p y)
+  noAdd p (noAdd p (noMul p (a1, 0) b1) (noMul p (a2, 0) b2)) (noMul p (a3, 0) b3)
+
+/-- The expression `y² + (1 + x + x⁻¹) y⁻¹`. -/
+def mxReading (p x xi : Nat) (y : Nat × Nat) : Nat × Nat :=
+  noAdd p (noMul p y y) (noMul p ((1 + x + xi) % p, 0) (noConj p y))
+
+/-- A length is regular when `x` is neither `1` nor `−1` and `y` is not central. -/
+def mxRegular (p x : Nat) (y : Nat × Nat) : Bool := x != 1 && x != p - 1 && !(noCentral p y)
+
+/-- On every regular length among the next `fuel` steps the reduced tally is the expression. -/
+def mxSweep (p gj gji : Nat) (uk : Nat × Nat) : Nat → Nat → Nat → Nat × Nat → Bool
+  | 0, _, _, _ => true
+  | fuel + 1, x, xi, y =>
+    let x' := (x * gj) % p; let xi' := (xi * gji) % p; let y' := noMul p y uk
+    (!(mxRegular p x' y') || mxTally p x' xi' y' == mxReading p x' xi' y') && mxSweep p gj gji uk fuel x' xi' y'
+
+/-- The reduced tally with one link on each torus at the next `fuel` lengths. -/
+def mxValues (p gj gji : Nat) (uk : Nat × Nat) : Nat → Nat → Nat → Nat × Nat → List (Nat × Nat)
+  | 0, _, _, _ => []
+  | fuel + 1, x, xi, y =>
+    let x' := (x * gj) % p; let xi' := (xi * gji) % p; let y' := noMul p y uk
+    mxTally p x' xi' y' :: mxValues p gj gji uk fuel x' xi' y'
+
+/-- The power `z^n` by squaring, on `fuel` binary digits of `n`. -/
+def noPowB (p : Nat) : Nat → Nat × Nat → Nat → Nat × Nat
+  | 0, _, _ => (1, 0)
+  | fuel + 1, z, n =>
+    if n == 0 then (1, 0)
+    else
+      let h := noPowB p fuel (noMul p z z) (n / 2)
+      if n % 2 == 1 then noMul p h z else h
+
+/-- The reduced tally with one link on each torus at the length `n`: `x = g^n` with the inverse `gi^n`, and `y = u^n`. -/
+def mxAt (p g gi : Nat) (u : Nat × Nat) (n : Nat) : Nat × Nat :=
+  mxTally p (g ^ n % p) (gi ^ n % p) (noPowB p 24 u n)
+
+/-- The length `L` reads `3` and none of the listed lengths does. With the lengths `L/r`, `r` the prime divisors of a period
+`L`, this makes `L` the least period: a proper divisor of `L` that is a period divides some `L/r`, which would then read `3`. -/
+def mxLeast (p g gi : Nat) (u : Nat × Nat) (L : Nat) (ds : List Nat) : Bool :=
+  mxAt p g gi u L == (3, 0) && ds.all (fun d => mxAt p g gi u d != (3, 0))
+
+/-- 46:C27 — the tally of the ring with a norm-one link at every step, of the eigenvalues `u^j, u^j, u^{−2j}` and
+`u^k, u^k, u^{−2k}` with `(j, k) = (1, 2)`, in the plane `F_p(√2)` on pairs `(a, b) = a + b√2`; after `n` steps the boundary
+classes are those of `x = u^n` and `y = u^{2n}`. (1) `u = 3 + 2√2` on `13` and `173` and `u = 1459 + 1276√2` on `1549` have the
+norm `1` and the order `p + 1`. (2) On `13` the reduced tally at the lengths `1` to `14`, and its norms, the reduced paired
+weight. (3) On the Subjects `13`, `173`, `1549` the reduced tally is the four powers at every regular length of the norm-one
+cycle. (4) The other lengths: the multiples of `7`, `29` and `775`. (5) With unit links the tally is `3`. (6) One link on each
+torus, of the eigenvalues `2, 1, 2⁻¹` and `u, u, u⁻²`: on `13` the first six lengths, the expression `y² + (1 + x + x⁻¹) y⁻¹` at
+every regular length of the whole period `84`, and the value `3` at the length `84`; on `173` and `1549` the expression at
+every regular length among the first `1740` and `3100`. (7) The period `L = 84`, `14964`, `1199700` of (6) is the least one on
+the three Subjects: the length `L` reads `3`, and no length `L/r`, `r` a prime divisor of `L`, reads `3`. Every product is
+reduced at once. -/
+theorem norm_one_link_tally :
+    ((noNorm 13 (3, 2) = 1 ∧ noPow 13 (3, 2) 14 = (1, 0) ∧ noPow 13 (3, 2) 7 ≠ (1, 0) ∧ noPow 13 (3, 2) 2 ≠ (1, 0)) ∧
+      (noNorm 173 (3, 2) = 1 ∧ noPow 173 (3, 2) 174 = (1, 0) ∧ noPow 173 (3, 2) 87 ≠ (1, 0) ∧ noPow 173 (3, 2) 58 ≠ (1, 0) ∧
+        noPow 173 (3, 2) 6 ≠ (1, 0)) ∧
+      (noNorm 1549 (1459, 1276) = 1 ∧ noPow 1549 (1459, 1276) 1550 = (1, 0) ∧ noPow 1549 (1459, 1276) 775 ≠ (1, 0) ∧
+        noPow 1549 (1459, 1276) 310 ≠ (1, 0) ∧ noPow 1549 (1459, 1276) 50 ≠ (1, 0))) ∧
+    noValues 13 (3, 2) (noMul 13 (3, 2) (3, 2)) 14 (1, 0) (1, 0)
+      = [(11, 2), (2, 4), (7, 6), (8, 4), (2, 3), (7, 1), (12, 0), (7, 12), (2, 10), (8, 9), (7, 7), (2, 9), (11, 11), (3, 0)] ∧
+    (noValues 13 (3, 2) (noMul 13 (3, 2) (3, 2)) 14 (1, 0) (1, 0)).map (noNorm 13)
+      = [9, 11, 3, 6, 12, 8, 1, 8, 12, 6, 3, 11, 9, 9] ∧
+    (noSweep 13 (3, 2) (noMul 13 (3, 2) (3, 2)) 14 (1, 0) (1, 0) = true ∧
+      noSweep 173 (3, 2) (noMul 173 (3, 2) (3, 2)) 174 (1, 0) (1, 0) = true ∧
+      noSweep 1549 (1459, 1276) (noMul 1549 (1459, 1276) (1459, 1276)) 1550 (1, 0) (1, 0) = true) ∧
+    (noOthers 13 (3, 2) (noMul 13 (3, 2) (3, 2)) 14 0 (1, 0) (1, 0) = [7, 14] ∧
+      noOthers 173 (3, 2) (noMul 173 (3, 2) (3, 2)) 174 0 (1, 0) (1, 0) = [29, 58, 87, 116, 145, 174] ∧
+      noOthers 1549 (1459, 1276) (noMul 1549 (1459, 1276) (1459, 1276)) 1550 0 (1, 0) (1, 0) = [775, 1550]) ∧
+    (noTally 13 (1, 0) (1, 0) = (3, 0) ∧ noTally 173 (1, 0) (1, 0) = (3, 0) ∧ noTally 1549 (1, 0) (1, 0) = (3, 0)) ∧
+    (mxValues 13 2 7 (3, 2) 6 1 1 (1, 0) = [(8, 5), (0, 7), (5, 10), (10, 11), (11, 0), (3, 2)] ∧
+      mxSweep 13 2 7 (3, 2) 84 1 1 (1, 0) = true ∧ mxSweep 173 2 87 (3, 2) 1740 1 1 (1, 0) = true ∧
+      mxSweep 1549 2 775 (1459, 1276) 3100 1 1 (1, 0) = true ∧
+      (mxValues 13 2 7 (3, 2) 84 1 1 (1, 0)).getLast? = some (3, 0)) ∧
+    (mxLeast 13 2 7 (3, 2) 84 [42, 28, 12] = true ∧ mxLeast 173 2 87 (3, 2) 14964 [7482, 4988, 516, 348] = true ∧
+      mxLeast 1549 2 775 (1459, 1276) 1199700 [599850, 399900, 239940, 38700, 27900] = true) := by
+  decide +kernel
+
 
 end FRC.YangMills
 
@@ -42967,13 +43308,13 @@ theorem p00075 : (∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.spl
 /-- p00091 — 00:P4. No fourth generation, no fifth force, an empty desert, no TeV supersymmetry, no new dark-matter particle, no beyond-SM $(g{-}2)_\mu$, and the proton effectively stable ($\tau_p\gtrsim10^{45}$ yr; G9). Entailed by the closed ladder of the rank-five frame ($\dim\Lambda^{\mathrm{even}}=16$, D6), given the role-to-matter realisation (27:B6, 27:C10) and completeness (A3). Falsifier: any excluded object observed. Confrontation: none observed. -/
 theorem p00091 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat)))) ∧ ((List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true) ∧ ((24 : Nat) - ((8 : Nat) + (3 : Nat) + (1 : Nat)) = (12 : Nat) ∧ (12 : Nat) = (2 : Nat) * ((3 : Nat) * (2 : Nat)) ∧ (1 : Nat) + (5 : Nat) + (10 : Nat) = (16 : Nat) ∧ (10 : Nat) * (9 : Nat) = (2 : Nat) * (45 : Nat)) ∧ FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
   And.intro @FRC.Ladder.tower_reduces (And.intro @FRC.Interactions.one_generation (And.intro @FRC.Interactions.unification_counts (@FRC.Hadrons.colourless_content)))
-/-- p35015 — 35:C1. Colour $\SU(3,\F_2)$ built exactly: order $216$, centre $\Z_3$ the triality centre; the colour-singlet baryon is the centre-neutral $\varepsilon_{abc}$ invariant $\Lambda^3\mathbf3=\mathbf1$. -/
+/-- p35015 — 35:C1. The unitary frame on the enumerable instance: $\SU(3,\F_2)$ has $216$ elements and centre $\Z_3$; every element has determinant $1$, so the contraction $\varepsilon_{abc}$ of three triplets is invariant, the determinant line $\Lambda^3\mathbf3$. -/
 theorem p35015 : (FRC.Hadrons.unitv.length = (36 : Nat) ∧ FRC.Hadrons.u3.length = (648 : Nat) ∧ FRC.Hadrons.su3.length = (216 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm (FRC.Interactions.F4.dg g) g == FRC.Interactions.F4.one && FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ (List.filter (fun g => FRC.Interactions.F4.mm g FRC.Hadrons.D1 == FRC.Interactions.F4.mm FRC.Hadrons.D1 g && FRC.Interactions.F4.mm g FRC.Hadrons.U1 == FRC.Interactions.F4.mm FRC.Hadrons.U1 g) FRC.Hadrons.su3).length = (3 : Nat) ∧ ((List.filter (fun g => FRC.Interactions.F4.mm g FRC.Hadrons.D1 == FRC.Interactions.F4.mm FRC.Hadrons.D1 g && FRC.Interactions.F4.mm g FRC.Hadrons.U1 == FRC.Interactions.F4.mm FRC.Hadrons.U1 g) FRC.Hadrons.su3).all fun g => g == FRC.Interactions.F4.one || g == FRC.Interactions.F4.w.scal || g == FRC.Interactions.F4.w2.scal) = true ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm x.scal g == FRC.Interactions.F4.mm g x.scal) = true) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => x * x.conj == FRC.Interactions.F4.o && x * x * x == FRC.Interactions.F4.o) = true ∧ (FRC.Interactions.F4.z * FRC.Interactions.F4.z.conj == FRC.Interactions.F4.o) = false ∧ [FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].length = (3 : Nat) ∧ (2 : Nat) + (1 : Nat) = (3 : Nat) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal && FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal) = true :=
   And.intro @FRC.Hadrons.colour_group (@FRC.Interactions.su3_centre)
-/-- p35016 — 35:C2. Gell-Mann--Okubo $\tfrac12(N+\Xi)=\tfrac14(3\Lambda+\Sigma)$: $2N+2\Xi-3\Lambda-\Sigma=0$ identically, scale-cancelling. -/
+/-- p35016 — 35:C2. Gell-Mann--Okubo $\tfrac12(N+\Xi)=\tfrac14(3\Lambda+\Sigma)$: $2N+2\Xi-3\Lambda-\Sigma=0$ identically in the first-order octet operator. -/
 theorem p35016 : ∀ {p : Nat} [FRC.Pos p] (m a c : FRC.Shell p), FRC.Hadrons.octN m a c + FRC.Hadrons.octN m a c + (FRC.Hadrons.octX m a c + FRC.Hadrons.octX m a c) + -(FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c) + -FRC.Hadrons.octS m a c = (0 : FRC.Shell p) :=
   @FRC.Hadrons.gmo
-/-- p35017 — 35:C3. Decuplet equal spacing $\Sigma^{*}-\Delta=\Xi^{*}-\Sigma^{*}=\Omega-\Xi^{*}=\beta$: the second differences vanish identically. -/
+/-- p35017 — 35:C3. Decuplet equal spacing $\Sigma^{*}-\Delta=\Xi^{*}-\Sigma^{*}=\Omega^{-}-\Xi^{*}=\beta$: the second differences vanish identically. -/
 theorem p35017 : ∀ {p : Nat} [FRC.Pos p] (m b : FRC.Shell p), FRC.Hadrons.decD m b + -(FRC.Hadrons.decSs m b + FRC.Hadrons.decSs m b) + FRC.Hadrons.decXs m b = (0 : FRC.Shell p) ∧ FRC.Hadrons.decSs m b + -(FRC.Hadrons.decXs m b + FRC.Hadrons.decXs m b) + FRC.Hadrons.decO m b = (0 : FRC.Shell p) :=
   @FRC.Hadrons.spacing
 /-- p35018 — 35:C4. Colour factor of the singlet $\sum_{i<j}\bvec\lambda_i\!\cdot\!\bvec\lambda_j=-8$ ($-\tfrac83$ per pair) from $C_2(\mathbf3)=\tfrac43$, $C_2(\mathbf1)=0$. -/
@@ -42982,120 +43323,129 @@ theorem p35018 : (3 : Int) * (3 : Int) - (1 : Int) = (8 : Int) ∧ (2 : Nat) * (
 /-- p35019 — 35:C5. Spin structure $g_{\mathrm{spin}}=\half S(S+1)-\tfrac98$, octet $-\tfrac34$, decuplet $+\tfrac34$; eigenvalues $+2,-2$; separation $M_{\mathbf{10}}-M_{\mathbf8}=\tfrac32A_{\mathrm{light}}$. -/
 theorem p35019 : (1 : Int) * ((1 : Int) + (2 : Int)) - (9 : Int) = (-6 : Int) ∧ (3 : Int) * ((3 : Int) + (2 : Int)) - (9 : Int) = (6 : Int) ∧ (6 : Int) - (-6 : Int) = (12 : Int) ∧ (-8 : Int) * (-6 : Int) = (2 : Int) * (24 : Int) ∧ (-8 : Int) * (6 : Int) = (-2 : Int) * (24 : Int) :=
   @FRC.Hadrons.spin_pattern
-/-- p35020 — 35:C6. $A_{\mathrm{light}}=\sig\,c_{\mathrm{mag}}(\beta)$, with $c_{\mathrm{mag}}$ a colour-curvature character sum of the $c_1$ family ($c_1=\beta/18+\cdots$ reproduced); the dimensionless pattern exact, the absolute scale $\Om$-hard. -/
-theorem p35020 : FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (2 : Nat) - FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (1 : Nat) - FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ (2 : Nat) * (3 : Nat) ^ (2 : Nat) = (18 : Nat) ∧ ((2 : Nat) * (3 : Nat)) ^ (2 : Nat) = (36 : Nat) :=
-  @FRC.Hadrons.adjoint_channel
-/-- p35021 — 35:C7. Coleman--Glashow $(n-p)+(\Xi^-{-}\Xi^0)=\Sigma^-{-}\Sigma^+$: an exact one-body identity, the two-body electromagnetic term cancelling. -/
-theorem p35021 : ∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p) :=
-  @FRC.Hadrons.coleman_glashow
-/-- p35022 — 35:C8. The ordering $M_n>M_p$: the $d-u$ seed exceeds the charge-squared electromagnetic term ($\sum Q^2=1$ for $p$, $\tfrac23$ for $n$), fixing $m_d>m_u$. -/
+/-- p35021 — 35:C7. Coleman--Glashow $(n-p)+(\Xi^-{-}\Xi^0)=\Sigma^-{-}\Sigma^+$: an identity of the mass term, of the one-body charge sums and of the two-body charge sums. -/
+theorem p35021 : (∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p)) ∧ (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (1 : Int) + (1 : Int) + (1 : Int) = (3 : Int) ∧ (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (1 : Int) + (1 : Int) + (1 : Int) = (3 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (-1 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (3 : Int) ∧ (6 : Int) - (9 : Int) + ((3 : Int) - (6 : Int)) = (3 : Int) - (9 : Int) ∧ (-3 : Int) - (0 : Int) + ((3 : Int) - (-3 : Int)) = (3 : Int) - (0 : Int) :=
+  And.intro @FRC.Hadrons.coleman_glashow (@FRC.Hadrons.cg_charge_sums)
+/-- p35022 — 35:C8. The neutron--proton splitting: with positive coefficients both charge sums favour the proton by $\tfrac13$ of their unit ($\sum Q^2$: $1$ against $\tfrac23$; $\sum_{i<j}Q_iQ_j$: $0$ against $-\tfrac13$), so $M_n>M_p$ is equivalent to a $d$--$u$ mass difference above the electromagnetic terms. -/
 theorem p35022 : (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int) :=
   @FRC.Hadrons.charge_structure
-/-- p35023 — 35:C9. $M_\Sigma>M_\Lambda$: hyperfine fine structure, the light $(ud)$ pair spin-$1$ vs spin-$0$, $M_\Sigma-M_\Lambda=a_{ll}(1-m_l/m_s)>0$. -/
+/-- p35023 — 35:C9. $M_\Sigma>M_\Lambda$: hyperfine fine structure, the light $(ud)$ pair spin-$1$ against spin-$0$, $M_\Sigma-M_\Lambda=v_{ll}(1-m_l/m_s)>0$ for $m_s>m_l$. -/
 theorem p35023 : (2 : Int) * (0 : Int) * (1 : Int) - (3 : Int) = (-3 : Int) ∧ (2 : Int) * (1 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (1 : Int) - (-3 : Int) = (4 : Int) ∧ (3 : Int) - (4 : Int) * ((0 : Int) * (1 : Int)) - (3 : Int) = (0 : Int) ∧ (3 : Int) - (4 : Int) * ((1 : Int) * (2 : Int)) - (3 : Int) = (-8 : Int) :=
   @FRC.Hadrons.sigma_lambda
-/-- p35025 — 35:C11. Second-order decuplet relation $M_\Delta-3M_{\Sigma^*}+3M_{\Xi^*}-M_\Omega=0$ (vanishing third difference), exact in the linear-seed pairwise-hyperfine model. -/
-theorem p35025 : ∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfD m d a r + -(FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r) + (FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r) + -FRC.Hadrons.hfO m d a r = (0 : FRC.Shell p) :=
-  @FRC.Hadrons.third_difference
-/-- p35026 — 35:C12. Octet--decuplet hyperfine links $M_\Sigma-M_\Lambda=\tfrac23[(M_\Delta-M_N)-(M_{\Sigma^*}-M_\Sigma)]$ and $M_{\Sigma^*}-M_\Sigma=M_{\Xi^*}-M_\Xi$, parameter-free. -/
+/-- p35024 — 35:C10. The heavy-quark relation: $\Lambda_Q$ holds a spin-$0$ light pair, so the heavy quark has no hyperfine term, and in the pairwise model $M_{\Lambda_b}-M_{\Lambda_c}=m_b-m_c=\bar M_B-\bar M_D$, with $\bar M=\tfrac14(M_P+3M_V)$ the spin average of a heavy meson; the heavy hyperfine coefficient scales as $1/m_Q$. -/
+theorem p35024 : ∀ {p : Nat} [FRC.Pos p] (b c l u wb wc : FRC.Shell p), FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u = b + -c ∧ FRC.Hadrons.mesP b l wb + (FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb) + -(FRC.Hadrons.mesP c l wc + (FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc)) = FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) :=
+  @FRC.Hadrons.hqs_identity
+/-- p35025 — 35:C11. The second order of the pairwise model: the octet residual is $\tfrac18v_{ll}(1-z)^2$ and both decuplet second differences are $\tfrac14v_{ll}(1-z)^2$, $z=m_l/m_s$, so the third difference vanishes; all are identities in $(m_l,m_s,v_{ll})$. -/
+theorem p35025 : (∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfD m d a r + -(FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r) + (FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r) + -FRC.Hadrons.hfO m d a r = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfD m d a r + -(FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r) + FRC.Hadrons.hfXs m d a r = a + -(a * r + a * r) + a * r * r ∧ FRC.Hadrons.hfSs m d a r + -(FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r) + FRC.Hadrons.hfO m d a r = a + -(a * r + a * r) + a * r * r ∧ FRC.Hadrons.hfN m d a r + FRC.Hadrons.hfN m d a r + (FRC.Hadrons.hfX m d a r + FRC.Hadrons.hfX m d a r) + -(FRC.Hadrons.hfL m d a r + FRC.Hadrons.hfL m d a r + FRC.Hadrons.hfL m d a r) + -FRC.Hadrons.hfS m d a r = a + -(a * r + a * r) + a * r * r + (a + -(a * r + a * r) + a * r * r) :=
+  And.intro @FRC.Hadrons.third_difference (@FRC.Hadrons.second_order)
+/-- p35026 — 35:C12. Octet--decuplet hyperfine links $M_\Sigma-M_\Lambda=\tfrac23[(M_\Delta-M_N)-(M_{\Sigma^*}-M_\Sigma)]$ and $M_{\Sigma^*}-M_\Sigma=M_{\Xi^*}-M_\Xi$, identities of the pairwise model. -/
 theorem p35026 : ∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfS m d a r + -FRC.Hadrons.hfL m d a r + (FRC.Hadrons.hfS m d a r + -FRC.Hadrons.hfL m d a r) + (FRC.Hadrons.hfS m d a r + -FRC.Hadrons.hfL m d a r) = FRC.Hadrons.hfD m d a r + -FRC.Hadrons.hfN m d a r + -(FRC.Hadrons.hfSs m d a r + -FRC.Hadrons.hfS m d a r) + (FRC.Hadrons.hfD m d a r + -FRC.Hadrons.hfN m d a r + -(FRC.Hadrons.hfSs m d a r + -FRC.Hadrons.hfS m d a r)) ∧ FRC.Hadrons.hfSs m d a r + -FRC.Hadrons.hfS m d a r + -(FRC.Hadrons.hfXs m d a r + -FRC.Hadrons.hfX m d a r) = (0 : FRC.Shell p) :=
   @FRC.Hadrons.hyperfine_links
-/-- p35027 — 35:C13. EM splitting structure: one-body $\sum Q_i^2$ and two-body $\sum_{i<j}Q_iQ_j$ exact ($p$: $1,0$; $n$: $\tfrac23,-\tfrac13$); $\Delta_{\mathrm{EM}}=\alpha\,\sig\times$structure, the absolute reducing to the imported $\alpha$ (A9) and $\sig$ (A3), no new residue. -/
-theorem p35027 : (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int) :=
-  @FRC.Hadrons.charge_structure
-/-- p35028 — 35:C14. $c_{\mathrm{mag}}$ the adjoint (colour-octet) plaquette character sum, $\mathbf8\subset\mathbf3\otimes\bar{\mathbf3}$ ($\mathbf8\not\subset\mathbf3\otimes\mathbf3$), leading $\beta^2/36$ at $O(\beta^2)$, one order finer than the tension $c_1=\beta/18$. -/
+/-- p35027 — 35:C13. The charge structure of the electromagnetic splitting: the one-body sums $\sum Q_i^2$ and the two-body sums $\sum_{i<j}Q_iQ_j$ of the six states of the Coleman--Glashow identity, exact rationals ($p$: $1,0$; $n$: $\tfrac23,-\tfrac13$). -/
+theorem p35027 : ((4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int)) ∧ (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (1 : Int) + (1 : Int) + (1 : Int) = (3 : Int) ∧ (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (1 : Int) + (1 : Int) + (1 : Int) = (3 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (-1 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (3 : Int) ∧ (6 : Int) - (9 : Int) + ((3 : Int) - (6 : Int)) = (3 : Int) - (9 : Int) ∧ (-3 : Int) - (0 : Int) + ((3 : Int) - (-3 : Int)) = (3 : Int) - (0 : Int) :=
+  And.intro @FRC.Hadrons.charge_structure (@FRC.Hadrons.cg_charge_sums)
+/-- p35028 — 35:C14. The adjoint channel: in the classical count the adjoint $\mathbf8$ occurs once in $\mathbf3\otimes\bar{\mathbf3}$ and not in $\mathbf3\otimes\mathbf3$; on $\SU(3,\F_2)$ the frame fixes the pairing line of $\mathbf3\otimes\bar{\mathbf3}$ and no traceless matrix, and no nonzero invariant map takes $\mathbf3\otimes\bar{\mathbf3}$ to $\mathbf3\otimes\mathbf3$. -/
 theorem p35028 : FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (2 : Nat) - FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (1 : Nat) - FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ (2 : Nat) * (3 : Nat) ^ (2 : Nat) = (18 : Nat) ∧ ((2 : Nat) * (3 : Nat)) ^ (2 : Nat) = (36 : Nat) :=
   @FRC.Hadrons.adjoint_channel
-/-- p35029 — 35:C15. Baryon $=$ Carrier residue $1$: the colourless content of $\Lambda^\bullet(\mathbf3)$ is $(1,0,0,1)$; the baryon is the determinant $\Lambda^3=\det$ at $k=N=3$ (residue $1$, baryon number), forced by the gluon residue $0$ (the fundamental has no invariant vector on $\SU(3,\F_2)$); parallel to photon $2$, gluon $0$. -/
-theorem p35029 : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
-  @FRC.Hadrons.colourless_content
-/-- p35030 — 35:C16. Single-scale reduction: $M_H=\sig\,\lambda_H$, the three anchored masses read as one $\Om$-hard scale $\sig$ and three sub-horizon numbers ($\lambda_l$, $m_s/m_l$, $\lambda_{\mathrm{hf}}$); $M_\Lambda-M_N=m_s-m_l$ exact (hyperfine-cancelling); the finite-stage eigenvalues $\varepsilon_k^{(G)}\in\mathrm{Spec}(H^{(N)})$ exact, the decimal Airy values the [approx] readout, $\Om$-stable. -/
-theorem p35030 : (FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (233 : Int) / (100 : Int)) = (0 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (234 : Int) / (100 : Int)) = (1 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (408 : Int) / (100 : Int)) = (1 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (409 : Int) / (100 : Int)) = (2 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (551 : Int) / (100 : Int)) = (2 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (552 : Int) / (100 : Int)) = (3 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (677 : Int) / (100 : Int)) = (3 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (679 : Int) / (100 : Int)) = (4 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] (l s u : FRC.Shell p), FRC.Hadrons.massL l s u + -FRC.Hadrons.massN l s u = s + -l) ∧ ∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.splitN l f + FRC.Hadrons.splitD l f = l + l + l + l + l + l ∧ FRC.Hadrons.splitD l f + -FRC.Hadrons.splitN l f = f + f + f + f + f + f :=
-  And.intro @FRC.Hadrons.airy_sturm (And.intro @FRC.Hadrons.lambda_n_gap (@FRC.Hadrons.spin_split))
-/-- p35031 — 35:C17. The baryon scale: the computed finite eigenvalue $E_0\simeq2.232$ (operator $H_G=T_G^{1/2}+R_G$, no baryon mass entering); $M_N=E_0\sig$ predicts the nucleon to $4.6\%$, the absolute prediction carrying the imported $\Om$-hard $\sig$ (A3). $\lambda_l,\lambda_{\mathrm{hf}}$ evaluated forward from $\{N,\beta\}$ (C19), $\Om$-stable. -/
-theorem p35031 : ∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.splitN l f + FRC.Hadrons.splitD l f = l + l + l + l + l + l ∧ FRC.Hadrons.splitD l f + -FRC.Hadrons.splitN l f = f + f + f + f + f + f :=
-  @FRC.Hadrons.spin_split
-/-- p35032 — 35:C18. Meson Carrier residue: the $q\bar q$ colour singlet is the contraction of $\mathbf3\otimes\bar{\mathbf3}=\mathbf1\oplus\mathbf8$ (the Hermitian invariant), residue $1$, $B=0$ (triality $0$); the residue series closes (photon $2$, gluon $0$, baryon $1$, meson $1$); on the same frame the vector-nonet equal spacing $2M_{K^{*}}=M_\rho+M_\phi$ is an exact identity of linear strangeness. -/
+/-- p35029 — 35:C15. The baryon's residue is $1$: on $\SU(3,\F_2)$ the fixed vectors of $\Lambda^k(\mathbf3)$ span dimensions $(1,0,0,1)$, the frame maps no line of the triplet or of $\Lambda^2$ to itself, and among the exterior powers the determinant line $\Lambda^3$ is the one registration beside the vacuum. -/
+theorem p35029 : (FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat)) ∧ FRC.Hadrons.invline1.length = (0 : Nat) ∧ FRC.Hadrons.invline2.length = (0 : Nat) :=
+  And.intro @FRC.Hadrons.colourless_content (@FRC.Hadrons.no_invariant_line)
+/-- p35030 — 35:C16. The constituent parameters from three masses: $M_N=3m_l-\tfrac34v_{ll}$, $M_\Delta=3m_l+\tfrac34v_{ll}$ and $M_\Lambda-M_N=m_s-m_l$, the hyperfine term cancelling in the gap; [chart] $m_l=361.8$~MeV/$c^{2}$, $m_s/m_l=1.489$, $v_{ll}=195.4$~MeV/$c^{2}$. -/
+theorem p35030 : (∀ {p : Nat} [FRC.Pos p] (l s u : FRC.Shell p), FRC.Hadrons.massL l s u + -FRC.Hadrons.massN l s u = s + -l) ∧ ∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.splitN l f + FRC.Hadrons.splitD l f = l + l + l + l + l + l ∧ FRC.Hadrons.splitD l f + -FRC.Hadrons.splitN l f = f + f + f + f + f + f :=
+  And.intro @FRC.Hadrons.lambda_n_gap (@FRC.Hadrons.spin_split)
+/-- p35031 — 35:C17. The nonrelativistic matrix on $4000$ sites has exactly one eigenvalue in each of $(2.338,2.339)$ and $(4.087,4.088)$; [chart] the readings of the body's Hamiltonian $(c|p|+\sigma\,r)/\sig$ (B7) on $600$ sites: $E_0=2.232$, $E_1=3.329$ and the contact value $C=3.50$; the squares of the two levels over $\tfrac12\pi$ read $3.17$ and $7.06$. -/
+theorem p35031 : FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (233 : Int) / (100 : Int)) = (0 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (234 : Int) / (100 : Int)) = (1 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (408 : Int) / (100 : Int)) = (1 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (409 : Int) / (100 : Int)) = (2 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (551 : Int) / (100 : Int)) = (2 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (552 : Int) / (100 : Int)) = (3 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (677 : Int) / (100 : Int)) = (3 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (679 : Int) / (100 : Int)) = (4 : Nat) :=
+  @FRC.Hadrons.airy_sturm
+/-- p35032 — 35:C18. The meson's residue is $1$: the $q\bar q$ singlet is the pairing line of $\mathbf3\otimes\bar{\mathbf3}=\mathbf1\oplus\mathbf8$, the Hermitian invariant and on $\SU(3,\F_2)$ the one line of the product that the frame fixes; the series reads photon $2$, gluon $0$, baryon $1$, meson $1$; the vector-nonet spacing $2M_{K^{*}}=M_\rho+M_\phi$ is an identity of linear strangeness. -/
 theorem p35032 : ((FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm (FRC.Interactions.F4.dg g) g == FRC.Interactions.F4.one && FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ ((1 : Nat) + (2 : Nat)) % (3 : Nat) = (0 : Nat) ∧ (3 : Nat) % (3 : Nat) = (0 : Nat) ∧ (1 : Nat) % (3 : Nat) = (1 : Nat) ∧ (2 : Nat) % (3 : Nat) = (2 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] (a b : FRC.Shell p), FRC.Hadrons.vecKs a b + FRC.Hadrons.vecKs a b + -FRC.Hadrons.vecRho a b + -FRC.Hadrons.vecPhi a b = (0 : FRC.Shell p) :=
   And.intro @FRC.Hadrons.meson_invariant (@FRC.Hadrons.vector_spacing)
-/-- p35033 — 35:C19. Forward constituent eigenvalues: $\lambda_l,\lambda_{\mathrm{hf}}$ computed from $\{N{=}3,\beta\}$ with no measured baryon mass --- $\lambda_{\mathrm{hf}}$ the colour-magnetic contact ($c_{\mathrm{adj}}{=}\beta^2/36$, the exact overlap $|u'(0)|^2{=}1$, $\alpha_s(\sig)$ transmutation-pinned), $\lambda_l$ from $E_0$ and the exact spin split; matching $0.44,0.85$ to constituent-model accuracy, the margin set by the linear-potential approximation. -/
+/-- p35033 — 35:C19. [chart] The joint solution on $600$ sites: the nucleon's reading $3\lambda_l-\tfrac34\lambda_{\mathrm{hf}}=\lambda_N$ of the winding law (C24) and the contact rule (B8) give $\lambda_{\mathrm{hf}}=0.466$, $\lambda_l=0.840$ and $(M_\Delta-M_N)/M_N=0.322$ against the measured $0.312$, no measured mass entering. -/
 theorem p35033 : ∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.splitN l f + FRC.Hadrons.splitD l f = l + l + l + l + l + l ∧ FRC.Hadrons.splitD l f + -FRC.Hadrons.splitN l f = f + f + f + f + f + f :=
   @FRC.Hadrons.spin_split
-/-- p35034 — 35:C20. Residue resolution, second order: the $\SU(3)_F$ residuals (decuplet third difference $6$ MeV, octet $\mathbf{27}$-plet $0.57\%$) are sub-horizon, $O(\varepsilon_s^2)$ of a convergent strange-breaking expansion, $\Om$-stable (Prop.~\ref{prop:subhorizon}). -/
-theorem p35034 : (∀ (k : Nat), ((12 : Nat) * k + (5 : Nat) + (1 : Nat)) % (3 : Nat) = (0 : Nat)) ∧ ([(53 : Nat), (173 : Nat), (389 : Nat), (1373 : Nat)].all fun n => n % (12 : Nat) == (5 : Nat) && (n + (1 : Nat)) % (3 : Nat) == (0 : Nat)) = true :=
-  @FRC.Hadrons.admissible_shells
-/-- p35035 — 35:C21. Residue resolution, electromagnetic: the splitting magnitude $\Delta_{\mathrm{EM}}=\alpha\,\sig\times$[exact charge structure] reduces to the imported $\alpha$ (A9) and $\sig$ (A3), no new residue (C13); Coleman--Glashow and the orderings derived (C7--C9). -/
+/-- p35034 — 35:C20. [chart] The second order against the data: the pairwise model gives an octet residual of $+2.6$~MeV/$c^{2}$ and decuplet second differences of $+5.3$~MeV/$c^{2}$ (C11); the measured values are $-6.4$ and $-3.7$, $-9.8$~MeV/$c^{2}$, each of the opposite sign; the measured third difference is $6.05$~MeV/$c^{2}$. -/
+theorem p35034 : ∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfD m d a r + -(FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r) + FRC.Hadrons.hfXs m d a r = a + -(a * r + a * r) + a * r * r ∧ FRC.Hadrons.hfSs m d a r + -(FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r) + FRC.Hadrons.hfO m d a r = a + -(a * r + a * r) + a * r * r ∧ FRC.Hadrons.hfN m d a r + FRC.Hadrons.hfN m d a r + (FRC.Hadrons.hfX m d a r + FRC.Hadrons.hfX m d a r) + -(FRC.Hadrons.hfL m d a r + FRC.Hadrons.hfL m d a r + FRC.Hadrons.hfL m d a r) + -FRC.Hadrons.hfS m d a r = a + -(a * r + a * r) + a * r * r + (a + -(a * r + a * r) + a * r * r) :=
+  @FRC.Hadrons.second_order
+/-- p35035 — 35:C21. [chart] The electromagnetic magnitude: one third of the unit $\alpha\sig$ is $1.07$~MeV at the imported scale, the size of the rest energy of the lattice's electromagnetic part, $1.00(16)$~MeV (A10). -/
 theorem p35035 : (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int) :=
   @FRC.Hadrons.charge_structure
-/-- p35037 — 35:C23. Residue resolution, hyperfine: the dimensionless $A_{\mathrm{light}}/\sig$ is a ratio of $\Om$-independent character sums (C14), $\Om$-stable, sub-horizon; the absolute $A_{\mathrm{light}}=\sig\,c_{\mathrm{mag}}$ is $\sig$-scaled (A3, Prop.~\ref{prop:subhorizon}). -/
-theorem p35037 : ((∀ (k : Nat), ((12 : Nat) * k + (5 : Nat) + (1 : Nat)) % (3 : Nat) = (0 : Nat)) ∧ ([(53 : Nat), (173 : Nat), (389 : Nat), (1373 : Nat)].all fun n => n % (12 : Nat) == (5 : Nat) && (n + (1 : Nat)) % (3 : Nat) == (0 : Nat)) = true) ∧ FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (2 : Nat) - FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (1 : Nat) - FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ (2 : Nat) * (3 : Nat) ^ (2 : Nat) = (18 : Nat) ∧ ((2 : Nat) * (3 : Nat)) ^ (2 : Nat) = (36 : Nat) :=
-  And.intro @FRC.Hadrons.admissible_shells (@FRC.Hadrons.adjoint_channel)
-/-- p35038 — 35:X1. \textbf{The baryon is three quarks} because the only colourless escape from the gluon residue $0$ is the determinant $\Lambda^N=\det$, which requires exactly $N=3$. -/
-theorem p35038 : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
-  @FRC.Hadrons.colourless_content
-/-- p35039 — 35:X2. \textbf{The baryon is colour-neutral} as the centre-neutral, triality-$0$ invariant $\varepsilon_{abc}$ of the triality frame, a derived singlet. -/
+/-- p35038 — 35:X1. \textbf{The baryon is three quarks} because the determinant line $\Lambda^{3}\mathbf3$ is the one registration among the exterior powers of the triplet beside the vacuum. -/
+theorem p35038 : (FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat)) ∧ FRC.Hadrons.invline1.length = (0 : Nat) ∧ FRC.Hadrons.invline2.length = (0 : Nat) :=
+  And.intro @FRC.Hadrons.colourless_content (@FRC.Hadrons.no_invariant_line)
+/-- p35039 — 35:X2. \textbf{The baryon is colour-neutral} as the invariant $\varepsilon_{abc}$ of the unitary frame, whose elements have determinant $1$. -/
 theorem p35039 : (FRC.Hadrons.unitv.length = (36 : Nat) ∧ FRC.Hadrons.u3.length = (648 : Nat) ∧ FRC.Hadrons.su3.length = (216 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm (FRC.Interactions.F4.dg g) g == FRC.Interactions.F4.one && FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ (List.filter (fun g => FRC.Interactions.F4.mm g FRC.Hadrons.D1 == FRC.Interactions.F4.mm FRC.Hadrons.D1 g && FRC.Interactions.F4.mm g FRC.Hadrons.U1 == FRC.Interactions.F4.mm FRC.Hadrons.U1 g) FRC.Hadrons.su3).length = (3 : Nat) ∧ ((List.filter (fun g => FRC.Interactions.F4.mm g FRC.Hadrons.D1 == FRC.Interactions.F4.mm FRC.Hadrons.D1 g && FRC.Interactions.F4.mm g FRC.Hadrons.U1 == FRC.Interactions.F4.mm FRC.Hadrons.U1 g) FRC.Hadrons.su3).all fun g => g == FRC.Interactions.F4.one || g == FRC.Interactions.F4.w.scal || g == FRC.Interactions.F4.w2.scal) = true ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm x.scal g == FRC.Interactions.F4.mm g x.scal) = true) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => x * x.conj == FRC.Interactions.F4.o && x * x * x == FRC.Interactions.F4.o) = true ∧ (FRC.Interactions.F4.z * FRC.Interactions.F4.z.conj == FRC.Interactions.F4.o) = false ∧ [FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].length = (3 : Nat) ∧ (2 : Nat) + (1 : Nat) = (3 : Nat) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal && FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal) = true :=
   And.intro @FRC.Hadrons.colour_group (@FRC.Interactions.su3_centre)
-/-- p35040 — 35:X3. \textbf{Baryon number is the Carrier residue $1$}, the determinant winding, so its conservation is the invariance of $\Lambda^3$, on the same footing as the photon residue $2$ and the gluon residue $0$. -/
+/-- p35040 — 35:X3. \textbf{Baryon number is a count}: for a system of hadrons, the number of its determinant lines $\Lambda^{3}(\mathbf3)$ less the number of its conjugate lines $\Lambda^{3}(\bar{\mathbf3})$, which no element of the frame changes; its conservation by the sector's dynamics is the prediction P4. -/
 theorem p35040 : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
   @FRC.Hadrons.colourless_content
-/-- p35041 — 35:X4. \textbf{The Gell-Mann--Okubo relation} is exact, the scale-cancelling identity $2N+2\Xi-3\Lambda-\Sigma=0$ of linear flavour breaking, a derived sum rule. -/
+/-- p35041 — 35:X4. \textbf{The Gell-Mann--Okubo relation} is the identity $2N+2\Xi-3\Lambda-\Sigma=0$ of linear flavour breaking, for every value of the scale. -/
 theorem p35041 : ∀ {p : Nat} [FRC.Pos p] (m a c : FRC.Shell p), FRC.Hadrons.octN m a c + FRC.Hadrons.octN m a c + (FRC.Hadrons.octX m a c + FRC.Hadrons.octX m a c) + -(FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c) + -FRC.Hadrons.octS m a c = (0 : FRC.Shell p) :=
   @FRC.Hadrons.gmo
-/-- p35042 — 35:X5. \textbf{The decuplet is equally spaced} because the strange seed enters the wrap additively. -/
+/-- p35042 — 35:X5. \textbf{The decuplet is equally spaced} at first order because the strange quark enters the mass additively. -/
 theorem p35042 : ∀ {p : Nat} [FRC.Pos p] (m b : FRC.Shell p), FRC.Hadrons.decD m b + -(FRC.Hadrons.decSs m b + FRC.Hadrons.decSs m b) + FRC.Hadrons.decXs m b = (0 : FRC.Shell p) ∧ FRC.Hadrons.decSs m b + -(FRC.Hadrons.decXs m b + FRC.Hadrons.decXs m b) + FRC.Hadrons.decO m b = (0 : FRC.Shell p) :=
   @FRC.Hadrons.spacing
-/-- p35043 — 35:X6. \textbf{The decuplet is heavier than the octet} by the colour-magnetic curvature invariant, the colour factor $-8$ times the spin $\half S(S+1)-\tfrac98$, a derived sign and pattern. -/
+/-- p35043 — 35:X6. \textbf{The decuplet is heavier than the octet} by the colour-magnetic term, the colour factor $-8$ times the spin structure $\half S(S+1)-\tfrac98$, a sign and a pattern. -/
 theorem p35043 : ((1 : Int) * ((1 : Int) + (2 : Int)) - (9 : Int) = (-6 : Int) ∧ (3 : Int) * ((3 : Int) + (2 : Int)) - (9 : Int) = (6 : Int) ∧ (6 : Int) - (-6 : Int) = (12 : Int) ∧ (-8 : Int) * (-6 : Int) = (2 : Int) * (24 : Int) ∧ (-8 : Int) * (6 : Int) = (-2 : Int) * (24 : Int)) ∧ (3 : Int) * (3 : Int) - (1 : Int) = (8 : Int) ∧ (2 : Nat) * (3 : Nat) * (4 : Nat) = (3 : Nat) * (8 : Nat) ∧ (0 : Int) - (3 : Int) * (8 : Int) = (-24 : Int) ∧ (-24 / 12 : Int) = (-2 : Int) ∧ (4 : Int) * (-2 : Int) = (-8 : Int) :=
   And.intro @FRC.Hadrons.spin_pattern (@FRC.Hadrons.colour_factor)
-/-- p35044 — 35:X7. \textbf{The proton is stable} as the minimal-wrap residue-$1$ state, with no lighter $B=1$ residue to reach. -/
+/-- p35044 — 35:X7. \textbf{The proton is stable} as the lightest state of the determinant line, with no state of the line below it. -/
 theorem p35044 : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
   @FRC.Hadrons.colourless_content
-/-- p35045 — 35:X8. \textbf{The neutron is heavier than the proton} because the $d-u$ seed exceeds the charge-squared electromagnetic term ($\sum Q^2=1$ for $p$, $\tfrac23$ for $n$), a derived ordering. -/
+/-- p35045 — 35:X8. \textbf{The neutron--proton ordering} is the sign of one difference, the $d$--$u$ mass difference against the electromagnetic terms, each of which favours the proton by one third of its unit. -/
 theorem p35045 : (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int) :=
   @FRC.Hadrons.charge_structure
-/-- p35046 — 35:X9. \textbf{$\Sigma$ is heavier than $\Lambda$} by the spin-$1$ versus spin-$0$ light-pair hyperfine, a derived splitting of two states of identical quark content. -/
+/-- p35046 — 35:X9. \textbf{$\Sigma$ is heavier than $\Lambda$} by the spin-$1$ against the spin-$0$ light pair, a splitting of two states of identical quark content. -/
 theorem p35046 : (2 : Int) * (0 : Int) * (1 : Int) - (3 : Int) = (-3 : Int) ∧ (2 : Int) * (1 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (1 : Int) - (-3 : Int) = (4 : Int) ∧ (3 : Int) - (4 : Int) * ((0 : Int) * (1 : Int)) - (3 : Int) = (0 : Int) ∧ (3 : Int) - (4 : Int) * ((1 : Int) * (2 : Int)) - (3 : Int) = (-8 : Int) :=
   @FRC.Hadrons.sigma_lambda
-/-- p35047 — 35:X10. \textbf{The isospin splittings obey Coleman--Glashow} exactly at one body, $(n{-}p)+(\Xi^-{-}\Xi^0)=\Sigma^-{-}\Sigma^+$, a derived identity. -/
+/-- p35047 — 35:X10. \textbf{The isospin splittings obey Coleman--Glashow}, $(n{-}p)+(\Xi^-{-}\Xi^0)=\Sigma^-{-}\Sigma^+$, for the mass term and for both electromagnetic terms. -/
 theorem p35047 : ∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p) :=
   @FRC.Hadrons.coleman_glashow
-/-- p35049 — 35:X12. \textbf{The vector mesons equally space}, $2M_{K^{*}}=M_\rho+M_\phi$, the meson residue $1$ ($B=0$) on the same frame and scale as the baryons. -/
+/-- p35048 — 35:X11. \textbf{The heavy baryons follow the heavy mesons}: $M_{\Lambda_b}-M_{\Lambda_c}$ and the spin-averaged $\bar M_B-\bar M_D$ are one quantity, $m_b-m_c$. -/
+theorem p35048 : ∀ {p : Nat} [FRC.Pos p] (b c l u wb wc : FRC.Shell p), FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u = b + -c ∧ FRC.Hadrons.mesP b l wb + (FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb) + -(FRC.Hadrons.mesP c l wc + (FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc)) = FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) :=
+  @FRC.Hadrons.hqs_identity
+/-- p35049 — 35:X12. \textbf{The vector mesons equally space}, $2M_{K^{*}}=M_\rho+M_\phi$, on the same frame and scale as the baryons. -/
 theorem p35049 : (∀ {p : Nat} [FRC.Pos p] (a b : FRC.Shell p), FRC.Hadrons.vecKs a b + FRC.Hadrons.vecKs a b + -FRC.Hadrons.vecRho a b + -FRC.Hadrons.vecPhi a b = (0 : FRC.Shell p)) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm (FRC.Interactions.F4.dg g) g == FRC.Interactions.F4.one && FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ ((1 : Nat) + (2 : Nat)) % (3 : Nat) = (0 : Nat) ∧ (3 : Nat) % (3 : Nat) = (0 : Nat) ∧ (1 : Nat) % (3 : Nat) = (1 : Nat) ∧ (2 : Nat) % (3 : Nat) = (2 : Nat) :=
   And.intro @FRC.Hadrons.vector_spacing (@FRC.Hadrons.meson_invariant)
-/-- p35050 — 35:X13. \textbf{The spectrum rests on one scale}, $\sqrt\sigma=\LQCD$, the lone $\Om$-hard residue; every dimensionless mass ratio is a sub-horizon eigenvalue. -/
-theorem p35050 : (∀ (k : Nat), ((12 : Nat) * k + (5 : Nat) + (1 : Nat)) % (3 : Nat) = (0 : Nat)) ∧ ([(53 : Nat), (173 : Nat), (389 : Nat), (1373 : Nat)].all fun n => n % (12 : Nat) == (5 : Nat) && (n + (1 : Nat)) % (3 : Nat) == (0 : Nat)) = true :=
-  @FRC.Hadrons.admissible_shells
-/-- p35051 — 35:P1. Gell-Mann--Okubo exact at leading order; PDG $0.57\%$, the bounded $\chi_3^2$ second order. Falsifier: a violation beyond the second-order insertion. -/
+/-- p35050 — 35:X13. \textbf{The spectrum rests on one scale}: every mass relation of the paper is homogeneous in the masses and holds for every value of $\sig$. -/
+theorem p35050 : (∀ {p : Nat} [FRC.Pos p] (m a c : FRC.Shell p), FRC.Hadrons.octN m a c + FRC.Hadrons.octN m a c + (FRC.Hadrons.octX m a c + FRC.Hadrons.octX m a c) + -(FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c) + -FRC.Hadrons.octS m a c = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] (m b : FRC.Shell p), FRC.Hadrons.decD m b + -(FRC.Hadrons.decSs m b + FRC.Hadrons.decSs m b) + FRC.Hadrons.decXs m b = (0 : FRC.Shell p) ∧ FRC.Hadrons.decSs m b + -(FRC.Hadrons.decXs m b + FRC.Hadrons.decXs m b) + FRC.Hadrons.decO m b = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] (a b : FRC.Shell p), FRC.Hadrons.vecKs a b + FRC.Hadrons.vecKs a b + -FRC.Hadrons.vecRho a b + -FRC.Hadrons.vecPhi a b = (0 : FRC.Shell p) :=
+  And.intro @FRC.Hadrons.gmo (And.intro @FRC.Hadrons.spacing (And.intro @FRC.Hadrons.coleman_glashow (@FRC.Hadrons.vector_spacing)))
+/-- p35051 — 35:P1. Gell-Mann--Okubo (C2). [chart] Falsifier: an octet residual above $\varepsilon_s^{2}(M_\Xi-M_N)=13.4$~MeV/$c^{2}$, with $\varepsilon_s=(M_\Lambda-M_N)/M_N$. Confrontation: $6.4$~MeV/$c^{2}$, $0.57\%$. -/
 theorem p35051 : ∀ {p : Nat} [FRC.Pos p] (m a c : FRC.Shell p), FRC.Hadrons.octN m a c + FRC.Hadrons.octN m a c + (FRC.Hadrons.octX m a c + FRC.Hadrons.octX m a c) + -(FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c) + -FRC.Hadrons.octS m a c = (0 : FRC.Shell p) :=
   @FRC.Hadrons.gmo
-/-- p35052 — 35:P2. Decuplet equal spacing exact; PDG $9.2\%$ spread, $\beta\simeq146.8$ MeV, the same second order. Falsifier: a non-equal spacing beyond it. -/
+/-- p35052 — 35:P2. Decuplet equal spacing (C3). [chart] Falsifier: a residual of $M_{\Sigma^{*}}=\tfrac12(M_\Delta+M_{\Xi^{*}})$ or of $M_{\Xi^{*}}=\tfrac12(M_{\Sigma^{*}}+M_\Omega)$ above $\varepsilon_s^{2}(M_\Omega-M_\Delta)=15.6$~MeV/$c^{2}$. Confrontation: $1.9$ and $4.9$~MeV/$c^{2}$. -/
 theorem p35052 : ∀ {p : Nat} [FRC.Pos p] (m b : FRC.Shell p), FRC.Hadrons.decD m b + -(FRC.Hadrons.decSs m b + FRC.Hadrons.decSs m b) + FRC.Hadrons.decXs m b = (0 : FRC.Shell p) ∧ FRC.Hadrons.decSs m b + -(FRC.Hadrons.decXs m b + FRC.Hadrons.decXs m b) + FRC.Hadrons.decO m b = (0 : FRC.Shell p) :=
   @FRC.Hadrons.spacing
-/-- p35053 — 35:P3. The hyperfine pattern $g_{\mathrm{spin}}=\half S(S+1)-\tfrac98$, octet $-\tfrac34$, decuplet $+\tfrac34$, separation $\tfrac32A_{\mathrm{light}}$ with $A_{\mathrm{light}}\simeq195$ MeV. Falsifier: a spin splitting outside this pattern. -/
+/-- p35053 — 35:P3. The hyperfine pattern (C5): the spin-$\tfrac32$ multiplet above the spin-$\half$ one by $\tfrac32A_{\mathrm{light}}$. Falsifier: a ground-state spin splitting of the opposite sign. [chart] Confrontation: $M_\Delta-M_N=293.1$~MeV/$c^{2}$, $A_{\mathrm{light}}=195.4$~MeV/$c^{2}$. -/
 theorem p35053 : (1 : Int) * ((1 : Int) + (2 : Int)) - (9 : Int) = (-6 : Int) ∧ (3 : Int) * ((3 : Int) + (2 : Int)) - (9 : Int) = (6 : Int) ∧ (6 : Int) - (-6 : Int) = (12 : Int) ∧ (-8 : Int) * (-6 : Int) = (2 : Int) * (24 : Int) ∧ (-8 : Int) * (6 : Int) = (-2 : Int) * (24 : Int) :=
   @FRC.Hadrons.spin_pattern
-/-- p35054 — 35:P4. Proton effective stability: the proton is the minimal colour-neutral wrap, with no allowed strong or electromagnetic channel toward a smaller residue; the single neutron transition is one flavour flip, the $\beta$ channel \cite{akhtman2026fields}. Falsifier: an observed proton decay or a strong/electromagnetic baryon-number-violating process. -/
+/-- p35054 — 35:P4. Proton stability: the proton is the lightest state of the determinant line, with no strong or electromagnetic channel below it; the neutron reaches it by the $\beta$ channel. Falsifier: an observed strong or electromagnetic process that violates baryon number. Confrontation: none observed. -/
 theorem p35054 : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
   @FRC.Hadrons.colourless_content
-/-- p35055 — 35:P5. No exotic light multiplets beyond the $\mathbf 8$ and $\mathbf{10}$ at leading wrap order. Falsifier: a confirmed light baryon outside the $\mathbf 8$ and $\mathbf{10}$ at the wrap scale. -/
+/-- p35055 — 35:P5. No ground-state light baryon multiplet beyond the $\mathbf 8$ and the $\mathbf{10}$. Falsifier: a confirmed ground-state light baryon outside them. Confrontation: none confirmed. -/
 theorem p35055 : FRC.Hadrons.moment6 (3 : Nat) (0 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (4 : Nat) (1 : Nat) - FRC.Hadrons.moment6 (3 : Nat) (0 : Nat) = (6 : Int) * (2 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (3 : Nat) = (6 : Int) * ((1 : Int) + (2 : Int) ^ (2 : Nat) + (1 : Int)) ∧ (3 : Nat) ^ (3 : Nat) = (10 : Nat) + (8 : Nat) + (8 : Nat) + (1 : Nat) ∧ (8 : Nat) * (7 : Nat) * (6 : Nat) / ((3 : Nat) * (2 : Nat) * (1 : Nat)) = (56 : Nat) ∧ (10 : Nat) * (4 : Nat) + (8 : Nat) * (2 : Nat) = (56 : Nat) :=
   @FRC.Hadrons.flavour_cube
-/-- p35056 — 35:P6. Coleman--Glashow exact at one body; PDG $0.79\%$, the residual the two-body electromagnetic term; the orderings $M_n>M_p$ and $M_\Sigma>M_\Lambda$ fixed. Falsifier: a Coleman--Glashow violation beyond the two-body term. -/
+/-- p35056 — 35:P6. Coleman--Glashow (C7). Falsifier: a difference of its two sides beyond their measurement error. [chart] Confrontation: $8.14(21)$ against $8.08(8)$~MeV/$c^{2}$. -/
 theorem p35056 : ∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p) :=
   @FRC.Hadrons.coleman_glashow
-/-- p35058 — 35:P8. Second-order decuplet relation \eqref{eq:thirddiff}, the vanishing third difference; PDG $6$ MeV ($0.36\%$). Falsifier: a third difference beyond the few-MeV third-order scale. -/
-theorem p35058 : ∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfD m d a r + -(FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r) + (FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r) + -FRC.Hadrons.hfO m d a r = (0 : FRC.Shell p) :=
-  @FRC.Hadrons.third_difference
-/-- p35059 — 35:P9. Vector-meson nonet equal spacing $2M_{K^{*}}=M_\rho+M_\phi$ (PDG $0.42\%$) and ideal mixing $M_\omega\simeq M_\rho$; $\rho,\phi$ anchor, $K^{*},\omega$ predicted $<1\%$; the pseudoscalars are Goldstone bosons (a distinct chiral mechanism). Falsifier: a vector nonet off the linear-strangeness pattern. -/
+/-- p35057 — 35:P7. The heavy-quark relation (C10). [chart] Falsifier: a residual above $(\hbar\sigma/c^{3})(1/m_c-1/m_b)=75$~MeV/$c^{2}$ at the imported scale. Confrontation: $-7.1$~MeV/$c^{2}$, $0.21\%$, with isospin-averaged mesons; the hyperfine ratio $0.339$ against $m_s/m_c=0.315$. -/
+theorem p35057 : ∀ {p : Nat} [FRC.Pos p] (b c l u wb wc : FRC.Shell p), FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u = b + -c ∧ FRC.Hadrons.mesP b l wb + (FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb) + -(FRC.Hadrons.mesP c l wc + (FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc)) = FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) :=
+  @FRC.Hadrons.hqs_identity
+/-- p35059 — 35:P9. Vector equal spacing $M_{K^{*}}=\tfrac12(M_\rho+M_\phi)$ (C18). [chart] Falsifier: a residual above $\varepsilon_s^{2}(M_\phi-M_\rho)=8.7$~MeV/$c^{2}$. Confrontation: $3.75$~MeV/$c^{2}$; the ideally mixed $\omega$ lies $7.4$~MeV/$c^{2}$ above $\rho$. -/
 theorem p35059 : ∀ {p : Nat} [FRC.Pos p] (a b : FRC.Shell p), FRC.Hadrons.vecKs a b + FRC.Hadrons.vecKs a b + -FRC.Hadrons.vecRho a b + -FRC.Hadrons.vecPhi a b = (0 : FRC.Shell p) :=
   @FRC.Hadrons.vector_spacing
-/-- p35060 — 35:P10. Absolute octet$+$decuplet spectrum from the $\Om$-hard scale $\sig$ and three sub-horizon eigenvalues ($\lambda_l$, $m_s/m_l$, $\lambda_{\mathrm{hf}}$, the two constituent ratios computed forward, C19): five parameter-free predictions within $1.1\%$ (Table~\ref{tab:absolute}). Falsifier: a predicted mass off beyond the traced second order. -/
+/-- p35060 — 35:P10. Five octet and decuplet masses from the anchors $N$, $\Lambda$, $\Delta$ (C16). [chart] Falsifier: a residual above $\varepsilon_s^{2}(M_\Omega-M_N)=26$~MeV/$c^{2}$. Confrontation: at most $13.3$~MeV/$c^{2}$, $1.2\%$. -/
 theorem p35060 : (∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.splitN l f + FRC.Hadrons.splitD l f = l + l + l + l + l + l ∧ FRC.Hadrons.splitD l f + -FRC.Hadrons.splitN l f = f + f + f + f + f + f) ∧ ∀ {p : Nat} [FRC.Pos p] (l s u : FRC.Shell p), FRC.Hadrons.massL l s u + -FRC.Hadrons.massN l s u = s + -l :=
   And.intro @FRC.Hadrons.spin_split (@FRC.Hadrons.lambda_n_gap)
-/-- p35061 — 35:P11. The $\Lambda$--$N$ gap is the strange constituent excess, $M_\Lambda-M_N=m_s-m_l=176.8$ MeV, hyperfine- and scale-free \eqref{eq:lamn}. Falsifier: a gap inconsistent with the strange seed and the $\Xi,\Sigma$ splittings. -/
-theorem p35061 : ∀ {p : Nat} [FRC.Pos p] (l s u : FRC.Shell p), FRC.Hadrons.massL l s u + -FRC.Hadrons.massN l s u = s + -l :=
-  @FRC.Hadrons.lambda_n_gap
+/-- p35075 — 35:C24. The winding law: under B7 and A4, $M_k^{2}\equiv(4k+3)\,hc\,\sigma$ in the Carrier register (A11); [chart] $\lambda_k^{2}=\tfrac32\pi+2\pi k$, on a Subject the residues $(4k+3)\kap$; $\lambda_N=2.171$, the scale reads $432.5$~MeV with the nucleon mass, and the nucleon reads $955$~MeV/$c^{2}$ at the imported scale. -/
+theorem p35075 : FRC.Hadrons.registers.all FRC.Hadrons.windingOk = true ∧ FRC.Hadrons.subjects.all FRC.Hadrons.residuesOk = true :=
+  @FRC.Hadrons.winding_register
+/-- p35076 — 35:C25. On every Subject the body's Hamiltonian on the register, the step count plus its Fourier image on the odd functions, does not commute with the drive, and none of its simple levels has a winding rate; [chart] on $13$, $173$ and $1549$ its lowest level is simple and reads $2.252$, $2.232$, $2.232$ in the unit $\sqrt{2\pi/\p}$, with the chart's $\pi$. -/
+theorem p35076 : FRC.Hadrons.oddOk (13 : Nat) (2 : Nat) (6 : Nat) (2 : Nat) = true ∧ FRC.Hadrons.oddOk (173 : Nat) (2 : Nat) (86 : Nat) (2 : Nat) = true ∧ FRC.Hadrons.oddOk (1549 : Nat) (2 : Nat) (774 : Nat) (2 : Nat) = true ∧ FRC.Hadrons.noUnit (13 : Nat) (2 : Nat) (11 : Nat) (2 : Nat) = true ∧ FRC.Hadrons.noUnit (173 : Nat) (2 : Nat) (171 : Nat) (2 : Nat) = true ∧ FRC.Hadrons.noUnit (1549 : Nat) (2 : Nat) (1547 : Nat) (2 : Nat) = true ∧ ((53 : Nat) % (13 : Nat) = (1 : Nat) ∧ FRC.Hadrons.powMod (16 : Nat) (53 : Nat) (13 : Nat) = (1 : Nat) ∧ FRC.Hadrons.registerCommutator (13 : Nat) (53 : Nat) (16 : Nat) = (34 : Nat)) ∧ ((347 : Nat) % (173 : Nat) = (1 : Nat) ∧ FRC.Hadrons.powMod (4 : Nat) (347 : Nat) (173 : Nat) = (1 : Nat) ∧ FRC.Hadrons.registerCommutator (173 : Nat) (347 : Nat) (4 : Nat) = (174 : Nat)) ∧ (6197 : Nat) % (1549 : Nat) = (1 : Nat) ∧ FRC.Hadrons.powMod (16 : Nat) (6197 : Nat) (1549 : Nat) = (1 : Nat) ∧ FRC.Hadrons.registerCommutator (1549 : Nat) (6197 : Nat) (16 : Nat) = (4364 : Nat) :=
+  @FRC.Hadrons.no_real_class
+/-- p35078 — 35:C26. The scale in the Carrier register (A11): $(\hbar c)^{2}\equiv-2^{-1}\equiv2\dS$, so the fourth power of the scale is $2\dS\,\sigma^{2}$; checked on the Carriers $233$, $30089$ and $2408561$ for both roots $\hbar$ of $-1$ and both roots $c$ of $2^{-1}$. -/
+theorem p35078 : FRC.Hadrons.registers.all FRC.Hadrons.scaleOk = true :=
+  @FRC.Hadrons.scale_register
+/-- p35080 — 35:C27. No choice of the roots enters the winding law (C24): with $2G+1\equiv0$, $hc$ is half the Planck mass squared $\hbar c/G$ for both roots $\hbar$ and both roots $c$, so $(M_k/m_P)^{2}\equiv(4k+3)\sigma/2$ and $(M_kc^{2}/\sig)^{2}\equiv(4k+3)\dS$; checked on the Carriers $233$, $30089$ and $2408561$. -/
+theorem p35080 : FRC.Hadrons.registers.all FRC.Hadrons.rootFreeOk = true :=
+  @FRC.Hadrons.winding_no_root
 -- end keys
 
 end FRC.Ledger
@@ -43103,26 +43453,28 @@ end FRC.Ledger
 /-! inlined: FrcCore/Hadrons.lean -/
 
 /-!
-# FrcCore.Hadrons — 35-hadrons' paper module (19 October 2026)
+# FrcCore.Hadrons — 35-hadrons' paper module (19 October 2026; revised 14 and 15 November 2026)
 
 The predicate declarations of *Ground-State Light Hadron Spectroscopy over Finite Substrate* (35-hadrons), `FRC.Hadrons.<name>` (named by their rows' declared names, the key in each docstring),
 one per witnessed row, each the conjunction of the theorems its ledger row cites: the hadrons theme's `Theme/Hadrons.lean`
-(the colour group by frames and its centre, the colourless content of the exterior algebra, the meson contraction, the Weyl
-constant terms, the Casimir, spin and charge arithmetic, the flavour and isospin relations as ring identities, the admissible
-shells, Sturm's count of the finite confinement operator) and the interactions theme's `su3_centre`. The declarations are
+(the colour group by frames and its centre, the colourless content of the exterior algebra, the lines the frame maps to
+themselves, the meson contraction, the Weyl constant terms, the Casimir, spin and charge arithmetic, the flavour and isospin
+relations as ring identities, the second order of the pairwise model, the heavy-quark relation, Sturm's count of the
+nonrelativistic matrix, the Carrier register's scale and winding law, the drive against the register's Hamiltonian) and the
+interactions theme's `su3_centre`. The declarations are
 generated by `lean/make_predicates.py` from the paper's ledger; the theorems live in the theme files.
 -/
 
 namespace FRC.Hadrons
 
 -- Ledger predicates of 35-hadrons (generated by make_predicates.py from docs/35-hadrons/35-hadrons-ledger.json; edit the ledger, not this section)
-/-- 35:C1 (p35015) — Colour $\SU(3,\F_2)$ built exactly: order $216$, centre $\Z_3$ the triality centre; the colour-singlet baryon is the centre-neutral $\varepsilon_{abc}$ invariant $\Lambda^3\mathbf3=\mathbf1$. -/
+/-- 35:C1 (p35015) — The unitary frame on the enumerable instance: $\SU(3,\F_2)$ has $216$ elements and centre $\Z_3$; every element has determinant $1$, so the contraction $\varepsilon_{abc}$ of three triplets is invariant, the determinant line $\Lambda^3\mathbf3$. -/
 theorem colour_built_exactly : (FRC.Hadrons.unitv.length = (36 : Nat) ∧ FRC.Hadrons.u3.length = (648 : Nat) ∧ FRC.Hadrons.su3.length = (216 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm (FRC.Interactions.F4.dg g) g == FRC.Interactions.F4.one && FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ (List.filter (fun g => FRC.Interactions.F4.mm g FRC.Hadrons.D1 == FRC.Interactions.F4.mm FRC.Hadrons.D1 g && FRC.Interactions.F4.mm g FRC.Hadrons.U1 == FRC.Interactions.F4.mm FRC.Hadrons.U1 g) FRC.Hadrons.su3).length = (3 : Nat) ∧ ((List.filter (fun g => FRC.Interactions.F4.mm g FRC.Hadrons.D1 == FRC.Interactions.F4.mm FRC.Hadrons.D1 g && FRC.Interactions.F4.mm g FRC.Hadrons.U1 == FRC.Interactions.F4.mm FRC.Hadrons.U1 g) FRC.Hadrons.su3).all fun g => g == FRC.Interactions.F4.one || g == FRC.Interactions.F4.w.scal || g == FRC.Interactions.F4.w2.scal) = true ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm x.scal g == FRC.Interactions.F4.mm g x.scal) = true) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => x * x.conj == FRC.Interactions.F4.o && x * x * x == FRC.Interactions.F4.o) = true ∧ (FRC.Interactions.F4.z * FRC.Interactions.F4.z.conj == FRC.Interactions.F4.o) = false ∧ [FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].length = (3 : Nat) ∧ (2 : Nat) + (1 : Nat) = (3 : Nat) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal && FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal) = true :=
   @FRC.Ledger.p35015
-/-- 35:C2 (p35016) — Gell-Mann--Okubo $\tfrac12(N+\Xi)=\tfrac14(3\Lambda+\Sigma)$: $2N+2\Xi-3\Lambda-\Sigma=0$ identically, scale-cancelling. -/
+/-- 35:C2 (p35016) — Gell-Mann--Okubo $\tfrac12(N+\Xi)=\tfrac14(3\Lambda+\Sigma)$: $2N+2\Xi-3\Lambda-\Sigma=0$ identically in the first-order octet operator. -/
 theorem gell_mann_okubo : ∀ {p : Nat} [FRC.Pos p] (m a c : FRC.Shell p), FRC.Hadrons.octN m a c + FRC.Hadrons.octN m a c + (FRC.Hadrons.octX m a c + FRC.Hadrons.octX m a c) + -(FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c) + -FRC.Hadrons.octS m a c = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35016
-/-- 35:C3 (p35017) — Decuplet equal spacing $\Sigma^{*}-\Delta=\Xi^{*}-\Sigma^{*}=\Omega-\Xi^{*}=\beta$: the second differences vanish identically. -/
+/-- 35:C3 (p35017) — Decuplet equal spacing $\Sigma^{*}-\Delta=\Xi^{*}-\Sigma^{*}=\Omega^{-}-\Xi^{*}=\beta$: the second differences vanish identically. -/
 theorem decuplet_equal_spacing : ∀ {p : Nat} [FRC.Pos p] (m b : FRC.Shell p), FRC.Hadrons.decD m b + -(FRC.Hadrons.decSs m b + FRC.Hadrons.decSs m b) + FRC.Hadrons.decXs m b = (0 : FRC.Shell p) ∧ FRC.Hadrons.decSs m b + -(FRC.Hadrons.decXs m b + FRC.Hadrons.decXs m b) + FRC.Hadrons.decO m b = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35017
 /-- 35:C4 (p35018) — Colour factor of the singlet $\sum_{i<j}\bvec\lambda_i\!\cdot\!\bvec\lambda_j=-8$ ($-\tfrac83$ per pair) from $C_2(\mathbf3)=\tfrac43$, $C_2(\mathbf1)=0$. -/
@@ -43131,120 +43483,129 @@ theorem colour_factor_singlet : (3 : Int) * (3 : Int) - (1 : Int) = (8 : Int) �
 /-- 35:C5 (p35019) — Spin structure $g_{\mathrm{spin}}=\half S(S+1)-\tfrac98$, octet $-\tfrac34$, decuplet $+\tfrac34$; eigenvalues $+2,-2$; separation $M_{\mathbf{10}}-M_{\mathbf8}=\tfrac32A_{\mathrm{light}}$. -/
 theorem spin_structure : (1 : Int) * ((1 : Int) + (2 : Int)) - (9 : Int) = (-6 : Int) ∧ (3 : Int) * ((3 : Int) + (2 : Int)) - (9 : Int) = (6 : Int) ∧ (6 : Int) - (-6 : Int) = (12 : Int) ∧ (-8 : Int) * (-6 : Int) = (2 : Int) * (24 : Int) ∧ (-8 : Int) * (6 : Int) = (-2 : Int) * (24 : Int) :=
   @FRC.Ledger.p35019
-/-- 35:C6 (p35020) — $A_{\mathrm{light}}=\sig\,c_{\mathrm{mag}}(\beta)$, with $c_{\mathrm{mag}}$ a colour-curvature character sum of the $c_1$ family ($c_1=\beta/18+\cdots$ reproduced); the dimensionless pattern exact, the absolute scale $\Om$-hard. -/
-theorem light_hyperfine_character_sum : FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (2 : Nat) - FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (1 : Nat) - FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ (2 : Nat) * (3 : Nat) ^ (2 : Nat) = (18 : Nat) ∧ ((2 : Nat) * (3 : Nat)) ^ (2 : Nat) = (36 : Nat) :=
-  @FRC.Ledger.p35020
-/-- 35:C7 (p35021) — Coleman--Glashow $(n-p)+(\Xi^-{-}\Xi^0)=\Sigma^-{-}\Sigma^+$: an exact one-body identity, the two-body electromagnetic term cancelling. -/
-theorem coleman_glashow_identity : ∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p) :=
+/-- 35:C7 (p35021) — Coleman--Glashow $(n-p)+(\Xi^-{-}\Xi^0)=\Sigma^-{-}\Sigma^+$: an identity of the mass term, of the one-body charge sums and of the two-body charge sums. -/
+theorem coleman_glashow_identity : (∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p)) ∧ (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (1 : Int) + (1 : Int) + (1 : Int) = (3 : Int) ∧ (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (1 : Int) + (1 : Int) + (1 : Int) = (3 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (-1 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (3 : Int) ∧ (6 : Int) - (9 : Int) + ((3 : Int) - (6 : Int)) = (3 : Int) - (9 : Int) ∧ (-3 : Int) - (0 : Int) + ((3 : Int) - (-3 : Int)) = (3 : Int) - (0 : Int) :=
   @FRC.Ledger.p35021
-/-- 35:C8 (p35022) — The ordering $M_n>M_p$: the $d-u$ seed exceeds the charge-squared electromagnetic term ($\sum Q^2=1$ for $p$, $\tfrac23$ for $n$), fixing $m_d>m_u$. -/
+/-- 35:C8 (p35022) — The neutron--proton splitting: with positive coefficients both charge sums favour the proton by $\tfrac13$ of their unit ($\sum Q^2$: $1$ against $\tfrac23$; $\sum_{i<j}Q_iQ_j$: $0$ against $-\tfrac13$), so $M_n>M_p$ is equivalent to a $d$--$u$ mass difference above the electromagnetic terms. -/
 theorem neutron_proton_ordering : (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int) :=
   @FRC.Ledger.p35022
-/-- 35:C9 (p35023) — $M_\Sigma>M_\Lambda$: hyperfine fine structure, the light $(ud)$ pair spin-$1$ vs spin-$0$, $M_\Sigma-M_\Lambda=a_{ll}(1-m_l/m_s)>0$. -/
+/-- 35:C9 (p35023) — $M_\Sigma>M_\Lambda$: hyperfine fine structure, the light $(ud)$ pair spin-$1$ against spin-$0$, $M_\Sigma-M_\Lambda=v_{ll}(1-m_l/m_s)>0$ for $m_s>m_l$. -/
 theorem sigma_heavier_than_lambda : (2 : Int) * (0 : Int) * (1 : Int) - (3 : Int) = (-3 : Int) ∧ (2 : Int) * (1 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (1 : Int) - (-3 : Int) = (4 : Int) ∧ (3 : Int) - (4 : Int) * ((0 : Int) * (1 : Int)) - (3 : Int) = (0 : Int) ∧ (3 : Int) - (4 : Int) * ((1 : Int) * (2 : Int)) - (3 : Int) = (-8 : Int) :=
   @FRC.Ledger.p35023
-/-- 35:C11 (p35025) — Second-order decuplet relation $M_\Delta-3M_{\Sigma^*}+3M_{\Xi^*}-M_\Omega=0$ (vanishing third difference), exact in the linear-seed pairwise-hyperfine model. -/
-theorem second_order_decuplet_relation : ∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfD m d a r + -(FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r) + (FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r) + -FRC.Hadrons.hfO m d a r = (0 : FRC.Shell p) :=
+/-- 35:C10 (p35024) — The heavy-quark relation: $\Lambda_Q$ holds a spin-$0$ light pair, so the heavy quark has no hyperfine term, and in the pairwise model $M_{\Lambda_b}-M_{\Lambda_c}=m_b-m_c=\bar M_B-\bar M_D$, with $\bar M=\tfrac14(M_P+3M_V)$ the spin average of a heavy meson; the heavy hyperfine coefficient scales as $1/m_Q$. -/
+theorem heavy_quark_spin_decoupling : ∀ {p : Nat} [FRC.Pos p] (b c l u wb wc : FRC.Shell p), FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u = b + -c ∧ FRC.Hadrons.mesP b l wb + (FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb) + -(FRC.Hadrons.mesP c l wc + (FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc)) = FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) :=
+  @FRC.Ledger.p35024
+/-- 35:C11 (p35025) — The second order of the pairwise model: the octet residual is $\tfrac18v_{ll}(1-z)^2$ and both decuplet second differences are $\tfrac14v_{ll}(1-z)^2$, $z=m_l/m_s$, so the third difference vanishes; all are identities in $(m_l,m_s,v_{ll})$. -/
+theorem second_order_decuplet_relation : (∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfD m d a r + -(FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r) + (FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r) + -FRC.Hadrons.hfO m d a r = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfD m d a r + -(FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r) + FRC.Hadrons.hfXs m d a r = a + -(a * r + a * r) + a * r * r ∧ FRC.Hadrons.hfSs m d a r + -(FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r) + FRC.Hadrons.hfO m d a r = a + -(a * r + a * r) + a * r * r ∧ FRC.Hadrons.hfN m d a r + FRC.Hadrons.hfN m d a r + (FRC.Hadrons.hfX m d a r + FRC.Hadrons.hfX m d a r) + -(FRC.Hadrons.hfL m d a r + FRC.Hadrons.hfL m d a r + FRC.Hadrons.hfL m d a r) + -FRC.Hadrons.hfS m d a r = a + -(a * r + a * r) + a * r * r + (a + -(a * r + a * r) + a * r * r) :=
   @FRC.Ledger.p35025
-/-- 35:C12 (p35026) — Octet--decuplet hyperfine links $M_\Sigma-M_\Lambda=\tfrac23[(M_\Delta-M_N)-(M_{\Sigma^*}-M_\Sigma)]$ and $M_{\Sigma^*}-M_\Sigma=M_{\Xi^*}-M_\Xi$, parameter-free. -/
+/-- 35:C12 (p35026) — Octet--decuplet hyperfine links $M_\Sigma-M_\Lambda=\tfrac23[(M_\Delta-M_N)-(M_{\Sigma^*}-M_\Sigma)]$ and $M_{\Sigma^*}-M_\Sigma=M_{\Xi^*}-M_\Xi$, identities of the pairwise model. -/
 theorem octet_decuplet_hyperfine_links : ∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfS m d a r + -FRC.Hadrons.hfL m d a r + (FRC.Hadrons.hfS m d a r + -FRC.Hadrons.hfL m d a r) + (FRC.Hadrons.hfS m d a r + -FRC.Hadrons.hfL m d a r) = FRC.Hadrons.hfD m d a r + -FRC.Hadrons.hfN m d a r + -(FRC.Hadrons.hfSs m d a r + -FRC.Hadrons.hfS m d a r) + (FRC.Hadrons.hfD m d a r + -FRC.Hadrons.hfN m d a r + -(FRC.Hadrons.hfSs m d a r + -FRC.Hadrons.hfS m d a r)) ∧ FRC.Hadrons.hfSs m d a r + -FRC.Hadrons.hfS m d a r + -(FRC.Hadrons.hfXs m d a r + -FRC.Hadrons.hfX m d a r) = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35026
-/-- 35:C13 (p35027) — EM splitting structure: one-body $\sum Q_i^2$ and two-body $\sum_{i<j}Q_iQ_j$ exact ($p$: $1,0$; $n$: $\tfrac23,-\tfrac13$); $\Delta_{\mathrm{EM}}=\alpha\,\sig\times$structure, the absolute reducing to the imported $\alpha$ (A9) and $\sig$ (A3), no new residue. -/
-theorem em_splitting_structure : (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int) :=
+/-- 35:C13 (p35027) — The charge structure of the electromagnetic splitting: the one-body sums $\sum Q_i^2$ and the two-body sums $\sum_{i<j}Q_iQ_j$ of the six states of the Coleman--Glashow identity, exact rationals ($p$: $1,0$; $n$: $\tfrac23,-\tfrac13$). -/
+theorem em_splitting_structure : ((4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int)) ∧ (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (1 : Int) + (1 : Int) + (1 : Int) = (3 : Int) ∧ (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (1 : Int) + (1 : Int) + (1 : Int) = (3 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (-1 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (3 : Int) ∧ (6 : Int) - (9 : Int) + ((3 : Int) - (6 : Int)) = (3 : Int) - (9 : Int) ∧ (-3 : Int) - (0 : Int) + ((3 : Int) - (-3 : Int)) = (3 : Int) - (0 : Int) :=
   @FRC.Ledger.p35027
-/-- 35:C14 (p35028) — $c_{\mathrm{mag}}$ the adjoint (colour-octet) plaquette character sum, $\mathbf8\subset\mathbf3\otimes\bar{\mathbf3}$ ($\mathbf8\not\subset\mathbf3\otimes\mathbf3$), leading $\beta^2/36$ at $O(\beta^2)$, one order finer than the tension $c_1=\beta/18$. -/
-theorem adjoint_plaquette_character : FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (2 : Nat) - FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (1 : Nat) - FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ (2 : Nat) * (3 : Nat) ^ (2 : Nat) = (18 : Nat) ∧ ((2 : Nat) * (3 : Nat)) ^ (2 : Nat) = (36 : Nat) :=
+/-- 35:C14 (p35028) — The adjoint channel: in the classical count the adjoint $\mathbf8$ occurs once in $\mathbf3\otimes\bar{\mathbf3}$ and not in $\mathbf3\otimes\mathbf3$; on $\SU(3,\F_2)$ the frame fixes the pairing line of $\mathbf3\otimes\bar{\mathbf3}$ and no traceless matrix, and no nonzero invariant map takes $\mathbf3\otimes\bar{\mathbf3}$ to $\mathbf3\otimes\mathbf3$. -/
+theorem adjoint_channel_count : FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (2 : Nat) - FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (1 : Nat) - FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ (2 : Nat) * (3 : Nat) ^ (2 : Nat) = (18 : Nat) ∧ ((2 : Nat) * (3 : Nat)) ^ (2 : Nat) = (36 : Nat) :=
   @FRC.Ledger.p35028
-/-- 35:C15 (p35029) — Baryon $=$ Carrier residue $1$: the colourless content of $\Lambda^\bullet(\mathbf3)$ is $(1,0,0,1)$; the baryon is the determinant $\Lambda^3=\det$ at $k=N=3$ (residue $1$, baryon number), forced by the gluon residue $0$ (the fundamental has no invariant vector on $\SU(3,\F_2)$); parallel to photon $2$, gluon $0$. -/
-theorem baryon_carrier_residue : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
+/-- 35:C15 (p35029) — The baryon's residue is $1$: on $\SU(3,\F_2)$ the fixed vectors of $\Lambda^k(\mathbf3)$ span dimensions $(1,0,0,1)$, the frame maps no line of the triplet or of $\Lambda^2$ to itself, and among the exterior powers the determinant line $\Lambda^3$ is the one registration beside the vacuum. -/
+theorem baryon_residue_one : (FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat)) ∧ FRC.Hadrons.invline1.length = (0 : Nat) ∧ FRC.Hadrons.invline2.length = (0 : Nat) :=
   @FRC.Ledger.p35029
-/-- 35:C16 (p35030) — Single-scale reduction: $M_H=\sig\,\lambda_H$, the three anchored masses read as one $\Om$-hard scale $\sig$ and three sub-horizon numbers ($\lambda_l$, $m_s/m_l$, $\lambda_{\mathrm{hf}}$); $M_\Lambda-M_N=m_s-m_l$ exact (hyperfine-cancelling); the finite-stage eigenvalues $\varepsilon_k^{(G)}\in\mathrm{Spec}(H^{(N)})$ exact, the decimal Airy values the [approx] readout, $\Om$-stable. -/
-theorem single_scale_reduction : (FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (233 : Int) / (100 : Int)) = (0 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (234 : Int) / (100 : Int)) = (1 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (408 : Int) / (100 : Int)) = (1 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (409 : Int) / (100 : Int)) = (2 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (551 : Int) / (100 : Int)) = (2 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (552 : Int) / (100 : Int)) = (3 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (677 : Int) / (100 : Int)) = (3 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (679 : Int) / (100 : Int)) = (4 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] (l s u : FRC.Shell p), FRC.Hadrons.massL l s u + -FRC.Hadrons.massN l s u = s + -l) ∧ ∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.splitN l f + FRC.Hadrons.splitD l f = l + l + l + l + l + l ∧ FRC.Hadrons.splitD l f + -FRC.Hadrons.splitN l f = f + f + f + f + f + f :=
+/-- 35:C16 (p35030) — The constituent parameters from three masses: $M_N=3m_l-\tfrac34v_{ll}$, $M_\Delta=3m_l+\tfrac34v_{ll}$ and $M_\Lambda-M_N=m_s-m_l$, the hyperfine term cancelling in the gap; [chart] $m_l=361.8$~MeV/$c^{2}$, $m_s/m_l=1.489$, $v_{ll}=195.4$~MeV/$c^{2}$. -/
+theorem constituent_parameters : (∀ {p : Nat} [FRC.Pos p] (l s u : FRC.Shell p), FRC.Hadrons.massL l s u + -FRC.Hadrons.massN l s u = s + -l) ∧ ∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.splitN l f + FRC.Hadrons.splitD l f = l + l + l + l + l + l ∧ FRC.Hadrons.splitD l f + -FRC.Hadrons.splitN l f = f + f + f + f + f + f :=
   @FRC.Ledger.p35030
-/-- 35:C17 (p35031) — The baryon scale: the computed finite eigenvalue $E_0\simeq2.232$ (operator $H_G=T_G^{1/2}+R_G$, no baryon mass entering); $M_N=E_0\sig$ predicts the nucleon to $4.6\%$, the absolute prediction carrying the imported $\Om$-hard $\sig$ (A3). $\lambda_l,\lambda_{\mathrm{hf}}$ evaluated forward from $\{N,\beta\}$ (C19), $\Om$-stable. -/
-theorem baryon_scale_eigenvalue : ∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.splitN l f + FRC.Hadrons.splitD l f = l + l + l + l + l + l ∧ FRC.Hadrons.splitD l f + -FRC.Hadrons.splitN l f = f + f + f + f + f + f :=
+/-- 35:C17 (p35031) — The nonrelativistic matrix on $4000$ sites has exactly one eigenvalue in each of $(2.338,2.339)$ and $(4.087,4.088)$; [chart] the readings of the body's Hamiltonian $(c|p|+\sigma\,r)/\sig$ (B7) on $600$ sites: $E_0=2.232$, $E_1=3.329$ and the contact value $C=3.50$; the squares of the two levels over $\tfrac12\pi$ read $3.17$ and $7.06$. -/
+theorem hamiltonian_readings : FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (233 : Int) / (100 : Int)) = (0 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (234 : Int) / (100 : Int)) = (1 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (408 : Int) / (100 : Int)) = (1 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (409 : Int) / (100 : Int)) = (2 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (551 : Int) / (100 : Int)) = (2 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (552 : Int) / (100 : Int)) = (3 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (677 : Int) / (100 : Int)) = (3 : Nat) ∧ FRC.Hadrons.sturm (200 : Nat) (16 : Nat) ((201 : Int) * (256 : Int) * (679 : Int) / (100 : Int)) = (4 : Nat) :=
   @FRC.Ledger.p35031
-/-- 35:C18 (p35032) — Meson Carrier residue: the $q\bar q$ colour singlet is the contraction of $\mathbf3\otimes\bar{\mathbf3}=\mathbf1\oplus\mathbf8$ (the Hermitian invariant), residue $1$, $B=0$ (triality $0$); the residue series closes (photon $2$, gluon $0$, baryon $1$, meson $1$); on the same frame the vector-nonet equal spacing $2M_{K^{*}}=M_\rho+M_\phi$ is an exact identity of linear strangeness. -/
-theorem meson_carrier_residue : ((FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm (FRC.Interactions.F4.dg g) g == FRC.Interactions.F4.one && FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ ((1 : Nat) + (2 : Nat)) % (3 : Nat) = (0 : Nat) ∧ (3 : Nat) % (3 : Nat) = (0 : Nat) ∧ (1 : Nat) % (3 : Nat) = (1 : Nat) ∧ (2 : Nat) % (3 : Nat) = (2 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] (a b : FRC.Shell p), FRC.Hadrons.vecKs a b + FRC.Hadrons.vecKs a b + -FRC.Hadrons.vecRho a b + -FRC.Hadrons.vecPhi a b = (0 : FRC.Shell p) :=
+/-- 35:C18 (p35032) — The meson's residue is $1$: the $q\bar q$ singlet is the pairing line of $\mathbf3\otimes\bar{\mathbf3}=\mathbf1\oplus\mathbf8$, the Hermitian invariant and on $\SU(3,\F_2)$ the one line of the product that the frame fixes; the series reads photon $2$, gluon $0$, baryon $1$, meson $1$; the vector-nonet spacing $2M_{K^{*}}=M_\rho+M_\phi$ is an identity of linear strangeness. -/
+theorem meson_residue_one : ((FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm (FRC.Interactions.F4.dg g) g == FRC.Interactions.F4.one && FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ ((1 : Nat) + (2 : Nat)) % (3 : Nat) = (0 : Nat) ∧ (3 : Nat) % (3 : Nat) = (0 : Nat) ∧ (1 : Nat) % (3 : Nat) = (1 : Nat) ∧ (2 : Nat) % (3 : Nat) = (2 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] (a b : FRC.Shell p), FRC.Hadrons.vecKs a b + FRC.Hadrons.vecKs a b + -FRC.Hadrons.vecRho a b + -FRC.Hadrons.vecPhi a b = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35032
-/-- 35:C19 (p35033) — Forward constituent eigenvalues: $\lambda_l,\lambda_{\mathrm{hf}}$ computed from $\{N{=}3,\beta\}$ with no measured baryon mass --- $\lambda_{\mathrm{hf}}$ the colour-magnetic contact ($c_{\mathrm{adj}}{=}\beta^2/36$, the exact overlap $|u'(0)|^2{=}1$, $\alpha_s(\sig)$ transmutation-pinned), $\lambda_l$ from $E_0$ and the exact spin split; matching $0.44,0.85$ to constituent-model accuracy, the margin set by the linear-potential approximation. -/
-theorem forward_constituent_eigenvalues : ∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.splitN l f + FRC.Hadrons.splitD l f = l + l + l + l + l + l ∧ FRC.Hadrons.splitD l f + -FRC.Hadrons.splitN l f = f + f + f + f + f + f :=
+/-- 35:C19 (p35033) — [chart] The joint solution on $600$ sites: the nucleon's reading $3\lambda_l-\tfrac34\lambda_{\mathrm{hf}}=\lambda_N$ of the winding law (C24) and the contact rule (B8) give $\lambda_{\mathrm{hf}}=0.466$, $\lambda_l=0.840$ and $(M_\Delta-M_N)/M_N=0.322$ against the measured $0.312$, no measured mass entering. -/
+theorem joint_solution_readings : ∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.splitN l f + FRC.Hadrons.splitD l f = l + l + l + l + l + l ∧ FRC.Hadrons.splitD l f + -FRC.Hadrons.splitN l f = f + f + f + f + f + f :=
   @FRC.Ledger.p35033
-/-- 35:C20 (p35034) — Residue resolution, second order: the $\SU(3)_F$ residuals (decuplet third difference $6$ MeV, octet $\mathbf{27}$-plet $0.57\%$) are sub-horizon, $O(\varepsilon_s^2)$ of a convergent strange-breaking expansion, $\Om$-stable (Prop.~\ref{prop:subhorizon}). -/
-theorem residue_resolution_second_order : (∀ (k : Nat), ((12 : Nat) * k + (5 : Nat) + (1 : Nat)) % (3 : Nat) = (0 : Nat)) ∧ ([(53 : Nat), (173 : Nat), (389 : Nat), (1373 : Nat)].all fun n => n % (12 : Nat) == (5 : Nat) && (n + (1 : Nat)) % (3 : Nat) == (0 : Nat)) = true :=
+/-- 35:C20 (p35034) — [chart] The second order against the data: the pairwise model gives an octet residual of $+2.6$~MeV/$c^{2}$ and decuplet second differences of $+5.3$~MeV/$c^{2}$ (C11); the measured values are $-6.4$ and $-3.7$, $-9.8$~MeV/$c^{2}$, each of the opposite sign; the measured third difference is $6.05$~MeV/$c^{2}$. -/
+theorem second_order_against_data : ∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfD m d a r + -(FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r) + FRC.Hadrons.hfXs m d a r = a + -(a * r + a * r) + a * r * r ∧ FRC.Hadrons.hfSs m d a r + -(FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r) + FRC.Hadrons.hfO m d a r = a + -(a * r + a * r) + a * r * r ∧ FRC.Hadrons.hfN m d a r + FRC.Hadrons.hfN m d a r + (FRC.Hadrons.hfX m d a r + FRC.Hadrons.hfX m d a r) + -(FRC.Hadrons.hfL m d a r + FRC.Hadrons.hfL m d a r + FRC.Hadrons.hfL m d a r) + -FRC.Hadrons.hfS m d a r = a + -(a * r + a * r) + a * r * r + (a + -(a * r + a * r) + a * r * r) :=
   @FRC.Ledger.p35034
-/-- 35:C21 (p35035) — Residue resolution, electromagnetic: the splitting magnitude $\Delta_{\mathrm{EM}}=\alpha\,\sig\times$[exact charge structure] reduces to the imported $\alpha$ (A9) and $\sig$ (A3), no new residue (C13); Coleman--Glashow and the orderings derived (C7--C9). -/
-theorem residue_resolution_electromagnetic : (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int) :=
+/-- 35:C21 (p35035) — [chart] The electromagnetic magnitude: one third of the unit $\alpha\sig$ is $1.07$~MeV at the imported scale, the size of the rest energy of the lattice's electromagnetic part, $1.00(16)$~MeV (A10). -/
+theorem electromagnetic_magnitude : (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int) :=
   @FRC.Ledger.p35035
-/-- 35:C23 (p35037) — Residue resolution, hyperfine: the dimensionless $A_{\mathrm{light}}/\sig$ is a ratio of $\Om$-independent character sums (C14), $\Om$-stable, sub-horizon; the absolute $A_{\mathrm{light}}=\sig\,c_{\mathrm{mag}}$ is $\sig$-scaled (A3, Prop.~\ref{prop:subhorizon}). -/
-theorem residue_resolution_hyperfine : ((∀ (k : Nat), ((12 : Nat) * k + (5 : Nat) + (1 : Nat)) % (3 : Nat) = (0 : Nat)) ∧ ([(53 : Nat), (173 : Nat), (389 : Nat), (1373 : Nat)].all fun n => n % (12 : Nat) == (5 : Nat) && (n + (1 : Nat)) % (3 : Nat) == (0 : Nat)) = true) ∧ FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (2 : Nat) - FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (1 : Nat) - FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ (2 : Nat) * (3 : Nat) ^ (2 : Nat) = (18 : Nat) ∧ ((2 : Nat) * (3 : Nat)) ^ (2 : Nat) = (36 : Nat) :=
-  @FRC.Ledger.p35037
-/-- 35:X1 (p35038) — \textbf{The baryon is three quarks} because the only colourless escape from the gluon residue $0$ is the determinant $\Lambda^N=\det$, which requires exactly $N=3$. -/
-theorem baryon_three_quarks : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
+/-- 35:C24 (p35075) — The winding law: under B7 and A4, $M_k^{2}\equiv(4k+3)\,hc\,\sigma$ in the Carrier register (A11); [chart] $\lambda_k^{2}=\tfrac32\pi+2\pi k$, on a Subject the residues $(4k+3)\kap$; $\lambda_N=2.171$, the scale reads $432.5$~MeV with the nucleon mass, and the nucleon reads $955$~MeV/$c^{2}$ at the imported scale. -/
+theorem winding_law : FRC.Hadrons.registers.all FRC.Hadrons.windingOk = true ∧ FRC.Hadrons.subjects.all FRC.Hadrons.residuesOk = true :=
+  @FRC.Ledger.p35075
+/-- 35:C25 (p35076) — On every Subject the body's Hamiltonian on the register, the step count plus its Fourier image on the odd functions, does not commute with the drive, and none of its simple levels has a winding rate; [chart] on $13$, $173$ and $1549$ its lowest level is simple and reads $2.252$, $2.232$, $2.232$ in the unit $\sqrt{2\pi/\p}$, with the chart's $\pi$. -/
+theorem hamiltonian_no_winding_rate : FRC.Hadrons.oddOk (13 : Nat) (2 : Nat) (6 : Nat) (2 : Nat) = true ∧ FRC.Hadrons.oddOk (173 : Nat) (2 : Nat) (86 : Nat) (2 : Nat) = true ∧ FRC.Hadrons.oddOk (1549 : Nat) (2 : Nat) (774 : Nat) (2 : Nat) = true ∧ FRC.Hadrons.noUnit (13 : Nat) (2 : Nat) (11 : Nat) (2 : Nat) = true ∧ FRC.Hadrons.noUnit (173 : Nat) (2 : Nat) (171 : Nat) (2 : Nat) = true ∧ FRC.Hadrons.noUnit (1549 : Nat) (2 : Nat) (1547 : Nat) (2 : Nat) = true ∧ ((53 : Nat) % (13 : Nat) = (1 : Nat) ∧ FRC.Hadrons.powMod (16 : Nat) (53 : Nat) (13 : Nat) = (1 : Nat) ∧ FRC.Hadrons.registerCommutator (13 : Nat) (53 : Nat) (16 : Nat) = (34 : Nat)) ∧ ((347 : Nat) % (173 : Nat) = (1 : Nat) ∧ FRC.Hadrons.powMod (4 : Nat) (347 : Nat) (173 : Nat) = (1 : Nat) ∧ FRC.Hadrons.registerCommutator (173 : Nat) (347 : Nat) (4 : Nat) = (174 : Nat)) ∧ (6197 : Nat) % (1549 : Nat) = (1 : Nat) ∧ FRC.Hadrons.powMod (16 : Nat) (6197 : Nat) (1549 : Nat) = (1 : Nat) ∧ FRC.Hadrons.registerCommutator (1549 : Nat) (6197 : Nat) (16 : Nat) = (4364 : Nat) :=
+  @FRC.Ledger.p35076
+/-- 35:C26 (p35078) — The scale in the Carrier register (A11): $(\hbar c)^{2}\equiv-2^{-1}\equiv2\dS$, so the fourth power of the scale is $2\dS\,\sigma^{2}$; checked on the Carriers $233$, $30089$ and $2408561$ for both roots $\hbar$ of $-1$ and both roots $c$ of $2^{-1}$. -/
+theorem scale_in_carrier_register : FRC.Hadrons.registers.all FRC.Hadrons.scaleOk = true :=
+  @FRC.Ledger.p35078
+/-- 35:C27 (p35080) — No choice of the roots enters the winding law (C24): with $2G+1\equiv0$, $hc$ is half the Planck mass squared $\hbar c/G$ for both roots $\hbar$ and both roots $c$, so $(M_k/m_P)^{2}\equiv(4k+3)\sigma/2$ and $(M_kc^{2}/\sig)^{2}\equiv(4k+3)\dS$; checked on the Carriers $233$, $30089$ and $2408561$. -/
+theorem winding_law_root_free : FRC.Hadrons.registers.all FRC.Hadrons.rootFreeOk = true :=
+  @FRC.Ledger.p35080
+/-- 35:X1 (p35038) — \textbf{The baryon is three quarks} because the determinant line $\Lambda^{3}\mathbf3$ is the one registration among the exterior powers of the triplet beside the vacuum. -/
+theorem baryon_three_quarks : (FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat)) ∧ FRC.Hadrons.invline1.length = (0 : Nat) ∧ FRC.Hadrons.invline2.length = (0 : Nat) :=
   @FRC.Ledger.p35038
-/-- 35:X2 (p35039) — \textbf{The baryon is colour-neutral} as the centre-neutral, triality-$0$ invariant $\varepsilon_{abc}$ of the triality frame, a derived singlet. -/
+/-- 35:X2 (p35039) — \textbf{The baryon is colour-neutral} as the invariant $\varepsilon_{abc}$ of the unitary frame, whose elements have determinant $1$. -/
 theorem baryon_colour_neutral : (FRC.Hadrons.unitv.length = (36 : Nat) ∧ FRC.Hadrons.u3.length = (648 : Nat) ∧ FRC.Hadrons.su3.length = (216 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm (FRC.Interactions.F4.dg g) g == FRC.Interactions.F4.one && FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ (List.filter (fun g => FRC.Interactions.F4.mm g FRC.Hadrons.D1 == FRC.Interactions.F4.mm FRC.Hadrons.D1 g && FRC.Interactions.F4.mm g FRC.Hadrons.U1 == FRC.Interactions.F4.mm FRC.Hadrons.U1 g) FRC.Hadrons.su3).length = (3 : Nat) ∧ ((List.filter (fun g => FRC.Interactions.F4.mm g FRC.Hadrons.D1 == FRC.Interactions.F4.mm FRC.Hadrons.D1 g && FRC.Interactions.F4.mm g FRC.Hadrons.U1 == FRC.Interactions.F4.mm FRC.Hadrons.U1 g) FRC.Hadrons.su3).all fun g => g == FRC.Interactions.F4.one || g == FRC.Interactions.F4.w.scal || g == FRC.Interactions.F4.w2.scal) = true ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm x.scal g == FRC.Interactions.F4.mm g x.scal) = true) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => x * x.conj == FRC.Interactions.F4.o && x * x * x == FRC.Interactions.F4.o) = true ∧ (FRC.Interactions.F4.z * FRC.Interactions.F4.z.conj == FRC.Interactions.F4.o) = false ∧ [FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].length = (3 : Nat) ∧ (2 : Nat) + (1 : Nat) = (3 : Nat) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal && FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal) = true :=
   @FRC.Ledger.p35039
-/-- 35:X3 (p35040) — \textbf{Baryon number is the Carrier residue $1$}, the determinant winding, so its conservation is the invariance of $\Lambda^3$, on the same footing as the photon residue $2$ and the gluon residue $0$. -/
-theorem baryon_number_carrier_residue : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
+/-- 35:X3 (p35040) — \textbf{Baryon number is a count}: for a system of hadrons, the number of its determinant lines $\Lambda^{3}(\mathbf3)$ less the number of its conjugate lines $\Lambda^{3}(\bar{\mathbf3})$, which no element of the frame changes; its conservation by the sector's dynamics is the prediction P4. -/
+theorem baryon_number_count : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
   @FRC.Ledger.p35040
-/-- 35:X4 (p35041) — \textbf{The Gell-Mann--Okubo relation} is exact, the scale-cancelling identity $2N+2\Xi-3\Lambda-\Sigma=0$ of linear flavour breaking, a derived sum rule. -/
+/-- 35:X4 (p35041) — \textbf{The Gell-Mann--Okubo relation} is the identity $2N+2\Xi-3\Lambda-\Sigma=0$ of linear flavour breaking, for every value of the scale. -/
 theorem gell_mann_okubo_scale_cancelling : ∀ {p : Nat} [FRC.Pos p] (m a c : FRC.Shell p), FRC.Hadrons.octN m a c + FRC.Hadrons.octN m a c + (FRC.Hadrons.octX m a c + FRC.Hadrons.octX m a c) + -(FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c) + -FRC.Hadrons.octS m a c = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35041
-/-- 35:X5 (p35042) — \textbf{The decuplet is equally spaced} because the strange seed enters the wrap additively. -/
+/-- 35:X5 (p35042) — \textbf{The decuplet is equally spaced} at first order because the strange quark enters the mass additively. -/
 theorem decuplet_equally_spaced : ∀ {p : Nat} [FRC.Pos p] (m b : FRC.Shell p), FRC.Hadrons.decD m b + -(FRC.Hadrons.decSs m b + FRC.Hadrons.decSs m b) + FRC.Hadrons.decXs m b = (0 : FRC.Shell p) ∧ FRC.Hadrons.decSs m b + -(FRC.Hadrons.decXs m b + FRC.Hadrons.decXs m b) + FRC.Hadrons.decO m b = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35042
-/-- 35:X6 (p35043) — \textbf{The decuplet is heavier than the octet} by the colour-magnetic curvature invariant, the colour factor $-8$ times the spin $\half S(S+1)-\tfrac98$, a derived sign and pattern. -/
+/-- 35:X6 (p35043) — \textbf{The decuplet is heavier than the octet} by the colour-magnetic term, the colour factor $-8$ times the spin structure $\half S(S+1)-\tfrac98$, a sign and a pattern. -/
 theorem decuplet_heavier_than_octet : ((1 : Int) * ((1 : Int) + (2 : Int)) - (9 : Int) = (-6 : Int) ∧ (3 : Int) * ((3 : Int) + (2 : Int)) - (9 : Int) = (6 : Int) ∧ (6 : Int) - (-6 : Int) = (12 : Int) ∧ (-8 : Int) * (-6 : Int) = (2 : Int) * (24 : Int) ∧ (-8 : Int) * (6 : Int) = (-2 : Int) * (24 : Int)) ∧ (3 : Int) * (3 : Int) - (1 : Int) = (8 : Int) ∧ (2 : Nat) * (3 : Nat) * (4 : Nat) = (3 : Nat) * (8 : Nat) ∧ (0 : Int) - (3 : Int) * (8 : Int) = (-24 : Int) ∧ (-24 / 12 : Int) = (-2 : Int) ∧ (4 : Int) * (-2 : Int) = (-8 : Int) :=
   @FRC.Ledger.p35043
-/-- 35:X7 (p35044) — \textbf{The proton is stable} as the minimal-wrap residue-$1$ state, with no lighter $B=1$ residue to reach. -/
-theorem proton_stable_minimal_wrap : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
+/-- 35:X7 (p35044) — \textbf{The proton is stable} as the lightest state of the determinant line, with no state of the line below it. -/
+theorem proton_lightest_of_line : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
   @FRC.Ledger.p35044
-/-- 35:X8 (p35045) — \textbf{The neutron is heavier than the proton} because the $d-u$ seed exceeds the charge-squared electromagnetic term ($\sum Q^2=1$ for $p$, $\tfrac23$ for $n$), a derived ordering. -/
+/-- 35:X8 (p35045) — \textbf{The neutron--proton ordering} is the sign of one difference, the $d$--$u$ mass difference against the electromagnetic terms, each of which favours the proton by one third of its unit. -/
 theorem neutron_heavier_than_proton : (4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int) :=
   @FRC.Ledger.p35045
-/-- 35:X9 (p35046) — \textbf{$\Sigma$ is heavier than $\Lambda$} by the spin-$1$ versus spin-$0$ light-pair hyperfine, a derived splitting of two states of identical quark content. -/
+/-- 35:X9 (p35046) — \textbf{$\Sigma$ is heavier than $\Lambda$} by the spin-$1$ against the spin-$0$ light pair, a splitting of two states of identical quark content. -/
 theorem sigma_lambda_hyperfine : (2 : Int) * (0 : Int) * (1 : Int) - (3 : Int) = (-3 : Int) ∧ (2 : Int) * (1 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (1 : Int) - (-3 : Int) = (4 : Int) ∧ (3 : Int) - (4 : Int) * ((0 : Int) * (1 : Int)) - (3 : Int) = (0 : Int) ∧ (3 : Int) - (4 : Int) * ((1 : Int) * (2 : Int)) - (3 : Int) = (-8 : Int) :=
   @FRC.Ledger.p35046
-/-- 35:X10 (p35047) — \textbf{The isospin splittings obey Coleman--Glashow} exactly at one body, $(n{-}p)+(\Xi^-{-}\Xi^0)=\Sigma^-{-}\Sigma^+$, a derived identity. -/
+/-- 35:X10 (p35047) — \textbf{The isospin splittings obey Coleman--Glashow}, $(n{-}p)+(\Xi^-{-}\Xi^0)=\Sigma^-{-}\Sigma^+$, for the mass term and for both electromagnetic terms. -/
 theorem isospin_coleman_glashow : ∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35047
-/-- 35:X12 (p35049) — \textbf{The vector mesons equally space}, $2M_{K^{*}}=M_\rho+M_\phi$, the meson residue $1$ ($B=0$) on the same frame and scale as the baryons. -/
+/-- 35:X11 (p35048) — \textbf{The heavy baryons follow the heavy mesons}: $M_{\Lambda_b}-M_{\Lambda_c}$ and the spin-averaged $\bar M_B-\bar M_D$ are one quantity, $m_b-m_c$. -/
+theorem heavy_baryons_hq_symmetry : ∀ {p : Nat} [FRC.Pos p] (b c l u wb wc : FRC.Shell p), FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u = b + -c ∧ FRC.Hadrons.mesP b l wb + (FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb) + -(FRC.Hadrons.mesP c l wc + (FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc)) = FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) :=
+  @FRC.Ledger.p35048
+/-- 35:X12 (p35049) — \textbf{The vector mesons equally space}, $2M_{K^{*}}=M_\rho+M_\phi$, on the same frame and scale as the baryons. -/
 theorem vector_mesons_equal_spacing : (∀ {p : Nat} [FRC.Pos p] (a b : FRC.Shell p), FRC.Hadrons.vecKs a b + FRC.Hadrons.vecKs a b + -FRC.Hadrons.vecRho a b + -FRC.Hadrons.vecPhi a b = (0 : FRC.Shell p)) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm (FRC.Interactions.F4.dg g) g == FRC.Interactions.F4.one && FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ ((1 : Nat) + (2 : Nat)) % (3 : Nat) = (0 : Nat) ∧ (3 : Nat) % (3 : Nat) = (0 : Nat) ∧ (1 : Nat) % (3 : Nat) = (1 : Nat) ∧ (2 : Nat) % (3 : Nat) = (2 : Nat) :=
   @FRC.Ledger.p35049
-/-- 35:X13 (p35050) — \textbf{The spectrum rests on one scale}, $\sqrt\sigma=\LQCD$, the lone $\Om$-hard residue; every dimensionless mass ratio is a sub-horizon eigenvalue. -/
-theorem spectrum_one_scale : (∀ (k : Nat), ((12 : Nat) * k + (5 : Nat) + (1 : Nat)) % (3 : Nat) = (0 : Nat)) ∧ ([(53 : Nat), (173 : Nat), (389 : Nat), (1373 : Nat)].all fun n => n % (12 : Nat) == (5 : Nat) && (n + (1 : Nat)) % (3 : Nat) == (0 : Nat)) = true :=
+/-- 35:X13 (p35050) — \textbf{The spectrum rests on one scale}: every mass relation of the paper is homogeneous in the masses and holds for every value of $\sig$. -/
+theorem spectrum_one_scale : (∀ {p : Nat} [FRC.Pos p] (m a c : FRC.Shell p), FRC.Hadrons.octN m a c + FRC.Hadrons.octN m a c + (FRC.Hadrons.octX m a c + FRC.Hadrons.octX m a c) + -(FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c) + -FRC.Hadrons.octS m a c = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] (m b : FRC.Shell p), FRC.Hadrons.decD m b + -(FRC.Hadrons.decSs m b + FRC.Hadrons.decSs m b) + FRC.Hadrons.decXs m b = (0 : FRC.Shell p) ∧ FRC.Hadrons.decSs m b + -(FRC.Hadrons.decXs m b + FRC.Hadrons.decXs m b) + FRC.Hadrons.decO m b = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] (a b : FRC.Shell p), FRC.Hadrons.vecKs a b + FRC.Hadrons.vecKs a b + -FRC.Hadrons.vecRho a b + -FRC.Hadrons.vecPhi a b = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35050
-/-- 35:P1 (p35051) — Gell-Mann--Okubo exact at leading order; PDG $0.57\%$, the bounded $\chi_3^2$ second order. Falsifier: a violation beyond the second-order insertion. -/
+/-- 35:P1 (p35051) — Gell-Mann--Okubo (C2). [chart] Falsifier: an octet residual above $\varepsilon_s^{2}(M_\Xi-M_N)=13.4$~MeV/$c^{2}$, with $\varepsilon_s=(M_\Lambda-M_N)/M_N$. Confrontation: $6.4$~MeV/$c^{2}$, $0.57\%$. -/
 theorem gell_mann_okubo_exact : ∀ {p : Nat} [FRC.Pos p] (m a c : FRC.Shell p), FRC.Hadrons.octN m a c + FRC.Hadrons.octN m a c + (FRC.Hadrons.octX m a c + FRC.Hadrons.octX m a c) + -(FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c) + -FRC.Hadrons.octS m a c = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35051
-/-- 35:P2 (p35052) — Decuplet equal spacing exact; PDG $9.2\%$ spread, $\beta\simeq146.8$ MeV, the same second order. Falsifier: a non-equal spacing beyond it. -/
+/-- 35:P2 (p35052) — Decuplet equal spacing (C3). [chart] Falsifier: a residual of $M_{\Sigma^{*}}=\tfrac12(M_\Delta+M_{\Xi^{*}})$ or of $M_{\Xi^{*}}=\tfrac12(M_{\Sigma^{*}}+M_\Omega)$ above $\varepsilon_s^{2}(M_\Omega-M_\Delta)=15.6$~MeV/$c^{2}$. Confrontation: $1.9$ and $4.9$~MeV/$c^{2}$. -/
 theorem decuplet_equal_spacing_exact : ∀ {p : Nat} [FRC.Pos p] (m b : FRC.Shell p), FRC.Hadrons.decD m b + -(FRC.Hadrons.decSs m b + FRC.Hadrons.decSs m b) + FRC.Hadrons.decXs m b = (0 : FRC.Shell p) ∧ FRC.Hadrons.decSs m b + -(FRC.Hadrons.decXs m b + FRC.Hadrons.decXs m b) + FRC.Hadrons.decO m b = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35052
-/-- 35:P3 (p35053) — The hyperfine pattern $g_{\mathrm{spin}}=\half S(S+1)-\tfrac98$, octet $-\tfrac34$, decuplet $+\tfrac34$, separation $\tfrac32A_{\mathrm{light}}$ with $A_{\mathrm{light}}\simeq195$ MeV. Falsifier: a spin splitting outside this pattern. -/
+/-- 35:P3 (p35053) — The hyperfine pattern (C5): the spin-$\tfrac32$ multiplet above the spin-$\half$ one by $\tfrac32A_{\mathrm{light}}$. Falsifier: a ground-state spin splitting of the opposite sign. [chart] Confrontation: $M_\Delta-M_N=293.1$~MeV/$c^{2}$, $A_{\mathrm{light}}=195.4$~MeV/$c^{2}$. -/
 theorem hyperfine_pattern : (1 : Int) * ((1 : Int) + (2 : Int)) - (9 : Int) = (-6 : Int) ∧ (3 : Int) * ((3 : Int) + (2 : Int)) - (9 : Int) = (6 : Int) ∧ (6 : Int) - (-6 : Int) = (12 : Int) ∧ (-8 : Int) * (-6 : Int) = (2 : Int) * (24 : Int) ∧ (-8 : Int) * (6 : Int) = (-2 : Int) * (24 : Int) :=
   @FRC.Ledger.p35053
-/-- 35:P4 (p35054) — Proton effective stability: the proton is the minimal colour-neutral wrap, with no allowed strong or electromagnetic channel toward a smaller residue; the single neutron transition is one flavour flip, the $\beta$ channel \cite{akhtman2026fields}. Falsifier: an observed proton decay or a strong/electromagnetic baryon-number-violating process. -/
+/-- 35:P4 (p35054) — Proton stability: the proton is the lightest state of the determinant line, with no strong or electromagnetic channel below it; the neutron reaches it by the $\beta$ channel. Falsifier: an observed strong or electromagnetic process that violates baryon number. Confrontation: none observed. -/
 theorem proton_effective_stability : FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat) :=
   @FRC.Ledger.p35054
-/-- 35:P5 (p35055) — No exotic light multiplets beyond the $\mathbf 8$ and $\mathbf{10}$ at leading wrap order. Falsifier: a confirmed light baryon outside the $\mathbf 8$ and $\mathbf{10}$ at the wrap scale. -/
+/-- 35:P5 (p35055) — No ground-state light baryon multiplet beyond the $\mathbf 8$ and the $\mathbf{10}$. Falsifier: a confirmed ground-state light baryon outside them. Confrontation: none confirmed. -/
 theorem no_exotic_light_multiplets : FRC.Hadrons.moment6 (3 : Nat) (0 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (4 : Nat) (1 : Nat) - FRC.Hadrons.moment6 (3 : Nat) (0 : Nat) = (6 : Int) * (2 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (3 : Nat) = (6 : Int) * ((1 : Int) + (2 : Int) ^ (2 : Nat) + (1 : Int)) ∧ (3 : Nat) ^ (3 : Nat) = (10 : Nat) + (8 : Nat) + (8 : Nat) + (1 : Nat) ∧ (8 : Nat) * (7 : Nat) * (6 : Nat) / ((3 : Nat) * (2 : Nat) * (1 : Nat)) = (56 : Nat) ∧ (10 : Nat) * (4 : Nat) + (8 : Nat) * (2 : Nat) = (56 : Nat) :=
   @FRC.Ledger.p35055
-/-- 35:P6 (p35056) — Coleman--Glashow exact at one body; PDG $0.79\%$, the residual the two-body electromagnetic term; the orderings $M_n>M_p$ and $M_\Sigma>M_\Lambda$ fixed. Falsifier: a Coleman--Glashow violation beyond the two-body term. -/
-theorem coleman_glashow_one_body : ∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p) :=
+/-- 35:P6 (p35056) — Coleman--Glashow (C7). Falsifier: a difference of its two sides beyond their measurement error. [chart] Confrontation: $8.14(21)$ against $8.08(8)$~MeV/$c^{2}$. -/
+theorem coleman_glashow_within_error : ∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35056
-/-- 35:P8 (p35058) — Second-order decuplet relation \eqref{eq:thirddiff}, the vanishing third difference; PDG $6$ MeV ($0.36\%$). Falsifier: a third difference beyond the few-MeV third-order scale. -/
-theorem second_order_decuplet_prediction : ∀ {p : Nat} [FRC.Pos p] (m d a r : FRC.Shell p), FRC.Hadrons.hfD m d a r + -(FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r + FRC.Hadrons.hfSs m d a r) + (FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r + FRC.Hadrons.hfXs m d a r) + -FRC.Hadrons.hfO m d a r = (0 : FRC.Shell p) :=
-  @FRC.Ledger.p35058
-/-- 35:P9 (p35059) — Vector-meson nonet equal spacing $2M_{K^{*}}=M_\rho+M_\phi$ (PDG $0.42\%$) and ideal mixing $M_\omega\simeq M_\rho$; $\rho,\phi$ anchor, $K^{*},\omega$ predicted $<1\%$; the pseudoscalars are Goldstone bosons (a distinct chiral mechanism). Falsifier: a vector nonet off the linear-strangeness pattern. -/
+/-- 35:P7 (p35057) — The heavy-quark relation (C10). [chart] Falsifier: a residual above $(\hbar\sigma/c^{3})(1/m_c-1/m_b)=75$~MeV/$c^{2}$ at the imported scale. Confrontation: $-7.1$~MeV/$c^{2}$, $0.21\%$, with isospin-averaged mesons; the hyperfine ratio $0.339$ against $m_s/m_c=0.315$. -/
+theorem heavy_quark_symmetry : ∀ {p : Nat} [FRC.Pos p] (b c l u wb wc : FRC.Shell p), FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u = b + -c ∧ FRC.Hadrons.mesP b l wb + (FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb + FRC.Hadrons.mesV b l wb) + -(FRC.Hadrons.mesP c l wc + (FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc + FRC.Hadrons.mesV c l wc)) = FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) + (FRC.Hadrons.massLQ b l u + -FRC.Hadrons.massLQ c l u) :=
+  @FRC.Ledger.p35057
+/-- 35:P9 (p35059) — Vector equal spacing $M_{K^{*}}=\tfrac12(M_\rho+M_\phi)$ (C18). [chart] Falsifier: a residual above $\varepsilon_s^{2}(M_\phi-M_\rho)=8.7$~MeV/$c^{2}$. Confrontation: $3.75$~MeV/$c^{2}$; the ideally mixed $\omega$ lies $7.4$~MeV/$c^{2}$ above $\rho$. -/
 theorem vector_meson_nonet_spacing : ∀ {p : Nat} [FRC.Pos p] (a b : FRC.Shell p), FRC.Hadrons.vecKs a b + FRC.Hadrons.vecKs a b + -FRC.Hadrons.vecRho a b + -FRC.Hadrons.vecPhi a b = (0 : FRC.Shell p) :=
   @FRC.Ledger.p35059
-/-- 35:P10 (p35060) — Absolute octet$+$decuplet spectrum from the $\Om$-hard scale $\sig$ and three sub-horizon eigenvalues ($\lambda_l$, $m_s/m_l$, $\lambda_{\mathrm{hf}}$, the two constituent ratios computed forward, C19): five parameter-free predictions within $1.1\%$ (Table~\ref{tab:absolute}). Falsifier: a predicted mass off beyond the traced second order. -/
+/-- 35:P10 (p35060) — Five octet and decuplet masses from the anchors $N$, $\Lambda$, $\Delta$ (C16). [chart] Falsifier: a residual above $\varepsilon_s^{2}(M_\Omega-M_N)=26$~MeV/$c^{2}$. Confrontation: at most $13.3$~MeV/$c^{2}$, $1.2\%$. -/
 theorem absolute_octet_decuplet_spectrum : (∀ {p : Nat} [FRC.Pos p] (l f : FRC.Shell p), FRC.Hadrons.splitN l f + FRC.Hadrons.splitD l f = l + l + l + l + l + l ∧ FRC.Hadrons.splitD l f + -FRC.Hadrons.splitN l f = f + f + f + f + f + f) ∧ ∀ {p : Nat} [FRC.Pos p] (l s u : FRC.Shell p), FRC.Hadrons.massL l s u + -FRC.Hadrons.massN l s u = s + -l :=
   @FRC.Ledger.p35060
-/-- 35:P11 (p35061) — The $\Lambda$--$N$ gap is the strange constituent excess, $M_\Lambda-M_N=m_s-m_l=176.8$ MeV, hyperfine- and scale-free \eqref{eq:lamn}. Falsifier: a gap inconsistent with the strange seed and the $\Xi,\Sigma$ splittings. -/
-theorem strange_constituent_gap : ∀ {p : Nat} [FRC.Pos p] (l s u : FRC.Shell p), FRC.Hadrons.massL l s u + -FRC.Hadrons.massN l s u = s + -l :=
-  @FRC.Ledger.p35061
 -- end ledger predicates
 
 end FRC.Hadrons
@@ -43511,7 +43872,7 @@ theorem p46013 : ((3 : Int) * (3 : Int) - (1 : Int) = (8 : Int) ∧ (6 : Nat) * 
 /-- p46014 — 46:C5. The window rational: $b_0=11-\frac23n_f$ takes the values $9$, $\frac{25}{3}$, $\frac{23}{3}$, $7$ for $n_f=3,4,5,6$, is positive for every $n_f\le16$ and negative for every $n_f$ from $17$ to $200$. -/
 theorem p46014 : (FRC.YangMills.threeB0 (3 : Nat) = (27 : Int) ∧ FRC.YangMills.threeB0 (4 : Nat) = (25 : Int) ∧ FRC.YangMills.threeB0 (5 : Nat) = (23 : Int) ∧ FRC.YangMills.threeB0 (6 : Nat) = (21 : Int)) ∧ (∀ (nf : Nat), nf < (17 : Nat) → (0 : Int) < FRC.YangMills.threeB0 nf) ∧ FRC.YangMills.threeB0 (17 : Nat) = (-1 : Int) ∧ ∀ (nf : Nat), nf < (201 : Nat) → (17 : Nat) ≤ nf → FRC.YangMills.threeB0 nf < (0 : Int) :=
   And.intro @FRC.YangMills.b0_values (And.intro @FRC.YangMills.b0_pos (And.intro @FRC.YangMills.b0_seventeen (@FRC.YangMills.b0_neg)))
-/-- p46015 — 46:C6. The drive exponent. On every shell of the totality the powers of the drive permute the nonzero elements: each winding rate has one exponent below $\p-1$, and exponents add modulo $\p-1$ --- the discrete logarithm on the shell. The ledger file decides it on the Subjects and the sweep. -/
+/-- p46015 — 46:C6. The drive exponent. On every shell of the totality the powers of the drive permute the nonzero elements: each registered scale has one exponent below $\p-1$, and exponents add modulo $\p-1$ --- the discrete logarithm on the shell. The ledger file decides it on the Subjects and the sweep. -/
 theorem p46015 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {w : FRC.Shell p}, w ≠ (0 : FRC.Shell p) → ∃ n, n < p - (1 : Nat) ∧ g ^ n = w) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m n : Nat}, m < p - (1 : Nat) → n < p - (1 : Nat) → g ^ m = g ^ n → m = n) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m n : Nat), g ^ m * g ^ n = g ^ ((m + n) % (p - (1 : Nat))) :=
   And.intro @FRC.YangMills.drive_exponent (And.intro @FRC.YangMills.drive_exponent_unique (@FRC.YangMills.drive_exponent_add))
 /-- p46016 — 46:C7. The tension's coefficient to order $\stf^{7}$: the fundamental plaquette coefficient of $\SU(3)$ in the stiffness (A16) is $c_3=\stf/3+\stf^{2}/6-5\stf^{4}/72-\dots$ modulo $\stf^{8}$, every coefficient a rational built from the singlet multiplicities, the frame's in the degrees used (A9); the computed terms sum to $\frac{23}{54}$ at channel unity. The instance $2T$ agrees with $\SU(2)$'s series through $\stf^{3}$, first differing at $\stf^{5}$. -/
@@ -43595,6 +43956,9 @@ theorem p46072 : (FRC.YangMills.hurwitzH [(0 : Int), (1 : Int), (1 : Int), (6 : 
 /-- p46076 — 46:P4. No state of residue $0$ is registered in isolation: on every Subject the triplet and the adjoint of the unitary frame have no invariant line (A9), so there is no free quark and no free gluon. Falsifier: a confirmed free particle that carries colour, such as a fractional electric charge. Confrontation: the searches for free quarks are negative (A19). -/
 theorem p46076 : FRC.YangMills.mult (1 : Nat) (0 : Nat) = (0 : Nat) ∧ FRC.YangMills.mult (0 : Nat) (1 : Nat) = (0 : Nat) ∧ FRC.YangMills.mult (1 : Nat) (1 : Nat) - (1 : Nat) = (0 : Nat) :=
   @FRC.YangMills.residue_zero_states
+/-- p46077 — 46:C27. The tally with a norm-one link at every step, of the eigenvalues $u^{j},u^{j},u^{-2j}$ and $u^{k},u^{k},u^{-2k}$. On every Subject the reduced tally is $2u^{(j-k)n}+u^{(j+2k)n}+u^{-(2j+k)n}+u^{-2(j-k)n}$ at every regular length, a point of the plane, with stated values at the others and the period $(\p+1)/\gcdop(j,k,\p+1)$. With one link on each torus it moves on both cycles. -/
+theorem p46077 : ((FRC.YangMills.noNorm (13 : Nat) ((3 : Nat), (2 : Nat)) = (1 : Nat) ∧ FRC.YangMills.noPow (13 : Nat) ((3 : Nat), (2 : Nat)) (14 : Nat) = ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (13 : Nat) ((3 : Nat), (2 : Nat)) (7 : Nat) ≠ ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (13 : Nat) ((3 : Nat), (2 : Nat)) (2 : Nat) ≠ ((1 : Nat), (0 : Nat))) ∧ (FRC.YangMills.noNorm (173 : Nat) ((3 : Nat), (2 : Nat)) = (1 : Nat) ∧ FRC.YangMills.noPow (173 : Nat) ((3 : Nat), (2 : Nat)) (174 : Nat) = ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (173 : Nat) ((3 : Nat), (2 : Nat)) (87 : Nat) ≠ ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (173 : Nat) ((3 : Nat), (2 : Nat)) (58 : Nat) ≠ ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (173 : Nat) ((3 : Nat), (2 : Nat)) (6 : Nat) ≠ ((1 : Nat), (0 : Nat))) ∧ FRC.YangMills.noNorm (1549 : Nat) ((1459 : Nat), (1276 : Nat)) = (1 : Nat) ∧ FRC.YangMills.noPow (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (1550 : Nat) = ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (775 : Nat) ≠ ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (310 : Nat) ≠ ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (50 : Nat) ≠ ((1 : Nat), (0 : Nat))) ∧ FRC.YangMills.noValues (13 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (13 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (14 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = [((11 : Nat), (2 : Nat)), ((2 : Nat), (4 : Nat)), ((7 : Nat), (6 : Nat)), ((8 : Nat), (4 : Nat)), ((2 : Nat), (3 : Nat)), ((7 : Nat), (1 : Nat)), ((12 : Nat), (0 : Nat)), ((7 : Nat), (12 : Nat)), ((2 : Nat), (10 : Nat)), ((8 : Nat), (9 : Nat)), ((7 : Nat), (7 : Nat)), ((2 : Nat), (9 : Nat)), ((11 : Nat), (11 : Nat)), ((3 : Nat), (0 : Nat))] ∧ List.map (FRC.YangMills.noNorm (13 : Nat)) (FRC.YangMills.noValues (13 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (13 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (14 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat))) = [(9 : Nat), (11 : Nat), (3 : Nat), (6 : Nat), (12 : Nat), (8 : Nat), (1 : Nat), (8 : Nat), (12 : Nat), (6 : Nat), (3 : Nat), (11 : Nat), (9 : Nat), (9 : Nat)] ∧ (FRC.YangMills.noSweep (13 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (13 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (14 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = true ∧ FRC.YangMills.noSweep (173 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (173 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (174 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = true ∧ FRC.YangMills.noSweep (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (FRC.YangMills.noMul (1549 : Nat) ((1459 : Nat), (1276 : Nat)) ((1459 : Nat), (1276 : Nat))) (1550 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = true) ∧ (FRC.YangMills.noOthers (13 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (13 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (14 : Nat) (0 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = [(7 : Nat), (14 : Nat)] ∧ FRC.YangMills.noOthers (173 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (173 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (174 : Nat) (0 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = [(29 : Nat), (58 : Nat), (87 : Nat), (116 : Nat), (145 : Nat), (174 : Nat)] ∧ FRC.YangMills.noOthers (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (FRC.YangMills.noMul (1549 : Nat) ((1459 : Nat), (1276 : Nat)) ((1459 : Nat), (1276 : Nat))) (1550 : Nat) (0 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = [(775 : Nat), (1550 : Nat)]) ∧ (FRC.YangMills.noTally (13 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = ((3 : Nat), (0 : Nat)) ∧ FRC.YangMills.noTally (173 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = ((3 : Nat), (0 : Nat)) ∧ FRC.YangMills.noTally (1549 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = ((3 : Nat), (0 : Nat))) ∧ (FRC.YangMills.mxValues (13 : Nat) (2 : Nat) (7 : Nat) ((3 : Nat), (2 : Nat)) (6 : Nat) (1 : Nat) (1 : Nat) ((1 : Nat), (0 : Nat)) = [((8 : Nat), (5 : Nat)), ((0 : Nat), (7 : Nat)), ((5 : Nat), (10 : Nat)), ((10 : Nat), (11 : Nat)), ((11 : Nat), (0 : Nat)), ((3 : Nat), (2 : Nat))] ∧ FRC.YangMills.mxSweep (13 : Nat) (2 : Nat) (7 : Nat) ((3 : Nat), (2 : Nat)) (84 : Nat) (1 : Nat) (1 : Nat) ((1 : Nat), (0 : Nat)) = true ∧ FRC.YangMills.mxSweep (173 : Nat) (2 : Nat) (87 : Nat) ((3 : Nat), (2 : Nat)) (1740 : Nat) (1 : Nat) (1 : Nat) ((1 : Nat), (0 : Nat)) = true ∧ FRC.YangMills.mxSweep (1549 : Nat) (2 : Nat) (775 : Nat) ((1459 : Nat), (1276 : Nat)) (3100 : Nat) (1 : Nat) (1 : Nat) ((1 : Nat), (0 : Nat)) = true ∧ (FRC.YangMills.mxValues (13 : Nat) (2 : Nat) (7 : Nat) ((3 : Nat), (2 : Nat)) (84 : Nat) (1 : Nat) (1 : Nat) ((1 : Nat), (0 : Nat))).getLast? = some ((3 : Nat), (0 : Nat))) ∧ FRC.YangMills.mxLeast (13 : Nat) (2 : Nat) (7 : Nat) ((3 : Nat), (2 : Nat)) (84 : Nat) [(42 : Nat), (28 : Nat), (12 : Nat)] = true ∧ FRC.YangMills.mxLeast (173 : Nat) (2 : Nat) (87 : Nat) ((3 : Nat), (2 : Nat)) (14964 : Nat) [(7482 : Nat), (4988 : Nat), (516 : Nat), (348 : Nat)] = true ∧ FRC.YangMills.mxLeast (1549 : Nat) (2 : Nat) (775 : Nat) ((1459 : Nat), (1276 : Nat)) (1199700 : Nat) [(599850 : Nat), (399900 : Nat), (239940 : Nat), (38700 : Nat), (27900 : Nat)] = true :=
+  @FRC.YangMills.norm_one_link_tally
 -- end keys
 
 end FRC.Ledger
@@ -43633,7 +43997,7 @@ theorem colour_casimirs : ((3 : Int) * (3 : Int) - (1 : Int) = (8 : Int) ∧ (6 
 /-- 46:C5 (p46014) — The window rational: $b_0=11-\frac23n_f$ takes the values $9$, $\frac{25}{3}$, $\frac{23}{3}$, $7$ for $n_f=3,4,5,6$, is positive for every $n_f\le16$ and negative for every $n_f$ from $17$ to $200$. -/
 theorem window_rational_b0 : (FRC.YangMills.threeB0 (3 : Nat) = (27 : Int) ∧ FRC.YangMills.threeB0 (4 : Nat) = (25 : Int) ∧ FRC.YangMills.threeB0 (5 : Nat) = (23 : Int) ∧ FRC.YangMills.threeB0 (6 : Nat) = (21 : Int)) ∧ (∀ (nf : Nat), nf < (17 : Nat) → (0 : Int) < FRC.YangMills.threeB0 nf) ∧ FRC.YangMills.threeB0 (17 : Nat) = (-1 : Int) ∧ ∀ (nf : Nat), nf < (201 : Nat) → (17 : Nat) ≤ nf → FRC.YangMills.threeB0 nf < (0 : Int) :=
   @FRC.Ledger.p46014
-/-- 46:C6 (p46015) — The drive exponent. On every shell of the totality the powers of the drive permute the nonzero elements: each winding rate has one exponent below $\p-1$, and exponents add modulo $\p-1$ --- the discrete logarithm on the shell. The ledger file decides it on the Subjects and the sweep. -/
+/-- 46:C6 (p46015) — The drive exponent. On every shell of the totality the powers of the drive permute the nonzero elements: each registered scale has one exponent below $\p-1$, and exponents add modulo $\p-1$ --- the discrete logarithm on the shell. The ledger file decides it on the Subjects and the sweep. -/
 theorem drive_exponent_permutes : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {w : FRC.Shell p}, w ≠ (0 : FRC.Shell p) → ∃ n, n < p - (1 : Nat) ∧ g ^ n = w) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m n : Nat}, m < p - (1 : Nat) → n < p - (1 : Nat) → g ^ m = g ^ n → m = n) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m n : Nat), g ^ m * g ^ n = g ^ ((m + n) % (p - (1 : Nat))) :=
   @FRC.Ledger.p46015
 /-- 46:C7 (p46016) — The tension's coefficient to order $\stf^{7}$: the fundamental plaquette coefficient of $\SU(3)$ in the stiffness (A16) is $c_3=\stf/3+\stf^{2}/6-5\stf^{4}/72-\dots$ modulo $\stf^{8}$, every coefficient a rational built from the singlet multiplicities, the frame's in the degrees used (A9); the computed terms sum to $\frac{23}{54}$ at channel unity. The instance $2T$ agrees with $\SU(2)$'s series through $\stf^{3}$, first differing at $\stf^{5}$. -/
@@ -43693,6 +44057,9 @@ theorem three_rings : ((8 : Nat) * (5 : Nat) % (13 : Nat) = (1 : Nat) ∧ (8 : N
 /-- 46:C26 (p46072) — The series on the shell: $d_R\,c_R=\sum_kh_k\stf^{k}/k!$ with integers $h_k$ ($0,1,1,0,-5,-15,21,413$ for $c_3$) from a recursion without division, on residues at every order. In the divided-power algebra on a Subject $f(0)=0$ gives $f^{\p}=0$, so a reading that respects sums and products sends $\stf$ to $0$; at channel unity on $\F_{13}$ the truncated sum reads $6$, the quotient of truncated sums $4$. -/
 theorem series_on_shell : (FRC.YangMills.hurwitzH [(0 : Int), (1 : Int), (1 : Int), (6 : Int), (15 : Int), (65 : Int), (231 : Int), (973 : Int)] [(1 : Int), (0 : Int), (2 : Int), (2 : Int), (12 : Int), (30 : Int), (130 : Int), (462 : Int)] (8 : Nat) = [(0 : Int), (1 : Int), (1 : Int), (0 : Int), (-5 : Int), (-15 : Int), (21 : Int), (413 : Int)] ∧ FRC.YangMills.hurwitzH [(0 : Int), (0 : Int), (2 : Int), (4 : Int), (24 : Int), (80 : Int), (372 : Int), (1512 : Int)] [(1 : Int), (0 : Int), (2 : Int), (2 : Int), (12 : Int), (30 : Int), (130 : Int), (462 : Int)] (8 : Nat) = [(0 : Int), (0 : Int), (2 : Int), (4 : Int), (0 : Int), (-40 : Int), (-148 : Int), (252 : Int)]) ∧ (FRC.YangMills.wrFact (13 : Nat) (13 : Nat) = (0 : Nat) ∧ FRC.YangMills.wrFact (173 : Nat) (173 : Nat) = (0 : Nat) ∧ FRC.YangMills.wrFact (1549 : Nat) (1549 : Nat) = (0 : Nat)) ∧ List.foldl (fun s x => s + x) (0 : FRC.Shell (13 : Nat)) (FRC.YangMills.c3Series [(1 : Nat), (0 : Nat), (2 : Nat), (2 : Nat), (12 : Nat), (30 : Nat), (130 : Nat), (462 : Nat), (1946 : Nat), (7980 : Nat), (34776 : Nat), (153120 : Nat), (694056 : Nat)] [(0 : Nat), (1 : Nat), (1 : Nat), (6 : Nat), (15 : Nat), (65 : Nat), (231 : Nat), (973 : Nat), (3990 : Nat), (17388 : Nat), (76560 : Nat), (347028 : Nat), (1597167 : Nat)] (13 : Nat)) = (6 : FRC.Shell (13 : Nat)) ∧ (FRC.YangMills.truncSums [(1 : Nat), (0 : Nat), (2 : Nat), (2 : Nat), (12 : Nat), (30 : Nat), (130 : Nat), (462 : Nat), (1946 : Nat), (7980 : Nat), (34776 : Nat), (153120 : Nat), (694056 : Nat)] [(0 : Nat), (1 : Nat), (1 : Nat), (6 : Nat), (15 : Nat), (65 : Nat), (231 : Nat), (973 : Nat), (3990 : Nat), (17388 : Nat), (76560 : Nat), (347028 : Nat), (1597167 : Nat)] (13 : Nat)).fst * FRC.YangMills.invS (FRC.YangMills.truncSums [(1 : Nat), (0 : Nat), (2 : Nat), (2 : Nat), (12 : Nat), (30 : Nat), (130 : Nat), (462 : Nat), (1946 : Nat), (7980 : Nat), (34776 : Nat), (153120 : Nat), (694056 : Nat)] [(0 : Nat), (1 : Nat), (1 : Nat), (6 : Nat), (15 : Nat), (65 : Nat), (231 : Nat), (973 : Nat), (3990 : Nat), (17388 : Nat), (76560 : Nat), (347028 : Nat), (1597167 : Nat)] (13 : Nat)).snd = (4 : FRC.Shell (13 : Nat)) :=
   @FRC.Ledger.p46072
+/-- 46:C27 (p46077) — The tally with a norm-one link at every step, of the eigenvalues $u^{j},u^{j},u^{-2j}$ and $u^{k},u^{k},u^{-2k}$. On every Subject the reduced tally is $2u^{(j-k)n}+u^{(j+2k)n}+u^{-(2j+k)n}+u^{-2(j-k)n}$ at every regular length, a point of the plane, with stated values at the others and the period $(\p+1)/\gcdop(j,k,\p+1)$. With one link on each torus it moves on both cycles. -/
+theorem norm_one_boundary : ((FRC.YangMills.noNorm (13 : Nat) ((3 : Nat), (2 : Nat)) = (1 : Nat) ∧ FRC.YangMills.noPow (13 : Nat) ((3 : Nat), (2 : Nat)) (14 : Nat) = ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (13 : Nat) ((3 : Nat), (2 : Nat)) (7 : Nat) ≠ ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (13 : Nat) ((3 : Nat), (2 : Nat)) (2 : Nat) ≠ ((1 : Nat), (0 : Nat))) ∧ (FRC.YangMills.noNorm (173 : Nat) ((3 : Nat), (2 : Nat)) = (1 : Nat) ∧ FRC.YangMills.noPow (173 : Nat) ((3 : Nat), (2 : Nat)) (174 : Nat) = ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (173 : Nat) ((3 : Nat), (2 : Nat)) (87 : Nat) ≠ ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (173 : Nat) ((3 : Nat), (2 : Nat)) (58 : Nat) ≠ ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (173 : Nat) ((3 : Nat), (2 : Nat)) (6 : Nat) ≠ ((1 : Nat), (0 : Nat))) ∧ FRC.YangMills.noNorm (1549 : Nat) ((1459 : Nat), (1276 : Nat)) = (1 : Nat) ∧ FRC.YangMills.noPow (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (1550 : Nat) = ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (775 : Nat) ≠ ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (310 : Nat) ≠ ((1 : Nat), (0 : Nat)) ∧ FRC.YangMills.noPow (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (50 : Nat) ≠ ((1 : Nat), (0 : Nat))) ∧ FRC.YangMills.noValues (13 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (13 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (14 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = [((11 : Nat), (2 : Nat)), ((2 : Nat), (4 : Nat)), ((7 : Nat), (6 : Nat)), ((8 : Nat), (4 : Nat)), ((2 : Nat), (3 : Nat)), ((7 : Nat), (1 : Nat)), ((12 : Nat), (0 : Nat)), ((7 : Nat), (12 : Nat)), ((2 : Nat), (10 : Nat)), ((8 : Nat), (9 : Nat)), ((7 : Nat), (7 : Nat)), ((2 : Nat), (9 : Nat)), ((11 : Nat), (11 : Nat)), ((3 : Nat), (0 : Nat))] ∧ List.map (FRC.YangMills.noNorm (13 : Nat)) (FRC.YangMills.noValues (13 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (13 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (14 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat))) = [(9 : Nat), (11 : Nat), (3 : Nat), (6 : Nat), (12 : Nat), (8 : Nat), (1 : Nat), (8 : Nat), (12 : Nat), (6 : Nat), (3 : Nat), (11 : Nat), (9 : Nat), (9 : Nat)] ∧ (FRC.YangMills.noSweep (13 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (13 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (14 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = true ∧ FRC.YangMills.noSweep (173 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (173 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (174 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = true ∧ FRC.YangMills.noSweep (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (FRC.YangMills.noMul (1549 : Nat) ((1459 : Nat), (1276 : Nat)) ((1459 : Nat), (1276 : Nat))) (1550 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = true) ∧ (FRC.YangMills.noOthers (13 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (13 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (14 : Nat) (0 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = [(7 : Nat), (14 : Nat)] ∧ FRC.YangMills.noOthers (173 : Nat) ((3 : Nat), (2 : Nat)) (FRC.YangMills.noMul (173 : Nat) ((3 : Nat), (2 : Nat)) ((3 : Nat), (2 : Nat))) (174 : Nat) (0 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = [(29 : Nat), (58 : Nat), (87 : Nat), (116 : Nat), (145 : Nat), (174 : Nat)] ∧ FRC.YangMills.noOthers (1549 : Nat) ((1459 : Nat), (1276 : Nat)) (FRC.YangMills.noMul (1549 : Nat) ((1459 : Nat), (1276 : Nat)) ((1459 : Nat), (1276 : Nat))) (1550 : Nat) (0 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = [(775 : Nat), (1550 : Nat)]) ∧ (FRC.YangMills.noTally (13 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = ((3 : Nat), (0 : Nat)) ∧ FRC.YangMills.noTally (173 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = ((3 : Nat), (0 : Nat)) ∧ FRC.YangMills.noTally (1549 : Nat) ((1 : Nat), (0 : Nat)) ((1 : Nat), (0 : Nat)) = ((3 : Nat), (0 : Nat))) ∧ (FRC.YangMills.mxValues (13 : Nat) (2 : Nat) (7 : Nat) ((3 : Nat), (2 : Nat)) (6 : Nat) (1 : Nat) (1 : Nat) ((1 : Nat), (0 : Nat)) = [((8 : Nat), (5 : Nat)), ((0 : Nat), (7 : Nat)), ((5 : Nat), (10 : Nat)), ((10 : Nat), (11 : Nat)), ((11 : Nat), (0 : Nat)), ((3 : Nat), (2 : Nat))] ∧ FRC.YangMills.mxSweep (13 : Nat) (2 : Nat) (7 : Nat) ((3 : Nat), (2 : Nat)) (84 : Nat) (1 : Nat) (1 : Nat) ((1 : Nat), (0 : Nat)) = true ∧ FRC.YangMills.mxSweep (173 : Nat) (2 : Nat) (87 : Nat) ((3 : Nat), (2 : Nat)) (1740 : Nat) (1 : Nat) (1 : Nat) ((1 : Nat), (0 : Nat)) = true ∧ FRC.YangMills.mxSweep (1549 : Nat) (2 : Nat) (775 : Nat) ((1459 : Nat), (1276 : Nat)) (3100 : Nat) (1 : Nat) (1 : Nat) ((1 : Nat), (0 : Nat)) = true ∧ (FRC.YangMills.mxValues (13 : Nat) (2 : Nat) (7 : Nat) ((3 : Nat), (2 : Nat)) (84 : Nat) (1 : Nat) (1 : Nat) ((1 : Nat), (0 : Nat))).getLast? = some ((3 : Nat), (0 : Nat))) ∧ FRC.YangMills.mxLeast (13 : Nat) (2 : Nat) (7 : Nat) ((3 : Nat), (2 : Nat)) (84 : Nat) [(42 : Nat), (28 : Nat), (12 : Nat)] = true ∧ FRC.YangMills.mxLeast (173 : Nat) (2 : Nat) (87 : Nat) ((3 : Nat), (2 : Nat)) (14964 : Nat) [(7482 : Nat), (4988 : Nat), (516 : Nat), (348 : Nat)] = true ∧ FRC.YangMills.mxLeast (1549 : Nat) (2 : Nat) (775 : Nat) ((1459 : Nat), (1276 : Nat)) (1199700 : Nat) [(599850 : Nat), (399900 : Nat), (239940 : Nat), (38700 : Nat), (27900 : Nat)] = true :=
+  @FRC.Ledger.p46077
 /-- 46:X1 (p46018) — Why the gluon is massless yet never seen alone: under B1 a gluon is drive-invariant (massless, A6) and its space has no frame-invariant line (C1, C3), so no registration singles it out. The row explicates the form of the confinement rule; it does not derive confinement. -/
 theorem gluon_massless_unregistered : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν a b r : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → a * a + -(ν * (b * b)) = (1 : FRC.Shell p) → b ≠ (0 : FRC.Shell p) → r * r + -((a + a) * r) + (1 : FRC.Shell p) = (0 : FRC.Shell p) → False) ∧ FRC.YangMills.mult (1 : Nat) (1 : Nat) = (1 : Nat) ∧ FRC.YangMills.mult (1 : Nat) (1 : Nat) - (1 : Nat) = (0 : Nat) ∧ FRC.YangMills.lookup ((1 : Nat), (1 : Nat)) (FRC.YangMills.powers3 (2 : Nat)) = (0 : Nat) ∧ FRC.YangMills.lookup ((1 : Nat), (1 : Nat)) (FRC.YangMills.tensor3 [(((0 : Nat), (1 : Nat)), (1 : Nat))]) = (1 : Nat) :=
   @FRC.Ledger.p46018

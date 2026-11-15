@@ -82,6 +82,7 @@ import FrcCore.Theme.Hadrons
 import FrcCore.Theme.Super
 import FrcCore.Theme.Brackets
 import FrcCore.Theme.YangMills
+import FrcCore.Theme.Plaquette
 import FrcCore.Keys.Domain
 import FrcCore.Keys.Frame
 import FrcCore.Keys.Extension

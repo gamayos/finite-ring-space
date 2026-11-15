@@ -697,20 +697,20 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p35_hadrons.ipynb",
         "label": "python",
-        "count": 48,
-        "title": "48 predicates checked, all passing: the notebook p35_hadrons.ipynb on Google Colab, one cell per predicate"
+        "count": 47,
+        "title": "47 predicates checked, all passing: the notebook p35_hadrons.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Hadrons.lean",
         "label": "lean",
-        "count": 43,
-        "title": "43 predicates proved in the core (no axioms), 35 of them also on Mathlib: the core module Hadrons as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 46,
+        "title": "46 predicates proved in the core (no axioms), 35 of them also on Mathlib: the core module Hadrons as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Hadrons.lean",
         "label": "lean-mathlib",
-        "count": 39,
-        "title": "39 predicates proved on Mathlib (classical), 35 of them also in the core: the module Hadrons as one file on Mathlib in Lean Live"
+        "count": 36,
+        "title": "36 predicates proved on Mathlib (classical), 35 of them also in the core: the module Hadrons as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -833,4 +833,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "12 November 2026";
+const GENERATED = "15 November 2026";

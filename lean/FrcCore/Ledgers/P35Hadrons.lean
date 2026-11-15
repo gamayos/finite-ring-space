@@ -33,11 +33,6 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 #guard_msgs in
 #print axioms FRC.Ledger.p35019
 
--- 35:C6 (p35020)
-/-- info: 'FRC.Ledger.p35020' does not depend on any axioms -/
-#guard_msgs in
-#print axioms FRC.Ledger.p35020
-
 -- 35:C7 (p35021)
 /-- info: 'FRC.Ledger.p35021' does not depend on any axioms -/
 #guard_msgs in
@@ -52,6 +47,11 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 /-- info: 'FRC.Ledger.p35023' does not depend on any axioms -/
 #guard_msgs in
 #print axioms FRC.Ledger.p35023
+
+-- 35:C10 (p35024)
+/-- info: 'FRC.Ledger.p35024' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p35024
 
 -- 35:C11 (p35025)
 /-- info: 'FRC.Ledger.p35025' does not depend on any axioms -/
@@ -108,10 +108,25 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 #guard_msgs in
 #print axioms FRC.Ledger.p35035
 
--- 35:C23 (p35037)
-/-- info: 'FRC.Ledger.p35037' does not depend on any axioms -/
+-- 35:C24 (p35075)
+/-- info: 'FRC.Ledger.p35075' does not depend on any axioms -/
 #guard_msgs in
-#print axioms FRC.Ledger.p35037
+#print axioms FRC.Ledger.p35075
+
+-- 35:C25 (p35076)
+/-- info: 'FRC.Ledger.p35076' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p35076
+
+-- 35:C26 (p35078)
+/-- info: 'FRC.Ledger.p35078' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p35078
+
+-- 35:C27 (p35080)
+/-- info: 'FRC.Ledger.p35080' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p35080
 
 -- 35:X1 (p35038)
 /-- info: 'FRC.Ledger.p35038' does not depend on any axioms -/
@@ -163,6 +178,11 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 #guard_msgs in
 #print axioms FRC.Ledger.p35047
 
+-- 35:X11 (p35048)
+/-- info: 'FRC.Ledger.p35048' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p35048
+
 -- 35:X12 (p35049)
 /-- info: 'FRC.Ledger.p35049' does not depend on any axioms -/
 #guard_msgs in
@@ -203,10 +223,10 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 #guard_msgs in
 #print axioms FRC.Ledger.p35056
 
--- 35:P8 (p35058)
-/-- info: 'FRC.Ledger.p35058' does not depend on any axioms -/
+-- 35:P7 (p35057)
+/-- info: 'FRC.Ledger.p35057' does not depend on any axioms -/
 #guard_msgs in
-#print axioms FRC.Ledger.p35058
+#print axioms FRC.Ledger.p35057
 
 -- 35:P9 (p35059)
 /-- info: 'FRC.Ledger.p35059' does not depend on any axioms -/
@@ -217,8 +237,3 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 /-- info: 'FRC.Ledger.p35060' does not depend on any axioms -/
 #guard_msgs in
 #print axioms FRC.Ledger.p35060
-
--- 35:P11 (p35061)
-/-- info: 'FRC.Ledger.p35061' does not depend on any axioms -/
-#guard_msgs in
-#print axioms FRC.Ledger.p35061

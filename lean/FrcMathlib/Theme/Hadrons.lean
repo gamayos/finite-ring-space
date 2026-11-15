@@ -1,38 +1,41 @@
 import Mathlib
 
 /-!
-# FrcMathlib.Theme.Hadrons — the hadrons theme's readings on Mathlib (35-hadrons, 19 October 2026)
+# FrcMathlib.Theme.Hadrons — the hadrons theme's readings on Mathlib (35-hadrons, 19 October 2026; revised 14 and 15 November 2026)
 
-The clauses of 35-hadrons that read the PDG masses or the continuum against the exact content of
+The clauses of 35-hadrons that read the measured masses or the continuum against the exact content of
 `FrcCore/Theme/Hadrons.lean`: the flavour, isospin and spin identities as ring identities over `ℚ` (the core proves them
-on every shell), the Casimir, spin and charge rationals, the PDG confrontations as rational brackets (every measured
-mass a hypothesis, every conclusion an inequality), the anchored absolute spectrum, the single-scale readings at
-`√σ = 440 MeV`, the baryon eigenvalue `E₀ = 2.2322` read against the nucleon, and the forward landing with the
-transmutation-pinned coupling bracketed from the rational bounds on `π` and `ln 2` (Mathlib's, taken as hypotheses:
-the theme's Mathlib file stays on `ℚ`, gate G09). Classical (tier 2).
+on every shell), the Casimir, spin and charge rationals, the readings of the measured masses as rational brackets (every
+measured mass a hypothesis, every conclusion an inequality), the anchored absolute spectrum, the measured ratios at the
+scale `√(ħcσ) = 440 MeV`, the winding law's readings `λ_N² = (3/2)π` against the nucleon, the readings `E₀ = 2.2320`,
+`E₁ = 3.3291` and `C = 3.5003` of the body's Hamiltonian on the declared grid, the joint solution of the nucleon's reading
+and the contact rule with the one-loop coupling bracketed from the rational bounds on `π` and `ln 2` (Mathlib's, taken as
+hypotheses: the theme's Mathlib file stays on `ℚ`, gate G09), the radial ratio `√(7/3)` against `N(1440)`, and the levels
+of the register's Hamiltonian on the Subjects `13`, `173` and `1549`. A mass is held by its numeral in MeV/c², the scale
+by its numeral in MeV, and a ratio `λ` is the quotient of the two numerals. Classical (tier 2).
 -/
 
 namespace FRC.HadronsML
 
 
-/-! ## The identities over `ℚ` (35:C2, C3, C7, C11, C12, C16, C17, C18) -/
+/-! ## The identities over `ℚ` (35:C2, C3, C7, C11, C12, C16, C18, C19) -/
 
-/-- 35:C2, 35:X4, 35:P1 — Gell-Mann–Okubo over `ℚ`: `M = M₀ + aY + b[I(I+1) − Y²/4]` gives `N = M₀ + a + b/2`, `Λ = M₀`,
+/-- 35:C2, 35:X4 — Gell-Mann–Okubo over `ℚ`: `M = M₀ + aY + b[I(I+1) − Y²/4]` gives `N = M₀ + a + b/2`, `Λ = M₀`,
 `Σ = M₀ + 2b`, `Ξ = M₀ − a + b/2`, and `2N + 2Ξ − 3Λ − Σ = 0`. -/
 theorem gmo (M₀ a b : ℚ) :
     2 * (M₀ + a + b / 2) + 2 * (M₀ - a + b / 2) - 3 * M₀ - (M₀ + 2 * b) = 0 := by ring
 
-/-- 35:C3, 35:X5, 35:P2 — decuplet equal spacing over `ℚ`: `M(n_s) = α + β n_s` has vanishing second differences. -/
+/-- 35:C3, 35:X5 — decuplet equal spacing over `ℚ`: `M(n_s) = α + β n_s` has vanishing second differences. -/
 theorem spacing (α β : ℚ) :
     α - 2 * (α + β) + (α + 2 * β) = 0 ∧ (α + β) - 2 * (α + 2 * β) + (α + 3 * β) = 0 := by constructor <;> ring
 
-/-- 35:C11, 35:P8 — the third difference over `ℚ` in the linear-seed pairwise-hyperfine model
+/-- 35:C11 — the third difference over `ℚ` in the pairwise hyperfine model
 (`A_ij = A (m/m_i)(m/m_j)`, `r = m/m_s`, all decuplet pairs `+1/4`). -/
 theorem third_difference (M₀ d A r : ℚ) :
     (M₀ + 3 / 4 * A) - 3 * (M₀ + d + A / 4 * (1 + 2 * r)) + 3 * (M₀ + 2 * d + A / 4 * (2 * r + r ^ 2))
       - (M₀ + 3 * d + 3 / 4 * A * r ^ 2) = 0 := by ring
 
-/-! The linear-seed pairwise-hyperfine model over `ℚ`: `A_ij = A (m/m_i)(m/m_j)`, `r = m/m_s`; the decuplet pairs `+1/4`, the
+/-! The pairwise hyperfine model over `ℚ`: `A_ij = A (m/m_i)(m/m_j)`, `r = m/m_s`; the decuplet pairs `+1/4`, the
 octet correlators `−3/4` (`N`, and the `ud` pair of `Λ`), `+1/4` and `−1` (`Σ`), `+1/4` and `−1` (`Ξ`). -/
 def hfN (M₀ _d A _r : ℚ) : ℚ := M₀ - 3 / 4 * A
 def hfL (M₀ d A _r : ℚ) : ℚ := M₀ + d - 3 / 4 * A
@@ -49,13 +52,13 @@ theorem hyperfine_links (M₀ d A r : ℚ) :
     (hfSs M₀ d A r - hfS M₀ d A r) - (hfXs M₀ d A r - hfX M₀ d A r) = 0 := by
   unfold hfS hfL hfD hfN hfSs hfXs hfX; constructor <;> ring
 
-/-- 35:C7, 35:X10, 35:P6 — Coleman–Glashow in one-body units. -/
+/-- 35:C7, 35:X10 — Coleman–Glashow in one-body units. -/
 theorem coleman_glashow (δ : ℚ) : (δ + δ) - 2 * δ = 0 := by ring
 
-/-- 35:C18, 35:X12, 35:P9 — the vector-nonet spacing over `ℚ`. -/
+/-- 35:C18, 35:X12 — the vector-nonet spacing over `ℚ`. -/
 theorem vector_spacing (a b : ℚ) : 2 * (a + b) - a - (a + 2 * b) = 0 := by ring
 
-/-- 35:C16, 35:P11, 35:P10 — the Λ–N gap: both carry the hyperfine `−3/4 v_ll`. -/
+/-- 35:C16 — the Λ–N gap: both carry the hyperfine `−3/4 v_ll`. -/
 theorem lambda_n_gap (ml ms v : ℚ) : (2 * ml + ms - 3 / 4 * v) - (3 * ml - 3 / 4 * v) = ms - ml := by ring
 
 /-- 35:C17, 35:C19, 35:P10 — the spin split inverts: `λ_l = (M_N + M_Δ)/6`, `M_Δ − M_N = (3/2) λ_hf`. -/
@@ -85,7 +88,7 @@ theorem sigma_lambda (a r : ℚ) (ha : 0 < a) (hr : r < 1) :
   have : a - a * r = a * (1 - r) := by ring
   rw [this]; exact mul_pos ha (by linarith)
 
-/-- 35:C8, 35:C13, 35:X8, 35:C21 — the charge structure: one-body `Σ Q²` is `1` for `uud` and `2/3` for `udd`, two-body
+/-- 35:C8, 35:C13, 35:X8 — the charge structure: one-body `Σ Q²` is `1` for `uud` and `2/3` for `udd`, two-body
 `Σ_{i<j} Q_iQ_j` is `0` and `−1/3`; both differences `+1/3`. -/
 theorem charge_structure :
     (2 / 3 : ℚ) ^ 2 + (2 / 3) ^ 2 + (-1 / 3) ^ 2 = 1 ∧ (2 / 3 : ℚ) ^ 2 + (-1 / 3) ^ 2 + (-1 / 3) ^ 2 = 2 / 3 ∧
@@ -94,10 +97,7 @@ theorem charge_structure :
     (1 : ℚ) - 2 / 3 = 1 / 3 ∧ (0 : ℚ) - (-1 / 3) = 1 / 3 := by
   norm_num
 
-/-- 35:C14, 35:C6, 35:C23 — the single-plaquette coefficients at `N = 3`: `c₁ = β/(2N²) = β/18`, `c_adj = β²/(2N)² = β²/36`. -/
-theorem character_coefficients : (1 : ℚ) / (2 * 3 ^ 2) = 1 / 18 ∧ (1 : ℚ) / (2 * 3) ^ 2 = 1 / 36 := by norm_num
-
-/-! ## The PDG confrontations (35:P1, P2, P3, P6, P7, P8, P9, P10, P11, C8, C10, C12, C20) -/
+/-! ## The readings of the measured masses (35:P1, P2, P3, P6, P7, P9, P10, C8, C10, C12, C20) -/
 
 /-- 35:P1 — Gell-Mann–Okubo on the isospin-averaged PDG masses: the residual `[(3Λ + Σ)/4 − (N + Ξ)/2]/[(3Λ + Σ)/4]`
 lies in `(0.0056, 0.0058)`: `0.57 %`. -/
@@ -116,14 +116,6 @@ theorem spacing_pdg (mD mSs mXs mO : ℚ) (hD : mD = 1232.0) (hSs : mSs = (1382.
     mO - mXs < mXs - mSs ∧ mXs - mSs < mSs - mD := by
   subst hD hSs hXs hO; norm_num
 
-/-- 35:P8 — the third difference on the PDG decuplet: `M_Δ − 3M_Σ* + 3M_Ξ* − M_Ω` in `(6.0, 6.1)` MeV, in
-`(0.0036, 0.00363)` of `M_Ω`. -/
-theorem third_pdg (mD mSs mXs mO : ℚ) (hD : mD = 1232.0) (hSs : mSs = (1382.8 + 1383.7 + 1387.2) / 3)
-    (hXs : mXs = (1531.80 + 1535.0) / 2) (hO : mO = 1672.45) :
-    (6.0 : ℚ) < mD - 3 * mSs + 3 * mXs - mO ∧ mD - 3 * mSs + 3 * mXs - mO < 6.1 ∧
-    (0.0036 : ℚ) < (mD - 3 * mSs + 3 * mXs - mO) / mO ∧ (mD - 3 * mSs + 3 * mXs - mO) / mO < 0.00363 := by
-  subst hD hSs hXs hO; norm_num
-
 /-- 35:C12 — the two links on the PDG masses hold to `12.5 %` and `−12.4 %`. -/
 theorem links_pdg (mN mL mS mX mD mSs mXs : ℚ) (hN : mN = (938.272 + 939.565) / 2) (hL : mL = 1115.683)
     (hS : mS = (1189.37 + 1192.642 + 1197.449) / 3) (hX : mX = (1314.86 + 1321.71) / 2) (hD : mD = 1232.0)
@@ -133,30 +125,38 @@ theorem links_pdg (mN mL mS mX mD mSs mXs : ℚ) (hN : mN = (938.272 + 939.565) 
     (-0.124 : ℚ) < ((mSs - mS) - (mXs - mX)) / (mSs - mS) ∧ ((mSs - mS) - (mXs - mX)) / (mSs - mS) < -0.1238 := by
   subst hN hL hS hX hD hSs hXs; norm_num
 
-/-- 35:P3, 35:C6 — `A_light = (2/3)(M_Δ − M_N)` in `(195.3, 195.4)` MeV; the light-light pair `M_Σ* − M_Σ` in `(191.4, 191.5)`. -/
+/-- 35:P3 — `A_light = (2/3)(M_Δ − M_N)` in `(195.3, 195.4)` MeV; the light-light pair `M_Σ* − M_Σ` in `(191.4, 191.5)`. -/
 theorem a_light (mN mD mS mSs : ℚ) (hN : mN = (938.272 + 939.565) / 2) (hD : mD = 1232.0)
     (hS : mS = (1189.37 + 1192.642 + 1197.449) / 3) (hSs : mSs = (1382.8 + 1383.7 + 1387.2) / 3) :
     (195.3 : ℚ) < 2 / 3 * (mD - mN) ∧ 2 / 3 * (mD - mN) < 195.4 ∧ (191.4 : ℚ) < mSs - mS ∧ mSs - mS < 191.5 := by
   subst hN hD hS hSs; norm_num
 
-/-- 35:P6, 35:C8, 35:X8, 35:C9, 35:X9 — Coleman–Glashow on the charged PDG masses: `(n − p) + (Ξ⁻ − Ξ⁰) = 8.143`,
-`Σ⁻ − Σ⁺ = 8.079`, the residual in `(0.0079, 0.0080)`; `n − p = 1.293 > 0`; `Σ⁰ − Λ = 76.959 > 0`. -/
+/-- 35:C8, 35:X8, 35:P6 — Coleman–Glashow on the charged measured masses: `(n − p) + (Ξ⁻ − Ξ⁰) = 8.143`, `Σ⁻ − Σ⁺ = 8.079`,
+the relative difference in `(0.0079, 0.0080)`, and the difference within the errors `0.21` and `0.08` of the two sides (its
+square below the sum of their squares); `n − p = 1.293 > 0`; `Σ⁰ − Λ = 76.959 > 0`. -/
 theorem cg_pdg (p n Sp S0 Sm X0 Xm L : ℚ) (hp : p = 938.272) (hn : n = 939.565) (hSp : Sp = 1189.37)
     (hS0 : S0 = 1192.642) (hSm : Sm = 1197.449) (hX0 : X0 = 1314.86) (hXm : Xm = 1321.71) (hL : L = 1115.683) :
     (0.0079 : ℚ) < ((n - p) + (Xm - X0) - (Sm - Sp)) / (Sm - Sp) ∧ ((n - p) + (Xm - X0) - (Sm - Sp)) / (Sm - Sp) < 0.0080 ∧
+    ((n - p) + (Xm - X0) - (Sm - Sp)) ^ 2 < (0.21 : ℚ) ^ 2 + 0.08 ^ 2 ∧
     n - p = 1.293 ∧ 0 < n - p ∧ S0 - L = 76.959 ∧ 0 < S0 - L := by
   subst hp hn hSp hS0 hSm hX0 hXm hL; norm_num
 
-/-- 35:C10, 35:X11, 35:P7, 35:C22 — heavy-quark symmetry on the PDG masses: `M_Λb − M_Λc = 3333.14`, `M_B − M_D = 3414.82`,
-the residual in `(−0.024, −0.0239)`; the `1/m_Q` hyperfine ratio `(Σ_c* − Σ_c)/(Σ* − Σ)` in `(0.339, 0.3391)`. -/
-theorem hqs_pdg (Lc Lb D0 B0 Sc Scs mS mSs : ℚ) (hLc : Lc = 2286.46) (hLb : Lb = 5619.60) (hD : D0 = 1864.84)
-    (hB : B0 = 5279.66) (hSc : Sc = 2453.5) (hScs : Scs = 2518.4) (hS : mS = (1189.37 + 1192.642 + 1197.449) / 3)
+/-- 35:C10, 35:X11, 35:P7 — the heavy-quark relation on the measured masses with isospin-averaged mesons: `D`, `D*` and `B`
+averaged over their two charge states, `B* = B + 45.21`, the spin averages `M̄ = (M_P + 3M_V)/4`. `M_Λb − M_Λc = 3333.14`
+stands against `M̄_B − M̄_D` with a residual in `(−7.2, −7.0)` MeV, in `(−0.0022, −0.0021)` of the meson difference; the
+hyperfine ratio `(Σ_c* − Σ_c)/(Σ* − Σ)` lies in `(0.339, 0.3391)`. -/
+theorem hqs_pdg (Lc Lb D Ds B Bs Sc Scs mS mSs : ℚ) (hLc : Lc = 2286.46) (hLb : Lb = 5619.60)
+    (hD : D = (1864.84 + 1869.66) / 2) (hDs : Ds = (2006.85 + 2010.26) / 2) (hB : B = (5279.41 + 5279.72) / 2)
+    (hBs : Bs = B + 45.21) (hSc : Sc = 2453.5) (hScs : Scs = 2518.4) (hS : mS = (1189.37 + 1192.642 + 1197.449) / 3)
     (hSs : mSs = (1382.8 + 1383.7 + 1387.2) / 3) :
-    (-0.024 : ℚ) < ((Lb - Lc) - (B0 - D0)) / (B0 - D0) ∧ ((Lb - Lc) - (B0 - D0)) / (B0 - D0) < -0.0239 ∧
+    Lb - Lc = 3333.14 ∧
+    (-7.2 : ℚ) < (Lb - Lc) - ((B + 3 * Bs) / 4 - (D + 3 * Ds) / 4) ∧ (Lb - Lc) - ((B + 3 * Bs) / 4 - (D + 3 * Ds) / 4) < -7.0 ∧
+    (-0.0022 : ℚ) < ((Lb - Lc) - ((B + 3 * Bs) / 4 - (D + 3 * Ds) / 4)) / ((B + 3 * Bs) / 4 - (D + 3 * Ds) / 4) ∧
+    ((Lb - Lc) - ((B + 3 * Bs) / 4 - (D + 3 * Ds) / 4)) / ((B + 3 * Bs) / 4 - (D + 3 * Ds) / 4) < -0.0021 ∧
     (0.339 : ℚ) < (Scs - Sc) / (mSs - mS) ∧ (Scs - Sc) / (mSs - mS) < 0.3391 := by
-  subst hLc hLb hD hB hSc hScs hS hSs; norm_num
+  subst hBs hLc hLb hD hDs hB hSc hScs hS hSs; norm_num
 
-/-- 35:P9, 35:C18, 35:X12 — the vector nonet on the PDG masses: `(2M_K* − M_ρ − M_φ)/(M_ρ + M_φ)` in `(−0.0042, −0.0041)`;
+/-- 35:P9 — the vector nonet on the PDG masses: `(2M_K* − M_ρ − M_φ)/(M_ρ + M_φ)` in `(−0.0042, −0.0041)`;
 the predicted `K* = (M_ρ + M_φ)/2 = 897.36` within `0.5 %`, `ω = ρ` within `1 %`; the strange increment `122.1`. -/
 theorem vector_pdg (rho ome Ks phi : ℚ) (hr : rho = 775.26) (ho : ome = 782.66) (hK : Ks = (891.67 + 895.55) / 2)
     (hphi : phi = 1019.46) :
@@ -185,33 +185,93 @@ theorem absolute_spectrum (mN mL mS mX mD mSs mXs mO : ℚ) (hN : mN = 938.9185)
     |((3 * ms mN mL mD + 3 / 4 * vss mN mL mD) - mO) / mO| < 0.0112 := by
   subst hN hL hS hX hD hSs hXs hO; norm_num [vll, ml, ms, vls, vss, abs_lt]
 
-/-- 35:P11, 35:C16 — the Λ–N gap on PDG: `M_Λ − M_N = 176.7645` MeV exactly, `176.8` at one decimal. -/
+/-- 35:P1, 35:P2, 35:P9, 35:P10 — the thresholds of the first-order relations on the measured masses, with
+`ε_s = (M_Λ − M_N)/M_N`, each relation an equality of two averages of masses. `ε_s²(M_Ξ − M_N)` lies in `(13.4, 13.5)` MeV,
+above the octet residual; `ε_s²(M_Ω − M_Δ)` in `(15.6, 15.7)`, above the two decuplet residuals, in `(1.8, 1.9)` and
+`(4.8, 4.9)`; `ε_s²(M_φ − M_ρ)` in `(8.6, 8.7)`, above the vector residual `3.75` and above `ω − ρ = 7.4`;
+`ε_s²(M_Ω − M_N)` in `(25.9, 26.1)`. -/
+theorem thresholds_pdg (mN mL mS mX mD mSs mXs mO rho ome Ks phi : ℚ) (hN : mN = 938.9185) (hL : mL = 1115.683)
+    (hS : mS = (1189.37 + 1192.642 + 1197.449) / 3) (hX : mX = (1314.86 + 1321.71) / 2) (hD : mD = 1232.0)
+    (hSs : mSs = (1382.8 + 1383.7 + 1387.2) / 3) (hXs : mXs = (1531.80 + 1535.0) / 2) (hO : mO = 1672.45)
+    (hr : rho = 775.26) (ho : ome = 782.66) (hK : Ks = (891.67 + 895.55) / 2) (hphi : phi = 1019.46) :
+    (13.4 : ℚ) < ((mL - mN) / mN) ^ 2 * (mX - mN) ∧ ((mL - mN) / mN) ^ 2 * (mX - mN) < 13.5 ∧
+    |(mN + mX) / 2 - (3 * mL + mS) / 4| < ((mL - mN) / mN) ^ 2 * (mX - mN) ∧
+    (15.6 : ℚ) < ((mL - mN) / mN) ^ 2 * (mO - mD) ∧ ((mL - mN) / mN) ^ 2 * (mO - mD) < 15.7 ∧
+    (1.8 : ℚ) < mSs - (mD + mXs) / 2 ∧ mSs - (mD + mXs) / 2 < 1.9 ∧
+    (4.8 : ℚ) < mXs - (mSs + mO) / 2 ∧ mXs - (mSs + mO) / 2 < 4.9 ∧
+    (8.6 : ℚ) < ((mL - mN) / mN) ^ 2 * (phi - rho) ∧ ((mL - mN) / mN) ^ 2 * (phi - rho) < 8.7 ∧
+    Ks - (rho + phi) / 2 = -3.75 ∧ ome - rho = 7.4 ∧
+    (25.9 : ℚ) < ((mL - mN) / mN) ^ 2 * (mO - mN) ∧ ((mL - mN) / mN) ^ 2 * (mO - mN) < 26.1 := by
+  subst hN hL hS hX hD hSs hXs hO hr ho hK hphi; norm_num [abs_lt]
+
+/-- 35:C20 — the second order against the data. At the anchored constituents (`vll`, `ml`, `ms`) the pairwise model gives
+the octet residual `v_ll (1 − z)²/8` in `(2.6, 2.7)` MeV and the decuplet second differences `v_ll (1 − z)²/4` in
+`(5.2, 5.3)` MeV, `z = m_l/m_s`. The measured octet residual `(N + Ξ)/2 − (3Λ + Σ)/4` lies in `(−6.5, −6.4)` and the
+measured second differences in `(−3.8, −3.7)` and `(−9.8, −9.7)`, each of the opposite sign. The measured third
+difference is `6.05` MeV. -/
+theorem second_order_pdg (mN mL mS mX mD mSs mXs mO : ℚ) (hN : mN = 938.9185) (hL : mL = 1115.683)
+    (hS : mS = (1189.37 + 1192.642 + 1197.449) / 3) (hX : mX = (1314.86 + 1321.71) / 2) (hD : mD = 1232.0)
+    (hSs : mSs = (1382.8 + 1383.7 + 1387.2) / 3) (hXs : mXs = (1531.80 + 1535.0) / 2) (hO : mO = 1672.45) :
+    (2.6 : ℚ) < vll mN mD * (1 - ml mN mD / ms mN mL mD) ^ 2 / 8 ∧ vll mN mD * (1 - ml mN mD / ms mN mL mD) ^ 2 / 8 < 2.7 ∧
+    (5.2 : ℚ) < vll mN mD * (1 - ml mN mD / ms mN mL mD) ^ 2 / 4 ∧ vll mN mD * (1 - ml mN mD / ms mN mL mD) ^ 2 / 4 < 5.3 ∧
+    (-6.5 : ℚ) < (mN + mX) / 2 - (3 * mL + mS) / 4 ∧ (mN + mX) / 2 - (3 * mL + mS) / 4 < -6.4 ∧
+    (-3.8 : ℚ) < mD - 2 * mSs + mXs ∧ mD - 2 * mSs + mXs < -3.7 ∧
+    (-9.8 : ℚ) < mSs - 2 * mXs + mO ∧ mSs - 2 * mXs + mO < -9.7 ∧
+    mD - 3 * mSs + 3 * mXs - mO = 6.05 := by
+  subst hN hL hS hX hD hSs hXs hO; norm_num [vll, ml, ms]
+
+/-- 35:C16 — the Λ–N gap on the measured masses: `M_Λ − M_N = 176.7645` MeV exactly, `176.8` at one decimal. -/
 theorem gap_pdg (mN mL : ℚ) (hN : mN = 938.9185) (hL : mL = 1115.683) :
     mL - mN = 176.7645 ∧ (176.75 : ℚ) < mL - mN ∧ mL - mN < 176.85 := by
   subst hN hL; norm_num
 
-/-! ## The single-scale readings at `√σ = 440` MeV (35:C16, C17, C19, C23, X13) -/
+/-! ## The readings at the scale `√(ħcσ) = 440` MeV, of the winding law and of the Hamiltonian (35:C16, C17, C19, C21, C24, C25, P12, X13) -/
 
-/-- 35:C16, 35:C23, 35:X13 — at `√σ = 440`: `λ_l = m_l/√σ` in `(0.822, 0.8224)`, `m_s/m_l` in `(1.488, 1.489)`,
-`λ_hf = v_ll/√σ` in `(0.444, 0.4441)`, `M_N/√σ` in `(2.133, 2.134)`, the gap `(m_s − m_l)/√σ` in `(0.401, 0.402)`. -/
+/-- 35:C16, 35:X13 — at the scale `s = √(ħcσ) = 440` MeV: `λ_l = m_l c²/s` in `(0.822, 0.8224)`, `m_s/m_l` in
+`(1.488, 1.489)`, `λ_hf = v_ll c²/s` in `(0.444, 0.4441)`, `M_N c²/s` in `(2.133, 2.134)`, the gap `(m_s − m_l)c²/s` in
+`(0.401, 0.402)`. -/
 theorem single_scale (mN mL mD s : ℚ) (hN : mN = 938.9185) (hL : mL = 1115.683) (hD : mD = 1232.0) (hs : s = 440) :
     (0.822 : ℚ) < ml mN mD / s ∧ ml mN mD / s < 0.8224 ∧ (1.488 : ℚ) < ms mN mL mD / ml mN mD ∧ ms mN mL mD / ml mN mD < 1.489 ∧
     (0.444 : ℚ) < vll mN mD / s ∧ vll mN mD / s < 0.4441 ∧ (2.133 : ℚ) < mN / s ∧ mN / s < 2.134 ∧
     (0.401 : ℚ) < (ms mN mL mD - ml mN mD) / s ∧ (ms mN mL mD - ml mN mD) / s < 0.402 := by
   subst hN hL hD hs; norm_num [vll, ml, ms]
 
-/-- 35:C17 — the baryon scale read against the nucleon: the finite eigenvalue `E₀ = 2.2322` (the chart's reading of the
-converged tower) gives `M_N = E₀√σ` in `(982, 983)` MeV at `√σ = 440`, `4.6 %` above the measured `938.9185`
-(the relative excess in `(0.046, 0.0461)`), exact at `√σ = M_N/E₀` in `(420, 421)`; the spin split gives
-`λ_l = (M_N + M_Δ)/(6√σ)` in `(0.822, 0.8224)` and `λ_hf = 2(M_Δ − M_N)/(3√σ)` in `(0.444, 0.4441)`. -/
-theorem baryon_scale (E₀ mN mD s : ℚ) (hE : E₀ = 2.2322) (hN : mN = 938.9185) (hD : mD = 1232.0) (hs : s = 440) :
-    (982 : ℚ) < E₀ * s ∧ E₀ * s < 983 ∧ (0.046 : ℚ) < (E₀ * s - mN) / mN ∧ (E₀ * s - mN) / mN < 0.0461 ∧
-    (420 : ℚ) < mN / E₀ ∧ mN / E₀ < 421 ∧
+/-- 35:C24 — the chart's reading of the winding law, `λ_N² = (3/2)π`: for a rational `π'` within `3.1415 < π < 3.1416`
+(Mathlib's bounds, a hypothesis here), `(3/2)π'` lies between the squares of `2.1707` and `2.1709`. For every `λ_N` between
+these two the scale `M_N c²/λ_N` lies in `(432.4, 432.6)` MeV, and at the scale `s = 440` MeV the nucleon `λ_N s` lies in
+`(955.1, 955.2)` MeV/c², in excess of the measured `938.9185` by a fraction in `(0.0172, 0.0174)`; the measured ratios
+`λ_l = (M_N + M_Δ)c²/(6s)` and `λ_hf = 2(M_Δ − M_N)c²/(3s)` lie in `(0.822, 0.8224)` and `(0.444, 0.4441)`. -/
+theorem baryon_scale (π' mN mD s : ℚ) (h1 : 3.1415 < π') (h2 : π' < 3.1416) (hN : mN = 938.9185) (hD : mD = 1232.0)
+    (hs : s = 440) :
+    (2.1707 : ℚ) ^ 2 < 3 / 2 * π' ∧ 3 / 2 * π' < (2.1709 : ℚ) ^ 2 ∧
+    (432.4 : ℚ) < mN / 2.1709 ∧ mN / 2.1707 < 432.6 ∧
+    (955.1 : ℚ) < 2.1707 * s ∧ 2.1709 * s < 955.2 ∧
+    (0.0172 : ℚ) < (2.1707 * s - mN) / mN ∧ (2.1709 * s - mN) / mN < 0.0174 ∧
     (0.822 : ℚ) < (mN + mD) / (6 * s) ∧ (mN + mD) / (6 * s) < 0.8224 ∧
     (0.444 : ℚ) < 2 * (mD - mN) / (3 * s) ∧ 2 * (mD - mN) / (3 * s) < 0.4441 := by
-  subst hE hN hD hs; norm_num
+  subst hN hD hs
+  refine ⟨by norm_num; linarith, by norm_num; linarith, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  all_goals norm_num
 
-/-- 35:C19 — the transmutation-pinned coupling `α_s(√σ) = 2π/(b₀ ln(√σ/Λ))` at `b₀ = 9`, `√σ/Λ = 2` lies in `(1.00, 1.01)`:
+/-- 35:C17 — the readings of the body's Hamiltonian `(c|p| + σr)/√(ħcσ)` on the declared grid of 600 sites, `E₀ = 2.2320`,
+`E₁ = 3.3291` and `C = 3.5003` (the chart's, hypotheses here): for a rational `π'` within `3.1415 < π < 3.1416` the
+squares of the two levels over `π'/2` lie in `(3.171, 3.172)` and `(7.055, 7.056)`, where the winding law has `3` and `7`;
+the ratio of the levels lies in `(1.491, 1.492)`, their gap exceeds `1`, and `C` lies in `(3.5, 3.51)`. -/
+theorem hamiltonian_levels (π' E₀ E₁ C : ℚ) (h1 : 3.1415 < π') (h2 : π' < 3.1416) (hE : E₀ = 2.2320) (hE1 : E₁ = 3.3291)
+    (hC : C = 3.5003) :
+    (3.171 : ℚ) < E₀ ^ 2 / (π' / 2) ∧ E₀ ^ 2 / (π' / 2) < 3.172 ∧
+    (7.055 : ℚ) < E₁ ^ 2 / (π' / 2) ∧ E₁ ^ 2 / (π' / 2) < 7.056 ∧
+    (1.491 : ℚ) < E₁ / E₀ ∧ E₁ / E₀ < 1.492 ∧ 1 < E₁ - E₀ ∧ (3.5 : ℚ) < C ∧ C < 3.51 := by
+  subst hE hE1 hC
+  have hpos : 0 < π' / 2 := by linarith
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · rw [lt_div_iff₀ hpos]; norm_num; linarith
+  · rw [div_lt_iff₀ hpos]; norm_num; linarith
+  · rw [lt_div_iff₀ hpos]; norm_num; linarith
+  · rw [div_lt_iff₀ hpos]; norm_num; linarith
+  all_goals norm_num
+
+/-- 35:C19 — the one-loop coupling `α_s = 2π/(b₀ ln(√(ħcσ)/Λ))` at `b₀ = 9` and the declared ratio `√(ħcσ)/Λ = 2` lies in `(1.00, 1.01)`:
 for any rationals `π'` and `l` within the brackets `3.14 < π < 3.15` and `0.6931471803 < ln 2 < 0.6931471808` (Mathlib's
 `pi_gt_d2`, `pi_lt_d2`, `log_two_gt_d9`, `log_two_lt_d9`, imported here as hypotheses so that the theme stays on `ℚ`). -/
 theorem alpha_s_bounds (π' l : ℚ) (h1 : 3.14 < π') (h2 : π' < 3.15) (h3 : 0.6931471803 < l) (h4 : l < 0.6931471808) :
@@ -221,39 +281,61 @@ theorem alpha_s_bounds (π' l : ℚ) (h1 : 3.14 < π') (h2 : π' < 3.15) (h3 : 0
   · rw [lt_div_iff₀ hpos]; nlinarith
   · rw [div_lt_iff₀ hpos]; nlinarith
 
-/-- The contact term `v_ll/m_l = (2ρ/9) F_rel α_s/λ_l²` at `ρ = 1/2`, `λ_l = 0.822`. -/
-def vm (F a : ℚ) : ℚ := 2 * (1 / 2) / 9 * F * a / 0.822 ^ 2
+/-- 35:C19 — the joint solution of the nucleon's reading and the contact rule, on the winding law's `λ_N` between `2.1707`
+and `2.1709` (`baryon_scale`) and the chart's reading `C = 3.5003` of the declared grid. For rationals `π'` and `l` within
+`3.1415 < π < 3.1416` and `0.6931471803 < ln 2 < 0.6931471808` the coupling `a = 2π'/(9 l)` lies in `(1.007, 1.0073)`.
+Eliminating `λ_l` from `3λ_l − (3/4)λ_hf = λ_N` and `λ_hf λ_l = (2ρ/9) C a`, `ρ = 1/2`, gives
+`(3/4)x² + λ_N x − C a/3 = 0` for `x = λ_hf`; its left side increases with `λ_N`, is negative at `x = 0.466` for
+`λ_N = 2.1709` and positive at `x = 0.467` for `λ_N = 2.1707`, so the positive root lies between `0.466` and `0.467`.
+Then `λ_l = (λ_N + (3/4)x)/3` lies in `(0.84, 0.8405)` and `(M_Δ − M_N)/M_N = (3/2) x/λ_N` in `(0.3219, 0.3228)`, against
+the measured ratio in `(0.312, 0.3122)`. -/
+theorem joint_solution (π' l C mN mD : ℚ) (h1 : 3.1415 < π') (h2 : π' < 3.1416) (h3 : 0.6931471803 < l)
+    (h4 : l < 0.6931471808) (hC : C = 3.5003) (hN : mN = 938.9185) (hD : mD = 1232.0) :
+    (1.007 : ℚ) < 2 * π' / (9 * l) ∧ 2 * π' / (9 * l) < 1.0073 ∧
+    3 / 4 * (0.466 : ℚ) ^ 2 + 2.1709 * 0.466 - C * (2 * π' / (9 * l)) / 3 < 0 ∧
+    0 < 3 / 4 * (0.467 : ℚ) ^ 2 + 2.1707 * 0.467 - C * (2 * π' / (9 * l)) / 3 ∧
+    (0.84 : ℚ) < (2.1707 + 3 / 4 * 0.466) / 3 ∧ (2.1709 + 3 / 4 * 0.467 : ℚ) / 3 < 0.8405 ∧
+    (0.3219 : ℚ) < 3 / 2 * 0.466 / 2.1709 ∧ (3 / 2 * 0.467 / 2.1707 : ℚ) < 0.3228 ∧
+    (0.312 : ℚ) < (mD - mN) / mN ∧ (mD - mN) / mN < 0.3122 := by
+  subst hC hN hD
+  have hpos : 0 < 9 * l := by linarith
+  have ha1 : (1.007 : ℚ) < 2 * π' / (9 * l) := by rw [lt_div_iff₀ hpos]; linarith
+  have ha2 : 2 * π' / (9 * l) < (1.0073 : ℚ) := by rw [div_lt_iff₀ hpos]; linarith
+  refine ⟨ha1, ha2, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · norm_num; linarith
+  · norm_num; linarith
+  all_goals norm_num
 
-/-- 35:C19 — the forward landing: with the relativistic contact enhancement `F_rel = 3.517` (the chart's reading of the
-finite tower), `vm F 0.93 = 0.538` at the hyperfine-required `α_s = 0.93` (within `0.4 %` of `0.540`) and `0.578` at the
-transmutation value `1.00`; `λ_hf = vm · 0.822` lands at `0.442`, within `7 %` of `0.444`, at the first and at `0.475`,
-within `8 %`, at the second; `λ_l = (E₀ + (3/4)λ_hf)/3 = 0.855` lands within `7 %` of `0.822`; the two couplings `0.93`
-and `1.007` agree within `12 %`. -/
-theorem forward_landing (F E₀ : ℚ) (hF : F = 3.517) (hE : E₀ = 2.2322) :
-    |vm F 0.93 - 0.540| / 0.540 < 0.004 ∧ (0.57 : ℚ) < vm F 1 ∧ vm F 1 < 0.58 ∧
-    |vm F 0.93 * 0.822 - 0.444| / 0.444 < 0.07 ∧ |vm F 1 * 0.822 - 0.444| / 0.444 < 0.08 ∧
-    |(E₀ + 3 / 4 * 0.444) / 3 - 0.822| / 0.822 < 0.07 ∧ |(0.93 : ℚ) - 1.007| / 1.007 < 0.12 := by
-  subst hF hE; norm_num [vm, abs_lt]
+/-- 35:P12 — the radial ratio of the winding law against `N(1440)`: `λ₁/λ₀ = √(7/3)` lies between `1.527` and `1.528`
+(`1.527² < 7/3 < 1.528²`). The pole ratio `1370/M_N`, in `(1.459, 1.46)`, and the lower end of the Breit–Wigner range,
+`1410/M_N` in `(1.5017, 1.5018)`, lie below `1.527`; the centre `1440/M_N` and the upper end `1470/M_N`, in
+`(1.5656, 1.5657)`, lie above `1.528`: the ratio is inside the Breit–Wigner range and above the pole. -/
+theorem radial_ratio (mN : ℚ) (hN : mN = 938.9185) :
+    (1.527 : ℚ) ^ 2 < 7 / 3 ∧ (7 / 3 : ℚ) < 1.528 ^ 2 ∧
+    (1.459 : ℚ) < 1370 / mN ∧ 1370 / mN < 1.46 ∧ (1.5017 : ℚ) < 1410 / mN ∧ 1410 / mN < 1.5018 ∧ 1410 / mN < 1.527 ∧
+    (1.528 : ℚ) < 1440 / mN ∧ (1.5656 : ℚ) < 1470 / mN ∧ 1470 / mN < 1.5657 := by
+  subst hN; norm_num
 
-/-- 35:C13, 35:C21 — the electromagnetic magnitude: `α √σ × (1/3)` (the one-body charge difference `p − n`) at
-`α = 1/137.036`, `√σ = 440` MeV lies in `(1.07, 1.08)` MeV, within `10 %` of the lattice QED splitting `−1.00` MeV
-(Borsányi et al. 2015) in magnitude: no new residue, the scale is `α` times `√σ`. -/
+/-- 35:C25 — the two lowest levels of the register's Hamiltonian on the odd functions of the Subjects `13`, `173` and
+`1549`, in the unit `√(2π/p)` with the chart's `π` (the chart's readings, hypotheses here): the lowest levels `2.2519`,
+`2.2324`, `2.2323` read `2.252`, `2.232`, `2.232` at three decimals; each second level, `3.3870`, `3.3302`, `3.3300`,
+exceeds its first by more than `1`, so the lowest level is simple; the levels on `1549` are within `0.001` of the grid's
+`2.2320` and `3.3291`. -/
+theorem register_levels (a₀ a₁ b₀ b₁ c₀ c₁ : ℚ) (ha0 : a₀ = 2.2519) (ha1 : a₁ = 3.3870) (hb0 : b₀ = 2.2324)
+    (hb1 : b₁ = 3.3302) (hc0 : c₀ = 2.2323) (hc1 : c₁ = 3.3300) :
+    (2.2515 : ℚ) < a₀ ∧ a₀ < 2.2525 ∧ (2.2315 : ℚ) < b₀ ∧ b₀ < 2.2325 ∧ (2.2315 : ℚ) < c₀ ∧ c₀ < 2.2325 ∧
+    1 < a₁ - a₀ ∧ 1 < b₁ - b₀ ∧ 1 < c₁ - c₀ ∧ |c₀ - 2.2320| < 0.001 ∧ |c₁ - 3.3291| < 0.001 := by
+  subst ha0 ha1 hb0 hb1 hc0 hc1; norm_num [abs_lt]
+
+/-- 35:C21 — the electromagnetic magnitude: one third of the unit `α √(ħcσ)`, at `α = 1/137.036` and `√(ħcσ) = 440` MeV, lies in
+`(1.07, 1.08)` MeV, within `0.1` of the lattice's electromagnetic part of `M_n − M_p`, `1.00` MeV in magnitude with the
+error `0.16` (Borsányi et al. 2015). -/
 theorem em_magnitude (α s : ℚ) (hα : α = 1 / 137.036) (hs : s = 440) :
     (1.07 : ℚ) < α * s * (1 / 3) ∧ α * s * (1 / 3) < 1.08 ∧ |α * s * (1 / 3) - 1.00| < 0.1 := by
   subst hα hs; norm_num [abs_lt]
 
-/-- 35:C20 — the second-order residuals as fractions of the leading splittings: the Gell-Mann–Okubo residual over the
-octet strange splitting `Ξ − N` in `(0.0169, 0.0171)`, the third difference over the decuplet spacing in
-`(0.0412, 0.0413)`: both `O(ε_s²)` with `ε_s ≈ 0.13–0.2`. -/
-theorem residual_orders (mN mL mS mX mD mSs mXs mO : ℚ) (hN : mN = (938.272 + 939.565) / 2) (hL : mL = 1115.683)
-    (hS : mS = (1189.37 + 1192.642 + 1197.449) / 3) (hX : mX = (1314.86 + 1321.71) / 2) (hD : mD = 1232.0)
-    (hSs : mSs = (1382.8 + 1383.7 + 1387.2) / 3) (hXs : mXs = (1531.80 + 1535.0) / 2) (hO : mO = 1672.45) :
-    (0.0169 : ℚ) < ((3 * mL + mS) / 4 - (mN + mX) / 2) / (mX - mN) ∧ ((3 * mL + mS) / 4 - (mN + mX) / 2) / (mX - mN) < 0.0171 ∧
-    (0.0412 : ℚ) < (mD - 3 * mSs + 3 * mXs - mO) / ((mO - mD) / 3) ∧ (mD - 3 * mSs + 3 * mXs - mO) / ((mO - mD) / 3) < 0.0413 := by
-  subst hN hL hS hX hD hSs hXs hO; norm_num
-
-/-- 35:C16 — the Airy readout: the ratio of the first two zeros `4.08795/2.33811` in `(1.748, 1.7485)` (the chart's
-`ε₁/ε₀ = 1.7484` on the finite grid). -/
+/-- 35:C17 — the ratio of the first two Airy zeros, `4.08795/2.33811`, lies in `(1.748, 1.7485)`; the chart reads `1.7484`
+for the two lowest eigenvalues of the nonrelativistic matrix on 4000 sites. -/
 theorem airy_ratio : (1.748 : ℚ) < 4.08795 / 2.33811 ∧ (4.08795 : ℚ) / 2.33811 < 1.7485 := by norm_num
 
 end FRC.HadronsML

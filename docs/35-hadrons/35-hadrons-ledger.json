@@ -3,7 +3,7 @@
  "tree": "35-hadrons-20260629",
  "title": "Ground-State Light Hadron Spectroscopy over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202506.1507.v2",
- "generated": "12 November 2026",
+ "generated": "15 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -11,15 +11,15 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "Substrate arithmetic: $\\F_\\Om$, the multiplicative cycle, the Frobenius $C_3$ orbit, the quarter-turn $Q_4$, the admissible residue $\\Om\\equiv5\\,(\\mathrm{mod}\\,12)$.",
+     "predicate": "The substrate: the Carrier of cardinality $\\Om=4\\dS+1$ with $\\Om\\equiv5\\pmod{12}$, and the Subject, a prime shell $\\p=4\\kap+1$ with its frame, its drive and its quadratic extension.",
      "tag": "I",
-     "source": "\\cite{akhtman2026fields,akhtman2026pnp}",
+     "source": "\\cite{akhtman2026fields,akhtman2026pnp,akhtman2026dimensions}",
      "key": "p35001",
      "name": null
     },
     {
      "label": "A2",
-     "predicate": "Colour $\\SU(3)$ as the special unitary group of a Hermitian three-form; rank the minimal triality frame; centre $\\Z_3$; the gluon; the confinement area law $\\sigma>0$ and the string tension $c_1(\\beta)=\\langle\\chi_f/N\\rangle_w$.",
+     "predicate": "Colour: a Subject reads colour in the unitary frame of a Hermitian three-form over its extension, with centre of order $\\gcd(3,\\p+1)$; the gluon is its adjoint; the area law holds at strong coupling, with the string tension a character sum.",
      "tag": "I",
      "source": "\\cite{akhtman2026fields}",
      "key": "p35002",
@@ -27,7 +27,7 @@
     },
     {
      "label": "A3",
-     "predicate": "The confinement scale $\\sig\\sim\\LQCD=M_Pe^{-2\\pi/b_0\\alpha_s}$, dimensional transmutation, $\\Om$-hard.",
+     "predicate": "The scale $\\sig$, which fixes $\\LQCD$ up to a sub-horizon ratio, is $\\Om$-hard; the chart reads it by dimensional transmutation, and the paper imports the numeral $440$~MeV.",
      "tag": "I",
      "source": "\\cite{akhtman2026fields}",
      "key": "p35003",
@@ -35,7 +35,7 @@
     },
     {
      "label": "A4",
-     "predicate": "Mass is a winding rate; a composite cardinality is the total winding, $\\sim99\\%$ gluon binding for the nucleon.",
+     "predicate": "Mass is a winding rate against the drive; the mass of a composite is its total winding rate.",
      "tag": "I",
      "source": "\\cite{akhtman2026fields,akhtman2026gravity}",
      "key": "p35004",
@@ -43,7 +43,7 @@
     },
     {
      "label": "A5",
-     "predicate": "The confinement wrap: confinement is the frame-normalisation wrapping $\\Om$-hard quark residues into small exact hadron residues; the observable as a small residue is B5 (the master's D9).",
+     "predicate": "The wrap: confinement is the frame normalisation that folds the $\\Om$-hard residues of the quarks into small exact residues of the hadrons; the observable as a small residue is B5.",
      "tag": "I",
      "source": "\\cite{akhtman2026fields}",
      "key": "p35005",
@@ -51,7 +51,7 @@
     },
     {
      "label": "A6",
-     "predicate": "Flavour map: generation count three; $\\chi_3,\\chi_6$ giving $s,c,b$; the current-quark mass ratios, and the up--down isospin breaking with $\\bar\\theta=0$.",
+     "predicate": "Flavour: three generations; the quark content of the multiplets and of the heavy baryons; the measured quark-mass ratios; the up--down isospin breaking with $\\bar\\theta=0$.",
      "tag": "I",
      "source": "\\cite{akhtman2026spectrum,akhtman2026fields}",
      "key": "p35006",
@@ -67,7 +67,7 @@
     },
     {
      "label": "A8",
-     "predicate": "Measured anchors: the isospin-averaged octet and decuplet masses; the vector endpoints $\\rho,\\phi$.",
+     "predicate": "Measured masses, isospin-averaged, a resonance by its Breit--Wigner mass: the octet and the decuplet with their isospin differences, the vector nonet, the charm and bottom baryons and mesons, and $N(1440)$ and $\\Delta$ with their poles.",
      "tag": "I",
      "source": "\\cite{pdg}",
      "key": "p35008",
@@ -75,21 +75,37 @@
     },
     {
      "label": "A9",
-     "predicate": "The electromagnetic coupling $\\alpha$, the measured fine-structure constant, entering the electromagnetic self-energy.",
+     "predicate": "The electromagnetic coupling $\\alpha$: a pure number, the quotient of the squared charge and $\\hbar c$, with its measured numeral; it enters the electromagnetic self-energy.",
      "tag": "I",
-     "source": "\\cite{pdg}",
+     "source": "\\cite{akhtman2026dimensions,pdg}",
      "key": "p35009",
+     "name": null
+    },
+    {
+     "label": "A10",
+     "predicate": "The lattice separation of $M_n-M_p$: $+2.52(30)$~MeV/$c^{2}$ from the quark masses and $-1.00(16)$~MeV/$c^{2}$ from electromagnetism.",
+     "tag": "I",
+     "source": "\\cite{borsanyi2015}",
+     "key": "p35066",
+     "name": null
+    },
+    {
+     "label": "A11",
+     "predicate": "The Carrier register: $\\Om=4\\dS+1$, $2c^{2}\\equiv1$ and $\\hbar^{2}\\equiv-1$, with $h=-\\hbar$ the partner of $\\hbar$ in the root pair of $-1$; $h=2\\pi\\hbar$ is the chart's relation.",
+     "tag": "I",
+     "source": "\\cite{akhtman2026dimensions}",
+     "key": "p35077",
      "name": null
     }
    ]
   },
   {
    "letter": "B",
-   "title": "The constitutive moves: the colour algebra, three namings, and the master's residue reading",
+   "title": "The constitutive moves: colour algebra, namings, residue, chart declarations",
    "rows": [
     {
      "label": "B1",
-     "predicate": "A baryon is the totally antisymmetric $\\varepsilon_{abc}$ invariant of the colour $\\mathbf 3$; colour-singlet $=$ centre-neutral, triality $0\\,(\\mathrm{mod}\\,3)$: the standard colour algebra (A2), the registration of singlets alone the theorem X2 of 46-yangmills. Its exposures are P4 and P5.",
+     "predicate": "A baryon is the totally antisymmetric $\\varepsilon_{abc}$ invariant of the colour $\\mathbf 3$; a product of triplets and anti-triplets holds a singlet only at triality $0\\,(\\mathrm{mod}\\,3)$: the standard colour algebra (A2), the registration of singlets alone the theorem X2 of 46-yangmills. Its exposures are P4 and P5.",
      "tag": "I",
      "source": "\\S\\ref{sec:colour}; A2",
      "key": "p35010",
@@ -97,7 +113,7 @@
     },
     {
      "label": "B2",
-     "predicate": "A constituent quark is the wrapped composite, a current-quark seed dressed by a fixed share of the confinement wrap (A5, A6): the hadron model's naming. Falsifier: constituent masses not one seed plus a fixed wrap share across the octet and decuplet; its prediction rows are P2 and P10.",
+     "predicate": "A constituent quark is the wrapped composite, a quark dressed by a fixed share of the confinement wrap (A5, A6): the hadron model's naming. Falsifier: constituent masses that are not one quark mass plus a fixed share of the wrap across the octet and the decuplet; its prediction rows are P2 and P10.",
      "tag": "D",
      "source": "\\S\\ref{sec:colour}",
      "key": "p35011",
@@ -105,7 +121,7 @@
     },
     {
      "label": "B3",
-     "predicate": "The chromomagnetic hyperfine interaction is the quark spin coupled to the colour curvature two-form, the spin-two partner of the string-tension plaquette: the imported mechanism (A7) read in the colour frame (A2). Falsifier: $A_{\\mathrm{light}}/\\sig$ failing to track one character sum across the heavy-quark series; its prediction rows are P3 and P7.",
+     "predicate": "The chromomagnetic hyperfine interaction is the quark spin coupled to the colour curvature two-form, with pair coefficients proportional to $1/(m_im_j)$: the imported mechanism (A7) read in the colour frame (A2). Falsifier: hyperfine splittings that do not scale as $1/(m_im_j)$ across the heavy-quark series; its prediction rows are P3 and P7.",
      "tag": "D",
      "source": "\\S\\ref{sec:hyperfine}",
      "key": "p35012",
@@ -113,7 +129,7 @@
     },
     {
      "label": "B4",
-     "predicate": "The strange seed enters $f_{\\mathrm{fl}}$ additively at leading order, one wrap increment per strange constituent, set by the $\\chi_3$ current-mass ratio (A6): a declared leading-order rule. Falsifier: a non-linear strangeness dependence, breaking the equal decuplet spacing; its prediction rows are P1, P2, P8, P9 and P11.",
+     "predicate": "The strange quark enters $f_{\\mathrm{fl}}$ additively at leading order, one fixed increment per strange constituent: a declared leading-order rule. Falsifier: a strangeness dependence that breaks a first-order relation by more than $\\varepsilon_s^{2}$ of its multiplet's span; its prediction rows are P1, P2 and P9.",
      "tag": "D",
      "source": "\\S\\ref{sec:flavour}",
      "key": "p35013",
@@ -121,21 +137,45 @@
     },
     {
      "label": "B5",
-     "predicate": "The observable is a Carrier residue and stability is its indicator: a stable colourless object sits at a small exact residue (the minimal-wrap proton, the light nuclei), decay being frame-normalisation toward it (the master's D9, 00:D9). Falsifier: a stable colourless $B=1$ state below the proton, or strong/electromagnetic proton decay.",
+     "predicate": "The observable is a small residue and stability is its indicator: an observable is a count of the Subject, so a stable colourless object carries a small exact residue (the proton), and decay is frame normalisation toward it. Falsifier: a stable coloured state, a stable state of baryon number one below the proton, or strong or electromagnetic proton decay.",
      "tag": "R",
      "source": "\\S\\ref{sec:residue}; \\href{https://finitering.space/ledger.html#D9}{00:D9}",
      "key": "p00050",
+     "name": null
+    },
+    {
+     "label": "B6",
+     "predicate": "A registration of a state is a line of its representation space that every element of the frame maps to itself; the residue is the count of such lines, not a residue of the Carrier. A state of the unitary frame is an irreducible representation, or a product with one frame-fixed line. Prediction rows: P4, P5.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:residue}",
+     "key": "p35067",
+     "name": null
+    },
+    {
+     "label": "B7",
+     "predicate": "[chart] The wrap and its cycle: the chart reads the nucleon's wrap as one massless body in a linear potential. At full extension the string has the length $M_Nc^{2}/\\sigma$, and a cycle is four runs of it at the speed $c$. Each quark advances one quarter-turn per run, and a radial excitation adds whole turns. A declaration. Readings: C24, P12.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:wrap}",
+     "key": "p35068",
+     "name": null
+    },
+    {
+     "label": "B8",
+     "predicate": "[chart] The contact rule: $\\lambda_{\\mathrm{hf}}\\lambda_l=\\tfrac{2\\rho}{9}C\\alpha_s$ with $\\rho=\\tfrac12$, $C$ the Hamiltonian's contact value (C17) and the one-loop coupling $\\alpha_s=2\\pi/(b_0\\ln2)$, $b_0=9$, at the declared ratio $\\sig/\\LQCD=2$. The form, the coefficient and the ratio are declarations; their derivation is the task T2. Its reading is C19.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:contact}",
+     "key": "p35069",
      "name": null
     }
    ]
   },
   {
    "letter": "C",
-   "title": "Derived: theorems and consequences within this paper",
+   "title": "The theorems and the readings",
    "rows": [
     {
      "label": "C1",
-     "predicate": "Colour $\\SU(3,\\F_2)$ built exactly: order $216$, centre $\\Z_3$ the triality centre; the colour-singlet baryon is the centre-neutral $\\varepsilon_{abc}$ invariant $\\Lambda^3\\mathbf3=\\mathbf1$.",
+     "predicate": "The unitary frame on the enumerable instance: $\\SU(3,\\F_2)$ has $216$ elements and centre $\\Z_3$; every element has determinant $1$, so the contraction $\\varepsilon_{abc}$ of three triplets is invariant, the determinant line $\\Lambda^3\\mathbf3$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:colour}\\newline \\pywit{hadrons}{p35015}{C1}, \\leanwit{FrcCore}{p35015}{C1} \\lean{FRC.Hadrons.colour\\_group, FRC.Interactions.su3\\_centre}",
      "key": "p35015",
@@ -143,7 +183,7 @@
     },
     {
      "label": "C2",
-     "predicate": "Gell-Mann--Okubo $\\tfrac12(N+\\Xi)=\\tfrac14(3\\Lambda+\\Sigma)$: $2N+2\\Xi-3\\Lambda-\\Sigma=0$ identically, scale-cancelling.",
+     "predicate": "Gell-Mann--Okubo $\\tfrac12(N+\\Xi)=\\tfrac14(3\\Lambda+\\Sigma)$: $2N+2\\Xi-3\\Lambda-\\Sigma=0$ identically in the first-order octet operator.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:gmo}\\newline \\pywit{hadrons}{p35016}{C2}, \\leanwit{FrcCore}{p35016}{C2}, \\leanwit{FrcMathlib}{p35016}{C2} \\lean{FRC.Hadrons.gmo, Hadrons.gmo}",
      "key": "p35016",
@@ -151,7 +191,7 @@
     },
     {
      "label": "C3",
-     "predicate": "Decuplet equal spacing $\\Sigma^{*}-\\Delta=\\Xi^{*}-\\Sigma^{*}=\\Omega-\\Xi^{*}=\\beta$: the second differences vanish identically.",
+     "predicate": "Decuplet equal spacing $\\Sigma^{*}-\\Delta=\\Xi^{*}-\\Sigma^{*}=\\Omega^{-}-\\Xi^{*}=\\beta$: the second differences vanish identically.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:spacing}\\newline \\pywit{hadrons}{p35017}{C3}, \\leanwit{FrcCore}{p35017}{C3}, \\leanwit{FrcMathlib}{p35017}{C3} \\lean{FRC.Hadrons.spacing, Hadrons.spacing}",
      "key": "p35017",
@@ -174,24 +214,16 @@
      "name": "spin_structure"
     },
     {
-     "label": "C6",
-     "predicate": "$A_{\\mathrm{light}}=\\sig\\,c_{\\mathrm{mag}}(\\beta)$, with $c_{\\mathrm{mag}}$ a colour-curvature character sum of the $c_1$ family ($c_1=\\beta/18+\\cdots$ reproduced); the dimensionless pattern exact, the absolute scale $\\Om$-hard.",
-     "tag": "T",
-     "source": "Prop.~\\ref{prop:charsum}\\newline \\pywit{hadrons}{p35020}{C6}, \\leanwit{FrcCore}{p35020}{C6}, \\leanwit{FrcMathlib}{p35020}{C6}; rests on A3, B3, C14, Z1 \\lean{FRC.Hadrons.adjoint\\_channel, Hadrons.character\\_coefficients, Hadrons.a\\_light}",
-     "key": "p35020",
-     "name": "light_hyperfine_character_sum"
-    },
-    {
      "label": "C7",
-     "predicate": "Coleman--Glashow $(n-p)+(\\Xi^-{-}\\Xi^0)=\\Sigma^-{-}\\Sigma^+$: an exact one-body identity, the two-body electromagnetic term cancelling.",
+     "predicate": "Coleman--Glashow $(n-p)+(\\Xi^-{-}\\Xi^0)=\\Sigma^-{-}\\Sigma^+$: an identity of the mass term, of the one-body charge sums and of the two-body charge sums.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:cg}\\newline \\pywit{hadrons}{p35021}{C7}, \\leanwit{FrcCore}{p35021}{C7}, \\leanwit{FrcMathlib}{p35021}{C7} \\lean{FRC.Hadrons.coleman\\_glashow, Hadrons.coleman\\_glashow}",
+     "source": "Prop.~\\ref{prop:cg}\\newline \\pywit{hadrons}{p35021}{C7}, \\leanwit{FrcCore}{p35021}{C7}, \\leanwit{FrcMathlib}{p35021}{C7} \\lean{FRC.Hadrons.coleman\\_glashow, FRC.Hadrons.cg\\_charge\\_sums, Hadrons.coleman\\_glashow}",
      "key": "p35021",
      "name": "coleman_glashow_identity"
     },
     {
      "label": "C8",
-     "predicate": "The ordering $M_n>M_p$: the $d-u$ seed exceeds the charge-squared electromagnetic term ($\\sum Q^2=1$ for $p$, $\\tfrac23$ for $n$), fixing $m_d>m_u$.",
+     "predicate": "The neutron--proton splitting: with positive coefficients both charge sums favour the proton by $\\tfrac13$ of their unit ($\\sum Q^2$: $1$ against $\\tfrac23$; $\\sum_{i<j}Q_iQ_j$: $0$ against $-\\tfrac13$), so $M_n>M_p$ is equivalent to a $d$--$u$ mass difference above the electromagnetic terms.",
      "tag": "T",
      "source": "\\S\\ref{sec:isospin}\\newline \\pywit{hadrons}{p35022}{C8}, \\leanwit{FrcCore}{p35022}{C8}, \\leanwit{FrcMathlib}{p35022}{C8} \\lean{FRC.Hadrons.charge\\_structure, Hadrons.cg\\_pdg, Hadrons.charge\\_structure}",
      "key": "p35022",
@@ -199,7 +231,7 @@
     },
     {
      "label": "C9",
-     "predicate": "$M_\\Sigma>M_\\Lambda$: hyperfine fine structure, the light $(ud)$ pair spin-$1$ vs spin-$0$, $M_\\Sigma-M_\\Lambda=a_{ll}(1-m_l/m_s)>0$.",
+     "predicate": "$M_\\Sigma>M_\\Lambda$: hyperfine fine structure, the light $(ud)$ pair spin-$1$ against spin-$0$, $M_\\Sigma-M_\\Lambda=v_{ll}(1-m_l/m_s)>0$ for $m_s>m_l$.",
      "tag": "T",
      "source": "\\S\\ref{sec:isospin}\\newline \\pywit{hadrons}{p35023}{C9}, \\leanwit{FrcCore}{p35023}{C9}, \\leanwit{FrcMathlib}{p35023}{C9} \\lean{FRC.Hadrons.sigma\\_lambda, Hadrons.sigma\\_lambda}",
      "key": "p35023",
@@ -207,23 +239,23 @@
     },
     {
      "label": "C10",
-     "predicate": "Heavy-quark spin decoupling ($a_{iQ}\\sim1/m_Q$): $\\Lambda_Q$ a spin-$0$ light diquark; $M_{\\Lambda_b}-M_{\\Lambda_c}=M_B-M_D$; the $1/m_Q$ hyperfine ratio.",
+     "predicate": "The heavy-quark relation: $\\Lambda_Q$ holds a spin-$0$ light pair, so the heavy quark has no hyperfine term, and in the pairwise model $M_{\\Lambda_b}-M_{\\Lambda_c}=m_b-m_c=\\bar M_B-\\bar M_D$, with $\\bar M=\\tfrac14(M_P+3M_V)$ the spin average of a heavy meson; the heavy hyperfine coefficient scales as $1/m_Q$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:heavy}\\newline \\pywit{hadrons}{p35024}{C10}, \\leanwit{FrcMathlib}{p35024}{C10}; rests on A3, A6, B3, Z1 \\lean{Hadrons.hqs\\_pdg}",
+     "source": "Prop.~\\ref{prop:heavy}\\newline \\pywit{hadrons}{p35024}{C10}, \\leanwit{FrcCore}{p35024}{C10}, \\leanwit{FrcMathlib}{p35024}{C10}; rests on A6, A8, B3 \\lean{FRC.Hadrons.hqs\\_identity, Hadrons.hqs\\_pdg}",
      "key": "p35024",
      "name": "heavy_quark_spin_decoupling"
     },
     {
      "label": "C11",
-     "predicate": "Second-order decuplet relation $M_\\Delta-3M_{\\Sigma^*}+3M_{\\Xi^*}-M_\\Omega=0$ (vanishing third difference), exact in the linear-seed pairwise-hyperfine model.",
+     "predicate": "The second order of the pairwise model: the octet residual is $\\tfrac18v_{ll}(1-z)^2$ and both decuplet second differences are $\\tfrac14v_{ll}(1-z)^2$, $z=m_l/m_s$, so the third difference vanishes; all are identities in $(m_l,m_s,v_{ll})$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:thirddiff}\\newline \\pywit{hadrons}{p35025}{C11}, \\leanwit{FrcCore}{p35025}{C11}, \\leanwit{FrcMathlib}{p35025}{C11} \\lean{FRC.Hadrons.third\\_difference, Hadrons.third\\_difference}",
+     "source": "Prop.~\\ref{prop:thirddiff}\\newline \\pywit{hadrons}{p35025}{C11}, \\leanwit{FrcCore}{p35025}{C11}, \\leanwit{FrcMathlib}{p35025}{C11} \\lean{FRC.Hadrons.third\\_difference, FRC.Hadrons.second\\_order, Hadrons.third\\_difference}",
      "key": "p35025",
      "name": "second_order_decuplet_relation"
     },
     {
      "label": "C12",
-     "predicate": "Octet--decuplet hyperfine links $M_\\Sigma-M_\\Lambda=\\tfrac23[(M_\\Delta-M_N)-(M_{\\Sigma^*}-M_\\Sigma)]$ and $M_{\\Sigma^*}-M_\\Sigma=M_{\\Xi^*}-M_\\Xi$, parameter-free.",
+     "predicate": "Octet--decuplet hyperfine links $M_\\Sigma-M_\\Lambda=\\tfrac23[(M_\\Delta-M_N)-(M_{\\Sigma^*}-M_\\Sigma)]$ and $M_{\\Sigma^*}-M_\\Sigma=M_{\\Xi^*}-M_\\Xi$, identities of the pairwise model.",
      "tag": "T",
      "source": "\\S\\ref{sec:secondorder}\\newline \\pywit{hadrons}{p35026}{C12}, \\leanwit{FrcCore}{p35026}{C12}, \\leanwit{FrcMathlib}{p35026}{C12} \\lean{FRC.Hadrons.hyperfine\\_links, Hadrons.hyperfine\\_links, Hadrons.links\\_pdg}",
      "key": "p35026",
@@ -231,91 +263,107 @@
     },
     {
      "label": "C13",
-     "predicate": "EM splitting structure: one-body $\\sum Q_i^2$ and two-body $\\sum_{i<j}Q_iQ_j$ exact ($p$: $1,0$; $n$: $\\tfrac23,-\\tfrac13$); $\\Delta_{\\mathrm{EM}}=\\alpha\\,\\sig\\times$structure, the absolute reducing to the imported $\\alpha$ (A9) and $\\sig$ (A3), no new residue.",
+     "predicate": "The charge structure of the electromagnetic splitting: the one-body sums $\\sum Q_i^2$ and the two-body sums $\\sum_{i<j}Q_iQ_j$ of the six states of the Coleman--Glashow identity, exact rationals ($p$: $1,0$; $n$: $\\tfrac23,-\\tfrac13$).",
      "tag": "T",
-     "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35027}{C13}, \\leanwit{FrcCore}{p35027}{C13}, \\leanwit{FrcMathlib}{p35027}{C13}; rests on Z1 \\lean{FRC.Hadrons.charge\\_structure, Hadrons.charge\\_structure, Hadrons.em\\_magnitude}",
+     "source": "\\S\\ref{sec:isospin}\\newline \\pywit{hadrons}{p35027}{C13}, \\leanwit{FrcCore}{p35027}{C13}, \\leanwit{FrcMathlib}{p35027}{C13} \\lean{FRC.Hadrons.charge\\_structure, FRC.Hadrons.cg\\_charge\\_sums, Hadrons.charge\\_structure}",
      "key": "p35027",
      "name": "em_splitting_structure"
     },
     {
      "label": "C14",
-     "predicate": "$c_{\\mathrm{mag}}$ the adjoint (colour-octet) plaquette character sum, $\\mathbf8\\subset\\mathbf3\\otimes\\bar{\\mathbf3}$ ($\\mathbf8\\not\\subset\\mathbf3\\otimes\\mathbf3$), leading $\\beta^2/36$ at $O(\\beta^2)$, one order finer than the tension $c_1=\\beta/18$.",
+     "predicate": "The adjoint channel: in the classical count the adjoint $\\mathbf8$ occurs once in $\\mathbf3\\otimes\\bar{\\mathbf3}$ and not in $\\mathbf3\\otimes\\mathbf3$; on $\\SU(3,\\F_2)$ the frame fixes the pairing line of $\\mathbf3\\otimes\\bar{\\mathbf3}$ and no traceless matrix, and no nonzero invariant map takes $\\mathbf3\\otimes\\bar{\\mathbf3}$ to $\\mathbf3\\otimes\\mathbf3$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35028}{C14}, \\leanwit{FrcCore}{p35028}{C14}, \\leanwit{FrcMathlib}{p35028}{C14} \\lean{FRC.Hadrons.adjoint\\_channel, Hadrons.character\\_coefficients}",
+     "source": "Prop.~\\ref{prop:charsum}\\newline \\pywit{hadrons}{p35028}{C14}, \\leanwit{FrcCore}{p35028}{C14} \\lean{FRC.Hadrons.adjoint\\_channel}",
      "key": "p35028",
-     "name": "adjoint_plaquette_character"
+     "name": "adjoint_channel_count"
     },
     {
      "label": "C15",
-     "predicate": "Baryon $=$ Carrier residue $1$: the colourless content of $\\Lambda^\\bullet(\\mathbf3)$ is $(1,0,0,1)$; the baryon is the determinant $\\Lambda^3=\\det$ at $k=N=3$ (residue $1$, baryon number), forced by the gluon residue $0$ (the fundamental has no invariant vector on $\\SU(3,\\F_2)$); parallel to photon $2$, gluon $0$.",
+     "predicate": "The baryon's residue is $1$: on $\\SU(3,\\F_2)$ the fixed vectors of $\\Lambda^k(\\mathbf3)$ span dimensions $(1,0,0,1)$, the frame maps no line of the triplet or of $\\Lambda^2$ to itself, and among the exterior powers the determinant line $\\Lambda^3$ is the one registration beside the vacuum.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:residue}\\newline \\pywit{hadrons}{p35029}{C15}, \\leanwit{FrcCore}{p35029}{C15} \\lean{FRC.Hadrons.colourless\\_content}",
+     "source": "Prop.~\\ref{prop:residue}\\newline \\pywit{hadrons}{p35029}{C15}, \\leanwit{FrcCore}{p35029}{C15} \\lean{FRC.Hadrons.colourless\\_content, FRC.Hadrons.no\\_invariant\\_line}",
      "key": "p35029",
-     "name": "baryon_carrier_residue"
+     "name": "baryon_residue_one"
     },
     {
      "label": "C16",
-     "predicate": "Single-scale reduction: $M_H=\\sig\\,\\lambda_H$, the three anchored masses read as one $\\Om$-hard scale $\\sig$ and three sub-horizon numbers ($\\lambda_l$, $m_s/m_l$, $\\lambda_{\\mathrm{hf}}$); $M_\\Lambda-M_N=m_s-m_l$ exact (hyperfine-cancelling); the finite-stage eigenvalues $\\varepsilon_k^{(G)}\\in\\mathrm{Spec}(H^{(N)})$ exact, the decimal Airy values the [approx] readout, $\\Om$-stable.",
+     "predicate": "The constituent parameters from three masses: $M_N=3m_l-\\tfrac34v_{ll}$, $M_\\Delta=3m_l+\\tfrac34v_{ll}$ and $M_\\Lambda-M_N=m_s-m_l$, the hyperfine term cancelling in the gap; [chart] $m_l=361.8$~MeV/$c^{2}$, $m_s/m_l=1.489$, $v_{ll}=195.4$~MeV/$c^{2}$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:completion}\\newline \\pywit{hadrons}{p35030}{C16}, \\leanwit{FrcCore}{p35030}{C16}, \\leanwit{FrcMathlib}{p35030}{C16} \\lean{FRC.Hadrons.airy\\_sturm, FRC.Hadrons.lambda\\_n\\_gap, FRC.Hadrons.spin\\_split, Hadrons.lambda\\_n\\_gap, Hadrons.single\\_scale, Hadrons.airy\\_ratio}",
+     "source": "\\S\\ref{sec:absolute}, \\S\\ref{sec:completion}\\newline \\pywit{hadrons}{p35030}{C16}, \\leanwit{FrcCore}{p35030}{C16}, \\leanwit{FrcMathlib}{p35030}{C16}; rests on A8, B2 \\lean{FRC.Hadrons.lambda\\_n\\_gap, FRC.Hadrons.spin\\_split, Hadrons.lambda\\_n\\_gap, Hadrons.single\\_scale}",
      "key": "p35030",
-     "name": "single_scale_reduction"
+     "name": "constituent_parameters"
     },
     {
      "label": "C17",
-     "predicate": "The baryon scale: the computed finite eigenvalue $E_0\\simeq2.232$ (operator $H_G=T_G^{1/2}+R_G$, no baryon mass entering); $M_N=E_0\\sig$ predicts the nucleon to $4.6\\%$, the absolute prediction carrying the imported $\\Om$-hard $\\sig$ (A3). $\\lambda_l,\\lambda_{\\mathrm{hf}}$ evaluated forward from $\\{N,\\beta\\}$ (C19), $\\Om$-stable.",
+     "predicate": "The nonrelativistic matrix on $4000$ sites has exactly one eigenvalue in each of $(2.338,2.339)$ and $(4.087,4.088)$; [chart] the readings of the body's Hamiltonian $(c|p|+\\sigma\\,r)/\\sig$ (B7) on $600$ sites: $E_0=2.232$, $E_1=3.329$ and the contact value $C=3.50$; the squares of the two levels over $\\tfrac12\\pi$ read $3.17$ and $7.06$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:baryonscale}\\newline \\pywit{hadrons}{p35031}{C17}, \\leanwit{FrcCore}{p35031}{C17}, \\leanwit{FrcMathlib}{p35031}{C17}; rests on Z1 \\lean{FRC.Hadrons.spin\\_split, Hadrons.baryon\\_scale, Hadrons.spin\\_split}",
+     "source": "Prop.~\\ref{prop:baryonscale}\\newline \\pywit{hadrons}{p35031}{C17}, \\leanwit{FrcCore}{p35031}{C17}, \\leanwit{FrcMathlib}{p35031}{C17}; rests on B7 \\lean{FRC.Hadrons.airy\\_sturm, Hadrons.airy\\_ratio, Hadrons.hamiltonian\\_levels}",
      "key": "p35031",
-     "name": "baryon_scale_eigenvalue"
+     "name": "hamiltonian_readings"
     },
     {
      "label": "C18",
-     "predicate": "Meson Carrier residue: the $q\\bar q$ colour singlet is the contraction of $\\mathbf3\\otimes\\bar{\\mathbf3}=\\mathbf1\\oplus\\mathbf8$ (the Hermitian invariant), residue $1$, $B=0$ (triality $0$); the residue series closes (photon $2$, gluon $0$, baryon $1$, meson $1$); on the same frame the vector-nonet equal spacing $2M_{K^{*}}=M_\\rho+M_\\phi$ is an exact identity of linear strangeness.",
+     "predicate": "The meson's residue is $1$: the $q\\bar q$ singlet is the pairing line of $\\mathbf3\\otimes\\bar{\\mathbf3}=\\mathbf1\\oplus\\mathbf8$, the Hermitian invariant and on $\\SU(3,\\F_2)$ the one line of the product that the frame fixes; the series reads photon $2$, gluon $0$, baryon $1$, meson $1$; the vector-nonet spacing $2M_{K^{*}}=M_\\rho+M_\\phi$ is an identity of linear strangeness.",
      "tag": "T",
      "source": "\\S\\ref{sec:vector}, Prop.~\\ref{prop:vector}\\newline \\pywit{hadrons}{p35032}{C18}, \\leanwit{FrcCore}{p35032}{C18}, \\leanwit{FrcMathlib}{p35032}{C18} \\lean{FRC.Hadrons.meson\\_invariant, FRC.Hadrons.vector\\_spacing, Hadrons.vector\\_spacing}",
      "key": "p35032",
-     "name": "meson_carrier_residue"
+     "name": "meson_residue_one"
     },
     {
      "label": "C19",
-     "predicate": "Forward constituent eigenvalues: $\\lambda_l,\\lambda_{\\mathrm{hf}}$ computed from $\\{N{=}3,\\beta\\}$ with no measured baryon mass --- $\\lambda_{\\mathrm{hf}}$ the colour-magnetic contact ($c_{\\mathrm{adj}}{=}\\beta^2/36$, the exact overlap $|u'(0)|^2{=}1$, $\\alpha_s(\\sig)$ transmutation-pinned), $\\lambda_l$ from $E_0$ and the exact spin split; matching $0.44,0.85$ to constituent-model accuracy, the margin set by the linear-potential approximation.",
+     "predicate": "[chart] The joint solution on $600$ sites: the nucleon's reading $3\\lambda_l-\\tfrac34\\lambda_{\\mathrm{hf}}=\\lambda_N$ of the winding law (C24) and the contact rule (B8) give $\\lambda_{\\mathrm{hf}}=0.466$, $\\lambda_l=0.840$ and $(M_\\Delta-M_N)/M_N=0.322$ against the measured $0.312$, no measured mass entering.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:forward}\\newline \\pywit{hadrons}{p35033}{C19}, \\leanwit{FrcCore}{p35033}{C19}, \\leanwit{FrcMathlib}{p35033}{C19} \\lean{FRC.Hadrons.spin\\_split, Hadrons.forward\\_landing, Hadrons.alpha\\_s\\_bounds}",
+     "source": "Prop.~\\ref{prop:forward}\\newline \\pywit{hadrons}{p35033}{C19}, \\leanwit{FrcCore}{p35033}{C19}, \\leanwit{FrcMathlib}{p35033}{C19}; rests on B7, B8, C17, C24 \\lean{FRC.Hadrons.spin\\_split, Hadrons.joint\\_solution, Hadrons.alpha\\_s\\_bounds}",
      "key": "p35033",
-     "name": "forward_constituent_eigenvalues"
+     "name": "joint_solution_readings"
     },
     {
      "label": "C20",
-     "predicate": "Residue resolution, second order: the $\\SU(3)_F$ residuals (decuplet third difference $6$ MeV, octet $\\mathbf{27}$-plet $0.57\\%$) are sub-horizon, $O(\\varepsilon_s^2)$ of a convergent strange-breaking expansion, $\\Om$-stable (Prop.~\\ref{prop:subhorizon}).",
+     "predicate": "[chart] The second order against the data: the pairwise model gives an octet residual of $+2.6$~MeV/$c^{2}$ and decuplet second differences of $+5.3$~MeV/$c^{2}$ (C11); the measured values are $-6.4$ and $-3.7$, $-9.8$~MeV/$c^{2}$, each of the opposite sign; the measured third difference is $6.05$~MeV/$c^{2}$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35034}{C20}, \\leanwit{FrcCore}{p35034}{C20}, \\leanwit{FrcMathlib}{p35034}{C20} \\lean{FRC.Hadrons.admissible\\_shells, Hadrons.residual\\_orders}",
+     "source": "\\S\\ref{sec:secondorder}\\newline \\pywit{hadrons}{p35034}{C20}, \\leanwit{FrcCore}{p35034}{C20}, \\leanwit{FrcMathlib}{p35034}{C20}; rests on C11, A8 \\lean{FRC.Hadrons.second\\_order, Hadrons.second\\_order\\_pdg}",
      "key": "p35034",
-     "name": "residue_resolution_second_order"
+     "name": "second_order_against_data"
     },
     {
      "label": "C21",
-     "predicate": "Residue resolution, electromagnetic: the splitting magnitude $\\Delta_{\\mathrm{EM}}=\\alpha\\,\\sig\\times$[exact charge structure] reduces to the imported $\\alpha$ (A9) and $\\sig$ (A3), no new residue (C13); Coleman--Glashow and the orderings derived (C7--C9).",
+     "predicate": "[chart] The electromagnetic magnitude: one third of the unit $\\alpha\\sig$ is $1.07$~MeV at the imported scale, the size of the rest energy of the lattice's electromagnetic part, $1.00(16)$~MeV (A10).",
      "tag": "T",
-     "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35035}{C21}, \\leanwit{FrcCore}{p35035}{C21}, \\leanwit{FrcMathlib}{p35035}{C21}; rests on C8 \\lean{FRC.Hadrons.charge\\_structure, Hadrons.em\\_magnitude, Hadrons.charge\\_structure}",
+     "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35035}{C21}, \\leanwit{FrcCore}{p35035}{C21}, \\leanwit{FrcMathlib}{p35035}{C21}; rests on A3, A9, A10, C13, Z1 \\lean{FRC.Hadrons.charge\\_structure, Hadrons.em\\_magnitude}",
      "key": "p35035",
-     "name": "residue_resolution_electromagnetic"
+     "name": "electromagnetic_magnitude"
     },
     {
-     "label": "C22",
-     "predicate": "Residue resolution, heavy flavour: the heavy-baryon absolute masses $M(\\Lambda_Q)=m_Q+O(\\sig)$ reduce to the imported scales (A3, A6); the heavy-quark-symmetry and $1/m_Q$ relations derived (C10).",
+     "label": "C24",
+     "predicate": "The winding law: under B7 and A4, $M_k^{2}\\equiv(4k+3)\\,hc\\,\\sigma$ in the Carrier register (A11); [chart] $\\lambda_k^{2}=\\tfrac32\\pi+2\\pi k$, on a Subject the residues $(4k+3)\\kap$; $\\lambda_N=2.171$, the scale reads $432.5$~MeV with the nucleon mass, and the nucleon reads $955$~MeV/$c^{2}$ at the imported scale.",
      "tag": "T",
-     "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35036}{C22}, \\leanwit{FrcMathlib}{p35036}{C22} \\lean{Hadrons.hqs\\_pdg}",
-     "key": "p35036",
-     "name": "residue_resolution_heavy_flavour"
+     "source": "Prop.~\\ref{prop:winding}\\newline \\pywit{hadrons}{p35075}{C24}, \\leanwit{FrcCore}{p35075}{C24}, \\leanwit{FrcMathlib}{p35075}{C24}; rests on B7, A3, A4, A8, A11, Z1 \\lean{FRC.Hadrons.winding\\_register, Hadrons.baryon\\_scale}",
+     "key": "p35075",
+     "name": "winding_law"
     },
     {
-     "label": "C23",
-     "predicate": "Residue resolution, hyperfine: the dimensionless $A_{\\mathrm{light}}/\\sig$ is a ratio of $\\Om$-independent character sums (C14), $\\Om$-stable, sub-horizon; the absolute $A_{\\mathrm{light}}=\\sig\\,c_{\\mathrm{mag}}$ is $\\sig$-scaled (A3, Prop.~\\ref{prop:subhorizon}).",
+     "label": "C25",
+     "predicate": "On every Subject the body's Hamiltonian on the register, the step count plus its Fourier image on the odd functions, does not commute with the drive, and none of its simple levels has a winding rate; [chart] on $13$, $173$ and $1549$ its lowest level is simple and reads $2.252$, $2.232$, $2.232$ in the unit $\\sqrt{2\\pi/\\p}$, with the chart's $\\pi$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35037}{C23}, \\leanwit{FrcCore}{p35037}{C23}, \\leanwit{FrcMathlib}{p35037}{C23} \\lean{FRC.Hadrons.admissible\\_shells, FRC.Hadrons.adjoint\\_channel, Hadrons.character\\_coefficients, Hadrons.single\\_scale}",
-     "key": "p35037",
-     "name": "residue_resolution_hyperfine"
+     "source": "Prop.~\\ref{prop:nowinding}\\newline \\pywit{hadrons}{p35076}{C25}, \\leanwit{FrcCore}{p35076}{C25}, \\leanwit{FrcMathlib}{p35076}{C25}; rests on C17, A4 \\lean{FRC.Hadrons.no\\_real\\_class, Hadrons.register\\_levels}",
+     "key": "p35076",
+     "name": "hamiltonian_no_winding_rate"
+    },
+    {
+     "label": "C26",
+     "predicate": "The scale in the Carrier register (A11): $(\\hbar c)^{2}\\equiv-2^{-1}\\equiv2\\dS$, so the fourth power of the scale is $2\\dS\\,\\sigma^{2}$; checked on the Carriers $233$, $30089$ and $2408561$ for both roots $\\hbar$ of $-1$ and both roots $c$ of $2^{-1}$.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:scales}\\newline \\pywit{hadrons}{p35078}{C26}, \\leanwit{FrcCore}{p35078}{C26}; rests on A11, Z1 \\lean{FRC.Hadrons.scale\\_register}",
+     "key": "p35078",
+     "name": "scale_in_carrier_register"
+    },
+    {
+     "label": "C27",
+     "predicate": "No choice of the roots enters the winding law (C24): with $2G+1\\equiv0$, $hc$ is half the Planck mass squared $\\hbar c/G$ for both roots $\\hbar$ and both roots $c$, so $(M_k/m_P)^{2}\\equiv(4k+3)\\sigma/2$ and $(M_kc^{2}/\\sig)^{2}\\equiv(4k+3)\\dS$; checked on the Carriers $233$, $30089$ and $2408561$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:winding}\\newline \\pywit{hadrons}{p35080}{C27}, \\leanwit{FrcCore}{p35080}{C27}; rests on A11, C24 \\lean{FRC.Hadrons.winding\\_no\\_root}",
+     "key": "p35080",
+     "name": "winding_law_root_free"
     }
    ]
   },
@@ -325,15 +373,15 @@
    "rows": [
     {
      "label": "X1",
-     "predicate": "\\textbf{The baryon is three quarks} because the only colourless escape from the gluon residue $0$ is the determinant $\\Lambda^N=\\det$, which requires exactly $N=3$.",
+     "predicate": "\\textbf{The baryon is three quarks} because the determinant line $\\Lambda^{3}\\mathbf3$ is the one registration among the exterior powers of the triplet beside the vacuum.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:residue}\\newline \\pywit{hadrons}{p35038}{X1}, \\leanwit{FrcCore}{p35038}{X1} \\lean{FRC.Hadrons.colourless\\_content}",
+     "source": "Prop.~\\ref{prop:residue}\\newline \\pywit{hadrons}{p35038}{X1}, \\leanwit{FrcCore}{p35038}{X1} \\lean{FRC.Hadrons.colourless\\_content, FRC.Hadrons.no\\_invariant\\_line}",
      "key": "p35038",
      "name": "baryon_three_quarks"
     },
     {
      "label": "X2",
-     "predicate": "\\textbf{The baryon is colour-neutral} as the centre-neutral, triality-$0$ invariant $\\varepsilon_{abc}$ of the triality frame, a derived singlet.",
+     "predicate": "\\textbf{The baryon is colour-neutral} as the invariant $\\varepsilon_{abc}$ of the unitary frame, whose elements have determinant $1$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:colour}\\newline \\pywit{hadrons}{p35039}{X2}, \\leanwit{FrcCore}{p35039}{X2} \\lean{FRC.Hadrons.colour\\_group, FRC.Interactions.su3\\_centre}",
      "key": "p35039",
@@ -341,15 +389,15 @@
     },
     {
      "label": "X3",
-     "predicate": "\\textbf{Baryon number is the Carrier residue $1$}, the determinant winding, so its conservation is the invariance of $\\Lambda^3$, on the same footing as the photon residue $2$ and the gluon residue $0$.",
+     "predicate": "\\textbf{Baryon number is a count}: for a system of hadrons, the number of its determinant lines $\\Lambda^{3}(\\mathbf3)$ less the number of its conjugate lines $\\Lambda^{3}(\\bar{\\mathbf3})$, which no element of the frame changes; its conservation by the sector's dynamics is the prediction P4.",
      "tag": "T",
-     "source": "\\S\\ref{sec:residue}\\newline \\pywit{hadrons}{p35040}{X3}, \\leanwit{FrcCore}{p35040}{X3} \\lean{FRC.Hadrons.colourless\\_content}",
+     "source": "\\S\\ref{sec:residue}\\newline \\pywit{hadrons}{p35040}{X3}, \\leanwit{FrcCore}{p35040}{X3}; rests on B6 \\lean{FRC.Hadrons.colourless\\_content}",
      "key": "p35040",
-     "name": "baryon_number_carrier_residue"
+     "name": "baryon_number_count"
     },
     {
      "label": "X4",
-     "predicate": "\\textbf{The Gell-Mann--Okubo relation} is exact, the scale-cancelling identity $2N+2\\Xi-3\\Lambda-\\Sigma=0$ of linear flavour breaking, a derived sum rule.",
+     "predicate": "\\textbf{The Gell-Mann--Okubo relation} is the identity $2N+2\\Xi-3\\Lambda-\\Sigma=0$ of linear flavour breaking, for every value of the scale.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:gmo}\\newline \\pywit{hadrons}{p35041}{X4}, \\leanwit{FrcCore}{p35041}{X4}, \\leanwit{FrcMathlib}{p35041}{X4} \\lean{FRC.Hadrons.gmo, Hadrons.gmo}",
      "key": "p35041",
@@ -357,7 +405,7 @@
     },
     {
      "label": "X5",
-     "predicate": "\\textbf{The decuplet is equally spaced} because the strange seed enters the wrap additively.",
+     "predicate": "\\textbf{The decuplet is equally spaced} at first order because the strange quark enters the mass additively.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:spacing}\\newline \\pywit{hadrons}{p35042}{X5}, \\leanwit{FrcCore}{p35042}{X5}, \\leanwit{FrcMathlib}{p35042}{X5} \\lean{FRC.Hadrons.spacing, Hadrons.spacing}",
      "key": "p35042",
@@ -365,7 +413,7 @@
     },
     {
      "label": "X6",
-     "predicate": "\\textbf{The decuplet is heavier than the octet} by the colour-magnetic curvature invariant, the colour factor $-8$ times the spin $\\half S(S+1)-\\tfrac98$, a derived sign and pattern.",
+     "predicate": "\\textbf{The decuplet is heavier than the octet} by the colour-magnetic term, the colour factor $-8$ times the spin structure $\\half S(S+1)-\\tfrac98$, a sign and a pattern.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:hyperfine}\\newline \\pywit{hadrons}{p35043}{X6}, \\leanwit{FrcCore}{p35043}{X6}, \\leanwit{FrcMathlib}{p35043}{X6} \\lean{FRC.Hadrons.spin\\_pattern, FRC.Hadrons.colour\\_factor, Hadrons.spin\\_pattern, Hadrons.colour\\_factor}",
      "key": "p35043",
@@ -373,15 +421,15 @@
     },
     {
      "label": "X7",
-     "predicate": "\\textbf{The proton is stable} as the minimal-wrap residue-$1$ state, with no lighter $B=1$ residue to reach.",
+     "predicate": "\\textbf{The proton is stable} as the lightest state of the determinant line, with no state of the line below it.",
      "tag": "T",
-     "source": "\\S\\ref{sec:residue}\\newline \\pywit{hadrons}{p35044}{X7}, \\leanwit{FrcCore}{p35044}{X7} \\lean{FRC.Hadrons.colourless\\_content}",
+     "source": "\\S\\ref{sec:residue}\\newline \\pywit{hadrons}{p35044}{X7}, \\leanwit{FrcCore}{p35044}{X7}; rests on B5, B6 \\lean{FRC.Hadrons.colourless\\_content}",
      "key": "p35044",
-     "name": "proton_stable_minimal_wrap"
+     "name": "proton_lightest_of_line"
     },
     {
      "label": "X8",
-     "predicate": "\\textbf{The neutron is heavier than the proton} because the $d-u$ seed exceeds the charge-squared electromagnetic term ($\\sum Q^2=1$ for $p$, $\\tfrac23$ for $n$), a derived ordering.",
+     "predicate": "\\textbf{The neutron--proton ordering} is the sign of one difference, the $d$--$u$ mass difference against the electromagnetic terms, each of which favours the proton by one third of its unit.",
      "tag": "T",
      "source": "\\S\\ref{sec:isospin}\\newline \\pywit{hadrons}{p35045}{X8}, \\leanwit{FrcCore}{p35045}{X8}, \\leanwit{FrcMathlib}{p35045}{X8} \\lean{FRC.Hadrons.charge\\_structure, Hadrons.cg\\_pdg, Hadrons.charge\\_structure}",
      "key": "p35045",
@@ -389,7 +437,7 @@
     },
     {
      "label": "X9",
-     "predicate": "\\textbf{$\\Sigma$ is heavier than $\\Lambda$} by the spin-$1$ versus spin-$0$ light-pair hyperfine, a derived splitting of two states of identical quark content.",
+     "predicate": "\\textbf{$\\Sigma$ is heavier than $\\Lambda$} by the spin-$1$ against the spin-$0$ light pair, a splitting of two states of identical quark content.",
      "tag": "T",
      "source": "\\S\\ref{sec:isospin}\\newline \\pywit{hadrons}{p35046}{X9}, \\leanwit{FrcCore}{p35046}{X9}, \\leanwit{FrcMathlib}{p35046}{X9} \\lean{FRC.Hadrons.sigma\\_lambda, Hadrons.sigma\\_lambda}",
      "key": "p35046",
@@ -397,7 +445,7 @@
     },
     {
      "label": "X10",
-     "predicate": "\\textbf{The isospin splittings obey Coleman--Glashow} exactly at one body, $(n{-}p)+(\\Xi^-{-}\\Xi^0)=\\Sigma^-{-}\\Sigma^+$, a derived identity.",
+     "predicate": "\\textbf{The isospin splittings obey Coleman--Glashow}, $(n{-}p)+(\\Xi^-{-}\\Xi^0)=\\Sigma^-{-}\\Sigma^+$, for the mass term and for both electromagnetic terms.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:cg}\\newline \\pywit{hadrons}{p35047}{X10}, \\leanwit{FrcCore}{p35047}{X10}, \\leanwit{FrcMathlib}{p35047}{X10} \\lean{FRC.Hadrons.coleman\\_glashow, Hadrons.coleman\\_glashow}",
      "key": "p35047",
@@ -405,15 +453,15 @@
     },
     {
      "label": "X11",
-     "predicate": "\\textbf{The heavy baryons follow heavy-quark symmetry}, $M_{\\Lambda_b}-M_{\\Lambda_c}=M_B-M_D$ by spin decoupling, so the baryon and meson heavy-mass differences are one quantity.",
+     "predicate": "\\textbf{The heavy baryons follow the heavy mesons}: $M_{\\Lambda_b}-M_{\\Lambda_c}$ and the spin-averaged $\\bar M_B-\\bar M_D$ are one quantity, $m_b-m_c$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:heavy}\\newline \\pywit{hadrons}{p35048}{X11}, \\leanwit{FrcMathlib}{p35048}{X11} \\lean{Hadrons.hqs\\_pdg}",
+     "source": "Prop.~\\ref{prop:heavy}\\newline \\pywit{hadrons}{p35048}{X11}, \\leanwit{FrcCore}{p35048}{X11}, \\leanwit{FrcMathlib}{p35048}{X11} \\lean{FRC.Hadrons.hqs\\_identity, Hadrons.hqs\\_pdg}",
      "key": "p35048",
      "name": "heavy_baryons_hq_symmetry"
     },
     {
      "label": "X12",
-     "predicate": "\\textbf{The vector mesons equally space}, $2M_{K^{*}}=M_\\rho+M_\\phi$, the meson residue $1$ ($B=0$) on the same frame and scale as the baryons.",
+     "predicate": "\\textbf{The vector mesons equally space}, $2M_{K^{*}}=M_\\rho+M_\\phi$, on the same frame and scale as the baryons.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:vector}\\newline \\pywit{hadrons}{p35049}{X12}, \\leanwit{FrcCore}{p35049}{X12}, \\leanwit{FrcMathlib}{p35049}{X12} \\lean{FRC.Hadrons.vector\\_spacing, FRC.Hadrons.meson\\_invariant, Hadrons.vector\\_spacing}",
      "key": "p35049",
@@ -421,9 +469,9 @@
     },
     {
      "label": "X13",
-     "predicate": "\\textbf{The spectrum rests on one scale}, $\\sqrt\\sigma=\\LQCD$, the lone $\\Om$-hard residue; every dimensionless mass ratio is a sub-horizon eigenvalue.",
+     "predicate": "\\textbf{The spectrum rests on one scale}: every mass relation of the paper is homogeneous in the masses and holds for every value of $\\sig$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:completion}\\newline \\pywit{hadrons}{p35050}{X13}, \\leanwit{FrcCore}{p35050}{X13}, \\leanwit{FrcMathlib}{p35050}{X13} \\lean{FRC.Hadrons.admissible\\_shells, Hadrons.single\\_scale}",
+     "source": "Prop.~\\ref{prop:subhorizon}\\newline \\pywit{hadrons}{p35050}{X13}, \\leanwit{FrcCore}{p35050}{X13}, \\leanwit{FrcMathlib}{p35050}{X13} \\lean{FRC.Hadrons.gmo, FRC.Hadrons.spacing, FRC.Hadrons.coleman\\_glashow, FRC.Hadrons.vector\\_spacing, Hadrons.single\\_scale}",
      "key": "p35050",
      "name": "spectrum_one_scale"
     }
@@ -431,129 +479,143 @@
   },
   {
    "letter": "P",
-   "title": "Falsifiable predictions",
+   "title": "The predictions, with their falsifiers and their present confrontations",
    "rows": [
     {
      "label": "P1",
-     "predicate": "Gell-Mann--Okubo exact at leading order; PDG $0.57\\%$, the bounded $\\chi_3^2$ second order. Falsifier: a violation beyond the second-order insertion.",
+     "predicate": "Gell-Mann--Okubo (C2). [chart] Falsifier: an octet residual above $\\varepsilon_s^{2}(M_\\Xi-M_N)=13.4$~MeV/$c^{2}$, with $\\varepsilon_s=(M_\\Lambda-M_N)/M_N$. Confrontation: $6.4$~MeV/$c^{2}$, $0.57\\%$.",
      "tag": "T",
-     "source": "C2\\newline \\pywit{hadrons}{p35051}{P1}, \\leanwit{FrcCore}{p35051}{P1}, \\leanwit{FrcMathlib}{p35051}{P1}; rests on B4 \\lean{FRC.Hadrons.gmo, Hadrons.gmo\\_pdg}",
+     "source": "C2\\newline \\pywit{hadrons}{p35051}{P1}, \\leanwit{FrcCore}{p35051}{P1}, \\leanwit{FrcMathlib}{p35051}{P1}; rests on B4 \\lean{FRC.Hadrons.gmo, Hadrons.gmo\\_pdg, Hadrons.thresholds\\_pdg}",
      "key": "p35051",
      "name": "gell_mann_okubo_exact"
     },
     {
      "label": "P2",
-     "predicate": "Decuplet equal spacing exact; PDG $9.2\\%$ spread, $\\beta\\simeq146.8$ MeV, the same second order. Falsifier: a non-equal spacing beyond it.",
+     "predicate": "Decuplet equal spacing (C3). [chart] Falsifier: a residual of $M_{\\Sigma^{*}}=\\tfrac12(M_\\Delta+M_{\\Xi^{*}})$ or of $M_{\\Xi^{*}}=\\tfrac12(M_{\\Sigma^{*}}+M_\\Omega)$ above $\\varepsilon_s^{2}(M_\\Omega-M_\\Delta)=15.6$~MeV/$c^{2}$. Confrontation: $1.9$ and $4.9$~MeV/$c^{2}$.",
      "tag": "T",
-     "source": "C3\\newline \\pywit{hadrons}{p35052}{P2}, \\leanwit{FrcCore}{p35052}{P2}, \\leanwit{FrcMathlib}{p35052}{P2}; rests on B4 \\lean{FRC.Hadrons.spacing, Hadrons.spacing\\_pdg}",
+     "source": "C3\\newline \\pywit{hadrons}{p35052}{P2}, \\leanwit{FrcCore}{p35052}{P2}, \\leanwit{FrcMathlib}{p35052}{P2}; rests on B4 \\lean{FRC.Hadrons.spacing, Hadrons.spacing\\_pdg, Hadrons.thresholds\\_pdg}",
      "key": "p35052",
      "name": "decuplet_equal_spacing_exact"
     },
     {
      "label": "P3",
-     "predicate": "The hyperfine pattern $g_{\\mathrm{spin}}=\\half S(S+1)-\\tfrac98$, octet $-\\tfrac34$, decuplet $+\\tfrac34$, separation $\\tfrac32A_{\\mathrm{light}}$ with $A_{\\mathrm{light}}\\simeq195$ MeV. Falsifier: a spin splitting outside this pattern.",
+     "predicate": "The hyperfine pattern (C5): the spin-$\\tfrac32$ multiplet above the spin-$\\half$ one by $\\tfrac32A_{\\mathrm{light}}$. Falsifier: a ground-state spin splitting of the opposite sign. [chart] Confrontation: $M_\\Delta-M_N=293.1$~MeV/$c^{2}$, $A_{\\mathrm{light}}=195.4$~MeV/$c^{2}$.",
      "tag": "T",
-     "source": "C5\\newline \\pywit{hadrons}{p35053}{P3}, \\leanwit{FrcCore}{p35053}{P3}, \\leanwit{FrcMathlib}{p35053}{P3}; rests on B3, C6 \\lean{FRC.Hadrons.spin\\_pattern, Hadrons.a\\_light, Hadrons.spin\\_pattern}",
+     "source": "C5\\newline \\pywit{hadrons}{p35053}{P3}, \\leanwit{FrcCore}{p35053}{P3}, \\leanwit{FrcMathlib}{p35053}{P3}; rests on B3 \\lean{FRC.Hadrons.spin\\_pattern, Hadrons.a\\_light, Hadrons.spin\\_pattern}",
      "key": "p35053",
      "name": "hyperfine_pattern"
     },
     {
      "label": "P4",
-     "predicate": "Proton effective stability: the proton is the minimal colour-neutral wrap, with no allowed strong or electromagnetic channel toward a smaller residue; the single neutron transition is one flavour flip, the $\\beta$ channel \\cite{akhtman2026fields}. Falsifier: an observed proton decay or a strong/electromagnetic baryon-number-violating process.",
+     "predicate": "Proton stability: the proton is the lightest state of the determinant line, with no strong or electromagnetic channel below it; the neutron reaches it by the $\\beta$ channel. Falsifier: an observed strong or electromagnetic process that violates baryon number. Confrontation: none observed.",
      "tag": "T",
-     "source": "B1, A5, B5\\newline \\pywit{hadrons}{p35054}{P4}, \\leanwit{FrcCore}{p35054}{P4} \\lean{FRC.Hadrons.colourless\\_content}",
+     "source": "B1, A5, B5, B6; \\cite{akhtman2026fields}\\newline \\pywit{hadrons}{p35054}{P4}, \\leanwit{FrcCore}{p35054}{P4} \\lean{FRC.Hadrons.colourless\\_content}",
      "key": "p35054",
      "name": "proton_effective_stability"
     },
     {
      "label": "P5",
-     "predicate": "No exotic light multiplets beyond the $\\mathbf 8$ and $\\mathbf{10}$ at leading wrap order. Falsifier: a confirmed light baryon outside the $\\mathbf 8$ and $\\mathbf{10}$ at the wrap scale.",
+     "predicate": "No ground-state light baryon multiplet beyond the $\\mathbf 8$ and the $\\mathbf{10}$. Falsifier: a confirmed ground-state light baryon outside them. Confrontation: none confirmed.",
      "tag": "T",
-     "source": "C1\\newline \\pywit{hadrons}{p35055}{P5}, \\leanwit{FrcCore}{p35055}{P5}; rests on B1, B2 \\lean{FRC.Hadrons.flavour\\_cube}",
+     "source": "\\S\\ref{sec:flavour}\\newline \\pywit{hadrons}{p35055}{P5}, \\leanwit{FrcCore}{p35055}{P5}; rests on B1, B2, B6, C15 \\lean{FRC.Hadrons.flavour\\_cube}",
      "key": "p35055",
      "name": "no_exotic_light_multiplets"
     },
     {
      "label": "P6",
-     "predicate": "Coleman--Glashow exact at one body; PDG $0.79\\%$, the residual the two-body electromagnetic term; the orderings $M_n>M_p$ and $M_\\Sigma>M_\\Lambda$ fixed. Falsifier: a Coleman--Glashow violation beyond the two-body term.",
+     "predicate": "Coleman--Glashow (C7). Falsifier: a difference of its two sides beyond their measurement error. [chart] Confrontation: $8.14(21)$ against $8.08(8)$~MeV/$c^{2}$.",
      "tag": "T",
      "source": "C7, C8, C9\\newline \\pywit{hadrons}{p35056}{P6}, \\leanwit{FrcCore}{p35056}{P6}, \\leanwit{FrcMathlib}{p35056}{P6} \\lean{FRC.Hadrons.coleman\\_glashow, Hadrons.cg\\_pdg}",
      "key": "p35056",
-     "name": "coleman_glashow_one_body"
+     "name": "coleman_glashow_within_error"
     },
     {
      "label": "P7",
-     "predicate": "Heavy-quark symmetry $M_{\\Lambda_b}-M_{\\Lambda_c}=M_B-M_D$ ($2.4\\%$) and the $1/m_Q$ hyperfine ratio $(M_{\\Sigma_c^{*}}-M_{\\Sigma_c})/(M_{\\Sigma^{*}}-M_{\\Sigma})\\simeq m_s/m_c$. Falsifier: a heavy-baryon spectrum off the spin-decoupled, $1/m_Q$-scaled pattern.",
+     "predicate": "The heavy-quark relation (C10). [chart] Falsifier: a residual above $(\\hbar\\sigma/c^{3})(1/m_c-1/m_b)=75$~MeV/$c^{2}$ at the imported scale. Confrontation: $-7.1$~MeV/$c^{2}$, $0.21\\%$, with isospin-averaged mesons; the hyperfine ratio $0.339$ against $m_s/m_c=0.315$.",
      "tag": "T",
-     "source": "C10\\newline \\pywit{hadrons}{p35057}{P7}, \\leanwit{FrcMathlib}{p35057}{P7}; rests on B3 \\lean{Hadrons.hqs\\_pdg}",
+     "source": "C10\\newline \\pywit{hadrons}{p35057}{P7}, \\leanwit{FrcCore}{p35057}{P7}, \\leanwit{FrcMathlib}{p35057}{P7}; rests on A3, A8, B3, Z1 \\lean{FRC.Hadrons.hqs\\_identity, Hadrons.hqs\\_pdg}",
      "key": "p35057",
      "name": "heavy_quark_symmetry"
     },
     {
-     "label": "P8",
-     "predicate": "Second-order decuplet relation \\eqref{eq:thirddiff}, the vanishing third difference; PDG $6$ MeV ($0.36\\%$). Falsifier: a third difference beyond the few-MeV third-order scale.",
-     "tag": "T",
-     "source": "C11\\newline \\pywit{hadrons}{p35058}{P8}, \\leanwit{FrcCore}{p35058}{P8}, \\leanwit{FrcMathlib}{p35058}{P8}; rests on B4 \\lean{FRC.Hadrons.third\\_difference, Hadrons.third\\_pdg}",
-     "key": "p35058",
-     "name": "second_order_decuplet_prediction"
-    },
-    {
      "label": "P9",
-     "predicate": "Vector-meson nonet equal spacing $2M_{K^{*}}=M_\\rho+M_\\phi$ (PDG $0.42\\%$) and ideal mixing $M_\\omega\\simeq M_\\rho$; $\\rho,\\phi$ anchor, $K^{*},\\omega$ predicted $<1\\%$; the pseudoscalars are Goldstone bosons (a distinct chiral mechanism). Falsifier: a vector nonet off the linear-strangeness pattern.",
+     "predicate": "Vector equal spacing $M_{K^{*}}=\\tfrac12(M_\\rho+M_\\phi)$ (C18). [chart] Falsifier: a residual above $\\varepsilon_s^{2}(M_\\phi-M_\\rho)=8.7$~MeV/$c^{2}$. Confrontation: $3.75$~MeV/$c^{2}$; the ideally mixed $\\omega$ lies $7.4$~MeV/$c^{2}$ above $\\rho$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:vector}\\newline \\pywit{hadrons}{p35059}{P9}, \\leanwit{FrcCore}{p35059}{P9}, \\leanwit{FrcMathlib}{p35059}{P9}; rests on B4, C18 \\lean{FRC.Hadrons.vector\\_spacing, Hadrons.vector\\_pdg}",
+     "source": "Prop.~\\ref{prop:vector}\\newline \\pywit{hadrons}{p35059}{P9}, \\leanwit{FrcCore}{p35059}{P9}, \\leanwit{FrcMathlib}{p35059}{P9}; rests on B4, C18 \\lean{FRC.Hadrons.vector\\_spacing, Hadrons.vector\\_pdg, Hadrons.thresholds\\_pdg}",
      "key": "p35059",
      "name": "vector_meson_nonet_spacing"
     },
     {
      "label": "P10",
-     "predicate": "Absolute octet$+$decuplet spectrum from the $\\Om$-hard scale $\\sig$ and three sub-horizon eigenvalues ($\\lambda_l$, $m_s/m_l$, $\\lambda_{\\mathrm{hf}}$, the two constituent ratios computed forward, C19): five parameter-free predictions within $1.1\\%$ (Table~\\ref{tab:absolute}). Falsifier: a predicted mass off beyond the traced second order.",
+     "predicate": "Five octet and decuplet masses from the anchors $N$, $\\Lambda$, $\\Delta$ (C16). [chart] Falsifier: a residual above $\\varepsilon_s^{2}(M_\\Omega-M_N)=26$~MeV/$c^{2}$. Confrontation: at most $13.3$~MeV/$c^{2}$, $1.2\\%$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:absolute}\\newline \\pywit{hadrons}{p35060}{P10}, \\leanwit{FrcCore}{p35060}{P10}, \\leanwit{FrcMathlib}{p35060}{P10}; rests on A3, B2, C16, C17, Z1 \\lean{FRC.Hadrons.spin\\_split, FRC.Hadrons.lambda\\_n\\_gap, Hadrons.absolute\\_spectrum}",
+     "source": "\\S\\ref{sec:absolute}\\newline \\pywit{hadrons}{p35060}{P10}, \\leanwit{FrcCore}{p35060}{P10}, \\leanwit{FrcMathlib}{p35060}{P10}; rests on A8, B2, C16 \\lean{FRC.Hadrons.spin\\_split, FRC.Hadrons.lambda\\_n\\_gap, Hadrons.absolute\\_spectrum, Hadrons.thresholds\\_pdg}",
      "key": "p35060",
      "name": "absolute_octet_decuplet_spectrum"
     },
     {
-     "label": "P11",
-     "predicate": "The $\\Lambda$--$N$ gap is the strange constituent excess, $M_\\Lambda-M_N=m_s-m_l=176.8$ MeV, hyperfine- and scale-free \\eqref{eq:lamn}. Falsifier: a gap inconsistent with the strange seed and the $\\Xi,\\Sigma$ splittings.",
+     "label": "P12",
+     "predicate": "[chart] The radial ratio of the nucleon under the winding law (C24): $\\sqrt{7/3}=1.53$. Falsifier: the Breit--Wigner ratio and the pole ratio of $N(1440)$ both on one side of $1.53$ beyond their errors. Confrontation: $1.50$ to $1.57$ (Breit--Wigner) and $1.46$ (pole).",
      "tag": "T",
-     "source": "C16\\newline \\pywit{hadrons}{p35061}{P11}, \\leanwit{FrcCore}{p35061}{P11}, \\leanwit{FrcMathlib}{p35061}{P11}; rests on B2, B4 \\lean{FRC.Hadrons.lambda\\_n\\_gap, Hadrons.gap\\_pdg}",
-     "key": "p35061",
-     "name": "strange_constituent_gap"
+     "source": "Prop.~\\ref{prop:radialratio}\\newline \\pywit{hadrons}{p35070}{P12}, \\leanwit{FrcMathlib}{p35070}{P12}; rests on B7, C24, A8 \\lean{Hadrons.radial\\_ratio}",
+     "key": "p35070",
+     "name": "radial_ratio_nucleon"
     }
    ]
   },
   {
-   "letter": "V",
-   "title": "Machine verification",
+   "letter": "Y",
+   "title": "Hypothesis",
    "rows": [
     {
-     "label": "V1",
-     "predicate": "The ledger file \\texttt{frc/ledgers/p35\\_hadrons.py} of the \\texttt{finite-ring-space} framework decides the rows of blocks C, X and P and the reading of Z: thirty-four checks in seven blocks, each naming the rows it witnesses, the deciding check cited in each row's \\textsf{py} token; its notebook runs one predicate per cell.",
-     "tag": "D",
-     "source": "\\S\\ref{sec:repro}",
-     "key": "p35062",
+     "label": "Y1",
+     "predicate": "$\\sigma^{2}\\equiv2\\pmod{\\Om}$: the scale generates the octant sector of the Carrier, its elements of order dividing $8$, and the fourth power of the scale is $-1$ (C26). Not derived and not tested: C24 and C26 hold for every residue in the place of $\\sigma$. It waits on a residue of the tension.",
+     "tag": "O",
+     "source": "\\S\\ref{sec:scales}",
+     "key": "p35079",
+     "name": null
+    }
+   ]
+  },
+  {
+   "letter": "T",
+   "title": "Open tasks",
+   "rows": [
+    {
+     "label": "T2",
+     "predicate": "Derive the contact rule (B8): its form, its coefficient, its contact value and the ratio $\\sig/\\LQCD$ of its coupling.",
+     "tag": "O",
+     "source": "\\S\\ref{sec:completion}",
+     "key": "p35072",
      "name": null
     },
     {
-     "label": "V2",
-     "predicate": "Two kinds per check: \\textsf{EXACT}, an identity decided in $\\F_4$, the integers or the rationals with no tolerance (eighteen checks), and \\textsf{CHART}, a reading of the PDG masses or of the finite operators' decimals against a rational bound (sixteen checks, labelled [chart]); the Lean declarations of each row are its \\textsf{lean} tokens.",
-     "tag": "D",
-     "source": "\\S\\ref{sec:repro}",
-     "key": "p35063",
+     "label": "T3",
+     "predicate": "Derive the strange constituent ratio $m_s/m_l$, read here from the $\\Lambda$--$N$ gap (C16), from the quark masses of the flavour sector.",
+     "tag": "O",
+     "source": "\\S\\ref{sec:completion}",
+     "key": "p35073",
+     "name": null
+    },
+    {
+     "label": "T4",
+     "predicate": "Find the second order of the flavour breaking: the pairwise model gives it the opposite sign (C20).",
+     "tag": "O",
+     "source": "\\S\\ref{sec:secondorder}",
+     "key": "p35074",
      "name": null
     }
    ]
   },
   {
    "letter": "Z",
-   "title": "Residue: $\\Om$-hard",
+   "title": "The $\\Om$-hard horizon",
    "rows": [
     {
      "label": "Z1",
-     "predicate": "The sole $\\Om$-hard input is the imported confinement scale $\\sig\\sim\\LQCD$ (A3); the EM coupling $\\alpha$ (A9) is an imported constant; the paper introduces no $\\Om$-hard residue of its own.",
+     "predicate": "The one scale of the sector, $\\sig$, which fixes $\\LQCD$ up to a sub-horizon ratio, is $\\Om$-hard: no bounded observer computes its absolute value, its ratio to the Planck energy. The paper imports its numeral (A3). Every mass relation of the paper holds for every value of the scale.",
      "tag": "Ω",
-     "source": "A3, A9; \\S\\ref{sec:scales}",
+     "source": "Prop.~\\ref{prop:subhorizon}; A3",
      "key": "p35065",
      "name": null
     }
@@ -564,27 +626,32 @@
   {
    "tag": "I",
    "name": "Import",
-   "text": "A standard result or measured datum used here without reproof."
+   "text": "A standard result, a framework result, or a measured datum used here without reproof."
   },
   {
    "tag": "R",
    "name": "Realisation",
-   "text": "A forced identification of a physical term with the substrate object it denotes: constitutive, not interpretive; defended by its registered consequences; killed by the falsifier stated in its row."
+   "text": "A forced identification of a physical term with the substrate object it denotes: constitutive, not interpretive; killed by the falsifier stated in its row."
   },
   {
    "tag": "D",
    "name": "Definition",
-   "text": "A naming or set-up move, carrying no empirical content."
+   "text": "A naming, a declared rule, or a set-up move, carrying no empirical content of its own. A definition that names a physical term names the prediction rows that hold its falsifier. A [chart] definition is a declared continuum reading."
   },
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Derived within this paper from the rows above it; where witness tokens are carried, its content is decided by the ledger file and declared in the Lean libraries."
+   "text": "Proved at the statement the source column names, which also lists the rows it rests on, and machine-verified by the named check. A [chart] theorem is a computed reading."
+  },
+  {
+   "tag": "O",
+   "name": "Open",
+   "text": "A hypothesis not yet derived or tested (block Y), or a task not yet executed (block T)."
   },
   {
    "tag": "Ω",
    "name": "$\\Om$-hard",
-   "text": "Decided by the totality; not closeable by a bounded observer."
+   "text": "Decided by the totality; not closeable by a bounded observer; read from the chart."
   }
  ],
  "master": {
@@ -649,7 +716,7 @@
    {
     "name": "FRC.Hadrons.colour_group",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 70,
+    "line": 75,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -669,16 +736,16 @@
    {
     "name": "FRC.Hadrons.gmo",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 212,
+    "line": 242,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C2, 35:X4, 35:P1 — Gell-Mann–Okubo as a ring identity: `2N + 2Ξ − 3Λ − Σ = 0` for every `M₀, a, c`; the scale and the breaking parameters cancel."
+    "doc": "35:C2, 35:X4, 35:X13, 35:P1 — Gell-Mann–Okubo as a ring identity: `2N + 2Ξ − 3Λ − Σ = 0` for every `M₀, a, c`; the scale and the breaking parameters cancel."
    },
    {
     "name": "FRC.Hadrons.gmo",
     "module": "FrcMathlib/Hadrons",
-    "line": 25,
+    "line": 26,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -686,23 +753,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C2, 35:X4, 35:P1 — `HadronsML.gmo`."
+    "doc": "35:C2, 35:X4 — `HadronsML.gmo`."
    }
   ],
   "C3": [
    {
     "name": "FRC.Hadrons.spacing",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 231,
+    "line": 261,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C3, 35:X5, 35:P2 — decuplet equal spacing as a ring identity: the two second differences `Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` vanish for every `α, β`."
+    "doc": "35:C3, 35:X5, 35:X13, 35:P2 — decuplet equal spacing as a ring identity: the two second differences `Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` vanish for every `α, β`."
    },
    {
     "name": "FRC.Hadrons.spacing",
     "module": "FrcMathlib/Hadrons",
-    "line": 29,
+    "line": 30,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -710,14 +777,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C3, 35:X5, 35:P2 — `HadronsML.spacing`."
+    "doc": "35:C3, 35:X5 — `HadronsML.spacing`."
    }
   ],
   "C4": [
    {
     "name": "FRC.Hadrons.colour_factor",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 159,
+    "line": 179,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -726,7 +793,7 @@
    {
     "name": "FRC.Hadrons.colour_factor",
     "module": "FrcMathlib/Hadrons",
-    "line": 63,
+    "line": 64,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -741,7 +808,7 @@
    {
     "name": "FRC.Hadrons.spin_pattern",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 166,
+    "line": 186,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -750,7 +817,7 @@
    {
     "name": "FRC.Hadrons.spin_pattern",
     "module": "FrcMathlib/Hadrons",
-    "line": 68,
+    "line": 69,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -761,57 +828,29 @@
     "doc": "35:C5, 35:X6, 35:P3 — `HadronsML.spin_pattern`."
    }
   ],
-  "C6": [
-   {
-    "name": "FRC.Hadrons.adjoint_channel",
-    "module": "FrcCore/Theme/Hadrons",
-    "line": 140,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "35:C14, 35:C6, 35:C23 — the representation content behind the character sums, as Haar moments by the Weyl constant term: `E[χχ̄] = 1` (`𝟛 ⊗ 𝟛̄` has one singlet), `E[χ²] = 0` (`𝟛 ⊗ 𝟛` has none), `E[χ²χ̄²] − E[χχ̄] = 1` (the adjoint `𝟠 = χχ̄ − 1` sits in `𝟛 ⊗ 𝟛̄` once), `E[χ³χ̄] − E[χ²] = 0` (`𝟠` is absent from `𝟛 ⊗ 𝟛`). The single-plaquette coefficients `c₁ = β/(2N²) = β/18` and `c_adj = β²/(2N)² = β²/36` at `N = 3`."
-   },
-   {
-    "name": "FRC.Hadrons.character_coefficients",
-    "module": "FrcMathlib/Hadrons",
-    "line": 87,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "35:C14, 35:C6, 35:C23 — `HadronsML.character_coefficients`."
-   },
-   {
-    "name": "FRC.Hadrons.a_light",
-    "module": "FrcMathlib/Hadrons",
-    "line": 122,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "35:P3, 35:C6 — `HadronsML.a_light`."
-   }
-  ],
   "C7": [
    {
     "name": "FRC.Hadrons.coleman_glashow",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 279,
+    "line": 309,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C7, 35:X10, 35:P6 — Coleman–Glashow as a one-body identity: counting the `d − u` content, `n − p = δ`, `Ξ⁻ − Ξ⁰ = δ`, `Σ⁻ − Σ⁺ = 2δ`, so `(n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) = 0` for every one-body unit `δ`."
+    "doc": "35:C7, 35:X10, 35:X13, 35:P6 — Coleman–Glashow as a one-body identity: counting the `d − u` content, `n − p = δ`, `Ξ⁻ − Ξ⁰ = δ`, `Σ⁻ − Σ⁺ = 2δ`, so `(n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) = 0` for every one-body unit `δ`."
+   },
+   {
+    "name": "FRC.Hadrons.cg_charge_sums",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 212,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C7, 35:C13 — the charge sums of the six states of Coleman–Glashow with `9Q²` integral (`p = uud`, `n = udd`, `Ξ⁰ = uss`, `Ξ⁻ = dss`, `Σ⁺ = uus`, `Σ⁻ = dds`): the one-body sums `9 Σ Q²` are `9, 6, 6, 3, 9, 3` and the two-body sums `9 Σ_{i<j} Q_iQ_j` are `0, −3, −3, 3, 0, 3`; for each, `(n − p) + (Ξ⁻ − Ξ⁰) = Σ⁻ − Σ⁺`."
    },
    {
     "name": "FRC.Hadrons.coleman_glashow",
     "module": "FrcMathlib/Hadrons",
-    "line": 46,
+    "line": 47,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -819,23 +858,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C7, 35:X10, 35:P6 — `HadronsML.coleman_glashow`."
+    "doc": "35:C7, 35:X10 — `HadronsML.coleman_glashow`."
    }
   ],
   "C8": [
    {
     "name": "FRC.Hadrons.charge_structure",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 184,
+    "line": 204,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C8, 35:C13, 35:X8, 35:C21 — the charge structure with `9Q²` integral (`Q_u = 2/3`, `Q_d = −1/3`): one-body `9 Σ Q² = 4 + 4 + 1 = 9` for the proton (`1`) and `4 + 1 + 1 = 6` for the neutron (`2/3`); two-body `9 Σ_{i<j} Q_iQ_j = 4 − 2 − 2 = 0` for the proton and `−2 − 2 + 1 = −3` for the neutron (`−1/3`); both differences `p − n` positive (`+3`, `+3`, that is `+1/3` each): the electromagnetic term makes the proton heavier."
+    "doc": "35:C8, 35:C13, 35:C21, 35:X8 — the charge structure with `9Q²` integral (`Q_u = 2/3`, `Q_d = −1/3`): one-body `9 Σ Q² = 4 + 4 + 1 = 9` for the proton (`1`) and `4 + 1 + 1 = 6` for the neutron (`2/3`); two-body `9 Σ_{i<j} Q_iQ_j = 4 − 2 − 2 = 0` for the proton and `−2 − 2 + 1 = −3` for the neutron (`−1/3`); both differences `p − n` positive (`+3`, `+3`, that is `+1/3` each): the electromagnetic term makes the proton heavier."
    },
    {
     "name": "FRC.Hadrons.cg_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 128,
+    "line": 118,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -843,12 +882,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:P6, 35:C8, 35:X8, 35:C9, 35:X9 — `HadronsML.cg_pdg`."
+    "doc": "35:C8, 35:X8, 35:P6 — `HadronsML.cg_pdg`."
    },
    {
     "name": "FRC.Hadrons.charge_structure",
     "module": "FrcMathlib/Hadrons",
-    "line": 79,
+    "line": 80,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -856,14 +895,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C8, 35:C13, 35:X8, 35:C21 — `HadronsML.charge_structure`."
+    "doc": "35:C8, 35:C13, 35:X8 — `HadronsML.charge_structure`."
    }
   ],
   "C9": [
    {
     "name": "FRC.Hadrons.sigma_lambda",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 175,
+    "line": 195,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -872,7 +911,7 @@
    {
     "name": "FRC.Hadrons.sigma_lambda",
     "module": "FrcMathlib/Hadrons",
-    "line": 74,
+    "line": 75,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -885,9 +924,18 @@
   ],
   "C10": [
    {
+    "name": "FRC.Hadrons.hqs_identity",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 374,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C10, 35:X11, 35:P7 — the heavy-quark relation in the pairwise model: `M_{Λ_b} − M_{Λ_c} = m_b − m_c`, and the spin averages of the heavy mesons give the same difference, `(M_P + 3M_V)_B − (M_P + 3M_V)_D = 4(M_{Λ_b} − M_{Λ_c})`, for every value of the masses and of the hyperfine coefficients."
+   },
+   {
     "name": "FRC.Hadrons.hqs_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 135,
+    "line": 126,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -895,23 +943,32 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C10, 35:X11, 35:P7, 35:C22 — `HadronsML.hqs_pdg`."
+    "doc": "35:C10, 35:X11, 35:P7 — `HadronsML.hqs_pdg`."
    }
   ],
   "C11": [
    {
     "name": "FRC.Hadrons.third_difference",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 265,
+    "line": 295,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C11, 35:P8 — the decuplet third difference vanishes identically in the model: `Δ − 3Σ* + 3Ξ* − Ω = 0` for every `M₀, d, A, r`."
+    "doc": "35:C11 — the decuplet third difference vanishes identically in the model: `Δ − 3Σ* + 3Ξ* − Ω = 0` for every `M₀, d, A, r`."
+   },
+   {
+    "name": "FRC.Hadrons.second_order",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 354,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C11, 35:C20 — the second order of the pairwise model, with `A = 4a` and `r = m_l/m_s`: both decuplet second differences `Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` equal `a(1 − r)² = (A/4)(1 − r)²`, and `2N + 2Ξ − 3Λ − Σ = 2a(1 − r)²`, that is the octet residual `½(N + Ξ) − ¼(3Λ + Σ) = (A/8)(1 − r)²`; for every `M₀, d, A, r`."
    },
    {
     "name": "FRC.Hadrons.third_difference",
     "module": "FrcMathlib/Hadrons",
-    "line": 34,
+    "line": 35,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -919,14 +976,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C11, 35:P8 — `HadronsML.third_difference`."
+    "doc": "35:C11 — `HadronsML.third_difference`."
    }
   ],
   "C12": [
    {
     "name": "FRC.Hadrons.hyperfine_links",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 270,
+    "line": 300,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -935,7 +992,7 @@
    {
     "name": "FRC.Hadrons.hyperfine_links",
     "module": "FrcMathlib/Hadrons",
-    "line": 40,
+    "line": 41,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -948,7 +1005,7 @@
    {
     "name": "FRC.Hadrons.links_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 113,
+    "line": 103,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -963,16 +1020,25 @@
    {
     "name": "FRC.Hadrons.charge_structure",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 184,
+    "line": 204,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C8, 35:C13, 35:X8, 35:C21 — the charge structure with `9Q²` integral (`Q_u = 2/3`, `Q_d = −1/3`): one-body `9 Σ Q² = 4 + 4 + 1 = 9` for the proton (`1`) and `4 + 1 + 1 = 6` for the neutron (`2/3`); two-body `9 Σ_{i<j} Q_iQ_j = 4 − 2 − 2 = 0` for the proton and `−2 − 2 + 1 = −3` for the neutron (`−1/3`); both differences `p − n` positive (`+3`, `+3`, that is `+1/3` each): the electromagnetic term makes the proton heavier."
+    "doc": "35:C8, 35:C13, 35:C21, 35:X8 — the charge structure with `9Q²` integral (`Q_u = 2/3`, `Q_d = −1/3`): one-body `9 Σ Q² = 4 + 4 + 1 = 9` for the proton (`1`) and `4 + 1 + 1 = 6` for the neutron (`2/3`); two-body `9 Σ_{i<j} Q_iQ_j = 4 − 2 − 2 = 0` for the proton and `−2 − 2 + 1 = −3` for the neutron (`−1/3`); both differences `p − n` positive (`+3`, `+3`, that is `+1/3` each): the electromagnetic term makes the proton heavier."
+   },
+   {
+    "name": "FRC.Hadrons.cg_charge_sums",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 212,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C7, 35:C13 — the charge sums of the six states of Coleman–Glashow with `9Q²` integral (`p = uud`, `n = udd`, `Ξ⁰ = uss`, `Ξ⁻ = dss`, `Σ⁺ = uus`, `Σ⁻ = dds`): the one-body sums `9 Σ Q²` are `9, 6, 6, 3, 9, 3` and the two-body sums `9 Σ_{i<j} Q_iQ_j` are `0, −3, −3, 3, 0, 3`; for each, `(n − p) + (Ξ⁻ − Ξ⁰) = Σ⁻ − Σ⁺`."
    },
    {
     "name": "FRC.Hadrons.charge_structure",
     "module": "FrcMathlib/Hadrons",
-    "line": 79,
+    "line": 80,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -980,89 +1046,63 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C8, 35:C13, 35:X8, 35:C21 — `HadronsML.charge_structure`."
-   },
-   {
-    "name": "FRC.Hadrons.em_magnitude",
-    "module": "FrcMathlib/Hadrons",
-    "line": 195,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "35:C13, 35:C21 — `HadronsML.em_magnitude`."
+    "doc": "35:C8, 35:C13, 35:X8 — `HadronsML.charge_structure`."
    }
   ],
   "C14": [
    {
     "name": "FRC.Hadrons.adjoint_channel",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 140,
+    "line": 160,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C14, 35:C6, 35:C23 — the representation content behind the character sums, as Haar moments by the Weyl constant term: `E[χχ̄] = 1` (`𝟛 ⊗ 𝟛̄` has one singlet), `E[χ²] = 0` (`𝟛 ⊗ 𝟛` has none), `E[χ²χ̄²] − E[χχ̄] = 1` (the adjoint `𝟠 = χχ̄ − 1` sits in `𝟛 ⊗ 𝟛̄` once), `E[χ³χ̄] − E[χ²] = 0` (`𝟠` is absent from `𝟛 ⊗ 𝟛`). The single-plaquette coefficients `c₁ = β/(2N²) = β/18` and `c_adj = β²/(2N)² = β²/36` at `N = 3`."
-   },
-   {
-    "name": "FRC.Hadrons.character_coefficients",
-    "module": "FrcMathlib/Hadrons",
-    "line": 87,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "35:C14, 35:C6, 35:C23 — `HadronsML.character_coefficients`."
+    "doc": "35:C14 — the classical count of the adjoint channel, as moments of `SU(3)` by the Weyl constant term: `E[χχ̄] = 1` (`𝟛 ⊗ 𝟛̄` has one singlet), `E[χ²] = 0` (`𝟛 ⊗ 𝟛` has none), `E[χ²χ̄²] − E[χχ̄] = 1` (the adjoint `𝟠 = χχ̄ − 1` sits in `𝟛 ⊗ 𝟛̄` once), `E[χ³χ̄] − E[χ²] = 0` (`𝟠` is absent from `𝟛 ⊗ 𝟛`). The last two clauses are the integers `2·3² = 18` and `(2·3)² = 36`."
    }
   ],
   "C15": [
    {
     "name": "FRC.Hadrons.colourless_content",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 87,
+    "line": 92,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "35:C15, 35:X1, 35:X3, 35:X7, 35:P4 — the colourless content of `Λ•(𝟛)` is `(1, 0, 0, 1)`: the vacuum; no nonzero vector of `𝟛` fixed by the group (a single quark has residue `0`); none of `Λ²(𝟛) ≅ 𝟛̄` (the diquark); `Λ³(𝟛) = det`, fixed by every element (`det g = 1`), the one-dimensional invariant — the baryon at `k = N = 3`, residue `1`. The dimensions `1, 3, 3, 1` sum to `8 = 2³`."
+   },
+   {
+    "name": "FRC.Hadrons.no_invariant_line",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 109,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C15, 35:X1 — no line of the triplet `𝟛` and no line of `Λ²(𝟛) ≅ 𝟛̄` is mapped to itself by every element of `SU(3, 2)`: no nonzero vector `v` has `g v ∈ {v, w v, w² v}` for all `216` elements. A registration is a line that the frame maps to itself, so a single quark and a diquark have residue `0`."
    }
   ],
   "C16": [
    {
-    "name": "FRC.Hadrons.airy_sturm",
-    "module": "FrcCore/Theme/Hadrons",
-    "line": 355,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "35:C16 — the finite confinement operator `H^{(N)} = −u'' + x u` on `N = 200` sites of `[0, 16]`: Sturm's count of the integer tridiagonal `201³ T + 16³ K` at `μ = 201 · 256 · ε` places exactly one eigenvalue in `(2.33, 2.34)`, one in `(4.08, 4.09)`, one in `(5.51, 5.52)` and one in `(6.77, 6.79)`: the finite-stage spectrum sits at the decimals of the Airy zeros to the grid's accuracy (the readout `2.338, 4.088, 5.521, 6.787` is the chart's)."
-   },
-   {
     "name": "FRC.Hadrons.lambda_n_gap",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 304,
+    "line": 334,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C16, 35:P11, 35:P10 — the Λ–N gap is the strange constituent excess: `M_Λ − M_N = m_s − m_l` for every `l, s, u`, the hyperfine cancelling."
+    "doc": "35:C16, 35:P10 — the Λ–N gap is the strange constituent excess: `M_Λ − M_N = m_s − m_l` for every `l, s, u`, the hyperfine cancelling."
    },
    {
     "name": "FRC.Hadrons.spin_split",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 315,
+    "line": 345,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C17, 35:C19, 35:C16, 35:P10 — the exact spin split inverts: `M_N + M_Δ = 6λ_l` and `M_Δ − M_N = 6f = (3/2)λ_hf`, so `λ_l = (M_N + M_Δ)/6` and `λ_hf = (2/3)(M_Δ − M_N)`."
+    "doc": "35:C16, 35:C19, 35:P10 — the exact spin split inverts: `M_N + M_Δ = 6λ_l` and `M_Δ − M_N = 6f = (3/2)λ_hf`, so `λ_l = (M_N + M_Δ)/6` and `λ_hf = (2/3)(M_Δ − M_N)`."
    },
    {
     "name": "FRC.Hadrons.lambda_n_gap",
     "module": "FrcMathlib/Hadrons",
-    "line": 54,
+    "line": 55,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1070,12 +1110,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C16, 35:P11, 35:P10 — `HadronsML.lambda_n_gap`."
+    "doc": "35:C16 — `HadronsML.lambda_n_gap`."
    },
    {
     "name": "FRC.Hadrons.single_scale",
     "module": "FrcMathlib/Hadrons",
-    "line": 168,
+    "line": 190,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1083,10 +1123,34 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C16, 35:C23, 35:X13 — `HadronsML.single_scale`."
+    "doc": "35:C16, 35:X13 — `HadronsML.single_scale`."
+   }
+  ],
+  "C17": [
+   {
+    "name": "FRC.Hadrons.airy_sturm",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 413,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C17 — the nonrelativistic matrix `H^{(N)} = −u'' + x u` on `N = 200` sites of `[0, 16]`: Sturm's count of the integer tridiagonal `201³ T + 16³ K` at `μ = 201 · 256 · ε` places exactly one eigenvalue in `(2.33, 2.34)`, one in `(4.08, 4.09)`, one in `(5.51, 5.52)` and one in `(6.77, 6.79)`: the spectrum sits at the decimals of the Airy zeros to the grid's accuracy (the readout `2.338, 4.088, 5.521, 6.787` is the chart's)."
    },
    {
     "name": "FRC.Hadrons.airy_ratio",
+    "module": "FrcMathlib/Hadrons",
+    "line": 251,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "35:C17 — `HadronsML.airy_ratio`."
+   },
+   {
+    "name": "FRC.Hadrons.hamiltonian_levels",
     "module": "FrcMathlib/Hadrons",
     "line": 208,
     "axioms": [
@@ -1096,51 +1160,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C16 — `HadronsML.airy_ratio`."
-   }
-  ],
-  "C17": [
-   {
-    "name": "FRC.Hadrons.spin_split",
-    "module": "FrcCore/Theme/Hadrons",
-    "line": 315,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "35:C17, 35:C19, 35:C16, 35:P10 — the exact spin split inverts: `M_N + M_Δ = 6λ_l` and `M_Δ − M_N = 6f = (3/2)λ_hf`, so `λ_l = (M_N + M_Δ)/6` and `λ_hf = (2/3)(M_Δ − M_N)`."
-   },
-   {
-    "name": "FRC.Hadrons.baryon_scale",
-    "module": "FrcMathlib/Hadrons",
-    "line": 175,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "35:C17 — `HadronsML.baryon_scale`."
-   },
-   {
-    "name": "FRC.Hadrons.spin_split",
-    "module": "FrcMathlib/Hadrons",
-    "line": 58,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "35:C17, 35:C19, 35:P10 — `HadronsML.spin_split`."
+    "doc": "35:C17 — `HadronsML.hamiltonian_levels`."
    }
   ],
   "C18": [
    {
     "name": "FRC.Hadrons.meson_invariant",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 95,
+    "line": 115,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1149,16 +1176,16 @@
    {
     "name": "FRC.Hadrons.vector_spacing",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 293,
+    "line": 323,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C18, 35:X12, 35:P9 — the vector-nonet equal spacing as a ring identity: `2K* − ρ − φ = 0` for every `a, b`."
+    "doc": "35:C18, 35:X12, 35:X13, 35:P9 — the vector-nonet equal spacing as a ring identity: `2K* − ρ − φ = 0` for every `a, b`."
    },
    {
     "name": "FRC.Hadrons.vector_spacing",
     "module": "FrcMathlib/Hadrons",
-    "line": 50,
+    "line": 51,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1166,23 +1193,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C18, 35:X12, 35:P9 — `HadronsML.vector_spacing`."
+    "doc": "35:C18, 35:X12 — `HadronsML.vector_spacing`."
    }
   ],
   "C19": [
    {
     "name": "FRC.Hadrons.spin_split",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 315,
+    "line": 345,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C17, 35:C19, 35:C16, 35:P10 — the exact spin split inverts: `M_N + M_Δ = 6λ_l` and `M_Δ − M_N = 6f = (3/2)λ_hf`, so `λ_l = (M_N + M_Δ)/6` and `λ_hf = (2/3)(M_Δ − M_N)`."
+    "doc": "35:C16, 35:C19, 35:P10 — the exact spin split inverts: `M_N + M_Δ = 6λ_l` and `M_Δ − M_N = 6f = (3/2)λ_hf`, so `λ_l = (M_N + M_Δ)/6` and `λ_hf = (2/3)(M_Δ − M_N)`."
    },
    {
-    "name": "FRC.Hadrons.forward_landing",
+    "name": "FRC.Hadrons.joint_solution",
     "module": "FrcMathlib/Hadrons",
-    "line": 188,
+    "line": 221,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1190,12 +1217,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C19 — `HadronsML.forward_landing`."
+    "doc": "35:C19 — `HadronsML.joint_solution`."
    },
    {
     "name": "FRC.Hadrons.alpha_s_bounds",
     "module": "FrcMathlib/Hadrons",
-    "line": 183,
+    "line": 216,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1208,18 +1235,18 @@
   ],
   "C20": [
    {
-    "name": "FRC.Hadrons.admissible_shells",
+    "name": "FRC.Hadrons.second_order",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 326,
+    "line": 354,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C20, 35:C23, 35:X13, 35:Z1 — the colour rank is shell-independent: on every admissible shell `Ω ≡ 5 (mod 12)`, `3 ∣ Ω + 1` (`12k + 6 = 3(4k + 2)`); the four laboratory shells `53, 173, 389, 1373` are admissible."
+    "doc": "35:C11, 35:C20 — the second order of the pairwise model, with `A = 4a` and `r = m_l/m_s`: both decuplet second differences `Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` equal `a(1 − r)² = (A/4)(1 − r)²`, and `2N + 2Ξ − 3Λ − Σ = 2a(1 − r)²`, that is the octet residual `½(N + Ξ) − ¼(3Λ + Σ) = (A/8)(1 − r)²`; for every `M₀, d, A, r`."
    },
    {
-    "name": "FRC.Hadrons.residual_orders",
+    "name": "FRC.Hadrons.second_order_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 200,
+    "line": 173,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1227,23 +1254,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C20 — `HadronsML.residual_orders`."
+    "doc": "35:C20 — `HadronsML.second_order_pdg`."
    }
   ],
   "C21": [
    {
     "name": "FRC.Hadrons.charge_structure",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 184,
+    "line": 204,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C8, 35:C13, 35:X8, 35:C21 — the charge structure with `9Q²` integral (`Q_u = 2/3`, `Q_d = −1/3`): one-body `9 Σ Q² = 4 + 4 + 1 = 9` for the proton (`1`) and `4 + 1 + 1 = 6` for the neutron (`2/3`); two-body `9 Σ_{i<j} Q_iQ_j = 4 − 2 − 2 = 0` for the proton and `−2 − 2 + 1 = −3` for the neutron (`−1/3`); both differences `p − n` positive (`+3`, `+3`, that is `+1/3` each): the electromagnetic term makes the proton heavier."
+    "doc": "35:C8, 35:C13, 35:C21, 35:X8 — the charge structure with `9Q²` integral (`Q_u = 2/3`, `Q_d = −1/3`): one-body `9 Σ Q² = 4 + 4 + 1 = 9` for the proton (`1`) and `4 + 1 + 1 = 6` for the neutron (`2/3`); two-body `9 Σ_{i<j} Q_iQ_j = 4 − 2 − 2 = 0` for the proton and `−2 − 2 + 1 = −3` for the neutron (`−1/3`); both differences `p − n` positive (`+3`, `+3`, that is `+1/3` each): the electromagnetic term makes the proton heavier."
    },
    {
     "name": "FRC.Hadrons.em_magnitude",
     "module": "FrcMathlib/Hadrons",
-    "line": 195,
+    "line": 246,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1251,60 +1278,47 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C13, 35:C21 — `HadronsML.em_magnitude`."
-   },
-   {
-    "name": "FRC.Hadrons.charge_structure",
-    "module": "FrcMathlib/Hadrons",
-    "line": 79,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "35:C8, 35:C13, 35:X8, 35:C21 — `HadronsML.charge_structure`."
+    "doc": "35:C21 — `HadronsML.em_magnitude`."
    }
   ],
-  "C22": [
+  "C24": [
    {
-    "name": "FRC.Hadrons.hqs_pdg",
-    "module": "FrcMathlib/Hadrons",
-    "line": 135,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "35:C10, 35:X11, 35:P7, 35:C22 — `HadronsML.hqs_pdg`."
-   }
-  ],
-  "C23": [
-   {
-    "name": "FRC.Hadrons.admissible_shells",
+    "name": "FRC.Hadrons.winding_register",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 326,
+    "line": 465,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C20, 35:C23, 35:X13, 35:Z1 — the colour rank is shell-independent: on every admissible shell `Ω ≡ 5 (mod 12)`, `3 ∣ Ω + 1` (`12k + 6 = 3(4k + 2)`); the four laboratory shells `53, 173, 389, 1373` are admissible."
+    "doc": "35:C24 — the winding law in the Carrier register, on the Carriers `233`, `30089` and `2408561`: `4c⁴ ≡ 1` and `h = −ħ` is the partner of `ħ` in the root pair of `−1`, so `4M²c⁴ ≡ N hcσ` reads `M² ≡ N hcσ`. On the Subjects `13`, `173` and `1549` the squares of the ratios are the residues `(4k + 3)κ`, with `4κ = p − 1` for each radial step."
    },
    {
-    "name": "FRC.Hadrons.adjoint_channel",
+    "name": "FRC.Hadrons.baryon_scale",
+    "module": "FrcMathlib/Hadrons",
+    "line": 197,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "35:C24 — `HadronsML.baryon_scale`."
+   }
+  ],
+  "C25": [
+   {
+    "name": "FRC.Hadrons.no_real_class",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 140,
+    "line": 517,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C14, 35:C6, 35:C23 — the representation content behind the character sums, as Haar moments by the Weyl constant term: `E[χχ̄] = 1` (`𝟛 ⊗ 𝟛̄` has one singlet), `E[χ²] = 0` (`𝟛 ⊗ 𝟛` has none), `E[χ²χ̄²] − E[χχ̄] = 1` (the adjoint `𝟠 = χχ̄ − 1` sits in `𝟛 ⊗ 𝟛̄` once), `E[χ³χ̄] − E[χ²] = 0` (`𝟠` is absent from `𝟛 ⊗ 𝟛`). The single-plaquette coefficients `c₁ = β/(2N²) = β/18` and `c_adj = β²/(2N)² = β²/36` at `N = 3`."
+    "doc": "35:C25 — on the Subjects `13`, `173` and `1549` with the drive `2`: the drive has the order `p − 1`, and no odd power of it below `p − 1` is `1` or `−1`, so no odd class of the drive is real; over `𝔽_q`, `q = 53, 347, 6197` the least prime `≡ 1 (mod p)` and `ζ = 16, 4, 16` of order `p`, the commutator of the register's Hamiltonian with the drive on the odd function `δ₁ − δ₋₁` reads `34`, `174`, `4364` at the residue `2`: it is not zero."
    },
    {
-    "name": "FRC.Hadrons.character_coefficients",
+    "name": "FRC.Hadrons.register_levels",
     "module": "FrcMathlib/Hadrons",
-    "line": 87,
+    "line": 239,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1312,38 +1326,56 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C14, 35:C6, 35:C23 — `HadronsML.character_coefficients`."
-   },
+    "doc": "35:C25 — `HadronsML.register_levels`."
+   }
+  ],
+  "C26": [
    {
-    "name": "FRC.Hadrons.single_scale",
-    "module": "FrcMathlib/Hadrons",
-    "line": 168,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
+    "name": "FRC.Hadrons.scale_register",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 439,
+    "axioms": [],
+    "tier": 0,
     "ok": true,
-    "doc": "35:C16, 35:C23, 35:X13 — `HadronsML.single_scale`."
+    "doc": "35:C26 — the scale in the Carrier register, on the Carriers `233`, `30089` and `2408561`: for both roots `ħ` of `−1` and both roots `c` of `2⁻¹`, `(ħc)² ≡ −2⁻¹ ≡ 2S`, so the fourth power of the scale `√(ħcσ)` is `2S σ²`."
+   }
+  ],
+  "C27": [
+   {
+    "name": "FRC.Hadrons.winding_no_root",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 483,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C27 — no choice of the roots enters the winding law, on the Carriers `233`, `30089` and `2408561`: with `2G + 1 ≡ 0` the Planck mass squared `ħc/G` is `2hc` for both roots `ħ` of `−1` and both roots `c` of `2⁻¹`, so `M² ≡ N hcσ` reads `(M/m_P)² ≡ N σ/2` and `(Mc²)² ≡ N S · ħcσ`."
    }
   ],
   "X1": [
    {
     "name": "FRC.Hadrons.colourless_content",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 87,
+    "line": 92,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "35:C15, 35:X1, 35:X3, 35:X7, 35:P4 — the colourless content of `Λ•(𝟛)` is `(1, 0, 0, 1)`: the vacuum; no nonzero vector of `𝟛` fixed by the group (a single quark has residue `0`); none of `Λ²(𝟛) ≅ 𝟛̄` (the diquark); `Λ³(𝟛) = det`, fixed by every element (`det g = 1`), the one-dimensional invariant — the baryon at `k = N = 3`, residue `1`. The dimensions `1, 3, 3, 1` sum to `8 = 2³`."
+   },
+   {
+    "name": "FRC.Hadrons.no_invariant_line",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 109,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C15, 35:X1 — no line of the triplet `𝟛` and no line of `Λ²(𝟛) ≅ 𝟛̄` is mapped to itself by every element of `SU(3, 2)`: no nonzero vector `v` has `g v ∈ {v, w v, w² v}` for all `216` elements. A registration is a line that the frame maps to itself, so a single quark and a diquark have residue `0`."
    }
   ],
   "X2": [
    {
     "name": "FRC.Hadrons.colour_group",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 70,
+    "line": 75,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1363,7 +1395,7 @@
    {
     "name": "FRC.Hadrons.colourless_content",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 87,
+    "line": 92,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1374,16 +1406,16 @@
    {
     "name": "FRC.Hadrons.gmo",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 212,
+    "line": 242,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C2, 35:X4, 35:P1 — Gell-Mann–Okubo as a ring identity: `2N + 2Ξ − 3Λ − Σ = 0` for every `M₀, a, c`; the scale and the breaking parameters cancel."
+    "doc": "35:C2, 35:X4, 35:X13, 35:P1 — Gell-Mann–Okubo as a ring identity: `2N + 2Ξ − 3Λ − Σ = 0` for every `M₀, a, c`; the scale and the breaking parameters cancel."
    },
    {
     "name": "FRC.Hadrons.gmo",
     "module": "FrcMathlib/Hadrons",
-    "line": 25,
+    "line": 26,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1391,23 +1423,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C2, 35:X4, 35:P1 — `HadronsML.gmo`."
+    "doc": "35:C2, 35:X4 — `HadronsML.gmo`."
    }
   ],
   "X5": [
    {
     "name": "FRC.Hadrons.spacing",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 231,
+    "line": 261,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C3, 35:X5, 35:P2 — decuplet equal spacing as a ring identity: the two second differences `Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` vanish for every `α, β`."
+    "doc": "35:C3, 35:X5, 35:X13, 35:P2 — decuplet equal spacing as a ring identity: the two second differences `Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` vanish for every `α, β`."
    },
    {
     "name": "FRC.Hadrons.spacing",
     "module": "FrcMathlib/Hadrons",
-    "line": 29,
+    "line": 30,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1415,14 +1447,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C3, 35:X5, 35:P2 — `HadronsML.spacing`."
+    "doc": "35:C3, 35:X5 — `HadronsML.spacing`."
    }
   ],
   "X6": [
    {
     "name": "FRC.Hadrons.spin_pattern",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 166,
+    "line": 186,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1431,7 +1463,7 @@
    {
     "name": "FRC.Hadrons.colour_factor",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 159,
+    "line": 179,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1440,7 +1472,7 @@
    {
     "name": "FRC.Hadrons.spin_pattern",
     "module": "FrcMathlib/Hadrons",
-    "line": 68,
+    "line": 69,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1453,7 +1485,7 @@
    {
     "name": "FRC.Hadrons.colour_factor",
     "module": "FrcMathlib/Hadrons",
-    "line": 63,
+    "line": 64,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1468,7 +1500,7 @@
    {
     "name": "FRC.Hadrons.colourless_content",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 87,
+    "line": 92,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1479,16 +1511,16 @@
    {
     "name": "FRC.Hadrons.charge_structure",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 184,
+    "line": 204,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C8, 35:C13, 35:X8, 35:C21 — the charge structure with `9Q²` integral (`Q_u = 2/3`, `Q_d = −1/3`): one-body `9 Σ Q² = 4 + 4 + 1 = 9` for the proton (`1`) and `4 + 1 + 1 = 6` for the neutron (`2/3`); two-body `9 Σ_{i<j} Q_iQ_j = 4 − 2 − 2 = 0` for the proton and `−2 − 2 + 1 = −3` for the neutron (`−1/3`); both differences `p − n` positive (`+3`, `+3`, that is `+1/3` each): the electromagnetic term makes the proton heavier."
+    "doc": "35:C8, 35:C13, 35:C21, 35:X8 — the charge structure with `9Q²` integral (`Q_u = 2/3`, `Q_d = −1/3`): one-body `9 Σ Q² = 4 + 4 + 1 = 9` for the proton (`1`) and `4 + 1 + 1 = 6` for the neutron (`2/3`); two-body `9 Σ_{i<j} Q_iQ_j = 4 − 2 − 2 = 0` for the proton and `−2 − 2 + 1 = −3` for the neutron (`−1/3`); both differences `p − n` positive (`+3`, `+3`, that is `+1/3` each): the electromagnetic term makes the proton heavier."
    },
    {
     "name": "FRC.Hadrons.cg_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 128,
+    "line": 118,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1496,12 +1528,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:P6, 35:C8, 35:X8, 35:C9, 35:X9 — `HadronsML.cg_pdg`."
+    "doc": "35:C8, 35:X8, 35:P6 — `HadronsML.cg_pdg`."
    },
    {
     "name": "FRC.Hadrons.charge_structure",
     "module": "FrcMathlib/Hadrons",
-    "line": 79,
+    "line": 80,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1509,14 +1541,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C8, 35:C13, 35:X8, 35:C21 — `HadronsML.charge_structure`."
+    "doc": "35:C8, 35:C13, 35:X8 — `HadronsML.charge_structure`."
    }
   ],
   "X9": [
    {
     "name": "FRC.Hadrons.sigma_lambda",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 175,
+    "line": 195,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1525,7 +1557,7 @@
    {
     "name": "FRC.Hadrons.sigma_lambda",
     "module": "FrcMathlib/Hadrons",
-    "line": 74,
+    "line": 75,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1540,16 +1572,16 @@
    {
     "name": "FRC.Hadrons.coleman_glashow",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 279,
+    "line": 309,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C7, 35:X10, 35:P6 — Coleman–Glashow as a one-body identity: counting the `d − u` content, `n − p = δ`, `Ξ⁻ − Ξ⁰ = δ`, `Σ⁻ − Σ⁺ = 2δ`, so `(n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) = 0` for every one-body unit `δ`."
+    "doc": "35:C7, 35:X10, 35:X13, 35:P6 — Coleman–Glashow as a one-body identity: counting the `d − u` content, `n − p = δ`, `Ξ⁻ − Ξ⁰ = δ`, `Σ⁻ − Σ⁺ = 2δ`, so `(n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) = 0` for every one-body unit `δ`."
    },
    {
     "name": "FRC.Hadrons.coleman_glashow",
     "module": "FrcMathlib/Hadrons",
-    "line": 46,
+    "line": 47,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1557,14 +1589,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C7, 35:X10, 35:P6 — `HadronsML.coleman_glashow`."
+    "doc": "35:C7, 35:X10 — `HadronsML.coleman_glashow`."
    }
   ],
   "X11": [
    {
+    "name": "FRC.Hadrons.hqs_identity",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 374,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C10, 35:X11, 35:P7 — the heavy-quark relation in the pairwise model: `M_{Λ_b} − M_{Λ_c} = m_b − m_c`, and the spin averages of the heavy mesons give the same difference, `(M_P + 3M_V)_B − (M_P + 3M_V)_D = 4(M_{Λ_b} − M_{Λ_c})`, for every value of the masses and of the hyperfine coefficients."
+   },
+   {
     "name": "FRC.Hadrons.hqs_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 135,
+    "line": 126,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1572,23 +1613,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C10, 35:X11, 35:P7, 35:C22 — `HadronsML.hqs_pdg`."
+    "doc": "35:C10, 35:X11, 35:P7 — `HadronsML.hqs_pdg`."
    }
   ],
   "X12": [
    {
     "name": "FRC.Hadrons.vector_spacing",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 293,
+    "line": 323,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C18, 35:X12, 35:P9 — the vector-nonet equal spacing as a ring identity: `2K* − ρ − φ = 0` for every `a, b`."
+    "doc": "35:C18, 35:X12, 35:X13, 35:P9 — the vector-nonet equal spacing as a ring identity: `2K* − ρ − φ = 0` for every `a, b`."
    },
    {
     "name": "FRC.Hadrons.meson_invariant",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 95,
+    "line": 115,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1597,7 +1638,7 @@
    {
     "name": "FRC.Hadrons.vector_spacing",
     "module": "FrcMathlib/Hadrons",
-    "line": 50,
+    "line": 51,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1605,23 +1646,50 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C18, 35:X12, 35:P9 — `HadronsML.vector_spacing`."
+    "doc": "35:C18, 35:X12 — `HadronsML.vector_spacing`."
    }
   ],
   "X13": [
    {
-    "name": "FRC.Hadrons.admissible_shells",
+    "name": "FRC.Hadrons.gmo",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 326,
+    "line": 242,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C20, 35:C23, 35:X13, 35:Z1 — the colour rank is shell-independent: on every admissible shell `Ω ≡ 5 (mod 12)`, `3 ∣ Ω + 1` (`12k + 6 = 3(4k + 2)`); the four laboratory shells `53, 173, 389, 1373` are admissible."
+    "doc": "35:C2, 35:X4, 35:X13, 35:P1 — Gell-Mann–Okubo as a ring identity: `2N + 2Ξ − 3Λ − Σ = 0` for every `M₀, a, c`; the scale and the breaking parameters cancel."
+   },
+   {
+    "name": "FRC.Hadrons.spacing",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 261,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C3, 35:X5, 35:X13, 35:P2 — decuplet equal spacing as a ring identity: the two second differences `Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` vanish for every `α, β`."
+   },
+   {
+    "name": "FRC.Hadrons.coleman_glashow",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 309,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C7, 35:X10, 35:X13, 35:P6 — Coleman–Glashow as a one-body identity: counting the `d − u` content, `n − p = δ`, `Ξ⁻ − Ξ⁰ = δ`, `Σ⁻ − Σ⁺ = 2δ`, so `(n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) = 0` for every one-body unit `δ`."
+   },
+   {
+    "name": "FRC.Hadrons.vector_spacing",
+    "module": "FrcCore/Theme/Hadrons",
+    "line": 323,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "35:C18, 35:X12, 35:X13, 35:P9 — the vector-nonet equal spacing as a ring identity: `2K* − ρ − φ = 0` for every `a, b`."
    },
    {
     "name": "FRC.Hadrons.single_scale",
     "module": "FrcMathlib/Hadrons",
-    "line": 168,
+    "line": 190,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1629,23 +1697,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:C16, 35:C23, 35:X13 — `HadronsML.single_scale`."
+    "doc": "35:C16, 35:X13 — `HadronsML.single_scale`."
    }
   ],
   "P1": [
    {
     "name": "FRC.Hadrons.gmo",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 212,
+    "line": 242,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C2, 35:X4, 35:P1 — Gell-Mann–Okubo as a ring identity: `2N + 2Ξ − 3Λ − Σ = 0` for every `M₀, a, c`; the scale and the breaking parameters cancel."
+    "doc": "35:C2, 35:X4, 35:X13, 35:P1 — Gell-Mann–Okubo as a ring identity: `2N + 2Ξ − 3Λ − Σ = 0` for every `M₀, a, c`; the scale and the breaking parameters cancel."
    },
    {
     "name": "FRC.Hadrons.gmo_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 91,
+    "line": 88,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1654,22 +1722,35 @@
     "tier": 2,
     "ok": true,
     "doc": "35:P1 — `HadronsML.gmo_pdg`."
+   },
+   {
+    "name": "FRC.Hadrons.thresholds_pdg",
+    "module": "FrcMathlib/Hadrons",
+    "line": 158,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "35:P1, 35:P2, 35:P9, 35:P10 — `HadronsML.thresholds_pdg`."
    }
   ],
   "P2": [
    {
     "name": "FRC.Hadrons.spacing",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 231,
+    "line": 261,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C3, 35:X5, 35:P2 — decuplet equal spacing as a ring identity: the two second differences `Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` vanish for every `α, β`."
+    "doc": "35:C3, 35:X5, 35:X13, 35:P2 — decuplet equal spacing as a ring identity: the two second differences `Δ − 2Σ* + Ξ*` and `Σ* − 2Ξ* + Ω` vanish for every `α, β`."
    },
    {
     "name": "FRC.Hadrons.spacing_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 98,
+    "line": 95,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1678,13 +1759,26 @@
     "tier": 2,
     "ok": true,
     "doc": "35:P2 — `HadronsML.spacing_pdg`."
+   },
+   {
+    "name": "FRC.Hadrons.thresholds_pdg",
+    "module": "FrcMathlib/Hadrons",
+    "line": 158,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "35:P1, 35:P2, 35:P9, 35:P10 — `HadronsML.thresholds_pdg`."
    }
   ],
   "P3": [
    {
     "name": "FRC.Hadrons.spin_pattern",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 166,
+    "line": 186,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1693,7 +1787,7 @@
    {
     "name": "FRC.Hadrons.a_light",
     "module": "FrcMathlib/Hadrons",
-    "line": 122,
+    "line": 112,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1701,12 +1795,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:P3, 35:C6 — `HadronsML.a_light`."
+    "doc": "35:P3 — `HadronsML.a_light`."
    },
    {
     "name": "FRC.Hadrons.spin_pattern",
     "module": "FrcMathlib/Hadrons",
-    "line": 68,
+    "line": 69,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1721,7 +1815,7 @@
    {
     "name": "FRC.Hadrons.colourless_content",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 87,
+    "line": 92,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1732,7 +1826,7 @@
    {
     "name": "FRC.Hadrons.flavour_cube",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 149,
+    "line": 169,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1743,16 +1837,16 @@
    {
     "name": "FRC.Hadrons.coleman_glashow",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 279,
+    "line": 309,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C7, 35:X10, 35:P6 — Coleman–Glashow as a one-body identity: counting the `d − u` content, `n − p = δ`, `Ξ⁻ − Ξ⁰ = δ`, `Σ⁻ − Σ⁺ = 2δ`, so `(n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) = 0` for every one-body unit `δ`."
+    "doc": "35:C7, 35:X10, 35:X13, 35:P6 — Coleman–Glashow as a one-body identity: counting the `d − u` content, `n − p = δ`, `Ξ⁻ − Ξ⁰ = δ`, `Σ⁻ − Σ⁺ = 2δ`, so `(n − p) + (Ξ⁻ − Ξ⁰) − (Σ⁻ − Σ⁺) = 0` for every one-body unit `δ`."
    },
    {
     "name": "FRC.Hadrons.cg_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 128,
+    "line": 118,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1760,38 +1854,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:P6, 35:C8, 35:X8, 35:C9, 35:X9 — `HadronsML.cg_pdg`."
+    "doc": "35:C8, 35:X8, 35:P6 — `HadronsML.cg_pdg`."
    }
   ],
   "P7": [
    {
-    "name": "FRC.Hadrons.hqs_pdg",
-    "module": "FrcMathlib/Hadrons",
-    "line": 135,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "35:C10, 35:X11, 35:P7, 35:C22 — `HadronsML.hqs_pdg`."
-   }
-  ],
-  "P8": [
-   {
-    "name": "FRC.Hadrons.third_difference",
+    "name": "FRC.Hadrons.hqs_identity",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 265,
+    "line": 374,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C11, 35:P8 — the decuplet third difference vanishes identically in the model: `Δ − 3Σ* + 3Ξ* − Ω = 0` for every `M₀, d, A, r`."
+    "doc": "35:C10, 35:X11, 35:P7 — the heavy-quark relation in the pairwise model: `M_{Λ_b} − M_{Λ_c} = m_b − m_c`, and the spin averages of the heavy mesons give the same difference, `(M_P + 3M_V)_B − (M_P + 3M_V)_D = 4(M_{Λ_b} − M_{Λ_c})`, for every value of the masses and of the hyperfine coefficients."
    },
    {
-    "name": "FRC.Hadrons.third_pdg",
+    "name": "FRC.Hadrons.hqs_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 106,
+    "line": 126,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1799,23 +1878,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:P8 — `HadronsML.third_pdg`."
+    "doc": "35:C10, 35:X11, 35:P7 — `HadronsML.hqs_pdg`."
    }
   ],
   "P9": [
    {
     "name": "FRC.Hadrons.vector_spacing",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 293,
+    "line": 323,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C18, 35:X12, 35:P9 — the vector-nonet equal spacing as a ring identity: `2K* − ρ − φ = 0` for every `a, b`."
+    "doc": "35:C18, 35:X12, 35:X13, 35:P9 — the vector-nonet equal spacing as a ring identity: `2K* − ρ − φ = 0` for every `a, b`."
    },
    {
     "name": "FRC.Hadrons.vector_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 143,
+    "line": 138,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1823,32 +1902,45 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:P9, 35:C18, 35:X12 — `HadronsML.vector_pdg`."
+    "doc": "35:P9 — `HadronsML.vector_pdg`."
+   },
+   {
+    "name": "FRC.Hadrons.thresholds_pdg",
+    "module": "FrcMathlib/Hadrons",
+    "line": 158,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "35:P1, 35:P2, 35:P9, 35:P10 — `HadronsML.thresholds_pdg`."
    }
   ],
   "P10": [
    {
     "name": "FRC.Hadrons.spin_split",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 315,
+    "line": 345,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C17, 35:C19, 35:C16, 35:P10 — the exact spin split inverts: `M_N + M_Δ = 6λ_l` and `M_Δ − M_N = 6f = (3/2)λ_hf`, so `λ_l = (M_N + M_Δ)/6` and `λ_hf = (2/3)(M_Δ − M_N)`."
+    "doc": "35:C16, 35:C19, 35:P10 — the exact spin split inverts: `M_N + M_Δ = 6λ_l` and `M_Δ − M_N = 6f = (3/2)λ_hf`, so `λ_l = (M_N + M_Δ)/6` and `λ_hf = (2/3)(M_Δ − M_N)`."
    },
    {
     "name": "FRC.Hadrons.lambda_n_gap",
     "module": "FrcCore/Theme/Hadrons",
-    "line": 304,
+    "line": 334,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "35:C16, 35:P11, 35:P10 — the Λ–N gap is the strange constituent excess: `M_Λ − M_N = m_s − m_l` for every `l, s, u`, the hyperfine cancelling."
+    "doc": "35:C16, 35:P10 — the Λ–N gap is the strange constituent excess: `M_Λ − M_N = m_s − m_l` for every `l, s, u`, the hyperfine cancelling."
    },
    {
     "name": "FRC.Hadrons.absolute_spectrum",
     "module": "FrcMathlib/Hadrons",
-    "line": 151,
+    "line": 146,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1857,22 +1949,11 @@
     "tier": 2,
     "ok": true,
     "doc": "35:P10 — `HadronsML.absolute_spectrum`."
-   }
-  ],
-  "P11": [
-   {
-    "name": "FRC.Hadrons.lambda_n_gap",
-    "module": "FrcCore/Theme/Hadrons",
-    "line": 304,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "35:C16, 35:P11, 35:P10 — the Λ–N gap is the strange constituent excess: `M_Λ − M_N = m_s − m_l` for every `l, s, u`, the hyperfine cancelling."
    },
    {
-    "name": "FRC.Hadrons.gap_pdg",
+    "name": "FRC.Hadrons.thresholds_pdg",
     "module": "FrcMathlib/Hadrons",
-    "line": 163,
+    "line": 158,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1880,7 +1961,22 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "35:P11, 35:C16 — `HadronsML.gap_pdg`."
+    "doc": "35:P1, 35:P2, 35:P9, 35:P10 — `HadronsML.thresholds_pdg`."
+   }
+  ],
+  "P12": [
+   {
+    "name": "FRC.Hadrons.radial_ratio",
+    "module": "FrcMathlib/Hadrons",
+    "line": 232,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "35:P12 — `HadronsML.radial_ratio`."
    }
   ]
  }
