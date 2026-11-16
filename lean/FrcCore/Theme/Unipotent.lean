@@ -600,4 +600,194 @@ theorem cayley_phase_inverse {α lam v : R} (hv : Inverse (1 + -(α * lam)) v) :
     _ ≈ (α * lam + α * lam) * v := eq_symm (right_distrib _ _ _)
     _ ≈ (1 + α * lam) * v + -1 := eq_symm hdiff
 
+/-! ## The exact index on two coordinate directions (D20): the generic identities -/
+
+/-- A sum with one surviving term: if every other term vanishes, `Σ_{j<n} f j ≈ f k₀`. -/
+theorem osum_eq_single {f : Nat → R} : ∀ n k0, k0 < n → (∀ j, j < n → j ≠ k0 → f j ≈ 0) → osum f n ≈ f k0
+  | 0, k0, hk, _ => absurd hk (Nat.not_lt_zero k0)
+  | n + 1, k0, hk, h =>
+    match Nat.decEq k0 n with
+    | isTrue e =>
+      have hz : osum f n ≈ 0 :=
+        osum_eq_zero n fun j hj => h j (Nat.lt_succ_of_lt hj) (fun ej => absurd (ej.trans e) (Nat.ne_of_lt hj))
+      calc osum f n + f n ≈ 0 + f n := add_congr_left _ hz
+        _ ≈ f n := zero_add _
+        _ ≈ f k0 := eq_of_eq (by rw [e])
+    | isFalse ne =>
+      have hk' : k0 < n := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hk) ne
+      have hz : f n ≈ 0 := h n (Nat.lt_succ_self n) (fun e => ne e.symm)
+      calc osum f n + f n ≈ f k0 + 0 :=
+            add_congr (osum_eq_single n k0 hk' fun j hj hj' => h j (Nat.lt_succ_of_lt hj) hj') hz
+        _ ≈ f k0 := add_zero _
+
+/-- `(η d²)^j ≈ η^j d^{j+j}` for central `η`. -/
+theorem opow_central_sq {η d : R} (hη : Central η) (j : Nat) : opow (η * (d * d)) j ≈ opow η j * opow d (j + j) :=
+  calc opow (η * (d * d)) j ≈ opow η j * opow (d * d) j := mul_opow (hη _) j
+    _ ≈ opow η j * (opow d j * opow d j) := mul_congr_right _ (mul_opow (Comm.refl d) j)
+    _ ≈ opow η j * opow d (j + j) := mul_congr_right _ (eq_symm (opow_add d j j))
+
+/-- A power `d^{m}` with `m ≥ p` vanishes when `d^p ≈ 0`. -/
+theorem opow_eq_zero_of_le {d : R} {p : Nat} (hn : opow d p ≈ 0) {m : Nat} (hm : p ≤ m) : opow d m ≈ 0 := by
+  have e : p + (m - p) = m := FRC.Nat.add_sub_of_le hm
+  rw [← e]; exact opow_eq_zero_of hn _
+
+/-- 8:D20 — the `(p−1)`-st power of the square on two coordinate directions. For commuting `d₀`, `d₁` with `d_μ^p ≈ 0`
+and central `η₀`, `η₁`, on a frame `p = 4κ + 1`: of the binomial terms of `(η₀ d₀² + η₁ d₁²)^{p−1}` only `k = 2κ`
+survives (every other term carries a power `d_μ^{m}` with `m ≥ p`), and `C(p−1, 2κ) ≡ (−1)^{2κ} = 1`:
+`(η₀ d₀² + η₁ d₁²)^{p−1} ≈ η₀^{2κ} η₁^{2κ} d₀^{p−1} d₁^{p−1}`. -/
+theorem box_two_pow_pred {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {d0 d1 η0 η1 : R} (h01 : Comm d0 d1) (hη0 : Central η0) (hη1 : Central η1)
+    (hn0 : opow d0 p ≈ 0) (hn1 : opow d1 p ≈ 0) :
+    opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) ≈
+      opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) := by
+  have hp : p - 1 = 4 * κ := by rw [F.cap, FRC.Nat.add_sub_cancel]
+  have hp1 : p - 1 + 1 = p := FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)
+  have hab : Comm (η0 * (d0 * d0)) (η1 * (d1 * d1)) :=
+    Comm.mul_left (hη0 _) (Comm.mul_left (Comm.mul_right (Comm.symm (hη1 d0)) (Comm.mul_right h01 h01))
+      (Comm.mul_right (Comm.symm (hη1 d0)) (Comm.mul_right h01 h01)))
+  have hk0 : 2 * κ < p := by
+    rw [F.cap]; exact Nat.lt_succ_of_le (Nat.le_trans (Nat.le_add_right _ _) (Nat.le_of_eq (show 2 * κ + 2 * κ = 4 * κ by rw [← FRC.Nat.add_mul])))
+  -- the term `j` of the binomial sum
+  have hterm : ∀ j, j < p → j ≠ 2 * κ → nsmul (choose (p - 1) j) (opow (η0 * (d0 * d0)) j * opow (η1 * (d1 * d1)) (p - 1 - j)) ≈ 0 := by
+    intro j hj hne
+    apply nsmul_of_eq_zero
+    cases Nat.lt_or_ge j (2 * κ) with
+    | inr hge =>
+      -- `j ≥ 2κ + 1`: `d₀^{j+j}` with `j + j ≥ p`
+      have hj' : 2 * κ + 1 ≤ j := Nat.lt_of_le_of_ne hge (fun e => hne e.symm)
+      have hjj : p ≤ j + j := by
+        rw [F.cap]
+        exact Nat.le_trans (Nat.le_of_eq (show 4 * κ + 1 = 2 * κ + (2 * κ + 1) by
+          rw [show 4 * κ = 2 * κ + 2 * κ by rw [← FRC.Nat.add_mul], Nat.add_assoc])) (Nat.add_le_add hge hj')
+      calc opow (η0 * (d0 * d0)) j * opow (η1 * (d1 * d1)) (p - 1 - j)
+          ≈ opow η0 j * opow d0 (j + j) * opow (η1 * (d1 * d1)) (p - 1 - j) := mul_congr_left _ (opow_central_sq hη0 j)
+        _ ≈ opow η0 j * 0 * opow (η1 * (d1 * d1)) (p - 1 - j) :=
+            mul_congr_left _ (mul_congr_right _ (opow_eq_zero_of_le hn0 hjj))
+        _ ≈ 0 * opow (η1 * (d1 * d1)) (p - 1 - j) := mul_congr_left _ (mul_zero _)
+        _ ≈ 0 := zero_mul _
+    | inl hlt =>
+      -- `j ≤ 2κ − 1`: `m = p − 1 − j ≥ 2κ + 1`, `d₁^{m+m}` with `m + m ≥ p`
+      have hm : 2 * κ + 1 ≤ p - 1 - j := by
+        apply FRC.Nat.le_sub_of_add_le
+        rw [hp, show 4 * κ = 2 * κ + 2 * κ by rw [← FRC.Nat.add_mul], Nat.add_assoc, Nat.add_comm 1 j]
+        exact Nat.add_le_add_left hlt _
+      have hsum : p ≤ 2 * κ + 1 + (2 * κ + 1) := by
+        rw [F.cap, FRC.Nat.add_add_add_comm, ← FRC.Nat.add_mul]; exact Nat.le_succ _
+      have hmm : p ≤ (p - 1 - j) + (p - 1 - j) := Nat.le_trans hsum (Nat.add_le_add hm hm)
+      calc opow (η0 * (d0 * d0)) j * opow (η1 * (d1 * d1)) (p - 1 - j)
+          ≈ opow (η0 * (d0 * d0)) j * (opow η1 (p - 1 - j) * opow d1 ((p - 1 - j) + (p - 1 - j))) :=
+            mul_congr_right _ (opow_central_sq hη1 _)
+        _ ≈ opow (η0 * (d0 * d0)) j * (opow η1 (p - 1 - j) * 0) :=
+            mul_congr_right _ (mul_congr_right _ (opow_eq_zero_of_le hn1 hmm))
+        _ ≈ opow (η0 * (d0 * d0)) j * 0 := mul_congr_right _ (mul_zero _)
+        _ ≈ 0 := mul_zero _
+  -- the surviving term `j = 2κ`
+  have h2 : p - 1 - 2 * κ = 2 * κ := by
+    rw [hp, show 4 * κ = 2 * κ + 2 * κ by rw [← FRC.Nat.add_mul], FRC.Nat.add_sub_cancel]
+  have h4 : 2 * κ + 2 * κ = p - 1 := by rw [hp, ← FRC.Nat.add_mul]
+  have hsurv : nsmul (choose (p - 1) (2 * κ)) (opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (p - 1 - 2 * κ)) ≈
+      opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) := by
+    rw [h2]
+    calc nsmul (choose (p - 1) (2 * κ)) (opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (2 * κ))
+        ≈ nsmul (choose (p - 1) (2 * κ)) 1 * (opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (2 * κ)) :=
+          nsmul_eq_mul_one _ _
+      _ ≈ 1 * (opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (2 * κ)) :=
+          mul_congr_left _ (eq_trans (nsmul_choose_pred F hch _ hk0) (opow_neg_one_even κ))
+      _ ≈ opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (2 * κ) := one_mul _
+      _ ≈ opow η0 (2 * κ) * opow d0 (2 * κ + 2 * κ) * (opow η1 (2 * κ) * opow d1 (2 * κ + 2 * κ)) :=
+          mul_congr (opow_central_sq hη0 _) (opow_central_sq hη1 _)
+      _ ≈ opow η0 (2 * κ) * (opow d0 (2 * κ + 2 * κ) * opow η1 (2 * κ)) * opow d1 (2 * κ + 2 * κ) :=
+          eq_trans (eq_symm (mul_assoc _ _ _)) (mul_congr_left _ (mul_assoc _ _ _))
+      _ ≈ opow η0 (2 * κ) * (opow η1 (2 * κ) * opow d0 (2 * κ + 2 * κ)) * opow d1 (2 * κ + 2 * κ) :=
+          mul_congr_left _ (mul_congr_right _ (eq_symm (Central.opow hη1 _ _)))
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (2 * κ + 2 * κ) * opow d1 (2 * κ + 2 * κ)) :=
+          eq_trans (mul_congr_left _ (eq_symm (mul_assoc _ _ _))) (mul_assoc _ _ _)
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) := eq_of_eq (by rw [h4])
+  calc opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) ≈ binom (η0 * (d0 * d0)) (η1 * (d1 * d1)) (p - 1) := binomial hab _
+    _ ≈ osum (fun k => nsmul (choose (p - 1) k) (opow (η0 * (d0 * d0)) k * opow (η1 * (d1 * d1)) (p - 1 - k))) p :=
+        eq_of_eq (by show binom _ _ _ = osum _ _; unfold binom; rw [hp1])
+    _ ≈ nsmul (choose (p - 1) (2 * κ)) (opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (p - 1 - 2 * κ)) :=
+        osum_eq_single p (2 * κ) hk0 hterm
+    _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) := hsurv
+
+/-- 8:D20 — on two coordinate directions `(η₀ d₀² + η₁ d₁²)^{p−1}` is killed by either difference:
+`□^{p−1} d₀ ≈ 0` and `□^{p−1} d₁ ≈ 0`, since the surviving term carries `d₀^{p−1} d₁^{p−1}`. -/
+theorem box_two_pow_pred_mul {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {d0 d1 η0 η1 : R} (h01 : Comm d0 d1) (hη0 : Central η0) (hη1 : Central η1)
+    (hn0 : opow d0 p ≈ 0) (hn1 : opow d1 p ≈ 0) :
+    opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) * d0 ≈ 0 ∧ opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) * d1 ≈ 0 := by
+  have hp1 : p - 1 + 1 = p := FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)
+  have hb := box_two_pow_pred F hch h01 hη0 hη1 hn0 hn1
+  have h0p : opow d0 (p - 1) * d0 ≈ 0 := eq_trans (eq_of_eq (by rw [← opow_succ, hp1])) hn0
+  have h1p : opow d1 (p - 1) * d1 ≈ 0 := eq_trans (eq_of_eq (by rw [← opow_succ, hp1])) hn1
+  refine ⟨?_, ?_⟩
+  · calc opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) * d0
+        ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) * d0 := mul_congr_left _ hb
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * (opow d1 (p - 1) * d0)) :=
+          eq_trans (mul_assoc _ _ _) (mul_congr_right _ (mul_assoc _ _ _))
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * (d0 * opow d1 (p - 1))) :=
+          mul_congr_right _ (mul_congr_right _ (opow_comm h01.symm _))
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * d0 * opow d1 (p - 1)) :=
+          mul_congr_right _ (eq_symm (mul_assoc _ _ _))
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (0 * opow d1 (p - 1)) := mul_congr_right _ (mul_congr_left _ h0p)
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * 0 := mul_congr_right _ (zero_mul _)
+      _ ≈ 0 := mul_zero _
+  · calc opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) * d1
+        ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) * d1 := mul_congr_left _ hb
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * (opow d1 (p - 1) * d1)) :=
+          eq_trans (mul_assoc _ _ _) (mul_congr_right _ (mul_assoc _ _ _))
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * 0) := mul_congr_right _ (mul_congr_right _ h1p)
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * 0 := mul_congr_right _ (mul_zero _)
+      _ ≈ 0 := mul_zero _
+
+/-- The square of a Dirac operator on two directions, as a sum of two terms: `𝒟² ≈ η₀ ∇₀² + η₁ ∇₁²`. -/
+theorem dirac_two_square {del γ η : Nat → R}
+    (hdd : ∀ μ ν, μ < 2 → ν < 2 → Comm (del μ) (del ν)) (hdg : ∀ μ ν, μ < 2 → ν < 2 → Comm (del μ) (γ ν))
+    (hgg : ∀ μ ν, μ < 2 → ν < 2 → μ ≠ ν → Anticomm (γ μ) (γ ν)) (hsq : ∀ μ, μ < 2 → γ μ * γ μ ≈ η μ)
+    (hη : ∀ μ, μ < 2 → Central (η μ)) :
+    opow (osum (fun μ => del μ * γ μ) 2) 2 ≈ η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1) :=
+  calc opow (osum (fun μ => del μ * γ μ) 2) 2
+      ≈ osum (fun μ => del μ * γ μ) 2 * osum (fun μ => del μ * γ μ) 2 := mul_congr_left _ (opow_one _)
+    _ ≈ osum (fun μ => η μ * (del μ * del μ)) 2 := dirac_square hdd hdg hgg hsq hη
+    _ ≈ η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1) := add_congr_left _ (zero_add _)
+
+/-- 8:D20 — the exact index on two coordinate directions, the upper bound: for `𝒟 = ∇₀ γ₀ + ∇₁ γ₁` as in `dirac_square`
+with `∇_μ^p ≈ 0`, on a frame, `𝒟^{2(p−1)} ≈ η₀^{2κ} η₁^{2κ} ∇₀^{p−1} ∇₁^{p−1}` and `𝒟^{2(p−1)+1} ≈ 0`: the index is at
+most `2p − 1`, and `𝒟^{2p−2}` vanishes exactly when `∇₀^{p−1} ∇₁^{p−1}` does (the `η_μ` being units). -/
+theorem dirac_two_index {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {del γ η : Nat → R}
+    (hdd : ∀ μ ν, μ < 2 → ν < 2 → Comm (del μ) (del ν)) (hdg : ∀ μ ν, μ < 2 → ν < 2 → Comm (del μ) (γ ν))
+    (hgg : ∀ μ ν, μ < 2 → ν < 2 → μ ≠ ν → Anticomm (γ μ) (γ ν)) (hsq : ∀ μ, μ < 2 → γ μ * γ μ ≈ η μ)
+    (hη : ∀ μ, μ < 2 → Central (η μ)) (hnil : ∀ μ, μ < 2 → opow (del μ) p ≈ 0) :
+    opow (osum (fun μ => del μ * γ μ) 2) (2 * (p - 1)) ≈
+        opow (η 0) (2 * κ) * opow (η 1) (2 * κ) * (opow (del 0) (p - 1) * opow (del 1) (p - 1)) ∧
+      opow (osum (fun μ => del μ * γ μ) 2) (2 * (p - 1) + 1) ≈ 0 := by
+  have h01 : Comm (del 0) (del 1) := hdd 0 1 (by decide) (by decide)
+  have hη0 : Central (η 0) := hη 0 (by decide)
+  have hη1 : Central (η 1) := hη 1 (by decide)
+  have hn0 : opow (del 0) p ≈ 0 := hnil 0 (by decide)
+  have hn1 : opow (del 1) p ≈ 0 := hnil 1 (by decide)
+  have heven : opow (osum (fun μ => del μ * γ μ) 2) (2 * (p - 1)) ≈
+      opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) :=
+    eq_trans (opow_mul _ 2 (p - 1)) (opow_congr (dirac_two_square hdd hdg hgg hsq hη) (p - 1))
+  obtain ⟨hk0, hk1⟩ := box_two_pow_pred_mul F hch h01 hη0 hη1 hn0 hn1
+  refine ⟨eq_trans heven (box_two_pow_pred F hch h01 hη0 hη1 hn0 hn1), ?_⟩
+  calc opow (osum (fun μ => del μ * γ μ) 2) (2 * (p - 1) + 1)
+      ≈ opow (osum (fun μ => del μ * γ μ) 2) (2 * (p - 1)) * osum (fun μ => del μ * γ μ) 2 := eq_refl _
+    _ ≈ opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) * (del 0 * γ 0 + del 1 * γ 1) :=
+        mul_congr heven (add_congr_left _ (zero_add _))
+    _ ≈ opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) * (del 0 * γ 0) +
+          opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) * (del 1 * γ 1) := left_distrib _ _ _
+    _ ≈ opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) * del 0 * γ 0 +
+          opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) * del 1 * γ 1 :=
+        add_congr (eq_symm (mul_assoc _ _ _)) (eq_symm (mul_assoc _ _ _))
+    _ ≈ 0 * γ 0 + 0 * γ 1 := add_congr (mul_congr_left _ hk0) (mul_congr_left _ hk1)
+    _ ≈ 0 + 0 := add_congr (zero_mul _) (zero_mul _)
+    _ ≈ 0 := zero_add 0
+
+/-- `2p − 1 = 2(p − 1) + 1` on a frame, so `dirac_two_index` reads `𝒟^{2p−1} ≈ 0`. -/
+theorem two_mul_sub_one {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) : 2 * p - 1 = 2 * (p - 1) + 1 := by
+  rw [F.cap, FRC.Nat.add_sub_cancel, Nat.mul_succ]
+  exact FRC.Nat.add_sub_cancel (2 * (4 * κ) + 1) 1
+
 end FRC.Dirac.Operator

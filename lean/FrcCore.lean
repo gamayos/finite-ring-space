@@ -30,6 +30,7 @@ import FrcCore.Theme.Hermitian
 import FrcCore.Theme.Operator
 import FrcCore.Theme.Unipotent
 import FrcCore.Theme.Spinor
+import FrcCore.Theme.Kronecker
 import FrcCore.Theme.Loss
 import FrcCore.Theme.Det
 import FrcCore.Theme.Elim
