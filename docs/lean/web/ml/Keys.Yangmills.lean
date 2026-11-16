@@ -412,6 +412,21 @@ theorem radial_ratio_confrontation (r : ℚ) (hr : r = 1.4915) :
   refine ⟨by rw [abs_lt]; constructor <;> norm_num, by norm_num, by norm_num, by rw [abs_lt]; constructor <;> linarith [h.1, h.2], h.1, ?_⟩
   rw [abs_lt]; constructor <;> norm_num
 
+/-- 46:C28 [chart] — the ground value of the wrap of two windings as rational brackets: for every rational `x` between the
+bounds `3.1415` and `3.1416` of `π`, `3.544² < 4x < 3.546²` and `3.759² < (9/2)x < 3.761²`. The squares of the ground values
+for `a = ϰ = 2` and for `a = 2`, `ϰ = 9/4` are `4π` and `9π/2`, so the values are `3.545` and `3.760`. -/
+theorem two_windings_ground_values (x : ℚ) (h₁ : 3.1415 < x) (h₂ : x < 3.1416) :
+    (3.544 : ℚ) ^ 2 < 4 * x ∧ 4 * x < 3.546 ^ 2 ∧ (3.759 : ℚ) ^ 2 < 9 / 2 * x ∧ 9 / 2 * x < 3.761 ^ 2 := by
+  refine ⟨?_, ?_, ?_, ?_⟩ <;> norm_num at h₁ h₂ ⊢ <;> linarith
+
+/-- 46:P5 [chart] — the radial ratio of the wrap of two windings as rational brackets: the square of the ratio is
+`(2 + 4)/2 = 3`; `1.704² < 3 < 1.736²`, the interval of the 2020 determination `1.720(16)`, and the same with the unrounded
+quotient `5855/3405`; `7/3`, the square for three windings, lies below `1.704²`. -/
+theorem two_windings_radial_ratio :
+    ((2 + 4 : ℚ) / 2 = 3) ∧ (1.704 : ℚ) ^ 2 < 3 ∧ (3 : ℚ) < 1.736 ^ 2 ∧
+    ((5855 : ℚ) / 3405 - 0.016) ^ 2 < 3 ∧ (3 : ℚ) < (5855 / 3405 + 0.016) ^ 2 ∧ (7 : ℚ) / 3 < 1.704 ^ 2 := by
+  norm_num
+
 end FRC.YangMillsML
 
 /-! FrcMathlib/Keys.Yangmills.lean -/
@@ -433,9 +448,15 @@ theorem p46013 : ∀ (a b : ℤ), (2 : ℤ) * ((a - b) ^ (2 : ℕ) + ((2 : ℤ) 
 /-- p46041 — 46:C13. The two rationals of the one-loop coefficient are the frame's: the spin term $(2s)^{2}=-2\,\mathrm{Tr}_V(J_{12}^{2})$ is $0$, $1$, $4$ on the scalar, the Weyl spinor and the vector; the charge term $\frac13$ is the leading Faulhaber coefficient of the scalar loop's midpoint sum $3\sum_{k<N}(N-2k-1)^{2}=N(N^{2}-1)$, whose complete cycle $N=\p$ vanishes on the shell. With C4 the species sum of A12 is $3b_0=33-2n_f$ (C5). -/
 theorem p46041 : ∀ (N : ℕ), (3 : ℤ) * FRC.YangMillsML.sq N = ↑N * (↑N ^ (2 : ℕ) - (1 : ℤ)) :=
   @FRC.YangMillsML.faulhaber_third_all
-/-- p46043 — 46:P3. [chart] The radial ratio of the operator form: $E_1/E_0\approx1.49$ for every $a$ and $\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball. -/
+/-- p46043 — 46:P3. [chart] The radial ratio of the operator form: $E_1/E_0\approx1.49$ for every $a$ and $\varkappa$, a property of the one-body operator of C8 and of every state it describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball. -/
 theorem p46043 : ∀ (r : Rat), @Eq Rat r (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 14915) true (nat_lit 4)) → And (@LT.lt Rat Rat.instLT (@abs Rat Rat.instLattice Rat.addGroup (@HSub.hSub Rat Rat Rat (@instHSub Rat Rat.instSub) r (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 1544) true (nat_lit 3)))) (@HMul.hMul Rat Rat Rat (@instHMul Rat Rat.instMul) (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 5) true (nat_lit 1)) (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 112) true (nat_lit 3)))) (And (@LT.lt Rat Rat.instLT (@HMul.hMul Rat Rat Rat (@instHMul Rat Rat.instMul) (@OfNat.ofNat Rat (nat_lit 14) (@Rat.instOfNat (nat_lit 14))) (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 16) true (nat_lit 3))) (@HSub.hSub Rat Rat Rat (@instHSub Rat Rat.instSub) (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 1720) true (nat_lit 3)) r)) (And (@LT.lt Rat Rat.instLT (@HMul.hMul Rat Rat Rat (@instHMul Rat Rat.instMul) (@OfNat.ofNat Rat (nat_lit 10) (@Rat.instOfNat (nat_lit 10))) (@HAdd.hAdd Rat Rat Rat (@instHAdd Rat Rat.instAdd) (@HDiv.hDiv Rat Rat Rat (@instHDiv Rat Rat.instDiv) (@OfNat.ofNat Rat (nat_lit 41) (@Rat.instOfNat (nat_lit 41))) (@OfNat.ofNat Rat (nat_lit 3405) (@Rat.instOfNat (nat_lit 3405)))) (@HDiv.hDiv Rat Rat Rat (@instHDiv Rat Rat.instDiv) (@HMul.hMul Rat Rat Rat (@instHMul Rat Rat.instMul) (@OfNat.ofNat Rat (nat_lit 5855) (@Rat.instOfNat (nat_lit 5855))) (@OfNat.ofNat Rat (nat_lit 21) (@Rat.instOfNat (nat_lit 21)))) (@HPow.hPow Rat Nat Rat (@instHPow Rat Nat (@NPow.toPow Rat (@Monoid.toNPow Rat Rat.monoid))) (@OfNat.ofNat Rat (nat_lit 3405) (@Rat.instOfNat (nat_lit 3405))) (@OfNat.ofNat Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))) (@HSub.hSub Rat Rat Rat (@instHSub Rat Rat.instSub) (@HDiv.hDiv Rat Rat Rat (@instHDiv Rat Rat.instDiv) (@OfNat.ofNat Rat (nat_lit 5855) (@Rat.instOfNat (nat_lit 5855))) (@OfNat.ofNat Rat (nat_lit 3405) (@Rat.instOfNat (nat_lit 3405)))) r)) (And (@LT.lt Rat Rat.instLT (@abs Rat Rat.instLattice Rat.addGroup (@HSub.hSub Rat Rat Rat (@instHSub Rat Rat.instSub) (@HDiv.hDiv Rat Rat Rat (@instHDiv Rat Rat.instDiv) (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 408795) true (nat_lit 5)) (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 233811) true (nat_lit 5))) (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 1720) true (nat_lit 3)))) (@HMul.hMul Rat Rat Rat (@instHMul Rat Rat.instMul) (@OfNat.ofNat Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 16) true (nat_lit 3)))) (And (@LT.lt Rat Rat.instLT (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 1748) true (nat_lit 3)) (@HDiv.hDiv Rat Rat Rat (@instHDiv Rat Rat.instDiv) (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 408795) true (nat_lit 5)) (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 233811) true (nat_lit 5)))) (@LT.lt Rat Rat.instLT (@abs Rat Rat.instLattice Rat.addGroup (@HSub.hSub Rat Rat Rat (@instHSub Rat Rat.instSub) (@HDiv.hDiv Rat Rat Rat (@instHDiv Rat Rat.instDiv) (@OfNat.ofNat Rat (nat_lit 1440) (@Rat.instOfNat (nat_lit 1440))) (@OfNat.ofNat Rat (nat_lit 939) (@Rat.instOfNat (nat_lit 939)))) r)) (@HMul.hMul Rat Rat Rat (@instHMul Rat Rat.instMul) (@OfScientific.ofScientific Rat Rat.instOfScientific (nat_lit 3) true (nat_lit 2)) r)))))) :=
   @FRC.YangMillsML.radial_ratio_confrontation
+/-- p46078 — 46:C28. [chart] The wrap of two windings against the lattice (C8): $\lambda_{\mathrm{gb}}=\sqrt{\pi a\varkappa}$ is $3.545$ at $a=\varkappa=2$ and $3.760$ at $a=2$, $\varkappa=\frac94$; the two values bracket the determinations $3.63(10)$ and $3.70(6)$, and $3.405(21)$ lies $4\,\%$ below $3.545$. -/
+theorem p46078 : ∀ (x : ℚ), 3.1415 < x → x < 3.1416 → 3.544 ^ (2 : ℕ) < (4 : ℚ) * x ∧ (4 : ℚ) * x < 3.546 ^ (2 : ℕ) ∧ 3.759 ^ (2 : ℕ) < (9 / 2 : ℚ) * x ∧ (9 / 2 : ℚ) * x < 3.761 ^ (2 : ℕ) :=
+  @FRC.YangMillsML.two_windings_ground_values
+/-- p46079 — 46:P5. [chart] The radial ratio of the wrap of two windings: $\lambda_1/\lambda_0=\sqrt3=1.732$ for every $a$ and $\varkappa$. Falsifier: the first radial ratio of the scalar glueball measured outside $\sqrt3$ beyond its error. Confrontation: $1.720(16)$ (2020) contains it, since $1.704^{2}<3<1.736^{2}$; $1.54(11)$ (1999) lies $1.7$ standard deviations below. -/
+theorem p46079 : ((2 : ℚ) + (4 : ℚ)) / (2 : ℚ) = (3 : ℚ) ∧ 1.704 ^ (2 : ℕ) < (3 : ℚ) ∧ (3 : ℚ) < 1.736 ^ (2 : ℕ) ∧ ((5855 / 3405 : ℚ) - 16e-3) ^ (2 : ℕ) < (3 : ℚ) ∧ (3 : ℚ) < ((5855 / 3405 : ℚ) + 16e-3) ^ (2 : ℕ) ∧ (7 / 3 : ℚ) < 1.704 ^ (2 : ℕ) :=
+  @FRC.YangMillsML.two_windings_radial_ratio
 -- end keys
 
 end FRC.LedgerML
@@ -444,3 +465,5 @@ end FRC.LedgerML
 #print axioms FRC.LedgerML.p46013
 #print axioms FRC.LedgerML.p46041
 #print axioms FRC.LedgerML.p46043
+#print axioms FRC.LedgerML.p46078
+#print axioms FRC.LedgerML.p46079

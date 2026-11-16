@@ -1196,6 +1196,8 @@ import FrcMathlib
 #print axioms FRC.LedgerML.p46013
 #print axioms FRC.LedgerML.p46041
 #print axioms FRC.LedgerML.p46043
+#print axioms FRC.LedgerML.p46078
+#print axioms FRC.LedgerML.p46079
 #print axioms FRC.Master.scale_import
 #print axioms FRC.Master.floor_tracks_drive_rate
 #print axioms FRC.Master.flavour_targets
@@ -2162,6 +2164,8 @@ import FrcMathlib
 #print axioms FRC.YangMillsML.faulhaber_third_all
 #print axioms FRC.YangMillsML.casimir_exponents_all
 #print axioms FRC.YangMillsML.radial_ratio_confrontation
+#print axioms FRC.YangMillsML.two_windings_ground_values
+#print axioms FRC.YangMillsML.two_windings_radial_ratio
 #print axioms FRC.YangMills.casimir_exponents_all
 #print axioms FRC.YangMills.faulhaber_third_all
 #print axioms FRC.YangMills.two_loop_tau
@@ -2172,11 +2176,15 @@ import FrcMathlib
 #print axioms FRC.YangMills.gap_at_classical_pi
 #print axioms FRC.YangMills.wrap_family_values
 #print axioms FRC.YangMills.radial_ratio_confrontation
+#print axioms FRC.YangMills.two_windings_ground_values
+#print axioms FRC.YangMills.two_windings_radial_ratio
 #print axioms FRC.YangMills.colour_casimirs
 #print axioms FRC.YangMills.short_range_fails
 #print axioms FRC.YangMills.plaquette_channel_cells
 #print axioms FRC.YangMills.wrap_family_misses
 #print axioms FRC.YangMills.one_loop_rationals
 #print axioms FRC.YangMills.spectrum_in_two_pi
+#print axioms FRC.YangMills.two_windings_against_lattice
 #print axioms FRC.YangMills.running_prediction
 #print axioms FRC.YangMills.radial_ratio_prediction
+#print axioms FRC.YangMills.two_windings_radial_prediction

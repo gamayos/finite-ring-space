@@ -3,7 +3,7 @@
  "tree": "35-hadrons-20260629",
  "title": "Ground-State Light Hadron Spectroscopy over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202506.1507.v2",
- "generated": "15 November 2026",
+ "generated": "16 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -91,7 +91,7 @@
     },
     {
      "label": "A11",
-     "predicate": "The Carrier register: $\\Om=4\\dS+1$, $2c^{2}\\equiv1$ and $\\hbar^{2}\\equiv-1$, with $h=-\\hbar$ the partner of $\\hbar$ in the root pair of $-1$; $h=2\\pi\\hbar$ is the chart's relation.",
+     "predicate": "The Carrier register: $\\Om=4\\dS+1$, $2G+1\\equiv0$, $2c^{2}\\equiv1$ and $\\hbar^{2}\\equiv-1$, with $h=-\\hbar$ the partner of $\\hbar$ in the root pair of $-1$; $h=2\\pi\\hbar$ is the chart's relation.",
      "tag": "I",
      "source": "\\cite{akhtman2026dimensions}",
      "key": "p35077",

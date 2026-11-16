@@ -2,8 +2,8 @@
  "paper": "46-ym",
  "tree": "46-yangmills-20261107",
  "title": "Yang–Mills and the Mass Gap over Finite Holographic Substrate",
- "doi": null,
- "generated": "13 November 2026",
+ "doi": "https://doi.org/10.20944/preprints202611.1528.v1",
+ "generated": "16 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -185,7 +185,7 @@
     },
     {
      "label": "B3",
-     "predicate": "The finite theory is the transfer form of lattice gauge theory along the drive: a ring of plaquettes; the tally is the frame's mean over the rungs of the amplitudes (B4), its paired weight registered once; the gap: the transfer tally's second eigenvalue over its first. [chart]: counts of frame moves above $\\Om\\sim10^{123}$, the hypercubic lattice (A7), the wrap operator (C8), the scale (B2).",
+     "predicate": "The finite theory is the transfer form of lattice gauge theory along the drive: a ring of plaquettes; the tally is the frame's mean over the rungs of the amplitudes (B4), its paired weight registered once; the gap: the transfer tally's second eigenvalue over its first. [chart]: counts of frame moves above $\\Om\\sim10^{123}$, the hypercubic lattice (A7), the wrap with its one-body operator (C8), the scale (B2).",
      "tag": "D",
      "source": "Def.~\\ref{def:theory}; \\citep{akhtman2026fields,akhtman2026quantum}",
      "key": "p46009",
@@ -279,7 +279,7 @@
     },
     {
      "label": "C8",
-     "predicate": "[chart] The minimal wrap, the candidate operator for the mass gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$. Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). It must reproduce the determinations of A1; C12 and P3 record that it does not.",
+     "predicate": "[chart] The minimal wrap, the candidate for the mass gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$. Two massless constituents wind twice in a cycle of four runs: $\\lambda_k^{2}=(2+4k)\\tfrac{\\pi}{2}a\\varkappa$, with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$ (C9, A10). A declaration; readings: C28, P5. The one-body operator $a|p|+\\varkappa r$ stays on record (C12, P3).",
      "tag": "D",
      "source": "Def.~\\ref{def:wrap}; \\citep{akhtman2026hadrons}\\newline \\pywit{yangmills}{p46017}{C8}",
      "key": "p46017",
@@ -311,7 +311,7 @@
     },
     {
      "label": "C12",
-     "predicate": "[chart] The family of C8 against the lattice: $E_0=\\sqrt{a\\varkappa}\\,2.232$ by the dilation symmetry, $2.232$, $3.157$, $3.348$, $3.157$, $4.464$, $4.735$ for $a\\in\\{1,2\\}$, $\\varkappa\\in\\{1,2,\\frac94\\}$; none inside any determination's error; the nearest, $a=1$, $\\varkappa=\\frac94$, is $1.7\\,\\%$ below the direct value.",
+     "predicate": "[chart] The one-body operator of C8 against the lattice: $E_0=\\sqrt{a\\varkappa}\\,2.232$ by the dilation symmetry, $2.232$, $3.157$, $3.348$, $3.157$, $4.464$, $4.735$ for $a\\in\\{1,2\\}$, $\\varkappa\\in\\{1,2,\\frac94\\}$; none inside any determination's error; the nearest, $a=1$, $\\varkappa=\\frac94$, is $1.7\\,\\%$ below the direct value.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:family}; rests on A1, A10, C8, C9\\newline \\pywit{yangmills}{p46036}{C12}, \\leanwit{FrcCore}{p46036}{C12}, \\leanwit{FrcMathlib}{p46036}{C12} \\lean{FRC.YangMills.wrap\\_family, YangMills.wrap\\_family\\_values}",
      "key": "p46036",
@@ -436,6 +436,14 @@
      "source": "Prop.~\\ref{prop:normone}; rests on A15, C20\\newline \\pywit{yangmills}{p46077}{C27}, \\leanwit{FrcCore}{p46077}{C27} \\lean{FRC.YangMills.norm\\_one\\_link\\_tally}",
      "key": "p46077",
      "name": "norm_one_boundary"
+    },
+    {
+     "label": "C28",
+     "predicate": "[chart] The wrap of two windings against the lattice (C8): $\\lambda_{\\mathrm{gb}}=\\sqrt{\\pi a\\varkappa}$ is $3.545$ at $a=\\varkappa=2$ and $3.760$ at $a=2$, $\\varkappa=\\frac94$; the two values bracket the determinations $3.63(10)$ and $3.70(6)$, and $3.405(21)$ lies $4\\,\\%$ below $3.545$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:twowind}; rests on A1, A10, C8, C9\\newline \\pywit{yangmills}{p46078}{C28}, \\leanwit{FrcCore}{p46078}{C28}, \\leanwit{FrcMathlib}{p46078}{C28} \\lean{FRC.YangMills.two\\_windings\\_ground, YangMills.two\\_windings\\_ground\\_values}",
+     "key": "p46078",
+     "name": "two_windings_against_lattice"
     }
    ]
   },
@@ -507,7 +515,7 @@
     },
     {
      "label": "P3",
-     "predicate": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
+     "predicate": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the one-body operator of C8 and of every state it describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:radial}; rests on A1, C8, C12\\newline \\pywit{yangmills}{p46043}{P3}, \\leanwit{FrcCore}{p46043}{P3}, \\leanwit{FrcMathlib}{p46043}{P3} \\lean{FRC.YangMills.radial\\_ratio, YangMills.radial\\_ratio\\_confrontation}",
      "key": "p46043",
@@ -520,6 +528,14 @@
      "source": "Prop.~\\ref{prop:free}; rests on A6, A9, A19, B1, B5\\newline \\pywit{yangmills}{p46076}{P4}, \\leanwit{FrcCore}{p46076}{P4} \\lean{FRC.YangMills.residue\\_zero\\_states}",
      "key": "p46076",
      "name": "no_free_quark_or_gluon"
+    },
+    {
+     "label": "P5",
+     "predicate": "[chart] The radial ratio of the wrap of two windings: $\\lambda_1/\\lambda_0=\\sqrt3=1.732$ for every $a$ and $\\varkappa$. Falsifier: the first radial ratio of the scalar glueball measured outside $\\sqrt3$ beyond its error. Confrontation: $1.720(16)$ (2020) contains it, since $1.704^{2}<3<1.736^{2}$; $1.54(11)$ (1999) lies $1.7$ standard deviations below.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:twowind}; rests on A1, C8\\newline \\pywit{yangmills}{p46079}{P5}, \\leanwit{FrcCore}{p46079}{P5}, \\leanwit{FrcMathlib}{p46079}{P5} \\lean{FRC.YangMills.two\\_windings\\_radial, YangMills.two\\_windings\\_radial\\_ratio}",
+     "key": "p46079",
+     "name": "two_windings_radial_prediction"
     }
    ]
   },
@@ -1147,6 +1163,30 @@
     "doc": "46:C27 — the tally of the ring with a norm-one link at every step, of the eigenvalues `u^j, u^j, u^{−2j}` and `u^k, u^k, u^{−2k}` with `(j, k) = (1, 2)`, in the plane `F_p(√2)` on pairs `(a, b) = a + b√2`; after `n` steps the boundary classes are those of `x = u^n` and `y = u^{2n}`. (1) `u = 3 + 2√2` on `13` and `173` and `u = 1459 + 1276√2` on `1549` have the norm `1` and the order `p + 1`. (2) On `13` the reduced tally at the lengths `1` to `14`, and its norms, the reduced paired weight. (3) On the Subjects `13`, `173`, `1549` the reduced tally is the four powers at every regular length of the norm-one cycle. (4) The other lengths: the multiples of `7`, `29` and `775`. (5) With unit links the tally is `3`. (6) One link on each torus, of the eigenvalues `2, 1, 2⁻¹` and `u, u, u⁻²`: on `13` the first six lengths, the expression `y² + (1 + x + x⁻¹) y⁻¹` at every regular length of the whole period `84`, and the value `3` at the length `84`; on `173` and `1549` the expression at every regular length among the first `1740` and `3100`. (7) The period `L = 84`, `14964`, `1199700` of (6) is the least one on the three Subjects: the length `L` reads `3`, and no length `L/r`, `r` a prime divisor of `L`, reads `3`. Every product is reduced at once."
    }
   ],
+  "C28": [
+   {
+    "name": "FRC.YangMills.two_windings_ground",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 774,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:C28 — the ground value of the wrap of two windings between the rational bounds `3.1415 < π < 3.1416` [chart]: for `a = ϰ = 2` the square is `4π`, and `3.544² < 4 · 3.1415`, `4 · 3.1416 < 3.546²`; for `a = 2`, `ϰ = 9/4` it is `9π/2`, and `3.759² < (9/2) · 3.1415`, `(9/2) · 3.1416 < 3.761²`. The two values, `3.545` and `3.760`, bracket `3.63` and `3.70`, and `3.405` lies below `3.544`. In integers, over the common denominators."
+   },
+   {
+    "name": "FRC.YangMills.two_windings_ground_values",
+    "module": "FrcMathlib/YangMills",
+    "line": 105,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "46:C28 — `YangMillsML.two_windings_ground_values`: the squares `4π` and `9π/2` of the ground values of the wrap of two windings between the squares of their three-decimal brackets, for every rational between the bounds `3.1415` and `3.1416` of `π`."
+   }
+  ],
   "X1": [
    {
     "name": "FRC.YangMills.no_shell_eigenvalue",
@@ -1306,6 +1346,30 @@
     "tier": 0,
     "ok": true,
     "doc": "46:P4 — a quark and a gluon are states of residue `0`: the triplet and its dual have no singlet, `mult 1 0 = mult 0 1 = 0`, and the adjoint has none, `mult 1 1 - 1 = 0`, by the Pieri multiplicities."
+   }
+  ],
+  "P5": [
+   {
+    "name": "FRC.YangMills.two_windings_radial",
+    "module": "FrcCore/Theme/YangMills",
+    "line": 783,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "46:P5 — the radial ratio of the wrap of two windings [chart]: the squares of the ratios are `(2 + 4k)/2`, that is `3` and `5`; `√3` lies in the interval of the 2020 determination `1.720(16)`, as `1704² < 3 · 1000² < 1736²`; and `7/3`, the square for three windings, lies below it, as `7 · 1000² < 3 · 1704²`."
+   },
+   {
+    "name": "FRC.YangMills.two_windings_radial_ratio",
+    "module": "FrcMathlib/YangMills",
+    "line": 111,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "46:P5 — `YangMillsML.two_windings_radial_ratio`: the square of the radial ratio of the wrap of two windings is `3`, inside the interval of the 2020 determination `1.720(16)`, rounded and unrounded; `7/3`, for three windings, lies below it."
    }
   ]
  }

@@ -117,6 +117,18 @@ theorem nu_factorisation (F : Frame p κ g) {h : Shell p} (hh : 2 * h = 1) :
     · exact absurd (hm2.2 hm') (by rw [h1]; exact fun e => Nat.noConfusion e)
     · exact hm'
 
+/-- 8:B8 — one-way and two-way transport, on every frame: the squares are the even drive steps, so a comparison reading
+(a step composed with its return) is even and the single-chronon multiplier `g` is odd; the flip `g ↦ g⁻¹` keeps the
+class (`g⁻¹` is a nonsquare too); and the null cone `x² = g t²` of the nonsquare coefficient `ν = g` has no point of
+`𝔽_p²` but the origin, so light-like transport carries no registered velocity, only its square class (`parity_iff`,
+`drive_nonsquare`, `inv_drive_nonsquare`, `aniso_tx`). -/
+theorem oneway_transport (F : Frame p κ g) :
+    (∀ m : Nat, (∃ y : Shell p, y * y = g ^ m) ↔ m % 2 = 0) ∧ (¬ ∃ y : Shell p, y * y = g) ∧
+    (∀ {y : Shell p}, g * y = 1 → ¬ ∃ r : Shell p, r * r = y) ∧
+    (∀ {t x : Shell p}, x * x = g * (t * t) → t = 0 ∧ x = 0) :=
+  ⟨parity_iff F, drive_nonsquare F, fun hy => inv_drive_nonsquare F hy,
+    fun e => FRC.Shell.Frame.aniso_tx F (drive_nonsquare F) e⟩
+
 end parity
 
 /-! ## The latitude identities (8:F2) -/
@@ -166,7 +178,7 @@ end latitude
 section drive
 variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
 
-/-- 8:F3, 8:F6 — the drive pullback on the characters: with `y = g⁻¹`, `χ_k(g^{j}) = y^k · χ_k(g^{j+1})` for every
+/-- 8:F3, 8:F6, 8:D13 — the drive pullback on the characters: with `y = g⁻¹`, `χ_k(g^{j}) = y^k · χ_k(g^{j+1})` for every
 `j, k` — the winding-`k` mode acquires the phase `g^{−k}` per chronon, so the drive is semisimple with the whole
 drive cycle as its spectrum (Theorem `zonal` (2), Proposition `two-spectra`). -/
 theorem drive_eigen {y : Shell p} (hy : g * y = 1) (j k : Nat) :
@@ -203,6 +215,13 @@ theorem isotropy (F : Frame p κ g) (k : Nat) :
     rw [sum_congr (p - 1) (fun j _ => by rw [F.pow_eq_one_of_mod hk, Shell.one_pow]),
       sum_const, Shell.mul_one]
     exact Frame.ofNat_n F
+
+/-- 8:E9 — on every symmetry-complete shell `p = 4κ + 1`, `p^k + 1 ≡ 2 (mod 4)` for every `k`: a phase whose order is
+divisible by `4` lies on no cycle of order `p^k + 1`, the relation behind the degree-two instance of `eigenphase_values`. -/
+theorem pow_succ_mod_four (F : Frame p κ g) (k : Nat) : (p ^ k + 1) % 4 = 2 := by
+  have h1 : p % 4 = 1 := by have := F.cap; omega
+  have h2 : p ^ k % 4 = 1 := by rw [Nat.pow_mod, h1, Nat.one_pow]
+  omega
 
 /-- 8:F4, 8:F6, 8:X1, 8:E8 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`,
 so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one
@@ -448,6 +467,76 @@ where
   go (x : Ext p ν) (e : Nat) : Nat → Nat
     | 0 => 0
     | fuel + 1 => if x = 1 then e else go (x * u) (e + 1) fuel
+
+/-- The inverse in `K` by the conjugate over the searched inverse of the norm (`0` when the norm is `0`). -/
+def invK (z : Ext p ν) : Ext p ν := Ext.conj z * Ext.ofShell (invS (Ext.norm z))
+
+/-- The scalar Cayley map at `α = w` on the whole coefficient field, `φ(λ) = (1 + wλ)(1 − wλ)⁻¹` for `λ ∈ K`
+(`phi` is its restriction to the shell). -/
+def phiK (lam : Ext p ν) : Ext p ν := (1 + Ext.w * lam) * invK (1 + -(Ext.w * lam))
+
+/-- 8:E9 [value] — the eigenphase law on `𝔽₁₃` (`ν = g = 2`): the Cayley phase of a residue of degree one lies on the third
+cycle, `φ(λ)^{14} = 1`, and that of an element of `K` of degree two in `K^×`, `φ(λ)^{168} = 1`, on every `λ ∈ K` with
+`1 ± wλ ≠ 0` (the `13 + 154` cases; `λ = ∓w⁻¹` are excluded, the second being the conjugate of the first and so an
+eigenvalue beside it, against the admissibility of `α = w`); the eigenvalue `2 + 2w` of `H = −Δ + M_V`, `V = (1, 1, 0, …, 0)`,
+has the phase `6 + 4w` of order exactly `84 = lcm(12, 14)`, on neither the drive cycle nor the third cycle — the even-degree
+case the period conjecture of 7-counts missed: `4 ∣ 84`, while `p^k + 1 ≡ 2 (mod 4)` on every shell (`pow_succ_mod_four`). -/
+theorem eigenphase_values :
+    (∀ a b : Shell 13, (1 : Ext 13 2) + -(Ext.w * ⟨a, b⟩) ≠ 0 → (1 : Ext 13 2) + Ext.w * ⟨a, b⟩ ≠ 0 →
+      (phiK (⟨a, b⟩ : Ext 13 2)) ^ (if b = 0 then 14 else 168) = 1) ∧
+    phiK (⟨2, 2⟩ : Ext 13 2) = ⟨6, 4⟩ ∧ (⟨6, 4⟩ : Ext 13 2) ^ 84 = 1 ∧ (⟨6, 4⟩ : Ext 13 2) ^ 42 ≠ 1 ∧
+    (⟨6, 4⟩ : Ext 13 2) ^ 28 ≠ 1 ∧ (⟨6, 4⟩ : Ext 13 2) ^ 12 ≠ 1 ∧ (13 ^ 2 - 1) % 84 = 0 ∧
+    (⟨6, 4⟩ : Ext 13 2) ^ 14 ≠ 1 ∧ Nat.lcm 12 14 = 84 ∧ 84 % 4 = 0 := by
+  decide +kernel
+
+/-- The rank of a list of rows over `K` by elimination, columns `c, c + 1, …` for `fuel` columns: the first row with a
+nonzero entry in the column is the pivot, it is removed and the column cleared from the others. -/
+def pivotSplit (c : Nat) : List (List (Ext p ν)) → Option (List (Ext p ν) × List (List (Ext p ν)))
+  | [] => none
+  | r :: rs =>
+    if Mat.nth 0 r c = 0 then
+      match pivotSplit c rs with
+      | none => none
+      | some (pv, rest) => some (pv, r :: rest)
+    else some (r, rs)
+def elimRows (c : Nat) (pv : List (Ext p ν)) (rows : List (List (Ext p ν))) : List (List (Ext p ν)) :=
+  let inv := invK (Mat.nth 0 pv c)
+  rows.map fun r => let f := Mat.nth 0 r c * inv; List.zipWith (fun a b => a + -(f * b)) r pv
+def rankK (rows : List (List (Ext p ν))) (c : Nat) : Nat → Nat
+  | 0 => 0
+  | k + 1 =>
+    match pivotSplit c rows with
+    | none => rankK rows (c + 1) k
+    | some (pv, rest) => rankK (elimRows c pv rest) (c + 1) k + 1
+
+/-- The sixteen products of the gamma matrices (one per subset of `{0, 1, 2, 3}`), each flattened to its sixteen
+entries. -/
+def gammaProducts (i : Shell p) : List (List (Ext p ν)) :=
+  (List.range 16).map fun mask =>
+    ((List.range 4).foldl (fun acc μ => if mask / 2 ^ μ % 2 = 1 then acc * gamma i μ else acc) (Mat.ident 4)).flatMap id
+
+/-- 8:D21 — the linear system `(γ^μ)† X' + X' γ^μ = 0`, `μ = 0, …, 3`, in the sixteen entries `X'_{kl}` (index `4k + l`):
+sixty-four equations, one per `(μ, a, b)`. -/
+def twistSystem (i : Shell p) : List (List (Ext p ν)) :=
+  (List.range 4).flatMap fun μ => (List.range 4).flatMap fun a => (List.range 4).map fun b =>
+    let G : Mat p ν := gamma i μ
+    let Gd : Mat p ν := Mat.dagger G
+    (List.range 16).map fun idx =>
+      (if idx % 4 = b then Mat.nth 0 (Mat.nth [] Gd a) (idx / 4) else 0) +
+        (if idx / 4 = a then Mat.nth 0 (Mat.nth [] G (idx % 4)) b else 0)
+
+/-- 8:D21 [value] — the twist is unique up to a scalar: on `𝔽₁₃`, `𝔽₁₇₃` and `𝔽₁₅₄₉` the sixteen products of the gamma
+matrices have rank `16` (they span `M₄(K)`) and the system `(γ^μ)† X' = −X' γ^μ` has rank `15`, a solution space of
+dimension one, the line of `X = γ⁰γ¹γ³`; `X² = ν I₄` fixes the scalar up to sign, `c² = 1` having the two roots `±1`
+in `K` (decided on `𝔽₁₃` and `𝔽₁₇₃`). -/
+theorem spinor_twist_unique_values :
+    rankK (gammaProducts (5 : Shell 13) : List (List (Ext 13 2))) 0 16 = 16 ∧ rankK (twistSystem (5 : Shell 13) : List (List (Ext 13 2))) 0 16 = 15 ∧
+    rankK (gammaProducts (93 : Shell 173) : List (List (Ext 173 2))) 0 16 = 16 ∧ rankK (twistSystem (93 : Shell 173) : List (List (Ext 173 2))) 0 16 = 15 ∧
+    rankK (gammaProducts (1461 : Shell 1549) : List (List (Ext 1549 2))) 0 16 = 16 ∧
+    rankK (twistSystem (1461 : Shell 1549) : List (List (Ext 1549 2))) 0 16 = 15 ∧
+    (∀ a b : Shell 13, (⟨a, b⟩ : Ext 13 2) * ⟨a, b⟩ = 1 → (⟨a, b⟩ : Ext 13 2) = 1 ∨ (⟨a, b⟩ : Ext 13 2) = -1) ∧
+    (∀ a b : Shell 173, (⟨a, b⟩ : Ext 173 2) * ⟨a, b⟩ = 1 → (⟨a, b⟩ : Ext 173 2) = 1 ∨ (⟨a, b⟩ : Ext 173 2) = -1) := by
+  decide +kernel
 
 /-- 8:E4 (2), 8:C5 — the potential propagator `U = diag(φ(V(x)))` for `V = id`: every phase `φ(λ)` has norm
 one and `φ(λ)^{p+1} = 1`, and the order of the diagonal is the least common multiple of the phase orders —

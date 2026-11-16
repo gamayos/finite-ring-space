@@ -561,7 +561,7 @@ theorem cayley_unitary {σ : R → R} (hσ : Adjoint σ) {h a v : R} (hh : σ h 
     _ ≈ (1 + -(a * h)) * v := mul_congr_right _ (one_mul v)
     _ ≈ 1 := hv.1
 
-/-- 8:D10 — the Cayley step of a nilpotent shift minus a mass. With `α`, `m` central, `a = 1 + α m` a central unit
+/-- 8:D10, 8:D13 — the Cayley step of a nilpotent shift minus a mass. With `α`, `m` central, `a = 1 + α m` a central unit
 of inverse `a'`, `b = 1 − α m`, and `N` nilpotent (`N^{k+1} ≈ 0`): `1 − α(N − m) = a (1 − a' α N)` is a unit, with
 inverse `V = geom (a' α N) (k+1) · a'`, and the step `U = V (1 + α(N − m))` differs from the scalar phase `b a'` by
 `N c` with `c` commuting with `N`. The massless step (`m = 0`, `b = a = a' = 1`) is `1 + N c`. -/
@@ -756,9 +756,24 @@ theorem anticomm_of_clifford {d d' g g' : R} (hdd : Comm d d') (hdg : Comm d g')
     _ ≈ d * d' * 0 := mul_congr_right _ hgg
     _ ≈ 0 := mul_zero _
 
-/-- 8:D3, 8:D18 — the Dirac factorisation. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other
+/-- 8:D3, 8:D18, 8:D20 — the square of a Dirac operator. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with
+each other and with the gammas, the gammas anticommuting and squaring to central `η_μ`: `𝒟² ≈ Σ_μ η_μ ∇_μ²`, the
+spinorial Klein–Gordon operator. The cross terms pair into anticommutators, which vanish (`sq_osum`). -/
+theorem dirac_square {n : Nat} {del γ η : Nat → R}
+    (hdd : ∀ μ ν, μ < n → ν < n → Comm (del μ) (del ν)) (hdg : ∀ μ ν, μ < n → ν < n → Comm (del μ) (γ ν))
+    (hgg : ∀ μ ν, μ < n → ν < n → μ ≠ ν → Anticomm (γ μ) (γ ν)) (hsq : ∀ μ, μ < n → γ μ * γ μ ≈ η μ)
+    (hη : ∀ μ, μ < n → Central (η μ)) :
+    osum (fun μ => del μ * γ μ) n * osum (fun μ => del μ * γ μ) n ≈ osum (fun μ => η μ * (del μ * del μ)) n :=
+  calc osum (fun μ => del μ * γ μ) n * osum (fun μ => del μ * γ μ) n ≈ osum (fun μ => del μ * γ μ * (del μ * γ μ)) n :=
+        sq_osum n fun i j hi hj hij => anticomm_of_clifford (hdd i j hi hj) (hdg i j hi hj) (hdg j i hj hi) (hgg i j hi hj hij)
+    _ ≈ osum (fun μ => η μ * (del μ * del μ)) n := osum_congr n fun μ hμ =>
+        calc del μ * γ μ * (del μ * γ μ) ≈ del μ * del μ * (γ μ * γ μ) := mul_mul_swap (hdg μ μ hμ hμ).symm
+          _ ≈ del μ * del μ * η μ := mul_congr_right _ (hsq μ hμ)
+          _ ≈ η μ * (del μ * del μ) := eq_symm (hη μ hμ _)
+
+/-- 8:D3, 8:D18, 8:D13 — the Dirac factorisation. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other
 and with the gammas, the gammas anticommuting and squaring to central `η_μ`, and the mass `m` central:
-`(𝒟 − m)(𝒟 + m) ≈ Σ_μ η_μ ∇_μ² − m²`. The cross terms pair into anticommutators, which vanish (`sq_osum`). -/
+`(𝒟 − m)(𝒟 + m) ≈ Σ_μ η_μ ∇_μ² − m²`, by `dirac_square`. -/
 theorem dirac_factorisation {n : Nat} {del γ η : Nat → R} {m : R}
     (hdd : ∀ μ ν, μ < n → ν < n → Comm (del μ) (del ν)) (hdg : ∀ μ ν, μ < n → ν < n → Comm (del μ) (γ ν))
     (hgg : ∀ μ ν, μ < n → ν < n → μ ≠ ν → Anticomm (γ μ) (γ ν)) (hsq : ∀ μ, μ < n → γ μ * γ μ ≈ η μ)
@@ -766,12 +781,7 @@ theorem dirac_factorisation {n : Nat} {del γ η : Nat → R} {m : R}
     (osum (fun μ => del μ * γ μ) n + -m) * (osum (fun μ => del μ * γ μ) n + m) ≈
       osum (fun μ => η μ * (del μ * del μ)) n + -(m * m) := by
   have hDD : osum (fun μ => del μ * γ μ) n * osum (fun μ => del μ * γ μ) n ≈ osum (fun μ => η μ * (del μ * del μ)) n :=
-    calc osum (fun μ => del μ * γ μ) n * osum (fun μ => del μ * γ μ) n ≈ osum (fun μ => del μ * γ μ * (del μ * γ μ)) n :=
-          sq_osum n fun i j hi hj hij => anticomm_of_clifford (hdd i j hi hj) (hdg i j hi hj) (hdg j i hj hi) (hgg i j hi hj hij)
-      _ ≈ osum (fun μ => η μ * (del μ * del μ)) n := osum_congr n fun μ hμ =>
-          calc del μ * γ μ * (del μ * γ μ) ≈ del μ * del μ * (γ μ * γ μ) := mul_mul_swap (hdg μ μ hμ hμ).symm
-            _ ≈ del μ * del μ * η μ := mul_congr_right _ (hsq μ hμ)
-            _ ≈ η μ * (del μ * del μ) := eq_symm (hη μ hμ _)
+    dirac_square hdd hdg hgg hsq hη
   calc (osum (fun μ => del μ * γ μ) n + -m) * (osum (fun μ => del μ * γ μ) n + m)
       ≈ (osum (fun μ => del μ * γ μ) n + -m) * osum (fun μ => del μ * γ μ) n + (osum (fun μ => del μ * γ μ) n + -m) * m :=
         left_distrib _ _ _

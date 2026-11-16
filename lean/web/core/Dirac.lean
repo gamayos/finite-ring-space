@@ -4695,6 +4695,18 @@ theorem nu_factorisation (F : Frame p κ g) {h : Shell p} (hh : 2 * h = 1) :
     · exact absurd (hm2.2 hm') (by rw [h1]; exact fun e => Nat.noConfusion e)
     · exact hm'
 
+/-- 8:B8 — one-way and two-way transport, on every frame: the squares are the even drive steps, so a comparison reading
+(a step composed with its return) is even and the single-chronon multiplier `g` is odd; the flip `g ↦ g⁻¹` keeps the
+class (`g⁻¹` is a nonsquare too); and the null cone `x² = g t²` of the nonsquare coefficient `ν = g` has no point of
+`𝔽_p²` but the origin, so light-like transport carries no registered velocity, only its square class (`parity_iff`,
+`drive_nonsquare`, `inv_drive_nonsquare`, `aniso_tx`). -/
+theorem oneway_transport (F : Frame p κ g) :
+    (∀ m : Nat, (∃ y : Shell p, y * y = g ^ m) ↔ m % 2 = 0) ∧ (¬ ∃ y : Shell p, y * y = g) ∧
+    (∀ {y : Shell p}, g * y = 1 → ¬ ∃ r : Shell p, r * r = y) ∧
+    (∀ {t x : Shell p}, x * x = g * (t * t) → t = 0 ∧ x = 0) :=
+  ⟨parity_iff F, drive_nonsquare F, fun hy => inv_drive_nonsquare F hy,
+    fun e => FRC.Shell.Frame.aniso_tx F (drive_nonsquare F) e⟩
+
 end parity
 
 /-! ## The latitude identities (8:F2) -/
@@ -4744,7 +4756,7 @@ end latitude
 section drive
 variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
 
-/-- 8:F3, 8:F6 — the drive pullback on the characters: with `y = g⁻¹`, `χ_k(g^{j}) = y^k · χ_k(g^{j+1})` for every
+/-- 8:F3, 8:F6, 8:D13 — the drive pullback on the characters: with `y = g⁻¹`, `χ_k(g^{j}) = y^k · χ_k(g^{j+1})` for every
 `j, k` — the winding-`k` mode acquires the phase `g^{−k}` per chronon, so the drive is semisimple with the whole
 drive cycle as its spectrum (Theorem `zonal` (2), Proposition `two-spectra`). -/
 theorem drive_eigen {y : Shell p} (hy : g * y = 1) (j k : Nat) :
@@ -4781,6 +4793,13 @@ theorem isotropy (F : Frame p κ g) (k : Nat) :
     rw [sum_congr (p - 1) (fun j _ => by rw [F.pow_eq_one_of_mod hk, Shell.one_pow]),
       sum_const, Shell.mul_one]
     exact Frame.ofNat_n F
+
+/-- 8:E9 — on every symmetry-complete shell `p = 4κ + 1`, `p^k + 1 ≡ 2 (mod 4)` for every `k`: a phase whose order is
+divisible by `4` lies on no cycle of order `p^k + 1`, the relation behind the degree-two instance of `eigenphase_values`. -/
+theorem pow_succ_mod_four (F : Frame p κ g) (k : Nat) : (p ^ k + 1) % 4 = 2 := by
+  have h1 : p % 4 = 1 := by have := F.cap; omega
+  have h2 : p ^ k % 4 = 1 := by rw [Nat.pow_mod, h1, Nat.one_pow]
+  omega
 
 /-- 8:F4, 8:F6, 8:X1, 8:E8 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`,
 so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one
@@ -5026,6 +5045,76 @@ where
   go (x : Ext p ν) (e : Nat) : Nat → Nat
     | 0 => 0
     | fuel + 1 => if x = 1 then e else go (x * u) (e + 1) fuel
+
+/-- The inverse in `K` by the conjugate over the searched inverse of the norm (`0` when the norm is `0`). -/
+def invK (z : Ext p ν) : Ext p ν := Ext.conj z * Ext.ofShell (invS (Ext.norm z))
+
+/-- The scalar Cayley map at `α = w` on the whole coefficient field, `φ(λ) = (1 + wλ)(1 − wλ)⁻¹` for `λ ∈ K`
+(`phi` is its restriction to the shell). -/
+def phiK (lam : Ext p ν) : Ext p ν := (1 + Ext.w * lam) * invK (1 + -(Ext.w * lam))
+
+/-- 8:E9 [value] — the eigenphase law on `𝔽₁₃` (`ν = g = 2`): the Cayley phase of a residue of degree one lies on the third
+cycle, `φ(λ)^{14} = 1`, and that of an element of `K` of degree two in `K^×`, `φ(λ)^{168} = 1`, on every `λ ∈ K` with
+`1 ± wλ ≠ 0` (the `13 + 154` cases; `λ = ∓w⁻¹` are excluded, the second being the conjugate of the first and so an
+eigenvalue beside it, against the admissibility of `α = w`); the eigenvalue `2 + 2w` of `H = −Δ + M_V`, `V = (1, 1, 0, …, 0)`,
+has the phase `6 + 4w` of order exactly `84 = lcm(12, 14)`, on neither the drive cycle nor the third cycle — the even-degree
+case the period conjecture of 7-counts missed: `4 ∣ 84`, while `p^k + 1 ≡ 2 (mod 4)` on every shell (`pow_succ_mod_four`). -/
+theorem eigenphase_values :
+    (∀ a b : Shell 13, (1 : Ext 13 2) + -(Ext.w * ⟨a, b⟩) ≠ 0 → (1 : Ext 13 2) + Ext.w * ⟨a, b⟩ ≠ 0 →
+      (phiK (⟨a, b⟩ : Ext 13 2)) ^ (if b = 0 then 14 else 168) = 1) ∧
+    phiK (⟨2, 2⟩ : Ext 13 2) = ⟨6, 4⟩ ∧ (⟨6, 4⟩ : Ext 13 2) ^ 84 = 1 ∧ (⟨6, 4⟩ : Ext 13 2) ^ 42 ≠ 1 ∧
+    (⟨6, 4⟩ : Ext 13 2) ^ 28 ≠ 1 ∧ (⟨6, 4⟩ : Ext 13 2) ^ 12 ≠ 1 ∧ (13 ^ 2 - 1) % 84 = 0 ∧
+    (⟨6, 4⟩ : Ext 13 2) ^ 14 ≠ 1 ∧ Nat.lcm 12 14 = 84 ∧ 84 % 4 = 0 := by
+  decide +kernel
+
+/-- The rank of a list of rows over `K` by elimination, columns `c, c + 1, …` for `fuel` columns: the first row with a
+nonzero entry in the column is the pivot, it is removed and the column cleared from the others. -/
+def pivotSplit (c : Nat) : List (List (Ext p ν)) → Option (List (Ext p ν) × List (List (Ext p ν)))
+  | [] => none
+  | r :: rs =>
+    if Mat.nth 0 r c = 0 then
+      match pivotSplit c rs with
+      | none => none
+      | some (pv, rest) => some (pv, r :: rest)
+    else some (r, rs)
+def elimRows (c : Nat) (pv : List (Ext p ν)) (rows : List (List (Ext p ν))) : List (List (Ext p ν)) :=
+  let inv := invK (Mat.nth 0 pv c)
+  rows.map fun r => let f := Mat.nth 0 r c * inv; List.zipWith (fun a b => a + -(f * b)) r pv
+def rankK (rows : List (List (Ext p ν))) (c : Nat) : Nat → Nat
+  | 0 => 0
+  | k + 1 =>
+    match pivotSplit c rows with
+    | none => rankK rows (c + 1) k
+    | some (pv, rest) => rankK (elimRows c pv rest) (c + 1) k + 1
+
+/-- The sixteen products of the gamma matrices (one per subset of `{0, 1, 2, 3}`), each flattened to its sixteen
+entries. -/
+def gammaProducts (i : Shell p) : List (List (Ext p ν)) :=
+  (List.range 16).map fun mask =>
+    ((List.range 4).foldl (fun acc μ => if mask / 2 ^ μ % 2 = 1 then acc * gamma i μ else acc) (Mat.ident 4)).flatMap id
+
+/-- 8:D21 — the linear system `(γ^μ)† X' + X' γ^μ = 0`, `μ = 0, …, 3`, in the sixteen entries `X'_{kl}` (index `4k + l`):
+sixty-four equations, one per `(μ, a, b)`. -/
+def twistSystem (i : Shell p) : List (List (Ext p ν)) :=
+  (List.range 4).flatMap fun μ => (List.range 4).flatMap fun a => (List.range 4).map fun b =>
+    let G : Mat p ν := gamma i μ
+    let Gd : Mat p ν := Mat.dagger G
+    (List.range 16).map fun idx =>
+      (if idx % 4 = b then Mat.nth 0 (Mat.nth [] Gd a) (idx / 4) else 0) +
+        (if idx / 4 = a then Mat.nth 0 (Mat.nth [] G (idx % 4)) b else 0)
+
+/-- 8:D21 [value] — the twist is unique up to a scalar: on `𝔽₁₃`, `𝔽₁₇₃` and `𝔽₁₅₄₉` the sixteen products of the gamma
+matrices have rank `16` (they span `M₄(K)`) and the system `(γ^μ)† X' = −X' γ^μ` has rank `15`, a solution space of
+dimension one, the line of `X = γ⁰γ¹γ³`; `X² = ν I₄` fixes the scalar up to sign, `c² = 1` having the two roots `±1`
+in `K` (decided on `𝔽₁₃` and `𝔽₁₇₃`). -/
+theorem spinor_twist_unique_values :
+    rankK (gammaProducts (5 : Shell 13) : List (List (Ext 13 2))) 0 16 = 16 ∧ rankK (twistSystem (5 : Shell 13) : List (List (Ext 13 2))) 0 16 = 15 ∧
+    rankK (gammaProducts (93 : Shell 173) : List (List (Ext 173 2))) 0 16 = 16 ∧ rankK (twistSystem (93 : Shell 173) : List (List (Ext 173 2))) 0 16 = 15 ∧
+    rankK (gammaProducts (1461 : Shell 1549) : List (List (Ext 1549 2))) 0 16 = 16 ∧
+    rankK (twistSystem (1461 : Shell 1549) : List (List (Ext 1549 2))) 0 16 = 15 ∧
+    (∀ a b : Shell 13, (⟨a, b⟩ : Ext 13 2) * ⟨a, b⟩ = 1 → (⟨a, b⟩ : Ext 13 2) = 1 ∨ (⟨a, b⟩ : Ext 13 2) = -1) ∧
+    (∀ a b : Shell 173, (⟨a, b⟩ : Ext 173 2) * ⟨a, b⟩ = 1 → (⟨a, b⟩ : Ext 173 2) = 1 ∨ (⟨a, b⟩ : Ext 173 2) = -1) := by
+  decide +kernel
 
 /-- 8:E4 (2), 8:C5 — the potential propagator `U = diag(φ(V(x)))` for `V = id`: every phase `φ(λ)` has norm
 one and `φ(λ)^{p+1} = 1`, and the order of the diagonal is the least common multiple of the phase orders —
@@ -7071,7 +7160,7 @@ theorem cayley_unitary {σ : R → R} (hσ : Adjoint σ) {h a v : R} (hh : σ h 
     _ ≈ (1 + -(a * h)) * v := mul_congr_right _ (one_mul v)
     _ ≈ 1 := hv.1
 
-/-- 8:D10 — the Cayley step of a nilpotent shift minus a mass. With `α`, `m` central, `a = 1 + α m` a central unit
+/-- 8:D10, 8:D13 — the Cayley step of a nilpotent shift minus a mass. With `α`, `m` central, `a = 1 + α m` a central unit
 of inverse `a'`, `b = 1 − α m`, and `N` nilpotent (`N^{k+1} ≈ 0`): `1 − α(N − m) = a (1 − a' α N)` is a unit, with
 inverse `V = geom (a' α N) (k+1) · a'`, and the step `U = V (1 + α(N − m))` differs from the scalar phase `b a'` by
 `N c` with `c` commuting with `N`. The massless step (`m = 0`, `b = a = a' = 1`) is `1 + N c`. -/
@@ -7266,9 +7355,24 @@ theorem anticomm_of_clifford {d d' g g' : R} (hdd : Comm d d') (hdg : Comm d g')
     _ ≈ d * d' * 0 := mul_congr_right _ hgg
     _ ≈ 0 := mul_zero _
 
-/-- 8:D3, 8:D18 — the Dirac factorisation. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other
+/-- 8:D3, 8:D18, 8:D20 — the square of a Dirac operator. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with
+each other and with the gammas, the gammas anticommuting and squaring to central `η_μ`: `𝒟² ≈ Σ_μ η_μ ∇_μ²`, the
+spinorial Klein–Gordon operator. The cross terms pair into anticommutators, which vanish (`sq_osum`). -/
+theorem dirac_square {n : Nat} {del γ η : Nat → R}
+    (hdd : ∀ μ ν, μ < n → ν < n → Comm (del μ) (del ν)) (hdg : ∀ μ ν, μ < n → ν < n → Comm (del μ) (γ ν))
+    (hgg : ∀ μ ν, μ < n → ν < n → μ ≠ ν → Anticomm (γ μ) (γ ν)) (hsq : ∀ μ, μ < n → γ μ * γ μ ≈ η μ)
+    (hη : ∀ μ, μ < n → Central (η μ)) :
+    osum (fun μ => del μ * γ μ) n * osum (fun μ => del μ * γ μ) n ≈ osum (fun μ => η μ * (del μ * del μ)) n :=
+  calc osum (fun μ => del μ * γ μ) n * osum (fun μ => del μ * γ μ) n ≈ osum (fun μ => del μ * γ μ * (del μ * γ μ)) n :=
+        sq_osum n fun i j hi hj hij => anticomm_of_clifford (hdd i j hi hj) (hdg i j hi hj) (hdg j i hj hi) (hgg i j hi hj hij)
+    _ ≈ osum (fun μ => η μ * (del μ * del μ)) n := osum_congr n fun μ hμ =>
+        calc del μ * γ μ * (del μ * γ μ) ≈ del μ * del μ * (γ μ * γ μ) := mul_mul_swap (hdg μ μ hμ hμ).symm
+          _ ≈ del μ * del μ * η μ := mul_congr_right _ (hsq μ hμ)
+          _ ≈ η μ * (del μ * del μ) := eq_symm (hη μ hμ _)
+
+/-- 8:D3, 8:D18, 8:D13 — the Dirac factorisation. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other
 and with the gammas, the gammas anticommuting and squaring to central `η_μ`, and the mass `m` central:
-`(𝒟 − m)(𝒟 + m) ≈ Σ_μ η_μ ∇_μ² − m²`. The cross terms pair into anticommutators, which vanish (`sq_osum`). -/
+`(𝒟 − m)(𝒟 + m) ≈ Σ_μ η_μ ∇_μ² − m²`, by `dirac_square`. -/
 theorem dirac_factorisation {n : Nat} {del γ η : Nat → R} {m : R}
     (hdd : ∀ μ ν, μ < n → ν < n → Comm (del μ) (del ν)) (hdg : ∀ μ ν, μ < n → ν < n → Comm (del μ) (γ ν))
     (hgg : ∀ μ ν, μ < n → ν < n → μ ≠ ν → Anticomm (γ μ) (γ ν)) (hsq : ∀ μ, μ < n → γ μ * γ μ ≈ η μ)
@@ -7276,12 +7380,7 @@ theorem dirac_factorisation {n : Nat} {del γ η : Nat → R} {m : R}
     (osum (fun μ => del μ * γ μ) n + -m) * (osum (fun μ => del μ * γ μ) n + m) ≈
       osum (fun μ => η μ * (del μ * del μ)) n + -(m * m) := by
   have hDD : osum (fun μ => del μ * γ μ) n * osum (fun μ => del μ * γ μ) n ≈ osum (fun μ => η μ * (del μ * del μ)) n :=
-    calc osum (fun μ => del μ * γ μ) n * osum (fun μ => del μ * γ μ) n ≈ osum (fun μ => del μ * γ μ * (del μ * γ μ)) n :=
-          sq_osum n fun i j hi hj hij => anticomm_of_clifford (hdd i j hi hj) (hdg i j hi hj) (hdg j i hj hi) (hgg i j hi hj hij)
-      _ ≈ osum (fun μ => η μ * (del μ * del μ)) n := osum_congr n fun μ hμ =>
-          calc del μ * γ μ * (del μ * γ μ) ≈ del μ * del μ * (γ μ * γ μ) := mul_mul_swap (hdg μ μ hμ hμ).symm
-            _ ≈ del μ * del μ * η μ := mul_congr_right _ (hsq μ hμ)
-            _ ≈ η μ * (del μ * del μ) := eq_symm (hη μ hμ _)
+    dirac_square hdd hdg hgg hsq hη
   calc (osum (fun μ => del μ * γ μ) n + -m) * (osum (fun μ => del μ * γ μ) n + m)
       ≈ (osum (fun μ => del μ * γ μ) n + -m) * osum (fun μ => del μ * γ μ) n + (osum (fun μ => del μ * γ μ) n + -m) * m :=
         left_distrib _ _ _
@@ -7526,6 +7625,47 @@ theorem frobenius_add {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g
         show nsmul 1 (opow x p * 1) ≈ opow x p
         exact eq_trans (zero_add _) (mul_one _)
     _ ≈ opow x p + opow y p := eq_trans (add_congr_right _ (zero_add _)) (add_comm _ _)
+
+/-- The Frobenius is additive on a sum of pairwise commuting terms in characteristic `p`:
+`(Σ_{j<n} f j)^p ≈ Σ_{j<n} (f j)^p`, by induction on `n` from `frobenius_add`. -/
+theorem frobenius_osum {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {f : Nat → R} : ∀ n, (∀ i j, i < n → j < n → Comm (f i) (f j)) → opow (osum f n) p ≈ osum (fun j => opow (f j) p) n
+  | 0, _ => by
+    obtain ⟨p', hp'⟩ : ∃ p', p = p' + 1 := ⟨p - 1, (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm⟩
+    show opow (0 : R) p ≈ 0
+    rw [hp']; exact opow_zero_of_zero p'
+  | n + 1, h =>
+    have hc : Comm (osum f n) (f n) := osum_comm n fun j hj => h j n (Nat.lt_succ_of_lt hj) (Nat.lt_succ_self n)
+    calc opow (osum f n + f n) p ≈ opow (osum f n) p + opow (f n) p := frobenius_add F hch hc
+      _ ≈ osum (fun j => opow (f j) p) n + opow (f n) p :=
+          add_congr_left _ (frobenius_osum F hch n fun i j hi hj => h i j (Nat.lt_succ_of_lt hi) (Nat.lt_succ_of_lt hj))
+
+/-- 8:D20 — the square bound of a Dirac operator. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` as in `dirac_square`, in characteristic `p`
+on a frame, with every difference nilpotent of index at most `p` (`∇_μ^p ≈ 0`): `𝒟^{2p} ≈ 0`. The square is
+`Σ_μ η_μ ∇_μ²`, the Frobenius is additive on its commuting summands, and `(η_μ ∇_μ²)^p ≈ η_μ^p ∇_μ^{2p} ≈ 0`. -/
+theorem dirac_square_nilpotent {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {n : Nat} {del γ η : Nat → R}
+    (hdd : ∀ μ ν, μ < n → ν < n → Comm (del μ) (del ν)) (hdg : ∀ μ ν, μ < n → ν < n → Comm (del μ) (γ ν))
+    (hgg : ∀ μ ν, μ < n → ν < n → μ ≠ ν → Anticomm (γ μ) (γ ν)) (hsq : ∀ μ, μ < n → γ μ * γ μ ≈ η μ)
+    (hη : ∀ μ, μ < n → Central (η μ)) (hnil : ∀ μ, μ < n → opow (del μ) p ≈ 0) :
+    opow (osum (fun μ => del μ * γ μ) n) (2 * p) ≈ 0 := by
+  have hcomm : ∀ i j, i < n → j < n → Comm (η i * (del i * del i)) (η j * (del j * del j)) := fun i j hi hj =>
+    Comm.mul_left (hη i hi _)
+      (Comm.mul_left (Comm.mul_right (Comm.symm (hη j hj (del i))) (Comm.mul_right (hdd i j hi hj) (hdd i j hi hj)))
+        (Comm.mul_right (Comm.symm (hη j hj (del i))) (Comm.mul_right (hdd i j hi hj) (hdd i j hi hj))))
+  have hterm : ∀ μ, μ < n → opow (η μ * (del μ * del μ)) p ≈ 0 := fun μ hμ =>
+    calc opow (η μ * (del μ * del μ)) p ≈ opow (η μ) p * opow (del μ * del μ) p := mul_opow (hη μ hμ _) p
+      _ ≈ opow (η μ) p * (opow (del μ) p * opow (del μ) p) := mul_congr_right _ (mul_opow (Comm.refl _) p)
+      _ ≈ opow (η μ) p * (0 * 0) := mul_congr_right _ (mul_congr (hnil μ hμ) (hnil μ hμ))
+      _ ≈ opow (η μ) p * 0 := mul_congr_right _ (mul_zero 0)
+      _ ≈ 0 := mul_zero _
+  calc opow (osum (fun μ => del μ * γ μ) n) (2 * p)
+      ≈ opow (opow (osum (fun μ => del μ * γ μ) n) 2) p := opow_mul _ 2 p
+    _ ≈ opow (osum (fun μ => del μ * γ μ) n * osum (fun μ => del μ * γ μ) n) p :=
+        opow_congr (mul_congr_left _ (opow_one _)) p
+    _ ≈ opow (osum (fun μ => η μ * (del μ * del μ)) n) p := opow_congr (dirac_square hdd hdg hgg hsq hη) p
+    _ ≈ osum (fun μ => opow (η μ * (del μ * del μ)) p) n := frobenius_osum F hch n hcomm
+    _ ≈ 0 := osum_eq_zero n hterm
 
 /-- `(−1)^{2j} ≈ 1` and `(−1)^{2j+1} ≈ −1`. -/
 theorem opow_neg_one_even : ∀ j, opow (-1 : R) (2 * j) ≈ 1
@@ -7999,8 +8139,8 @@ theorem factorisation_value :
 
 /-- 8:E8 [value] — the three cycles in dynamical roles: `lcm(13, 14) = 182`, and the mixed step `U = M⁻¹P` of
 `H = −Δ + V_id` on `𝔽₁₃` (`M = 1 − wH`, `P = 1 + wH`, commuting) has `U^{13} ≠ 1`, `U^{14} ≠ 1`, `U^{182} ≠ 1`,
-since `U^k = 1` exactly when `P^k = M^k`: neither cycle, nor their least common period, is its period (the exact
-order `(13¹³ + 1)/2` is the package's certificate). -/
+since `U^k = 1` exactly when `P^k = M^k`: it closes on neither the register nor the third cycle nor their least common
+period (`mixed_step_closure` has every cycle of the shell). -/
 theorem mixed_step_values :
     Nat.lcm 13 14 = 182 ∧
     let H : Mat 13 2 := add (circMat 13 (kineticRow 13 2))
@@ -8009,6 +8149,25 @@ theorem mixed_step_values :
     let P : NMat := toN (add (ident 13) (smul ⟨0, 1⟩ H))
     mmulN 13 2 13 M P = mmulN 13 2 13 P M ∧ mpowN 13 2 13 P 13 ≠ mpowN 13 2 13 M 13 ∧
       mpowN 13 2 13 P 14 ≠ mpowN 13 2 13 M 14 ∧ mpowN 13 2 13 P 182 ≠ mpowN 13 2 13 M 182 := by
+  decide +kernel
+
+/-- 8:E8 [value] — the mixed step of `H = −Δ + V_id` on `𝔽₁₃` has no eigenvalue in `K` and closes on no cycle of the shell.
+The monic `q = x¹³ − x + 2` (the package's `χ_H`) annihilates `H`, `q(H) = 0` by Horner on the matrices, and has no root in
+`K`, so an eigenvalue `λ ∈ K` (`Hv = λv`, `q(λ)v = q(H)v = 0`) is impossible. `P^{2184} ≠ M^{2184}`, i.e. `U^{2184} ≠ 1`
+for `2184 = p(p² − 1)`, the least common period of the register, the drive cycle, the third cycle and `K^×`: a closure
+`U^t = 1` at a divisor `t` of `2184` would give `U^{2184} = 1`, so the step closes on no cycle of the shell, as Lemma
+eigenphase-law (iii) requires of a step with an eigenvalue of degree three or more. The irreducibility of `q` over `𝔽₁₃`
+is the package's record. -/
+theorem mixed_step_closure :
+    let H : Mat 13 2 := add (circMat 13 (kineticRow 13 2))
+      ((List.range 13).map fun i => (List.range 13).map fun j => if i = j then ⟨ofNat i, 0⟩ else 0)
+    let M : NMat := toN (add (ident 13) (neg (smul ⟨0, 1⟩ H)))
+    let P : NMat := toN (add (ident 13) (smul ⟨0, 1⟩ H))
+    let q : List (Ext 13 2) := [2, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+    q.reverse.foldl (fun acc c => add (mul acc H) (smul c (ident 13))) (smul (0 : Ext 13 2) (ident 13)) =
+      smul (0 : Ext 13 2) (ident 13) ∧
+    (∀ a b : Shell 13, q.foldr (fun c acc => c + (⟨a, b⟩ : Ext 13 2) * acc) 0 ≠ 0) ∧
+    mmulN 13 2 13 M P = mmulN 13 2 13 P M ∧ mpowN 13 2 13 P 2184 ≠ mpowN 13 2 13 M 2184 := by
   decide +kernel
 
 /-- 8:D11 [value] — the spinor form transports by the norm of the lift: `S† X S = N(z) X` for `S = x I₄ + y γ⁰γ¹`,
@@ -8020,6 +8179,47 @@ theorem lift_transport_values :
       smul (-1) (gamma0 93 * gamma1 93 * gamma3 93) ∧
     (dagger (spinLift 1461 1 1) * (gamma0 1461 * gamma1 1461 * gamma3 1461) * spinLift 1461 1 1 : Mat 1549 2) =
       smul (-1) (gamma0 1461 * gamma1 1461 * gamma3 1461) := by
+  decide +kernel
+
+/-- 8:D13 [value] — mass is winding rate, on `𝔽₁₃` in `0+1` (`ν = 2`, `i = 5`, `2⁻¹ = 7`), on the `52 × 52` matrices: the
+symmetric Dirac operator `𝒟^s = ∇^s ⊗ γ⁰` develops the translation-invariant spinor `ψ₀` by nothing, and for `m = 1, 2`
+the Cayley step of `𝒟^s − m` acts on it as the mass phase alone, `P ψ₀ = φ(−m) M ψ₀` for `M = 1 − w(𝒟^s − m)`,
+`P = 1 + w(𝒟^s − m)` (so `U ψ₀ = M⁻¹ P ψ₀ = φ(−m) ψ₀`), with `φ(−1) = 10 + 2w` and `φ(−2) = 8 + 8w` on the norm-one
+cycle (`drive_eigen` is the drive's side of the balance, `dirac_factorisation` its square). -/
+theorem mass_winding_values :
+    let D : Mat 13 2 := kron (circMat 13 (symDiffRow 13 7)) (gamma0 5)
+    let psi : Mat 13 2 := (List.range 52).map fun r => [if r % 4 = 0 then 1 else 0]
+    let M (m : Ext 13 2) : Mat 13 2 := add (ident 52) (neg (smul ⟨0, 1⟩ (add D (neg (smul m (ident 52))))))
+    let P (m : Ext 13 2) : Mat 13 2 := add (ident 52) (smul ⟨0, 1⟩ (add D (neg (smul m (ident 52)))))
+    (2 : Shell 13) * 7 = 1 ∧ mul D psi = (List.range 52).map (fun _ => [0]) ∧
+    mul (P 1) psi = smul (phi 2 12) (mul (M 1) psi) ∧ (phi 2 12 : Ext 13 2) = ⟨10, 2⟩ ∧
+    mul (P 2) psi = smul (phi 2 11) (mul (M 2) psi) ∧ (phi 2 11 : Ext 13 2) = ⟨8, 8⟩ := by
+  decide +kernel
+
+/-- 8:E9 [value] — the closure of a Cayley step at the instance: the step `U = M⁻¹P` of `H = −Δ + M_V`, `V = (1, 1, 0, …, 0)`,
+on `𝔽₁₃` (`M = 1 − wH`, `P = 1 + wH`, commuting) has the eigenvector of the degree-two eigenvalue `2 + 2w` exhibited,
+`H v = (2 + 2w) v`, and closes on no cycle of the shell: `P^{2184} ≠ M^{2184}`, i.e. `U^{2184} ≠ 1` for
+`2184 = p(p² − 1)`, so `U^t ≠ 1` for every divisor `t` of `2184` (a closure at `t` would close `2184`), as Lemma
+eigenphase-law (iii) requires of a step with an eigenvalue of degree three or more (the two cubic factors of `χ_H` are
+the package's record). -/
+theorem eigenphase_closure_values :
+    let V : Mat 13 2 := (List.range 13).map fun i => (List.range 13).map fun j => if i = j ∧ i < 2 then 1 else 0
+    let H : Mat 13 2 := add (circMat 13 (kineticRow 13 2)) V
+    let M : NMat := toN (add (ident 13) (neg (smul ⟨0, 1⟩ H)))
+    let P : NMat := toN (add (ident 13) (smul ⟨0, 1⟩ H))
+    let v : Mat 13 2 := [[⟨0, 3⟩], [⟨0, 3⟩], [⟨1, 0⟩], [⟨0, 8⟩], [⟨6, 0⟩], [⟨0, 6⟩], [⟨9, 0⟩], [⟨0, 2⟩], [⟨9, 0⟩], [⟨0, 6⟩],
+      [⟨6, 0⟩], [⟨0, 8⟩], [⟨1, 0⟩]]
+    mul H v = smul ⟨2, 2⟩ v ∧
+    mmulN 13 2 13 M P = mmulN 13 2 13 P M ∧ mpowN 13 2 13 P 2184 ≠ mpowN 13 2 13 M 2184 := by
+  decide +kernel
+
+/-- 8:D20 [value] — the square bound at the instance: on `𝔽₁₃` in `0+1`, on the `52 × 52` matrices, `(𝒟^s)^{13} = 0` and
+`(𝒟^s)^{12} ≠ 0`, the nilpotency index `13 = p` within the bound `2p = 26` of `dirac_square_nilpotent` (the indices `25`,
+`26`, `26` on two, three and four coordinate directions are the package's records). -/
+theorem dirac_square_values :
+    let D : NMat := toN (kron (circMat 13 (symDiffRow 13 7)) (gamma0 5) : Mat 13 2)
+    let Z : NMat := toN (smul (0 : Ext 13 2) (ident 52))
+    mpowN 13 2 52 D 13 = Z ∧ mpowN 13 2 52 D 12 ≠ Z := by
   decide +kernel
 
 end witnesses

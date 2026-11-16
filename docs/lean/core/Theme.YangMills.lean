@@ -767,4 +767,22 @@ theorem radial_ratio :
     1491 * 939 < 1440 * 1000 ∧ 1440 * 1000 * 100 < 1491 * 939 * 103 := by
   decide
 
+/-- 46:C28 — the ground value of the wrap of two windings between the rational bounds `3.1415 < π < 3.1416` [chart]: for
+`a = ϰ = 2` the square is `4π`, and `3.544² < 4 · 3.1415`, `4 · 3.1416 < 3.546²`; for `a = 2`, `ϰ = 9/4` it is `9π/2`, and
+`3.759² < (9/2) · 3.1415`, `(9/2) · 3.1416 < 3.761²`. The two values, `3.545` and `3.760`, bracket `3.63` and `3.70`, and
+`3.405` lies below `3.544`. In integers, over the common denominators. -/
+theorem two_windings_ground :
+    3544 * 3544 * 10000 < 4 * 31415 * 1000000 ∧ 4 * 31416 * 1000000 < 3546 * 3546 * 10000 ∧
+    2 * (3759 * 3759) * 10000 < 9 * 31415 * 1000000 ∧ 9 * 31416 * 1000000 < 2 * (3761 * 3761) * 10000 ∧
+    3546 < 3630 ∧ 3700 < 3759 ∧ 3405 < 3544 := by
+  decide
+
+/-- 46:P5 — the radial ratio of the wrap of two windings [chart]: the squares of the ratios are `(2 + 4k)/2`, that is `3` and
+`5`; `√3` lies in the interval of the 2020 determination `1.720(16)`, as `1704² < 3 · 1000² < 1736²`; and `7/3`, the square
+for three windings, lies below it, as `7 · 1000² < 3 · 1704²`. -/
+theorem two_windings_radial :
+    2 + 4 * 1 = 3 * (2 + 4 * 0) ∧ 2 + 4 * 2 = 5 * (2 + 4 * 0) ∧
+    1704 * 1704 < 3 * (1000 * 1000) ∧ 3 * (1000 * 1000) < 1736 * 1736 ∧ 7 * (1000 * 1000) < 3 * (1704 * 1704) := by
+  decide
+
 end FRC.YangMills

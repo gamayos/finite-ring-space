@@ -68,4 +68,19 @@ theorem radial_ratio_confrontation (r : ℚ) (hr : r = 1.4915) :
   refine ⟨by rw [abs_lt]; constructor <;> norm_num, by norm_num, by norm_num, by rw [abs_lt]; constructor <;> linarith [h.1, h.2], h.1, ?_⟩
   rw [abs_lt]; constructor <;> norm_num
 
+/-- 46:C28 [chart] — the ground value of the wrap of two windings as rational brackets: for every rational `x` between the
+bounds `3.1415` and `3.1416` of `π`, `3.544² < 4x < 3.546²` and `3.759² < (9/2)x < 3.761²`. The squares of the ground values
+for `a = ϰ = 2` and for `a = 2`, `ϰ = 9/4` are `4π` and `9π/2`, so the values are `3.545` and `3.760`. -/
+theorem two_windings_ground_values (x : ℚ) (h₁ : 3.1415 < x) (h₂ : x < 3.1416) :
+    (3.544 : ℚ) ^ 2 < 4 * x ∧ 4 * x < 3.546 ^ 2 ∧ (3.759 : ℚ) ^ 2 < 9 / 2 * x ∧ 9 / 2 * x < 3.761 ^ 2 := by
+  refine ⟨?_, ?_, ?_, ?_⟩ <;> norm_num at h₁ h₂ ⊢ <;> linarith
+
+/-- 46:P5 [chart] — the radial ratio of the wrap of two windings as rational brackets: the square of the ratio is
+`(2 + 4)/2 = 3`; `1.704² < 3 < 1.736²`, the interval of the 2020 determination `1.720(16)`, and the same with the unrounded
+quotient `5855/3405`; `7/3`, the square for three windings, lies below `1.704²`. -/
+theorem two_windings_radial_ratio :
+    ((2 + 4 : ℚ) / 2 = 3) ∧ (1.704 : ℚ) ^ 2 < 3 ∧ (3 : ℚ) < 1.736 ^ 2 ∧
+    ((5855 : ℚ) / 3405 - 0.016) ^ 2 < 3 ∧ (3 : ℚ) < (5855 / 3405 + 0.016) ^ 2 ∧ (7 : ℚ) / 3 < 1.704 ^ 2 := by
+  norm_num
+
 end FRC.YangMillsML

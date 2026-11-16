@@ -226,6 +226,47 @@ theorem frobenius_add {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g
         exact eq_trans (zero_add _) (mul_one _)
     _ ≈ opow x p + opow y p := eq_trans (add_congr_right _ (zero_add _)) (add_comm _ _)
 
+/-- The Frobenius is additive on a sum of pairwise commuting terms in characteristic `p`:
+`(Σ_{j<n} f j)^p ≈ Σ_{j<n} (f j)^p`, by induction on `n` from `frobenius_add`. -/
+theorem frobenius_osum {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {f : Nat → R} : ∀ n, (∀ i j, i < n → j < n → Comm (f i) (f j)) → opow (osum f n) p ≈ osum (fun j => opow (f j) p) n
+  | 0, _ => by
+    obtain ⟨p', hp'⟩ : ∃ p', p = p' + 1 := ⟨p - 1, (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm⟩
+    show opow (0 : R) p ≈ 0
+    rw [hp']; exact opow_zero_of_zero p'
+  | n + 1, h =>
+    have hc : Comm (osum f n) (f n) := osum_comm n fun j hj => h j n (Nat.lt_succ_of_lt hj) (Nat.lt_succ_self n)
+    calc opow (osum f n + f n) p ≈ opow (osum f n) p + opow (f n) p := frobenius_add F hch hc
+      _ ≈ osum (fun j => opow (f j) p) n + opow (f n) p :=
+          add_congr_left _ (frobenius_osum F hch n fun i j hi hj => h i j (Nat.lt_succ_of_lt hi) (Nat.lt_succ_of_lt hj))
+
+/-- 8:D20 — the square bound of a Dirac operator. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` as in `dirac_square`, in characteristic `p`
+on a frame, with every difference nilpotent of index at most `p` (`∇_μ^p ≈ 0`): `𝒟^{2p} ≈ 0`. The square is
+`Σ_μ η_μ ∇_μ²`, the Frobenius is additive on its commuting summands, and `(η_μ ∇_μ²)^p ≈ η_μ^p ∇_μ^{2p} ≈ 0`. -/
+theorem dirac_square_nilpotent {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {n : Nat} {del γ η : Nat → R}
+    (hdd : ∀ μ ν, μ < n → ν < n → Comm (del μ) (del ν)) (hdg : ∀ μ ν, μ < n → ν < n → Comm (del μ) (γ ν))
+    (hgg : ∀ μ ν, μ < n → ν < n → μ ≠ ν → Anticomm (γ μ) (γ ν)) (hsq : ∀ μ, μ < n → γ μ * γ μ ≈ η μ)
+    (hη : ∀ μ, μ < n → Central (η μ)) (hnil : ∀ μ, μ < n → opow (del μ) p ≈ 0) :
+    opow (osum (fun μ => del μ * γ μ) n) (2 * p) ≈ 0 := by
+  have hcomm : ∀ i j, i < n → j < n → Comm (η i * (del i * del i)) (η j * (del j * del j)) := fun i j hi hj =>
+    Comm.mul_left (hη i hi _)
+      (Comm.mul_left (Comm.mul_right (Comm.symm (hη j hj (del i))) (Comm.mul_right (hdd i j hi hj) (hdd i j hi hj)))
+        (Comm.mul_right (Comm.symm (hη j hj (del i))) (Comm.mul_right (hdd i j hi hj) (hdd i j hi hj))))
+  have hterm : ∀ μ, μ < n → opow (η μ * (del μ * del μ)) p ≈ 0 := fun μ hμ =>
+    calc opow (η μ * (del μ * del μ)) p ≈ opow (η μ) p * opow (del μ * del μ) p := mul_opow (hη μ hμ _) p
+      _ ≈ opow (η μ) p * (opow (del μ) p * opow (del μ) p) := mul_congr_right _ (mul_opow (Comm.refl _) p)
+      _ ≈ opow (η μ) p * (0 * 0) := mul_congr_right _ (mul_congr (hnil μ hμ) (hnil μ hμ))
+      _ ≈ opow (η μ) p * 0 := mul_congr_right _ (mul_zero 0)
+      _ ≈ 0 := mul_zero _
+  calc opow (osum (fun μ => del μ * γ μ) n) (2 * p)
+      ≈ opow (opow (osum (fun μ => del μ * γ μ) n) 2) p := opow_mul _ 2 p
+    _ ≈ opow (osum (fun μ => del μ * γ μ) n * osum (fun μ => del μ * γ μ) n) p :=
+        opow_congr (mul_congr_left _ (opow_one _)) p
+    _ ≈ opow (osum (fun μ => η μ * (del μ * del μ)) n) p := opow_congr (dirac_square hdd hdg hgg hsq hη) p
+    _ ≈ osum (fun μ => opow (η μ * (del μ * del μ)) p) n := frobenius_osum F hch n hcomm
+    _ ≈ 0 := osum_eq_zero n hterm
+
 /-- `(−1)^{2j} ≈ 1` and `(−1)^{2j+1} ≈ −1`. -/
 theorem opow_neg_one_even : ∀ j, opow (-1 : R) (2 * j) ≈ 1
   | 0 => eq_refl 1

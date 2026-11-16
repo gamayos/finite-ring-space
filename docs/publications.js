@@ -182,8 +182,8 @@ const PUBLICATIONS = [
     "status": {
       "kind": "preprint"
     },
-    "doi": "https://doi.org/10.20944/preprints202508.1744.v1",
-    "doiLabel": "pp202508.1744.v1",
+    "doi": "https://doi.org/10.20944/preprints202508.1744.v2",
+    "doiLabel": "pp202508.1744.v2",
     "ledger": "5-reductio/index.html",
     "schema": true,
     "links": [
@@ -286,8 +286,8 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p08_dirac.ipynb",
         "label": "python",
-        "count": 51,
-        "title": "51 predicates checked, all passing: the notebook p08_dirac.ipynb on Google Colab, one cell per predicate"
+        "count": 54,
+        "title": "54 predicates checked, all passing: the notebook p08_dirac.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Dirac.lean",
@@ -752,6 +752,38 @@ const PUBLICATIONS = [
     ]
   },
   {
+    "key": "46-ym",
+    "n": 46,
+    "title": "Yang–Mills and the Mass Gap over Finite Holographic Substrate",
+    "status": {
+      "kind": "preprint"
+    },
+    "doi": "https://doi.org/10.20944/preprints202611.1528.v1",
+    "doiLabel": "pp202611.1528.v1",
+    "ledger": "46-yangmills/index.html",
+    "schema": true,
+    "links": [
+      {
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p46_yangmills.ipynb",
+        "label": "python",
+        "count": 38,
+        "title": "38 predicates checked, all passing: the notebook p46_yangmills.ipynb on Google Colab, one cell per predicate"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/YangMills.lean",
+        "label": "lean",
+        "count": 36,
+        "title": "36 predicates proved in the core (no axioms), 10 of them also on Mathlib: the core module YangMills as one executable file (plain Lean, no Mathlib) in Lean Live"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/YangMills.lean",
+        "label": "lean-mathlib",
+        "count": 10,
+        "title": "10 predicates proved on Mathlib (classical), 10 of them also in the core: the module YangMills as one file on Mathlib in Lean Live"
+      }
+    ]
+  },
+  {
     "key": "m01",
     "n": 1001,
     "title": "From Absolute Infinity to Relational Finitude",
@@ -833,4 +865,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "15 November 2026";
+const GENERATED = "16 November 2026";

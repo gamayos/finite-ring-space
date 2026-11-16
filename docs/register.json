@@ -1,12 +1,12 @@
 {
  "header": {
-  "generated": "15 November 2026",
+  "generated": "16 November 2026",
   "schema": "frc-register/2",
-  "rows": 1226,
-  "theorems": 1168,
+  "rows": 1228,
+  "theorems": 1170,
   "counts": {
-   "keys": 1168,
-   "rows": 1226,
+   "keys": 1170,
+   "rows": 1228,
    "shared": 53,
    "by_tag": {
     "D": 218,
@@ -14,7 +14,7 @@
     "I": 150,
     "O": 19,
     "R": 9,
-    "T": 741,
+    "T": 743,
     "Ω": 30
    }
   },
@@ -1544,7 +1544,9 @@
     "dir": "46-yangmills",
     "no": 46,
     "title": "Yang–Mills and the Mass Gap over Finite Holographic Substrate",
-    "status": null,
+    "status": {
+     "kind": "preprint"
+    },
     "page": "46-yangmills/index.html",
     "blocks": [
      {
@@ -1594,7 +1596,7 @@
       "text": "Decided by the totality; not closeable by a bounded observer; read from the chart."
      }
     ],
-    "rows": 62
+    "rows": 64
    }
   ],
   "tags": {
@@ -4576,7 +4578,7 @@
   {
    "key": "p00206",
    "origin": "00",
-   "statement": "\\textbf{The degree of consciousness}: every system that constitutes a Subject (C4) has a degree of consciousness, monotone in its coherent cardinality $\\p_c$ and bounded by saturation, $\\p_c^2<\\Om$ (B8): a cell, an organism, a colony, a biosphere, a star. The Carrier has none (A4). Waits on a procedure that measures $\\p_c$ and on one unit across levels.",
+   "statement": "\\textbf{The degree of consciousness}: every system that constitutes a Subject (C4) has a degree of consciousness, monotone in its coherent cardinality $\\p_c$ and bounded by saturation, $\\p_c^2<\\Om$ (B8): a cell, an organism, a colony, a biosphere, a star. Waits on a procedure that measures $\\p_c$ and on one unit across levels.",
    "origin_row": "00:Y9",
    "tag": "O",
    "name": null,
@@ -12170,7 +12172,7 @@
    "check": {
     "href": "py/dirac.html#p08008",
     "script": "p08_dirac.py",
-    "line": 116,
+    "line": 120,
     "verdict": "pass"
    },
    "declarations": [
@@ -12212,7 +12214,7 @@
    "check": {
     "href": "py/dirac.html#p08009",
     "script": "p08_dirac.py",
-    "line": 138,
+    "line": 142,
     "verdict": "pass"
    },
    "declarations": [
@@ -12269,7 +12271,7 @@
    "check": {
     "href": "py/dirac.html#p08049",
     "script": "p08_dirac.py",
-    "line": 153,
+    "line": 157,
     "verdict": "pass"
    },
    "declarations": [
@@ -12326,7 +12328,7 @@
    "check": {
     "href": "py/dirac.html#p08011",
     "script": "p08_dirac.py",
-    "line": 167,
+    "line": 171,
     "verdict": "pass"
    },
    "declarations": [
@@ -12358,7 +12360,7 @@
    "check": {
     "href": "py/dirac.html#p08012",
     "script": "p08_dirac.py",
-    "line": 176,
+    "line": 180,
     "verdict": "pass"
    },
    "declarations": [
@@ -12405,7 +12407,7 @@
    "check": {
     "href": "py/dirac.html#p08013",
     "script": "p08_dirac.py",
-    "line": 204,
+    "line": 208,
     "verdict": "pass"
    },
    "declarations": [
@@ -12437,7 +12439,7 @@
    "check": {
     "href": "py/dirac.html#p08014",
     "script": "p08_dirac.py",
-    "line": 194,
+    "line": 198,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12473,7 +12475,7 @@
    "check": {
     "href": "py/dirac.html#p08016",
     "script": "p08_dirac.py",
-    "line": 223,
+    "line": 227,
     "verdict": "pass"
    },
    "declarations": [
@@ -12530,7 +12532,7 @@
    "check": {
     "href": "py/dirac.html#p08018",
     "script": "p08_dirac.py",
-    "line": 266,
+    "line": 270,
     "verdict": "pass"
    },
    "declarations": [
@@ -12587,7 +12589,7 @@
    "check": {
     "href": "py/dirac.html#p08019",
     "script": "p08_dirac.py",
-    "line": 289,
+    "line": 293,
     "verdict": "pass"
    },
    "declarations": [
@@ -12634,7 +12636,7 @@
    "check": {
     "href": "py/dirac.html#p08020",
     "script": "p08_dirac.py",
-    "line": 302,
+    "line": 306,
     "verdict": "pass"
    },
    "declarations": [
@@ -12706,7 +12708,7 @@
    "check": {
     "href": "py/dirac.html#p08058",
     "script": "p08_dirac.py",
-    "line": 229,
+    "line": 233,
     "verdict": "pass"
    },
    "declarations": [
@@ -12748,7 +12750,7 @@
    "check": {
     "href": "py/dirac.html#p08059",
     "script": "p08_dirac.py",
-    "line": 233,
+    "line": 237,
     "verdict": "pass"
    },
    "declarations": [
@@ -12795,7 +12797,7 @@
    "check": {
     "href": "py/dirac.html#p08061",
     "script": "p08_dirac.py",
-    "line": 237,
+    "line": 241,
     "verdict": "pass"
    },
    "declarations": [
@@ -12842,7 +12844,7 @@
    "check": {
     "href": "py/dirac.html#p08063",
     "script": "p08_dirac.py",
-    "line": 248,
+    "line": 252,
     "verdict": "pass"
    },
    "declarations": [
@@ -12899,7 +12901,7 @@
    "check": {
     "href": "py/dirac.html#p08065",
     "script": "p08_dirac.py",
-    "line": 268,
+    "line": 272,
     "verdict": "pass"
    },
    "declarations": [
@@ -12951,7 +12953,7 @@
    "check": {
     "href": "py/dirac.html#p08066",
     "script": "p08_dirac.py",
-    "line": 291,
+    "line": 295,
     "verdict": "pass"
    },
    "declarations": [
@@ -12983,7 +12985,7 @@
    "check": {
     "href": "py/dirac.html#p08046",
     "script": "p08_dirac.py",
-    "line": 365,
+    "line": 369,
     "verdict": "pass"
    },
    "declarations": [
@@ -13055,7 +13057,7 @@
    "check": {
     "href": "py/dirac.html#p08022",
     "script": "p08_dirac.py",
-    "line": 424,
+    "line": 478,
     "verdict": "pass"
    },
    "declarations": [
@@ -13092,7 +13094,7 @@
    "check": {
     "href": "py/dirac.html#p08023",
     "script": "p08_dirac.py",
-    "line": 454,
+    "line": 508,
     "verdict": "pass"
    },
    "declarations": [
@@ -13139,7 +13141,7 @@
    "check": {
     "href": "py/dirac.html#p08025",
     "script": "p08_dirac.py",
-    "line": 508,
+    "line": 562,
     "verdict": "pass"
    },
    "declarations": [
@@ -13201,7 +13203,7 @@
    "check": {
     "href": "py/dirac.html#p08026",
     "script": "p08_dirac.py",
-    "line": 554,
+    "line": 608,
     "verdict": "pass"
    },
    "declarations": [
@@ -13238,7 +13240,7 @@
    "check": {
     "href": "py/dirac.html#p08027",
     "script": "p08_dirac.py",
-    "line": 556,
+    "line": 610,
     "verdict": "pass"
    },
    "declarations": [
@@ -13275,7 +13277,7 @@
    "check": {
     "href": "py/dirac.html#p08028",
     "script": "p08_dirac.py",
-    "line": 572,
+    "line": 626,
     "verdict": "pass"
    },
    "declarations": [
@@ -13302,7 +13304,7 @@
    "check": {
     "href": "py/dirac.html#p08029",
     "script": "p08_dirac.py",
-    "line": 600,
+    "line": 654,
     "verdict": "pass"
    },
    "declarations": [
@@ -13344,7 +13346,7 @@
    "check": {
     "href": "py/dirac.html#p08030",
     "script": "p08_dirac.py",
-    "line": 629,
+    "line": 683,
     "verdict": "pass"
    },
    "declarations": [
@@ -13421,7 +13423,7 @@
    "check": {
     "href": "py/dirac.html#p08031",
     "script": "p08_dirac.py",
-    "line": 659,
+    "line": 746,
     "verdict": "pass"
    },
    "declarations": [
@@ -13458,7 +13460,7 @@
    "check": {
     "href": "py/dirac.html#p08051",
     "script": "p08_dirac.py",
-    "line": 661,
+    "line": 748,
     "verdict": "pass"
    },
    "declarations": [
@@ -13505,7 +13507,7 @@
    "check": {
     "href": "py/dirac.html#p08033",
     "script": "p08_dirac.py",
-    "line": 479,
+    "line": 533,
     "verdict": "pass"
    },
    "declarations": [],
@@ -13526,7 +13528,7 @@
    "check": {
     "href": "py/dirac.html#p08067",
     "script": "p08_dirac.py",
-    "line": 504,
+    "line": 558,
     "verdict": "pass"
    },
    "declarations": [
@@ -13573,7 +13575,7 @@
    "check": {
     "href": "py/dirac.html#p08068",
     "script": "p08_dirac.py",
-    "line": 506,
+    "line": 560,
     "verdict": "pass"
    },
    "declarations": [
@@ -13630,7 +13632,7 @@
    "check": {
     "href": "py/dirac.html#p08069",
     "script": "p08_dirac.py",
-    "line": 558,
+    "line": 612,
     "verdict": "pass"
    },
    "declarations": [
@@ -13662,7 +13664,7 @@
    "check": {
     "href": "py/dirac.html#p08070",
     "script": "p08_dirac.py",
-    "line": 560,
+    "line": 614,
     "verdict": "pass"
    },
    "declarations": [
@@ -13704,7 +13706,7 @@
    "check": {
     "href": "py/dirac.html#p08071",
     "script": "p08_dirac.py",
-    "line": 562,
+    "line": 616,
     "verdict": "pass"
    },
    "declarations": [
@@ -13736,7 +13738,7 @@
    "check": {
     "href": "py/dirac.html#p08072",
     "script": "p08_dirac.py",
-    "line": 663,
+    "line": 750,
     "verdict": "pass"
    },
    "declarations": [
@@ -13793,7 +13795,7 @@
    "check": {
     "href": "py/dirac.html#p08035",
     "script": "p08_dirac.py",
-    "line": 679,
+    "line": 796,
     "verdict": "pass"
    },
    "declarations": [
@@ -13825,7 +13827,7 @@
    "check": {
     "href": "py/dirac.html#p08036",
     "script": "p08_dirac.py",
-    "line": 689,
+    "line": 806,
     "verdict": "pass"
    },
    "declarations": [
@@ -13862,7 +13864,7 @@
    "check": {
     "href": "py/dirac.html#p08037",
     "script": "p08_dirac.py",
-    "line": 719,
+    "line": 836,
     "verdict": "pass"
    },
    "declarations": [
@@ -13929,7 +13931,7 @@
    "check": {
     "href": "py/dirac.html#p08073",
     "script": "p08_dirac.py",
-    "line": 681,
+    "line": 798,
     "verdict": "pass"
    },
    "declarations": [
@@ -13961,7 +13963,7 @@
    "check": {
     "href": "py/dirac.html#p08074",
     "script": "p08_dirac.py",
-    "line": 700,
+    "line": 817,
     "verdict": "pass"
    },
    "declarations": [
@@ -13998,7 +14000,7 @@
    "check": {
     "href": "py/dirac.html#p08075",
     "script": "p08_dirac.py",
-    "line": 721,
+    "line": 838,
     "verdict": "pass"
    },
    "declarations": [
@@ -14055,7 +14057,7 @@
    "check": {
     "href": "py/dirac.html#p08076",
     "script": "p08_dirac.py",
-    "line": 732,
+    "line": 852,
     "verdict": "pass"
    },
    "declarations": [
@@ -14112,7 +14114,7 @@
    "check": {
     "href": "py/dirac.html#p08052",
     "script": "p08_dirac.py",
-    "line": 746,
+    "line": 908,
     "verdict": "pass"
    },
    "declarations": [
@@ -14159,7 +14161,7 @@
    "check": {
     "href": "py/dirac.html#p08040",
     "script": "p08_dirac.py",
-    "line": 761,
+    "line": 923,
     "verdict": "pass"
    },
    "declarations": [
@@ -14216,7 +14218,7 @@
    "check": {
     "href": "py/dirac.html#p08041",
     "script": "p08_dirac.py",
-    "line": 777,
+    "line": 939,
     "verdict": "pass"
    },
    "declarations": [
@@ -14253,7 +14255,7 @@
    "check": {
     "href": "py/dirac.html#p08048",
     "script": "p08_dirac.py",
-    "line": 848,
+    "line": 1010,
     "verdict": "pass"
    },
    "declarations": [
@@ -14315,7 +14317,7 @@
    "check": {
     "href": "py/dirac.html#p08077",
     "script": "p08_dirac.py",
-    "line": 795,
+    "line": 957,
     "verdict": "pass"
    },
    "declarations": [
@@ -14392,7 +14394,7 @@
    "check": {
     "href": "py/dirac.html#p08053",
     "script": "p08_dirac.py",
-    "line": 860,
+    "line": 1022,
     "verdict": "pass"
    },
    "declarations": [
@@ -14424,7 +14426,7 @@
    "check": {
     "href": "py/dirac.html#p08054",
     "script": "p08_dirac.py",
-    "line": 868,
+    "line": 1030,
     "verdict": "pass"
    },
    "declarations": [
@@ -14466,7 +14468,7 @@
    "check": {
     "href": "py/dirac.html#p08055",
     "script": "p08_dirac.py",
-    "line": 890,
+    "line": 1052,
     "verdict": "pass"
    },
    "declarations": [
@@ -14538,7 +14540,7 @@
    "check": {
     "href": "py/dirac.html#p08056",
     "script": "p08_dirac.py",
-    "line": 912,
+    "line": 1074,
     "verdict": "pass"
    },
    "declarations": [
@@ -31466,7 +31468,7 @@
   {
    "key": "p35077",
    "origin": "35",
-   "statement": "The Carrier register: $\\Om=4\\dS+1$, $2c^{2}\\equiv1$ and $\\hbar^{2}\\equiv-1$, with $h=-\\hbar$ the partner of $\\hbar$ in the root pair of $-1$; $h=2\\pi\\hbar$ is the chart's relation.",
+   "statement": "The Carrier register: $\\Om=4\\dS+1$, $2G+1\\equiv0$, $2c^{2}\\equiv1$ and $\\hbar^{2}\\equiv-1$, with $h=-\\hbar$ the partner of $\\hbar$ in the root pair of $-1$; $h=2\\pi\\hbar$ is the chart's relation.",
    "origin_row": "35:A11",
    "tag": "I",
    "name": null,
@@ -34840,7 +34842,7 @@
   {
    "key": "p46009",
    "origin": "46",
-   "statement": "The finite theory is the transfer form of lattice gauge theory along the drive: a ring of plaquettes; the tally is the frame's mean over the rungs of the amplitudes (B4), its paired weight registered once; the gap: the transfer tally's second eigenvalue over its first. [chart]: counts of frame moves above $\\Om\\sim10^{123}$, the hypercubic lattice (A7), the wrap operator (C8), the scale (B2).",
+   "statement": "The finite theory is the transfer form of lattice gauge theory along the drive: a ring of plaquettes; the tally is the frame's mean over the rungs of the amplitudes (B4), its paired weight registered once; the gap: the transfer tally's second eigenvalue over its first. [chart]: counts of frame moves above $\\Om\\sim10^{123}$, the hypercubic lattice (A7), the wrap with its one-body operator (C8), the scale (B2).",
    "origin_row": "46:B3",
    "tag": "D",
    "name": null,
@@ -35169,7 +35171,7 @@
   {
    "key": "p46017",
    "origin": "46",
-   "statement": "[chart] The minimal wrap, the candidate operator for the mass gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$. Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). It must reproduce the determinations of A1; C12 and P3 record that it does not.",
+   "statement": "[chart] The minimal wrap, the candidate for the mass gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$. Two massless constituents wind twice in a cycle of four runs: $\\lambda_k^{2}=(2+4k)\\tfrac{\\pi}{2}a\\varkappa$, with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$ (C9, A10). A declaration; readings: C28, P5. The one-body operator $a|p|+\\varkappa r$ stays on record (C12, P3).",
    "origin_row": "46:C8",
    "tag": "D",
    "name": "minimal_wrap_declared",
@@ -35224,7 +35226,7 @@
    "check": {
     "href": "py/yangmills.html#p46037",
     "script": "p46_yangmills.py",
-    "line": 762,
+    "line": 790,
     "verdict": "pass"
    },
    "declarations": [
@@ -35261,7 +35263,7 @@
    "check": {
     "href": "py/yangmills.html#p46071",
     "script": "p46_yangmills.py",
-    "line": 791,
+    "line": 819,
     "verdict": "pass"
    },
    "declarations": [
@@ -35285,7 +35287,7 @@
   {
    "key": "p46036",
    "origin": "46",
-   "statement": "[chart] The family of C8 against the lattice: $E_0=\\sqrt{a\\varkappa}\\,2.232$ by the dilation symmetry, $2.232$, $3.157$, $3.348$, $3.157$, $4.464$, $4.735$ for $a\\in\\{1,2\\}$, $\\varkappa\\in\\{1,2,\\frac94\\}$; none inside any determination's error; the nearest, $a=1$, $\\varkappa=\\frac94$, is $1.7\\,\\%$ below the direct value.",
+   "statement": "[chart] The one-body operator of C8 against the lattice: $E_0=\\sqrt{a\\varkappa}\\,2.232$ by the dilation symmetry, $2.232$, $3.157$, $3.348$, $3.157$, $4.464$, $4.735$ for $a\\in\\{1,2\\}$, $\\varkappa\\in\\{1,2,\\frac94\\}$; none inside any determination's error; the nearest, $a=1$, $\\varkappa=\\frac94$, is $1.7\\,\\%$ below the direct value.",
    "origin_row": "46:C12",
    "tag": "T",
    "name": "wrap_family_misses",
@@ -35431,7 +35433,7 @@
    "check": {
     "href": "py/yangmills.html#p46056",
     "script": "p46_yangmills.py",
-    "line": 861,
+    "line": 889,
     "verdict": "pass"
    },
    "declarations": [
@@ -35463,7 +35465,7 @@
    "check": {
     "href": "py/yangmills.html#p46057",
     "script": "p46_yangmills.py",
-    "line": 888,
+    "line": 916,
     "verdict": "pass"
    },
    "declarations": [
@@ -35490,7 +35492,7 @@
    "check": {
     "href": "py/yangmills.html#p46058",
     "script": "p46_yangmills.py",
-    "line": 910,
+    "line": 938,
     "verdict": "pass"
    },
    "declarations": [
@@ -35517,7 +35519,7 @@
    "check": {
     "href": "py/yangmills.html#p46061",
     "script": "p46_yangmills.py",
-    "line": 942,
+    "line": 970,
     "verdict": "pass"
    },
    "declarations": [
@@ -35549,7 +35551,7 @@
    "check": {
     "href": "py/yangmills.html#p46062",
     "script": "p46_yangmills.py",
-    "line": 1020,
+    "line": 1048,
     "verdict": "pass"
    },
    "declarations": [
@@ -35586,7 +35588,7 @@
    "check": {
     "href": "py/yangmills.html#p46064",
     "script": "p46_yangmills.py",
-    "line": 1051,
+    "line": 1079,
     "verdict": "pass"
    },
    "declarations": [
@@ -35618,7 +35620,7 @@
    "check": {
     "href": "py/yangmills.html#p46065",
     "script": "p46_yangmills.py",
-    "line": 1064,
+    "line": 1092,
     "verdict": "pass"
    },
    "declarations": [
@@ -35645,7 +35647,7 @@
    "check": {
     "href": "py/yangmills.html#p46066",
     "script": "p46_yangmills.py",
-    "line": 1084,
+    "line": 1112,
     "verdict": "pass"
    },
    "declarations": [
@@ -35699,7 +35701,7 @@
    "check": {
     "href": "py/yangmills.html#p46068",
     "script": "p46_yangmills.py",
-    "line": 1109,
+    "line": 1137,
     "verdict": "pass"
    },
    "declarations": [
@@ -35753,7 +35755,7 @@
    "check": {
     "href": "py/yangmills.html#p46077",
     "script": "p46_yangmills.py",
-    "line": 1139,
+    "line": 1167,
     "verdict": "pass"
    },
    "declarations": [
@@ -35766,6 +35768,38 @@
    "aliases": [],
    "rows": [
     "46:C27"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p46078",
+   "origin": "46",
+   "statement": "[chart] The wrap of two windings against the lattice (C8): $\\lambda_{\\mathrm{gb}}=\\sqrt{\\pi a\\varkappa}$ is $3.545$ at $a=\\varkappa=2$ and $3.760$ at $a=2$, $\\varkappa=\\frac94$; the two values bracket the determinations $3.63(10)$ and $3.70(6)$, and $3.405(21)$ lies $4\\,\\%$ below $3.545$.",
+   "origin_row": "46:C28",
+   "tag": "T",
+   "name": "two_windings_against_lattice",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46078",
+    "script": "p46_yangmills.py",
+    "line": 744,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.two_windings_ground"
+    },
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/YangMills",
+     "name": "FRC.YangMills.two_windings_ground_values"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:C28"
    ],
    "realisations": []
   },
@@ -35846,7 +35880,7 @@
   {
    "key": "p46043",
    "origin": "46",
-   "statement": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
+   "statement": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the one-body operator of C8 and of every state it describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
    "origin_row": "46:P3",
    "tag": "T",
    "name": "radial_ratio_prediction",
@@ -35899,6 +35933,38 @@
    "aliases": [],
    "rows": [
     "46:P4"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p46079",
+   "origin": "46",
+   "statement": "[chart] The radial ratio of the wrap of two windings: $\\lambda_1/\\lambda_0=\\sqrt3=1.732$ for every $a$ and $\\varkappa$. Falsifier: the first radial ratio of the scalar glueball measured outside $\\sqrt3$ beyond its error. Confrontation: $1.720(16)$ (2020) contains it, since $1.704^{2}<3<1.736^{2}$; $1.54(11)$ (1999) lies $1.7$ standard deviations below.",
+   "origin_row": "46:P5",
+   "tag": "T",
+   "name": "two_windings_radial_prediction",
+   "tier": 0,
+   "check": {
+    "href": "py/yangmills.html#p46079",
+    "script": "p46_yangmills.py",
+    "line": 756,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/YangMills",
+     "name": "FRC.YangMills.two_windings_radial"
+    },
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/YangMills",
+     "name": "FRC.YangMills.two_windings_radial_ratio"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "46:P5"
    ],
    "realisations": []
   },
@@ -41029,7 +41095,7 @@
    "tag": "O",
    "name": "The degree of consciousness",
    "lean_name": null,
-   "statement": "\\textbf{The degree of consciousness}: every system that constitutes a Subject (C4) has a degree of consciousness, monotone in its coherent cardinality $\\p_c$ and bounded by saturation, $\\p_c^2<\\Om$ (B8): a cell, an organism, a colony, a biosphere, a star. The Carrier has none (A4). Waits on a procedure that measures $\\p_c$ and on one unit across levels.",
+   "statement": "\\textbf{The degree of consciousness}: every system that constitutes a Subject (C4) has a degree of consciousness, monotone in its coherent cardinality $\\p_c$ and bounded by saturation, $\\p_c^2<\\Om$ (B8): a cell, an organism, a colony, a biosphere, a star. Waits on a procedure that measures $\\p_c$ and on one unit across levels.",
    "source": "4-rep",
    "page": "ledger.html#Y9",
    "witness": {
@@ -41045,7 +41111,7 @@
    "sources": [
     "4-rep"
    ],
-   "text": "The degree of consciousness: The degree of consciousness: every system that constitutes a Subject (C4) has a degree of consciousness, monotone in its coherent cardinality $\\p_c$ and bounded by saturation, $\\p_c^2<\\Om$ (B8): a cell, an organism, a colony, a biosphere, a star. The Carrier has none (A4). Waits on a procedure that measures $\\p_c$ and on one unit across levels. 4-rep"
+   "text": "The degree of consciousness: The degree of consciousness: every system that constitutes a Subject (C4) has a degree of consciousness, monotone in its coherent cardinality $\\p_c$ and bounded by saturation, $\\p_c^2<\\Om$ (B8): a cell, an organism, a colony, a biosphere, a star. Waits on a procedure that measures $\\p_c$ and on one unit across levels. 4-rep"
   },
   {
    "paper": "00",
@@ -52554,7 +52620,7 @@
     "py": {
      "href": "py/dirac.html#p08008",
      "script": "p08_dirac.py",
-     "line": 116,
+     "line": 120,
      "verdict": "pass"
     },
     "lean": [
@@ -52615,7 +52681,7 @@
     "py": {
      "href": "py/dirac.html#p08009",
      "script": "p08_dirac.py",
-     "line": 138,
+     "line": 142,
      "verdict": "pass"
     },
     "lean": [
@@ -52701,7 +52767,7 @@
     "py": {
      "href": "py/dirac.html#p08049",
      "script": "p08_dirac.py",
-     "line": 153,
+     "line": 157,
      "verdict": "pass"
     },
     "lean": [
@@ -52787,7 +52853,7 @@
     "py": {
      "href": "py/dirac.html#p08011",
      "script": "p08_dirac.py",
-     "line": 167,
+     "line": 171,
      "verdict": "pass"
     },
     "lean": [
@@ -52832,7 +52898,7 @@
     "py": {
      "href": "py/dirac.html#p08012",
      "script": "p08_dirac.py",
-     "line": 176,
+     "line": 180,
      "verdict": "pass"
     },
     "lean": [
@@ -52901,7 +52967,7 @@
     "py": {
      "href": "py/dirac.html#p08013",
      "script": "p08_dirac.py",
-     "line": 204,
+     "line": 208,
      "verdict": "pass"
     },
     "lean": [
@@ -52946,7 +53012,7 @@
     "py": {
      "href": "py/dirac.html#p08014",
      "script": "p08_dirac.py",
-     "line": 194,
+     "line": 198,
      "verdict": "pass"
     },
     "lean": []
@@ -52995,7 +53061,7 @@
     "py": {
      "href": "py/dirac.html#p08016",
      "script": "p08_dirac.py",
-     "line": 223,
+     "line": 227,
      "verdict": "pass"
     },
     "lean": [
@@ -53073,7 +53139,7 @@
     "py": {
      "href": "py/dirac.html#p08018",
      "script": "p08_dirac.py",
-     "line": 266,
+     "line": 270,
      "verdict": "pass"
     },
     "lean": [
@@ -53155,7 +53221,7 @@
     "py": {
      "href": "py/dirac.html#p08019",
      "script": "p08_dirac.py",
-     "line": 289,
+     "line": 293,
      "verdict": "pass"
     },
     "lean": [
@@ -53223,7 +53289,7 @@
     "py": {
      "href": "py/dirac.html#p08020",
      "script": "p08_dirac.py",
-     "line": 302,
+     "line": 306,
      "verdict": "pass"
     },
     "lean": [
@@ -53327,7 +53393,7 @@
     "py": {
      "href": "py/dirac.html#p08058",
      "script": "p08_dirac.py",
-     "line": 229,
+     "line": 233,
      "verdict": "pass"
     },
     "lean": [
@@ -53385,7 +53451,7 @@
     "py": {
      "href": "py/dirac.html#p08059",
      "script": "p08_dirac.py",
-     "line": 233,
+     "line": 237,
      "verdict": "pass"
     },
     "lean": [
@@ -53447,7 +53513,7 @@
     "py": {
      "href": "py/dirac.html#p08061",
      "script": "p08_dirac.py",
-     "line": 237,
+     "line": 241,
      "verdict": "pass"
     },
     "lean": [
@@ -53509,7 +53575,7 @@
     "py": {
      "href": "py/dirac.html#p08063",
      "script": "p08_dirac.py",
-     "line": 248,
+     "line": 252,
      "verdict": "pass"
     },
     "lean": [
@@ -53587,7 +53653,7 @@
     "py": {
      "href": "py/dirac.html#p08065",
      "script": "p08_dirac.py",
-     "line": 268,
+     "line": 272,
      "verdict": "pass"
     },
     "lean": [
@@ -53663,7 +53729,7 @@
     "py": {
      "href": "py/dirac.html#p08066",
      "script": "p08_dirac.py",
-     "line": 291,
+     "line": 295,
      "verdict": "pass"
     },
     "lean": [
@@ -53705,7 +53771,7 @@
     "py": {
      "href": "py/dirac.html#p08046",
      "script": "p08_dirac.py",
-     "line": 365,
+     "line": 369,
      "verdict": "pass"
     },
     "lean": [
@@ -53809,7 +53875,7 @@
     "py": {
      "href": "py/dirac.html#p08022",
      "script": "p08_dirac.py",
-     "line": 424,
+     "line": 478,
      "verdict": "pass"
     },
     "lean": [
@@ -53859,7 +53925,7 @@
     "py": {
      "href": "py/dirac.html#p08023",
      "script": "p08_dirac.py",
-     "line": 454,
+     "line": 508,
      "verdict": "pass"
     },
     "lean": [
@@ -53923,7 +53989,7 @@
     "py": {
      "href": "py/dirac.html#p08025",
      "script": "p08_dirac.py",
-     "line": 508,
+     "line": 562,
      "verdict": "pass"
     },
     "lean": [
@@ -54018,7 +54084,7 @@
     "py": {
      "href": "py/dirac.html#p08026",
      "script": "p08_dirac.py",
-     "line": 554,
+     "line": 608,
      "verdict": "pass"
     },
     "lean": [
@@ -54068,7 +54134,7 @@
     "py": {
      "href": "py/dirac.html#p08027",
      "script": "p08_dirac.py",
-     "line": 556,
+     "line": 610,
      "verdict": "pass"
     },
     "lean": [
@@ -54120,7 +54186,7 @@
     "py": {
      "href": "py/dirac.html#p08028",
      "script": "p08_dirac.py",
-     "line": 572,
+     "line": 626,
      "verdict": "pass"
     },
     "lean": [
@@ -54156,7 +54222,7 @@
     "py": {
      "href": "py/dirac.html#p08029",
      "script": "p08_dirac.py",
-     "line": 600,
+     "line": 654,
      "verdict": "pass"
     },
     "lean": [
@@ -54214,7 +54280,7 @@
     "py": {
      "href": "py/dirac.html#p08030",
      "script": "p08_dirac.py",
-     "line": 629,
+     "line": 683,
      "verdict": "pass"
     },
     "lean": [
@@ -54331,7 +54397,7 @@
     "py": {
      "href": "py/dirac.html#p08031",
      "script": "p08_dirac.py",
-     "line": 659,
+     "line": 746,
      "verdict": "pass"
     },
     "lean": [
@@ -54381,7 +54447,7 @@
     "py": {
      "href": "py/dirac.html#p08051",
      "script": "p08_dirac.py",
-     "line": 661,
+     "line": 748,
      "verdict": "pass"
     },
     "lean": [
@@ -54449,7 +54515,7 @@
     "py": {
      "href": "py/dirac.html#p08033",
      "script": "p08_dirac.py",
-     "line": 479,
+     "line": 533,
      "verdict": "pass"
     },
     "lean": []
@@ -54479,7 +54545,7 @@
     "py": {
      "href": "py/dirac.html#p08067",
      "script": "p08_dirac.py",
-     "line": 504,
+     "line": 558,
      "verdict": "pass"
     },
     "lean": [
@@ -54545,7 +54611,7 @@
     "py": {
      "href": "py/dirac.html#p08068",
      "script": "p08_dirac.py",
-     "line": 506,
+     "line": 560,
      "verdict": "pass"
     },
     "lean": [
@@ -54627,7 +54693,7 @@
     "py": {
      "href": "py/dirac.html#p08069",
      "script": "p08_dirac.py",
-     "line": 558,
+     "line": 612,
      "verdict": "pass"
     },
     "lean": [
@@ -54671,7 +54737,7 @@
     "py": {
      "href": "py/dirac.html#p08070",
      "script": "p08_dirac.py",
-     "line": 560,
+     "line": 614,
      "verdict": "pass"
     },
     "lean": [
@@ -54732,7 +54798,7 @@
     "py": {
      "href": "py/dirac.html#p08071",
      "script": "p08_dirac.py",
-     "line": 562,
+     "line": 616,
      "verdict": "pass"
     },
     "lean": [
@@ -54778,7 +54844,7 @@
     "py": {
      "href": "py/dirac.html#p08072",
      "script": "p08_dirac.py",
-     "line": 663,
+     "line": 750,
      "verdict": "pass"
     },
     "lean": [
@@ -54858,7 +54924,7 @@
     "py": {
      "href": "py/dirac.html#p08035",
      "script": "p08_dirac.py",
-     "line": 679,
+     "line": 796,
      "verdict": "pass"
     },
     "lean": [
@@ -54900,7 +54966,7 @@
     "py": {
      "href": "py/dirac.html#p08036",
      "script": "p08_dirac.py",
-     "line": 689,
+     "line": 806,
      "verdict": "pass"
     },
     "lean": [
@@ -54952,7 +55018,7 @@
     "py": {
      "href": "py/dirac.html#p08037",
      "script": "p08_dirac.py",
-     "line": 719,
+     "line": 836,
      "verdict": "pass"
     },
     "lean": [
@@ -55052,7 +55118,7 @@
     "py": {
      "href": "py/dirac.html#p08073",
      "script": "p08_dirac.py",
-     "line": 681,
+     "line": 798,
      "verdict": "pass"
     },
     "lean": [
@@ -55094,7 +55160,7 @@
     "py": {
      "href": "py/dirac.html#p08074",
      "script": "p08_dirac.py",
-     "line": 700,
+     "line": 817,
      "verdict": "pass"
     },
     "lean": [
@@ -55146,7 +55212,7 @@
     "py": {
      "href": "py/dirac.html#p08075",
      "script": "p08_dirac.py",
-     "line": 721,
+     "line": 838,
      "verdict": "pass"
     },
     "lean": [
@@ -55228,7 +55294,7 @@
     "py": {
      "href": "py/dirac.html#p08076",
      "script": "p08_dirac.py",
-     "line": 732,
+     "line": 852,
      "verdict": "pass"
     },
     "lean": [
@@ -55311,7 +55377,7 @@
     "py": {
      "href": "py/dirac.html#p08052",
      "script": "p08_dirac.py",
-     "line": 746,
+     "line": 908,
      "verdict": "pass"
     },
     "lean": [
@@ -55379,7 +55445,7 @@
     "py": {
      "href": "py/dirac.html#p08040",
      "script": "p08_dirac.py",
-     "line": 761,
+     "line": 923,
      "verdict": "pass"
     },
     "lean": [
@@ -55461,7 +55527,7 @@
     "py": {
      "href": "py/dirac.html#p08041",
      "script": "p08_dirac.py",
-     "line": 777,
+     "line": 939,
      "verdict": "pass"
     },
     "lean": [
@@ -55515,7 +55581,7 @@
     "py": {
      "href": "py/dirac.html#p08048",
      "script": "p08_dirac.py",
-     "line": 848,
+     "line": 1010,
      "verdict": "pass"
     },
     "lean": [
@@ -55611,7 +55677,7 @@
     "py": {
      "href": "py/dirac.html#p08077",
      "script": "p08_dirac.py",
-     "line": 795,
+     "line": 957,
      "verdict": "pass"
     },
     "lean": [
@@ -55732,7 +55798,7 @@
     "py": {
      "href": "py/dirac.html#p08053",
      "script": "p08_dirac.py",
-     "line": 860,
+     "line": 1022,
      "verdict": "pass"
     },
     "lean": [
@@ -55777,7 +55843,7 @@
     "py": {
      "href": "py/dirac.html#p08054",
      "script": "p08_dirac.py",
-     "line": 868,
+     "line": 1030,
      "verdict": "pass"
     },
     "lean": [
@@ -55838,7 +55904,7 @@
     "py": {
      "href": "py/dirac.html#p08055",
      "script": "p08_dirac.py",
-     "line": 890,
+     "line": 1052,
      "verdict": "pass"
     },
     "lean": [
@@ -55947,7 +56013,7 @@
     "py": {
      "href": "py/dirac.html#p08056",
      "script": "p08_dirac.py",
-     "line": 912,
+     "line": 1074,
      "verdict": "pass"
     },
     "lean": [
@@ -81061,7 +81127,7 @@
    "tag": "I",
    "name": null,
    "lean_name": null,
-   "statement": "The Carrier register: $\\Om=4\\dS+1$, $2c^{2}\\equiv1$ and $\\hbar^{2}\\equiv-1$, with $h=-\\hbar$ the partner of $\\hbar$ in the root pair of $-1$; $h=2\\pi\\hbar$ is the chart's relation.",
+   "statement": "The Carrier register: $\\Om=4\\dS+1$, $2G+1\\equiv0$, $2c^{2}\\equiv1$ and $\\hbar^{2}\\equiv-1$, with $h=-\\hbar$ the partner of $\\hbar$ in the root pair of $-1$; $h=2\\pi\\hbar$ is the chart's relation.",
    "source": "\\cite{akhtman2026dimensions}",
    "page": "35-hadrons/index.html#A11",
    "witness": {
@@ -81069,7 +81135,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The Carrier register: $\\Om=4\\dS+1$, $2c^{2}\\equiv1$ and $\\hbar^{2}\\equiv-1$, with $h=-\\hbar$ the partner of $\\hbar$ in the root pair of $-1$; $h=2\\pi\\hbar$ is the chart's relation. [akhtman2026dimensions]"
+   "text": "The Carrier register: $\\Om=4\\dS+1$, $2G+1\\equiv0$, $2c^{2}\\equiv1$ and $\\hbar^{2}\\equiv-1$, with $h=-\\hbar$ the partner of $\\hbar$ in the root pair of $-1$; $h=2\\pi\\hbar$ is the chart's relation. [akhtman2026dimensions]"
   },
   {
    "paper": "35-hadr",
@@ -86100,7 +86166,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The finite theory is the transfer form of lattice gauge theory along the drive: a ring of plaquettes; the tally is the frame's mean over the rungs of the amplitudes (B4), its paired weight registered once; the gap: the transfer tally's second eigenvalue over its first. [chart]: counts of frame moves above $\\Om\\sim10^{123}$, the hypercubic lattice (A7), the wrap operator (C8), the scale (B2).",
+   "statement": "The finite theory is the transfer form of lattice gauge theory along the drive: a ring of plaquettes; the tally is the frame's mean over the rungs of the amplitudes (B4), its paired weight registered once; the gap: the transfer tally's second eigenvalue over its first. [chart]: counts of frame moves above $\\Om\\sim10^{123}$, the hypercubic lattice (A7), the wrap with its one-body operator (C8), the scale (B2).",
    "source": "Def.~\\ref{def:theory}; \\citep{akhtman2026fields,akhtman2026quantum}",
    "page": "46-yangmills/index.html#B3",
    "witness": {
@@ -86113,7 +86179,7 @@
     "p46031",
     "p46055"
    ],
-   "text": "The finite theory is the transfer form of lattice gauge theory along the drive: a ring of plaquettes; the tally is the frame's mean over the rungs of the amplitudes (B4), its paired weight registered once; the gap: the transfer tally's second eigenvalue over its first. [chart]: counts of frame moves above $\\Om\\sim10^{123}$, the hypercubic lattice (A7), the wrap operator (C8), the scale (B2). Def. def:theory; [akhtman2026fields,akhtman2026quantum]"
+   "text": "The finite theory is the transfer form of lattice gauge theory along the drive: a ring of plaquettes; the tally is the frame's mean over the rungs of the amplitudes (B4), its paired weight registered once; the gap: the transfer tally's second eigenvalue over its first. [chart]: counts of frame moves above $\\Om\\sim10^{123}$, the hypercubic lattice (A7), the wrap with its one-body operator (C8), the scale (B2). Def. def:theory; [akhtman2026fields,akhtman2026quantum]"
   },
   {
    "paper": "46-ym",
@@ -86580,7 +86646,7 @@
    "tag": "D",
    "name": null,
    "lean_name": "minimal_wrap_declared",
-   "statement": "[chart] The minimal wrap, the candidate operator for the mass gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$. Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). It must reproduce the determinations of A1; C12 and P3 record that it does not.",
+   "statement": "[chart] The minimal wrap, the candidate for the mass gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$. Two massless constituents wind twice in a cycle of four runs: $\\lambda_k^{2}=(2+4k)\\tfrac{\\pi}{2}a\\varkappa$, with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$ (C9, A10). A declaration; readings: C28, P5. The one-body operator $a|p|+\\varkappa r$ stays on record (C12, P3).",
    "source": "Def.~\\ref{def:wrap}; \\citep{akhtman2026hadrons}\\newline \\pywit{yangmills}{p46017}{C8}",
    "page": "46-yangmills/index.html#C8",
    "witness": {
@@ -86593,13 +86659,14 @@
     "lean": []
    },
    "refs": [
-    "p46001",
     "p46030",
     "p46035",
     "p46036",
-    "p46043"
+    "p46043",
+    "p46078",
+    "p46079"
    ],
-   "text": "[chart] The minimal wrap, the candidate operator for the mass gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$, $\\lambda_{\\mathrm{gb}}$ the lowest eigenvalue of the chart's relativistic wrap operator $a|p|+\\varkappa r$ with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$. Nothing in the operator is a frame object; the frame enters through $\\varkappa$ (C9, A10). It must reproduce the determinations of A1; C12 and P3 record that it does not. Def. def:wrap; [akhtman2026hadrons] p46017"
+   "text": "[chart] The minimal wrap, the candidate for the mass gap: $\\Delta=\\lambda_{\\mathrm{gb}}\\sig$. Two massless constituents wind twice in a cycle of four runs: $\\lambda_k^{2}=(2+4k)\\tfrac{\\pi}{2}a\\varkappa$, with the kinetic multiplicity $a$ and the tension parameter $\\varkappa$ (C9, A10). A declaration; readings: C28, P5. The one-body operator $a|p|+\\varkappa r$ stays on record (C12, P3). Def. def:wrap; [akhtman2026hadrons] p46017"
   },
   {
    "paper": "46-ym",
@@ -86655,7 +86722,7 @@
     "py": {
      "href": "py/yangmills.html#p46037",
      "script": "p46_yangmills.py",
-     "line": 762,
+     "line": 790,
      "verdict": "pass"
     },
     "lean": [
@@ -86710,7 +86777,7 @@
     "py": {
      "href": "py/yangmills.html#p46071",
      "script": "p46_yangmills.py",
-     "line": 791,
+     "line": 819,
      "verdict": "pass"
     },
     "lean": [
@@ -86750,7 +86817,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "wrap_family_misses",
-   "statement": "[chart] The family of C8 against the lattice: $E_0=\\sqrt{a\\varkappa}\\,2.232$ by the dilation symmetry, $2.232$, $3.157$, $3.348$, $3.157$, $4.464$, $4.735$ for $a\\in\\{1,2\\}$, $\\varkappa\\in\\{1,2,\\frac94\\}$; none inside any determination's error; the nearest, $a=1$, $\\varkappa=\\frac94$, is $1.7\\,\\%$ below the direct value.",
+   "statement": "[chart] The one-body operator of C8 against the lattice: $E_0=\\sqrt{a\\varkappa}\\,2.232$ by the dilation symmetry, $2.232$, $3.157$, $3.348$, $3.157$, $4.464$, $4.735$ for $a\\in\\{1,2\\}$, $\\varkappa\\in\\{1,2,\\frac94\\}$; none inside any determination's error; the nearest, $a=1$, $\\varkappa=\\frac94$, is $1.7\\,\\%$ below the direct value.",
    "source": "Prop.~\\ref{prop:family}; rests on A1, A10, C8, C9\\newline \\pywit{yangmills}{p46036}{C12}, \\leanwit{FrcCore}{p46036}{C12}, \\leanwit{FrcMathlib}{p46036}{C12} \\lean{FRC.YangMills.wrap\\_family, YangMills.wrap\\_family\\_values}",
    "page": "46-yangmills/index.html#C12",
    "witness": {
@@ -86785,7 +86852,7 @@
     "p46030",
     "p46035"
    ],
-   "text": "[chart] The family of C8 against the lattice: $E_0=\\sqrt{a\\varkappa} 2.232$ by the dilation symmetry, $2.232$, $3.157$, $3.348$, $3.157$, $4.464$, $4.735$ for $a\\in\\{1,2\\}$, $\\varkappa\\in\\{1,2,\\frac94\\}$; none inside any determination's error; the nearest, $a=1$, $\\varkappa=\\frac94$, is $1.7 %$ below the direct value. Prop. prop:family; rests on A1, A10, C8, C9 p46036, FrcCore{C12}, FrcMathlib{C12} FRC.YangMills.wrap_family, YangMills.wrap_family_values"
+   "text": "[chart] The one-body operator of C8 against the lattice: $E_0=\\sqrt{a\\varkappa} 2.232$ by the dilation symmetry, $2.232$, $3.157$, $3.348$, $3.157$, $4.464$, $4.735$ for $a\\in\\{1,2\\}$, $\\varkappa\\in\\{1,2,\\frac94\\}$; none inside any determination's error; the nearest, $a=1$, $\\varkappa=\\frac94$, is $1.7 %$ below the direct value. Prop. prop:family; rests on A1, A10, C8, C9 p46036, FrcCore{C12}, FrcMathlib{C12} FRC.YangMills.wrap_family, YangMills.wrap_family_values"
   },
   {
    "paper": "46-ym",
@@ -86959,7 +87026,7 @@
     "py": {
      "href": "py/yangmills.html#p46056",
      "script": "p46_yangmills.py",
-     "line": 861,
+     "line": 889,
      "verdict": "pass"
     },
     "lean": [
@@ -87005,7 +87072,7 @@
     "py": {
      "href": "py/yangmills.html#p46057",
      "script": "p46_yangmills.py",
-     "line": 888,
+     "line": 916,
      "verdict": "pass"
     },
     "lean": [
@@ -87043,7 +87110,7 @@
     "py": {
      "href": "py/yangmills.html#p46058",
      "script": "p46_yangmills.py",
-     "line": 910,
+     "line": 938,
      "verdict": "pass"
     },
     "lean": [
@@ -87082,7 +87149,7 @@
     "py": {
      "href": "py/yangmills.html#p46061",
      "script": "p46_yangmills.py",
-     "line": 942,
+     "line": 970,
      "verdict": "pass"
     },
     "lean": [
@@ -87129,7 +87196,7 @@
     "py": {
      "href": "py/yangmills.html#p46062",
      "script": "p46_yangmills.py",
-     "line": 1020,
+     "line": 1048,
      "verdict": "pass"
     },
     "lean": [
@@ -87183,7 +87250,7 @@
     "py": {
      "href": "py/yangmills.html#p46064",
      "script": "p46_yangmills.py",
-     "line": 1051,
+     "line": 1079,
      "verdict": "pass"
     },
     "lean": [
@@ -87227,7 +87294,7 @@
     "py": {
      "href": "py/yangmills.html#p46065",
      "script": "p46_yangmills.py",
-     "line": 1064,
+     "line": 1092,
      "verdict": "pass"
     },
     "lean": [
@@ -87265,7 +87332,7 @@
     "py": {
      "href": "py/yangmills.html#p46066",
      "script": "p46_yangmills.py",
-     "line": 1084,
+     "line": 1112,
      "verdict": "pass"
     },
     "lean": [
@@ -87340,7 +87407,7 @@
     "py": {
      "href": "py/yangmills.html#p46068",
      "script": "p46_yangmills.py",
-     "line": 1109,
+     "line": 1137,
      "verdict": "pass"
     },
     "lean": [
@@ -87416,7 +87483,7 @@
     "py": {
      "href": "py/yangmills.html#p46077",
      "script": "p46_yangmills.py",
-     "line": 1139,
+     "line": 1167,
      "verdict": "pass"
     },
     "lean": [
@@ -87435,6 +87502,53 @@
     "p46062"
    ],
    "text": "The tally with a norm-one link at every step, of the eigenvalues $u^{j},u^{j},u^{-2j}$ and $u^{k},u^{k},u^{-2k}$. On every Subject the reduced tally is $2u^{(j-k)n}+u^{(j+2k)n}+u^{-(2j+k)n}+u^{-2(j-k)n}$ at every regular length, a point of the plane, with stated values at the others and the period $(\\p+1)/\\gcdop(j,k,\\p+1)$. With one link on each torus it moves on both cycles. Prop. prop:normone; rests on A15, C20 p46077, FrcCore{C27} FRC.YangMills.norm_one_link_tally"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:C28",
+   "key": "p46078",
+   "label": "C28",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "two_windings_against_lattice",
+   "statement": "[chart] The wrap of two windings against the lattice (C8): $\\lambda_{\\mathrm{gb}}=\\sqrt{\\pi a\\varkappa}$ is $3.545$ at $a=\\varkappa=2$ and $3.760$ at $a=2$, $\\varkappa=\\frac94$; the two values bracket the determinations $3.63(10)$ and $3.70(6)$, and $3.405(21)$ lies $4\\,\\%$ below $3.545$.",
+   "source": "Prop.~\\ref{prop:twowind}; rests on A1, A10, C8, C9\\newline \\pywit{yangmills}{p46078}{C28}, \\leanwit{FrcCore}{p46078}{C28}, \\leanwit{FrcMathlib}{p46078}{C28} \\lean{FRC.YangMills.two\\_windings\\_ground, YangMills.two\\_windings\\_ground\\_values}",
+   "page": "46-yangmills/index.html#C28",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46078",
+     "script": "p46_yangmills.py",
+     "line": 744,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.two_windings_ground",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.two_windings_ground"
+     },
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/YangMills",
+      "name": "FRC.YangMills.two_windings_ground_values",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/YangMills.html#FRC.YangMills.two_windings_ground_values"
+     }
+    ]
+   },
+   "refs": [
+    "p46001",
+    "p46017",
+    "p46030",
+    "p46035"
+   ],
+   "text": "[chart] The wrap of two windings against the lattice (C8): $\\lambda_{\\mathrm{gb}}=\\sqrt{\\pi a\\varkappa}$ is $3.545$ at $a=\\varkappa=2$ and $3.760$ at $a=2$, $\\varkappa=\\frac94$; the two values bracket the determinations $3.63(10)$ and $3.70(6)$, and $3.405(21)$ lies $4 %$ below $3.545$. Prop. prop:twowind; rests on A1, A10, C8, C9 p46078, FrcCore{C28}, FrcMathlib{C28} FRC.YangMills.two_windings_ground, YangMills.two_windings_ground_values"
   },
   {
    "paper": "46-ym",
@@ -87555,7 +87669,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "radial_ratio_prediction",
-   "statement": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
+   "statement": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the one-body operator of C8 and of every state it describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
    "source": "Prop.~\\ref{prop:radial}; rests on A1, C8, C12\\newline \\pywit{yangmills}{p46043}{P3}, \\leanwit{FrcCore}{p46043}{P3}, \\leanwit{FrcMathlib}{p46043}{P3} \\lean{FRC.YangMills.radial\\_ratio, YangMills.radial\\_ratio\\_confrontation}",
    "page": "46-yangmills/index.html#P3",
    "witness": {
@@ -87589,7 +87703,7 @@
     "p46017",
     "p46036"
    ],
-   "text": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball. Prop. prop:radial; rests on A1, C8, C12 p46043, FrcCore{P3}, FrcMathlib{P3} FRC.YangMills.radial_ratio, YangMills.radial_ratio_confrontation"
+   "text": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the one-body operator of C8 and of every state it describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball. Prop. prop:radial; rests on A1, C8, C12 p46043, FrcCore{P3}, FrcMathlib{P3} FRC.YangMills.radial_ratio, YangMills.radial_ratio_confrontation"
   },
   {
    "paper": "46-ym",
@@ -87630,6 +87744,51 @@
     "p46075"
    ],
    "text": "No state of residue $0$ is registered in isolation: on every Subject the triplet and the adjoint of the unitary frame have no invariant line (A9), so there is no free quark and no free gluon. Falsifier: a confirmed free particle that carries colour, such as a fractional electric charge. Confrontation: the searches for free quarks are negative (A19). Prop. prop:free; rests on A6, A9, A19, B1, B5 p46076, FrcCore{P4} FRC.YangMills.residue_zero_states"
+  },
+  {
+   "paper": "46-ym",
+   "no": 46,
+   "rid": "46:P5",
+   "key": "p46079",
+   "label": "P5",
+   "block": "P",
+   "tag": "T",
+   "name": null,
+   "lean_name": "two_windings_radial_prediction",
+   "statement": "[chart] The radial ratio of the wrap of two windings: $\\lambda_1/\\lambda_0=\\sqrt3=1.732$ for every $a$ and $\\varkappa$. Falsifier: the first radial ratio of the scalar glueball measured outside $\\sqrt3$ beyond its error. Confrontation: $1.720(16)$ (2020) contains it, since $1.704^{2}<3<1.736^{2}$; $1.54(11)$ (1999) lies $1.7$ standard deviations below.",
+   "source": "Prop.~\\ref{prop:twowind}; rests on A1, C8\\newline \\pywit{yangmills}{p46079}{P5}, \\leanwit{FrcCore}{p46079}{P5}, \\leanwit{FrcMathlib}{p46079}{P5} \\lean{FRC.YangMills.two\\_windings\\_radial, YangMills.two\\_windings\\_radial\\_ratio}",
+   "page": "46-yangmills/index.html#P5",
+   "witness": {
+    "py": {
+     "href": "py/yangmills.html#p46079",
+     "script": "p46_yangmills.py",
+     "line": 756,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/YangMills",
+      "name": "FRC.YangMills.two_windings_radial",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.YangMills.two_windings_radial"
+     },
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/YangMills",
+      "name": "FRC.YangMills.two_windings_radial_ratio",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/YangMills.html#FRC.YangMills.two_windings_radial_ratio"
+     }
+    ]
+   },
+   "refs": [
+    "p46001",
+    "p46017"
+   ],
+   "text": "[chart] The radial ratio of the wrap of two windings: $\\lambda_1/\\lambda_0=\\sqrt3=1.732$ for every $a$ and $\\varkappa$. Falsifier: the first radial ratio of the scalar glueball measured outside $\\sqrt3$ beyond its error. Confrontation: $1.720(16)$ (2020) contains it, since $1.704^{2}<3<1.736^{2}$; $1.54(11)$ (1999) lies $1.7$ standard deviations below. Prop. prop:twowind; rests on A1, C8 p46079, FrcCore{P5}, FrcMathlib{P5} FRC.YangMills.two_windings_radial, YangMills.two_windings_radial_ratio"
   },
   {
    "paper": "46-ym",

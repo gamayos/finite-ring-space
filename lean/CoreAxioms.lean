@@ -3776,6 +3776,8 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.complete_cycle_vanishes
 #print axioms FRC.YangMills.hughes_nielsen_sum
 #print axioms FRC.YangMills.radial_ratio
+#print axioms FRC.YangMills.two_windings_ground
+#print axioms FRC.YangMills.two_windings_radial
 #print axioms FRC.YangMills.binomShift
 #print axioms FRC.YangMills.binomRow
 #print axioms FRC.YangMills.expectedRow
@@ -4433,6 +4435,8 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p46072
 #print axioms FRC.Ledger.p46076
 #print axioms FRC.Ledger.p46077
+#print axioms FRC.Ledger.p46078
+#print axioms FRC.Ledger.p46079
 #print axioms FRC.Shell.meridian
 #print axioms FRC.Shell.scale
 #print axioms FRC.Shell.map_scale_aux
@@ -5467,6 +5471,7 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.three_rings
 #print axioms FRC.YangMills.series_on_shell
 #print axioms FRC.YangMills.norm_one_boundary
+#print axioms FRC.YangMills.two_windings_against_lattice
 #print axioms FRC.YangMills.gluon_massless_unregistered
 #print axioms FRC.YangMills.singlets_only
 #print axioms FRC.YangMills.casimirs_are_measured
@@ -5474,6 +5479,7 @@ import FrcBridge.Subject
 #print axioms FRC.YangMills.running_prediction
 #print axioms FRC.YangMills.radial_ratio_prediction
 #print axioms FRC.YangMills.no_free_quark_or_gluon
+#print axioms FRC.YangMills.two_windings_radial_prediction
 #print axioms FRC.Master.finitude
 #print axioms FRC.Master.completeness_of_totality
 #print axioms FRC.Master.incompleteness_of_observation

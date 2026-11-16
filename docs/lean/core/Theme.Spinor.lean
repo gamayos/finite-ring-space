@@ -437,8 +437,8 @@ theorem factorisation_value :
 
 /-- 8:E8 [value] — the three cycles in dynamical roles: `lcm(13, 14) = 182`, and the mixed step `U = M⁻¹P` of
 `H = −Δ + V_id` on `𝔽₁₃` (`M = 1 − wH`, `P = 1 + wH`, commuting) has `U^{13} ≠ 1`, `U^{14} ≠ 1`, `U^{182} ≠ 1`,
-since `U^k = 1` exactly when `P^k = M^k`: neither cycle, nor their least common period, is its period (the exact
-order `(13¹³ + 1)/2` is the package's certificate). -/
+since `U^k = 1` exactly when `P^k = M^k`: it closes on neither the register nor the third cycle nor their least common
+period (`mixed_step_closure` has every cycle of the shell). -/
 theorem mixed_step_values :
     Nat.lcm 13 14 = 182 ∧
     let H : Mat 13 2 := add (circMat 13 (kineticRow 13 2))
@@ -447,6 +447,25 @@ theorem mixed_step_values :
     let P : NMat := toN (add (ident 13) (smul ⟨0, 1⟩ H))
     mmulN 13 2 13 M P = mmulN 13 2 13 P M ∧ mpowN 13 2 13 P 13 ≠ mpowN 13 2 13 M 13 ∧
       mpowN 13 2 13 P 14 ≠ mpowN 13 2 13 M 14 ∧ mpowN 13 2 13 P 182 ≠ mpowN 13 2 13 M 182 := by
+  decide +kernel
+
+/-- 8:E8 [value] — the mixed step of `H = −Δ + V_id` on `𝔽₁₃` has no eigenvalue in `K` and closes on no cycle of the shell.
+The monic `q = x¹³ − x + 2` (the package's `χ_H`) annihilates `H`, `q(H) = 0` by Horner on the matrices, and has no root in
+`K`, so an eigenvalue `λ ∈ K` (`Hv = λv`, `q(λ)v = q(H)v = 0`) is impossible. `P^{2184} ≠ M^{2184}`, i.e. `U^{2184} ≠ 1`
+for `2184 = p(p² − 1)`, the least common period of the register, the drive cycle, the third cycle and `K^×`: a closure
+`U^t = 1` at a divisor `t` of `2184` would give `U^{2184} = 1`, so the step closes on no cycle of the shell, as Lemma
+eigenphase-law (iii) requires of a step with an eigenvalue of degree three or more. The irreducibility of `q` over `𝔽₁₃`
+is the package's record. -/
+theorem mixed_step_closure :
+    let H : Mat 13 2 := add (circMat 13 (kineticRow 13 2))
+      ((List.range 13).map fun i => (List.range 13).map fun j => if i = j then ⟨ofNat i, 0⟩ else 0)
+    let M : NMat := toN (add (ident 13) (neg (smul ⟨0, 1⟩ H)))
+    let P : NMat := toN (add (ident 13) (smul ⟨0, 1⟩ H))
+    let q : List (Ext 13 2) := [2, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+    q.reverse.foldl (fun acc c => add (mul acc H) (smul c (ident 13))) (smul (0 : Ext 13 2) (ident 13)) =
+      smul (0 : Ext 13 2) (ident 13) ∧
+    (∀ a b : Shell 13, q.foldr (fun c acc => c + (⟨a, b⟩ : Ext 13 2) * acc) 0 ≠ 0) ∧
+    mmulN 13 2 13 M P = mmulN 13 2 13 P M ∧ mpowN 13 2 13 P 2184 ≠ mpowN 13 2 13 M 2184 := by
   decide +kernel
 
 /-- 8:D11 [value] — the spinor form transports by the norm of the lift: `S† X S = N(z) X` for `S = x I₄ + y γ⁰γ¹`,
@@ -458,6 +477,47 @@ theorem lift_transport_values :
       smul (-1) (gamma0 93 * gamma1 93 * gamma3 93) ∧
     (dagger (spinLift 1461 1 1) * (gamma0 1461 * gamma1 1461 * gamma3 1461) * spinLift 1461 1 1 : Mat 1549 2) =
       smul (-1) (gamma0 1461 * gamma1 1461 * gamma3 1461) := by
+  decide +kernel
+
+/-- 8:D13 [value] — mass is winding rate, on `𝔽₁₃` in `0+1` (`ν = 2`, `i = 5`, `2⁻¹ = 7`), on the `52 × 52` matrices: the
+symmetric Dirac operator `𝒟^s = ∇^s ⊗ γ⁰` develops the translation-invariant spinor `ψ₀` by nothing, and for `m = 1, 2`
+the Cayley step of `𝒟^s − m` acts on it as the mass phase alone, `P ψ₀ = φ(−m) M ψ₀` for `M = 1 − w(𝒟^s − m)`,
+`P = 1 + w(𝒟^s − m)` (so `U ψ₀ = M⁻¹ P ψ₀ = φ(−m) ψ₀`), with `φ(−1) = 10 + 2w` and `φ(−2) = 8 + 8w` on the norm-one
+cycle (`drive_eigen` is the drive's side of the balance, `dirac_factorisation` its square). -/
+theorem mass_winding_values :
+    let D : Mat 13 2 := kron (circMat 13 (symDiffRow 13 7)) (gamma0 5)
+    let psi : Mat 13 2 := (List.range 52).map fun r => [if r % 4 = 0 then 1 else 0]
+    let M (m : Ext 13 2) : Mat 13 2 := add (ident 52) (neg (smul ⟨0, 1⟩ (add D (neg (smul m (ident 52))))))
+    let P (m : Ext 13 2) : Mat 13 2 := add (ident 52) (smul ⟨0, 1⟩ (add D (neg (smul m (ident 52)))))
+    (2 : Shell 13) * 7 = 1 ∧ mul D psi = (List.range 52).map (fun _ => [0]) ∧
+    mul (P 1) psi = smul (phi 2 12) (mul (M 1) psi) ∧ (phi 2 12 : Ext 13 2) = ⟨10, 2⟩ ∧
+    mul (P 2) psi = smul (phi 2 11) (mul (M 2) psi) ∧ (phi 2 11 : Ext 13 2) = ⟨8, 8⟩ := by
+  decide +kernel
+
+/-- 8:E9 [value] — the closure of a Cayley step at the instance: the step `U = M⁻¹P` of `H = −Δ + M_V`, `V = (1, 1, 0, …, 0)`,
+on `𝔽₁₃` (`M = 1 − wH`, `P = 1 + wH`, commuting) has the eigenvector of the degree-two eigenvalue `2 + 2w` exhibited,
+`H v = (2 + 2w) v`, and closes on no cycle of the shell: `P^{2184} ≠ M^{2184}`, i.e. `U^{2184} ≠ 1` for
+`2184 = p(p² − 1)`, so `U^t ≠ 1` for every divisor `t` of `2184` (a closure at `t` would close `2184`), as Lemma
+eigenphase-law (iii) requires of a step with an eigenvalue of degree three or more (the two cubic factors of `χ_H` are
+the package's record). -/
+theorem eigenphase_closure_values :
+    let V : Mat 13 2 := (List.range 13).map fun i => (List.range 13).map fun j => if i = j ∧ i < 2 then 1 else 0
+    let H : Mat 13 2 := add (circMat 13 (kineticRow 13 2)) V
+    let M : NMat := toN (add (ident 13) (neg (smul ⟨0, 1⟩ H)))
+    let P : NMat := toN (add (ident 13) (smul ⟨0, 1⟩ H))
+    let v : Mat 13 2 := [[⟨0, 3⟩], [⟨0, 3⟩], [⟨1, 0⟩], [⟨0, 8⟩], [⟨6, 0⟩], [⟨0, 6⟩], [⟨9, 0⟩], [⟨0, 2⟩], [⟨9, 0⟩], [⟨0, 6⟩],
+      [⟨6, 0⟩], [⟨0, 8⟩], [⟨1, 0⟩]]
+    mul H v = smul ⟨2, 2⟩ v ∧
+    mmulN 13 2 13 M P = mmulN 13 2 13 P M ∧ mpowN 13 2 13 P 2184 ≠ mpowN 13 2 13 M 2184 := by
+  decide +kernel
+
+/-- 8:D20 [value] — the square bound at the instance: on `𝔽₁₃` in `0+1`, on the `52 × 52` matrices, `(𝒟^s)^{13} = 0` and
+`(𝒟^s)^{12} ≠ 0`, the nilpotency index `13 = p` within the bound `2p = 26` of `dirac_square_nilpotent` (the indices `25`,
+`26`, `26` on two, three and four coordinate directions are the package's records). -/
+theorem dirac_square_values :
+    let D : NMat := toN (kron (circMat 13 (symDiffRow 13 7)) (gamma0 5) : Mat 13 2)
+    let Z : NMat := toN (smul (0 : Ext 13 2) (ident 52))
+    mpowN 13 2 52 D 13 = Z ∧ mpowN 13 2 52 D 12 ≠ Z := by
   decide +kernel
 
 end witnesses

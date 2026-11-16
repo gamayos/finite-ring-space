@@ -310,6 +310,22 @@ def wrap_family(spec=None):
                 kappa_eff=kappa_eff)
 
 
+def two_windings(members=((2, Q(2)), (2, Q(9, 4)))):
+    """46:C28, P5 — the wrap of two windings [chart]: λ_k² = (2 + 4k)(π/2)·aϰ, the winding law for two massless constituents that
+    wind twice in a cycle of four runs. Returns the ground values √(π aϰ) of the members with their distances from the three
+    determinations in standard deviations; the first and second radial ratios √3 and √5 with their squares (2 + 4k)/2; whether
+    1.704² < 3 < 1.736², the interval of the 2020 determination 1.720(16); and whether the squares 4π and 9π/2 of the two ground
+    values lie between the squares of their three-decimal brackets for every π between 3.1415 and 3.1416."""
+    det = m0pp_determinations(); ground = []
+    for a, kappa in members:
+        lam = math.sqrt(math.pi * a * float(kappa))
+        ground.append(dict(a=a, kappa=kappa, value=lam, sd={k: (lam - float(v)) / float(dv) for k, (v, dv) in det.items()}))
+    lo, hi = Q("3.1415"), Q("3.1416")
+    brackets = [Q("3.544") ** 2 < 4 * lo and 4 * hi < Q("3.546") ** 2, Q("3.759") ** 2 < Q(9, 2) * lo and Q(9, 2) * hi < Q("3.761") ** 2]
+    return dict(ground=ground, ratio=math.sqrt(3), second=math.sqrt(5), ratio_sq=Q(2 + 4, 2), second_sq=Q(2 + 8, 2),
+                inside_2020=Q("1.704") ** 2 < 3 < Q("1.736") ** 2, pi_bounds=float(lo) < math.pi < float(hi), brackets=brackets)
+
+
 def adjoint_ratio_table(ns=(10, 9, 8, 7, 6, 5)):
     """[chart] adjoint_ratio at the chart's cells (46:B6): {n: σ₈/σ₃}; the chart tier forms the floats."""
     th = chart_cells()["cells"]

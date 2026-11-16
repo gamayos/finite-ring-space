@@ -1,5 +1,5 @@
 {
- "generated": "15 November 2026",
+ "generated": "16 November 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -824,7 +824,7 @@
    "key": "p46043",
    "tag": "T",
    "lean_name": "radial_ratio_prediction",
-   "predicate": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the form of C8 and of every state the one-body wrap describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
+   "predicate": "[chart] The radial ratio of the operator form: $E_1/E_0\\approx1.49$ for every $a$ and $\\varkappa$, a property of the one-body operator of C8 and of every state it describes. Falsifier: such a state's first radial ratio measured off $1.49$. Confrontation: $1.54(11)$ (1999) agrees; $1.72(2)$ (2020) excludes $1.49$ by ten standard deviations under first-order error propagation at any correlation: the form fails for the glueball.",
    "source": "Prop.~\\ref{prop:radial}; rests on A1, C8, C12\\newline \\pywit{yangmills}{p46043}{P3}, \\leanwit{FrcCore}{p46043}{P3}, \\leanwit{FrcMathlib}{p46043}{P3} \\lean{FRC.YangMills.radial\\_ratio, YangMills.radial\\_ratio\\_confrontation}",
    "master": [],
    "restated": [],
@@ -840,6 +840,20 @@
    "lean_name": "no_free_quark_or_gluon",
    "predicate": "No state of residue $0$ is registered in isolation: on every Subject the triplet and the adjoint of the unitary frame have no invariant line (A9), so there is no free quark and no free gluon. Falsifier: a confirmed free particle that carries colour, such as a fractional electric charge. Confrontation: the searches for free quarks are negative (A19).",
    "source": "Prop.~\\ref{prop:free}; rests on A6, A9, A19, B1, B5\\newline \\pywit{yangmills}{p46076}{P4}, \\leanwit{FrcCore}{p46076}{P4} \\lean{FRC.YangMills.residue\\_zero\\_states}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "46-yangmills/index.html"
+  },
+  {
+   "id": "46:P5",
+   "paper": "46-ym",
+   "label": "P5",
+   "key": "p46079",
+   "tag": "T",
+   "lean_name": "two_windings_radial_prediction",
+   "predicate": "[chart] The radial ratio of the wrap of two windings: $\\lambda_1/\\lambda_0=\\sqrt3=1.732$ for every $a$ and $\\varkappa$. Falsifier: the first radial ratio of the scalar glueball measured outside $\\sqrt3$ beyond its error. Confrontation: $1.720(16)$ (2020) contains it, since $1.704^{2}<3<1.736^{2}$; $1.54(11)$ (1999) lies $1.7$ standard deviations below.",
+   "source": "Prop.~\\ref{prop:twowind}; rests on A1, C8\\newline \\pywit{yangmills}{p46079}{P5}, \\leanwit{FrcCore}{p46079}{P5}, \\leanwit{FrcMathlib}{p46079}{P5} \\lean{FRC.YangMills.two\\_windings\\_radial, YangMills.two\\_windings\\_radial\\_ratio}",
    "master": [],
    "restated": [],
    "witnessed": false,

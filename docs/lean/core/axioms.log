@@ -3763,6 +3763,8 @@
 'FRC.YangMills.complete_cycle_vanishes' does not depend on any axioms
 'FRC.YangMills.hughes_nielsen_sum' does not depend on any axioms
 'FRC.YangMills.radial_ratio' does not depend on any axioms
+'FRC.YangMills.two_windings_ground' does not depend on any axioms
+'FRC.YangMills.two_windings_radial' does not depend on any axioms
 'FRC.YangMills.binomShift' does not depend on any axioms
 'FRC.YangMills.binomRow' does not depend on any axioms
 'FRC.YangMills.expectedRow' does not depend on any axioms
@@ -4420,6 +4422,8 @@
 'FRC.Ledger.p46072' does not depend on any axioms
 'FRC.Ledger.p46076' does not depend on any axioms
 'FRC.Ledger.p46077' does not depend on any axioms
+'FRC.Ledger.p46078' does not depend on any axioms
+'FRC.Ledger.p46079' does not depend on any axioms
 'FRC.Shell.meridian' does not depend on any axioms
 'FRC.Shell.scale' does not depend on any axioms
 'FRC.Shell.map_scale_aux' does not depend on any axioms
@@ -5454,6 +5458,7 @@
 'FRC.YangMills.three_rings' does not depend on any axioms
 'FRC.YangMills.series_on_shell' does not depend on any axioms
 'FRC.YangMills.norm_one_boundary' does not depend on any axioms
+'FRC.YangMills.two_windings_against_lattice' does not depend on any axioms
 'FRC.YangMills.gluon_massless_unregistered' does not depend on any axioms
 'FRC.YangMills.singlets_only' does not depend on any axioms
 'FRC.YangMills.casimirs_are_measured' does not depend on any axioms
@@ -5461,6 +5466,7 @@
 'FRC.YangMills.running_prediction' does not depend on any axioms
 'FRC.YangMills.radial_ratio_prediction' does not depend on any axioms
 'FRC.YangMills.no_free_quark_or_gluon' does not depend on any axioms
+'FRC.YangMills.two_windings_radial_prediction' does not depend on any axioms
 'FRC.Master.finitude' does not depend on any axioms
 'FRC.Master.completeness_of_totality' does not depend on any axioms
 'FRC.Master.incompleteness_of_observation' does not depend on any axioms

@@ -19,7 +19,7 @@ from frc import chart_yangmills as CY
 from frc.registry import MARKER
 
 ROOT = Path(__file__).resolve().parents[2]
-CHART_CHECKS = {"E1", "E2", "E3", "E4", "F2", "F3", "F4", "G1", "G2"}
+CHART_CHECKS = {"E1", "E2", "E3", "E4", "F2", "F3", "F4", "F5", "F6", "G1", "G2"}
 
 
 class YangMillsTest(unittest.TestCase):
