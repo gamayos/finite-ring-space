@@ -219,9 +219,12 @@ theorem isotropy (F : Frame p κ g) (k : Nat) :
 /-- 8:E9 — on every symmetry-complete shell `p = 4κ + 1`, `p^k + 1 ≡ 2 (mod 4)` for every `k`: a phase whose order is
 divisible by `4` lies on no cycle of order `p^k + 1`, the relation behind the degree-two instance of `eigenphase_values`. -/
 theorem pow_succ_mod_four (F : Frame p κ g) (k : Nat) : (p ^ k + 1) % 4 = 2 := by
-  have h1 : p % 4 = 1 := by have := F.cap; omega
-  have h2 : p ^ k % 4 = 1 := by rw [Nat.pow_mod, h1, Nat.one_pow]
-  omega
+  have h1 : p % 4 = 1 := by rw [F.cap, FRC.Nat.add_mul_mod_self_left 1 κ 4 (by decide)]
+  have h2 : ∀ k, p ^ k % 4 = 1 := fun k => by
+    induction k with
+    | zero => rfl
+    | succ k ih => rw [Nat.pow_succ, FRC.Nat.mul_mod _ _ _ (by decide), ih, h1]
+  rw [FRC.Nat.add_mod _ _ _ (by decide), h2 k]
 
 /-- 8:F4, 8:F6, 8:X1, 8:E8 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`,
 so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one

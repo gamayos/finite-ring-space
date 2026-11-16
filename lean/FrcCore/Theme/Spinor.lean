@@ -2,6 +2,7 @@ import FrcCore.Theme.Packed
 import FrcCore.Theme.Unipotent
 import FrcCore.Theme.Hermitian
 import FrcCore.Theme.Dirac
+import FrcCore.Theme.Unitary
 
 /-!
 # The spinor file of 8-dirac — the matrices as an operator ring, and the decided witnesses, no axioms
@@ -243,6 +244,546 @@ theorem symdiff_nilpotent {κ : Nat} {g : Shell p} (F : Frame p κ g) {h : MatE 
     _ ≈ opow h p * (1 + -1) := mul_congr_right _ (OpRing.add_congr shift_pow_self hneg)
     _ ≈ opow h p * 0 := mul_congr_right _ (OpRing.add_neg 1)
     _ ≈ 0 := Operator.mul_zero _
+
+/-! ### The exact index of the symmetric difference (D20) -/
+/-- The entries of an operator sum are the sums of the entries. -/
+theorem osum_f (f : Nat → MatE p ν n) (i j : Nat) : ∀ m, (osum f m).f i j = esum (fun k => (f k).f i j) m
+  | 0 => rfl
+  | m + 1 => by
+    show (osum f m + f m).f i j = esum (fun k => (f k).f i j) m + (f m).f i j
+    rw [add_f, osum_f f i j m]
+
+/-- The sum of the translates of the cycle has the entry `1` at `(0, 0)`: `(Σ_{k<p} T^k)_{00} = 1`. -/
+theorem geom_shift_f00 : (geom (shift p : MatE p ν p) p).f 0 0 = 1 := by
+  show (osum (fun k => opow (shift p : MatE p ν p) k) p).f 0 0 = 1
+  rw [osum_f]
+  have hk : ∀ k, k < p → (opow (shift p : MatE p ν p) k).f 0 0 = if k = 0 then (1 : Ext p ν) else 0 := fun k hk => by
+    rw [shift_pow Pos.pos k 0 Pos.pos 0 Pos.pos]
+    show (if 0 = (0 + k) % p then (1 : Ext p ν) else 0) = if k = 0 then 1 else 0
+    rw [Nat.zero_add, FRC.Nat.mod_eq_of_lt hk]
+    cases Nat.decEq k 0 with
+    | isTrue e => rw [ite_eq_left e.symm, ite_eq_left e]
+    | isFalse e => rw [ite_eq_right (fun e' => e e'.symm), ite_eq_right e]
+  rw [esum_congr p hk, esum_eq_single _ (Pos.pos : 0 < p) (fun k _ hk0 => by rw [ite_eq_right hk0])]
+  exact ite_eq_left rfl
+
+/-- The sum of the translates is not congruent to zero. -/
+theorem geom_shift_ne_zero {κ : Nat} {g : Shell p} (F : Frame p κ g) : ¬ (geom (shift p : MatE p ν p) p ≈ 0) := fun h => by
+  have e := h 0 Pos.pos 0 Pos.pos
+  rw [geom_shift_f00] at e
+  exact F.one_ne_zero (FRC.Extension.Ext.re_congr e)
+
+/-- `T^{p−1}` is the inverse of the translation `T`. -/
+theorem shift_inverse : Inverse (shift p : MatE p ν p) (opow (shift p) (p - 1)) := by
+  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm
+  have h1 : opow (shift p : MatE p ν p) (p - 1) * shift p ≈ 1 :=
+    eq_trans (eq_of_eq (by rw [← opow_succ, ← hp])) shift_pow_self
+  exact ⟨eq_trans (opow_self_comm (shift p) (p - 1)).symm h1, h1⟩
+
+/-- 8:D20 — the exact index of the symmetric difference in `0+1`, on every frame: `(T − T⁻¹)^{p−1} ≈ Σ_{k<p} T^k`,
+the sum of the translates, which is not zero, while `(T − T⁻¹)^p ≈ 0` (`symdiff_nilpotent`). With the central unit `h`
+(`h = 2⁻¹`): `(∇^s)^{p−1} ≈ h^{p−1} Σ_k T^k ≉ 0` and `(∇^s)^p ≈ 0`, so the nilpotency index of `∇^s` is exactly `p`. The
+Dirac operator of `0+1` is `∇^s ⊗ γ⁰` with `γ⁰` a unit, `𝒟^k = (∇^s)^k ⊗ (γ⁰)^k`, so its index is `p` as well. -/
+theorem symdiff_index {κ : Nat} {g : Shell p} (F : Frame p κ g) {h h' : MatE p ν p} (hh : Central h)
+    (hinv : Inverse h h') :
+    opow (shift p + -(opow (shift p) (p - 1)) : MatE p ν p) (p - 1) ≈ geom (shift p) p ∧
+    ¬ (opow (h * (shift p + -(opow (shift p) (p - 1))) : MatE p ν p) (p - 1) ≈ 0) ∧
+    opow (h * (shift p + -(opow (shift p) (p - 1))) : MatE p ν p) p ≈ 0 := by
+  have hid : opow (shift p + -(opow (shift p) (p - 1)) : MatE p ν p) (p - 1) ≈ geom (shift p) p :=
+    symdiff_pred_eq_geom F char_p shift_pow_self shift_inverse
+  refine ⟨hid, fun hz => ?_, symdiff_nilpotent F hh⟩
+  have hpow : opow (h * (shift p + -(opow (shift p) (p - 1)))) (p - 1) ≈ opow h (p - 1) * geom (shift p) p :=
+    eq_trans (mul_opow (hh _) _) (mul_congr_right _ hid)
+  have hinvp := inverse_opow hinv (p - 1)
+  apply geom_shift_ne_zero F
+  calc geom (shift p : MatE p ν p) p ≈ 1 * geom (shift p) p := eq_symm (OpRing.one_mul _)
+    _ ≈ opow h' (p - 1) * opow h (p - 1) * geom (shift p) p := mul_congr_left _ (eq_symm hinvp.2)
+    _ ≈ opow h' (p - 1) * (opow h (p - 1) * geom (shift p) p) := OpRing.mul_assoc _ _ _
+    _ ≈ opow h' (p - 1) * opow (h * (shift p + -(opow (shift p) (p - 1)))) (p - 1) := mul_congr_right _ (eq_symm hpow)
+    _ ≈ opow h' (p - 1) * 0 := mul_congr_right _ hz
+    _ ≈ 0 := Operator.mul_zero _
+
+/-- 8:D20 — the exact index of the forward difference in `0+1`, on every frame: `(T − 1)^{p−1} ≈ Σ_{k<p} T^k`, the sum of
+the translates, which is not zero, while `(T − 1)^p ≈ 0` (`translation_nilpotent`), so the nilpotency index of `∇ = T − 1`
+is exactly `p`. The forward Dirac operator of `0+1` is `∇ ⊗ γ⁰` with `γ⁰` a unit, so its index is `p` as well. -/
+theorem fwddiff_index {κ : Nat} {g : Shell p} (F : Frame p κ g) :
+    opow (shift p + -1 : MatE p ν p) (p - 1) ≈ geom (shift p) p ∧
+    ¬ (opow (shift p + -1 : MatE p ν p) (p - 1) ≈ 0) ∧
+    opow (shift p + -1 : MatE p ν p) p ≈ 0 := by
+  have hid : opow (shift p + -1 : MatE p ν p) (p - 1) ≈ geom (shift p) p := opow_sub_one_pred F char_p _
+  exact ⟨hid, fun hz => geom_shift_ne_zero F (eq_trans (eq_symm hid) hz), translation_nilpotent F char_p shift_pow_self⟩
+
+/-! ### The twist is unique up to sign (D21) -/
+/-! ### The extension's arithmetic on explicit pairs -/
+
+theorem mk_mul_mk (a b c d : Shell p) : (⟨a, b⟩ : Ext p ν) * ⟨c, d⟩ = ⟨a * c + ν * (b * d), a * d + b * c⟩ := rfl
+theorem mk_add_mk (a b c d : Shell p) : (⟨a, b⟩ : Ext p ν) + ⟨c, d⟩ = ⟨a + c, b + d⟩ := rfl
+theorem neg_mk (a b : Shell p) : -(⟨a, b⟩ : Ext p ν) = ⟨-a, -b⟩ := rfl
+theorem conj_mk (a b : Shell p) : Ext.conj (⟨a, b⟩ : Ext p ν) = ⟨a, -b⟩ := rfl
+theorem zero_mk : (0 : Ext p ν) = ⟨0, 0⟩ := rfl
+theorem one_mk : (1 : Ext p ν) = ⟨1, 0⟩ := rfl
+theorem mk_one_mul (x : Ext p ν) : (⟨1, 0⟩ : Ext p ν) * x = x := Ext.one_mul x
+theorem mul_mk_one (x : Ext p ν) : x * (⟨1, 0⟩ : Ext p ν) = x := Ext.mul_one x
+theorem mk_zero_mul (x : Ext p ν) : (⟨0, 0⟩ : Ext p ν) * x = 0 := Hermitian.zero_mul x
+theorem mul_mk_zero (x : Ext p ν) : x * (⟨0, 0⟩ : Ext p ν) = 0 := Hermitian.mul_zero x
+theorem mk_zero_add (x : Ext p ν) : (⟨0, 0⟩ : Ext p ν) + x = x := Hermitian.zero_add x
+theorem add_mk_zero (x : Ext p ν) : x + (⟨0, 0⟩ : Ext p ν) = x := Hermitian.add_zero x
+theorem neg_one_mul' (x : Ext p ν) : (⟨-1, 0⟩ : Ext p ν) * x = -x := by
+  rw [show (⟨-1, 0⟩ : Ext p ν) = -1 from Ext.ext rfl Shell.neg_zero.symm, ← Hermitian.neg_mul, Ext.one_mul]
+theorem mul_neg_one' (x : Ext p ν) : x * (⟨-1, 0⟩ : Ext p ν) = -x := by rw [Ext.mul_comm]; exact neg_one_mul' x
+
+theorem esum4 (f : Nat → Ext p ν) : esum f 4 = f 0 + f 1 + f 2 + f 3 := by
+  show 0 + f 0 + f 1 + f 2 + f 3 = f 0 + f 1 + f 2 + f 3
+  rw [Hermitian.zero_add]
+
+theorem neg_inj' {x y : Ext p ν} (h : -x = -y) : x = y := by rw [← Hermitian.neg_neg x, h, Hermitian.neg_neg]
+
+/-- Cancellation of a nonzero scalar of the shell. -/
+theorem cancel_scalar {κ : Nat} {g : Shell p} (F : Frame p κ g) {c : Shell p} (hc : c ≠ 0) {x y : Ext p ν}
+    (h : Ext.ofShell c * x = Ext.ofShell c * y) : x = y := by
+  rw [Ext.ofShell_mul_eq, Ext.ofShell_mul_eq] at h
+  exact Ext.ext (F.mul_left_cancel hc (Ext.re_congr h)) (F.mul_left_cancel hc (Ext.im_congr h))
+
+/-- `i² = −1` read in the extension: `⟨i, 0⟩ * ⟨i, 0⟩ = −1`. -/
+theorem ii_sq {i : Shell p} (hi : i * i = -1) : (⟨i, 0⟩ : Ext p ν) * ⟨i, 0⟩ = ⟨-1, 0⟩ := by
+  rw [mk_mul_mk, hi, Shell.mul_zero, Shell.mul_zero, Shell.add_zero, Shell.mul_zero, Shell.zero_mul, Shell.add_zero]
+
+/-- `(i w)² = −ν` read in the extension. -/
+theorem iw_sq {i : Shell p} (hi : i * i = -1) : (⟨0, i⟩ : Ext p ν) * ⟨0, i⟩ = ⟨-ν, 0⟩ := by
+  rw [mk_mul_mk, hi, Shell.zero_mul, Shell.zero_add, Shell.zero_mul, Shell.mul_zero, Shell.add_zero, ← Shell.mul_neg,
+    Shell.mul_one]
+
+/-- Cancellation of `i`: `⟨i, 0⟩ x = ⟨i, 0⟩ y → x = y`. -/
+theorem cancel_ii {i : Shell p} (hi : i * i = -1) {x y : Ext p ν} (h : (⟨i, 0⟩ : Ext p ν) * x = ⟨i, 0⟩ * y) : x = y := by
+  have h2 := congrArg (fun z => (⟨i, 0⟩ : Ext p ν) * z) h
+  simp only [← Ext.mul_assoc, ii_sq hi, neg_one_mul'] at h2
+  exact neg_inj' h2
+
+/-- Cancellation of `i w`: `⟨0, i⟩ x = ⟨0, i⟩ y → x = y` when `ν ≠ 0`. -/
+theorem cancel_iw {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1) (hν : ν ≠ 0) {x y : Ext p ν}
+    (h : (⟨0, i⟩ : Ext p ν) * x = ⟨0, i⟩ * y) : x = y := by
+  have h2 := congrArg (fun z => (⟨0, i⟩ : Ext p ν) * z) h
+  simp only [← Ext.mul_assoc, iw_sq hi] at h2
+  exact cancel_scalar F (fun e => hν (by rw [← Shell.neg_neg ν, e, Shell.neg_zero])) h2
+
+/-- `x = −x → x = 0` in the extension on a frame. -/
+theorem eq_zero_of_eq_neg' {κ : Nat} {g : Shell p} (F : Frame p κ g) {x : Ext p ν} (h : x = -x) : x = 0 :=
+  Ext.ext (F.eq_zero_of_eq_neg (Ext.re_congr h)) (F.eq_zero_of_eq_neg (Ext.im_congr h))
+
+/-! ### The gamma matrices as functions, the spinor form `X = γ⁰γ¹γ³` and the integer matrix `E` -/
+
+/-- The gamma matrices of `gamma` read as functions of two indices: `γ⁰ = i w β`, `γ^k = i ρ^k` (`γ²`'s entries
+`∓i² = ±1`). -/
+def gE (i : Shell p) : Nat → MatE p ν 4
+  | 0 => ⟨fun a b => if a = 0 ∧ b = 2 then ⟨0, i⟩ else if a = 1 ∧ b = 3 then ⟨0, i⟩ else
+      if a = 2 ∧ b = 0 then ⟨0, i⟩ else if a = 3 ∧ b = 1 then ⟨0, i⟩ else 0⟩
+  | 1 => ⟨fun a b => if a = 0 ∧ b = 3 then ⟨i, 0⟩ else if a = 1 ∧ b = 2 then ⟨i, 0⟩ else
+      if a = 2 ∧ b = 1 then -⟨i, 0⟩ else if a = 3 ∧ b = 0 then -⟨i, 0⟩ else 0⟩
+  | 2 => ⟨fun a b => if a = 0 ∧ b = 3 then -(⟨i, 0⟩ * ⟨i, 0⟩) else if a = 1 ∧ b = 2 then ⟨i, 0⟩ * ⟨i, 0⟩ else
+      if a = 2 ∧ b = 1 then ⟨i, 0⟩ * ⟨i, 0⟩ else if a = 3 ∧ b = 0 then -(⟨i, 0⟩ * ⟨i, 0⟩) else 0⟩
+  | _ => ⟨fun a b => if a = 0 ∧ b = 2 then ⟨i, 0⟩ else if a = 1 ∧ b = 3 then -⟨i, 0⟩ else
+      if a = 2 ∧ b = 0 then -⟨i, 0⟩ else if a = 3 ∧ b = 1 then ⟨i, 0⟩ else 0⟩
+
+/-- The integer matrix `E` with `E₀₃ = 1`, `E₁₂ = −1`, `E₂₁ = 1`, `E₃₀ = −1`: the spinor form is `X = −i w E`. -/
+def E4 : MatE p ν 4 :=
+  ⟨fun a b => if a = 0 ∧ b = 3 then 1 else if a = 1 ∧ b = 2 then -1 else if a = 2 ∧ b = 1 then 1 else
+    if a = 3 ∧ b = 0 then -1 else 0⟩
+
+/-- A scalar multiple of a matrix. -/
+def smulE (c : Ext p ν) (A : MatE p ν n) : MatE p ν n := ⟨fun a b => c * A.f a b⟩
+
+theorem smulE_f (c : Ext p ν) (A : MatE p ν n) (a b : Nat) : (smulE c A).f a b = c * A.f a b := rfl
+
+/-- The twist equations `(γ^μ)† X = −X γ^μ` for the four gamma matrices. -/
+def Twists (i : Shell p) (X : MatE p ν 4) : Prop := ∀ μ, μ < 4 → dagger (gE i μ) * X ≈ -(X * gE i μ)
+
+/-- 8:D21 — the transcription `gE` is the paper's `gamma` of Dirac.lean, entry by entry on the `4 × 4` range, for every `i`:
+the twist theorems below are about the paper's gamma matrices. -/
+theorem gE_eq_gamma (i : Shell p) : ∀ (μ a b : Nat), a < 4 → b < 4 →
+    (gE i μ : MatE p ν 4).f a b = Mat.nth 0 (Mat.nth [] (gamma i μ) a) b
+  | 0, 0, 0 => fun _ _ => rfl
+  | 0, 0, 1 => fun _ _ => rfl
+  | 0, 0, 2 => fun _ _ => rfl
+  | 0, 0, 3 => fun _ _ => rfl
+  | 0, 1, 0 => fun _ _ => rfl
+  | 0, 1, 1 => fun _ _ => rfl
+  | 0, 1, 2 => fun _ _ => rfl
+  | 0, 1, 3 => fun _ _ => rfl
+  | 0, 2, 0 => fun _ _ => rfl
+  | 0, 2, 1 => fun _ _ => rfl
+  | 0, 2, 2 => fun _ _ => rfl
+  | 0, 2, 3 => fun _ _ => rfl
+  | 0, 3, 0 => fun _ _ => rfl
+  | 0, 3, 1 => fun _ _ => rfl
+  | 0, 3, 2 => fun _ _ => rfl
+  | 0, 3, 3 => fun _ _ => rfl
+  | 0, a + 4, _ => fun ha _ => absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | 0, 0, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 0, 1, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 0, 2, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 0, 3, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 1, 0, 0 => fun _ _ => rfl
+  | 1, 0, 1 => fun _ _ => rfl
+  | 1, 0, 2 => fun _ _ => rfl
+  | 1, 0, 3 => fun _ _ => rfl
+  | 1, 1, 0 => fun _ _ => rfl
+  | 1, 1, 1 => fun _ _ => rfl
+  | 1, 1, 2 => fun _ _ => rfl
+  | 1, 1, 3 => fun _ _ => rfl
+  | 1, 2, 0 => fun _ _ => rfl
+  | 1, 2, 1 => fun _ _ => rfl
+  | 1, 2, 2 => fun _ _ => rfl
+  | 1, 2, 3 => fun _ _ => rfl
+  | 1, 3, 0 => fun _ _ => rfl
+  | 1, 3, 1 => fun _ _ => rfl
+  | 1, 3, 2 => fun _ _ => rfl
+  | 1, 3, 3 => fun _ _ => rfl
+  | 1, a + 4, _ => fun ha _ => absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | 1, 0, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 1, 1, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 1, 2, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 1, 3, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 2, 0, 0 => fun _ _ => rfl
+  | 2, 0, 1 => fun _ _ => rfl
+  | 2, 0, 2 => fun _ _ => rfl
+  | 2, 0, 3 => fun _ _ => rfl
+  | 2, 1, 0 => fun _ _ => rfl
+  | 2, 1, 1 => fun _ _ => rfl
+  | 2, 1, 2 => fun _ _ => rfl
+  | 2, 1, 3 => fun _ _ => rfl
+  | 2, 2, 0 => fun _ _ => rfl
+  | 2, 2, 1 => fun _ _ => rfl
+  | 2, 2, 2 => fun _ _ => rfl
+  | 2, 2, 3 => fun _ _ => rfl
+  | 2, 3, 0 => fun _ _ => rfl
+  | 2, 3, 1 => fun _ _ => rfl
+  | 2, 3, 2 => fun _ _ => rfl
+  | 2, 3, 3 => fun _ _ => rfl
+  | 2, a + 4, _ => fun ha _ => absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | 2, 0, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 2, 1, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 2, 2, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 2, 3, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | _ + 3, 0, 0 => fun _ _ => rfl
+  | _ + 3, 0, 1 => fun _ _ => rfl
+  | _ + 3, 0, 2 => fun _ _ => rfl
+  | _ + 3, 0, 3 => fun _ _ => rfl
+  | _ + 3, 1, 0 => fun _ _ => rfl
+  | _ + 3, 1, 1 => fun _ _ => rfl
+  | _ + 3, 1, 2 => fun _ _ => rfl
+  | _ + 3, 1, 3 => fun _ _ => rfl
+  | _ + 3, 2, 0 => fun _ _ => rfl
+  | _ + 3, 2, 1 => fun _ _ => rfl
+  | _ + 3, 2, 2 => fun _ _ => rfl
+  | _ + 3, 2, 3 => fun _ _ => rfl
+  | _ + 3, 3, 0 => fun _ _ => rfl
+  | _ + 3, 3, 1 => fun _ _ => rfl
+  | _ + 3, 3, 2 => fun _ _ => rfl
+  | _ + 3, 3, 3 => fun _ _ => rfl
+  | _ + 3, a + 4, _ => fun ha _ => absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | _ + 3, 0, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | _ + 3, 1, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | _ + 3, 2, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | _ + 3, 3, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+
+/-- The `γ⁰` step: `⟨0, −i⟩ x = −(y ⟨0, i⟩)` gives `x = y`. -/
+theorem g0_step {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1) (hν : ν ≠ 0) {x y : Ext p ν}
+    (h : (⟨0, -i⟩ : Ext p ν) * x = -(y * ⟨0, i⟩)) : x = y := by
+  have e1 : (⟨0, -i⟩ : Ext p ν) = -⟨0, i⟩ := Ext.ext Shell.neg_zero.symm rfl
+  rw [e1, ← Hermitian.neg_mul, Ext.mul_comm y] at h
+  exact cancel_iw F hi hν (neg_inj' h)
+
+/-- The `γ³` step with the sign `−i`: `⟨−i, 0⟩ x = −(x ⟨−i, 0⟩)` gives `x = 0`. -/
+theorem g3_neg_step {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1) {x : Ext p ν}
+    (h : (⟨-i, 0⟩ : Ext p ν) * x = -(x * ⟨-i, 0⟩)) : x = 0 := by
+  have e1 : (⟨-i, 0⟩ : Ext p ν) = -⟨i, 0⟩ := Ext.ext rfl Shell.neg_zero.symm
+  rw [e1, Ext.mul_comm x] at h
+  have h2 : (⟨i, 0⟩ : Ext p ν) * x = -(⟨i, 0⟩ * x) := by
+    have := congrArg (- ·) h
+    simp only [Hermitian.neg_neg] at this
+    rw [Hermitian.neg_mul, ← this, ← Hermitian.neg_mul, Hermitian.neg_neg]
+  have h3 : (⟨i, 0⟩ : Ext p ν) * x = ⟨i, 0⟩ * 0 := by rw [Hermitian.mul_zero]; exact eq_zero_of_eq_neg' F h2
+  exact cancel_ii hi h3
+
+/-- The `γ³` step with the sign `i`: `⟨i, 0⟩ x = −(x ⟨i, 0⟩)` gives `x = 0`. -/
+theorem g3_pos_step {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1) {x : Ext p ν}
+    (h : (⟨i, 0⟩ : Ext p ν) * x = -(x * ⟨i, 0⟩)) : x = 0 := by
+  rw [Ext.mul_comm x] at h
+  have h3 : (⟨i, 0⟩ : Ext p ν) * x = ⟨i, 0⟩ * 0 := by rw [Hermitian.mul_zero]; exact eq_zero_of_eq_neg' F h
+  exact cancel_ii hi h3
+
+/-- The `γ¹` step tying the anti-diagonal: `⟨−i, 0⟩ x = −(y ⟨−i, 0⟩)` gives `x = −y`. -/
+theorem g1_neg_step {i : Shell p} (hi : i * i = -1) {x y : Ext p ν}
+    (h : (⟨-i, 0⟩ : Ext p ν) * x = -(y * ⟨-i, 0⟩)) : x = -y := by
+  have e1 : (⟨-i, 0⟩ : Ext p ν) = -⟨i, 0⟩ := Ext.ext rfl Shell.neg_zero.symm
+  rw [e1, Ext.mul_comm y, ← Hermitian.neg_mul, ← Hermitian.neg_mul, Hermitian.neg_neg] at h
+  have h' : (⟨i, 0⟩ : Ext p ν) * x = ⟨i, 0⟩ * -y := by rw [← Hermitian.mul_neg, ← h, Hermitian.neg_neg]
+  exact cancel_ii hi h'
+
+/-- The `γ¹` step tying the diagonal: `⟨−i, 0⟩ x = −(y ⟨i, 0⟩)` gives `x = y`. -/
+theorem g1_pos_step {i : Shell p} (hi : i * i = -1) {x y : Ext p ν}
+    (h : (⟨-i, 0⟩ : Ext p ν) * x = -(y * ⟨i, 0⟩)) : x = y := by
+  have e1 : (⟨-i, 0⟩ : Ext p ν) = -⟨i, 0⟩ := Ext.ext rfl Shell.neg_zero.symm
+  rw [e1, Ext.mul_comm y, ← Hermitian.neg_mul] at h
+  exact cancel_ii hi (neg_inj' h)
+
+/-- 8:D21 — the twist is unique up to a scalar, on every frame with `i² = −1` and `ν ≠ 0`: a solution `X'` of the four
+twist equations `(γ^μ)† X' = −X' γ^μ` is `X'₀₃ · E`, so the solutions form the line of `E` (and of `X = −i w E`). The
+proof reads fifteen of the sixty-four entry equations: `γ⁰` makes `X'` block-symmetric, `γ³` kills four entries, `γ¹`
+ties the diagonal and the anti-diagonal, `γ²` kills the diagonal. -/
+theorem twist_unique {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1) (hν : ν ≠ 0)
+    (X : MatE p ν 4) (h : Twists i X) : X ≈ smulE (X.f 0 3) E4 := by
+  have h0 := h 0 (by decide); have h1 := h 1 (by decide); have h2 := h 2 (by decide); have h3 := h 3 (by decide)
+  have e20 := h0 0 (by decide) 0 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 0 + Ext.conj 0 * X.f 1 0 + Ext.conj ⟨0, i⟩ * X.f 2 0 + Ext.conj 0 * X.f 3 0 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * 0 + X.f 0 2 * ⟨0, i⟩ + X.f 0 3 * 0) at e20
+  have e21 := h0 0 (by decide) 1 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 1 + Ext.conj 0 * X.f 1 1 + Ext.conj ⟨0, i⟩ * X.f 2 1 + Ext.conj 0 * X.f 3 1 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * 0 + X.f 0 2 * 0 + X.f 0 3 * ⟨0, i⟩) at e21
+  have e22 := h0 0 (by decide) 2 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 2 + Ext.conj 0 * X.f 1 2 + Ext.conj ⟨0, i⟩ * X.f 2 2 + Ext.conj 0 * X.f 3 2 =
+      -(0 + X.f 0 0 * ⟨0, i⟩ + X.f 0 1 * 0 + X.f 0 2 * 0 + X.f 0 3 * 0) at e22
+  have e23 := h0 0 (by decide) 3 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 3 + Ext.conj 0 * X.f 1 3 + Ext.conj ⟨0, i⟩ * X.f 2 3 + Ext.conj 0 * X.f 3 3 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * ⟨0, i⟩ + X.f 0 2 * 0 + X.f 0 3 * 0) at e23
+  have e30 := h0 1 (by decide) 0 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 0 + Ext.conj 0 * X.f 1 0 + Ext.conj 0 * X.f 2 0 + Ext.conj ⟨0, i⟩ * X.f 3 0 =
+      -(0 + X.f 1 0 * 0 + X.f 1 1 * 0 + X.f 1 2 * ⟨0, i⟩ + X.f 1 3 * 0) at e30
+  have e31 := h0 1 (by decide) 1 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 1 + Ext.conj 0 * X.f 1 1 + Ext.conj 0 * X.f 2 1 + Ext.conj ⟨0, i⟩ * X.f 3 1 =
+      -(0 + X.f 1 0 * 0 + X.f 1 1 * 0 + X.f 1 2 * 0 + X.f 1 3 * ⟨0, i⟩) at e31
+  have e32 := h0 1 (by decide) 2 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 2 + Ext.conj 0 * X.f 1 2 + Ext.conj 0 * X.f 2 2 + Ext.conj ⟨0, i⟩ * X.f 3 2 =
+      -(0 + X.f 1 0 * ⟨0, i⟩ + X.f 1 1 * 0 + X.f 1 2 * 0 + X.f 1 3 * 0) at e32
+  have e33 := h0 1 (by decide) 3 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 3 + Ext.conj 0 * X.f 1 3 + Ext.conj 0 * X.f 2 3 + Ext.conj ⟨0, i⟩ * X.f 3 3 =
+      -(0 + X.f 1 0 * 0 + X.f 1 1 * ⟨0, i⟩ + X.f 1 2 * 0 + X.f 1 3 * 0) at e33
+  have f00 := h3 0 (by decide) 0 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 0 + Ext.conj 0 * X.f 1 0 + Ext.conj (-⟨i, 0⟩) * X.f 2 0 + Ext.conj 0 * X.f 3 0 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * 0 + X.f 0 2 * (-⟨i, 0⟩) + X.f 0 3 * 0) at f00
+  have f11 := h3 1 (by decide) 1 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 1 + Ext.conj 0 * X.f 1 1 + Ext.conj 0 * X.f 2 1 + Ext.conj ⟨i, 0⟩ * X.f 3 1 =
+      -(0 + X.f 1 0 * 0 + X.f 1 1 * 0 + X.f 1 2 * 0 + X.f 1 3 * ⟨i, 0⟩) at f11
+  have f03 := h3 0 (by decide) 3 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 3 + Ext.conj 0 * X.f 1 3 + Ext.conj (-⟨i, 0⟩) * X.f 2 3 + Ext.conj 0 * X.f 3 3 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * (-⟨i, 0⟩) + X.f 0 2 * 0 + X.f 0 3 * 0) at f03
+  have f12 := h3 1 (by decide) 2 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 2 + Ext.conj 0 * X.f 1 2 + Ext.conj 0 * X.f 2 2 + Ext.conj ⟨i, 0⟩ * X.f 3 2 =
+      -(0 + X.f 1 0 * ⟨i, 0⟩ + X.f 1 1 * 0 + X.f 1 2 * 0 + X.f 1 3 * 0) at f12
+  have k00 := h1 0 (by decide) 0 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 0 + Ext.conj 0 * X.f 1 0 + Ext.conj 0 * X.f 2 0 + Ext.conj (-⟨i, 0⟩) * X.f 3 0 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * 0 + X.f 0 2 * 0 + X.f 0 3 * (-⟨i, 0⟩)) at k00
+  have k03 := h1 0 (by decide) 3 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 3 + Ext.conj 0 * X.f 1 3 + Ext.conj 0 * X.f 2 3 + Ext.conj (-⟨i, 0⟩) * X.f 3 3 =
+      -(0 + X.f 0 0 * ⟨i, 0⟩ + X.f 0 1 * 0 + X.f 0 2 * 0 + X.f 0 3 * 0) at k03
+  have m03 := h2 0 (by decide) 3 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 3 + Ext.conj 0 * X.f 1 3 + Ext.conj 0 * X.f 2 3 + Ext.conj (-(⟨i, 0⟩ * ⟨i, 0⟩)) * X.f 3 3 =
+      -(0 + X.f 0 0 * (-(⟨i, 0⟩ * ⟨i, 0⟩)) + X.f 0 1 * 0 + X.f 0 2 * 0 + X.f 0 3 * 0) at m03
+  simp only [Hermitian.conj_zero, conj_mk, Shell.neg_zero, Hermitian.zero_mul, Hermitian.mul_zero, Hermitian.zero_add, Hermitian.add_zero, ii_sq hi, neg_mk, Shell.neg_neg, mk_one_mul, mul_mk_one] at e20 e21 e22 e23 e30 e31 e32 e33 f00 f11 f03 f12 k00 k03 m03
+  -- the block symmetry
+  have x20 : X.f 2 0 = X.f 0 2 := g0_step F hi hν e20
+  have x21 : X.f 2 1 = X.f 0 3 := g0_step F hi hν e21
+  have x22 : X.f 2 2 = X.f 0 0 := g0_step F hi hν e22
+  have x23 : X.f 2 3 = X.f 0 1 := g0_step F hi hν e23
+  have x30 : X.f 3 0 = X.f 1 2 := g0_step F hi hν e30
+  have x31 : X.f 3 1 = X.f 1 3 := g0_step F hi hν e31
+  have x32 : X.f 3 2 = X.f 1 0 := g0_step F hi hν e32
+  have x33 : X.f 3 3 = X.f 1 1 := g0_step F hi hν e33
+  -- the four vanishing entries of `γ³`
+  rw [x20] at f00; rw [x31] at f11; rw [x23] at f03; rw [x32] at f12
+  have x02 : X.f 0 2 = 0 := g3_neg_step F hi f00
+  have x13 : X.f 1 3 = 0 := g3_pos_step F hi f11
+  have x01 : X.f 0 1 = 0 := g3_neg_step F hi f03
+  have x10 : X.f 1 0 = 0 := g3_pos_step F hi f12
+  -- `γ¹`: the anti-diagonal and the diagonal
+  rw [x30] at k00; rw [x33] at k03
+  have x12 : X.f 1 2 = -X.f 0 3 := g1_neg_step hi k00
+  have x11 : X.f 1 1 = X.f 0 0 := g1_pos_step hi k03
+  -- `γ²`: the diagonal vanishes
+  rw [x33, x11] at m03
+  have x00 : X.f 0 0 = 0 := eq_zero_of_eq_neg' F m03
+  -- the sixteen entries
+  intro a ha b hb
+  rw [smulE_f]
+  match a, ha, b, hb with
+  | 0, _, 0, _ => change X.f 0 0 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; exact x00
+  | 0, _, 1, _ => change X.f 0 1 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; exact x01
+  | 0, _, 2, _ => change X.f 0 2 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; exact x02
+  | 0, _, 3, _ => change X.f 0 3 = X.f 0 3 * 1; rw [Ext.mul_one]
+  | 1, _, 0, _ => change X.f 1 0 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; exact x10
+  | 1, _, 1, _ => change X.f 1 1 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x11]; exact x00
+  | 1, _, 2, _ => change X.f 1 2 = X.f 0 3 * -1; rw [← Hermitian.mul_neg, Ext.mul_one]; exact x12
+  | 1, _, 3, _ => change X.f 1 3 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; exact x13
+  | 2, _, 0, _ => change X.f 2 0 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x20]; exact x02
+  | 2, _, 1, _ => change X.f 2 1 = X.f 0 3 * 1; rw [Ext.mul_one]; exact x21
+  | 2, _, 2, _ => change X.f 2 2 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x22]; exact x00
+  | 2, _, 3, _ => change X.f 2 3 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x23]; exact x01
+  | 3, _, 0, _ => change X.f 3 0 = X.f 0 3 * -1; rw [← Hermitian.mul_neg, Ext.mul_one]; rw [x30]; exact x12
+  | 3, _, 1, _ => change X.f 3 1 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x31]; exact x13
+  | 3, _, 2, _ => change X.f 3 2 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x32]; exact x10
+  | 3, _, 3, _ => change X.f 3 3 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x33, x11]; exact x00
+  | a + 4, ha, _, _ => exact absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | _, _, b + 4, hb => exact absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+
+/-- 8:D21 — the spinor form `X = γ⁰ γ¹ γ³` is `−i w E`, on every shell with `i² = −1`: the sixteen entries of the triple
+product, normalised as ring expressions in `i w` and `i` and read off with `i² = −1`. -/
+theorem gE_prod {i : Shell p} (hi : i * i = -1) : (gE i 0 * gE i 1 * gE i 3 : MatE p ν 4) ≈ smulE (-⟨0, i⟩) E4 := by
+  intro a ha b hb
+  match a, ha, b, hb with
+  | 0, _, 0, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0) * (-⟨i, 0⟩) + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 0, _, 1, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0) * ⟨i, 0⟩ : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.var 1))) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 0, _, 2, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩)) * ⟨i, 0⟩ + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) (.var 1))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 0, _, 3, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩) + 0 * 0) * (-⟨i, 0⟩) + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 1 : Ext p ν)
+    calc _ = (⟨0, i⟩ : Ext p ν) * (⟨i, 0⟩ * ⟨i, 0⟩) :=
+          FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.var 0) (.mul (.var 1) (.var 1))) (by decide +kernel)
+      _ = -⟨0, i⟩ * 1 := by rw [ii_sq hi, mul_neg_one', Ext.mul_one]
+  | 1, _, 0, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + ⟨0, i⟩ * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0) * (-⟨i, 0⟩) + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 1, _, 1, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + ⟨0, i⟩ * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0) * ⟨i, 0⟩ : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.var 1))) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 1, _, 2, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩)) * ⟨i, 0⟩ + (0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + ⟨0, i⟩ * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * -1 : Ext p ν)
+    calc _ = -((⟨0, i⟩ : Ext p ν) * (⟨i, 0⟩ * ⟨i, 0⟩)) :=
+          FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) (.var 1))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.neg (.mul (.var 0) (.mul (.var 1) (.var 1)))) (by decide +kernel)
+      _ = -⟨0, i⟩ * -1 := by rw [ii_sq hi, mul_neg_one', Hermitian.neg_neg, ← Hermitian.neg_mul, ← Hermitian.mul_neg, Hermitian.neg_neg, Ext.mul_one]
+  | 1, _, 3, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + ⟨0, i⟩ * 0) * (-⟨i, 0⟩) + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul (.var 0) .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 2, _, 0, _ =>
+    change (0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * (-⟨i, 0⟩) + (0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 2, _, 1, _ =>
+    change (0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + 0 * 0) * ⟨i, 0⟩ : Ext p ν) =
+      (-⟨0, i⟩ * 1 : Ext p ν)
+    calc _ = (⟨0, i⟩ : Ext p ν) * (⟨i, 0⟩ * ⟨i, 0⟩) :=
+          FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1))) (by decide +kernel)
+      _ = -⟨0, i⟩ * 1 := by rw [ii_sq hi, mul_neg_one', Ext.mul_one]
+  | 2, _, 2, _ =>
+    change (0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * ⟨i, 0⟩ + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.var 1))) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 2, _, 3, _ =>
+    change (0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * (-⟨i, 0⟩) + (0 + ⟨0, i⟩ * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 3, _, 0, _ =>
+    change (0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * (-⟨i, 0⟩) + (0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * -1 : Ext p ν)
+    calc _ = -((⟨0, i⟩ : Ext p ν) * (⟨i, 0⟩ * ⟨i, 0⟩)) :=
+          FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.neg (.mul (.var 0) (.mul (.var 1) (.var 1)))) (by decide +kernel)
+      _ = -⟨0, i⟩ * -1 := by rw [ii_sq hi, mul_neg_one', Hermitian.neg_neg, ← Hermitian.neg_mul, ← Hermitian.mul_neg, Hermitian.neg_neg, Ext.mul_one]
+  | 3, _, 1, _ =>
+    change (0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0) * ⟨i, 0⟩ : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.var 1))) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 3, _, 2, _ =>
+    change (0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * ⟨i, 0⟩ + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.var 1))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 3, _, 3, _ =>
+    change (0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * (-⟨i, 0⟩) + (0 + 0 * 0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | a + 4, ha, _, _ => exact absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | _, _, b + 4, hb => exact absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+
+/-! ### The extension has no zero divisors when `ν` is a nonsquare -/
+
+/-- `norm z = 0 → z = 0` when `ν` is a nonsquare: `z.re² = ν z.im²`, and `z.im ≠ 0` would make `ν = (z.re/z.im)²` a square. -/
+theorem eq_zero_of_norm_eq_zero {κ : Nat} {g : Shell p} (F : Frame p κ g) (hns : ¬ ∃ r : Shell p, r * r = ν) {z : Ext p ν}
+    (h : Ext.norm z = 0) : z = 0 := by
+  have hsq : z.re * z.re = ν * (z.im * z.im) := by
+    have := Shell.eq_neg_of_add_eq_zero h
+    rw [Shell.neg_neg] at this; exact this
+  cases Nat.decEq z.im.val 0 with
+  | isTrue e0 =>
+    have him : z.im = 0 := Shell.ext e0
+    rw [him, Shell.mul_zero, Shell.mul_zero] at hsq
+    have hre : z.re = 0 := by
+      rcases F.mul_eq_zero hsq with h1 | h1 <;> exact h1
+    exact Ext.ext hre him
+  | isFalse e0 =>
+    have him : z.im ≠ 0 := fun e => e0 (congrArg Shell.val e)
+    obtain ⟨u, hu⟩ := F.exists_inv him
+    exfalso; apply hns
+    refine ⟨z.re * u, ?_⟩
+    have h1 : z.re * u * (z.re * u) = z.re * z.re * (u * u) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [z.re, u]) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 1)))
+        (.mul (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (by decide +kernel)
+    have h2 : ν * (z.im * z.im) * (u * u) = ν * ((z.im * u) * (z.im * u)) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [ν, z.im, u]) (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 2) (.var 2)))
+        (.mul (.var 0) (.mul (.mul (.var 1) (.var 2)) (.mul (.var 1) (.var 2)))) (by decide +kernel)
+    rw [h1, hsq, h2, hu, Shell.mul_one, Shell.mul_one]
+
+/-- No zero divisors in the extension of a nonsquare `ν`. -/
+theorem ext_mul_eq_zero {κ : Nat} {g : Shell p} (F : Frame p κ g) (hns : ¬ ∃ r : Shell p, r * r = ν) {z z' : Ext p ν}
+    (h : z * z' = 0) : z = 0 ∨ z' = 0 := by
+  have hn : Ext.norm z * Ext.norm z' = 0 := by
+    rw [← Ext.norm_mul, h]; show (0 : Shell p) * 0 + -(ν * (0 * 0)) = 0
+    rw [Shell.mul_zero, Shell.mul_zero, Shell.neg_zero, Shell.add_zero]
+  rcases F.mul_eq_zero hn with h1 | h1
+  · exact Or.inl (eq_zero_of_norm_eq_zero F hns h1)
+  · exact Or.inr (eq_zero_of_norm_eq_zero F hns h1)
+
+/-- 8:D21 — the normalisation leaves the sign: a twist `X'` with `X'² = ν I` is `X` or `−X`, `X = −i w E` the spinor
+form, on every frame with `i² = −1` and `ν` a nonsquare. The `(0,0)` entry of `X'² = ν I` reads `−X'₀₃² = ν`, so
+`X'₀₃² = (i w)²` and `(X'₀₃ − i w)(X'₀₃ + i w) = 0` in the field `K`. -/
+theorem twist_unique_sign {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1)
+    (hns : ¬ ∃ r : Shell p, r * r = ν) (X : MatE p ν 4) (h : Twists i X) (hX : X * X ≈ smulE ⟨ν, 0⟩ 1) :
+    X ≈ smulE (-⟨0, i⟩) E4 ∨ X ≈ smulE ⟨0, i⟩ E4 := by
+  have hν : ν ≠ 0 := fun e => hns ⟨0, by rw [e, Shell.mul_zero]⟩
+  have hX' := twist_unique F hi hν X h
+  have x00 : X.f 0 0 = 0 := by have := hX' 0 (by decide) 0 (by decide); change X.f 0 0 = X.f 0 3 * 0 at this; rw [Hermitian.mul_zero] at this; exact this
+  have x01 : X.f 0 1 = 0 := by have := hX' 0 (by decide) 1 (by decide); change X.f 0 1 = X.f 0 3 * 0 at this; rw [Hermitian.mul_zero] at this; exact this
+  have x10 : X.f 1 0 = 0 := by have := hX' 1 (by decide) 0 (by decide); change X.f 1 0 = X.f 0 3 * 0 at this; rw [Hermitian.mul_zero] at this; exact this
+  have x02 : X.f 0 2 = 0 := by have := hX' 0 (by decide) 2 (by decide); change X.f 0 2 = X.f 0 3 * 0 at this; rw [Hermitian.mul_zero] at this; exact this
+  have x20 : X.f 2 0 = 0 := by have := hX' 2 (by decide) 0 (by decide); change X.f 2 0 = X.f 0 3 * 0 at this; rw [Hermitian.mul_zero] at this; exact this
+  have x30 : X.f 3 0 = -X.f 0 3 := by
+    have := hX' 3 (by decide) 0 (by decide); change X.f 3 0 = X.f 0 3 * -1 at this
+    rw [← Hermitian.mul_neg, Ext.mul_one] at this; exact this
+  have e := hX 0 (by decide) 0 (by decide)
+  change 0 + X.f 0 0 * X.f 0 0 + X.f 0 1 * X.f 1 0 + X.f 0 2 * X.f 2 0 + X.f 0 3 * X.f 3 0 = ⟨ν, 0⟩ * 1 at e
+  rw [x00, x01, x10, x02, x20, x30] at e
+  simp only [Hermitian.mul_zero, Hermitian.zero_add, ← Hermitian.mul_neg, Ext.mul_one] at e
+  -- `e : -(f f) = ⟨ν, 0⟩`, so `f f = (i w)²`
+  have hff : X.f 0 3 * X.f 0 3 = ⟨0, i⟩ * ⟨0, i⟩ := by
+    rw [iw_sq hi]
+    have := congrArg (- ·) e
+    rw [Hermitian.neg_neg, neg_mk, Shell.neg_zero] at this
+    exact this
+  have hprod : (X.f 0 3 + -⟨0, i⟩) * (X.f 0 3 + ⟨0, i⟩) = 0 := by
+    have hid : (X.f 0 3 + -⟨0, i⟩) * (X.f 0 3 + ⟨0, i⟩) = X.f 0 3 * X.f 0 3 + -(⟨0, i⟩ * ⟨0, i⟩) :=
+      FRC.Unitary.xsound (FRC.Unitary.xlook [X.f 0 3, ⟨0, i⟩]) (.mul (.add (.var 0) (.neg (.var 1))) (.add (.var 0) (.var 1)))
+        (.add (.mul (.var 0) (.var 0)) (.neg (.mul (.var 1) (.var 1)))) (by decide +kernel)
+    rw [hid, hff, Hermitian.add_neg]
+  rcases ext_mul_eq_zero F hns hprod with h1 | h1
+  · right
+    have hf : X.f 0 3 = ⟨0, i⟩ := by
+      have := Shell.eq_neg_of_add_eq_zero (Ext.re_congr h1)
+      have h' := Shell.eq_neg_of_add_eq_zero (Ext.im_congr h1)
+      exact Ext.ext (by rw [this]; exact Shell.neg_neg _) (by rw [h']; exact Shell.neg_neg _)
+    rw [← hf]; exact hX'
+  · left
+    have hf : X.f 0 3 = -⟨0, i⟩ := Ext.ext (Shell.eq_neg_of_add_eq_zero (Ext.re_congr h1)) (Shell.eq_neg_of_add_eq_zero (Ext.im_congr h1))
+    rw [← hf]; exact hX'
 
 end MatE
 

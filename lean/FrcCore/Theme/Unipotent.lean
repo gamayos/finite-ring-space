@@ -301,4 +301,303 @@ theorem opow_of_nilpotent_shift {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Fr
     _ ≈ opow φ p + 0 := add_congr_right _ hN
     _ ≈ opow φ p := add_zero _
 
+/-! ## The exact index in `0+1` (D20) and the Frobenius of the eigenphase (E9) -/
+/-- The power of an inverse pair of commuting elements is an inverse pair. -/
+theorem inverse_opow {u v : R} (h : Inverse u v) (n : Nat) : Inverse (opow u n) (opow v n) := by
+  have hc : Comm u v := eq_trans h.1 (eq_symm h.2)
+  refine ⟨?_, ?_⟩
+  · calc opow u n * opow v n ≈ opow (u * v) n := eq_symm (mul_opow hc n)
+      _ ≈ opow 1 n := opow_congr h.1 n
+      _ ≈ 1 := opow_one_left n
+  · calc opow v n * opow u n ≈ opow (v * u) n := eq_symm (mul_opow hc.symm n)
+      _ ≈ opow 1 n := opow_congr h.2 n
+      _ ≈ 1 := opow_one_left n
+
+/-- `C(p − 1, k) ≡ (−1)^k (mod p)` for `k < p`, read in the ring: `C(p−1, k) • 1 ≈ (−1)^k`. By Pascal's rule and
+`p ∣ C(p, k + 1)`. -/
+theorem nsmul_choose_pred {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0) :
+    ∀ k, k < p → nsmul (choose (p - 1) k) (1 : R) ≈ opow (-1) k
+  | 0, _ => by rw [choose_zero_right]; exact zero_add 1
+  | k + 1, hk => by
+    have ih := nsmul_choose_pred F hch k (Nat.lt_of_succ_lt hk)
+    obtain ⟨q, hq⟩ : ∃ q, p = q + 1 := ⟨p - 1, (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm⟩
+    subst hq
+    rw [FRC.Nat.add_sub_cancel] at ih ⊢
+    have h0 : nsmul (choose (q + 1) (k + 1)) (1 : R) ≈ 0 := nsmul_choose_prime F hch (Nat.zero_lt_succ k) hk 1
+    have hsum : nsmul (choose q k) (1 : R) + nsmul (choose q (k + 1)) 1 ≈ 0 :=
+      eq_trans (eq_symm (add_nsmul _ _ _)) (eq_trans (eq_of_eq (by rw [← choose_succ_succ])) h0)
+    calc nsmul (choose q (k + 1)) (1 : R) ≈ -(nsmul (choose q k) 1) := eq_symm (neg_eq_of_add_eq_zero hsum)
+      _ ≈ -(opow (-1) k) := neg_congr ih
+      _ ≈ opow (-1) k * -1 := eq_symm (mul_neg_one _)
+      _ ≈ opow (-1) (k + 1) := eq_refl _
+
+/-- `(t − 1)^{p−1} ≈ Σ_{k<p} t^k` in characteristic `p`, for every `t`: the polynomial identity
+`(x − 1)^{p−1} = x^{p−1} + ⋯ + 1` of `𝔽_p[x]`. -/
+theorem opow_sub_one_pred {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0) (t : R) :
+    opow (t + -1) (p - 1) ≈ geom t p := by
+  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm
+  have heven : ∀ j, j ≤ p - 1 → opow (-1 : R) (p - 1 - j) * opow (-1) j ≈ 1 := fun j hj => by
+    have e : p - 1 - j + j = 4 * κ := by rw [FRC.Nat.sub_add_cancel hj, F.cap, FRC.Nat.add_sub_cancel]
+    calc opow (-1 : R) (p - 1 - j) * opow (-1) j ≈ opow (-1) (p - 1 - j + j) := eq_symm (opow_add _ _ _)
+      _ ≈ opow (-1) (2 * (2 * κ)) := eq_of_eq (by rw [e, ← Nat.mul_assoc])
+      _ ≈ 1 := opow_neg_one_even _
+  calc opow (t + -1) (p - 1) ≈ binom t (-1) (p - 1) := binomial (Comm.neg_right (Comm.one_left t).symm) _
+    _ ≈ osum (fun k => opow t k) (p - 1 + 1) := by
+        refine osum_congr _ fun k hk => ?_
+        have hk' : k ≤ p - 1 := Nat.le_of_lt_succ hk
+        calc nsmul (choose (p - 1) k) (opow t k * opow (-1) (p - 1 - k))
+            ≈ nsmul (choose (p - 1) k) 1 * (opow t k * opow (-1) (p - 1 - k)) := nsmul_eq_mul_one _ _
+          _ ≈ opow (-1) k * (opow t k * opow (-1) (p - 1 - k)) :=
+              mul_congr_left _ (nsmul_choose_pred F hch k (Nat.lt_of_lt_of_le hk (Nat.le_of_eq hp.symm)))
+          _ ≈ opow t k * opow (-1) (p - 1 - k) * opow (-1) k := Central.opow (Central.neg Central.one) k _
+          _ ≈ opow t k * (opow (-1) (p - 1 - k) * opow (-1) k) := mul_assoc _ _ _
+          _ ≈ opow t k * 1 := mul_congr_right _ (heven k hk')
+          _ ≈ opow t k := mul_one _
+    _ ≈ geom t p := eq_of_eq (by rw [← hp]; rfl)
+
+/-- `(t + 1)^{p−1} ≈ Σ_{k<p} (−1)^k t^k` in characteristic `p`, for every `t`. -/
+theorem opow_add_one_pred {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0) (t : R) :
+    opow (t + 1) (p - 1) ≈ osum (fun k => opow (-1) k * opow t k) p := by
+  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm
+  calc opow (t + 1) (p - 1) ≈ binom t 1 (p - 1) := binomial (Comm.one_left t).symm _
+    _ ≈ osum (fun k => opow (-1) k * opow t k) (p - 1 + 1) := by
+        refine osum_congr _ fun k hk => ?_
+        calc nsmul (choose (p - 1) k) (opow t k * opow 1 (p - 1 - k))
+            ≈ nsmul (choose (p - 1) k) 1 * (opow t k * opow 1 (p - 1 - k)) := nsmul_eq_mul_one _ _
+          _ ≈ opow (-1) k * (opow t k * 1) := mul_congr (nsmul_choose_pred F hch k (Nat.lt_of_lt_of_le hk (Nat.le_of_eq hp.symm))) (mul_congr_right _ (opow_one_left _))
+          _ ≈ opow (-1) k * opow t k := mul_congr_right _ (mul_one _)
+    _ ≈ osum (fun k => opow (-1) k * opow t k) p := eq_of_eq (by rw [← hp])
+
+/-- The alternating sum of `2m + 1` signs is `1`: `Σ_{k<2m+1} (−1)^k ≈ 1`. -/
+theorem osum_alternating : ∀ m : Nat, osum (fun k => opow (-1 : R) k) (2 * m + 1) ≈ 1
+  | 0 => eq_trans (zero_add _) (eq_refl 1)
+  | m + 1 => by
+    have e : 2 * (m + 1) + 1 = 2 * m + 1 + 1 + 1 := rfl
+    rw [e]
+    calc osum (fun k => opow (-1 : R) k) (2 * m + 1 + 1 + 1)
+        = osum (fun k => opow (-1 : R) k) (2 * m + 1) + opow (-1) (2 * m + 1) + opow (-1) (2 * m + 1 + 1) := rfl
+      _ ≈ 1 + -1 + 1 := add_congr (add_congr (osum_alternating m) (opow_neg_one_odd m))
+          (eq_trans (eq_of_eq (by show opow (-1 : R) (2 * (m + 1)) = _; rfl)) (opow_neg_one_even (m + 1)))
+      _ ≈ 0 + 1 := add_congr_left 1 (add_neg 1)
+      _ ≈ 1 := zero_add 1
+
+/-- `t · geom t p ≈ geom t p` when `t^p ≈ 1`: the sum of the translates is invariant under the translation. -/
+theorem mul_geom_self {t : R} {p : Nat} (ht : opow t p ≈ 1) : t * geom t p ≈ geom t p := by
+  have h1 : geom t (p + 1) ≈ 1 + t * geom t p := geom_succ_left t p
+  have h2 : geom t (p + 1) ≈ geom t p + 1 := eq_trans (eq_of_eq (osum_succ _ _)) (add_congr_right _ ht)
+  have h3 : 1 + t * geom t p ≈ 1 + geom t p :=
+    eq_trans (eq_symm h1) (eq_trans h2 (add_comm _ _))
+  exact add_left_cancel h3
+
+/-- `geom t p · t^k ≈ geom t p` when `t^p ≈ 1`. -/
+theorem geom_mul_opow {t : R} {p : Nat} (ht : opow t p ≈ 1) : ∀ k, geom t p * opow t k ≈ geom t p
+  | 0 => mul_one _
+  | k + 1 =>
+    calc geom t p * opow t (k + 1) = geom t p * (opow t k * t) := rfl
+      _ ≈ geom t p * opow t k * t := eq_symm (mul_assoc _ _ _)
+      _ ≈ geom t p * t := mul_congr_left t (geom_mul_opow ht k)
+      _ ≈ t * geom t p := geom_comm (Comm.refl t) p
+      _ ≈ geom t p := mul_geom_self ht
+
+/-- `geom t p · Σ_k (−1)^k t^k ≈ geom t p` when `t^p ≈ 1` and `p` is odd. -/
+theorem geom_mul_alternating {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) {t : R} (ht : opow t p ≈ 1) :
+    geom t p * osum (fun k => opow (-1) k * opow t k) p ≈ geom t p := by
+  have hp : p = 2 * (2 * κ) + 1 := by rw [F.cap, ← Nat.mul_assoc]
+  calc geom t p * osum (fun k => opow (-1) k * opow t k) p
+      ≈ osum (fun k => geom t p * (opow (-1) k * opow t k)) p := osum_mul_left _ _ _
+    _ ≈ osum (fun k => opow (-1) k * geom t p) p := by
+        refine osum_congr _ fun k _ => ?_
+        calc geom t p * (opow (-1) k * opow t k) ≈ geom t p * opow (-1) k * opow t k := eq_symm (mul_assoc _ _ _)
+          _ ≈ opow (-1) k * geom t p * opow t k :=
+              mul_congr_left _ (eq_symm (Central.opow (Central.neg Central.one) k _))
+          _ ≈ opow (-1) k * (geom t p * opow t k) := mul_assoc _ _ _
+          _ ≈ opow (-1) k * geom t p := mul_congr_right _ (geom_mul_opow ht k)
+    _ ≈ osum (fun k => opow (-1) k) p * geom t p := eq_symm (osum_mul_right _ _ _)
+    _ ≈ 1 * geom t p := mul_congr_left _ (by rw [hp]; exact osum_alternating _)
+    _ ≈ geom t p := one_mul _
+
+/-- 8:D20 — the exact index in `0+1`, the identity: for a translation `t` of order `p` with inverse `s` in characteristic
+`p` on a frame, `(t − s)^{p−1} ≈ geom t p`, the sum of the translates, and `(t − s)^p ≈ 0`. The symmetric difference
+`∇^s = h (t − s)` with `h` a central unit has the same index: `(∇^s)^{p−1} ≈ h^{p−1} geom t p`, nonzero whenever the sum
+of the translates is, and `(∇^s)^p ≈ 0`. -/
+theorem symdiff_pred_eq_geom {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {t s : R} (ht : opow t p ≈ 1) (hs : Inverse t s) : opow (t + -s) (p - 1) ≈ geom t p := by
+  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm
+  have hts : Comm t s := eq_trans hs.1 (eq_symm hs.2)
+  have hc1 : Comm (t + -s) t := Comm.add_left (Comm.refl t) (Comm.neg_left hts.symm)
+  -- `(t − s) t ≈ (t − 1)(t + 1)`
+  have hfac : (t + -s) * t ≈ (t + -1) * (t + 1) := by
+    have h1 : t * t + t ≈ t * (t + 1) := eq_symm (eq_trans (left_distrib t t 1) (add_congr_right _ (mul_one t)))
+    have h2 : -t + -1 ≈ -1 * (t + 1) :=
+      eq_symm (eq_trans (eq_symm (neg_mul 1 (t + 1))) (eq_trans (neg_congr (one_mul (t + 1))) (neg_add_rev t 1)))
+    calc (t + -s) * t ≈ t * t + -s * t := right_distrib _ _ _
+      _ ≈ t * t + -1 := add_congr_right _ (eq_trans (eq_symm (neg_mul _ _)) (neg_congr hs.2))
+      _ ≈ t * t + (t + -t) + -1 := add_congr_left _ (eq_symm (eq_trans (add_congr_right _ (add_neg t)) (add_zero _)))
+      _ ≈ t * t + t + (-t + -1) :=
+          eq_trans (add_assoc _ _ _) (eq_trans (add_congr_right _ (add_assoc _ _ _)) (eq_symm (add_assoc _ _ _)))
+      _ ≈ t * (t + 1) + -1 * (t + 1) := add_congr h1 h2
+      _ ≈ (t + -1) * (t + 1) := eq_symm (right_distrib _ _ _)
+  -- `(t − s)^{p−1} t^{p−1} ≈ (t − 1)^{p−1} (t + 1)^{p−1} ≈ geom · Σ(−1)^k t^k ≈ geom`
+  have hpow : opow (t + -s) (p - 1) * opow t (p - 1) ≈ geom t p :=
+    calc opow (t + -s) (p - 1) * opow t (p - 1) ≈ opow ((t + -s) * t) (p - 1) := eq_symm (mul_opow hc1 _)
+      _ ≈ opow ((t + -1) * (t + 1)) (p - 1) := opow_congr hfac _
+      _ ≈ opow (t + -1) (p - 1) * opow (t + 1) (p - 1) :=
+          mul_opow (Comm.add_left (Comm.add_right (Comm.refl t) (Comm.one_left t).symm)
+            (Comm.neg_left (Comm.add_right (Comm.one_left t) (Comm.refl 1)))) _
+      _ ≈ geom t p * osum (fun k => opow (-1) k * opow t k) p :=
+          mul_congr (opow_sub_one_pred F hch t) (opow_add_one_pred F hch t)
+      _ ≈ geom t p := geom_mul_alternating F ht
+  -- multiply by `t`: `t^{p−1} t ≈ 1`
+  calc opow (t + -s) (p - 1) ≈ opow (t + -s) (p - 1) * 1 := eq_symm (mul_one _)
+    _ ≈ opow (t + -s) (p - 1) * (opow t (p - 1) * t) := mul_congr_right _ (eq_symm (eq_trans (eq_of_eq (by rw [← opow_succ, ← hp])) ht))
+    _ ≈ opow (t + -s) (p - 1) * opow t (p - 1) * t := eq_symm (mul_assoc _ _ _)
+    _ ≈ geom t p * t := mul_congr_left t hpow
+    _ ≈ t * geom t p := geom_comm (Comm.refl t) p
+    _ ≈ geom t p := mul_geom_self ht
+
+/-- The `d`-fold Frobenius `x ↦ x^{p^d}` is additive on commuting elements in characteristic `p`, by induction on `d`
+from `frobenius_add`. -/
+theorem frobenius_pow {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0) {x y : R}
+    (h : Comm x y) : ∀ d : Nat, opow (x + y) (p ^ d) ≈ opow x (p ^ d) + opow y (p ^ d)
+  | 0 => by
+    show opow (x + y) 1 ≈ opow x 1 + opow y 1
+    exact eq_trans (opow_one _) (eq_symm (add_congr (opow_one x) (opow_one y)))
+  | d + 1 => by
+    rw [Nat.pow_succ]
+    calc opow (x + y) (p ^ d * p) ≈ opow (opow (x + y) (p ^ d)) p := opow_mul _ _ _
+      _ ≈ opow (opow x (p ^ d) + opow y (p ^ d)) p := opow_congr (frobenius_pow F hch h d) p
+      _ ≈ opow (opow x (p ^ d)) p + opow (opow y (p ^ d)) p :=
+          frobenius_add F hch (opow_comm (opow_comm h (p ^ d)).symm (p ^ d)).symm
+      _ ≈ opow x (p ^ d * p) + opow y (p ^ d * p) := add_congr (eq_symm (opow_mul _ _ _)) (eq_symm (opow_mul _ _ _))
+
+/-- Inverses are unique up to the congruence: two inverses of congruent elements are congruent. -/
+theorem Inverse.unique {u u' v v' : R} (hu : u ≈ u') (h : Inverse u v) (h' : Inverse u' v') : v ≈ v' :=
+  calc v ≈ v * 1 := eq_symm (mul_one v)
+    _ ≈ v * (u' * v') := mul_congr_right v (eq_symm h'.1)
+    _ ≈ v * (u * v') := mul_congr_right v (mul_congr_left v' (eq_symm hu))
+    _ ≈ v * u * v' := eq_symm (mul_assoc _ _ _)
+    _ ≈ 1 * v' := mul_congr_left v' h.2
+    _ ≈ v' := one_mul v'
+
+/-- `p^d` is odd on a frame's shell: `p = 4κ + 1`. -/
+theorem pow_odd {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (d : Nat) : ∃ j, p ^ d = 2 * j + 1 := by
+  have h1 : p % 2 = 1 := by
+    rw [F.cap, show 4 * κ = 2 * (2 * κ) from Nat.mul_assoc 2 2 κ, FRC.Nat.add_mul_mod_self_left 1 (2 * κ) 2 (by decide)]
+  have h2 : ∀ d, p ^ d % 2 = 1 := fun d => by
+    induction d with
+    | zero => rfl
+    | succ d ih => rw [Nat.pow_succ, FRC.Nat.mul_mod _ _ _ (by decide), ih, h1]
+  have h2 := h2 d
+  obtain ⟨j, hj⟩ := FRC.Nat.mod_spec 2 (by decide) (p ^ d)
+  exact ⟨j, by rw [hj, h2]⟩
+
+/-- `(−1)^{p^d} ≈ −1` on a frame's shell. -/
+theorem opow_neg_one_pow {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (d : Nat) :
+    opow (-1 : R) (p ^ d) ≈ -1 := by
+  obtain ⟨j, hj⟩ := pow_odd F d
+  rw [hj]; exact opow_neg_one_odd j
+
+/-- The Frobenius of the two Cayley factors: with `α^{p^d} ≈ ε α` (`ε = ±1`, central) and `λ^{p^d} ≈ λ`,
+`(1 + αλ)^{p^d} ≈ 1 + ε αλ` and `(1 − αλ)^{p^d} ≈ 1 − ε αλ`. -/
+theorem cayley_factor_frobenius {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {α lam ε : R} (hc : Comm α lam) {d : Nat} (hα : opow α (p ^ d) ≈ ε * α)
+    (hl : opow lam (p ^ d) ≈ lam) :
+    opow (1 + α * lam) (p ^ d) ≈ 1 + ε * (α * lam) ∧ opow (1 + -(α * lam)) (p ^ d) ≈ 1 + -(ε * (α * lam)) := by
+  have hal : opow (α * lam) (p ^ d) ≈ ε * (α * lam) :=
+    calc opow (α * lam) (p ^ d) ≈ opow α (p ^ d) * opow lam (p ^ d) := mul_opow hc _
+      _ ≈ ε * α * lam := mul_congr hα hl
+      _ ≈ ε * (α * lam) := mul_assoc _ _ _
+  refine ⟨?_, ?_⟩
+  · calc opow (1 + α * lam) (p ^ d) ≈ opow 1 (p ^ d) + opow (α * lam) (p ^ d) := frobenius_pow F hch (Comm.one_left _) d
+      _ ≈ 1 + ε * (α * lam) := add_congr (opow_one_left _) hal
+  · calc opow (1 + -(α * lam)) (p ^ d) ≈ opow 1 (p ^ d) + opow (-(α * lam)) (p ^ d) :=
+          frobenius_pow F hch (Comm.one_left _) d
+      _ ≈ 1 + opow (-1 * (α * lam)) (p ^ d) := add_congr (opow_one_left _) (opow_congr (eq_symm (neg_one_mul _)) _)
+      _ ≈ 1 + opow (-1) (p ^ d) * opow (α * lam) (p ^ d) :=
+          add_congr_right _ (mul_opow (Central.neg Central.one _) _)
+      _ ≈ 1 + -1 * (ε * (α * lam)) := add_congr_right _ (mul_congr (opow_neg_one_pow F d) hal)
+      _ ≈ 1 + -(ε * (α * lam)) := add_congr_right _ (neg_one_mul _)
+
+/-- 8:E9 — the eigenphase law, the even case, in every operator ring of characteristic `p` on a frame: for commuting
+`α`, `λ` with `α^{p^d} ≈ α` and `λ^{p^d} ≈ λ`, and `v` the inverse of `1 − αλ`, the phase `φ = (1 + αλ) v` is fixed by
+the `d`-fold Frobenius, `φ^{p^d} ≈ φ`. (On the shell, `α = k w` has `α^{p^d} = α` exactly for even `d`, and an eigenvalue
+of degree `d` has `λ^{p^d} = λ`.) -/
+theorem eigenphase_frobenius_even {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {α lam v : R} (hc : Comm α lam) {d : Nat} (hα : opow α (p ^ d) ≈ α) (hl : opow lam (p ^ d) ≈ lam)
+    (hv : Inverse (1 + -(α * lam)) v) : opow ((1 + α * lam) * v) (p ^ d) ≈ (1 + α * lam) * v := by
+  have hα' : opow α (p ^ d) ≈ 1 * α := eq_trans hα (eq_symm (one_mul α))
+  obtain ⟨h1, h2⟩ := cayley_factor_frobenius F hch hc hα' hl
+  have hu : Comm (1 + -(α * lam)) (1 + α * lam) :=
+    Comm.add_left (Comm.one_left _) (Comm.neg_left (Comm.add_right (Comm.one_left _).symm (Comm.refl _)))
+  have hcv : Comm (1 + α * lam) v := (Inverse.comm_of_comm hv hu).symm
+  have hvN : opow v (p ^ d) ≈ v :=
+    Inverse.unique (eq_trans h2 (add_congr_right 1 (neg_congr (one_mul _)))) (inverse_opow hv (p ^ d)) hv
+  calc opow ((1 + α * lam) * v) (p ^ d) ≈ opow (1 + α * lam) (p ^ d) * opow v (p ^ d) := mul_opow hcv _
+    _ ≈ (1 + 1 * (α * lam)) * v := mul_congr h1 hvN
+    _ ≈ (1 + α * lam) * v := mul_congr_left v (add_congr_right 1 (one_mul _))
+
+/-- 8:E9 — the eigenphase law, the odd case, in every operator ring of characteristic `p` on a frame: for commuting
+`α`, `λ` with `α^{p^d} ≈ −α` and `λ^{p^d} ≈ λ`, and `v`, `v'` the inverses of `1 − αλ` and `1 + αλ`, the phase
+`φ = (1 + αλ) v` is inverted by the `d`-fold Frobenius, `φ^{p^d} φ ≈ 1`, so `φ^{p^d + 1} ≈ 1`: the phase lies on the
+norm-one cycle of the Frobenius. (On the shell, `α = k w` has `α^{p^d} = −α` exactly for odd `d`.) -/
+theorem eigenphase_frobenius_odd {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {α lam v v' : R} (hc : Comm α lam) {d : Nat} (hα : opow α (p ^ d) ≈ -α) (hl : opow lam (p ^ d) ≈ lam)
+    (hv : Inverse (1 + -(α * lam)) v) (hv' : Inverse (1 + α * lam) v') :
+    opow ((1 + α * lam) * v) (p ^ d) * ((1 + α * lam) * v) ≈ 1 ∧ opow ((1 + α * lam) * v) (p ^ d + 1) ≈ 1 := by
+  have hα' : opow α (p ^ d) ≈ -1 * α := eq_trans hα (eq_symm (neg_one_mul α))
+  obtain ⟨h1, h2⟩ := cayley_factor_frobenius F hch hc hα' hl
+  have hu : Comm (1 + -(α * lam)) (1 + α * lam) :=
+    Comm.add_left (Comm.one_left _) (Comm.neg_left (Comm.add_right (Comm.one_left _).symm (Comm.refl _)))
+  have hcv : Comm (1 + α * lam) v := (Inverse.comm_of_comm hv hu).symm
+  -- `(1 + αλ)^{p^d} ≈ 1 − αλ` and `(1 − αλ)^{p^d} ≈ 1 + αλ`
+  have h1' : opow (1 + α * lam) (p ^ d) ≈ 1 + -(α * lam) :=
+    eq_trans h1 (add_congr_right 1 (eq_trans (eq_symm (neg_mul _ _)) (neg_congr (one_mul _))))
+  have h2' : opow (1 + -(α * lam)) (p ^ d) ≈ 1 + α * lam :=
+    eq_trans h2 (add_congr_right 1 (eq_trans (neg_congr (eq_trans (eq_symm (neg_mul _ _)) (neg_congr (one_mul _)))) (neg_neg _)))
+  -- `v^{p^d}` is the inverse of `(1 − αλ)^{p^d} ≈ 1 + αλ`, hence congruent to `v'`
+  have hvN : opow v (p ^ d) ≈ v' := Inverse.unique h2' (inverse_opow hv (p ^ d)) hv'
+  have hmain : opow ((1 + α * lam) * v) (p ^ d) * ((1 + α * lam) * v) ≈ 1 :=
+    calc opow ((1 + α * lam) * v) (p ^ d) * ((1 + α * lam) * v)
+        ≈ opow (1 + α * lam) (p ^ d) * opow v (p ^ d) * ((1 + α * lam) * v) := mul_congr_left _ (mul_opow hcv _)
+      _ ≈ (1 + -(α * lam)) * v' * ((1 + α * lam) * v) := mul_congr_left _ (mul_congr h1' hvN)
+      _ ≈ (1 + -(α * lam)) * (v' * (1 + α * lam)) * v :=
+          eq_trans (eq_symm (mul_assoc _ _ _)) (mul_congr_left v (mul_assoc _ _ _))
+      _ ≈ (1 + -(α * lam)) * 1 * v := mul_congr_left v (mul_congr_right _ hv'.2)
+      _ ≈ (1 + -(α * lam)) * v := mul_congr_left v (mul_one _)
+      _ ≈ 1 := hv.1
+  exact ⟨hmain, eq_trans (eq_of_eq (opow_succ _ _)) hmain⟩
+
+/-- 8:E9 — the Cayley map is injective, as two relations: for `φ = (1 + αλ) v` with `v` the inverse of `1 − αλ` and
+without a commutation hypothesis, `φ + 1 ≈ v + v` and `αλ (φ + 1) ≈ φ − 1`. Read in a field of characteristic `p` containing `α`
+and `φ`: `φ + 1 = 2v` is a unit, so `λ = (φ − 1)/(α(φ + 1))` lies in that field. A phase in `𝔽_p` or in `K` has its
+eigenvalue there, and a phase of degree three or more lies in neither. -/
+theorem cayley_phase_inverse {α lam v : R} (hv : Inverse (1 + -(α * lam)) v) :
+    (1 + α * lam) * v + 1 ≈ v + v ∧ α * lam * ((1 + α * lam) * v + 1) ≈ (1 + α * lam) * v + -1 := by
+  -- `(1 + αλ) v + (1 − αλ) v ≈ v + v`
+  have hsum : (1 + α * lam) * v + 1 ≈ v + v :=
+    calc (1 + α * lam) * v + 1 ≈ (1 + α * lam) * v + (1 + -(α * lam)) * v := add_congr_right _ (eq_symm hv.1)
+      _ ≈ (1 + α * lam + (1 + -(α * lam))) * v := eq_symm (right_distrib _ _ _)
+      _ ≈ (1 + 1) * v := mul_congr_left v (by
+          calc 1 + α * lam + (1 + -(α * lam)) ≈ 1 + 1 + (α * lam + -(α * lam)) := add_add_add_comm _ _ _ _
+            _ ≈ 1 + 1 + 0 := add_congr_right _ (add_neg _)
+            _ ≈ 1 + 1 := add_zero _)
+      _ ≈ 1 * v + 1 * v := right_distrib _ _ _
+      _ ≈ v + v := add_congr (one_mul v) (one_mul v)
+  -- `(1 + αλ) v − (1 − αλ) v ≈ (αλ + αλ) v`
+  have hdiff : (1 + α * lam) * v + -1 ≈ (α * lam + α * lam) * v :=
+    calc (1 + α * lam) * v + -1 ≈ (1 + α * lam) * v + -((1 + -(α * lam)) * v) := add_congr_right _ (neg_congr (eq_symm hv.1))
+      _ ≈ (1 + α * lam) * v + -(1 + -(α * lam)) * v := add_congr_right _ (neg_mul _ _)
+      _ ≈ (1 + α * lam + -(1 + -(α * lam))) * v := eq_symm (right_distrib _ _ _)
+      _ ≈ (α * lam + α * lam) * v := mul_congr_left v (by
+          calc 1 + α * lam + -(1 + -(α * lam)) ≈ 1 + α * lam + (-1 + - -(α * lam)) := add_congr_right _ (neg_add_rev _ _)
+            _ ≈ 1 + α * lam + (-1 + α * lam) := add_congr_right _ (add_congr_right _ (neg_neg _))
+            _ ≈ 1 + -1 + (α * lam + α * lam) := add_add_add_comm _ _ _ _
+            _ ≈ 0 + (α * lam + α * lam) := add_congr_left _ (add_neg _)
+            _ ≈ α * lam + α * lam := zero_add _)
+  refine ⟨hsum, ?_⟩
+  calc α * lam * ((1 + α * lam) * v + 1) ≈ α * lam * (v + v) := mul_congr_right _ hsum
+    _ ≈ α * lam * v + α * lam * v := left_distrib _ _ _
+    _ ≈ (α * lam + α * lam) * v := eq_symm (right_distrib _ _ _)
+    _ ≈ (1 + α * lam) * v + -1 := eq_symm hdiff
+
 end FRC.Dirac.Operator
