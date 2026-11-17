@@ -27,6 +27,7 @@ import FrcCore.Theme.Dirac
 import FrcCore.Theme.Packed
 import FrcCore.Theme.Plane
 import FrcCore.Theme.Hermitian
+import FrcCore.Theme.OpRing
 import FrcCore.Theme.Operator
 import FrcCore.Theme.Unipotent
 import FrcCore.Theme.Spinor
@@ -74,6 +75,8 @@ import FrcCore.Theme.Calibration
 import FrcCore.Theme.Unitary
 import FrcCore.Theme.Interactions
 import FrcCore.Theme.Fields
+import FrcCore.Theme.Chirality
+import FrcCore.Theme.Torus
 import FrcCore.Theme.Horizon
 import FrcCore.Theme.Zeros
 import FrcCore.Theme.Ladder

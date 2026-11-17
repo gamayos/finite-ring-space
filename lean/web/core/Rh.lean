@@ -8026,7 +8026,7 @@ theorem p27022 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p27032 — 27:X9. \textbf{The interaction and generation counts} are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained. -/
 theorem p27032 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
   @FRC.Ladder.tower_reduces
-/-- p27035 — 27:P1. \textbf{No fourth generation and no fifth interaction} \emph{[forced]}. The role ladder closes, the fifth step returns to counting, and the Carrier is the entire substrate, so a fourth chiral family and a fifth fundamental force are forbidden, not merely absent (Tier~4). \emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction. -/
+/-- p27035 — 27:P1. \textbf{No fourth generation and no fifth interaction} \emph{[forced]}. The role ladder closes and the fifth step returns to counting. Given the naming B6, which declares the content exhaustive, a fourth chiral family and a fifth fundamental force are excluded. \emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction. -/
 theorem p27035 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
   @FRC.Ladder.tower_reduces
 -- end keys

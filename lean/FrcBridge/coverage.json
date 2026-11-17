@@ -505,8 +505,8 @@
    "master": "G7",
    "paper": "27:P9",
    "status": "shared theorem",
-   "lean": "FRC.Unitary.hermitian_det_real, FRC.Unitary.hermitian_det_shell",
-   "note": "16 October 2026 (27-fields, T07 of its blueprint): one key (p27043): the Hermitian determinant is its own conjugate and its imaginary part is 2-torsion, so arg det M_q = 0 on every odd shell; the absence of a topological term is the realisation B4's (the G18 record §3)"
+   "lean": "FRC.Unitary.wilson_orientation_even, FRC.Unitary.hermitian_det_real, FRC.Unitary.gram_det, FRC.Unitary.hermitian_det_shell",
+   "note": "16 October 2026 (27-fields, T07 of its blueprint): one key (p27043): the Hermitian determinant is its own conjugate and its imaginary part is 2-torsion, so arg det M_q = 0 on every odd shell; the absence of a topological term is the realisation B4's (the G18 record §3). 17 November 2026: the key conjoins four theorems, with the Wilson term even under orientation reversal and the determinant of the square of a Hermitian matrix"
   },
   {
    "master": "F4",

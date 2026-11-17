@@ -643,7 +643,7 @@ import FrcMathlib
 #print axioms FRC.Fields.colour_sector_fixed
 #print axioms FRC.Fields.no_tev_supersymmetry
 #print axioms FRC.Fields.proton_effectively_stable
-#print axioms FRC.Fields.majorana_neutrinos_heavy_singlets
+#print axioms FRC.Fields.no_further_singlet
 #print axioms FRC.Flavour.koide_measured
 #print axioms FRC.Flavour.koide_up_band
 #print axioms FRC.Flavour.gatto_leading

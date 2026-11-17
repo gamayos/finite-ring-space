@@ -19,7 +19,7 @@ from frc.registry import MARKER
 ROOT = Path(__file__).resolve().parents[2]
 
 # the checks of 16 October 2026 that are continuum readings, and the chart clauses split from an exact parent
-CHART_CHECKS = {"A3", "A4", "A11", "A12", "B1c", "B3", "B4c", "B5", "C8c", "D1", "D2", "E2", "E5c", "E7", "F3", "F6c",
+CHART_CHECKS = {"A3", "A4", "A11", "A12", "B1c", "B3", "B4c", "C8c", "D1", "D2", "E2", "E5c", "E7", "F3", "F6c",
                 "G2", "G3", "G4", "H2"}
 SPLIT = ("B1c", "B4c", "C8c", "E5c", "F6c")
 # the rows the ledger file decides or corroborates beyond the package's records (16 October 2026)
@@ -149,9 +149,9 @@ class LedgerTest(unittest.TestCase):
                 self.assertEqual(L.LEAN[lab].split(", ")[0], "core", lab)
         self.assertEqual({lab for lab, v in L.LEAN.items() if "ml" in v}, {"C1", "C6", "C7", "X7", "P3", "P4", "P5"})
         self.assertEqual(sorted(L.FAMILY), sorted(L.LEDGER))
-        # the kinds: EXACT or CHART, one per check, 58 checks, the chart ones labelled [chart]
+        # the kinds: EXACT or CHART, one per check, 59 checks, the chart ones labelled [chart]
         kinds = {r["id"]: r["kind"] for r in L.R.results}
-        self.assertEqual(len(kinds), 58)
+        self.assertEqual(len(kinds), 59)
         self.assertEqual(sorted(kinds), sorted(L.LEDGER))
         self.assertEqual(set(kinds.values()), {"EXACT", "CHART"})
         self.assertEqual({pid for pid, k in kinds.items() if k == "CHART"}, CHART_CHECKS)
@@ -166,7 +166,7 @@ class LedgerTest(unittest.TestCase):
         # the deciding checks of 16 October 2026
         self.assertEqual({k: L.PREDICATES[k] for k in ("27:X1", "27:P2", "27:P6", "27:P7", "27:C12", "27:C1")},
                          {"27:X1": "A5", "27:P2": "F6", "27:P6": "F6", "27:P7": "F6", "27:C12": "B3", "27:C1": "B2"})
-        for pid in ("B3", "B5"): self.assertNotIn("27:C1", _rows(L.LEDGER[pid]))
+        for pid in ("B3",): self.assertNotIn("27:C1", _rows(L.LEDGER[pid]))
         for pid in ("B1", "B2", "B4"): self.assertIn("27:C1", _rows(L.LEDGER[pid]))
         # the markers: one marker line per decided predicate, on the line before its deciding check, with the row's key
         src = (ROOT / "frc" / "ledgers" / "p27_fields.py").read_text(encoding="utf-8").split("\n")

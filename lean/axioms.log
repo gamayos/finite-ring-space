@@ -642,7 +642,7 @@
 'FRC.Fields.colour_sector_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Fields.no_tev_supersymmetry' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Fields.proton_effectively_stable' depends on axioms: [propext, Classical.choice, Quot.sound]
-'FRC.Fields.majorana_neutrinos_heavy_singlets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Fields.no_further_singlet' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Flavour.koide_measured' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Flavour.koide_up_band' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Flavour.gatto_leading' depends on axioms: [propext, Classical.choice, Quot.sound]

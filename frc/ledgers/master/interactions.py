@@ -58,7 +58,7 @@ PROOFS = {
     "G2": ["FRC.Interactions.va_cancel", "FRC.Interactions.orientation_flip"],          # 19 October 2026: the V − A current (27:C4, 27:X6); G_F is 27:C6's Mathlib fermi_constant, a chart clause no T row of block G may bind (G08)
     "G4": ["FRC.Interactions.rank_tower", "FRC.Interactions.su3_centre", "FRC.Interactions.gluon_commutator"],   # 19 October 2026: 27:C7's and 27:X7's core theorems; the area law's positivity is their Mathlib area_law_positive
     "G5": ["FRC.Interactions.tetrahedral_group", "FRC.Hadrons.adjoint_channel"],             # 19 October 2026: SU(2, 𝔽₃) = 2T and the SU(3) Haar moments by the Weyl constant term, the data of the tension's closed form and series; the key lives in Keys/Hadrons.lean
-    "G7": ["FRC.Unitary.wilson_orientation_even", "FRC.Unitary.hermitian_det_real", "FRC.Unitary.hermitian_det_shell"],        # 16 October 2026 (27-fields' migration): the key p27043 is 27:P9's, shared under LM13; the python check is 27:H3 (frc/ledgers/p27_fields.py)
+    "G7": ["FRC.Unitary.wilson_orientation_even", "FRC.Unitary.hermitian_det_real", "FRC.Unitary.gram_det", "FRC.Unitary.hermitian_det_shell"],        # 16 October 2026 (27-fields' migration): the key p27043 is 27:P9's, shared under LM13; the python check is 27:H3 (frc/ledgers/p27_fields.py); 17 November 2026: gram_det, as 27:P9's cell cites it
     "G11": ["FRC.Interactions.one_generation"],
     "G12": ["FRC.Interactions.reflection_algebra", "FRC.Interactions.fifth_direction"],
     "G16": ["FRC.Interactions.koide_parseval", "FRC.Interactions.koide_two_thirds", "FRC.Interactions.koide_extension",
