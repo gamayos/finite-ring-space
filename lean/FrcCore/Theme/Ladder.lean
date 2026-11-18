@@ -11,7 +11,7 @@ the index back. On every shell, with no hypothesis beyond the frame:
 * the power map acts on the index as multiplication by `k` — `(g^m)^k = g^{km mod n}` — and its iterates as
   multiplication by `k^r` (`power_index`, `phase_index`); the ascent is one multiplication per counted step
   (`ascent_step`); a tower exponent is read modulo `n`, so iterated exponentiation opens no fifth role
-  (`tower_reduces`, the drive's `pow_mod`);
+  (`tower_reduces`, the drive's `pow_mod`, in `Frame.lean` since task T42);
 * multiplication by a unit permutes the units (`mul_perm`), the clause behind the Gauss-sum telescoping;
 * every index `m` has a recentring chart, a translation of the cycle that carries it to one step from the origin
   (`recentre`, `recentre_inj`);
@@ -58,12 +58,6 @@ theorem phase_index (F : Frame p κ g) (k : Nat) : ∀ (r m : Nat),
 
 /-- 26:G3, 26:G4 — the ascent is counting along the orbit: `g^{j+1} = g^j · g`, one multiplication per step. -/
 theorem ascent_step (j : Nat) : g ^ (j + 1) = g ^ j * g := pow_succ g j
-
-/-- 26:G2, 27:C10, 27:X9, 27:P1, 28:X3, 00:G15 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is
-exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes:
-the fifth step returns to counting, 27-fields' C10). -/
-theorem tower_reduces (F : Frame p κ g) (j : Nat) : g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - 1)) :=
-  F.pow_mod _
 
 /-! ## Multiplication by a unit permutes the units (26:B5) -/
 

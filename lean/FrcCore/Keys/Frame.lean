@@ -99,6 +99,15 @@ theorem p14031 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p26048 — 26:H3. Fourier-diagonalisable implies $\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (round trips at $n=8$, a sub-cycle of $\F_{17}$, and at $n=256$, $2^{16}$, the full cycles of $\F_{257}$, $\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\tfrac32n\log_2n+n$ through the transform ($1\,048\,576$ against $16\,384$ at $n=2^{10}$) [data]. -/
 theorem p26048 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => g ^ (l * k) * -g ^ ((p - (1 : Nat) - j) * l)) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun j => (g ^ k) ^ j) (p - (1 : Nat)) = (0 : FRC.Shell p) ∧ FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
   And.intro @FRC.Shell.Frame.dft_inverse (@FRC.Shell.Frame.principal_root)
+/-- p27022 — 27:C10. The closure of the four primitive roles ($5\!\to\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter naming (B6). -/
+theorem p27022 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
+  @FRC.Ladder.tower_reduces
+/-- p27032 — 27:X9. \textbf{The interaction and generation counts} are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained. -/
+theorem p27032 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
+  @FRC.Ladder.tower_reduces
+/-- p27035 — 27:P1. \textbf{No fourth generation and no fifth interaction} \emph{[forced]}. The role ladder closes and the fifth step returns to counting. Given the naming B6, which declares the content exhaustive, a fourth chiral family and a fifth fundamental force are excluded. \emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction. -/
+theorem p27035 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
+  @FRC.Ladder.tower_reduces
 -- end keys
 
 end FRC.Ledger

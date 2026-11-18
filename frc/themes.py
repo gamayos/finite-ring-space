@@ -125,7 +125,7 @@ THEMES = {
                     ml=["lean/FrcMathlib/Theme/Quantum.lean"],
                     content="master block F: the quantum rows; the observation formalism in the shadow, the interference hierarchy and the splitting depth, the composites, the correlations and the gravitational channel, the fixed-setting tallies and the framed readout on the sweep, the calibration of the coherent fraction (22-quantum; Theme/Strata.lean since 29 October 2026, the Y1 and Y2 pushes; Theme/Calibration.lean since 30 October 2026)"),
     "interactions": dict(tier="programme", rank=27, exact=True,
-                         py=["frc/interactions.py"], core=["lean/FrcCore/Theme/Unitary.lean", "lean/FrcCore/Theme/Interactions.lean", "lean/FrcCore/Theme/Fields.lean", "lean/FrcCore/Theme/Chirality.lean", "lean/FrcCore/Theme/Torus.lean"], ml=[],
+                         py=["frc/interactions.py"], core=["lean/FrcCore/Theme/Unitary.lean", "lean/FrcCore/Theme/Interactions.lean", "lean/FrcCore/Theme/Fields.lean", "lean/FrcCore/Theme/Chirality.lean", "lean/FrcCore/Theme/Torus.lean", "lean/FrcCore/Theme/Charge.lean"], ml=[],
                          content="master block G: electromagnetism, the weak and strong forces, matter, flavour"),
     "horizon": dict(tier="programme", rank=28, exact=True,
                     py=["frc/horizon.py", "frc/ladder.py"], core=["lean/FrcCore/Theme/Horizon.lean", "lean/FrcCore/Theme/Zeros.lean", "lean/FrcCore/Theme/Ladder.lean"], ml=["lean/FrcMathlib/Theme/Horizon.lean"],

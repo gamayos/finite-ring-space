@@ -3,7 +3,7 @@
  "tree": "1-algebra-20250815",
  "title": "Relativistic Algebra over Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/axioms14080636",
- "generated": "6 November 2026",
+ "generated": "18 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -370,7 +370,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_exists",
     "module": "FrcCore/Frame",
-    "line": 104,
+    "line": 106,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -379,7 +379,7 @@
    {
     "name": "FRC.Shell.Frame.fourth_roots",
     "module": "FrcCore/Frame",
-    "line": 108,
+    "line": 110,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -484,7 +484,7 @@
    {
     "name": "FRC.Shell.Frame.affine_frame_unit",
     "module": "FrcCore/Frame",
-    "line": 39,
+    "line": 41,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -528,7 +528,7 @@
    {
     "name": "FRC.Shell.Frame.meridian_involution",
     "module": "FrcCore/Frame",
-    "line": 140,
+    "line": 142,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -555,7 +555,7 @@
    {
     "name": "FRC.Shell.Frame.window_injective",
     "module": "FrcCore/Frame",
-    "line": 47,
+    "line": 49,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -564,7 +564,7 @@
    {
     "name": "FRC.Shell.Frame.window_signed",
     "module": "FrcCore/Frame",
-    "line": 84,
+    "line": 86,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -597,7 +597,7 @@
    {
     "name": "FRC.Shell.Frame.window_injective",
     "module": "FrcCore/Frame",
-    "line": 47,
+    "line": 49,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -606,7 +606,7 @@
    {
     "name": "FRC.Shell.Frame.window_signed",
     "module": "FrcCore/Frame",
-    "line": 84,
+    "line": 86,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -615,7 +615,7 @@
    {
     "name": "FRC.Shell.Frame.window_add_readback",
     "module": "FrcCore/Frame",
-    "line": 70,
+    "line": 72,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -624,7 +624,7 @@
    {
     "name": "FRC.Shell.Frame.window_mul_readback",
     "module": "FrcCore/Frame",
-    "line": 77,
+    "line": 79,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -724,7 +724,7 @@
    {
     "name": "FRC.Shell.Frame.scale_periodic",
     "module": "FrcCore/Frame",
-    "line": 29,
+    "line": 31,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -784,7 +784,7 @@
    {
     "name": "FRC.Shell.Frame.complex_chart_zero_divisor",
     "module": "FrcCore/Frame",
-    "line": 151,
+    "line": 153,
     "axioms": [],
     "tier": 0,
     "ok": true,

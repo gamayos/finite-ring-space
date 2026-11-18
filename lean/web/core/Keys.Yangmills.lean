@@ -1675,7 +1675,9 @@ Since the ledger migration (task LM17) it holds the frame's arithmetic from 1-al
 frame, the window law and its read-backs, `ofNat_add`, `ofNat_mul`, the quarter-turn and the fourth roots, the meridian
 involution, the complex chart, Theorem approx, `natCount`), `ofNat_self` and `ofNat_add_self` (from 13-epi), the root pair
 (from 10-dimensions) and the counting lemmas of 20-rh, all under their old names in `FRC.Shell` and `FRC.Shell.Frame`.
-The bounded quantifiers' deciders (from 10-dimensions and 20-rh) are in `Series.lean` since task LM22. No axioms.
+The bounded quantifiers' deciders (from 10-dimensions and 20-rh) are in `Series.lean` since task LM22. Since task T42
+(17 November 2026) it also holds `FRC.Ladder.tower_reduces` (from `Theme/Ladder.lean`), name unchanged, so that the keys
+that cite it alone take the frame theme without the horizon theme (gate G10). No axioms.
 -/
 
 namespace FRC
@@ -1878,6 +1880,20 @@ theorem natCount_congr (P Q : Nat → Prop) [DecidablePred P] [DecidablePred Q] 
 end Frame
 end Shell
 end FRC
+
+namespace FRC.Ladder
+
+open FRC.Shell FRC.Shell.Frame
+
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-- 26:G2, 27:C10, 27:X9, 27:P1, 28:X3, 00:G15 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is
+exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes:
+the fifth step returns to counting, 27-fields' C10). -/
+theorem tower_reduces (F : Frame p κ g) (j : Nat) : g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - 1)) :=
+  F.pow_mod _
+
+end FRC.Ladder
 
 /-! inlined: FrcCore/Theme/Quadratic.lean -/
 

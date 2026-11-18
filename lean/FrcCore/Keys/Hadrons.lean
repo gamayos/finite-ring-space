@@ -1,6 +1,6 @@
+import FrcCore.Frame
 import FrcCore.Theme.Interactions
 import FrcCore.Theme.Fields
-import FrcCore.Theme.Ladder
 import FrcCore.Theme.Hadrons
 
 /-!

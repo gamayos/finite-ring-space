@@ -3,7 +3,7 @@
  "tree": "28-flavour-20260626",
  "title": "Fermion Flavour Sector over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.2124.v1",
- "generated": "12 November 2026",
+ "generated": "17 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -449,6 +449,14 @@
      "tag": "O",
      "source": "\\S\\ref{sec:neutrino}",
      "key": "p28051",
+     "name": null
+    },
+    {
+     "label": "Y3",
+     "predicate": "The Frobenius-odd invariant of the quark mass matrices. The commutator of two Hermitian mass matrices is anti-Hermitian, so its determinant $J$ is negated by the Frobenius of the Subject's quadratic extension \\cite{akhtman2026fields}. The hypothesis: $J\\neq0$ on the quark mass matrices of this paper, where $J$ is the coupling that an orientation-odd term of the colour action needs. Its test is the computation of $J$ on these matrices, an open task of this paper. Falsifier: quark mass matrices of this paper that commute.",
+     "tag": "O",
+     "source": "\\cite{akhtman2026fields}",
+     "key": "p28053",
      "name": null
     }
    ]
@@ -1065,8 +1073,8 @@
   "X3": [
    {
     "name": "FRC.Ladder.tower_reduces",
-    "module": "FrcCore/Theme/Ladder",
-    "line": 65,
+    "module": "FrcCore/Frame",
+    "line": 229,
     "axioms": [],
     "tier": 0,
     "ok": true,
