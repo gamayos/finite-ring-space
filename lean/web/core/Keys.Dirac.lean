@@ -1675,7 +1675,9 @@ Since the ledger migration (task LM17) it holds the frame's arithmetic from 1-al
 frame, the window law and its read-backs, `ofNat_add`, `ofNat_mul`, the quarter-turn and the fourth roots, the meridian
 involution, the complex chart, Theorem approx, `natCount`), `ofNat_self` and `ofNat_add_self` (from 13-epi), the root pair
 (from 10-dimensions) and the counting lemmas of 20-rh, all under their old names in `FRC.Shell` and `FRC.Shell.Frame`.
-The bounded quantifiers' deciders (from 10-dimensions and 20-rh) are in `Series.lean` since task LM22. No axioms.
+The bounded quantifiers' deciders (from 10-dimensions and 20-rh) are in `Series.lean` since task LM22. Since task T42
+(17 November 2026) it also holds `FRC.Ladder.tower_reduces` (from `Theme/Ladder.lean`), name unchanged, so that the keys
+that cite it alone take the frame theme without the horizon theme (gate G10). No axioms.
 -/
 
 namespace FRC
@@ -1878,6 +1880,20 @@ theorem natCount_congr (P Q : Nat → Prop) [DecidablePred P] [DecidablePred Q] 
 end Frame
 end Shell
 end FRC
+
+namespace FRC.Ladder
+
+open FRC.Shell FRC.Shell.Frame
+
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-- 26:G2, 27:C10, 27:X9, 27:P1, 28:X3, 00:G15 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is
+exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes:
+the fifth step returns to counting, 27-fields' C10). -/
+theorem tower_reduces (F : Frame p κ g) (j : Nat) : g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - 1)) :=
+  F.pow_mod _
+
+end FRC.Ladder
 
 /-! inlined: FrcCore/Parity.lean -/
 
@@ -4056,9 +4072,12 @@ theorem isotropy (F : Frame p κ g) (k : Nat) :
 /-- 8:E9 — on every symmetry-complete shell `p = 4κ + 1`, `p^k + 1 ≡ 2 (mod 4)` for every `k`: a phase whose order is
 divisible by `4` lies on no cycle of order `p^k + 1`, the relation behind the degree-two instance of `eigenphase_values`. -/
 theorem pow_succ_mod_four (F : Frame p κ g) (k : Nat) : (p ^ k + 1) % 4 = 2 := by
-  have h1 : p % 4 = 1 := by have := F.cap; omega
-  have h2 : p ^ k % 4 = 1 := by rw [Nat.pow_mod, h1, Nat.one_pow]
-  omega
+  have h1 : p % 4 = 1 := by rw [F.cap, FRC.Nat.add_mul_mod_self_left 1 κ 4 (by decide)]
+  have h2 : ∀ k, p ^ k % 4 = 1 := fun k => by
+    induction k with
+    | zero => rfl
+    | succ k ih => rw [Nat.pow_succ, FRC.Nat.mul_mod _ _ _ (by decide), ih, h1]
+  rw [FRC.Nat.add_mod _ _ _ (by decide), h2 k]
 
 /-- 8:F4, 8:F6, 8:X1, 8:E8 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`,
 so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one
@@ -4560,6 +4579,9 @@ theorem p08009 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p08013 — 8:B7. Signature lives on $\Fp$: the Euclidean form is hyperbolic and $Q_\nu$ elliptic, with the zero counts of the two classes on every symmetry-complete shell below $60$; over $K$ every element of $\Fp$ is a square and the dichotomy collapses. -/
 theorem p08013 : FRC.Dirac.euclidZeros (13 : Nat) = (2353 : Nat) ∧ FRC.Dirac.lorentzZeros (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (2041 : Nat) :=
   @FRC.Dirac.zeros13
+/-- p08014 — 8:B8. One-way and two-way transport: comparison readings are even drive steps, the one-way single-chronon multiplier odd, and light-like transport along one axis carries no registered velocity, only its square class (00:C8); the $3{+}1$ form's null vectors are not read. Falsifier: a registered one-way velocity, or a two-way constant that changes under the synchronisation gauge. -/
+theorem p08014 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (m : Nat), (∃ y, y * y = g ^ m) ↔ m % (2 : Nat) = (0 : Nat)) ∧ (¬∃ y, y * y = g) ∧ (∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ¬∃ r, r * r = y) ∧ ∀ {t x : FRC.Shell p}, x * x = g * (t * t) → t = (0 : FRC.Shell p) ∧ x = (0 : FRC.Shell p) :=
+  @FRC.Dirac.oneway_transport
 /-- p08019 — 8:C5. The finite Cayley transform: the scalar Cayley map is defined on the whole shell, takes values in the norm-one cycle, and bijects the projective line onto it, which has $\p+1$ elements and is the unitary group of one channel. -/
 theorem p08019 : FRC.Dirac.normOneCount (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.normOneCount (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat) ∧ FRC.Dirac.unitCircleCount (13 : Nat) = (12 : Nat) ∧ FRC.Dirac.unitCircleCount (173 : Nat) = (172 : Nat) :=
   @FRC.Dirac.torus_counts
@@ -4581,7 +4603,7 @@ theorem p08040 : (∀ {p : Nat} [FRC.Pos p] {g y : FRC.Shell p}, g * y = (1 : FR
 /-- p08041 — 8:F4. Two evolution sectors, one space: the drive's split-phase sector and the Cayley propagators' norm-one sector meet in $\{\pm1\}$ alone; the cycle Laplacian is self-adjoint, its Cayley steps commute with the drive, and the composite is unitary. -/
 theorem p08041 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → y.IsPrimitive (p - (1 : Nat)) ∧ ∀ (u : FRC.Shell p), u * u = (1 : FRC.Shell p) → u = (1 : FRC.Shell p) ∨ u = (-1 : FRC.Shell p) :=
   @FRC.Dirac.sector_separation
-/-- p08048 — 8:F6. The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\varphi(-m)$ on the third cycle and the mass phases fill it once; the spectra meet in $\{\pm1\}$; the Hamiltonian form has the two eigenvalues $\varphi(\pm\im\nu m)$, a conjugate pair. Decided at $\p=13$ and $173$. -/
+/-- p08048 — 8:F6. The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\varphi(-m)$ on the third cycle, the mass phases filling it once; the two cycles meet in $\{\pm1\}$; the $X$-self-adjoint $H_D$, its mass term anti-fixed, has the Cayley eigenvalues $\varphi(\pm\im\nu m)$, a conjugate pair. At $\p=13$ and $173$. -/
 theorem p08048 : (∀ {p : Nat} [FRC.Pos p] {g y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ∀ (j k : Nat), y ^ k * g ^ ((j + (1 : Nat)) * k) = g ^ (j * k)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → y.IsPrimitive (p - (1 : Nat)) ∧ ∀ (u : FRC.Shell p), u * u = (1 : FRC.Shell p) → u = (1 : FRC.Shell p) ∨ u = (-1 : FRC.Shell p)) ∧ FRC.Dirac.normOneCount (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.normOneCount (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat) ∧ FRC.Dirac.unitCircleCount (13 : Nat) = (12 : Nat) ∧ FRC.Dirac.unitCircleCount (173 : Nat) = (172 : Nat) :=
   And.intro @FRC.Dirac.drive_eigen (And.intro @FRC.Dirac.sector_separation (@FRC.Dirac.torus_counts))
 /-- p08049 — 8:B4. The factorisation of the temporal coefficient: $\nu=g=2^{-1}\cdot(2g)$ on every shell, the class of $2^{-1}$ even iff $\kap$ is even, the class of $2g$ odd iff $\kap$ is even, the product odd always; the reframing flip preserves the parity class and reverses the one-way direction. -/
@@ -4599,7 +4621,7 @@ theorem p08053 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p08054 — 8:X2. The one-way speed is gauge: the temporal coefficient is an odd drive step, registered transport is even, and the reframing flip reverses the one-way direction while preserving the parity class. -/
 theorem p08054 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {h : FRC.Shell p}, (2 : FRC.Shell p) * h = (1 : FRC.Shell p) → h * ((2 : FRC.Shell p) * g) = g ∧ ((∃ y, y * y = (2 : FRC.Shell p) * g) ↔ κ % (2 : Nat) = (1 : Nat))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m : Nat), (∃ y, y * y = g ^ m) ↔ m % (2 : Nat) = (0 : Nat) :=
   And.intro @FRC.Dirac.nu_factorisation (@FRC.Shell.Frame.parity_iff)
-/-- p08056 — 8:X4. The spinor form is forced: the continuum's $\gamma^0$-twist fails because Frobenius fixes the internal quarter-turn, and the arithmetic forces the twist onto the odd product omitting $\gamma^2$. -/
+/-- p08056 — 8:X4. The spinor form is forced: the continuum's $\gamma^0$-twist fails because Frobenius fixes the internal quarter-turn, and the arithmetic forces the twist, up to sign, onto the odd product omitting $\gamma^2$. -/
 theorem p08056 : FRC.Dirac.spinorForm (2 : FRC.Shell (13 : Nat)) (5 : FRC.Shell (13 : Nat)) = true ∧ FRC.Dirac.spinorForm (2 : FRC.Shell (173 : Nat)) (93 : FRC.Shell (173 : Nat)) = true ∧ FRC.Dirac.spinorForm (2 : FRC.Shell (1549 : Nat)) (1461 : FRC.Shell (1549 : Nat)) = true :=
   @FRC.Dirac.spinor_form_values
 /-- p08069 — 8:D16. The explicit transported form: the transported Dirac operator is the Dirac operator of the transported frame with the transported gamma matrices, the spin conjugates of the standard ones. -/
@@ -4618,6 +4640,7 @@ end FRC.Ledger
 -- Ledger predicates: axioms (each predicate's, computed here)
 #print axioms FRC.Ledger.p08009
 #print axioms FRC.Ledger.p08013
+#print axioms FRC.Ledger.p08014
 #print axioms FRC.Ledger.p08019
 #print axioms FRC.Ledger.p08022
 #print axioms FRC.Ledger.p08025

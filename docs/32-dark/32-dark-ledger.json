@@ -3,7 +3,7 @@
  "tree": "32-dark-20260627",
  "title": "The Dark Sector over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1689.v1",
- "generated": "12 November 2026",
+ "generated": "18 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -339,7 +339,7 @@
    "rows": [
     {
      "label": "P1",
-     "predicate": "The redshift law $\\az(z)=cH(z)/2\\pi$: the knee shifts and the Tully--Fisher zero-point evolves, $v_{\\mathrm{flat}}\\propto E(z)^{1/4}$ ($+7\\%$, $+16\\%$, $+32\\%$ at $z=0.5,1,2$ for $\\Omega_m=0.315$), parameter-free; shape resolvable, value in Z1. Falsifier: a high-$z$ knee away from $cH(z)/2\\pi$, or a non-evolving Tully--Fisher zero-point.",
+     "predicate": "The redshift law $\\az(z)=cH(z)/2\\pi$: the knee shifts and the Tully--Fisher zero-point evolves, $v_{\\mathrm{flat}}\\propto E(z)^{1/4}$ ($+7\\%$, $+16\\%$, $+32\\%$ at $z=0.5,1,2$ for $\\Omega_m=0.315$), parameter-free; shape resolvable, value in Z1. Falsifier: a high-$z$ knee away from $cH(z)/2\\pi$, or a non-evolving Tully--Fisher zero-point. Confrontation: \\S\\ref{sub:running} and the master's P1.",
      "tag": "T",
      "source": "\\S\\ref{sec:predictions}\\newline \\pywit{dark}{p32038}{P1}, \\leanwit{FrcMathlib}{p32038}{P1}; rests on B2, B3, C2 \\lean{Dark.running\\_floor, Dark.ez\\_quarter\\_brackets}",
      "key": "p32038",

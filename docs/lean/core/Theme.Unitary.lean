@@ -578,6 +578,17 @@ it lies in the shell. -/
 theorem hermitian_det_shell (A : M3 p ν) (h : dag A = A) : (det A).im + (det A).im = 0 :=
   im_of_conj_fixed (hermitian_det_real A h)
 
+/-- 27:X11, 27:P9, 00:G7 — the square of a Hermitian matrix: `det (A A) = det A · det A`, with `det A` its own conjugate and its
+imaginary part `2`-torsion. Where `det A` lies in the shell, `det (A A)` is the square of a residue of the shell. -/
+theorem gram_det (A : M3 p ν) (h : dag A = A) :
+    det (mmul A A) = det A * det A ∧ Ext.conj (det A) = det A ∧ (det A).im + (det A).im = 0 ∧
+    ((det A).im = 0 → (det (mmul A A)).re = (det A).re * (det A).re ∧ (det (mmul A A)).im = 0) := by
+  refine ⟨det_mul A A, hermitian_det_real A h, hermitian_det_shell A h, fun h0 => ⟨?_, ?_⟩⟩
+  · rw [det_mul, Ext.mul_re, h0]
+    exact Shell.Frame.RE.sound (Shell.Frame.look [(det A).re, ν]) (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.mul .zero .zero))) (.mul (.var 0) (.var 0)) (by decide +kernel)
+  · rw [det_mul, Ext.mul_im, h0]
+    exact Shell.Frame.RE.sound (Shell.Frame.look [(det A).re]) (.add (.mul (.var 0) .zero) (.mul .zero (.var 0))) .zero (by decide +kernel)
+
 /-! ### The Wilson term under orientation reversal (27-fields, 17 October 2026) -/
 
 /-- The trace. -/
@@ -674,5 +685,114 @@ theorem hermitian_det_real2 (A : M2 p ν) (h : dag2 A = A) : Ext.conj (det2 A) =
     xsound _ _ _ (by decide +kernel)
   have e3 : xeval (fun i => Ext.conj (xlook (ents2 A) i)) (.add (.mul (.var 0) (.var 3)) (.neg (.mul (.var 2) (.var 1)))) = det2 (dag2 A) := rfl
   rw [e1, e2, e3, h]
+
+/-! ### The diagonal torus over the extension and its two cycles (27:C15, 17 November 2026)
+
+The matrices over the extension that commute with a diagonal matrix of distinct entries are the diagonal ones. A point
+`diag(x, y)` of this torus fixes every diagonal matrix by conjugation and multiplies `E` and `F` by `x y⁻¹` and `x⁻¹ y`.
+The unitary points, `σ(w) w = 1`, keep the Hermitian form, and the pair `(diag(w, σ(w)), w)` fixes the vacuum `(0, 1)`. A
+point over the shell is unitary only where its square is one, and a matrix `diag(G, ·)` over the shell multiplies the
+Hermitian pairing by `G G`: the drive is no unitary point. -/
+
+/-- The diagonal matrix `diag(x, y)`. -/
+def dg (x y : Ext p ν) : M2 p ν := ⟨x, 0, 0, y⟩
+
+/-- 27:C15 — a matrix over the extension commutes with `diag(G, H)`, `H − G` invertible, exactly when it is diagonal. -/
+theorem diag_commutes {G H D : Ext p ν} (hD : (H + -G) * D = 1) (X : M2 p ν) :
+    mmul2 X (dg G H) = mmul2 (dg G H) X ↔ X.a01 = 0 ∧ X.a10 = 0 := by
+  constructor
+  · intro hX
+    have e01 : X.a00 * 0 + X.a01 * H = G * X.a01 + 0 * X.a11 := congrArg M2.a01 hX
+    have e10 : X.a10 * G + X.a11 * 0 = 0 * X.a00 + H * X.a10 := congrArg M2.a10 hX
+    have i01 : X.a01 = (((((X.a00 * 0) + (X.a01 * H)) + -((G * X.a01) + (0 * X.a11))) * D) + (X.a01 * (1 + -((H + -G) * D)))) :=
+      xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.var 1) (.add (.mul (.add (.add (.mul (.var 0) .zero) (.mul (.var 1) (.var 5))) (.neg (.add (.mul (.var 4) (.var 1)) (.mul .zero (.var 3))))) (.var 6)) (.mul (.var 1) (.add .one (.neg (.mul (.add (.var 5) (.neg (.var 4))) (.var 6)))))) (by decide +kernel)
+    have z01 : (((((G * X.a01) + (0 * X.a11)) + -((G * X.a01) + (0 * X.a11))) * D) + (X.a01 * (1 + -1))) = 0 :=
+      xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul (.add (.add (.mul (.var 4) (.var 1)) (.mul .zero (.var 3))) (.neg (.add (.mul (.var 4) (.var 1)) (.mul .zero (.var 3))))) (.var 6)) (.mul (.var 1) (.add .one (.neg .one)))) .zero (by decide +kernel)
+    have i10 : X.a10 = (((((0 * X.a00) + (H * X.a10)) + -((X.a10 * G) + (X.a11 * 0))) * D) + (X.a10 * (1 + -((H + -G) * D)))) :=
+      xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.var 2) (.add (.mul (.add (.add (.mul .zero (.var 0)) (.mul (.var 5) (.var 2))) (.neg (.add (.mul (.var 2) (.var 4)) (.mul (.var 3) .zero)))) (.var 6)) (.mul (.var 2) (.add .one (.neg (.mul (.add (.var 5) (.neg (.var 4))) (.var 6)))))) (by decide +kernel)
+    have z10 : (((((0 * X.a00) + (H * X.a10)) + -((0 * X.a00) + (H * X.a10))) * D) + (X.a10 * (1 + -1))) = 0 :=
+      xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul (.add (.add (.mul .zero (.var 0)) (.mul (.var 5) (.var 2))) (.neg (.add (.mul .zero (.var 0)) (.mul (.var 5) (.var 2))))) (.var 6)) (.mul (.var 2) (.add .one (.neg .one)))) .zero (by decide +kernel)
+    rw [e01, hD] at i01; rw [e10, hD] at i10
+    exact ⟨i01.trans z01, i10.trans z10⟩
+  · intro h
+    have h01 := h.1; have h10 := h.2
+    have k01 : X.a00 * 0 + X.a01 * H = G * X.a01 + 0 * X.a11 := by
+      rw [h01]; exact xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul (.var 0) .zero) (.mul .zero (.var 5))) (.add (.mul (.var 4) .zero) (.mul .zero (.var 3))) (by decide +kernel)
+    have k10 : X.a10 * G + X.a11 * 0 = 0 * X.a00 + H * X.a10 := by
+      rw [h10]; exact xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul .zero (.var 4)) (.mul (.var 3) .zero)) (.add (.mul .zero (.var 0)) (.mul (.var 5) .zero)) (by decide +kernel)
+    exact m2ext (xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul (.var 0) (.var 4)) (.mul (.var 1) .zero)) (.add (.mul (.var 4) (.var 0)) (.mul .zero (.var 2))) (by decide +kernel)) k01 k10
+      (xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul (.var 2) .zero) (.mul (.var 3) (.var 5))) (.add (.mul .zero (.var 1)) (.mul (.var 5) (.var 3))) (by decide +kernel))
+
+/-- 27:C15 — the weights of the torus: for `x x' = 1` and `y y' = 1` the conjugation by `diag(x, y)` fixes every diagonal
+matrix and multiplies `E` by `x y'` and `F` by `x' y`. -/
+theorem torus_weights {x x' y y' : Ext p ν} (hx : x * x' = 1) (hy : y * y' = 1) (s t : Ext p ν) :
+    mmul2 (mmul2 (dg x y) (dg s t)) (dg x' y') = dg s t ∧
+    mmul2 (mmul2 (dg x y) ⟨0, 1, 0, 0⟩) (dg x' y') = ⟨0, x * y', 0, 0⟩ ∧
+    mmul2 (mmul2 (dg x y) ⟨0, 0, 1, 0⟩) (dg x' y') = ⟨0, 0, x' * y, 0⟩ :=
+  ⟨m2ext ((xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) (.var 4)) (.mul .zero .zero)) (.var 1)) (.mul (.add (.mul (.var 0) .zero) (.mul .zero (.var 5))) .zero)) (.mul (.mul (.var 0) (.var 1)) (.var 4)) (by decide +kernel)).trans (show (x * x') * s = s by rw [hx, Ext.one_mul]))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) (.var 4)) (.mul .zero .zero)) .zero) (.mul (.add (.mul (.var 0) .zero) (.mul .zero (.var 5))) (.var 3))) .zero (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero (.var 4)) (.mul (.var 2) .zero)) (.var 1)) (.mul (.add (.mul .zero .zero) (.mul (.var 2) (.var 5))) .zero)) .zero (by decide +kernel))
+      ((xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero (.var 4)) (.mul (.var 2) .zero)) .zero) (.mul (.add (.mul .zero .zero) (.mul (.var 2) (.var 5))) (.var 3))) (.mul (.mul (.var 2) (.var 3)) (.var 5)) (by decide +kernel)).trans (show (y * y') * t = t by rw [hy, Ext.one_mul])),
+   m2ext (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) (.var 1)) (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) .zero)) .zero (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) .zero) (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) (.var 3))) (.mul (.var 0) (.var 3)) (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 2) .zero)) (.var 1)) (.mul (.add (.mul .zero .one) (.mul (.var 2) .zero)) .zero)) .zero (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 2) .zero)) .zero) (.mul (.add (.mul .zero .one) (.mul (.var 2) .zero)) (.var 3))) .zero (by decide +kernel)),
+   m2ext (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .one)) (.var 1)) (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) .zero)) .zero (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .one)) .zero) (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) (.var 3))) .zero (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 2) .one)) (.var 1)) (.mul (.add (.mul .zero .zero) (.mul (.var 2) .zero)) .zero)) (.mul (.var 1) (.var 2)) (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 2) .one)) .zero) (.mul (.add (.mul .zero .zero) (.mul (.var 2) .zero)) (.var 3))) .zero (by decide +kernel))⟩
+
+/-- 27:C15 — a unitary point of the torus: for `σ(w) w = 1` the matrix `diag(w, σ(w))` has determinant one and keeps the
+Hermitian form, and the pair `(diag(w, σ(w)), w)`, which acts as `w · diag(w, σ(w))`, fixes the vacuum `(0, 1)`. -/
+theorem unitary_point {w : Ext p ν} (hw : Ext.conj w * w = 1) (u₁ u₂ v₁ v₂ : Ext p ν) :
+    det2 (dg w (Ext.conj w)) = 1 ∧
+    Ext.conj (w * u₁) * (w * v₁) + Ext.conj (Ext.conj w * u₂) * (Ext.conj w * v₂) = Ext.conj u₁ * v₁ + Ext.conj u₂ * v₂ ∧
+    w * (w * 0) = 0 ∧ w * (Ext.conj w * 1) = 1 := by
+  have e : (((Ext.conj w * Ext.conj u₁) * (w * v₁)) + ((w * Ext.conj u₂) * (Ext.conj w * v₂))) = ((Ext.conj w * w) * ((Ext.conj u₁ * v₁) + (Ext.conj u₂ * v₂))) :=
+    xsound (xlook [Ext.conj w, w, Ext.conj u₁, v₁, Ext.conj u₂, v₂]) (.add (.mul (.mul (.var 0) (.var 2)) (.mul (.var 1) (.var 3))) (.mul (.mul (.var 1) (.var 4)) (.mul (.var 0) (.var 5)))) (.mul (.mul (.var 0) (.var 1)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 4) (.var 5)))) (by decide +kernel)
+  refine ⟨(xsound (xlook [w, Ext.conj w]) (.add (.mul (.var 0) (.var 1)) (.neg (.mul .zero .zero))) (.mul (.var 1) (.var 0)) (by decide +kernel)).trans hw, ?_,
+    xsound (xlook [w, Ext.conj w]) (.mul (.var 0) (.mul (.var 0) .zero)) .zero (by decide +kernel),
+    (xsound (xlook [w, Ext.conj w]) (.mul (.var 0) (.mul (.var 1) .one)) (.mul (.var 1) (.var 0)) (by decide +kernel)).trans hw⟩
+  rw [Ext.conj_mul, Ext.conj_mul, Ext.conj_conj, e, hw, Ext.one_mul]
+
+/-- 27:C15 — the two cycles meet in `±1`: on a shell without zero divisors a unitary point whose entry lies in the shell
+is `1` or `−1`. -/
+theorem cycles_meet (hdom : ∀ a b : Shell p, a * b = 0 → a = 0 ∨ b = 0) {w : Ext p ν} (h0 : w.im = 0)
+    (hw : Ext.conj w * w = 1) : w.re + -1 = 0 ∨ w.re + 1 = 0 := by
+  have e : w.re * w.re + ν * (-w.im * w.im) = 1 := Ext.re_congr hw
+  rw [h0] at e
+  have e2 : w.re * w.re = 1 := (Shell.Frame.RE.sound (Shell.Frame.look [w.re, ν]) (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.mul (.neg .zero) .zero))) (.mul (.var 0) (.var 0)) (by decide +kernel)).symm.trans e
+  have f : (w.re + -1) * (w.re + 1) = w.re * w.re + -1 :=
+    Shell.Frame.RE.sound (Shell.Frame.look [w.re]) (.mul (.add (.var 0) (.neg .one)) (.add (.var 0) .one)) (.add (.mul (.var 0) (.var 0)) (.neg .one)) (by decide +kernel)
+  have z : (1 : Shell p) + -1 = 0 := Shell.Frame.RE.sound (Shell.Frame.look [w.re]) (.add .one (.neg .one)) .zero (by decide +kernel)
+  exact hdom _ _ (f.trans (by rw [e2]; exact z))
+
+/-- 27:C15 — a matrix `diag(G, ·)` over the shell is no unitary point unless `G G = 1`: it multiplies the Hermitian pairing
+of the first components by `G G`. -/
+theorem drive_rescales {G : Ext p ν} (h0 : G.im = 0) (u v : Ext p ν) :
+    Ext.conj (G * u) * (G * v) = (G * G) * (Ext.conj u * v) := by
+  have c : Ext.conj G = G := Ext.ext rfl (show -G.im = G.im by rw [h0]; exact neg_zero)
+  have e : ((G * Ext.conj u) * (G * v)) = ((G * G) * (Ext.conj u * v)) :=
+    xsound (xlook [G, Ext.conj u, v]) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 2))) (.mul (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 2))) (by decide +kernel)
+  rw [Ext.conj_mul, c, e]
+
+/-- 27:C15 — the diagonal torus over the extension and its two cycles: `diag_commutes`, `torus_weights`, `unitary_point`,
+`cycles_meet` and `drive_rescales` together. -/
+theorem torus_cycles :
+    (∀ {G H D : Ext p ν}, (H + -G) * D = 1 → ∀ X : M2 p ν,
+      (mmul2 X (dg G H) = mmul2 (dg G H) X ↔ X.a01 = 0 ∧ X.a10 = 0)) ∧
+    (∀ {x x' y y' : Ext p ν}, x * x' = 1 → y * y' = 1 → ∀ s t : Ext p ν,
+      mmul2 (mmul2 (dg x y) (dg s t)) (dg x' y') = dg s t ∧
+      mmul2 (mmul2 (dg x y) ⟨0, 1, 0, 0⟩) (dg x' y') = ⟨0, x * y', 0, 0⟩ ∧
+      mmul2 (mmul2 (dg x y) ⟨0, 0, 1, 0⟩) (dg x' y') = ⟨0, 0, x' * y, 0⟩) ∧
+    (∀ {w : Ext p ν}, Ext.conj w * w = 1 → ∀ u₁ u₂ v₁ v₂ : Ext p ν,
+      det2 (dg w (Ext.conj w)) = 1 ∧
+      Ext.conj (w * u₁) * (w * v₁) + Ext.conj (Ext.conj w * u₂) * (Ext.conj w * v₂) = Ext.conj u₁ * v₁ + Ext.conj u₂ * v₂ ∧
+      w * (w * 0) = 0 ∧ w * (Ext.conj w * 1) = 1) ∧
+    (∀ {w : Ext p ν}, (∀ a b : Shell p, a * b = 0 → a = 0 ∨ b = 0) → w.im = 0 → Ext.conj w * w = 1 →
+      w.re + -1 = 0 ∨ w.re + 1 = 0) ∧
+    (∀ {G : Ext p ν}, G.im = 0 → ∀ u v : Ext p ν, Ext.conj (G * u) * (G * v) = (G * G) * (Ext.conj u * v)) :=
+  ⟨fun h X => diag_commutes h X, fun hx hy s t => torus_weights hx hy s t,
+   fun hw u₁ u₂ v₁ v₂ => unitary_point hw u₁ u₂ v₁ v₂, fun hdom h0 hw => cycles_meet hdom h0 hw, fun h0 u v => drive_rescales h0 u v⟩
 
 end FRC.Unitary

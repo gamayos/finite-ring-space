@@ -1,5 +1,5 @@
 /-! FrcCore — the FRC substrate from first principles, one file for the live instance (no Mathlib,
-no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Cycle, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Fractional, Theme.Lifts, Theme.Dichotomy, Theme.Rotations, Theme.Heisenberg, Theme.Spectra, Theme.Exclusivity, Theme.Shift, Theme.Quadratic, Theme.Extension, Theme.Domain, Theme.Spin, Theme.Lorentz, Theme.Register, Poly, Theme.Numbers, Theme.Logic, Theme.SecondOrder, Theme.Formation, Theme.Reach, Theme.Diagonal, Theme.Threshold, Theme.Sets, Theme.Equivariant, Theme.Transfer, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Framed, Theme.Quaternion, Theme.Carrier, Theme.Subject, Theme.Pair, Theme.Hopf, Theme.Symbol, Theme.Gravity, Theme.Lattice, Theme.Drift, Theme.Relaxation, Theme.Window, Theme.Static, Theme.Quantum, Theme.Observation, Theme.Interference, Theme.Composite, Theme.Unitary, Theme.Interactions, Theme.Fields, Theme.Horizon, Theme.Zeros, Theme.Ladder, Theme.Flavour, Theme.Dark, Theme.Hadrons, Theme.Super, Theme.Brackets, Theme.YangMills, Theme.Plaquette, Theme.Strata, Theme.Calibration, Theme.Tally, Theme.Causal, Keys.Fourier, Instances, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Theme.Orbital, Keys.Algebra, Keys.Foundation, Algebra, Epi, Dimensions, Quaternion, Keys.Extension, Keys.Gravity, Causality, Representation, Keys.Logic, Reductio, Godel, Finitism, Theme.Cells, Keys.Geometry, Geometry, Complex, Theme.Dirac, Theme.Packed, Theme.Plane, Theme.Hermitian, Theme.Operator, Theme.Unipotent, Theme.Spinor, Theme.Loss, Theme.Det, Theme.Elim, Theme.Cayley, Theme.Product, Theme.Poly, Theme.CharPoly, Keys.Horizon, Rh, Entropy, Keys.Relaxation, Gravity, Keys.Dirac, Keys.Operator, Dirac, Keys.Subject, S13, Keys.Quantum, Quantum, Pnp, Keys.Interactions, Fields, Keys.Flavour, Flavour, Keys.Dark, Dark, Keys.Hadrons, Hadrons, Keys.Carrier, Keys.Domain, Spacetime, Keys.Yangmills, YangMills, Keys.Super, Master)
+no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Cycle, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Fractional, Theme.Lifts, Theme.Dichotomy, Theme.Rotations, Theme.Heisenberg, Theme.Spectra, Theme.Exclusivity, Theme.Shift, Theme.Quadratic, Theme.Extension, Theme.Domain, Theme.Spin, Theme.Lorentz, Theme.Register, Poly, Theme.Numbers, Theme.Logic, Theme.SecondOrder, Theme.Formation, Theme.Reach, Theme.Diagonal, Theme.Threshold, Theme.Sets, Theme.Equivariant, Theme.Transfer, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Framed, Theme.Quaternion, Theme.Carrier, Theme.Subject, Theme.Pair, Theme.Hopf, Theme.Symbol, Theme.Gravity, Theme.Lattice, Theme.Drift, Theme.Relaxation, Theme.Window, Theme.Static, Theme.Quantum, Theme.Observation, Theme.Interference, Theme.Composite, Theme.Unitary, Theme.Interactions, Theme.Fields, Theme.Horizon, Theme.Zeros, Theme.Ladder, Theme.Flavour, Theme.Dark, Theme.Hadrons, Theme.Super, Theme.Brackets, Theme.YangMills, Theme.Plaquette, Theme.Strata, Theme.Calibration, Theme.Tally, Theme.Causal, Keys.Fourier, Instances, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Theme.Orbital, Keys.Algebra, Keys.Foundation, Algebra, Epi, Dimensions, Quaternion, Keys.Extension, Keys.Gravity, Causality, Representation, Keys.Logic, Reductio, Godel, Finitism, Theme.Cells, Keys.Geometry, Geometry, Complex, Theme.Dirac, Theme.Packed, Theme.Plane, Theme.Hermitian, Theme.OpRing, Theme.Operator, Theme.Unipotent, Theme.Spinor, Theme.Kronecker, Theme.Loss, Theme.Det, Theme.Elim, Theme.Cayley, Theme.Product, Theme.Poly, Theme.CharPoly, Theme.Chirality, Theme.Torus, Theme.Charge, Keys.Horizon, Rh, Entropy, Keys.Relaxation, Gravity, Keys.Dirac, Keys.Operator, Dirac, Keys.Subject, S13, Keys.Quantum, Quantum, Pnp, Keys.Interactions, Fields, Keys.Flavour, Flavour, Keys.Dark, Dark, Keys.Hadrons, Hadrons, Keys.Carrier, Keys.Domain, Spacetime, Keys.Yangmills, YangMills, Keys.Super, Master)
 by make_core_web.py; the modules' own headers follow. Check any declaration with `#print axioms`. -/
 
 /-! inlined: FrcCore/Nat.lean -/
@@ -1750,7 +1750,9 @@ Since the ledger migration (task LM17) it holds the frame's arithmetic from 1-al
 frame, the window law and its read-backs, `ofNat_add`, `ofNat_mul`, the quarter-turn and the fourth roots, the meridian
 involution, the complex chart, Theorem approx, `natCount`), `ofNat_self` and `ofNat_add_self` (from 13-epi), the root pair
 (from 10-dimensions) and the counting lemmas of 20-rh, all under their old names in `FRC.Shell` and `FRC.Shell.Frame`.
-The bounded quantifiers' deciders (from 10-dimensions and 20-rh) are in `Series.lean` since task LM22. No axioms.
+The bounded quantifiers' deciders (from 10-dimensions and 20-rh) are in `Series.lean` since task LM22. Since task T42
+(17 November 2026) it also holds `FRC.Ladder.tower_reduces` (from `Theme/Ladder.lean`), name unchanged, so that the keys
+that cite it alone take the frame theme without the horizon theme (gate G10). No axioms.
 -/
 
 namespace FRC
@@ -1953,6 +1955,20 @@ theorem natCount_congr (P Q : Nat → Prop) [DecidablePred P] [DecidablePred Q] 
 end Frame
 end Shell
 end FRC
+
+namespace FRC.Ladder
+
+open FRC.Shell FRC.Shell.Frame
+
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-- 26:G2, 27:C10, 27:X9, 27:P1, 28:X3, 00:G15 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is
+exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes:
+the fifth step returns to counting, 27-fields' C10). -/
+theorem tower_reduces (F : Frame p κ g) (j : Nat) : g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - 1)) :=
+  F.pow_mod _
+
+end FRC.Ladder
 
 /-! inlined: FrcCore/Parity.lean -/
 
@@ -22931,6 +22947,17 @@ it lies in the shell. -/
 theorem hermitian_det_shell (A : M3 p ν) (h : dag A = A) : (det A).im + (det A).im = 0 :=
   im_of_conj_fixed (hermitian_det_real A h)
 
+/-- 27:X11, 27:P9, 00:G7 — the square of a Hermitian matrix: `det (A A) = det A · det A`, with `det A` its own conjugate and its
+imaginary part `2`-torsion. Where `det A` lies in the shell, `det (A A)` is the square of a residue of the shell. -/
+theorem gram_det (A : M3 p ν) (h : dag A = A) :
+    det (mmul A A) = det A * det A ∧ Ext.conj (det A) = det A ∧ (det A).im + (det A).im = 0 ∧
+    ((det A).im = 0 → (det (mmul A A)).re = (det A).re * (det A).re ∧ (det (mmul A A)).im = 0) := by
+  refine ⟨det_mul A A, hermitian_det_real A h, hermitian_det_shell A h, fun h0 => ⟨?_, ?_⟩⟩
+  · rw [det_mul, Ext.mul_re, h0]
+    exact Shell.Frame.RE.sound (Shell.Frame.look [(det A).re, ν]) (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.mul .zero .zero))) (.mul (.var 0) (.var 0)) (by decide +kernel)
+  · rw [det_mul, Ext.mul_im, h0]
+    exact Shell.Frame.RE.sound (Shell.Frame.look [(det A).re]) (.add (.mul (.var 0) .zero) (.mul .zero (.var 0))) .zero (by decide +kernel)
+
 /-! ### The Wilson term under orientation reversal (27-fields, 17 October 2026) -/
 
 /-- The trace. -/
@@ -23028,6 +23055,115 @@ theorem hermitian_det_real2 (A : M2 p ν) (h : dag2 A = A) : Ext.conj (det2 A) =
   have e3 : xeval (fun i => Ext.conj (xlook (ents2 A) i)) (.add (.mul (.var 0) (.var 3)) (.neg (.mul (.var 2) (.var 1)))) = det2 (dag2 A) := rfl
   rw [e1, e2, e3, h]
 
+/-! ### The diagonal torus over the extension and its two cycles (27:C15, 17 November 2026)
+
+The matrices over the extension that commute with a diagonal matrix of distinct entries are the diagonal ones. A point
+`diag(x, y)` of this torus fixes every diagonal matrix by conjugation and multiplies `E` and `F` by `x y⁻¹` and `x⁻¹ y`.
+The unitary points, `σ(w) w = 1`, keep the Hermitian form, and the pair `(diag(w, σ(w)), w)` fixes the vacuum `(0, 1)`. A
+point over the shell is unitary only where its square is one, and a matrix `diag(G, ·)` over the shell multiplies the
+Hermitian pairing by `G G`: the drive is no unitary point. -/
+
+/-- The diagonal matrix `diag(x, y)`. -/
+def dg (x y : Ext p ν) : M2 p ν := ⟨x, 0, 0, y⟩
+
+/-- 27:C15 — a matrix over the extension commutes with `diag(G, H)`, `H − G` invertible, exactly when it is diagonal. -/
+theorem diag_commutes {G H D : Ext p ν} (hD : (H + -G) * D = 1) (X : M2 p ν) :
+    mmul2 X (dg G H) = mmul2 (dg G H) X ↔ X.a01 = 0 ∧ X.a10 = 0 := by
+  constructor
+  · intro hX
+    have e01 : X.a00 * 0 + X.a01 * H = G * X.a01 + 0 * X.a11 := congrArg M2.a01 hX
+    have e10 : X.a10 * G + X.a11 * 0 = 0 * X.a00 + H * X.a10 := congrArg M2.a10 hX
+    have i01 : X.a01 = (((((X.a00 * 0) + (X.a01 * H)) + -((G * X.a01) + (0 * X.a11))) * D) + (X.a01 * (1 + -((H + -G) * D)))) :=
+      xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.var 1) (.add (.mul (.add (.add (.mul (.var 0) .zero) (.mul (.var 1) (.var 5))) (.neg (.add (.mul (.var 4) (.var 1)) (.mul .zero (.var 3))))) (.var 6)) (.mul (.var 1) (.add .one (.neg (.mul (.add (.var 5) (.neg (.var 4))) (.var 6)))))) (by decide +kernel)
+    have z01 : (((((G * X.a01) + (0 * X.a11)) + -((G * X.a01) + (0 * X.a11))) * D) + (X.a01 * (1 + -1))) = 0 :=
+      xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul (.add (.add (.mul (.var 4) (.var 1)) (.mul .zero (.var 3))) (.neg (.add (.mul (.var 4) (.var 1)) (.mul .zero (.var 3))))) (.var 6)) (.mul (.var 1) (.add .one (.neg .one)))) .zero (by decide +kernel)
+    have i10 : X.a10 = (((((0 * X.a00) + (H * X.a10)) + -((X.a10 * G) + (X.a11 * 0))) * D) + (X.a10 * (1 + -((H + -G) * D)))) :=
+      xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.var 2) (.add (.mul (.add (.add (.mul .zero (.var 0)) (.mul (.var 5) (.var 2))) (.neg (.add (.mul (.var 2) (.var 4)) (.mul (.var 3) .zero)))) (.var 6)) (.mul (.var 2) (.add .one (.neg (.mul (.add (.var 5) (.neg (.var 4))) (.var 6)))))) (by decide +kernel)
+    have z10 : (((((0 * X.a00) + (H * X.a10)) + -((0 * X.a00) + (H * X.a10))) * D) + (X.a10 * (1 + -1))) = 0 :=
+      xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul (.add (.add (.mul .zero (.var 0)) (.mul (.var 5) (.var 2))) (.neg (.add (.mul .zero (.var 0)) (.mul (.var 5) (.var 2))))) (.var 6)) (.mul (.var 2) (.add .one (.neg .one)))) .zero (by decide +kernel)
+    rw [e01, hD] at i01; rw [e10, hD] at i10
+    exact ⟨i01.trans z01, i10.trans z10⟩
+  · intro h
+    have h01 := h.1; have h10 := h.2
+    have k01 : X.a00 * 0 + X.a01 * H = G * X.a01 + 0 * X.a11 := by
+      rw [h01]; exact xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul (.var 0) .zero) (.mul .zero (.var 5))) (.add (.mul (.var 4) .zero) (.mul .zero (.var 3))) (by decide +kernel)
+    have k10 : X.a10 * G + X.a11 * 0 = 0 * X.a00 + H * X.a10 := by
+      rw [h10]; exact xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul .zero (.var 4)) (.mul (.var 3) .zero)) (.add (.mul .zero (.var 0)) (.mul (.var 5) .zero)) (by decide +kernel)
+    exact m2ext (xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul (.var 0) (.var 4)) (.mul (.var 1) .zero)) (.add (.mul (.var 4) (.var 0)) (.mul .zero (.var 2))) (by decide +kernel)) k01 k10
+      (xsound (xlook [X.a00, X.a01, X.a10, X.a11, G, H, D]) (.add (.mul (.var 2) .zero) (.mul (.var 3) (.var 5))) (.add (.mul .zero (.var 1)) (.mul (.var 5) (.var 3))) (by decide +kernel))
+
+/-- 27:C15 — the weights of the torus: for `x x' = 1` and `y y' = 1` the conjugation by `diag(x, y)` fixes every diagonal
+matrix and multiplies `E` by `x y'` and `F` by `x' y`. -/
+theorem torus_weights {x x' y y' : Ext p ν} (hx : x * x' = 1) (hy : y * y' = 1) (s t : Ext p ν) :
+    mmul2 (mmul2 (dg x y) (dg s t)) (dg x' y') = dg s t ∧
+    mmul2 (mmul2 (dg x y) ⟨0, 1, 0, 0⟩) (dg x' y') = ⟨0, x * y', 0, 0⟩ ∧
+    mmul2 (mmul2 (dg x y) ⟨0, 0, 1, 0⟩) (dg x' y') = ⟨0, 0, x' * y, 0⟩ :=
+  ⟨m2ext ((xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) (.var 4)) (.mul .zero .zero)) (.var 1)) (.mul (.add (.mul (.var 0) .zero) (.mul .zero (.var 5))) .zero)) (.mul (.mul (.var 0) (.var 1)) (.var 4)) (by decide +kernel)).trans (show (x * x') * s = s by rw [hx, Ext.one_mul]))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) (.var 4)) (.mul .zero .zero)) .zero) (.mul (.add (.mul (.var 0) .zero) (.mul .zero (.var 5))) (.var 3))) .zero (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero (.var 4)) (.mul (.var 2) .zero)) (.var 1)) (.mul (.add (.mul .zero .zero) (.mul (.var 2) (.var 5))) .zero)) .zero (by decide +kernel))
+      ((xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero (.var 4)) (.mul (.var 2) .zero)) .zero) (.mul (.add (.mul .zero .zero) (.mul (.var 2) (.var 5))) (.var 3))) (.mul (.mul (.var 2) (.var 3)) (.var 5)) (by decide +kernel)).trans (show (y * y') * t = t by rw [hy, Ext.one_mul])),
+   m2ext (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) (.var 1)) (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) .zero)) .zero (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) .zero) (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) (.var 3))) (.mul (.var 0) (.var 3)) (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 2) .zero)) (.var 1)) (.mul (.add (.mul .zero .one) (.mul (.var 2) .zero)) .zero)) .zero (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 2) .zero)) .zero) (.mul (.add (.mul .zero .one) (.mul (.var 2) .zero)) (.var 3))) .zero (by decide +kernel)),
+   m2ext (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .one)) (.var 1)) (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) .zero)) .zero (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .one)) .zero) (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) (.var 3))) .zero (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 2) .one)) (.var 1)) (.mul (.add (.mul .zero .zero) (.mul (.var 2) .zero)) .zero)) (.mul (.var 1) (.var 2)) (by decide +kernel))
+      (xsound (xlook [x, x', y, y', s, t]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 2) .one)) .zero) (.mul (.add (.mul .zero .zero) (.mul (.var 2) .zero)) (.var 3))) .zero (by decide +kernel))⟩
+
+/-- 27:C15 — a unitary point of the torus: for `σ(w) w = 1` the matrix `diag(w, σ(w))` has determinant one and keeps the
+Hermitian form, and the pair `(diag(w, σ(w)), w)`, which acts as `w · diag(w, σ(w))`, fixes the vacuum `(0, 1)`. -/
+theorem unitary_point {w : Ext p ν} (hw : Ext.conj w * w = 1) (u₁ u₂ v₁ v₂ : Ext p ν) :
+    det2 (dg w (Ext.conj w)) = 1 ∧
+    Ext.conj (w * u₁) * (w * v₁) + Ext.conj (Ext.conj w * u₂) * (Ext.conj w * v₂) = Ext.conj u₁ * v₁ + Ext.conj u₂ * v₂ ∧
+    w * (w * 0) = 0 ∧ w * (Ext.conj w * 1) = 1 := by
+  have e : (((Ext.conj w * Ext.conj u₁) * (w * v₁)) + ((w * Ext.conj u₂) * (Ext.conj w * v₂))) = ((Ext.conj w * w) * ((Ext.conj u₁ * v₁) + (Ext.conj u₂ * v₂))) :=
+    xsound (xlook [Ext.conj w, w, Ext.conj u₁, v₁, Ext.conj u₂, v₂]) (.add (.mul (.mul (.var 0) (.var 2)) (.mul (.var 1) (.var 3))) (.mul (.mul (.var 1) (.var 4)) (.mul (.var 0) (.var 5)))) (.mul (.mul (.var 0) (.var 1)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 4) (.var 5)))) (by decide +kernel)
+  refine ⟨(xsound (xlook [w, Ext.conj w]) (.add (.mul (.var 0) (.var 1)) (.neg (.mul .zero .zero))) (.mul (.var 1) (.var 0)) (by decide +kernel)).trans hw, ?_,
+    xsound (xlook [w, Ext.conj w]) (.mul (.var 0) (.mul (.var 0) .zero)) .zero (by decide +kernel),
+    (xsound (xlook [w, Ext.conj w]) (.mul (.var 0) (.mul (.var 1) .one)) (.mul (.var 1) (.var 0)) (by decide +kernel)).trans hw⟩
+  rw [Ext.conj_mul, Ext.conj_mul, Ext.conj_conj, e, hw, Ext.one_mul]
+
+/-- 27:C15 — the two cycles meet in `±1`: on a shell without zero divisors a unitary point whose entry lies in the shell
+is `1` or `−1`. -/
+theorem cycles_meet (hdom : ∀ a b : Shell p, a * b = 0 → a = 0 ∨ b = 0) {w : Ext p ν} (h0 : w.im = 0)
+    (hw : Ext.conj w * w = 1) : w.re + -1 = 0 ∨ w.re + 1 = 0 := by
+  have e : w.re * w.re + ν * (-w.im * w.im) = 1 := Ext.re_congr hw
+  rw [h0] at e
+  have e2 : w.re * w.re = 1 := (Shell.Frame.RE.sound (Shell.Frame.look [w.re, ν]) (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.mul (.neg .zero) .zero))) (.mul (.var 0) (.var 0)) (by decide +kernel)).symm.trans e
+  have f : (w.re + -1) * (w.re + 1) = w.re * w.re + -1 :=
+    Shell.Frame.RE.sound (Shell.Frame.look [w.re]) (.mul (.add (.var 0) (.neg .one)) (.add (.var 0) .one)) (.add (.mul (.var 0) (.var 0)) (.neg .one)) (by decide +kernel)
+  have z : (1 : Shell p) + -1 = 0 := Shell.Frame.RE.sound (Shell.Frame.look [w.re]) (.add .one (.neg .one)) .zero (by decide +kernel)
+  exact hdom _ _ (f.trans (by rw [e2]; exact z))
+
+/-- 27:C15 — a matrix `diag(G, ·)` over the shell is no unitary point unless `G G = 1`: it multiplies the Hermitian pairing
+of the first components by `G G`. -/
+theorem drive_rescales {G : Ext p ν} (h0 : G.im = 0) (u v : Ext p ν) :
+    Ext.conj (G * u) * (G * v) = (G * G) * (Ext.conj u * v) := by
+  have c : Ext.conj G = G := Ext.ext rfl (show -G.im = G.im by rw [h0]; exact neg_zero)
+  have e : ((G * Ext.conj u) * (G * v)) = ((G * G) * (Ext.conj u * v)) :=
+    xsound (xlook [G, Ext.conj u, v]) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 2))) (.mul (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 2))) (by decide +kernel)
+  rw [Ext.conj_mul, c, e]
+
+/-- 27:C15 — the diagonal torus over the extension and its two cycles: `diag_commutes`, `torus_weights`, `unitary_point`,
+`cycles_meet` and `drive_rescales` together. -/
+theorem torus_cycles :
+    (∀ {G H D : Ext p ν}, (H + -G) * D = 1 → ∀ X : M2 p ν,
+      (mmul2 X (dg G H) = mmul2 (dg G H) X ↔ X.a01 = 0 ∧ X.a10 = 0)) ∧
+    (∀ {x x' y y' : Ext p ν}, x * x' = 1 → y * y' = 1 → ∀ s t : Ext p ν,
+      mmul2 (mmul2 (dg x y) (dg s t)) (dg x' y') = dg s t ∧
+      mmul2 (mmul2 (dg x y) ⟨0, 1, 0, 0⟩) (dg x' y') = ⟨0, x * y', 0, 0⟩ ∧
+      mmul2 (mmul2 (dg x y) ⟨0, 0, 1, 0⟩) (dg x' y') = ⟨0, 0, x' * y, 0⟩) ∧
+    (∀ {w : Ext p ν}, Ext.conj w * w = 1 → ∀ u₁ u₂ v₁ v₂ : Ext p ν,
+      det2 (dg w (Ext.conj w)) = 1 ∧
+      Ext.conj (w * u₁) * (w * v₁) + Ext.conj (Ext.conj w * u₂) * (Ext.conj w * v₂) = Ext.conj u₁ * v₁ + Ext.conj u₂ * v₂ ∧
+      w * (w * 0) = 0 ∧ w * (Ext.conj w * 1) = 1) ∧
+    (∀ {w : Ext p ν}, (∀ a b : Shell p, a * b = 0 → a = 0 ∨ b = 0) → w.im = 0 → Ext.conj w * w = 1 →
+      w.re + -1 = 0 ∨ w.re + 1 = 0) ∧
+    (∀ {G : Ext p ν}, G.im = 0 → ∀ u v : Ext p ν, Ext.conj (G * u) * (G * v) = (G * G) * (Ext.conj u * v)) :=
+  ⟨fun h X => diag_commutes h X, fun hx hy s t => torus_weights hx hy s t,
+   fun hw u₁ u₂ v₁ v₂ => unitary_point hw u₁ u₂ v₁ v₂, fun hdom h0 hw => cycles_meet hdom h0 hw, fun h0 u v => drive_rescales h0 u v⟩
+
 end FRC.Unitary
 
 /-! inlined: FrcCore/Theme/Interactions.lean -/
@@ -23052,10 +23188,10 @@ The master's block G where its derivations are exact, and the exact content of 2
 
 * **27-fields (16 October 2026).** The electroweak counts (`weinberg_angle`, `unification_counts`, `five_eighths`), the
   residue and its instances (`residue_five`, `residue_instances`, by the twelve-periodic induction `twelve_periodic`), the
-  rank tower (`rank_tower`), the neutral Hessian and the forced projector (`hessian_neutral`, `hessian_full` on `𝔽₁₃` and
-  `𝔽₅`, `projector_forced`), the lattice identities (`holonomy_stokes`, `gauge_flux_invariant`), the V − A cancellation and
-  the orientation relabelling (`va_cancel`, `projector_idempotent`, `orientation_flip`), the drive's adjoint on `𝔽₁₃`
-  (`drive_adjoint`), and the colour–isospin reframings as automorphisms of the reflection algebra (`offblock_automorphism`).
+  rank tower (`rank_tower`), the neutral mass block and the forced projector (`neutral_block`, `projector_forced`; the mass form of the
+  doublet on the Subject's extension is `Theme/Chirality.lean`'s `mass_form`, `mass_spectrum`, `invariant_form`), the lattice identities (`holonomy_stokes`, `gauge_flux_invariant`), the cancellation of a boost over its cycle and
+  the orientation relabelling (`va_cancel`, `projector_idempotent`, `orientation_flip`), the drive's adjoint action and its
+  centraliser on every shell (`adjoint_weights`, `drive_commutes`, `nonzero_residues`, `drive_adjoint`), and the colour–isospin reframings as automorphisms of the reflection algebra (`offblock_automorphism`).
   The kernel-decided certificates of the paper's data are `Theme/Fields.lean`'s.
 
 The finite statements are decided by the kernel; the ring identities by the ring normaliser. No axioms.
@@ -23334,19 +23470,20 @@ theorem rank_tower (n : Nat) (h : n % 12 = 5) : (n + 1) % 2 = 0 ∧ (n + 1) % 3 
         mod_add_twelve (m + 1) 4 (by decide) rfl]
       exact hm h12) n h
 
-/-! ## The neutral Hessian and the photon (27:C2, C5, X3, X5)
+/-! ## The neutral mass block and the photon (27:C2, C5, X3, X5)
 
 The neutral `(W₃, B)` mass block of the gauged Higgs action at the broken vacuum is `¼ v² [[g², −g g′], [−g g′, g′²]]`.
 Cleared of the `¼`, its entries are ring expressions in `g, g′, v` on every shell, and the normaliser decides the
 identities: the determinant vanishes and `(g′, g)` spans the kernel (the massless photon, the unbroken `U(1)`), and
 `(g, −g′)` is the eigenvector of the eigenvalue `(g² + g′²) v²`, that is `4 M_Z² = (g² + g′²) v²`. The custodial `ρ = 1` is the
-separate identity `M_W² (g² + g′²) = M_Z² g²` of the doublet's full Hessian, the `W` block `g² v²/4` against the `Z`
-eigenvalue: `hessian_full` decides it on `𝔽₁₃` and `𝔽₅` from the four generators, as the ledger file's check C6 does. -/
+separate identity `M_W² (g² + g′²) = M_Z² g²` of the doublet's mass operator, the `W` value `g² v²/4` against the `Z`
+value: `Chirality.mass_form` and `Chirality.mass_spectrum` prove it on the Subject's extension, with the Frobenius as the
+conjugation, on every shell. -/
 
-/-- 27:C5, 27:X3, 27:X5 — the neutral Hessian, cleared of `¼`: with `m₀₀ = g² v²`, `m₀₁ = −g g′ v²`, `m₁₁ = g′² v²`,
+/-- 27:C5, 27:X3, 27:X5 — the neutral mass block, cleared of `¼`: with `m₀₀ = g² v²`, `m₀₁ = −g g′ v²`, `m₁₁ = g′² v²`,
 `m₀₀ m₁₁ − m₀₁² = 0` (the massless photon); `(m₀₀, m₀₁) · (g′, g) = 0` and `(m₀₁, m₁₁) · (g′, g) = 0`; the block applied to
 `(g, −g′)` returns `(g² + g′²) v² · (g, −g′)`. -/
-theorem hessian_neutral (g g' v : Shell p) :
+theorem neutral_block (g g' v : Shell p) :
     g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = 0 ∧
     g * g * (v * v) * g' + -(g * g' * (v * v)) * g = 0 ∧
     -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = 0 ∧
@@ -23363,40 +23500,6 @@ theorem hessian_neutral (g g' v : Shell p) :
   have he2 : -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g' :=
     Shell.Frame.RE.sound (Shell.Frame.look [g, g', v]) (.add (.mul (.neg (.mul (.mul (.var 0) (.var 1)) (.mul (.var 2) (.var 2)))) (.var 0)) (.mul (.mul (.mul (.var 1) (.var 1)) (.mul (.var 2) (.var 2))) (.neg (.var 1)))) (.mul (.mul (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.mul (.var 2) (.var 2))) (.neg (.var 1))) (by decide +kernel)
   exact ⟨hdet, hk1, hk2, he1, he2⟩
-
-/-- The entry of a list of pairs, `(0, 0)` past its end. -/
-def pget : List (Shell p × Shell p) → Nat → Shell p × Shell p
-  | [], _ => (0, 0)
-  | x :: _, 0 => x
-  | _ :: l, n + 1 => pget l n
-
-/-- The four generators `(g/2) σ₁, (g/2) σ₂, (g/2) σ₃, (g′/2) 1` applied to the vacuum `(0, v)`: `X_a φ₀ = (A_a[0][1] v, A_a[1][1] v)`,
-with `i` the unit `i² = −1` of the shell and `h = 1/2`. -/
-def xphi (i g g' v h : Shell p) : List (Shell p × Shell p) :=
-  [(g * h * v, 0), (-(i * (g * h)) * v, 0), (0, -(g * h) * v), (0, g' * h * v)]
-
-/-- The Hessian `M_ab = (X_a φ₀)^† (X_b φ₀)`, the conjugate row with `−i`. -/
-def hess (i g g' v h : Shell p) (a b : Nat) : Shell p :=
-  (pget (xphi (-i) g g' v h) a).1 * (pget (xphi i g g' v h) b).1 + (pget (xphi (-i) g g' v h) a).2 * (pget (xphi i g g' v h) b).2
-
-/-- 27:C5, 27:X5 — the full `4 × 4` Hessian of the gauged doublet on `𝔽₁₃` (`i = 5`, `g = 1`, `g′ = 2`, `v = 2`, `h = 7`) and on
-`𝔽₅` (`i = 2`, `g = g′ = 1`, `v = 2`, `h = 3`): `(0, 0, g′, g)` is the kernel (the photon), `det (W₃, B) = 0`, `W₁` and `W₂`
-are degenerate, the `(W₃, B)` trace is `M_Z² = (g² + g′²) v² h²`, and the custodial identity `M_W² (g² + g′²) = M_Z² g²`
-(`ρ = 1`) holds with `M_W² = M₁₁`; `i² = −1` and `2h = 1` on both shells. -/
-theorem hessian_full :
-    ((List.range 4).all (fun a => hess (5 : Shell 13) 1 2 2 7 a 2 * 2 + hess (5 : Shell 13) 1 2 2 7 a 3 * 1 == 0)) = true ∧
-    hess (5 : Shell 13) 1 2 2 7 2 2 * hess (5 : Shell 13) 1 2 2 7 3 3 + -(hess (5 : Shell 13) 1 2 2 7 2 3 * hess (5 : Shell 13) 1 2 2 7 3 2) = 0 ∧
-    hess (5 : Shell 13) 1 2 2 7 0 0 = hess (5 : Shell 13) 1 2 2 7 1 1 ∧
-    hess (5 : Shell 13) 1 2 2 7 2 2 + hess (5 : Shell 13) 1 2 2 7 3 3 = (1 * 1 + 2 * 2) * (2 * 2) * (7 * 7) ∧
-    hess (5 : Shell 13) 1 2 2 7 0 0 * (1 * 1 + 2 * 2) = (hess (5 : Shell 13) 1 2 2 7 2 2 + hess (5 : Shell 13) 1 2 2 7 3 3) * (1 * 1) ∧
-    (5 : Shell 13) * 5 = -1 ∧ (7 : Shell 13) + 7 = 1 ∧
-    ((List.range 4).all (fun a => hess (2 : Shell 5) 1 1 2 3 a 2 * 1 + hess (2 : Shell 5) 1 1 2 3 a 3 * 1 == 0)) = true ∧
-    hess (2 : Shell 5) 1 1 2 3 2 2 * hess (2 : Shell 5) 1 1 2 3 3 3 + -(hess (2 : Shell 5) 1 1 2 3 2 3 * hess (2 : Shell 5) 1 1 2 3 3 2) = 0 ∧
-    hess (2 : Shell 5) 1 1 2 3 0 0 = hess (2 : Shell 5) 1 1 2 3 1 1 ∧
-    hess (2 : Shell 5) 1 1 2 3 2 2 + hess (2 : Shell 5) 1 1 2 3 3 3 = (1 * 1 + 1 * 1) * (2 * 2) * (3 * 3) ∧
-    hess (2 : Shell 5) 1 1 2 3 0 0 * (1 * 1 + 1 * 1) = (hess (2 : Shell 5) 1 1 2 3 2 2 + hess (2 : Shell 5) 1 1 2 3 3 3) * (1 * 1) ∧
-    (2 : Shell 5) * 2 = -1 ∧ (3 : Shell 5) + 3 = 1 := by
-  decide +kernel
 
 theorem five_eq : (5 : Shell p) = 1 + 1 + 1 + 1 + 1 := by
   show ofNat 5 = ofNat 1 + ofNat 1 + ofNat 1 + ofNat 1 + ofNat 1
@@ -23452,15 +23555,15 @@ theorem gauge_flux_invariant (A B C D φ₀ φ₁ φ₂ φ₃ : Shell p) :
     A + φ₁ + -φ₀ + (B + φ₂ + -φ₁) + -(C + φ₂ + -φ₃) + -(D + φ₃ + -φ₀) = A + B + -C + -D :=
   Shell.Frame.RE.sound (Shell.Frame.look [A, B, C, D, φ₀, φ₁, φ₂, φ₃]) (.add (.add (.add (.add (.add (.var 0) (.var 5)) (.neg (.var 4))) (.add (.add (.var 1) (.var 6)) (.neg (.var 5)))) (.neg (.add (.add (.var 2) (.var 6)) (.neg (.var 7))))) (.neg (.add (.add (.var 3) (.var 7)) (.neg (.var 4))))) (.add (.add (.add (.var 0) (.var 1)) (.neg (.var 2))) (.neg (.var 3))) (by decide +kernel)
 
-/-! ## The V − A current and the chiral projector (27:C4, C7, C9, C10, X6)
+/-! ## The cancellation of a boost over its cycle (27:C4, X6)
 
-The boost cycle `C_{q+1}` is read on a prime shell as a root `u` of order `N`; the drive advances the phase by `2δ`
-per chronon. Over one period the drive-aligned branch sums to `N` and the counter-aligned branch to `0` unless
+The boost cycle `C_{q+1}` is read on a prime shell as a root `u` of order `N`; a boost `δ` advances the phase by `2δ`
+per step. Over one period the constant branch sums to `N` and the turning branch to `0` unless
 `u^{2δ} = 1`: the geometric sum against `u^{2δ} − 1` telescopes to `u^{2δN} − 1 = 0`, and a prime shell has no zero
 divisors. -/
 
-/-- 27:C4, 27:X6 — the V − A cancellation: on a prime shell, for `u^N = 1` and `u^{2δ} ≠ 1`,
-`Σ_{τ<N} u^{2δτ} = 0` (the counter-aligned branch) while `Σ_{τ<N} 1 = N` (the aligned branch). -/
+/-- 27:C4, 27:X6 — the cancellation of a boost over its cycle: on a prime shell, for `u^N = 1` and `u^{2δ} ≠ 1`,
+`Σ_{τ<N} u^{2δτ} = 0` (the turning branch) while `Σ_{τ<N} 1 = N` (the constant branch). -/
 theorem va_cancel (hp : FRC.Nat.isPrime p) {u : Shell p} {N : Nat} (hu : u ^ N = 1) {δ : Nat}
     (hδ : u ^ (2 * δ) ≠ 1) :
     sumRange (fun τ => u ^ (2 * δ * τ)) N = 0 ∧ sumRange (fun _ => (1 : Shell p)) N = ofNat N := by
@@ -23478,16 +23581,16 @@ theorem va_cancel (hp : FRC.Nat.isPrime p) {u : Shell p} {N : Nat} (hu : u ^ N =
     | zero => rfl
     | succ n ih => rw [sumRange_succ, ih]; exact ofNat_add n 1
 
-/-- The chiral projector `P_L = diag(1, 0)` is idempotent and annihilates the right branch, `P_L (ψ_L, ψ_R) = (ψ_L, 0)`:
-ring axioms, corroboration only — the projector's content, `(1/N) Σ_τ diag(1, u^{2δτ}) = diag(1, 0)`, is `va_cancel`'s. -/
+/-- The matrix `diag(1, 0)` is idempotent and annihilates the second entry, `diag(1, 0) (x, y) = (x, 0)`: ring axioms,
+corroboration only. It is the mean `(1/N) Σ_τ diag(1, u^{2δτ})` of `va_cancel`, a mean over the boost cycle and no
+chirality projector of the shell (`Chirality.no_idempotent`). -/
 theorem projector_idempotent (x y : Shell p) :
     (1 : Shell p) * 1 = 1 ∧ (0 : Shell p) * 0 = 0 ∧ 1 * x = x ∧ 0 * y = 0 :=
   ⟨mul_one 1, mul_zero 0, one_mul x, zero_mul y⟩
 
-/-- 27:C4, 27:X6 — the orientation convention `ε ↦ −ε` relabels the branches and leaves the selection: the inverse exponent
+/-- 27:C4, 27:X6 — the orientation convention `ε ↦ −ε` relabels the branches: the inverse exponent
 `2(N − δ)` is as far from the identity as `2δ` (`u^{2δ} u^{2(N−δ)} = u^{2N} = 1`), so its branch sums to `0` too; the
-two conventions disagree on the label (`1 ≠ −1`) and agree that the coupled branch is the drive-aligned one
-(`ε · ε > 0` for both signs). -/
+two conventions disagree on the label (`1 ≠ −1`), and `ε · ε > 0` for both signs. -/
 theorem orientation_flip (hp : FRC.Nat.isPrime p) {u : Shell p} {N : Nat} (hu : u ^ N = 1) {δ : Nat}
     (hδN : δ ≤ N) (hδ : u ^ (2 * δ) ≠ 1) :
     sumRange (fun τ => u ^ (2 * (N - δ) * τ)) N = 0 ∧
@@ -23498,35 +23601,147 @@ theorem orientation_flip (hp : FRC.Nat.isPrime p) {u : Shell p} {N : Nat} (hu : 
     rw [h2, ← pow_add, ← _root_.Nat.mul_add, FRC.Nat.add_sub_of_le hδN, _root_.Nat.mul_comm, pow_mul, hu, one_pow])
   exact (va_cancel hp hu h').1
 
-/-! ## The breaking over `𝔽₁₃`: the drive's adjoint action (27:C4)
+/-! ## The drive on every shell: its adjoint action and its centraliser (27:C4)
 
-`2 × 2` matrices over the shell as quadruples `(a, b, c, d)`; the drive `δ = diag(2, 7)` of `𝔽₁₃` (`2 · 7 = 14 ≡ 1`)
-acts by conjugation on `𝔰𝔩₂`: it fixes `H = diag(1, −1)` and scales `E` by `g² = 4` and `F` by `g⁻² = 10`; its
-centraliser in `SL₂(𝔽₁₃)` is the split torus of order `12 = p − 1`. -/
+`2 × 2` matrices over the shell as quadruples `(a, b, c, d)`. The drive `δ = diag(g, h)`, `g h = 1`, acts by conjugation
+on `𝔰𝔩₂`: it fixes `H = diag(1, −1)` and scales `E` by `g²` and `F` by `h²`. Where `g² ≠ 1`, a matrix commutes with `δ`
+exactly when it is diagonal. The matrices of determinant one that commute with `δ` are therefore the `diag(a, d)` with
+`a d = 1`, one for each nonzero residue `a`: the split cycle. The nonzero residues are those of `1, …, p − 1`. -/
 
 /-- The product of `2 × 2` matrices over the shell, as quadruples. -/
 def m2 (X Y : Shell p × Shell p × Shell p × Shell p) : Shell p × Shell p × Shell p × Shell p :=
   (X.1 * Y.1 + X.2.1 * Y.2.2.1, X.1 * Y.2.1 + X.2.1 * Y.2.2.2,
    X.2.2.1 * Y.1 + X.2.2.2 * Y.2.2.1, X.2.2.1 * Y.2.1 + X.2.2.2 * Y.2.2.2)
 
-/-- The quadruple of the residues `(a, b, c, d)` of a number `n < p⁴`. -/
-def m2of (n : Nat) : Shell p × Shell p × Shell p × Shell p :=
-  (ofNat (n % p), ofNat (n / p % p), ofNat (n / (p * p) % p), ofNat (n / (p * p * p)))
+omit [Pos p] in
+/-- A quadruple is decided by its four entries. -/
+theorem quad_ext {a b c d a' b' c' d' : Shell p} (h1 : a = a') (h2 : b = b') (h3 : c = c') (h4 : d = d') :
+    (a, b, c, d) = (a', b', c', d') := by
+  subst h1; subst h2; subst h3; subst h4; rfl
 
-/-- 27:C4, 27:X1 — the drive `δ = diag(2, 7)` of `𝔽₁₃` (`δ⁻¹ = diag(7, 2)`): `Ad_δ H = H`, `Ad_δ E = 4 E`, `Ad_δ F = 10 F` with
-`4 · 10 ≡ 1`; the centraliser of `δ` in `SL₂(𝔽₁₃)` has `12` elements (the split torus); the non-split torus element
-`[[3, 4], [2, 3]]` (`a = 3, b = 2, ν = 2`, `a² − ν b² = 1`) does not commute with the drive. -/
-theorem drive_adjoint :
-    m2 (2, 0, 0, 7) (7, 0, 0, (2 : Shell 13)) = (1, 0, 0, 1) ∧
-    m2 (m2 (2, 0, 0, 7) (1, 0, 0, 12)) (7, 0, 0, (2 : Shell 13)) = (1, 0, 0, 12) ∧
-    m2 (m2 (2, 0, 0, 7) (0, 1, 0, 0)) (7, 0, 0, (2 : Shell 13)) = (0, 4, 0, 0) ∧
-    m2 (m2 (2, 0, 0, 7) (0, 0, 1, 0)) (7, 0, 0, (2 : Shell 13)) = (0, 0, 10, 0) ∧
-    (4 : Shell 13) * 10 = 1 ∧
-    ((List.range (13 * 13 * 13 * 13)).filter (fun n =>
-      let X := m2of (p := 13) n
-      X.1 * X.2.2.2 + -(X.2.1 * X.2.2.1) == 1 && m2 X (2, 0, 0, 7) == m2 (2, 0, 0, 7) X)).length = 12 ∧
-    m2 (3, 4, 2, 3) (2, 0, 0, 7) ≠ m2 (2, 0, 0, 7) (3, 4, 2, (3 : Shell 13)) := by
-  decide +kernel
+/-- 27:C4 — the drive's adjoint action on every shell: for `δ = diag(g, h)` with `g h = 1`, `δ δ⁻¹ = 1`, `Ad_δ H = H`,
+`Ad_δ E = g² E`, `Ad_δ F = h² F`, and `g² h² = 1`. -/
+theorem adjoint_weights {g h : Shell p} (hgh : g * h = 1) :
+    m2 (g, 0, 0, h) (h, 0, 0, g) = (1, 0, 0, 1) ∧
+    m2 (m2 (g, 0, 0, h) (1, 0, 0, -1)) (h, 0, 0, g) = (1, 0, 0, -1) ∧
+    m2 (m2 (g, 0, 0, h) (0, 1, 0, 0)) (h, 0, 0, g) = (0, g * g, 0, 0) ∧
+    m2 (m2 (g, 0, 0, h) (0, 0, 1, 0)) (h, 0, 0, g) = (0, 0, h * h, 0) ∧
+    (g * g) * (h * h) = 1 := by
+  refine ⟨?_, ?_, ?_, ?_, ?_⟩
+  · exact quad_ext ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.var 0) (.var 1)) (.mul .zero .zero)) (.mul (.var 0) (.var 1)) (by decide +kernel)).trans hgh)
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.var 0) .zero) (.mul .zero (.var 0))) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul .zero (.var 1)) (.mul (.var 1) .zero)) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul .zero .zero) (.mul (.var 1) (.var 0))) (.mul (.var 0) (.var 1)) (by decide +kernel)).trans hgh)
+  · exact quad_ext ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) (.var 1)) (.mul (.add (.mul (.var 0) .zero) (.mul .zero (.neg .one))) .zero)) (.mul (.var 0) (.var 1)) (by decide +kernel)).trans hgh)
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) .zero) (.mul (.add (.mul (.var 0) .zero) (.mul .zero (.neg .one))) (.var 0))) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .one) (.mul (.var 1) .zero)) (.var 1)) (.mul (.add (.mul .zero .zero) (.mul (.var 1) (.neg .one))) .zero)) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .one) (.mul (.var 1) .zero)) .zero) (.mul (.add (.mul .zero .zero) (.mul (.var 1) (.neg .one))) (.var 0))) (.neg (.mul (.var 0) (.var 1))) (by decide +kernel)).trans (congrArg (fun x => -x) hgh))
+  · exact quad_ext ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) (.var 1)) (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) .zero)) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) .zero) (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) (.var 0))) (.mul (.var 0) (.var 0)) (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 1) .zero)) (.var 1)) (.mul (.add (.mul .zero .one) (.mul (.var 1) .zero)) .zero)) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 1) .zero)) .zero) (.mul (.add (.mul .zero .one) (.mul (.var 1) .zero)) (.var 0))) .zero (by decide +kernel)))
+  · exact quad_ext ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .one)) (.var 1)) (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) .zero)) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .one)) .zero) (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) (.var 0))) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 1) .one)) (.var 1)) (.mul (.add (.mul .zero .zero) (.mul (.var 1) .zero)) .zero)) (.mul (.var 1) (.var 1)) (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 1) .one)) .zero) (.mul (.add (.mul .zero .zero) (.mul (.var 1) .zero)) (.var 0))) .zero (by decide +kernel)))
+  · have e1 : ((g * g) * (h * h)) = ((g * h) * (g * h)) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.mul (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 1))) (by decide +kernel)
+    have e2 : ((1 : Shell p) * 1) = 1 :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.mul .one .one) .one (by decide +kernel)
+    rw [hgh] at e1
+    exact e1.trans e2
+
+/-- 27:C4 — a matrix commutes with the drive exactly when it is diagonal: on a prime shell, for `δ = diag(g, h)` with
+`g h = 1` and `g² ≠ 1`, `X δ = δ X` holds if and only if the off-diagonal entries of `X` vanish. -/
+theorem drive_commutes (hp : FRC.Nat.isPrime p) {g h : Shell p} (hgh : g * h = 1) (hg : g * g ≠ 1) (a b c d : Shell p) :
+    m2 (a, b, c, d) (g, 0, 0, h) = m2 (g, 0, 0, h) (a, b, c, d) ↔ b = 0 ∧ c = 0 := by
+  have hne : h + -g ≠ 0 := fun e => hg (by
+    have i1 : (g * h) = ((g * g) + (g * (h + -g))) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.mul (.var 0) (.var 1)) (.add (.mul (.var 0) (.var 0)) (.mul (.var 0) (.add (.var 1) (.neg (.var 0))))) (by decide +kernel)
+    have i2 : ((g * g) + (g * 0)) = (g * g) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.var 0) (.var 0)) (.mul (.var 0) .zero)) (.mul (.var 0) (.var 0)) (by decide +kernel)
+    rw [e] at i1
+    exact i2.symm.trans (i1.symm.trans hgh))
+  constructor
+  · intro hX
+    have h2 : a * 0 + b * h = g * b + 0 * d := congrArg (fun X => X.2.1) hX
+    have h3 : c * g + d * 0 = 0 * a + h * c := congrArg (fun X => X.2.2.1) hX
+    have j2 : (b * (h + -g)) = (((a * 0) + (b * h)) + -((g * b) + (0 * d))) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, b, c, d]) (.mul (.var 3) (.add (.var 1) (.neg (.var 0)))) (.add (.add (.mul (.var 2) .zero) (.mul (.var 3) (.var 1))) (.neg (.add (.mul (.var 0) (.var 3)) (.mul .zero (.var 5))))) (by decide +kernel)
+    have k2 : (((g * b) + (0 * d)) + -((g * b) + (0 * d))) = 0 :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, b, c, d]) (.add (.add (.mul (.var 0) (.var 3)) (.mul .zero (.var 5))) (.neg (.add (.mul (.var 0) (.var 3)) (.mul .zero (.var 5))))) .zero (by decide +kernel)
+    have j3 : (c * (h + -g)) = (((0 * a) + (h * c)) + -((c * g) + (d * 0))) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, b, c, d]) (.mul (.var 4) (.add (.var 1) (.neg (.var 0)))) (.add (.add (.mul .zero (.var 2)) (.mul (.var 1) (.var 4))) (.neg (.add (.mul (.var 4) (.var 0)) (.mul (.var 5) .zero)))) (by decide +kernel)
+    have k3 : (((c * g) + (d * 0)) + -((c * g) + (d * 0))) = 0 :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, b, c, d]) (.add (.add (.mul (.var 4) (.var 0)) (.mul (.var 5) .zero)) (.neg (.add (.mul (.var 4) (.var 0)) (.mul (.var 5) .zero)))) .zero (by decide +kernel)
+    have hb := Prime.mul_eq_zero hp ((j2.trans (congrArg (fun t => t + -(g * b + 0 * d)) h2)).trans k2)
+    have hc := Prime.mul_eq_zero hp ((j3.trans (congrArg (fun t => t + -(c * g + d * 0)) h3.symm)).trans k3)
+    exact ⟨hb.resolve_right hne, hc.resolve_right hne⟩
+  · intro hbc
+    have hb := hbc.1; have hc := hbc.2
+    subst hb; subst hc
+    exact quad_ext
+      (Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, d]) (.add (.mul (.var 2) (.var 0)) (.mul .zero .zero)) (.add (.mul (.var 0) (.var 2)) (.mul .zero .zero)) (by decide +kernel))
+      (Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, d]) (.add (.mul (.var 2) .zero) (.mul .zero (.var 1))) (.add (.mul (.var 0) .zero) (.mul .zero (.var 3))) (by decide +kernel))
+      (Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, d]) (.add (.mul .zero (.var 0)) (.mul (.var 3) .zero)) (.add (.mul .zero (.var 2)) (.mul (.var 1) .zero)) (by decide +kernel))
+      (Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, d]) (.add (.mul .zero .zero) (.mul (.var 3) (.var 1))) (.add (.mul .zero .zero) (.mul (.var 1) (.var 3))) (by decide +kernel))
+
+/-- The nonzero residues of a shell are those of `1, …, p − 1`: a residue is nonzero exactly when its representative is
+positive, the representative is below `p`, two residues with one representative are equal, and no `k < p` is missed by
+the representatives. -/
+theorem nonzero_residues :
+    (∀ a : Shell p, a ≠ 0 ↔ 0 < a.val) ∧ (∀ a : Shell p, a.val < p) ∧
+    (∀ a b : Shell p, a.val = b.val → a = b) ∧ (∀ k : Nat, k < p → ¬∀ a : Shell p, a.val ≠ k) :=
+  ⟨fun a => ⟨fun ha => Nat.pos_of_ne_zero (fun e => ha (ext (e.trans val_zero.symm))),
+            fun ha e => by rw [e, val_zero] at ha; exact Nat.lt_irrefl 0 ha⟩,
+   fun a => a.lt, fun _ _ h => ext h, fun k hk h => h (ofNat k) (FRC.Nat.mod_eq_of_lt hk)⟩
+
+/-- 27:C4, 27:X1 — the drive on every shell. For the drive `δ = diag(g, h)` on a prime shell, with `g h = 1` and
+`g² ≠ 1`: `δ` fixes `H` and scales `E` and `F` by `g²` and `h²` (`adjoint_weights`); a matrix commutes with `δ` exactly
+when it is diagonal (`drive_commutes`); a matrix of determinant one commutes with `δ` exactly when it is
+`diag(a, d)` with `a d = 1`; each nonzero residue `a` gives one such matrix, `diag(a, a^(p−2))`, and `d` is decided
+by `a`; the nonzero residues are those of `1, …, p − 1` (`nonzero_residues`), so these matrices are the split cycle of
+order `p − 1`; and an element `[[a, ν b], [b, a]]` of the boost cycle with `b ≠ 0` does not commute with the drive. -/
+theorem drive_adjoint (hp : FRC.Nat.isPrime p) {g h : Shell p} (hgh : g * h = 1) (hg : g * g ≠ 1) :
+    (m2 (g, 0, 0, h) (h, 0, 0, g) = (1, 0, 0, 1) ∧
+     m2 (m2 (g, 0, 0, h) (1, 0, 0, -1)) (h, 0, 0, g) = (1, 0, 0, -1) ∧
+     m2 (m2 (g, 0, 0, h) (0, 1, 0, 0)) (h, 0, 0, g) = (0, g * g, 0, 0) ∧
+     m2 (m2 (g, 0, 0, h) (0, 0, 1, 0)) (h, 0, 0, g) = (0, 0, h * h, 0) ∧
+     (g * g) * (h * h) = 1) ∧
+    (∀ a b c d : Shell p, m2 (a, b, c, d) (g, 0, 0, h) = m2 (g, 0, 0, h) (a, b, c, d) ↔ b = 0 ∧ c = 0) ∧
+    (∀ a b c d : Shell p, a * d + -(b * c) = 1 →
+      (m2 (a, b, c, d) (g, 0, 0, h) = m2 (g, 0, 0, h) (a, b, c, d) ↔ b = 0 ∧ c = 0 ∧ a * d = 1)) ∧
+    (∀ a : Shell p, a ≠ 0 → a * a ^ (p - 2) = 1) ∧
+    (∀ a d d' : Shell p, a * d = 1 → a * d' = 1 → d = d') ∧
+    ((∀ a : Shell p, a ≠ 0 ↔ 0 < a.val) ∧ (∀ a : Shell p, a.val < p) ∧
+     (∀ a b : Shell p, a.val = b.val → a = b) ∧ (∀ k : Nat, k < p → ¬∀ a : Shell p, a.val ≠ k)) ∧
+    (∀ a b ν : Shell p, b ≠ 0 → m2 (a, ν * b, b, a) (g, 0, 0, h) ≠ m2 (g, 0, 0, h) (a, ν * b, b, a)) := by
+  refine ⟨adjoint_weights hgh, drive_commutes hp hgh hg, ?_, ?_, ?_, nonzero_residues, ?_⟩
+  · intro a b c d hdet
+    constructor
+    · intro hX
+      have hbc := (drive_commutes hp hgh hg a b c d).1 hX
+      have hb := hbc.1
+      subst hb
+      have e1 : (a * d) = (((a * d) + -(0 * c)) + 0) :=
+        Shell.Frame.RE.sound (Shell.Frame.look [a, d, c]) (.mul (.var 0) (.var 1)) (.add (.add (.mul (.var 0) (.var 1)) (.neg (.mul .zero (.var 2)))) .zero) (by decide +kernel)
+      rw [hdet] at e1
+      exact ⟨rfl, hbc.2, e1.trans (add_zero 1)⟩
+    · intro h3
+      exact (drive_commutes hp hgh hg a b c d).2 ⟨h3.1, h3.2.1⟩
+  · intro a ha
+    have hf := Prime.fermat hp ha
+    have h2 : p - 2 + 1 = p - 1 := by
+      have := FRC.Nat.sub_add_cancel (Prime.two_le hp)
+      calc p - 2 + 1 = p - 2 + 2 - 1 := rfl
+        _ = p - 1 := by rw [this]
+    rw [← h2, pow_succ] at hf
+    rw [mul_comm]; exact hf
+  · intro a d d' h1 h2
+    have ha : a ≠ 0 := fun e => Prime.one_ne_zero hp (by rw [← h1, e, zero_mul])
+    exact Prime.mul_left_cancel hp ha (h1.trans h2.symm)
+  · intro a b ν hb hX
+    exact hb ((drive_commutes hp hgh hg a (ν * b) b a).1 hX).2
 
 /-! ## The colour–isospin reframings as automorphisms (27:C9, X8, 00:Z5)
 
@@ -25166,7 +25381,7 @@ the index back. On every shell, with no hypothesis beyond the frame:
 * the power map acts on the index as multiplication by `k` — `(g^m)^k = g^{km mod n}` — and its iterates as
   multiplication by `k^r` (`power_index`, `phase_index`); the ascent is one multiplication per counted step
   (`ascent_step`); a tower exponent is read modulo `n`, so iterated exponentiation opens no fifth role
-  (`tower_reduces`, the drive's `pow_mod`);
+  (`tower_reduces`, the drive's `pow_mod`, in `Frame.lean` since task T42);
 * multiplication by a unit permutes the units (`mul_perm`), the clause behind the Gauss-sum telescoping;
 * every index `m` has a recentring chart, a translation of the cycle that carries it to one step from the origin
   (`recentre`, `recentre_inj`);
@@ -25213,12 +25428,6 @@ theorem phase_index (F : Frame p κ g) (k : Nat) : ∀ (r m : Nat),
 
 /-- 26:G3, 26:G4 — the ascent is counting along the orbit: `g^{j+1} = g^j · g`, one multiplication per step. -/
 theorem ascent_step (j : Nat) : g ^ (j + 1) = g ^ j * g := pow_succ g j
-
-/-- 26:G2, 27:C10, 27:X9, 27:P1, 28:X3, 00:G15 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is
-exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes:
-the fifth step returns to counting, 27-fields' C10). -/
-theorem tower_reduces (F : Frame p κ g) (j : Nat) : g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - 1)) :=
-  F.pow_mod _
 
 /-! ## Multiplication by a unit permutes the units (26:B5) -/
 
@@ -30228,6 +30437,15 @@ theorem p14031 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p26048 — 26:H3. Fourier-diagonalisable implies $\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (round trips at $n=8$, a sub-cycle of $\F_{17}$, and at $n=256$, $2^{16}$, the full cycles of $\F_{257}$, $\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\tfrac32n\log_2n+n$ through the transform ($1\,048\,576$ against $16\,384$ at $n=2^{10}$) [data]. -/
 theorem p26048 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => g ^ (l * k) * -g ^ ((p - (1 : Nat) - j) * l)) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun j => (g ^ k) ^ j) (p - (1 : Nat)) = (0 : FRC.Shell p) ∧ FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
   And.intro @FRC.Shell.Frame.dft_inverse (@FRC.Shell.Frame.principal_root)
+/-- p27022 — 27:C10. The closure of the four primitive roles ($5\!\to\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter naming (B6). -/
+theorem p27022 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
+  @FRC.Ladder.tower_reduces
+/-- p27032 — 27:X9. \textbf{The interaction and generation counts} are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained. -/
+theorem p27032 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
+  @FRC.Ladder.tower_reduces
+/-- p27035 — 27:P1. \textbf{No fourth generation and no fifth interaction} \emph{[forced]}. The role ladder closes and the fifth step returns to counting. Given the naming B6, which declares the content exhaustive, a fourth chiral family and a fifth fundamental force are excluded. \emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction. -/
+theorem p27035 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
+  @FRC.Ladder.tower_reduces
 -- end keys
 
 end FRC.Ledger
@@ -34103,9 +34321,12 @@ theorem isotropy (F : Frame p κ g) (k : Nat) :
 /-- 8:E9 — on every symmetry-complete shell `p = 4κ + 1`, `p^k + 1 ≡ 2 (mod 4)` for every `k`: a phase whose order is
 divisible by `4` lies on no cycle of order `p^k + 1`, the relation behind the degree-two instance of `eigenphase_values`. -/
 theorem pow_succ_mod_four (F : Frame p κ g) (k : Nat) : (p ^ k + 1) % 4 = 2 := by
-  have h1 : p % 4 = 1 := by have := F.cap; omega
-  have h2 : p ^ k % 4 = 1 := by rw [Nat.pow_mod, h1, Nat.one_pow]
-  omega
+  have h1 : p % 4 = 1 := by rw [F.cap, FRC.Nat.add_mul_mod_self_left 1 κ 4 (by decide)]
+  have h2 : ∀ k, p ^ k % 4 = 1 := fun k => by
+    induction k with
+    | zero => rfl
+    | succ k ih => rw [Nat.pow_succ, FRC.Nat.mul_mod _ _ _ (by decide), ih, h1]
+  rw [FRC.Nat.add_mod _ _ _ (by decide), h2 k]
 
 /-- 8:F4, 8:F6, 8:X1, 8:E8 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`,
 so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one
@@ -35904,23 +36125,16 @@ end covariance
 
 end FRC.Dirac.Hermitian
 
-/-! inlined: FrcCore/Theme/Operator.lean -/
-
+/-! inlined: FrcCore/Theme/OpRing.lean -/
 /-!
-# The operator layer of 8-dirac — a ring of operators up to a congruence, no axioms
+# The ring of operators up to a congruence — no axioms
 
-The fourth file of the dirac theme (5 November 2026, the core-proof programme, decision D2): the general form of the
-operator rows. An `OpRing` is a type with `+`, `*`, `−`, `0`, `1` and a congruence `≈` (an equivalence respected by the
-three operations) satisfying the ring laws up to `≈`. The congruence is what lets the matrices of the spinor file —
-functions of two indices read below the dimension — form a ring without function extensionality: two matrices are
-congruent when their entries agree on the range, and nothing here needs more. Every theorem of the layer is stated up to
-`≈` and holds in every `OpRing`: the Cayley step of a symmetric operator at an admissible parameter is unitary (C4); a
-nilpotent operator has the geometric series as the inverse of `1 − N`, so the static massive equation has only the zero
-solution (X3, F7); the Cayley step of a nilpotent shift minus a mass is a unit congruent, modulo a nilpotent, to the
-scalar phase (D10); a two-sided unit is injective and surjective (E3, E6); conjugation by a unit preserves the
-anticommutator (D17); the square of a sum of pairwise anticommuting operators is the sum of the squares, so the Dirac
-operator factorises, `(𝒟 − m)(𝒟 + m) = □_η − m²` (D3, D18); and in characteristic `p`, `t^p = 1` forces `(t − 1)^p = 0`,
-the translations unipotent (F7), by the binomial theorem and `p ∣ C(p, k)` on the shell. No axioms.
+An `OpRing` is a type with `+`, `*`, `−`, `0`, `1` and a congruence `≈` (an equivalence respected by the three
+operations) satisfying the ring laws up to `≈`. The congruence lets matrices read as functions of two indices form a ring
+without function extensionality: two matrices are congruent when their entries agree on the range. This file holds the
+class, the lemmas every ring has (cancellation, the negative, the products with `0` and `−1`), and the commuting, the
+central and the anticommuting elements. It imports nothing. The operator layer of 8-dirac (`Theme/Operator.lean`) and the
+chirality of 27-fields (`Theme/Chirality.lean`) are built on it. No axioms.
 -/
 
 namespace FRC.Dirac.Operator
@@ -36087,6 +36301,40 @@ theorem Central.one : Central (1 : R) := Comm.one_left
 theorem Central.zero : Central (0 : R) := Comm.zero_left
 theorem Central.congr {c c' : R} (h : c ≈ c') (hc : Central c) : Central c' :=
   fun x => Comm.congr h (eq_refl x) (hc x)
+
+/-! ## Anticommuting elements -/
+
+/-- `A` and `B` anticommute. -/
+def Anticomm (A B : R) : Prop := A * B + B * A ≈ 0
+
+theorem Anticomm.symm {A B : R} (h : Anticomm A B) : Anticomm B A := eq_trans (add_comm _ _) h
+end FRC.Dirac.Operator
+
+/-! inlined: FrcCore/Theme/Operator.lean -/
+
+/-!
+# The operator layer of 8-dirac — a ring of operators up to a congruence, no axioms
+
+The fourth file of the dirac theme (5 November 2026, the core-proof programme, decision D2): the general form of the
+operator rows. An `OpRing` is a type with `+`, `*`, `−`, `0`, `1` and a congruence `≈` (an equivalence respected by the
+three operations) satisfying the ring laws up to `≈`. The congruence is what lets the matrices of the spinor file —
+functions of two indices read below the dimension — form a ring without function extensionality: two matrices are
+congruent when their entries agree on the range, and nothing here needs more. Every theorem of the layer is stated up to
+`≈` and holds in every `OpRing`: the Cayley step of a symmetric operator at an admissible parameter is unitary (C4); a
+nilpotent operator has the geometric series as the inverse of `1 − N`, so the static massive equation has only the zero
+solution (X3, F7); the Cayley step of a nilpotent shift minus a mass is a unit congruent, modulo a nilpotent, to the
+scalar phase (D10); a two-sided unit is injective and surjective (E3, E6); conjugation by a unit preserves the
+anticommutator (D17); the square of a sum of pairwise anticommuting operators is the sum of the squares, so the Dirac
+operator factorises, `(𝒟 − m)(𝒟 + m) = □_η − m²` (D3, D18); and in characteristic `p`, `t^p = 1` forces `(t − 1)^p = 0`,
+the translations unipotent (F7), by the binomial theorem and `p ∣ C(p, k)` on the shell. The ring
+itself, with its basic lemmas and the commuting, central and anticommuting elements, is `Theme/OpRing.lean`. No axioms.
+-/
+
+namespace FRC.Dirac.Operator
+
+variable {R : Type} [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [OpRing R]
+
+open OpRing (add_congr mul_congr neg_congr add_comm add_assoc zero_add add_neg mul_assoc one_mul mul_one left_distrib right_distrib)
 
 /-! ## Powers -/
 
@@ -36606,11 +36854,6 @@ theorem conjBy_central {S S' : R} (h : Inverse S S') {c : R} (hc : Central c) : 
 
 /-! ## The square of a sum of anticommuting operators and the Dirac factorisation (8:D3, 8:D18) -/
 
-/-- `A` and `B` anticommute. -/
-def Anticomm (A B : R) : Prop := A * B + B * A ≈ 0
-
-theorem Anticomm.symm {A B : R} (h : Anticomm A B) : Anticomm B A := eq_trans (add_comm _ _) h
-
 theorem Anticomm.add_left {A B C : R} (hA : Anticomm A C) (hB : Anticomm B C) : Anticomm (A + B) C :=
   calc (A + B) * C + C * (A + B) ≈ A * C + B * C + (C * A + C * B) := add_congr (right_distrib _ _ _) (left_distrib _ _ _)
     _ ≈ A * C + C * A + (B * C + C * B) := add_add_add_comm _ _ _ _
@@ -37007,6 +37250,495 @@ theorem opow_of_nilpotent_shift {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Fr
     _ ≈ opow φ p + 0 := add_congr_right _ hN
     _ ≈ opow φ p := add_zero _
 
+/-! ## The exact index in `0+1` (D20) and the Frobenius of the eigenphase (E9) -/
+/-- The power of an inverse pair of commuting elements is an inverse pair. -/
+theorem inverse_opow {u v : R} (h : Inverse u v) (n : Nat) : Inverse (opow u n) (opow v n) := by
+  have hc : Comm u v := eq_trans h.1 (eq_symm h.2)
+  refine ⟨?_, ?_⟩
+  · calc opow u n * opow v n ≈ opow (u * v) n := eq_symm (mul_opow hc n)
+      _ ≈ opow 1 n := opow_congr h.1 n
+      _ ≈ 1 := opow_one_left n
+  · calc opow v n * opow u n ≈ opow (v * u) n := eq_symm (mul_opow hc.symm n)
+      _ ≈ opow 1 n := opow_congr h.2 n
+      _ ≈ 1 := opow_one_left n
+
+/-- `C(p − 1, k) ≡ (−1)^k (mod p)` for `k < p`, read in the ring: `C(p−1, k) • 1 ≈ (−1)^k`. By Pascal's rule and
+`p ∣ C(p, k + 1)`. -/
+theorem nsmul_choose_pred {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0) :
+    ∀ k, k < p → nsmul (choose (p - 1) k) (1 : R) ≈ opow (-1) k
+  | 0, _ => by rw [choose_zero_right]; exact zero_add 1
+  | k + 1, hk => by
+    have ih := nsmul_choose_pred F hch k (Nat.lt_of_succ_lt hk)
+    obtain ⟨q, hq⟩ : ∃ q, p = q + 1 := ⟨p - 1, (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm⟩
+    subst hq
+    rw [FRC.Nat.add_sub_cancel] at ih ⊢
+    have h0 : nsmul (choose (q + 1) (k + 1)) (1 : R) ≈ 0 := nsmul_choose_prime F hch (Nat.zero_lt_succ k) hk 1
+    have hsum : nsmul (choose q k) (1 : R) + nsmul (choose q (k + 1)) 1 ≈ 0 :=
+      eq_trans (eq_symm (add_nsmul _ _ _)) (eq_trans (eq_of_eq (by rw [← choose_succ_succ])) h0)
+    calc nsmul (choose q (k + 1)) (1 : R) ≈ -(nsmul (choose q k) 1) := eq_symm (neg_eq_of_add_eq_zero hsum)
+      _ ≈ -(opow (-1) k) := neg_congr ih
+      _ ≈ opow (-1) k * -1 := eq_symm (mul_neg_one _)
+      _ ≈ opow (-1) (k + 1) := eq_refl _
+
+/-- `(t − 1)^{p−1} ≈ Σ_{k<p} t^k` in characteristic `p`, for every `t`: the polynomial identity
+`(x − 1)^{p−1} = x^{p−1} + ⋯ + 1` of `𝔽_p[x]`. -/
+theorem opow_sub_one_pred {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0) (t : R) :
+    opow (t + -1) (p - 1) ≈ geom t p := by
+  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm
+  have heven : ∀ j, j ≤ p - 1 → opow (-1 : R) (p - 1 - j) * opow (-1) j ≈ 1 := fun j hj => by
+    have e : p - 1 - j + j = 4 * κ := by rw [FRC.Nat.sub_add_cancel hj, F.cap, FRC.Nat.add_sub_cancel]
+    calc opow (-1 : R) (p - 1 - j) * opow (-1) j ≈ opow (-1) (p - 1 - j + j) := eq_symm (opow_add _ _ _)
+      _ ≈ opow (-1) (2 * (2 * κ)) := eq_of_eq (by rw [e, ← Nat.mul_assoc])
+      _ ≈ 1 := opow_neg_one_even _
+  calc opow (t + -1) (p - 1) ≈ binom t (-1) (p - 1) := binomial (Comm.neg_right (Comm.one_left t).symm) _
+    _ ≈ osum (fun k => opow t k) (p - 1 + 1) := by
+        refine osum_congr _ fun k hk => ?_
+        have hk' : k ≤ p - 1 := Nat.le_of_lt_succ hk
+        calc nsmul (choose (p - 1) k) (opow t k * opow (-1) (p - 1 - k))
+            ≈ nsmul (choose (p - 1) k) 1 * (opow t k * opow (-1) (p - 1 - k)) := nsmul_eq_mul_one _ _
+          _ ≈ opow (-1) k * (opow t k * opow (-1) (p - 1 - k)) :=
+              mul_congr_left _ (nsmul_choose_pred F hch k (Nat.lt_of_lt_of_le hk (Nat.le_of_eq hp.symm)))
+          _ ≈ opow t k * opow (-1) (p - 1 - k) * opow (-1) k := Central.opow (Central.neg Central.one) k _
+          _ ≈ opow t k * (opow (-1) (p - 1 - k) * opow (-1) k) := mul_assoc _ _ _
+          _ ≈ opow t k * 1 := mul_congr_right _ (heven k hk')
+          _ ≈ opow t k := mul_one _
+    _ ≈ geom t p := eq_of_eq (by rw [← hp]; rfl)
+
+/-- `(t + 1)^{p−1} ≈ Σ_{k<p} (−1)^k t^k` in characteristic `p`, for every `t`. -/
+theorem opow_add_one_pred {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0) (t : R) :
+    opow (t + 1) (p - 1) ≈ osum (fun k => opow (-1) k * opow t k) p := by
+  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm
+  calc opow (t + 1) (p - 1) ≈ binom t 1 (p - 1) := binomial (Comm.one_left t).symm _
+    _ ≈ osum (fun k => opow (-1) k * opow t k) (p - 1 + 1) := by
+        refine osum_congr _ fun k hk => ?_
+        calc nsmul (choose (p - 1) k) (opow t k * opow 1 (p - 1 - k))
+            ≈ nsmul (choose (p - 1) k) 1 * (opow t k * opow 1 (p - 1 - k)) := nsmul_eq_mul_one _ _
+          _ ≈ opow (-1) k * (opow t k * 1) := mul_congr (nsmul_choose_pred F hch k (Nat.lt_of_lt_of_le hk (Nat.le_of_eq hp.symm))) (mul_congr_right _ (opow_one_left _))
+          _ ≈ opow (-1) k * opow t k := mul_congr_right _ (mul_one _)
+    _ ≈ osum (fun k => opow (-1) k * opow t k) p := eq_of_eq (by rw [← hp])
+
+/-- The alternating sum of `2m + 1` signs is `1`: `Σ_{k<2m+1} (−1)^k ≈ 1`. -/
+theorem osum_alternating : ∀ m : Nat, osum (fun k => opow (-1 : R) k) (2 * m + 1) ≈ 1
+  | 0 => eq_trans (zero_add _) (eq_refl 1)
+  | m + 1 => by
+    have e : 2 * (m + 1) + 1 = 2 * m + 1 + 1 + 1 := rfl
+    rw [e]
+    calc osum (fun k => opow (-1 : R) k) (2 * m + 1 + 1 + 1)
+        = osum (fun k => opow (-1 : R) k) (2 * m + 1) + opow (-1) (2 * m + 1) + opow (-1) (2 * m + 1 + 1) := rfl
+      _ ≈ 1 + -1 + 1 := add_congr (add_congr (osum_alternating m) (opow_neg_one_odd m))
+          (eq_trans (eq_of_eq (by show opow (-1 : R) (2 * (m + 1)) = _; rfl)) (opow_neg_one_even (m + 1)))
+      _ ≈ 0 + 1 := add_congr_left 1 (add_neg 1)
+      _ ≈ 1 := zero_add 1
+
+/-- `t · geom t p ≈ geom t p` when `t^p ≈ 1`: the sum of the translates is invariant under the translation. -/
+theorem mul_geom_self {t : R} {p : Nat} (ht : opow t p ≈ 1) : t * geom t p ≈ geom t p := by
+  have h1 : geom t (p + 1) ≈ 1 + t * geom t p := geom_succ_left t p
+  have h2 : geom t (p + 1) ≈ geom t p + 1 := eq_trans (eq_of_eq (osum_succ _ _)) (add_congr_right _ ht)
+  have h3 : 1 + t * geom t p ≈ 1 + geom t p :=
+    eq_trans (eq_symm h1) (eq_trans h2 (add_comm _ _))
+  exact add_left_cancel h3
+
+/-- `geom t p · t^k ≈ geom t p` when `t^p ≈ 1`. -/
+theorem geom_mul_opow {t : R} {p : Nat} (ht : opow t p ≈ 1) : ∀ k, geom t p * opow t k ≈ geom t p
+  | 0 => mul_one _
+  | k + 1 =>
+    calc geom t p * opow t (k + 1) = geom t p * (opow t k * t) := rfl
+      _ ≈ geom t p * opow t k * t := eq_symm (mul_assoc _ _ _)
+      _ ≈ geom t p * t := mul_congr_left t (geom_mul_opow ht k)
+      _ ≈ t * geom t p := geom_comm (Comm.refl t) p
+      _ ≈ geom t p := mul_geom_self ht
+
+/-- `geom t p · Σ_k (−1)^k t^k ≈ geom t p` when `t^p ≈ 1` and `p` is odd. -/
+theorem geom_mul_alternating {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) {t : R} (ht : opow t p ≈ 1) :
+    geom t p * osum (fun k => opow (-1) k * opow t k) p ≈ geom t p := by
+  have hp : p = 2 * (2 * κ) + 1 := by rw [F.cap, ← Nat.mul_assoc]
+  calc geom t p * osum (fun k => opow (-1) k * opow t k) p
+      ≈ osum (fun k => geom t p * (opow (-1) k * opow t k)) p := osum_mul_left _ _ _
+    _ ≈ osum (fun k => opow (-1) k * geom t p) p := by
+        refine osum_congr _ fun k _ => ?_
+        calc geom t p * (opow (-1) k * opow t k) ≈ geom t p * opow (-1) k * opow t k := eq_symm (mul_assoc _ _ _)
+          _ ≈ opow (-1) k * geom t p * opow t k :=
+              mul_congr_left _ (eq_symm (Central.opow (Central.neg Central.one) k _))
+          _ ≈ opow (-1) k * (geom t p * opow t k) := mul_assoc _ _ _
+          _ ≈ opow (-1) k * geom t p := mul_congr_right _ (geom_mul_opow ht k)
+    _ ≈ osum (fun k => opow (-1) k) p * geom t p := eq_symm (osum_mul_right _ _ _)
+    _ ≈ 1 * geom t p := mul_congr_left _ (by rw [hp]; exact osum_alternating _)
+    _ ≈ geom t p := one_mul _
+
+/-- 8:D20 — the exact index in `0+1`, the identity: for a translation `t` of order `p` with inverse `s` in characteristic
+`p` on a frame, `(t − s)^{p−1} ≈ geom t p`, the sum of the translates, and `(t − s)^p ≈ 0`. The symmetric difference
+`∇^s = h (t − s)` with `h` a central unit has the same index: `(∇^s)^{p−1} ≈ h^{p−1} geom t p`, nonzero whenever the sum
+of the translates is, and `(∇^s)^p ≈ 0`. -/
+theorem symdiff_pred_eq_geom {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {t s : R} (ht : opow t p ≈ 1) (hs : Inverse t s) : opow (t + -s) (p - 1) ≈ geom t p := by
+  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm
+  have hts : Comm t s := eq_trans hs.1 (eq_symm hs.2)
+  have hc1 : Comm (t + -s) t := Comm.add_left (Comm.refl t) (Comm.neg_left hts.symm)
+  -- `(t − s) t ≈ (t − 1)(t + 1)`
+  have hfac : (t + -s) * t ≈ (t + -1) * (t + 1) := by
+    have h1 : t * t + t ≈ t * (t + 1) := eq_symm (eq_trans (left_distrib t t 1) (add_congr_right _ (mul_one t)))
+    have h2 : -t + -1 ≈ -1 * (t + 1) :=
+      eq_symm (eq_trans (eq_symm (neg_mul 1 (t + 1))) (eq_trans (neg_congr (one_mul (t + 1))) (neg_add_rev t 1)))
+    calc (t + -s) * t ≈ t * t + -s * t := right_distrib _ _ _
+      _ ≈ t * t + -1 := add_congr_right _ (eq_trans (eq_symm (neg_mul _ _)) (neg_congr hs.2))
+      _ ≈ t * t + (t + -t) + -1 := add_congr_left _ (eq_symm (eq_trans (add_congr_right _ (add_neg t)) (add_zero _)))
+      _ ≈ t * t + t + (-t + -1) :=
+          eq_trans (add_assoc _ _ _) (eq_trans (add_congr_right _ (add_assoc _ _ _)) (eq_symm (add_assoc _ _ _)))
+      _ ≈ t * (t + 1) + -1 * (t + 1) := add_congr h1 h2
+      _ ≈ (t + -1) * (t + 1) := eq_symm (right_distrib _ _ _)
+  -- `(t − s)^{p−1} t^{p−1} ≈ (t − 1)^{p−1} (t + 1)^{p−1} ≈ geom · Σ(−1)^k t^k ≈ geom`
+  have hpow : opow (t + -s) (p - 1) * opow t (p - 1) ≈ geom t p :=
+    calc opow (t + -s) (p - 1) * opow t (p - 1) ≈ opow ((t + -s) * t) (p - 1) := eq_symm (mul_opow hc1 _)
+      _ ≈ opow ((t + -1) * (t + 1)) (p - 1) := opow_congr hfac _
+      _ ≈ opow (t + -1) (p - 1) * opow (t + 1) (p - 1) :=
+          mul_opow (Comm.add_left (Comm.add_right (Comm.refl t) (Comm.one_left t).symm)
+            (Comm.neg_left (Comm.add_right (Comm.one_left t) (Comm.refl 1)))) _
+      _ ≈ geom t p * osum (fun k => opow (-1) k * opow t k) p :=
+          mul_congr (opow_sub_one_pred F hch t) (opow_add_one_pred F hch t)
+      _ ≈ geom t p := geom_mul_alternating F ht
+  -- multiply by `t`: `t^{p−1} t ≈ 1`
+  calc opow (t + -s) (p - 1) ≈ opow (t + -s) (p - 1) * 1 := eq_symm (mul_one _)
+    _ ≈ opow (t + -s) (p - 1) * (opow t (p - 1) * t) := mul_congr_right _ (eq_symm (eq_trans (eq_of_eq (by rw [← opow_succ, ← hp])) ht))
+    _ ≈ opow (t + -s) (p - 1) * opow t (p - 1) * t := eq_symm (mul_assoc _ _ _)
+    _ ≈ geom t p * t := mul_congr_left t hpow
+    _ ≈ t * geom t p := geom_comm (Comm.refl t) p
+    _ ≈ geom t p := mul_geom_self ht
+
+/-- The `d`-fold Frobenius `x ↦ x^{p^d}` is additive on commuting elements in characteristic `p`, by induction on `d`
+from `frobenius_add`. -/
+theorem frobenius_pow {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0) {x y : R}
+    (h : Comm x y) : ∀ d : Nat, opow (x + y) (p ^ d) ≈ opow x (p ^ d) + opow y (p ^ d)
+  | 0 => by
+    show opow (x + y) 1 ≈ opow x 1 + opow y 1
+    exact eq_trans (opow_one _) (eq_symm (add_congr (opow_one x) (opow_one y)))
+  | d + 1 => by
+    rw [Nat.pow_succ]
+    calc opow (x + y) (p ^ d * p) ≈ opow (opow (x + y) (p ^ d)) p := opow_mul _ _ _
+      _ ≈ opow (opow x (p ^ d) + opow y (p ^ d)) p := opow_congr (frobenius_pow F hch h d) p
+      _ ≈ opow (opow x (p ^ d)) p + opow (opow y (p ^ d)) p :=
+          frobenius_add F hch (opow_comm (opow_comm h (p ^ d)).symm (p ^ d)).symm
+      _ ≈ opow x (p ^ d * p) + opow y (p ^ d * p) := add_congr (eq_symm (opow_mul _ _ _)) (eq_symm (opow_mul _ _ _))
+
+/-- Inverses are unique up to the congruence: two inverses of congruent elements are congruent. -/
+theorem Inverse.unique {u u' v v' : R} (hu : u ≈ u') (h : Inverse u v) (h' : Inverse u' v') : v ≈ v' :=
+  calc v ≈ v * 1 := eq_symm (mul_one v)
+    _ ≈ v * (u' * v') := mul_congr_right v (eq_symm h'.1)
+    _ ≈ v * (u * v') := mul_congr_right v (mul_congr_left v' (eq_symm hu))
+    _ ≈ v * u * v' := eq_symm (mul_assoc _ _ _)
+    _ ≈ 1 * v' := mul_congr_left v' h.2
+    _ ≈ v' := one_mul v'
+
+/-- `p^d` is odd on a frame's shell: `p = 4κ + 1`. -/
+theorem pow_odd {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (d : Nat) : ∃ j, p ^ d = 2 * j + 1 := by
+  have h1 : p % 2 = 1 := by
+    rw [F.cap, show 4 * κ = 2 * (2 * κ) from Nat.mul_assoc 2 2 κ, FRC.Nat.add_mul_mod_self_left 1 (2 * κ) 2 (by decide)]
+  have h2 : ∀ d, p ^ d % 2 = 1 := fun d => by
+    induction d with
+    | zero => rfl
+    | succ d ih => rw [Nat.pow_succ, FRC.Nat.mul_mod _ _ _ (by decide), ih, h1]
+  have h2 := h2 d
+  obtain ⟨j, hj⟩ := FRC.Nat.mod_spec 2 (by decide) (p ^ d)
+  exact ⟨j, by rw [hj, h2]⟩
+
+/-- `(−1)^{p^d} ≈ −1` on a frame's shell. -/
+theorem opow_neg_one_pow {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (d : Nat) :
+    opow (-1 : R) (p ^ d) ≈ -1 := by
+  obtain ⟨j, hj⟩ := pow_odd F d
+  rw [hj]; exact opow_neg_one_odd j
+
+/-- The Frobenius of the two Cayley factors: with `α^{p^d} ≈ ε α` (`ε = ±1`, central) and `λ^{p^d} ≈ λ`,
+`(1 + αλ)^{p^d} ≈ 1 + ε αλ` and `(1 − αλ)^{p^d} ≈ 1 − ε αλ`. -/
+theorem cayley_factor_frobenius {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {α lam ε : R} (hc : Comm α lam) {d : Nat} (hα : opow α (p ^ d) ≈ ε * α)
+    (hl : opow lam (p ^ d) ≈ lam) :
+    opow (1 + α * lam) (p ^ d) ≈ 1 + ε * (α * lam) ∧ opow (1 + -(α * lam)) (p ^ d) ≈ 1 + -(ε * (α * lam)) := by
+  have hal : opow (α * lam) (p ^ d) ≈ ε * (α * lam) :=
+    calc opow (α * lam) (p ^ d) ≈ opow α (p ^ d) * opow lam (p ^ d) := mul_opow hc _
+      _ ≈ ε * α * lam := mul_congr hα hl
+      _ ≈ ε * (α * lam) := mul_assoc _ _ _
+  refine ⟨?_, ?_⟩
+  · calc opow (1 + α * lam) (p ^ d) ≈ opow 1 (p ^ d) + opow (α * lam) (p ^ d) := frobenius_pow F hch (Comm.one_left _) d
+      _ ≈ 1 + ε * (α * lam) := add_congr (opow_one_left _) hal
+  · calc opow (1 + -(α * lam)) (p ^ d) ≈ opow 1 (p ^ d) + opow (-(α * lam)) (p ^ d) :=
+          frobenius_pow F hch (Comm.one_left _) d
+      _ ≈ 1 + opow (-1 * (α * lam)) (p ^ d) := add_congr (opow_one_left _) (opow_congr (eq_symm (neg_one_mul _)) _)
+      _ ≈ 1 + opow (-1) (p ^ d) * opow (α * lam) (p ^ d) :=
+          add_congr_right _ (mul_opow (Central.neg Central.one _) _)
+      _ ≈ 1 + -1 * (ε * (α * lam)) := add_congr_right _ (mul_congr (opow_neg_one_pow F d) hal)
+      _ ≈ 1 + -(ε * (α * lam)) := add_congr_right _ (neg_one_mul _)
+
+/-- 8:E9 — the eigenphase law, the even case, in every operator ring of characteristic `p` on a frame: for commuting
+`α`, `λ` with `α^{p^d} ≈ α` and `λ^{p^d} ≈ λ`, and `v` the inverse of `1 − αλ`, the phase `φ = (1 + αλ) v` is fixed by
+the `d`-fold Frobenius, `φ^{p^d} ≈ φ`. (On the shell, `α = k w` has `α^{p^d} = α` exactly for even `d`, and an eigenvalue
+of degree `d` has `λ^{p^d} = λ`.) -/
+theorem eigenphase_frobenius_even {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {α lam v : R} (hc : Comm α lam) {d : Nat} (hα : opow α (p ^ d) ≈ α) (hl : opow lam (p ^ d) ≈ lam)
+    (hv : Inverse (1 + -(α * lam)) v) : opow ((1 + α * lam) * v) (p ^ d) ≈ (1 + α * lam) * v := by
+  have hα' : opow α (p ^ d) ≈ 1 * α := eq_trans hα (eq_symm (one_mul α))
+  obtain ⟨h1, h2⟩ := cayley_factor_frobenius F hch hc hα' hl
+  have hu : Comm (1 + -(α * lam)) (1 + α * lam) :=
+    Comm.add_left (Comm.one_left _) (Comm.neg_left (Comm.add_right (Comm.one_left _).symm (Comm.refl _)))
+  have hcv : Comm (1 + α * lam) v := (Inverse.comm_of_comm hv hu).symm
+  have hvN : opow v (p ^ d) ≈ v :=
+    Inverse.unique (eq_trans h2 (add_congr_right 1 (neg_congr (one_mul _)))) (inverse_opow hv (p ^ d)) hv
+  calc opow ((1 + α * lam) * v) (p ^ d) ≈ opow (1 + α * lam) (p ^ d) * opow v (p ^ d) := mul_opow hcv _
+    _ ≈ (1 + 1 * (α * lam)) * v := mul_congr h1 hvN
+    _ ≈ (1 + α * lam) * v := mul_congr_left v (add_congr_right 1 (one_mul _))
+
+/-- 8:E9 — the eigenphase law, the odd case, in every operator ring of characteristic `p` on a frame: for commuting
+`α`, `λ` with `α^{p^d} ≈ −α` and `λ^{p^d} ≈ λ`, and `v`, `v'` the inverses of `1 − αλ` and `1 + αλ`, the phase
+`φ = (1 + αλ) v` is inverted by the `d`-fold Frobenius, `φ^{p^d} φ ≈ 1`, so `φ^{p^d + 1} ≈ 1`: the phase lies on the
+norm-one cycle of the Frobenius. (On the shell, `α = k w` has `α^{p^d} = −α` exactly for odd `d`.) -/
+theorem eigenphase_frobenius_odd {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {α lam v v' : R} (hc : Comm α lam) {d : Nat} (hα : opow α (p ^ d) ≈ -α) (hl : opow lam (p ^ d) ≈ lam)
+    (hv : Inverse (1 + -(α * lam)) v) (hv' : Inverse (1 + α * lam) v') :
+    opow ((1 + α * lam) * v) (p ^ d) * ((1 + α * lam) * v) ≈ 1 ∧ opow ((1 + α * lam) * v) (p ^ d + 1) ≈ 1 := by
+  have hα' : opow α (p ^ d) ≈ -1 * α := eq_trans hα (eq_symm (neg_one_mul α))
+  obtain ⟨h1, h2⟩ := cayley_factor_frobenius F hch hc hα' hl
+  have hu : Comm (1 + -(α * lam)) (1 + α * lam) :=
+    Comm.add_left (Comm.one_left _) (Comm.neg_left (Comm.add_right (Comm.one_left _).symm (Comm.refl _)))
+  have hcv : Comm (1 + α * lam) v := (Inverse.comm_of_comm hv hu).symm
+  -- `(1 + αλ)^{p^d} ≈ 1 − αλ` and `(1 − αλ)^{p^d} ≈ 1 + αλ`
+  have h1' : opow (1 + α * lam) (p ^ d) ≈ 1 + -(α * lam) :=
+    eq_trans h1 (add_congr_right 1 (eq_trans (eq_symm (neg_mul _ _)) (neg_congr (one_mul _))))
+  have h2' : opow (1 + -(α * lam)) (p ^ d) ≈ 1 + α * lam :=
+    eq_trans h2 (add_congr_right 1 (eq_trans (neg_congr (eq_trans (eq_symm (neg_mul _ _)) (neg_congr (one_mul _)))) (neg_neg _)))
+  -- `v^{p^d}` is the inverse of `(1 − αλ)^{p^d} ≈ 1 + αλ`, hence congruent to `v'`
+  have hvN : opow v (p ^ d) ≈ v' := Inverse.unique h2' (inverse_opow hv (p ^ d)) hv'
+  have hmain : opow ((1 + α * lam) * v) (p ^ d) * ((1 + α * lam) * v) ≈ 1 :=
+    calc opow ((1 + α * lam) * v) (p ^ d) * ((1 + α * lam) * v)
+        ≈ opow (1 + α * lam) (p ^ d) * opow v (p ^ d) * ((1 + α * lam) * v) := mul_congr_left _ (mul_opow hcv _)
+      _ ≈ (1 + -(α * lam)) * v' * ((1 + α * lam) * v) := mul_congr_left _ (mul_congr h1' hvN)
+      _ ≈ (1 + -(α * lam)) * (v' * (1 + α * lam)) * v :=
+          eq_trans (eq_symm (mul_assoc _ _ _)) (mul_congr_left v (mul_assoc _ _ _))
+      _ ≈ (1 + -(α * lam)) * 1 * v := mul_congr_left v (mul_congr_right _ hv'.2)
+      _ ≈ (1 + -(α * lam)) * v := mul_congr_left v (mul_one _)
+      _ ≈ 1 := hv.1
+  exact ⟨hmain, eq_trans (eq_of_eq (opow_succ _ _)) hmain⟩
+
+/-- 8:E9 — the Cayley map is injective, as two relations: for `φ = (1 + αλ) v` with `v` the inverse of `1 − αλ` and
+without a commutation hypothesis, `φ + 1 ≈ v + v` and `αλ (φ + 1) ≈ φ − 1`. Read in a field of characteristic `p` containing `α`
+and `φ`: `φ + 1 = 2v` is a unit, so `λ = (φ − 1)/(α(φ + 1))` lies in that field. A phase in `𝔽_p` or in `K` has its
+eigenvalue there, and a phase of degree three or more lies in neither. -/
+theorem cayley_phase_inverse {α lam v : R} (hv : Inverse (1 + -(α * lam)) v) :
+    (1 + α * lam) * v + 1 ≈ v + v ∧ α * lam * ((1 + α * lam) * v + 1) ≈ (1 + α * lam) * v + -1 := by
+  -- `(1 + αλ) v + (1 − αλ) v ≈ v + v`
+  have hsum : (1 + α * lam) * v + 1 ≈ v + v :=
+    calc (1 + α * lam) * v + 1 ≈ (1 + α * lam) * v + (1 + -(α * lam)) * v := add_congr_right _ (eq_symm hv.1)
+      _ ≈ (1 + α * lam + (1 + -(α * lam))) * v := eq_symm (right_distrib _ _ _)
+      _ ≈ (1 + 1) * v := mul_congr_left v (by
+          calc 1 + α * lam + (1 + -(α * lam)) ≈ 1 + 1 + (α * lam + -(α * lam)) := add_add_add_comm _ _ _ _
+            _ ≈ 1 + 1 + 0 := add_congr_right _ (add_neg _)
+            _ ≈ 1 + 1 := add_zero _)
+      _ ≈ 1 * v + 1 * v := right_distrib _ _ _
+      _ ≈ v + v := add_congr (one_mul v) (one_mul v)
+  -- `(1 + αλ) v − (1 − αλ) v ≈ (αλ + αλ) v`
+  have hdiff : (1 + α * lam) * v + -1 ≈ (α * lam + α * lam) * v :=
+    calc (1 + α * lam) * v + -1 ≈ (1 + α * lam) * v + -((1 + -(α * lam)) * v) := add_congr_right _ (neg_congr (eq_symm hv.1))
+      _ ≈ (1 + α * lam) * v + -(1 + -(α * lam)) * v := add_congr_right _ (neg_mul _ _)
+      _ ≈ (1 + α * lam + -(1 + -(α * lam))) * v := eq_symm (right_distrib _ _ _)
+      _ ≈ (α * lam + α * lam) * v := mul_congr_left v (by
+          calc 1 + α * lam + -(1 + -(α * lam)) ≈ 1 + α * lam + (-1 + - -(α * lam)) := add_congr_right _ (neg_add_rev _ _)
+            _ ≈ 1 + α * lam + (-1 + α * lam) := add_congr_right _ (add_congr_right _ (neg_neg _))
+            _ ≈ 1 + -1 + (α * lam + α * lam) := add_add_add_comm _ _ _ _
+            _ ≈ 0 + (α * lam + α * lam) := add_congr_left _ (add_neg _)
+            _ ≈ α * lam + α * lam := zero_add _)
+  refine ⟨hsum, ?_⟩
+  calc α * lam * ((1 + α * lam) * v + 1) ≈ α * lam * (v + v) := mul_congr_right _ hsum
+    _ ≈ α * lam * v + α * lam * v := left_distrib _ _ _
+    _ ≈ (α * lam + α * lam) * v := eq_symm (right_distrib _ _ _)
+    _ ≈ (1 + α * lam) * v + -1 := eq_symm hdiff
+
+/-! ## The exact index on two coordinate directions (D20): the generic identities -/
+
+/-- A sum with one surviving term: if every other term vanishes, `Σ_{j<n} f j ≈ f k₀`. -/
+theorem osum_eq_single {f : Nat → R} : ∀ n k0, k0 < n → (∀ j, j < n → j ≠ k0 → f j ≈ 0) → osum f n ≈ f k0
+  | 0, k0, hk, _ => absurd hk (Nat.not_lt_zero k0)
+  | n + 1, k0, hk, h =>
+    match Nat.decEq k0 n with
+    | isTrue e =>
+      have hz : osum f n ≈ 0 :=
+        osum_eq_zero n fun j hj => h j (Nat.lt_succ_of_lt hj) (fun ej => absurd (ej.trans e) (Nat.ne_of_lt hj))
+      calc osum f n + f n ≈ 0 + f n := add_congr_left _ hz
+        _ ≈ f n := zero_add _
+        _ ≈ f k0 := eq_of_eq (by rw [e])
+    | isFalse ne =>
+      have hk' : k0 < n := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hk) ne
+      have hz : f n ≈ 0 := h n (Nat.lt_succ_self n) (fun e => ne e.symm)
+      calc osum f n + f n ≈ f k0 + 0 :=
+            add_congr (osum_eq_single n k0 hk' fun j hj hj' => h j (Nat.lt_succ_of_lt hj) hj') hz
+        _ ≈ f k0 := add_zero _
+
+/-- `(η d²)^j ≈ η^j d^{j+j}` for central `η`. -/
+theorem opow_central_sq {η d : R} (hη : Central η) (j : Nat) : opow (η * (d * d)) j ≈ opow η j * opow d (j + j) :=
+  calc opow (η * (d * d)) j ≈ opow η j * opow (d * d) j := mul_opow (hη _) j
+    _ ≈ opow η j * (opow d j * opow d j) := mul_congr_right _ (mul_opow (Comm.refl d) j)
+    _ ≈ opow η j * opow d (j + j) := mul_congr_right _ (eq_symm (opow_add d j j))
+
+/-- A power `d^{m}` with `m ≥ p` vanishes when `d^p ≈ 0`. -/
+theorem opow_eq_zero_of_le {d : R} {p : Nat} (hn : opow d p ≈ 0) {m : Nat} (hm : p ≤ m) : opow d m ≈ 0 := by
+  have e : p + (m - p) = m := FRC.Nat.add_sub_of_le hm
+  rw [← e]; exact opow_eq_zero_of hn _
+
+/-- 8:D20 — the `(p−1)`-st power of the square on two coordinate directions. For commuting `d₀`, `d₁` with `d_μ^p ≈ 0`
+and central `η₀`, `η₁`, on a frame `p = 4κ + 1`: of the binomial terms of `(η₀ d₀² + η₁ d₁²)^{p−1}` only `k = 2κ`
+survives (every other term carries a power `d_μ^{m}` with `m ≥ p`), and `C(p−1, 2κ) ≡ (−1)^{2κ} = 1`:
+`(η₀ d₀² + η₁ d₁²)^{p−1} ≈ η₀^{2κ} η₁^{2κ} d₀^{p−1} d₁^{p−1}`. -/
+theorem box_two_pow_pred {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {d0 d1 η0 η1 : R} (h01 : Comm d0 d1) (hη0 : Central η0) (hη1 : Central η1)
+    (hn0 : opow d0 p ≈ 0) (hn1 : opow d1 p ≈ 0) :
+    opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) ≈
+      opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) := by
+  have hp : p - 1 = 4 * κ := by rw [F.cap, FRC.Nat.add_sub_cancel]
+  have hp1 : p - 1 + 1 = p := FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)
+  have hab : Comm (η0 * (d0 * d0)) (η1 * (d1 * d1)) :=
+    Comm.mul_left (hη0 _) (Comm.mul_left (Comm.mul_right (Comm.symm (hη1 d0)) (Comm.mul_right h01 h01))
+      (Comm.mul_right (Comm.symm (hη1 d0)) (Comm.mul_right h01 h01)))
+  have hk0 : 2 * κ < p := by
+    rw [F.cap]; exact Nat.lt_succ_of_le (Nat.le_trans (Nat.le_add_right _ _) (Nat.le_of_eq (show 2 * κ + 2 * κ = 4 * κ by rw [← FRC.Nat.add_mul])))
+  -- the term `j` of the binomial sum
+  have hterm : ∀ j, j < p → j ≠ 2 * κ → nsmul (choose (p - 1) j) (opow (η0 * (d0 * d0)) j * opow (η1 * (d1 * d1)) (p - 1 - j)) ≈ 0 := by
+    intro j hj hne
+    apply nsmul_of_eq_zero
+    cases Nat.lt_or_ge j (2 * κ) with
+    | inr hge =>
+      -- `j ≥ 2κ + 1`: `d₀^{j+j}` with `j + j ≥ p`
+      have hj' : 2 * κ + 1 ≤ j := Nat.lt_of_le_of_ne hge (fun e => hne e.symm)
+      have hjj : p ≤ j + j := by
+        rw [F.cap]
+        exact Nat.le_trans (Nat.le_of_eq (show 4 * κ + 1 = 2 * κ + (2 * κ + 1) by
+          rw [show 4 * κ = 2 * κ + 2 * κ by rw [← FRC.Nat.add_mul], Nat.add_assoc])) (Nat.add_le_add hge hj')
+      calc opow (η0 * (d0 * d0)) j * opow (η1 * (d1 * d1)) (p - 1 - j)
+          ≈ opow η0 j * opow d0 (j + j) * opow (η1 * (d1 * d1)) (p - 1 - j) := mul_congr_left _ (opow_central_sq hη0 j)
+        _ ≈ opow η0 j * 0 * opow (η1 * (d1 * d1)) (p - 1 - j) :=
+            mul_congr_left _ (mul_congr_right _ (opow_eq_zero_of_le hn0 hjj))
+        _ ≈ 0 * opow (η1 * (d1 * d1)) (p - 1 - j) := mul_congr_left _ (mul_zero _)
+        _ ≈ 0 := zero_mul _
+    | inl hlt =>
+      -- `j ≤ 2κ − 1`: `m = p − 1 − j ≥ 2κ + 1`, `d₁^{m+m}` with `m + m ≥ p`
+      have hm : 2 * κ + 1 ≤ p - 1 - j := by
+        apply FRC.Nat.le_sub_of_add_le
+        rw [hp, show 4 * κ = 2 * κ + 2 * κ by rw [← FRC.Nat.add_mul], Nat.add_assoc, Nat.add_comm 1 j]
+        exact Nat.add_le_add_left hlt _
+      have hsum : p ≤ 2 * κ + 1 + (2 * κ + 1) := by
+        rw [F.cap, FRC.Nat.add_add_add_comm, ← FRC.Nat.add_mul]; exact Nat.le_succ _
+      have hmm : p ≤ (p - 1 - j) + (p - 1 - j) := Nat.le_trans hsum (Nat.add_le_add hm hm)
+      calc opow (η0 * (d0 * d0)) j * opow (η1 * (d1 * d1)) (p - 1 - j)
+          ≈ opow (η0 * (d0 * d0)) j * (opow η1 (p - 1 - j) * opow d1 ((p - 1 - j) + (p - 1 - j))) :=
+            mul_congr_right _ (opow_central_sq hη1 _)
+        _ ≈ opow (η0 * (d0 * d0)) j * (opow η1 (p - 1 - j) * 0) :=
+            mul_congr_right _ (mul_congr_right _ (opow_eq_zero_of_le hn1 hmm))
+        _ ≈ opow (η0 * (d0 * d0)) j * 0 := mul_congr_right _ (mul_zero _)
+        _ ≈ 0 := mul_zero _
+  -- the surviving term `j = 2κ`
+  have h2 : p - 1 - 2 * κ = 2 * κ := by
+    rw [hp, show 4 * κ = 2 * κ + 2 * κ by rw [← FRC.Nat.add_mul], FRC.Nat.add_sub_cancel]
+  have h4 : 2 * κ + 2 * κ = p - 1 := by rw [hp, ← FRC.Nat.add_mul]
+  have hsurv : nsmul (choose (p - 1) (2 * κ)) (opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (p - 1 - 2 * κ)) ≈
+      opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) := by
+    rw [h2]
+    calc nsmul (choose (p - 1) (2 * κ)) (opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (2 * κ))
+        ≈ nsmul (choose (p - 1) (2 * κ)) 1 * (opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (2 * κ)) :=
+          nsmul_eq_mul_one _ _
+      _ ≈ 1 * (opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (2 * κ)) :=
+          mul_congr_left _ (eq_trans (nsmul_choose_pred F hch _ hk0) (opow_neg_one_even κ))
+      _ ≈ opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (2 * κ) := one_mul _
+      _ ≈ opow η0 (2 * κ) * opow d0 (2 * κ + 2 * κ) * (opow η1 (2 * κ) * opow d1 (2 * κ + 2 * κ)) :=
+          mul_congr (opow_central_sq hη0 _) (opow_central_sq hη1 _)
+      _ ≈ opow η0 (2 * κ) * (opow d0 (2 * κ + 2 * κ) * opow η1 (2 * κ)) * opow d1 (2 * κ + 2 * κ) :=
+          eq_trans (eq_symm (mul_assoc _ _ _)) (mul_congr_left _ (mul_assoc _ _ _))
+      _ ≈ opow η0 (2 * κ) * (opow η1 (2 * κ) * opow d0 (2 * κ + 2 * κ)) * opow d1 (2 * κ + 2 * κ) :=
+          mul_congr_left _ (mul_congr_right _ (eq_symm (Central.opow hη1 _ _)))
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (2 * κ + 2 * κ) * opow d1 (2 * κ + 2 * κ)) :=
+          eq_trans (mul_congr_left _ (eq_symm (mul_assoc _ _ _))) (mul_assoc _ _ _)
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) := eq_of_eq (by rw [h4])
+  calc opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) ≈ binom (η0 * (d0 * d0)) (η1 * (d1 * d1)) (p - 1) := binomial hab _
+    _ ≈ osum (fun k => nsmul (choose (p - 1) k) (opow (η0 * (d0 * d0)) k * opow (η1 * (d1 * d1)) (p - 1 - k))) p :=
+        eq_of_eq (by show binom _ _ _ = osum _ _; unfold binom; rw [hp1])
+    _ ≈ nsmul (choose (p - 1) (2 * κ)) (opow (η0 * (d0 * d0)) (2 * κ) * opow (η1 * (d1 * d1)) (p - 1 - 2 * κ)) :=
+        osum_eq_single p (2 * κ) hk0 hterm
+    _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) := hsurv
+
+/-- 8:D20 — on two coordinate directions `(η₀ d₀² + η₁ d₁²)^{p−1}` is killed by either difference:
+`□^{p−1} d₀ ≈ 0` and `□^{p−1} d₁ ≈ 0`, since the surviving term carries `d₀^{p−1} d₁^{p−1}`. -/
+theorem box_two_pow_pred_mul {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {d0 d1 η0 η1 : R} (h01 : Comm d0 d1) (hη0 : Central η0) (hη1 : Central η1)
+    (hn0 : opow d0 p ≈ 0) (hn1 : opow d1 p ≈ 0) :
+    opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) * d0 ≈ 0 ∧ opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) * d1 ≈ 0 := by
+  have hp1 : p - 1 + 1 = p := FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)
+  have hb := box_two_pow_pred F hch h01 hη0 hη1 hn0 hn1
+  have h0p : opow d0 (p - 1) * d0 ≈ 0 := eq_trans (eq_of_eq (by rw [← opow_succ, hp1])) hn0
+  have h1p : opow d1 (p - 1) * d1 ≈ 0 := eq_trans (eq_of_eq (by rw [← opow_succ, hp1])) hn1
+  refine ⟨?_, ?_⟩
+  · calc opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) * d0
+        ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) * d0 := mul_congr_left _ hb
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * (opow d1 (p - 1) * d0)) :=
+          eq_trans (mul_assoc _ _ _) (mul_congr_right _ (mul_assoc _ _ _))
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * (d0 * opow d1 (p - 1))) :=
+          mul_congr_right _ (mul_congr_right _ (opow_comm h01.symm _))
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * d0 * opow d1 (p - 1)) :=
+          mul_congr_right _ (eq_symm (mul_assoc _ _ _))
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (0 * opow d1 (p - 1)) := mul_congr_right _ (mul_congr_left _ h0p)
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * 0 := mul_congr_right _ (zero_mul _)
+      _ ≈ 0 := mul_zero _
+  · calc opow (η0 * (d0 * d0) + η1 * (d1 * d1)) (p - 1) * d1
+        ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * opow d1 (p - 1)) * d1 := mul_congr_left _ hb
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * (opow d1 (p - 1) * d1)) :=
+          eq_trans (mul_assoc _ _ _) (mul_congr_right _ (mul_assoc _ _ _))
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * (opow d0 (p - 1) * 0) := mul_congr_right _ (mul_congr_right _ h1p)
+      _ ≈ opow η0 (2 * κ) * opow η1 (2 * κ) * 0 := mul_congr_right _ (mul_zero _)
+      _ ≈ 0 := mul_zero _
+
+/-- The square of a Dirac operator on two directions, as a sum of two terms: `𝒟² ≈ η₀ ∇₀² + η₁ ∇₁²`. -/
+theorem dirac_two_square {del γ η : Nat → R}
+    (hdd : ∀ μ ν, μ < 2 → ν < 2 → Comm (del μ) (del ν)) (hdg : ∀ μ ν, μ < 2 → ν < 2 → Comm (del μ) (γ ν))
+    (hgg : ∀ μ ν, μ < 2 → ν < 2 → μ ≠ ν → Anticomm (γ μ) (γ ν)) (hsq : ∀ μ, μ < 2 → γ μ * γ μ ≈ η μ)
+    (hη : ∀ μ, μ < 2 → Central (η μ)) :
+    opow (osum (fun μ => del μ * γ μ) 2) 2 ≈ η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1) :=
+  calc opow (osum (fun μ => del μ * γ μ) 2) 2
+      ≈ osum (fun μ => del μ * γ μ) 2 * osum (fun μ => del μ * γ μ) 2 := mul_congr_left _ (opow_one _)
+    _ ≈ osum (fun μ => η μ * (del μ * del μ)) 2 := dirac_square hdd hdg hgg hsq hη
+    _ ≈ η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1) := add_congr_left _ (zero_add _)
+
+/-- 8:D20 — the exact index on two coordinate directions, the upper bound: for `𝒟 = ∇₀ γ₀ + ∇₁ γ₁` as in `dirac_square`
+with `∇_μ^p ≈ 0`, on a frame, `𝒟^{2(p−1)} ≈ η₀^{2κ} η₁^{2κ} ∇₀^{p−1} ∇₁^{p−1}` and `𝒟^{2(p−1)+1} ≈ 0`: the index is at
+most `2p − 1`, and `𝒟^{2p−2}` vanishes exactly when `∇₀^{p−1} ∇₁^{p−1}` does (the `η_μ` being units). -/
+theorem dirac_two_index {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) (hch : nsmul p (1 : R) ≈ 0)
+    {del γ η : Nat → R}
+    (hdd : ∀ μ ν, μ < 2 → ν < 2 → Comm (del μ) (del ν)) (hdg : ∀ μ ν, μ < 2 → ν < 2 → Comm (del μ) (γ ν))
+    (hgg : ∀ μ ν, μ < 2 → ν < 2 → μ ≠ ν → Anticomm (γ μ) (γ ν)) (hsq : ∀ μ, μ < 2 → γ μ * γ μ ≈ η μ)
+    (hη : ∀ μ, μ < 2 → Central (η μ)) (hnil : ∀ μ, μ < 2 → opow (del μ) p ≈ 0) :
+    opow (osum (fun μ => del μ * γ μ) 2) (2 * (p - 1)) ≈
+        opow (η 0) (2 * κ) * opow (η 1) (2 * κ) * (opow (del 0) (p - 1) * opow (del 1) (p - 1)) ∧
+      opow (osum (fun μ => del μ * γ μ) 2) (2 * (p - 1) + 1) ≈ 0 := by
+  have h01 : Comm (del 0) (del 1) := hdd 0 1 (by decide) (by decide)
+  have hη0 : Central (η 0) := hη 0 (by decide)
+  have hη1 : Central (η 1) := hη 1 (by decide)
+  have hn0 : opow (del 0) p ≈ 0 := hnil 0 (by decide)
+  have hn1 : opow (del 1) p ≈ 0 := hnil 1 (by decide)
+  have heven : opow (osum (fun μ => del μ * γ μ) 2) (2 * (p - 1)) ≈
+      opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) :=
+    eq_trans (opow_mul _ 2 (p - 1)) (opow_congr (dirac_two_square hdd hdg hgg hsq hη) (p - 1))
+  obtain ⟨hk0, hk1⟩ := box_two_pow_pred_mul F hch h01 hη0 hη1 hn0 hn1
+  refine ⟨eq_trans heven (box_two_pow_pred F hch h01 hη0 hη1 hn0 hn1), ?_⟩
+  calc opow (osum (fun μ => del μ * γ μ) 2) (2 * (p - 1) + 1)
+      ≈ opow (osum (fun μ => del μ * γ μ) 2) (2 * (p - 1)) * osum (fun μ => del μ * γ μ) 2 := eq_refl _
+    _ ≈ opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) * (del 0 * γ 0 + del 1 * γ 1) :=
+        mul_congr heven (add_congr_left _ (zero_add _))
+    _ ≈ opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) * (del 0 * γ 0) +
+          opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) * (del 1 * γ 1) := left_distrib _ _ _
+    _ ≈ opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) * del 0 * γ 0 +
+          opow (η 0 * (del 0 * del 0) + η 1 * (del 1 * del 1)) (p - 1) * del 1 * γ 1 :=
+        add_congr (eq_symm (mul_assoc _ _ _)) (eq_symm (mul_assoc _ _ _))
+    _ ≈ 0 * γ 0 + 0 * γ 1 := add_congr (mul_congr_left _ hk0) (mul_congr_left _ hk1)
+    _ ≈ 0 + 0 := add_congr (zero_mul _) (zero_mul _)
+    _ ≈ 0 := zero_add 0
+
+/-- `2p − 1 = 2(p − 1) + 1` on a frame, so `dirac_two_index` reads `𝒟^{2p−1} ≈ 0`. -/
+theorem two_mul_sub_one {p κ : Nat} [Pos p] {g : Shell p} (F : Shell.Frame p κ g) : 2 * p - 1 = 2 * (p - 1) + 1 := by
+  rw [F.cap, FRC.Nat.add_sub_cancel, Nat.mul_succ]
+  exact FRC.Nat.add_sub_cancel (2 * (4 * κ) + 1) 1
+
 end FRC.Dirac.Operator
 
 /-! inlined: FrcCore/Theme/Spinor.lean -/
@@ -37251,6 +37983,546 @@ theorem symdiff_nilpotent {κ : Nat} {g : Shell p} (F : Frame p κ g) {h : MatE 
     _ ≈ opow h p * (1 + -1) := mul_congr_right _ (OpRing.add_congr shift_pow_self hneg)
     _ ≈ opow h p * 0 := mul_congr_right _ (OpRing.add_neg 1)
     _ ≈ 0 := Operator.mul_zero _
+
+/-! ### The exact index of the symmetric difference (D20) -/
+/-- The entries of an operator sum are the sums of the entries. -/
+theorem osum_f (f : Nat → MatE p ν n) (i j : Nat) : ∀ m, (osum f m).f i j = esum (fun k => (f k).f i j) m
+  | 0 => rfl
+  | m + 1 => by
+    show (osum f m + f m).f i j = esum (fun k => (f k).f i j) m + (f m).f i j
+    rw [add_f, osum_f f i j m]
+
+/-- The sum of the translates of the cycle has the entry `1` at `(0, 0)`: `(Σ_{k<p} T^k)_{00} = 1`. -/
+theorem geom_shift_f00 : (geom (shift p : MatE p ν p) p).f 0 0 = 1 := by
+  show (osum (fun k => opow (shift p : MatE p ν p) k) p).f 0 0 = 1
+  rw [osum_f]
+  have hk : ∀ k, k < p → (opow (shift p : MatE p ν p) k).f 0 0 = if k = 0 then (1 : Ext p ν) else 0 := fun k hk => by
+    rw [shift_pow Pos.pos k 0 Pos.pos 0 Pos.pos]
+    show (if 0 = (0 + k) % p then (1 : Ext p ν) else 0) = if k = 0 then 1 else 0
+    rw [Nat.zero_add, FRC.Nat.mod_eq_of_lt hk]
+    cases Nat.decEq k 0 with
+    | isTrue e => rw [ite_eq_left e.symm, ite_eq_left e]
+    | isFalse e => rw [ite_eq_right (fun e' => e e'.symm), ite_eq_right e]
+  rw [esum_congr p hk, esum_eq_single _ (Pos.pos : 0 < p) (fun k _ hk0 => by rw [ite_eq_right hk0])]
+  exact ite_eq_left rfl
+
+/-- The sum of the translates is not congruent to zero. -/
+theorem geom_shift_ne_zero {κ : Nat} {g : Shell p} (F : Frame p κ g) : ¬ (geom (shift p : MatE p ν p) p ≈ 0) := fun h => by
+  have e := h 0 Pos.pos 0 Pos.pos
+  rw [geom_shift_f00] at e
+  exact F.one_ne_zero (FRC.Extension.Ext.re_congr e)
+
+/-- `T^{p−1}` is the inverse of the translation `T`. -/
+theorem shift_inverse : Inverse (shift p : MatE p ν p) (opow (shift p) (p - 1)) := by
+  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)).symm
+  have h1 : opow (shift p : MatE p ν p) (p - 1) * shift p ≈ 1 :=
+    eq_trans (eq_of_eq (by rw [← opow_succ, ← hp])) shift_pow_self
+  exact ⟨eq_trans (opow_self_comm (shift p) (p - 1)).symm h1, h1⟩
+
+/-- 8:D20 — the exact index of the symmetric difference in `0+1`, on every frame: `(T − T⁻¹)^{p−1} ≈ Σ_{k<p} T^k`,
+the sum of the translates, which is not zero, while `(T − T⁻¹)^p ≈ 0` (`symdiff_nilpotent`). With the central unit `h`
+(`h = 2⁻¹`): `(∇^s)^{p−1} ≈ h^{p−1} Σ_k T^k ≉ 0` and `(∇^s)^p ≈ 0`, so the nilpotency index of `∇^s` is exactly `p`. The
+Dirac operator of `0+1` is `∇^s ⊗ γ⁰` with `γ⁰` a unit, `𝒟^k = (∇^s)^k ⊗ (γ⁰)^k`, so its index is `p` as well. -/
+theorem symdiff_index {κ : Nat} {g : Shell p} (F : Frame p κ g) {h h' : MatE p ν p} (hh : Central h)
+    (hinv : Inverse h h') :
+    opow (shift p + -(opow (shift p) (p - 1)) : MatE p ν p) (p - 1) ≈ geom (shift p) p ∧
+    ¬ (opow (h * (shift p + -(opow (shift p) (p - 1))) : MatE p ν p) (p - 1) ≈ 0) ∧
+    opow (h * (shift p + -(opow (shift p) (p - 1))) : MatE p ν p) p ≈ 0 := by
+  have hid : opow (shift p + -(opow (shift p) (p - 1)) : MatE p ν p) (p - 1) ≈ geom (shift p) p :=
+    symdiff_pred_eq_geom F char_p shift_pow_self shift_inverse
+  refine ⟨hid, fun hz => ?_, symdiff_nilpotent F hh⟩
+  have hpow : opow (h * (shift p + -(opow (shift p) (p - 1)))) (p - 1) ≈ opow h (p - 1) * geom (shift p) p :=
+    eq_trans (mul_opow (hh _) _) (mul_congr_right _ hid)
+  have hinvp := inverse_opow hinv (p - 1)
+  apply geom_shift_ne_zero F
+  calc geom (shift p : MatE p ν p) p ≈ 1 * geom (shift p) p := eq_symm (OpRing.one_mul _)
+    _ ≈ opow h' (p - 1) * opow h (p - 1) * geom (shift p) p := mul_congr_left _ (eq_symm hinvp.2)
+    _ ≈ opow h' (p - 1) * (opow h (p - 1) * geom (shift p) p) := OpRing.mul_assoc _ _ _
+    _ ≈ opow h' (p - 1) * opow (h * (shift p + -(opow (shift p) (p - 1)))) (p - 1) := mul_congr_right _ (eq_symm hpow)
+    _ ≈ opow h' (p - 1) * 0 := mul_congr_right _ hz
+    _ ≈ 0 := Operator.mul_zero _
+
+/-- 8:D20 — the exact index of the forward difference in `0+1`, on every frame: `(T − 1)^{p−1} ≈ Σ_{k<p} T^k`, the sum of
+the translates, which is not zero, while `(T − 1)^p ≈ 0` (`translation_nilpotent`), so the nilpotency index of `∇ = T − 1`
+is exactly `p`. The forward Dirac operator of `0+1` is `∇ ⊗ γ⁰` with `γ⁰` a unit, so its index is `p` as well. -/
+theorem fwddiff_index {κ : Nat} {g : Shell p} (F : Frame p κ g) :
+    opow (shift p + -1 : MatE p ν p) (p - 1) ≈ geom (shift p) p ∧
+    ¬ (opow (shift p + -1 : MatE p ν p) (p - 1) ≈ 0) ∧
+    opow (shift p + -1 : MatE p ν p) p ≈ 0 := by
+  have hid : opow (shift p + -1 : MatE p ν p) (p - 1) ≈ geom (shift p) p := opow_sub_one_pred F char_p _
+  exact ⟨hid, fun hz => geom_shift_ne_zero F (eq_trans (eq_symm hid) hz), translation_nilpotent F char_p shift_pow_self⟩
+
+/-! ### The twist is unique up to sign (D21) -/
+/-! ### The extension's arithmetic on explicit pairs -/
+
+theorem mk_mul_mk (a b c d : Shell p) : (⟨a, b⟩ : Ext p ν) * ⟨c, d⟩ = ⟨a * c + ν * (b * d), a * d + b * c⟩ := rfl
+theorem mk_add_mk (a b c d : Shell p) : (⟨a, b⟩ : Ext p ν) + ⟨c, d⟩ = ⟨a + c, b + d⟩ := rfl
+theorem neg_mk (a b : Shell p) : -(⟨a, b⟩ : Ext p ν) = ⟨-a, -b⟩ := rfl
+theorem conj_mk (a b : Shell p) : Ext.conj (⟨a, b⟩ : Ext p ν) = ⟨a, -b⟩ := rfl
+theorem zero_mk : (0 : Ext p ν) = ⟨0, 0⟩ := rfl
+theorem one_mk : (1 : Ext p ν) = ⟨1, 0⟩ := rfl
+theorem mk_one_mul (x : Ext p ν) : (⟨1, 0⟩ : Ext p ν) * x = x := Ext.one_mul x
+theorem mul_mk_one (x : Ext p ν) : x * (⟨1, 0⟩ : Ext p ν) = x := Ext.mul_one x
+theorem mk_zero_mul (x : Ext p ν) : (⟨0, 0⟩ : Ext p ν) * x = 0 := Hermitian.zero_mul x
+theorem mul_mk_zero (x : Ext p ν) : x * (⟨0, 0⟩ : Ext p ν) = 0 := Hermitian.mul_zero x
+theorem mk_zero_add (x : Ext p ν) : (⟨0, 0⟩ : Ext p ν) + x = x := Hermitian.zero_add x
+theorem add_mk_zero (x : Ext p ν) : x + (⟨0, 0⟩ : Ext p ν) = x := Hermitian.add_zero x
+theorem neg_one_mul' (x : Ext p ν) : (⟨-1, 0⟩ : Ext p ν) * x = -x := by
+  rw [show (⟨-1, 0⟩ : Ext p ν) = -1 from Ext.ext rfl Shell.neg_zero.symm, ← Hermitian.neg_mul, Ext.one_mul]
+theorem mul_neg_one' (x : Ext p ν) : x * (⟨-1, 0⟩ : Ext p ν) = -x := by rw [Ext.mul_comm]; exact neg_one_mul' x
+
+theorem esum4 (f : Nat → Ext p ν) : esum f 4 = f 0 + f 1 + f 2 + f 3 := by
+  show 0 + f 0 + f 1 + f 2 + f 3 = f 0 + f 1 + f 2 + f 3
+  rw [Hermitian.zero_add]
+
+theorem neg_inj' {x y : Ext p ν} (h : -x = -y) : x = y := by rw [← Hermitian.neg_neg x, h, Hermitian.neg_neg]
+
+/-- Cancellation of a nonzero scalar of the shell. -/
+theorem cancel_scalar {κ : Nat} {g : Shell p} (F : Frame p κ g) {c : Shell p} (hc : c ≠ 0) {x y : Ext p ν}
+    (h : Ext.ofShell c * x = Ext.ofShell c * y) : x = y := by
+  rw [Ext.ofShell_mul_eq, Ext.ofShell_mul_eq] at h
+  exact Ext.ext (F.mul_left_cancel hc (Ext.re_congr h)) (F.mul_left_cancel hc (Ext.im_congr h))
+
+/-- `i² = −1` read in the extension: `⟨i, 0⟩ * ⟨i, 0⟩ = −1`. -/
+theorem ii_sq {i : Shell p} (hi : i * i = -1) : (⟨i, 0⟩ : Ext p ν) * ⟨i, 0⟩ = ⟨-1, 0⟩ := by
+  rw [mk_mul_mk, hi, Shell.mul_zero, Shell.mul_zero, Shell.add_zero, Shell.mul_zero, Shell.zero_mul, Shell.add_zero]
+
+/-- `(i w)² = −ν` read in the extension. -/
+theorem iw_sq {i : Shell p} (hi : i * i = -1) : (⟨0, i⟩ : Ext p ν) * ⟨0, i⟩ = ⟨-ν, 0⟩ := by
+  rw [mk_mul_mk, hi, Shell.zero_mul, Shell.zero_add, Shell.zero_mul, Shell.mul_zero, Shell.add_zero, ← Shell.mul_neg,
+    Shell.mul_one]
+
+/-- Cancellation of `i`: `⟨i, 0⟩ x = ⟨i, 0⟩ y → x = y`. -/
+theorem cancel_ii {i : Shell p} (hi : i * i = -1) {x y : Ext p ν} (h : (⟨i, 0⟩ : Ext p ν) * x = ⟨i, 0⟩ * y) : x = y := by
+  have h2 := congrArg (fun z => (⟨i, 0⟩ : Ext p ν) * z) h
+  simp only [← Ext.mul_assoc, ii_sq hi, neg_one_mul'] at h2
+  exact neg_inj' h2
+
+/-- Cancellation of `i w`: `⟨0, i⟩ x = ⟨0, i⟩ y → x = y` when `ν ≠ 0`. -/
+theorem cancel_iw {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1) (hν : ν ≠ 0) {x y : Ext p ν}
+    (h : (⟨0, i⟩ : Ext p ν) * x = ⟨0, i⟩ * y) : x = y := by
+  have h2 := congrArg (fun z => (⟨0, i⟩ : Ext p ν) * z) h
+  simp only [← Ext.mul_assoc, iw_sq hi] at h2
+  exact cancel_scalar F (fun e => hν (by rw [← Shell.neg_neg ν, e, Shell.neg_zero])) h2
+
+/-- `x = −x → x = 0` in the extension on a frame. -/
+theorem eq_zero_of_eq_neg' {κ : Nat} {g : Shell p} (F : Frame p κ g) {x : Ext p ν} (h : x = -x) : x = 0 :=
+  Ext.ext (F.eq_zero_of_eq_neg (Ext.re_congr h)) (F.eq_zero_of_eq_neg (Ext.im_congr h))
+
+/-! ### The gamma matrices as functions, the spinor form `X = γ⁰γ¹γ³` and the integer matrix `E` -/
+
+/-- The gamma matrices of `gamma` read as functions of two indices: `γ⁰ = i w β`, `γ^k = i ρ^k` (`γ²`'s entries
+`∓i² = ±1`). -/
+def gE (i : Shell p) : Nat → MatE p ν 4
+  | 0 => ⟨fun a b => if a = 0 ∧ b = 2 then ⟨0, i⟩ else if a = 1 ∧ b = 3 then ⟨0, i⟩ else
+      if a = 2 ∧ b = 0 then ⟨0, i⟩ else if a = 3 ∧ b = 1 then ⟨0, i⟩ else 0⟩
+  | 1 => ⟨fun a b => if a = 0 ∧ b = 3 then ⟨i, 0⟩ else if a = 1 ∧ b = 2 then ⟨i, 0⟩ else
+      if a = 2 ∧ b = 1 then -⟨i, 0⟩ else if a = 3 ∧ b = 0 then -⟨i, 0⟩ else 0⟩
+  | 2 => ⟨fun a b => if a = 0 ∧ b = 3 then -(⟨i, 0⟩ * ⟨i, 0⟩) else if a = 1 ∧ b = 2 then ⟨i, 0⟩ * ⟨i, 0⟩ else
+      if a = 2 ∧ b = 1 then ⟨i, 0⟩ * ⟨i, 0⟩ else if a = 3 ∧ b = 0 then -(⟨i, 0⟩ * ⟨i, 0⟩) else 0⟩
+  | _ => ⟨fun a b => if a = 0 ∧ b = 2 then ⟨i, 0⟩ else if a = 1 ∧ b = 3 then -⟨i, 0⟩ else
+      if a = 2 ∧ b = 0 then -⟨i, 0⟩ else if a = 3 ∧ b = 1 then ⟨i, 0⟩ else 0⟩
+
+/-- The integer matrix `E` with `E₀₃ = 1`, `E₁₂ = −1`, `E₂₁ = 1`, `E₃₀ = −1`: the spinor form is `X = −i w E`. -/
+def E4 : MatE p ν 4 :=
+  ⟨fun a b => if a = 0 ∧ b = 3 then 1 else if a = 1 ∧ b = 2 then -1 else if a = 2 ∧ b = 1 then 1 else
+    if a = 3 ∧ b = 0 then -1 else 0⟩
+
+/-- A scalar multiple of a matrix. -/
+def smulE (c : Ext p ν) (A : MatE p ν n) : MatE p ν n := ⟨fun a b => c * A.f a b⟩
+
+theorem smulE_f (c : Ext p ν) (A : MatE p ν n) (a b : Nat) : (smulE c A).f a b = c * A.f a b := rfl
+
+/-- The twist equations `(γ^μ)† X = −X γ^μ` for the four gamma matrices. -/
+def Twists (i : Shell p) (X : MatE p ν 4) : Prop := ∀ μ, μ < 4 → dagger (gE i μ) * X ≈ -(X * gE i μ)
+
+/-- 8:D21 — the transcription `gE` is the paper's `gamma` of Dirac.lean, entry by entry on the `4 × 4` range, for every `i`:
+the twist theorems below are about the paper's gamma matrices. -/
+theorem gE_eq_gamma (i : Shell p) : ∀ (μ a b : Nat), a < 4 → b < 4 →
+    (gE i μ : MatE p ν 4).f a b = Mat.nth 0 (Mat.nth [] (gamma i μ) a) b
+  | 0, 0, 0 => fun _ _ => rfl
+  | 0, 0, 1 => fun _ _ => rfl
+  | 0, 0, 2 => fun _ _ => rfl
+  | 0, 0, 3 => fun _ _ => rfl
+  | 0, 1, 0 => fun _ _ => rfl
+  | 0, 1, 1 => fun _ _ => rfl
+  | 0, 1, 2 => fun _ _ => rfl
+  | 0, 1, 3 => fun _ _ => rfl
+  | 0, 2, 0 => fun _ _ => rfl
+  | 0, 2, 1 => fun _ _ => rfl
+  | 0, 2, 2 => fun _ _ => rfl
+  | 0, 2, 3 => fun _ _ => rfl
+  | 0, 3, 0 => fun _ _ => rfl
+  | 0, 3, 1 => fun _ _ => rfl
+  | 0, 3, 2 => fun _ _ => rfl
+  | 0, 3, 3 => fun _ _ => rfl
+  | 0, a + 4, _ => fun ha _ => absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | 0, 0, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 0, 1, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 0, 2, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 0, 3, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 1, 0, 0 => fun _ _ => rfl
+  | 1, 0, 1 => fun _ _ => rfl
+  | 1, 0, 2 => fun _ _ => rfl
+  | 1, 0, 3 => fun _ _ => rfl
+  | 1, 1, 0 => fun _ _ => rfl
+  | 1, 1, 1 => fun _ _ => rfl
+  | 1, 1, 2 => fun _ _ => rfl
+  | 1, 1, 3 => fun _ _ => rfl
+  | 1, 2, 0 => fun _ _ => rfl
+  | 1, 2, 1 => fun _ _ => rfl
+  | 1, 2, 2 => fun _ _ => rfl
+  | 1, 2, 3 => fun _ _ => rfl
+  | 1, 3, 0 => fun _ _ => rfl
+  | 1, 3, 1 => fun _ _ => rfl
+  | 1, 3, 2 => fun _ _ => rfl
+  | 1, 3, 3 => fun _ _ => rfl
+  | 1, a + 4, _ => fun ha _ => absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | 1, 0, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 1, 1, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 1, 2, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 1, 3, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 2, 0, 0 => fun _ _ => rfl
+  | 2, 0, 1 => fun _ _ => rfl
+  | 2, 0, 2 => fun _ _ => rfl
+  | 2, 0, 3 => fun _ _ => rfl
+  | 2, 1, 0 => fun _ _ => rfl
+  | 2, 1, 1 => fun _ _ => rfl
+  | 2, 1, 2 => fun _ _ => rfl
+  | 2, 1, 3 => fun _ _ => rfl
+  | 2, 2, 0 => fun _ _ => rfl
+  | 2, 2, 1 => fun _ _ => rfl
+  | 2, 2, 2 => fun _ _ => rfl
+  | 2, 2, 3 => fun _ _ => rfl
+  | 2, 3, 0 => fun _ _ => rfl
+  | 2, 3, 1 => fun _ _ => rfl
+  | 2, 3, 2 => fun _ _ => rfl
+  | 2, 3, 3 => fun _ _ => rfl
+  | 2, a + 4, _ => fun ha _ => absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | 2, 0, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 2, 1, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 2, 2, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | 2, 3, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | _ + 3, 0, 0 => fun _ _ => rfl
+  | _ + 3, 0, 1 => fun _ _ => rfl
+  | _ + 3, 0, 2 => fun _ _ => rfl
+  | _ + 3, 0, 3 => fun _ _ => rfl
+  | _ + 3, 1, 0 => fun _ _ => rfl
+  | _ + 3, 1, 1 => fun _ _ => rfl
+  | _ + 3, 1, 2 => fun _ _ => rfl
+  | _ + 3, 1, 3 => fun _ _ => rfl
+  | _ + 3, 2, 0 => fun _ _ => rfl
+  | _ + 3, 2, 1 => fun _ _ => rfl
+  | _ + 3, 2, 2 => fun _ _ => rfl
+  | _ + 3, 2, 3 => fun _ _ => rfl
+  | _ + 3, 3, 0 => fun _ _ => rfl
+  | _ + 3, 3, 1 => fun _ _ => rfl
+  | _ + 3, 3, 2 => fun _ _ => rfl
+  | _ + 3, 3, 3 => fun _ _ => rfl
+  | _ + 3, a + 4, _ => fun ha _ => absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | _ + 3, 0, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | _ + 3, 1, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | _ + 3, 2, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+  | _ + 3, 3, b + 4 => fun _ hb => absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+
+/-- The `γ⁰` step: `⟨0, −i⟩ x = −(y ⟨0, i⟩)` gives `x = y`. -/
+theorem g0_step {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1) (hν : ν ≠ 0) {x y : Ext p ν}
+    (h : (⟨0, -i⟩ : Ext p ν) * x = -(y * ⟨0, i⟩)) : x = y := by
+  have e1 : (⟨0, -i⟩ : Ext p ν) = -⟨0, i⟩ := Ext.ext Shell.neg_zero.symm rfl
+  rw [e1, ← Hermitian.neg_mul, Ext.mul_comm y] at h
+  exact cancel_iw F hi hν (neg_inj' h)
+
+/-- The `γ³` step with the sign `−i`: `⟨−i, 0⟩ x = −(x ⟨−i, 0⟩)` gives `x = 0`. -/
+theorem g3_neg_step {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1) {x : Ext p ν}
+    (h : (⟨-i, 0⟩ : Ext p ν) * x = -(x * ⟨-i, 0⟩)) : x = 0 := by
+  have e1 : (⟨-i, 0⟩ : Ext p ν) = -⟨i, 0⟩ := Ext.ext rfl Shell.neg_zero.symm
+  rw [e1, Ext.mul_comm x] at h
+  have h2 : (⟨i, 0⟩ : Ext p ν) * x = -(⟨i, 0⟩ * x) := by
+    have := congrArg (- ·) h
+    simp only [Hermitian.neg_neg] at this
+    rw [Hermitian.neg_mul, ← this, ← Hermitian.neg_mul, Hermitian.neg_neg]
+  have h3 : (⟨i, 0⟩ : Ext p ν) * x = ⟨i, 0⟩ * 0 := by rw [Hermitian.mul_zero]; exact eq_zero_of_eq_neg' F h2
+  exact cancel_ii hi h3
+
+/-- The `γ³` step with the sign `i`: `⟨i, 0⟩ x = −(x ⟨i, 0⟩)` gives `x = 0`. -/
+theorem g3_pos_step {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1) {x : Ext p ν}
+    (h : (⟨i, 0⟩ : Ext p ν) * x = -(x * ⟨i, 0⟩)) : x = 0 := by
+  rw [Ext.mul_comm x] at h
+  have h3 : (⟨i, 0⟩ : Ext p ν) * x = ⟨i, 0⟩ * 0 := by rw [Hermitian.mul_zero]; exact eq_zero_of_eq_neg' F h
+  exact cancel_ii hi h3
+
+/-- The `γ¹` step tying the anti-diagonal: `⟨−i, 0⟩ x = −(y ⟨−i, 0⟩)` gives `x = −y`. -/
+theorem g1_neg_step {i : Shell p} (hi : i * i = -1) {x y : Ext p ν}
+    (h : (⟨-i, 0⟩ : Ext p ν) * x = -(y * ⟨-i, 0⟩)) : x = -y := by
+  have e1 : (⟨-i, 0⟩ : Ext p ν) = -⟨i, 0⟩ := Ext.ext rfl Shell.neg_zero.symm
+  rw [e1, Ext.mul_comm y, ← Hermitian.neg_mul, ← Hermitian.neg_mul, Hermitian.neg_neg] at h
+  have h' : (⟨i, 0⟩ : Ext p ν) * x = ⟨i, 0⟩ * -y := by rw [← Hermitian.mul_neg, ← h, Hermitian.neg_neg]
+  exact cancel_ii hi h'
+
+/-- The `γ¹` step tying the diagonal: `⟨−i, 0⟩ x = −(y ⟨i, 0⟩)` gives `x = y`. -/
+theorem g1_pos_step {i : Shell p} (hi : i * i = -1) {x y : Ext p ν}
+    (h : (⟨-i, 0⟩ : Ext p ν) * x = -(y * ⟨i, 0⟩)) : x = y := by
+  have e1 : (⟨-i, 0⟩ : Ext p ν) = -⟨i, 0⟩ := Ext.ext rfl Shell.neg_zero.symm
+  rw [e1, Ext.mul_comm y, ← Hermitian.neg_mul] at h
+  exact cancel_ii hi (neg_inj' h)
+
+/-- 8:D21 — the twist is unique up to a scalar, on every frame with `i² = −1` and `ν ≠ 0`: a solution `X'` of the four
+twist equations `(γ^μ)† X' = −X' γ^μ` is `X'₀₃ · E`, so the solutions form the line of `E` (and of `X = −i w E`). The
+proof reads fifteen of the sixty-four entry equations: `γ⁰` makes `X'` block-symmetric, `γ³` kills four entries, `γ¹`
+ties the diagonal and the anti-diagonal, `γ²` kills the diagonal. -/
+theorem twist_unique {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1) (hν : ν ≠ 0)
+    (X : MatE p ν 4) (h : Twists i X) : X ≈ smulE (X.f 0 3) E4 := by
+  have h0 := h 0 (by decide); have h1 := h 1 (by decide); have h2 := h 2 (by decide); have h3 := h 3 (by decide)
+  have e20 := h0 0 (by decide) 0 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 0 + Ext.conj 0 * X.f 1 0 + Ext.conj ⟨0, i⟩ * X.f 2 0 + Ext.conj 0 * X.f 3 0 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * 0 + X.f 0 2 * ⟨0, i⟩ + X.f 0 3 * 0) at e20
+  have e21 := h0 0 (by decide) 1 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 1 + Ext.conj 0 * X.f 1 1 + Ext.conj ⟨0, i⟩ * X.f 2 1 + Ext.conj 0 * X.f 3 1 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * 0 + X.f 0 2 * 0 + X.f 0 3 * ⟨0, i⟩) at e21
+  have e22 := h0 0 (by decide) 2 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 2 + Ext.conj 0 * X.f 1 2 + Ext.conj ⟨0, i⟩ * X.f 2 2 + Ext.conj 0 * X.f 3 2 =
+      -(0 + X.f 0 0 * ⟨0, i⟩ + X.f 0 1 * 0 + X.f 0 2 * 0 + X.f 0 3 * 0) at e22
+  have e23 := h0 0 (by decide) 3 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 3 + Ext.conj 0 * X.f 1 3 + Ext.conj ⟨0, i⟩ * X.f 2 3 + Ext.conj 0 * X.f 3 3 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * ⟨0, i⟩ + X.f 0 2 * 0 + X.f 0 3 * 0) at e23
+  have e30 := h0 1 (by decide) 0 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 0 + Ext.conj 0 * X.f 1 0 + Ext.conj 0 * X.f 2 0 + Ext.conj ⟨0, i⟩ * X.f 3 0 =
+      -(0 + X.f 1 0 * 0 + X.f 1 1 * 0 + X.f 1 2 * ⟨0, i⟩ + X.f 1 3 * 0) at e30
+  have e31 := h0 1 (by decide) 1 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 1 + Ext.conj 0 * X.f 1 1 + Ext.conj 0 * X.f 2 1 + Ext.conj ⟨0, i⟩ * X.f 3 1 =
+      -(0 + X.f 1 0 * 0 + X.f 1 1 * 0 + X.f 1 2 * 0 + X.f 1 3 * ⟨0, i⟩) at e31
+  have e32 := h0 1 (by decide) 2 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 2 + Ext.conj 0 * X.f 1 2 + Ext.conj 0 * X.f 2 2 + Ext.conj ⟨0, i⟩ * X.f 3 2 =
+      -(0 + X.f 1 0 * ⟨0, i⟩ + X.f 1 1 * 0 + X.f 1 2 * 0 + X.f 1 3 * 0) at e32
+  have e33 := h0 1 (by decide) 3 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 3 + Ext.conj 0 * X.f 1 3 + Ext.conj 0 * X.f 2 3 + Ext.conj ⟨0, i⟩ * X.f 3 3 =
+      -(0 + X.f 1 0 * 0 + X.f 1 1 * ⟨0, i⟩ + X.f 1 2 * 0 + X.f 1 3 * 0) at e33
+  have f00 := h3 0 (by decide) 0 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 0 + Ext.conj 0 * X.f 1 0 + Ext.conj (-⟨i, 0⟩) * X.f 2 0 + Ext.conj 0 * X.f 3 0 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * 0 + X.f 0 2 * (-⟨i, 0⟩) + X.f 0 3 * 0) at f00
+  have f11 := h3 1 (by decide) 1 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 1 + Ext.conj 0 * X.f 1 1 + Ext.conj 0 * X.f 2 1 + Ext.conj ⟨i, 0⟩ * X.f 3 1 =
+      -(0 + X.f 1 0 * 0 + X.f 1 1 * 0 + X.f 1 2 * 0 + X.f 1 3 * ⟨i, 0⟩) at f11
+  have f03 := h3 0 (by decide) 3 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 3 + Ext.conj 0 * X.f 1 3 + Ext.conj (-⟨i, 0⟩) * X.f 2 3 + Ext.conj 0 * X.f 3 3 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * (-⟨i, 0⟩) + X.f 0 2 * 0 + X.f 0 3 * 0) at f03
+  have f12 := h3 1 (by decide) 2 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 2 + Ext.conj 0 * X.f 1 2 + Ext.conj 0 * X.f 2 2 + Ext.conj ⟨i, 0⟩ * X.f 3 2 =
+      -(0 + X.f 1 0 * ⟨i, 0⟩ + X.f 1 1 * 0 + X.f 1 2 * 0 + X.f 1 3 * 0) at f12
+  have k00 := h1 0 (by decide) 0 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 0 + Ext.conj 0 * X.f 1 0 + Ext.conj 0 * X.f 2 0 + Ext.conj (-⟨i, 0⟩) * X.f 3 0 =
+      -(0 + X.f 0 0 * 0 + X.f 0 1 * 0 + X.f 0 2 * 0 + X.f 0 3 * (-⟨i, 0⟩)) at k00
+  have k03 := h1 0 (by decide) 3 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 3 + Ext.conj 0 * X.f 1 3 + Ext.conj 0 * X.f 2 3 + Ext.conj (-⟨i, 0⟩) * X.f 3 3 =
+      -(0 + X.f 0 0 * ⟨i, 0⟩ + X.f 0 1 * 0 + X.f 0 2 * 0 + X.f 0 3 * 0) at k03
+  have m03 := h2 0 (by decide) 3 (by decide)
+  change 0 + Ext.conj 0 * X.f 0 3 + Ext.conj 0 * X.f 1 3 + Ext.conj 0 * X.f 2 3 + Ext.conj (-(⟨i, 0⟩ * ⟨i, 0⟩)) * X.f 3 3 =
+      -(0 + X.f 0 0 * (-(⟨i, 0⟩ * ⟨i, 0⟩)) + X.f 0 1 * 0 + X.f 0 2 * 0 + X.f 0 3 * 0) at m03
+  simp only [Hermitian.conj_zero, conj_mk, Shell.neg_zero, Hermitian.zero_mul, Hermitian.mul_zero, Hermitian.zero_add, Hermitian.add_zero, ii_sq hi, neg_mk, Shell.neg_neg, mk_one_mul, mul_mk_one] at e20 e21 e22 e23 e30 e31 e32 e33 f00 f11 f03 f12 k00 k03 m03
+  -- the block symmetry
+  have x20 : X.f 2 0 = X.f 0 2 := g0_step F hi hν e20
+  have x21 : X.f 2 1 = X.f 0 3 := g0_step F hi hν e21
+  have x22 : X.f 2 2 = X.f 0 0 := g0_step F hi hν e22
+  have x23 : X.f 2 3 = X.f 0 1 := g0_step F hi hν e23
+  have x30 : X.f 3 0 = X.f 1 2 := g0_step F hi hν e30
+  have x31 : X.f 3 1 = X.f 1 3 := g0_step F hi hν e31
+  have x32 : X.f 3 2 = X.f 1 0 := g0_step F hi hν e32
+  have x33 : X.f 3 3 = X.f 1 1 := g0_step F hi hν e33
+  -- the four vanishing entries of `γ³`
+  rw [x20] at f00; rw [x31] at f11; rw [x23] at f03; rw [x32] at f12
+  have x02 : X.f 0 2 = 0 := g3_neg_step F hi f00
+  have x13 : X.f 1 3 = 0 := g3_pos_step F hi f11
+  have x01 : X.f 0 1 = 0 := g3_neg_step F hi f03
+  have x10 : X.f 1 0 = 0 := g3_pos_step F hi f12
+  -- `γ¹`: the anti-diagonal and the diagonal
+  rw [x30] at k00; rw [x33] at k03
+  have x12 : X.f 1 2 = -X.f 0 3 := g1_neg_step hi k00
+  have x11 : X.f 1 1 = X.f 0 0 := g1_pos_step hi k03
+  -- `γ²`: the diagonal vanishes
+  rw [x33, x11] at m03
+  have x00 : X.f 0 0 = 0 := eq_zero_of_eq_neg' F m03
+  -- the sixteen entries
+  intro a ha b hb
+  rw [smulE_f]
+  match a, ha, b, hb with
+  | 0, _, 0, _ => change X.f 0 0 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; exact x00
+  | 0, _, 1, _ => change X.f 0 1 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; exact x01
+  | 0, _, 2, _ => change X.f 0 2 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; exact x02
+  | 0, _, 3, _ => change X.f 0 3 = X.f 0 3 * 1; rw [Ext.mul_one]
+  | 1, _, 0, _ => change X.f 1 0 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; exact x10
+  | 1, _, 1, _ => change X.f 1 1 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x11]; exact x00
+  | 1, _, 2, _ => change X.f 1 2 = X.f 0 3 * -1; rw [← Hermitian.mul_neg, Ext.mul_one]; exact x12
+  | 1, _, 3, _ => change X.f 1 3 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; exact x13
+  | 2, _, 0, _ => change X.f 2 0 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x20]; exact x02
+  | 2, _, 1, _ => change X.f 2 1 = X.f 0 3 * 1; rw [Ext.mul_one]; exact x21
+  | 2, _, 2, _ => change X.f 2 2 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x22]; exact x00
+  | 2, _, 3, _ => change X.f 2 3 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x23]; exact x01
+  | 3, _, 0, _ => change X.f 3 0 = X.f 0 3 * -1; rw [← Hermitian.mul_neg, Ext.mul_one]; rw [x30]; exact x12
+  | 3, _, 1, _ => change X.f 3 1 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x31]; exact x13
+  | 3, _, 2, _ => change X.f 3 2 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x32]; exact x10
+  | 3, _, 3, _ => change X.f 3 3 = X.f 0 3 * 0; rw [Hermitian.mul_zero]; rw [x33, x11]; exact x00
+  | a + 4, ha, _, _ => exact absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | _, _, b + 4, hb => exact absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+
+/-- 8:D21 — the spinor form `X = γ⁰ γ¹ γ³` is `−i w E`, on every shell with `i² = −1`: the sixteen entries of the triple
+product, normalised as ring expressions in `i w` and `i` and read off with `i² = −1`. -/
+theorem gE_prod {i : Shell p} (hi : i * i = -1) : (gE i 0 * gE i 1 * gE i 3 : MatE p ν 4) ≈ smulE (-⟨0, i⟩) E4 := by
+  intro a ha b hb
+  match a, ha, b, hb with
+  | 0, _, 0, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0) * (-⟨i, 0⟩) + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 0, _, 1, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0) * ⟨i, 0⟩ : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.var 1))) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 0, _, 2, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩)) * ⟨i, 0⟩ + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) (.var 1))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 0, _, 3, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩) + 0 * 0) * (-⟨i, 0⟩) + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 1 : Ext p ν)
+    calc _ = (⟨0, i⟩ : Ext p ν) * (⟨i, 0⟩ * ⟨i, 0⟩) :=
+          FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) .zero)) (.mul (.var 0) (.mul (.var 1) (.var 1))) (by decide +kernel)
+      _ = -⟨0, i⟩ * 1 := by rw [ii_sq hi, mul_neg_one', Ext.mul_one]
+  | 1, _, 0, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + ⟨0, i⟩ * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0) * (-⟨i, 0⟩) + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 1, _, 1, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + ⟨0, i⟩ * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0) * ⟨i, 0⟩ : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) (.var 1))) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 1, _, 2, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩)) * ⟨i, 0⟩ + (0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + ⟨0, i⟩ * 0) * 0 + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * -1 : Ext p ν)
+    calc _ = -((⟨0, i⟩ : Ext p ν) * (⟨i, 0⟩ * ⟨i, 0⟩)) :=
+          FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) (.var 1))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.neg (.mul (.var 0) (.mul (.var 1) (.var 1)))) (by decide +kernel)
+      _ = -⟨0, i⟩ * -1 := by rw [ii_sq hi, mul_neg_one', Hermitian.neg_neg, ← Hermitian.neg_mul, ← Hermitian.mul_neg, Hermitian.neg_neg, Ext.mul_one]
+  | 1, _, 3, _ =>
+    change (0 + (0 + 0 * 0 + 0 * 0 + 0 * 0 + ⟨0, i⟩ * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + ⟨0, i⟩ * 0) * (-⟨i, 0⟩) + (0 + 0 * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + ⟨0, i⟩ * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + ⟨0, i⟩ * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul (.var 0) .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul (.var 0) .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 2, _, 0, _ =>
+    change (0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * (-⟨i, 0⟩) + (0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 2, _, 1, _ =>
+    change (0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + 0 * 0) * ⟨i, 0⟩ : Ext p ν) =
+      (-⟨0, i⟩ * 1 : Ext p ν)
+    calc _ = (⟨0, i⟩ : Ext p ν) * (⟨i, 0⟩ * ⟨i, 0⟩) :=
+          FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1))) (by decide +kernel)
+      _ = -⟨0, i⟩ * 1 := by rw [ii_sq hi, mul_neg_one', Ext.mul_one]
+  | 2, _, 2, _ =>
+    change (0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * ⟨i, 0⟩ + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.var 1))) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 2, _, 3, _ =>
+    change (0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * (-⟨i, 0⟩) + (0 + ⟨0, i⟩ * 0 + 0 * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) .zero)) (.mul .zero (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 3, _, 0, _ =>
+    change (0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * (-⟨i, 0⟩) + (0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * -1 : Ext p ν)
+    calc _ = -((⟨0, i⟩ : Ext p ν) * (⟨i, 0⟩ * ⟨i, 0⟩)) :=
+          FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.neg (.mul (.var 0) (.mul (.var 1) (.var 1)))) (by decide +kernel)
+      _ = -⟨0, i⟩ * -1 := by rw [ii_sq hi, mul_neg_one', Hermitian.neg_neg, ← Hermitian.neg_mul, ← Hermitian.mul_neg, Hermitian.neg_neg, Ext.mul_one]
+  | 3, _, 1, _ =>
+    change (0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0) * ⟨i, 0⟩ : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) (.var 1))) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 3, _, 2, _ =>
+    change (0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * ⟨i, 0⟩ + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) (.var 1))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | 3, _, 3, _ =>
+    change (0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * 0 + 0 * (-⟨i, 0⟩)) * 0 + (0 + 0 * 0 + ⟨0, i⟩ * 0 + 0 * (-⟨i, 0⟩) + 0 * 0) * (-⟨i, 0⟩) + (0 + 0 * 0 + ⟨0, i⟩ * ⟨i, 0⟩ + 0 * 0 + 0 * 0) * 0 + (0 + 0 * ⟨i, 0⟩ + ⟨0, i⟩ * 0 + 0 * 0 + 0 * 0) * 0 : Ext p ν) =
+      (-⟨0, i⟩ * 0 : Ext p ν)
+    exact FRC.Unitary.xsound (FRC.Unitary.xlook [⟨0, i⟩, ⟨i, 0⟩]) (.add (.add (.add (.add .zero (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero (.neg (.var 1)))) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) .zero)) (.mul .zero (.neg (.var 1)))) (.mul .zero .zero)) (.neg (.var 1)))) (.mul (.add (.add (.add (.add .zero (.mul .zero .zero)) (.mul (.var 0) (.var 1))) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.add (.add (.add (.add .zero (.mul .zero (.var 1))) (.mul (.var 0) .zero)) (.mul .zero .zero)) (.mul .zero .zero)) .zero)) (.mul (.neg (.var 0)) .zero) (by decide +kernel)
+  | a + 4, ha, _, _ => exact absurd ha (Nat.not_lt.mpr (Nat.le_add_left 4 a))
+  | _, _, b + 4, hb => exact absurd hb (Nat.not_lt.mpr (Nat.le_add_left 4 b))
+
+/-! ### The extension has no zero divisors when `ν` is a nonsquare -/
+
+/-- `norm z = 0 → z = 0` when `ν` is a nonsquare: `z.re² = ν z.im²`, and `z.im ≠ 0` would make `ν = (z.re/z.im)²` a square. -/
+theorem eq_zero_of_norm_eq_zero {κ : Nat} {g : Shell p} (F : Frame p κ g) (hns : ¬ ∃ r : Shell p, r * r = ν) {z : Ext p ν}
+    (h : Ext.norm z = 0) : z = 0 := by
+  have hsq : z.re * z.re = ν * (z.im * z.im) := by
+    have := Shell.eq_neg_of_add_eq_zero h
+    rw [Shell.neg_neg] at this; exact this
+  cases Nat.decEq z.im.val 0 with
+  | isTrue e0 =>
+    have him : z.im = 0 := Shell.ext e0
+    rw [him, Shell.mul_zero, Shell.mul_zero] at hsq
+    have hre : z.re = 0 := by
+      rcases F.mul_eq_zero hsq with h1 | h1 <;> exact h1
+    exact Ext.ext hre him
+  | isFalse e0 =>
+    have him : z.im ≠ 0 := fun e => e0 (congrArg Shell.val e)
+    obtain ⟨u, hu⟩ := F.exists_inv him
+    exfalso; apply hns
+    refine ⟨z.re * u, ?_⟩
+    have h1 : z.re * u * (z.re * u) = z.re * z.re * (u * u) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [z.re, u]) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 1)))
+        (.mul (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (by decide +kernel)
+    have h2 : ν * (z.im * z.im) * (u * u) = ν * ((z.im * u) * (z.im * u)) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [ν, z.im, u]) (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 2) (.var 2)))
+        (.mul (.var 0) (.mul (.mul (.var 1) (.var 2)) (.mul (.var 1) (.var 2)))) (by decide +kernel)
+    rw [h1, hsq, h2, hu, Shell.mul_one, Shell.mul_one]
+
+/-- No zero divisors in the extension of a nonsquare `ν`. -/
+theorem ext_mul_eq_zero {κ : Nat} {g : Shell p} (F : Frame p κ g) (hns : ¬ ∃ r : Shell p, r * r = ν) {z z' : Ext p ν}
+    (h : z * z' = 0) : z = 0 ∨ z' = 0 := by
+  have hn : Ext.norm z * Ext.norm z' = 0 := by
+    rw [← Ext.norm_mul, h]; show (0 : Shell p) * 0 + -(ν * (0 * 0)) = 0
+    rw [Shell.mul_zero, Shell.mul_zero, Shell.neg_zero, Shell.add_zero]
+  rcases F.mul_eq_zero hn with h1 | h1
+  · exact Or.inl (eq_zero_of_norm_eq_zero F hns h1)
+  · exact Or.inr (eq_zero_of_norm_eq_zero F hns h1)
+
+/-- 8:D21 — the normalisation leaves the sign: a twist `X'` with `X'² = ν I` is `X` or `−X`, `X = −i w E` the spinor
+form, on every frame with `i² = −1` and `ν` a nonsquare. The `(0,0)` entry of `X'² = ν I` reads `−X'₀₃² = ν`, so
+`X'₀₃² = (i w)²` and `(X'₀₃ − i w)(X'₀₃ + i w) = 0` in the field `K`. -/
+theorem twist_unique_sign {κ : Nat} {g : Shell p} (F : Frame p κ g) {i : Shell p} (hi : i * i = -1)
+    (hns : ¬ ∃ r : Shell p, r * r = ν) (X : MatE p ν 4) (h : Twists i X) (hX : X * X ≈ smulE ⟨ν, 0⟩ 1) :
+    X ≈ smulE (-⟨0, i⟩) E4 ∨ X ≈ smulE ⟨0, i⟩ E4 := by
+  have hν : ν ≠ 0 := fun e => hns ⟨0, by rw [e, Shell.mul_zero]⟩
+  have hX' := twist_unique F hi hν X h
+  have x00 : X.f 0 0 = 0 := by have := hX' 0 (by decide) 0 (by decide); change X.f 0 0 = X.f 0 3 * 0 at this; rw [Hermitian.mul_zero] at this; exact this
+  have x01 : X.f 0 1 = 0 := by have := hX' 0 (by decide) 1 (by decide); change X.f 0 1 = X.f 0 3 * 0 at this; rw [Hermitian.mul_zero] at this; exact this
+  have x10 : X.f 1 0 = 0 := by have := hX' 1 (by decide) 0 (by decide); change X.f 1 0 = X.f 0 3 * 0 at this; rw [Hermitian.mul_zero] at this; exact this
+  have x02 : X.f 0 2 = 0 := by have := hX' 0 (by decide) 2 (by decide); change X.f 0 2 = X.f 0 3 * 0 at this; rw [Hermitian.mul_zero] at this; exact this
+  have x20 : X.f 2 0 = 0 := by have := hX' 2 (by decide) 0 (by decide); change X.f 2 0 = X.f 0 3 * 0 at this; rw [Hermitian.mul_zero] at this; exact this
+  have x30 : X.f 3 0 = -X.f 0 3 := by
+    have := hX' 3 (by decide) 0 (by decide); change X.f 3 0 = X.f 0 3 * -1 at this
+    rw [← Hermitian.mul_neg, Ext.mul_one] at this; exact this
+  have e := hX 0 (by decide) 0 (by decide)
+  change 0 + X.f 0 0 * X.f 0 0 + X.f 0 1 * X.f 1 0 + X.f 0 2 * X.f 2 0 + X.f 0 3 * X.f 3 0 = ⟨ν, 0⟩ * 1 at e
+  rw [x00, x01, x10, x02, x20, x30] at e
+  simp only [Hermitian.mul_zero, Hermitian.zero_add, ← Hermitian.mul_neg, Ext.mul_one] at e
+  -- `e : -(f f) = ⟨ν, 0⟩`, so `f f = (i w)²`
+  have hff : X.f 0 3 * X.f 0 3 = ⟨0, i⟩ * ⟨0, i⟩ := by
+    rw [iw_sq hi]
+    have := congrArg (- ·) e
+    rw [Hermitian.neg_neg, neg_mk, Shell.neg_zero] at this
+    exact this
+  have hprod : (X.f 0 3 + -⟨0, i⟩) * (X.f 0 3 + ⟨0, i⟩) = 0 := by
+    have hid : (X.f 0 3 + -⟨0, i⟩) * (X.f 0 3 + ⟨0, i⟩) = X.f 0 3 * X.f 0 3 + -(⟨0, i⟩ * ⟨0, i⟩) :=
+      FRC.Unitary.xsound (FRC.Unitary.xlook [X.f 0 3, ⟨0, i⟩]) (.mul (.add (.var 0) (.neg (.var 1))) (.add (.var 0) (.var 1)))
+        (.add (.mul (.var 0) (.var 0)) (.neg (.mul (.var 1) (.var 1)))) (by decide +kernel)
+    rw [hid, hff, Hermitian.add_neg]
+  rcases ext_mul_eq_zero F hns hprod with h1 | h1
+  · right
+    have hf : X.f 0 3 = ⟨0, i⟩ := by
+      have := Shell.eq_neg_of_add_eq_zero (Ext.re_congr h1)
+      have h' := Shell.eq_neg_of_add_eq_zero (Ext.im_congr h1)
+      exact Ext.ext (by rw [this]; exact Shell.neg_neg _) (by rw [h']; exact Shell.neg_neg _)
+    rw [← hf]; exact hX'
+  · left
+    have hf : X.f 0 3 = -⟨0, i⟩ := Ext.ext (Shell.eq_neg_of_add_eq_zero (Ext.re_congr h1)) (Shell.eq_neg_of_add_eq_zero (Ext.im_congr h1))
+    rw [← hf]; exact hX'
 
 end MatE
 
@@ -37529,6 +38801,340 @@ theorem dirac_square_values :
   decide +kernel
 
 end witnesses
+
+end FRC.Dirac.Spinor
+
+/-! inlined: FrcCore/Theme/Kronecker.lean -/
+
+/-!
+# The Kronecker file of 8-dirac — the Kronecker product and the shell lattice on two coordinate directions, no axioms
+
+The Dirac operator on `r` coordinate directions acts on the functions of the lattice `C_p^r` with values in the spinor
+space: its matrix is a sum of Kronecker products `∇_μ ⊗ γ_μ`. This file gives the Kronecker product of two `MatE`
+matrices, `(A ⊗ B)_{(a n + b)(c n + d)} = A_{ac} B_{bd}`, as a ring map in each factor (`kron_mul`, `kron_add`,
+`kron_neg`, `kron_opow`), the index arithmetic it needs (the quotient `(a n + b) / n = a`, from the division algorithm
+`div_spec`, `div_unique` of Window.lean, which belong in `FrcCore.Nat` at the next refactor), the non-vanishing of a Kronecker product of two matrices with a nonzero
+entry each, and the two commuting translations `T₀ = S ⊗ 1`, `T₁ = 1 ⊗ S` of the lattice `C_p × C_p`. With the generic
+identity `dirac_two_index` of Unipotent.lean this decides the lower bound of row D20 on two directions:
+`∇₀^{p−1} ∇₁^{p−1} ≉ 0` on the lattice, the `(0, 0)` entry of `Σ T₀^k · Σ T₁^k` being `1`. No axioms.
+-/
+
+namespace FRC.Nat
+
+/-! ## The index of a pair in the block layout (the quotient lemmas `div_spec`, `div_unique` are Window.lean's) -/
+
+/-- The index of the pair `(a, b)` with `b < n` in the block layout: `(a n + b) / n = a` and `(a n + b) % n = b`. -/
+theorem pair_div {n a b : Nat} (hb : b < n) : (a * n + b) / n = a := div_unique hb (by rw [Nat.mul_comm a n])
+
+theorem pair_mod {n a b : Nat} (hb : b < n) : (a * n + b) % n = b := by
+  rw [Nat.mul_comm a n, add_mul_mod_self_left b a n (pos_of_lt hb), mod_eq_of_lt hb]
+
+theorem pair_lt {m n a b : Nat} (ha : a < m) (hb : b < n) : a * n + b < m * n :=
+  Nat.lt_of_lt_of_le (Nat.add_lt_add_left hb _) (by rw [← Nat.succ_mul]; exact Nat.mul_le_mul_right n ha)
+
+/-- Every `i` decomposes as `(i / n) n + i % n`, and `i < m n` forces `i / n < m`. -/
+theorem div_add_mod' {n : Nat} (hn : 0 < n) (i : Nat) : i = (i / n) * n + i % n := by
+  rw [Nat.mul_comm]; exact div_spec n hn i
+
+theorem div_lt_of_lt_mul' {m n i : Nat} (hn : 0 < n) (h : i < m * n) : i / n < m := by
+  have hi := div_add_mod' hn i
+  have h2 : i / n * n ≤ i / n * n + i % n := Nat.le_add_right _ _
+  rw [← hi] at h2
+  cases Nat.lt_or_ge (i / n) m with
+  | inl hlt => exact hlt
+  | inr hge => exact absurd (Nat.lt_of_lt_of_le h (Nat.le_trans (Nat.mul_le_mul_right n hge) h2)) (Nat.lt_irrefl _)
+
+end FRC.Nat
+
+namespace FRC.Dirac.Spinor
+
+open FRC FRC.Shell FRC.Extension FRC.Dirac.Operator FRC.Dirac.Hermitian
+
+variable {p : Nat} [Pos p] {ν : Shell p}
+
+/-! ## Sums over a block range -/
+
+theorem mul_mul_mul_comm' (x y z w : Ext p ν) : x * y * (z * w) = x * z * (y * w) := by
+  rw [Ext.mul_assoc x y (z * w), ← Ext.mul_assoc y z w, Ext.mul_comm y z, Ext.mul_assoc z y w, ← Ext.mul_assoc x z (y * w)]
+
+theorem esum_add_range (F : Nat → Ext p ν) (x : Nat) : ∀ y, esum F (x + y) = esum F x + esum (fun b => F (x + b)) y
+  | 0 => (Hermitian.add_zero _).symm
+  | y + 1 => by
+    show esum F (x + y) + F (x + y) = esum F x + (esum (fun b => F (x + b)) y + F (x + y))
+    rw [esum_add_range F x y, Hermitian.add_assoc]
+
+/-- A sum over `m n` indices as a double sum over the blocks. -/
+theorem esum_mul_range (F : Nat → Ext p ν) (n : Nat) : ∀ m, esum F (m * n) = esum (fun a => esum (fun b => F (a * n + b)) n) m
+  | 0 => by rw [Nat.zero_mul]; rfl
+  | m + 1 => by
+    rw [Nat.succ_mul, esum_add_range, esum_mul_range F n m]; rfl
+
+namespace MatE
+
+variable {m n : Nat}
+
+/-! ## The Kronecker product -/
+
+/-- `(A ⊗ B)_{ij} = A_{(i/n)(j/n)} B_{(i%n)(j%n)}` on `m n` indices. -/
+def kron (A : MatE p ν m) (B : MatE p ν n) : MatE p ν (m * n) :=
+  ⟨fun i j => A.f (i / n) (j / n) * B.f (i % n) (j % n)⟩
+
+theorem kron_f (A : MatE p ν m) (B : MatE p ν n) (i j : Nat) :
+    (kron A B).f i j = A.f (i / n) (j / n) * B.f (i % n) (j % n) := rfl
+
+theorem kron_f_pair (A : MatE p ν m) (B : MatE p ν n) {a b c d : Nat} (hb : b < n) (hd : d < n) :
+    (kron A B).f (a * n + b) (c * n + d) = A.f a c * B.f b d := by
+  rw [kron_f, FRC.Nat.pair_div hb, FRC.Nat.pair_div hd, FRC.Nat.pair_mod hb, FRC.Nat.pair_mod hd]
+
+theorem kron_congr (hn : 0 < n) {A A' : MatE p ν m} {B B' : MatE p ν n} (hA : A ≈ A') (hB : B ≈ B') :
+    kron A B ≈ kron A' B' := fun i hi j hj => by
+  rw [kron_f, kron_f, hA _ (FRC.Nat.div_lt_of_lt_mul' hn hi) _ (FRC.Nat.div_lt_of_lt_mul' hn hj),
+    hB _ (FRC.Nat.mod_lt' i hn) _ (FRC.Nat.mod_lt' j hn)]
+
+theorem kron_add_left (A A' : MatE p ν m) (B : MatE p ν n) : kron (A + A') B ≈ kron A B + kron A' B :=
+  fun _ _ _ _ => Hermitian.add_mul _ _ _
+
+theorem kron_add_right (A : MatE p ν m) (B B' : MatE p ν n) : kron A (B + B') ≈ kron A B + kron A B' :=
+  fun _ _ _ _ => Hermitian.mul_add _ _ _
+
+theorem kron_neg_left (A : MatE p ν m) (B : MatE p ν n) : kron (-A) B ≈ -(kron A B) :=
+  fun _ _ _ _ => (Hermitian.neg_mul _ _).symm
+
+theorem kron_neg_right (A : MatE p ν m) (B : MatE p ν n) : kron A (-B) ≈ -(kron A B) :=
+  fun _ _ _ _ => (Hermitian.mul_neg _ _).symm
+
+/-- The Kronecker product is multiplicative: `(A ⊗ B)(C ⊗ D) ≈ (AC) ⊗ (BD)`. -/
+theorem kron_mul (A C : MatE p ν m) (B D : MatE p ν n) : kron A B * kron C D ≈ kron (A * C) (B * D) := by
+  intro i _ j _
+  rw [mul_f, kron_f, mul_f, mul_f, esum_mul_range _ n m, esum_mul_right]
+  refine esum_congr m fun a _ => ?_
+  rw [esum_mul_left]
+  refine esum_congr n fun b hb => ?_
+  rw [kron_f, kron_f, FRC.Nat.pair_div hb, FRC.Nat.pair_mod hb]
+  -- `(A_{ia} B_{ib}) (C_{aj} D_{bj}) = (A_{ia} C_{aj}) (B_{ib} D_{bj})`
+  exact mul_mul_mul_comm' _ _ _ _
+
+/-- Powers of a Kronecker product with the identity: `(A ⊗ 1)^k ≈ A^k ⊗ 1` and `(1 ⊗ B)^k ≈ 1 ⊗ B^k`. -/
+theorem kron_opow_left (hn : 0 < n) (A : MatE p ν m) : ∀ k, opow (kron A (1 : MatE p ν n)) k ≈ kron (opow A k) 1
+  | 0 => fun i hi j hj => by
+    show (if i = j then (1 : Ext p ν) else 0) = (if i / n = j / n then (1 : Ext p ν) else 0) * (if i % n = j % n then 1 else 0)
+    exact match Nat.decEq i j with
+      | .isTrue h => by subst h; rw [ite_eq_left rfl, ite_eq_left rfl, ite_eq_left rfl, Ext.one_mul]
+      | .isFalse h =>
+        match Nat.decEq (i / n) (j / n) with
+        | .isTrue h1 =>
+          match Nat.decEq (i % n) (j % n) with
+          | .isTrue h2 => absurd (by rw [FRC.Nat.div_add_mod' hn i, FRC.Nat.div_add_mod' hn j, h1, h2]) h
+          | .isFalse h2 => by rw [ite_eq_right h, ite_eq_right h2, Hermitian.mul_zero]
+        | .isFalse h1 => by rw [ite_eq_right h, ite_eq_right h1, Hermitian.zero_mul]
+  | k + 1 =>
+    calc opow (kron A 1) k * kron A 1 ≈ kron (opow A k) 1 * kron A 1 := mul_congr_left _ (kron_opow_left hn A k)
+      _ ≈ kron (opow A k * A) (1 * 1) := kron_mul _ _ _ _
+      _ ≈ kron (opow A (k + 1)) 1 := kron_congr hn (eq_refl _) (OpRing.one_mul 1)
+
+theorem kron_opow_right (hn : 0 < n) (B : MatE p ν n) : ∀ k, opow (kron (1 : MatE p ν m) B) k ≈ kron 1 (opow B k)
+  | 0 => kron_opow_left hn (1 : MatE p ν m) 0
+  | k + 1 =>
+    calc opow (kron 1 B) k * kron 1 B ≈ kron 1 (opow B k) * kron 1 B := mul_congr_left _ (kron_opow_right hn B k)
+      _ ≈ kron (1 * 1) (opow B k * B) := kron_mul _ _ _ _
+      _ ≈ kron 1 (opow B (k + 1)) := kron_congr hn (OpRing.one_mul 1) (eq_refl _)
+
+/-- `A ⊗ 1` and `1 ⊗ B` commute, both products being `A ⊗ B`. -/
+theorem kron_comm (hn : 0 < n) (A : MatE p ν m) (B : MatE p ν n) : Comm (kron A (1 : MatE p ν n)) (kron (1 : MatE p ν m) B) :=
+  calc kron A 1 * kron 1 B ≈ kron (A * 1) (1 * B) := kron_mul _ _ _ _
+    _ ≈ kron A B := kron_congr hn (OpRing.mul_one A) (OpRing.one_mul B)
+    _ ≈ kron (1 * A) (B * 1) := kron_congr hn (eq_symm (OpRing.one_mul A)) (eq_symm (OpRing.mul_one B))
+    _ ≈ kron 1 B * kron A 1 := eq_symm (kron_mul _ _ _ _)
+
+/-- A Kronecker product of two matrices with a nonzero entry each is not zero, `K` having no zero divisors when `ν`
+is a nonsquare. -/
+theorem kron_ne_zero {κ : Nat} {g : Shell p} (F : Frame p κ g) (hns : ¬ ∃ r : Shell p, r * r = ν)
+    {A : MatE p ν m} {B : MatE p ν n} {a c b d : Nat} (ha : a < m) (hc : c < m) (hb : b < n) (hd : d < n)
+    (hA : A.f a c ≠ 0) (hB : B.f b d ≠ 0) : ¬ (kron A B ≈ 0) := fun h => by
+  have e := h (a * n + b) (FRC.Nat.pair_lt ha hb) (c * n + d) (FRC.Nat.pair_lt hc hd)
+  rw [kron_f_pair _ _ hb hd, zero_f] at e
+  exact (ext_mul_eq_zero F hns e).elim hA hB
+
+/-! ## The lattice `C_p × C_p`: two commuting translations -/
+
+/-- The translations of the two directions, `T₀ = S ⊗ 1` and `T₁ = 1 ⊗ S`, on `p · p` sites. -/
+def shift0 : MatE p ν (p * p) := kron (shift p) (1 : MatE p ν p)
+def shift1 : MatE p ν (p * p) := kron (1 : MatE p ν p) (shift p)
+
+theorem shift0_comm_shift1 : Comm (shift0 : MatE p ν (p * p)) shift1 := kron_comm Pos.pos _ _
+
+theorem shift0_pow_self : opow (shift0 : MatE p ν (p * p)) p ≈ 1 :=
+  eq_trans (kron_opow_left Pos.pos _ p) (eq_trans (kron_congr Pos.pos shift_pow_self (eq_refl _)) (eq_symm (kron_opow_left Pos.pos 1 0)))
+
+theorem shift1_pow_self : opow (shift1 : MatE p ν (p * p)) p ≈ 1 :=
+  eq_trans (kron_opow_right Pos.pos _ p) (eq_trans (kron_congr Pos.pos (eq_refl _) shift_pow_self) (eq_symm (kron_opow_left Pos.pos 1 0)))
+
+theorem inverse_of_opow_self {R : Type} [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [OpRing R] {t : R}
+    (ht : opow t p ≈ 1) : Inverse t (opow t (p - 1)) :=
+  have hp1 : p - 1 + 1 = p := FRC.Nat.sub_add_cancel (Pos.pos : 0 < p)
+  ⟨eq_trans (eq_symm (opow_succ' t (p - 1))) (eq_trans (eq_of_eq (congrArg (opow t) hp1)) ht),
+   eq_trans (eq_of_eq ((opow_succ t (p - 1)).symm.trans (congrArg (opow t) hp1))) ht⟩
+
+theorem shift0_inverse : Inverse (shift0 : MatE p ν (p * p)) (opow shift0 (p - 1)) := inverse_of_opow_self shift0_pow_self
+theorem shift1_inverse : Inverse (shift1 : MatE p ν (p * p)) (opow shift1 (p - 1)) := inverse_of_opow_self shift1_pow_self
+
+/-- `0 ⊗ B ≈ 0`, and a sum of Kronecker products with the identity is the Kronecker product of the sum. -/
+theorem kron_zero_left (B : MatE p ν n) : kron (0 : MatE p ν m) B ≈ 0 := fun _ _ _ _ => Hermitian.zero_mul _
+theorem kron_zero_right (A : MatE p ν m) : kron A (0 : MatE p ν n) ≈ 0 := fun _ _ _ _ => Hermitian.mul_zero _
+
+theorem osum_kron_left (f : Nat → MatE p ν m) : ∀ k, osum (fun j => kron (f j) (1 : MatE p ν n)) k ≈ kron (osum f k) 1
+  | 0 => eq_symm (kron_zero_left 1)
+  | k + 1 =>
+    calc osum (fun j => kron (f j) 1) k + kron (f k) 1 ≈ kron (osum f k) 1 + kron (f k) 1 :=
+          add_congr_left _ (osum_kron_left f k)
+      _ ≈ kron (osum f k + f k) 1 := eq_symm (kron_add_left _ _ _)
+
+theorem osum_kron_right (f : Nat → MatE p ν n) : ∀ k, osum (fun j => kron (1 : MatE p ν m) (f j)) k ≈ kron 1 (osum f k)
+  | 0 => eq_symm (kron_zero_right 1)
+  | k + 1 =>
+    calc osum (fun j => kron 1 (f j)) k + kron 1 (f k) ≈ kron 1 (osum f k) + kron 1 (f k) :=
+          add_congr_left _ (osum_kron_right f k)
+      _ ≈ kron 1 (osum f k + f k) := eq_symm (kron_add_right _ _ _)
+
+/-- `Σ_k (A ⊗ 1)^k ≈ (Σ_k A^k) ⊗ 1` and `Σ_k (1 ⊗ B)^k ≈ 1 ⊗ Σ_k B^k`. -/
+theorem geom_kron_left (hn : 0 < n) (A : MatE p ν m) (k : Nat) : geom (kron A (1 : MatE p ν n)) k ≈ kron (geom A k) 1 :=
+  eq_trans (osum_congr k fun j _ => kron_opow_left hn A j) (osum_kron_left _ k)
+
+theorem geom_kron_right (hn : 0 < n) (B : MatE p ν n) (k : Nat) : geom (kron (1 : MatE p ν m) B) k ≈ kron 1 (geom B k) :=
+  eq_trans (osum_congr k fun j _ => kron_opow_right hn B j) (osum_kron_right _ k)
+
+/-- 8:D20 — the product of the two direction sums is not zero: `(Σ_k T₀^k)(Σ_k T₁^k) ≈ (Σ_k S^k) ⊗ (Σ_k S^k)`, whose
+`(0, 0)` entry is `1 · 1`. -/
+theorem geom_shift0_mul_geom_shift1_ne_zero {κ : Nat} {g : Shell p} (F : Frame p κ g) (hns : ¬ ∃ r : Shell p, r * r = ν) :
+    ¬ (geom (shift0 : MatE p ν (p * p)) p * geom shift1 p ≈ 0) := by
+  have hprod : geom (shift0 : MatE p ν (p * p)) p * geom shift1 p ≈ kron (geom (shift p) p) (geom (shift p) p) :=
+    calc geom (shift0 : MatE p ν (p * p)) p * geom shift1 p ≈ kron (geom (shift p) p) 1 * kron 1 (geom (shift p) p) :=
+          OpRing.mul_congr (geom_kron_left Pos.pos _ p) (geom_kron_right Pos.pos _ p)
+      _ ≈ kron (geom (shift p) p * 1) (1 * geom (shift p) p) := kron_mul _ _ _ _
+      _ ≈ kron (geom (shift p) p) (geom (shift p) p) := kron_congr Pos.pos (OpRing.mul_one _) (OpRing.one_mul _)
+  have hne : (1 : Ext p ν) ≠ 0 := fun h => F.one_ne_zero (congrArg Ext.re h)
+  intro h
+  exact kron_ne_zero F hns Pos.pos Pos.pos Pos.pos Pos.pos (by rw [geom_shift_f00]; exact hne)
+    (by rw [geom_shift_f00]; exact hne) (eq_trans (eq_symm hprod) h)
+
+
+/-! ## The two symmetric differences of the lattice and the exact index of their square -/
+
+/-- The symmetric difference `h (t − t⁻¹)` of a translation of order `p` is nilpotent, `(h (t − t^{p−1}))^p ≈ 0`, for
+central `h`, in every operator ring of characteristic `p` on a frame (the generic form of `symdiff_nilpotent`). -/
+theorem symdiff_nilpotent' {R : Type} [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [OpRing R]
+    {κ : Nat} {g : Shell p} (F : Frame p κ g) (hch : nsmul p (1 : R) ≈ 0) {t h : R} (hh : Central h) (ht : opow t p ≈ 1) :
+    opow (h * (t + -(opow t (p - 1)))) p ≈ 0 := by
+  have hT : Comm t (-(opow t (p - 1))) := Comm.neg_right (opow_self_comm t (p - 1)).symm
+  have hinv : opow (opow t (p - 1)) p ≈ 1 :=
+    calc opow (opow t (p - 1)) p ≈ opow t ((p - 1) * p) := eq_symm (opow_mul _ _ _)
+      _ ≈ opow t (p * (p - 1)) := eq_of_eq (by rw [Nat.mul_comm])
+      _ ≈ opow (opow t p) (p - 1) := opow_mul _ _ _
+      _ ≈ opow 1 (p - 1) := opow_congr ht _
+      _ ≈ 1 := opow_one_left _
+  have hodd : opow (-1 : R) p ≈ -1 := by
+    have e : p = 2 * (2 * κ) + 1 := by rw [F.cap, ← Nat.mul_assoc]
+    exact OpRing.trans (eq_of_eq (congrArg (opow (-1 : R)) e)) (opow_neg_one_odd _)
+  have hneg : opow (-(opow t (p - 1))) p ≈ -1 :=
+    calc opow (-(opow t (p - 1))) p ≈ opow (-1 * opow t (p - 1)) p := opow_congr (eq_symm (neg_one_mul _)) p
+      _ ≈ opow (-1) p * opow (opow t (p - 1)) p := mul_opow (Central.neg Central.one _) p
+      _ ≈ -1 * 1 := OpRing.mul_congr hodd hinv
+      _ ≈ -1 := OpRing.mul_one _
+  calc opow (h * (t + -(opow t (p - 1)))) p ≈ opow h p * opow (t + -(opow t (p - 1))) p := mul_opow (hh _) p
+    _ ≈ opow h p * (opow t p + opow (-(opow t (p - 1))) p) := mul_congr_right _ (frobenius_add F hch hT)
+    _ ≈ opow h p * (1 + -1) := mul_congr_right _ (OpRing.add_congr ht hneg)
+    _ ≈ opow h p * 0 := mul_congr_right _ (OpRing.add_neg 1)
+    _ ≈ 0 := Operator.mul_zero _
+
+/-- The symmetric differences of the two directions, `∇_μ = h (T_μ − T_μ^{p−1})` with `h` central (`h = 2⁻¹`). -/
+def sdiff0 (h : MatE p ν (p * p)) : MatE p ν (p * p) := h * (shift0 + -(opow shift0 (p - 1)))
+def sdiff1 (h : MatE p ν (p * p)) : MatE p ν (p * p) := h * (shift1 + -(opow shift1 (p - 1)))
+
+theorem sdiff_comm {h : MatE p ν (p * p)} (hh : Central h) : Comm (sdiff0 h) (sdiff1 h) := by
+  have c01 : Comm (shift0 : MatE p ν (p * p)) shift1 := shift0_comm_shift1
+  have c0p : Comm (shift0 : MatE p ν (p * p)) (opow shift1 (p - 1)) := (opow_comm c01.symm (p - 1)).symm
+  have cp1 : Comm (opow (shift0 : MatE p ν (p * p)) (p - 1)) shift1 := opow_comm c01 (p - 1)
+  have cpp : Comm (opow (shift0 : MatE p ν (p * p)) (p - 1)) (opow shift1 (p - 1)) := (opow_comm cp1.symm (p - 1)).symm
+  have hA : Comm (shift0 : MatE p ν (p * p)) (shift1 + -(opow shift1 (p - 1))) := Comm.add_right c01 (Comm.neg_right c0p)
+  have hB : Comm (opow (shift0 : MatE p ν (p * p)) (p - 1)) (shift1 + -(opow shift1 (p - 1))) :=
+    Comm.add_right cp1 (Comm.neg_right cpp)
+  have hT : Comm (shift0 + -(opow shift0 (p - 1)) : MatE p ν (p * p)) (shift1 + -(opow shift1 (p - 1))) :=
+    Comm.add_left hA (Comm.neg_left hB)
+  have hhT : Comm h (shift1 + -(opow shift1 (p - 1)) : MatE p ν (p * p)) := hh _
+  have hhT0 : Comm (shift0 + -(opow shift0 (p - 1)) : MatE p ν (p * p)) h := Comm.symm (hh _)
+  show Comm (h * (shift0 + -(opow shift0 (p - 1)))) (h * (shift1 + -(opow shift1 (p - 1))))
+  exact Comm.mul_left (Comm.mul_right (hh _) hhT) (Comm.mul_right hhT0 hT)
+
+theorem sdiff0_nilpotent {κ : Nat} {g : Shell p} (F : Frame p κ g) {h : MatE p ν (p * p)} (hh : Central h) :
+    opow (sdiff0 h) p ≈ 0 := symdiff_nilpotent' F char_p hh shift0_pow_self
+theorem sdiff1_nilpotent {κ : Nat} {g : Shell p} (F : Frame p κ g) {h : MatE p ν (p * p)} (hh : Central h) :
+    opow (sdiff1 h) p ≈ 0 := symdiff_nilpotent' F char_p hh shift1_pow_self
+
+/-- `∇_μ^{p−1} ≈ h^{p−1} Σ_k T_μ^k` on the lattice. -/
+theorem sdiff0_pow_pred {κ : Nat} {g : Shell p} (F : Frame p κ g) {h : MatE p ν (p * p)} (hh : Central h) :
+    opow (sdiff0 h) (p - 1) ≈ opow h (p - 1) * geom shift0 p :=
+  eq_trans (mul_opow (hh _) _) (mul_congr_right _ (symdiff_pred_eq_geom F char_p shift0_pow_self shift0_inverse))
+theorem sdiff1_pow_pred {κ : Nat} {g : Shell p} (F : Frame p κ g) {h : MatE p ν (p * p)} (hh : Central h) :
+    opow (sdiff1 h) (p - 1) ≈ opow h (p - 1) * geom shift1 p :=
+  eq_trans (mul_opow (hh _) _) (mul_congr_right _ (symdiff_pred_eq_geom F char_p shift1_pow_self shift1_inverse))
+
+/-- 8:D20 — `∇₀^{p−1} ∇₁^{p−1} ≉ 0` on the lattice `C_p × C_p`, for a central unit `h`: the product is
+`h^{2(p−1)} (Σ T₀^k)(Σ T₁^k)`, and the direction sums' product is not zero. -/
+theorem sdiff_prod_ne_zero {κ : Nat} {g : Shell p} (F : Frame p κ g) (hns : ¬ ∃ r : Shell p, r * r = ν)
+    {h h' : MatE p ν (p * p)} (hh : Central h) (hinv : Inverse h h') :
+    ¬ (opow (sdiff0 h) (p - 1) * opow (sdiff1 h) (p - 1) ≈ 0) := by
+  intro hz
+  have hc : Central (opow h (p - 1)) := Central.opow hh _
+  have hprod : opow (sdiff0 h) (p - 1) * opow (sdiff1 h) (p - 1) ≈
+      opow h (p - 1) * opow h (p - 1) * (geom shift0 p * geom shift1 p) :=
+    calc opow (sdiff0 h) (p - 1) * opow (sdiff1 h) (p - 1)
+        ≈ opow h (p - 1) * geom shift0 p * (opow h (p - 1) * geom shift1 p) :=
+          OpRing.mul_congr (sdiff0_pow_pred F hh) (sdiff1_pow_pred F hh)
+      _ ≈ opow h (p - 1) * (geom shift0 p * opow h (p - 1)) * geom shift1 p :=
+          eq_trans (eq_symm (OpRing.mul_assoc _ _ _)) (mul_congr_left _ (OpRing.mul_assoc _ _ _))
+      _ ≈ opow h (p - 1) * (opow h (p - 1) * geom shift0 p) * geom shift1 p :=
+          mul_congr_left _ (mul_congr_right _ (eq_symm (hc _)))
+      _ ≈ opow h (p - 1) * opow h (p - 1) * (geom shift0 p * geom shift1 p) :=
+          eq_trans (mul_congr_left _ (eq_symm (OpRing.mul_assoc _ _ _))) (OpRing.mul_assoc _ _ _)
+  have hu : Inverse (opow h (p - 1) * opow h (p - 1)) (opow h' (p - 1) * opow h' (p - 1)) :=
+    Inverse.mul (inverse_opow hinv _) (inverse_opow hinv _)
+  apply geom_shift0_mul_geom_shift1_ne_zero F hns
+  exact unit_kernel hu.2 (eq_trans (eq_symm hprod) hz)
+
+/-- 8:D20 — the exact index of the square on two coordinate directions, on the lattice `C_p × C_p`: with central units
+`h`, `η₀`, `η₁`, the operator `□ = η₀ ∇₀² + η₁ ∇₁²` has `□^{p−1} ≉ 0` while `□^{p−1} ∇₀ ≈ 0`, `□^{p−1} ∇₁ ≈ 0` and
+`□^p ≈ 0`; for the Dirac operator `𝒟 = ∇₀ γ₀ + ∇₁ γ₁` with `𝒟² = □` this is the index `2p − 1` (`dirac_two_index`). -/
+theorem box_two_lattice_index {κ : Nat} {g : Shell p} (F : Frame p κ g) (hns : ¬ ∃ r : Shell p, r * r = ν)
+    {h h' η0 η0' η1 η1' : MatE p ν (p * p)} (hh : Central h) (hinv : Inverse h h')
+    (hη0 : Central η0) (hη0' : Inverse η0 η0') (hη1 : Central η1) (hη1' : Inverse η1 η1') :
+    ¬ (opow (η0 * (sdiff0 h * sdiff0 h) + η1 * (sdiff1 h * sdiff1 h)) (p - 1) ≈ 0) ∧
+      opow (η0 * (sdiff0 h * sdiff0 h) + η1 * (sdiff1 h * sdiff1 h)) (p - 1) * sdiff0 h ≈ 0 ∧
+      opow (η0 * (sdiff0 h * sdiff0 h) + η1 * (sdiff1 h * sdiff1 h)) (p - 1) * sdiff1 h ≈ 0 ∧
+      opow (η0 * (sdiff0 h * sdiff0 h) + η1 * (sdiff1 h * sdiff1 h)) p ≈ 0 := by
+  have h01 := sdiff_comm hh
+  have hn0 := sdiff0_nilpotent F hh
+  have hn1 := sdiff1_nilpotent F hh
+  obtain ⟨hk0, hk1⟩ := box_two_pow_pred_mul F char_p h01 hη0 hη1 hn0 hn1
+  refine ⟨fun hz => ?_, hk0, hk1, ?_⟩
+  · -- `□^{p−1} ≈ η₀^{2κ} η₁^{2κ} ∇₀^{p−1} ∇₁^{p−1}`, and the scalar is a unit
+    have hb := box_two_pow_pred F char_p h01 hη0 hη1 hn0 hn1
+    have hu : Inverse (opow η0 (2 * κ) * opow η1 (2 * κ)) (opow η1' (2 * κ) * opow η0' (2 * κ)) :=
+      Inverse.mul (inverse_opow hη0' _) (inverse_opow hη1' _)
+    exact sdiff_prod_ne_zero F hns hh hinv (unit_kernel hu.2 (eq_trans (eq_symm hb) hz))
+  · -- `□^p ≈ (η₀ ∇₀²)^p + (η₁ ∇₁²)^p ≈ 0`
+    have hab : Comm (η0 * (sdiff0 h * sdiff0 h)) (η1 * (sdiff1 h * sdiff1 h)) :=
+      Comm.mul_left (hη0 _) (Comm.mul_left (Comm.mul_right (Comm.symm (hη1 _)) (Comm.mul_right h01 h01))
+        (Comm.mul_right (Comm.symm (hη1 _)) (Comm.mul_right h01 h01)))
+    have hterm : ∀ (η d : MatE p ν (p * p)), Central η → opow d p ≈ 0 → opow (η * (d * d)) p ≈ 0 := fun η d hη hd =>
+      calc opow (η * (d * d)) p ≈ opow η p * opow d (p + p) := opow_central_sq hη p
+        _ ≈ opow η p * 0 := mul_congr_right _ (opow_eq_zero_of hd p)
+        _ ≈ 0 := Operator.mul_zero _
+    calc opow (η0 * (sdiff0 h * sdiff0 h) + η1 * (sdiff1 h * sdiff1 h)) p
+        ≈ opow (η0 * (sdiff0 h * sdiff0 h)) p + opow (η1 * (sdiff1 h * sdiff1 h)) p := frobenius_add F char_p hab
+      _ ≈ 0 + 0 := OpRing.add_congr (hterm _ _ hη0 hn0) (hterm _ _ hη1 hn1)
+      _ ≈ 0 := OpRing.zero_add 0
+
+end MatE
 
 end FRC.Dirac.Spinor
 
@@ -40516,6 +42122,1790 @@ theorem coeff_charPoly_top (H : Mat p ν) : coeff (charPoly H) H.length = 1 := b
 
 end FRC.Dirac.Det
 
+/-! inlined: FrcCore/Theme/Chirality.lean -/
+
+/-!
+# FrcCore.Theme.Chirality — chirality as the root of the drive, and the two branches along the drive (27-fields, 16 November 2026)
+
+The exact content of 27-fields' rows C13 and C14, on every shell.
+
+* **Chirality is the root of the drive (27:C13).** In an operator ring, four pairwise anticommuting elements have
+  `(γ⁰γ¹γ²γ³)² ≈ (γ⁰)²(γ¹)²(γ²)²(γ³)²` (`chirality_square`): no sign is left over. With the Clifford relations of
+  `diag(−ν, 1, 1, 1)` the product `Γ` has `Γ² ≈ −ν` (`chirality_clifford`), and for a central `u` with `u² ≈ −1` the
+  element `uΓ` has `(uΓ)² ≈ ν` (`chirality_root`). On a shell with `i² = −1` and `ν` a nonsquare, `−ν` is a nonsquare
+  (`neg_nonsquare`), so `Γ` has no eigenvalue on the shell. In the extension `(i w)² = −ν` (`root_sq`), and the
+  Frobenius conjugation sends `i w` to `−i w` (`root_conj`): the two eigenvalues, exchanged.
+* **The two branches along the drive (27:C14).** The extension is graded by the Frobenius: it fixes the shell's part
+  (`conj_shell`) and negates the multiples of `w` (`conj_root`). The grading is multiplicative (`shell_mul_shell`,
+  `root_mul_shell`, `shell_mul_root`, `root_mul_root`) and additive (`shell_add_shell`, `root_add_root`). A matrix over
+  the shell is therefore fixed, and its product with the drive's lift `diag(w, w/ν)` is negated, entry by entry
+  (`drive_lift_frobenius`), while the lift's square is over the shell (`drive_lift_square`). The sign cancels in a
+  sesquilinear tally (`tally_sign`).
+* **The mass form of the doublet (27:C5, 27:X5).** With the Frobenius as the conjugation, the pairings of the four vectors
+  that the generators make of the unit vacuum lie on the shell (`mass_form`), and so does the invariant form
+  (`invariant_form`). Against that form the charged pair has one value, `(a′, a)` is the kernel and `(a, −a′)` has the value
+  `a² + a′²` (`mass_spectrum`). The two neutral eigenvectors are independent where `a² + a′² ≠ 0` (`mass_independent`),
+  and the neutral block has the square `(a² + a′²)` times itself (`mass_block_square`).
+* **The idempotents of `𝔽_p[Γ]` (27:C13, 27:X6).** An idempotent `a + bΓ` with `b` invertible makes `ν` a square
+  (`idempotent_square`), so a shell where `ν` is no square holds none (`no_idempotent`).
+-/
+
+namespace FRC.Chirality
+
+open FRC FRC.Shell FRC.Extension FRC.Dirac.Operator
+open OpRing (add_congr mul_congr neg_congr add_comm add_assoc zero_add add_neg mul_assoc one_mul mul_one left_distrib right_distrib)
+
+section clifford
+variable {R : Type} [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [OpRing R]
+
+/-- `B A ≈ −(A B)` for anticommuting `A`, `B`. -/
+theorem anti_swap {A B : R} (h : Anticomm A B) : B * A ≈ -(A * B) :=
+  eq_symm (neg_eq_of_add_eq_zero h)
+
+/-- A product of two elements that anticommute with `x` commutes with `x`. -/
+theorem anti_mul2 {a b x : R} (ha : Anticomm a x) (hb : Anticomm b x) : Comm (a * b) x :=
+  calc (a * b) * x ≈ a * (b * x) := mul_assoc a b x
+    _ ≈ a * -(x * b) := mul_congr_right a (anti_swap (Anticomm.symm hb))
+    _ ≈ -(a * (x * b)) := eq_symm (mul_neg a (x * b))
+    _ ≈ -((a * x) * b) := neg_congr (eq_symm (mul_assoc a x b))
+    _ ≈ -(-(x * a) * b) := neg_congr (mul_congr_left b (anti_swap (Anticomm.symm ha)))
+    _ ≈ -(-((x * a) * b)) := neg_congr (eq_symm (neg_mul (x * a) b))
+    _ ≈ (x * a) * b := neg_neg _
+    _ ≈ x * (a * b) := mul_assoc x a b
+
+/-- `(A B)² ≈ A² B²` for commuting `A`, `B`. -/
+theorem sq_mul_of_comm {A B : R} (h : Comm A B) : (A * B) * (A * B) ≈ (A * A) * (B * B) :=
+  calc (A * B) * (A * B) ≈ A * (B * (A * B)) := mul_assoc A B (A * B)
+    _ ≈ A * ((B * A) * B) := mul_congr_right A (eq_symm (mul_assoc B A B))
+    _ ≈ A * ((A * B) * B) := mul_congr_right A (mul_congr_left B (Comm.symm h))
+    _ ≈ A * (A * (B * B)) := mul_congr_right A (mul_assoc A B B)
+    _ ≈ (A * A) * (B * B) := eq_symm (mul_assoc A A (B * B))
+
+/-- `(a b)² ≈ −(a² b²)` for anticommuting `a`, `b`. -/
+theorem sq_mul_of_anticomm {a b : R} (h : Anticomm a b) : (a * b) * (a * b) ≈ -((a * a) * (b * b)) :=
+  calc (a * b) * (a * b) ≈ a * (b * (a * b)) := mul_assoc a b (a * b)
+    _ ≈ a * ((b * a) * b) := mul_congr_right a (eq_symm (mul_assoc b a b))
+    _ ≈ a * (-(a * b) * b) := mul_congr_right a (mul_congr_left b (anti_swap h))
+    _ ≈ a * -((a * b) * b) := mul_congr_right a (eq_symm (neg_mul (a * b) b))
+    _ ≈ -(a * ((a * b) * b)) := eq_symm (mul_neg a ((a * b) * b))
+    _ ≈ -(a * (a * (b * b))) := neg_congr (mul_congr_right a (mul_assoc a b b))
+    _ ≈ -((a * a) * (b * b)) := neg_congr (eq_symm (mul_assoc a a (b * b)))
+
+/-- 27:C13 — the square of the product of four pairwise anticommuting elements is the product of their squares, with
+no sign left over. -/
+theorem chirality_square {g0 g1 g2 g3 : R} (h01 : Anticomm g0 g1) (h02 : Anticomm g0 g2) (h03 : Anticomm g0 g3)
+    (h12 : Anticomm g1 g2) (h13 : Anticomm g1 g3) (h23 : Anticomm g2 g3) :
+    (g0 * g1 * g2 * g3) * (g0 * g1 * g2 * g3) ≈ ((g0 * g0) * (g1 * g1)) * ((g2 * g2) * (g3 * g3)) :=
+  have hc : Comm (g0 * g1) (g2 * g3) := Comm.mul_right (anti_mul2 h02 h12) (anti_mul2 h03 h13)
+  have hG : g0 * g1 * g2 * g3 ≈ (g0 * g1) * (g2 * g3) := mul_assoc (g0 * g1) g2 g3
+  calc (g0 * g1 * g2 * g3) * (g0 * g1 * g2 * g3) ≈ ((g0 * g1) * (g2 * g3)) * ((g0 * g1) * (g2 * g3)) := mul_congr hG hG
+    _ ≈ ((g0 * g1) * (g0 * g1)) * ((g2 * g3) * (g2 * g3)) := sq_mul_of_comm hc
+    _ ≈ -((g0 * g0) * (g1 * g1)) * -((g2 * g2) * (g3 * g3)) := mul_congr (sq_mul_of_anticomm h01) (sq_mul_of_anticomm h23)
+    _ ≈ ((g0 * g0) * (g1 * g1)) * ((g2 * g2) * (g3 * g3)) := neg_mul_neg _ _
+
+/-- 27:C13 — with the Clifford relations of `diag(−c, 1, 1, 1)`, the product `Γ = γ⁰γ¹γ²γ³` has `Γ² ≈ −c`. -/
+theorem chirality_clifford {g0 g1 g2 g3 c : R} (h01 : Anticomm g0 g1) (h02 : Anticomm g0 g2) (h03 : Anticomm g0 g3)
+    (h12 : Anticomm g1 g2) (h13 : Anticomm g1 g3) (h23 : Anticomm g2 g3)
+    (h0 : g0 * g0 ≈ -c) (h1 : g1 * g1 ≈ 1) (h2 : g2 * g2 ≈ 1) (h3 : g3 * g3 ≈ 1) :
+    (g0 * g1 * g2 * g3) * (g0 * g1 * g2 * g3) ≈ -c :=
+  calc (g0 * g1 * g2 * g3) * (g0 * g1 * g2 * g3) ≈ ((g0 * g0) * (g1 * g1)) * ((g2 * g2) * (g3 * g3)) :=
+        chirality_square h01 h02 h03 h12 h13 h23
+    _ ≈ (-c * 1) * (1 * 1) := mul_congr (mul_congr h0 h1) (mul_congr h2 h3)
+    _ ≈ -c * 1 := mul_congr (mul_one (-c)) (mul_one 1)
+    _ ≈ -c := mul_one (-c)
+
+/-- 27:C13 — for a central `u` with `u² ≈ −1` and `Γ² ≈ −c`, the element `uΓ` is a square root of `c`. -/
+theorem chirality_root {u G c : R} (hu : Central u) (huu : u * u ≈ -1) (hG : G * G ≈ -c) : (u * G) * (u * G) ≈ c :=
+  calc (u * G) * (u * G) ≈ (u * u) * (G * G) := sq_mul_of_comm (hu G)
+    _ ≈ -1 * -c := mul_congr huu hG
+    _ ≈ 1 * c := neg_mul_neg 1 c
+    _ ≈ c := one_mul c
+
+end clifford
+
+section shell
+variable {p : Nat} [Pos p]
+
+/-- 27:C13, 27:X6 — on a shell with `i² = −1`, if `ν` is a nonsquare then `−ν` is a nonsquare: `x² + ν` has no root, so an
+element with square `−ν` has no eigenvalue on the shell. -/
+theorem neg_nonsquare {i ν : Shell p} (hi : i * i = -1) (hν : ¬ ∃ r : Shell p, r * r = ν) : ¬ ∃ r : Shell p, r * r = -ν :=
+  fun ⟨r, hr⟩ => hν ⟨i * r, by rw [Shell.mul_mul_mul_comm, hi, hr, Shell.neg_mul_neg, Shell.one_mul]⟩
+
+variable {ν : Shell p}
+
+/-- The shell's part of the extension: `a ↦ a + 0 w`. -/
+def shellPart (ν : Shell p) (a : Shell p) : Ext p ν := ⟨a, 0⟩
+/-- The multiples of `w`: `b ↦ 0 + b w`. -/
+def rootPart (ν : Shell p) (b : Shell p) : Ext p ν := ⟨0, b⟩
+
+/-- 27:C13 — `(i w)² = −ν` in the extension: `i w` and `−i w` are the roots of `x² + ν`. -/
+theorem root_sq {i : Shell p} (hi : i * i = -1) : rootPart ν i * rootPart ν i = shellPart ν (-ν) := by
+  show (⟨0 * 0 + ν * (i * i), 0 * i + i * 0⟩ : Ext p ν) = ⟨-ν, 0⟩
+  rw [hi, Shell.zero_mul, Shell.zero_add, Shell.zero_mul, Shell.mul_zero, Shell.add_zero, ← Shell.mul_neg, Shell.mul_one]
+
+/-- 27:C13, 27:C14 — the Frobenius conjugation negates a multiple of `w`: it exchanges `i w` and `−i w`. -/
+theorem conj_root (b : Shell p) : Ext.conj (rootPart ν b) = -rootPart ν b := by
+  show (⟨0, -b⟩ : Ext p ν) = ⟨-0, -b⟩
+  rw [Shell.neg_zero]
+
+/-- 27:C13, 27:X6 — the Frobenius conjugation exchanges the two roots `i w` and `−i w`. -/
+theorem root_conj (i : Shell p) : Ext.conj (rootPart ν i) = -rootPart ν i := conj_root i
+
+/-- 27:C14 — the Frobenius conjugation fixes the shell's part of the extension. -/
+theorem conj_shell (a : Shell p) : Ext.conj (shellPart ν a) = shellPart ν a := by
+  show (⟨a, -0⟩ : Ext p ν) = ⟨a, 0⟩
+  rw [Shell.neg_zero]
+
+/-- 27:C14 — the grading is multiplicative: shell times shell is on the shell. -/
+theorem shell_mul_shell (a c : Shell p) : shellPart ν a * shellPart ν c = shellPart ν (a * c) := by
+  show (⟨a * c + ν * (0 * 0), a * 0 + 0 * c⟩ : Ext p ν) = ⟨a * c, 0⟩
+  rw [Shell.mul_zero a, Shell.zero_mul c, Shell.zero_mul, Shell.mul_zero ν, Shell.add_zero, Shell.add_zero]
+
+/-- 27:C14 — a multiple of `w` times a shell element is a multiple of `w`. -/
+theorem root_mul_shell (b c : Shell p) : rootPart ν b * shellPart ν c = rootPart ν (b * c) := by
+  show (⟨0 * c + ν * (b * 0), 0 * 0 + b * c⟩ : Ext p ν) = ⟨0, b * c⟩
+  rw [Shell.zero_mul c, Shell.mul_zero b, Shell.mul_zero ν, Shell.add_zero, Shell.zero_mul, Shell.zero_add]
+
+/-- 27:C14 — a shell element times a multiple of `w` is a multiple of `w`. -/
+theorem shell_mul_root (a d : Shell p) : shellPart ν a * rootPart ν d = rootPart ν (a * d) := by
+  show (⟨a * 0 + ν * (0 * d), a * d + 0 * 0⟩ : Ext p ν) = ⟨0, a * d⟩
+  rw [Shell.mul_zero a, Shell.zero_mul d, Shell.mul_zero ν, Shell.add_zero, Shell.zero_mul, Shell.add_zero]
+
+/-- 27:C14 — two multiples of `w` multiply to a shell element. -/
+theorem root_mul_root (b d : Shell p) : rootPart ν b * rootPart ν d = shellPart ν (ν * (b * d)) := by
+  show (⟨0 * 0 + ν * (b * d), 0 * d + b * 0⟩ : Ext p ν) = ⟨ν * (b * d), 0⟩
+  rw [Shell.zero_mul, Shell.zero_add, Shell.zero_mul, Shell.mul_zero, Shell.add_zero]
+
+/-- 27:C14 — the grading is additive on the shell's part. -/
+theorem shell_add_shell (a c : Shell p) : shellPart ν a + shellPart ν c = shellPart ν (a + c) := by
+  show (⟨a + c, 0 + 0⟩ : Ext p ν) = ⟨a + c, 0⟩
+  rw [Shell.add_zero]
+
+/-- 27:C14 — the grading is additive on the multiples of `w`. -/
+theorem root_add_root (b d : Shell p) : rootPart ν b + rootPart ν d = rootPart ν (b + d) := by
+  show (⟨0 + 0, b + d⟩ : Ext p ν) = ⟨0, b + d⟩
+  rw [Shell.add_zero]
+
+/-- 27:C14 — an entry of the drive's lift times a shell element is negated by the Frobenius conjugation: on the coset
+of the lift, `σ(A) = −A` entry by entry. -/
+theorem drive_lift_frobenius (d a : Shell p) :
+    Ext.conj (rootPart ν d * shellPart ν a) = -(rootPart ν d * shellPart ν a) := by
+  rw [root_mul_shell, conj_root]
+
+/-- 27:C14 — the square of the lift's entry `w` is the shell element `ν`: the lift's square is over the shell. -/
+theorem drive_lift_square : rootPart ν 1 * rootPart ν 1 = shellPart ν ν := by
+  rw [root_mul_root, Shell.mul_one, Shell.mul_one]
+
+/-- 27:C14 — the sign cancels in a sesquilinear tally: `σ(−x)(−y) = σ(x) y`. -/
+theorem tally_sign (x y : Ext p ν) : Ext.conj (-x) * (-y) = Ext.conj x * y := by
+  apply Ext.ext
+  · show -x.re * -y.re + ν * (- -x.im * -y.im) = x.re * y.re + ν * (-x.im * y.im)
+    rw [Shell.neg_mul_neg, Shell.neg_mul_neg]
+  · show -x.re * -y.im + - -x.im * -y.re = x.re * y.im + -x.im * y.re
+    rw [Shell.neg_mul_neg, Shell.neg_mul_neg]
+
+/-! ## The mass form of the doublet on the extension (27:C5), and the idempotents of `𝔽_p[Γ]` (27:C13) -/
+
+/-- `−(b w) = (−b) w`. -/
+theorem neg_root (b : Shell p) : -rootPart ν b = rootPart ν (-b) := by
+  show (⟨-0, -b⟩ : Ext p ν) = ⟨0, -b⟩
+  rw [Shell.neg_zero]
+
+/-- 27:C5 — the Frobenius-Hermitian pairing of two multiples of `w` lies on the shell: `σ(b w) (d w) = −ν b d`. -/
+theorem herm_root_root (b d : Shell p) : Ext.conj (rootPart ν b) * rootPart ν d = shellPart ν (-(ν * (b * d))) := by
+  rw [conj_root, neg_root, root_mul_root, ← Shell.neg_mul, ← Shell.mul_neg]
+
+/-- 27:C5 — a shell entry paired with a multiple of `w` is a multiple of `w`: `σ(a) (d w) = (a d) w`. -/
+theorem herm_shell_root (a d : Shell p) : Ext.conj (shellPart ν a) * rootPart ν d = rootPart ν (a * d) := by
+  rw [conj_shell, shell_mul_root]
+
+/-- 27:C5 — `σ(b w) c = −(b c) w`. -/
+theorem herm_root_shell (b c : Shell p) : Ext.conj (rootPart ν b) * shellPart ν c = rootPart ν (-(b * c)) := by
+  rw [conj_root, neg_root, root_mul_shell, ← Shell.neg_mul]
+
+/-- 27:C5, 27:X5 — the mass form of the doublet in the basis of the four generators. With `w² = ν`, the unit vacuum `(0, 1)`
+and `a = g / 2`, `a′ = g′ / 2`, the generators send the vacuum to `(a, 0)`, `(a w, 0)`, `(0, −a w)` and `(0, a′ w)`. Their
+Frobenius-Hermitian pairings lie on the shell: `a²` and `−ν a²` for the charged pair, whose mixed pairing cancels; `−ν a²`,
+`−ν a′²` and the mixed sum `2 ν a a′` for the neutral pair. -/
+theorem mass_form (a a' : Shell p) :
+    Ext.conj (shellPart ν a) * shellPart ν a = shellPart ν (a * a) ∧
+    Ext.conj (rootPart ν a) * rootPart ν a = shellPart ν (-(ν * (a * a))) ∧
+    Ext.conj (shellPart ν a) * rootPart ν a + Ext.conj (rootPart ν a) * shellPart ν a = rootPart ν 0 ∧
+    Ext.conj (rootPart ν (-a)) * rootPart ν (-a) = shellPart ν (-(ν * (a * a))) ∧
+    Ext.conj (rootPart ν a') * rootPart ν a' = shellPart ν (-(ν * (a' * a'))) ∧
+    Ext.conj (rootPart ν (-a)) * rootPart ν a' + Ext.conj (rootPart ν a') * rootPart ν (-a) =
+      shellPart ν ((ν * (a * a')) + (ν * (a * a'))) := by
+  have e : (-(ν * (-a * a')) + -(ν * (a' * -a))) = ((ν * (a * a')) + (ν * (a * a'))) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [ν, a, a']) (.add (.neg (.mul (.var 0) (.mul (.neg (.var 1)) (.var 2)))) (.neg (.mul (.var 0) (.mul (.var 2) (.neg (.var 1)))))) (.add (.mul (.var 0) (.mul (.var 1) (.var 2))) (.mul (.var 0) (.mul (.var 1) (.var 2)))) (by decide +kernel)
+  refine ⟨?_, herm_root_root a a, ?_, ?_, herm_root_root a' a', ?_⟩
+  · rw [conj_shell, shell_mul_shell]
+  · rw [herm_shell_root, herm_root_shell, root_add_root, Shell.add_neg]
+  · rw [herm_root_root, Shell.neg_mul_neg]
+  · rw [herm_root_root, herm_root_root, shell_add_shell, e]
+
+/-- 27:C5, 27:X5 — the spectrum of the mass form against the invariant form `diag(1, −ν, −ν, −ν)`: the second charged
+generator has the value `a²` of the first; `(a′, a)` is the kernel of the neutral block (the photon); and `(a, −a′)` has the
+value `a² + a′²`. -/
+theorem mass_spectrum (ν a a' : Shell p) :
+    -(ν * (a * a)) = ((a * a) * -ν) ∧
+    ((-(ν * (a * a)) * a') + ((ν * (a * a')) * a)) = 0 ∧
+    (((ν * (a * a')) * a') + (-(ν * (a' * a')) * a)) = 0 ∧
+    ((-(ν * (a * a)) * a) + ((ν * (a * a')) * -a')) = (((a * a) + (a' * a')) * (-ν * a)) ∧
+    (((ν * (a * a')) * a) + (-(ν * (a' * a')) * -a')) = (((a * a) + (a' * a')) * (-ν * -a')) :=
+  ⟨Shell.Frame.RE.sound (Shell.Frame.look [ν, a, a']) (.neg (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.mul (.mul (.var 1) (.var 1)) (.neg (.var 0))) (by decide +kernel),
+   Shell.Frame.RE.sound (Shell.Frame.look [ν, a, a']) (.add (.mul (.neg (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.var 2)) (.mul (.mul (.var 0) (.mul (.var 1) (.var 2))) (.var 1))) .zero (by decide +kernel),
+   Shell.Frame.RE.sound (Shell.Frame.look [ν, a, a']) (.add (.mul (.mul (.var 0) (.mul (.var 1) (.var 2))) (.var 2)) (.mul (.neg (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.var 1))) .zero (by decide +kernel),
+   Shell.Frame.RE.sound (Shell.Frame.look [ν, a, a']) (.add (.mul (.neg (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.var 1)) (.mul (.mul (.var 0) (.mul (.var 1) (.var 2))) (.neg (.var 2)))) (.mul (.add (.mul (.var 1) (.var 1)) (.mul (.var 2) (.var 2))) (.mul (.neg (.var 0)) (.var 1))) (by decide +kernel),
+   Shell.Frame.RE.sound (Shell.Frame.look [ν, a, a']) (.add (.mul (.mul (.var 0) (.mul (.var 1) (.var 2))) (.var 1)) (.mul (.neg (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.neg (.var 2)))) (.mul (.add (.mul (.var 1) (.var 1)) (.mul (.var 2) (.var 2))) (.mul (.neg (.var 0)) (.neg (.var 2)))) (by decide +kernel)⟩
+
+/-- 27:C5, 27:X5 — the two neutral eigenvectors `(a′, a)` and `(a, −a′)` are independent when `a² + a′² ≠ 0`: a combination
+`x (a′, a) + y (a, −a′) = 0` has `(a² + a′²) x = 0` and `(a² + a′²) y = 0`. -/
+theorem mass_independent {a a' x y : Shell p} (h1 : x * a' + y * a = 0) (h2 : x * a + y * -a' = 0) :
+    (a * a + a' * a') * x = 0 ∧ (a * a + a' * a') * y = 0 := by
+  have e1 : (((a * a) + (a' * a')) * x) = ((((x * a') + (y * a)) * a') + (((x * a) + (y * -a')) * a)) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [a, a', x, y]) (.mul (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.var 2)) (.add (.mul (.add (.mul (.var 2) (.var 1)) (.mul (.var 3) (.var 0))) (.var 1)) (.mul (.add (.mul (.var 2) (.var 0)) (.mul (.var 3) (.neg (.var 1)))) (.var 0))) (by decide +kernel)
+  have e2 : (((a * a) + (a' * a')) * y) = ((((x * a') + (y * a)) * a) + -(((x * a) + (y * -a')) * a')) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [a, a', x, y]) (.mul (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.var 3)) (.add (.mul (.add (.mul (.var 2) (.var 1)) (.mul (.var 3) (.var 0))) (.var 0)) (.neg (.mul (.add (.mul (.var 2) (.var 0)) (.mul (.var 3) (.neg (.var 1)))) (.var 1)))) (by decide +kernel)
+  have z1 : (((0 : Shell p) * a') + (0 * a)) = 0 :=
+    Shell.Frame.RE.sound (Shell.Frame.look [a, a']) (.add (.mul .zero (.var 1)) (.mul .zero (.var 0))) .zero (by decide +kernel)
+  have z2 : (((0 : Shell p) * a) + -(0 * a')) = 0 :=
+    Shell.Frame.RE.sound (Shell.Frame.look [a, a']) (.add (.mul .zero (.var 0)) (.neg (.mul .zero (.var 1)))) .zero (by decide +kernel)
+  rw [h1, h2] at e1 e2
+  exact ⟨e1.trans z1, e2.trans z2⟩
+
+/-- 27:C5 — the neutral block `N = [[a², −a a′], [−a a′, a′²]]` has `N² = (a² + a′²) N`, entry by entry. Where
+`a² + a′² = 0` it squares to zero: the excluded case of the mass form. -/
+theorem mass_block_square (a a' : Shell p) :
+    (((a * a) * (a * a)) + (-(a * a') * -(a * a'))) = (((a * a) + (a' * a')) * (a * a)) ∧
+    (((a * a) * -(a * a')) + (-(a * a') * (a' * a'))) = (((a * a) + (a' * a')) * -(a * a')) ∧
+    ((-(a * a') * (a * a)) + ((a' * a') * -(a * a'))) = (((a * a) + (a' * a')) * -(a * a')) ∧
+    ((-(a * a') * -(a * a')) + ((a' * a') * (a' * a'))) = (((a * a) + (a' * a')) * (a' * a')) :=
+  ⟨Shell.Frame.RE.sound (Shell.Frame.look [a, a']) (.add (.mul (.mul (.var 0) (.var 0)) (.mul (.var 0) (.var 0))) (.mul (.neg (.mul (.var 0) (.var 1))) (.neg (.mul (.var 0) (.var 1))))) (.mul (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.mul (.var 0) (.var 0))) (by decide +kernel),
+   Shell.Frame.RE.sound (Shell.Frame.look [a, a']) (.add (.mul (.mul (.var 0) (.var 0)) (.neg (.mul (.var 0) (.var 1)))) (.mul (.neg (.mul (.var 0) (.var 1))) (.mul (.var 1) (.var 1)))) (.mul (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.neg (.mul (.var 0) (.var 1)))) (by decide +kernel),
+   Shell.Frame.RE.sound (Shell.Frame.look [a, a']) (.add (.mul (.neg (.mul (.var 0) (.var 1))) (.mul (.var 0) (.var 0))) (.mul (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.var 1))))) (.mul (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.neg (.mul (.var 0) (.var 1)))) (by decide +kernel),
+   Shell.Frame.RE.sound (Shell.Frame.look [a, a']) (.add (.mul (.neg (.mul (.var 0) (.var 1))) (.neg (.mul (.var 0) (.var 1)))) (.mul (.mul (.var 1) (.var 1)) (.mul (.var 1) (.var 1)))) (.mul (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.mul (.var 1) (.var 1))) (by decide +kernel)⟩
+
+/-- 27:C5 — the invariant form `−2 tr(T²)` on the generators with `h = 1/2`: `4h² = 1` for the first, `−4 ν h² = −ν` for the
+three that carry `w`. -/
+theorem invariant_form {h : Shell p} (hh : h + h = 1) (ν : Shell p) :
+    (((h * h) + (h * h)) + ((h * h) + (h * h))) = 1 ∧
+    -(((ν * (h * h)) + (ν * (h * h))) + ((ν * (h * h)) + (ν * (h * h)))) = -ν := by
+  have e1 : (((h * h) + (h * h)) + ((h * h) + (h * h))) = ((h + h) * (h + h)) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [h]) (.add (.add (.mul (.var 0) (.var 0)) (.mul (.var 0) (.var 0))) (.add (.mul (.var 0) (.var 0)) (.mul (.var 0) (.var 0)))) (.mul (.add (.var 0) (.var 0)) (.add (.var 0) (.var 0))) (by decide +kernel)
+  have e2 : -(((ν * (h * h)) + (ν * (h * h))) + ((ν * (h * h)) + (ν * (h * h)))) = -(ν * ((h + h) * (h + h))) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [ν, h]) (.neg (.add (.add (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.add (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1)))))) (.neg (.mul (.var 0) (.mul (.add (.var 1) (.var 1)) (.add (.var 1) (.var 1))))) (by decide +kernel)
+  exact ⟨by rw [e1, hh, Shell.mul_one], by rw [e2, hh, Shell.mul_one, Shell.mul_one]⟩
+
+/-- 27:C13 — the idempotents of `𝔽_p[Γ]`, `Γ² = −ν`: if `(a + bΓ)² = a + bΓ` with `b` invertible, then `ν` is a square,
+the square of `i / (2b)`. -/
+theorem idempotent_square {i h ν a b c : Shell p} (hi : i * i = -1) (hh : h + h = 1) (hc : b * c = 1)
+    (h1 : a * a + -(ν * (b * b)) = a) (h2 : (a + a) * b = b) : (i * (h * c)) * (i * (h * c)) = ν := by
+  have ha : a + a = 1 := by
+    calc a + a = (a + a) * 1 := (Shell.mul_one _).symm
+      _ = (a + a) * (b * c) := by rw [hc]
+      _ = (a + a) * b * c := (Shell.mul_assoc _ _ _).symm
+      _ = b * c := by rw [h2]
+      _ = 1 := hc
+  have n1 : (((a + a) * (a + a)) + -(((ν * (b * b)) + (ν * (b * b))) + ((ν * (b * b)) + (ν * (b * b))))) = ((((a * a) + -(ν * (b * b))) + ((a * a) + -(ν * (b * b)))) + (((a * a) + -(ν * (b * b))) + ((a * a) + -(ν * (b * b))))) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [ν, a, b]) (.add (.mul (.add (.var 1) (.var 1)) (.add (.var 1) (.var 1))) (.neg (.add (.add (.mul (.var 0) (.mul (.var 2) (.var 2))) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.add (.mul (.var 0) (.mul (.var 2) (.var 2))) (.mul (.var 0) (.mul (.var 2) (.var 2))))))) (.add (.add (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2)))))) (.add (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))))) (by decide +kernel)
+  rw [h1, ha] at n1
+  have n2 : (((ν * (b * b)) + (ν * (b * b))) + ((ν * (b * b)) + (ν * (b * b)))) = ((1 * 1) + -((1 * 1) + -(((ν * (b * b)) + (ν * (b * b))) + ((ν * (b * b)) + (ν * (b * b)))))) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [(((ν * (b * b)) + (ν * (b * b))) + ((ν * (b * b)) + (ν * (b * b))))]) (.var 0) (.add (.mul .one .one) (.neg (.add (.mul .one .one) (.neg (.var 0))))) (by decide +kernel)
+  have n3 : ((1 * 1) + -(1 + 1) : Shell p) = -1 :=
+    Shell.Frame.RE.sound (Shell.Frame.look []) (.add (.mul .one .one) (.neg (.add .one .one))) (.neg .one) (by decide +kernel)
+  have hX : (((ν * (b * b)) + (ν * (b * b))) + ((ν * (b * b)) + (ν * (b * b)))) = -1 := by rw [n2, n1, n3]
+  have n4 : ((i * (h * c)) * (i * (h * c))) = ((i * i) * ((h * c) * (h * c))) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [i, h, c]) (.mul (.mul (.var 0) (.mul (.var 1) (.var 2))) (.mul (.var 0) (.mul (.var 1) (.var 2)))) (.mul (.mul (.var 0) (.var 0)) (.mul (.mul (.var 1) (.var 2)) (.mul (.var 1) (.var 2)))) (by decide +kernel)
+  have n5 : ((ν * ((h + h) * (h + h))) * ((b * c) * (b * c))) = ((((ν * (b * b)) + (ν * (b * b))) + ((ν * (b * b)) + (ν * (b * b)))) * ((h * c) * (h * c))) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [ν, h, b, c]) (.mul (.mul (.var 0) (.mul (.add (.var 1) (.var 1)) (.add (.var 1) (.var 1)))) (.mul (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))) (.mul (.add (.add (.mul (.var 0) (.mul (.var 2) (.var 2))) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.add (.mul (.var 0) (.mul (.var 2) (.var 2))) (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.mul (.mul (.var 1) (.var 3)) (.mul (.var 1) (.var 3)))) (by decide +kernel)
+  rw [hh, hc, Shell.mul_one, Shell.mul_one, Shell.mul_one, hX] at n5
+  rw [n4, hi, n5]
+
+/-- 27:C13, 27:X6 — `𝔽_p[Γ]` holds no idempotent `a + bΓ` with `b` invertible: on a shell where `ν` is no square,
+`(a + bΓ)² = a + bΓ` and `b c = 1` are contradictory. An idempotent therefore has `b = 0` and is an idempotent of the shell. -/
+theorem no_idempotent {i h ν a b c : Shell p} (hi : i * i = -1) (hh : h + h = 1) (hν : ¬∃ r : Shell p, r * r = ν)
+    (hc : b * c = 1) (h1 : a * a + -(ν * (b * b)) = a) (h2 : (a + a) * b = b) : False :=
+  hν ⟨_, idempotent_square hi hh hc h1 h2⟩
+
+end shell
+
+end FRC.Chirality
+
+/-! inlined: FrcCore/Theme/Torus.lean -/
+
+/-!
+# FrcCore.Theme.Torus — the two cycles of the diagonal torus: their points and their periods (27:C15)
+
+The diagonal torus over the extension `K = 𝔽_p[η]`, `η² = ν`, has its split cycles over the shell and its unitary
+cycles (`Theme/Unitary.lean`, `torus_cycles`). This file states their orders by elements, on a prime shell with `ν` a
+nonsquare and `2 ≠ 0`, and never by a count of a group.
+
+* **The split cycle, `p − 1` points.** The nonzero residues are those of `1, …, p − 1`
+  (`Interactions.nonzero_residues`). Each has `a^(p−1) = 1` (`Prime.fermat`), and for `0 < m < p − 1` some nonzero
+  residue has `a^m ≠ 1` (`Prime.exists_pow_ne_one`). One of them has order `p − 1` (`Prime.exists_primitive`).
+* **The unitary cycle, `p + 1` points.** The unitary points, `σ(w) w = 1`, are `−1` and the `p` points
+  `cay ν s = (1 + s η)² / N(1 + s η)`, one for each residue `s`: every `cay ν s` is unitary and is not `−1`
+  (`cay_unitary`, `cay_recover`), `s` is read back from `cay ν s` (`cay_inj`), every unitary point other than `−1` is
+  `cay ν s` at `s = w.im / (w.re + 1)` (`cay_surj`), and a unitary point with `w.re + 1 = 0` is `−1` (`cay_exc`).
+* **Its period.** Multiplication by a unitary point permutes these `p + 1` points, so the product of the points is
+  fixed and `w^(p+1) = 1` (`unitary_period`). The products over the extension and their invariance under a permutation
+  of the indices are those of `Series.lean`, on the extension.
+* **No smaller period.** For `0 < d < p` some unitary point has `w^d ≠ 1` (`unitary_escape`): the second component of
+  `(1 + s η)^d` is a polynomial in `s` of degree at most `d` whose coefficient of `s` is `d`, and the root bound of the
+  shell applies. At `d = p` the point `−1` escapes (`unitary_escape_top`).
+* **A generator.** Some unitary point has order exactly `p + 1` (`unitary_generator`): the argument of
+  `Theme/Drive.lean` for the nonzero residues, on the unitary points. A prime power `qᵉ ∣ p + 1` is an order by the
+  clause above, and orders `m` and `qᵉ` with `q ∤ m` multiply.
+
+For the drive `ν = g` of a frame the number of the unitary points, `p + 1`, is also counted as the solutions of
+`x² − g t² = 1` in `Theme/Causal.lean` (`Causal.plane_nonzero`).
+
+`cycle_orders` conjoins the clauses for the row. No axioms.
+-/
+
+namespace FRC.Unitary
+
+open FRC.Shell FRC.Shell.Frame FRC.Extension
+
+variable {p : Nat} [Pos p] {ν : Shell p}
+
+/-! ## Inverses on a prime shell -/
+
+/-- Fermat's inverse on a prime shell: `a · a^(p−2) = 1` for `a ≠ 0`. -/
+theorem mul_pow_pred (hp : FRC.Nat.isPrime p) {a : Shell p} (ha : a ≠ 0) : a * a ^ (p - 2) = 1 := by
+  have h2 : p - 1 = (p - 2) + 1 := by
+    have h := hp.1
+    match p, h with
+    | k + 2, _ => rfl
+  rw [Shell.mul_comm, ← Shell.pow_succ, ← h2]
+  exact Prime.fermat hp ha
+
+/-- For a nonsquare `ν` the norm `1 − ν s²` of `1 + s η` is not zero. -/
+theorem cnorm_ne_zero (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (s : Shell p) :
+    1 + -(ν * (s * s)) ≠ 0 := fun h => by
+  have h1 : ν * (s * s) = 1 := by
+    have e : ∀ r : Shell p, ((ν * (s * s)) + (1 + -(ν * (s * s)))) = 1 := fun r => Shell.Frame.RE.sound (Shell.Frame.look [ν, s, r]) (.add (.mul (.var 0) (.mul (.var 1) (.var 1))) (.add .one (.neg (.mul (.var 0) (.mul (.var 1) (.var 1)))))) .one (by decide +kernel)
+    have e' := e 0
+    rw [h, Shell.add_zero] at e'
+    exact e'
+  have hs : s ≠ 0 := fun e => Prime.one_ne_zero hp (by rw [← h1, e, Shell.mul_zero, Shell.mul_zero])
+  have hr := mul_pow_pred hp hs
+  exact hν ⟨s ^ (p - 2), by
+    have e : ∀ r : Shell p, ((ν * (s * s)) * (r * r)) = (ν * ((s * r) * (s * r))) := fun r => Shell.Frame.RE.sound (Shell.Frame.look [ν, s, r]) (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 2) (.var 2))) (.mul (.var 0) (.mul (.mul (.var 1) (.var 2)) (.mul (.var 1) (.var 2)))) (by decide +kernel)
+    have e' := e (s ^ (p - 2))
+    rw [h1, hr, Shell.one_mul, Shell.mul_one, Shell.mul_one] at e'
+    exact e'⟩
+
+/-! ## The Cayley points of the unitary cycle -/
+
+/-- The algebra of a Cayley point, with `i` the inverse of the norm `1 − ν s²`. -/
+theorem cay_alg {s i : Shell p} (hi : (1 + -(ν * (s * s))) * i = 1) :
+    ((((1 + (ν * (s * s))) * i) * ((1 + (ν * (s * s))) * i)) + (ν * (-((s + s) * i) * ((s + s) * i)))) = 1 ∧ ((((1 + (ν * (s * s))) * i) * ((s + s) * i)) + (-((s + s) * i) * ((1 + (ν * (s * s))) * i))) = 0 ∧ (((1 + (ν * (s * s))) * i) + 1) = ((1 + 1) * i) ∧ ((s + s) * i) = (s * ((1 + 1) * i)) := by
+  refine ⟨?_, Shell.Frame.RE.sound (Shell.Frame.look [ν, s, i]) (.add (.mul (.mul (.add .one (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.var 2)) (.mul (.add (.var 1) (.var 1)) (.var 2))) (.mul (.neg (.mul (.add (.var 1) (.var 1)) (.var 2))) (.mul (.add .one (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.var 2)))) .zero (by decide +kernel), ?_, Shell.Frame.RE.sound (Shell.Frame.look [ν, s, i]) (.mul (.add (.var 1) (.var 1)) (.var 2)) (.mul (.var 1) (.mul (.add .one .one) (.var 2))) (by decide +kernel)⟩
+  · have e : ((((1 + (ν * (s * s))) * i) * ((1 + (ν * (s * s))) * i)) + (ν * (-((s + s) * i) * ((s + s) * i)))) = (((1 + -(ν * (s * s))) * i) * ((1 + -(ν * (s * s))) * i)) := Shell.Frame.RE.sound (Shell.Frame.look [ν, s, i]) (.add (.mul (.mul (.add .one (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.var 2)) (.mul (.add .one (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.var 2))) (.mul (.var 0) (.mul (.neg (.mul (.add (.var 1) (.var 1)) (.var 2))) (.mul (.add (.var 1) (.var 1)) (.var 2))))) (.mul (.mul (.add .one (.neg (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.var 2)) (.mul (.add .one (.neg (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.var 2))) (by decide +kernel)
+    rw [e, hi, Shell.mul_one]
+  · have e : (((1 + (ν * (s * s))) * i) + ((1 + -(ν * (s * s))) * i)) = ((1 + 1) * i) := Shell.Frame.RE.sound (Shell.Frame.look [ν, s, i]) (.add (.mul (.add .one (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.var 2)) (.mul (.add .one (.neg (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.var 2))) (.mul (.add .one .one) (.var 2)) (by decide +kernel)
+    rw [hi] at e
+    exact e
+
+/-- The algebra of `cay ν s · σ(1 + s η) = 1 + s η`. -/
+theorem cay_conj_alg {s i : Shell p} (hi : (1 + -(ν * (s * s))) * i = 1) : ((((1 + (ν * (s * s))) * i) * 1) + (ν * (((s + s) * i) * -s))) = 1 ∧ ((((1 + (ν * (s * s))) * i) * -s) + (((s + s) * i) * 1)) = s := by
+  refine ⟨?_, ?_⟩
+  · have e : ((((1 + (ν * (s * s))) * i) * 1) + (ν * (((s + s) * i) * -s))) = ((1 + -(ν * (s * s))) * i) := Shell.Frame.RE.sound (Shell.Frame.look [ν, s, i]) (.add (.mul (.mul (.add .one (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.var 2)) .one) (.mul (.var 0) (.mul (.mul (.add (.var 1) (.var 1)) (.var 2)) (.neg (.var 1))))) (.mul (.add .one (.neg (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.var 2)) (by decide +kernel)
+    rw [hi] at e
+    exact e
+  · have e : ((((1 + (ν * (s * s))) * i) * -s) + (((s + s) * i) * 1)) = (s * ((1 + -(ν * (s * s))) * i)) := Shell.Frame.RE.sound (Shell.Frame.look [ν, s, i]) (.add (.mul (.mul (.add .one (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.var 2)) (.neg (.var 1))) (.mul (.mul (.add (.var 1) (.var 1)) (.var 2)) .one)) (.mul (.var 1) (.mul (.add .one (.neg (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.var 2))) (by decide +kernel)
+    rw [hi] at e
+    exact e.trans (Shell.mul_one s)
+
+/-- The algebra of the inverse map: a unitary `x + t η` with `x + 1` invertible is the Cayley point of `s = t / (x + 1)`. -/
+theorem cay_inv_alg {x t j i : Shell p} (hu : x * x + ν * (-t * t) = 1) (hj : (x + 1) * j = 1)
+    (hi : (1 + -(ν * ((t * j) * (t * j)))) * i = 1) : ((1 + (ν * ((t * j) * (t * j)))) * i) = x ∧ (((t * j) + (t * j)) * i) = t := by
+  have H1 : ((1 + -(ν * ((t * j) * (t * j)))) * ((x + 1) * (x + 1))) = ((1 + 1) * (x + 1)) := by
+    have e1 : ((1 + -(ν * ((t * j) * (t * j)))) * ((x + 1) * (x + 1))) = (((x + 1) * (x + 1)) + -(ν * ((t * t) * (((x + 1) * j) * ((x + 1) * j))))) := Shell.Frame.RE.sound (Shell.Frame.look [ν, x, t, j, i]) (.mul (.add .one (.neg (.mul (.var 0) (.mul (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))))) (.mul (.add (.var 1) .one) (.add (.var 1) .one))) (.add (.mul (.add (.var 1) .one) (.add (.var 1) .one)) (.neg (.mul (.var 0) (.mul (.mul (.var 2) (.var 2)) (.mul (.mul (.add (.var 1) .one) (.var 3)) (.mul (.add (.var 1) .one) (.var 3))))))) (by decide +kernel)
+    have e2 : (((x + 1) * (x + 1)) + -(ν * ((t * t) * (1 * 1)))) = (((x * x) + (ν * (-t * t))) + ((x + x) + 1)) := Shell.Frame.RE.sound (Shell.Frame.look [ν, x, t, j, i]) (.add (.mul (.add (.var 1) .one) (.add (.var 1) .one)) (.neg (.mul (.var 0) (.mul (.mul (.var 2) (.var 2)) (.mul .one .one))))) (.add (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.neg (.var 2)) (.var 2)))) (.add (.add (.var 1) (.var 1)) .one)) (by decide +kernel)
+    have e3 : (1 + ((x + x) + 1)) = ((1 + 1) * (x + 1)) := Shell.Frame.RE.sound (Shell.Frame.look [ν, x, t, j, i]) (.add .one (.add (.add (.var 1) (.var 1)) .one)) (.mul (.add .one .one) (.add (.var 1) .one)) (by decide +kernel)
+    rw [e1, hj, e2, hu, e3]
+  have H2 : (1 + -(ν * ((t * j) * (t * j)))) = ((1 + 1) * j) := by
+    have e1 : (1 + -(ν * ((t * j) * (t * j)))) = ((((1 + -(ν * ((t * j) * (t * j)))) * ((x + 1) * (x + 1))) * (j * j)) + ((1 + -(ν * ((t * j) * (t * j)))) * (1 + -(((x + 1) * j) * ((x + 1) * j))))) := Shell.Frame.RE.sound (Shell.Frame.look [ν, x, t, j, i]) (.add .one (.neg (.mul (.var 0) (.mul (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))))) (.add (.mul (.mul (.add .one (.neg (.mul (.var 0) (.mul (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))))) (.mul (.add (.var 1) .one) (.add (.var 1) .one))) (.mul (.var 3) (.var 3))) (.mul (.add .one (.neg (.mul (.var 0) (.mul (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))))) (.add .one (.neg (.mul (.mul (.add (.var 1) .one) (.var 3)) (.mul (.add (.var 1) .one) (.var 3))))))) (by decide +kernel)
+    have e2 : ((((1 + 1) * (x + 1)) * (j * j)) + ((1 + -(ν * ((t * j) * (t * j)))) * (1 + -(1 * 1)))) = (((1 + 1) * j) * ((x + 1) * j)) := Shell.Frame.RE.sound (Shell.Frame.look [ν, x, t, j, i]) (.add (.mul (.mul (.add .one .one) (.add (.var 1) .one)) (.mul (.var 3) (.var 3))) (.mul (.add .one (.neg (.mul (.var 0) (.mul (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))))) (.add .one (.neg (.mul .one .one))))) (.mul (.mul (.add .one .one) (.var 3)) (.mul (.add (.var 1) .one) (.var 3))) (by decide +kernel)
+    rw [e1, H1, hj, e2, hj, Shell.mul_one]
+  have H3 : (((1 + 1) * j) * i) = 1 := by
+    rw [← H2]
+    exact hi
+  refine ⟨?_, ?_⟩
+  · have e1 : ((1 + (ν * ((t * j) * (t * j)))) * i) = (((1 + 1) * i) + -((1 + -(ν * ((t * j) * (t * j)))) * i)) := Shell.Frame.RE.sound (Shell.Frame.look [ν, x, t, j, i]) (.mul (.add .one (.mul (.var 0) (.mul (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))))) (.var 4)) (.add (.mul (.add .one .one) (.var 4)) (.neg (.mul (.add .one (.neg (.mul (.var 0) (.mul (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3)))))) (.var 4)))) (by decide +kernel)
+    have e2 : ((1 + 1) * i) = (((x + 1) * (((1 + 1) * j) * i)) + (((1 + 1) * i) * (1 + -((x + 1) * j)))) := Shell.Frame.RE.sound (Shell.Frame.look [ν, x, t, j, i]) (.mul (.add .one .one) (.var 4)) (.add (.mul (.add (.var 1) .one) (.mul (.mul (.add .one .one) (.var 3)) (.var 4))) (.mul (.mul (.add .one .one) (.var 4)) (.add .one (.neg (.mul (.add (.var 1) .one) (.var 3)))))) (by decide +kernel)
+    have e3 : ((((x + 1) * 1) + (((1 + 1) * i) * (1 + -1))) + -1) = x := Shell.Frame.RE.sound (Shell.Frame.look [ν, x, t, j, i]) (.add (.add (.mul (.add (.var 1) .one) .one) (.mul (.mul (.add .one .one) (.var 4)) (.add .one (.neg .one)))) (.neg .one)) (.var 1) (by decide +kernel)
+    rw [e1, hi, e2, H3, hj, e3]
+  · have e1 : (((t * j) + (t * j)) * i) = (t * (((1 + 1) * j) * i)) := Shell.Frame.RE.sound (Shell.Frame.look [ν, x, t, j, i]) (.mul (.add (.mul (.var 2) (.var 3)) (.mul (.var 2) (.var 3))) (.var 4)) (.mul (.var 2) (.mul (.mul (.add .one .one) (.var 3)) (.var 4))) (by decide +kernel)
+    rw [e1, H3, Shell.mul_one]
+
+/-- The algebra of the exceptional point: a unitary `x + t η` with `x + 1 = 0` is `−1`. -/
+theorem cay_exc_alg (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) {x t : Shell p}
+    (hu : x * x + ν * (-t * t) = 1) (hx : x + 1 = 0) : x = -1 ∧ t = 0 := by
+  have ex : x = -1 := by
+    have e : x = ((x + 1) + -1) := Shell.Frame.RE.sound (Shell.Frame.look [ν, x, t]) (.var 1) (.add (.add (.var 1) .one) (.neg .one)) (by decide +kernel)
+    rw [hx, Shell.zero_add] at e
+    exact e
+  have et : ν * (t * t) = 0 := by
+    have e : (ν * (t * t)) = (((x + 1) * (x + -1)) + (1 + -((x * x) + (ν * (-t * t))))) := Shell.Frame.RE.sound (Shell.Frame.look [ν, x, t]) (.mul (.var 0) (.mul (.var 2) (.var 2))) (.add (.mul (.add (.var 1) .one) (.add (.var 1) (.neg .one))) (.add .one (.neg (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.neg (.var 2)) (.var 2))))))) (by decide +kernel)
+    rw [hu, hx, Shell.zero_mul, Shell.add_neg, Shell.add_zero] at e
+    exact e
+  refine ⟨ex, ?_⟩
+  match Prime.mul_eq_zero hp et with
+  | .inl h0 => exact absurd ⟨0, (Shell.zero_mul 0).trans h0.symm⟩ hν
+  | .inr htt =>
+    match Prime.mul_eq_zero hp htt with
+    | .inl h => exact h
+    | .inr h => exact h
+
+/-- The Cayley point of the residue `s`: `(1 + s η)² / N(1 + s η)`, with `N(1 + s η) = 1 − ν s²` inverted by Fermat. -/
+def cay (ν s : Shell p) : Ext p ν :=
+  ⟨(1 + ν * (s * s)) * (1 + -(ν * (s * s))) ^ (p - 2), (s + s) * (1 + -(ν * (s * s))) ^ (p - 2)⟩
+
+/-- 27:C15 — a Cayley point is a unitary point. -/
+theorem cay_unitary (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (s : Shell p) :
+    Ext.conj (cay ν s) * cay ν s = 1 :=
+  have h := cay_alg (ν := ν) (mul_pow_pred hp (cnorm_ne_zero hp hν s))
+  Ext.ext h.1 h.2.1
+
+/-- 27:C15 — a Cayley point is not `−1`, and its residue is read back: `s = im / (re + 1)`. -/
+theorem cay_recover (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    (s : Shell p) : (cay ν s).re + 1 ≠ 0 ∧ (cay ν s).im * ((cay ν s).re + 1) ^ (p - 2) = s := by
+  have hi := mul_pow_pred hp (cnorm_ne_zero hp hν s)
+  have h := cay_alg (ν := ν) hi
+  have hi0 : (1 + -(ν * (s * s))) ^ (p - 2) ≠ 0 := fun e => Prime.one_ne_zero hp (by rw [← hi, e, Shell.mul_zero])
+  have hq : (cay ν s).re + 1 = (1 + 1) * (1 + -(ν * (s * s))) ^ (p - 2) := h.2.2.1
+  have hq0 : (cay ν s).re + 1 ≠ 0 := by rw [hq]; exact Prime.mul_ne_zero hp h2 hi0
+  refine ⟨hq0, ?_⟩
+  have hj := mul_pow_pred hp hq0
+  have him : (cay ν s).im = s * ((cay ν s).re + 1) := by rw [hq]; exact h.2.2.2
+  rw [him, Shell.mul_assoc, hj, Shell.mul_one]
+
+/-- 27:C15 — the Cayley points of two residues are equal only for one residue. -/
+theorem cay_inj (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {s s' : Shell p} (h : cay ν s = cay ν s') : s = s' := by
+  have a := (cay_recover hp hν h2 s).2
+  rw [h] at a
+  exact a.symm.trans (cay_recover hp hν h2 s').2
+
+/-- 27:C15 — a unitary point other than `−1` is the Cayley point of `s = w.im / (w.re + 1)`. -/
+theorem cay_surj (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) {w : Ext p ν}
+    (hw : Ext.conj w * w = 1) (h1 : w.re + 1 ≠ 0) : cay ν (w.im * (w.re + 1) ^ (p - 2)) = w := by
+  have hu : w.re * w.re + ν * (-w.im * w.im) = 1 := Ext.re_congr hw
+  have h := cay_inv_alg hu (mul_pow_pred hp h1)
+    (mul_pow_pred hp (cnorm_ne_zero hp hν (w.im * (w.re + 1) ^ (p - 2))))
+  exact Ext.ext h.1 h.2
+
+/-- 27:C15 — a unitary point with `w.re + 1 = 0` is `−1`. -/
+theorem cay_exc (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) {w : Ext p ν}
+    (hw : Ext.conj w * w = 1) (h1 : w.re + 1 = 0) : w = -1 := by
+  have h := cay_exc_alg hp hν (Ext.re_congr hw) h1
+  exact Ext.ext h.1 (h.2.trans Shell.neg_zero.symm)
+
+/-- `−1` is a unitary point. -/
+theorem neg_one_unitary : Ext.conj (-1 : Ext p ν) * -1 = 1 :=
+  Ext.ext
+    (Shell.Frame.RE.sound (Shell.Frame.look [ν]) (.add (.mul (.neg .one) (.neg .one)) (.mul (.var 0) (.mul (.neg (.neg .zero)) (.neg .zero)))) .one (by decide +kernel))
+    (Shell.Frame.RE.sound (Shell.Frame.look [ν]) (.add (.mul (.neg .one) (.neg .zero)) (.mul (.neg (.neg .zero)) (.neg .one))) .zero (by decide +kernel))
+
+/-- `1` is a unitary point. -/
+theorem one_unitary : Ext.conj (1 : Ext p ν) * 1 = 1 :=
+  Ext.ext
+    (Shell.Frame.RE.sound (Shell.Frame.look [ν]) (.add (.mul .one .one) (.mul (.var 0) (.mul (.neg .zero) .zero))) .one (by decide +kernel))
+    (Shell.Frame.RE.sound (Shell.Frame.look [ν]) (.add (.mul .one .zero) (.mul (.neg .zero) .one)) .zero (by decide +kernel))
+
+/-- The product of two unitary points is a unitary point. -/
+theorem unitary_mul {a b : Ext p ν} (ha : Ext.conj a * a = 1) (hb : Ext.conj b * b = 1) :
+    Ext.conj (a * b) * (a * b) = 1 := by
+  have e : ((Ext.conj a * Ext.conj b) * (a * b)) = ((Ext.conj a * a) * (Ext.conj b * b)) := xsound (xlook [Ext.conj a, Ext.conj b, a, b]) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 2) (.var 3))) (.mul (.mul (.var 0) (.var 2)) (.mul (.var 1) (.var 3))) (by decide +kernel)
+  rw [Ext.conj_mul, e, ha, hb]
+  exact Ext.one_mul 1
+
+/-! ## Products over the extension, invariant under a permutation of the indices -/
+
+/-- `Π_{j<n} f j` on the extension. -/
+def eprod (f : Nat → Ext p ν) : Nat → Ext p ν
+  | 0 => 1
+  | n + 1 => eprod f n * f n
+
+theorem eprod_congr {f h : Nat → Ext p ν} : ∀ n, (∀ j, j < n → f j = h j) → eprod f n = eprod h n
+  | 0, _ => rfl
+  | n + 1, e => by
+    show eprod f n * f n = eprod h n * h n
+    rw [eprod_congr n (fun j hj => e j (Nat.lt_succ_of_lt hj)), e n (Nat.lt_succ_self n)]
+
+/-- A common factor leaves the product as its power. -/
+theorem eprod_mul_left (a : Ext p ν) (G : Nat → Ext p ν) : ∀ n, eprod (fun j => a * G j) n = a ^ n * eprod G n
+  | 0 => (Ext.one_mul 1).symm
+  | n + 1 => by
+    show eprod (fun j => a * G j) n * (a * G n) = (a ^ n * a) * (eprod G n * G n)
+    rw [eprod_mul_left a G n]
+    exact xsound (xlook [a ^ n, eprod G n, a, G n]) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 2) (.var 3))) (.mul (.mul (.var 0) (.var 2)) (.mul (.var 1) (.var 3))) (by decide +kernel)
+
+/-- The product of unitary points is a unitary point. -/
+theorem unitary_eprod {f : Nat → Ext p ν} : ∀ n, (∀ j, j < n → Ext.conj (f j) * f j = 1) →
+    Ext.conj (eprod f n) * eprod f n = 1
+  | 0, _ => one_unitary
+  | n + 1, h => unitary_mul (unitary_eprod n (fun j hj => h j (Nat.lt_succ_of_lt hj))) (h n (Nat.lt_succ_self n))
+
+/-- The product of `F` over a list of indices. -/
+def elist (F : Nat → Ext p ν) : List Nat → Ext p ν
+  | [] => 1
+  | a :: l => F a * elist F l
+
+theorem elist_imageList (F : Nat → Ext p ν) (σ : Nat → Nat) (n : Nat) :
+    elist F (imageList σ n) = eprod (fun j => F (σ j)) n := by
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+    show F (σ n) * elist F (imageList σ n) = eprod (fun j => F (σ j)) n * F (σ n); rw [ih, Ext.mul_comm]
+
+theorem elist_erase (F : Nat → Ext p ν) {v : Nat} : ∀ {l : List Nat}, Pigeonhole.mem v l →
+    elist F l = F v * elist F (Pigeonhole.erase v l)
+  | [], h => absurd h id
+  | a :: l, h => by
+    exact match Nat.decEq a v with
+      | isTrue e => by rw [show Pigeonhole.erase v (a :: l) = l from ite_eq_left e, e]; rfl
+      | isFalse e => by
+          rw [show Pigeonhole.erase v (a :: l) = a :: Pigeonhole.erase v l from ite_eq_right e]
+          have hm : Pigeonhole.mem v l := match h with
+            | Or.inl h' => absurd h'.symm e
+            | Or.inr h' => h'
+          show F a * elist F l = F v * (F a * elist F (Pigeonhole.erase v l))
+          rw [elist_erase F hm]
+          exact xsound (xlook [F a, F v, elist F (Pigeonhole.erase v l)]) (.mul (.var 0) (.mul (.var 1) (.var 2))) (.mul (.var 1) (.mul (.var 0) (.var 2))) (by decide +kernel)
+
+/-- A product over any list of `n` distinct indices below `n` is the product over `0, …, n − 1`. -/
+theorem elist_eq_eprod (F : Nat → Ext p ν) : ∀ (n : Nat) (l : List Nat), Pigeonhole.NoDup l →
+    (∀ e, Pigeonhole.mem e l → e < n) → l.length = n → elist F l = eprod F n
+  | 0, [], _, _, _ => rfl
+  | 0, a :: l, _, hb, _ => absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)
+  | n + 1, l, hnd, hb, hlen => by
+    have hm : Pigeonhole.mem n l := Pigeonhole.mem_of_nodup_of_length_lt (n + 1) l hnd hb hlen n (Nat.lt_succ_self n)
+    rw [elist_erase F hm]
+    show F n * elist F (Pigeonhole.erase n l) = eprod F n * F n
+    rw [Ext.mul_comm]
+    have hb' : ∀ e, Pigeonhole.mem e (Pigeonhole.erase n l) → e < n := fun e he =>
+      match Nat.lt_or_ge e n with
+      | Or.inl hlt => hlt
+      | Or.inr hge =>
+        have : e = n := Nat.le_antisymm (Nat.le_of_lt_succ (hb e (Pigeonhole.mem_of_mem_erase he))) hge
+        absurd (this ▸ he) (Pigeonhole.not_mem_erase_self n hnd)
+    have hlen' : (Pigeonhole.erase n l).length = n := by
+      have := Pigeonhole.length_erase_of_mem hm; rw [hlen] at this; exact Nat.succ.inj this
+    rw [elist_eq_eprod F n (Pigeonhole.erase n l) (Pigeonhole.nodup_erase n hnd) hb' hlen']
+
+/-- Permutation invariance on the extension: for `σ` injective on `[0, n)` with values below `n`,
+`Π_{j<n} F (σ j) = Π_{l<n} F l`. -/
+theorem eprod_perm (F : Nat → Ext p ν) (σ : Nat → Nat) (n : Nat) (hlt : ∀ j, j < n → σ j < n)
+    (hinj : ∀ i j, i < n → j < n → σ i = σ j → i = j) :
+    eprod (fun j => F (σ j)) n = eprod F n := by
+  rw [← elist_imageList]
+  exact elist_eq_eprod F n (imageList σ n) (imageList_nodup hinj (Nat.le_refl n))
+    (fun e he => match mem_imageList he with | ⟨j, hj, e'⟩ => e' ▸ hlt j hj) (imageList_length σ n)
+
+/-! ## The `p + 1` unitary points, indexed, and the period -/
+
+/-- The unitary points indexed by `0, …, p`: the Cayley point of the residue `j` for `j < p`, and `−1` at `p`. -/
+def upt (ν : Shell p) (j : Nat) : Ext p ν := if j < p then cay ν (ofNat j) else -1
+
+/-- The index of a unitary point. -/
+def uidx (w : Ext p ν) : Nat := if w.re + 1 = 0 then p else (w.im * (w.re + 1) ^ (p - 2)).val
+
+theorem upt_unitary (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (j : Nat) :
+    Ext.conj (upt ν j) * upt ν j = 1 :=
+  match Nat.decLt j p with
+  | isTrue h => by
+    rw [show upt ν j = cay ν (ofNat j) from ite_eq_left h]
+    exact cay_unitary hp hν _
+  | isFalse h => by
+    rw [show upt ν j = -1 from ite_eq_right h]
+    exact neg_one_unitary
+
+/-- Every unitary point is the point of its index, and the index is below `p + 1`. -/
+theorem upt_uidx (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) {w : Ext p ν}
+    (hw : Ext.conj w * w = 1) : upt ν (uidx w) = w ∧ uidx w < p + 1 :=
+  match decEq (w.re + 1) 0 with
+  | isTrue h => by
+    have e : uidx w = p := ite_eq_left h
+    rw [e]
+    exact ⟨(show upt ν p = -1 from ite_eq_right (Nat.lt_irrefl p)).trans (cay_exc hp hν hw h).symm, Nat.lt_succ_self p⟩
+  | isFalse h => by
+    have e : uidx w = (w.im * (w.re + 1) ^ (p - 2)).val := ite_eq_right h
+    rw [e]
+    have hl := (w.im * (w.re + 1) ^ (p - 2)).lt
+    refine ⟨?_, Nat.lt_succ_of_lt hl⟩
+    rw [show upt ν (w.im * (w.re + 1) ^ (p - 2)).val = cay ν (ofNat (w.im * (w.re + 1) ^ (p - 2)).val) from ite_eq_left hl,
+      Shell.ofNat_val]
+    exact cay_surj hp hν hw h
+
+/-- The index of the `j`-th point is `j`, for `j ≤ p`. -/
+theorem uidx_upt (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {j : Nat} (hj : j < p + 1) : uidx (upt ν j) = j :=
+  match Nat.decLt j p with
+  | isTrue h => by
+    have r := cay_recover hp hν h2 (ofNat j)
+    rw [show upt ν j = cay ν (ofNat j) from ite_eq_left h]
+    have e : uidx (cay ν (ofNat j)) = ((cay ν (ofNat j)).im * ((cay ν (ofNat j)).re + 1) ^ (p - 2)).val := ite_eq_right r.1
+    rw [e, r.2, Shell.val_ofNat]
+    exact FRC.Nat.mod_eq_of_lt h
+  | isFalse h => by
+    have ej : j = p := Nat.le_antisymm (Nat.le_of_lt_succ hj) (Nat.ge_of_not_lt h)
+    rw [show upt ν j = -1 from ite_eq_right h, ej]
+    exact ite_eq_left (Shell.neg_add 1)
+
+/-- 27:C15 — the period of the unitary cycle: a unitary point has `w^(p+1) = 1`. Multiplication by `w` permutes the
+`p + 1` unitary points, so `w^(p+1) · Π u = Π u`, and the product, a unitary point, cancels. -/
+theorem unitary_period (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {w : Ext p ν} (hw : Ext.conj w * w = 1) : w ^ (p + 1) = 1 := by
+  have hU : ∀ j, Ext.conj (upt ν j) * upt ν j = 1 := upt_unitary hp hν
+  have hwU : ∀ j, Ext.conj (w * upt ν j) * (w * upt ν j) = 1 := fun j => unitary_mul hw (hU j)
+  have hF : ∀ j, j < p + 1 → upt ν (uidx (w * upt ν j)) = w * upt ν j := fun j _ => (upt_uidx hp hν (hwU j)).1
+  have hlt : ∀ j, j < p + 1 → uidx (w * upt ν j) < p + 1 := fun j _ => (upt_uidx hp hν (hwU j)).2
+  have hc : ∀ u : Ext p ν, Ext.conj w * (w * u) = u := fun u => by rw [← Ext.mul_assoc, hw, Ext.one_mul]
+  have hinj : ∀ i j, i < p + 1 → j < p + 1 → uidx (w * upt ν i) = uidx (w * upt ν j) → i = j := fun i j hi hj e => by
+    have e1 : w * upt ν i = w * upt ν j := (hF i hi).symm.trans ((congrArg (upt ν) e).trans (hF j hj))
+    have e2 : upt ν i = upt ν j := (hc (upt ν i)).symm.trans ((congrArg (fun u => Ext.conj w * u) e1).trans (hc (upt ν j)))
+    exact (uidx_upt hp hν h2 hi).symm.trans ((congrArg uidx e2).trans (uidx_upt hp hν h2 hj))
+  have hperm := eprod_perm (upt ν) (fun j => uidx (w * upt ν j)) (p + 1) hlt hinj
+  rw [eprod_congr (f := fun j => upt ν (uidx (w * upt ν j))) (h := fun j => w * upt ν j) (p + 1) hF,
+    eprod_mul_left w (upt ν) (p + 1)] at hperm
+  have hP := unitary_eprod (f := upt ν) (p + 1) (fun j _ => hU j)
+  calc w ^ (p + 1) = (w ^ (p + 1) * eprod (upt ν) (p + 1)) * Ext.conj (eprod (upt ν) (p + 1)) := by
+        rw [Ext.mul_assoc, Ext.mul_comm (eprod (upt ν) (p + 1)), hP, Ext.mul_one]
+    _ = 1 := by rw [hperm, Ext.mul_comm, hP]
+
+/-! ## No smaller period on the unitary cycle
+
+The components of `(1 + s η)^n` are polynomials in `s` of degree at most `n`, and the coefficient of `s` in the second
+is `n`. If every unitary point had `w^d = 1`, the second component of `(1 + s η)^d` would vanish at every residue `s`,
+and for `d < p` the root bound of the shell would make its coefficient `d` zero. -/
+
+/-- `X · f` on coefficient functions. -/
+def pshift (f : Nat → Shell p) : Nat → Shell p
+  | 0 => 0
+  | k + 1 => f k
+
+theorem eval_add (f h : Nat → Shell p) (n : Nat) (a : Shell p) :
+    Poly.eval (fun i => f i + h i) n a = Poly.eval f n a + Poly.eval h n a := by
+  show sumRange (fun i => (f i + h i) * a ^ i) (n + 1)
+    = sumRange (fun i => f i * a ^ i) (n + 1) + sumRange (fun i => h i * a ^ i) (n + 1)
+  rw [← sum_add]
+  exact sum_congr (n + 1) (fun i _ => Shell.right_distrib (f i) (h i) (a ^ i))
+
+theorem eval_smul (c : Shell p) (f : Nat → Shell p) (n : Nat) (a : Shell p) :
+    Poly.eval (fun i => c * f i) n a = c * Poly.eval f n a := by
+  show sumRange (fun i => c * f i * a ^ i) (n + 1) = c * sumRange (fun i => f i * a ^ i) (n + 1)
+  rw [← sum_mul_left]
+  exact sum_congr (n + 1) (fun i _ => Shell.mul_assoc c (f i) (a ^ i))
+
+theorem eval_shift (f : Nat → Shell p) (n : Nat) (a : Shell p) :
+    Poly.eval (pshift f) (n + 1) a = a * Poly.eval f n a := by
+  show sumRange (fun i => pshift f i * a ^ i) (n + 1 + 1) = a * sumRange (fun i => f i * a ^ i) (n + 1)
+  rw [sumRange_succ', ← sum_mul_left]
+  show (0 : Shell p) * a ^ 0 + sumRange (fun l => f l * (a ^ l * a)) (n + 1) = sumRange (fun l => a * (f l * a ^ l)) (n + 1)
+  rw [Shell.zero_mul, Shell.zero_add]
+  exact sum_congr (n + 1) (fun i _ => Shell.Frame.RE.sound (Shell.Frame.look [f i, a ^ i, a]) (.mul (.var 0) (.mul (.var 1) (.var 2))) (.mul (.var 2) (.mul (.var 0) (.var 1))) (by decide +kernel))
+
+/-- The components of `(1 + s η)^n` as coefficient functions in `s`. -/
+def cpoly (ν : Shell p) : Nat → (Nat → Shell p) × (Nat → Shell p)
+  | 0 => (fun i => if i = 0 then 1 else 0, fun _ => 0)
+  | n + 1 => (fun i => (cpoly ν n).1 i + ν * pshift (cpoly ν n).2 i, fun i => (cpoly ν n).2 i + pshift (cpoly ν n).1 i)
+
+theorem cpoly_bound (ν : Shell p) : ∀ n, Poly.Bound (cpoly ν n).1 n ∧ Poly.Bound (cpoly ν n).2 n
+  | 0 => ⟨fun _ hi => ite_eq_right (Nat.ne_of_gt hi), fun _ _ => rfl⟩
+  | n + 1 => by
+    have ih := cpoly_bound ν n
+    refine ⟨fun i hi => ?_, fun i hi => ?_⟩
+    · match i, hi with
+      | 0, hi => exact absurd hi (Nat.not_lt_zero _)
+      | k + 1, hi =>
+        have hk : n < k := Nat.lt_of_succ_lt_succ hi
+        show (cpoly ν n).1 (k + 1) + ν * (cpoly ν n).2 k = 0
+        rw [ih.1 (k + 1) (Nat.lt_succ_of_lt hk), ih.2 k hk, Shell.mul_zero, Shell.add_zero]
+    · match i, hi with
+      | 0, hi => exact absurd hi (Nat.not_lt_zero _)
+      | k + 1, hi =>
+        have hk : n < k := Nat.lt_of_succ_lt_succ hi
+        show (cpoly ν n).2 (k + 1) + (cpoly ν n).1 k = 0
+        rw [ih.2 (k + 1) (Nat.lt_succ_of_lt hk), ih.1 k hk, Shell.add_zero]
+
+/-- The constant coefficient of the first component is `1`, and the coefficient of `s` in the second is `n`. -/
+theorem cpoly_coeff (ν : Shell p) : ∀ n, (cpoly ν n).1 0 = 1 ∧ (cpoly ν n).2 1 = sumRange (fun _ => 1) n
+  | 0 => ⟨show (if (0 : Nat) = 0 then (1 : Shell p) else 0) = 1 from ite_eq_left rfl, rfl⟩
+  | n + 1 => by
+    have ih := cpoly_coeff ν n
+    refine ⟨?_, ?_⟩
+    · show (cpoly ν n).1 0 + ν * (0 : Shell p) = 1
+      rw [ih.1, Shell.mul_zero, Shell.add_zero]
+    · show (cpoly ν n).2 1 + (cpoly ν n).1 0 = sumRange (fun _ => 1) n + 1
+      rw [ih.1, ih.2]
+
+/-- The components of `(1 + s η)^n` are the values of the two polynomials at `s`. -/
+theorem cpoly_pow (ν s : Shell p) : ∀ n, ((⟨1, s⟩ : Ext p ν) ^ n).re = Poly.eval (cpoly ν n).1 n s ∧
+    ((⟨1, s⟩ : Ext p ν) ^ n).im = Poly.eval (cpoly ν n).2 n s
+  | 0 => by
+    refine ⟨?_, ?_⟩
+    · show (1 : Shell p) = 0 + (if (0 : Nat) = 0 then 1 else 0) * s ^ 0
+      rw [ite_eq_left rfl, Shell.pow_zero, Shell.mul_one, Shell.zero_add]
+    · show (0 : Shell p) = 0 + 0 * s ^ 0
+      rw [Shell.zero_mul, Shell.add_zero]
+  | n + 1 => by
+    have ih := cpoly_pow ν s n
+    have hb := cpoly_bound ν n
+    have eA : Poly.eval (cpoly ν (n + 1)).1 (n + 1) s
+        = Poly.eval (cpoly ν n).1 n s + ν * (s * Poly.eval (cpoly ν n).2 n s) := by
+      show Poly.eval (fun i => (cpoly ν n).1 i + ν * pshift (cpoly ν n).2 i) (n + 1) s = _
+      rw [eval_add, eval_smul, eval_shift, Poly.eval_bound hb.1 (Nat.le_succ n)]
+    have eB : Poly.eval (cpoly ν (n + 1)).2 (n + 1) s
+        = Poly.eval (cpoly ν n).2 n s + s * Poly.eval (cpoly ν n).1 n s := by
+      show Poly.eval (fun i => (cpoly ν n).2 i + pshift (cpoly ν n).1 i) (n + 1) s = _
+      rw [eval_add, eval_shift, Poly.eval_bound hb.2 (Nat.le_succ n)]
+    refine ⟨?_, ?_⟩
+    · show ((⟨1, s⟩ : Ext p ν) ^ n).re * 1 + ν * (((⟨1, s⟩ : Ext p ν) ^ n).im * s) = Poly.eval (cpoly ν (n + 1)).1 (n + 1) s
+      rw [eA, ih.1, ih.2, Shell.mul_one, Shell.mul_comm (Poly.eval (cpoly ν n).2 n s) s]
+    · show ((⟨1, s⟩ : Ext p ν) ^ n).re * s + ((⟨1, s⟩ : Ext p ν) ^ n).im * 1 = Poly.eval (cpoly ν (n + 1)).2 (n + 1) s
+      rw [eB, ih.1, ih.2, Shell.mul_one, Shell.add_comm, Shell.mul_comm s]
+
+theorem ext_mul_pow (a b : Ext p ν) : ∀ n : Nat, (a * b) ^ n = a ^ n * b ^ n
+  | 0 => (Ext.one_mul 1).symm
+  | n + 1 => by
+    show (a * b) ^ n * (a * b) = (a ^ n * a) * (b ^ n * b)
+    rw [ext_mul_pow a b n]
+    exact xsound (xlook [a ^ n, b ^ n, a, b]) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 2) (.var 3))) (.mul (.mul (.var 0) (.var 2)) (.mul (.var 1) (.var 3))) (by decide +kernel)
+
+theorem conj_pow (z : Ext p ν) : ∀ n : Nat, Ext.conj (z ^ n) = Ext.conj z ^ n
+  | 0 => Ext.ext rfl Shell.neg_zero
+  | n + 1 => by
+    show Ext.conj (z ^ n * z) = Ext.conj z ^ n * Ext.conj z
+    rw [Ext.conj_mul, conj_pow z n]
+
+/-- 27:C15 — no `0 < d < p` is a period of the unitary cycle: some unitary point has `w^d ≠ 1`. -/
+theorem unitary_escape (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {d : Nat} (hd : 0 < d) (hlt : d < p) : ¬∀ w : Ext p ν, Ext.conj w * w = 1 → w ^ d = 1 := fun hall => by
+  have hz : ∀ s : Shell p, Poly.eval (cpoly ν d).2 d s = 0 := fun s => by
+    have ha := cay_conj_alg (ν := ν) (mul_pow_pred hp (cnorm_ne_zero hp hν s))
+    have hwz : cay ν s * Ext.conj (⟨1, s⟩ : Ext p ν) = ⟨1, s⟩ := Ext.ext ha.1 ha.2
+    have h1 : (cay ν s * Ext.conj (⟨1, s⟩ : Ext p ν)) ^ d = Ext.conj ((⟨1, s⟩ : Ext p ν) ^ d) := by
+      rw [ext_mul_pow, hall _ (cay_unitary hp hν s), Ext.one_mul, conj_pow]
+    rw [hwz] at h1
+    have him : ((⟨1, s⟩ : Ext p ν) ^ d).im = -((⟨1, s⟩ : Ext p ν) ^ d).im := Ext.im_congr h1
+    rw [← (cpoly_pow ν s d).2]
+    have hb : (1 + 1) * ((⟨1, s⟩ : Ext p ν) ^ d).im = 0 := by
+      have e2 : ∀ b : Shell p, (1 + 1) * b = b + -(-b) := fun b =>
+        Shell.Frame.RE.sound (Shell.Frame.look [b]) (.mul (.add .one .one) (.var 0)) (.add (.var 0) (.neg (.neg (.var 0)))) (by decide +kernel)
+      rw [e2, ← him, Shell.add_neg]
+    match Prime.mul_eq_zero hp hb with
+    | .inl h => exact absurd h h2
+    | .inr h => exact h
+  have hroot := Poly.root_bound_of (fun h => Prime.mul_eq_zero hp h) d (cpoly ν d).2 (cpoly_bound ν d).2 (fun i => ofNat i)
+    (fun i j hi hj e => Poly.Frame.ofNat_inj_lt (Nat.lt_of_le_of_lt hi hlt) (Nat.lt_of_le_of_lt hj hlt) e)
+    (fun i _ => hz (ofNat i)) 1
+  rw [(cpoly_coeff ν d).2, sum_const, Shell.mul_one] at hroot
+  exact Prime.ofNat_ne_zero hd hlt hroot
+
+/-- 27:C15 — no `0 < d < p + 1` is a period of the unitary cycle. At `d = p` the point `−1` has `(−1)^p = −1`. -/
+theorem unitary_escape_top (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {d : Nat} (hd : 0 < d) (hlt : d < p + 1) : ¬∀ w : Ext p ν, Ext.conj w * w = 1 → w ^ d = 1 :=
+  match Nat.lt_or_ge d p with
+  | .inl h => unitary_escape hp hν h2 hd h
+  | .inr h => fun hall => by
+    have ed : d = p := Nat.le_antisymm (Nat.le_of_lt_succ hlt) h
+    have h1 := hall (-1) neg_one_unitary
+    have h3 : (-1 : Ext p ν) ^ p * -1 = 1 := unitary_period hp hν h2 neg_one_unitary
+    rw [ed] at h1
+    rw [h1, Ext.one_mul] at h3
+    have e : (-1 : Shell p) = 1 := Ext.re_congr h3
+    exact h2 ((show (1 : Shell p) + 1 = 1 + -1 by rw [e]).trans (Shell.add_neg 1))
+
+/-! ## The unitary cycle has a generator
+
+The argument of `Theme/Drive.lean`, on the unitary points: the order of a unitary point divides every exponent that
+kills it, a prime power `qᵉ ∣ p + 1` is an order, and orders `m` and `qᵉ` with `q ∤ m` multiply. -/
+
+theorem ext_one_pow : ∀ n : Nat, (1 : Ext p ν) ^ n = 1
+  | 0 => rfl
+  | n + 1 => by
+    show (1 : Ext p ν) ^ n * 1 = 1
+    rw [ext_one_pow n]; exact Ext.one_mul 1
+
+theorem ext_pow_mul (z : Ext p ν) (m : Nat) : ∀ n : Nat, z ^ (m * n) = (z ^ m) ^ n
+  | 0 => rfl
+  | n + 1 => by
+    show z ^ (m * n + m) = (z ^ m) ^ n * z ^ m
+    rw [Ext.pow_add, ext_pow_mul z m n]
+
+theorem ext_pow_mul_comm (z : Ext p ν) (m n : Nat) : (z ^ m) ^ n = (z ^ n) ^ m := by
+  rw [← ext_pow_mul, Nat.mul_comm, ext_pow_mul]
+
+theorem ext_pow_one (z : Ext p ν) : z ^ 1 = z := Ext.one_mul z
+
+/-- A power of a unitary point is a unitary point. -/
+theorem unitary_pow {w : Ext p ν} (hw : Ext.conj w * w = 1) : ∀ k : Nat, Ext.conj (w ^ k) * w ^ k = 1
+  | 0 => one_unitary
+  | k + 1 => unitary_mul (unitary_pow hw k) hw
+
+/-- `x` has order `n`: `0 < n`, `xⁿ = 1`, and no positive power below `n` is `1`. -/
+def UOrder (x : Ext p ν) (n : Nat) : Prop := 0 < n ∧ x ^ n = 1 ∧ ∀ l, l < n → 0 < l → x ^ l ≠ 1
+
+/-- Every unitary point has an order, the least positive exponent with `xⁿ = 1`; the period `p + 1` bounds it. -/
+theorem uorder_exists (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {x : Ext p ν} (hx : Ext.conj x * x = 1) : ∃ n, UOrder x n := by
+  obtain ⟨n, _, ⟨hn0, hxn⟩, hmin⟩ := FRC.Nat.exists_least (fun l => 0 < l ∧ x ^ l = 1) (p + 2)
+    ⟨p + 1, Nat.lt_succ_self _, Nat.zero_lt_succ p, unitary_period hp hν h2 hx⟩
+  exact ⟨n, hn0, hxn, fun l hl hl0 hxl => hmin l hl ⟨hl0, hxl⟩⟩
+
+theorem uorder_pow_of_dvd {x : Ext p ν} {n k : Nat} (h : UOrder x n) : n ∣ k → x ^ k = 1
+  | ⟨c, hc⟩ => by rw [hc, ext_pow_mul, h.2.1, ext_one_pow]
+
+theorem uorder_dvd {x : Ext p ν} {n k : Nat} (h : UOrder x n) (hk : x ^ k = 1) : n ∣ k := by
+  obtain ⟨c, hc⟩ := FRC.Nat.mod_spec n h.1 k
+  rw [hc, Ext.pow_add, ext_pow_mul, h.2.1, ext_one_pow, Ext.one_mul] at hk
+  match Nat.decEq (k % n) 0 with
+  | .isTrue h0 => exact ⟨c, by rw [h0, Nat.add_zero] at hc; exact hc⟩
+  | .isFalse h0 => exact absurd hk (h.2.2 _ (Nat.mod_lt k h.1) (Nat.pos_of_ne_zero h0))
+
+/-- A unitary `w` with `w^{qᵉ} = 1` and `w^m = 1`, `q` prime and `q ∤ m`, is `1`. -/
+theorem uorder_one_of_pows (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {q e m : Nat} (hq : FRC.Nat.isPrime q) {w : Ext p ν} (hw : Ext.conj w * w = 1)
+    (he : w ^ (q ^ e) = 1) (hm : w ^ m = 1) (hmq : m % q ≠ 0) : w = 1 := by
+  obtain ⟨n, hn⟩ := uorder_exists hp hν h2 hw
+  obtain ⟨j, _, hj⟩ := FRC.Nat.dvd_prime_pow hq e n (uorder_dvd hn he)
+  have hnm := uorder_dvd hn hm
+  match j, hj with
+  | 0, hj => rw [hj, Nat.pow_zero] at hn; have := hn.2.1; rwa [ext_pow_one] at this
+  | j + 1, hj =>
+    have hq0 : 0 < q := Nat.lt_of_lt_of_le (Nat.zero_lt_succ 1) hq.1
+    have hqn : q ∣ n := ⟨q ^ j, by rw [hj, Nat.pow_succ, Nat.mul_comm]⟩
+    exact absurd ((FRC.Nat.dvd_iff_mod hq0).1 (FRC.Nat.dvd_trans' hqn hnm)) hmq
+
+/-- Orders `m` and `qᵉ` with `q ∤ m` multiply: `y z` has order `m qᵉ`. -/
+theorem uorder_mul (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {q e m : Nat} (hq : FRC.Nat.isPrime q) {y z : Ext p ν} (hy0 : Ext.conj y * y = 1) (hz0 : Ext.conj z * z = 1)
+    (hy : UOrder y m) (hz : UOrder z (q ^ e)) (hmq : m % q ≠ 0) : UOrder (y * z) (m * q ^ e) := by
+  refine ⟨Nat.mul_pos hy.1 hz.1, ?_, fun l hl hl0 hyz => ?_⟩
+  · rw [ext_mul_pow, ext_pow_mul, hy.2.1, ext_one_pow, Ext.one_mul, Nat.mul_comm, ext_pow_mul, hz.2.1, ext_one_pow]
+  · rw [ext_mul_pow] at hyz
+    have hzl : z ^ l = 1 := by
+      refine uorder_one_of_pows hp hν h2 hq (unitary_pow hz0 l) (by rw [ext_pow_mul_comm, hz.2.1, ext_one_pow]) ?_ hmq
+      have h1 : (y ^ l * z ^ l) ^ m = 1 := by rw [hyz, ext_one_pow]
+      rwa [ext_mul_pow, ext_pow_mul_comm, hy.2.1, ext_one_pow, Ext.one_mul] at h1
+    have hyl : y ^ l = 1 := by rw [hzl, Ext.mul_one] at hyz; exact hyz
+    obtain ⟨l', hl'⟩ := uorder_dvd hz hzl
+    have hyl' : y ^ l' = 1 := by
+      refine uorder_one_of_pows hp hν h2 (e := e) hq (unitary_pow hy0 l') ?_ (by rw [ext_pow_mul_comm, hy.2.1, ext_one_pow]) hmq
+      rw [← ext_pow_mul, Nat.mul_comm, ← hl']; exact hyl
+    obtain ⟨c, hc⟩ := uorder_dvd hy hyl'
+    have hle : m * q ^ e ≤ l := FRC.Nat.le_of_dvd' hl0
+      ⟨c, by rw [hl', hc, Nat.mul_comm m (q ^ e), FRC.Nat.mul_assoc]⟩
+    exact absurd hl (Nat.not_lt_of_le hle)
+
+/-- A unitary point that escapes the exponent `d`, found among the `p + 1` points. -/
+theorem uescape_exists (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {d : Nat} (hd : 0 < d) (hlt : d < p + 1) : ∃ a : Ext p ν, Ext.conj a * a = 1 ∧ a ^ d ≠ 1 :=
+  match decExistsLT (fun j => (upt ν j) ^ d ≠ 1) (p + 1) with
+  | .isTrue ⟨j, _, h⟩ => ⟨upt ν j, upt_unitary hp hν j, h⟩
+  | .isFalse hno => (unitary_escape_top hp hν h2 hd hlt (fun w hw => by
+      have hu := upt_uidx hp hν hw
+      match decEq ((upt ν (uidx w)) ^ d) 1 with
+      | .isTrue e => rw [hu.1] at e; exact e
+      | .isFalse ne => exact absurd ⟨uidx w, hu.2, ne⟩ hno)).elim
+
+/-- A prime power `qᵉ ∣ p + 1`, `e ≥ 1`, is an order: with `p + 1 = qᵉ t` and `a^{(p+1)/q} ≠ 1`, `aᵗ` has order `qᵉ`. -/
+theorem uorder_prime_pow (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {q e : Nat} (hq : FRC.Nat.isPrime q) (he : 0 < e) (hdvd : q ^ e ∣ p + 1) :
+    ∃ z : Ext p ν, Ext.conj z * z = 1 ∧ UOrder z (q ^ e) := by
+  obtain ⟨t, ht⟩ := hdvd
+  match e, he with
+  | e + 1, _ =>
+    have hq2 : 2 ≤ q := hq.1
+    have hpd : p + 1 = q * (q ^ e * t) := by rw [ht, Nat.pow_succ, Nat.mul_comm (q ^ e) q, FRC.Nat.mul_assoc]
+    have hd0 : 0 < q ^ e * t := Nat.pos_of_ne_zero (fun h => by
+      rw [h, Nat.mul_zero] at hpd; exact Nat.succ_ne_zero p hpd)
+    have hdlt : q ^ e * t < p + 1 := by
+      rw [hpd]
+      calc q ^ e * t = 1 * (q ^ e * t) := (Nat.one_mul _).symm
+        _ < q * (q ^ e * t) := FRC.Nat.mul_lt_mul_of_lt_of_pos (Nat.lt_of_lt_of_le (Nat.lt_succ_self 1) hq2) hd0
+    obtain ⟨a, ha0, had⟩ := uescape_exists hp hν h2 hd0 hdlt
+    have hz0 := unitary_pow ha0 t
+    have hzq : (a ^ t) ^ (q ^ (e + 1)) = 1 := by
+      rw [← ext_pow_mul, Nat.mul_comm, ← ht, unitary_period hp hν h2 ha0]
+    obtain ⟨n, hn⟩ := uorder_exists hp hν h2 hz0
+    obtain ⟨j, hj, hjn⟩ := FRC.Nat.dvd_prime_pow hq (e + 1) n (uorder_dvd hn hzq)
+    match Nat.lt_or_ge j (e + 1) with
+    | .inl hlt =>
+      have hje : q ^ j ∣ q ^ e := ⟨q ^ (e - j), by rw [← FRC.Nat.pow_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt_succ hlt)]⟩
+      have h1 : (a ^ t) ^ (q ^ e) = 1 := uorder_pow_of_dvd hn (by rw [hjn]; exact hje)
+      rw [← ext_pow_mul, Nat.mul_comm] at h1
+      exact absurd h1 had
+    | .inr hge =>
+      have : j = e + 1 := Nat.le_antisymm hj hge
+      rw [this] at hjn
+      exact ⟨a ^ t, hz0, hjn ▸ hn⟩
+
+/-- Every divisor `n` of `p + 1` is an order of a unitary point. -/
+theorem uorder_of_dvd (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0) :
+    ∀ B n, n ≤ B → 0 < n → n ∣ p + 1 → ∃ y : Ext p ν, Ext.conj y * y = 1 ∧ UOrder y n
+  | 0, n, hB, hn, _ => absurd (Nat.lt_of_lt_of_le hn hB) (Nat.lt_irrefl 0)
+  | B + 1, n, hB, hn, hdvd => by
+    match n, hn with
+    | 1, _ => exact ⟨1, one_unitary, Nat.zero_lt_succ 0, ext_one_pow 1,
+        fun l hl hl0 => absurd (Nat.lt_of_lt_of_le hl0 (Nat.le_of_lt_succ hl)) (Nat.lt_irrefl 0)⟩
+    | k + 2, _ =>
+      obtain ⟨q, hq, hqn⟩ := FRC.Nat.exists_prime_dvd (Nat.le_add_left 2 k)
+      have hq2 : 2 ≤ q := hq.1
+      have hq0 : 0 < q := Nat.lt_of_lt_of_le (Nat.zero_lt_succ 1) hq2
+      obtain ⟨e, m, hem, hmq⟩ := FRC.Nat.exists_pow_mul hq2 (k + 2) (k + 2) (Nat.le_refl _) (Nat.zero_lt_succ _)
+      have hm0 : 0 < m := Nat.pos_of_ne_zero (fun h => by rw [h, Nat.mul_zero] at hem; exact Nat.noConfusion hem)
+      have he0 : 0 < e := by
+        match e, hem with
+        | 0, hem =>
+          rw [Nat.pow_zero, Nat.one_mul] at hem
+          rw [hem] at hqn
+          exact absurd ((FRC.Nat.dvd_iff_mod hq0).1 hqn) hmq
+        | e + 1, _ => exact Nat.zero_lt_succ e
+      have hqe : 2 ≤ q ^ e := by
+        match e, he0 with
+        | e + 1, _ =>
+          rw [Nat.pow_succ]
+          calc 2 ≤ q := hq2
+            _ = 1 * q := (Nat.one_mul q).symm
+            _ ≤ q ^ e * q := Nat.mul_le_mul_right q (Nat.pos_pow_of_pos e hq0)
+      have hmn : m < k + 2 := by
+        rw [hem]
+        calc m = 1 * m := (Nat.one_mul m).symm
+          _ < q ^ e * m := FRC.Nat.mul_lt_mul_of_lt_of_pos (Nat.lt_of_lt_of_le (Nat.lt_succ_self 1) hqe) hm0
+      obtain ⟨y, hy0, hy⟩ := uorder_of_dvd hp hν h2 B m (Nat.le_of_lt_succ (Nat.lt_of_lt_of_le hmn hB)) hm0
+        (FRC.Nat.dvd_trans' ⟨q ^ e, by rw [hem, Nat.mul_comm]⟩ hdvd)
+      obtain ⟨z, hz0, hz⟩ := uorder_prime_pow hp hν h2 hq he0 (FRC.Nat.dvd_trans' ⟨m, hem⟩ hdvd)
+      have h := uorder_mul hp hν h2 hq hy0 hz0 hy hz hmq
+      rw [Nat.mul_comm, ← hem] at h
+      exact ⟨y * z, unitary_mul hy0 hz0, h⟩
+
+/-- 27:C15 — the unitary cycle has a generator: a unitary point with `w^(p+1) = 1` and no positive power below `p + 1`
+equal to `1`. -/
+theorem unitary_generator (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0) :
+    ∃ w : Ext p ν, Ext.conj w * w = 1 ∧ w ^ (p + 1) = 1 ∧ ∀ l, l < p + 1 → 0 < l → w ^ l ≠ 1 := by
+  obtain ⟨w, hw0, hw⟩ := uorder_of_dvd hp hν h2 (p + 1) (p + 1) (Nat.le_refl _) (Nat.zero_lt_succ p)
+    ⟨1, (Nat.mul_one _).symm⟩
+  exact ⟨w, hw0, hw.2.1, hw.2.2⟩
+
+/-! ## The orders of the two cycles -/
+
+/-- 27:C15 — the orders of the two cycles of the diagonal torus, on a prime shell with `ν` a nonsquare and `2 ≠ 0`.
+The split cycle: the nonzero residues are those of `1, …, p − 1`, each has `a^(p−1) = 1`, no `0 < m < p − 1` is a
+period of all of them, and one of them has order `p − 1`. The unitary cycle: its points are `−1` and the Cayley points of the `p` residues, pairwise
+distinct, each has `w^(p+1) = 1`, no `0 < d < p + 1` is a period of all of them, and one of them has order `p + 1`. -/
+theorem cycle_orders (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0) :
+    ((∀ a : Shell p, a ≠ 0 ↔ 0 < a.val) ∧ (∀ a : Shell p, a.val < p) ∧
+      (∀ a b : Shell p, a.val = b.val → a = b) ∧ (∀ k : Nat, k < p → ¬∀ a : Shell p, a.val ≠ k)) ∧
+    (∀ a : Shell p, a ≠ 0 → a ^ (p - 1) = 1) ∧
+    (∀ m : Nat, 0 < m → m < p - 1 → ¬∀ a : Shell p, a ≠ 0 → a ^ m = 1) ∧
+    (¬∀ a : Shell p, a ≠ 0 → ¬∀ l : Nat, l < p - 1 → 0 < l → a ^ l ≠ 1) ∧
+    (∀ s : Shell p, Ext.conj (cay ν s) * cay ν s = 1 ∧ (cay ν s).re + 1 ≠ 0) ∧
+    (∀ s s' : Shell p, cay ν s = cay ν s' → s = s') ∧
+    (∀ w : Ext p ν, Ext.conj w * w = 1 → w.re + 1 ≠ 0 → cay ν (w.im * (w.re + 1) ^ (p - 2)) = w) ∧
+    (∀ w : Ext p ν, Ext.conj w * w = 1 → w.re + 1 = 0 → w = -1) ∧
+    (∀ w : Ext p ν, Ext.conj w * w = 1 → w ^ (p + 1) = 1) ∧
+    (∀ d : Nat, 0 < d → d < p + 1 → ¬∀ w : Ext p ν, Ext.conj w * w = 1 → w ^ d = 1) ∧
+    (¬∀ w : Ext p ν, Ext.conj w * w = 1 → ¬∀ l : Nat, l < p + 1 → 0 < l → w ^ l ≠ 1) :=
+  ⟨FRC.Interactions.nonzero_residues, fun _ ha => Prime.fermat hp ha,
+   fun _ hm hlt h => match Prime.exists_pow_ne_one hp hm hlt with | ⟨a, ha, hne⟩ => hne (h a ha),
+   fun h => match Prime.exists_primitive hp with | ⟨g, hg, _, hl⟩ => h g hg hl,
+   fun s => ⟨cay_unitary hp hν s, (cay_recover hp hν h2 s).1⟩, fun _ _ h => cay_inj hp hν h2 h,
+   fun _ hw h1 => cay_surj hp hν hw h1, fun _ hw h1 => cay_exc hp hν hw h1, fun _ hw => unitary_period hp hν h2 hw,
+   fun _ hd hlt => unitary_escape_top hp hν h2 hd hlt,
+   fun h => match unitary_generator hp hν h2 with | ⟨w, hw, _, hl⟩ => h w hw hl⟩
+
+end FRC.Unitary
+
+/-! inlined: FrcCore/Theme/Charge.lean -/
+
+/-!
+# FrcCore.Theme.Charge — the units of the extension and the one charge system (27:C15, 27:C16)
+
+`Theme/Torus.lean` states the split cycle and the unitary cycle of the extension `K = 𝔽_p[η]`, `η² = ν`, by their points
+and periods. This file states how the two lie in the units of `K`, and the cycles of the hypercharge and of the charge
+in the frame of rank five.
+
+* **The square of a unit (27:C15).** For a unit `x = a + b η` with norm `N = a² − ν b²` and `k = 1/N`, the quotient
+  `ratio ν a b k = x/σ(x) = x²/N` is a unitary point, `x² = N · ratio`, and `σ(x) x = N` lies in the shell
+  (`unit_square`). The quotient is `1` exactly when `b = 0`, that is when `x` is a split point (`ratio_kernel`). The
+  Cayley point of `s` is the quotient of `1 + s η` (`ratio_cay`), and `−1` is the quotient of `η` (`ratio_eta`); with
+  `cycle_orders` every unitary point is such a quotient.
+* **The two readings of a weight (27:C15).** With `p − 1 = 2m` and `p + 1 = 2m + 2`: readings `a < p − 1` and
+  `b < p + 1` of equal parity are the readings of one exponent below `p² − 1` (`weights_lift_ge`, `weights_lift_lt`,
+  `lift_below`), and the two
+  readings of one exponent have equal parity (`weights_parity`). The Frobenius fixes a split point and inverts a
+  unitary point, so `σ(x)ⁿ` is `xⁿ` on the split cycle and the inverse of `xⁿ` on the unitary cycle (`frobenius_readings`).
+* **The rotations (27:C15).** With `i² = −1` in the shell and `a a' = 1`, the matrix of rows `(c, s)`, `(−s, c)` with
+  `c = (a + a')/2`, `s = i (a' − a)/2` has `c² + s² = 1`, `c + i s = a`, `c − i s = a'`, and it carries `(1, i)` to
+  `a (1, i)` and `(1, −i)` to `a' (1, −i)` (`rotation_cycle`); the matrices multiply as their parameters do (`rotation_mul`).
+* **The hypercharge cycle and the charge cycle (27:C16).** For a unitary `w` the point
+  `diag(σ(w)², σ(w)², σ(w)², w³, w³)` has determinant one, and it is the identity only for `w = 1`
+  (`hypercharge_cycle`). The point `diag(u, u, u, σ(u)³, 1)` has determinant one, and its entry `σ(u)³` on the doublet
+  is `1` exactly when `u³ = 1` (`charge_cycle`). On the sixteen states the weights of the two cycles are `6Y` and
+  `−3Q`, the second `|S ∩ C| − 3 [3 ∈ S]` (`charge_weights`).
+* **Powers (27:C16).** For `d ∣ p + 1`, `d > 1`, some unitary point is no `d`-th power of a unitary point
+  (`not_all_powers`), by the generator of `Theme/Torus.lean`. Where `p + 2 = 3 j` every unitary point is a cube
+  (`all_cubes`).
+* **The classes of the unitary cycle (27:C16).** Every unitary point is a power of a generator (`generator_powers`).
+  For `p + 1 = d m` the classes modulo the `d`-th powers are those of `u^0, …, u^(d−1)`, and they number `d`
+  (`power_classes`). The sixth powers are the `d`-th powers for `d = gcd(6, p + 1)` (`sixth_powers`).
+* **Determinants and squares (27:C16).** A scalar `s` multiplies a determinant of rank three by `s³` and of rank two
+  by `s²` (`det_scale`). A point of the charge cycle whose determinant on the doublet is a sixth power is a square,
+  and conversely (`charge_squares`).
+* **The kernel of the product (27:C16).** The product of a hypercharge point with a pair of scalar matrices is the
+  identity exactly on the triples `(w, w² I₃, σ(w)³ I₂)`, of determinants one exactly when `w⁶ = 1` (`product_kernel`).
+  These `w` are the `d = gcd(6, p + 1)` powers `u^(m r)` of a generator (`sixth_roots`).
+* **The centre of the colour frame (27:P10).** For a cube root of unity `x ≠ 1`, `x ^ n = 1` exactly when three
+  divides `n` (`centre_weight`). A state of fewer than `p + 1` indices that the diagonal frame moves fix has equal net
+  numbers of indices in the three colour directions (`colourless_indices`).
+* **The Frobenius parity of a tally (27:C17).** An expression with integer coefficients commutes with the Frobenius
+  (`tally_even`). The odd term of a plaquette and the determinant of an anti-Hermitian matrix are negated by it
+  (`orientation_odd`, `antihermitian_det`), and the product of two such elements is fixed (`odd_product`).
+* **The lift of one chronon (27:C15, 27:C4).** The entries of `diag(η, η⁻¹)`, their squares and their norms
+  (`drive_lift`), and the rays that one chronon keeps (`fixed_rays`).
+* **The commutant (27:C16).** A matrix of rank three that commutes with a diagonal matrix of three entries with
+  invertible differences and with the two permutation matrices of adjacent directions is a scalar
+  (`commutant_scalar`).
+
+`unit_cycle` conjoins the clauses of row C15. Row C16 cites `one_charge_system` and the seven theorems above. No axioms.
+-/
+
+namespace FRC.Unitary
+
+open FRC.Shell FRC.Shell.Frame FRC.Extension
+
+variable {p : Nat} [Pos p] {ν : Shell p}
+
+/-- The point `a + b η` of the extension. -/
+def pt (ν a b : Shell p) : Ext p ν := ⟨a, b⟩
+
+/-- The quotient `x/σ(x)` of the unit `x = a + b η`, with `k` the inverse of its norm `a² − ν b²`: `(a + b η)² · k`. -/
+def ratio (ν a b k : Shell p) : Ext p ν := ⟨(a * a + ν * (b * b)) * k, (a * b + b * a) * k⟩
+
+/-! ## The square of a unit -/
+
+/-- 27:C15 — the square of a unit: the quotient `x/σ(x)` is unitary, the square of the unit is its norm times that
+quotient, and its norm `σ(x) x` lies in the shell. -/
+theorem unit_square {a b k : Shell p} (hk : (a * a + -(ν * (b * b))) * k = 1) :
+    Ext.conj (ratio ν a b k) * ratio ν a b k = 1 ∧
+    pt ν a b * pt ν a b = pt ν (a * a + -(ν * (b * b))) 0 * ratio ν a b k ∧
+    Ext.conj (pt ν a b) * pt ν a b = pt ν (a * a + -(ν * (b * b))) 0 := by
+  refine ⟨Ext.ext ?_ ?_, Ext.ext ?_ ?_, Ext.ext ?_ ?_⟩
+  · have e : (((((a * a) + (ν * (b * b))) * k) * (((a * a) + (ν * (b * b))) * k)) + (ν * (-(((a * b) + (b * a)) * k) * (((a * b) + (b * a)) * k)))) = ((((a * a) + -(ν * (b * b))) * k) * (((a * a) + -(ν * (b * b))) * k)) := Shell.Frame.RE.sound (Shell.Frame.look [ν, a, b, k]) (.add (.mul (.mul (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.var 3)) (.mul (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.var 3))) (.mul (.var 0) (.mul (.neg (.mul (.add (.mul (.var 1) (.var 2)) (.mul (.var 2) (.var 1))) (.var 3))) (.mul (.add (.mul (.var 1) (.var 2)) (.mul (.var 2) (.var 1))) (.var 3))))) (.mul (.mul (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.var 3)) (.mul (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.var 3))) (by decide +kernel)
+    rw [hk, Shell.mul_one] at e
+    exact e
+  · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, a, b, k]) (.add (.mul (.mul (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.var 3)) (.mul (.add (.mul (.var 1) (.var 2)) (.mul (.var 2) (.var 1))) (.var 3))) (.mul (.neg (.mul (.add (.mul (.var 1) (.var 2)) (.mul (.var 2) (.var 1))) (.var 3))) (.mul (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.var 3)))) .zero (by decide +kernel)
+  · have e : ((((a * a) + -(ν * (b * b))) * (((a * a) + (ν * (b * b))) * k)) + (ν * (0 * (((a * b) + (b * a)) * k)))) = ((((a * a) + -(ν * (b * b))) * k) * ((a * a) + (ν * (b * b)))) := Shell.Frame.RE.sound (Shell.Frame.look [ν, a, b, k]) (.add (.mul (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.mul (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.var 3))) (.mul (.var 0) (.mul .zero (.mul (.add (.mul (.var 1) (.var 2)) (.mul (.var 2) (.var 1))) (.var 3))))) (.mul (.mul (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.var 3)) (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.var 2) (.var 2))))) (by decide +kernel)
+    rw [hk, Shell.one_mul] at e
+    exact e.symm
+  · have e : ((((a * a) + -(ν * (b * b))) * (((a * b) + (b * a)) * k)) + (0 * (((a * a) + (ν * (b * b))) * k))) = ((((a * a) + -(ν * (b * b))) * k) * ((a * b) + (b * a))) := Shell.Frame.RE.sound (Shell.Frame.look [ν, a, b, k]) (.add (.mul (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.mul (.add (.mul (.var 1) (.var 2)) (.mul (.var 2) (.var 1))) (.var 3))) (.mul .zero (.mul (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.var 3)))) (.mul (.mul (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.var 3)) (.add (.mul (.var 1) (.var 2)) (.mul (.var 2) (.var 1)))) (by decide +kernel)
+    rw [hk, Shell.one_mul] at e
+    exact e.symm
+  · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, a, b, k]) (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.neg (.var 2)) (.var 2)))) (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))) (by decide +kernel)
+  · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, a, b, k]) (.add (.mul (.var 1) (.var 2)) (.mul (.neg (.var 2)) (.var 1))) .zero (by decide +kernel)
+
+/-- 27:C15 — the quotient `x/σ(x)` of a unit is `1` exactly when the unit is a split point, `b = 0`. -/
+theorem ratio_kernel (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {a b k : Shell p} (hk : (a * a + -(ν * (b * b))) * k = 1) : ratio ν a b k = 1 ↔ b = 0 := by
+  constructor
+  · intro h
+    have hre : (a * a + ν * (b * b)) * k = 1 := Ext.re_congr h
+    have e : (((1 + 1) * ν) * ((b * b) * k)) = ((((a * a) + (ν * (b * b))) * k) + -(((a * a) + -(ν * (b * b))) * k)) := Shell.Frame.RE.sound (Shell.Frame.look [ν, a, b, k]) (.mul (.mul (.add .one .one) (.var 0)) (.mul (.mul (.var 2) (.var 2)) (.var 3))) (.add (.mul (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.var 3)) (.neg (.mul (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.var 3)))) (by decide +kernel)
+    have e0 : (1 : Shell p) + -1 = 0 := Shell.Frame.RE.sound (Shell.Frame.look [ν]) (.add .one (.neg .one)) .zero (by decide +kernel)
+    rw [hre, hk, e0] at e
+    match Prime.mul_eq_zero hp e with
+    | .inl h1 =>
+      match Prime.mul_eq_zero hp h1 with
+      | .inl h => exact absurd h h2
+      | .inr h => exact absurd ⟨0, (Shell.zero_mul 0).trans h.symm⟩ hν
+    | .inr h1 =>
+      match Prime.mul_eq_zero hp h1 with
+      | .inl hbb =>
+        match Prime.mul_eq_zero hp hbb with
+        | .inl h => exact h
+        | .inr h => exact h
+      | .inr hk0 => exact absurd (by rw [← hk, hk0, Shell.mul_zero]) (Prime.one_ne_zero hp)
+  · intro hb
+    subst hb
+    refine Ext.ext ?_ ?_
+    · have e : (((a * a) + (ν * (0 * 0))) * k) = (((a * a) + -(ν * (0 * 0))) * k) := Shell.Frame.RE.sound (Shell.Frame.look [ν, a, k]) (.mul (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul .zero .zero))) (.var 2)) (.mul (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul .zero .zero)))) (.var 2)) (by decide +kernel)
+      exact e.trans hk
+    · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, a, k]) (.mul (.add (.mul (.var 1) .zero) (.mul .zero (.var 1))) (.var 2)) .zero (by decide +kernel)
+
+/-- 27:C15 — the Cayley point of `s` is the quotient `x/σ(x)` of `x = 1 + s η`. -/
+theorem ratio_cay (s : Shell p) : ratio ν 1 s ((1 + -(ν * (s * s))) ^ (p - 2)) = cay ν s := by
+  refine Ext.ext ?_ ?_
+  · show (1 * 1 + ν * (s * s)) * (1 + -(ν * (s * s))) ^ (p - 2) = (1 + ν * (s * s)) * (1 + -(ν * (s * s))) ^ (p - 2)
+    rw [Shell.one_mul]
+  · show (1 * s + s * 1) * (1 + -(ν * (s * s))) ^ (p - 2) = (s + s) * (1 + -(ν * (s * s))) ^ (p - 2)
+    rw [Shell.one_mul, Shell.mul_one]
+
+/-- 27:C15 — `−1` is the quotient `η/σ(η)`. -/
+theorem ratio_eta (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) :
+    ratio ν 0 1 ((-ν) ^ (p - 2)) = -1 := by
+  have hν0 : -ν ≠ 0 := fun h => by
+    have e : (ν + -ν) = 0 := Shell.Frame.RE.sound (Shell.Frame.look [ν]) (.add (.var 0) (.neg (.var 0))) .zero (by decide +kernel)
+    rw [h, Shell.add_zero] at e
+    exact hν ⟨0, (Shell.zero_mul 0).trans e.symm⟩
+  have hk := mul_pow_pred hp hν0
+  refine Ext.ext ?_ ?_
+  · have e : (((0 * 0) + (ν * (1 * 1))) * (-ν) ^ (p - 2)) = -(-ν * (-ν) ^ (p - 2)) := Shell.Frame.RE.sound (Shell.Frame.look [ν, (-ν) ^ (p - 2)]) (.mul (.add (.mul .zero .zero) (.mul (.var 0) (.mul .one .one))) (.var 1)) (.neg (.mul (.neg (.var 0)) (.var 1))) (by decide +kernel)
+    rw [hk] at e
+    exact e
+  · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, (-ν) ^ (p - 2)]) (.mul (.add (.mul .zero .one) (.mul .one .zero)) (.var 1)) (.neg .zero) (by decide +kernel)
+
+/-! ## The two readings of a weight -/
+
+/-- 27:C15 — an exponent `x + c y` with `x < c` and `y ≤ c + 1` is below `(c + 1)² − 1`; with `c = p − 1` the bound
+is `p² − 1`, the number of the units of the extension. -/
+theorem lift_below {x y c : Nat} (hx : x < c) (hy : y ≤ c + 1) : x + c * y + 1 < (c + 1) * (c + 1) := by
+  have h1 : c * y ≤ c * (c + 1) := Nat.mul_le_mul_left c hy
+  have h2 : x + 1 + c * y ≤ c + c * (c + 1) := Nat.add_le_add hx h1
+  have h3 : c + c * (c + 1) < (c + 1) * (c + 1) := by
+    rw [Nat.succ_mul c (c + 1), Nat.add_comm c]
+    exact Nat.add_lt_add_left (Nat.lt_succ_self c) _
+  rw [Nat.add_right_comm]
+  exact Nat.lt_of_le_of_lt h2 h3
+
+/-- 27:C15 — readings `a = b + 2t < p − 1 = 2m` on the split cycle and `b` on the unitary cycle, of order `2m + 2`, are
+the readings of the exponent `a + 2m t = b + (2m + 2) t`, which is below `p² − 1 = (2m + 1)² − 1`. -/
+theorem weights_lift_ge (m b t : Nat) (ha : b + 2 * t < 2 * m) :
+    (b + 2 * t + (2 * m) * t) % (2 * m) = b + 2 * t ∧ (b + 2 * t + (2 * m) * t) % (2 * m + 2) = b ∧
+    b + 2 * t + (2 * m) * t + 1 < (2 * m + 1) * (2 * m + 1) := by
+  have ht : t ≤ 2 * m + 1 := by
+    have h : t ≤ b + 2 * t := by
+      rw [Nat.two_mul]
+      exact Nat.le_trans (Nat.le_add_right t t) (Nat.le_add_left _ b)
+    exact Nat.le_trans h (Nat.le_trans (Nat.le_of_lt ha) (Nat.le_succ _))
+  have hb : b < 2 * m + 2 :=
+    Nat.lt_of_le_of_lt (Nat.le_add_right b (2 * t)) (Nat.lt_of_lt_of_le ha (Nat.le_add_right (2 * m) 2))
+  have e : (b + 2 * t) + (2 * m) * t = b + (2 * m + 2) * t := by
+    rw [FRC.Nat.add_mul, Nat.add_assoc, Nat.add_comm (2 * t)]
+  refine ⟨?_, ?_, ?_⟩
+  · rw [Nat.add_comm, FRC.Nat.add_mul_mod_self_left _ _ _ (FRC.Nat.pos_of_lt ha)]
+    exact FRC.Nat.mod_eq_of_lt ha
+  · rw [e, Nat.add_comm, FRC.Nat.add_mul_mod_self_left _ _ _ (Nat.succ_pos _)]
+    exact FRC.Nat.mod_eq_of_lt hb
+  · exact lift_below ha ht
+
+/-- 27:C15 — readings `a < p − 1 = 2(t + r)` on the split cycle and `b = a + 2t < p + 1` on the unitary cycle are the
+readings of the exponent `a + (p − 1)(r + 1) = b + (p + 1) r`, which is below `p² − 1`. -/
+theorem weights_lift_lt (a t r : Nat) (ha : a < 2 * (t + r)) (hb : a + 2 * t < 2 * (t + r) + 2) :
+    (a + (2 * (t + r)) * (r + 1)) % (2 * (t + r)) = a ∧ (a + (2 * (t + r)) * (r + 1)) % (2 * (t + r) + 2) = a + 2 * t ∧
+    a + (2 * (t + r)) * (r + 1) + 1 < (2 * (t + r) + 1) * (2 * (t + r) + 1) := by
+  have hr : r + 1 ≤ 2 * (t + r) + 1 := by
+    rw [Nat.two_mul]
+    exact Nat.succ_le_succ (Nat.le_trans (Nat.le_add_left r t) (Nat.le_add_right _ _))
+  have e : a + (2 * (t + r)) * (r + 1) = (a + 2 * t) + (2 * (t + r) + 2) * r := by
+    rw [Nat.mul_succ, FRC.Nat.add_mul (2 * (t + r)) 2 r, Nat.mul_add 2 t r, Nat.add_assoc a (2 * t)]
+    rw [Nat.add_left_comm (2 * t) ((2 * t + 2 * r) * r) (2 * r), Nat.add_comm (2 * t) (2 * r)]
+  refine ⟨?_, ?_, ?_⟩
+  · rw [Nat.add_comm, FRC.Nat.add_mul_mod_self_left _ _ _ (FRC.Nat.pos_of_lt ha)]
+    exact FRC.Nat.mod_eq_of_lt ha
+  · rw [e, Nat.add_comm, FRC.Nat.add_mul_mod_self_left _ _ _ (Nat.succ_pos _)]
+    exact FRC.Nat.mod_eq_of_lt hb
+  · exact lift_below ha hr
+
+/-- 27:C15 — the two readings of one exponent, `a` modulo `2m` and `b` modulo `2m + 2`, have equal parity. -/
+theorem weights_parity (m a b k j : Nat) (h : a + (2 * m) * k = b + (2 * m + 2) * j) : a % 2 = b % 2 := by
+  have e1 : (a + (2 * m) * k) % 2 = a % 2 := by
+    rw [FRC.Nat.mul_assoc, Nat.add_comm, FRC.Nat.add_mul_mod_self_left _ _ 2 (by decide)]
+  have e2 : (b + (2 * m + 2) * j) % 2 = b % 2 := by
+    rw [show 2 * m + 2 = 2 * (m + 1) from (Nat.mul_succ 2 m).symm, FRC.Nat.mul_assoc, Nat.add_comm,
+      FRC.Nat.add_mul_mod_self_left _ _ 2 (by decide)]
+  rw [← e1, h, e2]
+
+/-- 27:C15 — the Frobenius fixes a split point and inverts a unitary point: `σ(a)ⁿ = aⁿ` for `a` in the shell, and
+`σ(w)ⁿ wⁿ = 1` for a unitary `w`. -/
+theorem frobenius_readings :
+    (∀ (a : Shell p) (n : Nat), Ext.conj (pt ν a 0) ^ n = pt ν a 0 ^ n) ∧
+    (∀ w : Ext p ν, Ext.conj w * w = 1 → ∀ n : Nat, Ext.conj w ^ n * w ^ n = 1) := by
+  refine ⟨fun a n => ?_, fun w hw n => ?_⟩
+  · have e : Ext.conj (pt ν a 0) = pt ν a 0 := Ext.ext rfl Shell.neg_zero
+    rw [e]
+  · rw [← conj_pow]
+    exact unitary_pow hw n
+
+/-! ## The rotations with entries of the shell -/
+
+/-- 27:C15 — the rotation of the split point `a`, `a a' = 1`, with `i² = −1` and `t = 1/2` in the shell: its entries
+`c = (a + a') t` and `s = i (a' − a) t` have `c² + s² = 1`, `c + i s = a`, `c − i s = a'`, `−s + c i = a i` and `−s − c i = −a' i`. -/
+theorem rotation_cycle {i t a a' : Shell p} (hi : i * i + 1 = 0) (ht : (1 + 1) * t = 1) (ha : a * a' = 1) :
+    ((a + a') * t) * ((a + a') * t) + (i * ((a' + -a) * t)) * (i * ((a' + -a) * t)) = 1 ∧
+    (a + a') * t + i * (i * ((a' + -a) * t)) = a ∧
+    (a + a') * t + -(i * (i * ((a' + -a) * t))) = a' ∧
+    -(i * ((a' + -a) * t)) + ((a + a') * t) * i = a * i ∧
+    -(i * ((a' + -a) * t)) + ((a + a') * t) * -i = a' * -i := by
+  refine ⟨?_, ?_, ?_, ?_, ?_⟩
+  · have e : ((((a + a') * t) * ((a + a') * t)) + ((i * ((a' + -a) * t)) * (i * ((a' + -a) * t)))) = (((((1 + 1) * t) * ((1 + 1) * t)) * (a * a')) + (((i * i) + 1) * (((a' + -a) * t) * ((a' + -a) * t)))) := Shell.Frame.RE.sound (Shell.Frame.look [i, t, a, a']) (.add (.mul (.mul (.add (.var 2) (.var 3)) (.var 1)) (.mul (.add (.var 2) (.var 3)) (.var 1))) (.mul (.mul (.var 0) (.mul (.add (.var 3) (.neg (.var 2))) (.var 1))) (.mul (.var 0) (.mul (.add (.var 3) (.neg (.var 2))) (.var 1))))) (.add (.mul (.mul (.mul (.add .one .one) (.var 1)) (.mul (.add .one .one) (.var 1))) (.mul (.var 2) (.var 3))) (.mul (.add (.mul (.var 0) (.var 0)) .one) (.mul (.mul (.add (.var 3) (.neg (.var 2))) (.var 1)) (.mul (.add (.var 3) (.neg (.var 2))) (.var 1))))) (by decide +kernel)
+    rw [ht, ha, hi, Shell.mul_one, Shell.mul_one, Shell.zero_mul, Shell.add_zero] at e
+    exact e
+  · have e : (((a + a') * t) + (i * (i * ((a' + -a) * t)))) = ((((1 + 1) * t) * a) + (((i * i) + 1) * ((a' + -a) * t))) := Shell.Frame.RE.sound (Shell.Frame.look [i, t, a, a']) (.add (.mul (.add (.var 2) (.var 3)) (.var 1)) (.mul (.var 0) (.mul (.var 0) (.mul (.add (.var 3) (.neg (.var 2))) (.var 1))))) (.add (.mul (.mul (.add .one .one) (.var 1)) (.var 2)) (.mul (.add (.mul (.var 0) (.var 0)) .one) (.mul (.add (.var 3) (.neg (.var 2))) (.var 1)))) (by decide +kernel)
+    rw [ht, hi, Shell.one_mul, Shell.zero_mul, Shell.add_zero] at e
+    exact e
+  · have e : (((a + a') * t) + -(i * (i * ((a' + -a) * t)))) = ((((1 + 1) * t) * a') + -(((i * i) + 1) * ((a' + -a) * t))) := Shell.Frame.RE.sound (Shell.Frame.look [i, t, a, a']) (.add (.mul (.add (.var 2) (.var 3)) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 0) (.mul (.add (.var 3) (.neg (.var 2))) (.var 1)))))) (.add (.mul (.mul (.add .one .one) (.var 1)) (.var 3)) (.neg (.mul (.add (.mul (.var 0) (.var 0)) .one) (.mul (.add (.var 3) (.neg (.var 2))) (.var 1))))) (by decide +kernel)
+    rw [ht, hi, Shell.one_mul, Shell.zero_mul, Shell.neg_zero, Shell.add_zero] at e
+    exact e
+  · have e : (-(i * ((a' + -a) * t)) + (((a + a') * t) * i)) = ((((1 + 1) * t) * a) * i) := Shell.Frame.RE.sound (Shell.Frame.look [i, t, a, a']) (.add (.neg (.mul (.var 0) (.mul (.add (.var 3) (.neg (.var 2))) (.var 1)))) (.mul (.mul (.add (.var 2) (.var 3)) (.var 1)) (.var 0))) (.mul (.mul (.mul (.add .one .one) (.var 1)) (.var 2)) (.var 0)) (by decide +kernel)
+    rw [ht, Shell.one_mul] at e
+    exact e
+  · have e : (-(i * ((a' + -a) * t)) + (((a + a') * t) * -i)) = ((((1 + 1) * t) * a') * -i) := Shell.Frame.RE.sound (Shell.Frame.look [i, t, a, a']) (.add (.neg (.mul (.var 0) (.mul (.add (.var 3) (.neg (.var 2))) (.var 1)))) (.mul (.mul (.add (.var 2) (.var 3)) (.var 1)) (.neg (.var 0)))) (.mul (.mul (.mul (.add .one .one) (.var 1)) (.var 3)) (.neg (.var 0))) (by decide +kernel)
+    rw [ht, Shell.one_mul] at e
+    exact e
+
+/-- 27:C15 — the rotations multiply as their split points do. -/
+theorem rotation_mul {i t a a' b b' : Shell p} (hi : i * i + 1 = 0) (ht : (1 + 1) * t = 1) :
+    ((a + a') * t) * ((b + b') * t) + -((i * ((a' + -a) * t)) * (i * ((b' + -b) * t))) = (a * b + a' * b') * t ∧
+    (i * ((a' + -a) * t)) * ((b + b') * t) + ((a + a') * t) * (i * ((b' + -b) * t)) = i * ((a' * b' + -(a * b)) * t) := by
+  refine ⟨?_, ?_⟩
+  · have e : ((((a + a') * t) * ((b + b') * t)) + -((i * ((a' + -a) * t)) * (i * ((b' + -b) * t)))) = ((((1 + 1) * t) * (((a * b) + (a' * b')) * t)) + -(((i * i) + 1) * (((a' + -a) * t) * ((b' + -b) * t)))) := Shell.Frame.RE.sound (Shell.Frame.look [i, t, a, a', b, b']) (.add (.mul (.mul (.add (.var 2) (.var 3)) (.var 1)) (.mul (.add (.var 4) (.var 5)) (.var 1))) (.neg (.mul (.mul (.var 0) (.mul (.add (.var 3) (.neg (.var 2))) (.var 1))) (.mul (.var 0) (.mul (.add (.var 5) (.neg (.var 4))) (.var 1)))))) (.add (.mul (.mul (.add .one .one) (.var 1)) (.mul (.add (.mul (.var 2) (.var 4)) (.mul (.var 3) (.var 5))) (.var 1))) (.neg (.mul (.add (.mul (.var 0) (.var 0)) .one) (.mul (.mul (.add (.var 3) (.neg (.var 2))) (.var 1)) (.mul (.add (.var 5) (.neg (.var 4))) (.var 1)))))) (by decide +kernel)
+    rw [ht, hi, Shell.one_mul, Shell.zero_mul, Shell.neg_zero, Shell.add_zero] at e
+    exact e
+  · have e : (((i * ((a' + -a) * t)) * ((b + b') * t)) + (((a + a') * t) * (i * ((b' + -b) * t)))) = (((1 + 1) * t) * (i * (((a' * b') + -(a * b)) * t))) := Shell.Frame.RE.sound (Shell.Frame.look [i, t, a, a', b, b']) (.add (.mul (.mul (.var 0) (.mul (.add (.var 3) (.neg (.var 2))) (.var 1))) (.mul (.add (.var 4) (.var 5)) (.var 1))) (.mul (.mul (.add (.var 2) (.var 3)) (.var 1)) (.mul (.var 0) (.mul (.add (.var 5) (.neg (.var 4))) (.var 1))))) (.mul (.mul (.add .one .one) (.var 1)) (.mul (.var 0) (.mul (.add (.mul (.var 3) (.var 5)) (.neg (.mul (.var 2) (.var 4)))) (.var 1)))) (by decide +kernel)
+    rw [ht, Shell.one_mul] at e
+    exact e
+
+/-- 27:C15 — the units of the extension: the square of a unit with the kernel of the quotient `x/σ(x)`, the unitary points as such
+quotients, the two readings of a weight, and the split cycle of the unitary frame as rotations with entries of the shell. -/
+theorem unit_cycle (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0) :
+    (∀ a b k : Shell p, (a * a + -(ν * (b * b))) * k = 1 →
+      Ext.conj (ratio ν a b k) * ratio ν a b k = 1 ∧
+      pt ν a b * pt ν a b = pt ν (a * a + -(ν * (b * b))) 0 * ratio ν a b k ∧
+      Ext.conj (pt ν a b) * pt ν a b = pt ν (a * a + -(ν * (b * b))) 0 ∧
+      (ratio ν a b k = 1 ↔ b = 0)) ∧
+    (∀ s : Shell p, ratio ν 1 s ((1 + -(ν * (s * s))) ^ (p - 2)) = cay ν s) ∧
+    ratio ν 0 1 ((-ν) ^ (p - 2)) = -1 ∧
+    (∀ m b t : Nat, b + 2 * t < 2 * m →
+      (b + 2 * t + (2 * m) * t) % (2 * m) = b + 2 * t ∧ (b + 2 * t + (2 * m) * t) % (2 * m + 2) = b ∧
+      b + 2 * t + (2 * m) * t + 1 < (2 * m + 1) * (2 * m + 1)) ∧
+    (∀ a t r : Nat, a < 2 * (t + r) → a + 2 * t < 2 * (t + r) + 2 →
+      (a + (2 * (t + r)) * (r + 1)) % (2 * (t + r)) = a ∧ (a + (2 * (t + r)) * (r + 1)) % (2 * (t + r) + 2) = a + 2 * t ∧
+      a + (2 * (t + r)) * (r + 1) + 1 < (2 * (t + r) + 1) * (2 * (t + r) + 1)) ∧
+    (∀ m a b k j : Nat, a + (2 * m) * k = b + (2 * m + 2) * j → a % 2 = b % 2) ∧
+    ((∀ (a : Shell p) (n : Nat), Ext.conj (pt ν a 0) ^ n = pt ν a 0 ^ n) ∧
+      (∀ w : Ext p ν, Ext.conj w * w = 1 → ∀ n : Nat, Ext.conj w ^ n * w ^ n = 1)) ∧
+    (∀ i t a a' : Shell p, i * i + 1 = 0 → (1 + 1) * t = 1 → a * a' = 1 →
+      ((a + a') * t) * ((a + a') * t) + (i * ((a' + -a) * t)) * (i * ((a' + -a) * t)) = 1 ∧
+      (a + a') * t + i * (i * ((a' + -a) * t)) = a ∧
+      (a + a') * t + -(i * (i * ((a' + -a) * t))) = a' ∧
+      -(i * ((a' + -a) * t)) + ((a + a') * t) * i = a * i ∧
+      -(i * ((a' + -a) * t)) + ((a + a') * t) * -i = a' * -i) ∧
+    (∀ i t a a' b b' : Shell p, i * i + 1 = 0 → (1 + 1) * t = 1 →
+      ((a + a') * t) * ((b + b') * t) + -((i * ((a' + -a) * t)) * (i * ((b' + -b) * t))) = (a * b + a' * b') * t ∧
+      (i * ((a' + -a) * t)) * ((b + b') * t) + ((a + a') * t) * (i * ((b' + -b) * t)) = i * ((a' * b' + -(a * b)) * t)) :=
+  ⟨fun _ _ _ hk => ⟨(unit_square hk).1, (unit_square hk).2.1, (unit_square hk).2.2, ratio_kernel hp hν h2 hk⟩,
+   ratio_cay, ratio_eta hp hν, weights_lift_ge, weights_lift_lt, weights_parity, frobenius_readings,
+   fun _ _ _ _ hi ht ha => rotation_cycle hi ht ha, fun _ _ _ _ _ _ hi ht => rotation_mul hi ht⟩
+
+/-! ## The hypercharge cycle and the charge cycle of the frame of rank five -/
+
+/-- 27:C16 — the hypercharge point `diag(σ(w)², σ(w)², σ(w)², w³, w³)` of a unitary `w` has determinant one, and it is
+the identity only for `w = 1`. -/
+theorem hypercharge_cycle {w : Ext p ν} (hw : Ext.conj w * w = 1) :
+    (Ext.conj w * Ext.conj w) * (Ext.conj w * Ext.conj w) * (Ext.conj w * Ext.conj w) * (w * w * w) * (w * w * w) = 1 ∧
+    (Ext.conj w * Ext.conj w = 1 → w * w * w = 1 → w = 1) := by
+  refine ⟨?_, fun hv h3 => ?_⟩
+  · have e : (((((Ext.conj w * Ext.conj w) * (Ext.conj w * Ext.conj w)) * (Ext.conj w * Ext.conj w)) * ((w * w) * w)) * ((w * w) * w)) = ((((Ext.conj w * w) * (Ext.conj w * w)) * (Ext.conj w * w)) * (((Ext.conj w * w) * (Ext.conj w * w)) * (Ext.conj w * w))) := xsound (xlook [w, Ext.conj w]) (.mul (.mul (.mul (.mul (.mul (.var 1) (.var 1)) (.mul (.var 1) (.var 1))) (.mul (.var 1) (.var 1))) (.mul (.mul (.var 0) (.var 0)) (.var 0))) (.mul (.mul (.var 0) (.var 0)) (.var 0))) (.mul (.mul (.mul (.mul (.var 1) (.var 0)) (.mul (.var 1) (.var 0))) (.mul (.var 1) (.var 0))) (.mul (.mul (.mul (.var 1) (.var 0)) (.mul (.var 1) (.var 0))) (.mul (.var 1) (.var 0)))) (by decide +kernel)
+    have e1 : ((1 : Ext p ν) * 1 * 1) * (1 * 1 * 1) = 1 := xsound (xlook [w]) (.mul (.mul (.mul .one .one) .one) (.mul (.mul .one .one) .one)) .one (by decide +kernel)
+    rw [hw] at e
+    exact e.trans e1
+  · have e : (w * ((Ext.conj w * w) * (Ext.conj w * w))) = (((w * w) * w) * (Ext.conj w * Ext.conj w)) := xsound (xlook [w, Ext.conj w]) (.mul (.var 0) (.mul (.mul (.var 1) (.var 0)) (.mul (.var 1) (.var 0)))) (.mul (.mul (.mul (.var 0) (.var 0)) (.var 0)) (.mul (.var 1) (.var 1))) (by decide +kernel)
+    have e1 : w * ((1 : Ext p ν) * 1) = w := xsound (xlook [w]) (.mul (.var 0) (.mul .one .one)) (.var 0) (by decide +kernel)
+    have e2 : (1 : Ext p ν) * 1 = 1 := xsound (xlook [w]) (.mul .one .one) .one (by decide +kernel)
+    rw [hw, h3, hv] at e
+    exact e1.symm.trans (e.trans e2)
+
+/-- 27:C16 — the charge point `diag(u, u, u, σ(u)³, 1)` of a unitary `u` has determinant one, and its entry `σ(u)³`
+on the doublet is `1` exactly when `u³ = 1`. -/
+theorem charge_cycle {w : Ext p ν} (hw : Ext.conj w * w = 1) :
+    w * w * w * (Ext.conj w * Ext.conj w * Ext.conj w) = 1 ∧
+    (Ext.conj w * Ext.conj w * Ext.conj w = 1 ↔ w * w * w = 1) := by
+  have d : w * w * w * (Ext.conj w * Ext.conj w * Ext.conj w) = 1 := by
+    have e : (((w * w) * w) * ((Ext.conj w * Ext.conj w) * Ext.conj w)) = (((Ext.conj w * w) * (Ext.conj w * w)) * (Ext.conj w * w)) := xsound (xlook [w, Ext.conj w]) (.mul (.mul (.mul (.var 0) (.var 0)) (.var 0)) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.mul (.mul (.var 1) (.var 0)) (.mul (.var 1) (.var 0))) (.mul (.var 1) (.var 0))) (by decide +kernel)
+    have e1 : (1 : Ext p ν) * 1 * 1 = 1 := xsound (xlook [w]) (.mul (.mul .one .one) .one) .one (by decide +kernel)
+    rw [hw] at e
+    exact e.trans e1
+  refine ⟨d, fun h => ?_, fun h => ?_⟩
+  · have d' := d
+    rw [h, Ext.mul_one] at d'
+    exact d'
+  · have d' := d
+    rw [h, Ext.one_mul] at d'
+    exact d'
+
+/-- 27:C16, 27:P10 — on the sixteen states the weight of the hypercharge cycle, `−2 |S ∩ C| + 3 |S ∩ W|`, is `6Y`, and the
+weight of the charge cycle, `|S ∩ C| − 3 [3 ∈ S]`, is `−3Q`, so `6Q + 2 |S ∩ C|`
+is a multiple of `6`: a cube root of unity of the charge cycle acts as the centre of the colour frame. The first clause
+holds by the definition of `y6`, which `one_generation` ties to `6Y`. -/
+theorem charge_weights :
+    (Interactions.gen16.all (fun S => -2 * (Interactions.col S : Int) + 3 * (Interactions.wk S : Int) == Interactions.y6 S)) = true ∧
+    (Interactions.gen16.all (fun S => 2 * (Interactions.col S : Int) + -(6 * (Interactions.cnt S 3 4 : Int)) == -(Interactions.q6 S))) = true ∧
+    (Interactions.gen16.all (fun S => (Interactions.q6 S + 2 * (Interactions.col S : Int)) % 6 == 0)) = true := by
+  decide +kernel
+
+/-- 27:C16 — for `d ∣ p + 1` with `d > 1` some unitary point is no `d`-th power of a unitary point. -/
+theorem not_all_powers (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {d m : Nat} (hdm : p + 1 = d * m) (hd : 1 < d) :
+    ¬∀ w : Ext p ν, Ext.conj w * w = 1 → ¬∀ v : Ext p ν, Ext.conj v * v = 1 → v ^ d ≠ w := fun hall => by
+  obtain ⟨w, hw, _, hmin⟩ := unitary_generator hp hν h2
+  have hm : 0 < m := Nat.pos_of_ne_zero (fun h0 => by rw [h0, Nat.mul_zero] at hdm; exact FRC.Nat.succ_ne_zero p hdm)
+  have hlt : m < p + 1 := by
+    have h := FRC.Nat.mul_lt_mul_of_lt_of_pos hd hm
+    rw [Nat.one_mul] at h
+    rw [hdm]
+    exact h
+  refine hall w hw (fun v hv e => hmin m hlt hm ?_)
+  rw [← e, ← ext_pow_mul, ← hdm]
+  exact unitary_period hp hν h2 hv
+
+/-- 27:C16 — where `p + 2 = 3 j`, that is where `3` does not divide `p + 1`, every unitary point is the cube of the
+unitary point `w^j`. -/
+theorem all_cubes (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {j : Nat} (hj : p + 2 = 3 * j) {w : Ext p ν} (hw : Ext.conj w * w = 1) :
+    Ext.conj (w ^ j) * w ^ j = 1 ∧ (w ^ j) ^ 3 = w := by
+  refine ⟨unitary_pow hw j, ?_⟩
+  rw [← ext_pow_mul, Nat.mul_comm, ← hj, show p + 2 = (p + 1) + 1 from rfl, Ext.pow_add,
+    unitary_period hp hν h2 hw, ext_pow_one, Ext.one_mul]
+
+/-! ## The powers of a generator and the classes of the unitary cycle -/
+
+/-- A generator of the unitary cycle has no repeated power below `p + 1`: `u^(i+l) = u^i` with `i + l < p + 1` gives
+`l = 0`. -/
+theorem generator_pow_cancel {u : Ext p ν} (hu : Ext.conj u * u = 1) (hmin : ∀ l, l < p + 1 → 0 < l → u ^ l ≠ 1)
+    {i l : Nat} (hil : i + l < p + 1) (e : u ^ (i + l) = u ^ i) : l = 0 :=
+  match Nat.decEq l 0 with
+  | .isTrue h => h
+  | .isFalse h => by
+    have e1 : Ext.conj (u ^ i) * (u ^ i * u ^ l) = (Ext.conj (u ^ i) * u ^ i) * u ^ l := (Ext.mul_assoc _ _ _).symm
+    rw [Ext.pow_add] at e
+    rw [e, unitary_pow hu i] at e1
+    exact absurd ((Ext.one_mul _).symm.trans e1.symm)
+      (hmin l (Nat.lt_of_le_of_lt (Nat.le_add_left l i) hil) (Nat.pos_of_ne_zero h))
+
+/-- The powers `u^j`, `j < p + 1`, of a generator of the unitary cycle are pairwise distinct. -/
+theorem generator_pow_inj {u : Ext p ν} (hu : Ext.conj u * u = 1) (hmin : ∀ l, l < p + 1 → 0 < l → u ^ l ≠ 1)
+    {i j : Nat} (hi : i < p + 1) (hj : j < p + 1) (e : u ^ i = u ^ j) : i = j :=
+  match Nat.le_total i j with
+  | .inl h => by
+    obtain ⟨l, hl⟩ := Nat.le.dest h
+    subst hl
+    have h0 := generator_pow_cancel hu hmin hj e.symm
+    rw [h0, Nat.add_zero]
+  | .inr h => by
+    obtain ⟨l, hl⟩ := Nat.le.dest h
+    subst hl
+    have h0 := generator_pow_cancel hu hmin hi e
+    rw [h0, Nat.add_zero]
+
+/-- 27:C16 — every unitary point is a power `u^j`, `j < p + 1`, of a generator `u` of the unitary cycle: the `p + 1`
+powers are distinct unitary points, and the unitary points number `p + 1`. -/
+theorem generator_powers (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν)
+    {u : Ext p ν} (hu : Ext.conj u * u = 1) (hmin : ∀ l, l < p + 1 → 0 < l → u ^ l ≠ 1)
+    {w : Ext p ν} (hw : Ext.conj w * w = 1) : ∃ j, j < p + 1 ∧ u ^ j = w := by
+  have hσ : ∀ j, upt ν (uidx (u ^ j)) = u ^ j ∧ uidx (u ^ j) < p + 1 := fun j => upt_uidx hp hν (unitary_pow hu j)
+  have hinj : ∀ i j, i < p + 1 → j < p + 1 → uidx (u ^ i) = uidx (u ^ j) → i = j := fun i j hi hj e =>
+    generator_pow_inj hu hmin hi hj (((hσ i).1.symm.trans (congrArg (upt ν) e)).trans (hσ j).1)
+  have hmem := Pigeonhole.mem_of_nodup_of_length_lt (p + 1) (imageList (fun j => uidx (u ^ j)) (p + 1))
+    (imageList_nodup hinj (Nat.le_refl _))
+    (fun e he => match mem_imageList he with | ⟨j, _, e'⟩ => e' ▸ (hσ j).2)
+    (imageList_length _ _) (uidx w) (upt_uidx hp hν hw).2
+  obtain ⟨j, hj, e⟩ := mem_imageList hmem
+  exact ⟨j, hj, ((hσ j).1.symm.trans (congrArg (upt ν) e)).trans (upt_uidx hp hν hw).1⟩
+
+/-- 27:C16 — the classes of the unitary cycle modulo its `d`-th powers, for `p + 1 = d m` and a generator `u`: every
+unitary point is `v^d · u^r` with `v` unitary and `r < d`, and `u^s` is no `d`-th power of a unitary point for
+`0 < s < d`. So the classes are those of `u^0, …, u^(d−1)`, and they number `d`. -/
+theorem power_classes (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {d m : Nat} (hdm : p + 1 = d * m) {u : Ext p ν} (hu : Ext.conj u * u = 1)
+    (hmin : ∀ l, l < p + 1 → 0 < l → u ^ l ≠ 1) :
+    (∀ w : Ext p ν, Ext.conj w * w = 1 → ∃ r, r < d ∧ ∃ v : Ext p ν, Ext.conj v * v = 1 ∧ w = v ^ d * u ^ r) ∧
+    (∀ s, 0 < s → s < d → ∀ v : Ext p ν, Ext.conj v * v = 1 → v ^ d ≠ u ^ s) := by
+  have hd : 0 < d := Nat.pos_of_ne_zero (fun h0 => by rw [h0, Nat.zero_mul] at hdm; exact FRC.Nat.succ_ne_zero p hdm)
+  have hm : 0 < m := Nat.pos_of_ne_zero (fun h0 => by rw [h0, Nat.mul_zero] at hdm; exact FRC.Nat.succ_ne_zero p hdm)
+  refine ⟨fun w hw => ?_, fun s hs hsd v hv e => ?_⟩
+  · obtain ⟨k, _, hk⟩ := generator_powers hp hν hu hmin hw
+    obtain ⟨q, hq⟩ := FRC.Nat.mod_spec d hd k
+    have e : u ^ (d * q + k % d) = u ^ k := by rw [← hq]
+    refine ⟨k % d, Nat.mod_lt k hd, u ^ q, unitary_pow hu q, ?_⟩
+    rw [← hk, ← e, Ext.pow_add, ext_pow_mul, ext_pow_mul_comm]
+  · have hlt : s * m < p + 1 := by rw [hdm]; exact FRC.Nat.mul_lt_mul_of_lt_of_pos hsd hm
+    have hpos : 0 < s * m := by
+      have h := FRC.Nat.mul_lt_mul_of_lt_of_pos hs hm
+      rw [Nat.zero_mul] at h
+      exact h
+    refine hmin (s * m) hlt hpos ?_
+    rw [ext_pow_mul, ← e, ← ext_pow_mul, ← hdm]
+    exact unitary_period hp hν h2 hv
+
+/-- 27:C16 — the sixth powers of the unitary cycle are its `d`-th powers for `d = gcd(6, p + 1)`. The numbers
+`6 = d a`, `p + 1 = d m` and `a x = 1 + m t` certify the greatest common divisor: `d` divides both, and `a` is prime to
+`m`. Then `w⁶ = (w^a)^d`, and `v^d = (v^x)⁶` for a unitary `v`. -/
+theorem sixth_powers (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {d a m x t : Nat} (h6 : 6 = d * a) (hdm : p + 1 = d * m) (hax : a * x = 1 + m * t) :
+    (∀ w : Ext p ν, w ^ 6 = (w ^ a) ^ d) ∧
+    (∀ v : Ext p ν, Ext.conj v * v = 1 → Ext.conj (v ^ x) * v ^ x = 1 ∧ (v ^ x) ^ 6 = v ^ d) := by
+  refine ⟨fun w => ?_, fun v hv => ⟨unitary_pow hv x, ?_⟩⟩
+  · rw [← ext_pow_mul, Nat.mul_comm a d, ← h6]
+  · have e : x * 6 = d + (p + 1) * t := by
+      rw [h6, FRC.Nat.mul_left_comm x d a, Nat.mul_comm x a, hax, Nat.mul_add, Nat.mul_one, hdm, FRC.Nat.mul_assoc]
+    rw [← ext_pow_mul, e, Ext.pow_add, ext_pow_mul, unitary_period hp hν h2 hv, ext_one_pow]
+    exact Ext.mul_one _
+
+/-! ## Determinants under a scalar, and the squares of the charge cycle -/
+
+/-- 27:C16 — a scalar `s` multiplies the determinant of rank three by `s³` and that of rank two by `s²`. With
+`s = σ(w)²` on the colour block and `s = w³` on the doublet, the product of a hypercharge point with a pair of
+determinants one has the determinant `w⁶` on the doublet. -/
+theorem det_scale (s : Ext p ν) (A : M3 p ν) (B : M2 p ν) :
+    det (smul s A) = (s * s * s) * det A ∧
+    det2 (⟨s * B.a00, s * B.a01, s * B.a10, s * B.a11⟩ : M2 p ν) = (s * s) * det2 B := by
+  cases A with
+  | mk a00 a01 a02 a10 a11 a12 a20 a21 a22 =>
+    cases B with
+    | mk b00 b01 b10 b11 =>
+      exact ⟨xsound (xlook [s, a00, a01, a02, a10, a11, a12, a20, a21, a22]) (.add (.add (.mul (.mul (.var 0) (.var 1)) (.add (.mul (.mul (.var 0) (.var 5)) (.mul (.var 0) (.var 9))) (.neg (.mul (.mul (.var 0) (.var 6)) (.mul (.var 0) (.var 8)))))) (.neg (.mul (.mul (.var 0) (.var 2)) (.add (.mul (.mul (.var 0) (.var 4)) (.mul (.var 0) (.var 9))) (.neg (.mul (.mul (.var 0) (.var 6)) (.mul (.var 0) (.var 7)))))))) (.mul (.mul (.var 0) (.var 3)) (.add (.mul (.mul (.var 0) (.var 4)) (.mul (.var 0) (.var 8))) (.neg (.mul (.mul (.var 0) (.var 5)) (.mul (.var 0) (.var 7))))))) (.mul (.mul (.mul (.var 0) (.var 0)) (.var 0)) (.add (.add (.mul (.var 1) (.add (.mul (.var 5) (.var 9)) (.neg (.mul (.var 6) (.var 8))))) (.neg (.mul (.var 2) (.add (.mul (.var 4) (.var 9)) (.neg (.mul (.var 6) (.var 7))))))) (.mul (.var 3) (.add (.mul (.var 4) (.var 8)) (.neg (.mul (.var 5) (.var 7))))))) (by decide +kernel), xsound (xlook [s, b00, b01, b10, b11]) (.add (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 4))) (.neg (.mul (.mul (.var 0) (.var 2)) (.mul (.var 0) (.var 3))))) (.mul (.mul (.var 0) (.var 0)) (.add (.mul (.var 1) (.var 4)) (.neg (.mul (.var 2) (.var 3))))) (by decide +kernel)⟩
+
+/-- 27:C16 — a point of the charge cycle that is a product of a hypercharge point with a pair of determinants one is a
+square, and every square is such a product. The point `diag(u, u, u, σ(u)³, 1)` has the determinant `σ(u)³` on the
+doublet and the product has `w⁶`: from `σ(u)³ = w⁶` the unitary `z = (u w²)² w^p` has `z² = u`. Conversely, for a
+unitary `z` and `w = σ(z)`, `σ(z²)³ = w⁶`, and the block `diag(w³, z³)` has determinant one. -/
+theorem charge_squares (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0) :
+    (∀ u w : Ext p ν, Ext.conj u * u = 1 → Ext.conj w * w = 1 →
+      Ext.conj u * Ext.conj u * Ext.conj u = w * w * w * (w * w * w) →
+      ∃ z : Ext p ν, Ext.conj z * z = 1 ∧ z * z = u) ∧
+    (∀ z : Ext p ν, Ext.conj z * z = 1 →
+      Ext.conj (z * z) * Ext.conj (z * z) * Ext.conj (z * z)
+        = Ext.conj z * Ext.conj z * Ext.conj z * (Ext.conj z * Ext.conj z * Ext.conj z) ∧
+      Ext.conj z * Ext.conj z * Ext.conj z * (z * z * z) = 1) := by
+  refine ⟨fun u w hu hw h => ?_, fun z hz => ⟨?_, ?_⟩⟩
+  · have hP : w ^ p * w = 1 := unitary_period hp hν h2 hw
+    have hx : Ext.conj (u * (w * w)) * (u * (w * w)) = 1 := unitary_mul hu (unitary_mul hw hw)
+    refine ⟨u * (w * w) * (u * (w * w)) * w ^ p, unitary_mul (unitary_mul hx hx) (unitary_pow hw p), ?_⟩
+    have e : ((((u * (w * w)) * (u * (w * w))) * w ^ p) * (((u * (w * w)) * (u * (w * w))) * w ^ p)) = (((((u * u) * u) * (((w * w) * w) * ((w * w) * w))) * u) * ((w ^ p * w) * (w ^ p * w))) := xsound (xlook [u, w, w ^ p]) (.mul (.mul (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.var 2)) (.mul (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.var 2))) (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 0)) (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.mul (.mul (.var 1) (.var 1)) (.var 1)))) (.var 0)) (.mul (.mul (.var 2) (.var 1)) (.mul (.var 2) (.var 1)))) (by decide +kernel)
+    have e2 : (((((u * u) * u) * ((Ext.conj u * Ext.conj u) * Ext.conj u)) * u) * (1 * 1)) = ((((Ext.conj u * u) * (Ext.conj u * u)) * (Ext.conj u * u)) * u) := xsound (xlook [u, Ext.conj u]) (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 0)) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.var 0)) (.mul .one .one)) (.mul (.mul (.mul (.mul (.var 1) (.var 0)) (.mul (.var 1) (.var 0))) (.mul (.var 1) (.var 0))) (.var 0)) (by decide +kernel)
+    have e3 : (((1 * 1) * 1) * u) = u := xsound (xlook [u]) (.mul (.mul (.mul .one .one) .one) (.var 0)) (.var 0) (by decide +kernel)
+    rw [← h, hP] at e
+    rw [hu] at e2
+    exact e.trans (e2.trans e3)
+  · rw [Ext.conj_mul]
+    exact xsound (xlook [z, Ext.conj z]) (.mul (.mul (.mul (.var 1) (.var 1)) (.mul (.var 1) (.var 1))) (.mul (.var 1) (.var 1))) (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (by decide +kernel)
+  · have e : (((Ext.conj z * Ext.conj z) * Ext.conj z) * ((z * z) * z)) = (((Ext.conj z * z) * (Ext.conj z * z)) * (Ext.conj z * z)) := xsound (xlook [z, Ext.conj z]) (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.mul (.mul (.var 0) (.var 0)) (.var 0))) (.mul (.mul (.mul (.var 1) (.var 0)) (.mul (.var 1) (.var 0))) (.mul (.var 1) (.var 0))) (by decide +kernel)
+    have e1 : (1 : Ext p ν) * 1 * 1 = 1 := xsound (xlook [z]) (.mul (.mul .one .one) .one) .one (by decide +kernel)
+    rw [hz] at e
+    exact e.trans e1
+
+/-! ## The commutant of a diagonal matrix and two transpositions -/
+
+/-- The diagonal matrix of three entries. -/
+def mdiag (x y z : Ext p ν) : M3 p ν := ⟨x, 0, 0, 0, y, 0, 0, 0, z⟩
+
+/-- The permutation matrix that exchanges the first two directions. -/
+def swap01 : M3 p ν := ⟨0, 1, 0, 1, 0, 0, 0, 0, 1⟩
+
+/-- The permutation matrix that exchanges the last two directions. -/
+def swap12 : M3 p ν := ⟨1, 0, 0, 0, 0, 1, 0, 1, 0⟩
+
+/-- 27:C16 — a matrix of rank three over the extension that commutes with a diagonal matrix whose three entries have
+invertible differences, and with the two permutation matrices of adjacent directions, is a scalar. The three are
+unitary when the entries are unitary points, so a frame move of the colour block that commutes with every frame move
+of the block is a scalar: the centre of the vacuum's stabiliser is the charge cycle. -/
+theorem commutant_scalar {A : M3 p ν} {d0 d1 d2 k01 k02 k12 : Ext p ν}
+    (h01 : (d0 + -d1) * k01 = 1) (h02 : (d0 + -d2) * k02 = 1) (h12 : (d1 + -d2) * k12 = 1)
+    (hD : mmul A (mdiag d0 d1 d2) = mmul (mdiag d0 d1 d2) A)
+    (hS : mmul A swap01 = mmul swap01 A) (hT : mmul A swap12 = mmul swap12 A) : A = scal A.a00 := by
+  cases A with
+  | mk a00 a01 a02 a10 a11 a12 a20 a21 a22 =>
+    have e01 : a01 = 0 := by
+      have h : (((a00 * 0) + (a01 * d1)) + (a02 * 0)) = (((d0 * a01) + (0 * a11)) + (0 * a21)) := congrArg M3.a01 hD
+      have e : (a01 * ((d0 + -d1) * k01)) = (((((d0 * a01) + (0 * a11)) + (0 * a21)) + -(((a00 * 0) + (a01 * d1)) + (a02 * 0))) * k01) := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k01]) (.mul (.var 1) (.mul (.add (.var 9) (.neg (.var 10))) (.var 12))) (.mul (.add (.add (.add (.mul (.var 9) (.var 1)) (.mul .zero (.var 4))) (.mul .zero (.var 7))) (.neg (.add (.add (.mul (.var 0) .zero) (.mul (.var 1) (.var 10))) (.mul (.var 2) .zero)))) (.var 12)) (by decide +kernel)
+      have z : (((((d0 * a01) + (0 * a11)) + (0 * a21)) + -(((d0 * a01) + (0 * a11)) + (0 * a21))) * k01) = 0 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k01]) (.mul (.add (.add (.add (.mul (.var 9) (.var 1)) (.mul .zero (.var 4))) (.mul .zero (.var 7))) (.neg (.add (.add (.mul (.var 9) (.var 1)) (.mul .zero (.var 4))) (.mul .zero (.var 7))))) (.var 12)) .zero (by decide +kernel)
+      have o : (a01 * 1) = a01 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k01]) (.mul (.var 1) .one) (.var 1) (by decide +kernel)
+      rw [h, h01] at e
+      exact o.symm.trans (e.trans z)
+    have e02 : a02 = 0 := by
+      have h : (((a00 * 0) + (a01 * 0)) + (a02 * d2)) = (((d0 * a02) + (0 * a12)) + (0 * a22)) := congrArg M3.a02 hD
+      have e : (a02 * ((d0 + -d2) * k02)) = (((((d0 * a02) + (0 * a12)) + (0 * a22)) + -(((a00 * 0) + (a01 * 0)) + (a02 * d2))) * k02) := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k02]) (.mul (.var 2) (.mul (.add (.var 9) (.neg (.var 11))) (.var 12))) (.mul (.add (.add (.add (.mul (.var 9) (.var 2)) (.mul .zero (.var 5))) (.mul .zero (.var 8))) (.neg (.add (.add (.mul (.var 0) .zero) (.mul (.var 1) .zero)) (.mul (.var 2) (.var 11))))) (.var 12)) (by decide +kernel)
+      have z : (((((d0 * a02) + (0 * a12)) + (0 * a22)) + -(((d0 * a02) + (0 * a12)) + (0 * a22))) * k02) = 0 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k02]) (.mul (.add (.add (.add (.mul (.var 9) (.var 2)) (.mul .zero (.var 5))) (.mul .zero (.var 8))) (.neg (.add (.add (.mul (.var 9) (.var 2)) (.mul .zero (.var 5))) (.mul .zero (.var 8))))) (.var 12)) .zero (by decide +kernel)
+      have o : (a02 * 1) = a02 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k02]) (.mul (.var 2) .one) (.var 2) (by decide +kernel)
+      rw [h, h02] at e
+      exact o.symm.trans (e.trans z)
+    have e10 : a10 = 0 := by
+      have h : (((a10 * d0) + (a11 * 0)) + (a12 * 0)) = (((0 * a00) + (d1 * a10)) + (0 * a20)) := congrArg M3.a10 hD
+      have e : (a10 * ((d0 + -d1) * k01)) = (((((a10 * d0) + (a11 * 0)) + (a12 * 0)) + -(((0 * a00) + (d1 * a10)) + (0 * a20))) * k01) := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k01]) (.mul (.var 3) (.mul (.add (.var 9) (.neg (.var 10))) (.var 12))) (.mul (.add (.add (.add (.mul (.var 3) (.var 9)) (.mul (.var 4) .zero)) (.mul (.var 5) .zero)) (.neg (.add (.add (.mul .zero (.var 0)) (.mul (.var 10) (.var 3))) (.mul .zero (.var 6))))) (.var 12)) (by decide +kernel)
+      have z : (((((0 * a00) + (d1 * a10)) + (0 * a20)) + -(((0 * a00) + (d1 * a10)) + (0 * a20))) * k01) = 0 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k01]) (.mul (.add (.add (.add (.mul .zero (.var 0)) (.mul (.var 10) (.var 3))) (.mul .zero (.var 6))) (.neg (.add (.add (.mul .zero (.var 0)) (.mul (.var 10) (.var 3))) (.mul .zero (.var 6))))) (.var 12)) .zero (by decide +kernel)
+      have o : (a10 * 1) = a10 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k01]) (.mul (.var 3) .one) (.var 3) (by decide +kernel)
+      rw [h, h01] at e
+      exact o.symm.trans (e.trans z)
+    have e12 : a12 = 0 := by
+      have h : (((a10 * 0) + (a11 * 0)) + (a12 * d2)) = (((0 * a02) + (d1 * a12)) + (0 * a22)) := congrArg M3.a12 hD
+      have e : (a12 * ((d1 + -d2) * k12)) = (((((0 * a02) + (d1 * a12)) + (0 * a22)) + -(((a10 * 0) + (a11 * 0)) + (a12 * d2))) * k12) := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k12]) (.mul (.var 5) (.mul (.add (.var 10) (.neg (.var 11))) (.var 12))) (.mul (.add (.add (.add (.mul .zero (.var 2)) (.mul (.var 10) (.var 5))) (.mul .zero (.var 8))) (.neg (.add (.add (.mul (.var 3) .zero) (.mul (.var 4) .zero)) (.mul (.var 5) (.var 11))))) (.var 12)) (by decide +kernel)
+      have z : (((((0 * a02) + (d1 * a12)) + (0 * a22)) + -(((0 * a02) + (d1 * a12)) + (0 * a22))) * k12) = 0 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k12]) (.mul (.add (.add (.add (.mul .zero (.var 2)) (.mul (.var 10) (.var 5))) (.mul .zero (.var 8))) (.neg (.add (.add (.mul .zero (.var 2)) (.mul (.var 10) (.var 5))) (.mul .zero (.var 8))))) (.var 12)) .zero (by decide +kernel)
+      have o : (a12 * 1) = a12 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k12]) (.mul (.var 5) .one) (.var 5) (by decide +kernel)
+      rw [h, h12] at e
+      exact o.symm.trans (e.trans z)
+    have e20 : a20 = 0 := by
+      have h : (((a20 * d0) + (a21 * 0)) + (a22 * 0)) = (((0 * a00) + (0 * a10)) + (d2 * a20)) := congrArg M3.a20 hD
+      have e : (a20 * ((d0 + -d2) * k02)) = (((((a20 * d0) + (a21 * 0)) + (a22 * 0)) + -(((0 * a00) + (0 * a10)) + (d2 * a20))) * k02) := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k02]) (.mul (.var 6) (.mul (.add (.var 9) (.neg (.var 11))) (.var 12))) (.mul (.add (.add (.add (.mul (.var 6) (.var 9)) (.mul (.var 7) .zero)) (.mul (.var 8) .zero)) (.neg (.add (.add (.mul .zero (.var 0)) (.mul .zero (.var 3))) (.mul (.var 11) (.var 6))))) (.var 12)) (by decide +kernel)
+      have z : (((((0 * a00) + (0 * a10)) + (d2 * a20)) + -(((0 * a00) + (0 * a10)) + (d2 * a20))) * k02) = 0 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k02]) (.mul (.add (.add (.add (.mul .zero (.var 0)) (.mul .zero (.var 3))) (.mul (.var 11) (.var 6))) (.neg (.add (.add (.mul .zero (.var 0)) (.mul .zero (.var 3))) (.mul (.var 11) (.var 6))))) (.var 12)) .zero (by decide +kernel)
+      have o : (a20 * 1) = a20 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k02]) (.mul (.var 6) .one) (.var 6) (by decide +kernel)
+      rw [h, h02] at e
+      exact o.symm.trans (e.trans z)
+    have e21 : a21 = 0 := by
+      have h : (((a20 * 0) + (a21 * d1)) + (a22 * 0)) = (((0 * a01) + (0 * a11)) + (d2 * a21)) := congrArg M3.a21 hD
+      have e : (a21 * ((d1 + -d2) * k12)) = (((((a20 * 0) + (a21 * d1)) + (a22 * 0)) + -(((0 * a01) + (0 * a11)) + (d2 * a21))) * k12) := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k12]) (.mul (.var 7) (.mul (.add (.var 10) (.neg (.var 11))) (.var 12))) (.mul (.add (.add (.add (.mul (.var 6) .zero) (.mul (.var 7) (.var 10))) (.mul (.var 8) .zero)) (.neg (.add (.add (.mul .zero (.var 1)) (.mul .zero (.var 4))) (.mul (.var 11) (.var 7))))) (.var 12)) (by decide +kernel)
+      have z : (((((0 * a01) + (0 * a11)) + (d2 * a21)) + -(((0 * a01) + (0 * a11)) + (d2 * a21))) * k12) = 0 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k12]) (.mul (.add (.add (.add (.mul .zero (.var 1)) (.mul .zero (.var 4))) (.mul (.var 11) (.var 7))) (.neg (.add (.add (.mul .zero (.var 1)) (.mul .zero (.var 4))) (.mul (.var 11) (.var 7))))) (.var 12)) .zero (by decide +kernel)
+      have o : (a21 * 1) = a21 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22, d0, d1, d2, k12]) (.mul (.var 7) .one) (.var 7) (by decide +kernel)
+      rw [h, h12] at e
+      exact o.symm.trans (e.trans z)
+    have e0011 : a00 = a11 := by
+      have h : (((a00 * 1) + (a01 * 0)) + (a02 * 0)) = (((0 * a01) + (1 * a11)) + (0 * a21)) := congrArg M3.a01 hS
+      have i1 : a00 = (((a00 * 1) + (a01 * 0)) + (a02 * 0)) := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22]) (.var 0) (.add (.add (.mul (.var 0) .one) (.mul (.var 1) .zero)) (.mul (.var 2) .zero)) (by decide +kernel)
+      have i2 : (((0 * a01) + (1 * a11)) + (0 * a21)) = a11 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22]) (.add (.add (.mul .zero (.var 1)) (.mul .one (.var 4))) (.mul .zero (.var 7))) (.var 4) (by decide +kernel)
+      exact i1.trans (h.trans i2)
+    have e1122 : a11 = a22 := by
+      have h : (((a10 * 0) + (a11 * 1)) + (a12 * 0)) = (((0 * a02) + (0 * a12)) + (1 * a22)) := congrArg M3.a12 hT
+      have i1 : a11 = (((a10 * 0) + (a11 * 1)) + (a12 * 0)) := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22]) (.var 4) (.add (.add (.mul (.var 3) .zero) (.mul (.var 4) .one)) (.mul (.var 5) .zero)) (by decide +kernel)
+      have i2 : (((0 * a02) + (0 * a12)) + (1 * a22)) = a22 := xsound (xlook [a00, a01, a02, a10, a11, a12, a20, a21, a22]) (.add (.add (.mul .zero (.var 2)) (.mul .zero (.var 5))) (.mul .one (.var 8))) (.var 8) (by decide +kernel)
+      exact i1.trans (h.trans i2)
+    show M3.mk a00 a01 a02 a10 a11 a12 a20 a21 a22 = M3.mk a00 0 0 0 a00 0 0 0 a00
+    rw [e01, e02, e10, e12, e20, e21, ← e1122, ← e0011]
+
+/-! ## The kernel of the product of the hypercharge cycle with the two frames -/
+
+/-- A scalar matrix `s I₃` times `A` is the identity only for `A = t I₃`, where `t s = 1`. -/
+theorem scal_inverse {s t : Ext p ν} (hst : t * s = 1) {A : M3 p ν} (h : mmul (scal s) A = mone) : A = scal t := by
+  have e : smul t (mmul (scal s) A) = smul t mone := congrArg (smul t) h
+  rw [scal_mul, smul_smul, hst, one_smul] at e
+  rw [e]
+  exact mext (xsound (xlook [t]) (.mul (.var 0) .one) (.var 0) (by decide +kernel)) (xsound (xlook [t]) (.mul (.var 0) .zero) .zero (by decide +kernel)) (xsound (xlook [t]) (.mul (.var 0) .zero) .zero (by decide +kernel)) (xsound (xlook [t]) (.mul (.var 0) .zero) .zero (by decide +kernel)) (xsound (xlook [t]) (.mul (.var 0) .one) (.var 0) (by decide +kernel)) (xsound (xlook [t]) (.mul (.var 0) .zero) .zero (by decide +kernel)) (xsound (xlook [t]) (.mul (.var 0) .zero) .zero (by decide +kernel)) (xsound (xlook [t]) (.mul (.var 0) .zero) .zero (by decide +kernel)) (xsound (xlook [t]) (.mul (.var 0) .one) (.var 0) (by decide +kernel))
+
+/-- 27:C16, 27:P10 — the kernel of the product of the hypercharge cycle with the two frames of determinant one. A hypercharge
+point of a unitary `w` is `σ(w)² I₃` on the colour block and `w³ I₂` on the doublet. Its product with a pair `(A, B)` is
+the identity only for `A = w² I₃`, of determinant `w⁶`, and for `B = σ(w)³ I₂`, since `w³ σ(w)³ = 1`. The two
+determinants are one together, `w⁶ = 1` exactly when `σ(w)⁶ = 1`. So the kernel is the set of the triples with `w⁶ = 1`. -/
+theorem product_kernel {w : Ext p ν} (hw : Ext.conj w * w = 1) :
+    (∀ A : M3 p ν, mmul (scal (Ext.conj w * Ext.conj w)) A = mone → A = scal (w * w)) ∧
+    det (scal (w * w)) = (w * w) ^ 3 ∧
+    w * w * w * (Ext.conj w * Ext.conj w * Ext.conj w) = 1 ∧
+    ((w * w) * (w * w) * (w * w) = 1 ↔
+      (Ext.conj w * Ext.conj w * Ext.conj w) * (Ext.conj w * Ext.conj w * Ext.conj w) = 1) := by
+  have hi : (w * w) * (Ext.conj w * Ext.conj w) = 1 := by
+    have e : ((w * w) * (Ext.conj w * Ext.conj w)) = ((Ext.conj w * w) * (Ext.conj w * w)) := xsound (xlook [w, Ext.conj w]) (.mul (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.mul (.mul (.var 1) (.var 0)) (.mul (.var 1) (.var 0))) (by decide +kernel)
+    have e2 : (1 : Ext p ν) * 1 = 1 := xsound (xlook [w]) (.mul .one .one) .one (by decide +kernel)
+    rw [hw] at e
+    exact e.trans e2
+  have d6 : ((w * w) * (w * w) * (w * w)) *
+      ((Ext.conj w * Ext.conj w * Ext.conj w) * (Ext.conj w * Ext.conj w * Ext.conj w)) = 1 := by
+    have e : ((((w * w) * (w * w)) * (w * w)) * (((Ext.conj w * Ext.conj w) * Ext.conj w) * ((Ext.conj w * Ext.conj w) * Ext.conj w))) = ((((Ext.conj w * w) * (Ext.conj w * w)) * (Ext.conj w * w)) * (((Ext.conj w * w) * (Ext.conj w * w)) * (Ext.conj w * w))) := xsound (xlook [w, Ext.conj w]) (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.mul (.var 0) (.var 0))) (.mul (.var 0) (.var 0))) (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.mul (.mul (.var 1) (.var 1)) (.var 1)))) (.mul (.mul (.mul (.mul (.var 1) (.var 0)) (.mul (.var 1) (.var 0))) (.mul (.var 1) (.var 0))) (.mul (.mul (.mul (.var 1) (.var 0)) (.mul (.var 1) (.var 0))) (.mul (.var 1) (.var 0)))) (by decide +kernel)
+    have e1 : ((1 : Ext p ν) * 1 * 1) * (1 * 1 * 1) = 1 := xsound (xlook [w]) (.mul (.mul (.mul .one .one) .one) (.mul (.mul .one .one) .one)) .one (by decide +kernel)
+    rw [hw] at e
+    exact e.trans e1
+  refine ⟨fun A h => scal_inverse hi h, det_scal _, (charge_cycle hw).1, fun h => ?_, fun h => ?_⟩
+  · have d' := d6
+    rw [h, Ext.one_mul] at d'
+    exact d'
+  · have d' := d6
+    rw [h, Ext.mul_one] at d'
+    exact d'
+
+/-- 27:C16, 27:P10 — the solutions of `w⁶ = 1` on the unitary cycle, the kernel of the product map. With `6 = d a`,
+`p + 1 = d m`, `a x = 1 + m t` and a generator `u`: a unitary point has `w⁶ = 1` exactly when `w^d = 1`, and the unitary
+points with `w^d = 1` are the `d` distinct powers `u^(m r)`, `r < d`. The kernel is a cycle of order `d = gcd(6, p + 1)`. -/
+theorem sixth_roots (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0)
+    {d a m x t : Nat} (h6 : 6 = d * a) (hdm : p + 1 = d * m) (hax : a * x = 1 + m * t)
+    {u : Ext p ν} (hu : Ext.conj u * u = 1) (hmin : ∀ l, l < p + 1 → 0 < l → u ^ l ≠ 1) :
+    (∀ w : Ext p ν, Ext.conj w * w = 1 → (w ^ 6 = 1 ↔ w ^ d = 1)) ∧
+    (∀ r : Nat, (u ^ (m * r)) ^ d = 1) ∧
+    (∀ w : Ext p ν, Ext.conj w * w = 1 → w ^ d = 1 → ∃ r, r < d ∧ w = u ^ (m * r)) ∧
+    (∀ r s : Nat, r < d → s < d → u ^ (m * r) = u ^ (m * s) → r = s) := by
+  have hd : 0 < d := Nat.pos_of_ne_zero (fun h0 => by rw [h0, Nat.zero_mul] at hdm; exact FRC.Nat.succ_ne_zero p hdm)
+  have hm : 0 < m := Nat.pos_of_ne_zero (fun h0 => by rw [h0, Nat.mul_zero] at hdm; exact FRC.Nat.succ_ne_zero p hdm)
+  have sp := sixth_powers (ν := ν) hp hν h2 h6 hdm hax
+  have hlt : ∀ r, r < d → m * r < p + 1 := fun r hr => by
+    rw [hdm, Nat.mul_comm m r]
+    exact FRC.Nat.mul_lt_mul_of_lt_of_pos hr hm
+  refine ⟨fun w hw => ⟨fun h => ?_, fun h => ?_⟩, fun r => ?_, fun w hw hwd => ?_, fun r s hr hs e => ?_⟩
+  · rw [← (sp.2 w hw).2, ext_pow_mul_comm, h, ext_one_pow]
+  · rw [sp.1 w, ext_pow_mul_comm, h, ext_one_pow]
+  · rw [← ext_pow_mul, FRC.Nat.mul_assoc, Nat.mul_comm r d, ← FRC.Nat.mul_assoc, Nat.mul_comm m d, ← hdm, ext_pow_mul,
+      unitary_period hp hν h2 hu, ext_one_pow]
+  · obtain ⟨k, hk, e⟩ := generator_powers hp hν hu hmin hw
+    have hkd : u ^ (k * d) = 1 := by rw [ext_pow_mul, e, hwd]
+    obtain ⟨c, hc⟩ := uorder_dvd ⟨Nat.succ_pos p, unitary_period hp hν h2 hu, hmin⟩ hkd
+    have hc' : d * k = d * (m * c) := by
+      have h1 : k * d = (p + 1) * c := hc
+      rw [Nat.mul_comm d k, h1, hdm, FRC.Nat.mul_assoc]
+    have hkc : k = m * c := FRC.Nat.quot_unique (p := d) (r := 0) (r' := 0) hd hd hc'
+    match Nat.lt_or_ge c d with
+    | .inl h => exact ⟨c, h, by rw [← e, hkc]⟩
+    | .inr h =>
+      have hle : p + 1 ≤ k := by
+        rw [hkc, hdm, Nat.mul_comm d m]
+        exact Nat.mul_le_mul_left m h
+      exact absurd (Nat.lt_of_lt_of_le hk hle) (Nat.lt_irrefl k)
+  · exact FRC.Nat.quot_unique (p := m) (r := 0) (r' := 0) hm hm (generator_pow_inj hu hmin (hlt r hr) (hlt s hs) e)
+
+/-- 27:P10 — the weight of a point of the centre of the colour frame. For a cube root of unity `x ≠ 1` the power `x ^ n`
+is one exactly when three divides `n`: a state of `n` net colour indices that the point fixes has `n` a multiple of
+three. -/
+theorem centre_weight {x : Ext p ν} (h3 : x ^ 3 = 1) (h1 : x ≠ 1) (n : Nat) : x ^ n = 1 ↔ n % 3 = 0 := by
+  obtain ⟨q, hq⟩ := FRC.Nat.mod_spec 3 (by decide) n
+  have hx : x ^ n = x ^ (n % 3) := by
+    have e : x ^ (3 * q + n % 3) = x ^ (n % 3) := by
+      rw [Ext.pow_add, ext_pow_mul, h3, ext_one_pow, Ext.one_mul]
+    rw [← hq] at e
+    exact e
+  rw [hx]
+  match n % 3, Nat.mod_lt n (by decide : 0 < 3) with
+  | 0, _ => exact ⟨fun _ => rfl, fun _ => rfl⟩
+  | 1, _ =>
+    refine ⟨fun h => absurd ?_ h1, fun h => absurd h (by decide)⟩
+    rw [ext_pow_one] at h
+    exact h
+  | 2, _ =>
+    refine ⟨fun h => absurd ?_ h1, fun h => absurd h (by decide)⟩
+    have e : x ^ (2 + 1) = x := by rw [Ext.pow_add, h, ext_pow_one, Ext.one_mul]
+    rw [← e]
+    exact h3
+  | k + 3, h => exact absurd h (Nat.not_lt_of_le (Nat.le_add_left 3 k))
+
+/-- 27:P10 — a state that the diagonal frame moves of the colour frame fix. With `aᵢ` indices and `bᵢ` conjugate indices
+in the colour direction `i`, fewer than `p + 1` in each sum, the equal weights `u^(a₁+b₃) = u^(a₃+b₁)` and
+`u^(a₂+b₃) = u^(a₃+b₂)` on a generator `u` of the unitary cycle give equal net numbers of indices in the three
+directions. -/
+theorem colourless_indices {u : Ext p ν} (hu : Ext.conj u * u = 1) (hmin : ∀ l, l < p + 1 → 0 < l → u ^ l ≠ 1)
+    {a1 a2 a3 b1 b2 b3 : Nat} (h1 : a1 + b3 < p + 1) (h1' : a3 + b1 < p + 1) (h2 : a2 + b3 < p + 1)
+    (h2' : a3 + b2 < p + 1) (e1 : u ^ (a1 + b3) = u ^ (a3 + b1)) (e2 : u ^ (a2 + b3) = u ^ (a3 + b2)) :
+    a1 + b3 = a3 + b1 ∧ a2 + b3 = a3 + b2 :=
+  ⟨generator_pow_inj hu hmin h1 h1' e1, generator_pow_inj hu hmin h2 h2' e2⟩
+
+/-! ## The Frobenius parity of a tally (27:C17) -/
+
+/-- 27:C17 — an expression formed from the entries with integer coefficients commutes with the Frobenius: its value on
+the conjugate entries is the conjugate of its value. A value of the shell is its own conjugate, so a tally takes equal
+values on a configuration and on its Frobenius conjugate. -/
+theorem tally_even (env : Nat → Ext p ν) (e : RE) :
+    Ext.conj (xeval env e) = xeval (fun i => Ext.conj (env i)) e := conj_xeval env e
+
+/-- An element that the Frobenius negates has a real part of `2`-torsion: on an odd shell it lies in `η F_p`. -/
+theorem re_of_conj_neg {z : Ext p ν} (h : Ext.conj z = -z) : z.re + z.re = 0 := by
+  have e : z.re = -z.re := Ext.re_congr h
+  have t := Shell.neg_add z.re
+  rw [← e] at t
+  exact t
+
+/-- 27:C17 — the orientation-odd term of a plaquette. For a frame move `U` of determinant one the difference of the
+traces of `U` and of its inverse is negated by the Frobenius, and its real part is `2`-torsion. -/
+theorem orientation_odd (U : M3 p ν) (hU : SU mone U) :
+    Ext.conj (tr U + -(tr (adj U))) = -(tr U + -(tr (adj U))) ∧
+    (tr U + -(tr (adj U))).re + (tr U + -(tr (adj U))).re = 0 := by
+  have e := (wilson_orientation_even U hU).1
+  have h : Ext.conj (tr U + -(tr (adj U))) = -(tr U + -(tr (adj U))) := by
+    rw [e, conj_add, conj_neg, Ext.conj_conj]
+    exact xsound (xlook [tr U, Ext.conj (tr U)]) (.add (.var 1) (.neg (.var 0))) (.neg (.add (.var 0) (.neg (.var 1))))
+      (by decide +kernel)
+  exact ⟨h, re_of_conj_neg h⟩
+
+/-- The conjugate of a determinant is the determinant of the conjugate transpose. -/
+theorem conj_det (A : M3 p ν) : Ext.conj (det A) = det (dag A) := by
+  have e1 : Ext.conj (det A) = xeval (fun i => Ext.conj (xlook (ents A) i)) detRE := by
+    rw [← conj_xeval]; rfl
+  have e2 : xeval (fun i => Ext.conj (xlook (ents A) i)) detRE = xeval (fun i => Ext.conj (xlook (ents A) i)) detRE' :=
+    xsound _ detRE detRE' (by decide +kernel)
+  have e3 : xeval (fun i => Ext.conj (xlook (ents A) i)) detRE' = det (dag A) := rfl
+  rw [e1, e2, e3]
+
+/-- 27:C17 — the determinant of an anti-Hermitian matrix of three rows, such as the commutator of two Hermitian
+matrices, is negated by the Frobenius, and its real part is `2`-torsion. -/
+theorem antihermitian_det (C : M3 p ν) (h : dag C = smul (-1) C) :
+    Ext.conj (det C) = -(det C) ∧ (det C).re + (det C).re = 0 := by
+  have e : Ext.conj (det C) = -(det C) := by
+    rw [conj_det, h, (det_scale (-1) C (⟨0, 0, 0, 0⟩ : M2 p ν)).1]
+    exact xsound (xlook [det C]) (.mul (.mul (.mul (.neg .one) (.neg .one)) (.neg .one)) (.var 0)) (.neg (.var 0))
+      (by decide +kernel)
+  exact ⟨e, re_of_conj_neg e⟩
+
+/-- 27:C17 — the product of two elements that the Frobenius negates is fixed by it, and its imaginary part is
+`2`-torsion: on an odd shell the product lies in the shell. -/
+theorem odd_product {a b : Ext p ν} (ha : Ext.conj a = -a) (hb : Ext.conj b = -b) :
+    Ext.conj (a * b) = a * b ∧ (a * b).im + (a * b).im = 0 := by
+  have e : Ext.conj (a * b) = a * b := by
+    rw [Ext.conj_mul, ha, hb]
+    exact xsound (xlook [a, b]) (.mul (.neg (.var 0)) (.neg (.var 1))) (.mul (.var 0) (.var 1)) (by decide +kernel)
+  exact ⟨e, im_of_conj_fixed e⟩
+
+/-! ## The lift of one chronon to the doublet (27:C15, 27:C4) -/
+
+/-- 27:C15, 27:C4 — the entries `η = pt ν 0 1` and `η⁻¹ = pt ν 0 k`, `ν k = 1`, of the lift `diag(η, η⁻¹)` of one
+chronon. They are inverse, their squares are `ν` and `k`, the entries of the transport of two chronons, and their norms
+are `−ν` and `−k`. So one chronon multiplies the two charged directions by `η · η = ν` and `η⁻¹ · η⁻¹ = k`, and the
+Hermitian pairings of the two components by `−ν` and `−k`. -/
+theorem drive_lift {k : Shell p} (hk : ν * k = 1) :
+    pt ν 0 1 * pt ν 0 k = 1 ∧ pt ν 0 1 * pt ν 0 1 = pt ν ν 0 ∧ pt ν 0 k * pt ν 0 k = pt ν k 0 ∧
+    Ext.conj (pt ν 0 1) * pt ν 0 1 = pt ν (-ν) 0 ∧ Ext.conj (pt ν 0 k) * pt ν 0 k = pt ν (-k) 0 := by
+  refine ⟨Ext.ext ?_ ?_, Ext.ext ?_ ?_, Ext.ext ?_ ?_, Ext.ext ?_ ?_, Ext.ext ?_ ?_⟩
+  · have e : ((0 * 0) + (ν * (1 * k))) = (ν * k) := Shell.Frame.RE.sound (Shell.Frame.look [ν, k]) (.add (.mul .zero .zero) (.mul (.var 0) (.mul .one (.var 1)))) (.mul (.var 0) (.var 1)) (by decide +kernel)
+    rw [hk] at e
+    exact e
+  · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, k]) (.add (.mul .zero (.var 1)) (.mul .one .zero)) .zero (by decide +kernel)
+  · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, k]) (.add (.mul .zero .zero) (.mul (.var 0) (.mul .one .one))) (.var 0) (by decide +kernel)
+  · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, k]) (.add (.mul .zero .one) (.mul .one .zero)) .zero (by decide +kernel)
+  · have e : ((0 * 0) + (ν * (k * k))) = ((ν * k) * k) := Shell.Frame.RE.sound (Shell.Frame.look [ν, k]) (.add (.mul .zero .zero) (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.mul (.mul (.var 0) (.var 1)) (.var 1)) (by decide +kernel)
+    rw [hk, Shell.one_mul] at e
+    exact e
+  · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, k]) (.add (.mul .zero (.var 1)) (.mul (.var 1) .zero)) .zero (by decide +kernel)
+  · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, k]) (.add (.mul .zero .zero) (.mul (.var 0) (.mul (.neg .one) .one))) (.neg (.var 0)) (by decide +kernel)
+  · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, k]) (.add (.mul .zero .one) (.mul (.neg .one) .zero)) .zero (by decide +kernel)
+  · have e : ((0 * 0) + (ν * (-k * k))) = -((ν * k) * k) := Shell.Frame.RE.sound (Shell.Frame.look [ν, k]) (.add (.mul .zero .zero) (.mul (.var 0) (.mul (.neg (.var 1)) (.var 1)))) (.neg (.mul (.mul (.var 0) (.var 1)) (.var 1))) (by decide +kernel)
+    rw [hk, Shell.one_mul] at e
+    exact e
+  · exact Shell.Frame.RE.sound (Shell.Frame.look [ν, k]) (.add (.mul .zero (.var 1)) (.mul (.neg (.var 1)) .zero)) .zero (by decide +kernel)
+
+/-- 27:C15 — the rays that one chronon keeps. If `diag(g, 1)` multiplies the vector `(x, y)` by a scalar `c`, with
+`g − 1` invertible, then `x y = 0`: the ray is the origin or the antipode. -/
+theorem fixed_rays {gE kE x y c : Ext p ν} (hk : kE * (gE + -1) = 1) (h1 : gE * x = c * x) (h2 : y = c * y) :
+    x * y = 0 := by
+  have e : ((gE + -1) * (x * y)) = (((gE * x) * y) + -(x * y)) := xsound (xlook [gE, x, y]) (.mul (.add (.var 0) (.neg .one)) (.mul (.var 1) (.var 2))) (.add (.mul (.mul (.var 0) (.var 1)) (.var 2)) (.neg (.mul (.var 1) (.var 2)))) (by decide +kernel)
+  rw [h1] at e
+  have e2 : ((c * x) * y) = (x * (c * y)) := xsound (xlook [c, x, y]) (.mul (.mul (.var 0) (.var 1)) (.var 2)) (.mul (.var 1) (.mul (.var 0) (.var 2))) (by decide +kernel)
+  rw [e2, ← h2] at e
+  have e3 : ((x * y) + -(x * y)) = 0 := xsound (xlook [x, y]) (.add (.mul (.var 0) (.var 1)) (.neg (.mul (.var 0) (.var 1)))) .zero (by decide +kernel)
+  rw [e3] at e
+  have e4 : x * y = kE * ((gE + -1) * (x * y)) := by
+    have t : (kE * (gE + -1)) * (x * y) = kE * ((gE + -1) * (x * y)) := Ext.mul_assoc _ _ _
+    rw [hk, Ext.one_mul] at t
+    exact t
+  rw [e] at e4
+  have z : kE * (0 : Ext p ν) = 0 := xsound (xlook [kE]) (.mul (.var 0) .zero) .zero (by decide +kernel)
+  rw [z] at e4
+  exact e4
+
+/-- 27:C16 — one charge system in the frame of rank five: the hypercharge cycle and the charge cycle have determinant
+one, the first is faithful, the second is trivial on the doublet exactly at the cube roots of unity, the weights on the
+sixteen states are `6Y` and `−3Q`, for `d ∣ p + 1`, `d > 1`, some unitary point is no `d`-th power, and where
+`p + 2 = 3 j` every unitary point is a cube. -/
+theorem one_charge_system (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (h2 : (1 : Shell p) + 1 ≠ 0) :
+    (∀ w : Ext p ν, Ext.conj w * w = 1 →
+      (Ext.conj w * Ext.conj w) * (Ext.conj w * Ext.conj w) * (Ext.conj w * Ext.conj w) * (w * w * w) * (w * w * w) = 1 ∧
+      (Ext.conj w * Ext.conj w = 1 → w * w * w = 1 → w = 1) ∧
+      w * w * w * (Ext.conj w * Ext.conj w * Ext.conj w) = 1 ∧
+      (Ext.conj w * Ext.conj w * Ext.conj w = 1 ↔ w * w * w = 1)) ∧
+    ((Interactions.gen16.all (fun S => -2 * (Interactions.col S : Int) + 3 * (Interactions.wk S : Int) == Interactions.y6 S)) = true ∧
+      (Interactions.gen16.all (fun S => 2 * (Interactions.col S : Int) + -(6 * (Interactions.cnt S 3 4 : Int)) == -(Interactions.q6 S))) = true ∧
+      (Interactions.gen16.all (fun S => (Interactions.q6 S + 2 * (Interactions.col S : Int)) % 6 == 0)) = true) ∧
+    (∀ d m : Nat, p + 1 = d * m → 1 < d →
+      ¬∀ w : Ext p ν, Ext.conj w * w = 1 → ¬∀ v : Ext p ν, Ext.conj v * v = 1 → v ^ d ≠ w) ∧
+    (∀ j : Nat, p + 2 = 3 * j → ∀ w : Ext p ν, Ext.conj w * w = 1 → Ext.conj (w ^ j) * w ^ j = 1 ∧ (w ^ j) ^ 3 = w) :=
+  ⟨fun _ hw => ⟨(hypercharge_cycle hw).1, (hypercharge_cycle hw).2, (charge_cycle hw).1, (charge_cycle hw).2⟩,
+   charge_weights, fun _ _ hdm hd => not_all_powers hp hν h2 hdm hd, fun _ hj _ hw => all_cubes hp hν h2 hj hw⟩
+
+end FRC.Unitary
+
 /-! inlined: FrcCore/Keys/Horizon.lean -/
 
 /-!
@@ -40610,15 +44000,6 @@ theorem p26043 : (∀ {p : Nat} [FRC.Pos p] (b : FRC.Shell p) {e l : Nat}, e < (
 /-- p26044 — 26:G5. The power map $P_k$ is a bijection of $\F_P^{\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\mapsto x^{a}$ with $ak\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\gcd(k,P-1)$ given as a Bezout witness $ak=b(P-1)+d$, of exactly $(P-1)/d$ elements. -/
 theorem p26044 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a k : Nat}, a * k % (p - (1 : Nat)) = (1 : Nat) → ∀ (m : Nat), ((g ^ m) ^ k) ^ a = g ^ m ∧ ((g ^ m) ^ a) ^ k = g ^ m) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e c a b k : Nat}, p - (1 : Nat) = d * e → k = d * c → a * k = b * (p - (1 : Nat)) + d → (∀ (m : Nat), (g ^ m) ^ k = (g ^ d) ^ (m * c)) ∧ (∀ (i : Nat), ((g ^ a) ^ i) ^ k = (g ^ d) ^ i) ∧ ∀ (i j : Nat), i < e → j < e → (g ^ d) ^ i = (g ^ d) ^ j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e c k : Nat}, p - (1 : Nat) = d * e → k = d * c → ∀ (m : Nat), ∃ i, i < e ∧ (g ^ m) ^ k = (g ^ d) ^ i) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e : Nat}, p - (1 : Nat) = d * e → (1 : Nat) < d → e < p - (1 : Nat)) ∧ (∀ (m : Nat), m < (12 : Nat) → (((2 : FRC.Shell (13 : Nat)) ^ m) ^ (5 : Nat)) ^ (5 : Nat) = (2 : FRC.Shell (13 : Nat)) ^ m) ∧ (∀ (m : Nat), m < (12 : Nat) → ∃ i, i < (3 : Nat) ∧ ((2 : FRC.Shell (13 : Nat)) ^ m) ^ (4 : Nat) = ((2 : FRC.Shell (13 : Nat)) ^ (4 : Nat)) ^ i) ∧ ∀ (i : Nat), i < (3 : Nat) → ∃ m, m < (12 : Nat) ∧ ((2 : FRC.Shell (13 : Nat)) ^ m) ^ (4 : Nat) = ((2 : FRC.Shell (13 : Nat)) ^ (4 : Nat)) ^ i :=
   And.intro @FRC.Ladder.power_bijective_of_unit (And.intro @FRC.Ladder.power_image (And.intro @FRC.Ladder.power_image_index (And.intro @FRC.Ladder.compressive_of_gcd (@FRC.Ladder.powers13))))
-/-- p27022 — 27:C10. The closure of the four primitive roles ($5\!\to\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter naming (B6). -/
-theorem p27022 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
-  @FRC.Ladder.tower_reduces
-/-- p27032 — 27:X9. \textbf{The interaction and generation counts} are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained. -/
-theorem p27032 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
-  @FRC.Ladder.tower_reduces
-/-- p27035 — 27:P1. \textbf{No fourth generation and no fifth interaction} \emph{[forced]}. The role ladder closes, the fifth step returns to counting, and the Carrier is the entire substrate, so a fourth chiral family and a fifth fundamental force are forbidden, not merely absent (Tier~4). \emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction. -/
-theorem p27035 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
-  @FRC.Ladder.tower_reduces
 -- end keys
 
 end FRC.Ledger
@@ -41792,6 +45173,9 @@ theorem p08009 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p08013 — 8:B7. Signature lives on $\Fp$: the Euclidean form is hyperbolic and $Q_\nu$ elliptic, with the zero counts of the two classes on every symmetry-complete shell below $60$; over $K$ every element of $\Fp$ is a square and the dichotomy collapses. -/
 theorem p08013 : FRC.Dirac.euclidZeros (13 : Nat) = (2353 : Nat) ∧ FRC.Dirac.lorentzZeros (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (2041 : Nat) :=
   @FRC.Dirac.zeros13
+/-- p08014 — 8:B8. One-way and two-way transport: comparison readings are even drive steps, the one-way single-chronon multiplier odd, and light-like transport along one axis carries no registered velocity, only its square class (00:C8); the $3{+}1$ form's null vectors are not read. Falsifier: a registered one-way velocity, or a two-way constant that changes under the synchronisation gauge. -/
+theorem p08014 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (m : Nat), (∃ y, y * y = g ^ m) ↔ m % (2 : Nat) = (0 : Nat)) ∧ (¬∃ y, y * y = g) ∧ (∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ¬∃ r, r * r = y) ∧ ∀ {t x : FRC.Shell p}, x * x = g * (t * t) → t = (0 : FRC.Shell p) ∧ x = (0 : FRC.Shell p) :=
+  @FRC.Dirac.oneway_transport
 /-- p08019 — 8:C5. The finite Cayley transform: the scalar Cayley map is defined on the whole shell, takes values in the norm-one cycle, and bijects the projective line onto it, which has $\p+1$ elements and is the unitary group of one channel. -/
 theorem p08019 : FRC.Dirac.normOneCount (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.normOneCount (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat) ∧ FRC.Dirac.unitCircleCount (13 : Nat) = (12 : Nat) ∧ FRC.Dirac.unitCircleCount (173 : Nat) = (172 : Nat) :=
   @FRC.Dirac.torus_counts
@@ -41813,7 +45197,7 @@ theorem p08040 : (∀ {p : Nat} [FRC.Pos p] {g y : FRC.Shell p}, g * y = (1 : FR
 /-- p08041 — 8:F4. Two evolution sectors, one space: the drive's split-phase sector and the Cayley propagators' norm-one sector meet in $\{\pm1\}$ alone; the cycle Laplacian is self-adjoint, its Cayley steps commute with the drive, and the composite is unitary. -/
 theorem p08041 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → y.IsPrimitive (p - (1 : Nat)) ∧ ∀ (u : FRC.Shell p), u * u = (1 : FRC.Shell p) → u = (1 : FRC.Shell p) ∨ u = (-1 : FRC.Shell p) :=
   @FRC.Dirac.sector_separation
-/-- p08048 — 8:F6. The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\varphi(-m)$ on the third cycle and the mass phases fill it once; the spectra meet in $\{\pm1\}$; the Hamiltonian form has the two eigenvalues $\varphi(\pm\im\nu m)$, a conjugate pair. Decided at $\p=13$ and $173$. -/
+/-- p08048 — 8:F6. The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\varphi(-m)$ on the third cycle, the mass phases filling it once; the two cycles meet in $\{\pm1\}$; the $X$-self-adjoint $H_D$, its mass term anti-fixed, has the Cayley eigenvalues $\varphi(\pm\im\nu m)$, a conjugate pair. At $\p=13$ and $173$. -/
 theorem p08048 : (∀ {p : Nat} [FRC.Pos p] {g y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ∀ (j k : Nat), y ^ k * g ^ ((j + (1 : Nat)) * k) = g ^ (j * k)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → y.IsPrimitive (p - (1 : Nat)) ∧ ∀ (u : FRC.Shell p), u * u = (1 : FRC.Shell p) → u = (1 : FRC.Shell p) ∨ u = (-1 : FRC.Shell p)) ∧ FRC.Dirac.normOneCount (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.normOneCount (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat) ∧ FRC.Dirac.unitCircleCount (13 : Nat) = (12 : Nat) ∧ FRC.Dirac.unitCircleCount (173 : Nat) = (172 : Nat) :=
   And.intro @FRC.Dirac.drive_eigen (And.intro @FRC.Dirac.sector_separation (@FRC.Dirac.torus_counts))
 /-- p08049 — 8:B4. The factorisation of the temporal coefficient: $\nu=g=2^{-1}\cdot(2g)$ on every shell, the class of $2^{-1}$ even iff $\kap$ is even, the class of $2g$ odd iff $\kap$ is even, the product odd always; the reframing flip preserves the parity class and reverses the one-way direction. -/
@@ -41831,7 +45215,7 @@ theorem p08053 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p08054 — 8:X2. The one-way speed is gauge: the temporal coefficient is an odd drive step, registered transport is even, and the reframing flip reverses the one-way direction while preserving the parity class. -/
 theorem p08054 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {h : FRC.Shell p}, (2 : FRC.Shell p) * h = (1 : FRC.Shell p) → h * ((2 : FRC.Shell p) * g) = g ∧ ((∃ y, y * y = (2 : FRC.Shell p) * g) ↔ κ % (2 : Nat) = (1 : Nat))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m : Nat), (∃ y, y * y = g ^ m) ↔ m % (2 : Nat) = (0 : Nat) :=
   And.intro @FRC.Dirac.nu_factorisation (@FRC.Shell.Frame.parity_iff)
-/-- p08056 — 8:X4. The spinor form is forced: the continuum's $\gamma^0$-twist fails because Frobenius fixes the internal quarter-turn, and the arithmetic forces the twist onto the odd product omitting $\gamma^2$. -/
+/-- p08056 — 8:X4. The spinor form is forced: the continuum's $\gamma^0$-twist fails because Frobenius fixes the internal quarter-turn, and the arithmetic forces the twist, up to sign, onto the odd product omitting $\gamma^2$. -/
 theorem p08056 : FRC.Dirac.spinorForm (2 : FRC.Shell (13 : Nat)) (5 : FRC.Shell (13 : Nat)) = true ∧ FRC.Dirac.spinorForm (2 : FRC.Shell (173 : Nat)) (93 : FRC.Shell (173 : Nat)) = true ∧ FRC.Dirac.spinorForm (2 : FRC.Shell (1549 : Nat)) (1461 : FRC.Shell (1549 : Nat)) = true :=
   @FRC.Dirac.spinor_form_values
 /-- p08069 — 8:D16. The explicit transported form: the transported Dirac operator is the Dirac operator of the transported frame with the transported gamma matrices, the spin conjugates of the standard ones. -/
@@ -41887,6 +45271,9 @@ theorem p08030 : (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [Of
 /-- p08031 — 8:D11. The two Dirac operators are one covariant family: the pullback identity holds for the symmetric differences, the transport carries the symmetric operator to its transported form, and the spinor form transports by the norm of the lift: norm-one lifts preserve it, the odd coset scales it by the nonsquare class. -/
 theorem p08031 : (FRC.Dirac.spinLift (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat))).dagger * (FRC.Dirac.gamma0 (5 : FRC.Shell (13 : Nat)) * FRC.Dirac.gamma1 (5 : FRC.Shell (13 : Nat)) * FRC.Dirac.gamma3 (5 : FRC.Shell (13 : Nat))) * FRC.Dirac.spinLift (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) = FRC.Dirac.Mat.smul (-1 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) (FRC.Dirac.gamma0 (5 : FRC.Shell (13 : Nat)) * FRC.Dirac.gamma1 (5 : FRC.Shell (13 : Nat)) * FRC.Dirac.gamma3 (5 : FRC.Shell (13 : Nat))) ∧ (FRC.Dirac.spinLift (93 : FRC.Shell (173 : Nat)) (1 : FRC.Shell (173 : Nat)) (1 : FRC.Shell (173 : Nat))).dagger * (FRC.Dirac.gamma0 (93 : FRC.Shell (173 : Nat)) * FRC.Dirac.gamma1 (93 : FRC.Shell (173 : Nat)) * FRC.Dirac.gamma3 (93 : FRC.Shell (173 : Nat))) * FRC.Dirac.spinLift (93 : FRC.Shell (173 : Nat)) (1 : FRC.Shell (173 : Nat)) (1 : FRC.Shell (173 : Nat)) = FRC.Dirac.Mat.smul (-1 : FRC.Extension.Ext (173 : Nat) (2 : FRC.Shell (173 : Nat))) (FRC.Dirac.gamma0 (93 : FRC.Shell (173 : Nat)) * FRC.Dirac.gamma1 (93 : FRC.Shell (173 : Nat)) * FRC.Dirac.gamma3 (93 : FRC.Shell (173 : Nat))) ∧ (FRC.Dirac.spinLift (1461 : FRC.Shell (1549 : Nat)) (1 : FRC.Shell (1549 : Nat)) (1 : FRC.Shell (1549 : Nat))).dagger * (FRC.Dirac.gamma0 (1461 : FRC.Shell (1549 : Nat)) * FRC.Dirac.gamma1 (1461 : FRC.Shell (1549 : Nat)) * FRC.Dirac.gamma3 (1461 : FRC.Shell (1549 : Nat))) * FRC.Dirac.spinLift (1461 : FRC.Shell (1549 : Nat)) (1 : FRC.Shell (1549 : Nat)) (1 : FRC.Shell (1549 : Nat)) = FRC.Dirac.Mat.smul (-1 : FRC.Extension.Ext (1549 : Nat) (2 : FRC.Shell (1549 : Nat))) (FRC.Dirac.gamma0 (1461 : FRC.Shell (1549 : Nat)) * FRC.Dirac.gamma1 (1461 : FRC.Shell (1549 : Nat)) * FRC.Dirac.gamma3 (1461 : FRC.Shell (1549 : Nat))) :=
   @FRC.Dirac.Spinor.lift_transport_values
+/-- p08033 — 8:D13. Mass is winding rate, the Dirac form (00:D2): the Dirac equation balances the meridional development of the spinor field against the mass, with only the zero solution for $m\neq0$; the Cayley step of $\mathcal D^{s}-m$, in a step count not identified with $x_0$, advances a translation-invariant spinor by the mass phase once per chronon; $E=hf$ an identity. -/
+theorem p08033 : (∀ {p : Nat} [FRC.Pos p] {g y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ∀ (j k : Nat), y ^ k * g ^ ((j + (1 : Nat)) * k) = g ^ (j * k)) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {n : Nat} {del γ η : Nat → R} {m : R}, (∀ (μ ν : Nat), μ < n → ν < n → FRC.Dirac.Operator.Comm (del μ) (del ν)) → (∀ (μ ν : Nat), μ < n → ν < n → FRC.Dirac.Operator.Comm (del μ) (γ ν)) → (∀ (μ ν : Nat), μ < n → ν < n → μ ≠ ν → FRC.Dirac.Operator.Anticomm (γ μ) (γ ν)) → (∀ (μ : Nat), μ < n → γ μ * γ μ ≈ η μ) → (∀ (μ : Nat), μ < n → FRC.Dirac.Operator.Central (η μ)) → FRC.Dirac.Operator.Central m → (FRC.Dirac.Operator.osum (fun μ => del μ * γ μ) n + -m) * (FRC.Dirac.Operator.osum (fun μ => del μ * γ μ) n + m) ≈ FRC.Dirac.Operator.osum (fun μ => η μ * (del μ * del μ)) n + -(m * m)) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {α m a' N : R} {k : Nat}, FRC.Dirac.Operator.Central α → FRC.Dirac.Operator.Central m → FRC.Dirac.Operator.Central a' → FRC.Dirac.Operator.Inverse ((1 : R) + α * m) a' → FRC.Dirac.Operator.opow N (k + (1 : Nat)) ≈ (0 : R) → FRC.Dirac.Operator.Inverse ((1 : R) + -(α * (N + -m))) (FRC.Dirac.Operator.geom (a' * (α * N)) (k + (1 : Nat)) * a') ∧ ∃ c, FRC.Dirac.Operator.Comm N c ∧ FRC.Dirac.Operator.geom (a' * (α * N)) (k + (1 : Nat)) * a' * ((1 : R) + α * (N + -m)) + -(((1 : R) + -(α * m)) * a') ≈ N * c) ∧ have D := FRC.Dirac.Spinor.kron (FRC.Dirac.Spinor.circMat (13 : Nat) (FRC.Dirac.Spinor.symDiffRow (13 : Nat) (7 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))))) (FRC.Dirac.gamma0 (5 : FRC.Shell (13 : Nat))); have psi := List.map (fun r => [if r % (4 : Nat) = (0 : Nat) then (1 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) else (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))]) (List.range (52 : Nat)); have M := fun m => (FRC.Dirac.Mat.ident (52 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } (D.add (FRC.Dirac.Mat.smul m (FRC.Dirac.Mat.ident (52 : Nat))).neg)).neg; have P := fun m => (FRC.Dirac.Mat.ident (52 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } (D.add (FRC.Dirac.Mat.smul m (FRC.Dirac.Mat.ident (52 : Nat))).neg)); (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ D.mul psi = List.map (fun x => [(0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))]) (List.range (52 : Nat)) ∧ (P (1 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))).mul psi = FRC.Dirac.Mat.smul (FRC.Dirac.phi (2 : FRC.Shell (13 : Nat)) (12 : FRC.Shell (13 : Nat))) ((M (1 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))).mul psi) ∧ FRC.Dirac.phi (2 : FRC.Shell (13 : Nat)) (12 : FRC.Shell (13 : Nat)) = { re := (10 : FRC.Shell (13 : Nat)), im := (2 : FRC.Shell (13 : Nat)) } ∧ (P (2 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))).mul psi = FRC.Dirac.Mat.smul (FRC.Dirac.phi (2 : FRC.Shell (13 : Nat)) (11 : FRC.Shell (13 : Nat))) ((M (2 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))).mul psi) ∧ FRC.Dirac.phi (2 : FRC.Shell (13 : Nat)) (11 : FRC.Shell (13 : Nat)) = { re := (8 : FRC.Shell (13 : Nat)), im := (8 : FRC.Shell (13 : Nat)) } :=
+  And.intro @FRC.Dirac.drive_eigen (And.intro @FRC.Dirac.Operator.dirac_factorisation (And.intro @FRC.Dirac.Operator.cayley_nilpotent_shift (@FRC.Dirac.Spinor.mass_winding_values)))
 /-- p08035 — 8:E2. A self-map of a finite set is bijective iff its image count is the whole count iff its loss factor is one. -/
 theorem p08035 : ∀ (f : Nat → Nat) (n : Nat), FRC.Dirac.Loss.imageCount f n = n ↔ (∀ (i j : Nat), i < n → j < n → f i = f j → i = j) ∧ ∀ (v : Nat), v < n → ∃ i, i < n ∧ f i = v :=
   @FRC.Dirac.Loss.bijective_iff_image_count
@@ -41938,12 +45325,21 @@ theorem p08074 : (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [Of
 /-- p08075 — 8:E7. Kinetic Hamiltonians are fully admissible: a nilpotent Hamiltonian, the kinetic Hamiltonian and the symmetric Dirac operator among them, has every trace-zero parameter admissible, on every shell. -/
 theorem p08075 : (FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } = true ∧ FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = true ∧ { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } * { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = (7 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat))) ∧ (FRC.Dirac.Spinor.cpow (173 : Nat) (2 : Nat) (173 : Nat) (FRC.Dirac.Spinor.wsmul (173 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat))) (173 : Nat) = (FRC.Dirac.Spinor.zeroR (173 : Nat), FRC.Dirac.Spinor.zeroR (173 : Nat)) ∧ FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat)) ≠ FRC.Dirac.Spinor.idN (173 : Nat) ∧ FRC.Dirac.Spinor.cpow (173 : Nat) (2 : Nat) (173 : Nat) (FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat))) (173 : Nat) = FRC.Dirac.Spinor.idN (173 : Nat) ∧ FRC.Dirac.Spinor.cmul (173 : Nat) (2 : Nat) (173 : Nat) (FRC.Dirac.Spinor.daggerN (173 : Nat) (FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat)))) (FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat))) = FRC.Dirac.Spinor.idN (173 : Nat) ∧ FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (87 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat)) ≠ FRC.Dirac.Spinor.idN (173 : Nat) ∧ FRC.Dirac.Spinor.cpow (173 : Nat) (2 : Nat) (173 : Nat) (FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (87 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat))) (173 : Nat) = FRC.Dirac.Spinor.idN (173 : Nat) ∧ { re := (0 : FRC.Shell (173 : Nat)), im := (87 : FRC.Shell (173 : Nat)) } * { re := (0 : FRC.Shell (173 : Nat)), im := (87 : FRC.Shell (173 : Nat)) } = (87 : FRC.Extension.Ext (173 : Nat) (2 : FRC.Shell (173 : Nat))) ∧ (2 : FRC.Shell (173 : Nat)) * (87 : FRC.Shell (173 : Nat)) = (1 : FRC.Shell (173 : Nat))) ∧ (FRC.Dirac.Spinor.cpow (1549 : Nat) (2 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.wsmul (1549 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat))) (1549 : Nat) = (FRC.Dirac.Spinor.zeroR (1549 : Nat), FRC.Dirac.Spinor.zeroR (1549 : Nat)) ∧ { re := (0 : FRC.Shell (1549 : Nat)), im := (775 : FRC.Shell (1549 : Nat)) } * { re := (0 : FRC.Shell (1549 : Nat)), im := (775 : FRC.Shell (1549 : Nat)) } = (775 : FRC.Extension.Ext (1549 : Nat) (2 : FRC.Shell (1549 : Nat))) ∧ (2 : FRC.Shell (1549 : Nat)) * (775 : FRC.Shell (1549 : Nat)) = (1 : FRC.Shell (1549 : Nat))) ∧ (FRC.Dirac.Spinor.cayleyN (1549 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat)) ≠ FRC.Dirac.Spinor.idN (1549 : Nat) ∧ FRC.Dirac.Spinor.cpow (1549 : Nat) (2 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.cayleyN (1549 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat))) (1549 : Nat) = FRC.Dirac.Spinor.idN (1549 : Nat)) ∧ FRC.Dirac.Spinor.cayleyN (1549 : Nat) (2 : Nat) (775 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat)) ≠ FRC.Dirac.Spinor.idN (1549 : Nat) ∧ FRC.Dirac.Spinor.cpow (1549 : Nat) (2 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.cayleyN (1549 : Nat) (2 : Nat) (775 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat))) (1549 : Nat) = FRC.Dirac.Spinor.idN (1549 : Nat) :=
   And.intro @FRC.Dirac.cayley13_values (And.intro @FRC.Dirac.Spinor.cayley_values173 (And.intro @FRC.Dirac.Spinor.cayley_nilpotent1549 (And.intro @FRC.Dirac.Spinor.cayley_step1549 (@FRC.Dirac.Spinor.cayley_step_c1549))))
-/-- p08076 — 8:E8. The three cycles in dynamical roles: the kinetic period is the register's, the potential period the third cycle's, the drive runs on the drive cycle; block compositions take the least common multiple, and the mixed instance at $\p=13$ has order $(13^{13}+1)/2$; the general classification is posed as open. -/
-theorem p08076 : (Nat.lcm (13 : Nat) (14 : Nat) = (182 : Nat) ∧ have H := (FRC.Dirac.Spinor.circMat (13 : Nat) (FRC.Dirac.kineticRow (13 : Nat) (2 : FRC.Shell (13 : Nat)))).add (List.map (fun i => List.map (fun j => if i = j then { re := FRC.Shell.ofNat i, im := (0 : FRC.Shell (13 : Nat)) } else (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))) (List.range (13 : Nat))) (List.range (13 : Nat))); have M := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H).neg); have P := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H)); FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) M P = FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) P M ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (13 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (13 : Nat) ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (14 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (14 : Nat) ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (182 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (182 : Nat)) ∧ (FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } = true ∧ FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = true ∧ { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } * { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = (7 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat))) ∧ (FRC.Dirac.potentialNormOne (13 : Nat) (2 : FRC.Shell (13 : Nat)) = true ∧ FRC.Dirac.potentialOrder (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.potentialNormOne (173 : Nat) (2 : FRC.Shell (173 : Nat)) = true ∧ FRC.Dirac.potentialOrder (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → y.IsPrimitive (p - (1 : Nat)) ∧ ∀ (u : FRC.Shell p), u * u = (1 : FRC.Shell p) → u = (1 : FRC.Shell p) ∨ u = (-1 : FRC.Shell p) :=
-  And.intro @FRC.Dirac.Spinor.mixed_step_values (And.intro @FRC.Dirac.cayley13_values (And.intro @FRC.Dirac.potential_orders (@FRC.Dirac.sector_separation)))
-/-- p08077 — 8:F7. Finite plane waves, dispersion and the mass shell: the cycle Laplacian has the closed dispersion relation on the characters; the translations admit no characters and the kinetic sector is unipotent; the static massive Dirac equation has only the zero solution, the mass being an evolution phase. -/
+/-- p08076 — 8:E8. The three cycles in dynamical roles: the kinetic period is the register's, the potential period the third cycle's, the drive runs on the drive cycle; block compositions take the least common multiple; the mixed instance $-\Delta+M_{\mathrm{id}}$ at $\p=13$ has no eigenvalue in $K$ and closes on no cycle of the shell (E9). -/
+theorem p08076 : (Nat.lcm (13 : Nat) (14 : Nat) = (182 : Nat) ∧ have H := (FRC.Dirac.Spinor.circMat (13 : Nat) (FRC.Dirac.kineticRow (13 : Nat) (2 : FRC.Shell (13 : Nat)))).add (List.map (fun i => List.map (fun j => if i = j then { re := FRC.Shell.ofNat i, im := (0 : FRC.Shell (13 : Nat)) } else (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))) (List.range (13 : Nat))) (List.range (13 : Nat))); have M := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H).neg); have P := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H)); FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) M P = FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) P M ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (13 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (13 : Nat) ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (14 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (14 : Nat) ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (182 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (182 : Nat)) ∧ (have H := (FRC.Dirac.Spinor.circMat (13 : Nat) (FRC.Dirac.kineticRow (13 : Nat) (2 : FRC.Shell (13 : Nat)))).add (List.map (fun i => List.map (fun j => if i = j then { re := FRC.Shell.ofNat i, im := (0 : FRC.Shell (13 : Nat)) } else (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))) (List.range (13 : Nat))) (List.range (13 : Nat))); have M := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H).neg); have P := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H)); have q := [(2 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (12 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (1 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))]; List.foldl (fun acc c => (acc.mul H).add (FRC.Dirac.Mat.smul c (FRC.Dirac.Mat.ident (13 : Nat)))) (FRC.Dirac.Mat.smul (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) (FRC.Dirac.Mat.ident (13 : Nat))) q.reverse = FRC.Dirac.Mat.smul (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) (FRC.Dirac.Mat.ident (13 : Nat)) ∧ (∀ (a b : FRC.Shell (13 : Nat)), List.foldr (fun c acc => c + { re := a, im := b } * acc) (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) q ≠ (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))) ∧ FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) M P = FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) P M ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (2184 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (2184 : Nat)) ∧ (FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } = true ∧ FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = true ∧ { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } * { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = (7 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat))) ∧ (FRC.Dirac.potentialNormOne (13 : Nat) (2 : FRC.Shell (13 : Nat)) = true ∧ FRC.Dirac.potentialOrder (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.potentialNormOne (173 : Nat) (2 : FRC.Shell (173 : Nat)) = true ∧ FRC.Dirac.potentialOrder (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → y.IsPrimitive (p - (1 : Nat)) ∧ ∀ (u : FRC.Shell p), u * u = (1 : FRC.Shell p) → u = (1 : FRC.Shell p) ∨ u = (-1 : FRC.Shell p) :=
+  And.intro @FRC.Dirac.Spinor.mixed_step_values (And.intro @FRC.Dirac.Spinor.mixed_step_closure (And.intro @FRC.Dirac.cayley13_values (And.intro @FRC.Dirac.potential_orders (@FRC.Dirac.sector_separation))))
+/-- p08077 — 8:F7. Finite plane waves, dispersion and the mass shell: the cycle Laplacian has the closed dispersion relation on the characters; the translations admit no nontrivial characters and the kinetic sector is unipotent; the static massive Dirac equation has only the zero solution, the mass being an evolution phase. -/
 theorem p08077 : (∀ {p : Nat} [FRC.Pos p] {g y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ∀ (j k : Nat), g ^ ((j + (2 : Nat)) * k) + g ^ (j * k) + -((2 : FRC.Shell p) * g ^ ((j + (1 : Nat)) * k)) = (g ^ k + y ^ k + (-2 : FRC.Shell p)) * g ^ ((j + (1 : Nat)) * k)) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {p κ : Nat} [FRC.Pos p] {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Dirac.Operator.nsmul p (1 : R) ≈ (0 : R) → ∀ {t : R}, FRC.Dirac.Operator.opow t p ≈ (1 : R) → FRC.Dirac.Operator.opow (t + (-1 : R)) p ≈ (0 : R)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Dirac.Operator.opow (FRC.Dirac.Spinor.MatE.shift p + (-1 : FRC.Dirac.Spinor.MatE p ν p)) p ≈ (0 : FRC.Dirac.Spinor.MatE p ν p)) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {N m m' : R} {k : Nat}, FRC.Dirac.Operator.opow N k ≈ (0 : R) → FRC.Dirac.Operator.Central m' → m * m' ≈ (1 : R) → ∀ {ψ : R}, (N + -m) * ψ ≈ (0 : R) → ψ ≈ (0 : R)) ∧ (FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.shiftR (13 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.idR (13 : Nat) ∧ FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.shiftMinusOneR (13 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.zeroR (13 : Nat) ∧ FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.symDiffR (13 : Nat) (7 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.zeroR (13 : Nat) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.kineticR (13 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.zeroR (13 : Nat)) ∧ (FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.shiftR (173 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.idR (173 : Nat) ∧ FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.shiftMinusOneR (173 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.zeroR (173 : Nat) ∧ FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.symDiffR (173 : Nat) (87 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.zeroR (173 : Nat) ∧ (2 : FRC.Shell (173 : Nat)) * (87 : FRC.Shell (173 : Nat)) = (1 : FRC.Shell (173 : Nat)) ∧ FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.zeroR (173 : Nat)) ∧ (FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.shiftR (1549 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.idR (1549 : Nat) ∧ FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.shiftMinusOneR (1549 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.zeroR (1549 : Nat)) ∧ FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.symDiffR (1549 : Nat) (775 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.zeroR (1549 : Nat) ∧ (2 : FRC.Shell (1549 : Nat)) * (775 : FRC.Shell (1549 : Nat)) = (1 : FRC.Shell (1549 : Nat)) ∧ FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.zeroR (1549 : Nat) :=
   And.intro @FRC.Dirac.Plane.dispersion (And.intro @FRC.Dirac.Operator.translation_nilpotent (And.intro @FRC.Dirac.Spinor.MatE.translation_unipotent (And.intro @FRC.Dirac.Operator.static_unique (And.intro @FRC.Dirac.Spinor.translation_values13 (And.intro @FRC.Dirac.Spinor.translation_values173 (And.intro @FRC.Dirac.Spinor.translation_values1549 (@FRC.Dirac.Spinor.kinetic_values1549)))))))
+set_option linter.defProp false in
+/-- p08078 — 8:E9. The eigenphase law ($H$ self-adjoint): the $d$-fold Frobenius fixes an eigenphase of even degree $d$ and inverts one of odd $d$, and the Cayley map is injective: degree one on the third cycle, two in $K^\times$, higher in neither $\Fp$ nor $K$. At $\p=13$, $-\Delta+M_{(1,1,0,\dots,0)}$ has a degree-two phase of order $84$ and closes on no cycle of the shell. -/
+def p08078 := And.intro @FRC.Dirac.Operator.eigenphase_frobenius_even (And.intro @FRC.Dirac.Operator.eigenphase_frobenius_odd (And.intro @FRC.Dirac.Operator.cayley_phase_inverse (And.intro @FRC.Dirac.eigenphase_values (And.intro @FRC.Dirac.pow_succ_mod_four (@FRC.Dirac.Spinor.eigenphase_closure_values)))))
+set_option linter.defProp false in
+/-- p08079 — 8:D20. The square bound and the index in $0{+}1$: either Dirac difference operator has $\mathcal D^{2\p}=0$ in any number of coordinate directions; in one direction $(T-T^{-1})^{\p-1}=\sum_{k<\p}T^{k}\neq0$ and $(T-T^{-1})^{\p}=0$, likewise for $T-1$, so the index is $\p$ and the unipotent exponent of the Cayley step of $\mathcal D^{s}-m$ is $1$ in $0{+}1$. -/
+def p08079 := And.intro @FRC.Dirac.Operator.dirac_square (And.intro @FRC.Dirac.Operator.dirac_square_nilpotent (And.intro @FRC.Dirac.Operator.symdiff_pred_eq_geom (And.intro @FRC.Dirac.Spinor.MatE.symdiff_index (And.intro @FRC.Dirac.Spinor.MatE.fwddiff_index (@FRC.Dirac.Spinor.dirac_square_values)))))
+set_option linter.defProp false in
+/-- p08080 — 8:D21. The twist is unique up to sign, on every shell: every $X'\in M_4(K)$ with $(\gamma^\mu)^\dagger X'=-X'\gamma^\mu$ for $\mu=0,1,2,3$ is a scalar multiple of $X=\gamma^0\gamma^1\gamma^3$, and $X'^2=\nu I_4$ leaves $X'=\pm X$. -/
+def p08080 := And.intro @FRC.Dirac.Spinor.MatE.twist_unique (And.intro @FRC.Dirac.Spinor.MatE.gE_eq_gamma (And.intro @FRC.Dirac.Spinor.MatE.gE_prod (And.intro @FRC.Dirac.Spinor.MatE.twist_unique_sign (@FRC.Dirac.spinor_twist_unique_values))))
 -- end keys
 
 end FRC.Ledger
@@ -41984,6 +45380,9 @@ theorem norm_growth_parity : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (c : 
 /-- 8:B7 (p08013) — Signature lives on $\Fp$: the Euclidean form is hyperbolic and $Q_\nu$ elliptic, with the zero counts of the two classes on every symmetry-complete shell below $60$; over $K$ every element of $\Fp$ is a square and the dichotomy collapses. -/
 theorem signature_on_shell : FRC.Dirac.euclidZeros (13 : Nat) = (2353 : Nat) ∧ FRC.Dirac.lorentzZeros (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (2041 : Nat) :=
   @FRC.Ledger.p08013
+/-- 8:B8 (p08014) — One-way and two-way transport: comparison readings are even drive steps, the one-way single-chronon multiplier odd, and light-like transport along one axis carries no registered velocity, only its square class (00:C8); the $3{+}1$ form's null vectors are not read. Falsifier: a registered one-way velocity, or a two-way constant that changes under the synchronisation gauge. -/
+theorem one_way_two_way_transport : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (m : Nat), (∃ y, y * y = g ^ m) ↔ m % (2 : Nat) = (0 : Nat)) ∧ (¬∃ y, y * y = g) ∧ (∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ¬∃ r, r * r = y) ∧ ∀ {t x : FRC.Shell p}, x * x = g * (t * t) → t = (0 : FRC.Shell p) ∧ x = (0 : FRC.Shell p) :=
+  @FRC.Ledger.p08014
 /-- 8:C2 (p08016) — The form is Hermitian and nondegenerate. -/
 theorem form_hermitian_nondegenerate : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (ψ φ : FRC.Dirac.Hermitian.Fld p ν), FRC.Extension.Ext.conj (FRC.Dirac.Hermitian.herm ψ φ) = FRC.Dirac.Hermitian.herm φ ψ) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (ψ : FRC.Dirac.Hermitian.Fld p ν), (∀ (φ : FRC.Dirac.Hermitian.Fld p ν), FRC.Dirac.Hermitian.herm ψ φ = (0 : FRC.Dirac.Ext p ν)) → ∀ (x : Nat), x < p → ψ x = (0 : FRC.Dirac.Ext p ν) :=
   @FRC.Ledger.p08016
@@ -42047,6 +45446,9 @@ theorem two_dirac_operators_one_family : (FRC.Dirac.spinLift (5 : FRC.Shell (13 
 /-- 8:D12 (p08051) — The worked shell $\F_{13}$ with the drive $2$: the boost at $x=y=1$ with $A=10$, $B=2$, the transported gamma matrices, the order $14$ of the boost cycle and no triality element; the named residues $2$, $2^{-1}$, $\im$, $e$, $\pi$ are nonsquares. -/
 theorem worked_shell_drive : (FRC.Dirac.spinConj (2 : FRC.Shell (13 : Nat)) (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (12 : FRC.Shell (13 : Nat)) (10 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) = true ∧ FRC.Dirac.spinConj (2 : FRC.Shell (173 : Nat)) (93 : FRC.Shell (173 : Nat)) (1 : FRC.Shell (173 : Nat)) (1 : FRC.Shell (173 : Nat)) (172 : FRC.Shell (173 : Nat)) (170 : FRC.Shell (173 : Nat)) (2 : FRC.Shell (173 : Nat)) = true ∧ FRC.Dirac.spinConj (2 : FRC.Shell (1549 : Nat)) (1461 : FRC.Shell (1549 : Nat)) (1 : FRC.Shell (1549 : Nat)) (1 : FRC.Shell (1549 : Nat)) (1548 : FRC.Shell (1549 : Nat)) (1546 : FRC.Shell (1549 : Nat)) (2 : FRC.Shell (1549 : Nat)) = true) ∧ (FRC.Dirac.normOneCount (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.normOneCount (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat) ∧ FRC.Dirac.unitCircleCount (13 : Nat) = (12 : Nat) ∧ FRC.Dirac.unitCircleCount (173 : Nat) = (172 : Nat)) ∧ (((2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) ∧ ∀ (r : FRC.Shell (13 : Nat)), r * r ≠ (2 : FRC.Shell (13 : Nat)) ∧ r * r ≠ (7 : FRC.Shell (13 : Nat)) ∧ r * r ≠ (5 : FRC.Shell (13 : Nat)) ∧ r * r ≠ (6 : FRC.Shell (13 : Nat))) ∧ ((2 : FRC.Shell (173 : Nat)) * (87 : FRC.Shell (173 : Nat)) = (1 : FRC.Shell (173 : Nat)) ∧ (93 : FRC.Shell (173 : Nat)) * (93 : FRC.Shell (173 : Nat)) = (-1 : FRC.Shell (173 : Nat)) ∧ (2 : FRC.Shell (173 : Nat)) ^ (93 : Nat) = (45 : FRC.Shell (173 : Nat)) ∧ (86 : FRC.Shell (173 : Nat)) = (2 : FRC.Shell (173 : Nat)) * (43 : FRC.Shell (173 : Nat)) ∧ ∀ (r : FRC.Shell (173 : Nat)), r * r ≠ (2 : FRC.Shell (173 : Nat)) ∧ r * r ≠ (87 : FRC.Shell (173 : Nat)) ∧ r * r ≠ (93 : FRC.Shell (173 : Nat)) ∧ r * r ≠ (45 : FRC.Shell (173 : Nat)) ∧ r * r ≠ (86 : FRC.Shell (173 : Nat))) ∧ (-1 : FRC.Shell (13 : Nat)) * (10 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) + (2 : FRC.Shell (13 : Nat)) ∧ (-1 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat)) = (-2 : FRC.Shell (13 : Nat)) ∧ (-1 : FRC.Shell (173 : Nat)) * (170 : FRC.Shell (173 : Nat)) = (1 : FRC.Shell (173 : Nat)) + (2 : FRC.Shell (173 : Nat)) ∧ (-1 : FRC.Shell (173 : Nat)) * (2 : FRC.Shell (173 : Nat)) = (-2 : FRC.Shell (173 : Nat))) ∧ FRC.Dirac.hasOrderThree (173 : Nat) (2 : FRC.Shell (173 : Nat)) = true ∧ FRC.Dirac.hasOrderThree (13 : Nat) (2 : FRC.Shell (13 : Nat)) = false :=
   @FRC.Ledger.p08051
+/-- 8:D13 (p08033) — Mass is winding rate, the Dirac form (00:D2): the Dirac equation balances the meridional development of the spinor field against the mass, with only the zero solution for $m\neq0$; the Cayley step of $\mathcal D^{s}-m$, in a step count not identified with $x_0$, advances a translation-invariant spinor by the mass phase once per chronon; $E=hf$ an identity. -/
+theorem mass_is_winding_rate : (∀ {p : Nat} [FRC.Pos p] {g y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ∀ (j k : Nat), y ^ k * g ^ ((j + (1 : Nat)) * k) = g ^ (j * k)) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {n : Nat} {del γ η : Nat → R} {m : R}, (∀ (μ ν : Nat), μ < n → ν < n → FRC.Dirac.Operator.Comm (del μ) (del ν)) → (∀ (μ ν : Nat), μ < n → ν < n → FRC.Dirac.Operator.Comm (del μ) (γ ν)) → (∀ (μ ν : Nat), μ < n → ν < n → μ ≠ ν → FRC.Dirac.Operator.Anticomm (γ μ) (γ ν)) → (∀ (μ : Nat), μ < n → γ μ * γ μ ≈ η μ) → (∀ (μ : Nat), μ < n → FRC.Dirac.Operator.Central (η μ)) → FRC.Dirac.Operator.Central m → (FRC.Dirac.Operator.osum (fun μ => del μ * γ μ) n + -m) * (FRC.Dirac.Operator.osum (fun μ => del μ * γ μ) n + m) ≈ FRC.Dirac.Operator.osum (fun μ => η μ * (del μ * del μ)) n + -(m * m)) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {α m a' N : R} {k : Nat}, FRC.Dirac.Operator.Central α → FRC.Dirac.Operator.Central m → FRC.Dirac.Operator.Central a' → FRC.Dirac.Operator.Inverse ((1 : R) + α * m) a' → FRC.Dirac.Operator.opow N (k + (1 : Nat)) ≈ (0 : R) → FRC.Dirac.Operator.Inverse ((1 : R) + -(α * (N + -m))) (FRC.Dirac.Operator.geom (a' * (α * N)) (k + (1 : Nat)) * a') ∧ ∃ c, FRC.Dirac.Operator.Comm N c ∧ FRC.Dirac.Operator.geom (a' * (α * N)) (k + (1 : Nat)) * a' * ((1 : R) + α * (N + -m)) + -(((1 : R) + -(α * m)) * a') ≈ N * c) ∧ have D := FRC.Dirac.Spinor.kron (FRC.Dirac.Spinor.circMat (13 : Nat) (FRC.Dirac.Spinor.symDiffRow (13 : Nat) (7 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))))) (FRC.Dirac.gamma0 (5 : FRC.Shell (13 : Nat))); have psi := List.map (fun r => [if r % (4 : Nat) = (0 : Nat) then (1 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) else (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))]) (List.range (52 : Nat)); have M := fun m => (FRC.Dirac.Mat.ident (52 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } (D.add (FRC.Dirac.Mat.smul m (FRC.Dirac.Mat.ident (52 : Nat))).neg)).neg; have P := fun m => (FRC.Dirac.Mat.ident (52 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } (D.add (FRC.Dirac.Mat.smul m (FRC.Dirac.Mat.ident (52 : Nat))).neg)); (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ D.mul psi = List.map (fun x => [(0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))]) (List.range (52 : Nat)) ∧ (P (1 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))).mul psi = FRC.Dirac.Mat.smul (FRC.Dirac.phi (2 : FRC.Shell (13 : Nat)) (12 : FRC.Shell (13 : Nat))) ((M (1 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))).mul psi) ∧ FRC.Dirac.phi (2 : FRC.Shell (13 : Nat)) (12 : FRC.Shell (13 : Nat)) = { re := (10 : FRC.Shell (13 : Nat)), im := (2 : FRC.Shell (13 : Nat)) } ∧ (P (2 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))).mul psi = FRC.Dirac.Mat.smul (FRC.Dirac.phi (2 : FRC.Shell (13 : Nat)) (11 : FRC.Shell (13 : Nat))) ((M (2 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))).mul psi) ∧ FRC.Dirac.phi (2 : FRC.Shell (13 : Nat)) (11 : FRC.Shell (13 : Nat)) = { re := (8 : FRC.Shell (13 : Nat)), im := (8 : FRC.Shell (13 : Nat)) } :=
+  @FRC.Ledger.p08033
 /-- 8:D14 (p08067) — The boost is orthogonal: $\Lambda(x,y)$ preserves the coordinate form, by $A^2-\nu B^2=1$. -/
 theorem boost_orthogonal : (∀ {p : Nat} [FRC.Pos p] (ν x y u : FRC.Shell p), (x * x + -(ν * (y * y))) * u = (1 : FRC.Shell p) → (FRC.Dirac.Plane.boostOf ν x y u).re * (FRC.Dirac.Plane.boostOf ν x y u).re + -(ν * ((FRC.Dirac.Plane.boostOf ν x y u).im * (FRC.Dirac.Plane.boostOf ν x y u).im)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] (ν x y u : FRC.Shell p), (x * x + -(ν * (y * y))) * u = (1 : FRC.Shell p) → ∀ (t s : FRC.Shell p), FRC.Shell.Frame.Q2 ν (FRC.Shell.Frame.boostT ν (FRC.Dirac.Plane.boostOf ν x y u).re (FRC.Dirac.Plane.boostOf ν x y u).im t s) (FRC.Shell.Frame.boostX ν (FRC.Dirac.Plane.boostOf ν x y u).re (FRC.Dirac.Plane.boostOf ν x y u).im t s) = FRC.Shell.Frame.Q2 ν t s) ∧ ∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → ∀ (t x : FRC.Shell p), FRC.Shell.Frame.Q2 ν (FRC.Shell.Frame.boostT ν γ b t x) (FRC.Shell.Frame.boostX ν γ b t x) = FRC.Shell.Frame.Q2 ν t x :=
   @FRC.Ledger.p08067
@@ -42065,6 +45467,12 @@ theorem transported_factorization : (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfN
 /-- 8:D19 (p08072) — The worked shell $\F_{173}$, the second laboratory Subject, with the drive $2$ and $\im=93$: the boost at $x=y=1$ with $A=170$, $B=2$, the transported gamma matrices, the order $174$ of the boost cycle and its triality element; the named residues are nonsquares. -/
 theorem worked_shell_second_subject : (((2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) ∧ ∀ (r : FRC.Shell (13 : Nat)), r * r ≠ (2 : FRC.Shell (13 : Nat)) ∧ r * r ≠ (7 : FRC.Shell (13 : Nat)) ∧ r * r ≠ (5 : FRC.Shell (13 : Nat)) ∧ r * r ≠ (6 : FRC.Shell (13 : Nat))) ∧ ((2 : FRC.Shell (173 : Nat)) * (87 : FRC.Shell (173 : Nat)) = (1 : FRC.Shell (173 : Nat)) ∧ (93 : FRC.Shell (173 : Nat)) * (93 : FRC.Shell (173 : Nat)) = (-1 : FRC.Shell (173 : Nat)) ∧ (2 : FRC.Shell (173 : Nat)) ^ (93 : Nat) = (45 : FRC.Shell (173 : Nat)) ∧ (86 : FRC.Shell (173 : Nat)) = (2 : FRC.Shell (173 : Nat)) * (43 : FRC.Shell (173 : Nat)) ∧ ∀ (r : FRC.Shell (173 : Nat)), r * r ≠ (2 : FRC.Shell (173 : Nat)) ∧ r * r ≠ (87 : FRC.Shell (173 : Nat)) ∧ r * r ≠ (93 : FRC.Shell (173 : Nat)) ∧ r * r ≠ (45 : FRC.Shell (173 : Nat)) ∧ r * r ≠ (86 : FRC.Shell (173 : Nat))) ∧ (-1 : FRC.Shell (13 : Nat)) * (10 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) + (2 : FRC.Shell (13 : Nat)) ∧ (-1 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat)) = (-2 : FRC.Shell (13 : Nat)) ∧ (-1 : FRC.Shell (173 : Nat)) * (170 : FRC.Shell (173 : Nat)) = (1 : FRC.Shell (173 : Nat)) + (2 : FRC.Shell (173 : Nat)) ∧ (-1 : FRC.Shell (173 : Nat)) * (2 : FRC.Shell (173 : Nat)) = (-2 : FRC.Shell (173 : Nat))) ∧ (FRC.Dirac.normOneCount (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.normOneCount (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat) ∧ FRC.Dirac.unitCircleCount (13 : Nat) = (12 : Nat) ∧ FRC.Dirac.unitCircleCount (173 : Nat) = (172 : Nat)) ∧ FRC.Dirac.hasOrderThree (173 : Nat) (2 : FRC.Shell (173 : Nat)) = true ∧ FRC.Dirac.hasOrderThree (13 : Nat) (2 : FRC.Shell (13 : Nat)) = false :=
   @FRC.Ledger.p08072
+set_option linter.defProp false in
+/-- 8:D20 (p08079) — The square bound and the index in $0{+}1$: either Dirac difference operator has $\mathcal D^{2\p}=0$ in any number of coordinate directions; in one direction $(T-T^{-1})^{\p-1}=\sum_{k<\p}T^{k}\neq0$ and $(T-T^{-1})^{\p}=0$, likewise for $T-1$, so the index is $\p$ and the unipotent exponent of the Cayley step of $\mathcal D^{s}-m$ is $1$ in $0{+}1$. -/
+def square_bound := @FRC.Ledger.p08079
+set_option linter.defProp false in
+/-- 8:D21 (p08080) — The twist is unique up to sign, on every shell: every $X'\in M_4(K)$ with $(\gamma^\mu)^\dagger X'=-X'\gamma^\mu$ for $\mu=0,1,2,3$ is a scalar multiple of $X=\gamma^0\gamma^1\gamma^3$, and $X'^2=\nu I_4$ leaves $X'=\pm X$. -/
+def twist_unique_up_to_sign := @FRC.Ledger.p08080
 /-- 8:E2 (p08035) — A self-map of a finite set is bijective iff its image count is the whole count iff its loss factor is one. -/
 theorem self_map_bijective_iff : ∀ (f : Nat → Nat) (n : Nat), FRC.Dirac.Loss.imageCount f n = n ↔ (∀ (i j : Nat), i < n → j < n → f i = f j → i = j) ∧ ∀ (v : Nat), v < n → ∃ i, i < n ∧ f i = v :=
   @FRC.Ledger.p08035
@@ -42083,9 +45491,12 @@ theorem boost_transports_loss_one : (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfN
 /-- 8:E7 (p08075) — Kinetic Hamiltonians are fully admissible: a nilpotent Hamiltonian, the kinetic Hamiltonian and the symmetric Dirac operator among them, has every trace-zero parameter admissible, on every shell. -/
 theorem kinetic_hamiltonians_admissible : (FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } = true ∧ FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = true ∧ { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } * { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = (7 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat))) ∧ (FRC.Dirac.Spinor.cpow (173 : Nat) (2 : Nat) (173 : Nat) (FRC.Dirac.Spinor.wsmul (173 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat))) (173 : Nat) = (FRC.Dirac.Spinor.zeroR (173 : Nat), FRC.Dirac.Spinor.zeroR (173 : Nat)) ∧ FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat)) ≠ FRC.Dirac.Spinor.idN (173 : Nat) ∧ FRC.Dirac.Spinor.cpow (173 : Nat) (2 : Nat) (173 : Nat) (FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat))) (173 : Nat) = FRC.Dirac.Spinor.idN (173 : Nat) ∧ FRC.Dirac.Spinor.cmul (173 : Nat) (2 : Nat) (173 : Nat) (FRC.Dirac.Spinor.daggerN (173 : Nat) (FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat)))) (FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat))) = FRC.Dirac.Spinor.idN (173 : Nat) ∧ FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (87 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat)) ≠ FRC.Dirac.Spinor.idN (173 : Nat) ∧ FRC.Dirac.Spinor.cpow (173 : Nat) (2 : Nat) (173 : Nat) (FRC.Dirac.Spinor.cayleyN (173 : Nat) (2 : Nat) (87 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat))) (173 : Nat) = FRC.Dirac.Spinor.idN (173 : Nat) ∧ { re := (0 : FRC.Shell (173 : Nat)), im := (87 : FRC.Shell (173 : Nat)) } * { re := (0 : FRC.Shell (173 : Nat)), im := (87 : FRC.Shell (173 : Nat)) } = (87 : FRC.Extension.Ext (173 : Nat) (2 : FRC.Shell (173 : Nat))) ∧ (2 : FRC.Shell (173 : Nat)) * (87 : FRC.Shell (173 : Nat)) = (1 : FRC.Shell (173 : Nat))) ∧ (FRC.Dirac.Spinor.cpow (1549 : Nat) (2 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.wsmul (1549 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat))) (1549 : Nat) = (FRC.Dirac.Spinor.zeroR (1549 : Nat), FRC.Dirac.Spinor.zeroR (1549 : Nat)) ∧ { re := (0 : FRC.Shell (1549 : Nat)), im := (775 : FRC.Shell (1549 : Nat)) } * { re := (0 : FRC.Shell (1549 : Nat)), im := (775 : FRC.Shell (1549 : Nat)) } = (775 : FRC.Extension.Ext (1549 : Nat) (2 : FRC.Shell (1549 : Nat))) ∧ (2 : FRC.Shell (1549 : Nat)) * (775 : FRC.Shell (1549 : Nat)) = (1 : FRC.Shell (1549 : Nat))) ∧ (FRC.Dirac.Spinor.cayleyN (1549 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat)) ≠ FRC.Dirac.Spinor.idN (1549 : Nat) ∧ FRC.Dirac.Spinor.cpow (1549 : Nat) (2 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.cayleyN (1549 : Nat) (2 : Nat) (1 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat))) (1549 : Nat) = FRC.Dirac.Spinor.idN (1549 : Nat)) ∧ FRC.Dirac.Spinor.cayleyN (1549 : Nat) (2 : Nat) (775 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat)) ≠ FRC.Dirac.Spinor.idN (1549 : Nat) ∧ FRC.Dirac.Spinor.cpow (1549 : Nat) (2 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.cayleyN (1549 : Nat) (2 : Nat) (775 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat))) (1549 : Nat) = FRC.Dirac.Spinor.idN (1549 : Nat) :=
   @FRC.Ledger.p08075
-/-- 8:E8 (p08076) — The three cycles in dynamical roles: the kinetic period is the register's, the potential period the third cycle's, the drive runs on the drive cycle; block compositions take the least common multiple, and the mixed instance at $\p=13$ has order $(13^{13}+1)/2$; the general classification is posed as open. -/
-theorem three_cycles_dynamical_roles : (Nat.lcm (13 : Nat) (14 : Nat) = (182 : Nat) ∧ have H := (FRC.Dirac.Spinor.circMat (13 : Nat) (FRC.Dirac.kineticRow (13 : Nat) (2 : FRC.Shell (13 : Nat)))).add (List.map (fun i => List.map (fun j => if i = j then { re := FRC.Shell.ofNat i, im := (0 : FRC.Shell (13 : Nat)) } else (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))) (List.range (13 : Nat))) (List.range (13 : Nat))); have M := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H).neg); have P := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H)); FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) M P = FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) P M ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (13 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (13 : Nat) ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (14 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (14 : Nat) ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (182 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (182 : Nat)) ∧ (FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } = true ∧ FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = true ∧ { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } * { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = (7 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat))) ∧ (FRC.Dirac.potentialNormOne (13 : Nat) (2 : FRC.Shell (13 : Nat)) = true ∧ FRC.Dirac.potentialOrder (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.potentialNormOne (173 : Nat) (2 : FRC.Shell (173 : Nat)) = true ∧ FRC.Dirac.potentialOrder (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → y.IsPrimitive (p - (1 : Nat)) ∧ ∀ (u : FRC.Shell p), u * u = (1 : FRC.Shell p) → u = (1 : FRC.Shell p) ∨ u = (-1 : FRC.Shell p) :=
+/-- 8:E8 (p08076) — The three cycles in dynamical roles: the kinetic period is the register's, the potential period the third cycle's, the drive runs on the drive cycle; block compositions take the least common multiple; the mixed instance $-\Delta+M_{\mathrm{id}}$ at $\p=13$ has no eigenvalue in $K$ and closes on no cycle of the shell (E9). -/
+theorem three_cycles_dynamical_roles : (Nat.lcm (13 : Nat) (14 : Nat) = (182 : Nat) ∧ have H := (FRC.Dirac.Spinor.circMat (13 : Nat) (FRC.Dirac.kineticRow (13 : Nat) (2 : FRC.Shell (13 : Nat)))).add (List.map (fun i => List.map (fun j => if i = j then { re := FRC.Shell.ofNat i, im := (0 : FRC.Shell (13 : Nat)) } else (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))) (List.range (13 : Nat))) (List.range (13 : Nat))); have M := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H).neg); have P := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H)); FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) M P = FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) P M ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (13 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (13 : Nat) ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (14 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (14 : Nat) ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (182 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (182 : Nat)) ∧ (have H := (FRC.Dirac.Spinor.circMat (13 : Nat) (FRC.Dirac.kineticRow (13 : Nat) (2 : FRC.Shell (13 : Nat)))).add (List.map (fun i => List.map (fun j => if i = j then { re := FRC.Shell.ofNat i, im := (0 : FRC.Shell (13 : Nat)) } else (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))) (List.range (13 : Nat))) (List.range (13 : Nat))); have M := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H).neg); have P := FRC.Dirac.Spinor.toN ((FRC.Dirac.Mat.ident (13 : Nat)).add (FRC.Dirac.Mat.smul { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } H)); have q := [(2 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (12 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))), (1 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))]; List.foldl (fun acc c => (acc.mul H).add (FRC.Dirac.Mat.smul c (FRC.Dirac.Mat.ident (13 : Nat)))) (FRC.Dirac.Mat.smul (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) (FRC.Dirac.Mat.ident (13 : Nat))) q.reverse = FRC.Dirac.Mat.smul (0 : FRC.Dirac.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) (FRC.Dirac.Mat.ident (13 : Nat)) ∧ (∀ (a b : FRC.Shell (13 : Nat)), List.foldr (fun c acc => c + { re := a, im := b } * acc) (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) q ≠ (0 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat)))) ∧ FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) M P = FRC.Dirac.Spinor.mmulN (13 : Nat) (2 : Nat) (13 : Nat) P M ∧ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) P (2184 : Nat) ≠ FRC.Dirac.Spinor.mpowN (13 : Nat) (2 : Nat) (13 : Nat) M (2184 : Nat)) ∧ (FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (1 : FRC.Shell (13 : Nat)) } = true ∧ FRC.Dirac.cayley13 { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = true ∧ { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } * { re := (0 : FRC.Shell (13 : Nat)), im := (6 : FRC.Shell (13 : Nat)) } = (7 : FRC.Extension.Ext (13 : Nat) (2 : FRC.Shell (13 : Nat))) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat))) ∧ (FRC.Dirac.potentialNormOne (13 : Nat) (2 : FRC.Shell (13 : Nat)) = true ∧ FRC.Dirac.potentialOrder (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.potentialNormOne (173 : Nat) (2 : FRC.Shell (173 : Nat)) = true ∧ FRC.Dirac.potentialOrder (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → y.IsPrimitive (p - (1 : Nat)) ∧ ∀ (u : FRC.Shell p), u * u = (1 : FRC.Shell p) → u = (1 : FRC.Shell p) ∨ u = (-1 : FRC.Shell p) :=
   @FRC.Ledger.p08076
+set_option linter.defProp false in
+/-- 8:E9 (p08078) — The eigenphase law ($H$ self-adjoint): the $d$-fold Frobenius fixes an eigenphase of even degree $d$ and inverts one of odd $d$, and the Cayley map is injective: degree one on the third cycle, two in $K^\times$, higher in neither $\Fp$ nor $K$. At $\p=13$, $-\Delta+M_{(1,1,0,\dots,0)}$ has a degree-two phase of order $84$ and closes on no cycle of the shell. -/
+def eigenphase_law := @FRC.Ledger.p08078
 /-- 8:F2 (p08052) — The latitude identities: the energy index $\kap+1$ is the first rung past the midpoint of the ladder; the shift by $\kap$ is multiplication by $g^{\kap}$ on the meridians and carries the first latitude to the energy latitude; $\kap=-4^{-1}$, so the energy radius is $3\cdot4^{-1}$ and $\pi=2\kap=-2^{-1}$; the unit-norm circle has $\p-1$ points. On $\F_{13}$ and $\F_{173}$. -/
 theorem latitude_identities_ladder : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → κ + (1 : Nat) ≤ (2 : Nat) * κ) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {q : FRC.Shell p}, (4 : FRC.Shell p) * q = (1 : FRC.Shell p) → (4 : FRC.Shell p) * FRC.Shell.ofNat κ = (-1 : FRC.Shell p) ∧ FRC.Shell.ofNat κ = -q ∧ (1 : FRC.Shell p) + FRC.Shell.ofNat κ = (3 : FRC.Shell p) * q) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {h : FRC.Shell p}, (2 : FRC.Shell p) * h = (1 : FRC.Shell p) → FRC.Shell.ofNat ((2 : Nat) * κ) = -h) ∧ FRC.Dirac.normOneCount (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.normOneCount (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat) ∧ FRC.Dirac.unitCircleCount (13 : Nat) = (12 : Nat) ∧ FRC.Dirac.unitCircleCount (173 : Nat) = (172 : Nat) :=
   @FRC.Ledger.p08052
@@ -42095,10 +45506,10 @@ theorem free_evolution_drive : (∀ {p : Nat} [FRC.Pos p] {g y : FRC.Shell p}, g
 /-- 8:F4 (p08041) — Two evolution sectors, one space: the drive's split-phase sector and the Cayley propagators' norm-one sector meet in $\{\pm1\}$ alone; the cycle Laplacian is self-adjoint, its Cayley steps commute with the drive, and the composite is unitary. -/
 theorem two_evolution_sectors_one_space : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → y.IsPrimitive (p - (1 : Nat)) ∧ ∀ (u : FRC.Shell p), u * u = (1 : FRC.Shell p) → u = (1 : FRC.Shell p) ∨ u = (-1 : FRC.Shell p) :=
   @FRC.Ledger.p08041
-/-- 8:F6 (p08048) — The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\varphi(-m)$ on the third cycle and the mass phases fill it once; the spectra meet in $\{\pm1\}$; the Hamiltonian form has the two eigenvalues $\varphi(\pm\im\nu m)$, a conjugate pair. Decided at $\p=13$ and $173$. -/
+/-- 8:F6 (p08048) — The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\varphi(-m)$ on the third cycle, the mass phases filling it once; the two cycles meet in $\{\pm1\}$; the $X$-self-adjoint $H_D$, its mass term anti-fixed, has the Cayley eigenvalues $\varphi(\pm\im\nu m)$, a conjugate pair. At $\p=13$ and $173$. -/
 theorem two_spectra : (∀ {p : Nat} [FRC.Pos p] {g y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ∀ (j k : Nat), y ^ k * g ^ ((j + (1 : Nat)) * k) = g ^ (j * k)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → y.IsPrimitive (p - (1 : Nat)) ∧ ∀ (u : FRC.Shell p), u * u = (1 : FRC.Shell p) → u = (1 : FRC.Shell p) ∨ u = (-1 : FRC.Shell p)) ∧ FRC.Dirac.normOneCount (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (14 : Nat) ∧ FRC.Dirac.normOneCount (173 : Nat) (2 : FRC.Shell (173 : Nat)) = (174 : Nat) ∧ FRC.Dirac.unitCircleCount (13 : Nat) = (12 : Nat) ∧ FRC.Dirac.unitCircleCount (173 : Nat) = (172 : Nat) :=
   @FRC.Ledger.p08048
-/-- 8:F7 (p08077) — Finite plane waves, dispersion and the mass shell: the cycle Laplacian has the closed dispersion relation on the characters; the translations admit no characters and the kinetic sector is unipotent; the static massive Dirac equation has only the zero solution, the mass being an evolution phase. -/
+/-- 8:F7 (p08077) — Finite plane waves, dispersion and the mass shell: the cycle Laplacian has the closed dispersion relation on the characters; the translations admit no nontrivial characters and the kinetic sector is unipotent; the static massive Dirac equation has only the zero solution, the mass being an evolution phase. -/
 theorem finite_plane_waves_dispersion : (∀ {p : Nat} [FRC.Pos p] {g y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ∀ (j k : Nat), g ^ ((j + (2 : Nat)) * k) + g ^ (j * k) + -((2 : FRC.Shell p) * g ^ ((j + (1 : Nat)) * k)) = (g ^ k + y ^ k + (-2 : FRC.Shell p)) * g ^ ((j + (1 : Nat)) * k)) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {p κ : Nat} [FRC.Pos p] {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Dirac.Operator.nsmul p (1 : R) ≈ (0 : R) → ∀ {t : R}, FRC.Dirac.Operator.opow t p ≈ (1 : R) → FRC.Dirac.Operator.opow (t + (-1 : R)) p ≈ (0 : R)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Dirac.Operator.opow (FRC.Dirac.Spinor.MatE.shift p + (-1 : FRC.Dirac.Spinor.MatE p ν p)) p ≈ (0 : FRC.Dirac.Spinor.MatE p ν p)) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {N m m' : R} {k : Nat}, FRC.Dirac.Operator.opow N k ≈ (0 : R) → FRC.Dirac.Operator.Central m' → m * m' ≈ (1 : R) → ∀ {ψ : R}, (N + -m) * ψ ≈ (0 : R) → ψ ≈ (0 : R)) ∧ (FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.shiftR (13 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.idR (13 : Nat) ∧ FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.shiftMinusOneR (13 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.zeroR (13 : Nat) ∧ FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.symDiffR (13 : Nat) (7 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.zeroR (13 : Nat) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.kineticR (13 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.zeroR (13 : Nat)) ∧ (FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.shiftR (173 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.idR (173 : Nat) ∧ FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.shiftMinusOneR (173 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.zeroR (173 : Nat) ∧ FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.symDiffR (173 : Nat) (87 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.zeroR (173 : Nat) ∧ (2 : FRC.Shell (173 : Nat)) * (87 : FRC.Shell (173 : Nat)) = (1 : FRC.Shell (173 : Nat)) ∧ FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.zeroR (173 : Nat)) ∧ (FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.shiftR (1549 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.idR (1549 : Nat) ∧ FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.shiftMinusOneR (1549 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.zeroR (1549 : Nat)) ∧ FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.symDiffR (1549 : Nat) (775 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.zeroR (1549 : Nat) ∧ (2 : FRC.Shell (1549 : Nat)) * (775 : FRC.Shell (1549 : Nat)) = (1 : FRC.Shell (1549 : Nat)) ∧ FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.zeroR (1549 : Nat) :=
   @FRC.Ledger.p08077
 /-- 8:X1 (p08053) — Two cycles for one unit circle: the continuum's single phase group appears on the shell as the drive cycle, carrying the free evolution, and the norm-one cycle, carrying the Cayley phases and the boosts, and the two meet in $\{\pm1\}$. -/
@@ -42110,7 +45521,7 @@ theorem one_way_speed_gauge : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.She
 /-- 8:X3 (p08055) — Mass is an evolution phase, not a kernel condition: the symmetric Dirac operator is nilpotent, the static massive equation has only the zero solution, and the mass enters as the norm-one factor of the Cayley step. -/
 theorem mass_is_evolution_phase : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {h : FRC.Dirac.Spinor.MatE p ν p}, FRC.Dirac.Operator.Central h → FRC.Dirac.Operator.opow (h * (FRC.Dirac.Spinor.MatE.shift p + -FRC.Dirac.Operator.opow (FRC.Dirac.Spinor.MatE.shift p) (p - (1 : Nat)))) p ≈ (0 : FRC.Dirac.Spinor.MatE p ν p)) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {N m m' : R} {k : Nat}, FRC.Dirac.Operator.opow N k ≈ (0 : R) → FRC.Dirac.Operator.Central m' → m * m' ≈ (1 : R) → ∀ {ψ : R}, (N + -m) * ψ ≈ (0 : R) → ψ ≈ (0 : R)) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {σ : R → R}, FRC.Dirac.Operator.Adjoint σ → ∀ {h a v : R}, σ h ≈ h → σ a ≈ -a → FRC.Dirac.Operator.Central a → FRC.Dirac.Operator.Inverse ((1 : R) + -(a * h)) v → σ (v * ((1 : R) + a * h)) * (v * ((1 : R) + a * h)) ≈ (1 : R)) ∧ (FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.shiftR (13 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.idR (13 : Nat) ∧ FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.shiftMinusOneR (13 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.zeroR (13 : Nat) ∧ FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.symDiffR (13 : Nat) (7 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.zeroR (13 : Nat) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ FRC.Dirac.Spinor.rpow (13 : Nat) (13 : Nat) (FRC.Dirac.Spinor.kineticR (13 : Nat)) (13 : Nat) = FRC.Dirac.Spinor.zeroR (13 : Nat)) ∧ (FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.shiftR (173 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.idR (173 : Nat) ∧ FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.shiftMinusOneR (173 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.zeroR (173 : Nat) ∧ FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.symDiffR (173 : Nat) (87 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.zeroR (173 : Nat) ∧ (2 : FRC.Shell (173 : Nat)) * (87 : FRC.Shell (173 : Nat)) = (1 : FRC.Shell (173 : Nat)) ∧ FRC.Dirac.Spinor.rpow (173 : Nat) (173 : Nat) (FRC.Dirac.Spinor.kineticR (173 : Nat)) (173 : Nat) = FRC.Dirac.Spinor.zeroR (173 : Nat)) ∧ (FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.shiftR (1549 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.idR (1549 : Nat) ∧ FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.shiftMinusOneR (1549 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.zeroR (1549 : Nat)) ∧ FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.symDiffR (1549 : Nat) (775 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.zeroR (1549 : Nat) ∧ (2 : FRC.Shell (1549 : Nat)) * (775 : FRC.Shell (1549 : Nat)) = (1 : FRC.Shell (1549 : Nat)) ∧ FRC.Dirac.Spinor.rpow (1549 : Nat) (1549 : Nat) (FRC.Dirac.Spinor.kineticR (1549 : Nat)) (1549 : Nat) = FRC.Dirac.Spinor.zeroR (1549 : Nat) :=
   @FRC.Ledger.p08055
-/-- 8:X4 (p08056) — The spinor form is forced: the continuum's $\gamma^0$-twist fails because Frobenius fixes the internal quarter-turn, and the arithmetic forces the twist onto the odd product omitting $\gamma^2$. -/
+/-- 8:X4 (p08056) — The spinor form is forced: the continuum's $\gamma^0$-twist fails because Frobenius fixes the internal quarter-turn, and the arithmetic forces the twist, up to sign, onto the odd product omitting $\gamma^2$. -/
 theorem spinor_form_forced : FRC.Dirac.spinorForm (2 : FRC.Shell (13 : Nat)) (5 : FRC.Shell (13 : Nat)) = true ∧ FRC.Dirac.spinorForm (2 : FRC.Shell (173 : Nat)) (93 : FRC.Shell (173 : Nat)) = true ∧ FRC.Dirac.spinorForm (2 : FRC.Shell (1549 : Nat)) (1461 : FRC.Shell (1549 : Nat)) = true :=
   @FRC.Ledger.p08056
 -- end ledger predicates
@@ -42820,90 +46231,111 @@ theorem p00155 : (((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).
 /-- p00178 — 00:G1. Electromagnetism (exact), on the force realisation D6: charge $=$ quantised winding index; the photon is massless, the observable residue $2$ of the split torus $C_{\Om-1}$ (two helicities $=$ two $\F_\Om$-fixed lines $=N(1{-}\im)$; D2, D8); Maxwell is the unique \emph{relevant} action (E1). The bare coupling: Z8. -/
 theorem p00178 : (∀ {p : Nat} [FRC.Pos p] (A B C D φ₀ φ₁ φ₂ φ₃ : FRC.Shell p), A + φ₁ + -φ₀ + (B + φ₂ + -φ₁) + -(C + φ₂ + -φ₃) + -(D + φ₃ + -φ₀) = A + B + -C + -D) ∧ (∀ {p : Nat} [FRC.Pos p] (a b c : FRC.Shell p), (a + b) * (1 : FRC.Shell p) + c = (0 : FRC.Shell p) → (a + b) * ((1 : FRC.Shell p) + (1 : FRC.Shell p)) + c = (0 : FRC.Shell p) → a + b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p)) ∧ (FRC.Interactions.constraintRows.length = (1023 : Nat) ∧ FRC.Interactions.admissibleA.length = (123 : Nat) ∧ FRC.Interactions.admissibleB.length = (123 : Nat) ∧ FRC.Interactions.maxwellForm.length = (123 : Nat) ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.admissibleA == (0 : Int)) = true ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.admissibleB == (0 : Int)) = true ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.maxwellForm == (0 : Int)) = true ∧ List.map (fun c => (2 : Int) * c) FRC.Interactions.maxwellForm = List.zipWith (fun b a => b - a) FRC.Interactions.admissibleB FRC.Interactions.admissibleA ∧ FRC.Interactions.admissibleA ≠ FRC.Interactions.admissibleB) ∧ FRC.Interactions.greenTable.length = (64 : Nat) ∧ ((List.range (64 : Nat)).all fun n => FRC.Interactions.greenLap (n % (4 : Nat)) (n / (4 : Nat) % (4 : Nat)) (n / (16 : Nat)) == if (n == (0 : Nat)) = true then (7680 : Int) - (120 : Int) else (-120 : Int)) = true ∧ FRC.Interactions.green (1 : Nat) (0 : Nat) (0 : Nat) = (257 : Int) ∧ FRC.Interactions.green (0 : Nat) (1 : Nat) (0 : Nat) = (257 : Int) ∧ FRC.Interactions.green (0 : Nat) (0 : Nat) (1 : Nat) = (257 : Int) ∧ FRC.Interactions.green (3 : Nat) (0 : Nat) (0 : Nat) = (257 : Int) ∧ FRC.Interactions.green (0 : Nat) (0 : Nat) (0 : Nat) > FRC.Interactions.green (1 : Nat) (0 : Nat) (0 : Nat) ∧ FRC.Interactions.green (1 : Nat) (0 : Nat) (0 : Nat) > FRC.Interactions.green (2 : Nat) (0 : Nat) (0 : Nat) ∧ List.foldl (fun x1 x2 => x1 + x2) (0 : Int) FRC.Interactions.greenTable = (0 : Int) ∧ (7680 / 64 : Nat) = (120 : Nat) :=
   And.intro @FRC.Interactions.gauge_flux_invariant (And.intro @FRC.Interactions.projector_forced (And.intro @FRC.Interactions.admissible_two (@FRC.Interactions.green_torus)))
-/-- p27013 — 27:C1. The finite gauge correspondence, its exact clauses: the abelian inclusion $\Z/M\hookrightarrow\U(1)$ as the $M$-th roots of unity, the positive cyclotomic action (the Wilson weight $1-\Re\zeta\ge0$), and the exact $q{=}3$ embedding $\SU(2,\F_3)\cong2T$ with the Wilson trace a class function (Theorems~\ref{thm:corrU1},~\ref{thm:corrpos},~\ref{thm:corr2T}); the resolvable-window reconstruction is C12 and the cross-scale running $\Omega$-hard (Z1). -/
+/-- p27013 — 27:C1. The finite gauge correspondence, its exact clauses: the abelian inclusion $\Z/M\hookrightarrow\U(1)$ as the $M$-th roots of unity, the non-negative cyclotomic action (the Wilson weight $1-\Re\zeta\ge0$), and the exact $q{=}3$ embedding $\SU(2,\F_3)\cong2T$ with the Wilson trace a class function (Theorems~\ref{thm:corrU1},~\ref{thm:corrpos},~\ref{thm:corr2T}); the low-curvature expansion of the compact action is C12 and the cross-scale running $\Omega$-hard (Z1). -/
 theorem p27013 : (FRC.Interactions.su2.length = (24 : Nat) ∧ (24 : Nat) = (3 : Nat) * ((3 : Nat) * (3 : Nat) - (1 : Nat)) ∧ (FRC.Interactions.su2.all fun x => FRC.Interactions.su2.all fun y => FRC.Interactions.su2.contains (FRC.Interactions.qmul x y)) = true ∧ (FRC.Interactions.su2.any fun x => FRC.Interactions.su2.any fun y => FRC.Interactions.qmul x y != FRC.Interactions.qmul y x) = true ∧ (FRC.Interactions.su2.all fun x => (x.fst + x.fst.conj).im == (0 : FRC.Shell (3 : Nat))) = true ∧ List.map (fun k => (List.filter (fun x => FRC.Interactions.qord x == k) FRC.Interactions.su2).length) [(1 : Nat), (2 : Nat), (3 : Nat), (4 : Nat), (6 : Nat)] = [(1 : Nat), (1 : Nat), (8 : Nat), (6 : Nat), (8 : Nat)] ∧ List.map (fun t => (List.filter (fun x => (x.fst + x.fst.conj).re == FRC.Shell.ofNat t) FRC.Interactions.su2).length) [(0 : Nat), (1 : Nat), (2 : Nat)] = [(6 : Nat), (9 : Nat), (9 : Nat)] ∧ FRC.Interactions.su2.contains ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) = true ∧ (List.filter (fun x => FRC.Interactions.qmul x ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) == FRC.Interactions.qmul ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) x) FRC.Interactions.su2).length = (4 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (g M : FRC.Unitary.M2 p ν), FRC.Unitary.det2 g = (1 : FRC.Extension.Ext p ν) → FRC.Unitary.tr2 (FRC.Unitary.mmul2 (FRC.Unitary.mmul2 g M) (FRC.Unitary.adj2 g)) = FRC.Unitary.tr2 M :=
   And.intro @FRC.Interactions.tetrahedral_group (@FRC.Unitary.class_function)
-/-- p27014 — 27:C2. Electromagnetism: charge as a quantised winding index, the massless photon by drive-invariance, the repulsive sign, the unique Maxwell operator, and $\al_{\mathrm{bare}}=1/4\pi$ as the phase-channel capacity normalisation. -/
+/-- p27014 — 27:C2. Electromagnetism on a cycle of order $M$, with $M=\p+1$ on the charge cycle and $M=\p-1$ on a split cycle: charge as a quantised winding index, the photon fixed by the drive and massless at the vacuum (C5), the repulsive sign, the unique Maxwell operator, and $\al_{\mathrm{bare}}=1/4\pi$ as the phase-channel capacity normalisation. -/
 theorem p27014 : (∀ {p : Nat} [FRC.Pos p] (A B C D φ₀ φ₁ φ₂ φ₃ : FRC.Shell p), A + φ₁ + -φ₀ + (B + φ₂ + -φ₁) + -(C + φ₂ + -φ₃) + -(D + φ₃ + -φ₀) = A + B + -C + -D) ∧ (∀ {p : Nat} [FRC.Pos p] (a b c : FRC.Shell p), (a + b) * (1 : FRC.Shell p) + c = (0 : FRC.Shell p) → (a + b) * ((1 : FRC.Shell p) + (1 : FRC.Shell p)) + c = (0 : FRC.Shell p) → a + b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p)) ∧ FRC.Interactions.constraintRows.length = (1023 : Nat) ∧ FRC.Interactions.admissibleA.length = (123 : Nat) ∧ FRC.Interactions.admissibleB.length = (123 : Nat) ∧ FRC.Interactions.maxwellForm.length = (123 : Nat) ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.admissibleA == (0 : Int)) = true ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.admissibleB == (0 : Int)) = true ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.maxwellForm == (0 : Int)) = true ∧ List.map (fun c => (2 : Int) * c) FRC.Interactions.maxwellForm = List.zipWith (fun b a => b - a) FRC.Interactions.admissibleB FRC.Interactions.admissibleA ∧ FRC.Interactions.admissibleA ≠ FRC.Interactions.admissibleB :=
   And.intro @FRC.Interactions.gauge_flux_invariant (And.intro @FRC.Interactions.projector_forced (@FRC.Interactions.admissible_two))
-/-- p27015 — 27:C3. The Coulomb law and Maxwell dynamics, as corollaries of the correspondence on the resolvable window. -/
+/-- p27015 — 27:C3. The Coulomb law and Maxwell dynamics, as corollaries of the abelian correspondence, the $1/4\pi r$ law read on the chart. -/
 theorem p27015 : FRC.Interactions.greenTable.length = (64 : Nat) ∧ ((List.range (64 : Nat)).all fun n => FRC.Interactions.greenLap (n % (4 : Nat)) (n / (4 : Nat) % (4 : Nat)) (n / (16 : Nat)) == if (n == (0 : Nat)) = true then (7680 : Int) - (120 : Int) else (-120 : Int)) = true ∧ FRC.Interactions.green (1 : Nat) (0 : Nat) (0 : Nat) = (257 : Int) ∧ FRC.Interactions.green (0 : Nat) (1 : Nat) (0 : Nat) = (257 : Int) ∧ FRC.Interactions.green (0 : Nat) (0 : Nat) (1 : Nat) = (257 : Int) ∧ FRC.Interactions.green (3 : Nat) (0 : Nat) (0 : Nat) = (257 : Int) ∧ FRC.Interactions.green (0 : Nat) (0 : Nat) (0 : Nat) > FRC.Interactions.green (1 : Nat) (0 : Nat) (0 : Nat) ∧ FRC.Interactions.green (1 : Nat) (0 : Nat) (0 : Nat) > FRC.Interactions.green (2 : Nat) (0 : Nat) (0 : Nat) ∧ List.foldl (fun x1 x2 => x1 + x2) (0 : Int) FRC.Interactions.greenTable = (0 : Int) ∧ (7680 / 64 : Nat) = (120 : Nat) :=
   @FRC.Interactions.green_torus
-/-- p27016 — 27:C4. The weak sector: the cell-local $\SU(2)$ Wilson connection, electroweak breaking as drive-torus misalignment with the photon kept massless, and maximal $V\!-\!A$ parity violation with the Frobenius branch decoupling exactly. -/
-theorem p27016 : (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((0 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (10 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat))) ∧ (4 : FRC.Shell (13 : Nat)) * (10 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ (List.filter (fun n => have X := FRC.Interactions.m2of n; X.fst * X.snd.snd.snd + -(X.snd.fst * X.snd.snd.fst) == (1 : FRC.Shell (13 : Nat)) && FRC.Interactions.m2 X ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) == FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) X) (List.range ((13 : Nat) * (13 : Nat) * (13 : Nat) * (13 : Nat)))).length = (12 : Nat) ∧ FRC.Interactions.m2 ((3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat))) ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ≠ FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * δ * τ)) N = (0 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun x => (1 : FRC.Shell p)) N = FRC.Shell.ofNat N) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, δ ≤ N → u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * (N - δ) * τ)) N = (0 : FRC.Shell p) ∧ (1 : Int) ≠ (-1 : Int) ∧ (1 : Int) * (1 : Int) > (0 : Int) ∧ (-1 : Int) * (-1 : Int) > (0 : Int)) ∧ (FRC.Interactions.su2.length = (24 : Nat) ∧ (24 : Nat) = (3 : Nat) * ((3 : Nat) * (3 : Nat) - (1 : Nat)) ∧ (FRC.Interactions.su2.all fun x => FRC.Interactions.su2.all fun y => FRC.Interactions.su2.contains (FRC.Interactions.qmul x y)) = true ∧ (FRC.Interactions.su2.any fun x => FRC.Interactions.su2.any fun y => FRC.Interactions.qmul x y != FRC.Interactions.qmul y x) = true ∧ (FRC.Interactions.su2.all fun x => (x.fst + x.fst.conj).im == (0 : FRC.Shell (3 : Nat))) = true ∧ List.map (fun k => (List.filter (fun x => FRC.Interactions.qord x == k) FRC.Interactions.su2).length) [(1 : Nat), (2 : Nat), (3 : Nat), (4 : Nat), (6 : Nat)] = [(1 : Nat), (1 : Nat), (8 : Nat), (6 : Nat), (8 : Nat)] ∧ List.map (fun t => (List.filter (fun x => (x.fst + x.fst.conj).re == FRC.Shell.ofNat t) FRC.Interactions.su2).length) [(0 : Nat), (1 : Nat), (2 : Nat)] = [(6 : Nat), (9 : Nat), (9 : Nat)] ∧ FRC.Interactions.su2.contains ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) = true ∧ (List.filter (fun x => FRC.Interactions.qmul x ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) == FRC.Interactions.qmul ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) x) FRC.Interactions.su2).length = (4 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (g M : FRC.Unitary.M2 p ν), FRC.Unitary.det2 g = (1 : FRC.Extension.Ext p ν) → FRC.Unitary.tr2 (FRC.Unitary.mmul2 (FRC.Unitary.mmul2 g M) (FRC.Unitary.adj2 g)) = FRC.Unitary.tr2 M :=
-  And.intro @FRC.Interactions.drive_adjoint (And.intro @FRC.Interactions.va_cancel (And.intro @FRC.Interactions.orientation_flip (And.intro @FRC.Interactions.tetrahedral_group (@FRC.Unitary.class_function))))
-/-- p27017 — 27:C5. The propagating neutral spectrum and custodial $\rho=1$: the Hessian of $S_\rho$ at the broken vacuum gives massive $W^\pm,Z$ against a massless photon, $\rho=1$ as $\det\equiv0$, $M_W^2/M_Z^2=\cos^2\sW$, which is $5/8$ at the unification point (Prop.~\ref{prop:running}); the imported electroweak template (A4) evaluated on the naming B3. -/
-theorem p27017 : (∀ {p : Nat} [FRC.Pos p] (g g' v : FRC.Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = (0 : FRC.Shell p) ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = (0 : FRC.Shell p) ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = (0 : FRC.Shell p) ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g') ∧ (((List.range (4 : Nat)).all fun a => FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) a (2 : Nat) * (2 : FRC.Shell (13 : Nat)) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) a (3 : Nat) * (1 : FRC.Shell (13 : Nat)) == (0 : FRC.Shell (13 : Nat))) = true ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) * FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) + -(FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (3 : Nat) * FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat)) = (0 : FRC.Shell (13 : Nat)) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (0 : Nat) (0 : Nat) = FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (1 : Nat) (1 : Nat) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) = ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat)) + (2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) * ((2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) * ((7 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (0 : Nat) (0 : Nat) * ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat)) + (2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) = (FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat)) * ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat))) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (7 : FRC.Shell (13 : Nat)) + (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ ((List.range (4 : Nat)).all fun a => FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) a (2 : Nat) * (1 : FRC.Shell (5 : Nat)) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) a (3 : Nat) * (1 : FRC.Shell (5 : Nat)) == (0 : FRC.Shell (5 : Nat))) = true ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) * FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat) + -(FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (3 : Nat) * FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (2 : Nat)) = (0 : FRC.Shell (5 : Nat)) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (0 : Nat) (0 : Nat) = FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat) = ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat)) + (1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) * ((2 : FRC.Shell (5 : Nat)) * (2 : FRC.Shell (5 : Nat))) * ((3 : FRC.Shell (5 : Nat)) * (3 : FRC.Shell (5 : Nat))) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (0 : Nat) (0 : Nat) * ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat)) + (1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) = (FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat)) * ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) ∧ (2 : FRC.Shell (5 : Nat)) * (2 : FRC.Shell (5 : Nat)) = (-1 : FRC.Shell (5 : Nat)) ∧ (3 : FRC.Shell (5 : Nat)) + (3 : FRC.Shell (5 : Nat)) = (1 : FRC.Shell (5 : Nat))) ∧ ∀ {p : Nat} [FRC.Pos p] (g g' : FRC.Shell p), (8 : FRC.Shell p) * (g' * g') = (3 : FRC.Shell p) * (g * g + g' * g') → (8 : FRC.Shell p) * (g * g) = (5 : FRC.Shell p) * (g * g + g' * g') :=
-  And.intro @FRC.Interactions.hessian_neutral (And.intro @FRC.Interactions.hessian_full (@FRC.Interactions.five_eighths))
-/-- p27018 — 27:C6. The Weinberg trace formula $\sin^2\sW=\Tr(T_3^2)/\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\sqrt2\,v^2)$; the imported template (A4) evaluated on the namings B3, B5. -/
+/-- p27016 — 27:C4. The weak sector: the cell-local $\SU(2)$ Wilson connection, the weights $\gen^{\pm1}$ of one chronon and $\gen^{\pm2}$ of two chronons on the charged directions, and the Frobenius as the inversion of the boost cycle, over which the sum of a boost's phase vanishes. -/
+theorem p27016 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {g h : FRC.Shell p}, g * h = (1 : FRC.Shell p) → g * g ≠ (1 : FRC.Shell p) → (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (1 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (-1 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (-1 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((0 : FRC.Shell p), (1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((0 : FRC.Shell p), g * g, (0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((0 : FRC.Shell p), (0 : FRC.Shell p), (1 : FRC.Shell p), (0 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((0 : FRC.Shell p), (0 : FRC.Shell p), h * h, (0 : FRC.Shell p)) ∧ g * g * (h * h) = (1 : FRC.Shell p)) ∧ (∀ (a b c d : FRC.Shell p), FRC.Interactions.m2 (a, b, c, d) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) = FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, b, c, d) ↔ b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p)) ∧ (∀ (a b c d : FRC.Shell p), a * d + -(b * c) = (1 : FRC.Shell p) → (FRC.Interactions.m2 (a, b, c, d) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) = FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, b, c, d) ↔ b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p) ∧ a * d = (1 : FRC.Shell p))) ∧ (∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) → a * a ^ (p - (2 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ (a d d' : FRC.Shell p), a * d = (1 : FRC.Shell p) → a * d' = (1 : FRC.Shell p) → d = d') ∧ ((∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) ↔ (0 : Nat) < a.val) ∧ (∀ (a : FRC.Shell p), a.val < p) ∧ (∀ (a b : FRC.Shell p), a.val = b.val → a = b) ∧ ∀ (k : Nat), k < p → ¬∀ (a : FRC.Shell p), a.val ≠ k) ∧ ∀ (a b ν : FRC.Shell p), b ≠ (0 : FRC.Shell p) → FRC.Interactions.m2 (a, ν * b, b, a) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ≠ FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, ν * b, b, a)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν k : FRC.Shell p}, ν * k = (1 : FRC.Shell p) → FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) * FRC.Unitary.pt ν (0 : FRC.Shell p) k = (1 : FRC.Extension.Ext p ν) ∧ FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) * FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) = FRC.Unitary.pt ν ν (0 : FRC.Shell p) ∧ FRC.Unitary.pt ν (0 : FRC.Shell p) k * FRC.Unitary.pt ν (0 : FRC.Shell p) k = FRC.Unitary.pt ν k (0 : FRC.Shell p) ∧ (FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p)).conj * FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) = FRC.Unitary.pt ν (-ν) (0 : FRC.Shell p) ∧ (FRC.Unitary.pt ν (0 : FRC.Shell p) k).conj * FRC.Unitary.pt ν (0 : FRC.Shell p) k = FRC.Unitary.pt ν (-k) (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * δ * τ)) N = (0 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun x => (1 : FRC.Shell p)) N = FRC.Shell.ofNat N) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, δ ≤ N → u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * (N - δ) * τ)) N = (0 : FRC.Shell p) ∧ (1 : Int) ≠ (-1 : Int) ∧ (1 : Int) * (1 : Int) > (0 : Int) ∧ (-1 : Int) * (-1 : Int) > (0 : Int)) ∧ (FRC.Interactions.su2.length = (24 : Nat) ∧ (24 : Nat) = (3 : Nat) * ((3 : Nat) * (3 : Nat) - (1 : Nat)) ∧ (FRC.Interactions.su2.all fun x => FRC.Interactions.su2.all fun y => FRC.Interactions.su2.contains (FRC.Interactions.qmul x y)) = true ∧ (FRC.Interactions.su2.any fun x => FRC.Interactions.su2.any fun y => FRC.Interactions.qmul x y != FRC.Interactions.qmul y x) = true ∧ (FRC.Interactions.su2.all fun x => (x.fst + x.fst.conj).im == (0 : FRC.Shell (3 : Nat))) = true ∧ List.map (fun k => (List.filter (fun x => FRC.Interactions.qord x == k) FRC.Interactions.su2).length) [(1 : Nat), (2 : Nat), (3 : Nat), (4 : Nat), (6 : Nat)] = [(1 : Nat), (1 : Nat), (8 : Nat), (6 : Nat), (8 : Nat)] ∧ List.map (fun t => (List.filter (fun x => (x.fst + x.fst.conj).re == FRC.Shell.ofNat t) FRC.Interactions.su2).length) [(0 : Nat), (1 : Nat), (2 : Nat)] = [(6 : Nat), (9 : Nat), (9 : Nat)] ∧ FRC.Interactions.su2.contains ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) = true ∧ (List.filter (fun x => FRC.Interactions.qmul x ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) == FRC.Interactions.qmul ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) x) FRC.Interactions.su2).length = (4 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (g M : FRC.Unitary.M2 p ν), FRC.Unitary.det2 g = (1 : FRC.Extension.Ext p ν) → FRC.Unitary.tr2 (FRC.Unitary.mmul2 (FRC.Unitary.mmul2 g M) (FRC.Unitary.adj2 g)) = FRC.Unitary.tr2 M :=
+  And.intro @FRC.Interactions.drive_adjoint (And.intro @FRC.Unitary.drive_lift (And.intro @FRC.Interactions.va_cancel (And.intro @FRC.Interactions.orientation_flip (And.intro @FRC.Interactions.tetrahedral_group (@FRC.Unitary.class_function)))))
+/-- p27017 — 27:C5. The mass form of the doublet and custodial $\rho=1$. On the Subject's extension, with the Frobenius as conjugation, the mass form of the template's covariant term (A4) at the unit vacuum of the alignment field (B10) and the invariant form of the generators take values in the shell. The mass operator has the photon as kernel and the values $g^2/4$, twice, and $(g^2+g'^2)/4$, with four independent eigenvectors exactly when $g^2+g'^2\neq0$. Then, for $g\neq0$, $\rho=1$, and $M_W^2/M_Z^2$ is $5/8$ at the frame's rational $3/8$. The scale $v$ enters on the chart [chart]. The spectrum is the chart's reading of the windings of Theorem~\ref{thm:break}. -/
+theorem p27017 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a a' : FRC.Shell p), (FRC.Chirality.shellPart ν a).conj * FRC.Chirality.shellPart ν a = FRC.Chirality.shellPart ν (a * a) ∧ (FRC.Chirality.rootPart ν a).conj * FRC.Chirality.rootPart ν a = FRC.Chirality.shellPart ν (-(ν * (a * a))) ∧ (FRC.Chirality.shellPart ν a).conj * FRC.Chirality.rootPart ν a + (FRC.Chirality.rootPart ν a).conj * FRC.Chirality.shellPart ν a = FRC.Chirality.rootPart ν (0 : FRC.Shell p) ∧ (FRC.Chirality.rootPart ν (-a)).conj * FRC.Chirality.rootPart ν (-a) = FRC.Chirality.shellPart ν (-(ν * (a * a))) ∧ (FRC.Chirality.rootPart ν a').conj * FRC.Chirality.rootPart ν a' = FRC.Chirality.shellPart ν (-(ν * (a' * a'))) ∧ (FRC.Chirality.rootPart ν (-a)).conj * FRC.Chirality.rootPart ν a' + (FRC.Chirality.rootPart ν a').conj * FRC.Chirality.rootPart ν (-a) = FRC.Chirality.shellPart ν (ν * (a * a') + ν * (a * a'))) ∧ (∀ {p : Nat} [FRC.Pos p] (ν a a' : FRC.Shell p), -(ν * (a * a)) = a * a * -ν ∧ -(ν * (a * a)) * a' + ν * (a * a') * a = (0 : FRC.Shell p) ∧ ν * (a * a') * a' + -(ν * (a' * a')) * a = (0 : FRC.Shell p) ∧ -(ν * (a * a)) * a + ν * (a * a') * -a' = (a * a + a' * a') * (-ν * a) ∧ ν * (a * a') * a + -(ν * (a' * a')) * -a' = (a * a + a' * a') * (-ν * -a')) ∧ (∀ {p : Nat} [FRC.Pos p] {a a' x y : FRC.Shell p}, x * a' + y * a = (0 : FRC.Shell p) → x * a + y * -a' = (0 : FRC.Shell p) → (a * a + a' * a') * x = (0 : FRC.Shell p) ∧ (a * a + a' * a') * y = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] (a a' : FRC.Shell p), a * a * (a * a) + -(a * a') * -(a * a') = (a * a + a' * a') * (a * a) ∧ a * a * -(a * a') + -(a * a') * (a' * a') = (a * a + a' * a') * -(a * a') ∧ -(a * a') * (a * a) + a' * a' * -(a * a') = (a * a + a' * a') * -(a * a') ∧ -(a * a') * -(a * a') + a' * a' * (a' * a') = (a * a + a' * a') * (a' * a')) ∧ (∀ {p : Nat} [FRC.Pos p] {h : FRC.Shell p}, h + h = (1 : FRC.Shell p) → ∀ (ν : FRC.Shell p), h * h + h * h + (h * h + h * h) = (1 : FRC.Shell p) ∧ -(ν * (h * h) + ν * (h * h) + (ν * (h * h) + ν * (h * h))) = -ν) ∧ (∀ {p : Nat} [FRC.Pos p] (g g' v : FRC.Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = (0 : FRC.Shell p) ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = (0 : FRC.Shell p) ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = (0 : FRC.Shell p) ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g') ∧ ∀ {p : Nat} [FRC.Pos p] (g g' : FRC.Shell p), (8 : FRC.Shell p) * (g' * g') = (3 : FRC.Shell p) * (g * g + g' * g') → (8 : FRC.Shell p) * (g * g) = (5 : FRC.Shell p) * (g * g + g' * g') :=
+  And.intro @FRC.Chirality.mass_form (And.intro @FRC.Chirality.mass_spectrum (And.intro @FRC.Chirality.mass_independent (And.intro @FRC.Chirality.mass_block_square (And.intro @FRC.Chirality.invariant_form (And.intro @FRC.Interactions.neutral_block (@FRC.Interactions.five_eighths))))))
+/-- p27018 — 27:C6. The Weinberg trace formula $\sin^2\sW=\Tr(T_3^2)/\Tr(Q^2)=3/8$ for a complete generation, the frame's rational, and the four-fermion amplitude with $G_F=1/(\sqrt2\,v^2)$; the imported template (A4) evaluated on the namings B3, B5. -/
 theorem p27018 : (FRC.Interactions.isum (List.map (fun S => (3 : Int) * FRC.Interactions.t3h S * ((3 : Int) * FRC.Interactions.t3h S)) FRC.Interactions.gen16) = (72 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.q6 S * FRC.Interactions.q6 S) FRC.Interactions.gen16) = (192 : Int) ∧ (72 : Nat) * (8 : Nat) = (192 : Nat) * (3 : Nat)) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   And.intro @FRC.Interactions.weinberg_angle (@FRC.Interactions.one_generation)
-/-- p27019 — 27:C7. The strong sector: the colour $\SU(3,\Omega)$ frame forced as the minimal triality-carrying rank, the exact $\Z_3$ centre, the gluon connection, and the confinement area law $\sigma>0$ from positivity, with the string tension $\sigma(\beta)=-\ln c_1(\beta)$ computed in finite units (closed form on $2T$; $c_1^{\SU(3)}=\tfrac\beta{18}+\tfrac{\beta^2}{216}+\cdots$). -/
+/-- p27019 — 27:C7. The strong sector: the colour frame $\SU(3,\F_q)$ over the Subject's extension, its centre of order $\gcd(3,q+1)$ (on the Subject $173$, not on $13$ or $1549$), the gluon connection, and the area law at strong coupling [chart], with the string tension $\sigma(\beta)=-\ln c_1(\beta)$ in closed form on $2T$ and the colour series $c_1^{\SU(3)}=\tfrac\beta{18}+\tfrac{\beta^2}{216}+\cdots$, the frame's invariants the compact ones through degree $2\p-1$, and the coefficients of the formal series built from their counts the compact ones below order $\beta^{\p}$ \citep{akhtman2026yangmills}. -/
 theorem p27019 : (([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => x * x.conj == FRC.Interactions.F4.o && x * x * x == FRC.Interactions.F4.o) = true ∧ (FRC.Interactions.F4.z * FRC.Interactions.F4.z.conj == FRC.Interactions.F4.o) = false ∧ [FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].length = (3 : Nat) ∧ (2 : Nat) + (1 : Nat) = (3 : Nat) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal && FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal) = true) ∧ (have U₁ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have U₂ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have D₁ := [FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; have D₂ := [FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) U₁ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₂) U₂ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.det U₁ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.det U₂ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.mm U₁ U₂ ≠ FRC.Interactions.F4.mm U₂ U₁ ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) = [FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w] ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) ≠ FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm D₁ D₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg D₁) (FRC.Interactions.F4.dg D₂)) = FRC.Interactions.F4.one) ∧ ∀ (n : Nat), n % (12 : Nat) = (5 : Nat) → (n + (1 : Nat)) % (2 : Nat) = (0 : Nat) ∧ (n + (1 : Nat)) % (3 : Nat) = (0 : Nat) ∧ (n + (1 : Nat)) % (4 : Nat) = (2 : Nat) :=
   And.intro @FRC.Interactions.su3_centre (And.intro @FRC.Interactions.gluon_commutator (@FRC.Interactions.rank_tower))
 /-- p27020 — 27:C8, 00:G11. \textbf{One generation} (content): $=$ the spinor $\mathbf{16}$ of the rank-five frame --- all gauge reps, hypercharges, charges, anomaly-free, $\nu_R$ --- recovered in the compact theory, where the frame is $\C^3\oplus\C^2$, via the correspondence: the imported $\mathrm{SO}(10)$ template evaluated on the realisation (27-fld B5). -/
 theorem p27020 : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Interactions.one_generation
-/-- p27021 — 27:C9, 00:Z5. The horizon \emph{forces} structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\sqrt{\Om}$), so the off-block reframings are gauge and unification is the simple $\SO(10)$ (G14); the automorphism lemma reduces to Observation (A4). -/
+/-- p27021 — 27:B7, 00:Z5. The horizon \emph{forces} structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\sqrt{\Om}$), so the off-block reframings are gauge and unification is the simple $\SO(10)$ (G14); the automorphism lemma reduces to Observation (A4). -/
 theorem p27021 : ((24 : Nat) - ((8 : Nat) + (3 : Nat) + (1 : Nat)) = (12 : Nat) ∧ (12 : Nat) = (2 : Nat) * ((3 : Nat) * (2 : Nat)) ∧ (1 : Nat) + (5 : Nat) + (10 : Nat) = (16 : Nat) ∧ (10 : Nat) * (9 : Nat) = (2 : Nat) * (45 : Nat)) ∧ (FRC.Interactions.gen16.length = (16 : Nat) ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.gen16.contains (FRC.Interactions.fifth S)) = true ∧ ((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).all fun T => decide ((FRC.Interactions.fifth S == FRC.Interactions.fifth T) = true → (S == T) = true)) = true ∧ (FRC.Interactions.gen16.all fun R => (List.range (16 : Nat)).any fun S => FRC.Interactions.fifth S == R) = true ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.cnt S (0 : Nat) (4 : Nat) % (2 : Nat) == (0 : Nat) || FRC.Interactions.emul S (16 : Nat) == ((1 : Int), FRC.Interactions.fifth S)) = true) ∧ ((FRC.Interactions.offblock.all fun cw => (List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => have a := FRC.Interactions.emul S T; have b := FRC.Interactions.emul (FRC.Interactions.act cw.fst cw.snd S) (FRC.Interactions.act cw.fst cw.snd T); b.fst * b.fst == a.fst * a.fst && (a.fst == (0 : Int) || b.snd == FRC.Interactions.act cw.fst cw.snd a.snd)) = true ∧ (FRC.Interactions.offblock.all fun cw => ((List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => decide ((FRC.Interactions.act cw.fst cw.snd S == FRC.Interactions.act cw.fst cw.snd T) = true → (S == T) = true)) && (List.range (32 : Nat)).all fun S => decide (FRC.Interactions.act cw.fst cw.snd S < (32 : Nat))) = true) ∧ ∀ (Ω s : Nat), (7 : Nat) ≤ Ω → s * s ≤ Ω → (3 : Nat) * s < Ω + (1 : Nat) :=
   And.intro @FRC.Interactions.unification_counts (And.intro @FRC.Interactions.fifth_direction (And.intro @FRC.Interactions.offblock_automorphism (@FRC.Interactions.torsion_beyond_horizon)))
-/-- p27023 — 27:C11. The admissible substrate residue $\Omega\equiv5\!\pmod{12}$ forced by self-consistency. -/
+/-- p27023 — 27:C11. The residue of the Carrier: the relations $4\mid\Omega-1$ (the quarter-turn) and $3\mid\Omega+1$ (the triality of colour, B4) hold together exactly when $\Omega\equiv5\!\pmod{12}$. -/
 theorem p27023 : (∀ (n : Nat), n % (12 : Nat) = (5 : Nat) ↔ n % (4 : Nat) = (1 : Nat) ∧ n % (3 : Nat) = (2 : Nat)) ∧ ([(5 : Nat), (17 : Nat), (29 : Nat), (41 : Nat), (53 : Nat), (89 : Nat), (101 : Nat), (113 : Nat), (2408561 : Nat)].all fun n => n % (12 : Nat) == (5 : Nat) && n % (4 : Nat) == (1 : Nat) && n % (3 : Nat) == (2 : Nat)) = true ∧ ([(13 : Nat), (61 : Nat), (157 : Nat), (421 : Nat)].all fun n => n % (12 : Nat) == (1 : Nat) && n % (4 : Nat) == (1 : Nat) && n % (3 : Nat) == (1 : Nat)) = true :=
   And.intro @FRC.Interactions.residue_five (@FRC.Interactions.residue_instances)
-/-- p27024 — 27:X1. \textbf{The gauge group} $\U(1)\times\SU(2)\times\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. -/
-theorem p27024 : (∀ {p : Nat} [FRC.Pos p] (A B C D φ₀ φ₁ φ₂ φ₃ : FRC.Shell p), A + φ₁ + -φ₀ + (B + φ₂ + -φ₁) + -(C + φ₂ + -φ₃) + -(D + φ₃ + -φ₀) = A + B + -C + -D) ∧ (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((0 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (10 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat))) ∧ (4 : FRC.Shell (13 : Nat)) * (10 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ (List.filter (fun n => have X := FRC.Interactions.m2of n; X.fst * X.snd.snd.snd + -(X.snd.fst * X.snd.snd.fst) == (1 : FRC.Shell (13 : Nat)) && FRC.Interactions.m2 X ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) == FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) X) (List.range ((13 : Nat) * (13 : Nat) * (13 : Nat) * (13 : Nat)))).length = (12 : Nat) ∧ FRC.Interactions.m2 ((3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat))) ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ≠ FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)))) ∧ have U₁ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have U₂ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have D₁ := [FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; have D₂ := [FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) U₁ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₂) U₂ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.det U₁ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.det U₂ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.mm U₁ U₂ ≠ FRC.Interactions.F4.mm U₂ U₁ ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) = [FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w] ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) ≠ FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm D₁ D₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg D₁) (FRC.Interactions.F4.dg D₂)) = FRC.Interactions.F4.one :=
+/-- p27024 — 27:X1. \textbf{The gauge group} $\U(1)\times\SU(2)\times\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. On a Subject the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup that B10 declares (C16). On the chart the subgroup is the quotient of the product by $\Z_6$ [chart] (P10). -/
+theorem p27024 : (∀ {p : Nat} [FRC.Pos p] (A B C D φ₀ φ₁ φ₂ φ₃ : FRC.Shell p), A + φ₁ + -φ₀ + (B + φ₂ + -φ₁) + -(C + φ₂ + -φ₃) + -(D + φ₃ + -φ₀) = A + B + -C + -D) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {g h : FRC.Shell p}, g * h = (1 : FRC.Shell p) → g * g ≠ (1 : FRC.Shell p) → (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (1 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (-1 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (-1 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((0 : FRC.Shell p), (1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((0 : FRC.Shell p), g * g, (0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((0 : FRC.Shell p), (0 : FRC.Shell p), (1 : FRC.Shell p), (0 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((0 : FRC.Shell p), (0 : FRC.Shell p), h * h, (0 : FRC.Shell p)) ∧ g * g * (h * h) = (1 : FRC.Shell p)) ∧ (∀ (a b c d : FRC.Shell p), FRC.Interactions.m2 (a, b, c, d) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) = FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, b, c, d) ↔ b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p)) ∧ (∀ (a b c d : FRC.Shell p), a * d + -(b * c) = (1 : FRC.Shell p) → (FRC.Interactions.m2 (a, b, c, d) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) = FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, b, c, d) ↔ b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p) ∧ a * d = (1 : FRC.Shell p))) ∧ (∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) → a * a ^ (p - (2 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ (a d d' : FRC.Shell p), a * d = (1 : FRC.Shell p) → a * d' = (1 : FRC.Shell p) → d = d') ∧ ((∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) ↔ (0 : Nat) < a.val) ∧ (∀ (a : FRC.Shell p), a.val < p) ∧ (∀ (a b : FRC.Shell p), a.val = b.val → a = b) ∧ ∀ (k : Nat), k < p → ¬∀ (a : FRC.Shell p), a.val ≠ k) ∧ ∀ (a b ν : FRC.Shell p), b ≠ (0 : FRC.Shell p) → FRC.Interactions.m2 (a, ν * b, b, a) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ≠ FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, ν * b, b, a)) ∧ have U₁ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have U₂ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have D₁ := [FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; have D₂ := [FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) U₁ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₂) U₂ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.det U₁ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.det U₂ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.mm U₁ U₂ ≠ FRC.Interactions.F4.mm U₂ U₁ ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) = [FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w] ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) ≠ FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm D₁ D₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg D₁) (FRC.Interactions.F4.dg D₂)) = FRC.Interactions.F4.one :=
   And.intro @FRC.Interactions.gauge_flux_invariant (And.intro @FRC.Interactions.drive_adjoint (@FRC.Interactions.gluon_commutator))
 /-- p27025 — 27:X2. \textbf{Charge quantisation} is automatic: electric charge is an integer winding index, so the electron and proton charges match exactly and no fractional residue survives, with no quantisation condition imposed. -/
 theorem p27025 : (∀ {p : Nat} [FRC.Pos p] (A₁ A₂ B₃ A₄ A₅ B₀ B₁ : FRC.Shell p), A₁ + A₂ + B₃ + -A₄ + -A₅ + -B₀ = A₁ + B₁ + -A₅ + -B₀ + (A₂ + B₃ + -A₄ + -B₁)) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   And.intro @FRC.Interactions.holonomy_stokes (@FRC.Interactions.one_generation)
-/-- p27026 — 27:X3. \textbf{The photon and its dynamics} are forced: masslessness is drive-invariance and the exact rank-one kernel of the broken vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand. -/
+/-- p27026 — 27:X3. \textbf{The photon and its dynamics} are forced: the photon is fixed by the drive and is the exact kernel of the mass form at the vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand. -/
 theorem p27026 : (∀ {p : Nat} [FRC.Pos p] (g g' v : FRC.Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = (0 : FRC.Shell p) ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = (0 : FRC.Shell p) ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = (0 : FRC.Shell p) ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g') ∧ (∀ {p : Nat} [FRC.Pos p] (a b c : FRC.Shell p), (a + b) * (1 : FRC.Shell p) + c = (0 : FRC.Shell p) → (a + b) * ((1 : FRC.Shell p) + (1 : FRC.Shell p)) + c = (0 : FRC.Shell p) → a + b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p)) ∧ FRC.Interactions.constraintRows.length = (1023 : Nat) ∧ FRC.Interactions.admissibleA.length = (123 : Nat) ∧ FRC.Interactions.admissibleB.length = (123 : Nat) ∧ FRC.Interactions.maxwellForm.length = (123 : Nat) ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.admissibleA == (0 : Int)) = true ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.admissibleB == (0 : Int)) = true ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.maxwellForm == (0 : Int)) = true ∧ List.map (fun c => (2 : Int) * c) FRC.Interactions.maxwellForm = List.zipWith (fun b a => b - a) FRC.Interactions.admissibleB FRC.Interactions.admissibleA ∧ FRC.Interactions.admissibleA ≠ FRC.Interactions.admissibleB :=
-  And.intro @FRC.Interactions.hessian_neutral (And.intro @FRC.Interactions.projector_forced (@FRC.Interactions.admissible_two))
-/-- p27027 — 27:X4. \textbf{The Weinberg angle} is the exact rational $\sin^2\sW=3/8$ at the unification point, fixed by the charge spectrum of the generation named in B5 with the group-theoretic step imported (A4), not a free parameter measured into the theory. -/
+  And.intro @FRC.Interactions.neutral_block (And.intro @FRC.Interactions.projector_forced (@FRC.Interactions.admissible_two))
+/-- p27027 — 27:X4. \textbf{The Weinberg angle} is the exact rational $\sin^2\sW=3/8$ of the frame, fixed by the charge spectrum of the generation named in B5 with the group-theoretic step imported (A4). It names no scale; the measured value at the $Z$ scale is $0.231$ (A6). -/
 theorem p27027 : FRC.Interactions.isum (List.map (fun S => (3 : Int) * FRC.Interactions.t3h S * ((3 : Int) * FRC.Interactions.t3h S)) FRC.Interactions.gen16) = (72 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.q6 S * FRC.Interactions.q6 S) FRC.Interactions.gen16) = (192 : Int) ∧ (72 : Nat) * (8 : Nat) = (192 : Nat) * (3 : Nat) :=
   @FRC.Interactions.weinberg_angle
-/-- p27028 — 27:X5. \textbf{The custodial relation} $\rho=1$ is the rank-one identity $\det\equiv0$ forced by the spinor-doublet Higgs, not a tree-level accident. -/
-theorem p27028 : (∀ {p : Nat} [FRC.Pos p] (g g' v : FRC.Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = (0 : FRC.Shell p) ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = (0 : FRC.Shell p) ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = (0 : FRC.Shell p) ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g') ∧ ((List.range (4 : Nat)).all fun a => FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) a (2 : Nat) * (2 : FRC.Shell (13 : Nat)) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) a (3 : Nat) * (1 : FRC.Shell (13 : Nat)) == (0 : FRC.Shell (13 : Nat))) = true ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) * FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) + -(FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (3 : Nat) * FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat)) = (0 : FRC.Shell (13 : Nat)) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (0 : Nat) (0 : Nat) = FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (1 : Nat) (1 : Nat) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) = ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat)) + (2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) * ((2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) * ((7 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (0 : Nat) (0 : Nat) * ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat)) + (2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) = (FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat)) * ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat))) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (7 : FRC.Shell (13 : Nat)) + (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ ((List.range (4 : Nat)).all fun a => FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) a (2 : Nat) * (1 : FRC.Shell (5 : Nat)) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) a (3 : Nat) * (1 : FRC.Shell (5 : Nat)) == (0 : FRC.Shell (5 : Nat))) = true ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) * FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat) + -(FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (3 : Nat) * FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (2 : Nat)) = (0 : FRC.Shell (5 : Nat)) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (0 : Nat) (0 : Nat) = FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat) = ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat)) + (1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) * ((2 : FRC.Shell (5 : Nat)) * (2 : FRC.Shell (5 : Nat))) * ((3 : FRC.Shell (5 : Nat)) * (3 : FRC.Shell (5 : Nat))) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (0 : Nat) (0 : Nat) * ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat)) + (1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) = (FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat)) * ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) ∧ (2 : FRC.Shell (5 : Nat)) * (2 : FRC.Shell (5 : Nat)) = (-1 : FRC.Shell (5 : Nat)) ∧ (3 : FRC.Shell (5 : Nat)) + (3 : FRC.Shell (5 : Nat)) = (1 : FRC.Shell (5 : Nat)) :=
-  And.intro @FRC.Interactions.hessian_neutral (@FRC.Interactions.hessian_full)
-/-- p27029 — 27:X6. \textbf{Maximal parity violation} is the exact decoupling of the Frobenius branch from the drive, so the $V\!-\!A$ current is derived rather than the left-handed doublets assigned by hand. -/
-theorem p27029 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * δ * τ)) N = (0 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun x => (1 : FRC.Shell p)) N = FRC.Shell.ofNat N) ∧ ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, δ ≤ N → u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * (N - δ) * τ)) N = (0 : FRC.Shell p) ∧ (1 : Int) ≠ (-1 : Int) ∧ (1 : Int) * (1 : Int) > (0 : Int) ∧ (-1 : Int) * (-1 : Int) > (0 : Int) :=
-  And.intro @FRC.Interactions.va_cancel (@FRC.Interactions.orientation_flip)
-/-- p27030 — 27:X7. \textbf{The colour sector} is fixed: three colours is the minimal triality-carrying frame, confinement is the compact-group area law from positivity, and asymptotic freedom is the gluon self-coupling, not $N_c=3$ supplemented by an assumed confining phase. -/
+/-- p27028 — 27:X5. \textbf{The custodial relation} $\rho=1$ is an identity of the doublet alignment field (B10): the value of the charged block of the mass operator equals the first diagonal entry of its neutral block. The quotient $\rho$ is read for $g\neq0$ and $g^2+g'^2\neq0$. -/
+theorem p27028 : (∀ {p : Nat} [FRC.Pos p] (g g' v : FRC.Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = (0 : FRC.Shell p) ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = (0 : FRC.Shell p) ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = (0 : FRC.Shell p) ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g') ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a a' : FRC.Shell p), (FRC.Chirality.shellPart ν a).conj * FRC.Chirality.shellPart ν a = FRC.Chirality.shellPart ν (a * a) ∧ (FRC.Chirality.rootPart ν a).conj * FRC.Chirality.rootPart ν a = FRC.Chirality.shellPart ν (-(ν * (a * a))) ∧ (FRC.Chirality.shellPart ν a).conj * FRC.Chirality.rootPart ν a + (FRC.Chirality.rootPart ν a).conj * FRC.Chirality.shellPart ν a = FRC.Chirality.rootPart ν (0 : FRC.Shell p) ∧ (FRC.Chirality.rootPart ν (-a)).conj * FRC.Chirality.rootPart ν (-a) = FRC.Chirality.shellPart ν (-(ν * (a * a))) ∧ (FRC.Chirality.rootPart ν a').conj * FRC.Chirality.rootPart ν a' = FRC.Chirality.shellPart ν (-(ν * (a' * a'))) ∧ (FRC.Chirality.rootPart ν (-a)).conj * FRC.Chirality.rootPart ν a' + (FRC.Chirality.rootPart ν a').conj * FRC.Chirality.rootPart ν (-a) = FRC.Chirality.shellPart ν (ν * (a * a') + ν * (a * a'))) ∧ (∀ {p : Nat} [FRC.Pos p] (ν a a' : FRC.Shell p), -(ν * (a * a)) = a * a * -ν ∧ -(ν * (a * a)) * a' + ν * (a * a') * a = (0 : FRC.Shell p) ∧ ν * (a * a') * a' + -(ν * (a' * a')) * a = (0 : FRC.Shell p) ∧ -(ν * (a * a)) * a + ν * (a * a') * -a' = (a * a + a' * a') * (-ν * a) ∧ ν * (a * a') * a + -(ν * (a' * a')) * -a' = (a * a + a' * a') * (-ν * -a')) ∧ ∀ {p : Nat} [FRC.Pos p] {a a' x y : FRC.Shell p}, x * a' + y * a = (0 : FRC.Shell p) → x * a + y * -a' = (0 : FRC.Shell p) → (a * a + a' * a') * x = (0 : FRC.Shell p) ∧ (a * a + a' * a') * y = (0 : FRC.Shell p) :=
+  And.intro @FRC.Interactions.neutral_block (And.intro @FRC.Chirality.mass_form (And.intro @FRC.Chirality.mass_spectrum (@FRC.Chirality.mass_independent)))
+/-- p27029 — 27:X6. \textbf{The two chiralities} are the two roots of the drive: $\Fp[\Gamma]$ is a field and holds no chirality projector; over $K$ the Frobenius on the entries exchanges the two projectors, and no frame holds an absolute handedness. The weak current is left-handed by the assignment of the naming B5. -/
+theorem p27029 : (∀ {p : Nat} [FRC.Pos p] {i ν : FRC.Shell p}, i * i = (-1 : FRC.Shell p) → (¬∃ r, r * r = ν) → ¬∃ r, r * r = -ν) ∧ (∀ {p : Nat} [FRC.Pos p] {i h ν a b c : FRC.Shell p}, i * i = (-1 : FRC.Shell p) → h + h = (1 : FRC.Shell p) → (¬∃ r, r * r = ν) → b * c = (1 : FRC.Shell p) → a * a + -(ν * (b * b)) = a → (a + a) * b = b → False) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (i : FRC.Shell p), (FRC.Chirality.rootPart ν i).conj = -FRC.Chirality.rootPart ν i) ∧ ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, δ ≤ N → u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * (N - δ) * τ)) N = (0 : FRC.Shell p) ∧ (1 : Int) ≠ (-1 : Int) ∧ (1 : Int) * (1 : Int) > (0 : Int) ∧ (-1 : Int) * (-1 : Int) > (0 : Int) :=
+  And.intro @FRC.Chirality.neg_nonsquare (And.intro @FRC.Chirality.no_idempotent (And.intro @FRC.Chirality.root_conj (@FRC.Interactions.orientation_flip)))
+/-- p27030 — 27:X7. \textbf{The colour sector}: three colours is the declared minimal rank that holds the triality (B4), the Wilson loop obeys the area law at strong coupling, and asymptotic freedom is the gluon self-coupling. -/
 theorem p27030 : (([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => x * x.conj == FRC.Interactions.F4.o && x * x * x == FRC.Interactions.F4.o) = true ∧ (FRC.Interactions.F4.z * FRC.Interactions.F4.z.conj == FRC.Interactions.F4.o) = false ∧ [FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].length = (3 : Nat) ∧ (2 : Nat) + (1 : Nat) = (3 : Nat) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal && FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal) = true) ∧ (have U₁ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have U₂ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have D₁ := [FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; have D₂ := [FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) U₁ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₂) U₂ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.det U₁ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.det U₂ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.mm U₁ U₂ ≠ FRC.Interactions.F4.mm U₂ U₁ ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) = [FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w] ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) ≠ FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm D₁ D₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg D₁) (FRC.Interactions.F4.dg D₂)) = FRC.Interactions.F4.one) ∧ ∀ (n : Nat), n % (12 : Nat) = (5 : Nat) → (n + (1 : Nat)) % (2 : Nat) = (0 : Nat) ∧ (n + (1 : Nat)) % (3 : Nat) = (0 : Nat) ∧ (n + (1 : Nat)) % (4 : Nat) = (2 : Nat) :=
   And.intro @FRC.Interactions.su3_centre (And.intro @FRC.Interactions.gluon_commutator (@FRC.Interactions.rank_tower))
-/-- p27031 — 27:X8. \textbf{One complete generation} is the spinor $\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\SO(10)$ fact (A4) evaluated on the declared content. -/
-theorem p27031 : ((List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true) ∧ ((FRC.Interactions.offblock.all fun cw => (List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => have a := FRC.Interactions.emul S T; have b := FRC.Interactions.emul (FRC.Interactions.act cw.fst cw.snd S) (FRC.Interactions.act cw.fst cw.snd T); b.fst * b.fst == a.fst * a.fst && (a.fst == (0 : Int) || b.snd == FRC.Interactions.act cw.fst cw.snd a.snd)) = true ∧ (FRC.Interactions.offblock.all fun cw => ((List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => decide ((FRC.Interactions.act cw.fst cw.snd S == FRC.Interactions.act cw.fst cw.snd T) = true → (S == T) = true)) && (List.range (32 : Nat)).all fun S => decide (FRC.Interactions.act cw.fst cw.snd S < (32 : Nat))) = true) ∧ ∀ (Ω s : Nat), (7 : Nat) ≤ Ω → s * s ≤ Ω → (3 : Nat) * s < Ω + (1 : Nat) :=
-  And.intro @FRC.Interactions.one_generation (And.intro @FRC.Interactions.offblock_automorphism (@FRC.Interactions.torsion_beyond_horizon))
-/-- p27033 — 27:X10. \textbf{The Koide ratio} is exactly $2/3$, the cube-root generation orbit at the self-dual quarter-turn $\rho^2=2^{-1}$, an exact value rather than an unexplained numerical coincidence. -/
+/-- p27031 — 27:X8. \textbf{One complete generation} is the spinor $\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with the simple unification declared (B7), rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\SO(10)$ fact (A4) evaluated on the declared content. -/
+theorem p27031 : ((List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true) ∧ (FRC.Interactions.offblock.all fun cw => (List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => have a := FRC.Interactions.emul S T; have b := FRC.Interactions.emul (FRC.Interactions.act cw.fst cw.snd S) (FRC.Interactions.act cw.fst cw.snd T); b.fst * b.fst == a.fst * a.fst && (a.fst == (0 : Int) || b.snd == FRC.Interactions.act cw.fst cw.snd a.snd)) = true ∧ (FRC.Interactions.offblock.all fun cw => ((List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => decide ((FRC.Interactions.act cw.fst cw.snd S == FRC.Interactions.act cw.fst cw.snd T) = true → (S == T) = true)) && (List.range (32 : Nat)).all fun S => decide (FRC.Interactions.act cw.fst cw.snd S < (32 : Nat))) = true :=
+  And.intro @FRC.Interactions.one_generation (@FRC.Interactions.offblock_automorphism)
+/-- p27033 — 27:X10. \textbf{The Koide ratio} has the exact form $Q=\tfrac13+\tfrac23\rho^{2}$ on the characters of the generation cycle $C_3$, and it is $2/3$ at the named value $\rho^2=\tfrac12$ (B8). -/
 theorem p27033 : (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω))) ∧ (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω)) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν h : FRC.Shell p}, h + h = (1 : FRC.Shell p) → ν + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ∀ (a₀ a₁ a₂ : FRC.Shell p), FRC.Interactions.omega3 ν h * FRC.Interactions.omega3 ν h + FRC.Interactions.omega3 ν h + (1 : FRC.Extension.Ext p ν) = (0 : FRC.Extension.Ext p ν) ∧ FRC.Interactions.hat2 ν h a₀ a₁ a₂ = (FRC.Interactions.hat1 ν h a₀ a₁ a₂).conj ∧ FRC.Interactions.hat1 ν h a₀ a₁ a₂ * FRC.Interactions.hat2 ν h a₀ a₁ a₂ = FRC.Extension.Ext.ofShell (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) + FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (1 : FRC.Shell p) ∧ (-3 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) :=
   And.intro @FRC.Interactions.koide_parseval (And.intro @FRC.Interactions.koide_two_thirds (And.intro @FRC.Interactions.koide_extension (@FRC.Interactions.koide_half)))
-/-- p27034 — 27:X11. \textbf{The strong-CP angle} vanishes with no axion: the Wilson action class carries no orientation-odd term (B2), and Hermitian quark masses have real determinant, so $\bar\theta=0$ arises nowhere rather than being tuned away. -/
-theorem p27034 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → FRC.Unitary.tr (FRC.Unitary.adj U) = (FRC.Unitary.tr U).conj ∧ FRC.Unitary.tr (FRC.Unitary.adj U) + (FRC.Unitary.tr (FRC.Unitary.adj U)).conj = FRC.Unitary.tr U + (FRC.Unitary.tr U).conj) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).conj = FRC.Unitary.det A) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p)) ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mu17) = FRC.Unitary.ents FRC.Interactions.mu17 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.md17) = FRC.Unitary.ents FRC.Interactions.md17 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mc17) = FRC.Unitary.ents FRC.Interactions.mc17 ∧ (FRC.Unitary.det FRC.Interactions.mu17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det (FRC.Unitary.mmul FRC.Interactions.mu17 FRC.Interactions.md17)).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mu17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.mu17 FRC.Interactions.md17) ≠ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.md17 FRC.Interactions.mu17) ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mu53) = FRC.Unitary.ents FRC.Interactions.mu53 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.md53) = FRC.Unitary.ents FRC.Interactions.md53 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mc53) = FRC.Unitary.ents FRC.Interactions.mc53 ∧ (FRC.Unitary.det FRC.Interactions.mu53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det (FRC.Unitary.mmul FRC.Interactions.mu53 FRC.Interactions.md53)).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mu53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.mu53 FRC.Interactions.md53) ≠ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.md53 FRC.Interactions.mu53) ∧ FRC.Interactions.nu17 + (3 : FRC.Shell (17 : Nat)) = (0 : FRC.Shell (17 : Nat)) ∧ FRC.Interactions.nu53 + (3 : FRC.Shell (53 : Nat)) = (0 : FRC.Shell (53 : Nat)) :=
-  And.intro @FRC.Unitary.wilson_orientation_even (And.intro @FRC.Unitary.hermitian_det_real (And.intro @FRC.Unitary.hermitian_det_shell (@FRC.Interactions.ckm_free)))
-/-- p27036 — 27:P2. \textbf{A desert to the substrate scale} \emph{[forced]}. The gauge group is exactly $\SU(3)\times\SU(2)\times\U(1)$ until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\sim10^{16}$--$10^{19}\,$GeV) scales. \emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios. -/
+/-- p27034 — 27:X11. \textbf{The strong-CP angle} reads $0$ on the chart with no axion, on one declaration and one theorem: the colour action is declared of the Wilson class, which holds no term $\Tr F\widetilde F$ (B11), and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell. Where no mass reads $0$ the determinants are positive on the chart [chart]. -/
+theorem p27034 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → FRC.Unitary.tr (FRC.Unitary.adj U) = (FRC.Unitary.tr U).conj ∧ FRC.Unitary.tr (FRC.Unitary.adj U) + (FRC.Unitary.tr (FRC.Unitary.adj U)).conj = FRC.Unitary.tr U + (FRC.Unitary.tr U).conj) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).conj = FRC.Unitary.det A) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → FRC.Unitary.det (FRC.Unitary.mmul A A) = FRC.Unitary.det A * FRC.Unitary.det A ∧ (FRC.Unitary.det A).conj = FRC.Unitary.det A ∧ (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) ∧ ((FRC.Unitary.det A).im = (0 : FRC.Shell p) → (FRC.Unitary.det (FRC.Unitary.mmul A A)).re = (FRC.Unitary.det A).re * (FRC.Unitary.det A).re ∧ (FRC.Unitary.det (FRC.Unitary.mmul A A)).im = (0 : FRC.Shell p))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p)) ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mu17) = FRC.Unitary.ents FRC.Interactions.mu17 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.md17) = FRC.Unitary.ents FRC.Interactions.md17 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mc17) = FRC.Unitary.ents FRC.Interactions.mc17 ∧ (FRC.Unitary.det FRC.Interactions.mu17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det (FRC.Unitary.mmul FRC.Interactions.mu17 FRC.Interactions.md17)).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mu17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.mu17 FRC.Interactions.md17) ≠ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.md17 FRC.Interactions.mu17) ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mu53) = FRC.Unitary.ents FRC.Interactions.mu53 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.md53) = FRC.Unitary.ents FRC.Interactions.md53 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mc53) = FRC.Unitary.ents FRC.Interactions.mc53 ∧ (FRC.Unitary.det FRC.Interactions.mu53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det (FRC.Unitary.mmul FRC.Interactions.mu53 FRC.Interactions.md53)).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mu53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.mu53 FRC.Interactions.md53) ≠ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.md53 FRC.Interactions.mu53) ∧ FRC.Interactions.nu17 + (3 : FRC.Shell (17 : Nat)) = (0 : FRC.Shell (17 : Nat)) ∧ FRC.Interactions.nu53 + (3 : FRC.Shell (53 : Nat)) = (0 : FRC.Shell (53 : Nat)) :=
+  And.intro @FRC.Unitary.wilson_orientation_even (And.intro @FRC.Unitary.hermitian_det_real (And.intro @FRC.Unitary.gram_det (And.intro @FRC.Unitary.hermitian_det_shell (@FRC.Interactions.ckm_free))))
+/-- p27036 — 27:P2. \textbf{A desert to the substrate scale} \emph{[forced]}. The gauge group is the block-diagonal subgroup of the frame of rank five (B10), the quotient of $\SU(3)\times\SU(2)\times\U(1)$ by $\Z_6$ on the chart [chart], until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\sim10^{16}$--$10^{19}\,$GeV) scales. \emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios. -/
 theorem p27036 : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Interactions.one_generation
 /-- p27037 — 27:P3. \textbf{No TeV supersymmetry} \emph{[forced]}. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13}\,$GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13\%$. The content has no superpartner. Where the completion closes the miss is the $\Omega$-hard running (Z1). \emph{Falsifier:} superpartners. -/
 theorem p27037 : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Interactions.one_generation
-/-- p27038 — 27:P4. \textbf{The proton is effectively stable} \emph{[forced]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\,$GeV it already exceeds the Super-Kamiokande bound. \emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years. -/
+/-- p27038 — 27:P4. \textbf{The proton is effectively stable at a substrate-scale mass} \emph{[sector]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\,$GeV it already exceeds the Super-Kamiokande bound. The mass is not derived, and the lifetime is the chart's dimensional estimate at that mass [chart]. \emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years. -/
 theorem p27038 : (24 : Nat) - ((8 : Nat) + (3 : Nat) + (1 : Nat)) = (12 : Nat) ∧ (12 : Nat) = (2 : Nat) * ((3 : Nat) * (2 : Nat)) ∧ (1 : Nat) + (5 : Nat) + (10 : Nat) = (16 : Nat) ∧ (10 : Nat) * (9 : Nat) = (2 : Nat) * (45 : Nat) :=
   @FRC.Interactions.unification_counts
-/-- p27039 — 27:P5. \textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass at the unification scale (A4), and the seesaw then places the light masses in the observed band for singlet masses of $10^{14}$--$10^{15}\,$GeV. \emph{Falsifier:} a confirmed eV-scale sterile neutrino, or Dirac neutrinos. -/
+/-- p27039 — 27:P5. \textbf{No sterile state beyond the singlet of each generation} \emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass (A4); the paper derives neither that mass nor its scale, and a zero mass is not excluded. With the mass at the unification scale the seesaw places the light masses in the observed band, for singlet masses of $10^{14}$--$10^{15}\,$GeV [chart]. The declared content (B6) holds no further gauge-singlet state. \emph{Falsifier:} a light gauge-singlet fermion that is not the singlet $\nu^c$ of one of the three generations. -/
 theorem p27039 : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Interactions.one_generation
-/-- p27040 — 27:P6. \textbf{No new particle of dark matter} \emph{[sector]}. The matter content is exactly one Standard-Model generation, triplicated, with heavy $\nu^c$; the construction contains no weakly-interacting massive particle and no axion. \emph{Falsifier:} a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational/substrate sector, a residual burden of the programme. -/
+/-- p27040 — 27:P6. \textbf{No new particle of dark matter} \emph{[sector]}. The matter content is exactly one Standard-Model generation, triplicated, with its singlet $\nu^c$; the construction contains no weakly-interacting massive particle and no axion. \emph{Falsifier:} a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational sector. -/
 theorem p27040 : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Interactions.one_generation
 /-- p27041 — 27:P7. \textbf{No new-physics contribution to the muon anomaly} \emph{[sector]}. With no states beyond the Standard Model, $(g-2)_\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. \emph{Falsifier:} a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction. -/
 theorem p27041 : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Interactions.one_generation
-/-- p27042 — 27:P8. \textbf{The charged-lepton Koide relation is exactly $2/3$} \emph{[structural]}: $(m_e+m_\mu+m_\tau)/(\sqrt{m_e}+\sqrt{m_\mu}+\sqrt{m_\tau})^2=2/3$, empirically to one part in $10^{5}$, is the cube-root generation orbit at the self-dual value $\rho^2=2^{-1}$ --- $Q=\tfrac13+\tfrac23\rho^2$ exact, $\rho^2$ the quarter-turn ($4\mid\Omega-1$) self-dual amplitude on the cubic ($3\mid\Omega+1$) plane. Form and value derived; the selection of the mass vector onto that orientation is the $\Omega$-hard flavour residual (28:Z1). \emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the per-mille winding-phase corrections. -/
+/-- p27042 — 27:P8. \textbf{The charged-lepton Koide relation is exactly $2/3$} \emph{[structural]}: $(m_e+m_\mu+m_\tau)/(\sqrt{m_e}+\sqrt{m_\mu}+\sqrt{m_\tau})^2=2/3$, empirically to one part in $10^{5}$, is the Koide form on the characters of the generation cycle at the named value $\rho^2=\tfrac12$ (B8) --- $Q=\tfrac13+\tfrac23\rho^2$ exact. The form is a theorem and the value a naming; the selection of the mass vector onto that orientation is the $\Omega$-hard flavour residual \citep{akhtman2026flavour}. \emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the tolerance of the $\tau$ mass \citep{akhtman2026flavour}. -/
 theorem p27042 : (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω))) ∧ (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω)) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν h : FRC.Shell p}, h + h = (1 : FRC.Shell p) → ν + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ∀ (a₀ a₁ a₂ : FRC.Shell p), FRC.Interactions.omega3 ν h * FRC.Interactions.omega3 ν h + FRC.Interactions.omega3 ν h + (1 : FRC.Extension.Ext p ν) = (0 : FRC.Extension.Ext p ν) ∧ FRC.Interactions.hat2 ν h a₀ a₁ a₂ = (FRC.Interactions.hat1 ν h a₀ a₁ a₂).conj ∧ FRC.Interactions.hat1 ν h a₀ a₁ a₂ * FRC.Interactions.hat2 ν h a₀ a₁ a₂ = FRC.Extension.Ext.ofShell (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) + FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (1 : FRC.Shell p) ∧ (-3 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) :=
   And.intro @FRC.Interactions.koide_parseval (And.intro @FRC.Interactions.koide_two_thirds (And.intro @FRC.Interactions.koide_extension (@FRC.Interactions.koide_half)))
 /-- p27043 — 27:P9, 00:G7. \textbf{Strong} (CP): the vacuum angle vanishes, $\bar\theta=\theta+\arg\det M_q=0$, with no axion --- the colour action carries no substrate-native topological term and colour is drive-invariant ($\theta=0$), and the Hermitian quark mass matrices have real determinant ($\arg\det M_q=0$); the CP phase $\delta_{\mathrm{CP}}$ sits in the up--down misalignment. -/
-theorem p27043 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → FRC.Unitary.tr (FRC.Unitary.adj U) = (FRC.Unitary.tr U).conj ∧ FRC.Unitary.tr (FRC.Unitary.adj U) + (FRC.Unitary.tr (FRC.Unitary.adj U)).conj = FRC.Unitary.tr U + (FRC.Unitary.tr U).conj) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).conj = FRC.Unitary.det A) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) :=
-  And.intro @FRC.Unitary.wilson_orientation_even (And.intro @FRC.Unitary.hermitian_det_real (@FRC.Unitary.hermitian_det_shell))
+theorem p27043 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → FRC.Unitary.tr (FRC.Unitary.adj U) = (FRC.Unitary.tr U).conj ∧ FRC.Unitary.tr (FRC.Unitary.adj U) + (FRC.Unitary.tr (FRC.Unitary.adj U)).conj = FRC.Unitary.tr U + (FRC.Unitary.tr U).conj) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).conj = FRC.Unitary.det A) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → FRC.Unitary.det (FRC.Unitary.mmul A A) = FRC.Unitary.det A * FRC.Unitary.det A ∧ (FRC.Unitary.det A).conj = FRC.Unitary.det A ∧ (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) ∧ ((FRC.Unitary.det A).im = (0 : FRC.Shell p) → (FRC.Unitary.det (FRC.Unitary.mmul A A)).re = (FRC.Unitary.det A).re * (FRC.Unitary.det A).re ∧ (FRC.Unitary.det (FRC.Unitary.mmul A A)).im = (0 : FRC.Shell p))) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) :=
+  And.intro @FRC.Unitary.wilson_orientation_even (And.intro @FRC.Unitary.hermitian_det_real (And.intro @FRC.Unitary.gram_det (@FRC.Unitary.hermitian_det_shell)))
+/-- p27051 — 27:C13. Chirality is the root of the drive: for matrices over the shell with the Clifford relations of $\mathrm{diag}(-\gen,1,1,1)$, $\Gamma=\gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3}$ has $\Gamma^{2}=-\gen$ and no eigenvalue on the shell, and $\Fp[\Gamma]$ is a field with the idempotents $0$ and $1$ only; over $K$, $(\im^{-1}\Gamma)^{2}=\gen$, the eigenvalues are $\pm\im\eta$, and the Frobenius on the entries exchanges the two idempotents $\tfrac12(1\pm(\im\eta)^{-1}\Gamma)$. -/
+theorem p27051 : (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {g0 g1 g2 g3 : R}, FRC.Dirac.Operator.Anticomm g0 g1 → FRC.Dirac.Operator.Anticomm g0 g2 → FRC.Dirac.Operator.Anticomm g0 g3 → FRC.Dirac.Operator.Anticomm g1 g2 → FRC.Dirac.Operator.Anticomm g1 g3 → FRC.Dirac.Operator.Anticomm g2 g3 → g0 * g1 * g2 * g3 * (g0 * g1 * g2 * g3) ≈ g0 * g0 * (g1 * g1) * (g2 * g2 * (g3 * g3))) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {g0 g1 g2 g3 c : R}, FRC.Dirac.Operator.Anticomm g0 g1 → FRC.Dirac.Operator.Anticomm g0 g2 → FRC.Dirac.Operator.Anticomm g0 g3 → FRC.Dirac.Operator.Anticomm g1 g2 → FRC.Dirac.Operator.Anticomm g1 g3 → FRC.Dirac.Operator.Anticomm g2 g3 → g0 * g0 ≈ -c → g1 * g1 ≈ (1 : R) → g2 * g2 ≈ (1 : R) → g3 * g3 ≈ (1 : R) → g0 * g1 * g2 * g3 * (g0 * g1 * g2 * g3) ≈ -c) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {u G c : R}, FRC.Dirac.Operator.Central u → u * u ≈ (-1 : R) → G * G ≈ -c → u * G * (u * G) ≈ c) ∧ (∀ {p : Nat} [FRC.Pos p] {i ν : FRC.Shell p}, i * i = (-1 : FRC.Shell p) → (¬∃ r, r * r = ν) → ¬∃ r, r * r = -ν) ∧ (∀ {p : Nat} [FRC.Pos p] {i h ν a b c : FRC.Shell p}, i * i = (-1 : FRC.Shell p) → h + h = (1 : FRC.Shell p) → (¬∃ r, r * r = ν) → b * c = (1 : FRC.Shell p) → a * a + -(ν * (b * b)) = a → (a + a) * b = b → False) ∧ (∀ {p : Nat} [FRC.Pos p] {ν i : FRC.Shell p}, i * i = (-1 : FRC.Shell p) → FRC.Chirality.rootPart ν i * FRC.Chirality.rootPart ν i = FRC.Chirality.shellPart ν (-ν)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (i : FRC.Shell p), (FRC.Chirality.rootPart ν i).conj = -FRC.Chirality.rootPart ν i :=
+  And.intro @FRC.Chirality.chirality_square (And.intro @FRC.Chirality.chirality_clifford (And.intro @FRC.Chirality.chirality_root (And.intro @FRC.Chirality.neg_nonsquare (And.intro @FRC.Chirality.no_idempotent (And.intro @FRC.Chirality.root_sq (@FRC.Chirality.root_conj))))))
+/-- p27052 — 27:C14. The two branches along the drive: the drive's unimodular lift $D=\mathrm{diag}(\eta,\eta^{-1})$ has $\sigma(D)=-D$, and $\sigma(A)=\chi(A)A$ on the group that $\SLtwo(\Fp)$ and $D$ generate, $\chi$ the parity of the chronon count. Every sesquilinear tally is equal on the two branches, so the drive selects no branch. -/
+theorem p27052 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a : FRC.Shell p), (FRC.Chirality.shellPart ν a).conj = FRC.Chirality.shellPart ν a) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (b : FRC.Shell p), (FRC.Chirality.rootPart ν b).conj = -FRC.Chirality.rootPart ν b) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a c : FRC.Shell p), FRC.Chirality.shellPart ν a * FRC.Chirality.shellPart ν c = FRC.Chirality.shellPart ν (a * c)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (b c : FRC.Shell p), FRC.Chirality.rootPart ν b * FRC.Chirality.shellPart ν c = FRC.Chirality.rootPart ν (b * c)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a d : FRC.Shell p), FRC.Chirality.shellPart ν a * FRC.Chirality.rootPart ν d = FRC.Chirality.rootPart ν (a * d)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (b d : FRC.Shell p), FRC.Chirality.rootPart ν b * FRC.Chirality.rootPart ν d = FRC.Chirality.shellPart ν (ν * (b * d))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (d a : FRC.Shell p), (FRC.Chirality.rootPart ν d * FRC.Chirality.shellPart ν a).conj = -(FRC.Chirality.rootPart ν d * FRC.Chirality.shellPart ν a)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Chirality.rootPart ν (1 : FRC.Shell p) * FRC.Chirality.rootPart ν (1 : FRC.Shell p) = FRC.Chirality.shellPart ν ν) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (x y : FRC.Extension.Ext p ν), (-x).conj * -y = x.conj * y :=
+  And.intro @FRC.Chirality.conj_shell (And.intro @FRC.Chirality.conj_root (And.intro @FRC.Chirality.shell_mul_shell (And.intro @FRC.Chirality.root_mul_shell (And.intro @FRC.Chirality.shell_mul_root (And.intro @FRC.Chirality.root_mul_root (And.intro @FRC.Chirality.drive_lift_frobenius (And.intro @FRC.Chirality.drive_lift_square (@FRC.Chirality.tally_sign))))))))
+/-- p27053 — 27:C9. The counts of the simple frame: twelve of the twenty-four generators lie off the blocks, they act as automorphisms of the exterior algebra of the frame, and the sixteen states are one irreducible spinor. -/
+theorem p27053 : ((24 : Nat) - ((8 : Nat) + (3 : Nat) + (1 : Nat)) = (12 : Nat) ∧ (12 : Nat) = (2 : Nat) * ((3 : Nat) * (2 : Nat)) ∧ (1 : Nat) + (5 : Nat) + (10 : Nat) = (16 : Nat) ∧ (10 : Nat) * (9 : Nat) = (2 : Nat) * (45 : Nat)) ∧ (FRC.Interactions.gen16.length = (16 : Nat) ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.gen16.contains (FRC.Interactions.fifth S)) = true ∧ ((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).all fun T => decide ((FRC.Interactions.fifth S == FRC.Interactions.fifth T) = true → (S == T) = true)) = true ∧ (FRC.Interactions.gen16.all fun R => (List.range (16 : Nat)).any fun S => FRC.Interactions.fifth S == R) = true ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.cnt S (0 : Nat) (4 : Nat) % (2 : Nat) == (0 : Nat) || FRC.Interactions.emul S (16 : Nat) == ((1 : Int), FRC.Interactions.fifth S)) = true) ∧ (FRC.Interactions.offblock.all fun cw => (List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => have a := FRC.Interactions.emul S T; have b := FRC.Interactions.emul (FRC.Interactions.act cw.fst cw.snd S) (FRC.Interactions.act cw.fst cw.snd T); b.fst * b.fst == a.fst * a.fst && (a.fst == (0 : Int) || b.snd == FRC.Interactions.act cw.fst cw.snd a.snd)) = true ∧ (FRC.Interactions.offblock.all fun cw => ((List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => decide ((FRC.Interactions.act cw.fst cw.snd S == FRC.Interactions.act cw.fst cw.snd T) = true → (S == T) = true)) && (List.range (32 : Nat)).all fun S => decide (FRC.Interactions.act cw.fst cw.snd S < (32 : Nat))) = true :=
+  And.intro @FRC.Interactions.unification_counts (And.intro @FRC.Interactions.fifth_direction (@FRC.Interactions.offblock_automorphism))
+/-- p27057 — 27:C15. The diagonal torus and its two cycles. Over $K$ a matrix commutes with the transport of two chronons $\mathrm{diag}(\gen,\gen^{-1})$ exactly when it is diagonal. The torus of the diagonal matrices has split cycles over the shell, of order $\p-1$, and unitary cycles, of order $\p+1$ \citep{akhtman2026spacetime}, and the two kinds meet in $\pm1$. A split point has $a^{\p-1}=1$ and a unitary point has $w^{\p+1}=1$. No exponent $0<m<\p-1$ is a period of the split cycle, and no exponent $0<d<\p+1$ of the unitary cycle. Each cycle has a generator. The entries of both cycles are units of $K$: the square of a unit is its norm, a split point, times the quotient $x/\sigma(x)$, a unitary point. The quotient is $1$ exactly on the split points, and every unitary point is such a quotient. A weight $n<\p^{2}-1$ reads $n$ modulo $\p-1$ on a split cycle and $n$ modulo $\p+1$ on a unitary cycle. Two readings are the readings of a weight exactly when their difference is even. The Frobenius fixes a split point and inverts a unitary point. The frame of the doublet holds the split cycles $R(a)$, rotations with entries of the shell. A unitary point keeps the Hermitian form, and the pair $(\mathrm{diag}(w,\sigma(w)),w)$ fixes the vacuum. The directions $E$ and $F$ have the weights $\pm2$, and every point fixes the diagonal generators. The lift $\mathrm{diag}(\eta,\eta^{-1})$ of one chronon has the square $\mathrm{diag}(\gen,\gen^{-1})$, the weights $\gen^{\pm1}$ on $E$ and $F$ and the norms $-\gen^{\pm1}$ of its entries. A ray $[x:y]$ that one chronon keeps has $xy=0$. Neither the lift nor its square is a unitary point. -/
+theorem p27057 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, (∀ {G H D : FRC.Extension.Ext p ν}, (H + -G) * D = (1 : FRC.Extension.Ext p ν) → ∀ (X : FRC.Unitary.M2 p ν), FRC.Unitary.mmul2 X (FRC.Unitary.dg G H) = FRC.Unitary.mmul2 (FRC.Unitary.dg G H) X ↔ X.a01 = (0 : FRC.Extension.Ext p ν) ∧ X.a10 = (0 : FRC.Extension.Ext p ν)) ∧ (∀ {x x' y y' : FRC.Extension.Ext p ν}, x * x' = (1 : FRC.Extension.Ext p ν) → y * y' = (1 : FRC.Extension.Ext p ν) → ∀ (s t : FRC.Extension.Ext p ν), FRC.Unitary.mmul2 (FRC.Unitary.mmul2 (FRC.Unitary.dg x y) (FRC.Unitary.dg s t)) (FRC.Unitary.dg x' y') = FRC.Unitary.dg s t ∧ FRC.Unitary.mmul2 (FRC.Unitary.mmul2 (FRC.Unitary.dg x y) { a00 := (0 : FRC.Extension.Ext p ν), a01 := (1 : FRC.Extension.Ext p ν), a10 := (0 : FRC.Extension.Ext p ν), a11 := (0 : FRC.Extension.Ext p ν) }) (FRC.Unitary.dg x' y') = { a00 := (0 : FRC.Extension.Ext p ν), a01 := x * y', a10 := (0 : FRC.Extension.Ext p ν), a11 := (0 : FRC.Extension.Ext p ν) } ∧ FRC.Unitary.mmul2 (FRC.Unitary.mmul2 (FRC.Unitary.dg x y) { a00 := (0 : FRC.Extension.Ext p ν), a01 := (0 : FRC.Extension.Ext p ν), a10 := (1 : FRC.Extension.Ext p ν), a11 := (0 : FRC.Extension.Ext p ν) }) (FRC.Unitary.dg x' y') = { a00 := (0 : FRC.Extension.Ext p ν), a01 := (0 : FRC.Extension.Ext p ν), a10 := x' * y, a11 := (0 : FRC.Extension.Ext p ν) }) ∧ (∀ {w : FRC.Extension.Ext p ν}, w.conj * w = (1 : FRC.Extension.Ext p ν) → ∀ (u₁ u₂ v₁ v₂ : FRC.Extension.Ext p ν), FRC.Unitary.det2 (FRC.Unitary.dg w w.conj) = (1 : FRC.Extension.Ext p ν) ∧ (w * u₁).conj * (w * v₁) + (w.conj * u₂).conj * (w.conj * v₂) = u₁.conj * v₁ + u₂.conj * v₂ ∧ w * (w * (0 : FRC.Extension.Ext p ν)) = (0 : FRC.Extension.Ext p ν) ∧ w * (w.conj * (1 : FRC.Extension.Ext p ν)) = (1 : FRC.Extension.Ext p ν)) ∧ (∀ {w : FRC.Extension.Ext p ν}, (∀ (a b : FRC.Shell p), a * b = (0 : FRC.Shell p) → a = (0 : FRC.Shell p) ∨ b = (0 : FRC.Shell p)) → w.im = (0 : FRC.Shell p) → w.conj * w = (1 : FRC.Extension.Ext p ν) → w.re + (-1 : FRC.Shell p) = (0 : FRC.Shell p) ∨ w.re + (1 : FRC.Shell p) = (0 : FRC.Shell p)) ∧ ∀ {G : FRC.Extension.Ext p ν}, G.im = (0 : FRC.Shell p) → ∀ (u v : FRC.Extension.Ext p ν), (G * u).conj * (G * v) = G * G * (u.conj * v)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ((∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) ↔ (0 : Nat) < a.val) ∧ (∀ (a : FRC.Shell p), a.val < p) ∧ (∀ (a b : FRC.Shell p), a.val = b.val → a = b) ∧ ∀ (k : Nat), k < p → ¬∀ (a : FRC.Shell p), a.val ≠ k) ∧ (∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) → a ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ (m : Nat), (0 : Nat) < m → m < p - (1 : Nat) → ¬∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) → a ^ m = (1 : FRC.Shell p)) ∧ (¬∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) → ¬∀ (l : Nat), l < p - (1 : Nat) → (0 : Nat) < l → a ^ l ≠ (1 : FRC.Shell p)) ∧ (∀ (s : FRC.Shell p), (FRC.Unitary.cay ν s).conj * FRC.Unitary.cay ν s = (1 : FRC.Extension.Ext p ν) ∧ (FRC.Unitary.cay ν s).re + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p)) ∧ (∀ (s s' : FRC.Shell p), FRC.Unitary.cay ν s = FRC.Unitary.cay ν s' → s = s') ∧ (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w.re + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → FRC.Unitary.cay ν (w.im * (w.re + (1 : FRC.Shell p)) ^ (p - (2 : Nat))) = w) ∧ (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w.re + (1 : FRC.Shell p) = (0 : FRC.Shell p) → w = (-1 : FRC.Extension.Ext p ν)) ∧ (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w ^ (p + (1 : Nat)) = (1 : FRC.Extension.Ext p ν)) ∧ (∀ (d : Nat), (0 : Nat) < d → d < p + (1 : Nat) → ¬∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w ^ d = (1 : FRC.Extension.Ext p ν)) ∧ ¬∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → ¬∀ (l : Nat), l < p + (1 : Nat) → (0 : Nat) < l → w ^ l ≠ (1 : FRC.Extension.Ext p ν)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → (∀ (a b k : FRC.Shell p), (a * a + -(ν * (b * b))) * k = (1 : FRC.Shell p) → (FRC.Unitary.ratio ν a b k).conj * FRC.Unitary.ratio ν a b k = (1 : FRC.Extension.Ext p ν) ∧ FRC.Unitary.pt ν a b * FRC.Unitary.pt ν a b = FRC.Unitary.pt ν (a * a + -(ν * (b * b))) (0 : FRC.Shell p) * FRC.Unitary.ratio ν a b k ∧ (FRC.Unitary.pt ν a b).conj * FRC.Unitary.pt ν a b = FRC.Unitary.pt ν (a * a + -(ν * (b * b))) (0 : FRC.Shell p) ∧ (FRC.Unitary.ratio ν a b k = (1 : FRC.Extension.Ext p ν) ↔ b = (0 : FRC.Shell p))) ∧ (∀ (s : FRC.Shell p), FRC.Unitary.ratio ν (1 : FRC.Shell p) s (((1 : FRC.Shell p) + -(ν * (s * s))) ^ (p - (2 : Nat))) = FRC.Unitary.cay ν s) ∧ FRC.Unitary.ratio ν (0 : FRC.Shell p) (1 : FRC.Shell p) ((-ν) ^ (p - (2 : Nat))) = (-1 : FRC.Extension.Ext p ν) ∧ (∀ (m b t : Nat), b + (2 : Nat) * t < (2 : Nat) * m → (b + (2 : Nat) * t + (2 : Nat) * m * t) % ((2 : Nat) * m) = b + (2 : Nat) * t ∧ (b + (2 : Nat) * t + (2 : Nat) * m * t) % ((2 : Nat) * m + (2 : Nat)) = b ∧ b + (2 : Nat) * t + (2 : Nat) * m * t + (1 : Nat) < ((2 : Nat) * m + (1 : Nat)) * ((2 : Nat) * m + (1 : Nat))) ∧ (∀ (a t r : Nat), a < (2 : Nat) * (t + r) → a + (2 : Nat) * t < (2 : Nat) * (t + r) + (2 : Nat) → (a + (2 : Nat) * (t + r) * (r + (1 : Nat))) % ((2 : Nat) * (t + r)) = a ∧ (a + (2 : Nat) * (t + r) * (r + (1 : Nat))) % ((2 : Nat) * (t + r) + (2 : Nat)) = a + (2 : Nat) * t ∧ a + (2 : Nat) * (t + r) * (r + (1 : Nat)) + (1 : Nat) < ((2 : Nat) * (t + r) + (1 : Nat)) * ((2 : Nat) * (t + r) + (1 : Nat))) ∧ (∀ (m a b k j : Nat), a + (2 : Nat) * m * k = b + ((2 : Nat) * m + (2 : Nat)) * j → a % (2 : Nat) = b % (2 : Nat)) ∧ ((∀ (a : FRC.Shell p) (n : Nat), (FRC.Unitary.pt ν a (0 : FRC.Shell p)).conj ^ n = FRC.Unitary.pt ν a (0 : FRC.Shell p) ^ n) ∧ ∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → ∀ (n : Nat), w.conj ^ n * w ^ n = (1 : FRC.Extension.Ext p ν)) ∧ (∀ (i t a a' : FRC.Shell p), i * i + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * t = (1 : FRC.Shell p) → a * a' = (1 : FRC.Shell p) → (a + a') * t * ((a + a') * t) + i * ((a' + -a) * t) * (i * ((a' + -a) * t)) = (1 : FRC.Shell p) ∧ (a + a') * t + i * (i * ((a' + -a) * t)) = a ∧ (a + a') * t + -(i * (i * ((a' + -a) * t))) = a' ∧ -(i * ((a' + -a) * t)) + (a + a') * t * i = a * i ∧ -(i * ((a' + -a) * t)) + (a + a') * t * -i = a' * -i) ∧ ∀ (i t a a' b b' : FRC.Shell p), i * i + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * t = (1 : FRC.Shell p) → (a + a') * t * ((b + b') * t) + -(i * ((a' + -a) * t) * (i * ((b' + -b) * t))) = (a * b + a' * b') * t ∧ i * ((a' + -a) * t) * ((b + b') * t) + (a + a') * t * (i * ((b' + -b) * t)) = i * ((a' * b' + -(a * b)) * t)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν k : FRC.Shell p}, ν * k = (1 : FRC.Shell p) → FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) * FRC.Unitary.pt ν (0 : FRC.Shell p) k = (1 : FRC.Extension.Ext p ν) ∧ FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) * FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) = FRC.Unitary.pt ν ν (0 : FRC.Shell p) ∧ FRC.Unitary.pt ν (0 : FRC.Shell p) k * FRC.Unitary.pt ν (0 : FRC.Shell p) k = FRC.Unitary.pt ν k (0 : FRC.Shell p) ∧ (FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p)).conj * FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) = FRC.Unitary.pt ν (-ν) (0 : FRC.Shell p) ∧ (FRC.Unitary.pt ν (0 : FRC.Shell p) k).conj * FRC.Unitary.pt ν (0 : FRC.Shell p) k = FRC.Unitary.pt ν (-k) (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {gE kE x y c : FRC.Extension.Ext p ν}, kE * (gE + (-1 : FRC.Extension.Ext p ν)) = (1 : FRC.Extension.Ext p ν) → gE * x = c * x → y = c * y → x * y = (0 : FRC.Extension.Ext p ν) :=
+  And.intro @FRC.Unitary.torus_cycles (And.intro @FRC.Unitary.cycle_orders (And.intro @FRC.Unitary.unit_cycle (And.intro @FRC.Unitary.drive_lift (@FRC.Unitary.fixed_rays))))
+/-- p27058 — 27:C16. One charge system. In the frame of rank five the hypercharge cycle $\mathrm{diag}(w^{-2},w^{-2},w^{-2},w^{3},w^{3})$ and the charge cycle $\mathrm{diag}(u,u,u,u^{-3},1)$ are unitary cycles of determinant one, with the integer weights $6Y$ and $-3Q$ on the sixteen states. The hypercharge cycle is faithful, and it acts on the doublet as the scalar $w^{3}$. These scalars are every unitary scalar exactly when $3$ does not divide $\p+1$. The charge cycle fixes the vacuum, and it acts on the doublet as the identity exactly at $u^{3}=1$, the centre of the colour frame. For a divisor $d>1$ of $\p+1$ some unitary point is no $d$-th power, so the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup. The classes of the block-diagonal subgroup modulo these products are the classes of the determinant on the doublet modulo the sixth powers of the unitary cycle. They are $\gcd(6,\p+1)$ in number: $2$ on the Subjects $13$ and $1549$, and $6$ on $173$. The points of the charge cycle are exactly the block-diagonal frame moves that fix the vacuum and commute with every one that does. A point of the charge cycle is one of the products exactly when $u$ is a square. A triple of a hypercharge point and frame moves of determinant one of the two blocks gives the identity exactly on a cycle of order $\gcd(6,\p+1)$. -/
+theorem p27058 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w.conj * w.conj * (w.conj * w.conj) * (w.conj * w.conj) * (w * w * w) * (w * w * w) = (1 : FRC.Extension.Ext p ν) ∧ (w.conj * w.conj = (1 : FRC.Extension.Ext p ν) → w * w * w = (1 : FRC.Extension.Ext p ν) → w = (1 : FRC.Extension.Ext p ν)) ∧ w * w * w * (w.conj * w.conj * w.conj) = (1 : FRC.Extension.Ext p ν) ∧ (w.conj * w.conj * w.conj = (1 : FRC.Extension.Ext p ν) ↔ w * w * w = (1 : FRC.Extension.Ext p ν))) ∧ ((FRC.Interactions.gen16.all fun S => (-2 : Int) * ↑(FRC.Interactions.col S) + (3 : Int) * ↑(FRC.Interactions.wk S) == FRC.Interactions.y6 S) = true ∧ (FRC.Interactions.gen16.all fun S => (2 : Int) * ↑(FRC.Interactions.col S) + -((6 : Int) * ↑(FRC.Interactions.cnt S (3 : Nat) (4 : Nat))) == -FRC.Interactions.q6 S) = true ∧ (FRC.Interactions.gen16.all fun S => (FRC.Interactions.q6 S + (2 : Int) * ↑(FRC.Interactions.col S)) % (6 : Int) == (0 : Int)) = true) ∧ (∀ (d m : Nat), p + (1 : Nat) = d * m → (1 : Nat) < d → ¬∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → ¬∀ (v : FRC.Extension.Ext p ν), v.conj * v = (1 : FRC.Extension.Ext p ν) → v ^ d ≠ w) ∧ ∀ (j : Nat), p + (2 : Nat) = (3 : Nat) * j → ∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → (w ^ j).conj * w ^ j = (1 : FRC.Extension.Ext p ν) ∧ (w ^ j) ^ (3 : Nat) = w) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ∀ {d m : Nat}, p + (1 : Nat) = d * m → ∀ {u : FRC.Extension.Ext p ν}, u.conj * u = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), l < p + (1 : Nat) → (0 : Nat) < l → u ^ l ≠ (1 : FRC.Extension.Ext p ν)) → (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → ∃ r, r < d ∧ ∃ v, v.conj * v = (1 : FRC.Extension.Ext p ν) ∧ w = v ^ d * u ^ r) ∧ ∀ (s : Nat), (0 : Nat) < s → s < d → ∀ (v : FRC.Extension.Ext p ν), v.conj * v = (1 : FRC.Extension.Ext p ν) → v ^ d ≠ u ^ s) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ∀ {d a m x t : Nat}, (6 : Nat) = d * a → p + (1 : Nat) = d * m → a * x = (1 : Nat) + m * t → (∀ (w : FRC.Extension.Ext p ν), w ^ (6 : Nat) = (w ^ a) ^ d) ∧ ∀ (v : FRC.Extension.Ext p ν), v.conj * v = (1 : FRC.Extension.Ext p ν) → (v ^ x).conj * v ^ x = (1 : FRC.Extension.Ext p ν) ∧ (v ^ x) ^ (6 : Nat) = v ^ d) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (s : FRC.Extension.Ext p ν) (A : FRC.Unitary.M3 p ν) (B : FRC.Unitary.M2 p ν), FRC.Unitary.det (FRC.Unitary.smul s A) = s * s * s * FRC.Unitary.det A ∧ FRC.Unitary.det2 { a00 := s * B.a00, a01 := s * B.a01, a10 := s * B.a10, a11 := s * B.a11 } = s * s * FRC.Unitary.det2 B) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → (∀ (u w : FRC.Extension.Ext p ν), u.conj * u = (1 : FRC.Extension.Ext p ν) → w.conj * w = (1 : FRC.Extension.Ext p ν) → u.conj * u.conj * u.conj = w * w * w * (w * w * w) → ∃ z, z.conj * z = (1 : FRC.Extension.Ext p ν) ∧ z * z = u) ∧ ∀ (z : FRC.Extension.Ext p ν), z.conj * z = (1 : FRC.Extension.Ext p ν) → (z * z).conj * (z * z).conj * (z * z).conj = z.conj * z.conj * z.conj * (z.conj * z.conj * z.conj) ∧ z.conj * z.conj * z.conj * (z * z * z) = (1 : FRC.Extension.Ext p ν)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {A : FRC.Unitary.M3 p ν} {d0 d1 d2 k01 k02 k12 : FRC.Extension.Ext p ν}, (d0 + -d1) * k01 = (1 : FRC.Extension.Ext p ν) → (d0 + -d2) * k02 = (1 : FRC.Extension.Ext p ν) → (d1 + -d2) * k12 = (1 : FRC.Extension.Ext p ν) → FRC.Unitary.mmul A (FRC.Unitary.mdiag d0 d1 d2) = FRC.Unitary.mmul (FRC.Unitary.mdiag d0 d1 d2) A → FRC.Unitary.mmul A FRC.Unitary.swap01 = FRC.Unitary.mmul FRC.Unitary.swap01 A → FRC.Unitary.mmul A FRC.Unitary.swap12 = FRC.Unitary.mmul FRC.Unitary.swap12 A → A = FRC.Unitary.scal A.a00) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {w : FRC.Extension.Ext p ν}, w.conj * w = (1 : FRC.Extension.Ext p ν) → (∀ (A : FRC.Unitary.M3 p ν), FRC.Unitary.mmul (FRC.Unitary.scal (w.conj * w.conj)) A = FRC.Unitary.mone → A = FRC.Unitary.scal (w * w)) ∧ FRC.Unitary.det (FRC.Unitary.scal (w * w)) = (w * w) ^ (3 : Nat) ∧ w * w * w * (w.conj * w.conj * w.conj) = (1 : FRC.Extension.Ext p ν) ∧ (w * w * (w * w) * (w * w) = (1 : FRC.Extension.Ext p ν) ↔ w.conj * w.conj * w.conj * (w.conj * w.conj * w.conj) = (1 : FRC.Extension.Ext p ν))) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ∀ {d a m x t : Nat}, (6 : Nat) = d * a → p + (1 : Nat) = d * m → a * x = (1 : Nat) + m * t → ∀ {u : FRC.Extension.Ext p ν}, u.conj * u = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), l < p + (1 : Nat) → (0 : Nat) < l → u ^ l ≠ (1 : FRC.Extension.Ext p ν)) → (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → (w ^ (6 : Nat) = (1 : FRC.Extension.Ext p ν) ↔ w ^ d = (1 : FRC.Extension.Ext p ν))) ∧ (∀ (r : Nat), (u ^ (m * r)) ^ d = (1 : FRC.Extension.Ext p ν)) ∧ (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w ^ d = (1 : FRC.Extension.Ext p ν) → ∃ r, r < d ∧ w = u ^ (m * r)) ∧ ∀ (r s : Nat), r < d → s < d → u ^ (m * r) = u ^ (m * s) → r = s :=
+  And.intro @FRC.Unitary.one_charge_system (And.intro @FRC.Unitary.power_classes (And.intro @FRC.Unitary.sixth_powers (And.intro @FRC.Unitary.det_scale (And.intro @FRC.Unitary.charge_squares (And.intro @FRC.Unitary.commutant_scalar (And.intro @FRC.Unitary.product_kernel (@FRC.Unitary.sixth_roots)))))))
+/-- p27059 — 27:P10. \textbf{No fractional charge without colour} \emph{[sector]}. Every state built from the vectors of the internal frame and their conjugates has the weight $-3Q$ congruent modulo $3$ to its net number of colour indices (C16). A state of fewer than $\p+1$ indices that the colour frame fixes has that number a multiple of three, and so an integer charge. On a shell where the colour frame has its centre the same holds for every number of indices. On the chart the group is the quotient of $\SU(3)\times\SU(2)\times\U(1)$ by $\Z_6$, one of the four quotients that the continuum theory leaves open [chart] \citep{tong2017}. \emph{Falsifier:} a colourless particle of fractional charge. -/
+theorem p27059 : ((FRC.Interactions.gen16.all fun S => (-2 : Int) * ↑(FRC.Interactions.col S) + (3 : Int) * ↑(FRC.Interactions.wk S) == FRC.Interactions.y6 S) = true ∧ (FRC.Interactions.gen16.all fun S => (2 : Int) * ↑(FRC.Interactions.col S) + -((6 : Int) * ↑(FRC.Interactions.cnt S (3 : Nat) (4 : Nat))) == -FRC.Interactions.q6 S) = true ∧ (FRC.Interactions.gen16.all fun S => (FRC.Interactions.q6 S + (2 : Int) * ↑(FRC.Interactions.col S)) % (6 : Int) == (0 : Int)) = true) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {w : FRC.Extension.Ext p ν}, w.conj * w = (1 : FRC.Extension.Ext p ν) → (∀ (A : FRC.Unitary.M3 p ν), FRC.Unitary.mmul (FRC.Unitary.scal (w.conj * w.conj)) A = FRC.Unitary.mone → A = FRC.Unitary.scal (w * w)) ∧ FRC.Unitary.det (FRC.Unitary.scal (w * w)) = (w * w) ^ (3 : Nat) ∧ w * w * w * (w.conj * w.conj * w.conj) = (1 : FRC.Extension.Ext p ν) ∧ (w * w * (w * w) * (w * w) = (1 : FRC.Extension.Ext p ν) ↔ w.conj * w.conj * w.conj * (w.conj * w.conj * w.conj) = (1 : FRC.Extension.Ext p ν))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ∀ {d a m x t : Nat}, (6 : Nat) = d * a → p + (1 : Nat) = d * m → a * x = (1 : Nat) + m * t → ∀ {u : FRC.Extension.Ext p ν}, u.conj * u = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), l < p + (1 : Nat) → (0 : Nat) < l → u ^ l ≠ (1 : FRC.Extension.Ext p ν)) → (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → (w ^ (6 : Nat) = (1 : FRC.Extension.Ext p ν) ↔ w ^ d = (1 : FRC.Extension.Ext p ν))) ∧ (∀ (r : Nat), (u ^ (m * r)) ^ d = (1 : FRC.Extension.Ext p ν)) ∧ (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w ^ d = (1 : FRC.Extension.Ext p ν) → ∃ r, r < d ∧ w = u ^ (m * r)) ∧ ∀ (r s : Nat), r < d → s < d → u ^ (m * r) = u ^ (m * s) → r = s) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {x : FRC.Extension.Ext p ν}, x ^ (3 : Nat) = (1 : FRC.Extension.Ext p ν) → x ≠ (1 : FRC.Extension.Ext p ν) → ∀ (n : Nat), x ^ n = (1 : FRC.Extension.Ext p ν) ↔ n % (3 : Nat) = (0 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {u : FRC.Extension.Ext p ν}, u.conj * u = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), l < p + (1 : Nat) → (0 : Nat) < l → u ^ l ≠ (1 : FRC.Extension.Ext p ν)) → ∀ {a1 a2 a3 b1 b2 b3 : Nat}, a1 + b3 < p + (1 : Nat) → a3 + b1 < p + (1 : Nat) → a2 + b3 < p + (1 : Nat) → a3 + b2 < p + (1 : Nat) → u ^ (a1 + b3) = u ^ (a3 + b1) → u ^ (a2 + b3) = u ^ (a3 + b2) → a1 + b3 = a3 + b1 ∧ a2 + b3 = a3 + b2 :=
+  And.intro @FRC.Unitary.charge_weights (And.intro @FRC.Unitary.product_kernel (And.intro @FRC.Unitary.sixth_roots (And.intro @FRC.Unitary.centre_weight (@FRC.Unitary.colourless_indices))))
+/-- p27060 — 27:C17. The Frobenius parity of a tally. An expression formed from the frame's data with coefficients of the shell commutes with the Frobenius, so a tally takes equal values on a configuration and on its Frobenius conjugate. For a frame move $U$ of determinant one, $\Tr U^{-1}=\sigma(\Tr U)$, and the difference $\Tr U-\Tr U^{-1}$ lies in $\eta\Fp$. The determinant of an anti-Hermitian matrix of three rows lies in $\eta\Fp$, and the commutator of the two quark mass matrices of B9 is such a matrix. The product of two elements of $\eta\Fp$ is a residue of the shell. -/
+theorem p27060 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (env : Nat → FRC.Extension.Ext p ν) (e : FRC.Shell.Frame.RE), (FRC.Unitary.xeval env e).conj = FRC.Unitary.xeval (fun i => (env i).conj) e) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → (FRC.Unitary.tr U + -FRC.Unitary.tr (FRC.Unitary.adj U)).conj = -(FRC.Unitary.tr U + -FRC.Unitary.tr (FRC.Unitary.adj U)) ∧ (FRC.Unitary.tr U + -FRC.Unitary.tr (FRC.Unitary.adj U)).re + (FRC.Unitary.tr U + -FRC.Unitary.tr (FRC.Unitary.adj U)).re = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (C : FRC.Unitary.M3 p ν), FRC.Unitary.dag C = FRC.Unitary.smul (-1 : FRC.Extension.Ext p ν) C → (FRC.Unitary.det C).conj = -FRC.Unitary.det C ∧ (FRC.Unitary.det C).re + (FRC.Unitary.det C).re = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {a b : FRC.Extension.Ext p ν}, a.conj = -a → b.conj = -b → (a * b).conj = a * b ∧ (a * b).im + (a * b).im = (0 : FRC.Shell p) :=
+  And.intro @FRC.Unitary.tally_even (And.intro @FRC.Unitary.orientation_odd (And.intro @FRC.Unitary.antihermitian_det (@FRC.Unitary.odd_product)))
 /-- p28024 — 28:C12. The generation $\mathbf{16}$ is the four-chart reflection algebra $\Lambda^{\bullet}(\C^4)\cong\Lambda^{\mathrm{even}}(\C^5)$, the quarter-turn the fifth direction; projection anchored at $\nu^c=\Lambda^0$. -/
 theorem p28024 : (((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).all fun T => decide ((FRC.Interactions.emul S T).snd < (16 : Nat))) = true ∧ ((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).all fun T => (List.range (16 : Nat)).all fun U => FRC.Interactions.assocL S T U == FRC.Interactions.assocR S T U) = true ∧ ((List.range (4 : Nat)).all fun i => (List.range (4 : Nat)).all fun j => if (i == j) = true then FRC.Interactions.emul ((2 : Nat) ^ i) ((2 : Nat) ^ j) == ((0 : Int), (0 : Nat)) else FRC.Interactions.emul ((2 : Nat) ^ i) ((2 : Nat) ^ j) == (-(FRC.Interactions.emul ((2 : Nat) ^ j) ((2 : Nat) ^ i)).fst, (FRC.Interactions.emul ((2 : Nat) ^ j) ((2 : Nat) ^ i)).snd)) = true) ∧ FRC.Interactions.gen16.length = (16 : Nat) ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.gen16.contains (FRC.Interactions.fifth S)) = true ∧ ((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).all fun T => decide ((FRC.Interactions.fifth S == FRC.Interactions.fifth T) = true → (S == T) = true)) = true ∧ (FRC.Interactions.gen16.all fun R => (List.range (16 : Nat)).any fun S => FRC.Interactions.fifth S == R) = true ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.cnt S (0 : Nat) (4 : Nat) % (2 : Nat) == (0 : Nat) || FRC.Interactions.emul S (16 : Nat) == ((1 : Int), FRC.Interactions.fifth S)) = true :=
   And.intro @FRC.Interactions.reflection_algebra (@FRC.Interactions.fifth_direction)
@@ -42924,7 +46356,7 @@ end FRC.Ledger
 
 The paper module of *Gauge Interactions over Finite Holographic Substrate* (tree `27-fields-20260625`): every
 declaration is the interactions theme's (`Theme/Interactions.lean`, `Theme/Unitary.lean`, `Theme/Fields.lean`), under
-the paper's name — the electroweak counts and the neutral Hessian, the lattice identities, the V − A cancellation, the
+the paper's name — the electroweak counts and the neutral mass block, the lattice identities, the cancellation of a boost over its cycle, the
 drive's adjoint on `𝔽₁₃`, the Hermitian determinants, and the kernel-decided certificates (`2T` over `𝔽₉`, the `4³`
 Green's function, the admissible actions at `L = 4`, the colour sector over `𝔽₄`, the mass matrices over `𝔽_p[√−3]`);
 `one_generation` and `fifth_direction` keep the theme's names. The predicates at the end (named by their rows' declared names, the key in each docstring) are generated by
@@ -43014,9 +46446,9 @@ theorem residue_five : ∀ n : Nat, n % 12 = 5 ↔ n % 4 = 1 ∧ n % 3 = 2 :=
 /-- 27:C7, 27:X7 — the rank tower (`Interactions.rank_tower`). -/
 theorem rank_tower : ∀ n : Nat, n % 12 = 5 → (n + 1) % 2 = 0 ∧ (n + 1) % 3 = 0 ∧ (n + 1) % 4 = 2 :=
   @FRC.Interactions.rank_tower
-/-- 27:C5, 27:X3, 27:X5 — the neutral Hessian (`Interactions.hessian_neutral`). -/
-theorem hessian_neutral : ∀ {p : Nat} [Pos p] (g g' v : Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = 0 ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = 0 ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = 0 ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g' :=
-  @FRC.Interactions.hessian_neutral
+/-- 27:C5, 27:X3, 27:X5 — the neutral mass block (`Interactions.neutral_block`). -/
+theorem neutral_block : ∀ {p : Nat} [Pos p] (g g' v : Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = 0 ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = 0 ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = 0 ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g' :=
+  @FRC.Interactions.neutral_block
 /-- 27:C5 — `cos²θ_W = 5/8` (`Interactions.five_eighths`). -/
 theorem five_eighths : ∀ {p : Nat} [Pos p] (g g' : Shell p), 8 * (g' * g') = 3 * (g * g + g' * g') → 8 * (g * g) = 5 * (g * g + g' * g') :=
   @FRC.Interactions.five_eighths
@@ -43029,45 +46461,34 @@ theorem holonomy_stokes : ∀ {p : Nat} [Pos p] (A₁ A₂ B₃ A₄ A₅ B₀ B
 /-- 27:C2, 27:X1 — gauge invariance of the flux (`Interactions.gauge_flux_invariant`). -/
 theorem gauge_flux_invariant : ∀ {p : Nat} [Pos p] (A B C D φ₀ φ₁ φ₂ φ₃ : Shell p), A + φ₁ + -φ₀ + (B + φ₂ + -φ₁) + -(C + φ₂ + -φ₃) + -(D + φ₃ + -φ₀) = A + B + -C + -D :=
   @FRC.Interactions.gauge_flux_invariant
-/-- 27:C4, 27:X6 — the V − A cancellation (`Interactions.va_cancel`). -/
+/-- 27:C4, 27:X6 — the cancellation of a boost over its cycle (`Interactions.va_cancel`). -/
 theorem va_cancel : ∀ {p : Nat} [Pos p], FRC.Nat.isPrime p → ∀ {u : Shell p} {N : Nat}, u ^ N = 1 → ∀ {δ : Nat}, u ^ (2 * δ) ≠ 1 → sumRange (fun τ => u ^ (2 * δ * τ)) N = 0 ∧ sumRange (fun _ => (1 : Shell p)) N = ofNat N :=
   @FRC.Interactions.va_cancel
-/-- The chiral projector, corroboration (`Interactions.projector_idempotent`). -/
+/-- The mean over the boost cycle, corroboration (`Interactions.projector_idempotent`). -/
 theorem projector_idempotent : ∀ {p : Nat} [Pos p] (x y : Shell p), (1 : Shell p) * 1 = 1 ∧ (0 : Shell p) * 0 = 0 ∧ 1 * x = x ∧ 0 * y = 0 :=
   @FRC.Interactions.projector_idempotent
 /-- 27:C4, 27:X6 — the orientation relabelling (`Interactions.orientation_flip`). -/
 theorem orientation_flip : ∀ {p : Nat} [Pos p], FRC.Nat.isPrime p → ∀ {u : Shell p} {N : Nat}, u ^ N = 1 → ∀ {δ : Nat}, δ ≤ N → u ^ (2 * δ) ≠ 1 → sumRange (fun τ => u ^ (2 * (N - δ) * τ)) N = 0 ∧ ((1 : Int) ≠ -1 ∧ (1 : Int) * 1 > 0 ∧ (-1 : Int) * -1 > 0) :=
   @FRC.Interactions.orientation_flip
-/-- 27:C4, 27:X1 — the drive's adjoint action on `𝔽₁₃` (`Interactions.drive_adjoint`). -/
-theorem drive_adjoint :
-    m2 (2, 0, 0, 7) (7, 0, 0, (2 : Shell 13)) = (1, 0, 0, 1) ∧
-    m2 (m2 (2, 0, 0, 7) (1, 0, 0, 12)) (7, 0, 0, (2 : Shell 13)) = (1, 0, 0, 12) ∧
-    m2 (m2 (2, 0, 0, 7) (0, 1, 0, 0)) (7, 0, 0, (2 : Shell 13)) = (0, 4, 0, 0) ∧
-    m2 (m2 (2, 0, 0, 7) (0, 0, 1, 0)) (7, 0, 0, (2 : Shell 13)) = (0, 0, 10, 0) ∧
-    (4 : Shell 13) * 10 = 1 ∧
-    ((List.range (13 * 13 * 13 * 13)).filter (fun n =>
-      let X := m2of (p := 13) n
-      X.1 * X.2.2.2 + -(X.2.1 * X.2.2.1) == 1 && m2 X (2, 0, 0, 7) == m2 (2, 0, 0, 7) X)).length = 12 ∧
-    m2 (3, 4, 2, 3) (2, 0, 0, 7) ≠ m2 (2, 0, 0, 7) (3, 4, 2, (3 : Shell 13)) :=
-  FRC.Interactions.drive_adjoint
+/-- 27:C4, 27:X1 — the drive's adjoint action and its centraliser on every shell (`Interactions.drive_adjoint`). -/
+theorem drive_adjoint : ∀ {p : Nat} [Pos p], FRC.Nat.isPrime p → ∀ {g h : Shell p}, g * h = 1 → g * g ≠ 1 →
+    (m2 (g, 0, 0, h) (h, 0, 0, g) = (1, 0, 0, 1) ∧
+     m2 (m2 (g, 0, 0, h) (1, 0, 0, -1)) (h, 0, 0, g) = (1, 0, 0, -1) ∧
+     m2 (m2 (g, 0, 0, h) (0, 1, 0, 0)) (h, 0, 0, g) = (0, g * g, 0, 0) ∧
+     m2 (m2 (g, 0, 0, h) (0, 0, 1, 0)) (h, 0, 0, g) = (0, 0, h * h, 0) ∧
+     (g * g) * (h * h) = 1) ∧
+    (∀ a b c d : Shell p, m2 (a, b, c, d) (g, 0, 0, h) = m2 (g, 0, 0, h) (a, b, c, d) ↔ b = 0 ∧ c = 0) ∧
+    (∀ a b c d : Shell p, a * d + -(b * c) = 1 →
+      (m2 (a, b, c, d) (g, 0, 0, h) = m2 (g, 0, 0, h) (a, b, c, d) ↔ b = 0 ∧ c = 0 ∧ a * d = 1)) ∧
+    (∀ a : Shell p, a ≠ 0 → a * a ^ (p - 2) = 1) ∧
+    (∀ a d d' : Shell p, a * d = 1 → a * d' = 1 → d = d') ∧
+    ((∀ a : Shell p, a ≠ 0 ↔ 0 < a.val) ∧ (∀ a : Shell p, a.val < p) ∧
+     (∀ a b : Shell p, a.val = b.val → a = b) ∧ (∀ k : Nat, k < p → ¬∀ a : Shell p, a.val ≠ k)) ∧
+    (∀ a b ν : Shell p, b ≠ 0 → m2 (a, ν * b, b, a) (g, 0, 0, h) ≠ m2 (g, 0, 0, h) (a, ν * b, b, a)) :=
+  @FRC.Interactions.drive_adjoint
 /-- 27:X11, 27:P9 — Hermitian determinants are their own conjugates (`Unitary.hermitian_det_real`). -/
 theorem hermitian_det_real : ∀ {p : Nat} [Pos p] {ν : Shell p} (A : M3 p ν), dag A = A → Ext.conj (det A) = det A :=
   @FRC.Unitary.hermitian_det_real
-/-- 27:C5, 27:X5 — the full Hessian on `𝔽₁₃` and `𝔽₅` (`Interactions.hessian_full`). -/
-theorem hessian_full :
-    ((List.range 4).all (fun a => hess (5 : Shell 13) 1 2 2 7 a 2 * 2 + hess (5 : Shell 13) 1 2 2 7 a 3 * 1 == 0)) = true ∧
-    hess (5 : Shell 13) 1 2 2 7 2 2 * hess (5 : Shell 13) 1 2 2 7 3 3 + -(hess (5 : Shell 13) 1 2 2 7 2 3 * hess (5 : Shell 13) 1 2 2 7 3 2) = 0 ∧
-    hess (5 : Shell 13) 1 2 2 7 0 0 = hess (5 : Shell 13) 1 2 2 7 1 1 ∧
-    hess (5 : Shell 13) 1 2 2 7 2 2 + hess (5 : Shell 13) 1 2 2 7 3 3 = (1 * 1 + 2 * 2) * (2 * 2) * (7 * 7) ∧
-    hess (5 : Shell 13) 1 2 2 7 0 0 * (1 * 1 + 2 * 2) = (hess (5 : Shell 13) 1 2 2 7 2 2 + hess (5 : Shell 13) 1 2 2 7 3 3) * (1 * 1) ∧
-    (5 : Shell 13) * 5 = -1 ∧ (7 : Shell 13) + 7 = 1 ∧
-    ((List.range 4).all (fun a => hess (2 : Shell 5) 1 1 2 3 a 2 * 1 + hess (2 : Shell 5) 1 1 2 3 a 3 * 1 == 0)) = true ∧
-    hess (2 : Shell 5) 1 1 2 3 2 2 * hess (2 : Shell 5) 1 1 2 3 3 3 + -(hess (2 : Shell 5) 1 1 2 3 2 3 * hess (2 : Shell 5) 1 1 2 3 3 2) = 0 ∧
-    hess (2 : Shell 5) 1 1 2 3 0 0 = hess (2 : Shell 5) 1 1 2 3 1 1 ∧
-    hess (2 : Shell 5) 1 1 2 3 2 2 + hess (2 : Shell 5) 1 1 2 3 3 3 = (1 * 1 + 1 * 1) * (2 * 2) * (3 * 3) ∧
-    hess (2 : Shell 5) 1 1 2 3 0 0 * (1 * 1 + 1 * 1) = (hess (2 : Shell 5) 1 1 2 3 2 2 + hess (2 : Shell 5) 1 1 2 3 3 3) * (1 * 1) ∧
-    (2 : Shell 5) * 2 = -1 ∧ (3 : Shell 5) + 3 = 1 :=
-  FRC.Interactions.hessian_full
 /-- 27:C9, 27:X8 — the colour–isospin transpositions as automorphisms (`Interactions.offblock_automorphism`). -/
 theorem offblock_automorphism :
     offblock.all (fun cw => (List.range 32).all (fun S => (List.range 32).all (fun T =>
@@ -43085,99 +46506,117 @@ theorem class_function : ∀ {p : Nat} [Pos p] {ν : Shell p} (g M : M2 p ν), d
   @FRC.Unitary.class_function
 
 -- Ledger predicates of 27-fields (generated by make_predicates.py from docs/27-fields/27-fields-ledger.json; edit the ledger, not this section)
-/-- 27:C1 (p27013) — The finite gauge correspondence, its exact clauses: the abelian inclusion $\Z/M\hookrightarrow\U(1)$ as the $M$-th roots of unity, the positive cyclotomic action (the Wilson weight $1-\Re\zeta\ge0$), and the exact $q{=}3$ embedding $\SU(2,\F_3)\cong2T$ with the Wilson trace a class function (Theorems~\ref{thm:corrU1},~\ref{thm:corrpos},~\ref{thm:corr2T}); the resolvable-window reconstruction is C12 and the cross-scale running $\Omega$-hard (Z1). -/
+/-- 27:C1 (p27013) — The finite gauge correspondence, its exact clauses: the abelian inclusion $\Z/M\hookrightarrow\U(1)$ as the $M$-th roots of unity, the non-negative cyclotomic action (the Wilson weight $1-\Re\zeta\ge0$), and the exact $q{=}3$ embedding $\SU(2,\F_3)\cong2T$ with the Wilson trace a class function (Theorems~\ref{thm:corrU1},~\ref{thm:corrpos},~\ref{thm:corr2T}); the low-curvature expansion of the compact action is C12 and the cross-scale running $\Omega$-hard (Z1). -/
 theorem finite_gauge_correspondence : (FRC.Interactions.su2.length = (24 : Nat) ∧ (24 : Nat) = (3 : Nat) * ((3 : Nat) * (3 : Nat) - (1 : Nat)) ∧ (FRC.Interactions.su2.all fun x => FRC.Interactions.su2.all fun y => FRC.Interactions.su2.contains (FRC.Interactions.qmul x y)) = true ∧ (FRC.Interactions.su2.any fun x => FRC.Interactions.su2.any fun y => FRC.Interactions.qmul x y != FRC.Interactions.qmul y x) = true ∧ (FRC.Interactions.su2.all fun x => (x.fst + x.fst.conj).im == (0 : FRC.Shell (3 : Nat))) = true ∧ List.map (fun k => (List.filter (fun x => FRC.Interactions.qord x == k) FRC.Interactions.su2).length) [(1 : Nat), (2 : Nat), (3 : Nat), (4 : Nat), (6 : Nat)] = [(1 : Nat), (1 : Nat), (8 : Nat), (6 : Nat), (8 : Nat)] ∧ List.map (fun t => (List.filter (fun x => (x.fst + x.fst.conj).re == FRC.Shell.ofNat t) FRC.Interactions.su2).length) [(0 : Nat), (1 : Nat), (2 : Nat)] = [(6 : Nat), (9 : Nat), (9 : Nat)] ∧ FRC.Interactions.su2.contains ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) = true ∧ (List.filter (fun x => FRC.Interactions.qmul x ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) == FRC.Interactions.qmul ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) x) FRC.Interactions.su2).length = (4 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (g M : FRC.Unitary.M2 p ν), FRC.Unitary.det2 g = (1 : FRC.Extension.Ext p ν) → FRC.Unitary.tr2 (FRC.Unitary.mmul2 (FRC.Unitary.mmul2 g M) (FRC.Unitary.adj2 g)) = FRC.Unitary.tr2 M :=
   @FRC.Ledger.p27013
-/-- 27:C2 (p27014) — Electromagnetism: charge as a quantised winding index, the massless photon by drive-invariance, the repulsive sign, the unique Maxwell operator, and $\al_{\mathrm{bare}}=1/4\pi$ as the phase-channel capacity normalisation. -/
+/-- 27:C2 (p27014) — Electromagnetism on a cycle of order $M$, with $M=\p+1$ on the charge cycle and $M=\p-1$ on a split cycle: charge as a quantised winding index, the photon fixed by the drive and massless at the vacuum (C5), the repulsive sign, the unique Maxwell operator, and $\al_{\mathrm{bare}}=1/4\pi$ as the phase-channel capacity normalisation. -/
 theorem electromagnetism : (∀ {p : Nat} [FRC.Pos p] (A B C D φ₀ φ₁ φ₂ φ₃ : FRC.Shell p), A + φ₁ + -φ₀ + (B + φ₂ + -φ₁) + -(C + φ₂ + -φ₃) + -(D + φ₃ + -φ₀) = A + B + -C + -D) ∧ (∀ {p : Nat} [FRC.Pos p] (a b c : FRC.Shell p), (a + b) * (1 : FRC.Shell p) + c = (0 : FRC.Shell p) → (a + b) * ((1 : FRC.Shell p) + (1 : FRC.Shell p)) + c = (0 : FRC.Shell p) → a + b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p)) ∧ FRC.Interactions.constraintRows.length = (1023 : Nat) ∧ FRC.Interactions.admissibleA.length = (123 : Nat) ∧ FRC.Interactions.admissibleB.length = (123 : Nat) ∧ FRC.Interactions.maxwellForm.length = (123 : Nat) ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.admissibleA == (0 : Int)) = true ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.admissibleB == (0 : Int)) = true ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.maxwellForm == (0 : Int)) = true ∧ List.map (fun c => (2 : Int) * c) FRC.Interactions.maxwellForm = List.zipWith (fun b a => b - a) FRC.Interactions.admissibleB FRC.Interactions.admissibleA ∧ FRC.Interactions.admissibleA ≠ FRC.Interactions.admissibleB :=
   @FRC.Ledger.p27014
-/-- 27:C3 (p27015) — The Coulomb law and Maxwell dynamics, as corollaries of the correspondence on the resolvable window. -/
+/-- 27:C3 (p27015) — The Coulomb law and Maxwell dynamics, as corollaries of the abelian correspondence, the $1/4\pi r$ law read on the chart. -/
 theorem coulomb_law_maxwell_dynamics : FRC.Interactions.greenTable.length = (64 : Nat) ∧ ((List.range (64 : Nat)).all fun n => FRC.Interactions.greenLap (n % (4 : Nat)) (n / (4 : Nat) % (4 : Nat)) (n / (16 : Nat)) == if (n == (0 : Nat)) = true then (7680 : Int) - (120 : Int) else (-120 : Int)) = true ∧ FRC.Interactions.green (1 : Nat) (0 : Nat) (0 : Nat) = (257 : Int) ∧ FRC.Interactions.green (0 : Nat) (1 : Nat) (0 : Nat) = (257 : Int) ∧ FRC.Interactions.green (0 : Nat) (0 : Nat) (1 : Nat) = (257 : Int) ∧ FRC.Interactions.green (3 : Nat) (0 : Nat) (0 : Nat) = (257 : Int) ∧ FRC.Interactions.green (0 : Nat) (0 : Nat) (0 : Nat) > FRC.Interactions.green (1 : Nat) (0 : Nat) (0 : Nat) ∧ FRC.Interactions.green (1 : Nat) (0 : Nat) (0 : Nat) > FRC.Interactions.green (2 : Nat) (0 : Nat) (0 : Nat) ∧ List.foldl (fun x1 x2 => x1 + x2) (0 : Int) FRC.Interactions.greenTable = (0 : Int) ∧ (7680 / 64 : Nat) = (120 : Nat) :=
   @FRC.Ledger.p27015
-/-- 27:C4 (p27016) — The weak sector: the cell-local $\SU(2)$ Wilson connection, electroweak breaking as drive-torus misalignment with the photon kept massless, and maximal $V\!-\!A$ parity violation with the Frobenius branch decoupling exactly. -/
-theorem weak_sector : (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((0 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (10 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat))) ∧ (4 : FRC.Shell (13 : Nat)) * (10 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ (List.filter (fun n => have X := FRC.Interactions.m2of n; X.fst * X.snd.snd.snd + -(X.snd.fst * X.snd.snd.fst) == (1 : FRC.Shell (13 : Nat)) && FRC.Interactions.m2 X ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) == FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) X) (List.range ((13 : Nat) * (13 : Nat) * (13 : Nat) * (13 : Nat)))).length = (12 : Nat) ∧ FRC.Interactions.m2 ((3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat))) ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ≠ FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * δ * τ)) N = (0 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun x => (1 : FRC.Shell p)) N = FRC.Shell.ofNat N) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, δ ≤ N → u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * (N - δ) * τ)) N = (0 : FRC.Shell p) ∧ (1 : Int) ≠ (-1 : Int) ∧ (1 : Int) * (1 : Int) > (0 : Int) ∧ (-1 : Int) * (-1 : Int) > (0 : Int)) ∧ (FRC.Interactions.su2.length = (24 : Nat) ∧ (24 : Nat) = (3 : Nat) * ((3 : Nat) * (3 : Nat) - (1 : Nat)) ∧ (FRC.Interactions.su2.all fun x => FRC.Interactions.su2.all fun y => FRC.Interactions.su2.contains (FRC.Interactions.qmul x y)) = true ∧ (FRC.Interactions.su2.any fun x => FRC.Interactions.su2.any fun y => FRC.Interactions.qmul x y != FRC.Interactions.qmul y x) = true ∧ (FRC.Interactions.su2.all fun x => (x.fst + x.fst.conj).im == (0 : FRC.Shell (3 : Nat))) = true ∧ List.map (fun k => (List.filter (fun x => FRC.Interactions.qord x == k) FRC.Interactions.su2).length) [(1 : Nat), (2 : Nat), (3 : Nat), (4 : Nat), (6 : Nat)] = [(1 : Nat), (1 : Nat), (8 : Nat), (6 : Nat), (8 : Nat)] ∧ List.map (fun t => (List.filter (fun x => (x.fst + x.fst.conj).re == FRC.Shell.ofNat t) FRC.Interactions.su2).length) [(0 : Nat), (1 : Nat), (2 : Nat)] = [(6 : Nat), (9 : Nat), (9 : Nat)] ∧ FRC.Interactions.su2.contains ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) = true ∧ (List.filter (fun x => FRC.Interactions.qmul x ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) == FRC.Interactions.qmul ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) x) FRC.Interactions.su2).length = (4 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (g M : FRC.Unitary.M2 p ν), FRC.Unitary.det2 g = (1 : FRC.Extension.Ext p ν) → FRC.Unitary.tr2 (FRC.Unitary.mmul2 (FRC.Unitary.mmul2 g M) (FRC.Unitary.adj2 g)) = FRC.Unitary.tr2 M :=
+/-- 27:C4 (p27016) — The weak sector: the cell-local $\SU(2)$ Wilson connection, the weights $\gen^{\pm1}$ of one chronon and $\gen^{\pm2}$ of two chronons on the charged directions, and the Frobenius as the inversion of the boost cycle, over which the sum of a boost's phase vanishes. -/
+theorem weak_sector : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {g h : FRC.Shell p}, g * h = (1 : FRC.Shell p) → g * g ≠ (1 : FRC.Shell p) → (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (1 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (-1 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (-1 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((0 : FRC.Shell p), (1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((0 : FRC.Shell p), g * g, (0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((0 : FRC.Shell p), (0 : FRC.Shell p), (1 : FRC.Shell p), (0 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((0 : FRC.Shell p), (0 : FRC.Shell p), h * h, (0 : FRC.Shell p)) ∧ g * g * (h * h) = (1 : FRC.Shell p)) ∧ (∀ (a b c d : FRC.Shell p), FRC.Interactions.m2 (a, b, c, d) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) = FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, b, c, d) ↔ b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p)) ∧ (∀ (a b c d : FRC.Shell p), a * d + -(b * c) = (1 : FRC.Shell p) → (FRC.Interactions.m2 (a, b, c, d) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) = FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, b, c, d) ↔ b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p) ∧ a * d = (1 : FRC.Shell p))) ∧ (∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) → a * a ^ (p - (2 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ (a d d' : FRC.Shell p), a * d = (1 : FRC.Shell p) → a * d' = (1 : FRC.Shell p) → d = d') ∧ ((∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) ↔ (0 : Nat) < a.val) ∧ (∀ (a : FRC.Shell p), a.val < p) ∧ (∀ (a b : FRC.Shell p), a.val = b.val → a = b) ∧ ∀ (k : Nat), k < p → ¬∀ (a : FRC.Shell p), a.val ≠ k) ∧ ∀ (a b ν : FRC.Shell p), b ≠ (0 : FRC.Shell p) → FRC.Interactions.m2 (a, ν * b, b, a) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ≠ FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, ν * b, b, a)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν k : FRC.Shell p}, ν * k = (1 : FRC.Shell p) → FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) * FRC.Unitary.pt ν (0 : FRC.Shell p) k = (1 : FRC.Extension.Ext p ν) ∧ FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) * FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) = FRC.Unitary.pt ν ν (0 : FRC.Shell p) ∧ FRC.Unitary.pt ν (0 : FRC.Shell p) k * FRC.Unitary.pt ν (0 : FRC.Shell p) k = FRC.Unitary.pt ν k (0 : FRC.Shell p) ∧ (FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p)).conj * FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) = FRC.Unitary.pt ν (-ν) (0 : FRC.Shell p) ∧ (FRC.Unitary.pt ν (0 : FRC.Shell p) k).conj * FRC.Unitary.pt ν (0 : FRC.Shell p) k = FRC.Unitary.pt ν (-k) (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * δ * τ)) N = (0 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun x => (1 : FRC.Shell p)) N = FRC.Shell.ofNat N) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, δ ≤ N → u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * (N - δ) * τ)) N = (0 : FRC.Shell p) ∧ (1 : Int) ≠ (-1 : Int) ∧ (1 : Int) * (1 : Int) > (0 : Int) ∧ (-1 : Int) * (-1 : Int) > (0 : Int)) ∧ (FRC.Interactions.su2.length = (24 : Nat) ∧ (24 : Nat) = (3 : Nat) * ((3 : Nat) * (3 : Nat) - (1 : Nat)) ∧ (FRC.Interactions.su2.all fun x => FRC.Interactions.su2.all fun y => FRC.Interactions.su2.contains (FRC.Interactions.qmul x y)) = true ∧ (FRC.Interactions.su2.any fun x => FRC.Interactions.su2.any fun y => FRC.Interactions.qmul x y != FRC.Interactions.qmul y x) = true ∧ (FRC.Interactions.su2.all fun x => (x.fst + x.fst.conj).im == (0 : FRC.Shell (3 : Nat))) = true ∧ List.map (fun k => (List.filter (fun x => FRC.Interactions.qord x == k) FRC.Interactions.su2).length) [(1 : Nat), (2 : Nat), (3 : Nat), (4 : Nat), (6 : Nat)] = [(1 : Nat), (1 : Nat), (8 : Nat), (6 : Nat), (8 : Nat)] ∧ List.map (fun t => (List.filter (fun x => (x.fst + x.fst.conj).re == FRC.Shell.ofNat t) FRC.Interactions.su2).length) [(0 : Nat), (1 : Nat), (2 : Nat)] = [(6 : Nat), (9 : Nat), (9 : Nat)] ∧ FRC.Interactions.su2.contains ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) = true ∧ (List.filter (fun x => FRC.Interactions.qmul x ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) == FRC.Interactions.qmul ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) x) FRC.Interactions.su2).length = (4 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (g M : FRC.Unitary.M2 p ν), FRC.Unitary.det2 g = (1 : FRC.Extension.Ext p ν) → FRC.Unitary.tr2 (FRC.Unitary.mmul2 (FRC.Unitary.mmul2 g M) (FRC.Unitary.adj2 g)) = FRC.Unitary.tr2 M :=
   @FRC.Ledger.p27016
-/-- 27:C5 (p27017) — The propagating neutral spectrum and custodial $\rho=1$: the Hessian of $S_\rho$ at the broken vacuum gives massive $W^\pm,Z$ against a massless photon, $\rho=1$ as $\det\equiv0$, $M_W^2/M_Z^2=\cos^2\sW$, which is $5/8$ at the unification point (Prop.~\ref{prop:running}); the imported electroweak template (A4) evaluated on the naming B3. -/
-theorem propagating_neutral_spectrum : (∀ {p : Nat} [FRC.Pos p] (g g' v : FRC.Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = (0 : FRC.Shell p) ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = (0 : FRC.Shell p) ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = (0 : FRC.Shell p) ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g') ∧ (((List.range (4 : Nat)).all fun a => FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) a (2 : Nat) * (2 : FRC.Shell (13 : Nat)) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) a (3 : Nat) * (1 : FRC.Shell (13 : Nat)) == (0 : FRC.Shell (13 : Nat))) = true ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) * FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) + -(FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (3 : Nat) * FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat)) = (0 : FRC.Shell (13 : Nat)) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (0 : Nat) (0 : Nat) = FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (1 : Nat) (1 : Nat) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) = ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat)) + (2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) * ((2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) * ((7 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (0 : Nat) (0 : Nat) * ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat)) + (2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) = (FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat)) * ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat))) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (7 : FRC.Shell (13 : Nat)) + (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ ((List.range (4 : Nat)).all fun a => FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) a (2 : Nat) * (1 : FRC.Shell (5 : Nat)) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) a (3 : Nat) * (1 : FRC.Shell (5 : Nat)) == (0 : FRC.Shell (5 : Nat))) = true ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) * FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat) + -(FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (3 : Nat) * FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (2 : Nat)) = (0 : FRC.Shell (5 : Nat)) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (0 : Nat) (0 : Nat) = FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat) = ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat)) + (1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) * ((2 : FRC.Shell (5 : Nat)) * (2 : FRC.Shell (5 : Nat))) * ((3 : FRC.Shell (5 : Nat)) * (3 : FRC.Shell (5 : Nat))) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (0 : Nat) (0 : Nat) * ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat)) + (1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) = (FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat)) * ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) ∧ (2 : FRC.Shell (5 : Nat)) * (2 : FRC.Shell (5 : Nat)) = (-1 : FRC.Shell (5 : Nat)) ∧ (3 : FRC.Shell (5 : Nat)) + (3 : FRC.Shell (5 : Nat)) = (1 : FRC.Shell (5 : Nat))) ∧ ∀ {p : Nat} [FRC.Pos p] (g g' : FRC.Shell p), (8 : FRC.Shell p) * (g' * g') = (3 : FRC.Shell p) * (g * g + g' * g') → (8 : FRC.Shell p) * (g * g) = (5 : FRC.Shell p) * (g * g + g' * g') :=
+/-- 27:C5 (p27017) — The mass form of the doublet and custodial $\rho=1$. On the Subject's extension, with the Frobenius as conjugation, the mass form of the template's covariant term (A4) at the unit vacuum of the alignment field (B10) and the invariant form of the generators take values in the shell. The mass operator has the photon as kernel and the values $g^2/4$, twice, and $(g^2+g'^2)/4$, with four independent eigenvectors exactly when $g^2+g'^2\neq0$. Then, for $g\neq0$, $\rho=1$, and $M_W^2/M_Z^2$ is $5/8$ at the frame's rational $3/8$. The scale $v$ enters on the chart [chart]. The spectrum is the chart's reading of the windings of Theorem~\ref{thm:break}. -/
+theorem mass_form_of_doublet : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a a' : FRC.Shell p), (FRC.Chirality.shellPart ν a).conj * FRC.Chirality.shellPart ν a = FRC.Chirality.shellPart ν (a * a) ∧ (FRC.Chirality.rootPart ν a).conj * FRC.Chirality.rootPart ν a = FRC.Chirality.shellPart ν (-(ν * (a * a))) ∧ (FRC.Chirality.shellPart ν a).conj * FRC.Chirality.rootPart ν a + (FRC.Chirality.rootPart ν a).conj * FRC.Chirality.shellPart ν a = FRC.Chirality.rootPart ν (0 : FRC.Shell p) ∧ (FRC.Chirality.rootPart ν (-a)).conj * FRC.Chirality.rootPart ν (-a) = FRC.Chirality.shellPart ν (-(ν * (a * a))) ∧ (FRC.Chirality.rootPart ν a').conj * FRC.Chirality.rootPart ν a' = FRC.Chirality.shellPart ν (-(ν * (a' * a'))) ∧ (FRC.Chirality.rootPart ν (-a)).conj * FRC.Chirality.rootPart ν a' + (FRC.Chirality.rootPart ν a').conj * FRC.Chirality.rootPart ν (-a) = FRC.Chirality.shellPart ν (ν * (a * a') + ν * (a * a'))) ∧ (∀ {p : Nat} [FRC.Pos p] (ν a a' : FRC.Shell p), -(ν * (a * a)) = a * a * -ν ∧ -(ν * (a * a)) * a' + ν * (a * a') * a = (0 : FRC.Shell p) ∧ ν * (a * a') * a' + -(ν * (a' * a')) * a = (0 : FRC.Shell p) ∧ -(ν * (a * a)) * a + ν * (a * a') * -a' = (a * a + a' * a') * (-ν * a) ∧ ν * (a * a') * a + -(ν * (a' * a')) * -a' = (a * a + a' * a') * (-ν * -a')) ∧ (∀ {p : Nat} [FRC.Pos p] {a a' x y : FRC.Shell p}, x * a' + y * a = (0 : FRC.Shell p) → x * a + y * -a' = (0 : FRC.Shell p) → (a * a + a' * a') * x = (0 : FRC.Shell p) ∧ (a * a + a' * a') * y = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] (a a' : FRC.Shell p), a * a * (a * a) + -(a * a') * -(a * a') = (a * a + a' * a') * (a * a) ∧ a * a * -(a * a') + -(a * a') * (a' * a') = (a * a + a' * a') * -(a * a') ∧ -(a * a') * (a * a) + a' * a' * -(a * a') = (a * a + a' * a') * -(a * a') ∧ -(a * a') * -(a * a') + a' * a' * (a' * a') = (a * a + a' * a') * (a' * a')) ∧ (∀ {p : Nat} [FRC.Pos p] {h : FRC.Shell p}, h + h = (1 : FRC.Shell p) → ∀ (ν : FRC.Shell p), h * h + h * h + (h * h + h * h) = (1 : FRC.Shell p) ∧ -(ν * (h * h) + ν * (h * h) + (ν * (h * h) + ν * (h * h))) = -ν) ∧ (∀ {p : Nat} [FRC.Pos p] (g g' v : FRC.Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = (0 : FRC.Shell p) ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = (0 : FRC.Shell p) ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = (0 : FRC.Shell p) ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g') ∧ ∀ {p : Nat} [FRC.Pos p] (g g' : FRC.Shell p), (8 : FRC.Shell p) * (g' * g') = (3 : FRC.Shell p) * (g * g + g' * g') → (8 : FRC.Shell p) * (g * g) = (5 : FRC.Shell p) * (g * g + g' * g') :=
   @FRC.Ledger.p27017
-/-- 27:C6 (p27018) — The Weinberg trace formula $\sin^2\sW=\Tr(T_3^2)/\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\sqrt2\,v^2)$; the imported template (A4) evaluated on the namings B3, B5. -/
+/-- 27:C6 (p27018) — The Weinberg trace formula $\sin^2\sW=\Tr(T_3^2)/\Tr(Q^2)=3/8$ for a complete generation, the frame's rational, and the four-fermion amplitude with $G_F=1/(\sqrt2\,v^2)$; the imported template (A4) evaluated on the namings B3, B5. -/
 theorem weinberg_trace_formula : (FRC.Interactions.isum (List.map (fun S => (3 : Int) * FRC.Interactions.t3h S * ((3 : Int) * FRC.Interactions.t3h S)) FRC.Interactions.gen16) = (72 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.q6 S * FRC.Interactions.q6 S) FRC.Interactions.gen16) = (192 : Int) ∧ (72 : Nat) * (8 : Nat) = (192 : Nat) * (3 : Nat)) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Ledger.p27018
-/-- 27:C7 (p27019) — The strong sector: the colour $\SU(3,\Omega)$ frame forced as the minimal triality-carrying rank, the exact $\Z_3$ centre, the gluon connection, and the confinement area law $\sigma>0$ from positivity, with the string tension $\sigma(\beta)=-\ln c_1(\beta)$ computed in finite units (closed form on $2T$; $c_1^{\SU(3)}=\tfrac\beta{18}+\tfrac{\beta^2}{216}+\cdots$). -/
+/-- 27:C7 (p27019) — The strong sector: the colour frame $\SU(3,\F_q)$ over the Subject's extension, its centre of order $\gcd(3,q+1)$ (on the Subject $173$, not on $13$ or $1549$), the gluon connection, and the area law at strong coupling [chart], with the string tension $\sigma(\beta)=-\ln c_1(\beta)$ in closed form on $2T$ and the colour series $c_1^{\SU(3)}=\tfrac\beta{18}+\tfrac{\beta^2}{216}+\cdots$, the frame's invariants the compact ones through degree $2\p-1$, and the coefficients of the formal series built from their counts the compact ones below order $\beta^{\p}$ \citep{akhtman2026yangmills}. -/
 theorem strong_sector : (([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => x * x.conj == FRC.Interactions.F4.o && x * x * x == FRC.Interactions.F4.o) = true ∧ (FRC.Interactions.F4.z * FRC.Interactions.F4.z.conj == FRC.Interactions.F4.o) = false ∧ [FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].length = (3 : Nat) ∧ (2 : Nat) + (1 : Nat) = (3 : Nat) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal && FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal) = true) ∧ (have U₁ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have U₂ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have D₁ := [FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; have D₂ := [FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) U₁ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₂) U₂ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.det U₁ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.det U₂ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.mm U₁ U₂ ≠ FRC.Interactions.F4.mm U₂ U₁ ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) = [FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w] ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) ≠ FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm D₁ D₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg D₁) (FRC.Interactions.F4.dg D₂)) = FRC.Interactions.F4.one) ∧ ∀ (n : Nat), n % (12 : Nat) = (5 : Nat) → (n + (1 : Nat)) % (2 : Nat) = (0 : Nat) ∧ (n + (1 : Nat)) % (3 : Nat) = (0 : Nat) ∧ (n + (1 : Nat)) % (4 : Nat) = (2 : Nat) :=
   @FRC.Ledger.p27019
 /-- 27:C8 (p27020) — One complete Standard-Model generation as the spinor $\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\SO(10)$ template (A4) evaluated on the naming B5. -/
 theorem standard_model_generation_spinor : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Ledger.p27020
-/-- 27:C9 (p27021) — Simple $\SO(10)$ unification forced: the colour--isospin off-block reframings are gauge automorphisms, and the torsion that distinguishes the blocks needs more coherent steps than any horizon count admits ($3s<\Omega+1$ for $s^2\le\Omega$); the horizon itself is the master's (00:Z2--Z4). -/
-theorem simple_unification_forced : ((24 : Nat) - ((8 : Nat) + (3 : Nat) + (1 : Nat)) = (12 : Nat) ∧ (12 : Nat) = (2 : Nat) * ((3 : Nat) * (2 : Nat)) ∧ (1 : Nat) + (5 : Nat) + (10 : Nat) = (16 : Nat) ∧ (10 : Nat) * (9 : Nat) = (2 : Nat) * (45 : Nat)) ∧ (FRC.Interactions.gen16.length = (16 : Nat) ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.gen16.contains (FRC.Interactions.fifth S)) = true ∧ ((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).all fun T => decide ((FRC.Interactions.fifth S == FRC.Interactions.fifth T) = true → (S == T) = true)) = true ∧ (FRC.Interactions.gen16.all fun R => (List.range (16 : Nat)).any fun S => FRC.Interactions.fifth S == R) = true ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.cnt S (0 : Nat) (4 : Nat) % (2 : Nat) == (0 : Nat) || FRC.Interactions.emul S (16 : Nat) == ((1 : Int), FRC.Interactions.fifth S)) = true) ∧ ((FRC.Interactions.offblock.all fun cw => (List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => have a := FRC.Interactions.emul S T; have b := FRC.Interactions.emul (FRC.Interactions.act cw.fst cw.snd S) (FRC.Interactions.act cw.fst cw.snd T); b.fst * b.fst == a.fst * a.fst && (a.fst == (0 : Int) || b.snd == FRC.Interactions.act cw.fst cw.snd a.snd)) = true ∧ (FRC.Interactions.offblock.all fun cw => ((List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => decide ((FRC.Interactions.act cw.fst cw.snd S == FRC.Interactions.act cw.fst cw.snd T) = true → (S == T) = true)) && (List.range (32 : Nat)).all fun S => decide (FRC.Interactions.act cw.fst cw.snd S < (32 : Nat))) = true) ∧ ∀ (Ω s : Nat), (7 : Nat) ≤ Ω → s * s ≤ Ω → (3 : Nat) * s < Ω + (1 : Nat) :=
-  @FRC.Ledger.p27021
+/-- 27:C9 (p27053) — The counts of the simple frame: twelve of the twenty-four generators lie off the blocks, they act as automorphisms of the exterior algebra of the frame, and the sixteen states are one irreducible spinor. -/
+theorem simple_frame_counts : ((24 : Nat) - ((8 : Nat) + (3 : Nat) + (1 : Nat)) = (12 : Nat) ∧ (12 : Nat) = (2 : Nat) * ((3 : Nat) * (2 : Nat)) ∧ (1 : Nat) + (5 : Nat) + (10 : Nat) = (16 : Nat) ∧ (10 : Nat) * (9 : Nat) = (2 : Nat) * (45 : Nat)) ∧ (FRC.Interactions.gen16.length = (16 : Nat) ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.gen16.contains (FRC.Interactions.fifth S)) = true ∧ ((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).all fun T => decide ((FRC.Interactions.fifth S == FRC.Interactions.fifth T) = true → (S == T) = true)) = true ∧ (FRC.Interactions.gen16.all fun R => (List.range (16 : Nat)).any fun S => FRC.Interactions.fifth S == R) = true ∧ ((List.range (16 : Nat)).all fun S => FRC.Interactions.cnt S (0 : Nat) (4 : Nat) % (2 : Nat) == (0 : Nat) || FRC.Interactions.emul S (16 : Nat) == ((1 : Int), FRC.Interactions.fifth S)) = true) ∧ (FRC.Interactions.offblock.all fun cw => (List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => have a := FRC.Interactions.emul S T; have b := FRC.Interactions.emul (FRC.Interactions.act cw.fst cw.snd S) (FRC.Interactions.act cw.fst cw.snd T); b.fst * b.fst == a.fst * a.fst && (a.fst == (0 : Int) || b.snd == FRC.Interactions.act cw.fst cw.snd a.snd)) = true ∧ (FRC.Interactions.offblock.all fun cw => ((List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => decide ((FRC.Interactions.act cw.fst cw.snd S == FRC.Interactions.act cw.fst cw.snd T) = true → (S == T) = true)) && (List.range (32 : Nat)).all fun S => decide (FRC.Interactions.act cw.fst cw.snd S < (32 : Nat))) = true :=
+  @FRC.Ledger.p27053
 /-- 27:C10 (p27022) — The closure of the four primitive roles ($5\!\to\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter naming (B6). -/
 theorem closure_four_primitive_roles : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
   @FRC.Ledger.p27022
-/-- 27:C11 (p27023) — The admissible substrate residue $\Omega\equiv5\!\pmod{12}$ forced by self-consistency. -/
+/-- 27:C11 (p27023) — The residue of the Carrier: the relations $4\mid\Omega-1$ (the quarter-turn) and $3\mid\Omega+1$ (the triality of colour, B4) hold together exactly when $\Omega\equiv5\!\pmod{12}$. -/
 theorem admissible_substrate_residue : (∀ (n : Nat), n % (12 : Nat) = (5 : Nat) ↔ n % (4 : Nat) = (1 : Nat) ∧ n % (3 : Nat) = (2 : Nat)) ∧ ([(5 : Nat), (17 : Nat), (29 : Nat), (41 : Nat), (53 : Nat), (89 : Nat), (101 : Nat), (113 : Nat), (2408561 : Nat)].all fun n => n % (12 : Nat) == (5 : Nat) && n % (4 : Nat) == (1 : Nat) && n % (3 : Nat) == (2 : Nat)) = true ∧ ([(13 : Nat), (61 : Nat), (157 : Nat), (421 : Nat)].all fun n => n % (12 : Nat) == (1 : Nat) && n % (4 : Nat) == (1 : Nat) && n % (3 : Nat) == (1 : Nat)) = true :=
   @FRC.Ledger.p27023
-/-- 27:X1 (p27024) — \textbf{The gauge group} $\U(1)\times\SU(2)\times\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. -/
-theorem gauge_group_from_substrate : (∀ {p : Nat} [FRC.Pos p] (A B C D φ₀ φ₁ φ₂ φ₃ : FRC.Shell p), A + φ₁ + -φ₀ + (B + φ₂ + -φ₁) + -(C + φ₂ + -φ₃) + -(D + φ₃ + -φ₀) = A + B + -C + -D) ∧ (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((0 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)))) ((7 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat))) = ((0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (10 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat))) ∧ (4 : FRC.Shell (13 : Nat)) * (10 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ (List.filter (fun n => have X := FRC.Interactions.m2of n; X.fst * X.snd.snd.snd + -(X.snd.fst * X.snd.snd.fst) == (1 : FRC.Shell (13 : Nat)) && FRC.Interactions.m2 X ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) == FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) X) (List.range ((13 : Nat) * (13 : Nat) * (13 : Nat) * (13 : Nat)))).length = (12 : Nat) ∧ FRC.Interactions.m2 ((3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat))) ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ≠ FRC.Interactions.m2 ((2 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (0 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat))) ((3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)))) ∧ have U₁ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have U₂ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have D₁ := [FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; have D₂ := [FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) U₁ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₂) U₂ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.det U₁ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.det U₂ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.mm U₁ U₂ ≠ FRC.Interactions.F4.mm U₂ U₁ ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) = [FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w] ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) ≠ FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm D₁ D₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg D₁) (FRC.Interactions.F4.dg D₂)) = FRC.Interactions.F4.one :=
+/-- 27:C13 (p27051) — Chirality is the root of the drive: for matrices over the shell with the Clifford relations of $\mathrm{diag}(-\gen,1,1,1)$, $\Gamma=\gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3}$ has $\Gamma^{2}=-\gen$ and no eigenvalue on the shell, and $\Fp[\Gamma]$ is a field with the idempotents $0$ and $1$ only; over $K$, $(\im^{-1}\Gamma)^{2}=\gen$, the eigenvalues are $\pm\im\eta$, and the Frobenius on the entries exchanges the two idempotents $\tfrac12(1\pm(\im\eta)^{-1}\Gamma)$. -/
+theorem chirality_root_of_drive : (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {g0 g1 g2 g3 : R}, FRC.Dirac.Operator.Anticomm g0 g1 → FRC.Dirac.Operator.Anticomm g0 g2 → FRC.Dirac.Operator.Anticomm g0 g3 → FRC.Dirac.Operator.Anticomm g1 g2 → FRC.Dirac.Operator.Anticomm g1 g3 → FRC.Dirac.Operator.Anticomm g2 g3 → g0 * g1 * g2 * g3 * (g0 * g1 * g2 * g3) ≈ g0 * g0 * (g1 * g1) * (g2 * g2 * (g3 * g3))) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {g0 g1 g2 g3 c : R}, FRC.Dirac.Operator.Anticomm g0 g1 → FRC.Dirac.Operator.Anticomm g0 g2 → FRC.Dirac.Operator.Anticomm g0 g3 → FRC.Dirac.Operator.Anticomm g1 g2 → FRC.Dirac.Operator.Anticomm g1 g3 → FRC.Dirac.Operator.Anticomm g2 g3 → g0 * g0 ≈ -c → g1 * g1 ≈ (1 : R) → g2 * g2 ≈ (1 : R) → g3 * g3 ≈ (1 : R) → g0 * g1 * g2 * g3 * (g0 * g1 * g2 * g3) ≈ -c) ∧ (∀ {R : Type} [Add R] [Mul R] [Neg R] [OfNat R (0 : Nat)] [OfNat R (1 : Nat)] [FRC.Dirac.Operator.OpRing R] {u G c : R}, FRC.Dirac.Operator.Central u → u * u ≈ (-1 : R) → G * G ≈ -c → u * G * (u * G) ≈ c) ∧ (∀ {p : Nat} [FRC.Pos p] {i ν : FRC.Shell p}, i * i = (-1 : FRC.Shell p) → (¬∃ r, r * r = ν) → ¬∃ r, r * r = -ν) ∧ (∀ {p : Nat} [FRC.Pos p] {i h ν a b c : FRC.Shell p}, i * i = (-1 : FRC.Shell p) → h + h = (1 : FRC.Shell p) → (¬∃ r, r * r = ν) → b * c = (1 : FRC.Shell p) → a * a + -(ν * (b * b)) = a → (a + a) * b = b → False) ∧ (∀ {p : Nat} [FRC.Pos p] {ν i : FRC.Shell p}, i * i = (-1 : FRC.Shell p) → FRC.Chirality.rootPart ν i * FRC.Chirality.rootPart ν i = FRC.Chirality.shellPart ν (-ν)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (i : FRC.Shell p), (FRC.Chirality.rootPart ν i).conj = -FRC.Chirality.rootPart ν i :=
+  @FRC.Ledger.p27051
+/-- 27:C14 (p27052) — The two branches along the drive: the drive's unimodular lift $D=\mathrm{diag}(\eta,\eta^{-1})$ has $\sigma(D)=-D$, and $\sigma(A)=\chi(A)A$ on the group that $\SLtwo(\Fp)$ and $D$ generate, $\chi$ the parity of the chronon count. Every sesquilinear tally is equal on the two branches, so the drive selects no branch. -/
+theorem branches_chronon_parity : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a : FRC.Shell p), (FRC.Chirality.shellPart ν a).conj = FRC.Chirality.shellPart ν a) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (b : FRC.Shell p), (FRC.Chirality.rootPart ν b).conj = -FRC.Chirality.rootPart ν b) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a c : FRC.Shell p), FRC.Chirality.shellPart ν a * FRC.Chirality.shellPart ν c = FRC.Chirality.shellPart ν (a * c)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (b c : FRC.Shell p), FRC.Chirality.rootPart ν b * FRC.Chirality.shellPart ν c = FRC.Chirality.rootPart ν (b * c)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a d : FRC.Shell p), FRC.Chirality.shellPart ν a * FRC.Chirality.rootPart ν d = FRC.Chirality.rootPart ν (a * d)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (b d : FRC.Shell p), FRC.Chirality.rootPart ν b * FRC.Chirality.rootPart ν d = FRC.Chirality.shellPart ν (ν * (b * d))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (d a : FRC.Shell p), (FRC.Chirality.rootPart ν d * FRC.Chirality.shellPart ν a).conj = -(FRC.Chirality.rootPart ν d * FRC.Chirality.shellPart ν a)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Chirality.rootPart ν (1 : FRC.Shell p) * FRC.Chirality.rootPart ν (1 : FRC.Shell p) = FRC.Chirality.shellPart ν ν) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (x y : FRC.Extension.Ext p ν), (-x).conj * -y = x.conj * y :=
+  @FRC.Ledger.p27052
+/-- 27:C15 (p27057) — The diagonal torus and its two cycles. Over $K$ a matrix commutes with the transport of two chronons $\mathrm{diag}(\gen,\gen^{-1})$ exactly when it is diagonal. The torus of the diagonal matrices has split cycles over the shell, of order $\p-1$, and unitary cycles, of order $\p+1$ \citep{akhtman2026spacetime}, and the two kinds meet in $\pm1$. A split point has $a^{\p-1}=1$ and a unitary point has $w^{\p+1}=1$. No exponent $0<m<\p-1$ is a period of the split cycle, and no exponent $0<d<\p+1$ of the unitary cycle. Each cycle has a generator. The entries of both cycles are units of $K$: the square of a unit is its norm, a split point, times the quotient $x/\sigma(x)$, a unitary point. The quotient is $1$ exactly on the split points, and every unitary point is such a quotient. A weight $n<\p^{2}-1$ reads $n$ modulo $\p-1$ on a split cycle and $n$ modulo $\p+1$ on a unitary cycle. Two readings are the readings of a weight exactly when their difference is even. The Frobenius fixes a split point and inverts a unitary point. The frame of the doublet holds the split cycles $R(a)$, rotations with entries of the shell. A unitary point keeps the Hermitian form, and the pair $(\mathrm{diag}(w,\sigma(w)),w)$ fixes the vacuum. The directions $E$ and $F$ have the weights $\pm2$, and every point fixes the diagonal generators. The lift $\mathrm{diag}(\eta,\eta^{-1})$ of one chronon has the square $\mathrm{diag}(\gen,\gen^{-1})$, the weights $\gen^{\pm1}$ on $E$ and $F$ and the norms $-\gen^{\pm1}$ of its entries. A ray $[x:y]$ that one chronon keeps has $xy=0$. Neither the lift nor its square is a unitary point. -/
+theorem torus_two_cycles : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, (∀ {G H D : FRC.Extension.Ext p ν}, (H + -G) * D = (1 : FRC.Extension.Ext p ν) → ∀ (X : FRC.Unitary.M2 p ν), FRC.Unitary.mmul2 X (FRC.Unitary.dg G H) = FRC.Unitary.mmul2 (FRC.Unitary.dg G H) X ↔ X.a01 = (0 : FRC.Extension.Ext p ν) ∧ X.a10 = (0 : FRC.Extension.Ext p ν)) ∧ (∀ {x x' y y' : FRC.Extension.Ext p ν}, x * x' = (1 : FRC.Extension.Ext p ν) → y * y' = (1 : FRC.Extension.Ext p ν) → ∀ (s t : FRC.Extension.Ext p ν), FRC.Unitary.mmul2 (FRC.Unitary.mmul2 (FRC.Unitary.dg x y) (FRC.Unitary.dg s t)) (FRC.Unitary.dg x' y') = FRC.Unitary.dg s t ∧ FRC.Unitary.mmul2 (FRC.Unitary.mmul2 (FRC.Unitary.dg x y) { a00 := (0 : FRC.Extension.Ext p ν), a01 := (1 : FRC.Extension.Ext p ν), a10 := (0 : FRC.Extension.Ext p ν), a11 := (0 : FRC.Extension.Ext p ν) }) (FRC.Unitary.dg x' y') = { a00 := (0 : FRC.Extension.Ext p ν), a01 := x * y', a10 := (0 : FRC.Extension.Ext p ν), a11 := (0 : FRC.Extension.Ext p ν) } ∧ FRC.Unitary.mmul2 (FRC.Unitary.mmul2 (FRC.Unitary.dg x y) { a00 := (0 : FRC.Extension.Ext p ν), a01 := (0 : FRC.Extension.Ext p ν), a10 := (1 : FRC.Extension.Ext p ν), a11 := (0 : FRC.Extension.Ext p ν) }) (FRC.Unitary.dg x' y') = { a00 := (0 : FRC.Extension.Ext p ν), a01 := (0 : FRC.Extension.Ext p ν), a10 := x' * y, a11 := (0 : FRC.Extension.Ext p ν) }) ∧ (∀ {w : FRC.Extension.Ext p ν}, w.conj * w = (1 : FRC.Extension.Ext p ν) → ∀ (u₁ u₂ v₁ v₂ : FRC.Extension.Ext p ν), FRC.Unitary.det2 (FRC.Unitary.dg w w.conj) = (1 : FRC.Extension.Ext p ν) ∧ (w * u₁).conj * (w * v₁) + (w.conj * u₂).conj * (w.conj * v₂) = u₁.conj * v₁ + u₂.conj * v₂ ∧ w * (w * (0 : FRC.Extension.Ext p ν)) = (0 : FRC.Extension.Ext p ν) ∧ w * (w.conj * (1 : FRC.Extension.Ext p ν)) = (1 : FRC.Extension.Ext p ν)) ∧ (∀ {w : FRC.Extension.Ext p ν}, (∀ (a b : FRC.Shell p), a * b = (0 : FRC.Shell p) → a = (0 : FRC.Shell p) ∨ b = (0 : FRC.Shell p)) → w.im = (0 : FRC.Shell p) → w.conj * w = (1 : FRC.Extension.Ext p ν) → w.re + (-1 : FRC.Shell p) = (0 : FRC.Shell p) ∨ w.re + (1 : FRC.Shell p) = (0 : FRC.Shell p)) ∧ ∀ {G : FRC.Extension.Ext p ν}, G.im = (0 : FRC.Shell p) → ∀ (u v : FRC.Extension.Ext p ν), (G * u).conj * (G * v) = G * G * (u.conj * v)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ((∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) ↔ (0 : Nat) < a.val) ∧ (∀ (a : FRC.Shell p), a.val < p) ∧ (∀ (a b : FRC.Shell p), a.val = b.val → a = b) ∧ ∀ (k : Nat), k < p → ¬∀ (a : FRC.Shell p), a.val ≠ k) ∧ (∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) → a ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ (m : Nat), (0 : Nat) < m → m < p - (1 : Nat) → ¬∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) → a ^ m = (1 : FRC.Shell p)) ∧ (¬∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) → ¬∀ (l : Nat), l < p - (1 : Nat) → (0 : Nat) < l → a ^ l ≠ (1 : FRC.Shell p)) ∧ (∀ (s : FRC.Shell p), (FRC.Unitary.cay ν s).conj * FRC.Unitary.cay ν s = (1 : FRC.Extension.Ext p ν) ∧ (FRC.Unitary.cay ν s).re + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p)) ∧ (∀ (s s' : FRC.Shell p), FRC.Unitary.cay ν s = FRC.Unitary.cay ν s' → s = s') ∧ (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w.re + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → FRC.Unitary.cay ν (w.im * (w.re + (1 : FRC.Shell p)) ^ (p - (2 : Nat))) = w) ∧ (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w.re + (1 : FRC.Shell p) = (0 : FRC.Shell p) → w = (-1 : FRC.Extension.Ext p ν)) ∧ (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w ^ (p + (1 : Nat)) = (1 : FRC.Extension.Ext p ν)) ∧ (∀ (d : Nat), (0 : Nat) < d → d < p + (1 : Nat) → ¬∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w ^ d = (1 : FRC.Extension.Ext p ν)) ∧ ¬∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → ¬∀ (l : Nat), l < p + (1 : Nat) → (0 : Nat) < l → w ^ l ≠ (1 : FRC.Extension.Ext p ν)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → (∀ (a b k : FRC.Shell p), (a * a + -(ν * (b * b))) * k = (1 : FRC.Shell p) → (FRC.Unitary.ratio ν a b k).conj * FRC.Unitary.ratio ν a b k = (1 : FRC.Extension.Ext p ν) ∧ FRC.Unitary.pt ν a b * FRC.Unitary.pt ν a b = FRC.Unitary.pt ν (a * a + -(ν * (b * b))) (0 : FRC.Shell p) * FRC.Unitary.ratio ν a b k ∧ (FRC.Unitary.pt ν a b).conj * FRC.Unitary.pt ν a b = FRC.Unitary.pt ν (a * a + -(ν * (b * b))) (0 : FRC.Shell p) ∧ (FRC.Unitary.ratio ν a b k = (1 : FRC.Extension.Ext p ν) ↔ b = (0 : FRC.Shell p))) ∧ (∀ (s : FRC.Shell p), FRC.Unitary.ratio ν (1 : FRC.Shell p) s (((1 : FRC.Shell p) + -(ν * (s * s))) ^ (p - (2 : Nat))) = FRC.Unitary.cay ν s) ∧ FRC.Unitary.ratio ν (0 : FRC.Shell p) (1 : FRC.Shell p) ((-ν) ^ (p - (2 : Nat))) = (-1 : FRC.Extension.Ext p ν) ∧ (∀ (m b t : Nat), b + (2 : Nat) * t < (2 : Nat) * m → (b + (2 : Nat) * t + (2 : Nat) * m * t) % ((2 : Nat) * m) = b + (2 : Nat) * t ∧ (b + (2 : Nat) * t + (2 : Nat) * m * t) % ((2 : Nat) * m + (2 : Nat)) = b ∧ b + (2 : Nat) * t + (2 : Nat) * m * t + (1 : Nat) < ((2 : Nat) * m + (1 : Nat)) * ((2 : Nat) * m + (1 : Nat))) ∧ (∀ (a t r : Nat), a < (2 : Nat) * (t + r) → a + (2 : Nat) * t < (2 : Nat) * (t + r) + (2 : Nat) → (a + (2 : Nat) * (t + r) * (r + (1 : Nat))) % ((2 : Nat) * (t + r)) = a ∧ (a + (2 : Nat) * (t + r) * (r + (1 : Nat))) % ((2 : Nat) * (t + r) + (2 : Nat)) = a + (2 : Nat) * t ∧ a + (2 : Nat) * (t + r) * (r + (1 : Nat)) + (1 : Nat) < ((2 : Nat) * (t + r) + (1 : Nat)) * ((2 : Nat) * (t + r) + (1 : Nat))) ∧ (∀ (m a b k j : Nat), a + (2 : Nat) * m * k = b + ((2 : Nat) * m + (2 : Nat)) * j → a % (2 : Nat) = b % (2 : Nat)) ∧ ((∀ (a : FRC.Shell p) (n : Nat), (FRC.Unitary.pt ν a (0 : FRC.Shell p)).conj ^ n = FRC.Unitary.pt ν a (0 : FRC.Shell p) ^ n) ∧ ∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → ∀ (n : Nat), w.conj ^ n * w ^ n = (1 : FRC.Extension.Ext p ν)) ∧ (∀ (i t a a' : FRC.Shell p), i * i + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * t = (1 : FRC.Shell p) → a * a' = (1 : FRC.Shell p) → (a + a') * t * ((a + a') * t) + i * ((a' + -a) * t) * (i * ((a' + -a) * t)) = (1 : FRC.Shell p) ∧ (a + a') * t + i * (i * ((a' + -a) * t)) = a ∧ (a + a') * t + -(i * (i * ((a' + -a) * t))) = a' ∧ -(i * ((a' + -a) * t)) + (a + a') * t * i = a * i ∧ -(i * ((a' + -a) * t)) + (a + a') * t * -i = a' * -i) ∧ ∀ (i t a a' b b' : FRC.Shell p), i * i + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * t = (1 : FRC.Shell p) → (a + a') * t * ((b + b') * t) + -(i * ((a' + -a) * t) * (i * ((b' + -b) * t))) = (a * b + a' * b') * t ∧ i * ((a' + -a) * t) * ((b + b') * t) + (a + a') * t * (i * ((b' + -b) * t)) = i * ((a' * b' + -(a * b)) * t)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν k : FRC.Shell p}, ν * k = (1 : FRC.Shell p) → FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) * FRC.Unitary.pt ν (0 : FRC.Shell p) k = (1 : FRC.Extension.Ext p ν) ∧ FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) * FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) = FRC.Unitary.pt ν ν (0 : FRC.Shell p) ∧ FRC.Unitary.pt ν (0 : FRC.Shell p) k * FRC.Unitary.pt ν (0 : FRC.Shell p) k = FRC.Unitary.pt ν k (0 : FRC.Shell p) ∧ (FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p)).conj * FRC.Unitary.pt ν (0 : FRC.Shell p) (1 : FRC.Shell p) = FRC.Unitary.pt ν (-ν) (0 : FRC.Shell p) ∧ (FRC.Unitary.pt ν (0 : FRC.Shell p) k).conj * FRC.Unitary.pt ν (0 : FRC.Shell p) k = FRC.Unitary.pt ν (-k) (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {gE kE x y c : FRC.Extension.Ext p ν}, kE * (gE + (-1 : FRC.Extension.Ext p ν)) = (1 : FRC.Extension.Ext p ν) → gE * x = c * x → y = c * y → x * y = (0 : FRC.Extension.Ext p ν) :=
+  @FRC.Ledger.p27057
+/-- 27:C16 (p27058) — One charge system. In the frame of rank five the hypercharge cycle $\mathrm{diag}(w^{-2},w^{-2},w^{-2},w^{3},w^{3})$ and the charge cycle $\mathrm{diag}(u,u,u,u^{-3},1)$ are unitary cycles of determinant one, with the integer weights $6Y$ and $-3Q$ on the sixteen states. The hypercharge cycle is faithful, and it acts on the doublet as the scalar $w^{3}$. These scalars are every unitary scalar exactly when $3$ does not divide $\p+1$. The charge cycle fixes the vacuum, and it acts on the doublet as the identity exactly at $u^{3}=1$, the centre of the colour frame. For a divisor $d>1$ of $\p+1$ some unitary point is no $d$-th power, so the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup. The classes of the block-diagonal subgroup modulo these products are the classes of the determinant on the doublet modulo the sixth powers of the unitary cycle. They are $\gcd(6,\p+1)$ in number: $2$ on the Subjects $13$ and $1549$, and $6$ on $173$. The points of the charge cycle are exactly the block-diagonal frame moves that fix the vacuum and commute with every one that does. A point of the charge cycle is one of the products exactly when $u$ is a square. A triple of a hypercharge point and frame moves of determinant one of the two blocks gives the identity exactly on a cycle of order $\gcd(6,\p+1)$. -/
+theorem one_charge_system : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w.conj * w.conj * (w.conj * w.conj) * (w.conj * w.conj) * (w * w * w) * (w * w * w) = (1 : FRC.Extension.Ext p ν) ∧ (w.conj * w.conj = (1 : FRC.Extension.Ext p ν) → w * w * w = (1 : FRC.Extension.Ext p ν) → w = (1 : FRC.Extension.Ext p ν)) ∧ w * w * w * (w.conj * w.conj * w.conj) = (1 : FRC.Extension.Ext p ν) ∧ (w.conj * w.conj * w.conj = (1 : FRC.Extension.Ext p ν) ↔ w * w * w = (1 : FRC.Extension.Ext p ν))) ∧ ((FRC.Interactions.gen16.all fun S => (-2 : Int) * ↑(FRC.Interactions.col S) + (3 : Int) * ↑(FRC.Interactions.wk S) == FRC.Interactions.y6 S) = true ∧ (FRC.Interactions.gen16.all fun S => (2 : Int) * ↑(FRC.Interactions.col S) + -((6 : Int) * ↑(FRC.Interactions.cnt S (3 : Nat) (4 : Nat))) == -FRC.Interactions.q6 S) = true ∧ (FRC.Interactions.gen16.all fun S => (FRC.Interactions.q6 S + (2 : Int) * ↑(FRC.Interactions.col S)) % (6 : Int) == (0 : Int)) = true) ∧ (∀ (d m : Nat), p + (1 : Nat) = d * m → (1 : Nat) < d → ¬∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → ¬∀ (v : FRC.Extension.Ext p ν), v.conj * v = (1 : FRC.Extension.Ext p ν) → v ^ d ≠ w) ∧ ∀ (j : Nat), p + (2 : Nat) = (3 : Nat) * j → ∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → (w ^ j).conj * w ^ j = (1 : FRC.Extension.Ext p ν) ∧ (w ^ j) ^ (3 : Nat) = w) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ∀ {d m : Nat}, p + (1 : Nat) = d * m → ∀ {u : FRC.Extension.Ext p ν}, u.conj * u = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), l < p + (1 : Nat) → (0 : Nat) < l → u ^ l ≠ (1 : FRC.Extension.Ext p ν)) → (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → ∃ r, r < d ∧ ∃ v, v.conj * v = (1 : FRC.Extension.Ext p ν) ∧ w = v ^ d * u ^ r) ∧ ∀ (s : Nat), (0 : Nat) < s → s < d → ∀ (v : FRC.Extension.Ext p ν), v.conj * v = (1 : FRC.Extension.Ext p ν) → v ^ d ≠ u ^ s) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ∀ {d a m x t : Nat}, (6 : Nat) = d * a → p + (1 : Nat) = d * m → a * x = (1 : Nat) + m * t → (∀ (w : FRC.Extension.Ext p ν), w ^ (6 : Nat) = (w ^ a) ^ d) ∧ ∀ (v : FRC.Extension.Ext p ν), v.conj * v = (1 : FRC.Extension.Ext p ν) → (v ^ x).conj * v ^ x = (1 : FRC.Extension.Ext p ν) ∧ (v ^ x) ^ (6 : Nat) = v ^ d) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (s : FRC.Extension.Ext p ν) (A : FRC.Unitary.M3 p ν) (B : FRC.Unitary.M2 p ν), FRC.Unitary.det (FRC.Unitary.smul s A) = s * s * s * FRC.Unitary.det A ∧ FRC.Unitary.det2 { a00 := s * B.a00, a01 := s * B.a01, a10 := s * B.a10, a11 := s * B.a11 } = s * s * FRC.Unitary.det2 B) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → (∀ (u w : FRC.Extension.Ext p ν), u.conj * u = (1 : FRC.Extension.Ext p ν) → w.conj * w = (1 : FRC.Extension.Ext p ν) → u.conj * u.conj * u.conj = w * w * w * (w * w * w) → ∃ z, z.conj * z = (1 : FRC.Extension.Ext p ν) ∧ z * z = u) ∧ ∀ (z : FRC.Extension.Ext p ν), z.conj * z = (1 : FRC.Extension.Ext p ν) → (z * z).conj * (z * z).conj * (z * z).conj = z.conj * z.conj * z.conj * (z.conj * z.conj * z.conj) ∧ z.conj * z.conj * z.conj * (z * z * z) = (1 : FRC.Extension.Ext p ν)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {A : FRC.Unitary.M3 p ν} {d0 d1 d2 k01 k02 k12 : FRC.Extension.Ext p ν}, (d0 + -d1) * k01 = (1 : FRC.Extension.Ext p ν) → (d0 + -d2) * k02 = (1 : FRC.Extension.Ext p ν) → (d1 + -d2) * k12 = (1 : FRC.Extension.Ext p ν) → FRC.Unitary.mmul A (FRC.Unitary.mdiag d0 d1 d2) = FRC.Unitary.mmul (FRC.Unitary.mdiag d0 d1 d2) A → FRC.Unitary.mmul A FRC.Unitary.swap01 = FRC.Unitary.mmul FRC.Unitary.swap01 A → FRC.Unitary.mmul A FRC.Unitary.swap12 = FRC.Unitary.mmul FRC.Unitary.swap12 A → A = FRC.Unitary.scal A.a00) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {w : FRC.Extension.Ext p ν}, w.conj * w = (1 : FRC.Extension.Ext p ν) → (∀ (A : FRC.Unitary.M3 p ν), FRC.Unitary.mmul (FRC.Unitary.scal (w.conj * w.conj)) A = FRC.Unitary.mone → A = FRC.Unitary.scal (w * w)) ∧ FRC.Unitary.det (FRC.Unitary.scal (w * w)) = (w * w) ^ (3 : Nat) ∧ w * w * w * (w.conj * w.conj * w.conj) = (1 : FRC.Extension.Ext p ν) ∧ (w * w * (w * w) * (w * w) = (1 : FRC.Extension.Ext p ν) ↔ w.conj * w.conj * w.conj * (w.conj * w.conj * w.conj) = (1 : FRC.Extension.Ext p ν))) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ∀ {d a m x t : Nat}, (6 : Nat) = d * a → p + (1 : Nat) = d * m → a * x = (1 : Nat) + m * t → ∀ {u : FRC.Extension.Ext p ν}, u.conj * u = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), l < p + (1 : Nat) → (0 : Nat) < l → u ^ l ≠ (1 : FRC.Extension.Ext p ν)) → (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → (w ^ (6 : Nat) = (1 : FRC.Extension.Ext p ν) ↔ w ^ d = (1 : FRC.Extension.Ext p ν))) ∧ (∀ (r : Nat), (u ^ (m * r)) ^ d = (1 : FRC.Extension.Ext p ν)) ∧ (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w ^ d = (1 : FRC.Extension.Ext p ν) → ∃ r, r < d ∧ w = u ^ (m * r)) ∧ ∀ (r s : Nat), r < d → s < d → u ^ (m * r) = u ^ (m * s) → r = s :=
+  @FRC.Ledger.p27058
+/-- 27:C17 (p27060) — The Frobenius parity of a tally. An expression formed from the frame's data with coefficients of the shell commutes with the Frobenius, so a tally takes equal values on a configuration and on its Frobenius conjugate. For a frame move $U$ of determinant one, $\Tr U^{-1}=\sigma(\Tr U)$, and the difference $\Tr U-\Tr U^{-1}$ lies in $\eta\Fp$. The determinant of an anti-Hermitian matrix of three rows lies in $\eta\Fp$, and the commutator of the two quark mass matrices of B9 is such a matrix. The product of two elements of $\eta\Fp$ is a residue of the shell. -/
+theorem tally_frobenius_parity : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (env : Nat → FRC.Extension.Ext p ν) (e : FRC.Shell.Frame.RE), (FRC.Unitary.xeval env e).conj = FRC.Unitary.xeval (fun i => (env i).conj) e) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → (FRC.Unitary.tr U + -FRC.Unitary.tr (FRC.Unitary.adj U)).conj = -(FRC.Unitary.tr U + -FRC.Unitary.tr (FRC.Unitary.adj U)) ∧ (FRC.Unitary.tr U + -FRC.Unitary.tr (FRC.Unitary.adj U)).re + (FRC.Unitary.tr U + -FRC.Unitary.tr (FRC.Unitary.adj U)).re = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (C : FRC.Unitary.M3 p ν), FRC.Unitary.dag C = FRC.Unitary.smul (-1 : FRC.Extension.Ext p ν) C → (FRC.Unitary.det C).conj = -FRC.Unitary.det C ∧ (FRC.Unitary.det C).re + (FRC.Unitary.det C).re = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {a b : FRC.Extension.Ext p ν}, a.conj = -a → b.conj = -b → (a * b).conj = a * b ∧ (a * b).im + (a * b).im = (0 : FRC.Shell p) :=
+  @FRC.Ledger.p27060
+/-- 27:X1 (p27024) — \textbf{The gauge group} $\U(1)\times\SU(2)\times\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. On a Subject the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup that B10 declares (C16). On the chart the subgroup is the quotient of the product by $\Z_6$ [chart] (P10). -/
+theorem gauge_group_from_substrate : (∀ {p : Nat} [FRC.Pos p] (A B C D φ₀ φ₁ φ₂ φ₃ : FRC.Shell p), A + φ₁ + -φ₀ + (B + φ₂ + -φ₁) + -(C + φ₂ + -φ₃) + -(D + φ₃ + -φ₀) = A + B + -C + -D) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {g h : FRC.Shell p}, g * h = (1 : FRC.Shell p) → g * g ≠ (1 : FRC.Shell p) → (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (1 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (-1 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p), (-1 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((0 : FRC.Shell p), (1 : FRC.Shell p), (0 : FRC.Shell p), (0 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((0 : FRC.Shell p), g * g, (0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ FRC.Interactions.m2 (FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ((0 : FRC.Shell p), (0 : FRC.Shell p), (1 : FRC.Shell p), (0 : FRC.Shell p))) (h, (0 : FRC.Shell p), (0 : FRC.Shell p), g) = ((0 : FRC.Shell p), (0 : FRC.Shell p), h * h, (0 : FRC.Shell p)) ∧ g * g * (h * h) = (1 : FRC.Shell p)) ∧ (∀ (a b c d : FRC.Shell p), FRC.Interactions.m2 (a, b, c, d) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) = FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, b, c, d) ↔ b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p)) ∧ (∀ (a b c d : FRC.Shell p), a * d + -(b * c) = (1 : FRC.Shell p) → (FRC.Interactions.m2 (a, b, c, d) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) = FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, b, c, d) ↔ b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p) ∧ a * d = (1 : FRC.Shell p))) ∧ (∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) → a * a ^ (p - (2 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ (a d d' : FRC.Shell p), a * d = (1 : FRC.Shell p) → a * d' = (1 : FRC.Shell p) → d = d') ∧ ((∀ (a : FRC.Shell p), a ≠ (0 : FRC.Shell p) ↔ (0 : Nat) < a.val) ∧ (∀ (a : FRC.Shell p), a.val < p) ∧ (∀ (a b : FRC.Shell p), a.val = b.val → a = b) ∧ ∀ (k : Nat), k < p → ¬∀ (a : FRC.Shell p), a.val ≠ k) ∧ ∀ (a b ν : FRC.Shell p), b ≠ (0 : FRC.Shell p) → FRC.Interactions.m2 (a, ν * b, b, a) (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) ≠ FRC.Interactions.m2 (g, (0 : FRC.Shell p), (0 : FRC.Shell p), h) (a, ν * b, b, a)) ∧ have U₁ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have U₂ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have D₁ := [FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; have D₂ := [FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) U₁ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₂) U₂ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.det U₁ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.det U₂ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.mm U₁ U₂ ≠ FRC.Interactions.F4.mm U₂ U₁ ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) = [FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w] ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) ≠ FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm D₁ D₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg D₁) (FRC.Interactions.F4.dg D₂)) = FRC.Interactions.F4.one :=
   @FRC.Ledger.p27024
 /-- 27:X2 (p27025) — \textbf{Charge quantisation} is automatic: electric charge is an integer winding index, so the electron and proton charges match exactly and no fractional residue survives, with no quantisation condition imposed. -/
 theorem charge_quantisation_automatic : (∀ {p : Nat} [FRC.Pos p] (A₁ A₂ B₃ A₄ A₅ B₀ B₁ : FRC.Shell p), A₁ + A₂ + B₃ + -A₄ + -A₅ + -B₀ = A₁ + B₁ + -A₅ + -B₀ + (A₂ + B₃ + -A₄ + -B₁)) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Ledger.p27025
-/-- 27:X3 (p27026) — \textbf{The photon and its dynamics} are forced: masslessness is drive-invariance and the exact rank-one kernel of the broken vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand. -/
+/-- 27:X3 (p27026) — \textbf{The photon and its dynamics} are forced: the photon is fixed by the drive and is the exact kernel of the mass form at the vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand. -/
 theorem photon_dynamics_forced : (∀ {p : Nat} [FRC.Pos p] (g g' v : FRC.Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = (0 : FRC.Shell p) ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = (0 : FRC.Shell p) ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = (0 : FRC.Shell p) ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g') ∧ (∀ {p : Nat} [FRC.Pos p] (a b c : FRC.Shell p), (a + b) * (1 : FRC.Shell p) + c = (0 : FRC.Shell p) → (a + b) * ((1 : FRC.Shell p) + (1 : FRC.Shell p)) + c = (0 : FRC.Shell p) → a + b = (0 : FRC.Shell p) ∧ c = (0 : FRC.Shell p)) ∧ FRC.Interactions.constraintRows.length = (1023 : Nat) ∧ FRC.Interactions.admissibleA.length = (123 : Nat) ∧ FRC.Interactions.admissibleB.length = (123 : Nat) ∧ FRC.Interactions.maxwellForm.length = (123 : Nat) ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.admissibleA == (0 : Int)) = true ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.admissibleB == (0 : Int)) = true ∧ (FRC.Interactions.constraintRows.all fun r => FRC.Interactions.rowDot r FRC.Interactions.maxwellForm == (0 : Int)) = true ∧ List.map (fun c => (2 : Int) * c) FRC.Interactions.maxwellForm = List.zipWith (fun b a => b - a) FRC.Interactions.admissibleB FRC.Interactions.admissibleA ∧ FRC.Interactions.admissibleA ≠ FRC.Interactions.admissibleB :=
   @FRC.Ledger.p27026
-/-- 27:X4 (p27027) — \textbf{The Weinberg angle} is the exact rational $\sin^2\sW=3/8$ at the unification point, fixed by the charge spectrum of the generation named in B5 with the group-theoretic step imported (A4), not a free parameter measured into the theory. -/
+/-- 27:X4 (p27027) — \textbf{The Weinberg angle} is the exact rational $\sin^2\sW=3/8$ of the frame, fixed by the charge spectrum of the generation named in B5 with the group-theoretic step imported (A4). It names no scale; the measured value at the $Z$ scale is $0.231$ (A6). -/
 theorem weinberg_angle_exact_rational : FRC.Interactions.isum (List.map (fun S => (3 : Int) * FRC.Interactions.t3h S * ((3 : Int) * FRC.Interactions.t3h S)) FRC.Interactions.gen16) = (72 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.q6 S * FRC.Interactions.q6 S) FRC.Interactions.gen16) = (192 : Int) ∧ (72 : Nat) * (8 : Nat) = (192 : Nat) * (3 : Nat) :=
   @FRC.Ledger.p27027
-/-- 27:X5 (p27028) — \textbf{The custodial relation} $\rho=1$ is the rank-one identity $\det\equiv0$ forced by the spinor-doublet Higgs, not a tree-level accident. -/
-theorem custodial_relation_rank_one : (∀ {p : Nat} [FRC.Pos p] (g g' v : FRC.Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = (0 : FRC.Shell p) ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = (0 : FRC.Shell p) ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = (0 : FRC.Shell p) ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g') ∧ ((List.range (4 : Nat)).all fun a => FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) a (2 : Nat) * (2 : FRC.Shell (13 : Nat)) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) a (3 : Nat) * (1 : FRC.Shell (13 : Nat)) == (0 : FRC.Shell (13 : Nat))) = true ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) * FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) + -(FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (3 : Nat) * FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat)) = (0 : FRC.Shell (13 : Nat)) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (0 : Nat) (0 : Nat) = FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (1 : Nat) (1 : Nat) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) = ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat)) + (2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) * ((2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) * ((7 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat))) ∧ FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (0 : Nat) (0 : Nat) * ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat)) + (2 : FRC.Shell (13 : Nat)) * (2 : FRC.Shell (13 : Nat))) = (FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (5 : FRC.Shell (13 : Nat)) (1 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (2 : FRC.Shell (13 : Nat)) (7 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat)) * ((1 : FRC.Shell (13 : Nat)) * (1 : FRC.Shell (13 : Nat))) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (7 : FRC.Shell (13 : Nat)) + (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ ((List.range (4 : Nat)).all fun a => FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) a (2 : Nat) * (1 : FRC.Shell (5 : Nat)) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) a (3 : Nat) * (1 : FRC.Shell (5 : Nat)) == (0 : FRC.Shell (5 : Nat))) = true ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) * FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat) + -(FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (3 : Nat) * FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (2 : Nat)) = (0 : FRC.Shell (5 : Nat)) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (0 : Nat) (0 : Nat) = FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat) = ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat)) + (1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) * ((2 : FRC.Shell (5 : Nat)) * (2 : FRC.Shell (5 : Nat))) * ((3 : FRC.Shell (5 : Nat)) * (3 : FRC.Shell (5 : Nat))) ∧ FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (0 : Nat) (0 : Nat) * ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat)) + (1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) = (FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (2 : Nat) (2 : Nat) + FRC.Interactions.hess (2 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (1 : FRC.Shell (5 : Nat)) (2 : FRC.Shell (5 : Nat)) (3 : FRC.Shell (5 : Nat)) (3 : Nat) (3 : Nat)) * ((1 : FRC.Shell (5 : Nat)) * (1 : FRC.Shell (5 : Nat))) ∧ (2 : FRC.Shell (5 : Nat)) * (2 : FRC.Shell (5 : Nat)) = (-1 : FRC.Shell (5 : Nat)) ∧ (3 : FRC.Shell (5 : Nat)) + (3 : FRC.Shell (5 : Nat)) = (1 : FRC.Shell (5 : Nat)) :=
+/-- 27:X5 (p27028) — \textbf{The custodial relation} $\rho=1$ is an identity of the doublet alignment field (B10): the value of the charged block of the mass operator equals the first diagonal entry of its neutral block. The quotient $\rho$ is read for $g\neq0$ and $g^2+g'^2\neq0$. -/
+theorem custodial_relation : (∀ {p : Nat} [FRC.Pos p] (g g' v : FRC.Shell p), g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = (0 : FRC.Shell p) ∧ g * g * (v * v) * g' + -(g * g' * (v * v)) * g = (0 : FRC.Shell p) ∧ -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = (0 : FRC.Shell p) ∧ g * g * (v * v) * g + -(g * g' * (v * v)) * -g' = (g * g + g' * g') * (v * v) * g ∧ -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g') ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (a a' : FRC.Shell p), (FRC.Chirality.shellPart ν a).conj * FRC.Chirality.shellPart ν a = FRC.Chirality.shellPart ν (a * a) ∧ (FRC.Chirality.rootPart ν a).conj * FRC.Chirality.rootPart ν a = FRC.Chirality.shellPart ν (-(ν * (a * a))) ∧ (FRC.Chirality.shellPart ν a).conj * FRC.Chirality.rootPart ν a + (FRC.Chirality.rootPart ν a).conj * FRC.Chirality.shellPart ν a = FRC.Chirality.rootPart ν (0 : FRC.Shell p) ∧ (FRC.Chirality.rootPart ν (-a)).conj * FRC.Chirality.rootPart ν (-a) = FRC.Chirality.shellPart ν (-(ν * (a * a))) ∧ (FRC.Chirality.rootPart ν a').conj * FRC.Chirality.rootPart ν a' = FRC.Chirality.shellPart ν (-(ν * (a' * a'))) ∧ (FRC.Chirality.rootPart ν (-a)).conj * FRC.Chirality.rootPart ν a' + (FRC.Chirality.rootPart ν a').conj * FRC.Chirality.rootPart ν (-a) = FRC.Chirality.shellPart ν (ν * (a * a') + ν * (a * a'))) ∧ (∀ {p : Nat} [FRC.Pos p] (ν a a' : FRC.Shell p), -(ν * (a * a)) = a * a * -ν ∧ -(ν * (a * a)) * a' + ν * (a * a') * a = (0 : FRC.Shell p) ∧ ν * (a * a') * a' + -(ν * (a' * a')) * a = (0 : FRC.Shell p) ∧ -(ν * (a * a)) * a + ν * (a * a') * -a' = (a * a + a' * a') * (-ν * a) ∧ ν * (a * a') * a + -(ν * (a' * a')) * -a' = (a * a + a' * a') * (-ν * -a')) ∧ ∀ {p : Nat} [FRC.Pos p] {a a' x y : FRC.Shell p}, x * a' + y * a = (0 : FRC.Shell p) → x * a + y * -a' = (0 : FRC.Shell p) → (a * a + a' * a') * x = (0 : FRC.Shell p) ∧ (a * a + a' * a') * y = (0 : FRC.Shell p) :=
   @FRC.Ledger.p27028
-/-- 27:X6 (p27029) — \textbf{Maximal parity violation} is the exact decoupling of the Frobenius branch from the drive, so the $V\!-\!A$ current is derived rather than the left-handed doublets assigned by hand. -/
-theorem maximal_parity_violation : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * δ * τ)) N = (0 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun x => (1 : FRC.Shell p)) N = FRC.Shell.ofNat N) ∧ ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, δ ≤ N → u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * (N - δ) * τ)) N = (0 : FRC.Shell p) ∧ (1 : Int) ≠ (-1 : Int) ∧ (1 : Int) * (1 : Int) > (0 : Int) ∧ (-1 : Int) * (-1 : Int) > (0 : Int) :=
+/-- 27:X6 (p27029) — \textbf{The two chiralities} are the two roots of the drive: $\Fp[\Gamma]$ is a field and holds no chirality projector; over $K$ the Frobenius on the entries exchanges the two projectors, and no frame holds an absolute handedness. The weak current is left-handed by the assignment of the naming B5. -/
+theorem two_chiralities : (∀ {p : Nat} [FRC.Pos p] {i ν : FRC.Shell p}, i * i = (-1 : FRC.Shell p) → (¬∃ r, r * r = ν) → ¬∃ r, r * r = -ν) ∧ (∀ {p : Nat} [FRC.Pos p] {i h ν a b c : FRC.Shell p}, i * i = (-1 : FRC.Shell p) → h + h = (1 : FRC.Shell p) → (¬∃ r, r * r = ν) → b * c = (1 : FRC.Shell p) → a * a + -(ν * (b * b)) = a → (a + a) * b = b → False) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (i : FRC.Shell p), (FRC.Chirality.rootPart ν i).conj = -FRC.Chirality.rootPart ν i) ∧ ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {u : FRC.Shell p} {N : Nat}, u ^ N = (1 : FRC.Shell p) → ∀ {δ : Nat}, δ ≤ N → u ^ ((2 : Nat) * δ) ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun τ => u ^ ((2 : Nat) * (N - δ) * τ)) N = (0 : FRC.Shell p) ∧ (1 : Int) ≠ (-1 : Int) ∧ (1 : Int) * (1 : Int) > (0 : Int) ∧ (-1 : Int) * (-1 : Int) > (0 : Int) :=
   @FRC.Ledger.p27029
-/-- 27:X7 (p27030) — \textbf{The colour sector} is fixed: three colours is the minimal triality-carrying frame, confinement is the compact-group area law from positivity, and asymptotic freedom is the gluon self-coupling, not $N_c=3$ supplemented by an assumed confining phase. -/
+/-- 27:X7 (p27030) — \textbf{The colour sector}: three colours is the declared minimal rank that holds the triality (B4), the Wilson loop obeys the area law at strong coupling, and asymptotic freedom is the gluon self-coupling. -/
 theorem colour_sector_fixed : (([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => x * x.conj == FRC.Interactions.F4.o && x * x * x == FRC.Interactions.F4.o) = true ∧ (FRC.Interactions.F4.z * FRC.Interactions.F4.z.conj == FRC.Interactions.F4.o) = false ∧ [FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].length = (3 : Nat) ∧ (2 : Nat) + (1 : Nat) = (3 : Nat) ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal && FRC.Interactions.F4.mm x.scal [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] == FRC.Interactions.F4.mm [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z] x.scal) = true) ∧ (have U₁ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have U₂ := [FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z]; have D₁ := [FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; have D₂ := [FRC.Interactions.F4.w, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w2]; FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) U₁ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₂) U₂ = FRC.Interactions.F4.one ∧ FRC.Interactions.F4.det U₁ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.det U₂ = FRC.Interactions.F4.o ∧ FRC.Interactions.F4.mm U₁ U₂ ≠ FRC.Interactions.F4.mm U₂ U₁ ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) = [FRC.Interactions.F4.w2, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.o, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.z, FRC.Interactions.F4.w] ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm U₁ U₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg U₁) (FRC.Interactions.F4.dg U₂)) ≠ FRC.Interactions.F4.one ∧ FRC.Interactions.F4.mm (FRC.Interactions.F4.mm D₁ D₂) (FRC.Interactions.F4.mm (FRC.Interactions.F4.dg D₁) (FRC.Interactions.F4.dg D₂)) = FRC.Interactions.F4.one) ∧ ∀ (n : Nat), n % (12 : Nat) = (5 : Nat) → (n + (1 : Nat)) % (2 : Nat) = (0 : Nat) ∧ (n + (1 : Nat)) % (3 : Nat) = (0 : Nat) ∧ (n + (1 : Nat)) % (4 : Nat) = (2 : Nat) :=
   @FRC.Ledger.p27030
-/-- 27:X8 (p27031) — \textbf{One complete generation} is the spinor $\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\SO(10)$ fact (A4) evaluated on the declared content. -/
-theorem generation_is_spinor : ((List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true) ∧ ((FRC.Interactions.offblock.all fun cw => (List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => have a := FRC.Interactions.emul S T; have b := FRC.Interactions.emul (FRC.Interactions.act cw.fst cw.snd S) (FRC.Interactions.act cw.fst cw.snd T); b.fst * b.fst == a.fst * a.fst && (a.fst == (0 : Int) || b.snd == FRC.Interactions.act cw.fst cw.snd a.snd)) = true ∧ (FRC.Interactions.offblock.all fun cw => ((List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => decide ((FRC.Interactions.act cw.fst cw.snd S == FRC.Interactions.act cw.fst cw.snd T) = true → (S == T) = true)) && (List.range (32 : Nat)).all fun S => decide (FRC.Interactions.act cw.fst cw.snd S < (32 : Nat))) = true) ∧ ∀ (Ω s : Nat), (7 : Nat) ≤ Ω → s * s ≤ Ω → (3 : Nat) * s < Ω + (1 : Nat) :=
+/-- 27:X8 (p27031) — \textbf{One complete generation} is the spinor $\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with the simple unification declared (B7), rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\SO(10)$ fact (A4) evaluated on the declared content. -/
+theorem generation_is_spinor : ((List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true) ∧ (FRC.Interactions.offblock.all fun cw => (List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => have a := FRC.Interactions.emul S T; have b := FRC.Interactions.emul (FRC.Interactions.act cw.fst cw.snd S) (FRC.Interactions.act cw.fst cw.snd T); b.fst * b.fst == a.fst * a.fst && (a.fst == (0 : Int) || b.snd == FRC.Interactions.act cw.fst cw.snd a.snd)) = true ∧ (FRC.Interactions.offblock.all fun cw => ((List.range (32 : Nat)).all fun S => (List.range (32 : Nat)).all fun T => decide ((FRC.Interactions.act cw.fst cw.snd S == FRC.Interactions.act cw.fst cw.snd T) = true → (S == T) = true)) && (List.range (32 : Nat)).all fun S => decide (FRC.Interactions.act cw.fst cw.snd S < (32 : Nat))) = true :=
   @FRC.Ledger.p27031
 /-- 27:X9 (p27032) — \textbf{The interaction and generation counts} are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained. -/
 theorem interaction_generation_counts : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
   @FRC.Ledger.p27032
-/-- 27:X10 (p27033) — \textbf{The Koide ratio} is exactly $2/3$, the cube-root generation orbit at the self-dual quarter-turn $\rho^2=2^{-1}$, an exact value rather than an unexplained numerical coincidence. -/
-theorem koide_ratio_cube_root : (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω))) ∧ (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω)) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν h : FRC.Shell p}, h + h = (1 : FRC.Shell p) → ν + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ∀ (a₀ a₁ a₂ : FRC.Shell p), FRC.Interactions.omega3 ν h * FRC.Interactions.omega3 ν h + FRC.Interactions.omega3 ν h + (1 : FRC.Extension.Ext p ν) = (0 : FRC.Extension.Ext p ν) ∧ FRC.Interactions.hat2 ν h a₀ a₁ a₂ = (FRC.Interactions.hat1 ν h a₀ a₁ a₂).conj ∧ FRC.Interactions.hat1 ν h a₀ a₁ a₂ * FRC.Interactions.hat2 ν h a₀ a₁ a₂ = FRC.Extension.Ext.ofShell (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) + FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (1 : FRC.Shell p) ∧ (-3 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) :=
+/-- 27:X10 (p27033) — \textbf{The Koide ratio} has the exact form $Q=\tfrac13+\tfrac23\rho^{2}$ on the characters of the generation cycle $C_3$, and it is $2/3$ at the named value $\rho^2=\tfrac12$ (B8). -/
+theorem koide_ratio_characters : (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω))) ∧ (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω)) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν h : FRC.Shell p}, h + h = (1 : FRC.Shell p) → ν + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ∀ (a₀ a₁ a₂ : FRC.Shell p), FRC.Interactions.omega3 ν h * FRC.Interactions.omega3 ν h + FRC.Interactions.omega3 ν h + (1 : FRC.Extension.Ext p ν) = (0 : FRC.Extension.Ext p ν) ∧ FRC.Interactions.hat2 ν h a₀ a₁ a₂ = (FRC.Interactions.hat1 ν h a₀ a₁ a₂).conj ∧ FRC.Interactions.hat1 ν h a₀ a₁ a₂ * FRC.Interactions.hat2 ν h a₀ a₁ a₂ = FRC.Extension.Ext.ofShell (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) + FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (1 : FRC.Shell p) ∧ (-3 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) :=
   @FRC.Ledger.p27033
-/-- 27:X11 (p27034) — \textbf{The strong-CP angle} vanishes with no axion: the Wilson action class carries no orientation-odd term (B2), and Hermitian quark masses have real determinant, so $\bar\theta=0$ arises nowhere rather than being tuned away. -/
-theorem strong_cp_angle_vanishes : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → FRC.Unitary.tr (FRC.Unitary.adj U) = (FRC.Unitary.tr U).conj ∧ FRC.Unitary.tr (FRC.Unitary.adj U) + (FRC.Unitary.tr (FRC.Unitary.adj U)).conj = FRC.Unitary.tr U + (FRC.Unitary.tr U).conj) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).conj = FRC.Unitary.det A) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p)) ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mu17) = FRC.Unitary.ents FRC.Interactions.mu17 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.md17) = FRC.Unitary.ents FRC.Interactions.md17 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mc17) = FRC.Unitary.ents FRC.Interactions.mc17 ∧ (FRC.Unitary.det FRC.Interactions.mu17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det (FRC.Unitary.mmul FRC.Interactions.mu17 FRC.Interactions.md17)).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mu17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.mu17 FRC.Interactions.md17) ≠ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.md17 FRC.Interactions.mu17) ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mu53) = FRC.Unitary.ents FRC.Interactions.mu53 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.md53) = FRC.Unitary.ents FRC.Interactions.md53 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mc53) = FRC.Unitary.ents FRC.Interactions.mc53 ∧ (FRC.Unitary.det FRC.Interactions.mu53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det (FRC.Unitary.mmul FRC.Interactions.mu53 FRC.Interactions.md53)).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mu53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.mu53 FRC.Interactions.md53) ≠ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.md53 FRC.Interactions.mu53) ∧ FRC.Interactions.nu17 + (3 : FRC.Shell (17 : Nat)) = (0 : FRC.Shell (17 : Nat)) ∧ FRC.Interactions.nu53 + (3 : FRC.Shell (53 : Nat)) = (0 : FRC.Shell (53 : Nat)) :=
+/-- 27:X11 (p27034) — \textbf{The strong-CP angle} reads $0$ on the chart with no axion, on one declaration and one theorem: the colour action is declared of the Wilson class, which holds no term $\Tr F\widetilde F$ (B11), and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell. Where no mass reads $0$ the determinants are positive on the chart [chart]. -/
+theorem strong_cp_angle_chart : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → FRC.Unitary.tr (FRC.Unitary.adj U) = (FRC.Unitary.tr U).conj ∧ FRC.Unitary.tr (FRC.Unitary.adj U) + (FRC.Unitary.tr (FRC.Unitary.adj U)).conj = FRC.Unitary.tr U + (FRC.Unitary.tr U).conj) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).conj = FRC.Unitary.det A) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → FRC.Unitary.det (FRC.Unitary.mmul A A) = FRC.Unitary.det A * FRC.Unitary.det A ∧ (FRC.Unitary.det A).conj = FRC.Unitary.det A ∧ (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) ∧ ((FRC.Unitary.det A).im = (0 : FRC.Shell p) → (FRC.Unitary.det (FRC.Unitary.mmul A A)).re = (FRC.Unitary.det A).re * (FRC.Unitary.det A).re ∧ (FRC.Unitary.det (FRC.Unitary.mmul A A)).im = (0 : FRC.Shell p))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p)) ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mu17) = FRC.Unitary.ents FRC.Interactions.mu17 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.md17) = FRC.Unitary.ents FRC.Interactions.md17 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mc17) = FRC.Unitary.ents FRC.Interactions.mc17 ∧ (FRC.Unitary.det FRC.Interactions.mu17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc17).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det (FRC.Unitary.mmul FRC.Interactions.mu17 FRC.Interactions.md17)).im = (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mu17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc17).re ≠ (0 : FRC.Shell (17 : Nat)) ∧ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.mu17 FRC.Interactions.md17) ≠ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.md17 FRC.Interactions.mu17) ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mu53) = FRC.Unitary.ents FRC.Interactions.mu53 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.md53) = FRC.Unitary.ents FRC.Interactions.md53 ∧ FRC.Unitary.ents (FRC.Unitary.dag FRC.Interactions.mc53) = FRC.Unitary.ents FRC.Interactions.mc53 ∧ (FRC.Unitary.det FRC.Interactions.mu53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc53).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det (FRC.Unitary.mmul FRC.Interactions.mu53 FRC.Interactions.md53)).im = (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mu53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.md53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ (FRC.Unitary.det FRC.Interactions.mc53).re ≠ (0 : FRC.Shell (53 : Nat)) ∧ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.mu53 FRC.Interactions.md53) ≠ FRC.Unitary.ents (FRC.Unitary.mmul FRC.Interactions.md53 FRC.Interactions.mu53) ∧ FRC.Interactions.nu17 + (3 : FRC.Shell (17 : Nat)) = (0 : FRC.Shell (17 : Nat)) ∧ FRC.Interactions.nu53 + (3 : FRC.Shell (53 : Nat)) = (0 : FRC.Shell (53 : Nat)) :=
   @FRC.Ledger.p27034
-/-- 27:P1 (p27035) — \textbf{No fourth generation and no fifth interaction} \emph{[forced]}. The role ladder closes, the fifth step returns to counting, and the Carrier is the entire substrate, so a fourth chiral family and a fifth fundamental force are forbidden, not merely absent (Tier~4). \emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction. -/
+/-- 27:P1 (p27035) — \textbf{No fourth generation and no fifth interaction} \emph{[forced]}. The role ladder closes and the fifth step returns to counting. Given the naming B6, which declares the content exhaustive, a fourth chiral family and a fifth fundamental force are excluded. \emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction. -/
 theorem no_fourth_generation : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
   @FRC.Ledger.p27035
-/-- 27:P2 (p27036) — \textbf{A desert to the substrate scale} \emph{[forced]}. The gauge group is exactly $\SU(3)\times\SU(2)\times\U(1)$ until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\sim10^{16}$--$10^{19}\,$GeV) scales. \emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios. -/
+/-- 27:P2 (p27036) — \textbf{A desert to the substrate scale} \emph{[forced]}. The gauge group is the block-diagonal subgroup of the frame of rank five (B10), the quotient of $\SU(3)\times\SU(2)\times\U(1)$ by $\Z_6$ on the chart [chart], until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\sim10^{16}$--$10^{19}\,$GeV) scales. \emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios. -/
 theorem desert_substrate_scale : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Ledger.p27036
 /-- 27:P3 (p27037) — \textbf{No TeV supersymmetry} \emph{[forced]}. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13}\,$GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13\%$. The content has no superpartner. Where the completion closes the miss is the $\Omega$-hard running (Z1). \emph{Falsifier:} superpartners. -/
 theorem no_tev_supersymmetry : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Ledger.p27037
-/-- 27:P4 (p27038) — \textbf{The proton is effectively stable} \emph{[forced]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\,$GeV it already exceeds the Super-Kamiokande bound. \emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years. -/
+/-- 27:P4 (p27038) — \textbf{The proton is effectively stable at a substrate-scale mass} \emph{[sector]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\,$GeV it already exceeds the Super-Kamiokande bound. The mass is not derived, and the lifetime is the chart's dimensional estimate at that mass [chart]. \emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years. -/
 theorem proton_effectively_stable : (24 : Nat) - ((8 : Nat) + (3 : Nat) + (1 : Nat)) = (12 : Nat) ∧ (12 : Nat) = (2 : Nat) * ((3 : Nat) * (2 : Nat)) ∧ (1 : Nat) + (5 : Nat) + (10 : Nat) = (16 : Nat) ∧ (10 : Nat) * (9 : Nat) = (2 : Nat) * (45 : Nat) :=
   @FRC.Ledger.p27038
-/-- 27:P5 (p27039) — \textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass at the unification scale (A4), and the seesaw then places the light masses in the observed band for singlet masses of $10^{14}$--$10^{15}\,$GeV. \emph{Falsifier:} a confirmed eV-scale sterile neutrino, or Dirac neutrinos. -/
-theorem majorana_neutrinos_heavy_singlets : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
+/-- 27:P5 (p27039) — \textbf{No sterile state beyond the singlet of each generation} \emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass (A4); the paper derives neither that mass nor its scale, and a zero mass is not excluded. With the mass at the unification scale the seesaw places the light masses in the observed band, for singlet masses of $10^{14}$--$10^{15}\,$GeV [chart]. The declared content (B6) holds no further gauge-singlet state. \emph{Falsifier:} a light gauge-singlet fermion that is not the singlet $\nu^c$ of one of the three generations. -/
+theorem no_further_singlet : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Ledger.p27039
-/-- 27:P6 (p27040) — \textbf{No new particle of dark matter} \emph{[sector]}. The matter content is exactly one Standard-Model generation, triplicated, with heavy $\nu^c$; the construction contains no weakly-interacting massive particle and no axion. \emph{Falsifier:} a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational/substrate sector, a residual burden of the programme. -/
+/-- 27:P6 (p27040) — \textbf{No new particle of dark matter} \emph{[sector]}. The matter content is exactly one Standard-Model generation, triplicated, with its singlet $\nu^c$; the construction contains no weakly-interacting massive particle and no axion. \emph{Falsifier:} a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational sector. -/
 theorem no_new_dark_particle : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Ledger.p27040
 /-- 27:P7 (p27041) — \textbf{No new-physics contribution to the muon anomaly} \emph{[sector]}. With no states beyond the Standard Model, $(g-2)_\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. \emph{Falsifier:} a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction. -/
 theorem no_new_physics_muon : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Ledger.p27041
-/-- 27:P8 (p27042) — \textbf{The charged-lepton Koide relation is exactly $2/3$} \emph{[structural]}: $(m_e+m_\mu+m_\tau)/(\sqrt{m_e}+\sqrt{m_\mu}+\sqrt{m_\tau})^2=2/3$, empirically to one part in $10^{5}$, is the cube-root generation orbit at the self-dual value $\rho^2=2^{-1}$ --- $Q=\tfrac13+\tfrac23\rho^2$ exact, $\rho^2$ the quarter-turn ($4\mid\Omega-1$) self-dual amplitude on the cubic ($3\mid\Omega+1$) plane. Form and value derived; the selection of the mass vector onto that orientation is the $\Omega$-hard flavour residual (28:Z1). \emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the per-mille winding-phase corrections. -/
+/-- 27:P8 (p27042) — \textbf{The charged-lepton Koide relation is exactly $2/3$} \emph{[structural]}: $(m_e+m_\mu+m_\tau)/(\sqrt{m_e}+\sqrt{m_\mu}+\sqrt{m_\tau})^2=2/3$, empirically to one part in $10^{5}$, is the Koide form on the characters of the generation cycle at the named value $\rho^2=\tfrac12$ (B8) --- $Q=\tfrac13+\tfrac23\rho^2$ exact. The form is a theorem and the value a naming; the selection of the mass vector onto that orientation is the $\Omega$-hard flavour residual \citep{akhtman2026flavour}. \emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the tolerance of the $\tau$ mass \citep{akhtman2026flavour}. -/
 theorem charged_lepton_koide_relation : (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω))) ∧ (∀ {p : Nat} [FRC.Pos p] (a₀ a₁ a₂ ω : FRC.Shell p), ω * ω + ω + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * ((a₀ + a₁ * ω + a₂ * (ω * ω)) * (a₀ + a₁ * (ω * ω) + a₂ * ω)) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν h : FRC.Shell p}, h + h = (1 : FRC.Shell p) → ν + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) → ∀ (a₀ a₁ a₂ : FRC.Shell p), FRC.Interactions.omega3 ν h * FRC.Interactions.omega3 ν h + FRC.Interactions.omega3 ν h + (1 : FRC.Extension.Ext p ν) = (0 : FRC.Extension.Ext p ν) ∧ FRC.Interactions.hat2 ν h a₀ a₁ a₂ = (FRC.Interactions.hat1 ν h a₀ a₁ a₂).conj ∧ FRC.Interactions.hat1 ν h a₀ a₁ a₂ * FRC.Interactions.hat2 ν h a₀ a₁ a₂ = FRC.Extension.Ext.ofShell (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ (3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm ∧ ((3 : FRC.Shell p) * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (2 : FRC.Shell p) * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔ (2 : FRC.Shell p) * (FRC.Interactions.hat1 ν h a₀ a₁ a₂).norm = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) + FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (1 : FRC.Shell p) ∧ (-3 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) + (1 : FRC.Shell p) = (0 : FRC.Shell p) :=
   @FRC.Ledger.p27042
-/-- 27:P9 (p27043) — \textbf{Vanishing strong-CP angle without an axion} \emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\bar\theta=0$ with no axion: the Wilson action class carries no orientation-odd term (B2) and colour is drive-invariant, so the bare $\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\arg\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion. -/
-theorem vanishing_strong_cp_angle : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → FRC.Unitary.tr (FRC.Unitary.adj U) = (FRC.Unitary.tr U).conj ∧ FRC.Unitary.tr (FRC.Unitary.adj U) + (FRC.Unitary.tr (FRC.Unitary.adj U)).conj = FRC.Unitary.tr U + (FRC.Unitary.tr U).conj) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).conj = FRC.Unitary.det A) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) :=
+/-- 27:P9 (p27043) — \textbf{No strong-CP angle and no axion} \emph{[structural]}. The vacuum angle reads $\bar\theta=0$ on the chart with no axion: the colour action is declared of the Wilson class (B11), so the bare $\theta=0$, and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell, positive on the chart where no mass reads $0$, so $\arg\det M_q=0$ [chart], while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion. -/
+theorem no_strong_cp_angle : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → FRC.Unitary.tr (FRC.Unitary.adj U) = (FRC.Unitary.tr U).conj ∧ FRC.Unitary.tr (FRC.Unitary.adj U) + (FRC.Unitary.tr (FRC.Unitary.adj U)).conj = FRC.Unitary.tr U + (FRC.Unitary.tr U).conj) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).conj = FRC.Unitary.det A) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → FRC.Unitary.det (FRC.Unitary.mmul A A) = FRC.Unitary.det A * FRC.Unitary.det A ∧ (FRC.Unitary.det A).conj = FRC.Unitary.det A ∧ (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) ∧ ((FRC.Unitary.det A).im = (0 : FRC.Shell p) → (FRC.Unitary.det (FRC.Unitary.mmul A A)).re = (FRC.Unitary.det A).re * (FRC.Unitary.det A).re ∧ (FRC.Unitary.det (FRC.Unitary.mmul A A)).im = (0 : FRC.Shell p))) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) :=
   @FRC.Ledger.p27043
+/-- 27:P10 (p27059) — \textbf{No fractional charge without colour} \emph{[sector]}. Every state built from the vectors of the internal frame and their conjugates has the weight $-3Q$ congruent modulo $3$ to its net number of colour indices (C16). A state of fewer than $\p+1$ indices that the colour frame fixes has that number a multiple of three, and so an integer charge. On a shell where the colour frame has its centre the same holds for every number of indices. On the chart the group is the quotient of $\SU(3)\times\SU(2)\times\U(1)$ by $\Z_6$, one of the four quotients that the continuum theory leaves open [chart] \citep{tong2017}. \emph{Falsifier:} a colourless particle of fractional charge. -/
+theorem no_fractional_charge_without_colour : ((FRC.Interactions.gen16.all fun S => (-2 : Int) * ↑(FRC.Interactions.col S) + (3 : Int) * ↑(FRC.Interactions.wk S) == FRC.Interactions.y6 S) = true ∧ (FRC.Interactions.gen16.all fun S => (2 : Int) * ↑(FRC.Interactions.col S) + -((6 : Int) * ↑(FRC.Interactions.cnt S (3 : Nat) (4 : Nat))) == -FRC.Interactions.q6 S) = true ∧ (FRC.Interactions.gen16.all fun S => (FRC.Interactions.q6 S + (2 : Int) * ↑(FRC.Interactions.col S)) % (6 : Int) == (0 : Int)) = true) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {w : FRC.Extension.Ext p ν}, w.conj * w = (1 : FRC.Extension.Ext p ν) → (∀ (A : FRC.Unitary.M3 p ν), FRC.Unitary.mmul (FRC.Unitary.scal (w.conj * w.conj)) A = FRC.Unitary.mone → A = FRC.Unitary.scal (w * w)) ∧ FRC.Unitary.det (FRC.Unitary.scal (w * w)) = (w * w) ^ (3 : Nat) ∧ w * w * w * (w.conj * w.conj * w.conj) = (1 : FRC.Extension.Ext p ν) ∧ (w * w * (w * w) * (w * w) = (1 : FRC.Extension.Ext p ν) ↔ w.conj * w.conj * w.conj * (w.conj * w.conj * w.conj) = (1 : FRC.Extension.Ext p ν))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → (1 : FRC.Shell p) + (1 : FRC.Shell p) ≠ (0 : FRC.Shell p) → ∀ {d a m x t : Nat}, (6 : Nat) = d * a → p + (1 : Nat) = d * m → a * x = (1 : Nat) + m * t → ∀ {u : FRC.Extension.Ext p ν}, u.conj * u = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), l < p + (1 : Nat) → (0 : Nat) < l → u ^ l ≠ (1 : FRC.Extension.Ext p ν)) → (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → (w ^ (6 : Nat) = (1 : FRC.Extension.Ext p ν) ↔ w ^ d = (1 : FRC.Extension.Ext p ν))) ∧ (∀ (r : Nat), (u ^ (m * r)) ^ d = (1 : FRC.Extension.Ext p ν)) ∧ (∀ (w : FRC.Extension.Ext p ν), w.conj * w = (1 : FRC.Extension.Ext p ν) → w ^ d = (1 : FRC.Extension.Ext p ν) → ∃ r, r < d ∧ w = u ^ (m * r)) ∧ ∀ (r s : Nat), r < d → s < d → u ^ (m * r) = u ^ (m * s) → r = s) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {x : FRC.Extension.Ext p ν}, x ^ (3 : Nat) = (1 : FRC.Extension.Ext p ν) → x ≠ (1 : FRC.Extension.Ext p ν) → ∀ (n : Nat), x ^ n = (1 : FRC.Extension.Ext p ν) ↔ n % (3 : Nat) = (0 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {u : FRC.Extension.Ext p ν}, u.conj * u = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), l < p + (1 : Nat) → (0 : Nat) < l → u ^ l ≠ (1 : FRC.Extension.Ext p ν)) → ∀ {a1 a2 a3 b1 b2 b3 : Nat}, a1 + b3 < p + (1 : Nat) → a3 + b1 < p + (1 : Nat) → a2 + b3 < p + (1 : Nat) → a3 + b2 < p + (1 : Nat) → u ^ (a1 + b3) = u ^ (a3 + b1) → u ^ (a2 + b3) = u ^ (a3 + b2) → a1 + b3 = a3 + b1 ∧ a2 + b3 = a3 + b2 :=
+  @FRC.Ledger.p27059
 -- end ledger predicates
 
 end FRC.Fields
@@ -44497,7 +47936,7 @@ theorem strong_structure : (∀ (n : Nat), n % (12 : Nat) = (5 : Nat) → (n + (
 theorem strong_tension : (FRC.Interactions.su2.length = (24 : Nat) ∧ (24 : Nat) = (3 : Nat) * ((3 : Nat) * (3 : Nat) - (1 : Nat)) ∧ (FRC.Interactions.su2.all fun x => FRC.Interactions.su2.all fun y => FRC.Interactions.su2.contains (FRC.Interactions.qmul x y)) = true ∧ (FRC.Interactions.su2.any fun x => FRC.Interactions.su2.any fun y => FRC.Interactions.qmul x y != FRC.Interactions.qmul y x) = true ∧ (FRC.Interactions.su2.all fun x => (x.fst + x.fst.conj).im == (0 : FRC.Shell (3 : Nat))) = true ∧ List.map (fun k => (List.filter (fun x => FRC.Interactions.qord x == k) FRC.Interactions.su2).length) [(1 : Nat), (2 : Nat), (3 : Nat), (4 : Nat), (6 : Nat)] = [(1 : Nat), (1 : Nat), (8 : Nat), (6 : Nat), (8 : Nat)] ∧ List.map (fun t => (List.filter (fun x => (x.fst + x.fst.conj).re == FRC.Shell.ofNat t) FRC.Interactions.su2).length) [(0 : Nat), (1 : Nat), (2 : Nat)] = [(6 : Nat), (9 : Nat), (9 : Nat)] ∧ FRC.Interactions.su2.contains ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) = true ∧ (List.filter (fun x => FRC.Interactions.qmul x ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) == FRC.Interactions.qmul ({ re := (0 : FRC.Shell (3 : Nat)), im := (1 : FRC.Shell (3 : Nat)) }, (0 : FRC.Extension.Ext (3 : Nat) (2 : FRC.Shell (3 : Nat)))) x) FRC.Interactions.su2).length = (4 : Nat)) ∧ FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (2 : Nat) - FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (1 : Nat) - FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ (2 : Nat) * (3 : Nat) ^ (2 : Nat) = (18 : Nat) ∧ ((2 : Nat) * (3 : Nat)) ^ (2 : Nat) = (36 : Nat) :=
   @FRC.Ledger.p00070
 /-- 00:G7 (p27043) — \textbf{Strong} (CP): the vacuum angle vanishes, $\bar\theta=\theta+\arg\det M_q=0$, with no axion --- the colour action carries no substrate-native topological term and colour is drive-invariant ($\theta=0$), and the Hermitian quark mass matrices have real determinant ($\arg\det M_q=0$); the CP phase $\delta_{\mathrm{CP}}$ sits in the up--down misalignment. -/
-theorem vanishing_strong_cp_angle : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → FRC.Unitary.tr (FRC.Unitary.adj U) = (FRC.Unitary.tr U).conj ∧ FRC.Unitary.tr (FRC.Unitary.adj U) + (FRC.Unitary.tr (FRC.Unitary.adj U)).conj = FRC.Unitary.tr U + (FRC.Unitary.tr U).conj) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).conj = FRC.Unitary.det A) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) :=
+theorem vanishing_strong_cp_angle : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (U : FRC.Unitary.M3 p ν), FRC.Unitary.SU FRC.Unitary.mone U → FRC.Unitary.tr (FRC.Unitary.adj U) = (FRC.Unitary.tr U).conj ∧ FRC.Unitary.tr (FRC.Unitary.adj U) + (FRC.Unitary.tr (FRC.Unitary.adj U)).conj = FRC.Unitary.tr U + (FRC.Unitary.tr U).conj) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).conj = FRC.Unitary.det A) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → FRC.Unitary.det (FRC.Unitary.mmul A A) = FRC.Unitary.det A * FRC.Unitary.det A ∧ (FRC.Unitary.det A).conj = FRC.Unitary.det A ∧ (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) ∧ ((FRC.Unitary.det A).im = (0 : FRC.Shell p) → (FRC.Unitary.det (FRC.Unitary.mmul A A)).re = (FRC.Unitary.det A).re * (FRC.Unitary.det A).re ∧ (FRC.Unitary.det (FRC.Unitary.mmul A A)).im = (0 : FRC.Shell p))) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (A : FRC.Unitary.M3 p ν), FRC.Unitary.dag A = A → (FRC.Unitary.det A).im + (FRC.Unitary.det A).im = (0 : FRC.Shell p) :=
   @FRC.Ledger.p27043
 /-- 00:G8 (p00073) — \textbf{Strong} (hadron spectrum): a baryon is the centre-neutral triality invariant $\varepsilon_{abc}$ of $\SU(3,\F_2)$; the $\SU(3)_F$ mass relations are exact scale-cancelling identities --- Gell-Mann--Okubo, decuplet equal spacing, Coleman--Glashow, the orderings $M_n{>}M_p$ and $M_\Sigma{>}M_\Lambda$, heavy-quark symmetry, the vector-nonet spacing; the decuplet--octet hyperfine is the colour-magnetic curvature invariant, $A_{\mathrm{light}}{=}\sqrt\sigma\,c_{\mathrm{mag}}(\beta)$ the spin-$2$ partner of the tension $c_1$ (G5). Formulas: 35-hadr. -/
 theorem strong_hadron_spectrum : (FRC.Hadrons.unitv.length = (36 : Nat) ∧ FRC.Hadrons.u3.length = (648 : Nat) ∧ FRC.Hadrons.su3.length = (216 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm (FRC.Interactions.F4.dg g) g == FRC.Interactions.F4.one && FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ (List.filter (fun g => FRC.Interactions.F4.mm g FRC.Hadrons.D1 == FRC.Interactions.F4.mm FRC.Hadrons.D1 g && FRC.Interactions.F4.mm g FRC.Hadrons.U1 == FRC.Interactions.F4.mm FRC.Hadrons.U1 g) FRC.Hadrons.su3).length = (3 : Nat) ∧ ((List.filter (fun g => FRC.Interactions.F4.mm g FRC.Hadrons.D1 == FRC.Interactions.F4.mm FRC.Hadrons.D1 g && FRC.Interactions.F4.mm g FRC.Hadrons.U1 == FRC.Interactions.F4.mm FRC.Hadrons.U1 g) FRC.Hadrons.su3).all fun g => g == FRC.Interactions.F4.one || g == FRC.Interactions.F4.w.scal || g == FRC.Interactions.F4.w2.scal) = true ∧ ([FRC.Interactions.F4.o, FRC.Interactions.F4.w, FRC.Interactions.F4.w2].all fun x => FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.mm x.scal g == FRC.Interactions.F4.mm g x.scal) = true) ∧ (FRC.Hadrons.fixed1.length = (0 : Nat) ∧ FRC.Hadrons.fixed2.length = (0 : Nat) ∧ (FRC.Hadrons.su3.all fun g => FRC.Interactions.F4.det g == FRC.Interactions.F4.o) = true ∧ [(1 : Nat), FRC.Hadrons.fixed1.length, FRC.Hadrons.fixed2.length, (1 : Nat)] = [(1 : Nat), (0 : Nat), (0 : Nat), (1 : Nat)] ∧ (1 : Nat) + (3 : Nat) + (3 : Nat) + (1 : Nat) = (2 : Nat) ^ (3 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] (m a c : FRC.Shell p), FRC.Hadrons.octN m a c + FRC.Hadrons.octN m a c + (FRC.Hadrons.octX m a c + FRC.Hadrons.octX m a c) + -(FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c + FRC.Hadrons.octL m a c) + -FRC.Hadrons.octS m a c = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] (m b : FRC.Shell p), FRC.Hadrons.decD m b + -(FRC.Hadrons.decSs m b + FRC.Hadrons.decSs m b) + FRC.Hadrons.decXs m b = (0 : FRC.Shell p) ∧ FRC.Hadrons.decSs m b + -(FRC.Hadrons.decXs m b + FRC.Hadrons.decXs m b) + FRC.Hadrons.decO m b = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] (δ : FRC.Shell p), δ + δ + -(δ + δ) = (0 : FRC.Shell p)) ∧ ((4 : Int) + (4 : Int) + (1 : Int) = (9 : Int) ∧ (4 : Int) + (1 : Int) + (1 : Int) = (6 : Int) ∧ (2 : Int) * (2 : Int) + (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) = (0 : Int) ∧ (2 : Int) * (-1 : Int) + (2 : Int) * (-1 : Int) + (-1 : Int) * (-1 : Int) = (-3 : Int) ∧ (9 : Int) - (6 : Int) = (3 : Int) ∧ (0 : Int) - (-3 : Int) = (3 : Int) ∧ (0 : Int) < (3 : Int)) ∧ ((2 : Int) * (0 : Int) * (1 : Int) - (3 : Int) = (-3 : Int) ∧ (2 : Int) * (1 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (1 : Int) - (-3 : Int) = (4 : Int) ∧ (3 : Int) - (4 : Int) * ((0 : Int) * (1 : Int)) - (3 : Int) = (0 : Int) ∧ (3 : Int) - (4 : Int) * ((1 : Int) * (2 : Int)) - (3 : Int) = (-8 : Int)) ∧ (∀ {p : Nat} [FRC.Pos p] (a b : FRC.Shell p), FRC.Hadrons.vecKs a b + FRC.Hadrons.vecKs a b + -FRC.Hadrons.vecRho a b + -FRC.Hadrons.vecPhi a b = (0 : FRC.Shell p)) ∧ ((1 : Int) * ((1 : Int) + (2 : Int)) - (9 : Int) = (-6 : Int) ∧ (3 : Int) * ((3 : Int) + (2 : Int)) - (9 : Int) = (6 : Int) ∧ (6 : Int) - (-6 : Int) = (12 : Int) ∧ (-8 : Int) * (-6 : Int) = (2 : Int) * (24 : Int) ∧ (-8 : Int) * (6 : Int) = (-2 : Int) * (24 : Int)) ∧ ((3 : Int) * (3 : Int) - (1 : Int) = (8 : Int) ∧ (2 : Nat) * (3 : Nat) * (4 : Nat) = (3 : Nat) * (8 : Nat) ∧ (0 : Int) - (3 : Int) * (8 : Int) = (-24 : Int) ∧ (-24 / 12 : Int) = (-2 : Int) ∧ (4 : Int) * (-2 : Int) = (-8 : Int)) ∧ FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ FRC.Hadrons.moment6 (2 : Nat) (2 : Nat) - FRC.Hadrons.moment6 (1 : Nat) (1 : Nat) = (6 : Int) * (1 : Int) ∧ FRC.Hadrons.moment6 (3 : Nat) (1 : Nat) - FRC.Hadrons.moment6 (2 : Nat) (0 : Nat) = (0 : Int) ∧ (2 : Nat) * (3 : Nat) ^ (2 : Nat) = (18 : Nat) ∧ ((2 : Nat) * (3 : Nat)) ^ (2 : Nat) = (36 : Nat) :=

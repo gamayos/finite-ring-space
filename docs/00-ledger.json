@@ -1,5 +1,5 @@
 {
- "generated": "16 November 2026",
+ "generated": "18 November 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -1978,7 +1978,7 @@
    ],
    "witness": "27:p27_fields.py",
    "refs": [],
-   "lean_name": "vanishing_strong_cp_angle",
+   "lean_name": "no_strong_cp_angle",
    "statement": "\\textbf{Strong} (CP): the vacuum angle vanishes, $\\bar\\theta=\\theta+\\arg\\det M_q=0$, with no axion --- the colour action carries no substrate-native topological term and colour is drive-invariant ($\\theta=0$), and the Hermitian quark mass matrices have real determinant ($\\arg\\det M_q=0$); the CP phase $\\delta_{\\mathrm{CP}}$ sits in the up--down misalignment."
   },
   {

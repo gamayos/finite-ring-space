@@ -23,10 +23,10 @@ The master's block G where its derivations are exact, and the exact content of 2
 
 * **27-fields (16 October 2026).** The electroweak counts (`weinberg_angle`, `unification_counts`, `five_eighths`), the
   residue and its instances (`residue_five`, `residue_instances`, by the twelve-periodic induction `twelve_periodic`), the
-  rank tower (`rank_tower`), the neutral Hessian and the forced projector (`hessian_neutral`, `hessian_full` on `𝔽₁₃` and
-  `𝔽₅`, `projector_forced`), the lattice identities (`holonomy_stokes`, `gauge_flux_invariant`), the V − A cancellation and
-  the orientation relabelling (`va_cancel`, `projector_idempotent`, `orientation_flip`), the drive's adjoint on `𝔽₁₃`
-  (`drive_adjoint`), and the colour–isospin reframings as automorphisms of the reflection algebra (`offblock_automorphism`).
+  rank tower (`rank_tower`), the neutral mass block and the forced projector (`neutral_block`, `projector_forced`; the mass form of the
+  doublet on the Subject's extension is `Theme/Chirality.lean`'s `mass_form`, `mass_spectrum`, `invariant_form`), the lattice identities (`holonomy_stokes`, `gauge_flux_invariant`), the cancellation of a boost over its cycle and
+  the orientation relabelling (`va_cancel`, `projector_idempotent`, `orientation_flip`), the drive's adjoint action and its
+  centraliser on every shell (`adjoint_weights`, `drive_commutes`, `nonzero_residues`, `drive_adjoint`), and the colour–isospin reframings as automorphisms of the reflection algebra (`offblock_automorphism`).
   The kernel-decided certificates of the paper's data are `Theme/Fields.lean`'s.
 
 The finite statements are decided by the kernel; the ring identities by the ring normaliser. No axioms.
@@ -305,19 +305,20 @@ theorem rank_tower (n : Nat) (h : n % 12 = 5) : (n + 1) % 2 = 0 ∧ (n + 1) % 3 
         mod_add_twelve (m + 1) 4 (by decide) rfl]
       exact hm h12) n h
 
-/-! ## The neutral Hessian and the photon (27:C2, C5, X3, X5)
+/-! ## The neutral mass block and the photon (27:C2, C5, X3, X5)
 
 The neutral `(W₃, B)` mass block of the gauged Higgs action at the broken vacuum is `¼ v² [[g², −g g′], [−g g′, g′²]]`.
 Cleared of the `¼`, its entries are ring expressions in `g, g′, v` on every shell, and the normaliser decides the
 identities: the determinant vanishes and `(g′, g)` spans the kernel (the massless photon, the unbroken `U(1)`), and
 `(g, −g′)` is the eigenvector of the eigenvalue `(g² + g′²) v²`, that is `4 M_Z² = (g² + g′²) v²`. The custodial `ρ = 1` is the
-separate identity `M_W² (g² + g′²) = M_Z² g²` of the doublet's full Hessian, the `W` block `g² v²/4` against the `Z`
-eigenvalue: `hessian_full` decides it on `𝔽₁₃` and `𝔽₅` from the four generators, as the ledger file's check C6 does. -/
+separate identity `M_W² (g² + g′²) = M_Z² g²` of the doublet's mass operator, the `W` value `g² v²/4` against the `Z`
+value: `Chirality.mass_form` and `Chirality.mass_spectrum` prove it on the Subject's extension, with the Frobenius as the
+conjugation, on every shell. -/
 
-/-- 27:C5, 27:X3, 27:X5 — the neutral Hessian, cleared of `¼`: with `m₀₀ = g² v²`, `m₀₁ = −g g′ v²`, `m₁₁ = g′² v²`,
+/-- 27:C5, 27:X3, 27:X5 — the neutral mass block, cleared of `¼`: with `m₀₀ = g² v²`, `m₀₁ = −g g′ v²`, `m₁₁ = g′² v²`,
 `m₀₀ m₁₁ − m₀₁² = 0` (the massless photon); `(m₀₀, m₀₁) · (g′, g) = 0` and `(m₀₁, m₁₁) · (g′, g) = 0`; the block applied to
 `(g, −g′)` returns `(g² + g′²) v² · (g, −g′)`. -/
-theorem hessian_neutral (g g' v : Shell p) :
+theorem neutral_block (g g' v : Shell p) :
     g * g * (v * v) * (g' * g' * (v * v)) + -(-(g * g' * (v * v)) * -(g * g' * (v * v))) = 0 ∧
     g * g * (v * v) * g' + -(g * g' * (v * v)) * g = 0 ∧
     -(g * g' * (v * v)) * g' + g' * g' * (v * v) * g = 0 ∧
@@ -334,40 +335,6 @@ theorem hessian_neutral (g g' v : Shell p) :
   have he2 : -(g * g' * (v * v)) * g + g' * g' * (v * v) * -g' = (g * g + g' * g') * (v * v) * -g' :=
     Shell.Frame.RE.sound (Shell.Frame.look [g, g', v]) (.add (.mul (.neg (.mul (.mul (.var 0) (.var 1)) (.mul (.var 2) (.var 2)))) (.var 0)) (.mul (.mul (.mul (.var 1) (.var 1)) (.mul (.var 2) (.var 2))) (.neg (.var 1)))) (.mul (.mul (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.mul (.var 2) (.var 2))) (.neg (.var 1))) (by decide +kernel)
   exact ⟨hdet, hk1, hk2, he1, he2⟩
-
-/-- The entry of a list of pairs, `(0, 0)` past its end. -/
-def pget : List (Shell p × Shell p) → Nat → Shell p × Shell p
-  | [], _ => (0, 0)
-  | x :: _, 0 => x
-  | _ :: l, n + 1 => pget l n
-
-/-- The four generators `(g/2) σ₁, (g/2) σ₂, (g/2) σ₃, (g′/2) 1` applied to the vacuum `(0, v)`: `X_a φ₀ = (A_a[0][1] v, A_a[1][1] v)`,
-with `i` the unit `i² = −1` of the shell and `h = 1/2`. -/
-def xphi (i g g' v h : Shell p) : List (Shell p × Shell p) :=
-  [(g * h * v, 0), (-(i * (g * h)) * v, 0), (0, -(g * h) * v), (0, g' * h * v)]
-
-/-- The Hessian `M_ab = (X_a φ₀)^† (X_b φ₀)`, the conjugate row with `−i`. -/
-def hess (i g g' v h : Shell p) (a b : Nat) : Shell p :=
-  (pget (xphi (-i) g g' v h) a).1 * (pget (xphi i g g' v h) b).1 + (pget (xphi (-i) g g' v h) a).2 * (pget (xphi i g g' v h) b).2
-
-/-- 27:C5, 27:X5 — the full `4 × 4` Hessian of the gauged doublet on `𝔽₁₃` (`i = 5`, `g = 1`, `g′ = 2`, `v = 2`, `h = 7`) and on
-`𝔽₅` (`i = 2`, `g = g′ = 1`, `v = 2`, `h = 3`): `(0, 0, g′, g)` is the kernel (the photon), `det (W₃, B) = 0`, `W₁` and `W₂`
-are degenerate, the `(W₃, B)` trace is `M_Z² = (g² + g′²) v² h²`, and the custodial identity `M_W² (g² + g′²) = M_Z² g²`
-(`ρ = 1`) holds with `M_W² = M₁₁`; `i² = −1` and `2h = 1` on both shells. -/
-theorem hessian_full :
-    ((List.range 4).all (fun a => hess (5 : Shell 13) 1 2 2 7 a 2 * 2 + hess (5 : Shell 13) 1 2 2 7 a 3 * 1 == 0)) = true ∧
-    hess (5 : Shell 13) 1 2 2 7 2 2 * hess (5 : Shell 13) 1 2 2 7 3 3 + -(hess (5 : Shell 13) 1 2 2 7 2 3 * hess (5 : Shell 13) 1 2 2 7 3 2) = 0 ∧
-    hess (5 : Shell 13) 1 2 2 7 0 0 = hess (5 : Shell 13) 1 2 2 7 1 1 ∧
-    hess (5 : Shell 13) 1 2 2 7 2 2 + hess (5 : Shell 13) 1 2 2 7 3 3 = (1 * 1 + 2 * 2) * (2 * 2) * (7 * 7) ∧
-    hess (5 : Shell 13) 1 2 2 7 0 0 * (1 * 1 + 2 * 2) = (hess (5 : Shell 13) 1 2 2 7 2 2 + hess (5 : Shell 13) 1 2 2 7 3 3) * (1 * 1) ∧
-    (5 : Shell 13) * 5 = -1 ∧ (7 : Shell 13) + 7 = 1 ∧
-    ((List.range 4).all (fun a => hess (2 : Shell 5) 1 1 2 3 a 2 * 1 + hess (2 : Shell 5) 1 1 2 3 a 3 * 1 == 0)) = true ∧
-    hess (2 : Shell 5) 1 1 2 3 2 2 * hess (2 : Shell 5) 1 1 2 3 3 3 + -(hess (2 : Shell 5) 1 1 2 3 2 3 * hess (2 : Shell 5) 1 1 2 3 3 2) = 0 ∧
-    hess (2 : Shell 5) 1 1 2 3 0 0 = hess (2 : Shell 5) 1 1 2 3 1 1 ∧
-    hess (2 : Shell 5) 1 1 2 3 2 2 + hess (2 : Shell 5) 1 1 2 3 3 3 = (1 * 1 + 1 * 1) * (2 * 2) * (3 * 3) ∧
-    hess (2 : Shell 5) 1 1 2 3 0 0 * (1 * 1 + 1 * 1) = (hess (2 : Shell 5) 1 1 2 3 2 2 + hess (2 : Shell 5) 1 1 2 3 3 3) * (1 * 1) ∧
-    (2 : Shell 5) * 2 = -1 ∧ (3 : Shell 5) + 3 = 1 := by
-  decide +kernel
 
 theorem five_eq : (5 : Shell p) = 1 + 1 + 1 + 1 + 1 := by
   show ofNat 5 = ofNat 1 + ofNat 1 + ofNat 1 + ofNat 1 + ofNat 1
@@ -423,15 +390,15 @@ theorem gauge_flux_invariant (A B C D φ₀ φ₁ φ₂ φ₃ : Shell p) :
     A + φ₁ + -φ₀ + (B + φ₂ + -φ₁) + -(C + φ₂ + -φ₃) + -(D + φ₃ + -φ₀) = A + B + -C + -D :=
   Shell.Frame.RE.sound (Shell.Frame.look [A, B, C, D, φ₀, φ₁, φ₂, φ₃]) (.add (.add (.add (.add (.add (.var 0) (.var 5)) (.neg (.var 4))) (.add (.add (.var 1) (.var 6)) (.neg (.var 5)))) (.neg (.add (.add (.var 2) (.var 6)) (.neg (.var 7))))) (.neg (.add (.add (.var 3) (.var 7)) (.neg (.var 4))))) (.add (.add (.add (.var 0) (.var 1)) (.neg (.var 2))) (.neg (.var 3))) (by decide +kernel)
 
-/-! ## The V − A current and the chiral projector (27:C4, C7, C9, C10, X6)
+/-! ## The cancellation of a boost over its cycle (27:C4, X6)
 
-The boost cycle `C_{q+1}` is read on a prime shell as a root `u` of order `N`; the drive advances the phase by `2δ`
-per chronon. Over one period the drive-aligned branch sums to `N` and the counter-aligned branch to `0` unless
+The boost cycle `C_{q+1}` is read on a prime shell as a root `u` of order `N`; a boost `δ` advances the phase by `2δ`
+per step. Over one period the constant branch sums to `N` and the turning branch to `0` unless
 `u^{2δ} = 1`: the geometric sum against `u^{2δ} − 1` telescopes to `u^{2δN} − 1 = 0`, and a prime shell has no zero
 divisors. -/
 
-/-- 27:C4, 27:X6 — the V − A cancellation: on a prime shell, for `u^N = 1` and `u^{2δ} ≠ 1`,
-`Σ_{τ<N} u^{2δτ} = 0` (the counter-aligned branch) while `Σ_{τ<N} 1 = N` (the aligned branch). -/
+/-- 27:C4, 27:X6 — the cancellation of a boost over its cycle: on a prime shell, for `u^N = 1` and `u^{2δ} ≠ 1`,
+`Σ_{τ<N} u^{2δτ} = 0` (the turning branch) while `Σ_{τ<N} 1 = N` (the constant branch). -/
 theorem va_cancel (hp : FRC.Nat.isPrime p) {u : Shell p} {N : Nat} (hu : u ^ N = 1) {δ : Nat}
     (hδ : u ^ (2 * δ) ≠ 1) :
     sumRange (fun τ => u ^ (2 * δ * τ)) N = 0 ∧ sumRange (fun _ => (1 : Shell p)) N = ofNat N := by
@@ -449,16 +416,16 @@ theorem va_cancel (hp : FRC.Nat.isPrime p) {u : Shell p} {N : Nat} (hu : u ^ N =
     | zero => rfl
     | succ n ih => rw [sumRange_succ, ih]; exact ofNat_add n 1
 
-/-- The chiral projector `P_L = diag(1, 0)` is idempotent and annihilates the right branch, `P_L (ψ_L, ψ_R) = (ψ_L, 0)`:
-ring axioms, corroboration only — the projector's content, `(1/N) Σ_τ diag(1, u^{2δτ}) = diag(1, 0)`, is `va_cancel`'s. -/
+/-- The matrix `diag(1, 0)` is idempotent and annihilates the second entry, `diag(1, 0) (x, y) = (x, 0)`: ring axioms,
+corroboration only. It is the mean `(1/N) Σ_τ diag(1, u^{2δτ})` of `va_cancel`, a mean over the boost cycle and no
+chirality projector of the shell (`Chirality.no_idempotent`). -/
 theorem projector_idempotent (x y : Shell p) :
     (1 : Shell p) * 1 = 1 ∧ (0 : Shell p) * 0 = 0 ∧ 1 * x = x ∧ 0 * y = 0 :=
   ⟨mul_one 1, mul_zero 0, one_mul x, zero_mul y⟩
 
-/-- 27:C4, 27:X6 — the orientation convention `ε ↦ −ε` relabels the branches and leaves the selection: the inverse exponent
+/-- 27:C4, 27:X6 — the orientation convention `ε ↦ −ε` relabels the branches: the inverse exponent
 `2(N − δ)` is as far from the identity as `2δ` (`u^{2δ} u^{2(N−δ)} = u^{2N} = 1`), so its branch sums to `0` too; the
-two conventions disagree on the label (`1 ≠ −1`) and agree that the coupled branch is the drive-aligned one
-(`ε · ε > 0` for both signs). -/
+two conventions disagree on the label (`1 ≠ −1`), and `ε · ε > 0` for both signs. -/
 theorem orientation_flip (hp : FRC.Nat.isPrime p) {u : Shell p} {N : Nat} (hu : u ^ N = 1) {δ : Nat}
     (hδN : δ ≤ N) (hδ : u ^ (2 * δ) ≠ 1) :
     sumRange (fun τ => u ^ (2 * (N - δ) * τ)) N = 0 ∧
@@ -469,35 +436,147 @@ theorem orientation_flip (hp : FRC.Nat.isPrime p) {u : Shell p} {N : Nat} (hu : 
     rw [h2, ← pow_add, ← _root_.Nat.mul_add, FRC.Nat.add_sub_of_le hδN, _root_.Nat.mul_comm, pow_mul, hu, one_pow])
   exact (va_cancel hp hu h').1
 
-/-! ## The breaking over `𝔽₁₃`: the drive's adjoint action (27:C4)
+/-! ## The drive on every shell: its adjoint action and its centraliser (27:C4)
 
-`2 × 2` matrices over the shell as quadruples `(a, b, c, d)`; the drive `δ = diag(2, 7)` of `𝔽₁₃` (`2 · 7 = 14 ≡ 1`)
-acts by conjugation on `𝔰𝔩₂`: it fixes `H = diag(1, −1)` and scales `E` by `g² = 4` and `F` by `g⁻² = 10`; its
-centraliser in `SL₂(𝔽₁₃)` is the split torus of order `12 = p − 1`. -/
+`2 × 2` matrices over the shell as quadruples `(a, b, c, d)`. The drive `δ = diag(g, h)`, `g h = 1`, acts by conjugation
+on `𝔰𝔩₂`: it fixes `H = diag(1, −1)` and scales `E` by `g²` and `F` by `h²`. Where `g² ≠ 1`, a matrix commutes with `δ`
+exactly when it is diagonal. The matrices of determinant one that commute with `δ` are therefore the `diag(a, d)` with
+`a d = 1`, one for each nonzero residue `a`: the split cycle. The nonzero residues are those of `1, …, p − 1`. -/
 
 /-- The product of `2 × 2` matrices over the shell, as quadruples. -/
 def m2 (X Y : Shell p × Shell p × Shell p × Shell p) : Shell p × Shell p × Shell p × Shell p :=
   (X.1 * Y.1 + X.2.1 * Y.2.2.1, X.1 * Y.2.1 + X.2.1 * Y.2.2.2,
    X.2.2.1 * Y.1 + X.2.2.2 * Y.2.2.1, X.2.2.1 * Y.2.1 + X.2.2.2 * Y.2.2.2)
 
-/-- The quadruple of the residues `(a, b, c, d)` of a number `n < p⁴`. -/
-def m2of (n : Nat) : Shell p × Shell p × Shell p × Shell p :=
-  (ofNat (n % p), ofNat (n / p % p), ofNat (n / (p * p) % p), ofNat (n / (p * p * p)))
+omit [Pos p] in
+/-- A quadruple is decided by its four entries. -/
+theorem quad_ext {a b c d a' b' c' d' : Shell p} (h1 : a = a') (h2 : b = b') (h3 : c = c') (h4 : d = d') :
+    (a, b, c, d) = (a', b', c', d') := by
+  subst h1; subst h2; subst h3; subst h4; rfl
 
-/-- 27:C4, 27:X1 — the drive `δ = diag(2, 7)` of `𝔽₁₃` (`δ⁻¹ = diag(7, 2)`): `Ad_δ H = H`, `Ad_δ E = 4 E`, `Ad_δ F = 10 F` with
-`4 · 10 ≡ 1`; the centraliser of `δ` in `SL₂(𝔽₁₃)` has `12` elements (the split torus); the non-split torus element
-`[[3, 4], [2, 3]]` (`a = 3, b = 2, ν = 2`, `a² − ν b² = 1`) does not commute with the drive. -/
-theorem drive_adjoint :
-    m2 (2, 0, 0, 7) (7, 0, 0, (2 : Shell 13)) = (1, 0, 0, 1) ∧
-    m2 (m2 (2, 0, 0, 7) (1, 0, 0, 12)) (7, 0, 0, (2 : Shell 13)) = (1, 0, 0, 12) ∧
-    m2 (m2 (2, 0, 0, 7) (0, 1, 0, 0)) (7, 0, 0, (2 : Shell 13)) = (0, 4, 0, 0) ∧
-    m2 (m2 (2, 0, 0, 7) (0, 0, 1, 0)) (7, 0, 0, (2 : Shell 13)) = (0, 0, 10, 0) ∧
-    (4 : Shell 13) * 10 = 1 ∧
-    ((List.range (13 * 13 * 13 * 13)).filter (fun n =>
-      let X := m2of (p := 13) n
-      X.1 * X.2.2.2 + -(X.2.1 * X.2.2.1) == 1 && m2 X (2, 0, 0, 7) == m2 (2, 0, 0, 7) X)).length = 12 ∧
-    m2 (3, 4, 2, 3) (2, 0, 0, 7) ≠ m2 (2, 0, 0, 7) (3, 4, 2, (3 : Shell 13)) := by
-  decide +kernel
+/-- 27:C4 — the drive's adjoint action on every shell: for `δ = diag(g, h)` with `g h = 1`, `δ δ⁻¹ = 1`, `Ad_δ H = H`,
+`Ad_δ E = g² E`, `Ad_δ F = h² F`, and `g² h² = 1`. -/
+theorem adjoint_weights {g h : Shell p} (hgh : g * h = 1) :
+    m2 (g, 0, 0, h) (h, 0, 0, g) = (1, 0, 0, 1) ∧
+    m2 (m2 (g, 0, 0, h) (1, 0, 0, -1)) (h, 0, 0, g) = (1, 0, 0, -1) ∧
+    m2 (m2 (g, 0, 0, h) (0, 1, 0, 0)) (h, 0, 0, g) = (0, g * g, 0, 0) ∧
+    m2 (m2 (g, 0, 0, h) (0, 0, 1, 0)) (h, 0, 0, g) = (0, 0, h * h, 0) ∧
+    (g * g) * (h * h) = 1 := by
+  refine ⟨?_, ?_, ?_, ?_, ?_⟩
+  · exact quad_ext ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.var 0) (.var 1)) (.mul .zero .zero)) (.mul (.var 0) (.var 1)) (by decide +kernel)).trans hgh)
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.var 0) .zero) (.mul .zero (.var 0))) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul .zero (.var 1)) (.mul (.var 1) .zero)) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul .zero .zero) (.mul (.var 1) (.var 0))) (.mul (.var 0) (.var 1)) (by decide +kernel)).trans hgh)
+  · exact quad_ext ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) (.var 1)) (.mul (.add (.mul (.var 0) .zero) (.mul .zero (.neg .one))) .zero)) (.mul (.var 0) (.var 1)) (by decide +kernel)).trans hgh)
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) .zero) (.mul (.add (.mul (.var 0) .zero) (.mul .zero (.neg .one))) (.var 0))) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .one) (.mul (.var 1) .zero)) (.var 1)) (.mul (.add (.mul .zero .zero) (.mul (.var 1) (.neg .one))) .zero)) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .one) (.mul (.var 1) .zero)) .zero) (.mul (.add (.mul .zero .zero) (.mul (.var 1) (.neg .one))) (.var 0))) (.neg (.mul (.var 0) (.var 1))) (by decide +kernel)).trans (congrArg (fun x => -x) hgh))
+  · exact quad_ext ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) (.var 1)) (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) .zero)) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) .zero) (.mul (.add (.mul (.var 0) .one) (.mul .zero .zero)) (.var 0))) (.mul (.var 0) (.var 0)) (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 1) .zero)) (.var 1)) (.mul (.add (.mul .zero .one) (.mul (.var 1) .zero)) .zero)) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 1) .zero)) .zero) (.mul (.add (.mul .zero .one) (.mul (.var 1) .zero)) (.var 0))) .zero (by decide +kernel)))
+  · exact quad_ext ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .one)) (.var 1)) (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) .zero)) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul (.var 0) .zero) (.mul .zero .one)) .zero) (.mul (.add (.mul (.var 0) .zero) (.mul .zero .zero)) (.var 0))) .zero (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 1) .one)) (.var 1)) (.mul (.add (.mul .zero .zero) (.mul (.var 1) .zero)) .zero)) (.mul (.var 1) (.var 1)) (by decide +kernel)))
+      ((Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.add (.mul .zero .zero) (.mul (.var 1) .one)) .zero) (.mul (.add (.mul .zero .zero) (.mul (.var 1) .zero)) (.var 0))) .zero (by decide +kernel)))
+  · have e1 : ((g * g) * (h * h)) = ((g * h) * (g * h)) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.mul (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 1))) (by decide +kernel)
+    have e2 : ((1 : Shell p) * 1) = 1 :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.mul .one .one) .one (by decide +kernel)
+    rw [hgh] at e1
+    exact e1.trans e2
+
+/-- 27:C4 — a matrix commutes with the drive exactly when it is diagonal: on a prime shell, for `δ = diag(g, h)` with
+`g h = 1` and `g² ≠ 1`, `X δ = δ X` holds if and only if the off-diagonal entries of `X` vanish. -/
+theorem drive_commutes (hp : FRC.Nat.isPrime p) {g h : Shell p} (hgh : g * h = 1) (hg : g * g ≠ 1) (a b c d : Shell p) :
+    m2 (a, b, c, d) (g, 0, 0, h) = m2 (g, 0, 0, h) (a, b, c, d) ↔ b = 0 ∧ c = 0 := by
+  have hne : h + -g ≠ 0 := fun e => hg (by
+    have i1 : (g * h) = ((g * g) + (g * (h + -g))) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.mul (.var 0) (.var 1)) (.add (.mul (.var 0) (.var 0)) (.mul (.var 0) (.add (.var 1) (.neg (.var 0))))) (by decide +kernel)
+    have i2 : ((g * g) + (g * 0)) = (g * g) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h]) (.add (.mul (.var 0) (.var 0)) (.mul (.var 0) .zero)) (.mul (.var 0) (.var 0)) (by decide +kernel)
+    rw [e] at i1
+    exact i2.symm.trans (i1.symm.trans hgh))
+  constructor
+  · intro hX
+    have h2 : a * 0 + b * h = g * b + 0 * d := congrArg (fun X => X.2.1) hX
+    have h3 : c * g + d * 0 = 0 * a + h * c := congrArg (fun X => X.2.2.1) hX
+    have j2 : (b * (h + -g)) = (((a * 0) + (b * h)) + -((g * b) + (0 * d))) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, b, c, d]) (.mul (.var 3) (.add (.var 1) (.neg (.var 0)))) (.add (.add (.mul (.var 2) .zero) (.mul (.var 3) (.var 1))) (.neg (.add (.mul (.var 0) (.var 3)) (.mul .zero (.var 5))))) (by decide +kernel)
+    have k2 : (((g * b) + (0 * d)) + -((g * b) + (0 * d))) = 0 :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, b, c, d]) (.add (.add (.mul (.var 0) (.var 3)) (.mul .zero (.var 5))) (.neg (.add (.mul (.var 0) (.var 3)) (.mul .zero (.var 5))))) .zero (by decide +kernel)
+    have j3 : (c * (h + -g)) = (((0 * a) + (h * c)) + -((c * g) + (d * 0))) :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, b, c, d]) (.mul (.var 4) (.add (.var 1) (.neg (.var 0)))) (.add (.add (.mul .zero (.var 2)) (.mul (.var 1) (.var 4))) (.neg (.add (.mul (.var 4) (.var 0)) (.mul (.var 5) .zero)))) (by decide +kernel)
+    have k3 : (((c * g) + (d * 0)) + -((c * g) + (d * 0))) = 0 :=
+      Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, b, c, d]) (.add (.add (.mul (.var 4) (.var 0)) (.mul (.var 5) .zero)) (.neg (.add (.mul (.var 4) (.var 0)) (.mul (.var 5) .zero)))) .zero (by decide +kernel)
+    have hb := Prime.mul_eq_zero hp ((j2.trans (congrArg (fun t => t + -(g * b + 0 * d)) h2)).trans k2)
+    have hc := Prime.mul_eq_zero hp ((j3.trans (congrArg (fun t => t + -(c * g + d * 0)) h3.symm)).trans k3)
+    exact ⟨hb.resolve_right hne, hc.resolve_right hne⟩
+  · intro hbc
+    have hb := hbc.1; have hc := hbc.2
+    subst hb; subst hc
+    exact quad_ext
+      (Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, d]) (.add (.mul (.var 2) (.var 0)) (.mul .zero .zero)) (.add (.mul (.var 0) (.var 2)) (.mul .zero .zero)) (by decide +kernel))
+      (Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, d]) (.add (.mul (.var 2) .zero) (.mul .zero (.var 1))) (.add (.mul (.var 0) .zero) (.mul .zero (.var 3))) (by decide +kernel))
+      (Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, d]) (.add (.mul .zero (.var 0)) (.mul (.var 3) .zero)) (.add (.mul .zero (.var 2)) (.mul (.var 1) .zero)) (by decide +kernel))
+      (Shell.Frame.RE.sound (Shell.Frame.look [g, h, a, d]) (.add (.mul .zero .zero) (.mul (.var 3) (.var 1))) (.add (.mul .zero .zero) (.mul (.var 1) (.var 3))) (by decide +kernel))
+
+/-- The nonzero residues of a shell are those of `1, …, p − 1`: a residue is nonzero exactly when its representative is
+positive, the representative is below `p`, two residues with one representative are equal, and no `k < p` is missed by
+the representatives. -/
+theorem nonzero_residues :
+    (∀ a : Shell p, a ≠ 0 ↔ 0 < a.val) ∧ (∀ a : Shell p, a.val < p) ∧
+    (∀ a b : Shell p, a.val = b.val → a = b) ∧ (∀ k : Nat, k < p → ¬∀ a : Shell p, a.val ≠ k) :=
+  ⟨fun a => ⟨fun ha => Nat.pos_of_ne_zero (fun e => ha (ext (e.trans val_zero.symm))),
+            fun ha e => by rw [e, val_zero] at ha; exact Nat.lt_irrefl 0 ha⟩,
+   fun a => a.lt, fun _ _ h => ext h, fun k hk h => h (ofNat k) (FRC.Nat.mod_eq_of_lt hk)⟩
+
+/-- 27:C4, 27:X1 — the drive on every shell. For the drive `δ = diag(g, h)` on a prime shell, with `g h = 1` and
+`g² ≠ 1`: `δ` fixes `H` and scales `E` and `F` by `g²` and `h²` (`adjoint_weights`); a matrix commutes with `δ` exactly
+when it is diagonal (`drive_commutes`); a matrix of determinant one commutes with `δ` exactly when it is
+`diag(a, d)` with `a d = 1`; each nonzero residue `a` gives one such matrix, `diag(a, a^(p−2))`, and `d` is decided
+by `a`; the nonzero residues are those of `1, …, p − 1` (`nonzero_residues`), so these matrices are the split cycle of
+order `p − 1`; and an element `[[a, ν b], [b, a]]` of the boost cycle with `b ≠ 0` does not commute with the drive. -/
+theorem drive_adjoint (hp : FRC.Nat.isPrime p) {g h : Shell p} (hgh : g * h = 1) (hg : g * g ≠ 1) :
+    (m2 (g, 0, 0, h) (h, 0, 0, g) = (1, 0, 0, 1) ∧
+     m2 (m2 (g, 0, 0, h) (1, 0, 0, -1)) (h, 0, 0, g) = (1, 0, 0, -1) ∧
+     m2 (m2 (g, 0, 0, h) (0, 1, 0, 0)) (h, 0, 0, g) = (0, g * g, 0, 0) ∧
+     m2 (m2 (g, 0, 0, h) (0, 0, 1, 0)) (h, 0, 0, g) = (0, 0, h * h, 0) ∧
+     (g * g) * (h * h) = 1) ∧
+    (∀ a b c d : Shell p, m2 (a, b, c, d) (g, 0, 0, h) = m2 (g, 0, 0, h) (a, b, c, d) ↔ b = 0 ∧ c = 0) ∧
+    (∀ a b c d : Shell p, a * d + -(b * c) = 1 →
+      (m2 (a, b, c, d) (g, 0, 0, h) = m2 (g, 0, 0, h) (a, b, c, d) ↔ b = 0 ∧ c = 0 ∧ a * d = 1)) ∧
+    (∀ a : Shell p, a ≠ 0 → a * a ^ (p - 2) = 1) ∧
+    (∀ a d d' : Shell p, a * d = 1 → a * d' = 1 → d = d') ∧
+    ((∀ a : Shell p, a ≠ 0 ↔ 0 < a.val) ∧ (∀ a : Shell p, a.val < p) ∧
+     (∀ a b : Shell p, a.val = b.val → a = b) ∧ (∀ k : Nat, k < p → ¬∀ a : Shell p, a.val ≠ k)) ∧
+    (∀ a b ν : Shell p, b ≠ 0 → m2 (a, ν * b, b, a) (g, 0, 0, h) ≠ m2 (g, 0, 0, h) (a, ν * b, b, a)) := by
+  refine ⟨adjoint_weights hgh, drive_commutes hp hgh hg, ?_, ?_, ?_, nonzero_residues, ?_⟩
+  · intro a b c d hdet
+    constructor
+    · intro hX
+      have hbc := (drive_commutes hp hgh hg a b c d).1 hX
+      have hb := hbc.1
+      subst hb
+      have e1 : (a * d) = (((a * d) + -(0 * c)) + 0) :=
+        Shell.Frame.RE.sound (Shell.Frame.look [a, d, c]) (.mul (.var 0) (.var 1)) (.add (.add (.mul (.var 0) (.var 1)) (.neg (.mul .zero (.var 2)))) .zero) (by decide +kernel)
+      rw [hdet] at e1
+      exact ⟨rfl, hbc.2, e1.trans (add_zero 1)⟩
+    · intro h3
+      exact (drive_commutes hp hgh hg a b c d).2 ⟨h3.1, h3.2.1⟩
+  · intro a ha
+    have hf := Prime.fermat hp ha
+    have h2 : p - 2 + 1 = p - 1 := by
+      have := FRC.Nat.sub_add_cancel (Prime.two_le hp)
+      calc p - 2 + 1 = p - 2 + 2 - 1 := rfl
+        _ = p - 1 := by rw [this]
+    rw [← h2, pow_succ] at hf
+    rw [mul_comm]; exact hf
+  · intro a d d' h1 h2
+    have ha : a ≠ 0 := fun e => Prime.one_ne_zero hp (by rw [← h1, e, zero_mul])
+    exact Prime.mul_left_cancel hp ha (h1.trans h2.symm)
+  · intro a b ν hb hX
+    exact hb ((drive_commutes hp hgh hg a (ν * b) b a).1 hX).2
 
 /-! ## The colour–isospin reframings as automorphisms (27:C9, X8, 00:Z5)
 

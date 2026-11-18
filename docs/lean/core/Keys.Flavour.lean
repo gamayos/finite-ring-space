@@ -1,5 +1,5 @@
+import FrcCore.Frame
 import FrcCore.Theme.Interactions
-import FrcCore.Theme.Ladder
 import FrcCore.Theme.Flavour
 
 /-!

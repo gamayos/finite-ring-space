@@ -1,9 +1,9 @@
 {
  "paper": "8-dirac",
  "tree": "8-dirac-20260709",
- "title": "Schrödinger and Dirac Dynamics",
- "doi": "https://doi.org/10.20944/preprints202510.1486.v2",
- "generated": "12 November 2026",
+ "title": "Schrödinger and Dirac Dynamics over Finite Holographic Substrate",
+ "doi": "https://doi.org/10.20944/preprints202510.1486.v4",
+ "generated": "18 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -19,9 +19,9 @@
     },
     {
      "label": "A2",
-     "predicate": "Finite-field algebra: the quadratic extension with its Frobenius conjugation and norm, Hilbert's Theorem~90, the square classes by Euler's criterion, the unitary group of a nondegenerate Hermitian form over a finite field.",
+     "predicate": "Finite-field algebra: the quadratic extension with its Frobenius conjugation and norm, Hilbert's Theorem~90, the square classes by Euler's criterion, the unitary group of a nondegenerate Hermitian form over a finite field, the quaternary Clifford algebra as $M_4$, the Jordan--Chevalley decomposition.",
      "tag": "I",
-     "source": "Prop.~\\ref{prop:algebra}; \\citep{LidlNiederreiter1997,Lam2005,Taylor1992}",
+     "source": "Prop.~\\ref{prop:algebra}; \\citep{LidlNiederreiter1997,Lam2005,Taylor1992,HoffmanKunze1971}",
      "key": "p08002",
      "name": null
     },
@@ -121,11 +121,11 @@
     },
     {
      "label": "B8",
-     "predicate": "One-way and two-way transport: comparison readings are even drive steps, the one-way single-chronon multiplier odd, and light-like transport carries no registered velocity, only its square class (00:C8). Falsifier: a registered one-way velocity, or a two-way constant that changes under the synchronisation gauge.",
+     "predicate": "One-way and two-way transport: comparison readings are even drive steps, the one-way single-chronon multiplier odd, and light-like transport along one axis carries no registered velocity, only its square class (00:C8); the $3{+}1$ form's null vectors are not read. Falsifier: a registered one-way velocity, or a two-way constant that changes under the synchronisation gauge.",
      "tag": "T",
-     "source": "Prop.~\\ref{rem:oneway}; rests on B5, B6; \\href{https://finitering.space/ledger.html#C8}{00:C8}\\newline \\pywit{dirac}{p08014}{B8}",
+     "source": "Prop.~\\ref{rem:oneway}; rests on B5, B6; \\href{https://finitering.space/ledger.html#C8}{00:C8}\\newline \\pywit{dirac}{p08014}{B8}, \\leanwit{FrcCore}{p08014}{B8} \\lean{FRC.Dirac.oneway\\_transport}",
      "key": "p08014",
-     "name": null
+     "name": "one_way_two_way_transport"
     }
    ]
   },
@@ -277,7 +277,7 @@
    "rows": [
     {
      "label": "D1",
-     "predicate": "Spinor fields on the coordinate shell, the forward differences, the gamma matrices for $\\eta=\\diag(-\\nu,1,1,1)$, the standard finite Dirac operator and the finite Dirac equation.",
+     "predicate": "Spinor fields on the coordinate shell, the forward differences, the gamma matrices for $\\met=\\diag(-\\nu,1,1,1)$, the standard finite Dirac operator and the finite Dirac equation.",
      "tag": "D",
      "source": "Def.~\\ref{def:dirac-standard}",
      "key": "p08021",
@@ -373,11 +373,11 @@
     },
     {
      "label": "D13",
-     "predicate": "Mass is winding rate, the Dirac form (00:D2): the finite Dirac equation balances the meridional development of the spinor field against the mass times the field; the Cayley step advances a translation-invariant spinor by the mass phase alone, one step of the third cycle per chronon, as the drive advances a character by its winding index (F3); $E=hf$ an identity.",
+     "predicate": "Mass is winding rate, the Dirac form (00:D2): the Dirac equation balances the meridional development of the spinor field against the mass, with only the zero solution for $m\\neq0$; the Cayley step of $\\mathcal D^{s}-m$, in a step count not identified with $x_0$, advances a translation-invariant spinor by the mass phase once per chronon; $E=hf$ an identity.",
      "tag": "T",
-     "source": "Prop.~\\ref{rem:mass-winding}; rests on D3, D10; \\href{https://finitering.space/ledger.html#D2}{00:D2}\\newline \\pywit{dirac}{p08033}{D13}",
+     "source": "Prop.~\\ref{rem:mass-winding}; rests on D3, D10, D20; \\href{https://finitering.space/ledger.html#D2}{00:D2}\\newline \\pywit{dirac}{p08033}{D13}, \\leanwit{FrcCore}{p08033}{D13} \\lean{FRC.Dirac.drive\\_eigen, FRC.Dirac.Operator.dirac\\_factorisation, FRC.Dirac.Operator.cayley\\_nilpotent\\_shift, FRC.Dirac.Spinor.mass\\_winding\\_values}",
      "key": "p08033",
-     "name": null
+     "name": "mass_is_winding_rate"
     },
     {
      "label": "D14",
@@ -426,6 +426,22 @@
      "source": "Ex.~\\ref{ex:dirac-173}; rests on B3\\newline \\pywit{dirac}{p08072}{D19}, \\leanwit{FrcCore}{p08072}{D19}, \\leanwit{FrcMathlib}{p08072}{D19} \\lean{Dirac.shell173, FRC.Dirac.shell173\\_values, FRC.Dirac.torus\\_counts, FRC.Dirac.triality\\_values}",
      "key": "p08072",
      "name": "worked_shell_second_subject"
+    },
+    {
+     "label": "D20",
+     "predicate": "The square bound and the index in $0{+}1$: either Dirac difference operator has $\\mathcal D^{2\\p}=0$ in any number of coordinate directions; in one direction $(T-T^{-1})^{\\p-1}=\\sum_{k<\\p}T^{k}\\neq0$ and $(T-T^{-1})^{\\p}=0$, likewise for $T-1$, so the index is $\\p$ and the unipotent exponent of the Cayley step of $\\mathcal D^{s}-m$ is $1$ in $0{+}1$.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:square-bound}; rests on D2, D3, D10\\newline \\pywit{dirac}{p08079}{D20}, \\leanwit{FrcCore}{p08079}{D20} \\lean{FRC.Dirac.Operator.dirac\\_square, FRC.Dirac.Operator.dirac\\_square\\_nilpotent, FRC.Dirac.Operator.symdiff\\_pred\\_eq\\_geom, FRC.Dirac.Spinor.MatE.symdiff\\_index, FRC.Dirac.Spinor.MatE.fwddiff\\_index, FRC.Dirac.Spinor.dirac\\_square\\_values}",
+     "key": "p08079",
+     "name": "square_bound"
+    },
+    {
+     "label": "D21",
+     "predicate": "The twist is unique up to sign, on every shell: every $X'\\in M_4(K)$ with $(\\gamma^\\mu)^\\dagger X'=-X'\\gamma^\\mu$ for $\\mu=0,1,2,3$ is a scalar multiple of $X=\\gamma^0\\gamma^1\\gamma^3$, and $X'^2=\\nu I_4$ leaves $X'=\\pm X$.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:twist-unique}; rests on A2, D2, D9\\newline \\pywit{dirac}{p08080}{D21}, \\leanwit{FrcCore}{p08080}{D21} \\lean{FRC.Dirac.Spinor.MatE.twist\\_unique, FRC.Dirac.Spinor.MatE.gE\\_eq\\_gamma, FRC.Dirac.Spinor.MatE.gE\\_prod, FRC.Dirac.Spinor.MatE.twist\\_unique\\_sign, FRC.Dirac.spinor\\_twist\\_unique\\_values}",
+     "key": "p08080",
+     "name": "twist_unique_up_to_sign"
     }
    ]
   },
@@ -491,11 +507,19 @@
     },
     {
      "label": "E8",
-     "predicate": "The three cycles in dynamical roles: the kinetic period is the register's, the potential period the third cycle's, the drive runs on the drive cycle; block compositions take the least common multiple, and the mixed instance at $\\p=13$ has order $(13^{13}+1)/2$; the general classification is posed as open.",
+     "predicate": "The three cycles in dynamical roles: the kinetic period is the register's, the potential period the third cycle's, the drive runs on the drive cycle; block compositions take the least common multiple; the mixed instance $-\\Delta+M_{\\mathrm{id}}$ at $\\p=13$ has no eigenvalue in $K$ and closes on no cycle of the shell (E9).",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:three-tori}; rests on D5, D10\\newline \\pywit{dirac}{p08076}{E8}, \\leanwit{FrcCore}{p08076}{E8} \\lean{FRC.Dirac.Spinor.mixed\\_step\\_values, FRC.Dirac.cayley13\\_values, FRC.Dirac.potential\\_orders, FRC.Dirac.sector\\_separation}",
+     "source": "Rem.~\\ref{rem:three-tori}; rests on D5, D10, D20, E9\\newline \\pywit{dirac}{p08076}{E8}, \\leanwit{FrcCore}{p08076}{E8} \\lean{FRC.Dirac.Spinor.mixed\\_step\\_values, FRC.Dirac.Spinor.mixed\\_step\\_closure, FRC.Dirac.cayley13\\_values, FRC.Dirac.potential\\_orders, FRC.Dirac.sector\\_separation}",
      "key": "p08076",
      "name": "three_cycles_dynamical_roles"
+    },
+    {
+     "label": "E9",
+     "predicate": "The eigenphase law ($H$ self-adjoint): the $d$-fold Frobenius fixes an eigenphase of even degree $d$ and inverts one of odd $d$, and the Cayley map is injective: degree one on the third cycle, two in $K^\\times$, higher in neither $\\Fp$ nor $K$. At $\\p=13$, $-\\Delta+M_{(1,1,0,\\dots,0)}$ has a degree-two phase of order $84$ and closes on no cycle of the shell.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:eigenphase-law}; rests on A2, C5\\newline \\pywit{dirac}{p08078}{E9}, \\leanwit{FrcCore}{p08078}{E9} \\lean{FRC.Dirac.Operator.eigenphase\\_frobenius\\_even, FRC.Dirac.Operator.eigenphase\\_frobenius\\_odd, FRC.Dirac.Operator.cayley\\_phase\\_inverse, FRC.Dirac.eigenphase\\_values, FRC.Dirac.pow\\_succ\\_mod\\_four, FRC.Dirac.Spinor.eigenphase\\_closure\\_values}",
+     "key": "p08078",
+     "name": "eigenphase_law"
     }
    ]
   },
@@ -537,7 +561,7 @@
     },
     {
      "label": "F6",
-     "predicate": "The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\\varphi(-m)$ on the third cycle and the mass phases fill it once; the spectra meet in $\\{\\pm1\\}$; the Hamiltonian form has the two eigenvalues $\\varphi(\\pm\\im\\nu m)$, a conjugate pair. Decided at $\\p=13$ and $173$.",
+     "predicate": "The two spectra: the drive is semisimple with spectrum the drive cycle; the Dirac Cayley step at mass $m$ has the single eigenvalue $\\varphi(-m)$ on the third cycle, the mass phases filling it once; the two cycles meet in $\\{\\pm1\\}$; the $X$-self-adjoint $H_D$, its mass term anti-fixed, has the Cayley eigenvalues $\\varphi(\\pm\\im\\nu m)$, a conjugate pair. At $\\p=13$ and $173$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:two-spectra}; rests on C5, D9, D10, F3, F4\\newline \\pywit{dirac}{p08048}{F6}, \\leanwit{FrcCore}{p08048}{F6}, \\leanwit{FrcMathlib}{p08048}{F6} \\lean{Dirac.drive\\_chi, Dirac.cayley\\_nilpotent\\_shift, Dirac.Ext.cayley\\_injective, Dirac.Ext.card\\_normOneGroup, Dirac.sector\\_separation, FRC.Dirac.drive\\_eigen, FRC.Dirac.sector\\_separation, FRC.Dirac.torus\\_counts}",
      "key": "p08048",
@@ -545,7 +569,7 @@
     },
     {
      "label": "F7",
-     "predicate": "Finite plane waves, dispersion and the mass shell: the cycle Laplacian has the closed dispersion relation on the characters; the translations admit no characters and the kinetic sector is unipotent; the static massive Dirac equation has only the zero solution, the mass being an evolution phase.",
+     "predicate": "Finite plane waves, dispersion and the mass shell: the cycle Laplacian has the closed dispersion relation on the characters; the translations admit no nontrivial characters and the kinetic sector is unipotent; the static massive Dirac equation has only the zero solution, the mass being an evolution phase.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:dispersion}; rests on C5, D3, D9, D10, E4, F3\\newline \\pywit{dirac}{p08077}{F7}, \\leanwit{FrcCore}{p08077}{F7}, \\leanwit{FrcMathlib}{p08077}{F7} \\lean{Dirac.dispersion, Dirac.translation\\_nilpotent, Dirac.cayley\\_nilpotent\\_shift, FRC.Dirac.Plane.dispersion, FRC.Dirac.Operator.translation\\_nilpotent, FRC.Dirac.Spinor.MatE.translation\\_unipotent, FRC.Dirac.Operator.static\\_unique, FRC.Dirac.Spinor.translation\\_values13, FRC.Dirac.Spinor.translation\\_values173, FRC.Dirac.Spinor.translation\\_values1549, FRC.Dirac.Spinor.kinetic\\_values1549}",
      "key": "p08077",
@@ -583,9 +607,9 @@
     },
     {
      "label": "X4",
-     "predicate": "The spinor form is forced: the continuum's $\\gamma^0$-twist fails because Frobenius fixes the internal quarter-turn, and the arithmetic forces the twist onto the odd product omitting $\\gamma^2$.",
+     "predicate": "The spinor form is forced: the continuum's $\\gamma^0$-twist fails because Frobenius fixes the internal quarter-turn, and the arithmetic forces the twist, up to sign, onto the odd product omitting $\\gamma^2$.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:explains}(iv); rests on D9\\newline \\pywit{dirac}{p08056}{X4}, \\leanwit{FrcCore}{p08056}{X4}, \\leanwit{FrcMathlib}{p08056}{X4} \\lean{Dirac.spinor\\_twist, Dirac.gamma\\_dagger, FRC.Dirac.spinor\\_form\\_values}",
+     "source": "Cor.~\\ref{cor:explains}(iv); rests on D9, D21\\newline \\pywit{dirac}{p08056}{X4}, \\leanwit{FrcCore}{p08056}{X4}, \\leanwit{FrcMathlib}{p08056}{X4} \\lean{Dirac.spinor\\_twist, Dirac.gamma\\_dagger, FRC.Dirac.spinor\\_form\\_values}",
      "key": "p08056",
      "name": "spinor_form_forced"
     }
@@ -596,7 +620,7 @@
   {
    "tag": "I",
    "name": "Import",
-   "text": "A standard result, a corpus result, or a convention used here without reproof, stated in Section~\\ref{sec:primer} or at its site with its citation."
+   "text": "A standard result, a corpus result, or a measured datum used here without reproof."
   },
   {
    "tag": "D",
@@ -606,12 +630,7 @@
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Proved at the statement the source column names, machine-verified in exact arithmetic by the named witness."
-  },
-  {
-   "tag": "O",
-   "name": "Open",
-   "text": "Genuinely unresolved."
+   "text": "Proved at the statement the source column names; machine-verified in exact arithmetic by the named witness."
   }
  ],
  "master": {
@@ -735,7 +754,7 @@
    {
     "name": "FRC.Dirac.drive_nonsquare",
     "module": "FrcCore/Theme/Dirac",
-    "line": 527,
+    "line": 619,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -744,7 +763,7 @@
    {
     "name": "FRC.Dirac.inv_drive_nonsquare",
     "module": "FrcCore/Theme/Dirac",
-    "line": 543,
+    "line": 635,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -847,7 +866,7 @@
    {
     "name": "FRC.Dirac.carrier_constants",
     "module": "FrcCore/Theme/Dirac",
-    "line": 500,
+    "line": 592,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -871,7 +890,7 @@
    {
     "name": "FRC.Dirac.parity_iff",
     "module": "FrcCore/Theme/Dirac",
-    "line": 523,
+    "line": 615,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -906,7 +925,7 @@
    {
     "name": "FRC.Dirac.Ext.norm_scale",
     "module": "FrcCore/Theme/Dirac",
-    "line": 608,
+    "line": 700,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -915,7 +934,7 @@
    {
     "name": "FRC.Dirac.Ext.mul_conj",
     "module": "FrcCore/Theme/Dirac",
-    "line": 599,
+    "line": 691,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -924,7 +943,7 @@
    {
     "name": "FRC.Dirac.inv_drive_nonsquare",
     "module": "FrcCore/Theme/Dirac",
-    "line": 543,
+    "line": 635,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -948,11 +967,22 @@
    {
     "name": "FRC.Dirac.zeros13",
     "module": "FrcCore/Theme/Dirac",
-    "line": 255,
+    "line": 277,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "8:B7 [value] — on `𝔽₁₃` the Euclidean form has `13³ + 13² − 13 = 2353` zeros and the Lorentzian form (`ν = g = 2`) has `13³ − 13² + 13 = 2041`: the hyperbolic and the elliptic form part on the base shell."
+   }
+  ],
+  "B8": [
+   {
+    "name": "FRC.Dirac.oneway_transport",
+    "module": "FrcCore/Theme/Dirac",
+    "line": 125,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:B8 — one-way and two-way transport, on every frame: the squares are the even drive steps, so a comparison reading (a step composed with its return) is even and the single-chronon multiplier `g` is odd; the flip `g ↦ g⁻¹` keeps the class (`g⁻¹` is a nonsquare too); and the null cone `x² = g t²` of the nonsquare coefficient `ν = g` has no point of `𝔽_p²` but the origin, so light-like transport carries no registered velocity, only its square class (`parity_iff`, `drive_nonsquare`, `inv_drive_nonsquare`, `aniso_tx`)."
    }
   ],
   "C2": [
@@ -1017,7 +1047,7 @@
    {
     "name": "FRC.Dirac.Operator.cayley_unitary",
     "module": "FrcCore/Theme/Operator",
-    "line": 549,
+    "line": 392,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1026,7 +1056,7 @@
    {
     "name": "FRC.Dirac.Spinor.MatE.adjoint_dagger",
     "module": "FrcCore/Theme/Spinor",
-    "line": 123,
+    "line": 124,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1035,7 +1065,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_values173",
     "module": "FrcCore/Theme/Spinor",
-    "line": 363,
+    "line": 904,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1044,7 +1074,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_nilpotent1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 373,
+    "line": 914,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1053,7 +1083,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_step1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 379,
+    "line": 920,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1062,7 +1092,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_unitary1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 385,
+    "line": 926,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1125,7 +1155,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 259,
+    "line": 281,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1162,7 +1192,7 @@
    {
     "name": "FRC.Dirac.cayley13_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 434,
+    "line": 456,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1171,7 +1201,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_values173",
     "module": "FrcCore/Theme/Spinor",
-    "line": 363,
+    "line": 904,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1180,7 +1210,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_nilpotent1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 373,
+    "line": 914,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1189,7 +1219,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_step1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 379,
+    "line": 920,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1198,7 +1228,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_unitary1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 385,
+    "line": 926,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1357,7 +1387,7 @@
    {
     "name": "FRC.Dirac.cayley13_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 434,
+    "line": 456,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1366,7 +1396,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_values173",
     "module": "FrcCore/Theme/Spinor",
-    "line": 363,
+    "line": 904,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1375,7 +1405,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_nilpotent1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 373,
+    "line": 914,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1384,7 +1414,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_step1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 379,
+    "line": 920,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1393,7 +1423,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_step_c1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 391,
+    "line": 932,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1519,7 +1549,7 @@
    {
     "name": "FRC.Dirac.clifford_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 338,
+    "line": 360,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1530,16 +1560,16 @@
    {
     "name": "FRC.Dirac.Operator.dirac_factorisation",
     "module": "FrcCore/Theme/Operator",
-    "line": 762,
+    "line": 615,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:D3, 8:D18 — the Dirac factorisation. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other and with the gammas, the gammas anticommuting and squaring to central `η_μ`, and the mass `m` central: `(𝒟 − m)(𝒟 + m) ≈ Σ_μ η_μ ∇_μ² − m²`. The cross terms pair into anticommutators, which vanish (`sq_osum`)."
+    "doc": "8:D3, 8:D18, 8:D13 — the Dirac factorisation. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other and with the gammas, the gammas anticommuting and squaring to central `η_μ`, and the mass `m` central: `(𝒟 − m)(𝒟 + m) ≈ Σ_μ η_μ ∇_μ² − m²`, by `dirac_square`."
    },
    {
     "name": "FRC.Dirac.Spinor.factorisation_value",
     "module": "FrcCore/Theme/Spinor",
-    "line": 431,
+    "line": 972,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1627,7 +1657,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 259,
+    "line": 281,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1636,7 +1666,7 @@
    {
     "name": "FRC.Dirac.triality_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 474,
+    "line": 566,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1673,7 +1703,7 @@
    {
     "name": "FRC.Dirac.spin_conjugation_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 367,
+    "line": 389,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1766,7 +1796,7 @@
    {
     "name": "FRC.Dirac.spinor_form_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 389,
+    "line": 411,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1802,16 +1832,16 @@
    {
     "name": "FRC.Dirac.Operator.cayley_nilpotent_shift",
     "module": "FrcCore/Theme/Operator",
-    "line": 568,
+    "line": 411,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:D10 — the Cayley step of a nilpotent shift minus a mass. With `α`, `m` central, `a = 1 + α m` a central unit of inverse `a'`, `b = 1 − α m`, and `N` nilpotent (`N^{k+1} ≈ 0`): `1 − α(N − m) = a (1 − a' α N)` is a unit, with inverse `V = geom (a' α N) (k+1) · a'`, and the step `U = V (1 + α(N − m))` differs from the scalar phase `b a'` by `N c` with `c` commuting with `N`. The massless step (`m = 0`, `b = a = a' = 1`) is `1 + N c`."
+    "doc": "8:D10, 8:D13 — the Cayley step of a nilpotent shift minus a mass. With `α`, `m` central, `a = 1 + α m` a central unit of inverse `a'`, `b = 1 − α m`, and `N` nilpotent (`N^{k+1} ≈ 0`): `1 − α(N − m) = a (1 − a' α N)` is a unit, with inverse `V = geom (a' α N) (k+1) · a'`, and the step `U = V (1 + α(N − m))` differs from the scalar phase `b a'` by `N c` with `c` commuting with `N`. The massless step (`m = 0`, `b = a = a' = 1`) is `1 + N c`."
    },
    {
     "name": "FRC.Dirac.Operator.nilpotent_of_eq_mul",
     "module": "FrcCore/Theme/Operator",
-    "line": 664,
+    "line": 507,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1820,7 +1850,7 @@
    {
     "name": "FRC.Dirac.Operator.opow_of_nilpotent_shift",
     "module": "FrcCore/Theme/Unipotent",
-    "line": 256,
+    "line": 297,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1829,7 +1859,7 @@
    {
     "name": "FRC.Dirac.Spinor.MatE.adjoint_twist",
     "module": "FrcCore/Theme/Spinor",
-    "line": 141,
+    "line": 142,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1838,7 +1868,7 @@
    {
     "name": "FRC.Dirac.Spinor.MatE.symdiff_nilpotent",
     "module": "FrcCore/Theme/Spinor",
-    "line": 219,
+    "line": 220,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1847,7 +1877,7 @@
    {
     "name": "FRC.Dirac.Spinor.translation_values13",
     "module": "FrcCore/Theme/Spinor",
-    "line": 334,
+    "line": 875,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1856,7 +1886,7 @@
    {
     "name": "FRC.Dirac.Spinor.translation_values173",
     "module": "FrcCore/Theme/Spinor",
-    "line": 340,
+    "line": 881,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1865,7 +1895,7 @@
    {
     "name": "FRC.Dirac.Spinor.translation_values1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 347,
+    "line": 888,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1874,7 +1904,7 @@
    {
     "name": "FRC.Dirac.Spinor.kinetic_values1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 352,
+    "line": 893,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1911,7 +1941,7 @@
    {
     "name": "FRC.Dirac.Spinor.lift_transport_values",
     "module": "FrcCore/Theme/Spinor",
-    "line": 454,
+    "line": 1014,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1935,7 +1965,7 @@
    {
     "name": "FRC.Dirac.spin_conjugation_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 367,
+    "line": 389,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1944,7 +1974,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 259,
+    "line": 281,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1953,7 +1983,7 @@
    {
     "name": "FRC.Dirac.shell173_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 490,
+    "line": 582,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1962,11 +1992,49 @@
    {
     "name": "FRC.Dirac.triality_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 474,
+    "line": 566,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "8:D5, 8:D12, 8:D19 [value] — an element of order three on the norm-one cycle of `𝔽₁₇₃`, none on that of `𝔽₁₃`."
+   }
+  ],
+  "D13": [
+   {
+    "name": "FRC.Dirac.drive_eigen",
+    "module": "FrcCore/Theme/Dirac",
+    "line": 184,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:F3, 8:F6, 8:D13 — the drive pullback on the characters: with `y = g⁻¹`, `χ_k(g^{j}) = y^k · χ_k(g^{j+1})` for every `j, k` — the winding-`k` mode acquires the phase `g^{−k}` per chronon, so the drive is semisimple with the whole drive cycle as its spectrum (Theorem `zonal` (2), Proposition `two-spectra`)."
+   },
+   {
+    "name": "FRC.Dirac.Operator.dirac_factorisation",
+    "module": "FrcCore/Theme/Operator",
+    "line": 615,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D3, 8:D18, 8:D13 — the Dirac factorisation. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other and with the gammas, the gammas anticommuting and squaring to central `η_μ`, and the mass `m` central: `(𝒟 − m)(𝒟 + m) ≈ Σ_μ η_μ ∇_μ² − m²`, by `dirac_square`."
+   },
+   {
+    "name": "FRC.Dirac.Operator.cayley_nilpotent_shift",
+    "module": "FrcCore/Theme/Operator",
+    "line": 411,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D10, 8:D13 — the Cayley step of a nilpotent shift minus a mass. With `α`, `m` central, `a = 1 + α m` a central unit of inverse `a'`, `b = 1 − α m`, and `N` nilpotent (`N^{k+1} ≈ 0`): `1 − α(N − m) = a (1 − a' α N)` is a unit, with inverse `V = geom (a' α N) (k+1) · a'`, and the step `U = V (1 + α(N − m))` differs from the scalar phase `b a'` by `N c` with `c` commuting with `N`. The massless step (`m = 0`, `b = a = a' = 1`) is `1 + N c`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.mass_winding_values",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 1028,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D13 [value] — mass is winding rate, on `𝔽₁₃` in `0+1` (`ν = 2`, `i = 5`, `2⁻¹ = 7`), on the `52 × 52` matrices: the symmetric Dirac operator `𝒟^s = ∇^s ⊗ γ⁰` develops the translation-invariant spinor `ψ₀` by nothing, and for `m = 1, 2` the Cayley step of `𝒟^s − m` acts on it as the mass phase alone, `P ψ₀ = φ(−m) M ψ₀` for `M = 1 − w(𝒟^s − m)`, `P = 1 + w(𝒟^s − m)` (so `U ψ₀ = M⁻¹ P ψ₀ = φ(−m) ψ₀`), with `φ(−1) = 10 + 2w` and `φ(−2) = 8 + 8w` on the norm-one cycle (`drive_eigen` is the drive's side of the balance, `dirac_factorisation` its square)."
    }
   ],
   "D14": [
@@ -2110,7 +2178,7 @@
    {
     "name": "FRC.Dirac.spin_conjugation_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 367,
+    "line": 389,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2145,7 +2213,7 @@
    {
     "name": "FRC.Dirac.Operator.conj_anticomm",
     "module": "FrcCore/Theme/Operator",
-    "line": 691,
+    "line": 534,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2154,7 +2222,7 @@
    {
     "name": "FRC.Dirac.clifford_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 338,
+    "line": 360,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2165,16 +2233,16 @@
    {
     "name": "FRC.Dirac.Operator.dirac_factorisation",
     "module": "FrcCore/Theme/Operator",
-    "line": 762,
+    "line": 615,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:D3, 8:D18 — the Dirac factorisation. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other and with the gammas, the gammas anticommuting and squaring to central `η_μ`, and the mass `m` central: `(𝒟 − m)(𝒟 + m) ≈ Σ_μ η_μ ∇_μ² − m²`. The cross terms pair into anticommutators, which vanish (`sq_osum`)."
+    "doc": "8:D3, 8:D18, 8:D13 — the Dirac factorisation. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other and with the gammas, the gammas anticommuting and squaring to central `η_μ`, and the mass `m` central: `(𝒟 − m)(𝒟 + m) ≈ Σ_μ η_μ ∇_μ² − m²`, by `dirac_square`."
    },
    {
     "name": "FRC.Dirac.Operator.conj_anticomm",
     "module": "FrcCore/Theme/Operator",
-    "line": 691,
+    "line": 534,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2198,7 +2266,7 @@
    {
     "name": "FRC.Dirac.shell173_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 490,
+    "line": 582,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2207,7 +2275,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 259,
+    "line": 281,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2216,11 +2284,114 @@
    {
     "name": "FRC.Dirac.triality_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 474,
+    "line": 566,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "8:D5, 8:D12, 8:D19 [value] — an element of order three on the norm-one cycle of `𝔽₁₇₃`, none on that of `𝔽₁₃`."
+   }
+  ],
+  "D20": [
+   {
+    "name": "FRC.Dirac.Operator.dirac_square",
+    "module": "FrcCore/Theme/Operator",
+    "line": 600,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D3, 8:D18, 8:D20 — the square of a Dirac operator. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` with the differences commuting with each other and with the gammas, the gammas anticommuting and squaring to central `η_μ`: `𝒟² ≈ Σ_μ η_μ ∇_μ²`, the spinorial Klein–Gordon operator. The cross terms pair into anticommutators, which vanish (`sq_osum`)."
+   },
+   {
+    "name": "FRC.Dirac.Operator.dirac_square_nilpotent",
+    "module": "FrcCore/Theme/Unipotent",
+    "line": 246,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D20 — the square bound of a Dirac operator. For `𝒟 = Σ_{μ<n} ∇_μ γ_μ` as in `dirac_square`, in characteristic `p` on a frame, with every difference nilpotent of index at most `p` (`∇_μ^p ≈ 0`): `𝒟^{2p} ≈ 0`. The square is `Σ_μ η_μ ∇_μ²`, the Frobenius is additive on its commuting summands, and `(η_μ ∇_μ²)^p ≈ η_μ^p ∇_μ^{2p} ≈ 0`."
+   },
+   {
+    "name": "FRC.Dirac.Operator.symdiff_pred_eq_geom",
+    "module": "FrcCore/Theme/Unipotent",
+    "line": 423,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D20 — the exact index in `0+1`, the identity: for a translation `t` of order `p` with inverse `s` in characteristic `p` on a frame, `(t − s)^{p−1} ≈ geom t p`, the sum of the translates, and `(t − s)^p ≈ 0`. The symmetric difference `∇^s = h (t − s)` with `h` a central unit has the same index: `(∇^s)^{p−1} ≈ h^{p−1} geom t p`, nonzero whenever the sum of the translates is, and `(∇^s)^p ≈ 0`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.MatE.symdiff_index",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 287,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D20 — the exact index of the symmetric difference in `0+1`, on every frame: `(T − T⁻¹)^{p−1} ≈ Σ_{k<p} T^k`, the sum of the translates, which is not zero, while `(T − T⁻¹)^p ≈ 0` (`symdiff_nilpotent`). With the central unit `h` (`h = 2⁻¹`): `(∇^s)^{p−1} ≈ h^{p−1} Σ_k T^k ≉ 0` and `(∇^s)^p ≈ 0`, so the nilpotency index of `∇^s` is exactly `p`. The Dirac operator of `0+1` is `∇^s ⊗ γ⁰` with `γ⁰` a unit, `𝒟^k = (∇^s)^k ⊗ (γ⁰)^k`, so its index is `p` as well."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.MatE.fwddiff_index",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 309,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D20 — the exact index of the forward difference in `0+1`, on every frame: `(T − 1)^{p−1} ≈ Σ_{k<p} T^k`, the sum of the translates, which is not zero, while `(T − 1)^p ≈ 0` (`translation_nilpotent`), so the nilpotency index of `∇ = T − 1` is exactly `p`. The forward Dirac operator of `0+1` is `∇ ⊗ γ⁰` with `γ⁰` a unit, so its index is `p` as well."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.dirac_square_values",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 1058,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D20 [value] — the square bound at the instance: on `𝔽₁₃` in `0+1`, on the `52 × 52` matrices, `(𝒟^s)^{13} = 0` and `(𝒟^s)^{12} ≠ 0`, the nilpotency index `13 = p` within the bound `2p = 26` of `dirac_square_nilpotent` (the indices `25`, `26`, `26` on two, three and four coordinate directions are the package's records)."
+   }
+  ],
+  "D21": [
+   {
+    "name": "FRC.Dirac.Spinor.MatE.twist_unique",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 534,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D21 — the twist is unique up to a scalar, on every frame with `i² = −1` and `ν ≠ 0`: a solution `X'` of the four twist equations `(γ^μ)† X' = −X' γ^μ` is `X'₀₃ · E`, so the solutions form the line of `E` (and of `X = −i w E`). The proof reads fifteen of the sixty-four entry equations: `γ⁰` makes `X'` block-symmetric, `γ³` kills four entries, `γ¹` ties the diagonal and the anti-diagonal, `γ²` kills the diagonal."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.MatE.gE_eq_gamma",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 402,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D21 — the transcription `gE` is the paper's `gamma` of Dirac.lean, entry by entry on the `4 × 4` range, for every `i`: the twist theorems below are about the paper's gamma matrices."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.MatE.gE_prod",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 630,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D21 — the spinor form `X = γ⁰ γ¹ γ³` is `−i w E`, on every shell with `i² = −1`: the sixteen entries of the triple product, normalised as ring expressions in `i w` and `i` and read off with `i² = −1`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.MatE.twist_unique_sign",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 749,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D21 — the normalisation leaves the sign: a twist `X'` with `X'² = ν I` is `X` or `−X`, `X = −i w E` the spinor form, on every frame with `i² = −1` and `ν` a nonsquare. The `(0,0)` entry of `X'² = ν I` reads `−X'₀₃² = ν`, so `X'₀₃² = (i w)²` and `(X'₀₃ − i w)(X'₀₃ + i w) = 0` in the field `K`."
+   },
+   {
+    "name": "FRC.Dirac.spinor_twist_unique_values",
+    "module": "FrcCore/Theme/Dirac",
+    "line": 535,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:D21 [value] — the twist is unique up to a scalar: on `𝔽₁₃`, `𝔽₁₇₃` and `𝔽₁₅₄₉` the sixteen products of the gamma matrices have rank `16` (they span `M₄(K)`) and the system `(γ^μ)† X' = −X' γ^μ` has rank `15`, a solution space of dimension one, the line of `X = γ⁰γ¹γ³`; `X² = ν I₄` fixes the scalar up to sign, `c² = 1` having the two roots `±1` in `K` (decided on `𝔽₁₃` and `𝔽₁₇₃`)."
    }
   ],
   "E2": [
@@ -2262,7 +2433,7 @@
    {
     "name": "FRC.Dirac.Operator.unit_injective",
     "module": "FrcCore/Theme/Operator",
-    "line": 397,
+    "line": 240,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2271,7 +2442,7 @@
    {
     "name": "FRC.Dirac.Operator.unit_surjective",
     "module": "FrcCore/Theme/Operator",
-    "line": 407,
+    "line": 250,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2321,7 +2492,7 @@
    {
     "name": "FRC.Dirac.cayley13_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 434,
+    "line": 456,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2330,7 +2501,7 @@
    {
     "name": "FRC.Dirac.potential_orders",
     "module": "FrcCore/Theme/Dirac",
-    "line": 463,
+    "line": 555,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2339,7 +2510,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_values173",
     "module": "FrcCore/Theme/Spinor",
-    "line": 363,
+    "line": 904,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2348,7 +2519,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_nilpotent1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 373,
+    "line": 914,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2357,7 +2528,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_step1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 379,
+    "line": 920,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2366,7 +2537,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_unitary1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 385,
+    "line": 926,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2390,7 +2561,7 @@
    {
     "name": "FRC.Dirac.power_map13",
     "module": "FrcCore/Theme/Dirac",
-    "line": 483,
+    "line": 575,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2412,7 +2583,7 @@
    {
     "name": "FRC.Dirac.Operator.unit_injective",
     "module": "FrcCore/Theme/Operator",
-    "line": 397,
+    "line": 240,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2421,7 +2592,7 @@
    {
     "name": "FRC.Dirac.Operator.unit_surjective",
     "module": "FrcCore/Theme/Operator",
-    "line": 407,
+    "line": 250,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2458,7 +2629,7 @@
    {
     "name": "FRC.Dirac.cayley13_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 434,
+    "line": 456,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2467,7 +2638,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_values173",
     "module": "FrcCore/Theme/Spinor",
-    "line": 363,
+    "line": 904,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2476,7 +2647,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_nilpotent1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 373,
+    "line": 914,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2485,7 +2656,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_step1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 379,
+    "line": 920,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2494,7 +2665,7 @@
    {
     "name": "FRC.Dirac.Spinor.cayley_step_c1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 391,
+    "line": 932,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2505,16 +2676,25 @@
    {
     "name": "FRC.Dirac.Spinor.mixed_step_values",
     "module": "FrcCore/Theme/Spinor",
-    "line": 442,
+    "line": 983,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:E8 [value] — the three cycles in dynamical roles: `lcm(13, 14) = 182`, and the mixed step `U = M⁻¹P` of `H = −Δ + V_id` on `𝔽₁₃` (`M = 1 − wH`, `P = 1 + wH`, commuting) has `U^{13} ≠ 1`, `U^{14} ≠ 1`, `U^{182} ≠ 1`, since `U^k = 1` exactly when `P^k = M^k`: neither cycle, nor their least common period, is its period (the exact order `(13¹³ + 1)/2` is the package's certificate)."
+    "doc": "8:E8 [value] — the three cycles in dynamical roles: `lcm(13, 14) = 182`, and the mixed step `U = M⁻¹P` of `H = −Δ + V_id` on `𝔽₁₃` (`M = 1 − wH`, `P = 1 + wH`, commuting) has `U^{13} ≠ 1`, `U^{14} ≠ 1`, `U^{182} ≠ 1`, since `U^k = 1` exactly when `P^k = M^k`: it closes on neither the register nor the third cycle nor their least common period (`mixed_step_closure` has every cycle of the shell)."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.mixed_step_closure",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 1000,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E8 [value] — the mixed step of `H = −Δ + V_id` on `𝔽₁₃` has no eigenvalue in `K` and closes on no cycle of the shell. The monic `q = x¹³ − x + 2` (the package's `χ_H`) annihilates `H`, `q(H) = 0` by Horner on the matrices, and has no root in `K`, so an eigenvalue `λ ∈ K` (`Hv = λv`, `q(λ)v = q(H)v = 0`) is impossible. `P^{2184} ≠ M^{2184}`, i.e. `U^{2184} ≠ 1` for `2184 = p(p² − 1)`, the least common period of the register, the drive cycle, the third cycle and `K^×`: a closure `U^t = 1` at a divisor `t` of `2184` would give `U^{2184} = 1`, so the step closes on no cycle of the shell, as Lemma eigenphase-law (iii) requires of a step with an eigenvalue of degree three or more. The irreducibility of `q` over `𝔽₁₃` is the package's record."
    },
    {
     "name": "FRC.Dirac.cayley13_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 434,
+    "line": 456,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2523,7 +2703,7 @@
    {
     "name": "FRC.Dirac.potential_orders",
     "module": "FrcCore/Theme/Dirac",
-    "line": 463,
+    "line": 555,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2532,11 +2712,67 @@
    {
     "name": "FRC.Dirac.sector_separation",
     "module": "FrcCore/Theme/Dirac",
-    "line": 210,
+    "line": 232,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "8:F4, 8:F6, 8:X1, 8:E8 — sector separation: the inverse of the drive is primitive of order `p − 1` (`ord(g⁻¹) = p − 1`, so the free evolution is no Cayley step, whose scalar phases have order dividing `p + 1`), and the norm-one cycle meets the base field in `{±1}` alone (`u² = 1 ⇒ u = ±1`): the two spectra meet in the two signs."
+   }
+  ],
+  "E9": [
+   {
+    "name": "FRC.Dirac.Operator.eigenphase_frobenius_even",
+    "module": "FrcCore/Theme/Unipotent",
+    "line": 525,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E9 — the eigenphase law, the even case, in every operator ring of characteristic `p` on a frame: for commuting `α`, `λ` with `α^{p^d} ≈ α` and `λ^{p^d} ≈ λ`, and `v` the inverse of `1 − αλ`, the phase `φ = (1 + αλ) v` is fixed by the `d`-fold Frobenius, `φ^{p^d} ≈ φ`. (On the shell, `α = k w` has `α^{p^d} = α` exactly for even `d`, and an eigenvalue of degree `d` has `λ^{p^d} = λ`.)"
+   },
+   {
+    "name": "FRC.Dirac.Operator.eigenphase_frobenius_odd",
+    "module": "FrcCore/Theme/Unipotent",
+    "line": 543,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E9 — the eigenphase law, the odd case, in every operator ring of characteristic `p` on a frame: for commuting `α`, `λ` with `α^{p^d} ≈ −α` and `λ^{p^d} ≈ λ`, and `v`, `v'` the inverses of `1 − αλ` and `1 + αλ`, the phase `φ = (1 + αλ) v` is inverted by the `d`-fold Frobenius, `φ^{p^d} φ ≈ 1`, so `φ^{p^d + 1} ≈ 1`: the phase lies on the norm-one cycle of the Frobenius. (On the shell, `α = k w` has `α^{p^d} = −α` exactly for odd `d`.)"
+   },
+   {
+    "name": "FRC.Dirac.Operator.cayley_phase_inverse",
+    "module": "FrcCore/Theme/Unipotent",
+    "line": 574,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E9 — the Cayley map is injective, as two relations: for `φ = (1 + αλ) v` with `v` the inverse of `1 − αλ` and without a commutation hypothesis, `φ + 1 ≈ v + v` and `αλ (φ + 1) ≈ φ − 1`. Read in a field of characteristic `p` containing `α` and `φ`: `φ + 1 = 2v` is a unit, so `λ = (φ − 1)/(α(φ + 1))` lies in that field. A phase in `𝔽_p` or in `K` has its eigenvalue there, and a phase of degree three or more lies in neither."
+   },
+   {
+    "name": "FRC.Dirac.eigenphase_values",
+    "module": "FrcCore/Theme/Dirac",
+    "line": 487,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E9 [value] — the eigenphase law on `𝔽₁₃` (`ν = g = 2`): the Cayley phase of a residue of degree one lies on the third cycle, `φ(λ)^{14} = 1`, and that of an element of `K` of degree two in `K^×`, `φ(λ)^{168} = 1`, on every `λ ∈ K` with `1 ± wλ ≠ 0` (the `13 + 154` cases; `λ = ∓w⁻¹` are excluded, the second being the conjugate of the first and so an eigenvalue beside it, against the admissibility of `α = w`); the eigenvalue `2 + 2w` of `H = −Δ + M_V`, `V = (1, 1, 0, …, 0)`, has the phase `6 + 4w` of order exactly `84 = lcm(12, 14)`, on neither the drive cycle nor the third cycle — the even-degree case the period conjecture of 7-counts missed: `4 ∣ 84`, while `p^k + 1 ≡ 2 (mod 4)` on every shell (`pow_succ_mod_four`)."
+   },
+   {
+    "name": "FRC.Dirac.pow_succ_mod_four",
+    "module": "FrcCore/Theme/Dirac",
+    "line": 221,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E9 — on every symmetry-complete shell `p = 4κ + 1`, `p^k + 1 ≡ 2 (mod 4)` for every `k`: a phase whose order is divisible by `4` lies on no cycle of order `p^k + 1`, the relation behind the degree-two instance of `eigenphase_values`."
+   },
+   {
+    "name": "FRC.Dirac.Spinor.eigenphase_closure_values",
+    "module": "FrcCore/Theme/Spinor",
+    "line": 1044,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "8:E9 [value] — the closure of a Cayley step at the instance: the step `U = M⁻¹P` of `H = −Δ + M_V`, `V = (1, 1, 0, …, 0)`, on `𝔽₁₃` (`M = 1 − wH`, `P = 1 + wH`, commuting) has the eigenvector of the degree-two eigenvalue `2 + 2w` exhibited, `H v = (2 + 2w) v`, and closes on no cycle of the shell: `P^{2184} ≠ M^{2184}`, i.e. `U^{2184} ≠ 1` for `2184 = p(p² − 1)`, so `U^t ≠ 1` for every divisor `t` of `2184` (a closure at `t` would close `2184`), as Lemma eigenphase-law (iii) requires of a step with an eigenvalue of degree three or more (the two cubic factors of `χ_H` are the package's record)."
    }
   ],
   "F2": [
@@ -2556,7 +2792,7 @@
    {
     "name": "FRC.Dirac.ladder",
     "module": "FrcCore/Theme/Dirac",
-    "line": 127,
+    "line": 139,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2565,7 +2801,7 @@
    {
     "name": "FRC.Dirac.four_kappa",
     "module": "FrcCore/Theme/Dirac",
-    "line": 131,
+    "line": 143,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2574,7 +2810,7 @@
    {
     "name": "FRC.Dirac.terminal_latitude",
     "module": "FrcCore/Theme/Dirac",
-    "line": 151,
+    "line": 163,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2583,7 +2819,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 259,
+    "line": 281,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2646,16 +2882,16 @@
    {
     "name": "FRC.Dirac.drive_eigen",
     "module": "FrcCore/Theme/Dirac",
-    "line": 172,
+    "line": 184,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:F3, 8:F6 — the drive pullback on the characters: with `y = g⁻¹`, `χ_k(g^{j}) = y^k · χ_k(g^{j+1})` for every `j, k` — the winding-`k` mode acquires the phase `g^{−k}` per chronon, so the drive is semisimple with the whole drive cycle as its spectrum (Theorem `zonal` (2), Proposition `two-spectra`)."
+    "doc": "8:F3, 8:F6, 8:D13 — the drive pullback on the characters: with `y = g⁻¹`, `χ_k(g^{j}) = y^k · χ_k(g^{j+1})` for every `j, k` — the winding-`k` mode acquires the phase `g^{−k}` per chronon, so the drive is semisimple with the whole drive cycle as its spectrum (Theorem `zonal` (2), Proposition `two-spectra`)."
    },
    {
     "name": "FRC.Dirac.exceptional_eigen",
     "module": "FrcCore/Theme/Dirac",
-    "line": 179,
+    "line": 191,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2664,7 +2900,7 @@
    {
     "name": "FRC.Dirac.isotropy",
     "module": "FrcCore/Theme/Dirac",
-    "line": 189,
+    "line": 201,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2701,7 +2937,7 @@
    {
     "name": "FRC.Dirac.sector_separation",
     "module": "FrcCore/Theme/Dirac",
-    "line": 210,
+    "line": 232,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2777,16 +3013,16 @@
    {
     "name": "FRC.Dirac.drive_eigen",
     "module": "FrcCore/Theme/Dirac",
-    "line": 172,
+    "line": 184,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "8:F3, 8:F6 — the drive pullback on the characters: with `y = g⁻¹`, `χ_k(g^{j}) = y^k · χ_k(g^{j+1})` for every `j, k` — the winding-`k` mode acquires the phase `g^{−k}` per chronon, so the drive is semisimple with the whole drive cycle as its spectrum (Theorem `zonal` (2), Proposition `two-spectra`)."
+    "doc": "8:F3, 8:F6, 8:D13 — the drive pullback on the characters: with `y = g⁻¹`, `χ_k(g^{j}) = y^k · χ_k(g^{j+1})` for every `j, k` — the winding-`k` mode acquires the phase `g^{−k}` per chronon, so the drive is semisimple with the whole drive cycle as its spectrum (Theorem `zonal` (2), Proposition `two-spectra`)."
    },
    {
     "name": "FRC.Dirac.sector_separation",
     "module": "FrcCore/Theme/Dirac",
-    "line": 210,
+    "line": 232,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2795,7 +3031,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Theme/Dirac",
-    "line": 259,
+    "line": 281,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2854,7 +3090,7 @@
    {
     "name": "FRC.Dirac.Operator.translation_nilpotent",
     "module": "FrcCore/Theme/Unipotent",
-    "line": 245,
+    "line": 286,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2863,7 +3099,7 @@
    {
     "name": "FRC.Dirac.Spinor.MatE.translation_unipotent",
     "module": "FrcCore/Theme/Spinor",
-    "line": 213,
+    "line": 214,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2872,7 +3108,7 @@
    {
     "name": "FRC.Dirac.Operator.static_unique",
     "module": "FrcCore/Theme/Operator",
-    "line": 482,
+    "line": 325,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2881,7 +3117,7 @@
    {
     "name": "FRC.Dirac.Spinor.translation_values13",
     "module": "FrcCore/Theme/Spinor",
-    "line": 334,
+    "line": 875,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2890,7 +3126,7 @@
    {
     "name": "FRC.Dirac.Spinor.translation_values173",
     "module": "FrcCore/Theme/Spinor",
-    "line": 340,
+    "line": 881,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2899,7 +3135,7 @@
    {
     "name": "FRC.Dirac.Spinor.translation_values1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 347,
+    "line": 888,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2908,7 +3144,7 @@
    {
     "name": "FRC.Dirac.Spinor.kinetic_values1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 352,
+    "line": 893,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2932,7 +3168,7 @@
    {
     "name": "FRC.Dirac.sector_separation",
     "module": "FrcCore/Theme/Dirac",
-    "line": 210,
+    "line": 232,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2978,7 +3214,7 @@
    {
     "name": "FRC.Dirac.parity_iff",
     "module": "FrcCore/Theme/Dirac",
-    "line": 523,
+    "line": 615,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -3027,7 +3263,7 @@
    {
     "name": "FRC.Dirac.Spinor.MatE.symdiff_nilpotent",
     "module": "FrcCore/Theme/Spinor",
-    "line": 219,
+    "line": 220,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -3036,7 +3272,7 @@
    {
     "name": "FRC.Dirac.Operator.static_unique",
     "module": "FrcCore/Theme/Operator",
-    "line": 482,
+    "line": 325,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -3045,7 +3281,7 @@
    {
     "name": "FRC.Dirac.Operator.cayley_unitary",
     "module": "FrcCore/Theme/Operator",
-    "line": 549,
+    "line": 392,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -3054,7 +3290,7 @@
    {
     "name": "FRC.Dirac.Spinor.translation_values13",
     "module": "FrcCore/Theme/Spinor",
-    "line": 334,
+    "line": 875,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -3063,7 +3299,7 @@
    {
     "name": "FRC.Dirac.Spinor.translation_values173",
     "module": "FrcCore/Theme/Spinor",
-    "line": 340,
+    "line": 881,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -3072,7 +3308,7 @@
    {
     "name": "FRC.Dirac.Spinor.translation_values1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 347,
+    "line": 888,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -3081,7 +3317,7 @@
    {
     "name": "FRC.Dirac.Spinor.kinetic_values1549",
     "module": "FrcCore/Theme/Spinor",
-    "line": 352,
+    "line": 893,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -3118,7 +3354,7 @@
    {
     "name": "FRC.Dirac.spinor_form_values",
     "module": "FrcCore/Theme/Dirac",
-    "line": 389,
+    "line": 411,
     "axioms": [],
     "tier": 0,
     "ok": true,

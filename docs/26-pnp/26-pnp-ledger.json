@@ -3,7 +3,7 @@
  "tree": "26-pnp-20260614",
  "title": "P versus NP: Computation as Counting",
  "doi": "https://doi.org/10.20944/preprints202606.1781.v1",
- "generated": "6 November 2026",
+ "generated": "18 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -633,7 +633,7 @@
    {
     "name": "FRC.Ladder.eigenvalues13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 622,
+    "line": 616,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -686,7 +686,7 @@
    {
     "name": "FRC.Ladder.mul_perm",
     "module": "FrcCore/Theme/Ladder",
-    "line": 71,
+    "line": 65,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -738,7 +738,7 @@
    {
     "name": "FRC.Ladder.recentre_witness",
     "module": "FrcCore/Theme/Ladder",
-    "line": 83,
+    "line": 77,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -747,7 +747,7 @@
    {
     "name": "FRC.Ladder.recentre_inj",
     "module": "FrcCore/Theme/Ladder",
-    "line": 90,
+    "line": 84,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -756,7 +756,7 @@
    {
     "name": "FRC.Ladder.recentre_surj",
     "module": "FrcCore/Theme/Ladder",
-    "line": 100,
+    "line": 94,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -765,7 +765,7 @@
    {
     "name": "FRC.Ladder.recentre13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 639,
+    "line": 633,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -803,7 +803,7 @@
    {
     "name": "FRC.Ladder.two_mul_distSum",
     "module": "FrcCore/Theme/Ladder",
-    "line": 336,
+    "line": 330,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -812,7 +812,7 @@
    {
     "name": "FRC.Ladder.dist_le",
     "module": "FrcCore/Theme/Ladder",
-    "line": 343,
+    "line": 337,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -821,7 +821,7 @@
    {
     "name": "FRC.Ladder.dist_max",
     "module": "FrcCore/Theme/Ladder",
-    "line": 346,
+    "line": 340,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -830,7 +830,7 @@
    {
     "name": "FRC.Ladder.bits_bracket",
     "module": "FrcCore/Theme/Ladder",
-    "line": 326,
+    "line": 320,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -841,7 +841,7 @@
    {
     "name": "FRC.Ladder.sqmul_spec",
     "module": "FrcCore/Theme/Ladder",
-    "line": 395,
+    "line": 389,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -850,7 +850,7 @@
    {
     "name": "FRC.Ladder.sqmul_count",
     "module": "FrcCore/Theme/Ladder",
-    "line": 422,
+    "line": 416,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -859,7 +859,7 @@
    {
     "name": "FRC.Ladder.sqmul_count_of_lt_pow",
     "module": "FrcCore/Theme/Ladder",
-    "line": 429,
+    "line": 423,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -868,7 +868,7 @@
    {
     "name": "FRC.Ladder.sqmul13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 655,
+    "line": 649,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -879,7 +879,7 @@
    {
     "name": "FRC.Ladder.bsgs_spec",
     "module": "FrcCore/Theme/Ladder",
-    "line": 578,
+    "line": 572,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -888,7 +888,7 @@
    {
     "name": "FRC.Ladder.bsgs_total",
     "module": "FrcCore/Theme/Ladder",
-    "line": 613,
+    "line": 607,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -897,7 +897,7 @@
    {
     "name": "FRC.Ladder.baby_step",
     "module": "FrcCore/Theme/Ladder",
-    "line": 496,
+    "line": 490,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -906,7 +906,7 @@
    {
     "name": "FRC.Ladder.descendsB_spec",
     "module": "FrcCore/Theme/Ladder",
-    "line": 557,
+    "line": 551,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -915,7 +915,7 @@
    {
     "name": "FRC.Ladder.descent13_101",
     "module": "FrcCore/Theme/Ladder",
-    "line": 662,
+    "line": 656,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -963,8 +963,8 @@
    },
    {
     "name": "FRC.Ladder.tower_reduces",
-    "module": "FrcCore/Theme/Ladder",
-    "line": 65,
+    "module": "FrcCore/Frame",
+    "line": 229,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -982,7 +982,7 @@
    {
     "name": "FRC.Ladder.tower13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 634,
+    "line": 628,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1020,7 +1020,7 @@
    {
     "name": "FRC.Ladder.phase13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 628,
+    "line": 622,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1031,7 +1031,7 @@
    {
     "name": "FRC.Ladder.sqmul_count_of_lt_pow",
     "module": "FrcCore/Theme/Ladder",
-    "line": 429,
+    "line": 423,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1040,7 +1040,7 @@
    {
     "name": "FRC.Ladder.bsgs_spec",
     "module": "FrcCore/Theme/Ladder",
-    "line": 578,
+    "line": 572,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1060,7 +1060,7 @@
    {
     "name": "FRC.Ladder.power_bijective_of_unit",
     "module": "FrcCore/Theme/Ladder",
-    "line": 116,
+    "line": 110,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1069,7 +1069,7 @@
    {
     "name": "FRC.Ladder.power_image",
     "module": "FrcCore/Theme/Ladder",
-    "line": 125,
+    "line": 119,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1078,7 +1078,7 @@
    {
     "name": "FRC.Ladder.power_image_index",
     "module": "FrcCore/Theme/Ladder",
-    "line": 149,
+    "line": 143,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1087,7 +1087,7 @@
    {
     "name": "FRC.Ladder.compressive_of_gcd",
     "module": "FrcCore/Theme/Ladder",
-    "line": 168,
+    "line": 162,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1096,7 +1096,7 @@
    {
     "name": "FRC.Ladder.powers13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 644,
+    "line": 638,
     "axioms": [],
     "tier": 0,
     "ok": true,
