@@ -212,10 +212,11 @@ const PUBLICATIONS = [
     "n": 6,
     "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
     "status": {
-      "kind": "preprint"
+      "kind": "published",
+      "venue": "Math"
     },
-    "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
-    "doiLabel": "pp202606.0127.v1",
+    "doi": "https://doi.org/10.3390/math14224269",
+    "doiLabel": "math14224269",
     "ledger": "6-fourier/index.html",
     "schema": true,
     "links": [
@@ -865,4 +866,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "18 November 2026";
+const GENERATED = "20 November 2026";
