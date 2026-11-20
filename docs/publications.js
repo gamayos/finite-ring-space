@@ -213,7 +213,7 @@ const PUBLICATIONS = [
     "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
     "status": {
       "kind": "published",
-      "venue": "Math"
+      "venue": "Mathematics"
     },
     "doi": "https://doi.org/10.3390/math14224269",
     "doiLabel": "math14224269",
