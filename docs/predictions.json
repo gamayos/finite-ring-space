@@ -365,7 +365,7 @@
    "tag": "T",
    "lean_name": "no_fourth_generation",
    "predicate": "\\textbf{No fourth generation and no fifth interaction} \\emph{[forced]}. The role ladder closes and the fifth step returns to counting. Given the naming B6, which declares the content exhaustive, a fourth chiral family and a fifth fundamental force are excluded. \\emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction.",
-   "source": "Prop.~\\ref{prop:threegen}\\newline \\pywit{fields}{p27035}{P1}, \\leanwit{FrcCore}{p27035}{P1}; rests on A1, B6, C10 \\lean{FRC.Ladder.tower\\_reduces}",
+   "source": "Prop.~\\ref{prop:threegen}; rests on A1, B6, C10\\newline \\pywit{fields}{p27035}{P1}, \\leanwit{FrcCore}{p27035}{P1} \\lean{FRC.Ladder.tower\\_reduces}",
    "master": [
     "P4"
    ],
@@ -381,7 +381,7 @@
    "tag": "T",
    "lean_name": "desert_substrate_scale",
    "predicate": "\\textbf{A desert to the substrate scale} \\emph{[forced]}. The gauge group is the block-diagonal subgroup of the frame of rank five (B10), the quotient of $\\SU(3)\\times\\SU(2)\\times\\U(1)$ by $\\Z_6$ on the chart [chart], until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$--$10^{19}\\,$GeV) scales. \\emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios.",
-   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27036}{P2}, \\leanwit{FrcCore}{p27036}{P2}; rests on B1, B5, B6, B7, B10, C8, C9, C10, C16 \\lean{FRC.Interactions.one\\_generation}",
+   "source": "Prop.~\\ref{prop:unify}; rests on B1, B5, B6, B7, B10, C8, C9, C10, C16\\newline \\pywit{fields}{p27036}{P2}, \\leanwit{FrcCore}{p27036}{P2} \\lean{FRC.Interactions.one\\_generation}",
    "master": [
     "P4"
    ],
@@ -397,7 +397,7 @@
    "tag": "T",
    "lean_name": "no_tev_supersymmetry",
    "predicate": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13}\\,$GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13\\%$. The content has no superpartner. Where the completion closes the miss is the $\\Omega$-hard running (Z1). \\emph{Falsifier:} superpartners.",
-   "source": "Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27037}{P3}, \\leanwit{FrcCore}{p27037}{P3}, \\leanwit{FrcMathlib}{p27037}{P3}; rests on A3, A6, B6, C8, Z1 \\lean{FRC.Interactions.one\\_generation, Fields.running\\_near\\_miss}",
+   "source": "Prop.~\\ref{prop:running}; rests on A3, A6, B6, C8, Z1\\newline \\pywit{fields}{p27037}{P3}, \\leanwit{FrcCore}{p27037}{P3}, \\leanwit{FrcMathlib}{p27037}{P3} \\lean{FRC.Interactions.one\\_generation, Fields.running\\_near\\_miss}",
    "master": [
     "P4"
    ],
@@ -413,7 +413,7 @@
    "tag": "T",
    "lean_name": "proton_effectively_stable",
    "predicate": "\\textbf{The proton is effectively stable at a substrate-scale mass} \\emph{[sector]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\\,$GeV it already exceeds the Super-Kamiokande bound. The mass is not derived, and the lifetime is the chart's dimensional estimate at that mass [chart]. \\emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years.",
-   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27038}{P4}, \\leanwit{FrcCore}{p27038}{P4}, \\leanwit{FrcMathlib}{p27038}{P4}; rests on A3, A6, B7, C9, Z1 \\lean{FRC.Interactions.unification\\_counts, Fields.proton\\_lifetime}",
+   "source": "Prop.~\\ref{prop:unify}; rests on A3, A6, B7, C9, Z1\\newline \\pywit{fields}{p27038}{P4}, \\leanwit{FrcCore}{p27038}{P4}, \\leanwit{FrcMathlib}{p27038}{P4} \\lean{FRC.Interactions.unification\\_counts, Fields.proton\\_lifetime}",
    "master": [
     "P4"
    ],
@@ -431,7 +431,7 @@
    "tag": "T",
    "lean_name": "no_further_singlet",
    "predicate": "\\textbf{No sterile state beyond the singlet of each generation} \\emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass (A4); the paper derives neither that mass nor its scale, and a zero mass is not excluded. With the mass at the unification scale the seesaw places the light masses in the observed band, for singlet masses of $10^{14}$--$10^{15}\\,$GeV [chart]. The declared content (B6) holds no further gauge-singlet state. \\emph{Falsifier:} a light gauge-singlet fermion that is not the singlet $\\nu^c$ of one of the three generations.",
-   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}\\newline \\pywit{fields}{p27039}{P5}, \\leanwit{FrcCore}{p27039}{P5}, \\leanwit{FrcMathlib}{p27039}{P5}; rests on A4, B5, B6, C8 \\lean{FRC.Interactions.one\\_generation, Fields.seesaw\\_band}",
+   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}; rests on A4, B5, B6, C8\\newline \\pywit{fields}{p27039}{P5}, \\leanwit{FrcCore}{p27039}{P5}, \\leanwit{FrcMathlib}{p27039}{P5} \\lean{FRC.Interactions.one\\_generation, Fields.seesaw\\_band}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -445,7 +445,7 @@
    "tag": "T",
    "lean_name": "no_new_dark_particle",
    "predicate": "\\textbf{No new particle of dark matter} \\emph{[sector]}. The matter content is exactly one Standard-Model generation, triplicated, with its singlet $\\nu^c$; the construction contains no weakly-interacting massive particle and no axion. \\emph{Falsifier:} a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational sector.",
-   "source": "Thm.~\\ref{thm:gen}\\newline \\pywit{fields}{p27040}{P6}, \\leanwit{FrcCore}{p27040}{P6}; rests on B5, B6, C8, C10 \\lean{FRC.Interactions.one\\_generation}",
+   "source": "Thm.~\\ref{thm:gen}; rests on B5, B6, C8, C10\\newline \\pywit{fields}{p27040}{P6}, \\leanwit{FrcCore}{p27040}{P6} \\lean{FRC.Interactions.one\\_generation}",
    "master": [
     "P4"
    ],
@@ -461,7 +461,7 @@
    "tag": "T",
    "lean_name": "no_new_physics_muon",
    "predicate": "\\textbf{No new-physics contribution to the muon anomaly} \\emph{[sector]}. With no states beyond the Standard Model, $(g-2)_\\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. \\emph{Falsifier:} a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction.",
-   "source": "Thm.~\\ref{thm:gen}\\newline \\pywit{fields}{p27041}{P7}, \\leanwit{FrcCore}{p27041}{P7}; rests on B5, B6, C8, C10 \\lean{FRC.Interactions.one\\_generation}",
+   "source": "Thm.~\\ref{thm:gen}; rests on B5, B6, C8, C10\\newline \\pywit{fields}{p27041}{P7}, \\leanwit{FrcCore}{p27041}{P7} \\lean{FRC.Interactions.one\\_generation}",
    "master": [
     "P4"
    ],
@@ -477,7 +477,7 @@
    "tag": "T",
    "lean_name": "charged_lepton_koide_relation",
    "predicate": "\\textbf{The charged-lepton Koide relation is exactly $2/3$} \\emph{[structural]}: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the Koide form on the characters of the generation cycle at the named value $\\rho^2=\\tfrac12$ (B8) --- $Q=\\tfrac13+\\tfrac23\\rho^2$ exact. The form is a theorem and the value a naming; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual \\citep{akhtman2026flavour}. \\emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the tolerance of the $\\tau$ mass \\citep{akhtman2026flavour}.",
-   "source": "Prop.~\\ref{prop:koide}\\newline \\pywit{fields}{p27042}{P8}, \\leanwit{FrcCore}{p27042}{P8}; rests on B5, B8 \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half}",
+   "source": "Prop.~\\ref{prop:koide}; rests on B5, B8\\newline \\pywit{fields}{p27042}{P8}, \\leanwit{FrcCore}{p27042}{P8} \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half}",
    "master": [
     "G16"
    ],
@@ -495,7 +495,7 @@
    "tag": "T",
    "lean_name": "no_strong_cp_angle",
    "predicate": "\\textbf{No strong-CP angle and no axion} \\emph{[structural]}. The vacuum angle reads $\\bar\\theta=0$ on the chart with no axion: the colour action is declared of the Wilson class (B11), so the bare $\\theta=0$, and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell, positive on the chart where no mass reads $0$, so $\\arg\\det M_q=0$ [chart], while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
-   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9}; rests on A3, A6, B4, B9, B11, C7 \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.gram\\_det, FRC.Unitary.hermitian\\_det\\_shell}",
+   "source": "Prop.~\\ref{prop:strongcp}; rests on A3, A6, B4, B9, B11, C7\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9} \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.gram\\_det, FRC.Unitary.hermitian\\_det\\_shell}",
    "master": [
     "G7"
    ],
@@ -511,7 +511,7 @@
    "tag": "T",
    "lean_name": "no_fractional_charge_without_colour",
    "predicate": "\\textbf{No fractional charge without colour} \\emph{[sector]}. Every state built from the vectors of the internal frame and their conjugates has the weight $-3Q$ congruent modulo $3$ to its net number of colour indices (C16). A state of fewer than $\\p+1$ indices that the colour frame fixes has that number a multiple of three, and so an integer charge. On a shell where the colour frame has its centre the same holds for every number of indices. On the chart the group is the quotient of $\\SU(3)\\times\\SU(2)\\times\\U(1)$ by $\\Z_6$, one of the four quotients that the continuum theory leaves open [chart] \\citep{tong2017}. \\emph{Falsifier:} a colourless particle of fractional charge.",
-   "source": "Prop.~\\ref{prop:colourless}\\newline \\pywit{fields}{p27059}{P10}, \\leanwit{FrcCore}{p27059}{P10}; rests on B5, B6, B10, C7, C16 \\lean{FRC.Unitary.charge\\_weights, FRC.Unitary.product\\_kernel, FRC.Unitary.sixth\\_roots, FRC.Unitary.centre\\_weight, FRC.Unitary.colourless\\_indices}",
+   "source": "Prop.~\\ref{prop:colourless}; rests on B5, B6, B10, C7, C16\\newline \\pywit{fields}{p27059}{P10}, \\leanwit{FrcCore}{p27059}{P10} \\lean{FRC.Unitary.charge\\_weights, FRC.Unitary.product\\_kernel, FRC.Unitary.sixth\\_roots, FRC.Unitary.centre\\_weight, FRC.Unitary.colourless\\_indices}",
    "master": [],
    "restated": [],
    "witnessed": false,

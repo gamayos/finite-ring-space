@@ -2,17 +2,17 @@
  "header": {
   "generated": "21 November 2026",
   "schema": "frc-register/2",
-  "rows": 1243,
-  "theorems": 1183,
+  "rows": 1242,
+  "theorems": 1182,
   "counts": {
-   "keys": 1183,
-   "rows": 1243,
+   "keys": 1182,
+   "rows": 1242,
    "shared": 55,
    "by_tag": {
     "D": 221,
     "G": 1,
     "I": 150,
-    "O": 23,
+    "O": 22,
     "R": 9,
     "T": 751,
     "Ω": 28
@@ -1156,10 +1156,6 @@
      {
       "letter": "Z",
       "title": "Horizon: the residue beyond the bounded observer"
-     },
-     {
-      "letter": "Y",
-      "title": "Hypotheses: the conjecture stated ahead of derivation"
      }
     ],
     "legend": [
@@ -1182,14 +1178,9 @@
       "tag": "Ω",
       "name": "$\\Omega$-hard",
       "text": "A value read at the scale of the Carrier, in no embedded reader's window."
-     },
-     {
-      "tag": "O",
-      "name": "Open (conjecture)",
-      "text": "Stated ahead of derivation, carrying its exposure; a derivation re-homes the row."
      }
     ],
-    "rows": 58
+    "rows": 57
    },
    {
     "key": "28-flav",
@@ -1611,7 +1602,7 @@
    "theorems": "one entry per key (LM12): its canonical statement (the row of its ledger of origin, the key's prefix), the origin, the tag, the Lean tier, the deciding check and declarations, the aliases that resolve to it, the rows that write it, and for a theorem the realisations its statement names (Q21)",
    "superseded": "the keys that left the public ledgers (corrected, split, merged or returned home), each with its live successor keys and nothing else (decision Q19)"
   },
-  "superseded": 156
+  "superseded": 157
  },
  "theorems": [
   {
@@ -3875,7 +3866,7 @@
    "check": {
     "href": "py/fields.html#p27043",
     "script": "p27_fields.py",
-    "line": 1561,
+    "line": 1557,
     "verdict": "pass"
    },
    "declarations": [
@@ -4008,7 +3999,7 @@
    "check": {
     "href": "py/fields.html#p27020",
     "script": "p27_fields.py",
-    "line": 1366,
+    "line": 1362,
     "verdict": "pass"
    },
    "declarations": [
@@ -16231,7 +16222,7 @@
   {
    "key": "p13001",
    "origin": "13",
-   "statement": "The framed shell $\\Fp(\\tau;0,1,\\gen)$ of capacity $\\kap$, $\\p=4\\kap+1$, with its phase cycle $\\PhiP\\cong C_{\\p-1}$, the oriented quarter-turn $\\im=\\gen^{-\\kap}$ and the conjugate chirality; the framed rationals $\\fQ$ with the shell reading $\\rep{\\cdot}$; the finitist position that the discrete register is primary.",
+   "statement": "The framed shell $\\Fp(\\tau;0,1,\\gen)$ of capacity $\\kap$, $\\p=4\\kap+1$, with its phase cycle $\\PhiP\\cong C_{\\p-1}$, the oriented quarter-turn $\\im=\\gen^{-\\kap}$ and the conjugate chirality; the framed rationals $\\fQ$ with the shell reading $\\rep{\\cdot}$; the finitude of the totality, a theorem of the framework, with the discrete register primary and the continuum a labelled idealisation.",
    "origin_row": "13:A1",
    "tag": "I",
    "name": null,
@@ -16640,7 +16631,7 @@
   {
    "key": "p13020",
    "origin": "13",
-   "statement": "Horizon determination of the readout: for $n\\ge n_0(k)=\\Theta(k/\\log k)$ the readout $\\ro(\\varepsilon_n)$ lies within one ulp of $\\ro(\\eR)$, and equals it from the plateau threshold $n_1(k)$, the least $n$ from which the readouts agree, decided through the rounding cell of $\\eR$ ($n_1\\le n_0+1$ for $k<200$, equality at eight precisions); the binary64 constant is the readout of $\\varepsilon_{18}=18!/\\dr{18}$, $n=18$ minimal; $\\varepsilon_{70}$ fixes $100$ digits.",
+   "statement": "Plateau thresholds of the readout: for $n\\ge n_0(k)=\\Theta(k/\\log k)$ the readout $\\ro(\\varepsilon_n)$ lies within one ulp of $\\ro(\\eR)$, and equals it from the plateau threshold $n_1(k)$, the least $n$ from which the readouts agree, decided through the rounding cell of $\\eR$ ($n_1\\le n_0+1$ for $k<200$, equality at eight precisions); the binary64 constant is the readout of $\\varepsilon_{18}=18!/\\dr{18}$, $n=18$ minimal; $\\varepsilon_{70}$ fixes $100$ digits.",
    "origin_row": "13:D4",
    "tag": "T",
    "name": "horizon_determination_readout",
@@ -16687,7 +16678,7 @@
   {
    "key": "p13021",
    "origin": "13",
-   "statement": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$.",
+   "statement": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement chain is the canonical finite constructor of $e$.",
    "origin_row": "13:D5",
    "tag": "T",
    "name": "feasibility_selection",
@@ -16813,7 +16804,7 @@
   {
    "key": "p13025",
    "origin": "13",
-   "statement": "Horizon determination for $\\pi$: the Machin chain $M_N\\in\\fQ$ has $|M_N-\\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\\piR<4S_{2m}$ of width $4/(4m+3)$ the base case.",
+   "statement": "Plateau thresholds for $\\pi$: the Machin chain $M_N\\in\\fQ$ has $|M_N-\\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\\piR<4S_{2m}$ of width $4/(4m+3)$ the base case.",
    "origin_row": "13:E4",
    "tag": "T",
    "name": "horizon_determination_pi",
@@ -16939,7 +16930,7 @@
   {
    "key": "p13028",
    "origin": "13",
-   "statement": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
+   "statement": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form by the package for all $22{,}043$ odd primes $\\p<2.5\\times10^{5}$ and by the same program run to $1.6\\times10^{6}$ ($121{,}126$ odd primes), with zero failures of either condition. Beyond $n=\\p-1$, the wall, $n!\\equiv0$.",
    "origin_row": "13:F2",
    "tag": "T",
    "name": "wall_identity_terminal_residue",
@@ -16976,7 +16967,7 @@
   {
    "key": "p13029",
    "origin": "13",
-   "statement": "Antiperiodicity: $\\dr{(n+\\p)}\\equiv-\\dr{n}\\pmod\\p$ for every odd prime $\\p$ and every $n\\ge0$ of the totality, so $\\dr{n}\\bmod\\p$ depends on $n\\bmod2\\p$; the blind set $Z_0(\\p)=\\{n<\\p:\\dr{n}\\equiv0\\}$ always contains $1$, and Kurepa's hypothesis is $\\p-1\\notin Z_0(\\p)$ for every odd prime $\\p$ of the totality.",
+   "statement": "Antiperiodicity (Miska, 2016, the period $2\\p$ of $\\dr{n}\\bmod\\p$; reproved here): $\\dr{(n+\\p)}\\equiv-\\dr{n}\\pmod\\p$ for every odd prime $\\p$ and every $n\\ge0$ of the totality, so $\\dr{n}\\bmod\\p$ depends on $n\\bmod2\\p$; the blind set $Z_0(\\p)=\\{n<\\p:\\dr{n}\\equiv0\\}$ always contains $1$, and Kurepa's hypothesis is $\\p-1\\notin Z_0(\\p)$ for every odd prime $\\p$ of the totality.",
    "origin_row": "13:F3",
    "tag": "T",
    "name": "antiperiodicity",
@@ -17136,7 +17127,7 @@
   {
    "key": "p13066",
    "origin": "13",
-   "statement": "The tail identity: $j!\\,\\dr{(\\p-1-j)}\\equiv(-1)^{j}\\bigl(\\Ku{\\p}-\\Ku{j}\\bigr)\\pmod\\p$ for $0\\le j\\le\\p-1$ ($j=0$ is F2); hence $n\\in Z_0(\\p)$ iff $\\Ku{(\\p-1-n)}\\equiv\\Ku{\\p}$: the blind set counts the collisions of the partial sums of the left factorial with their total, $n=1$ is the forced collision $\\Ku{(\\p-2)}\\equiv\\Ku{\\p}$, and Kurepa's hypothesis is the return-to-origin question of the walk with steps $j!$.",
+   "statement": "The tail identity (Kellner, 2004, Lemma~2.4, in the reflected index; reproved here): $j!\\,\\dr{(\\p-1-j)}\\equiv(-1)^{j}\\bigl(\\Ku{\\p}-\\Ku{j}\\bigr)\\pmod\\p$ for $0\\le j\\le\\p-1$ ($j=0$ is F2); hence $n\\in Z_0(\\p)$ iff $\\Ku{(\\p-1-n)}\\equiv\\Ku{\\p}$: the blind set counts the collisions of the partial sums of the left factorial with their total, $n=1$ is the forced collision $\\Ku{(\\p-2)}\\equiv\\Ku{\\p}$, and Kurepa's hypothesis is the return-to-origin question of the walk with steps $j!$.",
    "origin_row": "13:F8",
    "tag": "T",
    "name": "tail_identity_blind_set",
@@ -17318,7 +17309,7 @@
   {
    "key": "p13039",
    "origin": "13",
-   "statement": "First-order wall vanishing of the arcsin chain: $\\sigma_\\p=\\sum_{k<m}\\Cb{k}/((2k+1)16^{k})\\equiv0\\pmod\\p$ for every prime $\\p\\ge5$ of the totality, $\\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\\Cb{k}\\equiv(-4)^{k}\\binom mk$. Verified for all $428$ odd primes $5\\le\\p<3000$; the ingredients for $m\\le60$, $\\p<500$.",
+   "statement": "First-order wall vanishing of the arcsin chain: $\\sigma_\\p=\\sum_{k<m}\\Cb{k}/((2k+1)16^{k})\\equiv0\\pmod\\p$ for every prime $\\p\\ge5$ of the totality, $\\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\\Cb{k}\\equiv(-4)^{k}\\binom mk$; proved in Lean for every prime $\\p\\ge5$ on Mathlib, the same route. Verified for all $428$ odd primes $5\\le\\p<3000$; the ingredients for $m\\le60$, $\\p<500$.",
    "origin_row": "13:G6",
    "tag": "T",
    "name": "first_order_wall_vanishing",
@@ -17493,7 +17484,7 @@
   {
    "key": "p13044",
    "origin": "13",
-   "statement": "The exact angular carrier of $\\pi$: $\\chi(-1)=e^{\\imR\\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\\gen^{(\\p-1)/2}$ sits at arc fraction one half --- Euler's identity as the half-turn tautology $\\gen^{2\\kap}=-1$ under the dictionary, with no calibration and no error term.",
+   "statement": "The exact angular counterpart of $\\pi$: $\\chi(-1)=e^{\\imR\\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\\gen^{(\\p-1)/2}$ sits at arc fraction one half --- Euler's identity as the half-turn tautology $\\gen^{2\\kap}=-1$ under the dictionary, with no calibration and no error term.",
    "origin_row": "13:H2",
    "tag": "T",
    "name": "exact_angular_carrier_pi",
@@ -17520,7 +17511,7 @@
   {
    "key": "p13045",
    "origin": "13",
-   "statement": "Exact calibration of $e$ is impossible: with $\\theta=2\\piR\\lambda(\\im)/(\\p-1)$ the frame angle of $\\eP$, $\\theta\\ne1$ in every shell ($\\theta=1$ would make $\\piR$ rational, A2); $\\chi(\\eP)$ is a root of unity while $e^{\\imR}$ is not, so the identification is intrinsically horizon-limited.",
+   "statement": "Exact calibration of $e$ is impossible: with $\\theta=2\\piR\\lambda(\\im)/(\\p-1)$ the frame angle of $\\eP$, $\\theta\\ne1$ in every shell ($\\theta=1$ would make $\\piR$ rational, A2); $\\chi(\\eP)$ is a root of unity while $e^{\\imR}$ is not, so the identification is intrinsically precision-limited.",
    "origin_row": "13:H3",
    "tag": "T",
    "name": "exact_calibration_impossible",
@@ -17589,7 +17580,7 @@
   {
    "key": "p13047",
    "origin": "13",
-   "statement": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$.",
+   "statement": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial counterparts of $e$.",
    "origin_row": "13:H5",
    "tag": "T",
    "name": "null_experiment",
@@ -17621,7 +17612,7 @@
   {
    "key": "p13048",
    "origin": "13",
-   "statement": "Emergence of the classical $e$: (i) in every shell with $\\p>n_1+|Z_0(\\p)|+1$ a non-blind scale in $[n_1,n_1+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the residue line, antiperiodic in its derangement denominators, blind on $Z_0(\\p)$, terminating on $-(\\Ku{\\p})^{-1}$, read out beyond $n_1$ as one dyadic rational; (iii) $\\chi(\\eP)$ approaches $e^{\\imR}$ along the calibrated shells, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5.",
+   "statement": "Emergence of the classical $e$: (i) in every shell with $\\p>n_1+|Z_0(\\p)|+1$ a non-blind scale in $[n_1,n_1+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the residue line, antiperiodic in its derangement denominators, blind on $Z_0(\\p)$, terminating on $-(\\Ku{\\p})^{-1}$, read out beyond $n_1$ as one dyadic rational; (iii) $\\chi(\\eP)$ approaches $e^{\\imR}$ along the calibrated shells, exact calibration impossible, no pointwise link between the counterparts. Composed from D4, F2, F3, F5, H3--H5.",
    "origin_row": "13:I1",
    "tag": "T",
    "name": "emergence_classical_e",
@@ -17740,7 +17731,7 @@
   {
    "key": "p13050",
    "origin": "13",
-   "statement": "The duality: $\\pi$ is angular-exact and wall-trivial (tautological carrier, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\\pi$ a structural, $e$ a statistical constant of the finite frame.",
+   "statement": "The duality: $\\pi$ is angular-exact and wall-trivial (tautological counterpart, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\\pi$ a structural, $e$ a statistical constant of the finite frame.",
    "origin_row": "13:I3",
    "tag": "T",
    "name": "e_pi_duality",
@@ -17984,7 +17975,7 @@
   {
    "key": "p13057",
    "origin": "13",
-   "statement": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper.",
+   "statement": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the wall; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper.",
    "origin_row": "13:J6",
    "tag": "T",
    "name": "two_constants_two_walls",
@@ -27349,7 +27340,7 @@
    "check": {
     "href": "py/fields.html#p27019",
     "script": "p27_fields.py",
-    "line": 1335,
+    "line": 1331,
     "verdict": "pass"
    },
    "declarations": [
@@ -27391,7 +27382,7 @@
    "check": {
     "href": "py/fields.html#p27053",
     "script": "p27_fields.py",
-    "line": 1386,
+    "line": 1382,
     "verdict": "pass"
    },
    "declarations": [
@@ -27428,7 +27419,7 @@
    "check": {
     "href": "py/fields.html#p27022",
     "script": "p27_fields.py",
-    "line": 1419,
+    "line": 1415,
     "verdict": "pass"
    },
    "declarations": [
@@ -27455,7 +27446,7 @@
    "check": {
     "href": "py/fields.html#p27023",
     "script": "p27_fields.py",
-    "line": 1440,
+    "line": 1436,
     "verdict": "pass"
    },
    "declarations": [
@@ -27783,7 +27774,7 @@
    "check": {
     "href": "py/fields.html#p27035",
     "script": "p27_fields.py",
-    "line": 1419,
+    "line": 1415,
     "verdict": "pass"
    },
    "declarations": [
@@ -27810,7 +27801,7 @@
    "check": {
     "href": "py/fields.html#p27036",
     "script": "p27_fields.py",
-    "line": 1419,
+    "line": 1415,
     "verdict": "pass"
    },
    "declarations": [
@@ -27837,7 +27828,7 @@
    "check": {
     "href": "py/fields.html#p27037",
     "script": "p27_fields.py",
-    "line": 1470,
+    "line": 1466,
     "verdict": "pass"
    },
    "declarations": [
@@ -27869,7 +27860,7 @@
    "check": {
     "href": "py/fields.html#p27038",
     "script": "p27_fields.py",
-    "line": 1380,
+    "line": 1376,
     "verdict": "pass"
    },
    "declarations": [
@@ -27901,7 +27892,7 @@
    "check": {
     "href": "py/fields.html#p27039",
     "script": "p27_fields.py",
-    "line": 1480,
+    "line": 1476,
     "verdict": "pass"
    },
    "declarations": [
@@ -27933,7 +27924,7 @@
    "check": {
     "href": "py/fields.html#p27040",
     "script": "p27_fields.py",
-    "line": 1419,
+    "line": 1415,
     "verdict": "pass"
    },
    "declarations": [
@@ -27960,7 +27951,7 @@
    "check": {
     "href": "py/fields.html#p27041",
     "script": "p27_fields.py",
-    "line": 1419,
+    "line": 1415,
     "verdict": "pass"
    },
    "declarations": [
@@ -27987,7 +27978,7 @@
    "check": {
     "href": "py/fields.html#p27042",
     "script": "p27_fields.py",
-    "line": 1538,
+    "line": 1534,
     "verdict": "pass"
    },
    "declarations": [
@@ -28293,7 +28284,7 @@
    "check": {
     "href": "py/fields.html#p27030",
     "script": "p27_fields.py",
-    "line": 1269,
+    "line": 1265,
     "verdict": "pass"
    },
    "declarations": [
@@ -28335,7 +28326,7 @@
    "check": {
     "href": "py/fields.html#p27031",
     "script": "p27_fields.py",
-    "line": 1366,
+    "line": 1362,
     "verdict": "pass"
    },
    "declarations": [
@@ -28367,7 +28358,7 @@
    "check": {
     "href": "py/fields.html#p27032",
     "script": "p27_fields.py",
-    "line": 1419,
+    "line": 1415,
     "verdict": "pass"
    },
    "declarations": [
@@ -28394,7 +28385,7 @@
    "check": {
     "href": "py/fields.html#p27033",
     "script": "p27_fields.py",
-    "line": 1531,
+    "line": 1527,
     "verdict": "pass"
    },
    "declarations": [
@@ -28436,7 +28427,7 @@
    "check": {
     "href": "py/fields.html#p27034",
     "script": "p27_fields.py",
-    "line": 1561,
+    "line": 1557,
     "verdict": "pass"
    },
    "declarations": [
@@ -28473,26 +28464,6 @@
    "realisations": []
   },
   {
-   "key": "p27048",
-   "origin": "27",
-   "statement": "The electroweak scale as the minimal winding weight of the gauged spinor frame at channel unity: $v/\\sqrt2=m_P\\big(e^{-S_{+1/2}}+e^{-S_{-1/2}}\\big)$, $S_{\\pm1/2}=4\\pi^2/g^2$ the 't~Hooft half-charge action of $\\SU(2)/\\Z_2$ at $g=1$, the channel's normalisation and the measured coupling at no scale, i.e.\\ $v=2^{3/2}m_P\\,e^{-(2\\pi)^2}=247.2$~GeV against $246.2$ ($0.38\\,\\%$ high). The exponent is verified (Section~\\ref{sec:corr}); the amplitude identification, the two-sector prefactor and the residual are underived. Exposure: odds about $1$ in $45$ for the landing; the strong channel obeys no such rule; the running cannot test it (Rem.~\\ref{rmk:masscons}). Falsifier: a derived amplitude identification with a residual other than $0.38\\,\\%$, or a closed form for the residual that fails.",
-   "origin_row": "27:Y1",
-   "tag": "O",
-   "name": null,
-   "tier": null,
-   "check": {
-    "href": "py/fields.html#p27048",
-    "script": "p27_fields.py",
-    "line": 1193,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "27:Y1"
-   ]
-  },
-  {
    "key": "p27047",
    "origin": "27",
    "statement": "The cross-scale beta-function running and the absolute scales --- $\\al(1/137)$, $\\Lambda_{\\mathrm{QCD}}$, the electroweak scale $v$ --- are residues read at the scale of the Carrier. The tag says where a value is read, and the paper proves no obstruction to a closed form.",
@@ -28503,7 +28474,7 @@
    "check": {
     "href": "py/fields.html#p27047",
     "script": "p27_fields.py",
-    "line": 1186,
+    "line": 1187,
     "verdict": "pass"
    },
    "declarations": [],
@@ -37557,6 +37528,10 @@
   },
   {
    "key": "p27046",
+   "successors": []
+  },
+  {
+   "key": "p27048",
    "successors": []
   },
   {
@@ -59155,7 +59130,7 @@
    "tag": "I",
    "name": null,
    "lean_name": null,
-   "statement": "The framed shell $\\Fp(\\tau;0,1,\\gen)$ of capacity $\\kap$, $\\p=4\\kap+1$, with its phase cycle $\\PhiP\\cong C_{\\p-1}$, the oriented quarter-turn $\\im=\\gen^{-\\kap}$ and the conjugate chirality; the framed rationals $\\fQ$ with the shell reading $\\rep{\\cdot}$; the finitist position that the discrete register is primary.",
+   "statement": "The framed shell $\\Fp(\\tau;0,1,\\gen)$ of capacity $\\kap$, $\\p=4\\kap+1$, with its phase cycle $\\PhiP\\cong C_{\\p-1}$, the oriented quarter-turn $\\im=\\gen^{-\\kap}$ and the conjugate chirality; the framed rationals $\\fQ$ with the shell reading $\\rep{\\cdot}$; the finitude of the totality, a theorem of the framework, with the discrete register primary and the continuum a labelled idealisation.",
    "source": "\\cite{akhtman2025algebra,akhtman2026geometry,akhtman2026infinity,zeilberger2004real}",
    "page": "13-epi/index.html#A1",
    "witness": {
@@ -59163,7 +59138,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The framed shell $\\Fp(\\tau;0,1,\\gen)$ of capacity $\\kap$, $\\p=4\\kap+1$, with its phase cycle $\\PhiP\\cong C_{\\p-1}$, the oriented quarter-turn $\\im=\\gen^{-\\kap}$ and the conjugate chirality; the framed rationals $\\fQ$ with the shell reading $\\rep{\\cdot}$; the finitist position that the discrete register is primary. [akhtman2025algebra,akhtman2026geometry,akhtman2026infinity,zeilberger2004real]"
+   "text": "The framed shell $\\Fp(\\tau;0,1,\\gen)$ of capacity $\\kap$, $\\p=4\\kap+1$, with its phase cycle $\\PhiP\\cong C_{\\p-1}$, the oriented quarter-turn $\\im=\\gen^{-\\kap}$ and the conjugate chirality; the framed rationals $\\fQ$ with the shell reading $\\rep{\\cdot}$; the finitude of the totality, a theorem of the framework, with the discrete register primary and the continuum a labelled idealisation. [akhtman2025algebra,akhtman2026geometry,akhtman2026infinity,zeilberger2004real]"
   },
   {
    "paper": "13-epi",
@@ -59731,8 +59706,8 @@
    "tag": "T",
    "name": null,
    "lean_name": "horizon_determination_readout",
-   "statement": "Horizon determination of the readout: for $n\\ge n_0(k)=\\Theta(k/\\log k)$ the readout $\\ro(\\varepsilon_n)$ lies within one ulp of $\\ro(\\eR)$, and equals it from the plateau threshold $n_1(k)$, the least $n$ from which the readouts agree, decided through the rounding cell of $\\eR$ ($n_1\\le n_0+1$ for $k<200$, equality at eight precisions); the binary64 constant is the readout of $\\varepsilon_{18}=18!/\\dr{18}$, $n=18$ minimal; $\\varepsilon_{70}$ fixes $100$ digits.",
-   "source": "Thm.~\\ref{thm:readout-e}\\newline \\pywit{epi}{p13020}{D4}, \\leanwit{FrcCore}{p13020}{D4}, \\leanwit{FrcMathlib}{p13020}{D4} \\lean{Epi.readout\\_binary64, Epi.readout\\_within\\_ulp, Epi.readout\\_plateau, Epi.readout\\_six\\_bits, FRC.Epi.readout\\_e\\_core}",
+   "statement": "Plateau thresholds of the readout: for $n\\ge n_0(k)=\\Theta(k/\\log k)$ the readout $\\ro(\\varepsilon_n)$ lies within one ulp of $\\ro(\\eR)$, and equals it from the plateau threshold $n_1(k)$, the least $n$ from which the readouts agree, decided through the rounding cell of $\\eR$ ($n_1\\le n_0+1$ for $k<200$, equality at eight precisions); the binary64 constant is the readout of $\\varepsilon_{18}=18!/\\dr{18}$, $n=18$ minimal; $\\varepsilon_{70}$ fixes $100$ digits.",
+   "source": "Thm.~\\ref{thm:readout-e}, Rem.~\\ref{rem:readout-verif}\\newline \\pywit{epi}{p13020}{D4}, \\leanwit{FrcCore}{p13020}{D4}, \\leanwit{FrcMathlib}{p13020}{D4} \\lean{Epi.readout\\_binary64, Epi.readout\\_within\\_ulp, Epi.readout\\_plateau, Epi.readout\\_six\\_bits, FRC.Epi.readout\\_e\\_core}",
    "page": "13-epi/index.html#D4",
    "witness": {
     "py": {
@@ -59785,7 +59760,7 @@
     ]
    },
    "refs": [],
-   "text": "Horizon determination of the readout: for $n\\ge n_0(k)=\\Theta(k/\\log k)$ the readout $\\ro(\\varepsilon_n)$ lies within one ulp of $\\ro(\\eR)$, and equals it from the plateau threshold $n_1(k)$, the least $n$ from which the readouts agree, decided through the rounding cell of $\\eR$ ($n_1\\le n_0+1$ for $k<200$, equality at eight precisions); the binary64 constant is the readout of $\\varepsilon_{18}=18!/\\dr{18}$, $n=18$ minimal; $\\varepsilon_{70}$ fixes $100$ digits. Thm. thm:readout-e p13020, FrcCore{D4}, FrcMathlib{D4} Epi.readout_binary64, Epi.readout_within_ulp, Epi.readout_plateau, Epi.readout_six_bits, FRC.Epi.readout_e_core"
+   "text": "Plateau thresholds of the readout: for $n\\ge n_0(k)=\\Theta(k/\\log k)$ the readout $\\ro(\\varepsilon_n)$ lies within one ulp of $\\ro(\\eR)$, and equals it from the plateau threshold $n_1(k)$, the least $n$ from which the readouts agree, decided through the rounding cell of $\\eR$ ($n_1\\le n_0+1$ for $k<200$, equality at eight precisions); the binary64 constant is the readout of $\\varepsilon_{18}=18!/\\dr{18}$, $n=18$ minimal; $\\varepsilon_{70}$ fixes $100$ digits. Thm. thm:readout-e, Rem. rem:readout-verif p13020, FrcCore{D4}, FrcMathlib{D4} Epi.readout_binary64, Epi.readout_within_ulp, Epi.readout_plateau, Epi.readout_six_bits, FRC.Epi.readout_e_core"
   },
   {
    "paper": "13-epi",
@@ -59797,7 +59772,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "feasibility_selection",
-   "statement": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$.",
+   "statement": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement chain is the canonical finite constructor of $e$.",
    "source": "Prop.~\\ref{prop:feasibility-e}\\newline \\pywit{epi}{p13021}{D5}, \\leanwit{FrcCore}{p13021}{D5}, \\leanwit{FrcMathlib}{p13021}{D5} \\lean{Epi.derangement\\_cost, Epi.compound\\_cost, FRC.Epi.derangement\\_cost\\_core}",
    "page": "13-epi/index.html#D5",
    "witness": {
@@ -59835,7 +59810,7 @@
     ]
    },
    "refs": [],
-   "text": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$. Prop. prop:feasibility-e p13021, FrcCore{D5}, FrcMathlib{D5} Epi.derangement_cost, Epi.compound_cost, FRC.Epi.derangement_cost_core"
+   "text": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement chain is the canonical finite constructor of $e$. Prop. prop:feasibility-e p13021, FrcCore{D5}, FrcMathlib{D5} Epi.derangement_cost, Epi.compound_cost, FRC.Epi.derangement_cost_core"
   },
   {
    "paper": "13-epi",
@@ -59971,7 +59946,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "horizon_determination_pi",
-   "statement": "Horizon determination for $\\pi$: the Machin chain $M_N\\in\\fQ$ has $|M_N-\\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\\piR<4S_{2m}$ of width $4/(4m+3)$ the base case.",
+   "statement": "Plateau thresholds for $\\pi$: the Machin chain $M_N\\in\\fQ$ has $|M_N-\\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\\piR<4S_{2m}$ of width $4/(4m+3)$ the base case.",
    "source": "Thm.~\\ref{thm:readout-pi}\\newline \\pywit{epi}{p13025}{E4}, \\leanwit{FrcMathlib}{p13025}{E4} \\lean{Epi.machin\\_bound, Epi.readout\\_binary64\\_pi, Epi.machin\\_hundred\\_digits, Epi.arctan\\_pairing, Epi.machin\\_pairing, Epi.gregory\\_brackets}",
    "page": "13-epi/index.html#E4",
    "witness": {
@@ -60033,7 +60008,7 @@
     ]
    },
    "refs": [],
-   "text": "Horizon determination for $\\pi$: the Machin chain $M_N\\in\\fQ$ has $|M_N-\\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\\piR<4S_{2m}$ of width $4/(4m+3)$ the base case. Thm. thm:readout-pi p13025, FrcMathlib{E4} Epi.machin_bound, Epi.readout_binary64_pi, Epi.machin_hundred_digits, Epi.arctan_pairing, Epi.machin_pairing, Epi.gregory_brackets"
+   "text": "Plateau thresholds for $\\pi$: the Machin chain $M_N\\in\\fQ$ has $|M_N-\\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\\piR<4S_{2m}$ of width $4/(4m+3)$ the base case. Thm. thm:readout-pi p13025, FrcMathlib{E4} Epi.machin_bound, Epi.readout_binary64_pi, Epi.machin_hundred_digits, Epi.arctan_pairing, Epi.machin_pairing, Epi.gregory_brackets"
   },
   {
    "paper": "13-epi",
@@ -60147,7 +60122,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "wall_identity_terminal_residue",
-   "statement": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
+   "statement": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form by the package for all $22{,}043$ odd primes $\\p<2.5\\times10^{5}$ and by the same program run to $1.6\\times10^{6}$ ($121{,}126$ odd primes), with zero failures of either condition. Beyond $n=\\p-1$, the wall, $n!\\equiv0$.",
    "source": "Thm.~\\ref{thm:wall-e}\\newline \\pywit{epi}{p13028}{F2}, \\leanwit{FrcCore}{p13028}{F2}, \\leanwit{FrcMathlib}{p13028}{F2} \\lean{Epi.derangements\\_wall\\_zmod, Epi.terminal\\_residue, FRC.Epi.terminal13}",
    "page": "13-epi/index.html#F2",
    "witness": {
@@ -60188,7 +60163,7 @@
     "p13004",
     "p13061"
    ],
-   "text": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c–\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon. Thm. thm:wall-e p13028, FrcCore{F2}, FrcMathlib{F2} Epi.derangements_wall_zmod, Epi.terminal_residue, FRC.Epi.terminal13"
+   "text": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c–\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form by the package for all $22{,}043$ odd primes $\\p<2.5\\times10^{5}$ and by the same program run to $1.6\\times10^{6}$ ($121{,}126$ odd primes), with zero failures of either condition. Beyond $n=\\p-1$, the wall, $n!\\equiv0$. Thm. thm:wall-e p13028, FrcCore{F2}, FrcMathlib{F2} Epi.derangements_wall_zmod, Epi.terminal_residue, FRC.Epi.terminal13"
   },
   {
    "paper": "13-epi",
@@ -60200,7 +60175,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "antiperiodicity",
-   "statement": "Antiperiodicity: $\\dr{(n+\\p)}\\equiv-\\dr{n}\\pmod\\p$ for every odd prime $\\p$ and every $n\\ge0$ of the totality, so $\\dr{n}\\bmod\\p$ depends on $n\\bmod2\\p$; the blind set $Z_0(\\p)=\\{n<\\p:\\dr{n}\\equiv0\\}$ always contains $1$, and Kurepa's hypothesis is $\\p-1\\notin Z_0(\\p)$ for every odd prime $\\p$ of the totality.",
+   "statement": "Antiperiodicity (Miska, 2016, the period $2\\p$ of $\\dr{n}\\bmod\\p$; reproved here): $\\dr{(n+\\p)}\\equiv-\\dr{n}\\pmod\\p$ for every odd prime $\\p$ and every $n\\ge0$ of the totality, so $\\dr{n}\\bmod\\p$ depends on $n\\bmod2\\p$; the blind set $Z_0(\\p)=\\{n<\\p:\\dr{n}\\equiv0\\}$ always contains $1$, and Kurepa's hypothesis is $\\p-1\\notin Z_0(\\p)$ for every odd prime $\\p$ of the totality.",
    "source": "Thm.~\\ref{thm:antiperiod}\\newline \\pywit{epi}{p13029}{F3}, \\leanwit{FrcCore}{p13029}{F3}, \\leanwit{FrcMathlib}{p13029}{F3} \\lean{Epi.derangements\\_antiperiodic\\_zmod, FRC.Epi.dr\\_antiperiodic, FRC.Epi.dr\\_succ}",
    "page": "13-epi/index.html#F3",
    "witness": {
@@ -60238,7 +60213,7 @@
     ]
    },
    "refs": [],
-   "text": "Antiperiodicity: $\\dr{(n+\\p)}\\equiv-\\dr{n}\\pmod\\p$ for every odd prime $\\p$ and every $n\\ge0$ of the totality, so $\\dr{n}\\bmod\\p$ depends on $n\\bmod2\\p$; the blind set $Z_0(\\p)=\\{n<\\p:\\dr{n}\\equiv0\\}$ always contains $1$, and Kurepa's hypothesis is $\\p-1\\notin Z_0(\\p)$ for every odd prime $\\p$ of the totality. Thm. thm:antiperiod p13029, FrcCore{F3}, FrcMathlib{F3} Epi.derangements_antiperiodic_zmod, FRC.Epi.dr_antiperiodic, FRC.Epi.dr_succ"
+   "text": "Antiperiodicity (Miska, 2016, the period $2\\p$ of $\\dr{n}\\bmod\\p$; reproved here): $\\dr{(n+\\p)}\\equiv-\\dr{n}\\pmod\\p$ for every odd prime $\\p$ and every $n\\ge0$ of the totality, so $\\dr{n}\\bmod\\p$ depends on $n\\bmod2\\p$; the blind set $Z_0(\\p)=\\{n<\\p:\\dr{n}\\equiv0\\}$ always contains $1$, and Kurepa's hypothesis is $\\p-1\\notin Z_0(\\p)$ for every odd prime $\\p$ of the totality. Thm. thm:antiperiod p13029, FrcCore{F3}, FrcMathlib{F3} Epi.derangements_antiperiodic_zmod, FRC.Epi.dr_antiperiodic, FRC.Epi.dr_succ"
   },
   {
    "paper": "13-epi",
@@ -60416,8 +60391,8 @@
    "tag": "T",
    "name": null,
    "lean_name": "tail_identity_blind_set",
-   "statement": "The tail identity: $j!\\,\\dr{(\\p-1-j)}\\equiv(-1)^{j}\\bigl(\\Ku{\\p}-\\Ku{j}\\bigr)\\pmod\\p$ for $0\\le j\\le\\p-1$ ($j=0$ is F2); hence $n\\in Z_0(\\p)$ iff $\\Ku{(\\p-1-n)}\\equiv\\Ku{\\p}$: the blind set counts the collisions of the partial sums of the left factorial with their total, $n=1$ is the forced collision $\\Ku{(\\p-2)}\\equiv\\Ku{\\p}$, and Kurepa's hypothesis is the return-to-origin question of the walk with steps $j!$.",
-   "source": "Lem.~\\ref{lem:wilson}, Thm.~\\ref{thm:wall-e}\\newline \\pywit{epi}{p13066}{F8}, \\leanwit{FrcMathlib}{p13066}{F8} \\lean{Epi.tail\\_identity\\_zmod, Epi.blind\\_iff\\_collision}",
+   "statement": "The tail identity (Kellner, 2004, Lemma~2.4, in the reflected index; reproved here): $j!\\,\\dr{(\\p-1-j)}\\equiv(-1)^{j}\\bigl(\\Ku{\\p}-\\Ku{j}\\bigr)\\pmod\\p$ for $0\\le j\\le\\p-1$ ($j=0$ is F2); hence $n\\in Z_0(\\p)$ iff $\\Ku{(\\p-1-n)}\\equiv\\Ku{\\p}$: the blind set counts the collisions of the partial sums of the left factorial with their total, $n=1$ is the forced collision $\\Ku{(\\p-2)}\\equiv\\Ku{\\p}$, and Kurepa's hypothesis is the return-to-origin question of the walk with steps $j!$.",
+   "source": "Thm.~\\ref{thm:wall-e}(ii)\\newline \\pywit{epi}{p13066}{F8}, \\leanwit{FrcMathlib}{p13066}{F8} \\lean{Epi.tail\\_identity\\_zmod, Epi.blind\\_iff\\_collision}",
    "page": "13-epi/index.html#F8",
    "witness": {
     "py": {
@@ -60448,7 +60423,7 @@
    "refs": [
     "p13028"
    ],
-   "text": "The tail identity: $j! \\dr{(\\p-1-j)}\\equiv(-1)^{j}\\bigl(\\Ku{\\p}-\\Ku{j}\\bigr)\\pmod\\p$ for $0\\le j\\le\\p-1$ ($j=0$ is F2); hence $n\\in Z_0(\\p)$ iff $\\Ku{(\\p-1-n)}\\equiv\\Ku{\\p}$: the blind set counts the collisions of the partial sums of the left factorial with their total, $n=1$ is the forced collision $\\Ku{(\\p-2)}\\equiv\\Ku{\\p}$, and Kurepa's hypothesis is the return-to-origin question of the walk with steps $j!$. Lem. lem:wilson, Thm. thm:wall-e p13066, FrcMathlib{F8} Epi.tail_identity_zmod, Epi.blind_iff_collision"
+   "text": "The tail identity (Kellner, 2004, Lemma 2.4, in the reflected index; reproved here): $j! \\dr{(\\p-1-j)}\\equiv(-1)^{j}\\bigl(\\Ku{\\p}-\\Ku{j}\\bigr)\\pmod\\p$ for $0\\le j\\le\\p-1$ ($j=0$ is F2); hence $n\\in Z_0(\\p)$ iff $\\Ku{(\\p-1-n)}\\equiv\\Ku{\\p}$: the blind set counts the collisions of the partial sums of the left factorial with their total, $n=1$ is the forced collision $\\Ku{(\\p-2)}\\equiv\\Ku{\\p}$, and Kurepa's hypothesis is the return-to-origin question of the walk with steps $j!$. Thm. thm:wall-e(ii) p13066, FrcMathlib{F8} Epi.tail_identity_zmod, Epi.blind_iff_collision"
   },
   {
    "paper": "13-epi",
@@ -60663,8 +60638,8 @@
    "tag": "T",
    "name": null,
    "lean_name": "first_order_wall_vanishing",
-   "statement": "First-order wall vanishing of the arcsin chain: $\\sigma_\\p=\\sum_{k<m}\\Cb{k}/((2k+1)16^{k})\\equiv0\\pmod\\p$ for every prime $\\p\\ge5$ of the totality, $\\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\\Cb{k}\\equiv(-4)^{k}\\binom mk$. Verified for all $428$ odd primes $5\\le\\p<3000$; the ingredients for $m\\le60$, $\\p<500$.",
-   "source": "Thm.~\\ref{thm:vanish}, eq.~\\eqref{eq:key}\\newline \\pywit{epi}{p13039}{G6}, \\leanwit{FrcCore}{p13039}{G6}, \\leanwit{FrcMathlib}{p13039}{G6} \\lean{FRC.Epi.sigma\\_vanishes\\_all, FRC.Epi.arcsin\\_wall\\_vanishing}",
+   "statement": "First-order wall vanishing of the arcsin chain: $\\sigma_\\p=\\sum_{k<m}\\Cb{k}/((2k+1)16^{k})\\equiv0\\pmod\\p$ for every prime $\\p\\ge5$ of the totality, $\\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\\Cb{k}\\equiv(-4)^{k}\\binom mk$; proved in Lean for every prime $\\p\\ge5$ on Mathlib, the same route. Verified for all $428$ odd primes $5\\le\\p<3000$; the ingredients for $m\\le60$, $\\p<500$.",
+   "source": "Thm.~\\ref{thm:vanish}, eq.~\\eqref{eq:key}\\newline \\pywit{epi}{p13039}{G6}, \\leanwit{FrcCore}{p13039}{G6}, \\leanwit{FrcMathlib}{p13039}{G6} \\lean{FRC.Epi.sigma\\_vanishes\\_all, Epi.arcsin\\_wall\\_vanishing}",
    "page": "13-epi/index.html#G6",
    "witness": {
     "py": {
@@ -60693,7 +60668,7 @@
     ]
    },
    "refs": [],
-   "text": "First-order wall vanishing of the arcsin chain: $\\sigma_\\p=\\sum_{k<m}\\Cb{k}/((2k+1)16^{k})\\equiv0\\pmod\\p$ for every prime $\\p\\ge5$ of the totality, $\\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\\Cb{k}\\equiv(-4)^{k}\\binom mk$. Verified for all $428$ odd primes $5\\le\\p<3000$; the ingredients for $m\\le60$, $\\p<500$. Thm. thm:vanish, eq. eq:key p13039, FrcCore{G6}, FrcMathlib{G6} FRC.Epi.sigma_vanishes_all, FRC.Epi.arcsin_wall_vanishing"
+   "text": "First-order wall vanishing of the arcsin chain: $\\sigma_\\p=\\sum_{k<m}\\Cb{k}/((2k+1)16^{k})\\equiv0\\pmod\\p$ for every prime $\\p\\ge5$ of the totality, $\\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\\Cb{k}\\equiv(-4)^{k}\\binom mk$; proved in Lean for every prime $\\p\\ge5$ on Mathlib, the same route. Verified for all $428$ odd primes $5\\le\\p<3000$; the ingredients for $m\\le60$, $\\p<500$. Thm. thm:vanish, eq. eq:key p13039, FrcCore{G6}, FrcMathlib{G6} FRC.Epi.sigma_vanishes_all, Epi.arcsin_wall_vanishing"
   },
   {
    "paper": "13-epi",
@@ -60898,7 +60873,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "exact_angular_carrier_pi",
-   "statement": "The exact angular carrier of $\\pi$: $\\chi(-1)=e^{\\imR\\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\\gen^{(\\p-1)/2}$ sits at arc fraction one half --- Euler's identity as the half-turn tautology $\\gen^{2\\kap}=-1$ under the dictionary, with no calibration and no error term.",
+   "statement": "The exact angular counterpart of $\\pi$: $\\chi(-1)=e^{\\imR\\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\\gen^{(\\p-1)/2}$ sits at arc fraction one half --- Euler's identity as the half-turn tautology $\\gen^{2\\kap}=-1$ under the dictionary, with no calibration and no error term.",
    "source": "Thm.~\\ref{thm:exact-pi}\\newline \\pywit{epi}{p13044}{H2}, \\leanwit{FrcCore}{p13044}{H2} \\lean{FRC.Shell.Frame.half\\_period}",
    "page": "13-epi/index.html#H2",
    "witness": {
@@ -60920,7 +60895,7 @@
     ]
    },
    "refs": [],
-   "text": "The exact angular carrier of $\\pi$: $\\chi(-1)=e^{\\imR\\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\\gen^{(\\p-1)/2}$ sits at arc fraction one half — Euler's identity as the half-turn tautology $\\gen^{2\\kap}=-1$ under the dictionary, with no calibration and no error term. Thm. thm:exact-pi p13044, FrcCore{H2} FRC.Shell.Frame.half_period"
+   "text": "The exact angular counterpart of $\\pi$: $\\chi(-1)=e^{\\imR\\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\\gen^{(\\p-1)/2}$ sits at arc fraction one half — Euler's identity as the half-turn tautology $\\gen^{2\\kap}=-1$ under the dictionary, with no calibration and no error term. Thm. thm:exact-pi p13044, FrcCore{H2} FRC.Shell.Frame.half_period"
   },
   {
    "paper": "13-epi",
@@ -60932,7 +60907,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "exact_calibration_impossible",
-   "statement": "Exact calibration of $e$ is impossible: with $\\theta=2\\piR\\lambda(\\im)/(\\p-1)$ the frame angle of $\\eP$, $\\theta\\ne1$ in every shell ($\\theta=1$ would make $\\piR$ rational, A2); $\\chi(\\eP)$ is a root of unity while $e^{\\imR}$ is not, so the identification is intrinsically horizon-limited.",
+   "statement": "Exact calibration of $e$ is impossible: with $\\theta=2\\piR\\lambda(\\im)/(\\p-1)$ the frame angle of $\\eP$, $\\theta\\ne1$ in every shell ($\\theta=1$ would make $\\piR$ rational, A2); $\\chi(\\eP)$ is a root of unity while $e^{\\imR}$ is not, so the identification is intrinsically precision-limited.",
    "source": "Lem.~\\ref{lem:norad}\\newline \\pywit{epi}{p13045}{H3}, \\leanwit{FrcCore}{p13045}{H3}, \\leanwit{FrcMathlib}{p13045}{H3} \\lean{Epi.calibration\\_ne\\_one, Epi.exp\\_I\\_ne\\_one, FRC.Epi.no\\_exact\\_calibration}",
    "page": "13-epi/index.html#H3",
    "witness": {
@@ -60972,7 +60947,7 @@
    "refs": [
     "p13002"
    ],
-   "text": "Exact calibration of $e$ is impossible: with $\\theta=2\\piR\\lambda(\\im)/(\\p-1)$ the frame angle of $\\eP$, $\\theta\\ne1$ in every shell ($\\theta=1$ would make $\\piR$ rational, A2); $\\chi(\\eP)$ is a root of unity while $e^{\\imR}$ is not, so the identification is intrinsically horizon-limited. Lem. lem:norad p13045, FrcCore{H3}, FrcMathlib{H3} Epi.calibration_ne_one, Epi.exp_I_ne_one, FRC.Epi.no_exact_calibration"
+   "text": "Exact calibration of $e$ is impossible: with $\\theta=2\\piR\\lambda(\\im)/(\\p-1)$ the frame angle of $\\eP$, $\\theta\\ne1$ in every shell ($\\theta=1$ would make $\\piR$ rational, A2); $\\chi(\\eP)$ is a root of unity while $e^{\\imR}$ is not, so the identification is intrinsically precision-limited. Lem. lem:norad p13045, FrcCore{H3}, FrcMathlib{H3} Epi.calibration_ne_one, Epi.exp_I_ne_one, FRC.Epi.no_exact_calibration"
   },
   {
    "paper": "13-epi",
@@ -61031,7 +61006,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "null_experiment",
-   "statement": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$.",
+   "statement": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial counterparts of $e$.",
    "source": "Exp.~\\ref{exp:null}\\newline \\pywit{epi}{p13047}{H5}, \\leanwit{FrcMathlib}{p13047}{H5} \\lean{Epi.index\\_condition\\_shell, Epi.index\\_condition}",
    "page": "13-epi/index.html#H5",
    "witness": {
@@ -61061,7 +61036,7 @@
     ]
    },
    "refs": [],
-   "text": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$. Exp. exp:null p13047, FrcMathlib{H5} Epi.index_condition_shell, Epi.index_condition"
+   "text": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial counterparts of $e$. Exp. exp:null p13047, FrcMathlib{H5} Epi.index_condition_shell, Epi.index_condition"
   },
   {
    "paper": "13-epi",
@@ -61073,7 +61048,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "emergence_classical_e",
-   "statement": "Emergence of the classical $e$: (i) in every shell with $\\p>n_1+|Z_0(\\p)|+1$ a non-blind scale in $[n_1,n_1+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the residue line, antiperiodic in its derangement denominators, blind on $Z_0(\\p)$, terminating on $-(\\Ku{\\p})^{-1}$, read out beyond $n_1$ as one dyadic rational; (iii) $\\chi(\\eP)$ approaches $e^{\\imR}$ along the calibrated shells, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5.",
+   "statement": "Emergence of the classical $e$: (i) in every shell with $\\p>n_1+|Z_0(\\p)|+1$ a non-blind scale in $[n_1,n_1+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the residue line, antiperiodic in its derangement denominators, blind on $Z_0(\\p)$, terminating on $-(\\Ku{\\p})^{-1}$, read out beyond $n_1$ as one dyadic rational; (iii) $\\chi(\\eP)$ approaches $e^{\\imR}$ along the calibrated shells, exact calibration impossible, no pointwise link between the counterparts. Composed from D4, F2, F3, F5, H3--H5.",
    "source": "Thm.~\\ref{thm:main-e}\\newline \\pywit{epi}{p13048}{I1}, \\leanwit{FrcCore}{p13048}{I1}, \\leanwit{FrcMathlib}{p13048}{I1} \\lean{Epi.readout\\_binary64, Epi.calibration\\_ne\\_one, Epi.calibrated\\_778933, FRC.Epi.readout\\_e\\_core, FRC.Epi.terminal13, FRC.Epi.dr\\_antiperiodic, FRC.Epi.blind\\_census, FRC.Epi.no\\_exact\\_calibration}",
    "page": "13-epi/index.html#I1",
    "witness": {
@@ -61158,7 +61133,7 @@
     "p13045",
     "p13047"
    ],
-   "text": "Emergence of the classical $e$: (i) in every shell with $\\p>n_1+|Z_0(\\p)|+1$ a non-blind scale in $[n_1,n_1+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the residue line, antiperiodic in its derangement denominators, blind on $Z_0(\\p)$, terminating on $-(\\Ku{\\p})^{-1}$, read out beyond $n_1$ as one dyadic rational; (iii) $\\chi(\\eP)$ approaches $e^{\\imR}$ along the calibrated shells, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3–H5. Thm. thm:main-e p13048, FrcCore{I1}, FrcMathlib{I1} Epi.readout_binary64, Epi.calibration_ne_one, Epi.calibrated_778933, FRC.Epi.readout_e_core, FRC.Epi.terminal13, FRC.Epi.dr_antiperiodic, FRC.Epi.blind_census, FRC.Epi.no_exact_calibration"
+   "text": "Emergence of the classical $e$: (i) in every shell with $\\p>n_1+|Z_0(\\p)|+1$ a non-blind scale in $[n_1,n_1+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the residue line, antiperiodic in its derangement denominators, blind on $Z_0(\\p)$, terminating on $-(\\Ku{\\p})^{-1}$, read out beyond $n_1$ as one dyadic rational; (iii) $\\chi(\\eP)$ approaches $e^{\\imR}$ along the calibrated shells, exact calibration impossible, no pointwise link between the counterparts. Composed from D4, F2, F3, F5, H3–H5. Thm. thm:main-e p13048, FrcCore{I1}, FrcMathlib{I1} Epi.readout_binary64, Epi.calibration_ne_one, Epi.calibrated_778933, FRC.Epi.readout_e_core, FRC.Epi.terminal13, FRC.Epi.dr_antiperiodic, FRC.Epi.blind_census, FRC.Epi.no_exact_calibration"
   },
   {
    "paper": "13-epi",
@@ -61258,7 +61233,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "e_pi_duality",
-   "statement": "The duality: $\\pi$ is angular-exact and wall-trivial (tautological carrier, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\\pi$ a structural, $e$ a statistical constant of the finite frame.",
+   "statement": "The duality: $\\pi$ is angular-exact and wall-trivial (tautological counterpart, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\\pi$ a structural, $e$ a statistical constant of the finite frame.",
    "source": "\\S\\ref{sec:duality}\\newline \\pywit{epi}{p13050}{I3}, \\leanwit{FrcCore}{p13050}{I3}, \\leanwit{FrcMathlib}{p13050}{I3} \\lean{Epi.calibration\\_ne\\_one, Epi.machin\\_bound, Epi.compound\\_cost, FRC.Epi.residue\\_line\\_pi13, FRC.Epi.terminal13, FRC.Epi.kurepa\\_alt\\_values, FRC.Epi.blind\\_census, FRC.Epi.no\\_exact\\_calibration}",
    "page": "13-epi/index.html#I3",
    "witness": {
@@ -61336,7 +61311,7 @@
     ]
    },
    "refs": [],
-   "text": "The duality: $\\pi$ is angular-exact and wall-trivial (tautological carrier, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\\pi$ a structural, $e$ a statistical constant of the finite frame. \\Ssec:duality p13050, FrcCore{I3}, FrcMathlib{I3} Epi.calibration_ne_one, Epi.machin_bound, Epi.compound_cost, FRC.Epi.residue_line_pi13, FRC.Epi.terminal13, FRC.Epi.kurepa_alt_values, FRC.Epi.blind_census, FRC.Epi.no_exact_calibration"
+   "text": "The duality: $\\pi$ is angular-exact and wall-trivial (tautological counterpart, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\\pi$ a structural, $e$ a statistical constant of the finite frame. \\Ssec:duality p13050, FrcCore{I3}, FrcMathlib{I3} Epi.calibration_ne_one, Epi.machin_bound, Epi.compound_cost, FRC.Epi.residue_line_pi13, FRC.Epi.terminal13, FRC.Epi.kurepa_alt_values, FRC.Epi.blind_census, FRC.Epi.no_exact_calibration"
   },
   {
    "paper": "13-epi",
@@ -61603,7 +61578,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "two_constants_two_walls",
-   "statement": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper.",
+   "statement": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the wall; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper.",
    "source": "\\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13057}{J6}, \\leanwit{FrcCore}{p13057}{J6}, \\leanwit{FrcMathlib}{p13057}{J6} \\lean{Epi.derangements\\_wall\\_zmod, Epi.half\\_wall\\_second\\_order, FRC.Epi.terminal13, FRC.Epi.invariants\\_13\\_1093}",
    "page": "13-epi/index.html#J6",
    "witness": {
@@ -61651,7 +61626,7 @@
    "refs": [
     "p13037"
    ],
-   "text": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells — per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper. \\Ssec:consequences p13057, FrcCore{J6}, FrcMathlib{J6} Epi.derangements_wall_zmod, Epi.half_wall_second_order, FRC.Epi.terminal13, FRC.Epi.invariants_13_1093"
+   "text": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells — per-instance decidability without a uniform bound, the characteristic shape of statements at the wall; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper. \\Ssec:consequences p13057, FrcCore{J6}, FrcMathlib{J6} Epi.derangements_wall_zmod, Epi.half_wall_second_order, FRC.Epi.terminal13, FRC.Epi.invariants_13_1093"
   },
   {
    "paper": "13-epi",
@@ -75449,7 +75424,7 @@
    "name": null,
    "lean_name": "electromagnetism",
    "statement": "Electromagnetism on a cycle of order $M$, with $M=\\p+1$ on the charge cycle and $M=\\p-1$ on a split cycle: charge as a quantised winding index, the photon fixed by the drive and massless at the vacuum (C5), the repulsive sign, the unique Maxwell operator, and $\\al_{\\mathrm{bare}}=1/4\\pi$ as the phase-channel capacity normalisation.",
-   "source": "Prop.~\\ref{prop:charge}, Thm.~\\ref{thm:o1}, Prop.~\\ref{prop:bare}\\newline \\pywit{fields}{p27014}{C2}, \\leanwit{FrcCore}{p27014}{C2}; rests on B10, C5, C15, C16 \\lean{FRC.Interactions.gauge\\_flux\\_invariant, FRC.Interactions.projector\\_forced, FRC.Interactions.admissible\\_two}",
+   "source": "Prop.~\\ref{prop:charge}, Thm.~\\ref{thm:o1}, Prop.~\\ref{prop:bare}; rests on B10, C5, C15, C16\\newline \\pywit{fields}{p27014}{C2}, \\leanwit{FrcCore}{p27014}{C2} \\lean{FRC.Interactions.gauge\\_flux\\_invariant, FRC.Interactions.projector\\_forced, FRC.Interactions.admissible\\_two}",
    "page": "27-fields/index.html#C2",
    "witness": {
     "py": {
@@ -75494,7 +75469,7 @@
     "p27057",
     "p27058"
    ],
-   "text": "Electromagnetism on a cycle of order $M$, with $M=\\p+1$ on the charge cycle and $M=\\p-1$ on a split cycle: charge as a quantised winding index, the photon fixed by the drive and massless at the vacuum (C5), the repulsive sign, the unique Maxwell operator, and $\\al_{\\mathrm{bare}}=1/4\\pi$ as the phase-channel capacity normalisation. Prop. prop:charge, Thm. thm:o1, Prop. prop:bare p27014, FrcCore{C2}; rests on B10, C5, C15, C16 FRC.Interactions.gauge_flux_invariant, FRC.Interactions.projector_forced, FRC.Interactions.admissible_two"
+   "text": "Electromagnetism on a cycle of order $M$, with $M=\\p+1$ on the charge cycle and $M=\\p-1$ on a split cycle: charge as a quantised winding index, the photon fixed by the drive and massless at the vacuum (C5), the repulsive sign, the unique Maxwell operator, and $\\al_{\\mathrm{bare}}=1/4\\pi$ as the phase-channel capacity normalisation. Prop. prop:charge, Thm. thm:o1, Prop. prop:bare; rests on B10, C5, C15, C16 p27014, FrcCore{C2} FRC.Interactions.gauge_flux_invariant, FRC.Interactions.projector_forced, FRC.Interactions.admissible_two"
   },
   {
    "paper": "27-fld",
@@ -75507,7 +75482,7 @@
    "name": null,
    "lean_name": "coulomb_law_maxwell_dynamics",
    "statement": "The Coulomb law and Maxwell dynamics, as corollaries of the abelian correspondence, the $1/4\\pi r$ law read on the chart.",
-   "source": "Prop.~\\ref{prop:coulomb}\\newline \\pywit{fields}{p27015}{C3}, \\leanwit{FrcCore}{p27015}{C3}; rests on B2, C1, C2 \\lean{FRC.Interactions.green\\_torus}",
+   "source": "Prop.~\\ref{prop:coulomb}; rests on B2, C1, C2\\newline \\pywit{fields}{p27015}{C3}, \\leanwit{FrcCore}{p27015}{C3} \\lean{FRC.Interactions.green\\_torus}",
    "page": "27-fields/index.html#C3",
    "witness": {
     "py": {
@@ -75533,7 +75508,7 @@
     "p27013",
     "p27014"
    ],
-   "text": "The Coulomb law and Maxwell dynamics, as corollaries of the abelian correspondence, the $1/4\\pi r$ law read on the chart. Prop. prop:coulomb p27015, FrcCore{C3}; rests on B2, C1, C2 FRC.Interactions.green_torus"
+   "text": "The Coulomb law and Maxwell dynamics, as corollaries of the abelian correspondence, the $1/4\\pi r$ law read on the chart. Prop. prop:coulomb; rests on B2, C1, C2 p27015, FrcCore{C3} FRC.Interactions.green_torus"
   },
   {
    "paper": "27-fld",
@@ -75546,7 +75521,7 @@
    "name": null,
    "lean_name": "weak_sector",
    "statement": "The weak sector: the cell-local $\\SU(2)$ Wilson connection, the weights $\\gen^{\\pm1}$ of one chronon and $\\gen^{\\pm2}$ of two chronons on the charged directions, and the Frobenius as the inversion of the boost cycle, over which the sum of a boost's phase vanishes.",
-   "source": "Prop.~\\ref{prop:weakconn}, Thm.~\\ref{thm:break}, Rem.~\\ref{rmk:boost}\\newline \\pywit{fields}{p27016}{C4}, \\leanwit{FrcCore}{p27016}{C4}; rests on B10 \\lean{FRC.Interactions.drive\\_adjoint, FRC.Unitary.drive\\_lift, FRC.Interactions.va\\_cancel, FRC.Interactions.orientation\\_flip, FRC.Interactions.tetrahedral\\_group, FRC.Unitary.class\\_function}",
+   "source": "Prop.~\\ref{prop:weakconn}, Thm.~\\ref{thm:break}, Rem.~\\ref{rmk:boost}; rests on B10\\newline \\pywit{fields}{p27016}{C4}, \\leanwit{FrcCore}{p27016}{C4} \\lean{FRC.Interactions.drive\\_adjoint, FRC.Unitary.drive\\_lift, FRC.Interactions.va\\_cancel, FRC.Interactions.orientation\\_flip, FRC.Interactions.tetrahedral\\_group, FRC.Unitary.class\\_function}",
    "page": "27-fields/index.html#C4",
    "witness": {
     "py": {
@@ -75610,7 +75585,7 @@
     "p00067",
     "p27054"
    ],
-   "text": "The weak sector: the cell-local $\\SU(2)$ Wilson connection, the weights $\\gen^{\\pm1}$ of one chronon and $\\gen^{\\pm2}$ of two chronons on the charged directions, and the Frobenius as the inversion of the boost cycle, over which the sum of a boost's phase vanishes. Prop. prop:weakconn, Thm. thm:break, Rem. rmk:boost p27016, FrcCore{C4}; rests on B10 FRC.Interactions.drive_adjoint, FRC.Unitary.drive_lift, FRC.Interactions.va_cancel, FRC.Interactions.orientation_flip, FRC.Interactions.tetrahedral_group, FRC.Unitary.class_function"
+   "text": "The weak sector: the cell-local $\\SU(2)$ Wilson connection, the weights $\\gen^{\\pm1}$ of one chronon and $\\gen^{\\pm2}$ of two chronons on the charged directions, and the Frobenius as the inversion of the boost cycle, over which the sum of a boost's phase vanishes. Prop. prop:weakconn, Thm. thm:break, Rem. rmk:boost; rests on B10 p27016, FrcCore{C4} FRC.Interactions.drive_adjoint, FRC.Unitary.drive_lift, FRC.Interactions.va_cancel, FRC.Interactions.orientation_flip, FRC.Interactions.tetrahedral_group, FRC.Unitary.class_function"
   },
   {
    "paper": "27-fld",
@@ -75623,7 +75598,7 @@
    "name": null,
    "lean_name": "mass_form_of_doublet",
    "statement": "The mass form of the doublet and custodial $\\rho=1$. On the Subject's extension, with the Frobenius as conjugation, the mass form of the template's covariant term (A4) at the unit vacuum of the alignment field (B10) and the invariant form of the generators take values in the shell. The mass operator has the photon as kernel and the values $g^2/4$, twice, and $(g^2+g'^2)/4$, with four independent eigenvectors exactly when $g^2+g'^2\\neq0$. Then, for $g\\neq0$, $\\rho=1$, and $M_W^2/M_Z^2$ is $5/8$ at the frame's rational $3/8$. The scale $v$ enters on the chart [chart]. The spectrum is the chart's reading of the windings of Theorem~\\ref{thm:break}.",
-   "source": "Prop.~\\ref{prop:rho}\\newline \\pywit{fields}{p27017}{C5}, \\leanwit{FrcCore}{p27017}{C5}; rests on A4, B3, B10, C4 \\lean{FRC.Chirality.mass\\_form, FRC.Chirality.mass\\_spectrum, FRC.Chirality.mass\\_independent, FRC.Chirality.mass\\_block\\_square, FRC.Chirality.invariant\\_form, FRC.Interactions.neutral\\_block, FRC.Interactions.five\\_eighths}",
+   "source": "Prop.~\\ref{prop:rho}; rests on A4, B3, B10, C4\\newline \\pywit{fields}{p27017}{C5}, \\leanwit{FrcCore}{p27017}{C5} \\lean{FRC.Chirality.mass\\_form, FRC.Chirality.mass\\_spectrum, FRC.Chirality.mass\\_independent, FRC.Chirality.mass\\_block\\_square, FRC.Chirality.invariant\\_form, FRC.Interactions.neutral\\_block, FRC.Interactions.five\\_eighths}",
    "page": "27-fields/index.html#C5",
    "witness": {
     "py": {
@@ -75697,7 +75672,7 @@
     "p27016",
     "p27054"
    ],
-   "text": "The mass form of the doublet and custodial $\\rho=1$. On the Subject's extension, with the Frobenius as conjugation, the mass form of the template's covariant term (A4) at the unit vacuum of the alignment field (B10) and the invariant form of the generators take values in the shell. The mass operator has the photon as kernel and the values $g^2/4$, twice, and $(g^2+g'^2)/4$, with four independent eigenvectors exactly when $g^2+g'^2\\neq0$. Then, for $g\\neq0$, $\\rho=1$, and $M_W^2/M_Z^2$ is $5/8$ at the frame's rational $3/8$. The scale $v$ enters on the chart [chart]. The spectrum is the chart's reading of the windings of Theorem thm:break. Prop. prop:rho p27017, FrcCore{C5}; rests on A4, B3, B10, C4 FRC.Chirality.mass_form, FRC.Chirality.mass_spectrum, FRC.Chirality.mass_independent, FRC.Chirality.mass_block_square, FRC.Chirality.invariant_form, FRC.Interactions.neutral_block, FRC.Interactions.five_eighths"
+   "text": "The mass form of the doublet and custodial $\\rho=1$. On the Subject's extension, with the Frobenius as conjugation, the mass form of the template's covariant term (A4) at the unit vacuum of the alignment field (B10) and the invariant form of the generators take values in the shell. The mass operator has the photon as kernel and the values $g^2/4$, twice, and $(g^2+g'^2)/4$, with four independent eigenvectors exactly when $g^2+g'^2\\neq0$. Then, for $g\\neq0$, $\\rho=1$, and $M_W^2/M_Z^2$ is $5/8$ at the frame's rational $3/8$. The scale $v$ enters on the chart [chart]. The spectrum is the chart's reading of the windings of Theorem thm:break. Prop. prop:rho; rests on A4, B3, B10, C4 p27017, FrcCore{C5} FRC.Chirality.mass_form, FRC.Chirality.mass_spectrum, FRC.Chirality.mass_independent, FRC.Chirality.mass_block_square, FRC.Chirality.invariant_form, FRC.Interactions.neutral_block, FRC.Interactions.five_eighths"
   },
   {
    "paper": "27-fld",
@@ -75765,13 +75740,13 @@
    "name": null,
    "lean_name": "strong_sector",
    "statement": "The strong sector: the colour frame $\\SU(3,\\F_q)$ over the Subject's extension, its centre of order $\\gcd(3,q+1)$ (on the Subject $173$, not on $13$ or $1549$), the gluon connection, and the area law at strong coupling [chart], with the string tension $\\sigma(\\beta)=-\\ln c_1(\\beta)$ in closed form on $2T$ and the colour series $c_1^{\\SU(3)}=\\tfrac\\beta{18}+\\tfrac{\\beta^2}{216}+\\cdots$, the frame's invariants the compact ones through degree $2\\p-1$, and the coefficients of the formal series built from their counts the compact ones below order $\\beta^{\\p}$ \\citep{akhtman2026yangmills}.",
-   "source": "Prop.~\\ref{prop:su3}, Prop.~\\ref{prop:gluon}, Prop.~\\ref{prop:corrarea}\\newline \\pywit{fields}{p27019}{C7}, \\leanwit{FrcCore}{p27019}{C7}, \\leanwit{FrcMathlib}{p27019}{C7}; rests on A2, B4 \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
+   "source": "Prop.~\\ref{prop:su3}, Prop.~\\ref{prop:gluon}, Prop.~\\ref{prop:corrarea}; rests on A2, B4\\newline \\pywit{fields}{p27019}{C7}, \\leanwit{FrcCore}{p27019}{C7}, \\leanwit{FrcMathlib}{p27019}{C7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
    "page": "27-fields/index.html#C7",
    "witness": {
     "py": {
      "href": "py/fields.html#p27019",
      "script": "p27_fields.py",
-     "line": 1335,
+     "line": 1331,
      "verdict": "pass"
     },
     "lean": [
@@ -75815,7 +75790,7 @@
     "p27002",
     "p27010"
    ],
-   "text": "The strong sector: the colour frame $\\SU(3,\\F_q)$ over the Subject's extension, its centre of order $\\gcd(3,q+1)$ (on the Subject $173$, not on $13$ or $1549$), the gluon connection, and the area law at strong coupling [chart], with the string tension $\\sigma(\\beta)=-\\ln c_1(\\beta)$ in closed form on $2T$ and the colour series $c_1^{\\SU(3)}=\\tfrac\\beta{18}+\\tfrac{\\beta^2}{216}+\\cdots$, the frame's invariants the compact ones through degree $2\\p-1$, and the coefficients of the formal series built from their counts the compact ones below order $\\beta^{\\p}$ [akhtman2026yangmills]. Prop. prop:su3, Prop. prop:gluon, Prop. prop:corrarea p27019, FrcCore{C7}, FrcMathlib{C7}; rests on A2, B4 FRC.Interactions.su3_centre, FRC.Interactions.gluon_commutator, FRC.Interactions.rank_tower, Fields.area_law_positive"
+   "text": "The strong sector: the colour frame $\\SU(3,\\F_q)$ over the Subject's extension, its centre of order $\\gcd(3,q+1)$ (on the Subject $173$, not on $13$ or $1549$), the gluon connection, and the area law at strong coupling [chart], with the string tension $\\sigma(\\beta)=-\\ln c_1(\\beta)$ in closed form on $2T$ and the colour series $c_1^{\\SU(3)}=\\tfrac\\beta{18}+\\tfrac{\\beta^2}{216}+\\cdots$, the frame's invariants the compact ones through degree $2\\p-1$, and the coefficients of the formal series built from their counts the compact ones below order $\\beta^{\\p}$ [akhtman2026yangmills]. Prop. prop:su3, Prop. prop:gluon, Prop. prop:corrarea; rests on A2, B4 p27019, FrcCore{C7}, FrcMathlib{C7} FRC.Interactions.su3_centre, FRC.Interactions.gluon_commutator, FRC.Interactions.rank_tower, Fields.area_law_positive"
   },
   {
    "paper": "27-fld",
@@ -75828,13 +75803,13 @@
    "name": null,
    "lean_name": "standard_model_generation_spinor",
    "statement": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the naming B5.",
-   "source": "Thm.~\\ref{thm:gen}\\newline \\pywit{fields}{p27020}{C8}, \\leanwit{FrcCore}{p27020}{C8}; rests on A4, B5 \\lean{FRC.Interactions.one\\_generation}",
+   "source": "Thm.~\\ref{thm:gen}; rests on A4, B5\\newline \\pywit{fields}{p27020}{C8}, \\leanwit{FrcCore}{p27020}{C8} \\lean{FRC.Interactions.one\\_generation}",
    "page": "27-fields/index.html#C8",
    "witness": {
     "py": {
      "href": "py/fields.html#p27020",
      "script": "p27_fields.py",
-     "line": 1366,
+     "line": 1362,
      "verdict": "pass"
     },
     "lean": [
@@ -75854,7 +75829,7 @@
     "p27011",
     "p27020"
    ],
-   "text": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the naming B5. Thm. thm:gen p27020, FrcCore{C8}; rests on A4, B5 FRC.Interactions.one_generation"
+   "text": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the naming B5. Thm. thm:gen; rests on A4, B5 p27020, FrcCore{C8} FRC.Interactions.one_generation"
   },
   {
    "paper": "27-fld",
@@ -75867,13 +75842,13 @@
    "name": null,
    "lean_name": "simple_frame_counts",
    "statement": "The counts of the simple frame: twelve of the twenty-four generators lie off the blocks, they act as automorphisms of the exterior algebra of the frame, and the sixteen states are one irreducible spinor.",
-   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27053}{C9}, \\leanwit{FrcCore}{p27053}{C9}; rests on A4, B5, B7 \\lean{FRC.Interactions.unification\\_counts, FRC.Interactions.fifth\\_direction, FRC.Interactions.offblock\\_automorphism}",
+   "source": "Prop.~\\ref{prop:unify}; rests on A4, B5, B7\\newline \\pywit{fields}{p27053}{C9}, \\leanwit{FrcCore}{p27053}{C9} \\lean{FRC.Interactions.unification\\_counts, FRC.Interactions.fifth\\_direction, FRC.Interactions.offblock\\_automorphism}",
    "page": "27-fields/index.html#C9",
    "witness": {
     "py": {
      "href": "py/fields.html#p27053",
      "script": "p27_fields.py",
-     "line": 1386,
+     "line": 1382,
      "verdict": "pass"
     },
     "lean": [
@@ -75908,7 +75883,7 @@
     "p27011",
     "p27021"
    ],
-   "text": "The counts of the simple frame: twelve of the twenty-four generators lie off the blocks, they act as automorphisms of the exterior algebra of the frame, and the sixteen states are one irreducible spinor. Prop. prop:unify p27053, FrcCore{C9}; rests on A4, B5, B7 FRC.Interactions.unification_counts, FRC.Interactions.fifth_direction, FRC.Interactions.offblock_automorphism"
+   "text": "The counts of the simple frame: twelve of the twenty-four generators lie off the blocks, they act as automorphisms of the exterior algebra of the frame, and the sixteen states are one irreducible spinor. Prop. prop:unify; rests on A4, B5, B7 p27053, FrcCore{C9} FRC.Interactions.unification_counts, FRC.Interactions.fifth_direction, FRC.Interactions.offblock_automorphism"
   },
   {
    "paper": "27-fld",
@@ -75921,13 +75896,13 @@
    "name": null,
    "lean_name": "closure_four_primitive_roles",
    "statement": "The closure of the four primitive roles ($5\\!\\to\\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter naming (B6).",
-   "source": "Prop.~\\ref{prop:threegen}\\newline \\pywit{fields}{p27022}{C10}, \\leanwit{FrcCore}{p27022}{C10}; rests on A4 \\lean{FRC.Ladder.tower\\_reduces}",
+   "source": "Prop.~\\ref{prop:threegen}; rests on A4\\newline \\pywit{fields}{p27022}{C10}, \\leanwit{FrcCore}{p27022}{C10} \\lean{FRC.Ladder.tower\\_reduces}",
    "page": "27-fields/index.html#C10",
    "witness": {
     "py": {
      "href": "py/fields.html#p27022",
      "script": "p27_fields.py",
-     "line": 1419,
+     "line": 1415,
      "verdict": "pass"
     },
     "lean": [
@@ -75946,7 +75921,7 @@
     "p00079",
     "p27004"
    ],
-   "text": "The closure of the four primitive roles ($5\\!\\to\\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter naming (B6). Prop. prop:threegen p27022, FrcCore{C10}; rests on A4 FRC.Ladder.tower_reduces"
+   "text": "The closure of the four primitive roles ($5\\!\\to\\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter naming (B6). Prop. prop:threegen; rests on A4 p27022, FrcCore{C10} FRC.Ladder.tower_reduces"
   },
   {
    "paper": "27-fld",
@@ -75965,7 +75940,7 @@
     "py": {
      "href": "py/fields.html#p27023",
      "script": "p27_fields.py",
-     "line": 1440,
+     "line": 1436,
      "verdict": "pass"
     },
     "lean": [
@@ -76004,7 +75979,7 @@
    "name": null,
    "lean_name": null,
    "statement": "The low-curvature expansion of the compact action: the Yang--Mills kinetic operator with the coefficient $I_\\rho/(2d_\\rho)=1/(2n)$ and the residue $O(\\epsilon^4)$ (Theorem~\\ref{thm:corrYM}) [chart].",
-   "source": "Thm.~\\ref{thm:corrYM}\\newline \\pywit{fields}{p27049}{C12}; rests on A3, C1",
+   "source": "Thm.~\\ref{thm:corrYM}; rests on A3, C1\\newline \\pywit{fields}{p27049}{C12}",
    "page": "27-fields/index.html#C12",
    "witness": {
     "py": {
@@ -76019,7 +75994,7 @@
     "p27003",
     "p27013"
    ],
-   "text": "The low-curvature expansion of the compact action: the Yang–Mills kinetic operator with the coefficient $I_\\rho/(2d_\\rho)=1/(2n)$ and the residue $O(\\epsilon^4)$ (Theorem thm:corrYM) [chart]. Thm. thm:corrYM p27049; rests on A3, C1"
+   "text": "The low-curvature expansion of the compact action: the Yang–Mills kinetic operator with the coefficient $I_\\rho/(2d_\\rho)=1/(2n)$ and the residue $O(\\epsilon^4)$ (Theorem thm:corrYM) [chart]. Thm. thm:corrYM; rests on A3, C1 p27049"
   },
   {
    "paper": "27-fld",
@@ -76212,7 +76187,7 @@
    "name": null,
    "lean_name": "torus_two_cycles",
    "statement": "The diagonal torus and its two cycles. Over $K$ a matrix commutes with the transport of two chronons $\\mathrm{diag}(\\gen,\\gen^{-1})$ exactly when it is diagonal. The torus of the diagonal matrices has split cycles over the shell, of order $\\p-1$, and unitary cycles, of order $\\p+1$ \\citep{akhtman2026spacetime}, and the two kinds meet in $\\pm1$. A split point has $a^{\\p-1}=1$ and a unitary point has $w^{\\p+1}=1$. No exponent $0<m<\\p-1$ is a period of the split cycle, and no exponent $0<d<\\p+1$ of the unitary cycle. Each cycle has a generator. The entries of both cycles are units of $K$: the square of a unit is its norm, a split point, times the quotient $x/\\sigma(x)$, a unitary point. The quotient is $1$ exactly on the split points, and every unitary point is such a quotient. A weight $n<\\p^{2}-1$ reads $n$ modulo $\\p-1$ on a split cycle and $n$ modulo $\\p+1$ on a unitary cycle. Two readings are the readings of a weight exactly when their difference is even. The Frobenius fixes a split point and inverts a unitary point. The frame of the doublet holds the split cycles $R(a)$, rotations with entries of the shell. A unitary point keeps the Hermitian form, and the pair $(\\mathrm{diag}(w,\\sigma(w)),w)$ fixes the vacuum. The directions $E$ and $F$ have the weights $\\pm2$, and every point fixes the diagonal generators. The lift $\\mathrm{diag}(\\eta,\\eta^{-1})$ of one chronon has the square $\\mathrm{diag}(\\gen,\\gen^{-1})$, the weights $\\gen^{\\pm1}$ on $E$ and $F$ and the norms $-\\gen^{\\pm1}$ of its entries. A ray $[x:y]$ that one chronon keeps has $xy=0$. Neither the lift nor its square is a unitary point.",
-   "source": "Thm.~\\ref{thm:break}\\newline \\pywit{fields}{p27057}{C15}, \\leanwit{FrcCore}{p27057}{C15}; rests on B10 \\lean{FRC.Unitary.torus\\_cycles, FRC.Unitary.cycle\\_orders, FRC.Unitary.unit\\_cycle, FRC.Unitary.drive\\_lift, FRC.Unitary.fixed\\_rays}",
+   "source": "Thm.~\\ref{thm:break}; rests on B10\\newline \\pywit{fields}{p27057}{C15}, \\leanwit{FrcCore}{p27057}{C15} \\lean{FRC.Unitary.torus\\_cycles, FRC.Unitary.cycle\\_orders, FRC.Unitary.unit\\_cycle, FRC.Unitary.drive\\_lift, FRC.Unitary.fixed\\_rays}",
    "page": "27-fields/index.html#C15",
    "witness": {
     "py": {
@@ -76267,7 +76242,7 @@
    "refs": [
     "p27054"
    ],
-   "text": "The diagonal torus and its two cycles. Over $K$ a matrix commutes with the transport of two chronons $\\mathrm{diag}(\\gen,\\gen^{-1})$ exactly when it is diagonal. The torus of the diagonal matrices has split cycles over the shell, of order $\\p-1$, and unitary cycles, of order $\\p+1$ [akhtman2026spacetime], and the two kinds meet in $\\pm1$. A split point has $a^{\\p-1}=1$ and a unitary point has $w^{\\p+1}=1$. No exponent $0<m<\\p-1$ is a period of the split cycle, and no exponent $0<d<\\p+1$ of the unitary cycle. Each cycle has a generator. The entries of both cycles are units of $K$: the square of a unit is its norm, a split point, times the quotient $x/\\sigma(x)$, a unitary point. The quotient is $1$ exactly on the split points, and every unitary point is such a quotient. A weight $n<\\p^{2}-1$ reads $n$ modulo $\\p-1$ on a split cycle and $n$ modulo $\\p+1$ on a unitary cycle. Two readings are the readings of a weight exactly when their difference is even. The Frobenius fixes a split point and inverts a unitary point. The frame of the doublet holds the split cycles $R(a)$, rotations with entries of the shell. A unitary point keeps the Hermitian form, and the pair $(\\mathrm{diag}(w,\\sigma(w)),w)$ fixes the vacuum. The directions $E$ and $F$ have the weights $\\pm2$, and every point fixes the diagonal generators. The lift $\\mathrm{diag}(\\eta,\\eta^{-1})$ of one chronon has the square $\\mathrm{diag}(\\gen,\\gen^{-1})$, the weights $\\gen^{\\pm1}$ on $E$ and $F$ and the norms $-\\gen^{\\pm1}$ of its entries. A ray $[x:y]$ that one chronon keeps has $xy=0$. Neither the lift nor its square is a unitary point. Thm. thm:break p27057, FrcCore{C15}; rests on B10 FRC.Unitary.torus_cycles, FRC.Unitary.cycle_orders, FRC.Unitary.unit_cycle, FRC.Unitary.drive_lift, FRC.Unitary.fixed_rays"
+   "text": "The diagonal torus and its two cycles. Over $K$ a matrix commutes with the transport of two chronons $\\mathrm{diag}(\\gen,\\gen^{-1})$ exactly when it is diagonal. The torus of the diagonal matrices has split cycles over the shell, of order $\\p-1$, and unitary cycles, of order $\\p+1$ [akhtman2026spacetime], and the two kinds meet in $\\pm1$. A split point has $a^{\\p-1}=1$ and a unitary point has $w^{\\p+1}=1$. No exponent $0<m<\\p-1$ is a period of the split cycle, and no exponent $0<d<\\p+1$ of the unitary cycle. Each cycle has a generator. The entries of both cycles are units of $K$: the square of a unit is its norm, a split point, times the quotient $x/\\sigma(x)$, a unitary point. The quotient is $1$ exactly on the split points, and every unitary point is such a quotient. A weight $n<\\p^{2}-1$ reads $n$ modulo $\\p-1$ on a split cycle and $n$ modulo $\\p+1$ on a unitary cycle. Two readings are the readings of a weight exactly when their difference is even. The Frobenius fixes a split point and inverts a unitary point. The frame of the doublet holds the split cycles $R(a)$, rotations with entries of the shell. A unitary point keeps the Hermitian form, and the pair $(\\mathrm{diag}(w,\\sigma(w)),w)$ fixes the vacuum. The directions $E$ and $F$ have the weights $\\pm2$, and every point fixes the diagonal generators. The lift $\\mathrm{diag}(\\eta,\\eta^{-1})$ of one chronon has the square $\\mathrm{diag}(\\gen,\\gen^{-1})$, the weights $\\gen^{\\pm1}$ on $E$ and $F$ and the norms $-\\gen^{\\pm1}$ of its entries. A ray $[x:y]$ that one chronon keeps has $xy=0$. Neither the lift nor its square is a unitary point. Thm. thm:break; rests on B10 p27057, FrcCore{C15} FRC.Unitary.torus_cycles, FRC.Unitary.cycle_orders, FRC.Unitary.unit_cycle, FRC.Unitary.drive_lift, FRC.Unitary.fixed_rays"
   },
   {
    "paper": "27-fld",
@@ -76280,7 +76255,7 @@
    "name": null,
    "lean_name": "one_charge_system",
    "statement": "One charge system. In the frame of rank five the hypercharge cycle $\\mathrm{diag}(w^{-2},w^{-2},w^{-2},w^{3},w^{3})$ and the charge cycle $\\mathrm{diag}(u,u,u,u^{-3},1)$ are unitary cycles of determinant one, with the integer weights $6Y$ and $-3Q$ on the sixteen states. The hypercharge cycle is faithful, and it acts on the doublet as the scalar $w^{3}$. These scalars are every unitary scalar exactly when $3$ does not divide $\\p+1$. The charge cycle fixes the vacuum, and it acts on the doublet as the identity exactly at $u^{3}=1$, the centre of the colour frame. For a divisor $d>1$ of $\\p+1$ some unitary point is no $d$-th power, so the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup. The classes of the block-diagonal subgroup modulo these products are the classes of the determinant on the doublet modulo the sixth powers of the unitary cycle. They are $\\gcd(6,\\p+1)$ in number: $2$ on the Subjects $13$ and $1549$, and $6$ on $173$. The points of the charge cycle are exactly the block-diagonal frame moves that fix the vacuum and commute with every one that does. A point of the charge cycle is one of the products exactly when $u$ is a square. A triple of a hypercharge point and frame moves of determinant one of the two blocks gives the identity exactly on a cycle of order $\\gcd(6,\\p+1)$.",
-   "source": "Prop.~\\ref{prop:onecharge}\\newline \\pywit{fields}{p27058}{C16}, \\leanwit{FrcCore}{p27058}{C16}; rests on B5, B10, C8, C15 \\lean{FRC.Unitary.one\\_charge\\_system, FRC.Unitary.power\\_classes, FRC.Unitary.sixth\\_powers, FRC.Unitary.det\\_scale, FRC.Unitary.charge\\_squares, FRC.Unitary.commutant\\_scalar, FRC.Unitary.product\\_kernel, FRC.Unitary.sixth\\_roots}",
+   "source": "Prop.~\\ref{prop:onecharge}; rests on B5, B10, C8, C15\\newline \\pywit{fields}{p27058}{C16}, \\leanwit{FrcCore}{p27058}{C16} \\lean{FRC.Unitary.one\\_charge\\_system, FRC.Unitary.power\\_classes, FRC.Unitary.sixth\\_powers, FRC.Unitary.det\\_scale, FRC.Unitary.charge\\_squares, FRC.Unitary.commutant\\_scalar, FRC.Unitary.product\\_kernel, FRC.Unitary.sixth\\_roots}",
    "page": "27-fields/index.html#C16",
    "witness": {
     "py": {
@@ -76362,7 +76337,7 @@
     "p27054",
     "p27057"
    ],
-   "text": "One charge system. In the frame of rank five the hypercharge cycle $\\mathrm{diag}(w^{-2},w^{-2},w^{-2},w^{3},w^{3})$ and the charge cycle $\\mathrm{diag}(u,u,u,u^{-3},1)$ are unitary cycles of determinant one, with the integer weights $6Y$ and $-3Q$ on the sixteen states. The hypercharge cycle is faithful, and it acts on the doublet as the scalar $w^{3}$. These scalars are every unitary scalar exactly when $3$ does not divide $\\p+1$. The charge cycle fixes the vacuum, and it acts on the doublet as the identity exactly at $u^{3}=1$, the centre of the colour frame. For a divisor $d>1$ of $\\p+1$ some unitary point is no $d$-th power, so the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup. The classes of the block-diagonal subgroup modulo these products are the classes of the determinant on the doublet modulo the sixth powers of the unitary cycle. They are $\\gcd(6,\\p+1)$ in number: $2$ on the Subjects $13$ and $1549$, and $6$ on $173$. The points of the charge cycle are exactly the block-diagonal frame moves that fix the vacuum and commute with every one that does. A point of the charge cycle is one of the products exactly when $u$ is a square. A triple of a hypercharge point and frame moves of determinant one of the two blocks gives the identity exactly on a cycle of order $\\gcd(6,\\p+1)$. Prop. prop:onecharge p27058, FrcCore{C16}; rests on B5, B10, C8, C15 FRC.Unitary.one_charge_system, FRC.Unitary.power_classes, FRC.Unitary.sixth_powers, FRC.Unitary.det_scale, FRC.Unitary.charge_squares, FRC.Unitary.commutant_scalar, FRC.Unitary.product_kernel, FRC.Unitary.sixth_roots"
+   "text": "One charge system. In the frame of rank five the hypercharge cycle $\\mathrm{diag}(w^{-2},w^{-2},w^{-2},w^{3},w^{3})$ and the charge cycle $\\mathrm{diag}(u,u,u,u^{-3},1)$ are unitary cycles of determinant one, with the integer weights $6Y$ and $-3Q$ on the sixteen states. The hypercharge cycle is faithful, and it acts on the doublet as the scalar $w^{3}$. These scalars are every unitary scalar exactly when $3$ does not divide $\\p+1$. The charge cycle fixes the vacuum, and it acts on the doublet as the identity exactly at $u^{3}=1$, the centre of the colour frame. For a divisor $d>1$ of $\\p+1$ some unitary point is no $d$-th power, so the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup. The classes of the block-diagonal subgroup modulo these products are the classes of the determinant on the doublet modulo the sixth powers of the unitary cycle. They are $\\gcd(6,\\p+1)$ in number: $2$ on the Subjects $13$ and $1549$, and $6$ on $173$. The points of the charge cycle are exactly the block-diagonal frame moves that fix the vacuum and commute with every one that does. A point of the charge cycle is one of the products exactly when $u$ is a square. A triple of a hypercharge point and frame moves of determinant one of the two blocks gives the identity exactly on a cycle of order $\\gcd(6,\\p+1)$. Prop. prop:onecharge; rests on B5, B10, C8, C15 p27058, FrcCore{C16} FRC.Unitary.one_charge_system, FRC.Unitary.power_classes, FRC.Unitary.sixth_powers, FRC.Unitary.det_scale, FRC.Unitary.charge_squares, FRC.Unitary.commutant_scalar, FRC.Unitary.product_kernel, FRC.Unitary.sixth_roots"
   },
   {
    "paper": "27-fld",
@@ -76375,7 +76350,7 @@
    "name": null,
    "lean_name": "tally_frobenius_parity",
    "statement": "The Frobenius parity of a tally. An expression formed from the frame's data with coefficients of the shell commutes with the Frobenius, so a tally takes equal values on a configuration and on its Frobenius conjugate. For a frame move $U$ of determinant one, $\\Tr U^{-1}=\\sigma(\\Tr U)$, and the difference $\\Tr U-\\Tr U^{-1}$ lies in $\\eta\\Fp$. The determinant of an anti-Hermitian matrix of three rows lies in $\\eta\\Fp$, and the commutator of the two quark mass matrices of B9 is such a matrix. The product of two elements of $\\eta\\Fp$ is a residue of the shell.",
-   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27060}{C17}, \\leanwit{FrcCore}{p27060}{C17}; rests on B9, C13 \\lean{FRC.Unitary.tally\\_even, FRC.Unitary.orientation\\_odd, FRC.Unitary.antihermitian\\_det, FRC.Unitary.odd\\_product}",
+   "source": "Prop.~\\ref{prop:strongcp}; rests on B9, C13\\newline \\pywit{fields}{p27060}{C17}, \\leanwit{FrcCore}{p27060}{C17} \\lean{FRC.Unitary.tally\\_even, FRC.Unitary.orientation\\_odd, FRC.Unitary.antihermitian\\_det, FRC.Unitary.odd\\_product}",
    "page": "27-fields/index.html#C17",
    "witness": {
     "py": {
@@ -76423,7 +76398,7 @@
     "p27051",
     "p28007"
    ],
-   "text": "The Frobenius parity of a tally. An expression formed from the frame's data with coefficients of the shell commutes with the Frobenius, so a tally takes equal values on a configuration and on its Frobenius conjugate. For a frame move $U$ of determinant one, $\\Tr U^{-1}=\\sigma(\\Tr U)$, and the difference $\\Tr U-\\Tr U^{-1}$ lies in $\\eta\\Fp$. The determinant of an anti-Hermitian matrix of three rows lies in $\\eta\\Fp$, and the commutator of the two quark mass matrices of B9 is such a matrix. The product of two elements of $\\eta\\Fp$ is a residue of the shell. Prop. prop:strongcp p27060, FrcCore{C17}; rests on B9, C13 FRC.Unitary.tally_even, FRC.Unitary.orientation_odd, FRC.Unitary.antihermitian_det, FRC.Unitary.odd_product"
+   "text": "The Frobenius parity of a tally. An expression formed from the frame's data with coefficients of the shell commutes with the Frobenius, so a tally takes equal values on a configuration and on its Frobenius conjugate. For a frame move $U$ of determinant one, $\\Tr U^{-1}=\\sigma(\\Tr U)$, and the difference $\\Tr U-\\Tr U^{-1}$ lies in $\\eta\\Fp$. The determinant of an anti-Hermitian matrix of three rows lies in $\\eta\\Fp$, and the commutator of the two quark mass matrices of B9 is such a matrix. The product of two elements of $\\eta\\Fp$ is a residue of the shell. Prop. prop:strongcp; rests on B9, C13 p27060, FrcCore{C17} FRC.Unitary.tally_even, FRC.Unitary.orientation_odd, FRC.Unitary.antihermitian_det, FRC.Unitary.odd_product"
   },
   {
    "paper": "27-fld",
@@ -76436,13 +76411,13 @@
    "name": null,
    "lean_name": "no_fourth_generation",
    "statement": "\\textbf{No fourth generation and no fifth interaction} \\emph{[forced]}. The role ladder closes and the fifth step returns to counting. Given the naming B6, which declares the content exhaustive, a fourth chiral family and a fifth fundamental force are excluded. \\emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction.",
-   "source": "Prop.~\\ref{prop:threegen}\\newline \\pywit{fields}{p27035}{P1}, \\leanwit{FrcCore}{p27035}{P1}; rests on A1, B6, C10 \\lean{FRC.Ladder.tower\\_reduces}",
+   "source": "Prop.~\\ref{prop:threegen}; rests on A1, B6, C10\\newline \\pywit{fields}{p27035}{P1}, \\leanwit{FrcCore}{p27035}{P1} \\lean{FRC.Ladder.tower\\_reduces}",
    "page": "27-fields/index.html#P1",
    "witness": {
     "py": {
      "href": "py/fields.html#p27035",
      "script": "p27_fields.py",
-     "line": 1419,
+     "line": 1415,
      "verdict": "pass"
     },
     "lean": [
@@ -76462,7 +76437,7 @@
     "p27001",
     "p27022"
    ],
-   "text": "No fourth generation and no fifth interaction [forced]. The role ladder closes and the fifth step returns to counting. Given the naming B6, which declares the content exhaustive, a fourth chiral family and a fifth fundamental force are excluded. Falsifier: any fourth-generation fermion, or any new fundamental interaction. Prop. prop:threegen p27035, FrcCore{P1}; rests on A1, B6, C10 FRC.Ladder.tower_reduces"
+   "text": "No fourth generation and no fifth interaction [forced]. The role ladder closes and the fifth step returns to counting. Given the naming B6, which declares the content exhaustive, a fourth chiral family and a fifth fundamental force are excluded. Falsifier: any fourth-generation fermion, or any new fundamental interaction. Prop. prop:threegen; rests on A1, B6, C10 p27035, FrcCore{P1} FRC.Ladder.tower_reduces"
   },
   {
    "paper": "27-fld",
@@ -76475,13 +76450,13 @@
    "name": null,
    "lean_name": "desert_substrate_scale",
    "statement": "\\textbf{A desert to the substrate scale} \\emph{[forced]}. The gauge group is the block-diagonal subgroup of the frame of rank five (B10), the quotient of $\\SU(3)\\times\\SU(2)\\times\\U(1)$ by $\\Z_6$ on the chart [chart], until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$--$10^{19}\\,$GeV) scales. \\emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios.",
-   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27036}{P2}, \\leanwit{FrcCore}{p27036}{P2}; rests on B1, B5, B6, B7, B10, C8, C9, C10, C16 \\lean{FRC.Interactions.one\\_generation}",
+   "source": "Prop.~\\ref{prop:unify}; rests on B1, B5, B6, B7, B10, C8, C9, C10, C16\\newline \\pywit{fields}{p27036}{P2}, \\leanwit{FrcCore}{p27036}{P2} \\lean{FRC.Interactions.one\\_generation}",
    "page": "27-fields/index.html#P2",
    "witness": {
     "py": {
      "href": "py/fields.html#p27036",
      "script": "p27_fields.py",
-     "line": 1419,
+     "line": 1415,
      "verdict": "pass"
     },
     "lean": [
@@ -76507,7 +76482,7 @@
     "p27054",
     "p27058"
    ],
-   "text": "A desert to the substrate scale [forced]. The gauge group is the block-diagonal subgroup of the frame of rank five (B10), the quotient of $\\SU(3)\\times\\SU(2)\\times\\U(1)$ by $\\Z_6$ on the chart [chart], until the substrate resolves the colour–isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$–$10^{19} $GeV) scales. Falsifier: a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios. Prop. prop:unify p27036, FrcCore{P2}; rests on B1, B5, B6, B7, B10, C8, C9, C10, C16 FRC.Interactions.one_generation"
+   "text": "A desert to the substrate scale [forced]. The gauge group is the block-diagonal subgroup of the frame of rank five (B10), the quotient of $\\SU(3)\\times\\SU(2)\\times\\U(1)$ by $\\Z_6$ on the chart [chart], until the substrate resolves the colour–isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$–$10^{19} $GeV) scales. Falsifier: a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios. Prop. prop:unify; rests on B1, B5, B6, B7, B10, C8, C9, C10, C16 p27036, FrcCore{P2} FRC.Interactions.one_generation"
   },
   {
    "paper": "27-fld",
@@ -76520,13 +76495,13 @@
    "name": null,
    "lean_name": "no_tev_supersymmetry",
    "statement": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13}\\,$GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13\\%$. The content has no superpartner. Where the completion closes the miss is the $\\Omega$-hard running (Z1). \\emph{Falsifier:} superpartners.",
-   "source": "Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27037}{P3}, \\leanwit{FrcCore}{p27037}{P3}, \\leanwit{FrcMathlib}{p27037}{P3}; rests on A3, A6, B6, C8, Z1 \\lean{FRC.Interactions.one\\_generation, Fields.running\\_near\\_miss}",
+   "source": "Prop.~\\ref{prop:running}; rests on A3, A6, B6, C8, Z1\\newline \\pywit{fields}{p27037}{P3}, \\leanwit{FrcCore}{p27037}{P3}, \\leanwit{FrcMathlib}{p27037}{P3} \\lean{FRC.Interactions.one\\_generation, Fields.running\\_near\\_miss}",
    "page": "27-fields/index.html#P3",
    "witness": {
     "py": {
      "href": "py/fields.html#p27037",
      "script": "p27_fields.py",
-     "line": 1470,
+     "line": 1466,
      "verdict": "pass"
     },
     "lean": [
@@ -76556,7 +76531,7 @@
     "p27020",
     "p27047"
    ],
-   "text": "No TeV supersymmetry [forced]. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13} $GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13%$. The content has no superpartner. Where the completion closes the miss is the $\\Omega$-hard running (Z1). Falsifier: superpartners. Prop. prop:running p27037, FrcCore{P3}, FrcMathlib{P3}; rests on A3, A6, B6, C8, Z1 FRC.Interactions.one_generation, Fields.running_near_miss"
+   "text": "No TeV supersymmetry [forced]. The Standard-Model content alone runs the measured couplings to a meeting of the first two near $10^{13} $GeV, where the Weinberg angle is $3/8$ by the normalisation. The strong coupling misses by $13%$. The content has no superpartner. Where the completion closes the miss is the $\\Omega$-hard running (Z1). Falsifier: superpartners. Prop. prop:running; rests on A3, A6, B6, C8, Z1 p27037, FrcCore{P3}, FrcMathlib{P3} FRC.Interactions.one_generation, Fields.running_near_miss"
   },
   {
    "paper": "27-fld",
@@ -76569,13 +76544,13 @@
    "name": null,
    "lean_name": "proton_effectively_stable",
    "statement": "\\textbf{The proton is effectively stable at a substrate-scale mass} \\emph{[sector]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\\,$GeV it already exceeds the Super-Kamiokande bound. The mass is not derived, and the lifetime is the chart's dimensional estimate at that mass [chart]. \\emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years.",
-   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27038}{P4}, \\leanwit{FrcCore}{p27038}{P4}, \\leanwit{FrcMathlib}{p27038}{P4}; rests on A3, A6, B7, C9, Z1 \\lean{FRC.Interactions.unification\\_counts, Fields.proton\\_lifetime}",
+   "source": "Prop.~\\ref{prop:unify}; rests on A3, A6, B7, C9, Z1\\newline \\pywit{fields}{p27038}{P4}, \\leanwit{FrcCore}{p27038}{P4}, \\leanwit{FrcMathlib}{p27038}{P4} \\lean{FRC.Interactions.unification\\_counts, Fields.proton\\_lifetime}",
    "page": "27-fields/index.html#P4",
    "witness": {
     "py": {
      "href": "py/fields.html#p27038",
      "script": "p27_fields.py",
-     "line": 1380,
+     "line": 1376,
      "verdict": "pass"
     },
     "lean": [
@@ -76605,7 +76580,7 @@
     "p27047",
     "p27053"
    ],
-   "text": "The proton is effectively stable at a substrate-scale mass [sector]. The $X,Y$ leptoquarks are the twelve colour–isospin off-block generators. With their mass at the substrate scale (the $\\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16} $GeV it already exceeds the Super-Kamiokande bound. The mass is not derived, and the lifetime is the chart's dimensional estimate at that mass [chart]. Falsifier: an observed proton decay near $10^{34}$–$10^{35}$ years. Prop. prop:unify p27038, FrcCore{P4}, FrcMathlib{P4}; rests on A3, A6, B7, C9, Z1 FRC.Interactions.unification_counts, Fields.proton_lifetime"
+   "text": "The proton is effectively stable at a substrate-scale mass [sector]. The $X,Y$ leptoquarks are the twelve colour–isospin off-block generators. With their mass at the substrate scale (the $\\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16} $GeV it already exceeds the Super-Kamiokande bound. The mass is not derived, and the lifetime is the chart's dimensional estimate at that mass [chart]. Falsifier: an observed proton decay near $10^{34}$–$10^{35}$ years. Prop. prop:unify; rests on A3, A6, B7, C9, Z1 p27038, FrcCore{P4}, FrcMathlib{P4} FRC.Interactions.unification_counts, Fields.proton_lifetime"
   },
   {
    "paper": "27-fld",
@@ -76618,13 +76593,13 @@
    "name": null,
    "lean_name": "no_further_singlet",
    "statement": "\\textbf{No sterile state beyond the singlet of each generation} \\emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass (A4); the paper derives neither that mass nor its scale, and a zero mass is not excluded. With the mass at the unification scale the seesaw places the light masses in the observed band, for singlet masses of $10^{14}$--$10^{15}\\,$GeV [chart]. The declared content (B6) holds no further gauge-singlet state. \\emph{Falsifier:} a light gauge-singlet fermion that is not the singlet $\\nu^c$ of one of the three generations.",
-   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}\\newline \\pywit{fields}{p27039}{P5}, \\leanwit{FrcCore}{p27039}{P5}, \\leanwit{FrcMathlib}{p27039}{P5}; rests on A4, B5, B6, C8 \\lean{FRC.Interactions.one\\_generation, Fields.seesaw\\_band}",
+   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}; rests on A4, B5, B6, C8\\newline \\pywit{fields}{p27039}{P5}, \\leanwit{FrcCore}{p27039}{P5}, \\leanwit{FrcMathlib}{p27039}{P5} \\lean{FRC.Interactions.one\\_generation, Fields.seesaw\\_band}",
    "page": "27-fields/index.html#P5",
    "witness": {
     "py": {
      "href": "py/fields.html#p27039",
      "script": "p27_fields.py",
-     "line": 1480,
+     "line": 1476,
      "verdict": "pass"
     },
     "lean": [
@@ -76652,7 +76627,7 @@
     "p27011",
     "p27020"
    ],
-   "text": "No sterile state beyond the singlet of each generation [sector]. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass (A4); the paper derives neither that mass nor its scale, and a zero mass is not excluded. With the mass at the unification scale the seesaw places the light masses in the observed band, for singlet masses of $10^{14}$–$10^{15} $GeV [chart]. The declared content (B6) holds no further gauge-singlet state. Falsifier: a light gauge-singlet fermion that is not the singlet $\\nu^c$ of one of the three generations. Thm. thm:gen, Prop. prop:mass p27039, FrcCore{P5}, FrcMathlib{P5}; rests on A4, B5, B6, C8 FRC.Interactions.one_generation, Fields.seesaw_band"
+   "text": "No sterile state beyond the singlet of each generation [sector]. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass (A4); the paper derives neither that mass nor its scale, and a zero mass is not excluded. With the mass at the unification scale the seesaw places the light masses in the observed band, for singlet masses of $10^{14}$–$10^{15} $GeV [chart]. The declared content (B6) holds no further gauge-singlet state. Falsifier: a light gauge-singlet fermion that is not the singlet $\\nu^c$ of one of the three generations. Thm. thm:gen, Prop. prop:mass; rests on A4, B5, B6, C8 p27039, FrcCore{P5}, FrcMathlib{P5} FRC.Interactions.one_generation, Fields.seesaw_band"
   },
   {
    "paper": "27-fld",
@@ -76665,13 +76640,13 @@
    "name": null,
    "lean_name": "no_new_dark_particle",
    "statement": "\\textbf{No new particle of dark matter} \\emph{[sector]}. The matter content is exactly one Standard-Model generation, triplicated, with its singlet $\\nu^c$; the construction contains no weakly-interacting massive particle and no axion. \\emph{Falsifier:} a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational sector.",
-   "source": "Thm.~\\ref{thm:gen}\\newline \\pywit{fields}{p27040}{P6}, \\leanwit{FrcCore}{p27040}{P6}; rests on B5, B6, C8, C10 \\lean{FRC.Interactions.one\\_generation}",
+   "source": "Thm.~\\ref{thm:gen}; rests on B5, B6, C8, C10\\newline \\pywit{fields}{p27040}{P6}, \\leanwit{FrcCore}{p27040}{P6} \\lean{FRC.Interactions.one\\_generation}",
    "page": "27-fields/index.html#P6",
    "witness": {
     "py": {
      "href": "py/fields.html#p27040",
      "script": "p27_fields.py",
-     "line": 1419,
+     "line": 1415,
      "verdict": "pass"
     },
     "lean": [
@@ -76692,7 +76667,7 @@
     "p27020",
     "p27022"
    ],
-   "text": "No new particle of dark matter [sector]. The matter content is exactly one Standard-Model generation, triplicated, with its singlet $\\nu^c$; the construction contains no weakly-interacting massive particle and no axion. Falsifier: a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational sector. Thm. thm:gen p27040, FrcCore{P6}; rests on B5, B6, C8, C10 FRC.Interactions.one_generation"
+   "text": "No new particle of dark matter [sector]. The matter content is exactly one Standard-Model generation, triplicated, with its singlet $\\nu^c$; the construction contains no weakly-interacting massive particle and no axion. Falsifier: a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational sector. Thm. thm:gen; rests on B5, B6, C8, C10 p27040, FrcCore{P6} FRC.Interactions.one_generation"
   },
   {
    "paper": "27-fld",
@@ -76705,13 +76680,13 @@
    "name": null,
    "lean_name": "no_new_physics_muon",
    "statement": "\\textbf{No new-physics contribution to the muon anomaly} \\emph{[sector]}. With no states beyond the Standard Model, $(g-2)_\\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. \\emph{Falsifier:} a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction.",
-   "source": "Thm.~\\ref{thm:gen}\\newline \\pywit{fields}{p27041}{P7}, \\leanwit{FrcCore}{p27041}{P7}; rests on B5, B6, C8, C10 \\lean{FRC.Interactions.one\\_generation}",
+   "source": "Thm.~\\ref{thm:gen}; rests on B5, B6, C8, C10\\newline \\pywit{fields}{p27041}{P7}, \\leanwit{FrcCore}{p27041}{P7} \\lean{FRC.Interactions.one\\_generation}",
    "page": "27-fields/index.html#P7",
    "witness": {
     "py": {
      "href": "py/fields.html#p27041",
      "script": "p27_fields.py",
-     "line": 1419,
+     "line": 1415,
      "verdict": "pass"
     },
     "lean": [
@@ -76732,7 +76707,7 @@
     "p27020",
     "p27022"
    ],
-   "text": "No new-physics contribution to the muon anomaly [sector]. With no states beyond the Standard Model, $(g-2)_\\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. Falsifier: a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction. Thm. thm:gen p27041, FrcCore{P7}; rests on B5, B6, C8, C10 FRC.Interactions.one_generation"
+   "text": "No new-physics contribution to the muon anomaly [sector]. With no states beyond the Standard Model, $(g-2)_\\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. Falsifier: a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction. Thm. thm:gen; rests on B5, B6, C8, C10 p27041, FrcCore{P7} FRC.Interactions.one_generation"
   },
   {
    "paper": "27-fld",
@@ -76745,13 +76720,13 @@
    "name": null,
    "lean_name": "charged_lepton_koide_relation",
    "statement": "\\textbf{The charged-lepton Koide relation is exactly $2/3$} \\emph{[structural]}: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the Koide form on the characters of the generation cycle at the named value $\\rho^2=\\tfrac12$ (B8) --- $Q=\\tfrac13+\\tfrac23\\rho^2$ exact. The form is a theorem and the value a naming; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual \\citep{akhtman2026flavour}. \\emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the tolerance of the $\\tau$ mass \\citep{akhtman2026flavour}.",
-   "source": "Prop.~\\ref{prop:koide}\\newline \\pywit{fields}{p27042}{P8}, \\leanwit{FrcCore}{p27042}{P8}; rests on B5, B8 \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half}",
+   "source": "Prop.~\\ref{prop:koide}; rests on B5, B8\\newline \\pywit{fields}{p27042}{P8}, \\leanwit{FrcCore}{p27042}{P8} \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half}",
    "page": "27-fields/index.html#P8",
    "witness": {
     "py": {
      "href": "py/fields.html#p27042",
      "script": "p27_fields.py",
-     "line": 1538,
+     "line": 1534,
      "verdict": "pass"
     },
     "lean": [
@@ -76794,7 +76769,7 @@
     "p27011",
     "p28011"
    ],
-   "text": "The charged-lepton Koide relation is exactly $2/3$ [structural]: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the Koide form on the characters of the generation cycle at the named value $\\rho^2=\\tfrac12$ (B8) — $Q=\\tfrac13+\\tfrac23\\rho^2$ exact. The form is a theorem and the value a naming; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual [akhtman2026flavour]. Falsifier: a measured $Q$ displaced from $2/3$ beyond the tolerance of the $\\tau$ mass [akhtman2026flavour]. Prop. prop:koide p27042, FrcCore{P8}; rests on B5, B8 FRC.Interactions.koide_parseval, FRC.Interactions.koide_two_thirds, FRC.Interactions.koide_extension, FRC.Interactions.koide_half"
+   "text": "The charged-lepton Koide relation is exactly $2/3$ [structural]: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the Koide form on the characters of the generation cycle at the named value $\\rho^2=\\tfrac12$ (B8) — $Q=\\tfrac13+\\tfrac23\\rho^2$ exact. The form is a theorem and the value a naming; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual [akhtman2026flavour]. Falsifier: a measured $Q$ displaced from $2/3$ beyond the tolerance of the $\\tau$ mass [akhtman2026flavour]. Prop. prop:koide; rests on B5, B8 p27042, FrcCore{P8} FRC.Interactions.koide_parseval, FRC.Interactions.koide_two_thirds, FRC.Interactions.koide_extension, FRC.Interactions.koide_half"
   },
   {
    "paper": "27-fld",
@@ -76807,13 +76782,13 @@
    "name": null,
    "lean_name": "no_strong_cp_angle",
    "statement": "\\textbf{No strong-CP angle and no axion} \\emph{[structural]}. The vacuum angle reads $\\bar\\theta=0$ on the chart with no axion: the colour action is declared of the Wilson class (B11), so the bare $\\theta=0$, and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell, positive on the chart where no mass reads $0$, so $\\arg\\det M_q=0$ [chart], while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
-   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9}; rests on A3, A6, B4, B9, B11, C7 \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.gram\\_det, FRC.Unitary.hermitian\\_det\\_shell}",
+   "source": "Prop.~\\ref{prop:strongcp}; rests on A3, A6, B4, B9, B11, C7\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9} \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.gram\\_det, FRC.Unitary.hermitian\\_det\\_shell}",
    "page": "27-fields/index.html#P9",
    "witness": {
     "py": {
      "href": "py/fields.html#p27043",
      "script": "p27_fields.py",
-     "line": 1561,
+     "line": 1557,
      "verdict": "pass"
     },
     "lean": [
@@ -76860,7 +76835,7 @@
     "p27055",
     "p28007"
    ],
-   "text": "No strong-CP angle and no axion [structural]. The vacuum angle reads $\\bar\\theta=0$ on the chart with no axion: the colour action is declared of the Wilson class (B11), so the bare $\\theta=0$, and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell, positive on the chart where no mass reads $0$, so $\\arg\\det M_q=0$ [chart], while the Cabibbo–Kobayashi–Maskawa phase sits in the up–down misalignment. Falsifier: a neutron electric dipole moment above the QCD floor, or a discovered axion. Prop. prop:strongcp p27043, FrcCore{P9}; rests on A3, A6, B4, B9, B11, C7 FRC.Unitary.wilson_orientation_even, FRC.Unitary.hermitian_det_real, FRC.Unitary.gram_det, FRC.Unitary.hermitian_det_shell"
+   "text": "No strong-CP angle and no axion [structural]. The vacuum angle reads $\\bar\\theta=0$ on the chart with no axion: the colour action is declared of the Wilson class (B11), so the bare $\\theta=0$, and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell, positive on the chart where no mass reads $0$, so $\\arg\\det M_q=0$ [chart], while the Cabibbo–Kobayashi–Maskawa phase sits in the up–down misalignment. Falsifier: a neutron electric dipole moment above the QCD floor, or a discovered axion. Prop. prop:strongcp; rests on A3, A6, B4, B9, B11, C7 p27043, FrcCore{P9} FRC.Unitary.wilson_orientation_even, FRC.Unitary.hermitian_det_real, FRC.Unitary.gram_det, FRC.Unitary.hermitian_det_shell"
   },
   {
    "paper": "27-fld",
@@ -76873,7 +76848,7 @@
    "name": null,
    "lean_name": "no_fractional_charge_without_colour",
    "statement": "\\textbf{No fractional charge without colour} \\emph{[sector]}. Every state built from the vectors of the internal frame and their conjugates has the weight $-3Q$ congruent modulo $3$ to its net number of colour indices (C16). A state of fewer than $\\p+1$ indices that the colour frame fixes has that number a multiple of three, and so an integer charge. On a shell where the colour frame has its centre the same holds for every number of indices. On the chart the group is the quotient of $\\SU(3)\\times\\SU(2)\\times\\U(1)$ by $\\Z_6$, one of the four quotients that the continuum theory leaves open [chart] \\citep{tong2017}. \\emph{Falsifier:} a colourless particle of fractional charge.",
-   "source": "Prop.~\\ref{prop:colourless}\\newline \\pywit{fields}{p27059}{P10}, \\leanwit{FrcCore}{p27059}{P10}; rests on B5, B6, B10, C7, C16 \\lean{FRC.Unitary.charge\\_weights, FRC.Unitary.product\\_kernel, FRC.Unitary.sixth\\_roots, FRC.Unitary.centre\\_weight, FRC.Unitary.colourless\\_indices}",
+   "source": "Prop.~\\ref{prop:colourless}; rests on B5, B6, B10, C7, C16\\newline \\pywit{fields}{p27059}{P10}, \\leanwit{FrcCore}{p27059}{P10} \\lean{FRC.Unitary.charge\\_weights, FRC.Unitary.product\\_kernel, FRC.Unitary.sixth\\_roots, FRC.Unitary.centre\\_weight, FRC.Unitary.colourless\\_indices}",
    "page": "27-fields/index.html#P10",
    "witness": {
     "py": {
@@ -76932,7 +76907,7 @@
     "p27054",
     "p27058"
    ],
-   "text": "No fractional charge without colour [sector]. Every state built from the vectors of the internal frame and their conjugates has the weight $-3Q$ congruent modulo $3$ to its net number of colour indices (C16). A state of fewer than $\\p+1$ indices that the colour frame fixes has that number a multiple of three, and so an integer charge. On a shell where the colour frame has its centre the same holds for every number of indices. On the chart the group is the quotient of $\\SU(3)\\times\\SU(2)\\times\\U(1)$ by $\\Z_6$, one of the four quotients that the continuum theory leaves open [chart] [tong2017]. Falsifier: a colourless particle of fractional charge. Prop. prop:colourless p27059, FrcCore{P10}; rests on B5, B6, B10, C7, C16 FRC.Unitary.charge_weights, FRC.Unitary.product_kernel, FRC.Unitary.sixth_roots, FRC.Unitary.centre_weight, FRC.Unitary.colourless_indices"
+   "text": "No fractional charge without colour [sector]. Every state built from the vectors of the internal frame and their conjugates has the weight $-3Q$ congruent modulo $3$ to its net number of colour indices (C16). A state of fewer than $\\p+1$ indices that the colour frame fixes has that number a multiple of three, and so an integer charge. On a shell where the colour frame has its centre the same holds for every number of indices. On the chart the group is the quotient of $\\SU(3)\\times\\SU(2)\\times\\U(1)$ by $\\Z_6$, one of the four quotients that the continuum theory leaves open [chart] [tong2017]. Falsifier: a colourless particle of fractional charge. Prop. prop:colourless; rests on B5, B6, B10, C7, C16 p27059, FrcCore{P10} FRC.Unitary.charge_weights, FRC.Unitary.product_kernel, FRC.Unitary.sixth_roots, FRC.Unitary.centre_weight, FRC.Unitary.colourless_indices"
   },
   {
    "paper": "27-fld",
@@ -76945,7 +76920,7 @@
    "name": null,
    "lean_name": "gauge_group_from_substrate",
    "statement": "\\textbf{The gauge group} $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. On a Subject the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup that B10 declares (C16). On the chart the subgroup is the quotient of the product by $\\Z_6$ [chart] (P10).",
-   "source": "\\S\\ref{sec:em},\\,\\ref{sec:weak},\\,\\ref{sec:strong}\\newline \\pywit{fields}{p27024}{X1}, \\leanwit{FrcCore}{p27024}{X1}; rests on B10, C2, C4, C7, C16 \\lean{FRC.Interactions.gauge\\_flux\\_invariant, FRC.Interactions.drive\\_adjoint, FRC.Interactions.gluon\\_commutator}",
+   "source": "\\S\\ref{sec:em},\\,\\ref{sec:weak},\\,\\ref{sec:strong}; rests on B10, C2, C4, C7, C16\\newline \\pywit{fields}{p27024}{X1}, \\leanwit{FrcCore}{p27024}{X1} \\lean{FRC.Interactions.gauge\\_flux\\_invariant, FRC.Interactions.drive\\_adjoint, FRC.Interactions.gluon\\_commutator}",
    "page": "27-fields/index.html#X1",
    "witness": {
     "py": {
@@ -76989,7 +76964,7 @@
     "p27058",
     "p27059"
    ],
-   "text": "The gauge group $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. On a Subject the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup that B10 declares (C16). On the chart the subgroup is the quotient of the product by $\\Z_6$ [chart] (P10). \\Ssec:em, sec:weak, sec:strong p27024, FrcCore{X1}; rests on B10, C2, C4, C7, C16 FRC.Interactions.gauge_flux_invariant, FRC.Interactions.drive_adjoint, FRC.Interactions.gluon_commutator"
+   "text": "The gauge group $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. On a Subject the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup that B10 declares (C16). On the chart the subgroup is the quotient of the product by $\\Z_6$ [chart] (P10). \\Ssec:em, sec:weak, sec:strong; rests on B10, C2, C4, C7, C16 p27024, FrcCore{X1} FRC.Interactions.gauge_flux_invariant, FRC.Interactions.drive_adjoint, FRC.Interactions.gluon_commutator"
   },
   {
    "paper": "27-fld",
@@ -77002,7 +76977,7 @@
    "name": null,
    "lean_name": "charge_quantisation_automatic",
    "statement": "\\textbf{Charge quantisation} is automatic: electric charge is an integer winding index, so the electron and proton charges match exactly and no fractional residue survives, with no quantisation condition imposed.",
-   "source": "Prop.~\\ref{prop:charge}\\newline \\pywit{fields}{p27025}{X2}, \\leanwit{FrcCore}{p27025}{X2}; rests on C2, C8, C16 \\lean{FRC.Interactions.holonomy\\_stokes, FRC.Interactions.one\\_generation}",
+   "source": "Prop.~\\ref{prop:charge}; rests on C2, C8, C16\\newline \\pywit{fields}{p27025}{X2}, \\leanwit{FrcCore}{p27025}{X2} \\lean{FRC.Interactions.holonomy\\_stokes, FRC.Interactions.one\\_generation}",
    "page": "27-fields/index.html#X2",
    "witness": {
     "py": {
@@ -77035,7 +77010,7 @@
     "p27020",
     "p27058"
    ],
-   "text": "Charge quantisation is automatic: electric charge is an integer winding index, so the electron and proton charges match exactly and no fractional residue survives, with no quantisation condition imposed. Prop. prop:charge p27025, FrcCore{X2}; rests on C2, C8, C16 FRC.Interactions.holonomy_stokes, FRC.Interactions.one_generation"
+   "text": "Charge quantisation is automatic: electric charge is an integer winding index, so the electron and proton charges match exactly and no fractional residue survives, with no quantisation condition imposed. Prop. prop:charge; rests on C2, C8, C16 p27025, FrcCore{X2} FRC.Interactions.holonomy_stokes, FRC.Interactions.one_generation"
   },
   {
    "paper": "27-fld",
@@ -77048,7 +77023,7 @@
    "name": null,
    "lean_name": "photon_dynamics_forced",
    "statement": "\\textbf{The photon and its dynamics} are forced: the photon is fixed by the drive and is the exact kernel of the mass form at the vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand.",
-   "source": "Prop.~\\ref{prop:coulomb},~\\ref{prop:rho}, Thm.~\\ref{thm:o1}\\newline \\pywit{fields}{p27026}{X3}, \\leanwit{FrcCore}{p27026}{X3}; rests on B10, C5, C15 \\lean{FRC.Interactions.neutral\\_block, FRC.Interactions.projector\\_forced, FRC.Interactions.admissible\\_two}",
+   "source": "Prop.~\\ref{prop:coulomb},~\\ref{prop:rho}, Thm.~\\ref{thm:o1}; rests on B10, C5, C15\\newline \\pywit{fields}{p27026}{X3}, \\leanwit{FrcCore}{p27026}{X3} \\lean{FRC.Interactions.neutral\\_block, FRC.Interactions.projector\\_forced, FRC.Interactions.admissible\\_two}",
    "page": "27-fields/index.html#X3",
    "witness": {
     "py": {
@@ -77089,7 +77064,7 @@
     "p27054",
     "p27057"
    ],
-   "text": "The photon and its dynamics are forced: the photon is fixed by the drive and is the exact kernel of the mass form at the vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand. Prop. prop:coulomb, prop:rho, Thm. thm:o1 p27026, FrcCore{X3}; rests on B10, C5, C15 FRC.Interactions.neutral_block, FRC.Interactions.projector_forced, FRC.Interactions.admissible_two"
+   "text": "The photon and its dynamics are forced: the photon is fixed by the drive and is the exact kernel of the mass form at the vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand. Prop. prop:coulomb, prop:rho, Thm. thm:o1; rests on B10, C5, C15 p27026, FrcCore{X3} FRC.Interactions.neutral_block, FRC.Interactions.projector_forced, FRC.Interactions.admissible_two"
   },
   {
    "paper": "27-fld",
@@ -77140,7 +77115,7 @@
    "name": null,
    "lean_name": "custodial_relation",
    "statement": "\\textbf{The custodial relation} $\\rho=1$ is an identity of the doublet alignment field (B10): the value of the charged block of the mass operator equals the first diagonal entry of its neutral block. The quotient $\\rho$ is read for $g\\neq0$ and $g^2+g'^2\\neq0$.",
-   "source": "Prop.~\\ref{prop:rho}\\newline \\pywit{fields}{p27028}{X5}, \\leanwit{FrcCore}{p27028}{X5}; rests on B10, C5 \\lean{FRC.Interactions.neutral\\_block, FRC.Chirality.mass\\_form, FRC.Chirality.mass\\_spectrum, FRC.Chirality.mass\\_independent}",
+   "source": "Prop.~\\ref{prop:rho}; rests on B10, C5\\newline \\pywit{fields}{p27028}{X5}, \\leanwit{FrcCore}{p27028}{X5} \\lean{FRC.Interactions.neutral\\_block, FRC.Chirality.mass\\_form, FRC.Chirality.mass\\_spectrum, FRC.Chirality.mass\\_independent}",
    "page": "27-fields/index.html#X5",
    "witness": {
     "py": {
@@ -77188,7 +77163,7 @@
     "p27017",
     "p27054"
    ],
-   "text": "The custodial relation $\\rho=1$ is an identity of the doublet alignment field (B10): the value of the charged block of the mass operator equals the first diagonal entry of its neutral block. The quotient $\\rho$ is read for $g\\neq0$ and $g^2+g'^2\\neq0$. Prop. prop:rho p27028, FrcCore{X5}; rests on B10, C5 FRC.Interactions.neutral_block, FRC.Chirality.mass_form, FRC.Chirality.mass_spectrum, FRC.Chirality.mass_independent"
+   "text": "The custodial relation $\\rho=1$ is an identity of the doublet alignment field (B10): the value of the charged block of the mass operator equals the first diagonal entry of its neutral block. The quotient $\\rho$ is read for $g\\neq0$ and $g^2+g'^2\\neq0$. Prop. prop:rho; rests on B10, C5 p27028, FrcCore{X5} FRC.Interactions.neutral_block, FRC.Chirality.mass_form, FRC.Chirality.mass_spectrum, FRC.Chirality.mass_independent"
   },
   {
    "paper": "27-fld",
@@ -77201,7 +77176,7 @@
    "name": null,
    "lean_name": "two_chiralities",
    "statement": "\\textbf{The two chiralities} are the two roots of the drive: $\\Fp[\\Gamma]$ is a field and holds no chirality projector; over $K$ the Frobenius on the entries exchanges the two projectors, and no frame holds an absolute handedness. The weak current is left-handed by the assignment of the naming B5.",
-   "source": "Prop.~\\ref{prop:chiral},~\\ref{prop:branches},~\\ref{prop:chiralsel}\\newline \\pywit{fields}{p27029}{X6}, \\leanwit{FrcCore}{p27029}{X6}; rests on B5, C13, C14 \\lean{FRC.Chirality.neg\\_nonsquare, FRC.Chirality.no\\_idempotent, FRC.Chirality.root\\_conj, FRC.Interactions.orientation\\_flip}",
+   "source": "Prop.~\\ref{prop:chiral},~\\ref{prop:branches},~\\ref{prop:chiralsel}; rests on B5, C13, C14\\newline \\pywit{fields}{p27029}{X6}, \\leanwit{FrcCore}{p27029}{X6} \\lean{FRC.Chirality.neg\\_nonsquare, FRC.Chirality.no\\_idempotent, FRC.Chirality.root\\_conj, FRC.Interactions.orientation\\_flip}",
    "page": "27-fields/index.html#X6",
    "witness": {
     "py": {
@@ -77251,7 +77226,7 @@
     "p27051",
     "p27052"
    ],
-   "text": "The two chiralities are the two roots of the drive: $\\Fp[\\Gamma]$ is a field and holds no chirality projector; over $K$ the Frobenius on the entries exchanges the two projectors, and no frame holds an absolute handedness. The weak current is left-handed by the assignment of the naming B5. Prop. prop:chiral, prop:branches, prop:chiralsel p27029, FrcCore{X6}; rests on B5, C13, C14 FRC.Chirality.neg_nonsquare, FRC.Chirality.no_idempotent, FRC.Chirality.root_conj, FRC.Interactions.orientation_flip"
+   "text": "The two chiralities are the two roots of the drive: $\\Fp[\\Gamma]$ is a field and holds no chirality projector; over $K$ the Frobenius on the entries exchanges the two projectors, and no frame holds an absolute handedness. The weak current is left-handed by the assignment of the naming B5. Prop. prop:chiral, prop:branches, prop:chiralsel; rests on B5, C13, C14 p27029, FrcCore{X6} FRC.Chirality.neg_nonsquare, FRC.Chirality.no_idempotent, FRC.Chirality.root_conj, FRC.Interactions.orientation_flip"
   },
   {
    "paper": "27-fld",
@@ -77270,7 +77245,7 @@
     "py": {
      "href": "py/fields.html#p27030",
      "script": "p27_fields.py",
-     "line": 1269,
+     "line": 1265,
      "verdict": "pass"
     },
     "lean": [
@@ -77326,13 +77301,13 @@
    "name": null,
    "lean_name": "generation_is_spinor",
    "statement": "\\textbf{One complete generation} is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with the simple unification declared (B7), rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the declared content.",
-   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27031}{X8}, \\leanwit{FrcCore}{p27031}{X8}; rests on B5, B7, C9 \\lean{FRC.Interactions.one\\_generation, FRC.Interactions.offblock\\_automorphism}",
+   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}; rests on B5, B7, C9\\newline \\pywit{fields}{p27031}{X8}, \\leanwit{FrcCore}{p27031}{X8} \\lean{FRC.Interactions.one\\_generation, FRC.Interactions.offblock\\_automorphism}",
    "page": "27-fields/index.html#X8",
    "witness": {
     "py": {
      "href": "py/fields.html#p27031",
      "script": "p27_fields.py",
-     "line": 1366,
+     "line": 1362,
      "verdict": "pass"
     },
     "lean": [
@@ -77361,7 +77336,7 @@
     "p27021",
     "p27053"
    ],
-   "text": "One complete generation is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with the simple unification declared (B7), rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the declared content. Thm. thm:gen, Prop. prop:unify p27031, FrcCore{X8}; rests on B5, B7, C9 FRC.Interactions.one_generation, FRC.Interactions.offblock_automorphism"
+   "text": "One complete generation is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with the simple unification declared (B7), rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the declared content. Thm. thm:gen, Prop. prop:unify; rests on B5, B7, C9 p27031, FrcCore{X8} FRC.Interactions.one_generation, FRC.Interactions.offblock_automorphism"
   },
   {
    "paper": "27-fld",
@@ -77374,13 +77349,13 @@
    "name": null,
    "lean_name": "interaction_generation_counts",
    "statement": "\\textbf{The interaction and generation counts} are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained.",
-   "source": "\\S\\ref{sec:roles}, Prop.~\\ref{prop:threegen}\\newline \\pywit{fields}{p27032}{X9}, \\leanwit{FrcCore}{p27032}{X9}; rests on C10 \\lean{FRC.Ladder.tower\\_reduces}",
+   "source": "\\S\\ref{sec:roles}, Prop.~\\ref{prop:threegen}; rests on C10\\newline \\pywit{fields}{p27032}{X9}, \\leanwit{FrcCore}{p27032}{X9} \\lean{FRC.Ladder.tower\\_reduces}",
    "page": "27-fields/index.html#X9",
    "witness": {
     "py": {
      "href": "py/fields.html#p27032",
      "script": "p27_fields.py",
-     "line": 1419,
+     "line": 1415,
      "verdict": "pass"
     },
     "lean": [
@@ -77397,7 +77372,7 @@
    "refs": [
     "p27022"
    ],
-   "text": "The interaction and generation counts are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained. \\Ssec:roles, Prop. prop:threegen p27032, FrcCore{X9}; rests on C10 FRC.Ladder.tower_reduces"
+   "text": "The interaction and generation counts are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained. \\Ssec:roles, Prop. prop:threegen; rests on C10 p27032, FrcCore{X9} FRC.Ladder.tower_reduces"
   },
   {
    "paper": "27-fld",
@@ -77410,13 +77385,13 @@
    "name": null,
    "lean_name": "koide_ratio_characters",
    "statement": "\\textbf{The Koide ratio} has the exact form $Q=\\tfrac13+\\tfrac23\\rho^{2}$ on the characters of the generation cycle $C_3$, and it is $2/3$ at the named value $\\rho^2=\\tfrac12$ (B8).",
-   "source": "Prop.~\\ref{prop:koide}\\newline \\pywit{fields}{p27033}{X10}, \\leanwit{FrcCore}{p27033}{X10}; rests on B8 \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half}",
+   "source": "Prop.~\\ref{prop:koide}; rests on B8\\newline \\pywit{fields}{p27033}{X10}, \\leanwit{FrcCore}{p27033}{X10} \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half}",
    "page": "27-fields/index.html#X10",
    "witness": {
     "py": {
      "href": "py/fields.html#p27033",
      "script": "p27_fields.py",
-     "line": 1531,
+     "line": 1527,
      "verdict": "pass"
     },
     "lean": [
@@ -77458,7 +77433,7 @@
     "p00081",
     "p28011"
    ],
-   "text": "The Koide ratio has the exact form $Q=\\tfrac13+\\tfrac23\\rho^{2}$ on the characters of the generation cycle $C_3$, and it is $2/3$ at the named value $\\rho^2=\\tfrac12$ (B8). Prop. prop:koide p27033, FrcCore{X10}; rests on B8 FRC.Interactions.koide_parseval, FRC.Interactions.koide_two_thirds, FRC.Interactions.koide_extension, FRC.Interactions.koide_half"
+   "text": "The Koide ratio has the exact form $Q=\\tfrac13+\\tfrac23\\rho^{2}$ on the characters of the generation cycle $C_3$, and it is $2/3$ at the named value $\\rho^2=\\tfrac12$ (B8). Prop. prop:koide; rests on B8 p27033, FrcCore{X10} FRC.Interactions.koide_parseval, FRC.Interactions.koide_two_thirds, FRC.Interactions.koide_extension, FRC.Interactions.koide_half"
   },
   {
    "paper": "27-fld",
@@ -77471,13 +77446,13 @@
    "name": null,
    "lean_name": "strong_cp_angle_chart",
    "statement": "\\textbf{The strong-CP angle} reads $0$ on the chart with no axion, on one declaration and one theorem: the colour action is declared of the Wilson class, which holds no term $\\Tr F\\widetilde F$ (B11), and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell. Where no mass reads $0$ the determinants are positive on the chart [chart].",
-   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11}; rests on A3, B9, B11 \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.gram\\_det, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
+   "source": "Prop.~\\ref{prop:strongcp}; rests on A3, B9, B11\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11} \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.gram\\_det, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
    "page": "27-fields/index.html#X11",
    "witness": {
     "py": {
      "href": "py/fields.html#p27034",
      "script": "p27_fields.py",
-     "line": 1561,
+     "line": 1557,
      "verdict": "pass"
     },
     "lean": [
@@ -77528,34 +77503,7 @@
     "p27055",
     "p28007"
    ],
-   "text": "The strong-CP angle reads $0$ on the chart with no axion, on one declaration and one theorem: the colour action is declared of the Wilson class, which holds no term $\\Tr F\\widetilde F$ (B11), and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell. Where no mass reads $0$ the determinants are positive on the chart [chart]. Prop. prop:strongcp p27034, FrcCore{X11}; rests on A3, B9, B11 FRC.Unitary.wilson_orientation_even, FRC.Unitary.hermitian_det_real, FRC.Unitary.gram_det, FRC.Unitary.hermitian_det_shell, FRC.Interactions.ckm_free"
-  },
-  {
-   "paper": "27-fld",
-   "no": 27,
-   "rid": "27:Y1",
-   "key": "p27048",
-   "label": "Y1",
-   "block": "Y",
-   "tag": "O",
-   "name": null,
-   "lean_name": null,
-   "statement": "The electroweak scale as the minimal winding weight of the gauged spinor frame at channel unity: $v/\\sqrt2=m_P\\big(e^{-S_{+1/2}}+e^{-S_{-1/2}}\\big)$, $S_{\\pm1/2}=4\\pi^2/g^2$ the 't~Hooft half-charge action of $\\SU(2)/\\Z_2$ at $g=1$, the channel's normalisation and the measured coupling at no scale, i.e.\\ $v=2^{3/2}m_P\\,e^{-(2\\pi)^2}=247.2$~GeV against $246.2$ ($0.38\\,\\%$ high). The exponent is verified (Section~\\ref{sec:corr}); the amplitude identification, the two-sector prefactor and the residual are underived. Exposure: odds about $1$ in $45$ for the landing; the strong channel obeys no such rule; the running cannot test it (Rem.~\\ref{rmk:masscons}). Falsifier: a derived amplitude identification with a residual other than $0.38\\,\\%$, or a closed form for the residual that fails.",
-   "source": "Rem.~\\ref{rmk:masscons}",
-   "page": "27-fields/index.html#Y1",
-   "witness": {
-    "py": {
-     "href": "py/fields.html#p27048",
-     "script": "p27_fields.py",
-     "line": 1193,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [
-    "p00068"
-   ],
-   "text": "The electroweak scale as the minimal winding weight of the gauged spinor frame at channel unity: $v/\\sqrt2=m_P\\big(e^{-S_{+1/2}}+e^{-S_{-1/2}}\\big)$, $S_{\\pm1/2}=4\\pi^2/g^2$ the 't Hooft half-charge action of $\\SU(2)/\\Z_2$ at $g=1$, the channel's normalisation and the measured coupling at no scale, i.e. $v=2^{3/2}m_P e^{-(2\\pi)^2}=247.2$ GeV against $246.2$ ($0.38 %$ high). The exponent is verified (Section sec:corr); the amplitude identification, the two-sector prefactor and the residual are underived. Exposure: odds about $1$ in $45$ for the landing; the strong channel obeys no such rule; the running cannot test it (Rem. rmk:masscons). Falsifier: a derived amplitude identification with a residual other than $0.38 %$, or a closed form for the residual that fails. Rem. rmk:masscons"
+   "text": "The strong-CP angle reads $0$ on the chart with no axion, on one declaration and one theorem: the colour action is declared of the Wilson class, which holds no term $\\Tr F\\widetilde F$ (B11), and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell. Where no mass reads $0$ the determinants are positive on the chart [chart]. Prop. prop:strongcp; rests on A3, B9, B11 p27034, FrcCore{X11} FRC.Unitary.wilson_orientation_even, FRC.Unitary.hermitian_det_real, FRC.Unitary.gram_det, FRC.Unitary.hermitian_det_shell, FRC.Interactions.ckm_free"
   },
   {
    "paper": "27-fld",
@@ -77574,7 +77522,7 @@
     "py": {
      "href": "py/fields.html#p27047",
      "script": "p27_fields.py",
-     "line": 1186,
+     "line": 1187,
      "verdict": "pass"
     },
     "lean": []

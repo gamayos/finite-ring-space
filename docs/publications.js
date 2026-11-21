@@ -576,8 +576,8 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p27_fields.ipynb",
         "label": "python",
-        "count": 40,
-        "title": "40 predicates checked, all passing: the notebook p27_fields.ipynb on Google Colab, one cell per predicate"
+        "count": 39,
+        "title": "39 predicates checked, all passing: the notebook p27_fields.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Fields.lean",

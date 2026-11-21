@@ -19,7 +19,7 @@ from frc.registry import MARKER
 ROOT = Path(__file__).resolve().parents[2]
 
 # the checks of 16 October 2026 that are continuum readings, and the chart clauses split from an exact parent
-CHART_CHECKS = {"A3", "A4", "A11", "A12", "B1c", "B3", "B4c", "C8c", "D1", "D2", "E2", "E5c", "E7", "F3", "F6c",
+CHART_CHECKS = {"A3", "A4", "A11", "A12", "B1c", "B3", "B4c", "C8c", "D1", "E2", "E5c", "E7", "F3", "F6c",
                 "G2", "G3", "G4", "H2"}
 SPLIT = ("B1c", "B4c", "C8c", "E5c", "F6c")
 # the rows the ledger file decides or corroborates beyond the package's records (16 October 2026)
@@ -149,9 +149,9 @@ class LedgerTest(unittest.TestCase):
                 self.assertEqual(L.LEAN[lab].split(", ")[0], "core", lab)
         self.assertEqual({lab for lab, v in L.LEAN.items() if "ml" in v}, {"C1", "C6", "C7", "X7", "P3", "P4", "P5"})
         self.assertEqual(sorted(L.FAMILY), sorted(L.LEDGER))
-        # the kinds: EXACT or CHART, one per check, 64 checks, the chart ones labelled [chart]
+        # the kinds: EXACT or CHART, one per check, 63 checks, the chart ones labelled [chart]
         kinds = {r["id"]: r["kind"] for r in L.R.results}
-        self.assertEqual(len(kinds), 64)
+        self.assertEqual(len(kinds), 63)
         self.assertEqual(sorted(kinds), sorted(L.LEDGER))
         self.assertEqual(set(kinds.values()), {"EXACT", "CHART"})
         self.assertEqual({pid for pid, k in kinds.items() if k == "CHART"}, CHART_CHECKS)

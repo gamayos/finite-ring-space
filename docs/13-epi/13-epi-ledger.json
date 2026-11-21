@@ -3,7 +3,7 @@
  "tree": "13-epi-20260713",
  "title": "Finite Field Realisation of the Classical Constants π and e",
  "doi": "https://doi.org/10.20944/preprints202607.1141.v2",
- "generated": "18 November 2026",
+ "generated": "21 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -11,7 +11,7 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The framed shell $\\Fp(\\tau;0,1,\\gen)$ of capacity $\\kap$, $\\p=4\\kap+1$, with its phase cycle $\\PhiP\\cong C_{\\p-1}$, the oriented quarter-turn $\\im=\\gen^{-\\kap}$ and the conjugate chirality; the framed rationals $\\fQ$ with the shell reading $\\rep{\\cdot}$; the finitist position that the discrete register is primary.",
+     "predicate": "The framed shell $\\Fp(\\tau;0,1,\\gen)$ of capacity $\\kap$, $\\p=4\\kap+1$, with its phase cycle $\\PhiP\\cong C_{\\p-1}$, the oriented quarter-turn $\\im=\\gen^{-\\kap}$ and the conjugate chirality; the framed rationals $\\fQ$ with the shell reading $\\rep{\\cdot}$; the finitude of the totality, a theorem of the framework, with the discrete register primary and the continuum a labelled idealisation.",
      "tag": "I",
      "source": "\\cite{akhtman2025algebra,akhtman2026geometry,akhtman2026infinity,zeilberger2004real}",
      "key": "p13001",
@@ -189,15 +189,15 @@
     },
     {
      "label": "D4",
-     "predicate": "Horizon determination of the readout: for $n\\ge n_0(k)=\\Theta(k/\\log k)$ the readout $\\ro(\\varepsilon_n)$ lies within one ulp of $\\ro(\\eR)$, and equals it from the plateau threshold $n_1(k)$, the least $n$ from which the readouts agree, decided through the rounding cell of $\\eR$ ($n_1\\le n_0+1$ for $k<200$, equality at eight precisions); the binary64 constant is the readout of $\\varepsilon_{18}=18!/\\dr{18}$, $n=18$ minimal; $\\varepsilon_{70}$ fixes $100$ digits.",
+     "predicate": "Plateau thresholds of the readout: for $n\\ge n_0(k)=\\Theta(k/\\log k)$ the readout $\\ro(\\varepsilon_n)$ lies within one ulp of $\\ro(\\eR)$, and equals it from the plateau threshold $n_1(k)$, the least $n$ from which the readouts agree, decided through the rounding cell of $\\eR$ ($n_1\\le n_0+1$ for $k<200$, equality at eight precisions); the binary64 constant is the readout of $\\varepsilon_{18}=18!/\\dr{18}$, $n=18$ minimal; $\\varepsilon_{70}$ fixes $100$ digits.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:readout-e}\\newline \\pywit{epi}{p13020}{D4}, \\leanwit{FrcCore}{p13020}{D4}, \\leanwit{FrcMathlib}{p13020}{D4} \\lean{Epi.readout\\_binary64, Epi.readout\\_within\\_ulp, Epi.readout\\_plateau, Epi.readout\\_six\\_bits, FRC.Epi.readout\\_e\\_core}",
+     "source": "Thm.~\\ref{thm:readout-e}, Rem.~\\ref{rem:readout-verif}\\newline \\pywit{epi}{p13020}{D4}, \\leanwit{FrcCore}{p13020}{D4}, \\leanwit{FrcMathlib}{p13020}{D4} \\lean{Epi.readout\\_binary64, Epi.readout\\_within\\_ulp, Epi.readout\\_plateau, Epi.readout\\_six\\_bits, FRC.Epi.readout\\_e\\_core}",
      "key": "p13020",
      "name": "horizon_determination_readout"
     },
     {
      "label": "D5",
-     "predicate": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$.",
+     "predicate": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement chain is the canonical finite constructor of $e$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:feasibility-e}\\newline \\pywit{epi}{p13021}{D5}, \\leanwit{FrcCore}{p13021}{D5}, \\leanwit{FrcMathlib}{p13021}{D5} \\lean{Epi.derangement\\_cost, Epi.compound\\_cost, FRC.Epi.derangement\\_cost\\_core}",
      "key": "p13021",
@@ -235,7 +235,7 @@
     },
     {
      "label": "E4",
-     "predicate": "Horizon determination for $\\pi$: the Machin chain $M_N\\in\\fQ$ has $|M_N-\\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\\piR<4S_{2m}$ of width $4/(4m+3)$ the base case.",
+     "predicate": "Plateau thresholds for $\\pi$: the Machin chain $M_N\\in\\fQ$ has $|M_N-\\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\\piR<4S_{2m}$ of width $4/(4m+3)$ the base case.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:readout-pi}\\newline \\pywit{epi}{p13025}{E4}, \\leanwit{FrcMathlib}{p13025}{E4} \\lean{Epi.machin\\_bound, Epi.readout\\_binary64\\_pi, Epi.machin\\_hundred\\_digits, Epi.arctan\\_pairing, Epi.machin\\_pairing, Epi.gregory\\_brackets}",
      "key": "p13025",
@@ -265,7 +265,7 @@
     },
     {
      "label": "F2",
-     "predicate": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
+     "predicate": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form by the package for all $22{,}043$ odd primes $\\p<2.5\\times10^{5}$ and by the same program run to $1.6\\times10^{6}$ ($121{,}126$ odd primes), with zero failures of either condition. Beyond $n=\\p-1$, the wall, $n!\\equiv0$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:wall-e}\\newline \\pywit{epi}{p13028}{F2}, \\leanwit{FrcCore}{p13028}{F2}, \\leanwit{FrcMathlib}{p13028}{F2} \\lean{Epi.derangements\\_wall\\_zmod, Epi.terminal\\_residue, FRC.Epi.terminal13}",
      "key": "p13028",
@@ -273,7 +273,7 @@
     },
     {
      "label": "F3",
-     "predicate": "Antiperiodicity: $\\dr{(n+\\p)}\\equiv-\\dr{n}\\pmod\\p$ for every odd prime $\\p$ and every $n\\ge0$ of the totality, so $\\dr{n}\\bmod\\p$ depends on $n\\bmod2\\p$; the blind set $Z_0(\\p)=\\{n<\\p:\\dr{n}\\equiv0\\}$ always contains $1$, and Kurepa's hypothesis is $\\p-1\\notin Z_0(\\p)$ for every odd prime $\\p$ of the totality.",
+     "predicate": "Antiperiodicity (Miska, 2016, the period $2\\p$ of $\\dr{n}\\bmod\\p$; reproved here): $\\dr{(n+\\p)}\\equiv-\\dr{n}\\pmod\\p$ for every odd prime $\\p$ and every $n\\ge0$ of the totality, so $\\dr{n}\\bmod\\p$ depends on $n\\bmod2\\p$; the blind set $Z_0(\\p)=\\{n<\\p:\\dr{n}\\equiv0\\}$ always contains $1$, and Kurepa's hypothesis is $\\p-1\\notin Z_0(\\p)$ for every odd prime $\\p$ of the totality.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:antiperiod}\\newline \\pywit{epi}{p13029}{F3}, \\leanwit{FrcCore}{p13029}{F3}, \\leanwit{FrcMathlib}{p13029}{F3} \\lean{Epi.derangements\\_antiperiodic\\_zmod, FRC.Epi.dr\\_antiperiodic, FRC.Epi.dr\\_succ}",
      "key": "p13029",
@@ -313,9 +313,9 @@
     },
     {
      "label": "F8",
-     "predicate": "The tail identity: $j!\\,\\dr{(\\p-1-j)}\\equiv(-1)^{j}\\bigl(\\Ku{\\p}-\\Ku{j}\\bigr)\\pmod\\p$ for $0\\le j\\le\\p-1$ ($j=0$ is F2); hence $n\\in Z_0(\\p)$ iff $\\Ku{(\\p-1-n)}\\equiv\\Ku{\\p}$: the blind set counts the collisions of the partial sums of the left factorial with their total, $n=1$ is the forced collision $\\Ku{(\\p-2)}\\equiv\\Ku{\\p}$, and Kurepa's hypothesis is the return-to-origin question of the walk with steps $j!$.",
+     "predicate": "The tail identity (Kellner, 2004, Lemma~2.4, in the reflected index; reproved here): $j!\\,\\dr{(\\p-1-j)}\\equiv(-1)^{j}\\bigl(\\Ku{\\p}-\\Ku{j}\\bigr)\\pmod\\p$ for $0\\le j\\le\\p-1$ ($j=0$ is F2); hence $n\\in Z_0(\\p)$ iff $\\Ku{(\\p-1-n)}\\equiv\\Ku{\\p}$: the blind set counts the collisions of the partial sums of the left factorial with their total, $n=1$ is the forced collision $\\Ku{(\\p-2)}\\equiv\\Ku{\\p}$, and Kurepa's hypothesis is the return-to-origin question of the walk with steps $j!$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:wilson}, Thm.~\\ref{thm:wall-e}\\newline \\pywit{epi}{p13066}{F8}, \\leanwit{FrcMathlib}{p13066}{F8} \\lean{Epi.tail\\_identity\\_zmod, Epi.blind\\_iff\\_collision}",
+     "source": "Thm.~\\ref{thm:wall-e}(ii)\\newline \\pywit{epi}{p13066}{F8}, \\leanwit{FrcMathlib}{p13066}{F8} \\lean{Epi.tail\\_identity\\_zmod, Epi.blind\\_iff\\_collision}",
      "key": "p13066",
      "name": "tail_identity_blind_set"
     }
@@ -367,9 +367,9 @@
     },
     {
      "label": "G6",
-     "predicate": "First-order wall vanishing of the arcsin chain: $\\sigma_\\p=\\sum_{k<m}\\Cb{k}/((2k+1)16^{k})\\equiv0\\pmod\\p$ for every prime $\\p\\ge5$ of the totality, $\\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\\Cb{k}\\equiv(-4)^{k}\\binom mk$. Verified for all $428$ odd primes $5\\le\\p<3000$; the ingredients for $m\\le60$, $\\p<500$.",
+     "predicate": "First-order wall vanishing of the arcsin chain: $\\sigma_\\p=\\sum_{k<m}\\Cb{k}/((2k+1)16^{k})\\equiv0\\pmod\\p$ for every prime $\\p\\ge5$ of the totality, $\\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\\Cb{k}\\equiv(-4)^{k}\\binom mk$; proved in Lean for every prime $\\p\\ge5$ on Mathlib, the same route. Verified for all $428$ odd primes $5\\le\\p<3000$; the ingredients for $m\\le60$, $\\p<500$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:vanish}, eq.~\\eqref{eq:key}\\newline \\pywit{epi}{p13039}{G6}, \\leanwit{FrcCore}{p13039}{G6}, \\leanwit{FrcMathlib}{p13039}{G6} \\lean{FRC.Epi.sigma\\_vanishes\\_all, FRC.Epi.arcsin\\_wall\\_vanishing}",
+     "source": "Thm.~\\ref{thm:vanish}, eq.~\\eqref{eq:key}\\newline \\pywit{epi}{p13039}{G6}, \\leanwit{FrcCore}{p13039}{G6}, \\leanwit{FrcMathlib}{p13039}{G6} \\lean{FRC.Epi.sigma\\_vanishes\\_all, Epi.arcsin\\_wall\\_vanishing}",
      "key": "p13039",
      "name": "first_order_wall_vanishing"
     },
@@ -421,7 +421,7 @@
     },
     {
      "label": "H2",
-     "predicate": "The exact angular carrier of $\\pi$: $\\chi(-1)=e^{\\imR\\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\\gen^{(\\p-1)/2}$ sits at arc fraction one half --- Euler's identity as the half-turn tautology $\\gen^{2\\kap}=-1$ under the dictionary, with no calibration and no error term.",
+     "predicate": "The exact angular counterpart of $\\pi$: $\\chi(-1)=e^{\\imR\\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\\gen^{(\\p-1)/2}$ sits at arc fraction one half --- Euler's identity as the half-turn tautology $\\gen^{2\\kap}=-1$ under the dictionary, with no calibration and no error term.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:exact-pi}\\newline \\pywit{epi}{p13044}{H2}, \\leanwit{FrcCore}{p13044}{H2} \\lean{FRC.Shell.Frame.half\\_period}",
      "key": "p13044",
@@ -429,7 +429,7 @@
     },
     {
      "label": "H3",
-     "predicate": "Exact calibration of $e$ is impossible: with $\\theta=2\\piR\\lambda(\\im)/(\\p-1)$ the frame angle of $\\eP$, $\\theta\\ne1$ in every shell ($\\theta=1$ would make $\\piR$ rational, A2); $\\chi(\\eP)$ is a root of unity while $e^{\\imR}$ is not, so the identification is intrinsically horizon-limited.",
+     "predicate": "Exact calibration of $e$ is impossible: with $\\theta=2\\piR\\lambda(\\im)/(\\p-1)$ the frame angle of $\\eP$, $\\theta\\ne1$ in every shell ($\\theta=1$ would make $\\piR$ rational, A2); $\\chi(\\eP)$ is a root of unity while $e^{\\imR}$ is not, so the identification is intrinsically precision-limited.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:norad}\\newline \\pywit{epi}{p13045}{H3}, \\leanwit{FrcCore}{p13045}{H3}, \\leanwit{FrcMathlib}{p13045}{H3} \\lean{Epi.calibration\\_ne\\_one, Epi.exp\\_I\\_ne\\_one, FRC.Epi.no\\_exact\\_calibration}",
      "key": "p13045",
@@ -445,7 +445,7 @@
     },
     {
      "label": "H5",
-     "predicate": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$.",
+     "predicate": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial counterparts of $e$.",
      "tag": "T",
      "source": "Exp.~\\ref{exp:null}\\newline \\pywit{epi}{p13047}{H5}, \\leanwit{FrcMathlib}{p13047}{H5} \\lean{Epi.index\\_condition\\_shell, Epi.index\\_condition}",
      "key": "p13047",
@@ -459,7 +459,7 @@
    "rows": [
     {
      "label": "I1",
-     "predicate": "Emergence of the classical $e$: (i) in every shell with $\\p>n_1+|Z_0(\\p)|+1$ a non-blind scale in $[n_1,n_1+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the residue line, antiperiodic in its derangement denominators, blind on $Z_0(\\p)$, terminating on $-(\\Ku{\\p})^{-1}$, read out beyond $n_1$ as one dyadic rational; (iii) $\\chi(\\eP)$ approaches $e^{\\imR}$ along the calibrated shells, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5.",
+     "predicate": "Emergence of the classical $e$: (i) in every shell with $\\p>n_1+|Z_0(\\p)|+1$ a non-blind scale in $[n_1,n_1+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the residue line, antiperiodic in its derangement denominators, blind on $Z_0(\\p)$, terminating on $-(\\Ku{\\p})^{-1}$, read out beyond $n_1$ as one dyadic rational; (iii) $\\chi(\\eP)$ approaches $e^{\\imR}$ along the calibrated shells, exact calibration impossible, no pointwise link between the counterparts. Composed from D4, F2, F3, F5, H3--H5.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:main-e}\\newline \\pywit{epi}{p13048}{I1}, \\leanwit{FrcCore}{p13048}{I1}, \\leanwit{FrcMathlib}{p13048}{I1} \\lean{Epi.readout\\_binary64, Epi.calibration\\_ne\\_one, Epi.calibrated\\_778933, FRC.Epi.readout\\_e\\_core, FRC.Epi.terminal13, FRC.Epi.dr\\_antiperiodic, FRC.Epi.blind\\_census, FRC.Epi.no\\_exact\\_calibration}",
      "key": "p13048",
@@ -475,7 +475,7 @@
     },
     {
      "label": "I3",
-     "predicate": "The duality: $\\pi$ is angular-exact and wall-trivial (tautological carrier, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\\pi$ a structural, $e$ a statistical constant of the finite frame.",
+     "predicate": "The duality: $\\pi$ is angular-exact and wall-trivial (tautological counterpart, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\\pi$ a structural, $e$ a statistical constant of the finite frame.",
      "tag": "T",
      "source": "\\S\\ref{sec:duality}\\newline \\pywit{epi}{p13050}{I3}, \\leanwit{FrcCore}{p13050}{I3}, \\leanwit{FrcMathlib}{p13050}{I3} \\lean{Epi.calibration\\_ne\\_one, Epi.machin\\_bound, Epi.compound\\_cost, FRC.Epi.residue\\_line\\_pi13, FRC.Epi.terminal13, FRC.Epi.kurepa\\_alt\\_values, FRC.Epi.blind\\_census, FRC.Epi.no\\_exact\\_calibration}",
      "key": "p13050",
@@ -545,7 +545,7 @@
     },
     {
      "label": "J6",
-     "predicate": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper.",
+     "predicate": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the wall; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper.",
      "tag": "T",
      "source": "\\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13057}{J6}, \\leanwit{FrcCore}{p13057}{J6}, \\leanwit{FrcMathlib}{p13057}{J6} \\lean{Epi.derangements\\_wall\\_zmod, Epi.half\\_wall\\_second\\_order, FRC.Epi.terminal13, FRC.Epi.invariants\\_13\\_1093}",
      "key": "p13057",

@@ -238,18 +238,18 @@ def su3_fit(betas=(0.02, 0.04, 0.06, 0.08, 0.10, 0.12), n=120):
     return _solve3(S, t)
 
 
-# ---- the electroweak scale against the transmutation forms (v_scale) --------------------------------------------------
+# ---- the electroweak scale against the gauge transmutation form (v_scale) -----------------------------------------------
 def v_scale():
     d = {k: _f(v) for k, v in DATA["v_scale"].items()}
     mP, MW, v, MZ = d["m_P"], d["M_W"], d["v"], d["M_Z"]
-    out = dict(b_fit_MW=8 * math.pi ** 2 / math.log(mP / MW), b_fit_v=8 * math.pi ** 2 / math.log(mP / v))
+    # the weak coupling at the channel's normalisation: the electron's α = 9/4π (27:C2), sin²θ_W = 3/8 (27:C6), e = g sin θ_W
+    g2 = 4 * math.pi * (9 / (4 * math.pi)) / (3 / 8)
+    out = dict(g2=g2, b_fit_MW=8 * math.pi ** 2 / (g2 * math.log(mP / MW)))
     b2 = 19 / 6
-    out["L_b2"] = mP * math.exp(-8 * math.pi ** 2 / b2)
+    out["L_b2"] = mP * math.exp(-8 * math.pi ** 2 / (b2 * g2))
     out["mu_IR"] = MZ * math.exp(-2 * math.pi * d["a2inv_MZ"] / b2)
     out["as_MP_needed"] = 2 * math.pi / (7.0 * 45.0)
     out["as_MP_run"] = 1.0 / (1.0 / d["alpha_s_MZ"] + (7.0 / (2 * math.pi)) * math.log(mP / MZ))
-    out["vc"] = mP * math.exp(-(2 * math.pi) ** 2)
-    out["v1"] = 2 ** 1.5 * mP * math.exp(-(2 * math.pi) ** 2)
     return out
 
 
