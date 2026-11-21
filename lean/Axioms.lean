@@ -660,8 +660,7 @@ import FrcMathlib
 #print axioms FRC.Flavour.squared_amplitudes_cyclotomic_norms
 #print axioms FRC.Flavour.gatto_cabibbo_relation
 #print axioms FRC.Flavour.up_sector_doubling
-#print axioms FRC.Flavour.reactor_angle_leading_order
-#print axioms FRC.Flavour.tm2_selected
+#print axioms FRC.Flavour.character_matrix_tm2_relation
 #print axioms FRC.Flavour.koide_ratio_quarter_turn
 #print axioms FRC.Flavour.up_quark_koide_framed
 #print axioms FRC.Flavour.flavour_charges_role_depths
@@ -669,8 +668,7 @@ import FrcMathlib
 #print axioms FRC.Flavour.georgi_jarlskog_colour_count
 #print axioms FRC.Flavour.up_sector_doubling_forced
 #print axioms FRC.Flavour.electron_lightness_quarter_turn
-#print axioms FRC.Flavour.reactor_angle_complementarity
-#print axioms FRC.Flavour.near_maximal_leptonic_cp
+#print axioms FRC.Flavour.character_matrix_invariant
 #print axioms FRC.Flavour.neutrino_spectrum
 #print axioms FRC.Flavour.charged_lepton_koide_exact
 #print axioms FRC.Flavour.up_quark_koide_prediction
@@ -987,7 +985,6 @@ import FrcMathlib
 #print axioms FRC.LedgerML.p28015
 #print axioms FRC.LedgerML.p28017
 #print axioms FRC.LedgerML.p28018
-#print axioms FRC.LedgerML.p28020
 #print axioms FRC.LedgerML.p28021
 #print axioms FRC.LedgerML.p28025
 #print axioms FRC.LedgerML.p28026
@@ -996,7 +993,6 @@ import FrcMathlib
 #print axioms FRC.LedgerML.p28029
 #print axioms FRC.LedgerML.p28030
 #print axioms FRC.LedgerML.p28031
-#print axioms FRC.LedgerML.p28033
 #print axioms FRC.LedgerML.p28034
 #print axioms FRC.LedgerML.p28035
 #print axioms FRC.LedgerML.p28036

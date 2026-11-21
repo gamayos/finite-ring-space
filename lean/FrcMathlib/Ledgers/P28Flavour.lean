@@ -98,21 +98,6 @@ fails if a key's axioms change (the axioms of Mathlib's hierarchy at most). Noth
 #guard_msgs in
 #print axioms FRC.LedgerML.p28039
 
--- 28:P8 (p28042)
-/-- info: 'FRC.LedgerML.p28042' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms FRC.LedgerML.p28042
-
--- 28:C9 (p28020)
-/-- info: 'FRC.LedgerML.p28020' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms FRC.LedgerML.p28020
-
--- 28:X9 (p28033)
-/-- info: 'FRC.LedgerML.p28033' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms FRC.LedgerML.p28033
-
 -- 28:P6 (p28040)
 /-- info: 'FRC.LedgerML.p28040' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
@@ -122,3 +107,8 @@ fails if a key's axioms change (the axioms of Mathlib's hierarchy at most). Noth
 /-- info: 'FRC.LedgerML.p28041' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms FRC.LedgerML.p28041
+
+-- 28:P8 (p28042)
+/-- info: 'FRC.LedgerML.p28042' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p28042

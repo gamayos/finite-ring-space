@@ -22,10 +22,12 @@ CHART_CHECKS = {"A3c", "B1c", "B2c", "B3c", "C1c", "C2c", "C3c", "D1", "D2c", "E
                 "Z4", "Z4b"}
 SPLIT = ("A3c", "B1c", "B2c", "B3c", "C1c", "C2c", "C3c")             # D2c and E2c reproduce records of their own (tm2_jointfit, neutrino)
 # the rows the ledger file decides or corroborates beyond the package's records, and the package rows left unwitnessed
-ADDED_ROWS = {"28:X8", "28:P3", "28:P7", "28:C12"}
-DROPPED_ROWS = {"28:A2", "28:B3", "28:B4"}
+# (the revision of 20 November 2026: B2, Y3 and Y6 gain checks; C9 and X9 became the hypothesis Y6; Z1 and Z2 are the tasks T1, T2)
+ADDED_ROWS = {"28:X8", "28:P3", "28:P7", "28:C12", "28:B2", "28:Y3", "28:Y6", "28:T1", "28:T2"}
+DROPPED_ROWS = {"28:A2", "28:B3", "28:B4", "28:C9", "28:X9", "28:Z1", "28:Z2"}
+NO_RECORD = {"revision4"}                                             # the checks of that revision reproduce no package record
 # the rows with a Mathlib reading (the chart theme's FrcMathlib/Theme/Flavour.lean)
-ML_ROWS = {"C3", "C4", "C6", "C7", "C9", "C10", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "X9", "X10", "X11", "P1", "P2", "P3",
+ML_ROWS = {"C3", "C4", "C6", "C7", "C10", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "X10", "X11", "P1", "P2", "P3",
            "P5", "P6", "P7", "P8"}
 
 
@@ -59,7 +61,7 @@ class FlavourTest(unittest.TestCase):
         self.assertAlmostEqual(float(FL.koide_functional(lam)), CFL.koide([float(l * l) for l in lam]), places=14)
 
     def test_shells(self):
-        for p in (17, 53, 89):
+        for p in (173,):                                                          # the Subject 173
             S = FL.Shell(p); K = S.K
             self.assertEqual(K.pow(S.omega, 3), (1, 0))
             self.assertEqual(K.add(K.add(K.mul(S.omega, S.omega), S.omega), (1, 0)), (0, 0))
@@ -151,20 +153,20 @@ class LedgerTest(unittest.TestCase):
         self.assertTrue(L.R.verify_all())
         self.assertEqual(L.PAPER, "28-flavour")
         # the Lean side: every row with a declaration has a deciding python check (gate G12; no Lean-only row), every
-        # theorem row has a core declaration except the four pure readings C9, X9, P6, P7, and the Mathlib readings are
-        # the twenty-three of the blueprint
+        # theorem row has a core declaration (P6 and P7 by closed integer brackets since 20 November 2026), and the
+        # Mathlib readings are the twenty-one that remain
         self.assertEqual(L.LEAN_ONLY, ())
         for lab in L.LEAN: self.assertIn(f"28:{lab}", L.PREDICATES, lab)
         if L.LEAN:                                                          # the table is empty until make_ledgers runs
             for lab in L.R.predicates:
                 lab = lab.split(":")[1]
-                if lab[0] in "CXP" and lab not in ("C9", "X9", "P6", "P7"):
+                if lab[0] in "BCXP":
                     self.assertEqual(L.LEAN[lab].split(", ")[0], "core", lab)
             self.assertEqual({lab for lab, v in L.LEAN.items() if "ml" in v}, ML_ROWS)
         self.assertEqual(sorted(L.FAMILY), sorted(L.LEDGER))
-        # the kinds: EXACT or CHART, one per check, 31 checks, the chart ones labelled [chart]
+        # the kinds: EXACT or CHART, one per check, 34 checks, the chart ones labelled [chart]
         kinds = {r["id"]: r["kind"] for r in L.R.results}
-        self.assertEqual(len(kinds), 31)
+        self.assertEqual(len(kinds), 34)
         self.assertEqual(sorted(kinds), sorted(L.LEDGER))
         self.assertEqual(set(kinds.values()), {"EXACT", "CHART"})
         self.assertEqual({pid for pid, k in kinds.items() if k == "CHART"}, CHART_CHECKS)
@@ -175,10 +177,10 @@ class LedgerTest(unittest.TestCase):
             parent = pid[:-1]
             self.assertEqual(kinds[parent], "EXACT", pid)
             self.assertEqual(L.FAMILY[pid], L.FAMILY[parent], pid)
-        # every T row of the paper is decided by one check; the Ω rows Z1, Z3, Z4 and Z2 by chart readings
+        # every T row of the paper is decided by one check; the open rows T1, T2, Y3, Y6 and the Ω rows Z3, Z4 by readings
         led = json.loads((ROOT / "docs" / "28-flavour" / "28-flavour-ledger.json").read_text(encoding="utf-8"))
         trows = {f"28:{r['label']}" for b in led["blocks"] for r in b["rows"] if r["tag"] == "T" and not r["label"].startswith("V")}
-        self.assertEqual(trows, {k for k in L.PREDICATES if k[3] in "CXP"})
+        self.assertEqual(trows, {k for k in L.PREDICATES if k[3] in "BCXP"})
         # the markers: one marker line per decided predicate, on the line before its deciding check, with the row's key
         src = (ROOT / "frc" / "ledgers" / "p28_flavour.py").read_text(encoding="utf-8").split("\n")
         marks = L.R.markers()
@@ -199,11 +201,12 @@ class LedgerTest(unittest.TestCase):
         from frc.ledgers import p28_flavour as L
         L.R.verify_all()
         recs = {r["id"]: r for r in json.loads((ROOT / "src" / "28-flavour" / "results.json").read_text(encoding="utf-8"))}
-        self.assertEqual(sorted("flv." + f for f in set(L.FAMILY.values())), sorted(recs))
+        self.assertEqual(sorted("flv." + f for f in set(L.FAMILY.values()) - NO_RECORD), sorted(recs))
         kinds = {r["id"]: r["kind"] for r in L.R.results}
         witnessed = set()
         for pid, fam in L.FAMILY.items():
             witnessed.update(_rows(L.LEDGER[pid]))
+            if fam in NO_RECORD: continue
             self.assertIn(recs["flv." + fam]["kind"], ("EXACT", "MIXED", "APPROX"))
             if recs["flv." + fam]["kind"] == "EXACT": self.assertEqual(kinds[pid], "EXACT", pid)
         package = set()

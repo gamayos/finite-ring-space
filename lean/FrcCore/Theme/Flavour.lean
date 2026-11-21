@@ -102,8 +102,8 @@ theorem circ_adj (a b c : Ext p ν) :
     (xsound (xlook [a, b, c]) (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.var 2)))) (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.var 2)))) (by decide +kernel) : b * b + -(a * c) = b * b + -(a * c))
     (xsound (xlook [a, b, c]) (.add (.mul (.var 0) (.var 0)) (.neg (.mul (.var 1) (.var 2)))) (.add (.mul (.var 0) (.var 0)) (.neg (.mul (.var 1) (.var 2)))) (by decide +kernel) : a * a + -(b * c) = a * a + -(b * c))
 
-/-- 28:C1, 28:C5, 28:Z1 — the determinant of a circulant: `det (circ a b c) = a³ + b³ + c³ − 3abc`; at `c = b̄` this is the cube
-invariant `∏ √m_k = a³ + 2 Re(b³) − 3a N(b)`, whose phase part `Re(b³)` carries the winding residue (28:Z1). -/
+/-- 28:C1, 28:C5, 28:T1 — the determinant of a circulant: `det (circ a b c) = a³ + b³ + c³ − 3abc`; at `c = b̄` this is the cube
+invariant `∏ √m_k = a³ + 2 Re(b³) − 3a N(b)`, whose phase part `Re(b³)` carries the phase of the sector (28:T1). -/
 theorem circ_det (a b c : Ext p ν) :
     det (circ a b c) = a * a * a + b * b * b + c * c * c + -((1 + 1 + 1) * (a * b * c)) :=
   (xsound (xlook [a, b, c]) (.add (.add (.mul (.var 0) (.add (.mul (.var 0) (.var 0)) (.neg (.mul (.var 1) (.var 2))))) (.neg (.mul (.var 1) (.add (.mul (.var 2) (.var 0)) (.neg (.mul (.var 1) (.var 1))))))) (.mul (.var 2) (.add (.mul (.var 2) (.var 2)) (.neg (.mul (.var 0) (.var 1)))))) (.add (.add (.add (.mul (.mul (.var 0) (.var 0)) (.var 0)) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.mul (.var 2) (.var 2)) (.var 2))) (.neg (.mul (.add (.add .one .one) .one) (.mul (.mul (.var 0) (.var 1)) (.var 2))))) (by decide +kernel) : a * (a * a + -(b * c)) + -(b * (c * a + -(b * b))) + c * (c * c + -(a * b)) = a * a * a + b * b * b + c * c * c + -((1 + 1 + 1) * (a * b * c)))
@@ -125,7 +125,7 @@ theorem eigen_sum (a b c ω : Ext p ν) (hω : ω * ω + ω + 1 = 0) :
     a + b + c + (a + b * ω + c * (ω * ω)) + (a + b * (ω * ω) + c * ω) = (1 + 1 + 1) * a :=
   (xred1 (xsound (xlook [a, b, c, ω]) (.add (.add (.add (.add (.var 0) (.var 1)) (.var 2)) (.add (.add (.var 0) (.mul (.var 1) (.var 3))) (.mul (.var 2) (.mul (.var 3) (.var 3))))) (.add (.add (.var 0) (.mul (.var 1) (.mul (.var 3) (.var 3)))) (.mul (.var 2) (.var 3)))) (.add (.mul (.add (.add .one .one) .one) (.var 0)) (.mul (.add (.add (.mul (.var 3) (.var 3)) (.var 3)) .one) (.add (.var 1) (.var 2)))) (by decide +kernel) : a + b + c + (a + b * ω + c * (ω * ω)) + (a + b * (ω * ω) + c * ω) = (1 + 1 + 1) * a + (ω * ω + ω + 1) * (b + c)) hω)
 
-/-- 28:C1, 28:C2, 28:C11b — the squares of the eigenvalues sum to `3a² + 6bc`: at `c = b̄` this is `3a² + 6 N(b)`, so
+/-- 28:C1, 28:C2, 28:C11b, 28:X11, 28:P5 — the squares of the eigenvalues sum to `3a² + 6bc`: at `c = b̄` this is `3a² + 6 N(b)`, so
 `Q = Σλ²/(Σλ)² = 1/3 + (2/3) N(b)/a²`, the Koide form with `ρ² = N(b)/a²` (`koide_parseval`). -/
 theorem eigen_sumsq (a b c ω : Ext p ν) (hω : ω * ω + ω + 1 = 0) :
     (a + b + c) * (a + b + c) + (a + b * ω + c * (ω * ω)) * (a + b * ω + c * (ω * ω)) + (a + b * (ω * ω) + c * ω) * (a + b * (ω * ω) + c * ω) = (1 + 1 + 1) * (a * a) + (1 + 1 + 1 + 1 + 1 + 1) * (b * c) :=
@@ -424,5 +424,96 @@ amplitude `r_ν = r_D` and the Koide value `Q_ν = Q_D = 2/3` of the colourless 
 theorem transpose_fixed_point (c : Ext p ν) (M : M3 p ν) :
     mmul (mmul M (adj (smul c M))) (transpose M) = smul (c * c * det M) (transpose M) := by
   rw [adj_smul, mul_smul, mul_adj, smul_scal, scal_mul]
+
+/-! ## The commutant of the shift, the Hermitian circulant and the symmetric circulant (28:B1, 28:B2, 28:C1, 28:C11) -/
+
+/-- 28:C1 — a matrix that commutes with the shift is a circulant: `A P = P A` gives `A = circ A₀₀ A₀₁ A₀₂`. The
+circulants are the commutant of the generation shift. -/
+theorem shift_commutant (A : M3 p ν) (h : mmul A shift = mmul shift A) : A = circ A.a00 A.a01 A.a02 := by
+  have h00 : (((A.a00 * 0) + (A.a01 * 0)) + (A.a02 * 1)) = (((0 * A.a00) + (1 * A.a10)) + (0 * A.a20)) := congrArg M3.a00 h
+  have l00 : (((A.a00 * 0) + (A.a01 * 0)) + (A.a02 * 1)) = A.a02 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul (.var 0) .zero) (.mul (.var 1) .zero)) (.mul (.var 2) .one)) (.var 2) (by decide +kernel)
+  have r00 : (((0 * A.a00) + (1 * A.a10)) + (0 * A.a20)) = A.a10 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul .zero (.var 0)) (.mul .one (.var 3))) (.mul .zero (.var 6))) (.var 3) (by decide +kernel)
+  have e00 : A.a02 = A.a10 := l00.symm.trans (h00.trans r00)
+  have h01 : (((A.a00 * 1) + (A.a01 * 0)) + (A.a02 * 0)) = (((0 * A.a01) + (1 * A.a11)) + (0 * A.a21)) := congrArg M3.a01 h
+  have l01 : (((A.a00 * 1) + (A.a01 * 0)) + (A.a02 * 0)) = A.a00 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul (.var 0) .one) (.mul (.var 1) .zero)) (.mul (.var 2) .zero)) (.var 0) (by decide +kernel)
+  have r01 : (((0 * A.a01) + (1 * A.a11)) + (0 * A.a21)) = A.a11 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul .zero (.var 1)) (.mul .one (.var 4))) (.mul .zero (.var 7))) (.var 4) (by decide +kernel)
+  have e01 : A.a00 = A.a11 := l01.symm.trans (h01.trans r01)
+  have h02 : (((A.a00 * 0) + (A.a01 * 1)) + (A.a02 * 0)) = (((0 * A.a02) + (1 * A.a12)) + (0 * A.a22)) := congrArg M3.a02 h
+  have l02 : (((A.a00 * 0) + (A.a01 * 1)) + (A.a02 * 0)) = A.a01 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul (.var 0) .zero) (.mul (.var 1) .one)) (.mul (.var 2) .zero)) (.var 1) (by decide +kernel)
+  have r02 : (((0 * A.a02) + (1 * A.a12)) + (0 * A.a22)) = A.a12 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul .zero (.var 2)) (.mul .one (.var 5))) (.mul .zero (.var 8))) (.var 5) (by decide +kernel)
+  have e02 : A.a01 = A.a12 := l02.symm.trans (h02.trans r02)
+  have h10 : (((A.a10 * 0) + (A.a11 * 0)) + (A.a12 * 1)) = (((0 * A.a00) + (0 * A.a10)) + (1 * A.a20)) := congrArg M3.a10 h
+  have l10 : (((A.a10 * 0) + (A.a11 * 0)) + (A.a12 * 1)) = A.a12 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul (.var 3) .zero) (.mul (.var 4) .zero)) (.mul (.var 5) .one)) (.var 5) (by decide +kernel)
+  have r10 : (((0 * A.a00) + (0 * A.a10)) + (1 * A.a20)) = A.a20 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul .zero (.var 0)) (.mul .zero (.var 3))) (.mul .one (.var 6))) (.var 6) (by decide +kernel)
+  have e10 : A.a12 = A.a20 := l10.symm.trans (h10.trans r10)
+  have h11 : (((A.a10 * 1) + (A.a11 * 0)) + (A.a12 * 0)) = (((0 * A.a01) + (0 * A.a11)) + (1 * A.a21)) := congrArg M3.a11 h
+  have l11 : (((A.a10 * 1) + (A.a11 * 0)) + (A.a12 * 0)) = A.a10 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul (.var 3) .one) (.mul (.var 4) .zero)) (.mul (.var 5) .zero)) (.var 3) (by decide +kernel)
+  have r11 : (((0 * A.a01) + (0 * A.a11)) + (1 * A.a21)) = A.a21 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul .zero (.var 1)) (.mul .zero (.var 4))) (.mul .one (.var 7))) (.var 7) (by decide +kernel)
+  have e11 : A.a10 = A.a21 := l11.symm.trans (h11.trans r11)
+  have h12 : (((A.a10 * 0) + (A.a11 * 1)) + (A.a12 * 0)) = (((0 * A.a02) + (0 * A.a12)) + (1 * A.a22)) := congrArg M3.a12 h
+  have l12 : (((A.a10 * 0) + (A.a11 * 1)) + (A.a12 * 0)) = A.a11 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul (.var 3) .zero) (.mul (.var 4) .one)) (.mul (.var 5) .zero)) (.var 4) (by decide +kernel)
+  have r12 : (((0 * A.a02) + (0 * A.a12)) + (1 * A.a22)) = A.a22 := xsound (xlook [A.a00, A.a01, A.a02, A.a10, A.a11, A.a12, A.a20, A.a21, A.a22]) (.add (.add (.mul .zero (.var 2)) (.mul .zero (.var 5))) (.mul .one (.var 8))) (.var 8) (by decide +kernel)
+  have e12 : A.a11 = A.a22 := l12.symm.trans (h12.trans r12)
+  exact mext rfl rfl rfl e00.symm e01.symm e02.symm (e10.symm.trans e02.symm) (e11.symm.trans e00.symm) (e12.symm.trans e01.symm)
+
+/-- 28:C1, 28:C11 — two circulants commute. -/
+theorem circ_comm (a b c a' b' c' : Ext p ν) :
+    mmul (circ a b c) (circ a' b' c') = mmul (circ a' b' c') (circ a b c) := by
+  have e1 : (((a * a') + (b * c')) + (c * b')) = (((a' * a) + (b' * c)) + (c' * b)) := xsound (xlook [a, b, c, a', b', c']) (.add (.add (.mul (.var 0) (.var 3)) (.mul (.var 1) (.var 5))) (.mul (.var 2) (.var 4))) (.add (.add (.mul (.var 3) (.var 0)) (.mul (.var 4) (.var 2))) (.mul (.var 5) (.var 1))) (by decide +kernel)
+  have e2 : (((a * b') + (b * a')) + (c * c')) = (((a' * b) + (b' * a)) + (c' * c)) := xsound (xlook [a, b, c, a', b', c']) (.add (.add (.mul (.var 0) (.var 4)) (.mul (.var 1) (.var 3))) (.mul (.var 2) (.var 5))) (.add (.add (.mul (.var 3) (.var 1)) (.mul (.var 4) (.var 0))) (.mul (.var 5) (.var 2))) (by decide +kernel)
+  have e3 : (((a * c') + (b * b')) + (c * a')) = (((a' * c) + (b' * b)) + (c' * a)) := xsound (xlook [a, b, c, a', b', c']) (.add (.add (.mul (.var 0) (.var 5)) (.mul (.var 1) (.var 4))) (.mul (.var 2) (.var 3))) (.add (.add (.mul (.var 3) (.var 2)) (.mul (.var 4) (.var 1))) (.mul (.var 5) (.var 0))) (by decide +kernel)
+  rw [circ_mul, circ_mul, e1, e2, e3]
+
+/-- 28:B1, 28:C1 — the conjugate transpose of a circulant is the circulant of the conjugates with the row reversed, so a
+circulant is Hermitian exactly when `ā = a` and `c = b̄`. -/
+theorem circ_dag (a b c : Ext p ν) : dag (circ a b c) = circ (Ext.conj a) (Ext.conj c) (Ext.conj b) := rfl
+
+/-- 28:B2 — the Frobenius exchanges the two nontrivial characters of the generation cycle: at `ν = −3` the cube root
+`ω = −h + h w` has `ω̄ = ω²`. -/
+theorem frobenius_characters {h : Shell p} (hh : h + h = 1) (hν : ν + 1 + 1 + 1 = 0) :
+    Ext.conj (omega3 ν h) = omega3 ν h * omega3 ν h := by
+  have hA : h + h + -1 = 0 := by rw [hh, add_neg]
+  exact Ext.ext
+    (Unitary.red2 (RE.sound (look [ν, h]) (.neg (.var 1)) (.add (.add (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.var 1))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) (.neg (.mul (.var 1) (.var 1))))) (by decide +kernel) : -h = ((((-h * -h) + (ν * (h * h))) + (((h + h) + -1) * h)) + ((((ν + 1) + 1) + 1) * -(h * h)))) hA hν)
+    (Unitary.red2 (RE.sound (look [ν, h]) (.neg (.var 1)) (.add (.add (.add (.mul (.neg (.var 1)) (.var 1)) (.mul (.var 1) (.neg (.var 1)))) (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.var 1))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) .zero)) (by decide +kernel) : -h = ((((-h * h) + (h * -h)) + (((h + h) + -1) * h)) + ((((ν + 1) + 1) + 1) * 0))) hA hν)
+
+/-- 28:B1, 28:C1 — the eigenvalues of a Hermitian circulant are fixed by the Frobenius. With `ā = a`, a cube root `ω` and
+`ω̄ = ω²` (`frobenius_characters`), the eigenvalue `λ₁ = a + b ω + b̄ ω²` equals its conjugate: it lies in the shell,
+and a mass is its square. -/
+theorem hermitian_circulant_fixed (a b ω : Ext p ν) (ha : Ext.conj a = a) (hω : ω * ω + ω + 1 = 0)
+    (hc : Ext.conj ω = ω * ω) :
+    Ext.conj (a + b * ω + Ext.conj b * (ω * ω)) = a + b * ω + Ext.conj b * (ω * ω) := by
+  rw [conj_add, conj_add, Ext.conj_mul, Ext.conj_mul, Ext.conj_mul, Ext.conj_conj, ha, hc]
+  exact xred1 (xsound (xlook [a, b, Ext.conj b, ω]) (.add (.add (.var 0) (.mul (.var 2) (.mul (.var 3) (.var 3)))) (.mul (.var 1) (.mul (.mul (.var 3) (.var 3)) (.mul (.var 3) (.var 3))))) (.add (.add (.add (.var 0) (.mul (.var 1) (.var 3))) (.mul (.var 2) (.mul (.var 3) (.var 3)))) (.mul (.add (.add (.mul (.var 3) (.var 3)) (.var 3)) .one) (.mul (.var 1) (.mul (.var 3) (.add (.var 3) (.neg .one)))))) (by decide +kernel) : ((a + (Ext.conj b * (ω * ω))) + (b * ((ω * ω) * (ω * ω)))) = (((a + (b * ω)) + (Ext.conj b * (ω * ω))) + ((((ω * ω) + ω) + 1) * (b * (ω * (ω + -1)))))) hω
+
+/-- 28:C11 — the spectrum of a symmetric circulant. On a cube root `ω` the circulant `circ a b b` has the eigenvalues
+`a + 2b`, `a − b` and `a − b`: two of the three are equal. A seesaw of circulants with a symmetric Majorana matrix
+therefore gives two equal masses. -/
+theorem symmetric_circulant_spectrum (a b ω : Ext p ν) (hω : ω * ω + ω + 1 = 0) :
+    a + b + b = a + (1 + 1) * b ∧ a + b * ω + b * (ω * ω) = a + -b ∧ a + b * (ω * ω) + b * ω = a + -b :=
+  ⟨(xsound (xlook [a, b, ω]) (.add (.add (.var 0) (.var 1)) (.var 1)) (.add (.var 0) (.mul (.add .one .one) (.var 1))) (by decide +kernel) : ((a + b) + b) = (a + ((1 + 1) * b))),
+   xred1 (xsound (xlook [a, b, ω]) (.add (.add (.var 0) (.mul (.var 1) (.var 2))) (.mul (.var 1) (.mul (.var 2) (.var 2)))) (.add (.add (.var 0) (.neg (.var 1))) (.mul (.add (.add (.mul (.var 2) (.var 2)) (.var 2)) .one) (.var 1))) (by decide +kernel) : ((a + (b * ω)) + (b * (ω * ω))) = ((a + -b) + ((((ω * ω) + ω) + 1) * b))) hω,
+   xred1 (xsound (xlook [a, b, ω]) (.add (.add (.var 0) (.mul (.var 1) (.mul (.var 2) (.var 2)))) (.mul (.var 1) (.var 2))) (.add (.add (.var 0) (.neg (.var 1))) (.mul (.add (.add (.mul (.var 2) (.var 2)) (.var 2)) .one) (.var 1))) (by decide +kernel) : ((a + (b * (ω * ω))) + (b * ω)) = ((a + -b) + ((((ω * ω) + ω) + 1) * b))) hω⟩
+
+/-- 28:C4, 28:X2, 28:P2 — the up-quark value as a quadratic. On the amplitudes `(1, a, e)`, with `a² = m_c/m_t` and
+`e² = m_u/m_t`, the relation `6 Σx² = 5 (Σx)²`, that is `Q = 5/6`, is the quadratic
+`a² − 10 a (1 + e) + (1 + e² − 10 e) = 0`. -/
+theorem koide_five_sixths_quadratic (a e : Shell p) :
+    (((((((1 + 1) + 1) + 1) + 1) + 1) * ((1 + (a * a)) + (e * e))) + -(((((1 + 1) + 1) + 1) + 1) * (((1 + a) + e) * ((1 + a) + e)))) = (((a * a) + -((((((((((1 + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) * (a * (1 + e)))) + ((1 + (e * e)) + -((((((((((1 + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) * e))) :=
+  (RE.sound (look [a, e]) (.add (.mul (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) (.add (.add .one (.mul (.var 0) (.var 0))) (.mul (.var 1) (.var 1)))) (.neg (.mul (.add (.add (.add (.add .one .one) .one) .one) .one) (.mul (.add (.add .one (.var 0)) (.var 1)) (.add (.add .one (.var 0)) (.var 1)))))) (.add (.add (.mul (.var 0) (.var 0)) (.neg (.mul (.add (.add (.add (.add (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) .one) .one) .one) .one) (.mul (.var 0) (.add .one (.var 1)))))) (.add (.add .one (.mul (.var 1) (.var 1))) (.neg (.mul (.add (.add (.add (.add (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) .one) .one) .one) .one) (.var 1))))) (by decide +kernel) : (((((((1 + 1) + 1) + 1) + 1) + 1) * ((1 + (a * a)) + (e * e))) + -(((((1 + 1) + 1) + 1) + 1) * (((1 + a) + e) * ((1 + a) + e)))) = (((a * a) + -((((((((((1 + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) * (a * (1 + e)))) + ((1 + (e * e)) + -((((((((((1 + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) * e))))
+
+/-- 28:P6, 28:X11 — the brackets of the neutrino floor in micro-electronvolts: `8654² < 74 900 000 < 8655²` and
+`50129² < 2 513 000 000 < 50130²` for the splittings `7.49 × 10⁻⁵` and `2.513 × 10⁻³` eV², so the sum of the two
+masses lies between `58.783` and `58.785` meV. -/
+theorem neutrino_floor_brackets :
+    8654 * 8654 < 74900000 ∧ 74900000 < 8655 * 8655 ∧ 50129 * 50129 < 2513000000 ∧ 2513000000 < 50130 * 50130 ∧
+    8654 + 50129 = 58783 ∧ 8655 + 50130 = 58785 := by decide
+
+/-- 28:P7 — the brackets of the effective Majorana mass at `m₁ = 0`, in units of `10⁻¹¹` eV: with `s₁₂² = 0.307`,
+`s₁₃² = 0.02215` and the brackets of `neutrino_floor_brackets`, the difference of the two terms exceeds `1.47` meV
+and their sum stays below `3.71` meV. -/
+theorem majorana_brackets :
+    147000000000 < 97785 * 307 * 8654 - 2215 * 50130 * 1000 ∧ 97785 * 307 * 8655 + 2215 * 50130 * 1000 < 371000000000 ∧
+    2215 * 50130 * 1000 < 97785 * 307 * 8654 := by decide
 
 end FRC.Flavour
