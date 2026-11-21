@@ -3,7 +3,7 @@
  "tree": "5-reductio-20260706",
  "title": "Paradoxes of Infinity as Reductio ad Absurdum",
  "doi": "https://doi.org/10.20944/preprints202508.1744.v2",
- "generated": "18 November 2026",
+ "generated": "20 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -35,7 +35,7 @@
     },
     {
      "label": "A4",
-     "predicate": "The corpus: the totality finite and complete (00:A4), counting closes by return (00:A7), a bounded observer a proper part and every reading a projection (00:A5, A6), G\\\"odel vacuous over the finite $\\Omega$ (00:Z1), the $\\Omega$-hard demarcation (00:Z3); finite mathematics as ontologically primary (Lev, Zeilberger).",
+     "predicate": "The corpus: the totality finite and complete, counting closes by return, a bounded observer a proper part and every reading a projection, G\\\"odel vacuous over the finite $\\Omega$, the $\\Omega$-hard demarcation; finite mathematics as ontologically primary (Lev, Zeilberger).",
      "tag": "I",
      "source": "\\cite{lev2020finite,Zeilberger2001,akhtman2025algebra}",
      "key": "p05004",
@@ -99,7 +99,7 @@
      "label": "B7",
      "predicate": "The unbounded quantifier is the internalised registry: a $\\Pi^{0}_{1}$ sentence receives a verdict from each frame about its own domain and none about all frames at once; frame-relative completeness covers every executed verification (a bounded $\\Delta_0$ trace) and no $\\Pi^{0}_{1}$ closure.",
      "tag": "Ω",
-     "source": "\\S\\ref{subsec:frame-completeness}; \\src{D2}; 00:Z3",
+     "source": "\\S\\ref{subsec:frame-completeness}\\newline \\pywit{reductio}{p05011}{B7}",
      "key": "p05011",
      "name": null
     }
@@ -137,7 +137,7 @@
      "label": "C4",
      "predicate": "The migration: without IR every sentence about the totality is decided and incompleteness reappears as a resource bound on agents --- the G\\\"odel sentence's role passes to truths whose shortest certificate exceeds the capacity; truth for $W_N$ is definable one level up (Tarski relativised to a resource hierarchy).",
      "tag": "D",
-     "source": "\\S\\ref{subsec:migration}; 00:Z1",
+     "source": "\\S\\ref{subsec:migration}",
      "key": "p05015",
      "name": null
     },

@@ -369,7 +369,7 @@
      "label": "G6",
      "predicate": "First-order wall vanishing of the arcsin chain: $\\sigma_\\p=\\sum_{k<m}\\Cb{k}/((2k+1)16^{k})\\equiv0\\pmod\\p$ for every prime $\\p\\ge5$ of the totality, $\\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\\Cb{k}\\equiv(-4)^{k}\\binom mk$. Verified for all $428$ odd primes $5\\le\\p<3000$; the ingredients for $m\\le60$, $\\p<500$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:vanish}, eq.~\\eqref{eq:key}\\newline \\pywit{epi}{p13039}{G6}, \\leanwit{FrcCore}{p13039}{G6} \\lean{FRC.Epi.sigma\\_vanishes\\_all}",
+     "source": "Thm.~\\ref{thm:vanish}, eq.~\\eqref{eq:key}\\newline \\pywit{epi}{p13039}{G6}, \\leanwit{FrcCore}{p13039}{G6}, \\leanwit{FrcMathlib}{p13039}{G6} \\lean{FRC.Epi.sigma\\_vanishes\\_all, FRC.Epi.arcsin\\_wall\\_vanishing}",
      "key": "p13039",
      "name": "first_order_wall_vanishing"
     },
@@ -1453,6 +1453,19 @@
     "tier": 0,
     "ok": true,
     "doc": "13:G6, 13:I2 — first-order wall vanishing of the arcsin chain: `σ_p ≡ 0 (mod p)` on all `428` odd primes `5 ≤ p < 3000` (the enumeration complete), and `σ_3 = 1`."
+   },
+   {
+    "name": "FRC.Epi.arcsin_wall_vanishing",
+    "module": "FrcMathlib/Epi",
+    "line": 2372,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:G6 — the first-order wall vanishing of the arcsin chain: `σ_p = Σ_{k<m} C(2k,k)/((2k+1)16^k) ≡ 0 (mod p)` for every prime `p = 2m+1 ≥ 5`, by the identity `A + B = 2L` (the formal antiderivative of `(1−s²)^m`), Wilson reflection in the form `C(p−1,m) ≡ (−1)^m(1 − pH_m) (mod p²)`, Eisenstein's congruence and the binomial transfer `C(2k,k) ≡ (−4)^k C(m,k)`."
    }
   ],
   "G7": [
