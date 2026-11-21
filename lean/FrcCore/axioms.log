@@ -5828,7 +5828,7 @@
 'FRC.Master.weak_amplitudes' does not depend on any axioms
 'FRC.Master.strong_structure' does not depend on any axioms
 'FRC.Master.strong_tension' does not depend on any axioms
-'FRC.Master.vanishing_strong_cp_angle' does not depend on any axioms
+'FRC.Master.no_strong_cp_angle' does not depend on any axioms
 'FRC.Master.strong_hadron_spectrum' does not depend on any axioms
 'FRC.Master.strong_residue_series' does not depend on any axioms
 'FRC.Master.strong_baryon_scale' does not depend on any axioms

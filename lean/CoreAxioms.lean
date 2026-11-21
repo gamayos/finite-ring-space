@@ -5841,7 +5841,7 @@ import FrcBridge.Subject
 #print axioms FRC.Master.weak_amplitudes
 #print axioms FRC.Master.strong_structure
 #print axioms FRC.Master.strong_tension
-#print axioms FRC.Master.vanishing_strong_cp_angle
+#print axioms FRC.Master.no_strong_cp_angle
 #print axioms FRC.Master.strong_hadron_spectrum
 #print axioms FRC.Master.strong_residue_series
 #print axioms FRC.Master.strong_baryon_scale
