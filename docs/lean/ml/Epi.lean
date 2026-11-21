@@ -1931,6 +1931,515 @@ theorem piWieferich_iff_oeis (hp2 : p ≠ 2) :
 
 end wieferichp
 
+/-! ## The first-order wall vanishing of the arcsin chain (13:G6)
+
+The theorem of the paper (Theorem vanish): `σ_p = Σ_{k<m} C(2k,k)/((2k+1)16^k) ≡ 0 (mod p)` for every prime
+`p = 2m+1 ≥ 5`, proved as in the text. The identity `A + B = 2L` is the evaluation of the formal antiderivative of
+`(1 − s²)^m` (polynomials over `ℚ`, `Polynomial.eq_C_of_derivative_eq_zero`); `L` is the Wallis evaluation
+`4^m (m!)²/(2m+1)!`, proved as the closed form of `Σ_j C(m,j)(−1)^j/(a+2j)` by Pascal's rule; the mod-`p²` step is
+Morley's congruence modulo `p²`, derived from Eisenstein's congruence (so the hypothesis of `half_wall_second_order`
+is a theorem, `morley_sq`); the binomial transfer `C(2k,k) ≡ (−1)^k 4^k C(m,k)` reads `m ≡ −1/2`. Added for the
+Mathematics round-1 revision of November 2026 (the reviewers' request that the general theorems be proved, not
+sampled). -/
+
+/-! ### The Wallis evaluation as a finite sum: `Σ_{j≤m} C(m,j)(−1)^j/(a+2j) = 2^m m!/Π_{i≤m}(a+2i)` -/
+
+/-- `S(m, a) = Σ_{j ≤ m} C(m,j) (−1)^j / (a + 2j)`. -/
+noncomputable def altSum (m : ℕ) (a : ℚ) : ℚ := ∑ j ∈ range (m + 1), (m.choose j : ℚ) * (-1) ^ j / (a + 2 * j)
+
+/-- `Π_{i ≤ m} (a + 2i)`. -/
+noncomputable def oddProd (m : ℕ) (a : ℚ) : ℚ := ∏ i ∈ range (m + 1), (a + 2 * i)
+
+theorem oddProd_succ (m : ℕ) (a : ℚ) : oddProd (m + 1) a = oddProd m a * (a + 2 * (m + 1 : ℕ)) := by
+  unfold oddProd; rw [prod_range_succ]
+
+theorem oddProd_shift (m : ℕ) (a : ℚ) : oddProd m (a + 2) * a = oddProd (m + 1) a := by
+  unfold oddProd
+  rw [prod_range_succ' (fun i => a + 2 * (i : ℚ)) (m + 1)]
+  simp only [Nat.cast_zero, mul_zero, add_zero, Nat.cast_add, Nat.cast_one]
+  congr 1
+  refine prod_congr rfl fun i _ => ?_
+  ring
+
+theorem oddProd_pos (m : ℕ) (a : ℚ) (ha : 0 < a) : 0 < oddProd m a := by
+  unfold oddProd
+  exact prod_pos fun i _ => by positivity
+
+/-- Pascal on the alternating sum: `S(m+1, a) = S(m, a) − S(m, a+2)`. -/
+theorem altSum_succ (m : ℕ) (a : ℚ) : altSum (m + 1) a = altSum m a - altSum m (a + 2) := by
+  unfold altSum
+  rw [sum_range_succ' _ (m + 1)]
+  have h1 : ∀ j ∈ range (m + 1), ((m + 1).choose (j + 1) : ℚ) * (-1) ^ (j + 1) / (a + 2 * ((j + 1 : ℕ) : ℚ)) =
+      (m.choose (j + 1) : ℚ) * (-1) ^ (j + 1) / (a + 2 * ((j + 1 : ℕ) : ℚ)) -
+      (m.choose j : ℚ) * (-1) ^ j / ((a + 2) + 2 * (j : ℚ)) := by
+    intro j _
+    rw [Nat.choose_succ_succ, Nat.cast_add, pow_succ]
+    push_cast
+    have : a + 2 * ((j : ℚ) + 1) ≠ 0 ∨ True := Or.inr trivial
+    by_cases h : a + 2 * ((j : ℚ) + 1) = 0
+    · have h' : (a + 2) + 2 * (j : ℚ) = 0 := by linarith
+      rw [h, h']; simp
+    · have h' : (a + 2) + 2 * (j : ℚ) ≠ 0 := by intro h'; apply h; linarith
+      field_simp
+      ring
+  rw [sum_congr rfl h1, sum_sub_distrib]
+  have h2 : ∑ j ∈ range (m + 1), (m.choose (j + 1) : ℚ) * (-1) ^ (j + 1) / (a + 2 * ((j + 1 : ℕ) : ℚ)) +
+      (((m + 1).choose 0 : ℕ) : ℚ) * (-1) ^ 0 / (a + 2 * ((0 : ℕ) : ℚ)) =
+      ∑ j ∈ range (m + 1), (m.choose j : ℚ) * (-1) ^ j / (a + 2 * (j : ℚ)) := by
+    have e := sum_range_succ' (fun j => (m.choose j : ℚ) * (-1) ^ j / (a + 2 * (j : ℚ))) (m + 1)
+    rw [sum_range_succ _ (m + 1), Nat.choose_succ_self, Nat.cast_zero, zero_mul, zero_div, add_zero] at e
+    simp only [Nat.choose_zero_right, Nat.cast_one, Nat.cast_zero, mul_zero, add_zero, pow_zero, one_mul] at e ⊢
+    push_cast at e ⊢
+    linear_combination -e
+  linear_combination h2
+
+/-- The closed form: `S(m, a) · Π_{i≤m}(a+2i) = 2^m m!` for `a > 0`. -/
+theorem altSum_mul_oddProd (m : ℕ) : ∀ a : ℚ, 0 < a → altSum m a * oddProd m a = 2 ^ m * (m.factorial : ℚ) := by
+  induction m with
+  | zero => intro a ha; simp [altSum, oddProd]; field_simp
+  | succ m ih =>
+    intro a ha
+    have hA := ih a ha
+    have hB := ih (a + 2) (by linarith)
+    have hP := oddProd_shift m a
+    have hp0 : oddProd m a ≠ 0 := (oddProd_pos m a ha).ne'
+    have hp2 : oddProd m (a + 2) ≠ 0 := (oddProd_pos m (a + 2) (by linarith)).ne'
+    rw [altSum_succ, oddProd_succ, Nat.factorial_succ, pow_succ]
+    have e1 : altSum m a = 2 ^ m * (m.factorial : ℚ) / oddProd m a := by rw [← hA]; field_simp
+    have e2 : altSum m (a + 2) = 2 ^ m * (m.factorial : ℚ) / oddProd m (a + 2) := by rw [← hB]; field_simp
+    have ha0 : a ≠ 0 := ha.ne'
+    have hq : (a + 2 * ((m : ℚ) + 1)) ≠ 0 := by positivity
+    have e3 : oddProd m (a + 2) = oddProd m a * (a + 2 * ((m : ℚ) + 1)) / a := by
+      rw [oddProd_succ] at hP; push_cast at hP; rw [← hP]; field_simp
+    rw [e1, e2, e3]
+    push_cast
+    field_simp
+    ring
+
+/-- `Π_{i≤m}(1+2i) · 2^m m! = (2m+1)!`. -/
+theorem oddProd_one_mul (m : ℕ) : oddProd m 1 * (2 ^ m * (m.factorial : ℚ)) = ((2 * m + 1).factorial : ℚ) := by
+  induction m with
+  | zero => simp [oddProd]
+  | succ m ih =>
+    rw [oddProd_succ, show 2 * (m + 1) + 1 = (2 * m + 1) + 1 + 1 by ring, Nat.factorial_succ, Nat.factorial_succ,
+      Nat.factorial_succ, pow_succ]
+    push_cast
+    linear_combination (2 * (m : ℚ) + 3) * (2 * (m : ℚ) + 2) * ih
+
+/-- The Wallis evaluation: `L_m = Σ_{j≤m} C(m,j)(−1)^j/(2j+1) = 4^m (m!)²/(2m+1)!`. -/
+theorem altSum_one (m : ℕ) : altSum m 1 = 4 ^ m * (m.factorial : ℚ) ^ 2 / ((2 * m + 1).factorial : ℚ) := by
+  have h := altSum_mul_oddProd m 1 one_pos
+  have h2 := oddProd_one_mul m
+  have hp : oddProd m 1 ≠ 0 := (oddProd_pos m 1 one_pos).ne'
+  have hf : ((2 * m + 1).factorial : ℚ) ≠ 0 := by positivity
+  rw [eq_div_iff hf, ← h2]
+  have e4 : (4 : ℚ) ^ m = 2 ^ m * 2 ^ m := by rw [← mul_pow]; norm_num
+  rw [e4]
+  linear_combination (2 ^ m * (m.factorial : ℚ)) * h
+
+/-! ### The identity `A + B = 2L` by the formal antiderivative -/
+
+open Polynomial in
+/-- `P_m = Σ_{j≤m} C(m,j)(−1)^j/(2j+1) · X^{2j+1}`, the formal antiderivative of `(1 − X²)^m`. -/
+noncomputable def polyP (m : ℕ) : ℚ[X] :=
+  ∑ j ∈ range (m + 1), C ((m.choose j : ℚ) * (-1) ^ j / (2 * j + 1)) * X ^ (2 * j + 1)
+
+open Polynomial in
+/-- `Q_m = Σ_{k≤m} C(m,k)(−1/4)^k/(k+m+1) · X^{k+m+1}`, the formal antiderivative of `(X − X²/4)^m`. -/
+noncomputable def polyQ (m : ℕ) : ℚ[X] :=
+  ∑ k ∈ range (m + 1), C ((m.choose k : ℚ) * (-1 / 4) ^ k / (k + m + 1)) * X ^ (k + m + 1)
+
+open Polynomial in
+theorem eval_derivative_polyP (m : ℕ) (r : ℚ) : (derivative (polyP m)).eval r = (1 - r ^ 2) ^ m := by
+  unfold polyP
+  rw [derivative_sum, eval_finsetSum]
+  have h : ∀ j ∈ range (m + 1),
+      (derivative (C ((m.choose j : ℚ) * (-1) ^ j / (2 * j + 1)) * X ^ (2 * j + 1))).eval r =
+      (-r ^ 2) ^ j * 1 ^ (m - j) * (m.choose j : ℚ) := by
+    intro j _
+    rw [derivative_C_mul_X_pow, eval_mul, eval_C, eval_pow, eval_X, Nat.add_sub_cancel]
+    have h0 : (2 * (j : ℚ) + 1) ≠ 0 := by positivity
+    push_cast
+    field_simp
+    rw [neg_pow, pow_mul]
+    ring
+  rw [sum_congr rfl h, ← add_pow]
+  ring
+
+open Polynomial in
+theorem eval_derivative_polyQ (m : ℕ) (u : ℚ) : (derivative (polyQ m)).eval u = (u * (1 - u / 4)) ^ m := by
+  unfold polyQ
+  rw [derivative_sum, eval_finsetSum]
+  have h : ∀ k ∈ range (m + 1),
+      (derivative (C ((m.choose k : ℚ) * (-1 / 4) ^ k / (k + m + 1)) * X ^ (k + m + 1))).eval u =
+      u ^ m * ((-u / 4) ^ k * 1 ^ (m - k) * (m.choose k : ℚ)) := by
+    intro k _
+    rw [derivative_C_mul_X_pow, eval_mul, eval_C, eval_pow, eval_X, Nat.add_sub_cancel]
+    have h0 : ((k : ℚ) + m + 1) ≠ 0 := by positivity
+    push_cast
+    field_simp
+    simp only [one_pow, mul_one]
+    ring
+  rw [sum_congr rfl h, ← mul_sum, ← add_pow, mul_pow]
+  ring
+
+open Polynomial in
+/-- `R_m = Q_m(2 − 2X) + 2 P_m` has derivative zero. -/
+theorem derivative_polyR (m : ℕ) :
+    derivative ((polyQ m).comp (C 2 - C 2 * X) + C 2 * polyP m) = 0 := by
+  apply Polynomial.funext
+  intro r
+  simp only [derivative_add, derivative_comp, derivative_C_mul, derivative_sub, derivative_C, derivative_X,
+    eval_add, eval_mul, eval_comp, eval_sub, eval_C, eval_X, eval_zero, eval_neg, zero_sub, mul_one,
+    eval_derivative_polyQ, eval_derivative_polyP]
+  have : (2 - 2 * r) * (1 - (2 - 2 * r) / 4) = 1 - r ^ 2 := by ring
+  rw [this]; ring
+
+open Polynomial in
+theorem eval_polyP_one (m : ℕ) : (polyP m).eval 1 = altSum m 1 := by
+  unfold polyP altSum
+  rw [eval_finsetSum]
+  refine sum_congr rfl fun j _ => ?_
+  rw [eval_mul, eval_C, eval_pow, eval_X, one_pow, mul_one, add_comm (1 : ℚ)]
+
+/-- `A_m = Σ_{k≤m} C(m,k)(−1/4)^k/(2k+1)`. -/
+noncomputable def sumA (m : ℕ) : ℚ := ∑ k ∈ range (m + 1), (m.choose k : ℚ) * (-1 / 4) ^ k / (2 * k + 1)
+
+/-- `B_m = Σ_{k≤m} C(m,k)(−1/4)^k/(k+m+1)`. -/
+noncomputable def sumB (m : ℕ) : ℚ := ∑ k ∈ range (m + 1), (m.choose k : ℚ) * (-1 / 4) ^ k / (k + m + 1)
+
+open Polynomial in
+theorem eval_polyP_half (m : ℕ) : (polyP m).eval (1 / 2) = sumA m / 2 := by
+  unfold polyP sumA
+  rw [eval_finsetSum, sum_div]
+  refine sum_congr rfl fun j _ => ?_
+  rw [eval_mul, eval_C, eval_pow, eval_X, show (-1 / 4 : ℚ) = (-1) * (1 / 4) by norm_num, mul_pow, pow_succ, pow_mul]
+  ring
+
+open Polynomial in
+theorem eval_polyQ_one (m : ℕ) : (polyQ m).eval 1 = sumB m := by
+  unfold polyQ sumB
+  rw [eval_finsetSum]
+  refine sum_congr rfl fun k _ => ?_
+  rw [eval_mul, eval_C, eval_pow, eval_X, one_pow, mul_one]
+
+open Polynomial in
+theorem eval_polyQ_zero (m : ℕ) : (polyQ m).eval 0 = 0 := by
+  unfold polyQ
+  rw [eval_finsetSum]
+  refine sum_eq_zero fun k _ => ?_
+  rw [eval_mul, eval_C, eval_pow, eval_X, zero_pow (by omega), mul_zero]
+
+open Polynomial in
+/-- The key identity `A_m + B_m = 2 L_m`. -/
+theorem sumA_add_sumB (m : ℕ) : sumA m + sumB m = 2 * altSum m 1 := by
+  have h0 := derivative_polyR m
+  have hC := Polynomial.eq_C_of_derivative_eq_zero h0
+  have e := congrArg (fun q : ℚ[X] => q.eval (1 / 2) - q.eval 1) hC
+  simp only [eval_C, sub_self] at e
+  simp only [eval_add, eval_mul, eval_comp, eval_sub, eval_C, eval_X, eval_polyP_one, eval_polyP_half] at e
+  have e2 : (2 : ℚ) - 2 * (1 / 2) = 1 := by norm_num
+  have e3 : (2 : ℚ) - 2 * 1 = 0 := by norm_num
+  rw [e2, e3, eval_polyQ_one, eval_polyQ_zero] at e
+  linear_combination e
+
+
+/-! ### Morley's congruence modulo `p²` from Eisenstein's (13:G6, the mod-`p²` step) -/
+
+section morley
+
+variable {R : Type*} [CommRing R]
+
+/-- The product `Π_{i<n} (p − u_i)` over a ring with `p² = 0` and `u_i v_i = 1` for `i < n`:
+`(−1)^n (Π u_i)(1 − p Σ v_i)`. -/
+theorem prod_p_sub (p : R) (hpp : p * p = 0) (u v : ℕ → R) :
+    ∀ n, (∀ i < n, u i * v i = 1) →
+      ∏ i ∈ range n, (p - u i) = (-1) ^ n * (∏ i ∈ range n, u i) * (1 - p * ∑ i ∈ range n, v i) := by
+  intro n
+  induction n with
+  | zero => intro _; simp
+  | succ n ih =>
+    intro huv
+    rw [prod_range_succ, prod_range_succ, sum_range_succ, ih (fun i hi => huv i (by omega)), pow_succ]
+    linear_combination (-((-1) ^ n * (∏ i ∈ range n, u i) * p)) * huv n (by omega) +
+      (-((-1) ^ n * (∏ i ∈ range n, u i) * ∑ i ∈ range n, v i)) * hpp
+
+end morley
+
+section morleyp
+
+variable (p : ℕ) [hp : Fact p.Prime]
+
+/-- `m! · C(p−1, m) = (−1)^m m! (1 − p H_m)` in `ZMod (p²)`, `H_m = Σ_{i<m} (i+1)⁻¹`, for `m ≤ p − 1`. -/
+theorem factorial_mul_choose_pred_sq (m : ℕ) (hm : m ≤ p - 1) :
+    ((m ! : ℕ) : ZMod (p ^ 2)) * ((choose (p - 1) m : ℕ) : ZMod (p ^ 2)) =
+      (-1) ^ m * ((m ! : ℕ) : ZMod (p ^ 2)) * (1 - p * ∑ i ∈ range m, ((i + 1 : ℕ) : ZMod (p ^ 2))⁻¹) := by
+  have hd := Nat.descFactorial_eq_factorial_mul_choose (p - 1) m
+  have hprod := Nat.descFactorial_eq_prod_range (p - 1) m
+  have hc : ((m ! * choose (p - 1) m : ℕ) : ZMod (p ^ 2)) = ((∏ i ∈ range m, (p - 1 - i) : ℕ) : ZMod (p ^ 2)) := by
+    rw [← hd, hprod]
+  push_cast at hc
+  rw [hc]
+  have hterm : ∀ i ∈ range m, (((p - 1 - i : ℕ) : ℕ) : ZMod (p ^ 2)) = (p : ZMod (p ^ 2)) - ((i + 1 : ℕ) : ZMod (p ^ 2)) := by
+    intro i hi
+    have := mem_range.1 hi
+    rw [show p - 1 - i = p - (i + 1) by omega, Nat.cast_sub (by omega)]
+  rw [prod_congr rfl hterm]
+  have huv : ∀ i < m, ((i + 1 : ℕ) : ZMod (p ^ 2)) * ((i + 1 : ℕ) : ZMod (p ^ 2))⁻¹ = 1 := fun i hi =>
+    ZMod.coe_mul_inv_eq_one (i + 1) (coprime_succ_sq p i (by omega))
+  rw [prod_p_sub (p : ZMod (p ^ 2)) (p_sq_eq_zero p) _ _ m huv]
+  have hf : ∏ i ∈ range m, ((i + 1 : ℕ) : ZMod (p ^ 2)) = ((m ! : ℕ) : ZMod (p ^ 2)) := by
+    rw [← Finset.prod_range_add_one_eq_factorial]; push_cast; rfl
+  rw [hf]
+
+theorem factorial_coprime_sq (m : ℕ) (hm : m ≤ p - 1) : Nat.Coprime (m !) (p ^ 2) := by
+  apply Nat.Coprime.pow_right
+  rw [Nat.coprime_comm, hp.out.coprime_iff_not_dvd, hp.out.dvd_factorial]
+  have := hp.out.two_le
+  omega
+
+/-- `C(p−1, m) = (−1)^m (1 − p H_m)` in `ZMod (p²)` for `m ≤ p − 1`. -/
+theorem choose_pred_sq (m : ℕ) (hm : m ≤ p - 1) :
+    ((choose (p - 1) m : ℕ) : ZMod (p ^ 2)) = (-1) ^ m * (1 - p * ∑ i ∈ range m, ((i + 1 : ℕ) : ZMod (p ^ 2))⁻¹) := by
+  have h := factorial_mul_choose_pred_sq p m hm
+  have hu := ZMod.coe_mul_inv_eq_one (m !) (factorial_coprime_sq p m hm)
+  calc ((choose (p - 1) m : ℕ) : ZMod (p ^ 2))
+      = (((m ! : ℕ) : ZMod (p ^ 2))⁻¹ * ((m ! : ℕ) : ZMod (p ^ 2))) * ((choose (p - 1) m : ℕ) : ZMod (p ^ 2)) := by
+        rw [mul_comm _ ((m ! : ℕ) : ZMod (p ^ 2)), hu, one_mul]
+    _ = ((m ! : ℕ) : ZMod (p ^ 2))⁻¹ * (((m ! : ℕ) : ZMod (p ^ 2)) * ((choose (p - 1) m : ℕ) : ZMod (p ^ 2))) := by ring
+    _ = ((m ! : ℕ) : ZMod (p ^ 2))⁻¹ * ((-1) ^ m * ((m ! : ℕ) : ZMod (p ^ 2)) *
+          (1 - p * ∑ i ∈ range m, ((i + 1 : ℕ) : ZMod (p ^ 2))⁻¹)) := by rw [h]
+    _ = (-1) ^ m * (1 - p * ∑ i ∈ range m, ((i + 1 : ℕ) : ZMod (p ^ 2))⁻¹) := by
+        linear_combination ((-1) ^ m * (1 - p * ∑ i ∈ range m, ((i + 1 : ℕ) : ZMod (p ^ 2))⁻¹)) * hu
+
+/-- `4^{p−1} = 1 − p H_m` in `ZMod (p²)` for `p = 2m + 1`: Eisenstein's congruence lifted. -/
+theorem four_pow_pred_eq (m : ℕ) (hm : p = 2 * m + 1) :
+    (4 : ZMod (p ^ 2)) ^ (p - 1) = 1 - p * ∑ i ∈ range m, ((i + 1 : ℕ) : ZMod (p ^ 2))⁻¹ := by
+  have hp2 : p ≠ 2 := by omega
+  have hdvd : p ∣ p ^ 2 := dvd_pow_self p two_ne_zero
+  obtain ⟨h4, hq⟩ := four_pow_pred p hp2
+  rw [h4]
+  have key : (p : ZMod (p ^ 2)) * (fq 4 p : ℕ) = p * (-∑ i ∈ range m, ((i + 1 : ℕ) : ZMod (p ^ 2))⁻¹) := by
+    rw [p_mul_eq_iff_cast]
+    rw [← ZMod.castHom_apply (h := hdvd), ← ZMod.castHom_apply (h := hdvd), map_natCast, map_neg, map_sum]
+    have hterm : ∀ i ∈ range m, ZMod.castHom hdvd (ZMod p) (((i + 1 : ℕ) : ZMod (p ^ 2))⁻¹) = ((i + 1 : ℕ) : ZMod p)⁻¹ := by
+      intro i hi
+      have := mem_range.1 hi
+      rw [ZMod.castHom_apply, cast_inv_succ p i (by omega)]
+    rw [sum_congr rfl hterm, ← eisenstein p m hm, hq]
+    push_cast
+    rw [ZMod.natCast_self]; ring
+  linear_combination key
+
+/-- 13:G6 — Morley's congruence modulo `p²` for every odd prime: `C(2m, m) ≡ (−1)^m 4^{p−1} (mod p²)`,
+`p = 2m + 1`, from Eisenstein's congruence; the hypothesis of `half_wall_second_order` is a theorem. -/
+theorem morley_sq (m : ℕ) (hm : p = 2 * m + 1) :
+    ((centralBinom m : ℕ) : ZMod (p ^ 2)) = (-1) ^ m * 4 ^ (p - 1) := by
+  rw [Nat.centralBinom_eq_two_mul_choose, show 2 * m = p - 1 by omega, choose_pred_sq p m (by omega),
+    four_pow_pred_eq p m hm]
+
+end morleyp
+
+
+/-! ### The first-order wall vanishing of the arcsin chain (13:G6) -/
+
+section arcsinwall
+
+/-- `4^m (2m)! Σ_{k<m} C(m,k)(−1/4)^k/(2k+1)`, an integer: `2k+1 ∣ (2m)!` for `k < m`. -/
+def intA (m : ℕ) : ℤ :=
+  ∑ k ∈ range m, (m.choose k : ℤ) * (-1) ^ k * 4 ^ (m - k) * (((2 * m) ! / (2 * k + 1) : ℕ) : ℤ)
+
+/-- `4^m (2m)! Σ_{k<m} C(m,k)(−1/4)^k/(k+m+1)`, an integer: `k+m+1 ∣ (2m)!` for `k < m`. -/
+def intB (m : ℕ) : ℤ :=
+  ∑ k ∈ range m, (m.choose k : ℤ) * (-1) ^ k * 4 ^ (m - k) * (((2 * m) ! / (k + m + 1) : ℕ) : ℤ)
+
+theorem intA_rat (m : ℕ) :
+    (intA m : ℚ) = 4 ^ m * ((2 * m) ! : ℚ) * ∑ k ∈ range m, (m.choose k : ℚ) * (-1 / 4) ^ k / (2 * k + 1) := by
+  unfold intA
+  simp only [Int.cast_sum, Int.cast_mul, Int.cast_pow, Int.cast_neg, Int.cast_one, Int.cast_ofNat, Int.cast_natCast]
+  rw [mul_sum]
+  refine sum_congr rfl fun k hk => ?_
+  have hk := mem_range.1 hk
+  have hdvd : 2 * k + 1 ∣ (2 * m) ! := Nat.dvd_factorial (by omega) (by omega)
+  have h1 : (2 * (k : ℚ) + 1) ≠ 0 := by positivity
+  have h1' : ((2 * k + 1 : ℕ) : ℚ) ≠ 0 := by positivity
+  rw [Nat.cast_div hdvd h1', pow_sub₀ (4 : ℚ) (by norm_num) hk.le,
+    show (-1 / 4 : ℚ) = (-1) * (1 / 4) by norm_num, mul_pow, div_pow, one_pow]
+  push_cast
+  field_simp
+  try ring
+
+theorem intB_rat (m : ℕ) :
+    (intB m : ℚ) = 4 ^ m * ((2 * m) ! : ℚ) * ∑ k ∈ range m, (m.choose k : ℚ) * (-1 / 4) ^ k / (k + m + 1) := by
+  unfold intB
+  simp only [Int.cast_sum, Int.cast_mul, Int.cast_pow, Int.cast_neg, Int.cast_one, Int.cast_ofNat, Int.cast_natCast]
+  rw [mul_sum]
+  refine sum_congr rfl fun k hk => ?_
+  have hk := mem_range.1 hk
+  have hdvd : k + m + 1 ∣ (2 * m) ! := Nat.dvd_factorial (by omega) (by omega)
+  have h1 : ((k : ℚ) + m + 1) ≠ 0 := by positivity
+  have h1' : ((k + m + 1 : ℕ) : ℚ) ≠ 0 := by positivity
+  rw [Nat.cast_div hdvd h1', pow_sub₀ (4 : ℚ) (by norm_num) hk.le,
+    show (-1 / 4 : ℚ) = (-1) * (1 / 4) by norm_num, mul_pow, div_pow, one_pow]
+  push_cast
+  field_simp
+  try ring
+
+/-- The rational bookkeeping of `A + B = 2L`: `(2m+1)(I_A + I_B) = 2 (m!)² (16^m − (−1)^m C(2m,m))`. -/
+theorem int_sum_identity (m : ℕ) :
+    ((2 * m + 1 : ℕ) : ℤ) * (intA m + intB m) = 2 * ((m ! : ℕ) : ℤ) ^ 2 * (16 ^ m - (-1) ^ m * (centralBinom m : ℕ)) := by
+  have hA := intA_rat m
+  have hB := intB_rat m
+  have hAB := sumA_add_sumB m
+  have hL := altSum_one m
+  set A' : ℚ := ∑ k ∈ range m, (m.choose k : ℚ) * (-1 / 4) ^ k / (2 * k + 1) with hA'
+  set B' : ℚ := ∑ k ∈ range m, (m.choose k : ℚ) * (-1 / 4) ^ k / (k + m + 1) with hB'
+  set L : ℚ := altSum m 1 with hLdef
+  set t : ℚ := (-1 / 4) ^ m with ht
+  set P : ℚ := 2 * (m : ℚ) + 1 with hPdef
+  have hP : P ≠ 0 := by positivity
+  have hsA : sumA m = A' + t / P := by
+    unfold sumA; rw [sum_range_succ, choose_self]; push_cast; ring
+  have hsB : sumB m = B' + t / P := by
+    unfold sumB; rw [sum_range_succ, choose_self]; push_cast; ring
+  have e1 : A' + B' = 2 * L - 2 * t / P := by linear_combination hAB - hsA - hsB
+  have e1' : P * (A' + B') = 2 * P * L - 2 * t := by rw [e1]; field_simp; try ring
+  have hfac : (((2 * m + 1) ! : ℕ) : ℚ) = P * ((2 * m) ! : ℚ) := by
+    rw [Nat.factorial_succ]; push_cast; ring
+  have hL' : L * (P * ((2 * m) ! : ℚ)) = 4 ^ m * ((m ! : ℕ) : ℚ) ^ 2 := by
+    rw [← hfac, hL]
+    have : (((2 * m + 1) ! : ℕ) : ℚ) ≠ 0 := by positivity
+    field_simp
+  have hXt : (4 : ℚ) ^ m * t = (-1) ^ m := by rw [ht, ← mul_pow]; norm_num
+  have hcb : (((2 * m) ! : ℕ) : ℚ) = (centralBinom m : ℕ) * ((m ! : ℕ) : ℚ) ^ 2 := by
+    rw [← centralBinom_mul_factorial_sq]; push_cast; ring
+  have h16 : (16 : ℚ) ^ m = 4 ^ m * 4 ^ m := by rw [← mul_pow]; norm_num
+  have hq : (((2 * m + 1 : ℕ) : ℤ) * (intA m + intB m) : ℚ) =
+      ((2 * ((m ! : ℕ) : ℤ) ^ 2 * (16 ^ m - (-1) ^ m * (centralBinom m : ℕ)) : ℤ) : ℚ) := by
+    push_cast
+    rw [hA, hB, h16]
+    linear_combination (4 ^ m * ((2 * m) ! : ℚ)) * e1' + (2 * (4 : ℚ) ^ m) * hL' + (-2 * ((2 * m) ! : ℚ)) * hXt +
+      (-2 * (-1 : ℚ) ^ m) * hcb
+  exact_mod_cast hq
+
+variable (p : ℕ) [hp : Fact p.Prime]
+
+/-- The binomial transfer, the field step: over a field with `p = 0`, `p = 2m+1` (so `m = −1/2`) and `1, …, m`
+units, `C(2k,k) = (−1)^k 4^k C(m,k)` for `k ≤ m`. -/
+theorem centralBinom_transfer_generic {K : Type*} [Field K] (p : ℕ) (hp0 : (p : K) = 0) (m : ℕ) (hm : p = 2 * m + 1)
+    (hunit : ∀ j, 1 ≤ j → j ≤ m → (j : K) ≠ 0) (k : ℕ) (hk : k ≤ m) :
+    ((centralBinom k : ℕ) : K) = (-1) ^ k * 4 ^ k * (m.choose k : ℕ) := by
+  induction k with
+  | zero => simp
+  | succ k ih =>
+    have ih := ih (by omega)
+    have hc1 := congrArg (Nat.cast : ℕ → K) (Nat.succ_mul_centralBinom_succ k)
+    have hc2 := congrArg (Nat.cast : ℕ → K) (Nat.choose_succ_right_eq m k)
+    push_cast [Nat.cast_sub (by omega : k ≤ m)] at hc1 hc2
+    have hk1 : ((k + 1 : ℕ) : K) ≠ 0 := hunit (k + 1) (by omega) hk
+    have hm' : (m : K) * 2 + 1 = 0 := by
+      have := congrArg (Nat.cast : ℕ → K) hm
+      push_cast at this
+      rw [hp0] at this
+      linear_combination -this
+    have key : ((k + 1 : ℕ) : K) *
+        (((centralBinom (k + 1) : ℕ) : K) - (-1) ^ (k + 1) * 4 ^ (k + 1) * (m.choose (k + 1) : ℕ)) = 0 := by
+      push_cast
+      linear_combination hc1 - ((-1) ^ (k + 1) * 4 ^ (k + 1)) * hc2 + 2 * (2 * (k : K) + 1) * ih +
+        2 * (-1) ^ k * 4 ^ k * (m.choose k : K) * hm'
+    exact sub_eq_zero.1 ((mul_eq_zero.1 key).resolve_left hk1)
+
+/-- The binomial transfer: `C(2k,k) ≡ (−1)^k 4^k C(m,k) (mod p)` for `k ≤ m`, `p = 2m+1` (`m ≡ −1/2`). -/
+theorem centralBinom_transfer (m : ℕ) (hm : p = 2 * m + 1) (k : ℕ) (hk : k ≤ m) :
+    ((centralBinom k : ℕ) : ZMod p) = (-1 : ZMod p) ^ k * 4 ^ k * (m.choose k : ℕ) :=
+  centralBinom_transfer_generic p (ZMod.natCast_self p) m hm
+    (fun j hj1 hjm => natCast_ne_zero_of_lt p j hj1 (by omega)) k hk
+
+/-- `(k+m+1)⁻¹ = 2 (2k+1)⁻¹` in `ZMod p` for `k < m`, `p = 2m+1`: `2(k+m+1) = 2k+1+p`. -/
+theorem inv_add_m_succ (m : ℕ) (hm : p = 2 * m + 1) (k : ℕ) (hk : k < m) :
+    ((k + m + 1 : ℕ) : ZMod p)⁻¹ = 2 * ((2 * k + 1 : ℕ) : ZMod p)⁻¹ := by
+  have h1 : ((2 * k + 1 : ℕ) : ZMod p) = 2 * ((k + m + 1 : ℕ) : ZMod p) := by
+    have : ((2 * (k + m + 1) : ℕ) : ZMod p) = ((2 * k + 1 + p : ℕ) : ZMod p) := by congr 1; omega
+    push_cast at this ⊢
+    rw [ZMod.natCast_self, add_zero] at this
+    linear_combination -this
+  rw [h1, mul_inv, ← mul_assoc, mul_inv_cancel₀ (two_ne_zero_zmod p (by omega)), one_mul]
+
+/-- 13:G6 — the first-order wall vanishing of the arcsin chain: `σ_p = Σ_{k<m} C(2k,k)/((2k+1)16^k) ≡ 0 (mod p)`
+for every prime `p = 2m+1 ≥ 5`, by the identity `A + B = 2L` (the formal antiderivative of `(1−s²)^m`), Wilson
+reflection in the form `C(p−1,m) ≡ (−1)^m(1 − pH_m) (mod p²)`, Eisenstein's congruence and the binomial transfer
+`C(2k,k) ≡ (−4)^k C(m,k)`. -/
+theorem arcsin_wall_vanishing (hp5 : 5 ≤ p) (m : ℕ) (hm : p = 2 * m + 1) :
+    ∑ k ∈ range m, ((centralBinom k : ℕ) : ZMod p) / (((2 * k + 1 : ℕ) : ZMod p) * 16 ^ k) = 0 := by
+  have hp2 : p ≠ 2 := by omega
+  have h4 : (4 : ZMod p) ≠ 0 := by
+    have := natCast_ne_zero_of_lt p 4 (by omega) (by omega); rwa [Nat.cast_ofNat] at this
+  have h3 : (3 : ZMod p) ≠ 0 := by
+    have := natCast_ne_zero_of_lt p 3 (by omega) (by omega); rwa [Nat.cast_ofNat] at this
+  have hF : (((2 * m) ! : ℕ) : ZMod p) ≠ 0 := factorial_ne_zero_zmod p (2 * m) (by omega)
+  -- the mod-p² step: p ∣ I_A + I_B
+  have hz := int_sum_identity m
+  have hmod : ((intA m + intB m : ℤ) : ZMod p) = 0 := by
+    rw [← p_mul_intCast_eq_zero_iff]
+    have hc := congrArg (Int.cast : ℤ → ZMod (p ^ 2)) hz
+    rw [Int.cast_mul, Int.cast_natCast, ← hm] at hc
+    simp only [Int.cast_mul, Int.cast_pow, Int.cast_sub, Int.cast_neg, Int.cast_one, Int.cast_ofNat,
+      Int.cast_natCast] at hc
+    have hM := morley_sq p m hm
+    have h16 : (16 : ZMod (p ^ 2)) ^ m = 4 ^ (p - 1) := by
+      rw [show (16 : ZMod (p ^ 2)) = 4 ^ 2 by norm_num, ← pow_mul, show 2 * m = p - 1 by omega]
+    rw [hc, hM, h16]
+    have : ((-1 : ZMod (p ^ 2)) ^ m * ((-1) ^ m * 4 ^ (p - 1))) = 4 ^ (p - 1) := by
+      rw [← mul_assoc, ← pow_add, ← two_mul, pow_mul, neg_one_sq, one_pow, one_mul]
+    rw [this, sub_self, mul_zero]
+  -- the integers read in ZMod p
+  set A' : ZMod p := ∑ k ∈ range m, (m.choose k : ZMod p) * (-1 : ZMod p) ^ k / (4 ^ k * ((2 * k + 1 : ℕ) : ZMod p))
+    with hA'
+  have hIA : ((intA m : ℤ) : ZMod p) = 4 ^ m * (((2 * m) ! : ℕ) : ZMod p) * A' := by
+    unfold intA
+    simp only [Int.cast_sum, Int.cast_mul, Int.cast_pow, Int.cast_neg, Int.cast_one, Int.cast_ofNat, Int.cast_natCast]
+    rw [mul_sum]
+    refine sum_congr rfl fun k hk => ?_
+    have hk := mem_range.1 hk
+    have hdvd : 2 * k + 1 ∣ (2 * m) ! := Nat.dvd_factorial (by omega) (by omega)
+    have h1 : ((2 * k + 1 : ℕ) : ZMod p) ≠ 0 := natCast_ne_zero_of_lt p _ (by omega) (by omega)
+    rw [Nat.cast_div hdvd h1, pow_sub₀ (4 : ZMod p) h4 hk.le]
+    have h4k' : (4 : ZMod p) ^ k ≠ 0 := pow_ne_zero _ h4
+    field_simp
+    try ring
+  have hIB : ((intB m : ℤ) : ZMod p) = 4 ^ m * (((2 * m) ! : ℕ) : ZMod p) * (2 * A') := by
+    unfold intB
+    simp only [Int.cast_sum, Int.cast_mul, Int.cast_pow, Int.cast_neg, Int.cast_one, Int.cast_ofNat, Int.cast_natCast]
+    rw [mul_sum, mul_sum]
+    refine sum_congr rfl fun k hk => ?_
+    have hk := mem_range.1 hk
+    have hdvd : k + m + 1 ∣ (2 * m) ! := Nat.dvd_factorial (by omega) (by omega)
+    have h1 : ((k + m + 1 : ℕ) : ZMod p) ≠ 0 := natCast_ne_zero_of_lt p _ (by omega) (by omega)
+    have h2 : ((2 * k + 1 : ℕ) : ZMod p) ≠ 0 := natCast_ne_zero_of_lt p _ (by omega) (by omega)
+    rw [Nat.cast_div hdvd h1, div_eq_mul_inv, inv_add_m_succ p m hm k hk, pow_sub₀ (4 : ZMod p) h4 hk.le]
+    have h4k' : (4 : ZMod p) ^ k ≠ 0 := pow_ne_zero _ h4
+    field_simp
+    try ring
+  have hA0 : A' = 0 := by
+    rw [Int.cast_add, hIA, hIB] at hmod
+    have : (3 * (4 ^ m * (((2 * m) ! : ℕ) : ZMod p))) * A' = 0 := by linear_combination hmod
+    rcases mul_eq_zero.1 this with h | h
+    · exact absurd h (mul_ne_zero h3 (mul_ne_zero (pow_ne_zero _ h4) hF))
+    · exact h
+  -- σ_p = A' by the binomial transfer
+  refine Eq.trans ?_ hA0
+  rw [hA']
+  refine sum_congr rfl fun k hk => ?_
+  have hk := mem_range.1 hk
+  rw [centralBinom_transfer p m hm k hk.le, show (16 : ZMod p) = 4 * 4 by norm_num, mul_pow]
+  have h1 : ((2 * k + 1 : ℕ) : ZMod p) ≠ 0 := natCast_ne_zero_of_lt p _ (by omega) (by omega)
+  have h4k : (4 : ZMod p) ^ k ≠ 0 := pow_ne_zero _ h4
+  field_simp
+  try ring
+
+end arcsinwall
+
+
 -- Ledger predicates of 13-epi (generated by make_predicates.py from docs/13-epi/13-epi-ledger.json; edit the ledger, not this section)
 set_option linter.defProp false in
 /-- 13:C2 (p13013) — The derangement selector: the registration statistics are generated by the rencontres polynomial $P_n(X)=n!\sum_{k\le n}(X-1)^{k}/k!$ (an exact double-counting identity), the normalised kernel $Z_n$ has $Z_n(1)=1$, $Z_n(0)=\dr{n}/n!$, and the unit registration ratio $R_n=n!/\dr{n}$ is forced; relative to the declared completion of $Z_n$ to $e^{X-1}$ the external value of the chain is uniquely $\eR$. -/
@@ -1998,6 +2507,9 @@ theorem second_order_half_wall : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)], p ≠ 
 /-- 13:G5 (p13038) — Lucas revivals and self-similarity: beyond the wall $n\ge\p$ is legible for $w$ precisely when every base-$\p$ digit of $n$ is at most $m$ and $\p\nmid n$ (on $\p=13$ the two-digit revivals number $(2\kap)^{2}=36$); on revival scales $\Cb{n}$ factorises digitwise (Lucas, A3); at the first revival $\rep{v_\p}\equiv8$ universally and $v_\p\equiv8+16\p(2q_\p(2)-1)\pmod{\p^{2}}$ by Wolstenholme. -/
 theorem lucas_revivals_self_similarity : (∀ (p : ℕ) [hp : Fact (Nat.Prime p)], p ≠ (2 : ℕ) → (2 : ZMod p) * (16 : ZMod p) ^ p / (↑((2 : ℕ) * p + (1 : ℕ)) * ↑p.centralBinom ^ (2 : ℕ)) = (8 : ZMod p)) ∧ ∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (r : ℕ), ↑(((2 : ℕ) * p ^ r).choose (p ^ r)) = (2 : ZMod p) :=
   And.intro @FRC.Epi.first_revival (@FRC.Epi.choose_two_mul_pow)
+/-- 13:G6 (p13039) — First-order wall vanishing of the arcsin chain: $\sigma_\p=\sum_{k<m}\Cb{k}/((2k+1)16^{k})\equiv0\pmod\p$ for every prime $\p\ge5$ of the totality, $\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\Cb{k}\equiv(-4)^{k}\binom mk$. Verified for all $428$ odd primes $5\le\p<3000$; the ingredients for $m\le60$, $\p<500$. -/
+theorem first_order_wall_vanishing : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)], (5 : ℕ) ≤ p → ∀ (m : ℕ), p = (2 : ℕ) * m + (1 : ℕ) → ∑ k ∈ Finset.range m, ↑k.centralBinom / (↑((2 : ℕ) * k + (1 : ℕ)) * (16 : ZMod p) ^ k) = (0 : ZMod p) :=
+  @FRC.Epi.arcsin_wall_vanishing
 /-- 13:G9 (p13042) — The fixed-shell tower of $\pi$: for $n=\p^{r}$, with $\delta_\p=\ctr{\piA B_n-A_n}=\ctr{-34}$, the member $\widehat\pi_{\p,r}=(2\cdot16^{\p^{r}}+\delta_\p)/((2\p^{r}+1)\Cb{\p^{r}}^{2})$ reads $\rep{\widehat\pi_{\p,r}}=\piA$ exactly for every $r$ (Lucas and Fermat give $\Cb{n}\equiv2$, $16^{n}\equiv16$, $B_n\equiv4$) while converging externally to $\piR$; on $\p=13$, $\delta_{13}=5$. -/
 theorem fixed_shell_tower_pi : (∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (κ : ℕ), p = (4 : ℕ) * κ + (1 : ℕ) → ∀ (r : ℕ), (1 : ℕ) ≤ r → ∀ (δ : ZMod p), δ = (-34 : ZMod p) → ((2 : ZMod p) * (16 : ZMod p) ^ p ^ r + δ) / (↑((2 : ℕ) * p ^ r + (1 : ℕ)) * ↑(p ^ r).centralBinom ^ (2 : ℕ)) = (2 : ZMod p) * ↑κ) ∧ ∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (r : ℕ), ↑(((2 : ℕ) * p ^ r).choose (p ^ r)) = (2 : ZMod p) :=
   And.intro @FRC.Epi.tower_pi_exact (@FRC.Epi.choose_two_mul_pow)

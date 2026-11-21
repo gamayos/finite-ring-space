@@ -1,5 +1,5 @@
 {
- "generated": "18 November 2026",
+ "generated": "21 November 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -524,8 +524,8 @@
    "key": "p28037",
    "tag": "T",
    "lean_name": "up_quark_koide_prediction",
-   "predicate": "Up-quark Koide $Q_u=5/6$ in framed arithmetic, $r_u^2=N(1-\\omega)=3$; continuum $0.849$ in the working scheme, $0.832$ with pole masses, band $0.83$--$0.89$. Falsifier: up/charm/top masses moving $Q_u$ outside the band in every standard scheme.",
-   "source": "C4\\newline \\pywit{flavour}{p28037}{P2}, \\leanwit{FrcCore}{p28037}{P2}, \\leanwit{FrcMathlib}{p28037}{P2}; rests on B4, B5 \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
+   "predicate": "Up-quark Koide $Q_u=5/6$, read on on-shell masses: $0.832\\pm0.003$ with the pole masses $m_c=1.67\\pm0.07$~GeV and $m_t=172.57$~GeV [chart]. The relation places the pole charm mass between $1.56$ and $1.76$~GeV, for $m_u$ between $5$~MeV and zero. Falsifier: a pole charm mass outside that band.",
+   "source": "C4\\newline \\pywit{flavour}{p28037}{P2}, \\leanwit{FrcCore}{p28037}{P2}, \\leanwit{FrcMathlib}{p28037}{P2}; rests on B4, B5 \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, FRC.Flavour.koide\\_five\\_sixths\\_quadratic, Flavour.koide\\_up\\_band}",
    "master": [
     "G17"
    ],
@@ -554,8 +554,8 @@
    "key": "p28039",
    "tag": "T",
    "lean_name": "normal_neutrino_ordering",
-   "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$, the two $\\Delta m^2$ and the boundary branch (Y2); the signed circulant solves both orderings (C11b). Falsifier: inverted ordering.",
-   "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28039}{P5}, \\leanwit{FrcCore}{p28039}{P5}, \\leanwit{FrcMathlib}{p28039}{P5}; rests on A6, B5, C11, Y2 \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.circ\\_transpose, Flavour.neutrino\\_floor}",
+   "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$ on the three masses (Y5), the two $\\Delta m^2$ and the boundary branch (Y2); the signed circulant solves both orderings (C11b). Falsifier: inverted ordering.",
+   "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28039}{P5}, \\leanwit{FrcCore}{p28039}{P5}, \\leanwit{FrcMathlib}{p28039}{P5}; rests on A6, B5, Y2, Y5 \\lean{FRC.Flavour.eigen\\_sumsq, Flavour.neutrino\\_floor}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -568,8 +568,8 @@
    "key": "p28040",
    "tag": "T",
    "lean_name": "mass_sum_floor",
-   "predicate": "Mass-sum floor $\\sum m_\\nu=58.8$ meV at NuFIT~6.0 ($m_1{=}0$, $m_2{=}8.65$, $m_3{=}50.13$ meV), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological $\\sum m_\\nu<0.058$ eV.",
-   "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28040}{P6}, \\leanwit{FrcMathlib}{p28040}{P6}; rests on A6, B5, C11, Y1, Y2 \\lean{Flavour.neutrino\\_floor}",
+   "predicate": "Mass-sum floor $\\sum m_\\nu=58.8$ meV at NuFIT~6.0 ($m_1{=}0$, $m_2{=}8.65$, $m_3{=}50.13$ meV), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological limit $\\sum m_\\nu<58$~meV at $95\\,\\%$ with $w=-1$ that holds for every data combination of the analysis that states it.",
+   "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28040}{P6}, \\leanwit{FrcCore}{p28040}{P6}, \\leanwit{FrcMathlib}{p28040}{P6}; rests on A6, B5, Y2, Y5 \\lean{FRC.Flavour.neutrino\\_floor\\_brackets, Flavour.neutrino\\_floor}",
    "master": [
     "P3"
    ],
@@ -585,7 +585,7 @@
    "tag": "T",
    "lean_name": "effective_majorana_mass",
    "predicate": "Effective Majorana mass $m_{\\beta\\beta}{\\simeq}1.5$--$3.7$ meV (NO, at $m_1=0$, over the relative Majorana phase; $1.2$--$4.0$ meV with the fitted $m_1=0.36$ meV). Falsifier: a $0\\nu\\beta\\beta$ signal at the inverted scale $15$--$50$ meV.",
-   "source": "C11\\newline \\pywit{flavour}{p28041}{P7}, \\leanwit{FrcMathlib}{p28041}{P7}; rests on Y1, Y2 \\lean{Flavour.majorana\\_band}",
+   "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28041}{P7}, \\leanwit{FrcCore}{p28041}{P7}, \\leanwit{FrcMathlib}{p28041}{P7}; rests on Y2, Y5 \\lean{FRC.Flavour.majorana\\_brackets, Flavour.majorana\\_band}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -598,8 +598,8 @@
    "key": "p28042",
    "tag": "T",
    "lean_name": "leptonic_cp_locked_octant",
-   "predicate": "Leptonic CP locked to the octant by \\eqref{eq:tm2}: $\\delta_{\\mathrm{CP}}\\in(204^\\circ,310^\\circ)$ over the $3\\sigma$ $\\theta_{23}$ range, $\\pm124^\\circ$/$\\pm74^\\circ$ at the NuFIT~6.0 best fits, $\\sin\\delta_{\\mathrm{CP}}{<}0$, $J=1/(6\\sqrt3)$. Falsifier: CP-conserving $\\delta_{\\mathrm{CP}}$, $\\sin\\delta_{\\mathrm{CP}}{>}0$, or $(\\theta_{23},\\delta_{\\mathrm{CP}})$ off the relation.",
-   "source": "C10\\newline \\pywit{flavour}{p28042}{P8}, \\leanwit{FrcCore}{p28042}{P8}, \\leanwit{FrcMathlib}{p28042}{P8}; rests on B2 \\lean{FRC.Flavour.jarlskog\\_sq, FRC.Flavour.protected\\_column, FRC.Flavour.trimaximal, Flavour.jarlskog, Flavour.tm2\\_at\\_maximal}",
+   "predicate": "Leptonic CP on the form TM2 (Y4): the relation \\eqref{eq:tm2} gives $|\\delta_{\\mathrm{CP}}|\\in[50^\\circ,156^\\circ]$ over the $3\\sigma$ range of $\\theta_{23}$, $\\pm124^\\circ$ and $\\pm74^\\circ$ at the NuFIT~6.0 best fits, and the solar value $\\sin^2\\theta_{12}=0.341$ (measured $0.3092\\pm0.0087$ \\cite{juno2026}). The sign of $\\sin\\delta_{\\mathrm{CP}}$ is not fixed. Falsifier: CP-conserving $\\delta_{\\mathrm{CP}}$, a pair $(\\theta_{23},\\delta_{\\mathrm{CP}})$ off the relation, or a solar angle off the TM2 value.",
+   "source": "C10\\newline \\pywit{flavour}{p28042}{P8}, \\leanwit{FrcCore}{p28042}{P8}, \\leanwit{FrcMathlib}{p28042}{P8}; rests on Y4 \\lean{FRC.Flavour.protected\\_column, FRC.Flavour.trimaximal, Flavour.jarlskog, Flavour.tm2\\_at\\_maximal}",
    "master": [],
    "restated": [],
    "witnessed": false,

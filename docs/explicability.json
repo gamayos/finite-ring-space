@@ -1,5 +1,5 @@
 {
- "generated": "18 November 2026",
+ "generated": "21 November 2026",
  "rows": [
   {
    "id": "00:X1",
@@ -718,8 +718,8 @@
    "key": "p28026",
    "tag": "T",
    "lean_name": "up_quark_koide_framed",
-   "predicate": "\\textbf{The up-quark Koide value} is $5/6$ in framed arithmetic ($0.849$ in the working scheme, $0.832$ with pole masses), the cube-root colour norm $r_u^2=N(1-\\omega)=3$ against the colourless $N(1-i)=2$, a ratio where the Standard Model carries no relation at all.",
-   "source": "Remark~\\ref{rem:23tori}\\newline \\pywit{flavour}{p28026}{X2}, \\leanwit{FrcCore}{p28026}{X2}, \\leanwit{FrcMathlib}{p28026}{X2} \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, Flavour.koide\\_up\\_band}",
+   "predicate": "\\textbf{The up-quark Koide value} is $5/6$, the norm $N(1-\\omega)=3$ of the unitary cycle against the colourless $N(1-i)=2$. On shell the masses give $Q_u=0.832\\pm0.003$ [chart], a ratio where the Standard Model carries no relation at all.",
+   "source": "Remark~\\ref{rem:23tori}\\newline \\pywit{flavour}{p28026}{X2}, \\leanwit{FrcCore}{p28026}{X2}, \\leanwit{FrcMathlib}{p28026}{X2} \\lean{FRC.Flavour.norm\\_one\\_sub\\_omega, FRC.Flavour.koide\\_five\\_sixths, FRC.Flavour.koide\\_five\\_sixths\\_quadratic, Flavour.koide\\_up\\_band}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -810,27 +810,13 @@
    "page": "28-flavour/index.html"
   },
   {
-   "id": "28:X9",
-   "paper": "28-flav",
-   "label": "X9",
-   "key": "p28033",
-   "tag": "T",
-   "lean_name": "reactor_angle_complementarity",
-   "predicate": "\\textbf{The reactor angle} is, at leading order, $\\sin\\theta_{13}=\\sin\\theta_C/\\sqrt2=0.159$, quark--lepton complementarity through the quarter-turn, $7\\%$ above the observed $0.149$ with no correction derived: a leading-order estimate of the mixing parameter, not a prediction.",
-   "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28033}{X9}, \\leanwit{FrcMathlib}{p28033}{X9} \\lean{Flavour.theta13\\_estimate}",
-   "master": [],
-   "restated": [],
-   "witnessed": false,
-   "page": "28-flavour/index.html"
-  },
-  {
    "id": "28:X10",
    "paper": "28-flav",
    "label": "X10",
    "key": "p28034",
    "tag": "T",
-   "lean_name": "near_maximal_leptonic_cp",
-   "predicate": "\\textbf{Near-maximal leptonic CP} is the cube-root phase: $\\mathrm{Im}\\,\\omega=\\sqrt3/2$ gives the maximal Jarlskog $J=1/(6\\sqrt3)$, so the cubic reappears as CP violation rather than a free phase fitted to data.",
+   "lean_name": "character_matrix_invariant",
+   "predicate": "\\textbf{The invariant of the character matrix} is maximal: $\\mathrm{Im}\\,\\omega=\\sqrt3/2$ gives $J(F)=1/(6\\sqrt3)$, the largest value a unitary matrix admits. It is a property of $F$, not of the lepton mixing matrix.",
    "source": "\\S\\ref{sec:cp}\\newline \\pywit{flavour}{p28034}{X10}, \\leanwit{FrcCore}{p28034}{X10}, \\leanwit{FrcMathlib}{p28034}{X10} \\lean{FRC.Flavour.trimaximal, FRC.Flavour.jarlskog\\_sq, Flavour.jarlskog}",
    "master": [],
    "restated": [],
@@ -844,8 +830,8 @@
    "key": "p28035",
    "tag": "T",
    "lean_name": "neutrino_spectrum",
-   "predicate": "\\textbf{The neutrino spectrum} (a near-massless lightest state, $\\sum m_\\nu\\simeq59\\,$meV on the normal branch) follows from colourlessness fixing $Q_\\nu=2/3$, the transpose fixed point under the alignment $M_R\\propto m_D$ (Y1) and the boundary branch that selects the ordering (Y2), rather than three independent neutrino masses.",
-   "source": "Proposition~\\ref{prop:transpose}, \\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28035}{X11}, \\leanwit{FrcCore}{p28035}{X11}, \\leanwit{FrcMathlib}{p28035}{X11} \\lean{FRC.Flavour.transpose\\_fixed\\_point, FRC.Flavour.seesaw\\_circulant, FRC.Flavour.circ\\_eigen, Flavour.neutrino\\_floor}",
+   "predicate": "\\textbf{The neutrino spectrum} on the hypotheses Y5 and Y2: a near-massless lightest state and $\\sum m_\\nu\\simeq59\\,$meV on the normal branch, two parameters fixed by the two splittings rather than three independent neutrino masses.",
+   "source": "\\S\\ref{sec:neutrino}\\newline \\pywit{flavour}{p28035}{X11}, \\leanwit{FrcCore}{p28035}{X11}, \\leanwit{FrcMathlib}{p28035}{X11}; rests on Y2, Y5 \\lean{FRC.Flavour.eigen\\_sumsq, FRC.Flavour.neutrino\\_floor\\_brackets, Flavour.neutrino\\_floor}",
    "master": [],
    "restated": [],
    "witnessed": false,

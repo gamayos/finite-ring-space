@@ -6,7 +6,7 @@ const VENUES = {
   "Axioms": "Axioms (MDPI)",
   "Symmetry": "Symmetry (MDPI)",
   "Entropy": "Entropy (MDPI)",
-  "Math": "Mathematics (MDPI)",
+  "Mathematics": "Mathematics (MDPI)",
   "FFA": "Finite Fields and Their Applications",
   "MPCPS": "Mathematical Proceedings of the Cambridge Philosophical Society",
   "RSPA": "Proceedings of the Royal Society A",
@@ -359,13 +359,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Epi.lean",
         "label": "lean",
         "count": 30,
-        "title": "30 predicates proved in the core (no axioms), 16 of them also on Mathlib: the core module Epi as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "title": "30 predicates proved in the core (no axioms), 17 of them also on Mathlib: the core module Epi as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Epi.lean",
         "label": "lean-mathlib",
-        "count": 31,
-        "title": "31 predicates proved on Mathlib (classical), 16 of them also in the core: the module Epi as one file on Mathlib in Lean Live"
+        "count": 32,
+        "title": "32 predicates proved on Mathlib (classical), 17 of them also in the core: the module Epi as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -608,20 +608,20 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p28_flavour.ipynb",
         "label": "python",
-        "count": 35,
-        "title": "35 predicates checked, all passing: the notebook p28_flavour.ipynb on Google Colab, one cell per predicate"
+        "count": 36,
+        "title": "36 predicates checked, all passing: the notebook p28_flavour.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Flavour.lean",
         "label": "lean",
-        "count": 27,
-        "title": "27 predicates proved in the core (no axioms), 19 of them also on Mathlib: the core module Flavour as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 30,
+        "title": "30 predicates proved in the core (no axioms), 21 of them also on Mathlib: the core module Flavour as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Flavour.lean",
         "label": "lean-mathlib",
-        "count": 23,
-        "title": "23 predicates proved on Mathlib (classical), 19 of them also in the core: the module Flavour as one file on Mathlib in Lean Live"
+        "count": 21,
+        "title": "21 predicates proved on Mathlib (classical), 21 of them also in the core: the module Flavour as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -866,4 +866,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "20 November 2026";
+const GENERATED = "21 November 2026";
