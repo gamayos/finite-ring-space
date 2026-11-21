@@ -154,6 +154,7 @@ lake exe cache get        # Mathlib's compiled oleans, once
 lake build                # the modules
 lake env lean FrcMathlib/Algebra.lean
 python3 check_axioms.py   # regenerates axioms.log and applies the gate
+python3 verify.py         # the checks of one revision: the build, both axiom gates, the generators, the changed web copies
 ```
 
 ## What the CI decides on every push (`.github/workflows/lean.yml`)
@@ -176,5 +177,6 @@ FrcCore.lean, FrcCore/<Module>.lean, FrcCore/Theme/  the core: base, frame theme
 web/<Module>.lean                                   generated single-file copies for the web editor (and Theme.Chart, Keys.Chart)
 axioms.log                                          generated, committed: one line per declaration
 check_axioms.py, make_web.py, make_notebook.py      the generators and the gate (make_keys.py, make_predicates.py, make_master.py: the keys, the predicates, the master's module)
+verify.py                                           the checks of one revision, on what it changed (the CI runs them on everything)
 frc-lean-main.ipynb, .devcontainer/                 the Colab and Codespaces doors
 ```
