@@ -72,6 +72,8 @@ class StatementsTest(unittest.TestCase):
                 self.assertTrue(CT.mode_stride(p, g) if p < 100 else True)
                 for f in (CT.zero_count, CT.zero_conjugate, CT.centre_mode, CT.pair_invariant, CT.cardinal_modes): self.assertTrue(f(p, kap, g), f.__name__)
                 self.assertTrue(CT.generator_skew(p, kap, g, P))
+                self.assertTrue(CT.modes_orthogonal(p, P)); self.assertTrue(CT.generator_selfadjoint(p, kap, g, P))
+                self.assertTrue(CT.generator_selfadjoint_vector(p, kap, g, [(a, b) for a in vecs[:6] for b in vecs[:6]]))
                 self.assertTrue(CT.circle_pair(p, g)); self.assertTrue(CT.circle_point(p, g))
                 for f in (CT.circle_frequency, CT.circle_meridians, CT.circle_count, CT.circle_counts, CT.circle_place_cycle, CT.circle_place_even, CT.circle_quarter_turn):
                     self.assertTrue(f(p, kap, g), f.__name__)
@@ -110,6 +112,7 @@ class StatementsTest(unittest.TestCase):
         self.assertFalse(CT.circle_place_cycle(p, 2, g)); self.assertFalse(CT.circle_place_even(p, kap, 3))   # 3 is a square of F_13 and no generator
         self.assertFalse(CT.circle_parallels(p, 2, g))                              # a wrong capacity: the prime meridian's residue is not c·(2κ + 1)
         self.assertFalse(CT.generator_skew(p, kap, g, [1] * len(P)))
+        self.assertFalse(CT.modes_orthogonal(p, [1] * len(P))); self.assertFalse(CT.generator_selfadjoint(p, kap, g, [1] * len(P)))
         self.assertFalse(CT.zeros_not_held(13, 169)); self.assertFalse(CT.zeros_not_held(1, 233))   # 13² is not below 169; a shell of one state
         self.assertEqual(len({max(0, y - 2) for y in range(2, 233)}), 231)          # 231 states hold the 231 zeros of the shell 233
         self.assertFalse(CT.zeros_collide(233, 13, lambda y: y))                    # no reading into 13 states

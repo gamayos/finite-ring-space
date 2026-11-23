@@ -149,7 +149,7 @@ class LedgerTest(unittest.TestCase):
         with redirect_stdout(io.StringIO()):
             L.R.verify_all()
         mine = L.R.results
-        self.assertEqual(len(records), 99)        # the package of 23 November 2026: blocks A, D, G and X, with the circle's rows G13 and G14, the count's rows D16 and D17 and the rows D18 and D19 of the modes near the heights
+        self.assertEqual(len(records), 102)       # the package of 23 November 2026: blocks A, D, G and X, with the circle's rows G13 and G14, the count's rows D16 and D17 and the rows D18 and D19 of the modes near the heights; the row G15 of the Hilbert–Pólya operator
         self.assertEqual([(r["id"], r["rows"], r["ok"], _ALIAS.get(r["kind"], r["kind"]), r["label"]) for r in records],
                          [(r["id"], r["rows"], r["ok"], r["kind"], r["label"]) for r in mine])
 

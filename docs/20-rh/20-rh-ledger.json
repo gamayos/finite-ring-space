@@ -7,7 +7,7 @@
  "blocks": [
   {
    "letter": "A",
-   "title": "Inputs: imported or declared, not derived here",
+   "title": "Inputs and foundations: imported, declared, or proved",
    "rows": [
     {
      "label": "A1",
@@ -21,15 +21,15 @@
      "label": "A2",
      "predicate": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:closure}\\newline \\pywit{rh}{p00004}{A2}, \\leanwit{FrcCore}{p00004}{A2} \\lean{FRC.Foundation.registered\\_finite, FRC.Foundation.no\\_unlimited\\_supply, FRC.Foundation.agent\\_bound}",
+     "source": "Prop.~\\ref{prop:registration} (i)\\newline \\pywit{rh}{p00004}{A2}, \\leanwit{FrcCore}{p00004}{A2} \\lean{FRC.Foundation.registered\\_finite, FRC.Foundation.no\\_unlimited\\_supply, FRC.Foundation.agent\\_bound}",
      "key": "p00004",
      "name": "finitude"
     },
     {
      "label": "A3",
-     "predicate": "Completeness: whatever exists is registered within, the registration of any totality being onto its registered Universe, so there is no outside and no host; two totalities each registered whole within the other have one count.",
+     "predicate": "Completeness: whatever exists is registered within, the registration of any totality being onto its registered Universe, so there is no outside and no host; two shells each registered whole within the other have one count.",
      "tag": "T",
-     "source": "\\S\\ref{sec:closure}\\newline \\pywit{rh}{p00003}{A3}, \\leanwit{FrcCore}{p00003}{A3} \\lean{FRC.Foundation.registration\\_onto, FRC.Foundation.mutual\\_registration\\_count}",
+     "source": "Prop.~\\ref{prop:registration} (ii)\\newline \\pywit{rh}{p00003}{A3}, \\leanwit{FrcCore}{p00003}{A3} \\lean{FRC.Foundation.registration\\_onto, FRC.Foundation.mutual\\_registration\\_count}",
      "key": "p00003",
      "name": "completeness_of_totality"
     },
@@ -37,7 +37,7 @@
      "label": "A4",
      "predicate": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each.",
      "tag": "T",
-     "source": "\\S\\ref{sec:closure}\\newline \\pywit{rh}{p00197}{A4}, \\leanwit{FrcCore}{p00197}{A4} \\lean{FRC.Foundation.observer\\_part, FRC.Foundation.complete\\_needs\\_whole, FRC.Foundation.translation\\_torsor}",
+     "source": "Prop.~\\ref{prop:registration} (iii)\\newline \\pywit{rh}{p00197}{A4}, \\leanwit{FrcCore}{p00197}{A4} \\lean{FRC.Foundation.observer\\_part, FRC.Foundation.complete\\_needs\\_whole, FRC.Foundation.translation\\_torsor}",
      "key": "p00197",
      "name": "incompleteness_of_observation"
     },
@@ -350,6 +350,14 @@
      "source": "Thm.~\\ref{thm:circle}\\newline \\pywit{rh}{p20115}{G14}, \\leanwit{FrcCore}{p20115}{G14} \\lean{FRC.Horizon.circle\\_place, FRC.Horizon.circle\\_place\\_cycle, FRC.Horizon.circle\\_place\\_even, FRC.Horizon.circle\\_quarter\\_turn, FRC.Horizon.circle\\_place\\_phase, FRC.Horizon.circle\\_quarter\\_closes}",
      "key": "p20115",
      "name": "zeros_on_latitude_cycle"
+    },
+    {
+     "label": "G15",
+     "predicate": "The Hilbert--P\\'olya operator: on every framed shell let $[v,w]=\\sum_{x\\ne0}v(x)\\,w(x^{-1})$. The modes are orthogonal for it, $[x^{k},x^{m}]=-1$ for $k=m$ and $0$ otherwise. So $\\gamma_k[x^{k},x^{m}]=\\gamma_m[x^{k},x^{m}]$ for every two modes, and the generator is self-adjoint for it on every vector, with the frequencies as its spectrum. Rests on B4, E12, G4.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:generator} (iii)\\newline \\pywit{rh}{p20120}{G15}, \\leanwit{FrcCore}{p20120}{G15} \\lean{FRC.Horizon.gram\\_conj\\_self, FRC.Horizon.gram\\_conj\\_ne, FRC.Horizon.generator\\_selfadjoint}",
+     "key": "p20120",
+     "name": "hilbert_polya_operator"
     }
    ]
   },
@@ -1402,6 +1410,35 @@
     "tier": 0,
     "ok": true,
     "doc": "20:G14 — the quarter-turn closes: with `z = −1/x` and `w = −1/z`, `w = x`, so four steps of the map `x ↦ (x − 1)/(x + 1)` return every residue on which they are defined; and two steps move every residue but the roots of `x² = −1`."
+   }
+  ],
+  "G15": [
+   {
+    "name": "FRC.Horizon.gram_conj_self",
+    "module": "FrcCore/Theme/Count",
+    "line": 649,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G15 — a mode and its own conjugate: with `k + k' = p − 1`, `⟨x^k, x^k'⟩ = −1`; the conjugate of the mode `x^k` is `x^(−k) = x^k'`."
+   },
+   {
+    "name": "FRC.Horizon.gram_conj_ne",
+    "module": "FrcCore/Theme/Count",
+    "line": 653,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G15 — a mode and the conjugate of another mode: with `m + m' = p − 1` and `k ≠ m`, `⟨x^k, x^m'⟩ = 0`."
+   },
+   {
+    "name": "FRC.Horizon.generator_selfadjoint",
+    "module": "FrcCore/Theme/Count",
+    "line": 674,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G15 — the generator `H = −i(N + ½)` is self-adjoint for the pairing of a vector with the conjugate of another: on the modes, `γ_k·⟨x^k, x^m'⟩ = γ_m·⟨x^k, x^m'⟩` with `x^m'` the conjugate of `x^m`; the modes are orthogonal for it (`gram_conj_self`, `gram_conj_ne`)."
    }
   ],
   "X1": [

@@ -3824,6 +3824,10 @@
 'FRC.Horizon.zero_shared' does not depend on any axioms
 'FRC.Horizon.zeros_collide' does not depend on any axioms
 'FRC.Horizon.zeros_not_held' does not depend on any axioms
+'FRC.Horizon.gram_pow' does not depend on any axioms
+'FRC.Horizon.gram_conj_self' does not depend on any axioms
+'FRC.Horizon.gram_conj_ne' does not depend on any axioms
+'FRC.Horizon.generator_selfadjoint' does not depend on any axioms
 'FRC.Horizon.circle_norm' does not depend on any axioms
 'FRC.Horizon.circle_pair' does not depend on any axioms
 'FRC.Horizon.circle_frequency' does not depend on any axioms
@@ -4719,6 +4723,7 @@
 'FRC.Ledger.p20111' does not depend on any axioms
 'FRC.Ledger.p20115' does not depend on any axioms
 'FRC.Ledger.p20119' does not depend on any axioms
+'FRC.Ledger.p20120' does not depend on any axioms
 'FRC.Ledger.p00080' does not depend on any axioms
 'FRC.Ledger.p00179' does not depend on any axioms
 'FRC.Ledger.p28008' does not depend on any axioms
@@ -5426,6 +5431,7 @@
 'FRC.Rh.carrier_chart' does not depend on any axioms
 'FRC.Rh.critical_circle' does not depend on any axioms
 'FRC.Rh.zeros_on_latitude_cycle' does not depend on any axioms
+'FRC.Rh.hilbert_polya_operator' does not depend on any axioms
 'FRC.Rh.half_of_critical_line' does not depend on any axioms
 'FRC.Rh.pole_and_functional_equation' does not depend on any axioms
 'FRC.Rh.half_of_dilation_generator' does not depend on any axioms

@@ -9,7 +9,7 @@ import rh as dcommon
 
 PKG = "20-rh"; NB = f"frc-{PKG}.ipynb"; PAPER = "20"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
-CITE = "Akhtman & Voether, Preprints 2026"; DOI = "https://doi.org/10.20944/preprints202606.0768.v1"                       # the heading's citation, linked to the article
+CITE = "Akhtman, Preprints 2026"; DOI = "https://doi.org/10.20944/preprints202606.0768.v1"                       # the heading's citation, linked to the article
 SCRIPT = "rh.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/py/rh.html)"; RUNTIME = "under a minute on Colab"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
@@ -45,7 +45,7 @@ for r in witnessed:
 md("""## Summary
 
 The cells above are the paper's python-witnessed predicates; the whole script, block by block, is `python3 rh.py`
-(99 checks: 89 exact, 10 [approx]; `results.json`), `python3 -m frc_20_rh` once installed.""", "summary")
+(102 checks: 92 exact, 10 [approx]; `results.json`), `python3 -m frc_20_rh` once installed.""", "summary")
 code(f"""{INSTALL}
 from frc_20_rh import verify_all
 assert verify_all(), "a check failed"

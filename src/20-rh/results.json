@@ -700,6 +700,16 @@
   "kind": "EXACT"
  },
  {
+  "id": "G15",
+  "rows": "20:G15",
+  "block": "G",
+  "script": "rh",
+  "label": "the Hilbert\u2013P\u00f3lya operator on F_13: for the pairing [v, w] = \u03a3 v(x)w(x\u207b\u00b9) over the nonzero residues the modes are orthogonal, [x^k, x^m] = \u22121 for k = m and 0 otherwise; \u03b3_k[x^k, x^m] = \u03b3_m[x^k, x^m] for every two modes; [Hv, w] = [v, Hw] on 144 pairs of vectors",
+  "ok": true,
+  "detail": "4 generators",
+  "kind": "EXACT"
+ },
+ {
   "id": "G2",
   "rows": "20:G2",
   "block": "G",
@@ -800,6 +810,16 @@
   "kind": "EXACT"
  },
  {
+  "id": "G15",
+  "rows": "20:G15",
+  "block": "G",
+  "script": "rh",
+  "label": "the Hilbert\u2013P\u00f3lya operator on F_173: for the pairing [v, w] = \u03a3 v(x)w(x\u207b\u00b9) over the nonzero residues the modes are orthogonal, [x^k, x^m] = \u22121 for k = m and 0 otherwise; \u03b3_k[x^k, x^m] = \u03b3_m[x^k, x^m] for every two modes; [Hv, w] = [v, Hw] on 625 pairs of vectors",
+  "ok": true,
+  "detail": "84 generators",
+  "kind": "EXACT"
+ },
+ {
   "id": "G2",
   "rows": "20:G2",
   "block": "G",
@@ -895,6 +915,16 @@
   "block": "G",
   "script": "rh",
   "label": "the zeros on the latitude cycle of F_1549: every zero is z/(1 + z) for one z = \u03c1/(1 \u2212 \u03c1) \u2260 0, \u22121; with z = g^j the 1547 zeros stand at the places j \u2260 \u03c0 of C_1548, the centre at the place 0 and the conjugate zero at \u2212j; the point of the sphere on the circle at the phase m is the even place 2m; 2\u03c1 \u2212 1 = (z \u2212 1)/(z + 1); the map x \u21a6 (x \u2212 1)/(x + 1) has the square x \u21a6 \u22121/x, four steps return x where they are defined, and its fixed points are \u00b1i",
+  "ok": true,
+  "detail": "the least 3 generators",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G15",
+  "rows": "20:G15",
+  "block": "G",
+  "script": "rh",
+  "label": "the Hilbert\u2013P\u00f3lya operator on F_1549: for the pairing [v, w] = \u03a3 v(x)w(x\u207b\u00b9) over the nonzero residues the modes are orthogonal, [x^k, x^m] = \u22121 for k = m and 0 otherwise; \u03b3_k[x^k, x^m] = \u03b3_m[x^k, x^m] for every two modes; [Hv, w] = [v, Hw] on 9 pairs of vectors",
   "ok": true,
   "detail": "the least 3 generators",
   "kind": "EXACT"

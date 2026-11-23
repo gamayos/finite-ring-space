@@ -25,6 +25,12 @@ or p with κ) run on a Carrier's chart as on a Subject.
     energy_order, cardinal_modes, cardinal_zeros, carrier_centre, origin_unit_symmetry, zero_shared, half_unique,
     zeros_collide, zeros_not_held (20:F7; a reading of the residues into states may be passed)
 
+The pairing of a vector with the conjugate of another, [v, w] = Σ_{x≠0} v(x)·w(x⁻¹) (20:G15, 23 November 2026).
+
+    pairing_entry(p, P, k, m)           [x^k, x^m] from the Gram table
+
+    modes_orthogonal, generator_selfadjoint, generator_selfadjoint_vector                                 (20:G15)
+
 The critical circle (Theme/Circle.lean, 22 November 2026). A point of the orbital sphere is a position a with a phase m
 and carries a·g^m; its mirror carries a·g^{−m}; the circle is the set of the points with a·(g^m + g^{−m}) ≡ 1.
 
@@ -213,6 +219,49 @@ def generator_skew(p, kap, g, P):
     """(γ_k + γ_m)·⟨x^k, x^m⟩ ≡ 0 unless both modes are constant."""
     i = quarter_turn(p, kap, g); fr = [frequency(p, kap, i, k) for k in range(p - 1)]
     return all((fr[k] + fr[m]) * P[k + m] % p == 0 for k in range(p - 1) for m in range(p - 1) if k > 0 or m > 0)
+
+
+def pairing_entry(p, P, k, m):
+    """[x^k, x^m] = Σ_{x≠0} x^k·x^(−m), the pairing [v, w] = Σ_{x≠0} v(x)·w(x⁻¹) on two modes: the entry P[k + m'] of the Gram table, with m' the count of the conjugate of the mode m."""
+    return P[k + (-m) % (p - 1)]
+
+
+def modes_orthogonal(p, P):
+    """The modes are orthogonal for the pairing [v, w]: [x^k, x^m] ≡ −1 for k = m and 0 otherwise; four rows of the table against the direct sums."""
+    n = p - 1; ms = range(n) if p < 1000 else (0, 1, 2, n // 2, n - 2, n - 1)
+    direct = all(sum(pow(x, k, p) * pow(x, (n - m) % n, p) for x in range(1, p)) % p == pairing_entry(p, P, k, m) for k in (0, 1, n // 2, n - 1) for m in ms)
+    return direct and all(pairing_entry(p, P, k, m) == (p - 1 if k == m else 0) for k in range(n) for m in range(n))
+
+
+def generator_selfadjoint(p, kap, g, P):
+    """γ_k·[x^k, x^m] ≡ γ_m·[x^k, x^m] for every two modes."""
+    i = quarter_turn(p, kap, g); fr = [frequency(p, kap, i, k) for k in range(p - 1)]; n = p - 1
+    return all((fr[k] - fr[m]) * pairing_entry(p, P, k, m) % p == 0 for k in range(n) for m in range(n))
+
+
+def generator_selfadjoint_vector(p, kap, g, pairs):
+    """[Hv, w] ≡ [v, Hw] on pairs of vectors given by their values; H acts on the mode coefficients, and w(x⁻¹) is taken from the values of w.
+    pairs: [((name, v), (name, w))]; each vector is first read back from its mode coefficients."""
+    i = quarter_turn(p, kap, g); fr = [frequency(p, kap, i, k) for k in range(p - 1)]
+    inv = [pow(x, p - 2, p) - 1 for x in range(1, p)]                                    # the index of x⁻¹
+    cache = {}
+
+    def prep(key, v):
+        if key not in cache:
+            c = mode_coefficients(p, v)
+            if mode_values(p, c) != v: return None
+            cache[key] = (v, mode_values(p, [f * ck % p for f, ck in zip(fr, c)]))
+        return cache[key]
+
+    def pairing(a, b):
+        return sum(a[x] * b[inv[x]] for x in range(p - 1)) % p
+
+    for (ka, va), (kb, vb) in pairs:
+        A, B = prep(ka, va), prep(kb, vb)
+        if A is None or B is None: return False
+        (v, Hv), (w, Hw) = A, B
+        if pairing(Hv, w) != pairing(v, Hw): return False
+    return True
 
 
 def centre_mode(p, kap, g):

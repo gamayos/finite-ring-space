@@ -416,14 +416,14 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/frc-20-rh.ipynb",
         "label": "python",
-        "count": 31,
-        "title": "31 predicates checked, all passing: the notebook frc-20-rh.ipynb on Google Colab, one cell per predicate"
+        "count": 32,
+        "title": "32 predicates checked, all passing: the notebook frc-20-rh.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Rh.lean",
         "label": "lean",
-        "count": 26,
-        "title": "26 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Rh as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 27,
+        "title": "27 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Rh as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Rh.lean",

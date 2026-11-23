@@ -1,5 +1,5 @@
 """
-rh.py — the validation package of "Riemann Hypothesis over Finite Holographic Substrate" (Akhtman & Voether, 2026; Preprints
+rh.py — the validation package of "Riemann Hypothesis over Finite Holographic Substrate" (Akhtman, 2026; Preprints
 doi 10.20944/preprints202606.0768.v1), the paper 20-rh of the FRC corpus (finite-ring-space/src/20-rh). One script since
 24 September 2026; rewritten with the paper on 17 October 2026; revised with the paper on 21 November 2026: the count
 readout replaces the readout on the framed plane (the critical circle, rows G13 and G14, on 22 November). The checks of the rows that left are gone with them (A2 to A5, A15 to
@@ -7,7 +7,7 @@ A18, A20, and the chart blocks B and C), and one check per row of the count read
 (blocks G and X).
 ========================================================================================================================
 
-Four blocks, 99 checks — 89 EXACT (integer-pinned: a pass is a proof on the tested instances) and 10 [approx] (floating-point
+Four blocks, 102 checks — 92 EXACT (integer-pinned: a pass is a proof on the tested instances) and 10 [approx] (floating-point
 readings to a stated tolerance: the chart's characters, and in block D the spectrum of the window's primes, the count of a window from its dual and the bound on its difference from the count) — Python with numpy, which block A's chart characters alone use.
 Each check cites the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 20:XN), and the deciding
 check's `# 20:XN (<key>)` marker is what the ledger's source column links (PREDICATES; finitering.space/py/rh.html#<key>).
@@ -20,7 +20,7 @@ Block A  the shell, in exact arithmetic (EXACT, five [approx]; 20:A2, A3, A4, B1
 Block D  the prime vector in the chart ([approx], D19 EXACT; 20:D14, D15, D16, D17, D18, D19): the spectrum of the window's primes against the classical
          heights, the deep window, the count of a window from its dual against π(x) and Riemann's formula, and the bound on its
          difference from the count of the vector, a mode near every height, and the value of a mode at one label
-Block G  the count readout (EXACT; 20:G2, G3, G5–G7, G9, G10, G12–G14, F7): the count operator, the forced half, the generator, the
+Block G  the count readout (EXACT; 20:G2, G3, G5–G7, G9, G10, G12–G15, F7): the count operator, the forced half, the generator, the
          zeros, their centre and order, the cardinal modes, the Carrier's chart, the critical circle, on the pairs (13, 233), (173, 30089),
          (1549, 2408561)
 Block X  the classical statements on the shell (EXACT; 20:X1–X3): the ½ of the critical line, the pole and the functional
@@ -48,7 +48,7 @@ LEDGER = {
     "A7": "20:E12, 20:E14", "A7b": "20:E13", "A10": "20:B1", "A11": "20:B2", "A12": "20:A2, 20:A4, 20:F7", "A13": "20:A3",
     "A14": "20:E13", "A19": "20:E15",
     "D14": "20:D14", "D15": "20:D15", "D16": "20:D16", "D17": "20:D17", "D18": "20:D18", "D19": "20:D19",
-    "G2": "20:G2", "G3": "20:G3", "G5": "20:G5", "G6": "20:G6, 20:F7", "G7": "20:G7", "G9": "20:G9", "G10": "20:G10", "G12": "20:G12", "G13": "20:G13", "G14": "20:G14",
+    "G2": "20:G2", "G3": "20:G3", "G5": "20:G5", "G6": "20:G6, 20:F7", "G7": "20:G7", "G9": "20:G9", "G10": "20:G10", "G12": "20:G12", "G13": "20:G13", "G14": "20:G14", "G15": "20:G15",
     "X1": "20:X1", "X2": "20:X2", "X3": "20:X3",
 }
 
@@ -64,7 +64,7 @@ PREDICATES = {
     "20:A2": "A12", "20:A3": "A13", "20:A4": "A12", "20:F7": "A12",
     "20:E12": "A7", "20:E13": "A14", "20:E14": "A7", "20:E15": "A19",
     "20:D14": "D14", "20:D15": "D15", "20:D16": "D16", "20:D17": "D17", "20:D18": "D18", "20:D19": "D19",
-    "20:G2": "G2", "20:G3": "G3", "20:G5": "G5", "20:G6": "G6", "20:G7": "G7", "20:G9": "G9", "20:G10": "G10", "20:G12": "G12", "20:G13": "G13", "20:G14": "G14",
+    "20:G2": "G2", "20:G3": "G3", "20:G5": "G5", "20:G6": "G6", "20:G7": "G7", "20:G9": "G9", "20:G10": "G10", "20:G12": "G12", "20:G13": "G13", "20:G14": "G14", "20:G15": "G15",
     "20:X1": "X1", "20:X2": "X2", "20:X3": "X3",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
@@ -341,6 +341,49 @@ def generator_skew(p, kap, g, P):
     """(γ_k + γ_m)·⟨x^k, x^m⟩ ≡ 0 unless both modes are constant."""
     i = quarter_turn(p, kap, g); fr = [frequency(p, kap, i, k) for k in range(p - 1)]
     return all((fr[k] + fr[m]) * P[k + m] % p == 0 for k in range(p - 1) for m in range(p - 1) if k > 0 or m > 0)
+
+
+def pairing_entry(p, P, k, m):
+    """[x^k, x^m] = Σ_{x≠0} x^k·x^(−m), the pairing [v, w] = Σ_{x≠0} v(x)·w(x⁻¹) on two modes: the entry P[k + m'] of the Gram table, with m' the count of the conjugate of the mode m."""
+    return P[k + (-m) % (p - 1)]
+
+
+def modes_orthogonal(p, P):
+    """The modes are orthogonal for the pairing [v, w]: [x^k, x^m] ≡ −1 for k = m and 0 otherwise; four rows of the table against the direct sums."""
+    n = p - 1; ms = range(n) if p < 1000 else (0, 1, 2, n // 2, n - 2, n - 1)
+    direct = all(sum(pow(x, k, p) * pow(x, (n - m) % n, p) for x in range(1, p)) % p == pairing_entry(p, P, k, m) for k in (0, 1, n // 2, n - 1) for m in ms)
+    return direct and all(pairing_entry(p, P, k, m) == (p - 1 if k == m else 0) for k in range(n) for m in range(n))
+
+
+def generator_selfadjoint(p, kap, g, P):
+    """γ_k·[x^k, x^m] ≡ γ_m·[x^k, x^m] for every two modes."""
+    i = quarter_turn(p, kap, g); fr = [frequency(p, kap, i, k) for k in range(p - 1)]; n = p - 1
+    return all((fr[k] - fr[m]) * pairing_entry(p, P, k, m) % p == 0 for k in range(n) for m in range(n))
+
+
+def generator_selfadjoint_vector(p, kap, g, pairs):
+    """[Hv, w] ≡ [v, Hw] on pairs of vectors given by their values; H acts on the mode coefficients, and w(x⁻¹) is taken from the values of w.
+    pairs: [((name, v), (name, w))]; each vector is first read back from its mode coefficients."""
+    i = quarter_turn(p, kap, g); fr = [frequency(p, kap, i, k) for k in range(p - 1)]
+    inv = [pow(x, p - 2, p) - 1 for x in range(1, p)]                                    # the index of x⁻¹
+    cache = {}
+
+    def prep(key, v):
+        if key not in cache:
+            c = mode_coefficients(p, v)
+            if mode_values(p, c) != v: return None
+            cache[key] = (v, mode_values(p, [f * ck % p for f, ck in zip(fr, c)]))
+        return cache[key]
+
+    def pairing(a, b):
+        return sum(a[x] * b[inv[x]] for x in range(p - 1)) % p
+
+    for (ka, va), (kb, vb) in pairs:
+        A, B = prep(ka, va), prep(kb, vb)
+        if A is None or B is None: return False
+        (v, Hv), (w, Hw) = A, B
+        if pairing(Hv, w) != pairing(v, Hw): return False
+    return True
 
 
 def centre_mode(p, kap, g):
@@ -641,7 +684,8 @@ def label_steps(p, g, l, table=None):
 CT = types.SimpleNamespace(**{f.__name__: f for f in (generators, gram_table, gram, frequency, quarter_turn, mode_coefficients, mode_values, delta, fixed_sequence, run_shifts, mode_stride, count_conjugate, count_adjoint, gram_rows, count_adjoint_vector, half_forced, count_run, count_run_only, zero_count, zeros_fill, zeros_fill_ends, zero_conjugate, generator_skew, centre_mode, pair_invariant, energy_order, cardinal_modes, cardinal_zeros, carrier_centre, origin_unit_symmetry, zero_shared, zeros_collide, zeros_not_held, half_unique,
                                                             circle_points, circle_pair, circle_frequency, circle_meridians, circle_point, circle_count, circle_places, circle_place,
                                                             circle_place_cycle, circle_place_even, circle_quarter_turn, circle_counts, circle_phase, circle_parallels, circle_place_phase, circle_quarter_closes,
-                                                            scale_table, step_width, power_steps, label_pair, label_steps)})
+                                                            scale_table, step_width, power_steps, label_pair, label_steps,
+                                                            pairing_entry, modes_orthogonal, generator_selfadjoint, generator_selfadjoint_vector)})
 
 # ---- the spectrum of a window [chart] (Obs. exhibit; rows D13, D14, D15), 21 November 2026 -----------------------------
 # The labels 1..H of a window of depth H, the paper's q, carry a weight (1 on the primes, or log l on the prime powers l^a); its mean over the labels is removed;
@@ -1337,6 +1381,7 @@ def count_facts(p, Om):
     if p < 1000: vecs = [(("delta", y), CT.delta(p, y)) for y in range(1, p)]                # every indicator
     else: vecs = [(("delta", y), CT.delta(p, y)) for y in (1, 2, 3, 2 * kap, 2 * kap + 1, p - 2, p - 1)] + [(("sequence", s), CT.fixed_sequence(p, s)) for s in (1, 2, 3)]
     pairs = [(a, b) for a in vecs for b in vecs]
+    step = 1 if p < 100 else 7 if p < 1000 else 4; hp = [(a, b) for a in vecs[::step] for b in vecs[::step]]                # the pairs of vectors of 20:G15
     near = [0, 1, 2, S, 2 * S, 2 * S + 1, Om - 2, Om - 1]                                    # the Carrier's residues tried where the full range is out of reach
     affine = None if Om < 1000 else [(a, b) for a in near for b in near]
     return {
@@ -1355,6 +1400,8 @@ def count_facts(p, Om):
         "zero_conjugate": all(CT.zero_conjugate(p, kap, g) for g in gs),
         "constant_frequency": all((-CT.frequency(p, kap, CT.quarter_turn(p, kap, g), 0)) % p not in {CT.frequency(p, kap, CT.quarter_turn(p, kap, g), k) for k in range(p - 1)} for g in gs),
         "generator_skew": all(CT.generator_skew(p, kap, g, P) for g in gs),
+        "modes_orthogonal": CT.modes_orthogonal(p, P), "generator_selfadjoint": all(CT.generator_selfadjoint(p, kap, g, P) for g in gs),
+        "generator_selfadjoint_vector": CT.generator_selfadjoint_vector(p, kap, gs[0], hp), "hp_pairs": len(hp),
         "centre_mode": all(CT.centre_mode(p, kap, g) for g in gs),
         "pair_invariant": all(CT.pair_invariant(p, kap, g) for g in gs),
         "energy_order": CT.energy_order(p, kap),
@@ -1382,7 +1429,7 @@ def count_facts(p, Om):
 
 
 def block_G():
-    """Block G — the count readout: 30 exact checks, ten rows on the three laboratory pairs."""
+    """Block G — the count readout: 33 exact checks, eleven rows on the three laboratory pairs."""
     print("\n== block G: the count readout ==")
     for p, Om in PAIRS:
         f = count_facts(p, Om); kap, S = (p - 1) // 4, (Om - 1) // 4
@@ -1419,6 +1466,9 @@ def block_G():
         # 20:G14 (p20115)
         check("G14", f"the zeros on the latitude cycle of F_{p}: every zero is z/(1 + z) for one z = ρ/(1 − ρ) ≠ 0, −1; with z = g^j the {p - 2} zeros stand at the places j ≠ π of C_{p - 1}, the centre at the place 0 and the conjugate zero at −j; the point of the sphere on the circle at the phase m is the even place 2m; 2ρ − 1 = (z − 1)/(z + 1); the map x ↦ (x − 1)/(x + 1) has the square x ↦ −1/x, four steps return x where they are defined, and its fixed points are ±i",
                 f["circle_place"] and f["circle_place_cycle"] and f["circle_place_even"] and f["circle_quarter_turn"] and f["circle_place_phase"] and f["circle_quarter_closes"], read)
+        # 20:G15 (p20120)
+        check("G15", f"the Hilbert–Pólya operator on F_{p}: for the pairing [v, w] = Σ v(x)w(x⁻¹) over the nonzero residues the modes are orthogonal, [x^k, x^m] = −1 for k = m and 0 otherwise; γ_k[x^k, x^m] = γ_m[x^k, x^m] for every two modes; [Hv, w] = [v, Hw] on {f['hp_pairs']} pairs of vectors",
+                f["modes_orthogonal"] and f["generator_selfadjoint"] and f["generator_selfadjoint_vector"], read)
 
 
 def block_X():

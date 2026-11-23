@@ -6552,6 +6552,44 @@ theorem zeros_not_held {Ω p : Nat} [Pos Ω] (hp : 2 ≤ p) (hpΩ : p * p < Ω) 
       have hm : j + 1 < p + 1 + d + 2 - 1 := Nat.succ_lt_succ hj
       ⟨i + 1, j + 1, Nat.succ_pos i, Nat.succ_lt_succ hij, hn ▸ hm, e⟩
 
+/-! ## The generator and the pairing of a vector with the conjugate of another (20:G15) -/
+
+/-- The Gram entry of two modes is one sum of a power: `⟨x^k, x^m⟩ = Σ_{x≠0} x^(k+m)`. -/
+theorem gram_pow (k m : Nat) : gram p k m = sumRange (fun l => (ofNat (l + 1) : Shell p) ^ (k + m)) (p - 1) :=
+  sum_congr (p - 1) (fun _ _ => (pow_add _ k m).symm)
+
+/-- 20:G15 — a mode and its own conjugate: with `k + k' = p − 1`, `⟨x^k, x^k'⟩ = −1`; the conjugate of the mode `x^k` is `x^(−k) = x^k'`. -/
+theorem gram_conj_self (F : Frame p κ g) {k k' : Nat} (h : k + k' = p - 1) : gram p k k' = -1 := by
+  rw [gram_pow, h]; exact (zero_slot F).2
+
+/-- 20:G15 — a mode and the conjugate of another mode: with `m + m' = p − 1` and `k ≠ m`, `⟨x^k, x^m'⟩ = 0`. -/
+theorem gram_conj_ne (F : Frame p κ g) {k m m' : Nat} (hk : k < p - 1) (hm : m + m' = p - 1) (hm0 : 0 < m')
+    (hne : k ≠ m) : gram p k m' = 0 := by
+  rw [gram_pow]
+  match Nat.lt_trichotomy k m with
+  | .inl hlt =>
+    have h1 : k + m' < p - 1 := by rw [← hm]; exact Nat.add_lt_add_right hlt m'
+    exact (zero_slot F).1 (k + m') (Nat.lt_of_lt_of_le hm0 (Nat.le_add_left m' k)) h1
+  | .inr (.inl he) => exact absurd he hne
+  | .inr (.inr hgt) =>
+    match Nat.le.dest (Nat.le_of_lt hgt) with
+    | ⟨d, hd⟩ =>
+      have hd0 : 0 < d := Nat.lt_of_add_lt_add_left (show m + 0 < m + d by rw [hd]; exact hgt)
+      have hdk : d ≤ k := hd ▸ Nat.le_add_left d m
+      have e : k + m' = p - 1 + d := by rw [← hd, ← hm]; exact Nat.add_right_comm m d m'
+      have hs : sumRange (fun l => (ofNat (l + 1) : Shell p) ^ (p - 1 + d)) (p - 1)
+          = sumRange (fun l => (ofNat (l + 1) : Shell p) ^ d) (p - 1) :=
+        sum_congr (p - 1) (fun l hl => by rw [pow_add, unit_pow_card F (count_ne_zero (succ_lt_of_lt_pred hl)), one_mul])
+      rw [e, hs]; exact (zero_slot F).1 d hd0 (Nat.lt_of_le_of_lt hdk hk)
+
+/-- 20:G15 — the generator `H = −i(N + ½)` is self-adjoint for the pairing of a vector with the conjugate of another: on the modes,
+`γ_k·⟨x^k, x^m'⟩ = γ_m·⟨x^k, x^m'⟩` with `x^m'` the conjugate of `x^m`; the modes are orthogonal for it (`gram_conj_self`, `gram_conj_ne`). -/
+theorem generator_selfadjoint (F : Frame p κ g) {k m m' : Nat} (hk : k < p - 1) (hm : m + m' = p - 1) (hm0 : 0 < m') :
+    frequency g κ k * gram p k m' = frequency g κ m * gram p k m' :=
+  match Nat.decEq k m with
+  | isTrue e => by rw [e]
+  | isFalse hne => by rw [gram_conj_ne F hk hm hm0 hne, mul_zero, mul_zero]
+
 end count20261121
 
 end FRC.Horizon
@@ -7376,6 +7414,9 @@ theorem p20115 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p20119 — 20:D19. The value of a mode at one label: on every framed shell, for a label $\ell\ge2$ and integers $M\ge1$ with $\ell^{M}<\p$ and $V\ge1$ with $MV\ge\p-1$, every nonzero residue is $\ell^{k}\gen^{\,r}$ with a count $k$ (G1) and $r<V$ (E15): $r$ steps of the drive after the mode's value. For the label $3$ on the Subject $\F_{1549}$: largest $M=6$, least $V=258$. -/
 theorem p20119 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ℓ N W : Nat}, (1 : Nat) < ℓ → (0 : Nat) < N → ℓ ^ N < p → (0 : Nat) < W → p - (1 : Nat) ≤ N * W → ∀ (y : FRC.Shell p), y ≠ (0 : FRC.Shell p) → ∃ k r, k < p - (1 : Nat) ∧ r < W ∧ FRC.Shell.ofNat ℓ ^ k * g ^ r = y :=
   @FRC.Horizon.label_steps
+/-- p20120 — 20:G15. The Hilbert--P\'olya operator: on every framed shell let $[v,w]=\sum_{x\ne0}v(x)\,w(x^{-1})$. The modes are orthogonal for it, $[x^{k},x^{m}]=-1$ for $k=m$ and $0$ otherwise. So $\gamma_k[x^{k},x^{m}]=\gamma_m[x^{k},x^{m}]$ for every two modes, and the generator is self-adjoint for it on every vector, with the frequencies as its spectrum. Rests on B4, E12, G4. -/
+theorem p20120 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k k' : Nat}, k + k' = p - (1 : Nat) → FRC.Horizon.gram p k k' = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k m m' : Nat}, k < p - (1 : Nat) → m + m' = p - (1 : Nat) → (0 : Nat) < m' → k ≠ m → FRC.Horizon.gram p k m' = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k m m' : Nat}, k < p - (1 : Nat) → m + m' = p - (1 : Nat) → (0 : Nat) < m' → FRC.Horizon.frequency g κ k * FRC.Horizon.gram p k m' = FRC.Horizon.frequency g κ m * FRC.Horizon.gram p k m' :=
+  And.intro @FRC.Horizon.gram_conj_self (And.intro @FRC.Horizon.gram_conj_ne (@FRC.Horizon.generator_selfadjoint))
 -- end keys
 
 end FRC.Ledger
@@ -7397,3 +7438,4 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p20111
 #print axioms FRC.Ledger.p20115
 #print axioms FRC.Ledger.p20119
+#print axioms FRC.Ledger.p20120

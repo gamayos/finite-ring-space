@@ -2,11 +2,11 @@
  "header": {
   "generated": "23 November 2026",
   "schema": "frc-register/2",
-  "rows": 1252,
-  "theorems": 1192,
+  "rows": 1253,
+  "theorems": 1193,
   "counts": {
-   "keys": 1192,
-   "rows": 1252,
+   "keys": 1193,
+   "rows": 1253,
    "shared": 55,
    "by_tag": {
     "D": 224,
@@ -14,7 +14,7 @@
     "I": 150,
     "O": 21,
     "R": 9,
-    "T": 760,
+    "T": 761,
     "Ω": 27
    }
   },
@@ -789,7 +789,7 @@
     "blocks": [
      {
       "letter": "A",
-      "title": "Inputs: imported or declared, not derived here"
+      "title": "Inputs and foundations: imported, declared, or proved"
      },
      {
       "letter": "B",
@@ -833,7 +833,7 @@
       "text": "Derived within the framework from the rows it cites, with a python check and a Lean proof of the general statement: in the core, without axioms, or on Mathlib for the four chart rows D14, D15, D17 and D18."
      }
     ],
-    "rows": 42
+    "rows": 43
    },
    {
     "key": "21-grav",
@@ -4781,7 +4781,7 @@
    "check": {
     "href": "py/rh.html#p20043",
     "script": "rh.py",
-    "line": 1060,
+    "line": 1104,
     "verdict": "pass"
    },
    "declarations": [
@@ -19294,7 +19294,7 @@
    "check": {
     "href": "py/rh.html#p20008",
     "script": "rh.py",
-    "line": 1104,
+    "line": 1148,
     "verdict": "pass"
    },
    "declarations": [
@@ -19330,7 +19330,7 @@
    "check": {
     "href": "py/rh.html#p20009",
     "script": "rh.py",
-    "line": 1118,
+    "line": 1162,
     "verdict": "pass"
    },
    "declarations": [
@@ -19392,7 +19392,7 @@
    "check": {
     "href": "py/rh.html#p20011",
     "script": "rh.py",
-    "line": 1025,
+    "line": 1069,
     "verdict": "pass"
    },
    "declarations": [
@@ -19424,7 +19424,7 @@
    "check": {
     "href": "py/rh.html#p20017",
     "script": "rh.py",
-    "line": 1036,
+    "line": 1080,
     "verdict": "pass"
    },
    "declarations": [
@@ -19501,7 +19501,7 @@
    "check": {
     "href": "py/rh.html#p20113",
     "script": "rh.py",
-    "line": 1282,
+    "line": 1326,
     "verdict": "pass"
    },
    "declarations": [
@@ -19533,7 +19533,7 @@
    "check": {
     "href": "py/rh.html#p20114",
     "script": "rh.py",
-    "line": 1286,
+    "line": 1330,
     "verdict": "pass"
    },
    "declarations": [
@@ -19565,7 +19565,7 @@
    "check": {
     "href": "py/rh.html#p20116",
     "script": "rh.py",
-    "line": 1290,
+    "line": 1334,
     "verdict": "pass"
    },
    "declarations": [],
@@ -19585,7 +19585,7 @@
    "check": {
     "href": "py/rh.html#p20117",
     "script": "rh.py",
-    "line": 1294,
+    "line": 1338,
     "verdict": "pass"
    },
    "declarations": [
@@ -19617,7 +19617,7 @@
    "check": {
     "href": "py/rh.html#p20118",
     "script": "rh.py",
-    "line": 1299,
+    "line": 1343,
     "verdict": "pass"
    },
    "declarations": [
@@ -19644,7 +19644,7 @@
    "check": {
     "href": "py/rh.html#p20119",
     "script": "rh.py",
-    "line": 1303,
+    "line": 1347,
     "verdict": "pass"
    },
    "declarations": [
@@ -19671,7 +19671,7 @@
    "check": {
     "href": "py/rh.html#p20044",
     "script": "rh.py",
-    "line": 1070,
+    "line": 1114,
     "verdict": "pass"
    },
    "declarations": [
@@ -19713,7 +19713,7 @@
    "check": {
     "href": "py/rh.html#p20092",
     "script": "rh.py",
-    "line": 1060,
+    "line": 1104,
     "verdict": "pass"
    },
    "declarations": [
@@ -19760,7 +19760,7 @@
    "check": {
     "href": "py/rh.html#p20094",
     "script": "rh.py",
-    "line": 1226,
+    "line": 1270,
     "verdict": "pass"
    },
    "declarations": [
@@ -19807,7 +19807,7 @@
    "check": {
     "href": "py/rh.html#p20079",
     "script": "rh.py",
-    "line": 1168,
+    "line": 1212,
     "verdict": "pass"
    },
    "declarations": [
@@ -19864,7 +19864,7 @@
    "check": {
     "href": "py/rh.html#p20097",
     "script": "rh.py",
-    "line": 1390,
+    "line": 1437,
     "verdict": "pass"
    },
    "declarations": [
@@ -19901,7 +19901,7 @@
    "check": {
     "href": "py/rh.html#p20098",
     "script": "rh.py",
-    "line": 1394,
+    "line": 1441,
     "verdict": "pass"
    },
    "declarations": [
@@ -19953,7 +19953,7 @@
    "check": {
     "href": "py/rh.html#p20100",
     "script": "rh.py",
-    "line": 1397,
+    "line": 1444,
     "verdict": "pass"
    },
    "declarations": [
@@ -19985,7 +19985,7 @@
    "check": {
     "href": "py/rh.html#p20101",
     "script": "rh.py",
-    "line": 1400,
+    "line": 1447,
     "verdict": "pass"
    },
    "declarations": [
@@ -20027,7 +20027,7 @@
    "check": {
     "href": "py/rh.html#p20102",
     "script": "rh.py",
-    "line": 1403,
+    "line": 1450,
     "verdict": "pass"
    },
    "declarations": [
@@ -20089,7 +20089,7 @@
    "check": {
     "href": "py/rh.html#p20104",
     "script": "rh.py",
-    "line": 1406,
+    "line": 1453,
     "verdict": "pass"
    },
    "declarations": [
@@ -20121,7 +20121,7 @@
    "check": {
     "href": "py/rh.html#p20105",
     "script": "rh.py",
-    "line": 1409,
+    "line": 1456,
     "verdict": "pass"
    },
    "declarations": [
@@ -20168,7 +20168,7 @@
    "check": {
     "href": "py/rh.html#p20107",
     "script": "rh.py",
-    "line": 1412,
+    "line": 1459,
     "verdict": "pass"
    },
    "declarations": [
@@ -20210,7 +20210,7 @@
    "check": {
     "href": "py/rh.html#p20111",
     "script": "rh.py",
-    "line": 1415,
+    "line": 1462,
     "verdict": "pass"
    },
    "declarations": [
@@ -20272,7 +20272,7 @@
    "check": {
     "href": "py/rh.html#p20115",
     "script": "rh.py",
-    "line": 1419,
+    "line": 1466,
     "verdict": "pass"
    },
    "declarations": [
@@ -20314,6 +20314,43 @@
    "realisations": []
   },
   {
+   "key": "p20120",
+   "origin": "20",
+   "statement": "The Hilbert--P\\'olya operator: on every framed shell let $[v,w]=\\sum_{x\\ne0}v(x)\\,w(x^{-1})$. The modes are orthogonal for it, $[x^{k},x^{m}]=-1$ for $k=m$ and $0$ otherwise. So $\\gamma_k[x^{k},x^{m}]=\\gamma_m[x^{k},x^{m}]$ for every two modes, and the generator is self-adjoint for it on every vector, with the frequencies as its spectrum. Rests on B4, E12, G4.",
+   "origin_row": "20:G15",
+   "tag": "T",
+   "name": "hilbert_polya_operator",
+   "tier": 0,
+   "check": {
+    "href": "py/rh.html#p20120",
+    "script": "rh.py",
+    "line": 1469,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Count",
+     "name": "FRC.Horizon.gram_conj_self"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Count",
+     "name": "FRC.Horizon.gram_conj_ne"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Count",
+     "name": "FRC.Horizon.generator_selfadjoint"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "20:G15"
+   ],
+   "realisations": []
+  },
+  {
    "key": "p20108",
    "origin": "20",
    "statement": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the negative of the half-period: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; compared with A6.",
@@ -20324,7 +20361,7 @@
    "check": {
     "href": "py/rh.html#p20108",
     "script": "rh.py",
-    "line": 1429,
+    "line": 1479,
     "verdict": "pass"
    },
    "declarations": [
@@ -20356,7 +20393,7 @@
    "check": {
     "href": "py/rh.html#p20109",
     "script": "rh.py",
-    "line": 1432,
+    "line": 1482,
     "verdict": "pass"
    },
    "declarations": [
@@ -20393,7 +20430,7 @@
    "check": {
     "href": "py/rh.html#p20110",
     "script": "rh.py",
-    "line": 1435,
+    "line": 1485,
     "verdict": "pass"
    },
    "declarations": [
@@ -63762,13 +63799,13 @@
    "name": null,
    "lean_name": "finitude",
    "statement": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$.",
-   "source": "\\S\\ref{sec:closure}\\newline \\pywit{rh}{p00004}{A2}, \\leanwit{FrcCore}{p00004}{A2} \\lean{FRC.Foundation.registered\\_finite, FRC.Foundation.no\\_unlimited\\_supply, FRC.Foundation.agent\\_bound}",
+   "source": "Prop.~\\ref{prop:registration} (i)\\newline \\pywit{rh}{p00004}{A2}, \\leanwit{FrcCore}{p00004}{A2} \\lean{FRC.Foundation.registered\\_finite, FRC.Foundation.no\\_unlimited\\_supply, FRC.Foundation.agent\\_bound}",
    "page": "20-rh/index.html#A2",
    "witness": {
     "py": {
      "href": "py/rh.html#p00004",
      "script": "rh.py",
-     "line": 1168,
+     "line": 1212,
      "verdict": "pass"
     },
     "lean": [
@@ -63799,7 +63836,7 @@
     ]
    },
    "refs": [],
-   "text": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$. \\Ssec:closure p00004, FrcCore{A2} FRC.Foundation.registered_finite, FRC.Foundation.no_unlimited_supply, FRC.Foundation.agent_bound"
+   "text": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$. Prop. prop:registration (i) p00004, FrcCore{A2} FRC.Foundation.registered_finite, FRC.Foundation.no_unlimited_supply, FRC.Foundation.agent_bound"
   },
   {
    "paper": "20-rh",
@@ -63811,14 +63848,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "completeness_of_totality",
-   "statement": "Completeness: whatever exists is registered within, the registration of any totality being onto its registered Universe, so there is no outside and no host; two totalities each registered whole within the other have one count.",
-   "source": "\\S\\ref{sec:closure}\\newline \\pywit{rh}{p00003}{A3}, \\leanwit{FrcCore}{p00003}{A3} \\lean{FRC.Foundation.registration\\_onto, FRC.Foundation.mutual\\_registration\\_count}",
+   "statement": "Completeness: whatever exists is registered within, the registration of any totality being onto its registered Universe, so there is no outside and no host; two shells each registered whole within the other have one count.",
+   "source": "Prop.~\\ref{prop:registration} (ii)\\newline \\pywit{rh}{p00003}{A3}, \\leanwit{FrcCore}{p00003}{A3} \\lean{FRC.Foundation.registration\\_onto, FRC.Foundation.mutual\\_registration\\_count}",
    "page": "20-rh/index.html#A3",
    "witness": {
     "py": {
      "href": "py/rh.html#p00003",
      "script": "rh.py",
-     "line": 1200,
+     "line": 1244,
      "verdict": "pass"
     },
     "lean": [
@@ -63841,7 +63878,7 @@
     ]
    },
    "refs": [],
-   "text": "Completeness: whatever exists is registered within, the registration of any totality being onto its registered Universe, so there is no outside and no host; two totalities each registered whole within the other have one count. \\Ssec:closure p00003, FrcCore{A3} FRC.Foundation.registration_onto, FRC.Foundation.mutual_registration_count"
+   "text": "Completeness: whatever exists is registered within, the registration of any totality being onto its registered Universe, so there is no outside and no host; two shells each registered whole within the other have one count. Prop. prop:registration (ii) p00003, FrcCore{A3} FRC.Foundation.registration_onto, FRC.Foundation.mutual_registration_count"
   },
   {
    "paper": "20-rh",
@@ -63854,13 +63891,13 @@
    "name": null,
    "lean_name": "incompleteness_of_observation",
    "statement": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each.",
-   "source": "\\S\\ref{sec:closure}\\newline \\pywit{rh}{p00197}{A4}, \\leanwit{FrcCore}{p00197}{A4} \\lean{FRC.Foundation.observer\\_part, FRC.Foundation.complete\\_needs\\_whole, FRC.Foundation.translation\\_torsor}",
+   "source": "Prop.~\\ref{prop:registration} (iii)\\newline \\pywit{rh}{p00197}{A4}, \\leanwit{FrcCore}{p00197}{A4} \\lean{FRC.Foundation.observer\\_part, FRC.Foundation.complete\\_needs\\_whole, FRC.Foundation.translation\\_torsor}",
    "page": "20-rh/index.html#A4",
    "witness": {
     "py": {
      "href": "py/rh.html#p00197",
      "script": "rh.py",
-     "line": 1168,
+     "line": 1212,
      "verdict": "pass"
     },
     "lean": [
@@ -63891,7 +63928,7 @@
     ]
    },
    "refs": [],
-   "text": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each. \\Ssec:closure p00197, FrcCore{A4} FRC.Foundation.observer_part, FRC.Foundation.complete_needs_whole, FRC.Foundation.translation_torsor"
+   "text": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each. Prop. prop:registration (iii) p00197, FrcCore{A4} FRC.Foundation.observer_part, FRC.Foundation.complete_needs_whole, FRC.Foundation.translation_torsor"
   },
   {
    "paper": "20-rh",
@@ -63970,7 +64007,7 @@
     "py": {
      "href": "py/rh.html#p20008",
      "script": "rh.py",
-     "line": 1104,
+     "line": 1148,
      "verdict": "pass"
     },
     "lean": [
@@ -64022,7 +64059,7 @@
     "py": {
      "href": "py/rh.html#p20009",
      "script": "rh.py",
-     "line": 1118,
+     "line": 1162,
      "verdict": "pass"
     },
     "lean": [
@@ -64108,7 +64145,7 @@
     "py": {
      "href": "py/rh.html#p20011",
      "script": "rh.py",
-     "line": 1025,
+     "line": 1069,
      "verdict": "pass"
     },
     "lean": [
@@ -64150,7 +64187,7 @@
     "py": {
      "href": "py/rh.html#p20017",
      "script": "rh.py",
-     "line": 1036,
+     "line": 1080,
      "verdict": "pass"
     },
     "lean": [
@@ -64258,7 +64295,7 @@
     "py": {
      "href": "py/rh.html#p20113",
      "script": "rh.py",
-     "line": 1282,
+     "line": 1326,
      "verdict": "pass"
     },
     "lean": [
@@ -64302,7 +64339,7 @@
     "py": {
      "href": "py/rh.html#p20114",
      "script": "rh.py",
-     "line": 1286,
+     "line": 1330,
      "verdict": "pass"
     },
     "lean": [
@@ -64346,7 +64383,7 @@
     "py": {
      "href": "py/rh.html#p20116",
      "script": "rh.py",
-     "line": 1290,
+     "line": 1334,
      "verdict": "pass"
     },
     "lean": []
@@ -64375,7 +64412,7 @@
     "py": {
      "href": "py/rh.html#p20117",
      "script": "rh.py",
-     "line": 1294,
+     "line": 1338,
      "verdict": "pass"
     },
     "lean": [
@@ -64419,7 +64456,7 @@
     "py": {
      "href": "py/rh.html#p20118",
      "script": "rh.py",
-     "line": 1299,
+     "line": 1343,
      "verdict": "pass"
     },
     "lean": [
@@ -64456,7 +64493,7 @@
     "py": {
      "href": "py/rh.html#p20119",
      "script": "rh.py",
-     "line": 1303,
+     "line": 1347,
      "verdict": "pass"
     },
     "lean": [
@@ -64493,7 +64530,7 @@
     "py": {
      "href": "py/rh.html#p20043",
      "script": "rh.py",
-     "line": 1060,
+     "line": 1104,
      "verdict": "pass"
     },
     "lean": [
@@ -64581,7 +64618,7 @@
     "py": {
      "href": "py/rh.html#p20044",
      "script": "rh.py",
-     "line": 1070,
+     "line": 1114,
      "verdict": "pass"
     },
     "lean": [
@@ -64639,7 +64676,7 @@
     "py": {
      "href": "py/rh.html#p20092",
      "script": "rh.py",
-     "line": 1060,
+     "line": 1104,
      "verdict": "pass"
     },
     "lean": [
@@ -64705,7 +64742,7 @@
     "py": {
      "href": "py/rh.html#p20094",
      "script": "rh.py",
-     "line": 1226,
+     "line": 1270,
      "verdict": "pass"
     },
     "lean": [
@@ -64773,7 +64810,7 @@
     "py": {
      "href": "py/rh.html#p20079",
      "script": "rh.py",
-     "line": 1168,
+     "line": 1212,
      "verdict": "pass"
     },
     "lean": [
@@ -64856,7 +64893,7 @@
     "py": {
      "href": "py/rh.html#p20097",
      "script": "rh.py",
-     "line": 1390,
+     "line": 1437,
      "verdict": "pass"
     },
     "lean": [
@@ -64909,7 +64946,7 @@
     "py": {
      "href": "py/rh.html#p20098",
      "script": "rh.py",
-     "line": 1394,
+     "line": 1441,
      "verdict": "pass"
     },
     "lean": [
@@ -64981,7 +65018,7 @@
     "py": {
      "href": "py/rh.html#p20100",
      "script": "rh.py",
-     "line": 1397,
+     "line": 1444,
      "verdict": "pass"
     },
     "lean": [
@@ -65027,7 +65064,7 @@
     "py": {
      "href": "py/rh.html#p20101",
      "script": "rh.py",
-     "line": 1400,
+     "line": 1447,
      "verdict": "pass"
     },
     "lean": [
@@ -65090,7 +65127,7 @@
     "py": {
      "href": "py/rh.html#p20102",
      "script": "rh.py",
-     "line": 1403,
+     "line": 1450,
      "verdict": "pass"
     },
     "lean": [
@@ -65178,7 +65215,7 @@
     "py": {
      "href": "py/rh.html#p20104",
      "script": "rh.py",
-     "line": 1406,
+     "line": 1453,
      "verdict": "pass"
     },
     "lean": [
@@ -65223,7 +65260,7 @@
     "py": {
      "href": "py/rh.html#p20105",
      "script": "rh.py",
-     "line": 1409,
+     "line": 1456,
      "verdict": "pass"
     },
     "lean": [
@@ -65287,7 +65324,7 @@
     "py": {
      "href": "py/rh.html#p20107",
      "script": "rh.py",
-     "line": 1412,
+     "line": 1459,
      "verdict": "pass"
     },
     "lean": [
@@ -65350,7 +65387,7 @@
     "py": {
      "href": "py/rh.html#p20111",
      "script": "rh.py",
-     "line": 1415,
+     "line": 1462,
      "verdict": "pass"
     },
     "lean": [
@@ -65440,7 +65477,7 @@
     "py": {
      "href": "py/rh.html#p20115",
      "script": "rh.py",
-     "line": 1419,
+     "line": 1466,
      "verdict": "pass"
     },
     "lean": [
@@ -65500,6 +65537,60 @@
   {
    "paper": "20-rh",
    "no": 20,
+   "rid": "20:G15",
+   "key": "p20120",
+   "label": "G15",
+   "block": "G",
+   "tag": "T",
+   "name": null,
+   "lean_name": "hilbert_polya_operator",
+   "statement": "The Hilbert--P\\'olya operator: on every framed shell let $[v,w]=\\sum_{x\\ne0}v(x)\\,w(x^{-1})$. The modes are orthogonal for it, $[x^{k},x^{m}]=-1$ for $k=m$ and $0$ otherwise. So $\\gamma_k[x^{k},x^{m}]=\\gamma_m[x^{k},x^{m}]$ for every two modes, and the generator is self-adjoint for it on every vector, with the frequencies as its spectrum. Rests on B4, E12, G4.",
+   "source": "Thm.~\\ref{thm:generator} (iii)\\newline \\pywit{rh}{p20120}{G15}, \\leanwit{FrcCore}{p20120}{G15} \\lean{FRC.Horizon.gram\\_conj\\_self, FRC.Horizon.gram\\_conj\\_ne, FRC.Horizon.generator\\_selfadjoint}",
+   "page": "20-rh/index.html#G15",
+   "witness": {
+    "py": {
+     "href": "py/rh.html#p20120",
+     "script": "rh.py",
+     "line": 1469,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Count",
+      "name": "FRC.Horizon.gram_conj_self",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.gram_conj_self"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Count",
+      "name": "FRC.Horizon.gram_conj_ne",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.gram_conj_ne"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Count",
+      "name": "FRC.Horizon.generator_selfadjoint",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.generator_selfadjoint"
+     }
+    ]
+   },
+   "refs": [
+    "p20011",
+    "p20043",
+    "p20099"
+   ],
+   "text": "The Hilbert–P\\'olya operator: on every framed shell let $[v,w]=\\sum_{x\\ne0}v(x) w(x^{-1})$. The modes are orthogonal for it, $[x^{k},x^{m}]=-1$ for $k=m$ and $0$ otherwise. So $\\gamma_k[x^{k},x^{m}]=\\gamma_m[x^{k},x^{m}]$ for every two modes, and the generator is self-adjoint for it on every vector, with the frequencies as its spectrum. Rests on B4, E12, G4. Thm. thm:generator (iii) p20120, FrcCore{G15} FRC.Horizon.gram_conj_self, FRC.Horizon.gram_conj_ne, FRC.Horizon.generator_selfadjoint"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
    "rid": "20:X1",
    "key": "p20108",
    "label": "X1",
@@ -65514,7 +65605,7 @@
     "py": {
      "href": "py/rh.html#p20108",
      "script": "rh.py",
-     "line": 1429,
+     "line": 1479,
      "verdict": "pass"
     },
     "lean": [
@@ -65560,7 +65651,7 @@
     "py": {
      "href": "py/rh.html#p20109",
      "script": "rh.py",
-     "line": 1432,
+     "line": 1482,
      "verdict": "pass"
     },
     "lean": [
@@ -65614,7 +65705,7 @@
     "py": {
      "href": "py/rh.html#p20110",
      "script": "rh.py",
-     "line": 1435,
+     "line": 1485,
      "verdict": "pass"
     },
     "lean": [

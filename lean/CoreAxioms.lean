@@ -3792,6 +3792,10 @@ import FrcBridge.Subject
 #print axioms FRC.Horizon.zero_shared
 #print axioms FRC.Horizon.zeros_collide
 #print axioms FRC.Horizon.zeros_not_held
+#print axioms FRC.Horizon.gram_pow
+#print axioms FRC.Horizon.gram_conj_self
+#print axioms FRC.Horizon.gram_conj_ne
+#print axioms FRC.Horizon.generator_selfadjoint
 #print axioms FRC.Horizon.circle_norm
 #print axioms FRC.Horizon.circle_pair
 #print axioms FRC.Horizon.circle_frequency
@@ -4687,6 +4691,7 @@ import FrcBridge.Subject
 #print axioms FRC.Ledger.p20111
 #print axioms FRC.Ledger.p20115
 #print axioms FRC.Ledger.p20119
+#print axioms FRC.Ledger.p20120
 #print axioms FRC.Ledger.p00080
 #print axioms FRC.Ledger.p00179
 #print axioms FRC.Ledger.p28008
@@ -5394,6 +5399,7 @@ import FrcBridge.Subject
 #print axioms FRC.Rh.carrier_chart
 #print axioms FRC.Rh.critical_circle
 #print axioms FRC.Rh.zeros_on_latitude_cycle
+#print axioms FRC.Rh.hilbert_polya_operator
 #print axioms FRC.Rh.half_of_critical_line
 #print axioms FRC.Rh.pole_and_functional_equation
 #print axioms FRC.Rh.half_of_dilation_generator

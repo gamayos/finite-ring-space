@@ -27590,6 +27590,44 @@ theorem zeros_not_held {Ω p : Nat} [Pos Ω] (hp : 2 ≤ p) (hpΩ : p * p < Ω) 
       have hm : j + 1 < p + 1 + d + 2 - 1 := Nat.succ_lt_succ hj
       ⟨i + 1, j + 1, Nat.succ_pos i, Nat.succ_lt_succ hij, hn ▸ hm, e⟩
 
+/-! ## The generator and the pairing of a vector with the conjugate of another (20:G15) -/
+
+/-- The Gram entry of two modes is one sum of a power: `⟨x^k, x^m⟩ = Σ_{x≠0} x^(k+m)`. -/
+theorem gram_pow (k m : Nat) : gram p k m = sumRange (fun l => (ofNat (l + 1) : Shell p) ^ (k + m)) (p - 1) :=
+  sum_congr (p - 1) (fun _ _ => (pow_add _ k m).symm)
+
+/-- 20:G15 — a mode and its own conjugate: with `k + k' = p − 1`, `⟨x^k, x^k'⟩ = −1`; the conjugate of the mode `x^k` is `x^(−k) = x^k'`. -/
+theorem gram_conj_self (F : Frame p κ g) {k k' : Nat} (h : k + k' = p - 1) : gram p k k' = -1 := by
+  rw [gram_pow, h]; exact (zero_slot F).2
+
+/-- 20:G15 — a mode and the conjugate of another mode: with `m + m' = p − 1` and `k ≠ m`, `⟨x^k, x^m'⟩ = 0`. -/
+theorem gram_conj_ne (F : Frame p κ g) {k m m' : Nat} (hk : k < p - 1) (hm : m + m' = p - 1) (hm0 : 0 < m')
+    (hne : k ≠ m) : gram p k m' = 0 := by
+  rw [gram_pow]
+  match Nat.lt_trichotomy k m with
+  | .inl hlt =>
+    have h1 : k + m' < p - 1 := by rw [← hm]; exact Nat.add_lt_add_right hlt m'
+    exact (zero_slot F).1 (k + m') (Nat.lt_of_lt_of_le hm0 (Nat.le_add_left m' k)) h1
+  | .inr (.inl he) => exact absurd he hne
+  | .inr (.inr hgt) =>
+    match Nat.le.dest (Nat.le_of_lt hgt) with
+    | ⟨d, hd⟩ =>
+      have hd0 : 0 < d := Nat.lt_of_add_lt_add_left (show m + 0 < m + d by rw [hd]; exact hgt)
+      have hdk : d ≤ k := hd ▸ Nat.le_add_left d m
+      have e : k + m' = p - 1 + d := by rw [← hd, ← hm]; exact Nat.add_right_comm m d m'
+      have hs : sumRange (fun l => (ofNat (l + 1) : Shell p) ^ (p - 1 + d)) (p - 1)
+          = sumRange (fun l => (ofNat (l + 1) : Shell p) ^ d) (p - 1) :=
+        sum_congr (p - 1) (fun l hl => by rw [pow_add, unit_pow_card F (count_ne_zero (succ_lt_of_lt_pred hl)), one_mul])
+      rw [e, hs]; exact (zero_slot F).1 d hd0 (Nat.lt_of_le_of_lt hdk hk)
+
+/-- 20:G15 — the generator `H = −i(N + ½)` is self-adjoint for the pairing of a vector with the conjugate of another: on the modes,
+`γ_k·⟨x^k, x^m'⟩ = γ_m·⟨x^k, x^m'⟩` with `x^m'` the conjugate of `x^m`; the modes are orthogonal for it (`gram_conj_self`, `gram_conj_ne`). -/
+theorem generator_selfadjoint (F : Frame p κ g) {k m m' : Nat} (hk : k < p - 1) (hm : m + m' = p - 1) (hm0 : 0 < m') :
+    frequency g κ k * gram p k m' = frequency g κ m * gram p k m' :=
+  match Nat.decEq k m with
+  | isTrue e => by rw [e]
+  | isFalse hne => by rw [gram_conj_ne F hk hm hm0 hne, mul_zero, mul_zero]
+
 end count20261121
 
 end FRC.Horizon
@@ -46443,6 +46481,9 @@ theorem p20115 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p20119 — 20:D19. The value of a mode at one label: on every framed shell, for a label $\ell\ge2$ and integers $M\ge1$ with $\ell^{M}<\p$ and $V\ge1$ with $MV\ge\p-1$, every nonzero residue is $\ell^{k}\gen^{\,r}$ with a count $k$ (G1) and $r<V$ (E15): $r$ steps of the drive after the mode's value. For the label $3$ on the Subject $\F_{1549}$: largest $M=6$, least $V=258$. -/
 theorem p20119 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ℓ N W : Nat}, (1 : Nat) < ℓ → (0 : Nat) < N → ℓ ^ N < p → (0 : Nat) < W → p - (1 : Nat) ≤ N * W → ∀ (y : FRC.Shell p), y ≠ (0 : FRC.Shell p) → ∃ k r, k < p - (1 : Nat) ∧ r < W ∧ FRC.Shell.ofNat ℓ ^ k * g ^ r = y :=
   @FRC.Horizon.label_steps
+/-- p20120 — 20:G15. The Hilbert--P\'olya operator: on every framed shell let $[v,w]=\sum_{x\ne0}v(x)\,w(x^{-1})$. The modes are orthogonal for it, $[x^{k},x^{m}]=-1$ for $k=m$ and $0$ otherwise. So $\gamma_k[x^{k},x^{m}]=\gamma_m[x^{k},x^{m}]$ for every two modes, and the generator is self-adjoint for it on every vector, with the frequencies as its spectrum. Rests on B4, E12, G4. -/
+theorem p20120 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k k' : Nat}, k + k' = p - (1 : Nat) → FRC.Horizon.gram p k k' = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k m m' : Nat}, k < p - (1 : Nat) → m + m' = p - (1 : Nat) → (0 : Nat) < m' → k ≠ m → FRC.Horizon.gram p k m' = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k m m' : Nat}, k < p - (1 : Nat) → m + m' = p - (1 : Nat) → (0 : Nat) < m' → FRC.Horizon.frequency g κ k * FRC.Horizon.gram p k m' = FRC.Horizon.frequency g κ m * FRC.Horizon.gram p k m' :=
+  And.intro @FRC.Horizon.gram_conj_self (And.intro @FRC.Horizon.gram_conj_ne (@FRC.Horizon.generator_selfadjoint))
 -- end keys
 
 end FRC.Ledger
@@ -46777,7 +46818,7 @@ end aliases
 /-- 20:A2 (p00004) — Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\Omega$. -/
 theorem finitude : And (∀ {U : Type} (R : Nat) [FRC.Pos R] (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → @Exists (@FRC.Foundation.Registered U ρ → FRC.Shell R) fun ι => ∀ (a b : @FRC.Foundation.Registered U ρ), @Eq (FRC.Shell R) (ι a) (ι b) → @Eq (@FRC.Foundation.Registered U ρ) a b) (And (∀ {U : Type} (R : Nat) (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → ∀ (f : Nat → U), @Exists Nat fun i => @Exists Nat fun j => And (@LT.lt Nat instLTNat i (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@LT.lt Nat instLTNat j (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@Ne Nat i j) (@Eq Nat (ρ (f i)) (ρ (f j)))))) (∀ (s K : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) s → ∀ {N : Nat} [FRC.Pos N] (ρ : FRC.Shell N → Nat), (∀ (x : FRC.Shell N), @LT.lt Nat instLTNat (ρ x) (FRC.Logic.records s K)) → (∀ (x y : FRC.Shell N), @Eq Nat (ρ x) (ρ y) → @Eq (FRC.Shell N) x y) → And (@LE.le Nat instLENat N (FRC.Logic.records s K)) (@LT.lt Nat instLTNat (FRC.Logic.records s K) (@HPow.hPow Nat Nat Nat (@instHPow Nat Nat (@instPowNat Nat instNatPowNat)) s (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) K (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))))) :=
   @FRC.Ledger.p00004
-/-- 20:A3 (p00003) — Completeness: whatever exists is registered within, the registration of any totality being onto its registered Universe, so there is no outside and no host; two totalities each registered whole within the other have one count. -/
+/-- 20:A3 (p00003) — Completeness: whatever exists is registered within, the registration of any totality being onto its registered Universe, so there is no outside and no host; two shells each registered whole within the other have one count. -/
 theorem completeness_of_totality : (∀ {U : Type} (ρ : U → Nat) (a : FRC.Foundation.Registered ρ), ∃ u, FRC.Foundation.register ρ u = a) ∧ ∀ (m n : Nat) [FRC.Pos m] [FRC.Pos n] (f : FRC.Shell m → FRC.Shell n), (∀ (x y : FRC.Shell m), f x = f y → x = y) → ∀ (g : FRC.Shell n → FRC.Shell m), (∀ (x y : FRC.Shell n), g x = g y → x = y) → m = n :=
   @FRC.Ledger.p00003
 /-- 20:A4 (p00197) — Observation: every observation is a registration by an embedded part of $o<\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each. -/
@@ -46843,6 +46884,9 @@ theorem critical_circle : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p
 /-- 20:G14 (p20115) — The places of the zeros: every zero is $z/(1+z)$ for one $z=\rho/(1-\rho)\ne0,-1$. With $z=\gen^{j}$ the zeros stand on the latitude cycle $C_{\p-1}$, one at each place but $j=\pi$: the centre at $0$, the conjugate at $-j$, the points of the circle at the even places $j=2m$. $2\rho-1=(z-1)/(z+1)$, and $x\mapsto(x-1)/(x+1)$ has the square $x\mapsto-1/x$ and fixes $\pm\im$. -/
 theorem zeros_on_latitude_cycle : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (r : FRC.Shell p), r ≠ (0 : FRC.Shell p) → r ≠ (1 : FRC.Shell p) → ∃ t, (t ≠ (0 : FRC.Shell p) ∧ (1 : FRC.Shell p) + t ≠ (0 : FRC.Shell p)) ∧ r * ((1 : FRC.Shell p) + t) = t ∧ ∀ (s : FRC.Shell p), r * ((1 : FRC.Shell p) + s) = s → s = t) ∧ (∀ (r t : FRC.Shell p), t ≠ (0 : FRC.Shell p) → (1 : FRC.Shell p) + t ≠ (0 : FRC.Shell p) → r * ((1 : FRC.Shell p) + t) = t → r ≠ (0 : FRC.Shell p) ∧ r ≠ (1 : FRC.Shell p)) ∧ ∀ (r t t' : FRC.Shell p), t * t' = (1 : FRC.Shell p) → r * ((1 : FRC.Shell p) + t) = t → ((1 : FRC.Shell p) + -r) * ((1 : FRC.Shell p) + t') = t') ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (t : FRC.Shell p), t ≠ (0 : FRC.Shell p) → (1 : FRC.Shell p) + t ≠ (0 : FRC.Shell p) → ∃ j, j < p - (1 : Nat) ∧ j ≠ (2 : Nat) * κ ∧ g ^ j = t ∧ ∀ (i : Nat), i < p - (1 : Nat) → g ^ i = t → i = j) ∧ (1 : FRC.Shell p) + g ^ ((2 : Nat) * κ) = (0 : FRC.Shell p) ∧ ∀ (r : FRC.Shell p), r * ((1 : FRC.Shell p) + g ^ (0 : Nat)) = g ^ (0 : Nat) ↔ r = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (r t : FRC.Shell p), r * ((1 : FRC.Shell p) + t) = t → ((∃ b, b * b = t) ↔ ∃ a, a * a = r * ((1 : FRC.Shell p) + -r))) ∧ ∀ (j : Nat), j < p - (1 : Nat) → ((∃ b, b * b = g ^ j) ↔ j % (2 : Nat) = (0 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (r t : FRC.Shell p), r * ((1 : FRC.Shell p) + t) = t → (r + r + (-1 : FRC.Shell p)) * (t + (1 : FRC.Shell p)) = t + (-1 : FRC.Shell p)) ∧ (∀ (x y z : FRC.Shell p), y * (x + (1 : FRC.Shell p)) = x + (-1 : FRC.Shell p) → z * (y + (1 : FRC.Shell p)) = y + (-1 : FRC.Shell p) → z * x = (-1 : FRC.Shell p)) ∧ ∀ (x : FRC.Shell p), x * (x + (1 : FRC.Shell p)) = x + (-1 : FRC.Shell p) ↔ x * x = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] (a u v : FRC.Shell p), u * v = (1 : FRC.Shell p) → a * u + a * v = (1 : FRC.Shell p) → a * u * ((1 : FRC.Shell p) + u * u) = u * u) ∧ ∀ {p : Nat} [FRC.Pos p], (∀ (x z w : FRC.Shell p), z * x = (-1 : FRC.Shell p) → w * z = (-1 : FRC.Shell p) → w = x) ∧ ∀ (x z : FRC.Shell p), z * x = (-1 : FRC.Shell p) → (z = x ↔ x * x = (-1 : FRC.Shell p)) :=
   @FRC.Ledger.p20115
+/-- 20:G15 (p20120) — The Hilbert--P\'olya operator: on every framed shell let $[v,w]=\sum_{x\ne0}v(x)\,w(x^{-1})$. The modes are orthogonal for it, $[x^{k},x^{m}]=-1$ for $k=m$ and $0$ otherwise. So $\gamma_k[x^{k},x^{m}]=\gamma_m[x^{k},x^{m}]$ for every two modes, and the generator is self-adjoint for it on every vector, with the frequencies as its spectrum. Rests on B4, E12, G4. -/
+theorem hilbert_polya_operator : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k k' : Nat}, k + k' = p - (1 : Nat) → FRC.Horizon.gram p k k' = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k m m' : Nat}, k < p - (1 : Nat) → m + m' = p - (1 : Nat) → (0 : Nat) < m' → k ≠ m → FRC.Horizon.gram p k m' = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k m m' : Nat}, k < p - (1 : Nat) → m + m' = p - (1 : Nat) → (0 : Nat) < m' → FRC.Horizon.frequency g κ k * FRC.Horizon.gram p k m' = FRC.Horizon.frequency g κ m * FRC.Horizon.gram p k m' :=
+  @FRC.Ledger.p20120
 set_option linter.defProp false in
 /-- 20:X1 (p20108) — The $\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the negative of the half-period: $2^{-1}=-\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; compared with A6. -/
 def half_of_critical_line := @FRC.Ledger.p20108
