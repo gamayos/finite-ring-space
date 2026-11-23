@@ -564,12 +564,12 @@ const PUBLICATIONS = [
   {
     "key": "27-fld",
     "n": 27,
-    "title": "Standard-Model Interactions over Finite Substrate",
+    "title": "Standard-Model Interactions over Finite Holographic Substrate",
     "status": {
       "kind": "preprint"
     },
-    "doi": "https://doi.org/10.20944/preprints202606.1328.v1",
-    "doiLabel": "pp202606.1328.v1",
+    "doi": "https://www.alphaxiv.org/abs/2611.finite-holographic-standard-model-interactions",
+    "doiLabel": "2611.finite-holographic-standard-model-interactions",
     "ledger": "27-fields/index.html",
     "schema": true,
     "links": [
@@ -866,4 +866,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "22 November 2026";
+const GENERATED = "23 November 2026";
