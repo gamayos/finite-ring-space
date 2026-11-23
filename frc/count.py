@@ -114,7 +114,7 @@ def run_shifts(p, start):
 # ---- one function per declaration of lean/FrcCore/Theme/Count.lean -----------------------------------------------------
 
 def mode_stride(p, g):
-    """At x = g^m the mode of count k reads g^(km): (g^m)^k = (g^k)^m = g^(km), every m and k below p − 1."""
+    """At x = g^m the mode of count k has the value g^(km): (g^m)^k = (g^k)^m = g^(km), every m and k below p − 1."""
     n = p - 1; tab = [pow(g, m, p) for m in range(n)]
     return all(pow(tab[m], k, p) == pow(tab[k], m, p) == pow(g, k * m, p) for m in range(n) for k in range(n))
 

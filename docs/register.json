@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "22 November 2026",
+  "generated": "23 November 2026",
   "schema": "frc-register/2",
   "rows": 1250,
   "theorems": 1190,
@@ -825,7 +825,7 @@
      {
       "tag": "D",
       "name": "Definition",
-      "text": "A naming, a declared alignment, or a set-up move, carrying no empirical content. D16 adds a reading [approx] of what it defines and of Riemann's formula (A6), with a python check."
+      "text": "A naming, a declared alignment, or a set-up move, with no empirical content. D16 adds a numerical evaluation [approx] of what it defines and of Riemann's formula (A6), with a python check."
      },
      {
       "tag": "T",
@@ -19271,7 +19271,7 @@
   {
    "key": "p20078",
    "origin": "20",
-   "statement": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with the functional equation and no Euler product, has marks off the line, the first pair at $0.8085171825+85.6993484854\\,i$ and $1-\\bar s$ [chart].",
+   "statement": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with a functional equation under $s\\mapsto1-s$ and no Euler product, has zeros off the line, the first pair $s=0.8085171825+85.6993484854\\,i$ and $1-\\bar s$ [chart].",
    "origin_row": "20:A8",
    "tag": "I",
    "name": null,
@@ -19463,7 +19463,7 @@
   {
    "key": "p20025",
    "origin": "20",
-   "statement": "The chart of a mode: the count of a mode is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart reads it as the exponent $-\\half+it$, with $t$ a free real variable, the height [chart]. A mode reads at a label $n$ as $n^{-1/2+it}$. With a vector's values read as labels, $0$ and $1$ for the prime vector, the dual becomes their Dirichlet polynomial [chart].",
+   "statement": "The chart of a mode: the count of a mode is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart represents it by the exponent $-\\half+it$, with $t$ a free real variable, the height [chart]. At a label $n$ a mode is $n^{-1/2+it}$. With a vector's values represented by labels, $0$ and $1$ for the prime vector, the dual becomes their Dirichlet polynomial [chart].",
    "origin_row": "20:D1",
    "tag": "D",
    "name": null,
@@ -19493,7 +19493,7 @@
   {
    "key": "p20113",
    "origin": "20",
-   "statement": "The window's primes show the heights [chart]: for every window and weight the mean-removed weights sum to $0$, and $E(-t)=E(t)$. Reading [approx]: the five peaks at depth $13$, $39$, $173$ and $1551$ lie within $0.18$, $0.21$, $0.27$ and $0.21$ of the first five heights (A6); at depth $13$ no other of the $4095$ pairs of complementary subsets lies within $0.18$.",
+   "statement": "The window's primes show the heights [chart]: for every window and weight the mean-removed weights sum to $0$, and $E(-t)=E(t)$. Evaluation [approx]: the five peaks at depth $13$, $39$, $173$ and $1551$ lie within $0.18$, $0.21$, $0.27$ and $0.21$ of the first five heights (A6); at depth $13$ no other of the $4095$ pairs of complementary subsets lies within $0.18$.",
    "origin_row": "20:D14",
    "tag": "T",
    "name": "window_heights",
@@ -19525,7 +19525,7 @@
   {
    "key": "p20114",
    "origin": "20",
-   "statement": "The deep window [chart]: a label reads with the modulus $n^{\\sigma}$, and $E(t)\\le\\sum_{n\\le\\q}|\\lambda(n)-\\bar\\lambda|\\,n^{\\sigma}$. Reading [approx], von Mangoldt weight, depth $10^{6}$: the ten tallest peaks on $10\\le t\\le52$ lie within $0.045$ of the first ten heights (A6).",
+   "statement": "The deep window [chart]: at a label $n$ a mode has the modulus $n^{\\sigma}$, and $E(t)\\le\\sum_{n\\le\\q}|\\lambda(n)-\\bar\\lambda|\\,n^{\\sigma}$. Evaluation [approx], von Mangoldt weight, depth $10^{6}$: the ten tallest peaks on $10\\le t\\le52$ lie within $0.045$ of the first ten heights (A6).",
    "origin_row": "20:D15",
    "tag": "T",
    "name": "deep_window",
@@ -19557,7 +19557,7 @@
   {
    "key": "p20116",
    "origin": "20",
-   "statement": "The count of a window from its dual [chart] (E14): $C_T(x)=\\frac1{2\\pi}\\int_{-T}^{T}\\hat w(t)\\,x^{1/2-it}/(\\half-it)\\,dt$, $\\hat w$ the Dirichlet polynomial of the window (D1). Reading [approx], depth $39$, heights $35$, $78$, $202$, half-integers: $C_T$ within $0.38$, $0.21$, $0.11$ of $\\pi(x)$; Riemann's formula (A6) within $0.48$, $0.22$, $0.15$; the two within $0.14$, $0.10$, $0.10$. At the prime labels each reads $\\pi(x)-\\half$ within its own bound.",
+   "statement": "The count of a window from its dual [chart] (E14): $C_T(x)=\\frac1{2\\pi}\\int_{-T}^{T}\\hat w(t)\\,x^{1/2-it}/(\\half-it)\\,dt$, $\\hat w$ the Dirichlet polynomial of the window (D1). Evaluation [approx], depth $39$, heights $35$, $78$, $202$, half-integers: $C_T$ within $0.38$, $0.21$, $0.11$ of $\\pi(x)$; Riemann's formula (A6) within $0.48$, $0.22$, $0.15$; the two within $0.14$, $0.10$, $0.10$. At the prime labels each gives $\\pi(x)-\\half$ within its own bound.",
    "origin_row": "20:D16",
    "tag": "D",
    "name": null,
@@ -19577,7 +19577,7 @@
   {
    "key": "p20117",
    "origin": "20",
-   "statement": "The bound of the count [chart]: for every window, every real vector $w$ on its labels, every position $x>0$ that is no label and every height $T>0$, $|C_T(x)-\\sum_{n<x}w(n)|\\le B(x)/T$ with $B(x)=\\frac1\\pi\\sum_{n\\le\\q}|w(n)|\\sqrt{x/n}/|\\log(x/n)|$ (D16). Reading [approx], prime vector, depth $39$, half-integers: $B(x)\\le33.14$, so the bound is below one half from the height $67$ on.",
+   "statement": "The bound of the count [chart]: for every window, every real vector $w$ on its labels, every position $x>0$ that is no label and every height $T>0$, $|C_T(x)-\\sum_{n<x}w(n)|\\le B(x)/T$ with $B(x)=\\frac1\\pi\\sum_{n\\le\\q}|w(n)|\\sqrt{x/n}/|\\log(x/n)|$ (D16). Evaluation [approx], prime vector, depth $39$, half-integers: $B(x)\\le33.14$, so the bound is below one half from the height $67$ on.",
    "origin_row": "20:D17",
    "tag": "T",
    "name": "bound_of_count",
@@ -19609,7 +19609,7 @@
   {
    "key": "p20044",
    "origin": "20",
-   "statement": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity reads $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
+   "statement": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity becomes $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
    "origin_row": "20:E13",
    "tag": "T",
    "name": "parseval_identity",
@@ -19698,7 +19698,7 @@
   {
    "key": "p20094",
    "origin": "20",
-   "statement": "\\textbf{The drive theorem.} The drive $(Dv)(x)=v(\\gen x)$ permutes the residues and is orthogonal for the pairing of E12 (i); its eigenvectors are the modes $x^{k}$ and their nonzero multiples, eigenvalue $\\gen^{k}$, the spectrum $\\Fx{\\p}$, simple; the modes are isotropic for $k\\ne0,\\pi$; at $x=\\gen^{m}$ the mode $k$ reads $\\gen^{km}$.",
+   "statement": "\\textbf{The drive theorem.} The drive $(Dv)(x)=v(\\gen x)$ permutes the residues and is orthogonal for the pairing of E12 (i); its eigenvectors are the modes $x^{k}$ and their nonzero multiples, eigenvalue $\\gen^{k}$, the spectrum $\\Fx{\\p}$, simple; the modes are isotropic for $k\\ne0,\\pi$; at $x=\\gen^{m}$ the mode $k$ has the value $\\gen^{km}$.",
    "origin_row": "20:E15",
    "tag": "T",
    "name": "drive_theorem",
@@ -20148,7 +20148,7 @@
   {
    "key": "p20111",
    "origin": "20",
-   "statement": "The critical circle $\\mathcal C$, the points $(a,m)$ of the orbital sphere with $a\\,(\\gen^{m}+\\gen^{-m})=1$: a point and its mirror carry a zero and its conjugate exactly there, with $a^{2}=\\rho(1-\\rho)$. $\\mathcal C$ has one point at each phase $m<\\pi$ but $\\kp$, and the centre alone on the prime meridian. Its half-turn, the points with $a\\,(\\gen^{m}+\\gen^{-m})=-1$, carries the counts, disjoint from it.",
+   "statement": "The critical circle $\\mathcal C$, the points $(a,m)$ of the orbital sphere with $a\\,(\\gen^{m}+\\gen^{-m})=1$: a point and its mirror represent a zero and its conjugate exactly there, with $a^{2}=\\rho(1-\\rho)$. $\\mathcal C$ has one point at each phase $m<\\pi$ but $\\kp$, and the centre alone on the prime meridian. Its half-turn, the points with $a\\,(\\gen^{m}+\\gen^{-m})=-1$, represents the counts, disjoint from it.",
    "origin_row": "20:G13",
    "tag": "T",
    "name": "critical_circle",
@@ -20262,7 +20262,7 @@
   {
    "key": "p20108",
    "origin": "20",
-   "statement": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the half-period read backwards: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; read against A6.",
+   "statement": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the negative of the half-period: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; compared with A6.",
    "origin_row": "20:X1",
    "tag": "T",
    "name": "half_of_critical_line",
@@ -20294,7 +20294,7 @@
   {
    "key": "p20109",
    "origin": "20",
-   "statement": "The pole and the functional equation: the constant mode stands at $1$ and is no zero, the shell's form of the pole at $1$. The symmetry $s\\mapsto1-s$ is the exchange of a mode with its conjugate, the symmetry of origin and unit. Rests on B4, G6; read against A6.",
+   "statement": "The pole and the functional equation: the constant mode stands at $1$ and is no zero, the shell's form of the pole at $1$. The symmetry $s\\mapsto1-s$ is the exchange of a mode with its conjugate, the symmetry of origin and unit. Rests on B4, G6; compared with A6.",
    "origin_row": "20:X2",
    "tag": "T",
    "name": "pole_and_functional_equation",
@@ -20331,7 +20331,7 @@
   {
    "key": "p20110",
    "origin": "20",
-   "statement": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it reads as $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; read against A6.",
+   "statement": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; compared with A6.",
    "origin_row": "20:X3",
    "tag": "T",
    "name": "half_of_dilation_generator",
@@ -63889,15 +63889,15 @@
    "tag": "I",
    "name": null,
    "lean_name": null,
-   "statement": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with the functional equation and no Euler product, has marks off the line, the first pair at $0.8085171825+85.6993484854\\,i$ and $1-\\bar s$ [chart].",
-   "source": "\\citep{davenport1936,titchmarsh1986}; \\S\\ref{sec:discussion}",
+   "statement": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with a functional equation under $s\\mapsto1-s$ and no Euler product, has zeros off the line, the first pair $s=0.8085171825+85.6993484854\\,i$ and $1-\\bar s$ [chart].",
+   "source": "\\citep{davenport1936,titchmarsh1986,spira1994}; Prop.~\\ref{prop:classical}",
    "page": "20-rh/index.html#A8",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The chart's known off-line case: the Davenport–Heilbronn series, a Dirichlet series with the functional equation and no Euler product, has marks off the line, the first pair at $0.8085171825+85.6993484854 i$ and $1-\\bar s$ [chart]. [davenport1936,titchmarsh1986]; \\Ssec:discussion"
+   "text": "The chart's known off-line case: the Davenport–Heilbronn series, a Dirichlet series with a functional equation under $s\\mapsto1-s$ and no Euler product, has zeros off the line, the first pair $s=0.8085171825+85.6993484854 i$ and $1-\\bar s$ [chart]. [davenport1936,titchmarsh1986,spira1994]; Prop. prop:classical"
   },
   {
    "paper": "20-rh",
@@ -64155,7 +64155,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The chart of a mode: the count of a mode is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart reads it as the exponent $-\\half+it$, with $t$ a free real variable, the height [chart]. A mode reads at a label $n$ as $n^{-1/2+it}$. With a vector's values read as labels, $0$ and $1$ for the prime vector, the dual becomes their Dirichlet polynomial [chart].",
+   "statement": "The chart of a mode: the count of a mode is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart represents it by the exponent $-\\half+it$, with $t$ a free real variable, the height [chart]. At a label $n$ a mode is $n^{-1/2+it}$. With a vector's values represented by labels, $0$ and $1$ for the prime vector, the dual becomes their Dirichlet polynomial [chart].",
    "source": "Def.~\\ref{def:deframe}",
    "page": "20-rh/index.html#D1",
    "witness": {
@@ -64165,7 +64165,7 @@
    "refs": [
     "p20099"
    ],
-   "text": "The chart of a mode: the count of a mode is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart reads it as the exponent $-\\half+it$, with $t$ a free real variable, the height [chart]. A mode reads at a label $n$ as $n^{-1/2+it}$. With a vector's values read as labels, $0$ and $1$ for the prime vector, the dual becomes their Dirichlet polynomial [chart]. Def. def:deframe"
+   "text": "The chart of a mode: the count of a mode is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart represents it by the exponent $-\\half+it$, with $t$ a free real variable, the height [chart]. At a label $n$ a mode is $n^{-1/2+it}$. With a vector's values represented by labels, $0$ and $1$ for the prime vector, the dual becomes their Dirichlet polynomial [chart]. Def. def:deframe"
   },
   {
    "paper": "20-rh",
@@ -64197,7 +64197,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "window_heights",
-   "statement": "The window's primes show the heights [chart]: for every window and weight the mean-removed weights sum to $0$, and $E(-t)=E(t)$. Reading [approx]: the five peaks at depth $13$, $39$, $173$ and $1551$ lie within $0.18$, $0.21$, $0.27$ and $0.21$ of the first five heights (A6); at depth $13$ no other of the $4095$ pairs of complementary subsets lies within $0.18$.",
+   "statement": "The window's primes show the heights [chart]: for every window and weight the mean-removed weights sum to $0$, and $E(-t)=E(t)$. Evaluation [approx]: the five peaks at depth $13$, $39$, $173$ and $1551$ lie within $0.18$, $0.21$, $0.27$ and $0.21$ of the first five heights (A6); at depth $13$ no other of the $4095$ pairs of complementary subsets lies within $0.18$.",
    "source": "Obs.~\\ref{obs:exhibit}\\newline \\pywit{rh}{p20113}{D14}, \\leanwit{FrcMathlib}{p20113}{D14} \\lean{Rh.mean\\_free, Rh.spectrum\\_even}",
    "page": "20-rh/index.html#D14",
    "witness": {
@@ -64229,7 +64229,7 @@
    "refs": [
     "p20003"
    ],
-   "text": "The window's primes show the heights [chart]: for every window and weight the mean-removed weights sum to $0$, and $E(-t)=E(t)$. Reading [approx]: the five peaks at depth $13$, $39$, $173$ and $1551$ lie within $0.18$, $0.21$, $0.27$ and $0.21$ of the first five heights (A6); at depth $13$ no other of the $4095$ pairs of complementary subsets lies within $0.18$. Obs. obs:exhibit p20113, FrcMathlib{D14} Rh.mean_free, Rh.spectrum_even"
+   "text": "The window's primes show the heights [chart]: for every window and weight the mean-removed weights sum to $0$, and $E(-t)=E(t)$. Evaluation [approx]: the five peaks at depth $13$, $39$, $173$ and $1551$ lie within $0.18$, $0.21$, $0.27$ and $0.21$ of the first five heights (A6); at depth $13$ no other of the $4095$ pairs of complementary subsets lies within $0.18$. Obs. obs:exhibit p20113, FrcMathlib{D14} Rh.mean_free, Rh.spectrum_even"
   },
   {
    "paper": "20-rh",
@@ -64241,7 +64241,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "deep_window",
-   "statement": "The deep window [chart]: a label reads with the modulus $n^{\\sigma}$, and $E(t)\\le\\sum_{n\\le\\q}|\\lambda(n)-\\bar\\lambda|\\,n^{\\sigma}$. Reading [approx], von Mangoldt weight, depth $10^{6}$: the ten tallest peaks on $10\\le t\\le52$ lie within $0.045$ of the first ten heights (A6).",
+   "statement": "The deep window [chart]: at a label $n$ a mode has the modulus $n^{\\sigma}$, and $E(t)\\le\\sum_{n\\le\\q}|\\lambda(n)-\\bar\\lambda|\\,n^{\\sigma}$. Evaluation [approx], von Mangoldt weight, depth $10^{6}$: the ten tallest peaks on $10\\le t\\le52$ lie within $0.045$ of the first ten heights (A6).",
    "source": "Obs.~\\ref{obs:exhibit}\\newline \\pywit{rh}{p20114}{D15}, \\leanwit{FrcMathlib}{p20114}{D15} \\lean{Rh.mode\\_norm, Rh.spectrum\\_le}",
    "page": "20-rh/index.html#D15",
    "witness": {
@@ -64273,7 +64273,7 @@
    "refs": [
     "p20003"
    ],
-   "text": "The deep window [chart]: a label reads with the modulus $n^{\\sigma}$, and $E(t)\\le\\sum_{n\\le\\q}|\\lambda(n)-\\bar\\lambda| n^{\\sigma}$. Reading [approx], von Mangoldt weight, depth $10^{6}$: the ten tallest peaks on $10\\le t\\le52$ lie within $0.045$ of the first ten heights (A6). Obs. obs:exhibit p20114, FrcMathlib{D15} Rh.mode_norm, Rh.spectrum_le"
+   "text": "The deep window [chart]: at a label $n$ a mode has the modulus $n^{\\sigma}$, and $E(t)\\le\\sum_{n\\le\\q}|\\lambda(n)-\\bar\\lambda| n^{\\sigma}$. Evaluation [approx], von Mangoldt weight, depth $10^{6}$: the ten tallest peaks on $10\\le t\\le52$ lie within $0.045$ of the first ten heights (A6). Obs. obs:exhibit p20114, FrcMathlib{D15} Rh.mode_norm, Rh.spectrum_le"
   },
   {
    "paper": "20-rh",
@@ -64285,7 +64285,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The count of a window from its dual [chart] (E14): $C_T(x)=\\frac1{2\\pi}\\int_{-T}^{T}\\hat w(t)\\,x^{1/2-it}/(\\half-it)\\,dt$, $\\hat w$ the Dirichlet polynomial of the window (D1). Reading [approx], depth $39$, heights $35$, $78$, $202$, half-integers: $C_T$ within $0.38$, $0.21$, $0.11$ of $\\pi(x)$; Riemann's formula (A6) within $0.48$, $0.22$, $0.15$; the two within $0.14$, $0.10$, $0.10$. At the prime labels each reads $\\pi(x)-\\half$ within its own bound.",
+   "statement": "The count of a window from its dual [chart] (E14): $C_T(x)=\\frac1{2\\pi}\\int_{-T}^{T}\\hat w(t)\\,x^{1/2-it}/(\\half-it)\\,dt$, $\\hat w$ the Dirichlet polynomial of the window (D1). Evaluation [approx], depth $39$, heights $35$, $78$, $202$, half-integers: $C_T$ within $0.38$, $0.21$, $0.11$ of $\\pi(x)$; Riemann's formula (A6) within $0.48$, $0.22$, $0.15$; the two within $0.14$, $0.10$, $0.10$. At the prime labels each gives $\\pi(x)-\\half$ within its own bound.",
    "source": "Obs.~\\ref{obs:emergence}\\newline \\pywit{rh}{p20116}{D16}",
    "page": "20-rh/index.html#D16",
    "witness": {
@@ -64302,7 +64302,7 @@
     "p20025",
     "p20092"
    ],
-   "text": "The count of a window from its dual [chart] (E14): $C_T(x)=\\frac1{2\\pi}\\int_{-T}^{T}\\hat w(t) x^{1/2-it}/(\\half-it) dt$, $\\hat w$ the Dirichlet polynomial of the window (D1). Reading [approx], depth $39$, heights $35$, $78$, $202$, half-integers: $C_T$ within $0.38$, $0.21$, $0.11$ of $\\pi(x)$; Riemann's formula (A6) within $0.48$, $0.22$, $0.15$; the two within $0.14$, $0.10$, $0.10$. At the prime labels each reads $\\pi(x)-\\half$ within its own bound. Obs. obs:emergence p20116"
+   "text": "The count of a window from its dual [chart] (E14): $C_T(x)=\\frac1{2\\pi}\\int_{-T}^{T}\\hat w(t) x^{1/2-it}/(\\half-it) dt$, $\\hat w$ the Dirichlet polynomial of the window (D1). Evaluation [approx], depth $39$, heights $35$, $78$, $202$, half-integers: $C_T$ within $0.38$, $0.21$, $0.11$ of $\\pi(x)$; Riemann's formula (A6) within $0.48$, $0.22$, $0.15$; the two within $0.14$, $0.10$, $0.10$. At the prime labels each gives $\\pi(x)-\\half$ within its own bound. Obs. obs:emergence p20116"
   },
   {
    "paper": "20-rh",
@@ -64314,7 +64314,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "bound_of_count",
-   "statement": "The bound of the count [chart]: for every window, every real vector $w$ on its labels, every position $x>0$ that is no label and every height $T>0$, $|C_T(x)-\\sum_{n<x}w(n)|\\le B(x)/T$ with $B(x)=\\frac1\\pi\\sum_{n\\le\\q}|w(n)|\\sqrt{x/n}/|\\log(x/n)|$ (D16). Reading [approx], prime vector, depth $39$, half-integers: $B(x)\\le33.14$, so the bound is below one half from the height $67$ on.",
+   "statement": "The bound of the count [chart]: for every window, every real vector $w$ on its labels, every position $x>0$ that is no label and every height $T>0$, $|C_T(x)-\\sum_{n<x}w(n)|\\le B(x)/T$ with $B(x)=\\frac1\\pi\\sum_{n\\le\\q}|w(n)|\\sqrt{x/n}/|\\log(x/n)|$ (D16). Evaluation [approx], prime vector, depth $39$, half-integers: $B(x)\\le33.14$, so the bound is below one half from the height $67$ on.",
    "source": "Thm.~\\ref{thm:countbound}\\newline \\pywit{rh}{p20117}{D17}, \\leanwit{FrcMathlib}{p20117}{D17} \\lean{Rh.step\\_bound, Rh.count\\_bound}",
    "page": "20-rh/index.html#D17",
    "witness": {
@@ -64346,7 +64346,7 @@
    "refs": [
     "p20116"
    ],
-   "text": "The bound of the count [chart]: for every window, every real vector $w$ on its labels, every position $x>0$ that is no label and every height $T>0$, $|C_T(x)-\\sum_{n<x}w(n)|\\le B(x)/T$ with $B(x)=\\frac1\\pi\\sum_{n\\le\\q}|w(n)|\\sqrt{x/n}/|\\log(x/n)|$ (D16). Reading [approx], prime vector, depth $39$, half-integers: $B(x)\\le33.14$, so the bound is below one half from the height $67$ on. Thm. thm:countbound p20117, FrcMathlib{D17} Rh.step_bound, Rh.count_bound"
+   "text": "The bound of the count [chart]: for every window, every real vector $w$ on its labels, every position $x>0$ that is no label and every height $T>0$, $|C_T(x)-\\sum_{n<x}w(n)|\\le B(x)/T$ with $B(x)=\\frac1\\pi\\sum_{n\\le\\q}|w(n)|\\sqrt{x/n}/|\\log(x/n)|$ (D16). Evaluation [approx], prime vector, depth $39$, half-integers: $B(x)\\le33.14$, so the bound is below one half from the height $67$ on. Thm. thm:countbound p20117, FrcMathlib{D17} Rh.step_bound, Rh.count_bound"
   },
   {
    "paper": "20-rh",
@@ -64446,7 +64446,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "parseval_identity",
-   "statement": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity reads $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
+   "statement": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity becomes $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
    "source": "Thm.~\\ref{thm:hp} (ii), Rem.~\\ref{rem:parseval}\\newline \\pywit{rh}{p20044}{E13}, \\leanwit{FrcCore}{p20044}{E13}, \\leanwit{FrcMathlib}{p20044}{E13} \\lean{FRC.Horizon.parseval\\_cycle, Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion}",
    "page": "20-rh/index.html#E13",
    "witness": {
@@ -64492,7 +64492,7 @@
     ]
    },
    "refs": [],
-   "text": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity reads $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart]. Thm. thm:hp (ii), Rem. rem:parseval p20044, FrcCore{E13}, FrcMathlib{E13} FRC.Horizon.parseval_cycle, Rh.chi_orthogonal, Rh.chi_parseval, Rh.chi_inversion"
+   "text": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity becomes $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart]. Thm. thm:hp (ii), Rem. rem:parseval p20044, FrcCore{E13}, FrcMathlib{E13} FRC.Horizon.parseval_cycle, Rh.chi_orthogonal, Rh.chi_parseval, Rh.chi_inversion"
   },
   {
    "paper": "20-rh",
@@ -64570,7 +64570,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "drive_theorem",
-   "statement": "\\textbf{The drive theorem.} The drive $(Dv)(x)=v(\\gen x)$ permutes the residues and is orthogonal for the pairing of E12 (i); its eigenvectors are the modes $x^{k}$ and their nonzero multiples, eigenvalue $\\gen^{k}$, the spectrum $\\Fx{\\p}$, simple; the modes are isotropic for $k\\ne0,\\pi$; at $x=\\gen^{m}$ the mode $k$ reads $\\gen^{km}$.",
+   "statement": "\\textbf{The drive theorem.} The drive $(Dv)(x)=v(\\gen x)$ permutes the residues and is orthogonal for the pairing of E12 (i); its eigenvectors are the modes $x^{k}$ and their nonzero multiples, eigenvalue $\\gen^{k}$, the spectrum $\\Fx{\\p}$, simple; the modes are isotropic for $k\\ne0,\\pi$; at $x=\\gen^{m}$ the mode $k$ has the value $\\gen^{km}$.",
    "source": "Thm.~\\ref{thm:drive}\\newline \\pywit{rh}{p20094}{E15}, \\leanwit{FrcCore}{p20094}{E15} \\lean{FRC.Rh.shift\\_power\\_character, FRC.Horizon.drive\\_orthogonal, FRC.Horizon.spectrum\\_simple, FRC.Horizon.modes\\_isotropic, FRC.Horizon.mode\\_stride}",
    "page": "20-rh/index.html#E15",
    "witness": {
@@ -64626,7 +64626,7 @@
    "refs": [
     "p20043"
    ],
-   "text": "The drive theorem. The drive $(Dv)(x)=v(\\gen x)$ permutes the residues and is orthogonal for the pairing of E12 (i); its eigenvectors are the modes $x^{k}$ and their nonzero multiples, eigenvalue $\\gen^{k}$, the spectrum $\\Fx{\\p}$, simple; the modes are isotropic for $k\\ne0,\\pi$; at $x=\\gen^{m}$ the mode $k$ reads $\\gen^{km}$. Thm. thm:drive p20094, FrcCore{E15} FRC.Rh.shift_power_character, FRC.Horizon.drive_orthogonal, FRC.Horizon.spectrum_simple, FRC.Horizon.modes_isotropic, FRC.Horizon.mode_stride"
+   "text": "The drive theorem. The drive $(Dv)(x)=v(\\gen x)$ permutes the residues and is orthogonal for the pairing of E12 (i); its eigenvectors are the modes $x^{k}$ and their nonzero multiples, eigenvalue $\\gen^{k}$, the spectrum $\\Fx{\\p}$, simple; the modes are isotropic for $k\\ne0,\\pi$; at $x=\\gen^{m}$ the mode $k$ has the value $\\gen^{km}$. Thm. thm:drive p20094, FrcCore{E15} FRC.Rh.shift_power_character, FRC.Horizon.drive_orthogonal, FRC.Horizon.spectrum_simple, FRC.Horizon.modes_isotropic, FRC.Horizon.mode_stride"
   },
   {
    "paper": "20-rh",
@@ -65215,7 +65215,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "critical_circle",
-   "statement": "The critical circle $\\mathcal C$, the points $(a,m)$ of the orbital sphere with $a\\,(\\gen^{m}+\\gen^{-m})=1$: a point and its mirror carry a zero and its conjugate exactly there, with $a^{2}=\\rho(1-\\rho)$. $\\mathcal C$ has one point at each phase $m<\\pi$ but $\\kp$, and the centre alone on the prime meridian. Its half-turn, the points with $a\\,(\\gen^{m}+\\gen^{-m})=-1$, carries the counts, disjoint from it.",
+   "statement": "The critical circle $\\mathcal C$, the points $(a,m)$ of the orbital sphere with $a\\,(\\gen^{m}+\\gen^{-m})=1$: a point and its mirror represent a zero and its conjugate exactly there, with $a^{2}=\\rho(1-\\rho)$. $\\mathcal C$ has one point at each phase $m<\\pi$ but $\\kp$, and the centre alone on the prime meridian. Its half-turn, the points with $a\\,(\\gen^{m}+\\gen^{-m})=-1$, represents the counts, disjoint from it.",
    "source": "Thm.~\\ref{thm:circle}\\newline \\pywit{rh}{p20111}{G13}, \\leanwit{FrcCore}{p20111}{G13} \\lean{FRC.Horizon.circle\\_pair, FRC.Horizon.circle\\_frequency, FRC.Horizon.circle\\_meridians, FRC.Horizon.circle\\_point, FRC.Horizon.circle\\_count, FRC.Horizon.circle\\_counts, FRC.Horizon.circle\\_phase, FRC.Horizon.circle\\_parallels}",
    "page": "20-rh/index.html#G13",
    "witness": {
@@ -65293,7 +65293,7 @@
     ]
    },
    "refs": [],
-   "text": "The critical circle $\\mathcal C$, the points $(a,m)$ of the orbital sphere with $a (\\gen^{m}+\\gen^{-m})=1$: a point and its mirror carry a zero and its conjugate exactly there, with $a^{2}=\\rho(1-\\rho)$. $\\mathcal C$ has one point at each phase $m<\\pi$ but $\\kp$, and the centre alone on the prime meridian. Its half-turn, the points with $a (\\gen^{m}+\\gen^{-m})=-1$, carries the counts, disjoint from it. Thm. thm:circle p20111, FrcCore{G13} FRC.Horizon.circle_pair, FRC.Horizon.circle_frequency, FRC.Horizon.circle_meridians, FRC.Horizon.circle_point, FRC.Horizon.circle_count, FRC.Horizon.circle_counts, FRC.Horizon.circle_phase, FRC.Horizon.circle_parallels"
+   "text": "The critical circle $\\mathcal C$, the points $(a,m)$ of the orbital sphere with $a (\\gen^{m}+\\gen^{-m})=1$: a point and its mirror represent a zero and its conjugate exactly there, with $a^{2}=\\rho(1-\\rho)$. $\\mathcal C$ has one point at each phase $m<\\pi$ but $\\kp$, and the centre alone on the prime meridian. Its half-turn, the points with $a (\\gen^{m}+\\gen^{-m})=-1$, represents the counts, disjoint from it. Thm. thm:circle p20111, FrcCore{G13} FRC.Horizon.circle_pair, FRC.Horizon.circle_frequency, FRC.Horizon.circle_meridians, FRC.Horizon.circle_point, FRC.Horizon.circle_count, FRC.Horizon.circle_counts, FRC.Horizon.circle_phase, FRC.Horizon.circle_parallels"
   },
   {
    "paper": "20-rh",
@@ -65379,7 +65379,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "half_of_critical_line",
-   "statement": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the half-period read backwards: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; read against A6.",
+   "statement": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the negative of the half-period: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; compared with A6.",
    "source": "Prop.~\\ref{prop:xhalf}\\newline \\pywit{rh}{p20108}{X1}, \\leanwit{FrcCore}{p20108}{X1} \\lean{FRC.Rh.half\\_inverse, FRC.Horizon.carrier\\_centre}",
    "page": "20-rh/index.html#X1",
    "witness": {
@@ -65413,7 +65413,7 @@
     "p20102",
     "p20107"
    ],
-   "text": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the half-period read backwards: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; read against A6. Prop. prop:xhalf p20108, FrcCore{X1} FRC.Rh.half_inverse, FRC.Horizon.carrier_centre"
+   "text": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the negative of the half-period: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; compared with A6. Prop. prop:xhalf p20108, FrcCore{X1} FRC.Rh.half_inverse, FRC.Horizon.carrier_centre"
   },
   {
    "paper": "20-rh",
@@ -65425,7 +65425,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "pole_and_functional_equation",
-   "statement": "The pole and the functional equation: the constant mode stands at $1$ and is no zero, the shell's form of the pole at $1$. The symmetry $s\\mapsto1-s$ is the exchange of a mode with its conjugate, the symmetry of origin and unit. Rests on B4, G6; read against A6.",
+   "statement": "The pole and the functional equation: the constant mode stands at $1$ and is no zero, the shell's form of the pole at $1$. The symmetry $s\\mapsto1-s$ is the exchange of a mode with its conjugate, the symmetry of origin and unit. Rests on B4, G6; compared with A6.",
    "source": "Prop.~\\ref{prop:xpole}\\newline \\pywit{rh}{p20109}{X2}, \\leanwit{FrcCore}{p20109}{X2} \\lean{FRC.Rh.zero\\_slot, FRC.Horizon.zero\\_conjugate, FRC.Horizon.origin\\_unit\\_symmetry}",
    "page": "20-rh/index.html#X2",
    "witness": {
@@ -65467,7 +65467,7 @@
     "p20011",
     "p20101"
    ],
-   "text": "The pole and the functional equation: the constant mode stands at $1$ and is no zero, the shell's form of the pole at $1$. The symmetry $s\\mapsto1-s$ is the exchange of a mode with its conjugate, the symmetry of origin and unit. Rests on B4, G6; read against A6. Prop. prop:xpole p20109, FrcCore{X2} FRC.Rh.zero_slot, FRC.Horizon.zero_conjugate, FRC.Horizon.origin_unit_symmetry"
+   "text": "The pole and the functional equation: the constant mode stands at $1$ and is no zero, the shell's form of the pole at $1$. The symmetry $s\\mapsto1-s$ is the exchange of a mode with its conjugate, the symmetry of origin and unit. Rests on B4, G6; compared with A6. Prop. prop:xpole p20109, FrcCore{X2} FRC.Rh.zero_slot, FRC.Horizon.zero_conjugate, FRC.Horizon.origin_unit_symmetry"
   },
   {
    "paper": "20-rh",
@@ -65479,7 +65479,7 @@
    "tag": "T",
    "name": null,
    "lean_name": "half_of_dilation_generator",
-   "statement": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it reads as $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; read against A6.",
+   "statement": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; compared with A6.",
    "source": "Prop.~\\ref{prop:xgenerator}\\newline \\pywit{rh}{p20110}{X3}, \\leanwit{FrcCore}{p20110}{X3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.generator\\_skew}",
    "page": "20-rh/index.html#X3",
    "witness": {
@@ -65513,7 +65513,7 @@
     "p20098",
     "p20100"
    ],
-   "text": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im (N+2^{-1})$. In the continuum chart it reads as $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; read against A6. Prop. prop:xgenerator p20110, FrcCore{X3} FRC.Horizon.half_forced, FRC.Horizon.generator_skew"
+   "text": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im (N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; compared with A6. Prop. prop:xgenerator p20110, FrcCore{X3} FRC.Horizon.half_forced, FRC.Horizon.generator_skew"
   },
   {
    "paper": "21-grav",

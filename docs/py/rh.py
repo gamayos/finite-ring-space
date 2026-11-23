@@ -23,7 +23,7 @@ Block D  the prime vector in the chart ([approx]; 20:D14, D15, D16, D17): the sp
 Block G  the count readout (EXACT; 20:G2, G3, G5–G7, G9, G10, G12–G14, F7): the count operator, the forced half, the generator, the
          zeros, their centre and order, the cardinal modes, the Carrier's chart, the critical circle, on the pairs (13, 233), (173, 30089),
          (1549, 2408561)
-Block X  the classical statements read on the shell (EXACT; 20:X1–X3): the ½ of the critical line, the pole and the functional
+Block X  the classical statements on the shell (EXACT; 20:X1–X3): the ½ of the critical line, the pole and the functional
          equation, the ½ of the dilation generator
 
     python3 rh.py                every block in order, results.json written; exit 1 if a check fails (≈ 25 s on one core)
@@ -55,7 +55,7 @@ LEDGER = {
 BLOCK = {"A": "the shell, in exact arithmetic: the zero-slot, the Subject constants, the shell theorem, the Parseval identity, frame coincidence, the closure, completeness, the drive theorem",
          "D": "the prime vector in the chart: the spectrum of the window's primes against the classical heights, the deep window, and the count of a window from its dual with its bound",
          "G": "the count readout: the count operator, the forced half, the generator, the zeros, their centre and order, the cardinal modes, the Carrier's chart, the critical circle",
-         "X": "the classical statements read on the shell: the ½ of the critical line, the pole and the functional equation, the ½ of the dilation generator"}
+         "X": "the classical statements on the shell: the ½ of the critical line, the pole and the functional equation, the ½ of the dilation generator"}
 
 # the deciding check of each python-witnessed predicate: the check the ledger's source column links (the other checks that
 # cite it are corroboration, listed by predicate() from the records)
@@ -251,7 +251,7 @@ def run_shifts(p, start):
 # ---- one function per declaration of lean/FrcCore/Theme/Count.lean -----------------------------------------------------
 
 def mode_stride(p, g):
-    """At x = g^m the mode of count k reads g^(km): (g^m)^k = (g^k)^m = g^(km), every m and k below p − 1."""
+    """At x = g^m the mode of count k has the value g^(km): (g^m)^k = (g^k)^m = g^(km), every m and k below p − 1."""
     n = p - 1; tab = [pow(g, m, p) for m in range(n)]
     return all(pow(tab[m], k, p) == pow(tab[k], m, p) == pow(g, k * m, p) for m in range(n) for k in range(n))
 
@@ -728,7 +728,7 @@ def subset_control(H=13, bound=0.18, nxt=0.26, lo=10.0, hi=36.0, dt=0.01):
 
 
 def deep_reading(H=10 ** 6):
-    """The reading of 20:D15 at depth H with the von Mangoldt weight: a label reads with the modulus n^sigma, the
+    """The evaluation of 20:D15 at depth H with the von Mangoldt weight: at a label n a mode has the modulus n^sigma, the
     spectrum is at most the sum of the moduli, the ten tallest peaks on 10 <= t <= 52 lie within 0.045 of the first ten
     heights. Returns (ok, detail)."""
     labels, weights, mean = window_weights(H, "mangoldt")
@@ -1100,7 +1100,7 @@ def block_A():
     # g^k are the p−1 nonzero residues, each once: the spectrum is F_p^×, simple; (i) D is orthogonal for the pairing
     # ⟨v, w⟩ = Σ_x v(x) w(x), ⟨Dv, w⟩ = ⟨v, D⁻¹w⟩ on three random pairs, not symmetric, while D + D⁻¹ is symmetric; (iii) the
     # spectrum is real — every eigenvalue a residue of F_p, Frobenius-fixed — and the modes are isotropic, ⟨x^k, x^k⟩ = Z(2k) = 0
-    # for k ≠ 0, π and −1 there; (iv) at x = g^m the mode of count k reads g^(km) (FRC.Horizon.mode_stride)
+    # for k ≠ 0, π and −1 there; (iv) at x = g^m the mode of count k has the value g^(km) (FRC.Horizon.mode_stride)
     for p in SHELLS + [BIG]:
         g = generator(p); n_ = p - 1; pi_ = n_ // 2; ginv = pow(g, p - 2, p); xs = range(1, p)
         D = lambda v: {x: v[(g * x) % p] for x in xs}
@@ -1118,7 +1118,7 @@ def block_A():
         ok_iii = all(0 < s < p for s in spec) and all(pair(modes[k], modes[k]) == (p - 1 if k in (0, pi_) else 0) for k in range(n_))
         ok_iv = CT.mode_stride(p, g)
         # 20:E15 (p20094)
-        check("A19", f"the drive theorem on F_{p}: D x^k = g^k x^k for every mode, the spectrum F_{p}^× simple; ⟨Dv, w⟩ = ⟨v, D⁻¹w⟩ on three random pairs, D not symmetric, D + D⁻¹ symmetric; the spectrum real and the modes isotropic (⟨x^k, x^k⟩ = 0 for k ≠ 0, π, −1 there); at x = g^m the mode of count k reads g^(km)",
+        check("A19", f"the drive theorem on F_{p}: D x^k = g^k x^k for every mode, the spectrum F_{p}^× simple; ⟨Dv, w⟩ = ⟨v, D⁻¹w⟩ on three random pairs, D not symmetric, D + D⁻¹ symmetric; the spectrum real and the modes isotropic (⟨x^k, x^k⟩ = 0 for k ≠ 0, π, −1 there); at x = g^m the mode of count k has the value g^(km)",
               ok_i and ok_ii and ok_sym and ok_iii and ok_iv, f"g={g}, π={pi_}: eigenvalues g^k = {spec[:6]}…")
 
 
@@ -1127,7 +1127,7 @@ def block_A():
 # The spectrum of a window against the classical heights (rows D13, D14, D15), and the count of a window from its dual with its bound (rows D16, D17).
 # ======================================================================================================================
 def block_D():
-    """Block D — the prime vector in the chart: 4 floating-point readings, two against the classical heights, with the control over the subsets of the window of depth 13, and the count of a window from its dual with its bound, computed in the chart tier (the depth 10⁶ takes about 15 s)."""
+    """Block D — the prime vector in the chart: 4 floating-point evaluations, two compared with the classical heights, with the control over the subsets of the window of depth 13, and the count of a window from its dual with its bound, computed in the chart tier (the depth 10⁶ takes about 15 s)."""
     ok, detail = CR.window_reading()
     ok2, detail2 = CR.subset_control()
     ok, detail = ok and ok2, detail + "; " + detail2
@@ -1136,7 +1136,7 @@ def block_D():
             ok, detail, kind="[approx]")
     ok, detail = CR.deep_reading()
     # 20:D15 (p20114)
-    check("D15", "the deep window [chart]: a label reads with the modulus n^σ and E(t) ≤ Σ|λ(n) − λ̄| n^σ; with the von Mangoldt weight at depth 10⁶ the ten tallest peaks on 10 ≤ t ≤ 52 lie within 0.045 of the first ten heights",
+    check("D15", "the deep window [chart]: at a label n a mode has the modulus n^σ and E(t) ≤ Σ|λ(n) − λ̄| n^σ; with the von Mangoldt weight at depth 10⁶ the ten tallest peaks on 10 ≤ t ≤ 52 lie within 0.045 of the first ten heights",
             ok, detail, kind="[approx]")
     ok, detail = CR.emergence_reading()
     # 20:D16 (p20116)
@@ -1256,7 +1256,7 @@ def block_G():
         check("G12", f"the chart of the Carrier F_{Om}, with no generator: the conjugate of a count 1 ≤ k ≤ Ω − 2 is Ω − 1 − k and the two add to −1; the centre of the zeros is 2⁻¹ = 2S + 1 = −G = {2 * S + 1}, with G = 2S; the counts 0, S, 2S, 3S stand at 1, 3·4⁻¹, 2⁻¹, 4⁻¹; every zero of the Subject F_{p} is the same integer there, and its constant mode stands at 1 on both",
                 f["carrier_centre"] and f["cardinal_zeros"] and f["count_conjugate"] and f["zero_shared"], f"S = {S}; every count 1 … Ω − 2 of the chart")
         # 20:G13 (p20111)
-        check("G13", f"the critical circle on F_{p}: a point a·g^m of the sphere and its mirror a·g^−m carry a zero and the zero of the conjugate mode exactly when a(g^m + g^−m) = 1, with a² = ρ(1 − ρ), and the two zeros differ by 2iγ_k; one point at each phase below π but κ, none on the momentum meridian or at the origin, the centre 2⁻¹ = {2 * kap + 1} alone on the prime meridian; a zero has a point exactly when ρ(1 − ρ) is a square, and then one: {2 * kap - 1} points with distinct zeros; under X = 2ρ − 1, Y = 2a the relation a² = ρ(1 − ρ) is the conic X² + Y² = 1, with its classical count of {p - 1} points, two at a = 0 and the others in pairs ±a on those zeros; the points with a(g^m + g^−m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum −1, which carry the counts, π = {2 * kap} on the prime meridian, and share no point with the circle",
+        check("G13", f"the critical circle on F_{p}: a point a·g^m of the sphere and its mirror a·g^−m represent a zero and the zero of the conjugate mode exactly when a(g^m + g^−m) = 1, with a² = ρ(1 − ρ), and the two zeros differ by 2iγ_k; one point at each phase below π but κ, none on the momentum meridian or at the origin, the centre 2⁻¹ = {2 * kap + 1} alone on the prime meridian; a zero has a point exactly when ρ(1 − ρ) is a square, and then one: {2 * kap - 1} points with distinct zeros; under X = 2ρ − 1, Y = 2a the relation a² = ρ(1 − ρ) is the conic X² + Y² = 1, with its classical count of {p - 1} points, two at a = 0 and the others in pairs ±a on those zeros; the points with a(g^m + g^−m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum −1, which carry the counts, π = {2 * kap} on the prime meridian, and share no point with the circle",
                 f["circle_pair"] and f["circle_frequency"] and f["circle_meridians"] and f["circle_point"] and f["circle_count"] and f["circle_counts"] and f["circle_conic"] and f["circle_phase"] and f["circle_parallels"],
                 read if p < 1000 else f"{read}; the parallels and the phases on the least generator")
         # 20:G14 (p20115)
@@ -1265,7 +1265,7 @@ def block_G():
 
 
 def block_X():
-    """Block X — the classical statements read on the shell: 9 exact checks, three rows on the three laboratory pairs."""
+    """Block X — the classical statements on the shell: 9 exact checks, three rows on the three laboratory pairs."""
     print("\n== block X: the classical statements ==")
     for p, Om in PAIRS:
         f = count_facts(p, Om); kap, S = (p - 1) // 4, (Om - 1) // 4

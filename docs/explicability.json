@@ -1,5 +1,5 @@
 {
- "generated": "22 November 2026",
+ "generated": "23 November 2026",
  "rows": [
   {
    "id": "00:X1",
@@ -332,7 +332,7 @@
    "key": "p20108",
    "tag": "T",
    "lean_name": "half_of_critical_line",
-   "predicate": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the half-period read backwards: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; read against A6.",
+   "predicate": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the negative of the half-period: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; compared with A6.",
    "source": "Prop.~\\ref{prop:xhalf}\\newline \\pywit{rh}{p20108}{X1}, \\leanwit{FrcCore}{p20108}{X1} \\lean{FRC.Rh.half\\_inverse, FRC.Horizon.carrier\\_centre}",
    "master": [],
    "restated": [],
@@ -346,7 +346,7 @@
    "key": "p20109",
    "tag": "T",
    "lean_name": "pole_and_functional_equation",
-   "predicate": "The pole and the functional equation: the constant mode stands at $1$ and is no zero, the shell's form of the pole at $1$. The symmetry $s\\mapsto1-s$ is the exchange of a mode with its conjugate, the symmetry of origin and unit. Rests on B4, G6; read against A6.",
+   "predicate": "The pole and the functional equation: the constant mode stands at $1$ and is no zero, the shell's form of the pole at $1$. The symmetry $s\\mapsto1-s$ is the exchange of a mode with its conjugate, the symmetry of origin and unit. Rests on B4, G6; compared with A6.",
    "source": "Prop.~\\ref{prop:xpole}\\newline \\pywit{rh}{p20109}{X2}, \\leanwit{FrcCore}{p20109}{X2} \\lean{FRC.Rh.zero\\_slot, FRC.Horizon.zero\\_conjugate, FRC.Horizon.origin\\_unit\\_symmetry}",
    "master": [],
    "restated": [],
@@ -360,7 +360,7 @@
    "key": "p20110",
    "tag": "T",
    "lean_name": "half_of_dilation_generator",
-   "predicate": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it reads as $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; read against A6.",
+   "predicate": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; compared with A6.",
    "source": "Prop.~\\ref{prop:xgenerator}\\newline \\pywit{rh}{p20110}{X3}, \\leanwit{FrcCore}{p20110}{X3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.generator\\_skew}",
    "master": [],
    "restated": [],

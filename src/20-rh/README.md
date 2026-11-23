@@ -21,14 +21,14 @@ verification", predicates cited as `20:XN`; public copy `docs/20-rh/index.html`)
 machine-verified predicate, the script at the deciding check's marker (`docs/py/rh.html#<key>`) and the Lean module at the predicate's
 declaration. Every python-witnessed predicate but one is proved in Lean: 25 in the core, with no axioms (the predicate module `lean/FrcCore/Rh.lean` on the theme files
 `FrcCore/Theme/Horizon.lean`, `Theme/Zeros.lean`, `Theme/Count.lean` and `Theme/Circle.lean`), six of those also on Mathlib in `lean/FrcMathlib/Rh.lean`
-(B1, B2, B4, B10, E12, E13), and D14, D15 and D17 on Mathlib alone. The exception is 20:D16, a definition with its reading [approx]
+(B1, B2, B4, B10, E12, E13), and D14, D15 and D17 on Mathlib alone. The exception is 20:D16, a definition with its numerical evaluation [approx]
 and no Lean predicate (its definitions `dual` and `count` stand with the proof of 20:D17 in the chart theme). The check here is the instance the reader can run.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/frc-20-rh.ipynb)
 
 Discipline: `EXACT` checks are integer-exact finite computations (a pass is a proof on the tested instances); `[approx]` checks
 compare a floating-point observation with the value the paper states, to a stated tolerance. The nine [approx] checks are the
-chart's characters of block A (A7b, one per shell) and the four readings of block D. ζ is never evaluated: Riemann's formula in D16 uses the eighty imported heights (20:A6).
+chart's characters of block A (A7b, one per shell) and the four evaluations of block D. ζ is never evaluated: Riemann's formula in D16 uses the eighty imported heights (20:A6).
 
 ## In-tree
 
@@ -57,11 +57,11 @@ and is no figure of the paper since 21 November.
 
 ## Predicate ledger
 
-The paper carries its predicate ledger as Appendix A (40 predicates in blocks A, B, D, E, F, G, X: 3 imported, 10 declared, 27
+The paper has its predicate ledger as Appendix A (40 predicates in blocks A, B, D, E, F, G, X: 3 imported, 10 declared, 27
 theorems). Every check of this package cites the ledger predicate(s) it witnesses (`LEDGER` in `rh.py`; the
 `rows` field of each record in `results.json`, a machine field kept under that name; the check line prints it), and the ledger's
 source column links, for each python-witnessed predicate, the check that decides it (`PREDICATES`: B4 ← A1, E15 ← A19, F7 ← A12,
-G6 ← G6, X1 ← X1, …). A check of blocks G and X carries the label of the row it decides. The other checks citing a predicate are
+G6 ← G6, X1 ← X1, …). A check of blocks G and X has the label of the row it decides. The other checks citing a predicate are
 corroboration, listed by `predicate()` from the records (20:F7 is cited by A12 and G6; 20:E13 by A14 and A7b; 20:E12 and 20:E14
 both by A7).
 
@@ -71,12 +71,12 @@ both by A7).
    15045, 1204281 on the charts of the Carriers 233, 30089, 2408561, with G = 116, 15044, 1204280.
 2. **The cardinal modes (G10).** The modes of count 0, κ, 2κ, 3κ stand at 1, 4, 7, 10 on F_13; at 1, 44, 87, 130 on F_173; at
    1, 388, 775, 1162 on F_1549.
-3. **The ranges read (G2, G5).** Every generator of 13 (4) and of 173 (84), the least three of 1549; every pair of indicators of a
+3. **The ranges tried (G2, G5).** Every generator of 13 (4) and of 173 (84), the least three of 1549; every pair of indicators of a
    residue on 13 and 173 (144 and 29,584 pairs), seven indicators and three fixed sequences on 1549 (100 pairs).
 
 ## One cell per predicate
 
-`frc-20-rh.ipynb` (built by `make_notebook.py`, executed) carries one cell per python-witnessed ledger predicate, addressable by
+`frc-20-rh.ipynb` (built by `make_notebook.py`, executed) has one cell per python-witnessed ledger predicate, addressable by
 its stable id (the predicate's accession key, e.g. `p20101` for `20:G6`; the ledger page opens the notebook at the cell). Every
 cell is self-contained: it installs the package from the site (`pip install frc-20-rh --find-links https://finitering.space/pkg/`
 — a named requirement, so pip reports it already satisfied once installed; the sdist `frc-20-rh-<version>.tar.gz`

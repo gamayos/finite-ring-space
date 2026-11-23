@@ -484,7 +484,7 @@
   "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "the drive theorem on F_13: D x^k = g^k x^k for every mode, the spectrum F_13^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
+  "label": "the drive theorem on F_13: D x^k = g^k x^k for every mode, the spectrum F_13^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k has the value g^(km)",
   "ok": true,
   "detail": "g=2, \u03c0=6: eigenvalues g^k = [1, 2, 4, 8, 3, 6]\u2026",
   "kind": "EXACT"
@@ -494,7 +494,7 @@
   "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "the drive theorem on F_17: D x^k = g^k x^k for every mode, the spectrum F_17^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
+  "label": "the drive theorem on F_17: D x^k = g^k x^k for every mode, the spectrum F_17^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k has the value g^(km)",
   "ok": true,
   "detail": "g=3, \u03c0=8: eigenvalues g^k = [1, 3, 9, 10, 13, 5]\u2026",
   "kind": "EXACT"
@@ -504,7 +504,7 @@
   "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "the drive theorem on F_29: D x^k = g^k x^k for every mode, the spectrum F_29^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
+  "label": "the drive theorem on F_29: D x^k = g^k x^k for every mode, the spectrum F_29^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k has the value g^(km)",
   "ok": true,
   "detail": "g=2, \u03c0=14: eigenvalues g^k = [1, 2, 4, 8, 16, 3]\u2026",
   "kind": "EXACT"
@@ -514,7 +514,7 @@
   "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "the drive theorem on F_37: D x^k = g^k x^k for every mode, the spectrum F_37^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
+  "label": "the drive theorem on F_37: D x^k = g^k x^k for every mode, the spectrum F_37^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k has the value g^(km)",
   "ok": true,
   "detail": "g=2, \u03c0=18: eigenvalues g^k = [1, 2, 4, 8, 16, 32]\u2026",
   "kind": "EXACT"
@@ -524,7 +524,7 @@
   "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "the drive theorem on F_41: D x^k = g^k x^k for every mode, the spectrum F_41^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
+  "label": "the drive theorem on F_41: D x^k = g^k x^k for every mode, the spectrum F_41^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k has the value g^(km)",
   "ok": true,
   "detail": "g=6, \u03c0=20: eigenvalues g^k = [1, 6, 36, 11, 25, 27]\u2026",
   "kind": "EXACT"
@@ -534,7 +534,7 @@
   "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "the drive theorem on F_173: D x^k = g^k x^k for every mode, the spectrum F_173^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
+  "label": "the drive theorem on F_173: D x^k = g^k x^k for every mode, the spectrum F_173^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k has the value g^(km)",
   "ok": true,
   "detail": "g=2, \u03c0=86: eigenvalues g^k = [1, 2, 4, 8, 16, 32]\u2026",
   "kind": "EXACT"
@@ -554,7 +554,7 @@
   "rows": "20:D15",
   "block": "D",
   "script": "rh",
-  "label": "the deep window [chart]: a label reads with the modulus n^\u03c3 and E(t) \u2264 \u03a3|\u03bb(n) \u2212 \u03bb\u0304| n^\u03c3; with the von Mangoldt weight at depth 10\u2076 the ten tallest peaks on 10 \u2264 t \u2264 52 lie within 0.045 of the first ten heights",
+  "label": "the deep window [chart]: at a label n a mode has the modulus n^\u03c3 and E(t) \u2264 \u03a3|\u03bb(n) \u2212 \u03bb\u0304| n^\u03c3; with the von Mangoldt weight at depth 10\u2076 the ten tallest peaks on 10 \u2264 t \u2264 52 lie within 0.045 of the first ten heights",
   "ok": true,
   "detail": "largest distance 0.044",
   "kind": "[approx]"
@@ -664,7 +664,7 @@
   "rows": "20:G13",
   "block": "G",
   "script": "rh",
-  "label": "the critical circle on F_13: a point a\u00b7g^m of the sphere and its mirror a\u00b7g^\u2212m carry a zero and the zero of the conjugate mode exactly when a(g^m + g^\u2212m) = 1, with a\u00b2 = \u03c1(1 \u2212 \u03c1), and the two zeros differ by 2i\u03b3_k; one point at each phase below \u03c0 but \u03ba, none on the momentum meridian or at the origin, the centre 2\u207b\u00b9 = 7 alone on the prime meridian; a zero has a point exactly when \u03c1(1 \u2212 \u03c1) is a square, and then one: 5 points with distinct zeros; under X = 2\u03c1 \u2212 1, Y = 2a the relation a\u00b2 = \u03c1(1 \u2212 \u03c1) is the conic X\u00b2 + Y\u00b2 = 1, with its classical count of 12 points, two at a = 0 and the others in pairs \u00b1a on those zeros; the points with a(g^m + g^\u2212m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum \u22121, which carry the counts, \u03c0 = 6 on the prime meridian, and share no point with the circle",
+  "label": "the critical circle on F_13: a point a\u00b7g^m of the sphere and its mirror a\u00b7g^\u2212m represent a zero and the zero of the conjugate mode exactly when a(g^m + g^\u2212m) = 1, with a\u00b2 = \u03c1(1 \u2212 \u03c1), and the two zeros differ by 2i\u03b3_k; one point at each phase below \u03c0 but \u03ba, none on the momentum meridian or at the origin, the centre 2\u207b\u00b9 = 7 alone on the prime meridian; a zero has a point exactly when \u03c1(1 \u2212 \u03c1) is a square, and then one: 5 points with distinct zeros; under X = 2\u03c1 \u2212 1, Y = 2a the relation a\u00b2 = \u03c1(1 \u2212 \u03c1) is the conic X\u00b2 + Y\u00b2 = 1, with its classical count of 12 points, two at a = 0 and the others in pairs \u00b1a on those zeros; the points with a(g^m + g^\u2212m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum \u22121, which carry the counts, \u03c0 = 6 on the prime meridian, and share no point with the circle",
   "ok": true,
   "detail": "4 generators",
   "kind": "EXACT"
@@ -764,7 +764,7 @@
   "rows": "20:G13",
   "block": "G",
   "script": "rh",
-  "label": "the critical circle on F_173: a point a\u00b7g^m of the sphere and its mirror a\u00b7g^\u2212m carry a zero and the zero of the conjugate mode exactly when a(g^m + g^\u2212m) = 1, with a\u00b2 = \u03c1(1 \u2212 \u03c1), and the two zeros differ by 2i\u03b3_k; one point at each phase below \u03c0 but \u03ba, none on the momentum meridian or at the origin, the centre 2\u207b\u00b9 = 87 alone on the prime meridian; a zero has a point exactly when \u03c1(1 \u2212 \u03c1) is a square, and then one: 85 points with distinct zeros; under X = 2\u03c1 \u2212 1, Y = 2a the relation a\u00b2 = \u03c1(1 \u2212 \u03c1) is the conic X\u00b2 + Y\u00b2 = 1, with its classical count of 172 points, two at a = 0 and the others in pairs \u00b1a on those zeros; the points with a(g^m + g^\u2212m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum \u22121, which carry the counts, \u03c0 = 86 on the prime meridian, and share no point with the circle",
+  "label": "the critical circle on F_173: a point a\u00b7g^m of the sphere and its mirror a\u00b7g^\u2212m represent a zero and the zero of the conjugate mode exactly when a(g^m + g^\u2212m) = 1, with a\u00b2 = \u03c1(1 \u2212 \u03c1), and the two zeros differ by 2i\u03b3_k; one point at each phase below \u03c0 but \u03ba, none on the momentum meridian or at the origin, the centre 2\u207b\u00b9 = 87 alone on the prime meridian; a zero has a point exactly when \u03c1(1 \u2212 \u03c1) is a square, and then one: 85 points with distinct zeros; under X = 2\u03c1 \u2212 1, Y = 2a the relation a\u00b2 = \u03c1(1 \u2212 \u03c1) is the conic X\u00b2 + Y\u00b2 = 1, with its classical count of 172 points, two at a = 0 and the others in pairs \u00b1a on those zeros; the points with a(g^m + g^\u2212m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum \u22121, which carry the counts, \u03c0 = 86 on the prime meridian, and share no point with the circle",
   "ok": true,
   "detail": "84 generators",
   "kind": "EXACT"
@@ -864,7 +864,7 @@
   "rows": "20:G13",
   "block": "G",
   "script": "rh",
-  "label": "the critical circle on F_1549: a point a\u00b7g^m of the sphere and its mirror a\u00b7g^\u2212m carry a zero and the zero of the conjugate mode exactly when a(g^m + g^\u2212m) = 1, with a\u00b2 = \u03c1(1 \u2212 \u03c1), and the two zeros differ by 2i\u03b3_k; one point at each phase below \u03c0 but \u03ba, none on the momentum meridian or at the origin, the centre 2\u207b\u00b9 = 775 alone on the prime meridian; a zero has a point exactly when \u03c1(1 \u2212 \u03c1) is a square, and then one: 773 points with distinct zeros; under X = 2\u03c1 \u2212 1, Y = 2a the relation a\u00b2 = \u03c1(1 \u2212 \u03c1) is the conic X\u00b2 + Y\u00b2 = 1, with its classical count of 1548 points, two at a = 0 and the others in pairs \u00b1a on those zeros; the points with a(g^m + g^\u2212m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum \u22121, which carry the counts, \u03c0 = 774 on the prime meridian, and share no point with the circle",
+  "label": "the critical circle on F_1549: a point a\u00b7g^m of the sphere and its mirror a\u00b7g^\u2212m represent a zero and the zero of the conjugate mode exactly when a(g^m + g^\u2212m) = 1, with a\u00b2 = \u03c1(1 \u2212 \u03c1), and the two zeros differ by 2i\u03b3_k; one point at each phase below \u03c0 but \u03ba, none on the momentum meridian or at the origin, the centre 2\u207b\u00b9 = 775 alone on the prime meridian; a zero has a point exactly when \u03c1(1 \u2212 \u03c1) is a square, and then one: 773 points with distinct zeros; under X = 2\u03c1 \u2212 1, Y = 2a the relation a\u00b2 = \u03c1(1 \u2212 \u03c1) is the conic X\u00b2 + Y\u00b2 = 1, with its classical count of 1548 points, two at a = 0 and the others in pairs \u00b1a on those zeros; the points with a(g^m + g^\u2212m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum \u22121, which carry the counts, \u03c0 = 774 on the prime meridian, and share no point with the circle",
   "ok": true,
   "detail": "the least 3 generators; the parallels and the phases on the least generator",
   "kind": "EXACT"

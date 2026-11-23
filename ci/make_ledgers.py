@@ -154,7 +154,9 @@ def notebook(f, L, data):
            "Any cell can be run first: its first lines make the framework importable (this checkout, or a clone on Colab).", "header")
     else:
         paper, doi = L.PAPER, data.get("doi")
-        md(f"## {data['title']}" + (f", [doi {doi.split('doi.org/')[-1]}]({doi})" if doi else "") + "\n\n"
+        link = (f", [alphaXiv {doi.split('alphaxiv.org/abs/')[-1]}]({doi})" if doi and "alphaxiv.org/abs/" in doi   # an alphaXiv identifier is no DOI (23 November 2026)
+                else f", [doi {doi.split('doi.org/')[-1]}]({doi})" if doi else "")
+        md(f"## {data['title']}" + link + "\n\n"
            f"Each cell below verifies one predicate of the paper's predicate ledger ([{SITE[8:]}/{paper}/]({SITE}/{paper}/)) on the FRC "
            f"framework: it runs the blocks of the ledger file `{rel}` whose checks cite the predicate, prints the check "
            "that decides it and lists every record that cites it with its verdict. The cell's id is the predicate's accession key. "

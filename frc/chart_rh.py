@@ -416,7 +416,7 @@ def subset_control(H=13, bound=0.18, nxt=0.26, lo=10.0, hi=36.0, dt=0.01):
 
 
 def deep_reading(H=10 ** 6):
-    """The reading of 20:D15 at depth H with the von Mangoldt weight: a label reads with the modulus n^sigma, the
+    """The evaluation of 20:D15 at depth H with the von Mangoldt weight: at a label n a mode has the modulus n^sigma, the
     spectrum is at most the sum of the moduli, the ten tallest peaks on 10 <= t <= 52 lie within 0.045 of the first ten
     heights. Returns (ok, detail)."""
     labels, weights, mean = window_weights(H, "mangoldt")

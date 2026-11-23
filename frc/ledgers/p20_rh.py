@@ -10,12 +10,12 @@ record for record. The revision retires the rows B5, B6, B8, B9, B12 to B14, F9,
 both files (A2 to A5, A15 to A18, A20, block B, and the package's block C), and their ids are not reused. A19 follows its
 row: two clauses leave and the stride of a mode enters. The revision adds one check per row of the count readout and of
 the classical statements (blocks G and X), on the count theme. Since the same day the exhibit
-has its rows D13, D14 and D15: block D reads the spectrum of a window against the classical heights, on the chart theme. Since
-22 November the count of a window from its dual has its row D16 and its bound the row D17, read in the same block. The package stays the paper's published witness until its
+has its rows D13, D14 and D15: block D compares the spectrum of a window with the classical heights, on the chart theme. Since
+22 November the count of a window from its dual has its row D16 and its bound the row D17, evaluated in the same block. The package stays the paper's published witness until its
 release pins the framework.
 
 The exact checks call the horizon and count themes (frc/horizon.py, frc/count.py) and frc/arith.py. The chart
-readings, the chart's characters of A7b and the four readings of block D, call the chart file frc/chart_rh.py and return verdicts, so this file stays
+evaluations, the chart's characters of A7b and the four evaluations of block D, call the chart file frc/chart_rh.py and return verdicts, so this file stays
 exact (gate G09). The Lean side is the certificates lean/FrcCore/Ledgers/P20Rh.lean and lean/FrcMathlib/Ledgers/P20Rh.lean,
 over the keys of the foundation, horizon and count themes.
 
@@ -26,7 +26,7 @@ over the keys of the foundation, horizon and count themes.
 Blocks:  A  the shell, in exact arithmetic                         EXACT, five APPROX  (20:A2, A3, A4, B1, B2, B4, B10, E12–E15, F7)
          D  the prime vector in the chart                           four APPROX         (20:D14, D15, D16, D17)
          G  the count readout                                       EXACT               (20:G2, G3, G5–G7, G9, G10, G12–G14, F7)
-         X  the classical statements read on the shell              EXACT               (20:X1–X3)
+         X  the classical statements on the shell                   EXACT               (20:X1–X3)
 
 The notebook frc/ledgers/p20_rh.ipynb runs one predicate per cell, the cell's id its key (gate G13).
 """
@@ -70,7 +70,7 @@ LEDGER = {
 BLOCK = {"A": "the shell, in exact arithmetic: the zero-slot, the Subject constants, the shell theorem, the Parseval identity, frame coincidence, the closure, completeness, the drive theorem",
          "D": "the prime vector in the chart: the spectrum of the window's primes against the classical heights, the deep window, and the count of a window from its dual with its bound",
          "G": "the count readout: the count operator, the forced half, the generator, the zeros, their centre and order, the cardinal modes, the Carrier's chart, the critical circle",
-         "X": "the classical statements read on the shell: the ½ of the critical line, the pole and the functional equation, the ½ of the dilation generator"}
+         "X": "the classical statements on the shell: the ½ of the critical line, the pole and the functional equation, the ½ of the dilation generator"}
 
 # the deciding check of each witnessed predicate, as the package names it
 PREDICATES = {
@@ -125,7 +125,7 @@ def matmul_mod(A, B, p):
 # least primitive root, as in the package.
 @R.block("A", BLOCK["A"])
 def block_A():
-    """Block A — the shell, in exact arithmetic: 54 checks, 49 exact and 5 floating-point readings of the chart's characters."""
+    """Block A — the shell, in exact arithmetic: 54 checks, 49 exact and 5 floating-point evaluations of the chart's characters."""
     for p in SHELLS + [BIG]:
         g = arith.primitive_root(p)
         kappa = (p - 1) // 4
@@ -180,12 +180,12 @@ def block_A():
                 f"prime-power indicator: {sum(prime_vec)} labels")
         if p == BIG:
             continue
-        # A7b the chart's reading of the Parseval identity (Rem. parseval), tolerance 10⁻⁹: the complex characters orthogonal
+        # A7b the chart's form of the Parseval identity (Rem. parseval), tolerance 10⁻⁹: the complex characters orthogonal
         # with ‖χ_j‖² = p−1, the dual inverts, Parseval, the shift
         ok_orth, ok_par, ok_inv, ok_c, par = CR.characters_parseval(p, g, prime_power_base)
         cyc, x = 0, 1                                                   # the drive's chart is the permutation matrix of n ↦ gn on 1..p−1: one
         while True:                                                     # (p−1)-cycle, so unitary, with characteristic polynomial x^{p−1} − 1 and
-            x = g * x % p; cyc += 1                                     # the (p−1)-th roots of unity as its eigenvalues (the package reads them in numpy)
+            x = g * x % p; cyc += 1                                     # the (p−1)-th roots of unity as its eigenvalues (the package computes them in numpy)
             if x == 1: break
         ok_u = cyc == p - 1
         R.check("A7b", f"the chart's characters on ℓ²(F_{p}^×): χ_j orthogonal with ‖χ_j‖² = p−1, Σ_j|v̂(j)|² = (p−1)Σ|v|² for v = Λ, the dual inverts; Dχ_j = ω^j χ_j, the drive a unitary permutation with the (p−1)-th roots of unity as its eigenvalues",
@@ -295,7 +295,7 @@ def block_A():
     # g^k are the p−1 nonzero residues, each once: the spectrum is F_p^×, simple; (i) D is orthogonal for the pairing
     # ⟨v, w⟩ = Σ_x v(x) w(x), ⟨Dv, w⟩ = ⟨v, D⁻¹w⟩ on three random pairs, not symmetric, while D + D⁻¹ is symmetric; (iii) the
     # spectrum is real — every eigenvalue a residue of F_p, Frobenius-fixed — and the modes are isotropic, ⟨x^k, x^k⟩ = Z(2k) = 0
-    # for k ≠ 0, π and −1 there; (iv) at x = g^m the mode of count k reads g^(km) (FRC.Horizon.mode_stride); the package's
+    # for k ≠ 0, π and −1 there; (iv) at x = g^m the mode of count k has the value g^(km) (FRC.Horizon.mode_stride); the package's
     # A19, record for record
     for p in SHELLS + [BIG]:
         g = arith.primitive_root(p); n_ = p - 1; pi_ = n_ // 2; ginv = pow(g, p - 2, p); xs = range(1, p)
@@ -314,7 +314,7 @@ def block_A():
         ok_iii = all(0 < s < p for s in spec) and all(pair(modes[k], modes[k]) == (p - 1 if k in (0, pi_) else 0) for k in range(n_))
         ok_iv = CT.mode_stride(p, g)
         # 20:E15 (p20094)
-        R.check("A19", f"the drive theorem on F_{p}: D x^k = g^k x^k for every mode, the spectrum F_{p}^× simple; ⟨Dv, w⟩ = ⟨v, D⁻¹w⟩ on three random pairs, D not symmetric, D + D⁻¹ symmetric; the spectrum real and the modes isotropic (⟨x^k, x^k⟩ = 0 for k ≠ 0, π, −1 there); at x = g^m the mode of count k reads g^(km)",
+        R.check("A19", f"the drive theorem on F_{p}: D x^k = g^k x^k for every mode, the spectrum F_{p}^× simple; ⟨Dv, w⟩ = ⟨v, D⁻¹w⟩ on three random pairs, D not symmetric, D + D⁻¹ symmetric; the spectrum real and the modes isotropic (⟨x^k, x^k⟩ = 0 for k ≠ 0, π, −1 there); at x = g^m the mode of count k has the value g^(km)",
                 ok_i and ok_ii and ok_sym and ok_iii and ok_iv, f"g={g}, π={pi_}: eigenvalues g^k = {spec[:6]}…")
 
 
@@ -343,7 +343,7 @@ def conic_count(p, kap):
 
 @lru_cache(maxsize=None)
 def count_facts(p, Om):
-    """The count theme's statements on the pair (p, Ω): theorem name -> verdict; with them the generators and the vector pairs read."""
+    """The count theme's statements on the pair (p, Ω): theorem name -> verdict; with them the generators and the vector pairs used."""
     kap, S = (p - 1) // 4, (Om - 1) // 4
     gs = CT.generators(p) if p < 1000 else CT.generators(p)[:3]
     P = CT.gram_table(p)
@@ -396,7 +396,7 @@ def count_facts(p, Om):
 
 @R.block("D", BLOCK["D"])
 def block_D():
-    """Block D — the prime vector in the chart: 4 floating-point readings, two against the classical heights, with the control over the subsets of the window of depth 13, and the count of a window from its dual with its bound, computed in the chart tier (the depth 10⁶ takes about 15 s)."""
+    """Block D — the prime vector in the chart: 4 floating-point evaluations, two compared with the classical heights, with the control over the subsets of the window of depth 13, and the count of a window from its dual with its bound, computed in the chart tier (the depth 10⁶ takes about 15 s)."""
     ok, detail = CR.window_reading()
     ok2, detail2 = CR.subset_control()
     ok, detail = ok and ok2, detail + "; " + detail2
@@ -405,7 +405,7 @@ def block_D():
             ok, detail, kind="[approx]")
     ok, detail = CR.deep_reading()
     # 20:D15 (p20114)
-    R.check("D15", "the deep window [chart]: a label reads with the modulus n^σ and E(t) ≤ Σ|λ(n) − λ̄| n^σ; with the von Mangoldt weight at depth 10⁶ the ten tallest peaks on 10 ≤ t ≤ 52 lie within 0.045 of the first ten heights",
+    R.check("D15", "the deep window [chart]: at a label n a mode has the modulus n^σ and E(t) ≤ Σ|λ(n) − λ̄| n^σ; with the von Mangoldt weight at depth 10⁶ the ten tallest peaks on 10 ≤ t ≤ 52 lie within 0.045 of the first ten heights",
             ok, detail, kind="[approx]")
     ok, detail = CR.emergence_reading()
     # 20:D16 (p20116)
@@ -449,7 +449,7 @@ def block_G():
         R.check("G12", f"the chart of the Carrier F_{Om}, with no generator: the conjugate of a count 1 ≤ k ≤ Ω − 2 is Ω − 1 − k and the two add to −1; the centre of the zeros is 2⁻¹ = 2S + 1 = −G = {2 * S + 1}, with G = 2S; the counts 0, S, 2S, 3S stand at 1, 3·4⁻¹, 2⁻¹, 4⁻¹; every zero of the Subject F_{p} is the same integer there, and its constant mode stands at 1 on both",
                 f["carrier_centre"] and f["cardinal_zeros"] and f["count_conjugate"] and f["zero_shared"], f"S = {S}; every count 1 … Ω − 2 of the chart")
         # 20:G13 (p20111)
-        R.check("G13", f"the critical circle on F_{p}: a point a·g^m of the sphere and its mirror a·g^−m carry a zero and the zero of the conjugate mode exactly when a(g^m + g^−m) = 1, with a² = ρ(1 − ρ), and the two zeros differ by 2iγ_k; one point at each phase below π but κ, none on the momentum meridian or at the origin, the centre 2⁻¹ = {2 * kap + 1} alone on the prime meridian; a zero has a point exactly when ρ(1 − ρ) is a square, and then one: {2 * kap - 1} points with distinct zeros; under X = 2ρ − 1, Y = 2a the relation a² = ρ(1 − ρ) is the conic X² + Y² = 1, with its classical count of {p - 1} points, two at a = 0 and the others in pairs ±a on those zeros; the points with a(g^m + g^−m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum −1, which carry the counts, π = {2 * kap} on the prime meridian, and share no point with the circle",
+        R.check("G13", f"the critical circle on F_{p}: a point a·g^m of the sphere and its mirror a·g^−m represent a zero and the zero of the conjugate mode exactly when a(g^m + g^−m) = 1, with a² = ρ(1 − ρ), and the two zeros differ by 2iγ_k; one point at each phase below π but κ, none on the momentum meridian or at the origin, the centre 2⁻¹ = {2 * kap + 1} alone on the prime meridian; a zero has a point exactly when ρ(1 − ρ) is a square, and then one: {2 * kap - 1} points with distinct zeros; under X = 2ρ − 1, Y = 2a the relation a² = ρ(1 − ρ) is the conic X² + Y² = 1, with its classical count of {p - 1} points, two at a = 0 and the others in pairs ±a on those zeros; the points with a(g^m + g^−m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum −1, which carry the counts, π = {2 * kap} on the prime meridian, and share no point with the circle",
                 f["circle_pair"] and f["circle_frequency"] and f["circle_meridians"] and f["circle_point"] and f["circle_count"] and f["circle_counts"] and f["circle_conic"] and f["circle_phase"] and f["circle_parallels"],
                 read if p < 1000 else f"{read}; the parallels and the phases on the least generator")
         # 20:G14 (p20115)
@@ -459,7 +459,7 @@ def block_G():
 
 @R.block("X", BLOCK["X"])
 def block_X():
-    """Block X — the classical statements read on the shell: 9 exact checks, three rows on the three laboratory pairs."""
+    """Block X — the classical statements on the shell: 9 exact checks, three rows on the three laboratory pairs."""
     for p, Om in PAIRS:
         f = count_facts(p, Om); kap, S = (p - 1) // 4, (Om - 1) // 4
         # 20:X1 (p20108)
