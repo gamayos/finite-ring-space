@@ -18,6 +18,11 @@ Exact integers, fractions and residues; the standard library only (gate G09).
     symbol_nullspace(spin, samples)   the gauge-invariant coefficient lines at a symbol, exact over ℚ
     tt_rank(k)                        the rank of the transverse-traceless projector at a rational direction
     laplacian_symbol_even(p, g)       the symbol 2 − g^k − g^{−k} is even in k on the cycle of 𝔽_p^×
+    central_difference(n)             the matrix of D = (T − T⁻¹)/2 on the cycle C_n, rational entries
+    nullity_Q(M)                      the nullity of a rational matrix (exact elimination)
+    nullity_Fp(M, p)                  the nullity of an integer matrix over 𝔽_p
+    central_difference_kernels(p)     on C_p: nullity over ℚ of D and of −D² (1 and 1), over 𝔽_p of −D² (2: j ↦ j), and
+                                      the transport −D² = ¼ P⁻¹ Δ P with P the relabelling x ↦ 2x and Δ the incidence Laplacian
     tree_count(n)                     det of the reduced Laplacian of the cycle C_n (= n)
     two_shift_run(m, gradu, T)        the registered trajectory under kick and transport: Δ²q = −∇u, m cancels
 """
@@ -293,6 +298,61 @@ def laplacian_symbol_even(p, g):
     even = all(sym(k) == sym(-k) for k in range(p - 1))
     zeros = [k for k in range(p - 1) if sym(k) == 0]
     return even, zeros
+
+
+# ---- the central-difference complex on the odd cycle (21:C15; the review of 21 November 2026) ----------------------------
+def central_difference(n):
+    """The matrix of the central difference D = (T − T⁻¹)/2 on the cycle C_n (T the shift f ↦ f(· + 1)), rational entries:
+    (Df)(i) = (f(i + 1) − f(i − 1))/2."""
+    half = Fraction(1, 2)
+    return [[(half if j == (i + 1) % n else -half if j == (i - 1) % n else Fraction(0)) for j in range(n)] for i in range(n)]
+
+
+def _matmul(A, B):
+    return [[sum(A[i][k] * B[k][j] for k in range(len(B))) for j in range(len(B[0]))] for i in range(len(A))]
+
+
+def nullity_Q(M):
+    """The nullity of a rational matrix, by exact elimination."""
+    return len(_nullspace(M))
+
+
+def nullity_Fp(M, p):
+    """The nullity of an integer matrix over 𝔽_p (a rational matrix with denominators prime to p is reduced first)."""
+    rows = [[(Fraction(x).numerator * pow(Fraction(x).denominator, -1, p)) % p for x in r] for r in M]
+    m, r = len(rows[0]), 0
+    for c in range(m):
+        piv = next((i for i in range(r, len(rows)) if rows[i][c]), None)
+        if piv is None: continue
+        rows[r], rows[piv] = rows[piv], rows[r]
+        inv = pow(rows[r][c], -1, p); rows[r] = [(v * inv) % p for v in rows[r]]
+        for i in range(len(rows)):
+            if i != r and rows[i][c]:
+                f = rows[i][c]; rows[i] = [(a - f * b) % p for a, b in zip(rows[i], rows[r])]
+        r += 1
+    return m - r
+
+
+def central_difference_kernels(p):
+    """On the odd cycle C_p: D = (T − T⁻¹)/2 and K = −D². Over ℚ both have nullity 1 (the constants); over 𝔽_p the
+    function j ↦ j has Dj = 1 and −D²j = 0, so −D² has nullity 2 there (the boundary the paper does not use); and
+    −D² = ¼ P⁻¹ Δ P with Δ = 2 − T − T⁻¹ the incidence Laplacian and P the relabelling (Pf)(i) = f(2i) (p odd; P⁻¹ T P = T²),
+    the symbols 4 sin²(πk/p) and sin²(2πk/p) in the chart. Returns the dict of the four facts."""
+    D = central_difference(p)
+    K = [[-x for x in row] for row in _matmul(D, D)]
+    n = len(D)
+    Lap = [[(Fraction(2) if j == i else Fraction(-1) if j in ((i + 1) % n, (i - 1) % n) else Fraction(0)) for j in range(n)] for i in range(n)]
+    P = [[(Fraction(1) if j == (2 * i) % n else Fraction(0)) for j in range(n)] for i in range(n)]      # (P f)(i) = f(2i)
+    Pinv = [[(Fraction(1) if (2 * j) % n == i else Fraction(0)) for j in range(n)] for i in range(n)]   # (P⁻¹ f)(2i) = f(i)
+    lin = [Fraction(j) for j in range(n)]
+    Dj = [sum(D[i][j] * lin[j] for j in range(n)) for i in range(n)]
+    Kj = [sum(K[i][j] * lin[j] for j in range(n)) for i in range(n)]
+    quarter = Fraction(1, 4)
+    transported = [[quarter * x for x in row] for row in _matmul(_matmul(Pinv, Lap), P)]       # P⁻¹ T P = T², so P⁻¹ Δ P = 2 − T² − T⁻²
+    return {"nullity_Q": (nullity_Q(D), nullity_Q(K)), "nullity_Fp_K": nullity_Fp(K, p), "nullity_Fp_D": nullity_Fp(D, p),
+            "Dj_is_one_mod_p": all((x.numerator * pow(x.denominator, -1, p) - 1) % p == 0 for x in Dj),
+            "Kj_is_zero_mod_p": all((x.numerator * pow(x.denominator, -1, p)) % p == 0 for x in Kj),
+            "transport": transported == K}
 
 
 # ---- the spanning-tree determinant of the cycle (21:C2's admissibility) -------------------------------------------------

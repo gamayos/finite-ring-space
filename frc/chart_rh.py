@@ -1,4 +1,4 @@
-"""frc.chart_rh — 20-rh's readings in floating point (chart tier; ledger migration, task LM36, 7 October 2026).
+"""frc.chart_rh — 20-rh's readings in floating point (chart tier; ledger migration, 7 October 2026).
 
 The chart theme holds the readings against the continuum, the only place where floats appear (frc/themes.py, rank 31 since 19 October 2026, the super theme at 30).
 This file holds the floating-point computations of 20-rh's validation package (src/20-rh/rh.py) that the ledger file
@@ -10,10 +10,20 @@ witness no row. This file uses `math` and `cmath` only, so the framework stays f
 function returns numbers that the ledger file compares with the package's stated values; the exact parts come from
 frc/horizon.py.
 
-    HEIGHTS                          the first thirty zero heights of ζ (Odlyzko's tables), validation markers only
-    window_labels(H)                 the prime-power labels n ≤ H with the chart's weight log ℓ
-    energy(H, gammas), peaks(H, lo, hi, step), five_peaks(H), resolution(H), energy_range(H, lo, hi, step)
-                                     the exhibit: |Σ Λ(n)(1 − log n/log H) n^{−1/2−iγ}| along the height, its peaks
+    HEIGHTS                          the first eighty zero heights of ζ, imported data of the readings (20:A6): the first thirty from
+                                     Odlyzko's tables, the next fifty written from mpmath.zetazero; all eighty equal the file zeros1 of
+                                     the tables (the first 100,000 zeros) at its nine decimals
+    window_weights(H, kind)          the weighted labels of a window (the primes, or the prime powers with log ℓ) and the mean
+    spectrum(H, t0, dt, steps, kind, sigma), maxima(t0, dt, es), peaks(H, count, lo, hi)
+                                     the spectrum of a window |Σ (λ(n) − λ̄) n^{σ+it}| (20:D13) and its peaks
+    subset_control(H)                the exhibit's protocol on every subset of the labels of a window (20:D14)
+    expint(z), label_step(u, T), window_count(H, T, x), riemann_counts(x, heights), emergence_reading()
+                                     the count of a window from its dual below a height, and Riemann's formula cut at
+                                     the same height (20:D16)
+    vector_count(labels, T, x, weights), count_bound(labels, x, weights), bound_reading()
+                                     the count of a real vector on a list of labels below a height and the bound on its
+                                     difference from the count of the vector below a position (20:D17)
+    power_tail(M, H, s)              Σ n^s over M ≤ n ≤ H by the Euler–Maclaurin formula
     characters_parseval(p, g, base)  the chart's characters on ℓ²(F_p^×): orthogonality, Parseval, inversion, the shift
     dlog_loading(p, labels, lam)     the window's labels read in the discrete logarithm: the loadings of the nontrivial modes
     characters(p, g)                 the complex reading of the shell theorem on ℓ²(F_p^×): mean, orthonormality, shift
@@ -33,7 +43,17 @@ HEIGHTS = [
     52.970321477714460, 56.446247697063394, 59.347044002602353, 60.831778524609809, 65.112544048081606,
     67.079810529494173, 69.546401711173979, 72.067157674481907, 75.704690699083933, 77.144840068874805,
     79.337375020249367, 82.910380854086030, 84.735492980517050, 87.425274613125229, 88.809111207634465,
-    92.491899270558484, 94.651344040519886, 95.870634228245309, 98.831194218193692, 101.317851005731392]
+    92.491899270558484, 94.651344040519886, 95.870634228245309, 98.831194218193692, 101.317851005731392,
+    103.725538040478339, 105.446623052326094, 107.168611184276408, 111.029535543169675, 111.874659176992637,
+    114.320220915452713, 116.226680320857554, 118.790782865976217, 121.370125002420646, 122.946829293552588,
+    124.256818554345767, 127.516683879596495, 129.578704199956051, 131.087688530932657, 133.497737202997586,
+    134.756509753373871, 138.116042054533443, 139.736208952121389, 141.123707404021124, 143.111845807620633,
+    146.000982486765519, 147.422765342559602, 150.053520420784880, 150.925257612241467, 153.024693811198896,
+    156.112909294237868, 157.597591817594060, 158.849988171420499, 161.188964137596028, 163.030709687181987,
+    165.537069187900419, 167.184439978174513, 169.094515415568821, 169.911976479411699, 173.411536519591553,
+    174.754191523365726, 176.441434297710419, 178.377407776099977, 179.916484020256996, 182.207078484366462,
+    184.874467848387509, 185.598783677707471, 187.228922583501852, 189.416158656016937, 192.026656360713787,
+    193.079726603845704, 195.265396679529235, 196.876481840958317, 198.015309676251912, 201.264751943703789]
 
 
 def vm_float(n, base):
@@ -261,55 +281,293 @@ def ratio(x, y):
     return float(x) / float(y)
 
 
-# ---- the exhibit (Obs. exhibit; row F9) and the cycle's own scale coordinate (row O9), 17 October 2026 --------------------
-def window_labels(H):
-    """The prime-power labels n ≤ H with the chart's weight Λ(n) = log ℓ, as (labels, logs), labels in the order of the sieve
-    (each prime with its powers), as the package lists them."""
-    sieve = [True] * (H + 1)
-    if H >= 0: sieve[0] = False
-    if H >= 1: sieve[1] = False
-    for i in range(2, int(math.isqrt(H)) + 1):
-        if sieve[i]:
-            for j in range(i * i, H + 1, i): sieve[j] = False
-    ns, ls = [], []
-    for q in range(2, H + 1):
-        if sieve[q]:
-            m = q
-            while m <= H:
-                ns.append(m); ls.append(math.log(q)); m *= q
-    return ns, ls
+# ---- the spectrum of a window [chart] (Obs. exhibit; rows D13, D14, D15), 21 November 2026 -----------------------------
+# The labels 1..H carry a weight (1 on the primes, or log l on the prime powers l^a); its mean over the labels is removed;
+# the label n is read as n^(sigma + i t). Pure python; the constant part beyond `head` labels is summed by the
+# Euler-Maclaurin formula, so the depth 10^6 costs about 4 ms a height.
+def window_weights(H, kind="primes"):
+    """The labels n <= H with a nonzero weight, their weights, and the mean of the weight over the labels 1..H.
+    kind "primes": 1 on the primes; kind "mangoldt": log l on the prime powers l^a (the von Mangoldt weight)."""
+    sieve = bytearray([1]) * (H + 1); sieve[0:2] = b"\0\0"
+    for i in range(2, math.isqrt(H) + 1):
+        if sieve[i]: sieve[i * i::i] = bytearray(len(sieve[i * i::i]))
+    labels, weights = [], []
+    for l in range(2, H + 1):
+        if sieve[l]:
+            if kind == "primes":
+                labels.append(l); weights.append(1.0)
+            else:
+                q, w = l, math.log(l)
+                while q <= H:
+                    labels.append(q); weights.append(w); q *= l
+    return labels, weights, sum(weights) / H
 
 
-def energy(H, gammas):
-    """The exhibit's energy |Σ_{n≤H} Λ(n)(1 − log n/log H) n^{−1/2−iγ}| at each height γ [chart]."""
-    ns, ls = window_labels(H)
-    w = [l * (1 - math.log(n) / math.log(H)) * n ** -0.5 for n, l in zip(ns, ls)]
-    ln = [math.log(n) for n in ns]
-    return [abs(sum(wi * cmath.exp(-1j * g * li) for wi, li in zip(w, ln))) for g in gammas]
+def power_tail(M, H, s):
+    """The sum of n^s over M <= n <= H by the Euler-Maclaurin formula with three corrections (no zeta is evaluated);
+    for |s| <= 60 and M >= 2000 the next correction is below 1e-13 of M^Re(s)."""
+    f = lambda x, e: cmath.exp(e * math.log(x))
+    out = (f(H, s + 1) - f(M, s + 1)) / (s + 1) + (f(H, s) + f(M, s)) / 2
+    out += s / 12 * (f(H, s - 1) - f(M, s - 1))
+    out -= s * (s - 1) * (s - 2) / 720 * (f(H, s - 3) - f(M, s - 3))
+    out += s * (s - 1) * (s - 2) * (s - 3) * (s - 4) / 30240 * (f(H, s - 5) - f(M, s - 5))
+    return out
 
 
-def peaks(H, lo, hi, step=0.02):
-    """The local maxima of the window's energy on [lo, hi] at the grid step, as (γ, energy), tallest first."""
-    gam = [lo + i * step for i in range(int(round((hi - lo) / step)) + 1)]
-    e = energy(H, gam)
-    pk = [(gam[i], e[i]) for i in range(1, len(gam) - 1) if e[i] > e[i - 1] and e[i] > e[i + 1]]
-    return sorted(pk, key=lambda t: -t[1])
+def spectrum(H, t0, dt, steps, kind="primes", sigma=-0.5, head=2000):
+    """E(t) = |sum over n <= H of (weight(n) - mean) n^(sigma + i t)| at t = t0 + j dt, j = 0..steps-1.
+    The weighted labels and the first labels of the constant part are summed term by term; beyond `head` labels the
+    constant part's sum is the Euler-Maclaurin tail."""
+    labels, weights, mean = window_weights(H, kind)
+    M = min(H, head)
+    ln = [math.log(n) for n in labels]
+    z = [w * math.exp(sigma * x) * cmath.exp(1j * t0 * x) for w, x in zip(weights, ln)]
+    r = [cmath.exp(1j * dt * x) for x in ln]
+    lh = [math.log(n) for n in range(1, M + 1)]
+    zh = [math.exp(sigma * x) * cmath.exp(1j * t0 * x) for x in lh]
+    rh = [cmath.exp(1j * dt * x) for x in lh]
+    out = []
+    for j in range(steps):
+        const = sum(zh)
+        if H > M:
+            const += power_tail(M + 1, H, complex(sigma, t0 + j * dt))
+        out.append(abs(sum(z) - mean * const))
+        z = [a * b for a, b in zip(z, r)]
+        zh = [a * b for a, b in zip(zh, rh)]
+    return out
 
 
-def five_peaks(H):
-    """The window's five peaks: the five tallest peaks on the range 10 to 36 of the chart's height, by height."""
-    return sorted(g for g, _ in peaks(H, 10, 36)[:5])
+def maxima(t0, dt, es):
+    """The local maxima of a sampled spectrum, each refined by the parabola through its three samples: (t, height),
+    tallest first."""
+    out = []
+    for i in range(1, len(es) - 1):
+        a, b, c = es[i - 1], es[i], es[i + 1]
+        if b > a and b >= c:
+            d = (a - c) / (2 * (a - 2 * b + c))
+            out.append((t0 + (i + d) * dt, b - (a - c) * d / 4))
+    return sorted(out, key=lambda p: -p[1])
 
 
-def resolution(H):
-    """The window's resolution 2π/log H."""
-    return 2 * math.pi / math.log(H)
+def peaks(H, count, lo, hi, dt=0.01, kind="primes", sigma=-0.5):
+    """The `count` tallest maxima of the window's spectrum on lo <= t <= hi, by height: [(t, height)]."""
+    steps = int(round((hi - lo) / dt)) + 1
+    return sorted(maxima(lo, dt, spectrum(H, lo, dt, steps, kind, sigma))[:count])
 
 
-def energy_range(H, lo, hi, step=0.02):
-    """max − min of the window's energy on [lo, hi]: zero for a flat energy."""
-    e = energy(H, [lo + i * step for i in range(int(round((hi - lo) / step)))])
-    return max(e) - min(e)
+# The exhibit's readings (20:D14, D15): the windows with the bound of their five peaks, and the deep window's exponents.
+WINDOWS = ((13, 0.18), (39, 0.21), (173, 0.27), (1551, 0.21))
+DEEP_SIGMAS = (-0.5, -0.25, -0.75, 0.0, -1.0)
+
+
+def window_reading():
+    """The reading of 20:D14 on the windows of the laboratory Subjects 173 and 1549 (depth 13 and 39) and of the
+    laboratory Carriers 30089 and 2408561 (depth 173 and 1551): the prime vector with its mean removed sums to 0, the
+    spectrum is even in the height, and the five tallest peaks on 10 <= t <= 36 lie within the window's bound of the first
+    five heights. Returns (ok, detail)."""
+    ok, parts = True, []
+    for H, bound in WINDOWS:
+        labels, weights, mean = window_weights(H)
+        free = sum(weights) - mean * H                                   # the weights with their mean removed, summed over the H labels
+        up, down = spectrum(H, 14.0, 7.0, 4), spectrum(H, -14.0, -7.0, 4)    # E at 14, 21, 28, 35 and at their negatives
+        pk = peaks(H, 5, 10.0, 36.0)
+        d = max(abs(t - h) for (t, _), h in zip(pk, HEIGHTS))
+        ok &= abs(free) < 1e-9 and all(abs(a - b) < 1e-9 for a, b in zip(up, down)) and d <= bound
+        parts.append(f"{H}: {d:.3f}")
+    return ok, "largest distances " + ", ".join(parts)
+
+
+def subset_control(H=13, bound=0.18, nxt=0.26, lo=10.0, hi=36.0, dt=0.01):
+    """The control of 20:D14 at depth H: every proper nonempty subset of the labels 1..H read as the support of a vector,
+    by the protocol of the exhibit (mean removed, the five tallest maxima on lo <= t <= hi, sorted, against the first five
+    heights). A subset and its complement give the same spectrum, so the subsets without the label 1 list each pair once:
+    2^(H-1) - 1 pairs. A pair with fewer than five maxima on the range is counted and lies within no bound (13 pairs at
+    depth 13). The primes' pair alone lies within `bound`, it is the closest of all, and the next pair is at `nxt` to two
+    decimals. Returns (ok, detail)."""
+    steps = int(round((hi - lo) / dt)) + 1
+    ln = [math.log(n) for n in range(1, H + 1)]
+    cols = [[math.exp(-0.5 * x) * cmath.exp(1j * (lo + j * dt) * x) for j in range(steps)] for x in ln]
+    total = [sum(c[j] for c in cols) for j in range(steps)]
+    primes = set(window_weights(H)[0])
+    run, inside, size = [0j] * steps, [False] * (H + 1), 0
+    best, second, within, pairs, short, best_set = None, None, 0, 0, 0, None
+    for i in range(1, 2 ** (H - 1)):                                     # Gray code over the labels 2..H: one label changes at a step
+        n = 2 + ((i & -i).bit_length() - 1)
+        col = cols[n - 1]
+        if inside[n]:
+            run = [a - b for a, b in zip(run, col)]; size -= 1
+        else:
+            run = [a + b for a, b in zip(run, col)]; size += 1
+        inside[n] = not inside[n]
+        frac = size / H
+        five = sorted(maxima(lo, dt, [abs(a - frac * t) for a, t in zip(run, total)])[:5])
+        pairs += 1
+        if len(five) < 5:
+            short += 1; continue
+        d = max(abs(t - h) for (t, _), h in zip(five, HEIGHTS))
+        within += d <= bound
+        if best is None or d < best:
+            best, second, best_set = d, best, {m for m in range(2, H + 1) if inside[m]}
+        elif second is None or d < second:
+            second = d
+    ok = pairs == 2 ** (H - 1) - 1 and within == 1 and best_set == primes and best <= bound < second and abs(second - nxt) <= 0.005
+    ok &= short == 13 or H != 13                                             # at depth 13 thirteen pairs have fewer than five maxima on the range
+    return ok, f"{pairs} pairs of subsets: {within} within {bound}, the primes' pair at {best:.3f}, the next at {second:.3f}, {short} with fewer than five maxima"
+
+
+def deep_reading(H=10 ** 6):
+    """The reading of 20:D15 at depth H with the von Mangoldt weight: a label reads with the modulus n^sigma, the
+    spectrum is at most the sum of the moduli, the ten tallest peaks on 10 <= t <= 52 lie within 0.045 of the first ten
+    heights. Returns (ok, detail)."""
+    labels, weights, mean = window_weights(H, "mangoldt")
+    pk = peaks(H, 10, 10.0, 52.0, dt=0.02, kind="mangoldt")
+    d = max(abs(t - h) for (t, _), h in zip(pk, HEIGHTS))
+    weight = dict(zip(labels, weights))
+    cap = sum(abs(weight.get(n, 0.0) - mean) * n ** -0.5 for n in range(1, H + 1))    # the sum of the moduli at sigma = -1/2
+    ok = d <= 0.045 and max(h for _, h in pk) <= cap
+    ok &= all(abs(abs(n ** complex(s, t)) - n ** s) < 1e-9 * n ** s for n in (2, 13, H) for s in DEEP_SIGMAS for t in (HEIGHTS[0], HEIGHTS[9]))
+    return ok, f"largest distance {d:.3f}"
+
+
+# The emergence of the count (20:D16): the exponential integral, the step of a label, the count of a window from its
+# dual, and Riemann's formula cut at a height. The heights with the number of zeros below each and the three bounds:
+# the window's count against the count, Riemann's formula against the count, the two against each other.
+EULER = 0.5772156649015329                                               # Euler's constant, the constant term of the series of Ei
+MOBIUS = (0, 1, -1, -1, 0, -1, 1, -1)                                    # the Moebius function at 0..7: positions below 256
+EMERGENCE = ((35.0, 5, 0.38, 0.48, 0.14), (78.0, 20, 0.21, 0.22, 0.10), (202.0, 80, 0.11, 0.15, 0.10))
+
+
+def expint(z):
+    """The exponential integral Ei(z) of a complex z off the negative real axis: gamma + log z + the sum of z^k/(k k!)
+    for |z| <= 6 and in the sector |Im z| < Re z, and elsewhere the continued fraction of E1 at -z with
+    Ei(z) = -E1(-z) +- i pi, the sign that of Im z. The readings below use it on the positive reals up to 4 and on
+    arguments (1/2 + it) u with t >= 14, where it agrees with scipy.special.expi and exp1 and with mpmath.ei to 1e-14."""
+    z = complex(z)
+    if abs(z) <= 6.0 or abs(z.imag) < z.real:
+        out, term = EULER + cmath.log(z), 1.0 + 0j
+        for k in range(1, 400):
+            term *= z / k
+            out += term / k
+            if abs(term) < 1e-17 * max(1.0, abs(out)): break
+        return out
+    w = -z
+    b = w + 1.0; c = None; d = 1.0 / b; h = d
+    for i in range(1, 400):
+        a = -i * i; b += 2.0
+        d = 1.0 / (a * d + b); c = b if c is None else b + a / c
+        ratio_ = c * d; h *= ratio_
+        if abs(ratio_ - 1.0) < 1e-15: break
+    return -h * cmath.exp(-w) + (1j * math.pi if z.imag >= 0 else -1j * math.pi)
+
+
+def label_step(u, T):
+    """The step of one label in the count below the height T: (1/2 pi) times the integral over -T <= t <= T of
+    e^((1/2 - it) u)/(1/2 - it), with u = log(x/n). It is Im Ei((1/2 + iT) u)/pi, plus 1 for u < 0, and at the label
+    itself, u = 0, it is arctan(2T)/pi, the middle of the step."""
+    if u == 0: return math.atan(2.0 * T) / math.pi
+    return expint(complex(0.5, T) * u).imag / math.pi + (1.0 if u < 0 else 0.0)
+
+
+def window_count(H, T, x):
+    """The count of the window of depth H from its dual below the height T (20:D16), at a position x: (1/2 pi) times
+    the integral over -T <= t <= T of w^(t) x^(1/2 - it)/(1/2 - it), with w^(t) the sum of n^(-1/2 + it) over the
+    primes n of the window, its Dirichlet polynomial. Label by label it is the sum of the steps."""
+    return sum(label_step(math.log(x / n), T) for n in window_weights(H)[0])
+
+
+def riemann_counts(x, heights):
+    """Riemann's formula for the count of the primes up to x, cut at the zeros below each of the heights (20:A6):
+    the sum over n of mu(n)/n f(x^(1/n)), with f(y) = li(y) - the sum over the zeros of li(y^rho) - log 2 + the integral
+    of 1/(u (u^2 - 1) log u) over u >= y, and li(y^rho) = Ei(rho log y). The terms with x^(1/n) < 2 are left out, as in
+    the formula itself."""
+    out = [0.0] * len(heights)
+    for n in range(1, int(math.log2(x)) + 1):
+        if not MOBIUS[n]: continue
+        ly = math.log(x) / n
+        f = lambda s: 1.0 / (s * math.expm1(2.0 * s))                    # the integral, in s = log u, by Simpson's rule on [ly, ly + 12]
+        tail = (f(ly) + f(ly + 12.0) + sum((4 if j % 2 else 2) * f(ly + 0.02 * j) for j in range(1, 600))) * 0.02 / 3
+        base = expint(ly).real - math.log(2.0) + tail
+        zeros = [0.0] * len(heights)
+        for g in HEIGHTS:
+            e = expint(complex(0.5, g) * ly).real
+            for j, T in enumerate(heights):
+                if g < T: zeros[j] += e
+        for j in range(len(heights)): out[j] += MOBIUS[n] / n * (base - 2.0 * zeros[j])
+    return out
+
+
+def emergence_reading(H=39):
+    """The reading of 20:D16 on the window of the laboratory Subject 1549 (depth 39, twelve primes) at the heights 35,
+    78 and 202, which have 5, 20 and 80 zeros of positive height below them. At the half-integers 2.5 to 38.5 the count from the window's
+    dual lies within 0.38, 0.21 and 0.11 of the count of the primes, Riemann's formula within 0.48, 0.22 and 0.15, and
+    the two within 0.14, 0.10 and 0.10 of each other. At the twelve prime labels each reads the middle of the step, the
+    count less one half, within its own bound. The bounds between the two are for the half-integers: at the prime label
+    23 and the height 78 the two differ by 0.106. Returns (ok, detail)."""
+    primes = window_weights(H)[0]
+    xs = [n + 0.5 for n in range(2, H)]
+    true = [sum(1 for l in primes if l < x) for x in xs]
+    middle = [sum(1 for l in primes if l <= p) - 0.5 for p in primes]
+    heights = [e[0] for e in EMERGENCE]
+    formula = [riemann_counts(x, heights) for x in xs]
+    at_labels = [riemann_counts(float(p), heights) for p in primes]
+    ok, parts = len(primes) == 12, []
+    for j, (T, zeros, b_window, b_zeros, b_both) in enumerate(EMERGENCE):
+        w = [window_count(H, T, x) for x in xs]; r = [row[j] for row in formula]
+        dw = max(abs(a - c) for a, c in zip(w, true)); dr = max(abs(a - c) for a, c in zip(r, true)); db = max(abs(a - b) for a, b in zip(w, r))
+        lw = max(abs(window_count(H, T, p) - m) for p, m in zip(primes, middle)); lr = max(abs(row[j] - m) for row, m in zip(at_labels, middle))
+        ok &= sum(1 for g in HEIGHTS if g < T) == zeros and dw <= b_window and dr <= b_zeros and db <= b_both and lw <= b_window and lr <= b_zeros
+        parts.append(f"{T:.0f}: {dw:.3f}, {dr:.3f}, {db:.3f} ({lw:.3f}, {lr:.3f})")
+    gap = abs(window_count(H, 78.0, 23.0) - at_labels[primes.index(23)][heights.index(78.0)])
+    ok &= abs(gap - 0.106) < 0.0005 and gap > EMERGENCE[1][4]                # above the bound 0.10 that holds between the two at the half-integers
+    return ok, ("largest differences (the window's count, Riemann's formula, between the two; in brackets the first two at the prime labels, "
+                "from the count less one half) at the heights " + "; ".join(parts) + f"; at the label 23 and the height 78 the two differ by {gap:.3f}")
+
+
+# The bound of the count (20:D17): the count of a real vector on a list of labels below a height, and the bound
+# B(x)/T on its difference from the count of the vector below a position x that is no label.
+def vector_count(labels, T, x, weights=None):
+    """The count below the height T of a real vector on a list of labels, at a position x: the sum over the labels of
+    the weight times the step of the label. Without weights the vector is the indicator of the labels."""
+    weights = weights or [1.0] * len(labels)
+    return sum(w * label_step(math.log(x / n), T) for n, w in zip(labels, weights))
+
+
+def count_bound(labels, x, weights=None):
+    """B(x) of 20:D17 for a real vector on a list of labels, at a position x that is no label: (1/pi) times the sum
+    over the labels of |w(n)| sqrt(x/n)/|log(x/n)|. The count below the height T lies within B(x)/T of the count of the
+    vector below x (the theorem FRC.Chart.Perron.count_bound, on Mathlib)."""
+    weights = weights or [1.0] * len(labels)
+    return sum(abs(w) * math.sqrt(x / n) / abs(math.log(x / n)) for n, w in zip(labels, weights)) / math.pi
+
+
+def bound_reading(H=39):
+    """The reading of 20:D17. On the windows of depth 13 and H, at the half-integers and the heights 35, 67, 78 and
+    202, for the prime vector and for the indicator vector of all the labels, the count lies within B(x)/T of the count
+    of the vector below x; so it does for a signed vector on the labels of depth H at the quarter positions. For
+    H = 39 the prime vector has B(x) <= 33.14 at the half-integers 2.5 to 38.5: the bound is at most
+    0.95, 0.43 and 0.17 at the heights 35, 78 and 202 and below one half from the height 67 on, and the nearest integer
+    to the count at the height 67 is the count of the primes. Returns (ok, detail)."""
+    ok, worst = True, 0.0
+    heights = (35.0, 67.0, 78.0, 202.0)
+    for depth in (13, H):
+        xs = [n + 0.5 for n in range(2, depth)]
+        for labels in (window_weights(depth)[0], list(range(1, depth + 1))):
+            for T in heights:
+                for x in xs:
+                    ratio = abs(vector_count(labels, T, x) - sum(1 for n in labels if n < x)) * T / count_bound(labels, x)
+                    worst = max(worst, ratio); ok &= ratio <= 1.0
+    labels = list(range(1, H + 1)); signed = [(-1.0) ** n * (1 + n % 3) / 2 for n in labels]
+    for T in heights:
+        for x in [n + 0.25 for n in range(0, H + 1)]:
+            below = sum(w for n, w in zip(labels, signed) if n < x)
+            ratio = abs(vector_count(labels, T, x, signed) - below) * T / count_bound(labels, x, signed)
+            worst = max(worst, ratio); ok &= ratio <= 1.0
+    primes = window_weights(H)[0]; xs = [n + 0.5 for n in range(2, H)]
+    top = max(count_bound(primes, x) for x in xs)
+    ok &= top <= 33.14 and 33.14 / 67.0 < 0.5
+    ok &= all(math.ceil(100 * 33.14 / T) / 100 == b for T, b in ((35.0, 0.95), (78.0, 0.43), (202.0, 0.17)))
+    ok &= all(round(vector_count(primes, 67.0, x)) == sum(1 for n in primes if n < x) for x in xs)
+    return ok, f"largest B(x) at the half-integers of depth {H}: {top:.3f}; largest ratio of a difference to its bound: {worst:.3f}"
 
 
 def characters_parseval(p, g, base):

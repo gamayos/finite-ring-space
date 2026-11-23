@@ -31,7 +31,7 @@ division an inverse on the shell), the `SU(2)` series beside the instance `2T = 
 (`c2_lab`). The adjoint wrap's two plaquette layers (`adjoint_two_sheets`, 46:C9). The chains of the logarithm (the artanh
 chain with its geometric majorant, `lnBr`) and the six-place bracket of `π` (`piBr`), both in `Theme/Brackets.lean`, read the chart's constants as
 brackets of window fractions, and decide: the declared coupling against the Herbst value, `π² > 6 ln 2`
-(`herbst_comparison`, 46:C10); the plaquette channel's ratios and spreads at the chart's cells (`plaquette_cells`, 46:C11); the
+(`herbst_comparison`, 46:C10); the plaquette channel's ratio and spread at channel unity (`plaquette_cells`, 46:C11); the
 one-loop run from `M_Z` to `m_τ` (`running_one_loop`, 46:P2). The family of the minimal wrap against the lattice in
 thousandths (`wrap_family`, 46:C12) and the colour factors against LEP in hundredths (`colour_factors_within`, 46:P1, X4)
 are integer comparisons. The adjoint without an invariant line (`adjoint_no_invariant`, 46:X1). The two rationals of the
@@ -543,59 +543,52 @@ def munster : List WF :=
 def polyP (o : Nat) (u : WF) : WF :=
   (List.range o).foldl (fun s k => WF.add s (WF.mul (nth (0, 1) munster (k + 1)) (WF.pow u (k + 1)))) (0, 1)
 
-/-- The bracket of `x = −ln u = ln(1/u)` by the chain. -/
-def xBr (u : WF) : BR := lnBr (WF.inv u) 12
+/-- The bracket of `x = −ln u = ln(1/u)` by the chain at stage `n`. -/
+def xBr (u : WF) (n : Nat) : BR := lnBr (WF.inv u) n
 
 /-- `(4x + P)² / x`, the square of the ratio `m/√σ`. -/
 def ratioSq (P x : WF) : WF :=
   let s := WF.add (WF.mul (WF.ofNat 4) x) P
   WF.div (WF.mul s s) x
 
-/-- The ratio at order `o` lies in `(lo, hi)`: `4 x_lo + P > 0`, `lo² < (4x_lo + P)²/x_lo` and `(4x_hi + P)²/x_hi < hi²`. -/
-def ratioWithin (o : Nat) (u lo hi : WF) : Bool :=
-  let P := polyP o u; let x := xBr u
+/-- The ratio at order `o` lies in `(lo, hi)`, with the chain at stage `n`: `4 x_lo + P > 0`, `lo² < (4x_lo + P)²/x_lo` and
+`(4x_hi + P)²/x_hi < hi²`. -/
+def ratioWithin (n o : Nat) (u lo hi : WF) : Bool :=
+  let P := polyP o u; let x := xBr u n
   WF.lt (0, 1) (WF.add (WF.mul (WF.ofNat 4) x.1) P) &&
   WF.lt (WF.mul lo lo) (ratioSq P x.1) && WF.lt (ratioSq P x.2) (WF.mul hi hi)
 
 /-- An upper bound of the relative spread of the orders `3, 5, 7`, `(max P − min P)/(4 x_lo + P₇)`. -/
-def spreadHi (u : WF) : WF :=
+def spreadHi (n : Nat) (u : WF) : WF :=
   let a := polyP 3 u; let b := polyP 5 u; let c := polyP 7 u
-  WF.div (WF.sub (WF.max a (WF.max b c)) (WF.min a (WF.min b c))) (WF.add (WF.mul (WF.ofNat 4) (xBr u).1) c)
+  WF.div (WF.sub (WF.max a (WF.max b c)) (WF.min a (WF.min b c))) (WF.add (WF.mul (WF.ofNat 4) (xBr u n).1) c)
 
 /-- A lower bound of the same spread, with `x_hi`. -/
-def spreadLo (u : WF) : WF :=
+def spreadLo (n : Nat) (u : WF) : WF :=
   let a := polyP 3 u; let b := polyP 5 u; let c := polyP 7 u
-  WF.div (WF.sub (WF.max a (WF.max b c)) (WF.min a (WF.min b c))) (WF.add (WF.mul (WF.ofNat 4) (xBr u).2) c)
+  WF.div (WF.sub (WF.max a (WF.max b c)) (WF.min a (WF.min b c))) (WF.add (WF.mul (WF.ofNat 4) (xBr u n).2) c)
 
-/-- The sum of the computed terms of `c₃` through `ϑ⁷` at channel unity, `ϑ = 1`: the sum of the fractions of `c3_fractions`. -/
-def uAtUnity : WF :=
+/-- The sum of the computed terms of `c₃` through `ϑ⁷` at the stiffness `ϑ`: the fractions of `c3_fractions` against the
+powers of `ϑ`. -/
+def uAt (th : WF) : WF :=
   let c := c3WF [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 973] 8
-  (List.range 8).foldl (fun s k => WF.add s (wsCoeff c k)) (0, 1)
+  (List.range 8).foldl (fun s k => WF.add s (WF.mul (wsCoeff c k) (WF.pow th k))) (0, 1)
 
-/-- 46:C11 — the plaquette channel at the chart's cells (46:B6), at the cells' `u` to four decimals, `u = 0.0465, 0.0842,
-0.1246, 0.1671` for `n = 9, 8, 7, 6`: at order `7`, `m/√σ ∈ (6.85, 6.95), (6.15, 6.25), (5.55, 5.65), (5.05, 5.15)`, with the
-orders `3, 5, 7` within `1 %`; at `n = 4` (`u = 0.2553`) the three orders lie above `3.7`; at `n = 3` (`u = 0.2994`) the
-order-`5` value lies in `(3.4, 3.7)` and the orders `3` and `7` above `3.7`; at `n = 2` (`u = 0.3425`) the order-`3` value
-lies in `(3.4, 3.7)` and the orders `5` and `7` below `3.4`; at channel unity `u = 23/54` exactly, and the orders `3, 5, 7`
-lie in `(2.9, 3.0), (0.4, 0.5), (2.8, 2.9)`. That the abscissae are the cells' `u`, the sums of the computed terms of `c₃` through `ϑ⁷` at the cells' stiffness, is the chart check of the
-ledger file and a theorem on Mathlib (`FRC.YangMillsML.plaquette_cells_values`). -/
+/-- 46:C7 — the computed terms of `c₃` through `ϑ⁷` sum to `23/54` at the stiffness `ϑ = 1`. -/
+theorem c3_sum_at_one : uAt (WF.ofNat 1) = WF.frac 23 54 := by
+  decide +kernel
+
+/-- 46:C11 — the plaquette channel at channel unity (46:B6), where the stiffness is `ϑ = 1/24` (46:A16). The computed terms of
+`c₃` through `ϑ⁷` sum there to `u = 140458562483/9906778275840`, between `0.0141` and `0.0142`. At the abscissa `0.0142`, the
+row's `u`, with the chain of the logarithm at stage `2`, the orders `3, 5, 7` of `m/√σ` lie in `(8.2, 8.3)`, above the lattice
+bracket `(3.4, 3.7)`, and their relative spread is below `10⁻⁶`. The stage `2` keeps every integer that the comparisons form
+below `10¹⁰⁷`. The ratio at the exact `u` over the reals, in `(8.23, 8.24)`, is a theorem on Mathlib
+(`FRC.YangMillsML.plaquette_cells_values`) and the chart check of the ledger file. -/
 theorem plaquette_cells :
-    ratioWithin 7 (WF.frac 465 10000) (WF.frac 685 100) (WF.frac 695 100) = true ∧
-    ratioWithin 7 (WF.frac 842 10000) (WF.frac 615 100) (WF.frac 625 100) = true ∧
-    ratioWithin 7 (WF.frac 1246 10000) (WF.frac 555 100) (WF.frac 565 100) = true ∧
-    ratioWithin 7 (WF.frac 1671 10000) (WF.frac 505 100) (WF.frac 515 100) = true ∧
-    ([WF.frac 465 10000, WF.frac 842 10000, WF.frac 1246 10000, WF.frac 1671 10000].all fun u => WF.lt (spreadHi u) (WF.frac 1 100)) = true ∧
-    ([3, 5, 7].all fun o => ratioWithin o (WF.frac 2553 10000) (WF.frac 37 10) (WF.frac 5 1)) = true ∧
-    ratioWithin 3 (WF.frac 2994 10000) (WF.frac 37 10) (WF.frac 41 10) = true ∧
-    ratioWithin 5 (WF.frac 2994 10000) (WF.frac 34 10) (WF.frac 37 10) = true ∧
-    ratioWithin 7 (WF.frac 2994 10000) (WF.frac 37 10) (WF.frac 4 1) = true ∧
-    ratioWithin 3 (WF.frac 3425 10000) (WF.frac 34 10) (WF.frac 37 10) = true ∧
-    ratioWithin 5 (WF.frac 3425 10000) (WF.frac 25 10) (WF.frac 34 10) = true ∧
-    ratioWithin 7 (WF.frac 3425 10000) (WF.frac 3 1) (WF.frac 34 10) = true ∧
-    uAtUnity = WF.frac 23 54 ∧
-    ratioWithin 3 (WF.frac 23 54) (WF.frac 29 10) (WF.frac 3 1) = true ∧
-    ratioWithin 5 (WF.frac 23 54) (WF.frac 4 10) (WF.frac 5 10) = true ∧
-    ratioWithin 7 (WF.frac 23 54) (WF.frac 28 10) (WF.frac 29 10) = true := by
+    uAt (WF.frac 1 24) = WF.frac 140458562483 9906778275840 ∧
+    (WF.lt (WF.frac 141 10000) (uAt (WF.frac 1 24)) && WF.lt (uAt (WF.frac 1 24)) (WF.frac 142 10000)) = true ∧
+    ([3, 5, 7].all fun o => ratioWithin 2 o (WF.frac 142 10000) (WF.frac 82 10) (WF.frac 83 10)) = true ∧
+    WF.lt (spreadHi 2 (WF.frac 142 10000)) (WF.frac 1 1000000) = true := by
   decide +kernel
 
 /-! ## The family of the minimal wrap against the lattice (46:C12)
@@ -640,12 +633,13 @@ theorem colour_factors_within :
 
 `1/α_s(μ)` is linear in `ln μ` with slope `b₀/2π` between thresholds (the window rational `b₀ = 23/3` for five flavours,
 `25/3` for four, C5): `1/α(m_τ) = 1/α(M_Z) − (23/3) ln(M_Z/m_b)/(2π) − (25/3) ln(m_b/m_τ)/(2π)` with `α(M_Z) = 0.1180`,
-`M_Z = 91.1876`, `m_b = 4.18`, `m_τ = 1.77686` (A3). The logarithms are chains, `π` the six-place bracket. -/
+`M_Z = 91.1876`, `m_b = 4.18`, `m_τ = 1.77686` (A3). The logarithms are chains at stage `3`, which keeps every integer of the
+comparisons below `10⁸⁰`; `π` is the six-place bracket. -/
 
 /-- The subtracted term `T = ((23/3) ℓ₁ + (25/3) ℓ₂)/(2π)` as a bracket, `ℓ₁ = ln(M_Z/m_b)`, `ℓ₂ = ln(m_b/m_τ)`. -/
 def runTerm : BR :=
-  let l1 := lnBr (WF.frac 911876 41800) 12
-  let l2 := lnBr (WF.frac 418000 177686) 12
+  let l1 := lnBr (WF.frac 911876 41800) 3
+  let l2 := lnBr (WF.frac 418000 177686) 3
   let s : BR := BR.add (BR.smul 23 l1) (BR.smul 25 l2)
   (WF.div s.1 (WF.mul (WF.ofNat 6) piBr.2), WF.div s.2 (WF.mul (WF.ofNat 6) piBr.1))
 

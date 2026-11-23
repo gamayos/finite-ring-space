@@ -1,6 +1,6 @@
 """20-rh's ledger file (frc/ledgers/p20_rh.py; task LM36, rewritten with the paper on 17 October 2026): the horizon theme's
 resonance arithmetic and the chart file frc/chart_rh.py, each value computed two ways; the ledger file green, its markers on
-its deciding checks with the keys of the generated table, and its records those of the package's blocks A and B
+its deciding checks with the keys of the generated table, and its records those of the package's blocks A, D, G and X
 (src/20-rh/results.json)."""
 import cmath
 import io
@@ -65,23 +65,42 @@ class ChartTest(unittest.TestCase):
         self.assertAlmostEqual(sum(a), sum(x), places=12)                     # the trace
 
     def test_hardy_z_at_the_heights(self):
-        for h in CR.HEIGHTS[:10]:
+        for h in CR.HEIGHTS:                                                  # all eighty heights
             self.assertLess(abs(CR.hardy_z(h)), 1e-6)
         for t in (20.0, 40.0, 100.0):                                         # the Riemann–Siegel main sum within its remainder
             self.assertLess(abs(CR.z_horizon(t) - CR.hardy_z(t)), 1.5 * (t / (2 * math.pi)) ** -0.25)
 
     def test_exhibit_two_ways(self):
-        ns, ls = CR.window_labels(173)
-        self.assertEqual(sorted(ns), [n for n in range(2, 174) if H.prime_power_base(n)])
-        for n, l in zip(ns, ls): self.assertAlmostEqual(l, math.log(H.prime_power_base(n)), places=12)
-        gam = [14.1, 21.0, 30.0]
-        e = CR.energy(39, gam)
-        for g, v in zip(gam, e):                                              # the energy against the direct sum
-            direct = abs(sum(l * (1 - math.log(n) / math.log(39)) * n ** (-0.5 - 1j * g) for n, l in zip(*CR.window_labels(39))))
-            self.assertAlmostEqual(v, direct, places=12)
-        self.assertEqual([round(x, 1) for x in CR.five_peaks(13)], [14.5, 20.5, 25.7, 29.0, 34.9])
-        self.assertAlmostEqual(CR.resolution(173), 2 * math.pi / math.log(173), places=12)
-        self.assertLess(CR.energy_range(3, 10, 36), 1e-12)
+        labels, weights, mean = CR.window_weights(173, "mangoldt")
+        self.assertEqual(sorted(labels), [n for n in range(2, 174) if H.prime_power_base(n)])
+        for n, l in zip(labels, weights): self.assertAlmostEqual(l, math.log(H.prime_power_base(n)), places=12)
+        self.assertEqual(CR.window_weights(13)[:2], ([2, 3, 5, 7, 11, 13], [1.0] * 6))
+        for kind, sigma in (("primes", -0.5), ("mangoldt", -0.25)):                # the spectrum against the direct sum
+            labels, weights, mean = CR.window_weights(39, kind); w = dict(zip(labels, weights))
+            for t, v in zip((14.1, 21.1, 28.1), CR.spectrum(39, 14.1, 7.0, 3, kind, sigma)):
+                direct = abs(sum((w.get(n, 0.0) - mean) * n ** complex(sigma, t) for n in range(1, 40)))
+                self.assertAlmostEqual(v, direct, places=10)
+        for s in (complex(-0.5, 14.13), complex(0.0, 51.7), complex(-1.0, 30.0)):   # the Euler–Maclaurin tail against the sum
+            direct = sum(n ** s for n in range(2001, 30001))
+            self.assertLess(abs(CR.power_tail(2001, 30000, s) - direct), 1e-10 * abs(direct))
+        deep = CR.spectrum(30000, 14.0, 7.0, 3, "mangoldt")                         # the tail inside the spectrum
+        labels, weights, mean = CR.window_weights(30000, "mangoldt"); w = dict(zip(labels, weights))
+        for t, v in zip((14.0, 21.0, 28.0), deep):
+            self.assertAlmostEqual(v, abs(sum((w.get(n, 0.0) - mean) * n ** complex(-0.5, t) for n in range(1, 30001))), places=7)
+        self.assertEqual([round(t, 2) for t, _ in CR.peaks(13, 5, 10.0, 36.0)], [14.2, 20.85, 25.09, 30.3, 33.07])
+        self.assertEqual(len(CR.maxima(10.0, 0.01, CR.spectrum(13, 10.0, 0.01, 2601))), 9)
+        self.assertAlmostEqual(CR.expint(1.0).real, 1.8951178163559368, places=13)        # Ei(1) and Ei at a complex argument, as scipy.special.expi and mpmath.ei give them; the step of a label; the eighty heights
+        self.assertLess(abs(CR.expint(complex(0.5, 60.0) * 0.4) - (-0.04667002980588406+3.121586046726238j)), 1e-12)
+        self.assertLess(abs(CR.label_step(0.4, 60.0) - 1.0), 0.01); self.assertLess(abs(CR.label_step(-0.7, 60.0)), 0.01)
+        self.assertEqual((len(CR.HEIGHTS), sum(1 for h in CR.HEIGHTS if h < 202.0)), (80, 80)); self.assertEqual(CR.HEIGHTS, sorted(CR.HEIGHTS))
+        self.assertEqual(round(CR.window_count(13, 202.0, 12.5), 1), 5.0)        # five primes below 12.5
+        self.assertEqual(CR.label_step(0.0, 60.0), math.atan(120.0) / math.pi)        # at the label itself: the middle of the step
+        self.assertEqual(round(CR.window_count(13, 202.0, 13.0), 1), 5.5)        # at the label 13: six primes, less one half
+        self.assertEqual(round(abs(CR.window_count(39, 78.0, 23.0) - CR.riemann_counts(23.0, [78.0])[0]), 3), 0.106)        # at a prime label the two counts differ by more than 0.10
+        self.assertLess(abs(CR.vector_count([2, 3, 5], 50.0, 4.5) - 2.0), CR.count_bound([2, 3, 5], 4.5) / 50.0)        # the bound of 20:D17
+        self.assertLess(abs(CR.vector_count([2, 3, 5], 50.0, 4.5, [1.5, -2.0, 4.0]) + 0.5), CR.count_bound([2, 3, 5], 4.5, [1.5, -2.0, 4.0]) / 50.0)        # a signed vector
+        self.assertAlmostEqual(CR.count_bound([2], 2.0 * math.e), math.sqrt(math.e) / math.pi, places=12)        # one label: √(x/n)/(π |log(x/n)|)
+        self.assertLessEqual(max(CR.spectrum(3, 10.0, 0.5, 20, sigma=0.0)), 4 / 3 + 1e-12)   # depth 3 at σ = 0: E ≤ Σ|λ − λ̄| = 4/3
         self.assertTrue(all(CR.characters_parseval(13, 2, H.prime_power_base)[:4]))
         lam = {}; x = 1
         for m in range(12): lam[x] = m; x = x * 2 % 13
@@ -128,7 +147,7 @@ class LedgerTest(unittest.TestCase):
         with redirect_stdout(io.StringIO()):
             L.R.verify_all()
         mine = L.R.results
-        self.assertEqual(len(records), 106)       # blocks A and B of the package of 18 October 2026 (block C, the depth 10⁶, is the package's alone)
+        self.assertEqual(len(records), 97)        # the package of 22 November 2026: blocks A, D, G and X, with the circle's rows G13 and G14 and the count's rows D16 and D17
         self.assertEqual([(r["id"], r["rows"], r["ok"], _ALIAS.get(r["kind"], r["kind"]), r["label"]) for r in records],
                          [(r["id"], r["rows"], r["ok"], r["kind"], r["label"]) for r in mine])
 

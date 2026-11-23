@@ -1,5 +1,5 @@
 {
- "generated": "21 November 2026",
+ "generated": "22 November 2026",
  "rows": [
   {
    "id": "00:X1",
@@ -326,6 +326,48 @@
    "page": "14-entropy/index.html"
   },
   {
+   "id": "20:X1",
+   "paper": "20-rh",
+   "label": "X1",
+   "key": "p20108",
+   "tag": "T",
+   "lean_name": "half_of_critical_line",
+   "predicate": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the half-period read backwards: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; read against A6.",
+   "source": "Prop.~\\ref{prop:xhalf}\\newline \\pywit{rh}{p20108}{X1}, \\leanwit{FrcCore}{p20108}{X1} \\lean{FRC.Rh.half\\_inverse, FRC.Horizon.carrier\\_centre}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "20-rh/index.html"
+  },
+  {
+   "id": "20:X2",
+   "paper": "20-rh",
+   "label": "X2",
+   "key": "p20109",
+   "tag": "T",
+   "lean_name": "pole_and_functional_equation",
+   "predicate": "The pole and the functional equation: the constant mode stands at $1$ and is no zero, the shell's form of the pole at $1$. The symmetry $s\\mapsto1-s$ is the exchange of a mode with its conjugate, the symmetry of origin and unit. Rests on B4, G6; read against A6.",
+   "source": "Prop.~\\ref{prop:xpole}\\newline \\pywit{rh}{p20109}{X2}, \\leanwit{FrcCore}{p20109}{X2} \\lean{FRC.Rh.zero\\_slot, FRC.Horizon.zero\\_conjugate, FRC.Horizon.origin\\_unit\\_symmetry}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "20-rh/index.html"
+  },
+  {
+   "id": "20:X3",
+   "paper": "20-rh",
+   "label": "X3",
+   "key": "p20110",
+   "tag": "T",
+   "lean_name": "half_of_dilation_generator",
+   "predicate": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it reads as $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; read against A6.",
+   "source": "Prop.~\\ref{prop:xgenerator}\\newline \\pywit{rh}{p20110}{X3}, \\leanwit{FrcCore}{p20110}{X3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.generator\\_skew}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "20-rh/index.html"
+  },
+  {
    "id": "21:X1",
    "paper": "21-grav",
    "label": "X1",
@@ -553,7 +595,7 @@
    "key": "p27024",
    "tag": "T",
    "lean_name": "gauge_group_from_substrate",
-   "predicate": "\\textbf{The gauge group} $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. On a Subject the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup that B10 declares (C16). On the chart the subgroup is the quotient of the product by $\\Z_6$ [chart] (P10).",
+   "predicate": "\\textbf{The gauge group} $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. On a Subject it is the block-diagonal subgroup that B10 declares (C16), and on the chart the quotient of the product by $\\Z_6$ [chart] (P10).",
    "source": "\\S\\ref{sec:em},\\,\\ref{sec:weak},\\,\\ref{sec:strong}; rests on B10, C2, C4, C7, C16\\newline \\pywit{fields}{p27024}{X1}, \\leanwit{FrcCore}{p27024}{X1} \\lean{FRC.Interactions.gauge\\_flux\\_invariant, FRC.Interactions.drive\\_adjoint, FRC.Interactions.gluon\\_commutator}",
    "master": [],
    "restated": [],
@@ -704,7 +746,7 @@
    "key": "p27034",
    "tag": "T",
    "lean_name": "strong_cp_angle_chart",
-   "predicate": "\\textbf{The strong-CP angle} reads $0$ on the chart with no axion, on one declaration and one theorem: the colour action is declared of the Wilson class, which holds no term $\\Tr F\\widetilde F$ (B11), and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell. Where no mass reads $0$ the determinants are positive on the chart [chart].",
+   "predicate": "\\textbf{The strong-CP angle} reads $0$ on the chart with no axion, on one declaration and one theorem: the colour action is declared of the Wilson class, which holds no term $\\Tr F\\widetilde F$ (B11), and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell.",
    "source": "Prop.~\\ref{prop:strongcp}; rests on A3, B9, B11\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11} \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.gram\\_det, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
    "master": [],
    "restated": [],

@@ -19,7 +19,7 @@ file as a numeral: the anchors are ratios.
     wrap_spectrum(a, kappa, k, N, L)      the lowest k eigenvalues of the chart operator a|p| + ϰ r on N sites (35-hadrons C17's construction)
     wrap_family()                         the candidate operators of D5 against the three lattice determinations [chart]
     short_range_route(), plaquette_channel()   the two chart routes of the former task T01, both failing (8 November 2026) [chart]
-    adjoint_ratio(theta)                  the chart's tension ratio σ₈/σ₃ = ln c₈ / ln c₃ at the stiffness ϑ of a cell
+    adjoint_ratio(theta)                  the chart's tension ratio σ₈/σ₃ = ln c₈ / ln c₃ at the stiffness ϑ
 """
 import math
 from fractions import Fraction as Q
@@ -253,35 +253,36 @@ MUNSTER_0PP = [Q(0), Q(-3), Q(9), Q(-27, 2), Q(-7), Q(-297, 2), Q(858827, 10240)
 # character coefficient (Münster, Nucl. Phys. B190 (1981) 439; as quoted by Langelage, Münster, Philipsen, PoS LATTICE2007 201, arXiv:0710.0512, eq. 2.16)
 
 
-def chart_cells(ns=range(11), b0=11, g=2):
-    """[chart] 46:B6: the stiffness of the chart's cells. The one-loop law is a law of powers, W(w₂)/W(w₁) = (w₁/w₂)^{b₀} for
-    W = e^{−8π²ϑ}: a scale lower by gⁿ has W higher by g^{b₀n}, and W = e^{−8π²} at channel unity. The stiffness is the chart's
-    logarithm of 1/W in the unit 8π², ϑ_n = 1 − n b₀ ln g / 8π². Returns the cells {n: ϑ_n}, the step, the number of steps to
-    W = 1, whether the logarithm of the powers gives the same ϑ_n, and the cell's size a√σ = √(−ln c₃) on the computed terms."""
-    S0 = 8 * math.pi ** 2; step = b0 * math.log(g) / S0
-    cells = {n: 1 - n * step for n in ns}
-    law = all(abs(-(-S0 + b0 * n * math.log(g)) / S0 - cells[n]) < 1e-12 for n in cells)
-    c3 = Y.c1_series(3, 8)
-    size = {n: math.sqrt(-math.log(sum(float(x) * cells[n] ** k for k, x in enumerate(c3)))) for n in cells}
-    return dict(cells=cells, step=step, steps_to_one=1 / step, law=law, size=size)
+UNITY = Q(1, 24)                                   # 46:A16: the stiffness ϑ = 1/g² at channel unity; the charge cycle of the frame of rank five has the stiffness 24ϑ = 1 there (27-fields)
 
 
-def plaquette_channel(ns=(9, 8, 7, 6, 4, 3, 2)):
+def chart_cells(ns=(0, 1), b0=11, g=2):
+    """[chart] 46:B6: the stiffness of the chart's cell. The one-loop law is a law of powers, W(w₂)/W(w₁) = (w₁/w₂)^{b₀} for
+    W = e^{−8π²ϑ}: a scale lower by gⁿ has W higher by g^{b₀n}, and W = e^{−π²/3} at channel unity, where ϑ = 1/24 (46:A16). The
+    stiffness is the chart's logarithm of 1/W in the unit 8π², ϑ_n = 1/24 − n b₀ ln g / 8π². One step exceeds 1/24, so the chart has
+    no cell below channel unity. Returns the stiffness {n: ϑ_n}, the step, W at channel unity, the number of steps to W = 1, the
+    ratio of scales there (the power of the drive and the closed form e^{−π²/33}), whether the logarithm of the powers gives the same ϑ_n, the sum u of the computed terms of c₃ at
+    channel unity (exact) and the cell's size a√σ = √(−ln u)."""
+    S0 = 8 * math.pi ** 2; step = b0 * math.log(g) / S0; t0 = float(UNITY)
+    cells = {n: t0 - n * step for n in ns}
+    law = all(abs(-(-S0 * t0 + b0 * n * math.log(g)) / S0 - cells[n]) < 1e-12 for n in cells)
+    u = sum(x * UNITY ** k for k, x in enumerate(Y.c1_series(3, 8)))
+    return dict(cells=cells, step=step, W=math.exp(-S0 * t0), steps_to_one=t0 / step, scale_ratio=g ** (-t0 / step),
+                scale_closed=math.exp(-math.pi ** 2 / 33), law=law, u=u, size=math.sqrt(-math.log(float(u))))
+
+
+def plaquette_channel():
     """[chart] T01 route (b): the 0⁺⁺ channel of the strong-coupling expansion — the closed fundamental loop, the adjoint string's
     own excitation at strong coupling — beyond the leading term −4 ln u of the paper's Section 6. m/√σ = a m / √(a²σ) with the
-    imported mass series MUNSTER_0PP by order (1, 3, 5, 7) and the tension at leading order a²σ = −ln u (46:A7; the known u⁴–u⁸
-    corrections move it below 0.5 % for u ≤ 0.2). The frame's u = c₃ from the ϑ⁷ list of 46:C7 at the chart's cells (46:B6) and
-    at channel unity, where u is the exact sum 23/54. Returns the table by cell, with u and the order spread, and the row of
-    channel unity."""
-    c = Y.c1_series(3, 8); th = chart_cells()["cells"]
+    imported mass series MUNSTER_0PP by order (1, 3, 5, 7) and the tension at leading order a²σ = −ln u (46:A7). The frame's
+    u = c₃ from the ϑ⁷ list of 46:C7 at channel unity, ϑ = 1/24 (46:B6), the exact sum 140458562483/9906778275840. Returns u, its
+    exact value, the leading term, the ratio by order and the spread of the orders 3, 5, 7."""
+    u1 = sum(x * UNITY ** k for k, x in enumerate(Y.c1_series(3, 8)))                   # the exact sum at channel unity
     def am(u, order): return -4 * math.log(u) + sum(float(MUNSTER_0PP[k]) * u ** k for k in range(1, order + 1))
-    def row(u):
-        sig = math.sqrt(-math.log(u))
-        vals = {o: am(u, o) / sig for o in (1, 3, 5, 7)}
-        hi = [vals[o] for o in (3, 5, 7)]
-        return dict(u=u, leading=4 * sig, orders=vals, spread=max(hi) - min(hi))        # the spread of the orders 3, 5, 7
-    u1 = sum(c)                                                                        # the exact sum at channel unity
-    return dict(table={n: row(sum(float(x) * th[n] ** k for k, x in enumerate(c))) for n in ns}, unity=dict(row(float(u1)), exact=u1))
+    u = float(u1); sig = math.sqrt(-math.log(u))
+    vals = {o: am(u, o) / sig for o in (1, 3, 5, 7)}
+    hi = [vals[o] for o in (3, 5, 7)]
+    return dict(u=u, exact=u1, leading=4 * sig, orders=vals, spread=max(hi) - min(hi))  # the spread of the orders 3, 5, 7
 
 
 def wrap_family(spec=None):
@@ -326,16 +327,14 @@ def two_windings(members=((2, Q(2)), (2, Q(9, 4)))):
                 inside_2020=Q("1.704") ** 2 < 3 < Q("1.736") ** 2, pi_bounds=float(lo) < math.pi < float(hi), brackets=brackets)
 
 
-def adjoint_ratio_table(ns=(10, 9, 8, 7, 6, 5)):
-    """[chart] adjoint_ratio at the chart's cells (46:B6): {n: σ₈/σ₃}; the chart tier forms the floats."""
-    th = chart_cells()["cells"]
-    return {n: adjoint_ratio(th[n])[0] for n in ns}
+def adjoint_ratio_unity():
+    """[chart] adjoint_ratio at channel unity, ϑ = 1/24 (46:B6): σ₈/σ₃; the chart tier forms the floats."""
+    return adjoint_ratio(float(UNITY))[0]
 
 
 def adjoint_ratio(theta, n=8):
-    """[chart] The chart's tension ratio σ₈/σ₃ = ln c₈(ϑ) / ln c₃(ϑ) at the stiffness ϑ of a cell, from the exact series c₃, c₈
-    of yangmills (the logarithm is the chart's): 1.976, 1.976, 1.982, 1.992, 2.006, 2.022 at the cells n = 10 to 5. Returns the
-    ratio and the two tensions."""
+    """[chart] The chart's tension ratio σ₈/σ₃ = ln c₈(ϑ) / ln c₃(ϑ) at the stiffness ϑ, from the exact series c₃, c₈
+    of yangmills (the logarithm is the chart's): 1.976 at channel unity, ϑ = 1/24. Returns the ratio and the two tensions."""
     c3 = Y.c1_series(3, n); c8 = Y.c_adj_series(n)
     s3 = -math.log(sum(float(c) * theta ** k for k, c in enumerate(c3)))
     s8 = -math.log(sum(float(c) * theta ** k for k, c in enumerate(c8)))

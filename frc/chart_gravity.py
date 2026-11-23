@@ -7,7 +7,9 @@ accretion efficiency, the operational cut and the capacity ratio, the echo facto
 and the crossover (the root η against e^{−√x}, the crossover's slopes, the Tully–Fisher deep limit, the RAR identity,
 the discriminant against the simple interpolant), the turnaround radius, the preferred-frame scale, the gravitomagnetic
 dipole's Lense–Thirring rate and the ergosurface, the radiative dispersion and the helicity, the two readings of the nonlinear completion, the
-2PN periastron excess of PSR J0737−3039, the tilt and the scale-path probe, the seeded Kuramoto chain of the
+2PN periastron excess of PSR J0737−3039, the tilt and the scale-path probe, the wrapped chart's cutoff (the fundamental
+wavenumber from Λ, the Sachs–Wolfe shares of the low multipoles against Planck 2018's spectrum, S_1/2 of the expectation spectrum
+and the expectation of the statistic, the torus inradius; 21:P9), the seeded Kuramoto chain of the
 flux-conservation lemma, and the ringdown of the exponential reading (the eikonal pair and the ℓ = 2 mode of the chart's wave
 operator by third-order WKB along the tortoise coordinate, a truncated power series doing the derivatives; 00:E14). Floats are allowed here and nowhere in the exact tiers; the standard library only. The Lean
 side is lean/FrcMathlib/Theme/Strong.lean (Mathlib, the brackets). Every comparison with measured data is [data].
@@ -195,6 +197,55 @@ def operational_cut(M):
     rs, rf = math.sqrt(M), 2 * M / LN_OMEGA
     return {"r_star": rs, "r_f": rf, "ordered": rs < rf < M, "threshold": (LN_OMEGA / 2) ** 2,
             "round_trip": math.exp(2 * (M / rf)), "capacity_ratio": 1 / LN_OMEGA ** 2, "echo": OMEGA / LN_OMEGA ** 2}
+
+
+def operational_cut_chart(Om, M):
+    """The chart's reading of the operational cut on a laboratory Carrier Om against its count (frc.gravity.operational_cut_count):
+    the chart solves e^{−u} = Om^{−1/2} with u = M/r − M/h (the far cut at the horizon h = ⌊√Om⌋), r = M/(½ ln Om + M/h); the
+    exponential of the summed increments reaches the floor at its own cut r_exp (the rational product reaches it earlier, by
+    about ln Om/12 cells, the per-cell second-order term the framework leaves to the chart); the paper's formula 2M/ln Om
+    drops the far-cut term, 10⁻⁶¹ on the physical Carrier and not small here."""
+    h = math.isqrt(Om)
+    r_chart = M / (math.log(Om) / 2 + M / h)
+    s, r = 0.0, h
+    while r > math.isqrt(M) and math.exp(-s) > 1 / h:
+        r -= 1
+        s += M / (r * (r + 1))
+    return {"r_chart": r_chart, "r_exp": r, "r_paper": 2 * M / math.log(Om), "shift": math.log(Om) / 12}
+
+
+def slip_emission_bound(M_solar=1.0):
+    """The finite slip thermometer of 21-gravity (D1 and D3, 21–22 November 2026) in the chart: a window of ⌊√Ω⌋ far ticks
+    registers the completed ticks of a clock of composed rate P, ⌊P⌊√Ω⌋⌋; from the operational cut inward none, at the first
+    cut outside it one (for every mass above (ln Ω)²/2 Planck masses, where the per-cell change of P is at most ½). A slip is one
+    cycle of the link's clock, energy h f at the link, so a slip of that first cut registers as one event at the floor energy
+    k T_floor = h f_S/⌊√Ω⌋, whatever the mass, and a slip inside registers nothing; a link registers at most one event per
+    registered tick, so L ≤ (A_f/ℓ_P²) h f_S²/Ω. For a far cut at the Planck rate, f_S = 1/t_P, the window is √Ω t_P: the
+    horizon time t_H = r_H/c (r_H = √(3/Λ) of the import) up to the solid-angle recalibration of the chart, √Ω t_P = 2√π t_H
+    (Ω = 4S + 1, S = 3π/(Λ ℓ_P²)), so k T_floor = h/(√Ω t_P) = h/(2√π t_H). Under the hypothesis that the registered mass
+    changes only through registered transfers the evaporation time M c²/L exceeds t_H below the crossover mass (∝ 1/M), which
+    lies beyond the mass within the coherence horizon, r_H c²/2G. The first-law temperature (r_s/r_f)² T_H is the thermometer
+    of the counted entropy; the Hawking-type reading of the offset gradient at the cut, through the lapse twice, is
+    (r_s/r_f)² T_H/Ω, below the floor."""
+    G, c, hbar, kB, lp = float(C.G_NEWTON), float(C.C_LIGHT), float(C.HBAR), float(C.K_BOLTZMANN), float(C.PLANCK_LENGTH)
+    h = 2 * math.pi * hbar
+    t_P = lp / c
+    M = M_solar * float(C.M_SUN)
+    r_s = 2 * G * M / c ** 2
+    r_f = r_s / LN_OMEGA
+    links = 4 * math.pi * r_f ** 2 / lp ** 2
+    sqrt_omega = math.sqrt(float(C.omega_bracket()[0]))
+    window = sqrt_omega * t_P                                                   # ⌊√Ω⌋ far ticks at the Planck rate
+    r_H = float(C.horizon_radius_bracket()[0]); t_H = r_H / c
+    L_max = links * h / window ** 2                                             # one floor event h/window per link per window
+    t_evap = M * c ** 2 / L_max
+    T_H = hbar * c ** 3 / (8 * math.pi * G * M * kB)
+    return {"links": links, "window_s": window, "window_over_t_H": window / t_H, "L_max_W": L_max, "t_evap_s": t_evap,
+            "t_evap_over_t_H": t_evap / t_H,
+            "crossover_solar": M_solar * t_evap / t_H,                        # t_evap ∝ 1/M: the mass at which t_evap = t_H
+            "hubble_mass_solar": r_H * c ** 2 / (2 * G) / float(C.M_SUN),     # the mass within the coherence horizon
+            "T_floor_K": h / (window * kB), "T_dS_K": C.de_sitter_temperature(), "T_H_K": T_H,
+            "T_firstlaw_K": LN_OMEGA ** 2 * T_H, "T_gradient_K": LN_OMEGA ** 2 * T_H / OMEGA}
 
 
 # ---- the floor, the crossover and the running (21:C4, C19, P3, P4, P5, X2) ---------------------------------------------
@@ -430,6 +481,110 @@ def tilt_sensitivity():
 def scale_path_probe(K):
     """K² λ₁ with λ₁ = 4 sin²(π/(2(K + 1))), the first eigenvalue of the finite scale-path Laplacian, against π²."""
     return K * K * 4 * math.sin(math.pi / (2 * (K + 1))) ** 2
+
+
+# ---- the wrapped chart's cutoff (21:P9) --------------------------------------------------------------------------------------
+# Planck 2018 TT,TE,EE+lowE+lensing [data]: the comoving distance to last scattering, and the low-ℓ TT spectrum D_ℓ = ℓ(ℓ+1)C_ℓ/2π
+# in μK² (Commander, COM_PowerSpect_CMB-TT-full_R3.01) with the ΛCDM best fit (…-minimum-theory_R3.01), ℓ = 2 … 10.
+CHI_STAR_MPC = 13870.0
+PLANCK_LOW_TT = {2: 225.895, 3: 936.92, 4: 692.238, 5: 1501.705, 6: 557.611, 7: 1152.643, 8: 615.846, 9: 697.821, 10: 803.658}
+LCDM_LOW_TT = {2: 1016.73, 3: 963.727, 4: 912.608, 5: 874.477, 6: 848.509, 7: 832.082, 8: 822.295, 9: 817.803, 10: 817.174}
+PLANCK_CUTOFF_FIT = {"ln_kc_2015": -7.98}                # Planck 2015 XX §4.4, the fitted cutoff scale of a soft edge (λ_c = 0.50; 2013 XXII: −8.49, 0.47) [data]
+TORUS_BOUND = 0.97                                   # Planck 2015 XVIII: a cubic 3-torus needs inradius R_i > 0.97 χ_rec [data]
+
+
+def spherical_jn(l, x):
+    """j_l(x): the upward recurrence from j_0, j_1 for x ≥ l (stable there), the power series for x < l; standard library only."""
+    if x == 0.0:
+        return 1.0 if l == 0 else 0.0
+    if x < l:
+        term = x ** l / math.prod(range(1, 2 * l + 2, 2))          # x^l / (2l+1)!!
+        s, k = term, 0
+        while abs(term) > 1e-17 * abs(s):
+            k += 1
+            term *= -x * x / (2 * k * (2 * l + 2 * k + 1))
+            s += term
+        return s
+    a, b = math.sin(x) / x, math.sin(x) / x ** 2 - math.cos(x) / x
+    if l == 0: return a
+    for n in range(1, l):
+        a, b = b, (2 * n + 1) / x * b - a
+    return b
+
+
+def cutoff_wavenumber(lam=float(C.LAMBDA_FIT)):
+    """The chart's fundamental wavenumber k₁ = 2π/(√Ω ℓ_P) = √π/r_H = √(πΛ/3) in Mpc⁻¹, with r_H = √(3/Λ), and the chart period
+    √Ω ℓ_P = 2√π r_H in Mpc: the measured Λ (m⁻²) read on the chart (21:P9)."""
+    r_h = math.sqrt(3.0 / lam)                       # metres
+    period = 2 * math.sqrt(PI) * r_h
+    return {"r_h_mpc": r_h / MPC_M, "period_mpc": period / MPC_M, "k1_mpc": math.sqrt(PI) / (r_h / MPC_M),
+            "ln_k1": math.log(math.sqrt(PI) / (r_h / MPC_M)),
+            "period_over_ln_omega": math.exp(LN_OMEGA / 2) * float(C.PLANCK_LENGTH) / period}   # √Ω ℓ_P from the scale import against 2√π r_H
+
+
+def cutoff_ratio(l, xc, step=0.005, xmax=600.0):
+    """2 l (l+1) ∫_{x_c}^∞ j_l(x)² dx/x — the Sachs–Wolfe share of C_l above the cutoff k₁ (x_c = k₁ χ_*) for a scale-invariant
+    spectrum; Simpson on [x_c, xmax] plus the tail 1/(4 xmax²)."""
+    n = int((xmax - xc) / step) // 2 * 2
+    h = (xmax - xc) / n
+    f = lambda x: spherical_jn(l, x) ** 2 / x
+    s = f(xc) + f(xmax) + sum((4 if i % 2 else 2) * f(xc + i * h) for i in range(1, n))
+    return (s * h / 3 + 1 / (4 * xmax ** 2)) * 2 * l * (l + 1)
+
+
+def cutoff_low_ell(lmax=10, chi=CHI_STAR_MPC):
+    """The low multipoles under the sharp cutoff against Planck 2018 [data]: per ℓ the Sachs–Wolfe ratio, the predicted D_ℓ, and
+    the change of −2 ln L against ΛCDM for (2ℓ+1) Ĉ_ℓ/C_ℓ ∼ χ²_{2ℓ+1} (cosmic variance only); the sum over ℓ = 2 … lmax."""
+    xc = cutoff_wavenumber()["k1_mpc"] * chi
+    rows, total = {}, 0.0
+    for l in range(2, lmax + 1):
+        r = cutoff_ratio(l, xc)
+        pred, obs, lcdm = r * LCDM_LOW_TT[l], PLANCK_LOW_TT[l], LCDM_LOW_TT[l]
+        n = 2 * l + 1
+        d = n * (obs / pred + math.log(pred)) - n * (obs / lcdm + math.log(lcdm))
+        rows[l] = (r, pred, d); total += d
+    return {"x_c": xc, "rows": rows, "delta_m2lnL": total}
+
+
+def legendre(l, x):
+    a, b = 1.0, x
+    if l == 0: return a
+    for n in range(1, l):
+        a, b = b, ((2 * n + 1) * x * b - n * a) / (n + 1)
+    return b
+
+
+def s_half(dl, lmax=30, n=3000):
+    """S_{1/2} of an expectation spectrum D_l (μK²), Σ (2l+1)(2l'+1)/(16π²) C_l C_l' I_{ll'} with I_{ll'} = ∫_{-1}^{1/2} P_l P_l' dx,
+    l ≤ lmax, and the expectation of the statistic itself on a Gaussian full sky, which adds Σ (2l+1) C_l² I_{ll}/(8π²)
+    (E[Ĉ_l Ĉ_l'] = C_l C_l' + δ_{ll'} 2C_l²/(2l+1)); Simpson on the Legendre products. Returns (S of the spectrum, E[S])."""
+    xs = [-1 + 1.5 * i / n for i in range(n + 1)]
+    P = {l: [legendre(l, x) for x in xs] for l in range(2, lmax + 1)}
+    w = [1 if i in (0, n) else (4 if i % 2 else 2) for i in range(n + 1)]
+    h = 1.5 / n
+    Cl = {l: 2 * PI * dl(l) / (l * (l + 1)) for l in range(2, lmax + 1)}
+    s, var = 0.0, 0.0
+    for l in Cl:
+        for m in Cl:
+            I = sum(wi * pl * pm for wi, pl, pm in zip(w, P[l], P[m])) * h / 3
+            s += (2 * l + 1) * (2 * m + 1) / (16 * PI ** 2) * Cl[l] * Cl[m] * I
+            if l == m: var += (2 * l + 1) * Cl[l] ** 2 * I / (8 * PI ** 2)
+    return s, s + var
+
+
+def cutoff_s_half(low):
+    """S_{1/2} of the ΛCDM expectation spectrum and of the cutoff's, and the expectation of the statistic under each, from
+    cutoff_low_ell()'s rows (ℓ ≤ 10 from the tables, 820 μK² beyond) [approx]: (S_lcdm, E_lcdm, S_cut, E_cut)."""
+    rows = low["rows"]
+    lcdm = lambda l: LCDM_LOW_TT.get(l, 820.0)
+    cut = lambda l: (rows[l][0] if l in rows else 1.0) * lcdm(l)
+    (s1, e1), (s2, e2) = s_half(lcdm), s_half(cut)
+    return s1, e1, s2, e2
+
+
+def torus_inradius(chi=CHI_STAR_MPC):
+    """A cubic torus of side √Ω ℓ_P has inradius half the side; in units of χ_* against the matched-circles bound 0.97 (21:P9)."""
+    return cutoff_wavenumber()["period_mpc"] / 2 / chi
 
 
 # ---- the flux-conservation chain (21:C19's lemma) ------------------------------------------------------------------------------

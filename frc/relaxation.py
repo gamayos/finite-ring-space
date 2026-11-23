@@ -21,6 +21,11 @@ The ledger file that uses it: frc/ledgers/p21_gravity.py; the experiment that le
     count(B, r)                      the registered count of B runs by the largest-remainder rule over (event, none): the half-up rounding of B r
     current_counts(N, B, g, n)       M(μ) for every mismatch μ of C_N: the window count of |sin(2πμ/N)| read through the map
     relax(N, mu0, M, B, a)           the re-registration rule: the pulse accumulator with the counts M, the Carrier defect a; the trajectory
+    forced_relax(M, B, d, mu0, a0)   the forced rule in transfer units: Φ = Bμ − a moves by d − M(⌈Φ/B⌉) per chronon
+    lock_band(M, B, d, N2)           the lock level μ*, the band {μ* − 1, μ*} and the fraction w/(u + w) at μ*
+    band_data(M, B, d, N2)           u, w, the band's Φ-interval, the period (u + w)/gcd(u, w) and the occupancy w/(u + w)
+    band_translation_holds(M, B, d, N2)  the step on the band is the translation by w; every orbit's period and occupancy
+    entry_budget(M, B, d, mu0, mus)  Σ⌈B/|M(μ) − d|⌉ between the start and the lock level
     budget(M, B, mu0)                Σ_{μ=1}^{μ₀} ⌈B/M(μ)⌉, the termination bound of FRC.Relaxation.terminates
 """
 import random
@@ -211,6 +216,88 @@ def relax(N, mu0, M, B=81, a=0, chronons=2000):
         mu = (mu + N // 2) % N - N // 2
         traj.append(mu); word.append(abs(pulse)); accs.append(acc)
     return traj, word, accs
+
+
+def forced_relax(M, B, d, mu0, a0=0, chronons=3000, antipode=None):
+    """The forced rule in transfer units (FRC.Relaxation.fstep, frun): the mismatch counted in transfers is the one integer
+    Φ = B μ − a (μ = ⌈Φ/B⌉ the registered quanta, a ∈ [0, B) the accumulator), and with the Carrier forcing d transfers per
+    chronon it moves by d − M(⌈Φ/B⌉) each chronon. Returns the trajectory of the registered mismatch; stops once the
+    mismatch passes the antipode (the slip), when one is given."""
+    Phi, traj = B * mu0 - a0, []
+    for _ in range(chronons):
+        mu = -(-Phi // B)
+        traj.append(mu)
+        if antipode is not None and mu >= antipode: break
+        Phi += d - M[mu]
+    return traj
+
+
+def lock_band(M, B, d, N2):
+    """The lock data of forcing d against the counts M on the levels 0..N2: the set J of levels whose count is at least d,
+    its lower edge μ* (the lock level), the band {μ* − 1, μ*} (the single level μ* when M(μ*) = d or μ* = 0), and the
+    exact occupancy w/(u + w) = (d − M(μ* − 1))/(M(μ*) − M(μ* − 1)) of μ* over every orbit; None when J is empty (forcing above capacity)."""
+    J = [mu for mu in range(N2 + 1) if M[mu] >= d]
+    if not J: return None
+    mus = min(J)
+    if mus == 0 or M[mus] == d: return {"J": J, "mu_star": mus, "band": {mus}, "fraction": Fraction(1)}
+    return {"J": J, "mu_star": mus, "band": {mus - 1, mus}, "fraction": Fraction(d - M[mus - 1], M[mus] - M[mus - 1])}
+
+
+def band_data(M, B, d, N2):
+    """The lock band of a forcing d below capacity in the nondegenerate case (M(μ*) > d > M(μ* − 1), μ* ≥ 1): u = M(μ*) − d,
+    w = d − M(μ* − 1), the band B(μ* − 1) − u < Φ ≤ B(μ* − 1) + w of u + w values, on which the forced step is the translation
+    x ↦ (x + w) mod (u + w) with x = Φ − (B(μ* − 1) − u) − 1 (FRC.Relaxation.band_translation): every orbit has period
+    (u + w)/gcd(u, w) and spends w/(u + w) of its chronons at μ* (FRC.Relaxation.band_occupancy_period, band_period: with
+    u = g a, w = g b and s b ≡ 1 mod a + b, a + b chronons return every band value and exactly b of them sit at μ*, none
+    fewer return). None in the degenerate cases."""
+    from math import gcd
+    lock = lock_band(M, B, d, N2)
+    if lock is None or len(lock["band"]) == 1: return None
+    mus = lock["mu_star"]; u = M[mus] - d; w = d - M[mus - 1]; g = gcd(u, w)
+    lo = B * (mus - 1) - u                                      # the band is lo < Φ <= lo + u + w
+    a, b = u // g, w // g
+    s = next(s for s in range(1, a + b + 1) if (s * b) % (a + b) == 1 % (a + b))   # b invertible modulo a + b: the hypothesis of band_period
+    return {"mu_star": mus, "u": u, "w": w, "lo": lo, "hi": lo + u + w, "period": (u + w) // g,
+            "occupancy": Fraction(w, u + w), "g": g, "a": a, "b": b, "inverse": s}
+
+
+def band_translation_holds(M, B, d, N2):
+    """On every value of the band the forced step is the translation by w on the u + w values of the band, and every orbit of that translation
+    has the stated period and spends w/(u + w) of it at level μ* (the upper block of w values); the band balance Ψ_t + N₂ u = Ψ + (t − N₂) w
+    holds along every orbit (FRC.Relaxation.band_balance), and b is invertible modulo a + b (band_period's hypothesis)."""
+    bd = band_data(M, B, d, N2)
+    if bd is None: return True
+    u, w, lo, n = bd["u"], bd["w"], bd["lo"], bd["u"] + bd["w"]
+    g, a, b, s = bd["g"], bd["a"], bd["b"], bd["inverse"]
+    if u != g * a or w != g * b or (s * b) % (a + b) != 1 % (a + b) or bd["period"] != a + b: return False
+    for x in range(n):
+        Phi = lo + 1 + x
+        mu = -(-Phi // B)
+        nxt = Phi + d - M[mu]
+        if nxt - (lo + 1) != (x + w) % n: return False
+    for x0 in range(n):                                          # every orbit: period and occupancy, exactly
+        x, seen = x0, 0
+        while True:
+            x = (x + w) % n; seen += 1
+            if x == x0: break
+        if seen != bd["period"]: return False
+        up = sum(1 for k in range(seen) if (x0 + k * w) % n >= u)
+        if Fraction(up, seen) != bd["occupancy"] or up != b: return False
+        Phi, N2u = lo + 1 + x0, 0                                        # the balance in transfer units along the period (Φ_t + N₂ u = Φ_0 + (t − N₂) w)
+        for t in range(seen):
+            if Phi + N2u * u != (lo + 1 + x0) + (t - N2u) * w: return False
+            mu = -(-Phi // B)
+            if Phi > B * (bd["mu_star"] - 1): N2u += 1                   # at level μ*: B(μ* − 1) < Φ
+            Phi += d - M[mu]
+        if Phi != lo + 1 + x0 or N2u != b: return False
+    return True
+
+
+def entry_budget(M, B, d, mu0, mus):
+    """Σ ⌈B/|M(μ) − d|⌉ over the levels between the start μ₀ and the lock level μ* (both included), the levels with
+    M(μ) = d excluded: the chronon bound for entering the band."""
+    lo, hi = min(mu0, mus), max(mu0, mus)
+    return sum(-(-B // abs(M[mu] - d)) for mu in range(lo, hi + 1) if M[mu] != d)
 
 
 def budget(M, B, mu0):

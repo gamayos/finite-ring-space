@@ -20,16 +20,6 @@
   "kind": "EXACT"
  },
  {
-  "id": "A4",
-  "rows": "20:B8",
-  "block": "A",
-  "script": "rh",
-  "label": "finite critical line on F_13: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
-  "ok": true,
-  "detail": "\u03bd=2, 2\u207b\u00b9=7",
-  "kind": "EXACT"
- },
- {
   "id": "A7",
   "rows": "20:E12, 20:E14",
   "block": "A",
@@ -47,36 +37,6 @@
   "label": "the Parseval identity on F_13: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
   "ok": true,
   "detail": "prime-power indicator: 8 labels",
-  "kind": "EXACT"
- },
- {
-  "id": "A2",
-  "rows": "20:B5",
-  "block": "A",
-  "script": "rh",
-  "label": "\u03a6(k) = \u2212g^k bijects the nonterminal slots onto F_13^\u00d7 \\ {\u22121}",
-  "ok": true,
-  "detail": "|image| = 11 = p\u22122",
-  "kind": "EXACT"
- },
- {
-  "id": "A3",
-  "rows": "20:B6",
-  "block": "A",
-  "script": "rh",
-  "label": "F_13\u00b2: |U_(p+1)| = p+1, Frobenius = inversion on it, i Frobenius-fixed with N(i) = \u22121",
-  "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A5",
-  "rows": "20:B9",
-  "block": "A",
-  "script": "rh",
-  "label": "the two agreement loci on F_13\u00b2: of the 182 affine lines, \u03c6 keeps 14, \u03c1 keeps 14, both keep exactly F_p and L_1/2; Klein four-group: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}",
-  "ok": true,
-  "detail": "both: [('H', 0), ('S', 0, 7)]",
   "kind": "EXACT"
  },
  {
@@ -120,16 +80,6 @@
   "kind": "EXACT"
  },
  {
-  "id": "A4",
-  "rows": "20:B8",
-  "block": "A",
-  "script": "rh",
-  "label": "finite critical line on F_17: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
-  "ok": true,
-  "detail": "\u03bd=3, 2\u207b\u00b9=9",
-  "kind": "EXACT"
- },
- {
   "id": "A7",
   "rows": "20:E12, 20:E14",
   "block": "A",
@@ -147,36 +97,6 @@
   "label": "the Parseval identity on F_17: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
   "ok": true,
   "detail": "prime-power indicator: 10 labels",
-  "kind": "EXACT"
- },
- {
-  "id": "A2",
-  "rows": "20:B5",
-  "block": "A",
-  "script": "rh",
-  "label": "\u03a6(k) = \u2212g^k bijects the nonterminal slots onto F_17^\u00d7 \\ {\u22121}",
-  "ok": true,
-  "detail": "|image| = 15 = p\u22122",
-  "kind": "EXACT"
- },
- {
-  "id": "A3",
-  "rows": "20:B6",
-  "block": "A",
-  "script": "rh",
-  "label": "F_17\u00b2: |U_(p+1)| = p+1, Frobenius = inversion on it, i Frobenius-fixed with N(i) = \u22121",
-  "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A5",
-  "rows": "20:B9",
-  "block": "A",
-  "script": "rh",
-  "label": "the two agreement loci on F_17\u00b2: of the 306 affine lines, \u03c6 keeps 18, \u03c1 keeps 18, both keep exactly F_p and L_1/2; Klein four-group: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}",
-  "ok": true,
-  "detail": "both: [('H', 0), ('S', 0, 9)]",
   "kind": "EXACT"
  },
  {
@@ -220,16 +140,6 @@
   "kind": "EXACT"
  },
  {
-  "id": "A4",
-  "rows": "20:B8",
-  "block": "A",
-  "script": "rh",
-  "label": "finite critical line on F_29: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
-  "ok": true,
-  "detail": "\u03bd=2, 2\u207b\u00b9=15",
-  "kind": "EXACT"
- },
- {
   "id": "A7",
   "rows": "20:E12, 20:E14",
   "block": "A",
@@ -247,36 +157,6 @@
   "label": "the Parseval identity on F_29: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
   "ok": true,
   "detail": "prime-power indicator: 15 labels",
-  "kind": "EXACT"
- },
- {
-  "id": "A2",
-  "rows": "20:B5",
-  "block": "A",
-  "script": "rh",
-  "label": "\u03a6(k) = \u2212g^k bijects the nonterminal slots onto F_29^\u00d7 \\ {\u22121}",
-  "ok": true,
-  "detail": "|image| = 27 = p\u22122",
-  "kind": "EXACT"
- },
- {
-  "id": "A3",
-  "rows": "20:B6",
-  "block": "A",
-  "script": "rh",
-  "label": "F_29\u00b2: |U_(p+1)| = p+1, Frobenius = inversion on it, i Frobenius-fixed with N(i) = \u22121",
-  "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A5",
-  "rows": "20:B9",
-  "block": "A",
-  "script": "rh",
-  "label": "the two agreement loci on F_29\u00b2: of the 870 affine lines, \u03c6 keeps 30, \u03c1 keeps 30, both keep exactly F_p and L_1/2; Klein four-group: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}",
-  "ok": true,
-  "detail": "both: [('H', 0), ('S', 0, 15)]",
   "kind": "EXACT"
  },
  {
@@ -320,16 +200,6 @@
   "kind": "EXACT"
  },
  {
-  "id": "A4",
-  "rows": "20:B8",
-  "block": "A",
-  "script": "rh",
-  "label": "finite critical line on F_37: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
-  "ok": true,
-  "detail": "\u03bd=2, 2\u207b\u00b9=19",
-  "kind": "EXACT"
- },
- {
   "id": "A7",
   "rows": "20:E12, 20:E14",
   "block": "A",
@@ -347,36 +217,6 @@
   "label": "the Parseval identity on F_37: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
   "ok": true,
   "detail": "prime-power indicator: 18 labels",
-  "kind": "EXACT"
- },
- {
-  "id": "A2",
-  "rows": "20:B5",
-  "block": "A",
-  "script": "rh",
-  "label": "\u03a6(k) = \u2212g^k bijects the nonterminal slots onto F_37^\u00d7 \\ {\u22121}",
-  "ok": true,
-  "detail": "|image| = 35 = p\u22122",
-  "kind": "EXACT"
- },
- {
-  "id": "A3",
-  "rows": "20:B6",
-  "block": "A",
-  "script": "rh",
-  "label": "F_37\u00b2: |U_(p+1)| = p+1, Frobenius = inversion on it, i Frobenius-fixed with N(i) = \u22121",
-  "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A5",
-  "rows": "20:B9",
-  "block": "A",
-  "script": "rh",
-  "label": "the two agreement loci on F_37\u00b2: of the 1406 affine lines, \u03c6 keeps 38, \u03c1 keeps 38, both keep exactly F_p and L_1/2; Klein four-group: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}",
-  "ok": true,
-  "detail": "both: [('H', 0), ('S', 0, 19)]",
   "kind": "EXACT"
  },
  {
@@ -420,16 +260,6 @@
   "kind": "EXACT"
  },
  {
-  "id": "A4",
-  "rows": "20:B8",
-  "block": "A",
-  "script": "rh",
-  "label": "finite critical line on F_41: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
-  "ok": true,
-  "detail": "\u03bd=3, 2\u207b\u00b9=21",
-  "kind": "EXACT"
- },
- {
   "id": "A7",
   "rows": "20:E12, 20:E14",
   "block": "A",
@@ -447,36 +277,6 @@
   "label": "the Parseval identity on F_41: \u03a3_k v\u0302(k) v\u0302(\u2212k) = \u2212\u03a3_x v(x)\u00b2 for three random vectors and the prime-power indicator of the shell",
   "ok": true,
   "detail": "prime-power indicator: 19 labels",
-  "kind": "EXACT"
- },
- {
-  "id": "A2",
-  "rows": "20:B5",
-  "block": "A",
-  "script": "rh",
-  "label": "\u03a6(k) = \u2212g^k bijects the nonterminal slots onto F_41^\u00d7 \\ {\u22121}",
-  "ok": true,
-  "detail": "|image| = 39 = p\u22122",
-  "kind": "EXACT"
- },
- {
-  "id": "A3",
-  "rows": "20:B6",
-  "block": "A",
-  "script": "rh",
-  "label": "F_41\u00b2: |U_(p+1)| = p+1, Frobenius = inversion on it, i Frobenius-fixed with N(i) = \u22121",
-  "ok": true,
-  "detail": "",
-  "kind": "EXACT"
- },
- {
-  "id": "A5",
-  "rows": "20:B9",
-  "block": "A",
-  "script": "rh",
-  "label": "the two agreement loci on F_41\u00b2: of the 1722 affine lines, \u03c6 keeps 42, \u03c1 keeps 42, both keep exactly F_p and L_1/2; Klein four-group: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}",
-  "ok": true,
-  "detail": "both: [('H', 0), ('S', 0, 21)]",
   "kind": "EXACT"
  },
  {
@@ -520,16 +320,6 @@
   "kind": "EXACT"
  },
  {
-  "id": "A4",
-  "rows": "20:B8",
-  "block": "A",
-  "script": "rh",
-  "label": "finite critical line on F_173: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
-  "ok": true,
-  "detail": "\u03bd=2, 2\u207b\u00b9=87",
-  "kind": "EXACT"
- },
- {
   "id": "A7",
   "rows": "20:E12, 20:E14",
   "block": "A",
@@ -554,7 +344,7 @@
   "rows": "20:B2",
   "block": "A",
   "script": "rh",
-  "label": "frame coincidence below \u221a13 = 3 on the pair (13, 173): residues, window products and primality agree",
+  "label": "frame coincidence within the observational horizon q = 3 of F_13, q\u00b2 < 13, on the pair (13, 173): residues, products and primality agree",
   "ok": true,
   "detail": "\u03a0_p = [2, 3]",
   "kind": "EXACT"
@@ -564,7 +354,7 @@
   "rows": "20:B2",
   "block": "A",
   "script": "rh",
-  "label": "frame coincidence below \u221a17 = 4 on the pair (17, 293): residues, window products and primality agree",
+  "label": "frame coincidence within the observational horizon q = 4 of F_17, q\u00b2 < 17, on the pair (17, 293): residues, products and primality agree",
   "ok": true,
   "detail": "\u03a0_p = [2, 3]",
   "kind": "EXACT"
@@ -574,7 +364,7 @@
   "rows": "20:B2",
   "block": "A",
   "script": "rh",
-  "label": "frame coincidence below \u221a29 = 5 on the pair (29, 853): residues, window products and primality agree",
+  "label": "frame coincidence within the observational horizon q = 5 of F_29, q\u00b2 < 29, on the pair (29, 853): residues, products and primality agree",
   "ok": true,
   "detail": "\u03a0_p = [2, 3, 5]",
   "kind": "EXACT"
@@ -584,7 +374,7 @@
   "rows": "20:B2",
   "block": "A",
   "script": "rh",
-  "label": "frame coincidence below \u221a37 = 6 on the pair (37, 1373): residues, window products and primality agree",
+  "label": "frame coincidence within the observational horizon q = 6 of F_37, q\u00b2 < 37, on the pair (37, 1373): residues, products and primality agree",
   "ok": true,
   "detail": "\u03a0_p = [2, 3, 5]",
   "kind": "EXACT"
@@ -594,7 +384,7 @@
   "rows": "20:B2",
   "block": "A",
   "script": "rh",
-  "label": "frame coincidence below \u221a41 = 6 on the pair (41, 1693): residues, window products and primality agree",
+  "label": "frame coincidence within the observational horizon q = 6 of F_41, q\u00b2 < 41, on the pair (41, 1693): residues, products and primality agree",
   "ok": true,
   "detail": "\u03a0_p = [2, 3, 5]",
   "kind": "EXACT"
@@ -604,7 +394,7 @@
   "rows": "20:B2",
   "block": "A",
   "script": "rh",
-  "label": "frame coincidence below \u221a1009 = 31 on the pair (1009, 1018097): residues, window products and primality agree",
+  "label": "frame coincidence within the observational horizon q = 31 of F_1009, q\u00b2 < 1009, on the pair (1009, 1018097): residues, products and primality agree",
   "ok": true,
   "detail": "\u03a0_p = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]",
   "kind": "EXACT"
@@ -614,7 +404,7 @@
   "rows": "20:B2",
   "block": "A",
   "script": "rh",
-  "label": "frame coincidence below \u221a10009 = 100 on the pair (10009, 100180109): residues, window products and primality agree",
+  "label": "frame coincidence within the observational horizon q = 100 of F_10009, q\u00b2 < 10009, on the pair (10009, 100180109): residues, products and primality agree",
   "ok": true,
   "detail": "\u03a0_p = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]",
   "kind": "EXACT"
@@ -630,103 +420,13 @@
   "kind": "EXACT"
  },
  {
-  "id": "A15",
-  "rows": "20:B12",
+  "id": "A12",
+  "rows": "20:A2, 20:A4, 20:F7",
   "block": "A",
   "script": "rh",
-  "label": "the critical line is the energy domain on F_13: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_12 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
+  "label": "closure of the zeros on \u03a9 = 233: the largest admissible Subject p* = 13 (13\u00b2 < \u03a9, and no larger prime 4\u03ba + 1 has its square below \u03a9), the cycle's 233 residues, an embedded Subject reads 13 of them; readings into 13 and 232 states collide; the 231 zeros are more than the 13 states, and every reading tried identifies two zeros; a reading into 232 states keeps the zeros apart and identifies 0 with 1 alone",
   "ok": true,
-  "detail": "g=2, \u03bd=2, \u03c0=6: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
-  "kind": "EXACT"
- },
- {
-  "id": "A15",
-  "rows": "20:B12",
-  "block": "A",
-  "script": "rh",
-  "label": "the critical line is the energy domain on F_17: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_16 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
-  "ok": true,
-  "detail": "g=3, \u03bd=3, \u03c0=8: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
-  "kind": "EXACT"
- },
- {
-  "id": "A15",
-  "rows": "20:B12",
-  "block": "A",
-  "script": "rh",
-  "label": "the critical line is the energy domain on F_29: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_28 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
-  "ok": true,
-  "detail": "g=2, \u03bd=2, \u03c0=14: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
-  "kind": "EXACT"
- },
- {
-  "id": "A15",
-  "rows": "20:B12",
-  "block": "A",
-  "script": "rh",
-  "label": "the critical line is the energy domain on F_37: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_36 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
-  "ok": true,
-  "detail": "g=2, \u03bd=2, \u03c0=18: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
-  "kind": "EXACT"
- },
- {
-  "id": "A15",
-  "rows": "20:B12",
-  "block": "A",
-  "script": "rh",
-  "label": "the critical line is the energy domain on F_41: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_40 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
-  "ok": true,
-  "detail": "g=6, \u03bd=3, \u03c0=20: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
-  "kind": "EXACT"
- },
- {
-  "id": "A15",
-  "rows": "20:B12",
-  "block": "A",
-  "script": "rh",
-  "label": "the critical line is the energy domain on F_53: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_52 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
-  "ok": true,
-  "detail": "g=2, \u03bd=2, \u03c0=26: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
-  "kind": "EXACT"
- },
- {
-  "id": "A15",
-  "rows": "20:B12",
-  "block": "A",
-  "script": "rh",
-  "label": "the critical line is the energy domain on F_173: k \u21a6 z_k = 2\u207b\u00b9 \u2212 \u03b7g^k bijects Z_172 onto L_1/2 \\ {2\u207b\u00b9}; the drive z_k \u21a6 z_{k+1}; half-turn and conjugation z_k \u21a6 z_{k+\u03c0}, the centre their only fixed point; N(z_k) even under k \u21a6 k+\u03c0; the labels along the drive are the latitude L_a shifted by \u03c0 \u2212 log_g a, for every base point a, by 0 for a = \u22121",
-  "ok": true,
-  "detail": "g=2, \u03bd=2, \u03c0=86: z_0 = 2\u207b\u00b9+\u03b7, z_\u03c0 = 2\u207b\u00b9\u2212\u03b7",
-  "kind": "EXACT"
- },
- {
-  "id": "A16",
-  "rows": "20:B13",
-  "block": "A",
-  "script": "rh",
-  "label": "frame coincidence on the line, pair (13, 233): every label \u03b8 < 13 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 7 and 117; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 11 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 12 the Subject's constant mode and a Carrier zero; the labels from 13 on no Subject residue; at 4 the products disagree; at every label the eigenvalue \u2212\u03b8 under each frame's own drive, the indices k, k' each frame's own",
-  "ok": true,
-  "detail": "modes (k, k'): \u03b8=2: (7, 188), \u03b8=3: (10, 117); \u03b8=12: (0, 29); affine maps k \u21a6 k' fitting the labels: 0",
-  "kind": "EXACT"
- },
- {
-  "id": "A16",
-  "rows": "20:B13",
-  "block": "A",
-  "script": "rh",
-  "label": "frame coincidence on the line, pair (173, 30089): every label \u03b8 < 173 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 87 and 15045; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 171 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 172 the Subject's constant mode and a Carrier zero; the labels from 173 on no Subject residue; at 14 the products disagree; at every label the eigenvalue \u2212\u03b8 under each frame's own drive, the indices k, k' each frame's own",
-  "ok": true,
-  "detail": "modes (k, k'): \u03b8=2: (87, 5304), \u03b8=3: (113, 15045); \u03b8=172: (0, 13661); affine maps k \u21a6 k' fitting the labels: 0",
-  "kind": "EXACT"
- },
- {
-  "id": "A16",
-  "rows": "20:B13",
-  "block": "A",
-  "script": "rh",
-  "label": "frame coincidence on the line, pair (1549, 2408561): every label \u03b8 < 1549 the same integer in both; Tr(2\u207b\u00b9+\u03b7\u03b8) = 1 in both, centres 775 and 1204281; the line kept by half-turn and conjugation in both; every 1 \u2264 \u03b8 \u2264 1547 a nontrivial mode in both, the slot a zero-slot, \u03b8 = 1548 the Subject's constant mode and a Carrier zero; the labels from 1549 on no Subject residue; at 40 the products disagree; at every label the eigenvalue \u2212\u03b8 under each frame's own drive, the indices k, k' each frame's own",
-  "ok": true,
-  "detail": "modes (k, k'): \u03b8=2: (775, 2308524), \u03b8=3: (24, 100037); \u03b8=1548: (0, 169665); affine maps k \u21a6 k' fitting the labels: 0",
+  "detail": "collisions {13: (0, 13), 232: (0, 232)}; the horizons of the chart F_\u03a9 and of p*: 15, 3",
   "kind": "EXACT"
  },
  {
@@ -734,9 +434,9 @@
   "rows": "20:A2, 20:A4, 20:F7",
   "block": "A",
   "script": "rh",
-  "label": "closure of the zeros on \u03a9 = 233: the largest admissible Subject p* = 13 (13\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 15), the cycle's 233 residues, an embedded Subject reads 13 of them; readings into 13 and 232 records collide",
+  "label": "closure of the zeros on \u03a9 = 30089: the largest admissible Subject p* = 173 (173\u00b2 < \u03a9, and no larger prime 4\u03ba + 1 has its square below \u03a9), the cycle's 30089 residues, an embedded Subject reads 173 of them; readings into 173 and 30088 states collide; the 30087 zeros are more than the 173 states, and every reading tried identifies two zeros; a reading into 30088 states keeps the zeros apart and identifies 0 with 1 alone",
   "ok": true,
-  "detail": "collisions {13: (0, 13), 232: (0, 232)}; \u221a\u03a9 = 15, \u221ap* = 3",
+  "detail": "collisions {173: (0, 173), 30088: (0, 30088)}; the horizons of the chart F_\u03a9 and of p*: 173, 13",
   "kind": "EXACT"
  },
  {
@@ -744,19 +444,9 @@
   "rows": "20:A2, 20:A4, 20:F7",
   "block": "A",
   "script": "rh",
-  "label": "closure of the zeros on \u03a9 = 30089: the largest admissible Subject p* = 173 (173\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 173), the cycle's 30089 residues, an embedded Subject reads 173 of them; readings into 173 and 30088 records collide",
+  "label": "closure of the zeros on \u03a9 = 2408561: the largest admissible Subject p* = 1549 (1549\u00b2 < \u03a9, and no larger prime 4\u03ba + 1 has its square below \u03a9), the cycle's 2408561 residues, an embedded Subject reads 1549 of them; readings into 1549 and 2408560 states collide; the 2408559 zeros are more than the 1549 states, and every reading tried identifies two zeros; a reading into 2408560 states keeps the zeros apart and identifies 0 with 1 alone",
   "ok": true,
-  "detail": "collisions {173: (0, 173), 30088: (0, 30088)}; \u221a\u03a9 = 173, \u221ap* = 13",
-  "kind": "EXACT"
- },
- {
-  "id": "A12",
-  "rows": "20:A2, 20:A4, 20:F7",
-  "block": "A",
-  "script": "rh",
-  "label": "closure of the zeros on \u03a9 = 2408561: the largest admissible Subject p* = 1549 (1549\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 1551), the cycle's 2408561 residues, an embedded Subject reads 1549 of them; readings into 1549 and 2408560 records collide",
-  "ok": true,
-  "detail": "collisions {1549: (0, 1549), 2408560: (0, 2408560)}; \u221a\u03a9 = 1551, \u221ap* = 39",
+  "detail": "collisions {1549: (0, 1549), 2408560: (0, 2408560)}; the horizons of the chart F_\u03a9 and of p*: 1551, 39",
   "kind": "EXACT"
  },
  {
@@ -790,63 +480,13 @@
   "kind": "EXACT"
  },
  {
-  "id": "A17",
-  "rows": "20:O9",
+  "id": "A19",
+  "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "F_13: of its 4 generators, 2 order the 2 primes of the window 2..3 by the discrete logarithm; the longest ordered run of primes is 2 of 2",
+  "label": "the drive theorem on F_13: D x^k = g^k x^k for every mode, the spectrum F_13^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
   "ok": true,
-  "detail": "(generators, ordering, longest run, primes) = (4, 2, 2, 2)",
-  "kind": "EXACT"
- },
- {
-  "id": "A17",
-  "rows": "20:O9",
-  "block": "A",
-  "script": "rh",
-  "label": "F_173: of its 84 generators, 0 order the 6 primes of the window 2..13 by the discrete logarithm; the longest ordered run of primes is 5 of 6",
-  "ok": true,
-  "detail": "(generators, ordering, longest run, primes) = (84, 0, 5, 6)",
-  "kind": "EXACT"
- },
- {
-  "id": "A17",
-  "rows": "20:O9",
-  "block": "A",
-  "script": "rh",
-  "label": "F_1549: of its 504 generators, 0 order the 12 primes of the window 2..39 by the discrete logarithm; the longest ordered run of primes is 6 of 12",
-  "ok": true,
-  "detail": "(generators, ordering, longest run, primes) = (504, 0, 6, 12)",
-  "kind": "EXACT"
- },
- {
-  "id": "A17",
-  "rows": "20:O9",
-  "block": "A",
-  "script": "rh",
-  "label": "F_30089: of its 15040 generators, 0 order the 40 primes of the window 2..173 by the discrete logarithm; the longest ordered run of primes is 7 of 40",
-  "ok": true,
-  "detail": "(generators, ordering, longest run, primes) = (15040, 0, 7, 40)",
-  "kind": "EXACT"
- },
- {
-  "id": "A18",
-  "rows": "20:F10, 20:B9, 20:B13",
-  "block": "A",
-  "script": "rh",
-  "label": "no zero off the line, pair (13, 233): the lines kept by both involutions are F_p and L_1/2 and no other tested line (every line of F_13\u00b2, every line of F_233\u00b2); every label 1 \u2264 \u03b8 \u2264 11 of F_13 a nontrivial mode on the line in both frames, the Subject's 11 zeros; every point(s) off both lines on no line kept by both",
-  "ok": true,
-  "detail": "both-invariant lines of F_13\u00b2: [('H', 0), ('S', 0, 7)]",
-  "kind": "EXACT"
- },
- {
-  "id": "A18",
-  "rows": "20:F10, 20:B9, 20:B13",
-  "block": "A",
-  "script": "rh",
-  "label": "no zero off the line, pair (173, 30089): the lines kept by both involutions are F_p and L_1/2 and no other tested line (every line of F_173\u00b2, the two lines kept and 2000 sampled others not, on F_30089\u00b2); every label 1 \u2264 \u03b8 \u2264 171 of F_173 a nontrivial mode on the line in both frames, the Subject's 171 zeros; 200 sampled point(s) off both lines on no line kept by both",
-  "ok": true,
-  "detail": "both-invariant lines of F_173\u00b2: [('H', 0), ('S', 0, 87)]",
+  "detail": "g=2, \u03c0=6: eigenvalues g^k = [1, 2, 4, 8, 3, 6]\u2026",
   "kind": "EXACT"
  },
  {
@@ -854,9 +494,9 @@
   "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "the drive theorem on F_13: D x^k = g^k x^k for every mode, the spectrum F_13^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "label": "the drive theorem on F_17: D x^k = g^k x^k for every mode, the spectrum F_17^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
   "ok": true,
-  "detail": "g=2, \u03c0=6: eigenvalues g^k = [1, 2, 4, 8, 3, 6]\u2026, labels \u2212g^k = [12, 11, 9, 5, 10, 7]\u2026",
+  "detail": "g=3, \u03c0=8: eigenvalues g^k = [1, 3, 9, 10, 13, 5]\u2026",
   "kind": "EXACT"
  },
  {
@@ -864,9 +504,9 @@
   "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "the drive theorem on F_17: D x^k = g^k x^k for every mode, the spectrum F_17^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "label": "the drive theorem on F_29: D x^k = g^k x^k for every mode, the spectrum F_29^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
   "ok": true,
-  "detail": "g=3, \u03c0=8: eigenvalues g^k = [1, 3, 9, 10, 13, 5]\u2026, labels \u2212g^k = [16, 14, 8, 7, 4, 12]\u2026",
+  "detail": "g=2, \u03c0=14: eigenvalues g^k = [1, 2, 4, 8, 16, 3]\u2026",
   "kind": "EXACT"
  },
  {
@@ -874,9 +514,9 @@
   "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "the drive theorem on F_29: D x^k = g^k x^k for every mode, the spectrum F_29^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "label": "the drive theorem on F_37: D x^k = g^k x^k for every mode, the spectrum F_37^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
   "ok": true,
-  "detail": "g=2, \u03c0=14: eigenvalues g^k = [1, 2, 4, 8, 16, 3]\u2026, labels \u2212g^k = [28, 27, 25, 21, 13, 26]\u2026",
+  "detail": "g=2, \u03c0=18: eigenvalues g^k = [1, 2, 4, 8, 16, 32]\u2026",
   "kind": "EXACT"
  },
  {
@@ -884,9 +524,9 @@
   "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "the drive theorem on F_37: D x^k = g^k x^k for every mode, the spectrum F_37^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "label": "the drive theorem on F_41: D x^k = g^k x^k for every mode, the spectrum F_41^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
   "ok": true,
-  "detail": "g=2, \u03c0=18: eigenvalues g^k = [1, 2, 4, 8, 16, 32]\u2026, labels \u2212g^k = [36, 35, 33, 29, 21, 5]\u2026",
+  "detail": "g=6, \u03c0=20: eigenvalues g^k = [1, 6, 36, 11, 25, 27]\u2026",
   "kind": "EXACT"
  },
  {
@@ -894,179 +534,439 @@
   "rows": "20:E15",
   "block": "A",
   "script": "rh",
-  "label": "the drive theorem on F_41: D x^k = g^k x^k for every mode, the spectrum F_41^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "label": "the drive theorem on F_173: D x^k = g^k x^k for every mode, the spectrum F_173^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); at x = g^m the mode of count k reads g^(km)",
   "ok": true,
-  "detail": "g=6, \u03c0=20: eigenvalues g^k = [1, 6, 36, 11, 25, 27]\u2026, labels \u2212g^k = [40, 35, 5, 30, 16, 14]\u2026",
+  "detail": "g=2, \u03c0=86: eigenvalues g^k = [1, 2, 4, 8, 16, 32]\u2026",
   "kind": "EXACT"
  },
  {
-  "id": "A19",
-  "rows": "20:E15",
-  "block": "A",
+  "id": "D14",
+  "rows": "20:D14",
+  "block": "D",
   "script": "rh",
-  "label": "the drive theorem on F_173: D x^k = g^k x^k for every mode, the spectrum F_173^\u00d7 simple; \u27e8Dv, w\u27e9 = \u27e8v, D\u207b\u00b9w\u27e9 on three random pairs, D not symmetric, D + D\u207b\u00b9 symmetric; the spectrum real and the modes isotropic (\u27e8x^k, x^k\u27e9 = 0 for k \u2260 0, \u03c0, \u22121 there); the readout minus the eigenvalue; the half-turn negates it",
+  "label": "the window's primes show the heights [chart]: on the windows of depth 13, 39, 173 and 1551 the prime vector with its mean removed sums to 0, E(\u2212t) = E(t), and the five tallest peaks of E on 10 \u2264 t \u2264 36 lie within 0.18, 0.21, 0.27 and 0.21 of the first five heights; of the 4095 pairs of complementary subsets of the 13 labels, read the same way, the primes' pair alone lies within 0.18, the closest of all, the next at 0.26; 13 pairs have fewer than five maxima on the range",
   "ok": true,
-  "detail": "g=2, \u03c0=86: eigenvalues g^k = [1, 2, 4, 8, 16, 32]\u2026, labels \u2212g^k = [172, 171, 169, 165, 157, 141]\u2026",
+  "detail": "largest distances 13: 0.171, 39: 0.200, 173: 0.262, 1551: 0.207; 4095 pairs of subsets: 1 within 0.18, the primes' pair at 0.171, the next at 0.257, 13 with fewer than five maxima",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D15",
+  "rows": "20:D15",
+  "block": "D",
+  "script": "rh",
+  "label": "the deep window [chart]: a label reads with the modulus n^\u03c3 and E(t) \u2264 \u03a3|\u03bb(n) \u2212 \u03bb\u0304| n^\u03c3; with the von Mangoldt weight at depth 10\u2076 the ten tallest peaks on 10 \u2264 t \u2264 52 lie within 0.045 of the first ten heights",
+  "ok": true,
+  "detail": "largest distance 0.044",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D16",
+  "rows": "20:D16",
+  "block": "D",
+  "script": "rh",
+  "label": "the count of a window from its dual [chart]: on the window of depth 39, the twelve primes of the Subject 1549, at the half-integers 2.5 to 38.5 and the heights 35, 78 and 202, the count C_T lies within 0.38, 0.21 and 0.11 of \u03c0(x), the count of the primes; Riemann's formula with the 5, 20 and 80 zeros of positive height below the same heights lies within 0.48, 0.22 and 0.15 of it, and the two lie within 0.14, 0.10 and 0.10 of each other; at the twelve prime labels each reads \u03c0(x) \u2212 1/2, the middle of the step, within its own bound, and at the label 23 and the height 78 the two differ by 0.106",
+  "ok": true,
+  "detail": "largest differences (the window's count, Riemann's formula, between the two; in brackets the first two at the prime labels, from the count less one half) at the heights 35: 0.375, 0.473, 0.135 (0.106, 0.161); 78: 0.202, 0.215, 0.097 (0.050, 0.116); 202: 0.105, 0.143, 0.096 (0.023, 0.033); at the label 23 and the height 78 the two differ by 0.106",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D17",
+  "rows": "20:D17",
+  "block": "D",
+  "script": "rh",
+  "label": "the bound of the count [chart]: on the windows of depth 13 and 39, at the half-integers and the heights 35, 67, 78 and 202, for the prime vector and for the indicator vector of all the labels, and at the quarter positions for a signed vector on the labels of depth 39, the count C_T lies within B(x)/T of the count of the vector below x, with B(x) = (1/\u03c0) \u03a3 |w(n)| \u221a(x/n)/|log(x/n)|; on the window of depth 39 the prime vector has B(x) \u2264 33.14 at the half-integers, so the bound is at most 0.95, 0.43 and 0.17 at the heights 35, 78 and 202 and below one half from the height 67 on, and the nearest integer to the count at the height 67 is \u03c0(x)",
+  "ok": true,
+  "detail": "largest B(x) at the half-integers of depth 39: 33.138; largest ratio of a difference to its bound: 0.820",
+  "kind": "[approx]"
+ },
+ {
+  "id": "G2",
+  "rows": "20:G2",
+  "block": "G",
+  "script": "rh",
+  "label": "the count operator on F_13: a count k \u2265 1 and its conjugate add to \u22121, on the chart of F_233 too; (k + m + 1)\u27e8x^k, x^m\u27e9 = 0 for every mode k \u2265 1 and every mode m; \u27e8Nv, w\u27e9 + \u27e8v, Nw\u27e9 + \u27e8v, w\u27e9 = \u2212c\u2080d\u2080 on 144 pairs of vectors",
+  "ok": true,
+  "detail": "every pair of indicators of a residue",
   "kind": "EXACT"
  },
  {
-  "id": "A20",
-  "rows": "20:B14",
-  "block": "A",
+  "id": "G3",
+  "rows": "20:G3",
+  "block": "G",
   "script": "rh",
-  "label": "the energy domain is a circle on F_13: z/(1 \u2212 z) carries the 13 points of the critical line injectively into U_14 (14 points), the centre to 1, \u22121 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_14 negate under k \u21a6 k + \u03c0 and fit no affine function of k",
+  "label": "the half is forced on F_13: N + c is skew on the nonconstant modes exactly when 2c \u2261 1, for every residue c, on the chart of F_233 too; the run of counts from m(p \u2212 1) asks for 2c \u2261 2m + 1, and so does the run one above; a run from any other start has no such c",
   "ok": true,
-  "detail": "\u03bd=2: the modes at the circle points [(8, 5), (9, 1), (3, 11)]\u2026; rotations matching the drive: 0; exponents [11, 5, 2, 10, 1, 8]\u2026, the affine fit from k = 0, 1 fails at k = [2, 3, 5]\u2026",
+  "detail": "2\u207b\u00b9 = 7; every start of a run for m = 0, 1, 2, 3, 7",
   "kind": "EXACT"
  },
  {
-  "id": "A20",
-  "rows": "20:B14",
-  "block": "A",
+  "id": "G5",
+  "rows": "20:G5",
+  "block": "G",
   "script": "rh",
-  "label": "the energy domain is a circle on F_17: z/(1 \u2212 z) carries the 17 points of the critical line injectively into U_18 (18 points), the centre to 1, \u22121 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_18 negate under k \u21a6 k + \u03c0 and fit no affine function of k",
+  "label": "the generator H = \u2212i(N + 2\u207b\u00b9) on F_13: (\u03b3_k + \u03b3_m)\u27e8x^k, x^m\u27e9 = 0 unless both modes are constant; the conjugate of a nonconstant mode has the frequency \u2212\u03b3_k, and \u2212\u03b3_0 is the frequency of no mode",
   "ok": true,
-  "detail": "\u03bd=3: the modes at the circle points [(5, 12), (8, 2), (2, 1)]\u2026; rotations matching the drive: 0; exponents [5, 17, 8, 14, 16, 15]\u2026, the affine fit from k = 0, 1 fails at k = [2, 3, 4]\u2026",
+  "detail": "4 generators",
   "kind": "EXACT"
  },
  {
-  "id": "A20",
-  "rows": "20:B14",
-  "block": "A",
+  "id": "G6",
+  "rows": "20:G6, 20:F7",
+  "block": "G",
   "script": "rh",
-  "label": "the energy domain is a circle on F_29: z/(1 \u2212 z) carries the 29 points of the critical line injectively into U_30 (30 points), the centre to 1, \u22121 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_30 negate under k \u21a6 k + \u03c0 and fit no affine function of k",
+  "label": "the zeros on F_13: 2\u207b\u00b9 + i\u03b3_k = k + 1; the zeros of the nonconstant modes are the residues other than 0 and 1, on the chart of F_233 too; the conjugate mode has the zero 1 \u2212 \u03c1_k; x \u21a6 1 \u2212 x is the one affine map besides the identity that keeps the pair of origin and unit",
   "ok": true,
-  "detail": "\u03bd=2: the modes at the circle points [(7, 16), (27, 25), (10, 8)]\u2026; rotations matching the drive: 0; exponents [4, 17, 3, 5, 1, 22]\u2026, the affine fit from k = 0, 1 fails at k = [2, 3, 4]\u2026",
+  "detail": "4 generators; every affine map of F_13",
   "kind": "EXACT"
  },
  {
-  "id": "A20",
-  "rows": "20:B14",
-  "block": "A",
+  "id": "G7",
+  "rows": "20:G7",
+  "block": "G",
   "script": "rh",
-  "label": "the energy domain is a circle on F_37: z/(1 \u2212 z) carries the 37 points of the critical line injectively into U_38 (38 points), the centre to 1, \u22121 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_38 negate under k \u21a6 k + \u03c0 and fit no affine function of k",
+  "label": "the centre on F_13: the mode of count \u03c0 = 6 is its own conjugate; its zero is 2\u207b\u00b9 = 2\u03ba + 1 = \u2212\u03c0 = 7, the one residue with 2x \u2261 1 and the one fixed point of x \u21a6 1 \u2212 x; its frequency is 0 and no other mode's; \u03c1(1 \u2212 \u03c1) = 2\u207b\u00b2 + \u03b3\u00b2 = \u2212k(k + 1) for a count and its conjugate",
   "ok": true,
-  "detail": "\u03bd=2: the modes at the circle points [(4, 10), (24, 26), (12, 4)]\u2026; rotations matching the drive: 0; exponents [24, 7, 4, 28, 30, 21]\u2026, the affine fit from k = 0, 1 fails at k = [2, 3, 4]\u2026",
+  "detail": "4 generators",
   "kind": "EXACT"
  },
  {
-  "id": "A20",
-  "rows": "20:B14",
-  "block": "A",
+  "id": "G9",
+  "rows": "20:G9",
+  "block": "G",
   "script": "rh",
-  "label": "the energy domain is a circle on F_41: z/(1 \u2212 z) carries the 41 points of the critical line injectively into U_42 (42 points), the centre to 1, \u22121 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_42 negate under k \u21a6 k + \u03c0 and fit no affine function of k",
+  "label": "the order of the zeros on F_13: the counts \u03c0 \u2212 j and \u03c0 + j are conjugate, with their zeros at 2\u207b\u00b9 \u2212 j and 2\u207b\u00b9 + j; the smaller count \u03c0 \u2212 j falls from \u03c0 = 6 to 1 as j runs from 0 to \u03c0 \u2212 1",
   "ok": true,
-  "detail": "\u03bd=3: the modes at the circle points [(10, 22), (26, 26), (35, 11)]\u2026; rotations matching the drive: 0; exponents [29, 20, 23, 4, 14, 3]\u2026, the affine fit from k = 0, 1 fails at k = [2, 3, 4]\u2026",
+  "detail": "6 pairs",
   "kind": "EXACT"
  },
  {
-  "id": "B3",
-  "rows": "20:B8",
-  "block": "B",
+  "id": "G10",
+  "rows": "20:G10",
+  "block": "G",
   "script": "rh",
-  "label": "de-framing limit (2\u03ba+1)/p \u2192 \u00bd from above",
+  "label": "the cardinal modes on F_13: a mode has all its values in {1, i, \u22121, \u2212i} exactly when its count is 0, \u03ba, 2\u03ba or 3\u03ba; these modes stand at 1, 3\u00b74\u207b\u00b9, 2\u207b\u00b9, 4\u207b\u00b9 = 1, 4, 7, 10",
   "ok": true,
-  "detail": "13: 0.53846  53: 0.50943  101: 0.50495  409: 0.50122  1009: 0.50050  10009: 0.50005",
-  "kind": "[chart]"
+  "detail": "4 generators",
+  "kind": "EXACT"
  },
  {
-  "id": "B5",
-  "rows": "20:F9",
-  "block": "B",
+  "id": "G12",
+  "rows": "20:G12",
+  "block": "G",
   "script": "rh",
-  "label": "the exhibit, window of depth 13 (9 prime-power labels): its five peaks [14.5, 20.5, 25.7, 29.0, 34.9] at the first five heights [14.1, 21.0, 25.0, 30.4, 32.9] within the resolution 2\u03c0/log 13 = 2.4",
+  "label": "the chart of the Carrier F_233, with no generator: the conjugate of a count 1 \u2264 k \u2264 \u03a9 \u2212 2 is \u03a9 \u2212 1 \u2212 k and the two add to \u22121; the centre of the zeros is 2\u207b\u00b9 = 2S + 1 = \u2212G = 117, with G = 2S; the counts 0, S, 2S, 3S stand at 1, 3\u00b74\u207b\u00b9, 2\u207b\u00b9, 4\u207b\u00b9; every zero of the Subject F_13 is the same integer there, and its constant mode stands at 1 on both",
   "ok": true,
-  "detail": "peaks [14.5, 20.5, 25.7, 29.0, 34.9]",
-  "kind": "[chart]"
+  "detail": "S = 58; every count 1 \u2026 \u03a9 \u2212 2 of the chart",
+  "kind": "EXACT"
  },
  {
-  "id": "B5",
-  "rows": "20:F9",
-  "block": "B",
+  "id": "G13",
+  "rows": "20:G13",
+  "block": "G",
   "script": "rh",
-  "label": "the exhibit, window of depth 39 (19 prime-power labels): its five peaks [14.2, 20.8, 25.4, 30.0, 33.5] at the first five heights [14.1, 21.0, 25.0, 30.4, 32.9] within the resolution 2\u03c0/log 39 = 1.7",
+  "label": "the critical circle on F_13: a point a\u00b7g^m of the sphere and its mirror a\u00b7g^\u2212m carry a zero and the zero of the conjugate mode exactly when a(g^m + g^\u2212m) = 1, with a\u00b2 = \u03c1(1 \u2212 \u03c1), and the two zeros differ by 2i\u03b3_k; one point at each phase below \u03c0 but \u03ba, none on the momentum meridian or at the origin, the centre 2\u207b\u00b9 = 7 alone on the prime meridian; a zero has a point exactly when \u03c1(1 \u2212 \u03c1) is a square, and then one: 5 points with distinct zeros; under X = 2\u03c1 \u2212 1, Y = 2a the relation a\u00b2 = \u03c1(1 \u2212 \u03c1) is the conic X\u00b2 + Y\u00b2 = 1, with its classical count of 12 points, two at a = 0 and the others in pairs \u00b1a on those zeros; the points with a(g^m + g^\u2212m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum \u22121, which carry the counts, \u03c0 = 6 on the prime meridian, and share no point with the circle",
   "ok": true,
-  "detail": "peaks [14.2, 20.8, 25.4, 30.0, 33.5]",
-  "kind": "[chart]"
+  "detail": "4 generators",
+  "kind": "EXACT"
  },
  {
-  "id": "B5",
-  "rows": "20:F9",
-  "block": "B",
+  "id": "G14",
+  "rows": "20:G14",
+  "block": "G",
   "script": "rh",
-  "label": "the exhibit, window of depth 173 (54 prime-power labels): its five peaks [14.2, 20.9, 25.1, 30.2, 33.2] at the first five heights [14.1, 21.0, 25.0, 30.4, 32.9] within the resolution 2\u03c0/log 173 = 1.2",
+  "label": "the zeros on the latitude cycle of F_13: every zero is z/(1 + z) for one z = \u03c1/(1 \u2212 \u03c1) \u2260 0, \u22121; with z = g^j the 11 zeros stand at the places j \u2260 \u03c0 of C_12, the centre at the place 0 and the conjugate zero at \u2212j; the point of the sphere on the circle at the phase m is the even place 2m; 2\u03c1 \u2212 1 = (z \u2212 1)/(z + 1); the map x \u21a6 (x \u2212 1)/(x + 1) has the square x \u21a6 \u22121/x, four steps return x where they are defined, and its fixed points are \u00b1i",
   "ok": true,
-  "detail": "peaks [14.2, 20.9, 25.1, 30.2, 33.2]",
-  "kind": "[chart]"
+  "detail": "4 generators",
+  "kind": "EXACT"
  },
  {
-  "id": "B6",
-  "rows": "20:F9",
-  "block": "B",
+  "id": "G2",
+  "rows": "20:G2",
+  "block": "G",
   "script": "rh",
-  "label": "pair agreement on (173, 30089): the Carrier's window 173 reads its five peaks [0.3, 0.4, 0.5, 1.1, 1.7] from the Subject's window 13, within the Subject's resolution 2.4",
+  "label": "the count operator on F_173: a count k \u2265 1 and its conjugate add to \u22121, on the chart of F_30089 too; (k + m + 1)\u27e8x^k, x^m\u27e9 = 0 for every mode k \u2265 1 and every mode m; \u27e8Nv, w\u27e9 + \u27e8v, Nw\u27e9 + \u27e8v, w\u27e9 = \u2212c\u2080d\u2080 on 29584 pairs of vectors",
   "ok": true,
-  "detail": "Subject [14.5, 20.5, 25.7, 29.0, 34.9], Carrier [14.2, 20.9, 25.1, 30.2, 33.2], distances [0.3, 0.4, 0.5, 1.1, 1.7]",
-  "kind": "[chart]"
+  "detail": "every pair of indicators of a residue",
+  "kind": "EXACT"
  },
  {
-  "id": "B6",
-  "rows": "20:F9",
-  "block": "B",
+  "id": "G3",
+  "rows": "20:G3",
+  "block": "G",
   "script": "rh",
-  "label": "pair agreement on (1549, 2408561): the Carrier's window 1551 reads its five peaks [0.0, 0.2, 0.3, 0.4, 0.4] from the Subject's window 39, within the Subject's resolution 1.7",
+  "label": "the half is forced on F_173: N + c is skew on the nonconstant modes exactly when 2c \u2261 1, for every residue c, on the chart of F_30089 too; the run of counts from m(p \u2212 1) asks for 2c \u2261 2m + 1, and so does the run one above; a run from any other start has no such c",
   "ok": true,
-  "detail": "Subject [14.2, 20.8, 25.4, 30.0, 33.5], Carrier [14.2, 21.0, 25.0, 30.3, 33.0], distances [0.0, 0.2, 0.3, 0.4, 0.4]",
-  "kind": "[chart]"
+  "detail": "2\u207b\u00b9 = 87; every start of a run for m = 0, 1, 2, 3, 7",
+  "kind": "EXACT"
  },
  {
-  "id": "B6",
-  "rows": "20:F9",
-  "block": "B",
+  "id": "G5",
+  "rows": "20:G5",
+  "block": "G",
   "script": "rh",
-  "label": "the pair (13, 233): the Subject's window, of depth 3, holds two prime-power labels, the taper leaves one, and the intensity is flat: no height",
+  "label": "the generator H = \u2212i(N + 2\u207b\u00b9) on F_173: (\u03b3_k + \u03b3_m)\u27e8x^k, x^m\u27e9 = 0 unless both modes are constant; the conjugate of a nonconstant mode has the frequency \u2212\u03b3_k, and \u2212\u03b3_0 is the frequency of no mode",
   "ok": true,
-  "detail": "labels [2, 3]; the intensity on [10, 36] varies by 5.6e-17",
-  "kind": "[chart]"
+  "detail": "84 generators",
+  "kind": "EXACT"
  },
  {
-  "id": "B8",
-  "rows": "20:O9",
-  "block": "B",
+  "id": "G6",
+  "rows": "20:G6, 20:F7",
+  "block": "G",
   "script": "rh",
-  "label": "F_173: the 9 prime-power labels of the window read in the discrete logarithm load the 171 nontrivial modes at most 30, mean 9, a random-sum maximum about 46: no mode stands out",
+  "label": "the zeros on F_173: 2\u207b\u00b9 + i\u03b3_k = k + 1; the zeros of the nonconstant modes are the residues other than 0 and 1, on the chart of F_30089 too; the conjugate mode has the zero 1 \u2212 \u03c1_k; x \u21a6 1 \u2212 x is the one affine map besides the identity that keeps the pair of origin and unit",
   "ok": true,
-  "detail": "(max, mean, random max) = (30.0, 8.6, 46)",
-  "kind": "[chart]"
+  "detail": "84 generators; every affine map of F_173",
+  "kind": "EXACT"
  },
  {
-  "id": "B8",
-  "rows": "20:O9",
-  "block": "B",
+  "id": "G7",
+  "rows": "20:G7",
+  "block": "G",
   "script": "rh",
-  "label": "F_1549: the 19 prime-power labels of the window read in the discrete logarithm load the 1547 nontrivial modes at most 108, mean 19, a random-sum maximum about 140: no mode stands out",
+  "label": "the centre on F_173: the mode of count \u03c0 = 86 is its own conjugate; its zero is 2\u207b\u00b9 = 2\u03ba + 1 = \u2212\u03c0 = 87, the one residue with 2x \u2261 1 and the one fixed point of x \u21a6 1 \u2212 x; its frequency is 0 and no other mode's; \u03c1(1 \u2212 \u03c1) = 2\u207b\u00b2 + \u03b3\u00b2 = \u2212k(k + 1) for a count and its conjugate",
   "ok": true,
-  "detail": "(max, mean, random max) = (108.5, 18.8, 140)",
-  "kind": "[chart]"
+  "detail": "84 generators",
+  "kind": "EXACT"
  },
  {
-  "id": "B8",
-  "rows": "20:O9",
-  "block": "B",
+  "id": "G9",
+  "rows": "20:G9",
+  "block": "G",
   "script": "rh",
-  "label": "F_30089: the 54 prime-power labels of the window read in the discrete logarithm load the 30087 nontrivial modes at most 431, mean 54, a random-sum maximum about 557: no mode stands out",
+  "label": "the order of the zeros on F_173: the counts \u03c0 \u2212 j and \u03c0 + j are conjugate, with their zeros at 2\u207b\u00b9 \u2212 j and 2\u207b\u00b9 + j; the smaller count \u03c0 \u2212 j falls from \u03c0 = 86 to 1 as j runs from 0 to \u03c0 \u2212 1",
   "ok": true,
-  "detail": "(max, mean, random max) = (430.7, 53.9, 557)",
-  "kind": "[chart]"
+  "detail": "86 pairs",
+  "kind": "EXACT"
  },
  {
-  "id": "C1",
-  "rows": "20:F9",
-  "block": "C",
+  "id": "G10",
+  "rows": "20:G10",
+  "block": "G",
   "script": "rh",
-  "label": "the window of depth 10\u2076: its ten tallest peaks on the range 10 to 52 are the first ten heights, each within 0.05",
+  "label": "the cardinal modes on F_173: a mode has all its values in {1, i, \u22121, \u2212i} exactly when its count is 0, \u03ba, 2\u03ba or 3\u03ba; these modes stand at 1, 3\u00b74\u207b\u00b9, 2\u207b\u00b9, 4\u207b\u00b9 = 1, 44, 87, 130",
   "ok": true,
-  "detail": "peaks [14.12, 21.0, 25.02, 30.41, 32.95, 37.58, 40.91, 43.35, 47.97, 49.8]; max deviation 0.035; 11 s",
-  "kind": "[chart]"
+  "detail": "84 generators",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G12",
+  "rows": "20:G12",
+  "block": "G",
+  "script": "rh",
+  "label": "the chart of the Carrier F_30089, with no generator: the conjugate of a count 1 \u2264 k \u2264 \u03a9 \u2212 2 is \u03a9 \u2212 1 \u2212 k and the two add to \u22121; the centre of the zeros is 2\u207b\u00b9 = 2S + 1 = \u2212G = 15045, with G = 2S; the counts 0, S, 2S, 3S stand at 1, 3\u00b74\u207b\u00b9, 2\u207b\u00b9, 4\u207b\u00b9; every zero of the Subject F_173 is the same integer there, and its constant mode stands at 1 on both",
+  "ok": true,
+  "detail": "S = 7522; every count 1 \u2026 \u03a9 \u2212 2 of the chart",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G13",
+  "rows": "20:G13",
+  "block": "G",
+  "script": "rh",
+  "label": "the critical circle on F_173: a point a\u00b7g^m of the sphere and its mirror a\u00b7g^\u2212m carry a zero and the zero of the conjugate mode exactly when a(g^m + g^\u2212m) = 1, with a\u00b2 = \u03c1(1 \u2212 \u03c1), and the two zeros differ by 2i\u03b3_k; one point at each phase below \u03c0 but \u03ba, none on the momentum meridian or at the origin, the centre 2\u207b\u00b9 = 87 alone on the prime meridian; a zero has a point exactly when \u03c1(1 \u2212 \u03c1) is a square, and then one: 85 points with distinct zeros; under X = 2\u03c1 \u2212 1, Y = 2a the relation a\u00b2 = \u03c1(1 \u2212 \u03c1) is the conic X\u00b2 + Y\u00b2 = 1, with its classical count of 172 points, two at a = 0 and the others in pairs \u00b1a on those zeros; the points with a(g^m + g^\u2212m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum \u22121, which carry the counts, \u03c0 = 86 on the prime meridian, and share no point with the circle",
+  "ok": true,
+  "detail": "84 generators",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G14",
+  "rows": "20:G14",
+  "block": "G",
+  "script": "rh",
+  "label": "the zeros on the latitude cycle of F_173: every zero is z/(1 + z) for one z = \u03c1/(1 \u2212 \u03c1) \u2260 0, \u22121; with z = g^j the 171 zeros stand at the places j \u2260 \u03c0 of C_172, the centre at the place 0 and the conjugate zero at \u2212j; the point of the sphere on the circle at the phase m is the even place 2m; 2\u03c1 \u2212 1 = (z \u2212 1)/(z + 1); the map x \u21a6 (x \u2212 1)/(x + 1) has the square x \u21a6 \u22121/x, four steps return x where they are defined, and its fixed points are \u00b1i",
+  "ok": true,
+  "detail": "84 generators",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G2",
+  "rows": "20:G2",
+  "block": "G",
+  "script": "rh",
+  "label": "the count operator on F_1549: a count k \u2265 1 and its conjugate add to \u22121, on the chart of F_2408561 too; (k + m + 1)\u27e8x^k, x^m\u27e9 = 0 for every mode k \u2265 1 and every mode m; \u27e8Nv, w\u27e9 + \u27e8v, Nw\u27e9 + \u27e8v, w\u27e9 = \u2212c\u2080d\u2080 on 100 pairs of vectors",
+  "ok": true,
+  "detail": "seven indicators and three fixed sequences, every pair",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G3",
+  "rows": "20:G3",
+  "block": "G",
+  "script": "rh",
+  "label": "the half is forced on F_1549: N + c is skew on the nonconstant modes exactly when 2c \u2261 1, for every residue c, on the chart of F_2408561 too; the run of counts from m(p \u2212 1) asks for 2c \u2261 2m + 1, and so does the run one above; a run from any other start has no such c",
+  "ok": true,
+  "detail": "2\u207b\u00b9 = 775; every start of a run for m = 0, 1, 2",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G5",
+  "rows": "20:G5",
+  "block": "G",
+  "script": "rh",
+  "label": "the generator H = \u2212i(N + 2\u207b\u00b9) on F_1549: (\u03b3_k + \u03b3_m)\u27e8x^k, x^m\u27e9 = 0 unless both modes are constant; the conjugate of a nonconstant mode has the frequency \u2212\u03b3_k, and \u2212\u03b3_0 is the frequency of no mode",
+  "ok": true,
+  "detail": "the least 3 generators",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G6",
+  "rows": "20:G6, 20:F7",
+  "block": "G",
+  "script": "rh",
+  "label": "the zeros on F_1549: 2\u207b\u00b9 + i\u03b3_k = k + 1; the zeros of the nonconstant modes are the residues other than 0 and 1, on the chart of F_2408561 too; the conjugate mode has the zero 1 \u2212 \u03c1_k; x \u21a6 1 \u2212 x is the one affine map besides the identity that keeps the pair of origin and unit",
+  "ok": true,
+  "detail": "the least 3 generators; every affine map of F_1549",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G7",
+  "rows": "20:G7",
+  "block": "G",
+  "script": "rh",
+  "label": "the centre on F_1549: the mode of count \u03c0 = 774 is its own conjugate; its zero is 2\u207b\u00b9 = 2\u03ba + 1 = \u2212\u03c0 = 775, the one residue with 2x \u2261 1 and the one fixed point of x \u21a6 1 \u2212 x; its frequency is 0 and no other mode's; \u03c1(1 \u2212 \u03c1) = 2\u207b\u00b2 + \u03b3\u00b2 = \u2212k(k + 1) for a count and its conjugate",
+  "ok": true,
+  "detail": "the least 3 generators",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G9",
+  "rows": "20:G9",
+  "block": "G",
+  "script": "rh",
+  "label": "the order of the zeros on F_1549: the counts \u03c0 \u2212 j and \u03c0 + j are conjugate, with their zeros at 2\u207b\u00b9 \u2212 j and 2\u207b\u00b9 + j; the smaller count \u03c0 \u2212 j falls from \u03c0 = 774 to 1 as j runs from 0 to \u03c0 \u2212 1",
+  "ok": true,
+  "detail": "774 pairs",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G10",
+  "rows": "20:G10",
+  "block": "G",
+  "script": "rh",
+  "label": "the cardinal modes on F_1549: a mode has all its values in {1, i, \u22121, \u2212i} exactly when its count is 0, \u03ba, 2\u03ba or 3\u03ba; these modes stand at 1, 3\u00b74\u207b\u00b9, 2\u207b\u00b9, 4\u207b\u00b9 = 1, 388, 775, 1162",
+  "ok": true,
+  "detail": "the least generator",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G12",
+  "rows": "20:G12",
+  "block": "G",
+  "script": "rh",
+  "label": "the chart of the Carrier F_2408561, with no generator: the conjugate of a count 1 \u2264 k \u2264 \u03a9 \u2212 2 is \u03a9 \u2212 1 \u2212 k and the two add to \u22121; the centre of the zeros is 2\u207b\u00b9 = 2S + 1 = \u2212G = 1204281, with G = 2S; the counts 0, S, 2S, 3S stand at 1, 3\u00b74\u207b\u00b9, 2\u207b\u00b9, 4\u207b\u00b9; every zero of the Subject F_1549 is the same integer there, and its constant mode stands at 1 on both",
+  "ok": true,
+  "detail": "S = 602140; every count 1 \u2026 \u03a9 \u2212 2 of the chart",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G13",
+  "rows": "20:G13",
+  "block": "G",
+  "script": "rh",
+  "label": "the critical circle on F_1549: a point a\u00b7g^m of the sphere and its mirror a\u00b7g^\u2212m carry a zero and the zero of the conjugate mode exactly when a(g^m + g^\u2212m) = 1, with a\u00b2 = \u03c1(1 \u2212 \u03c1), and the two zeros differ by 2i\u03b3_k; one point at each phase below \u03c0 but \u03ba, none on the momentum meridian or at the origin, the centre 2\u207b\u00b9 = 775 alone on the prime meridian; a zero has a point exactly when \u03c1(1 \u2212 \u03c1) is a square, and then one: 773 points with distinct zeros; under X = 2\u03c1 \u2212 1, Y = 2a the relation a\u00b2 = \u03c1(1 \u2212 \u03c1) is the conic X\u00b2 + Y\u00b2 = 1, with its classical count of 1548 points, two at a = 0 and the others in pairs \u00b1a on those zeros; the points with a(g^m + g^\u2212m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum \u22121, which carry the counts, \u03c0 = 774 on the prime meridian, and share no point with the circle",
+  "ok": true,
+  "detail": "the least 3 generators; the parallels and the phases on the least generator",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G14",
+  "rows": "20:G14",
+  "block": "G",
+  "script": "rh",
+  "label": "the zeros on the latitude cycle of F_1549: every zero is z/(1 + z) for one z = \u03c1/(1 \u2212 \u03c1) \u2260 0, \u22121; with z = g^j the 1547 zeros stand at the places j \u2260 \u03c0 of C_1548, the centre at the place 0 and the conjugate zero at \u2212j; the point of the sphere on the circle at the phase m is the even place 2m; 2\u03c1 \u2212 1 = (z \u2212 1)/(z + 1); the map x \u21a6 (x \u2212 1)/(x + 1) has the square x \u21a6 \u22121/x, four steps return x where they are defined, and its fixed points are \u00b1i",
+  "ok": true,
+  "detail": "the least 3 generators",
+  "kind": "EXACT"
+ },
+ {
+  "id": "X1",
+  "rows": "20:X1",
+  "block": "X",
+  "script": "rh",
+  "label": "the \u00bd of the critical line on the pair (13, 233): the centre of the zeros is the inverse of 2, which is \u2212\u03c0 = 7 on the Subject and \u2212G = 117 on the Carrier's chart",
+  "ok": true,
+  "detail": "\u03c0 = 6, G = 116",
+  "kind": "EXACT"
+ },
+ {
+  "id": "X2",
+  "rows": "20:X2",
+  "block": "X",
+  "script": "rh",
+  "label": "the pole and the functional equation on F_13: Z_p vanishes at every nonconstant mode and is \u22121 at the constant mode, which stands at 1 and is no zero; a mode and its conjugate have the zeros \u03c1 and 1 \u2212 \u03c1, and x \u21a6 1 \u2212 x is the symmetry of origin and unit",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "X3",
+  "rows": "20:X3",
+  "block": "X",
+  "script": "rh",
+  "label": "the \u00bd of the dilation generator on F_13: the shift that makes the count operator skew on the nonconstant modes is forced, 2c \u2261 1; with H = \u2212i(N + 2\u207b\u00b9), (\u03b3_k + \u03b3_m)\u27e8x^k, x^m\u27e9 = 0 unless both modes are constant",
+  "ok": true,
+  "detail": "2\u207b\u00b9 = 7",
+  "kind": "EXACT"
+ },
+ {
+  "id": "X1",
+  "rows": "20:X1",
+  "block": "X",
+  "script": "rh",
+  "label": "the \u00bd of the critical line on the pair (173, 30089): the centre of the zeros is the inverse of 2, which is \u2212\u03c0 = 87 on the Subject and \u2212G = 15045 on the Carrier's chart",
+  "ok": true,
+  "detail": "\u03c0 = 86, G = 15044",
+  "kind": "EXACT"
+ },
+ {
+  "id": "X2",
+  "rows": "20:X2",
+  "block": "X",
+  "script": "rh",
+  "label": "the pole and the functional equation on F_173: Z_p vanishes at every nonconstant mode and is \u22121 at the constant mode, which stands at 1 and is no zero; a mode and its conjugate have the zeros \u03c1 and 1 \u2212 \u03c1, and x \u21a6 1 \u2212 x is the symmetry of origin and unit",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "X3",
+  "rows": "20:X3",
+  "block": "X",
+  "script": "rh",
+  "label": "the \u00bd of the dilation generator on F_173: the shift that makes the count operator skew on the nonconstant modes is forced, 2c \u2261 1; with H = \u2212i(N + 2\u207b\u00b9), (\u03b3_k + \u03b3_m)\u27e8x^k, x^m\u27e9 = 0 unless both modes are constant",
+  "ok": true,
+  "detail": "2\u207b\u00b9 = 87",
+  "kind": "EXACT"
+ },
+ {
+  "id": "X1",
+  "rows": "20:X1",
+  "block": "X",
+  "script": "rh",
+  "label": "the \u00bd of the critical line on the pair (1549, 2408561): the centre of the zeros is the inverse of 2, which is \u2212\u03c0 = 775 on the Subject and \u2212G = 1204281 on the Carrier's chart",
+  "ok": true,
+  "detail": "\u03c0 = 774, G = 1204280",
+  "kind": "EXACT"
+ },
+ {
+  "id": "X2",
+  "rows": "20:X2",
+  "block": "X",
+  "script": "rh",
+  "label": "the pole and the functional equation on F_1549: Z_p vanishes at every nonconstant mode and is \u22121 at the constant mode, which stands at 1 and is no zero; a mode and its conjugate have the zeros \u03c1 and 1 \u2212 \u03c1, and x \u21a6 1 \u2212 x is the symmetry of origin and unit",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "X3",
+  "rows": "20:X3",
+  "block": "X",
+  "script": "rh",
+  "label": "the \u00bd of the dilation generator on F_1549: the shift that makes the count operator skew on the nonconstant modes is forced, 2c \u2261 1; with H = \u2212i(N + 2\u207b\u00b9), (\u03b3_k + \u03b3_m)\u27e8x^k, x^m\u27e9 = 0 unless both modes are constant",
+  "ok": true,
+  "detail": "2\u207b\u00b9 = 775",
+  "kind": "EXACT"
  }
 ]

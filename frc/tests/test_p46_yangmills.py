@@ -152,13 +152,15 @@ class YangMillsTest(unittest.TestCase):
         self.assertGreater(r["declared_coupling"], r["herbst"][2])                      # C = 3.02 > 4/π: no ground state
         self.assertLess(r["collapse_rc1"], 1.9)
         self.assertAlmostEqual(r["fixed_points"][1.0][0], 3.54, places=1); self.assertAlmostEqual(r["fixed_points"][0.5][0], 3.08, places=1)
-        pc = CY.plaquette_channel(); T = pc["table"]
-        self.assertAlmostEqual(T[9]["leading"], 4 * math.sqrt(-math.log(T[9]["u"])), places=9)   # the paper's leading term
-        self.assertTrue(all(T[n]["orders"][7] > 5.0 for n in (9, 8, 7, 6)))
-        self.assertLess(T[3]["orders"][7], 4.0)
-        self.assertEqual(pc["unity"]["exact"], Q(23, 54))                           # the computed terms at channel unity
+        pc = CY.plaquette_channel()
+        self.assertAlmostEqual(pc["leading"], 4 * math.sqrt(-math.log(pc["u"])), places=9)       # the paper's leading term
+        self.assertEqual(pc["exact"], Q(140458562483, 9906778275840))               # the computed terms at channel unity, ϑ = 1/24
+        self.assertEqual(sum(Y.c1_series(3, 8)), Q(23, 54))                         # and at ϑ = 1
+        self.assertTrue(all(8.23 < pc["orders"][o] < 8.24 for o in (3, 5, 7))); self.assertLess(pc["spread"], 1e-5)
         self.assertAlmostEqual(sum(float(c) / 6 ** k for k, c in enumerate(Y.c1_series(3, 8))), 0.06013, places=5)      # against the exact SU(3) integral at Wilson's β = 1
         cc = CY.chart_cells(); self.assertTrue(cc["law"]); self.assertAlmostEqual(cc["step"], 0.09657, places=5)
+        self.assertLess(cc["cells"][1], 0); self.assertAlmostEqual(cc["size"], 2.063, places=3)   # no cell below channel unity
+        self.assertAlmostEqual(CY.adjoint_ratio_unity(), 1.976, places=3)
 
     def test_frame_window(self):
         self.assertEqual(PL.first_departure_bounds(13), (26, 49)); self.assertEqual(PL.frame_window_orders(13), (25, 24, 23))

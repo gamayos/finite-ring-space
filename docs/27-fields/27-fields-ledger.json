@@ -67,7 +67,7 @@
      "label": "B1",
      "predicate": "A cell-local change of an internal frame datum is a gauge symmetry; the connection that compensates it is the gauge field: the gauge principle of gravitation \\citep{akhtman2026gravity}, with its falsifier there, read on the internal frame data; its prediction row here is P2.",
      "tag": "D",
-     "source": "\\S\\ref{sec:recipe},\\,\\ref{sec:roles}; \\citep{akhtman2026gravity}",
+     "source": "Def.~\\ref{def:recipe}; \\citep{akhtman2026gravity}",
      "key": "p00046",
      "name": null
     },
@@ -75,7 +75,7 @@
      "label": "B2",
      "predicate": "The multiplicative phase frame gauged is electromagnetism: the gauged cycle is the charge cycle of the frame of rank five (C16), a unitary cycle, charge is its winding index, and the photon is fixed by the drive, the theorem C2; its exposures are X2 and X3.",
      "tag": "D",
-     "source": "\\S\\ref{sec:em}",
+     "source": "Def.~\\ref{def:emgauge}",
      "key": "p27008",
      "name": null
     },
@@ -83,7 +83,7 @@
      "label": "B3",
      "predicate": "The spinor frame gauged is the weak interaction; the frame is declared in B10. C5 and C6 consume it, and its exposure is the Weinberg angle X4, the frame's rational $\\sin^2\\sW=3/8$.",
      "tag": "D",
-     "source": "\\S\\ref{sec:weak}",
+     "source": "Def.~\\ref{def:frame}",
      "key": "p27009",
      "name": null
     },
@@ -91,23 +91,23 @@
      "label": "B4",
      "predicate": "The colour frame gauged is the strong interaction: confinement is the saturation that closes the channel at the ladder's $5\\!\\to\\!1$ return (C10); colour itself is the Carrier's triality \\citep{akhtman2026yangmills}, this row its gauging (C7), with the rank three declared as the minimal rank that holds the triality; its prediction row is P9.",
      "tag": "D",
-     "source": "\\S\\ref{sec:strong}",
+     "source": "Def.~\\ref{def:colour}",
      "key": "p27010",
      "name": null
     },
     {
      "label": "B5",
-     "predicate": "One fermion generation is the spinor $\\mathbf{16}$ of the rank-five internal frame $K^3\\oplus K^2$ (B10): the naming whose content C8 and X8 derive from the template import A4. The generation is assigned to one root of the drive (C13) and its conjugate to the other, which is the left-handed weak current; the falsifier of the assignment is a right-handed charged current, inside P2. Its prediction rows are P2, P5, P6, P7 and P8. That mass is winding rate is a statement of \\citep{akhtman2026gravity}, not a clause of this row.",
+     "predicate": "One fermion generation is the spinor $\\mathbf{16}$ of the rank-five internal frame $K^3\\oplus K^2$ (B10). The generation is assigned to one root of the drive (C13) and its conjugate to the other, which is the left-handed weak current. Falsifier: a right-handed charged current, inside P2. Its prediction rows are P2, P5, P6, P7 and P8.",
      "tag": "D",
-     "source": "\\S\\ref{sec:matter}",
+     "source": "Def.~\\ref{def:generation}",
      "key": "p27011",
      "name": null
     },
     {
      "label": "B6",
-     "predicate": "The four primitive arithmetic roles are the frame data of the four interactions; the non-generative counting role is the bosonic carrier and the three generative roles the three generations; B2--B4 are its three instances. The multiplicative role enters electromagnetism through the units of $K$: the gauged cycle is the charge cycle, of order $\\p+1$, and a copy of the multiplicative group of the shell is its split partner (C15, C16). The naming is exhaustive by declaration: matter is the generations of B5 and nothing else, and no theorem of the paper excludes a further state or composite of the finite construction. Falsifier: a fifth force, a gauge group or charge outside the rank-five frame, or a fourth generation (C10); its prediction rows are P1, P2, P3, P5, P6, P7 and P10.",
+     "predicate": "The four primitive arithmetic roles are the frame data of the four interactions; the counting role is the bosonic carrier and the three generative roles are the three generations. The naming is exhaustive by declaration: matter is the generations of B5 and nothing else. Falsifier: a fifth force, a charge outside the rank-five frame, or a fourth generation (C10).",
      "tag": "D",
-     "source": "\\S\\ref{sec:roles}; \\citep{akhtman2026pnp}",
+     "source": "Def.~\\ref{def:roles}; \\citep{akhtman2026pnp}",
      "key": "p00047",
      "name": null
     },
@@ -137,15 +137,15 @@
     },
     {
      "label": "B10",
-     "predicate": "The internal frame: each cell has a Hermitian frame of rank five over $K$, distinct from the spinor plane of the external frame, and read by B12. The frame's rank-two part is the spinor frame of B3, a second copy of the spinor plane on which the drive acts as on that plane \\citep{akhtman2026spacetime}, and its rank-three part is the colour frame of B4. The frame moves of the three interactions are the block-diagonal frame moves of this frame, those that keep the two parts (C16). The alignment field, the Higgs, is a doublet of the rank-two part with hypercharge $\\tfrac12$, and its vacuum is a ray that the drive keeps. In the basis of the vacuum one chronon is then $\\mathrm{diag}(\\eta,\\eta^{-1})$ and two chronons are $\\mathrm{diag}(\\gen,\\gen^{-1})$, a point of a split cycle of Theorem~\\ref{thm:break}(ii) (C15). Neither is a frame move of the doublet. Falsifiers: those of P2 and P10.",
+     "predicate": "The internal frame: each cell has a Hermitian frame of rank five over $K$. Its rank-two part is the spinor frame (B3) and its rank-three part the colour frame (B4), and the three interactions act by its block-diagonal frame moves (C16). The alignment field is a doublet of hypercharge $\\tfrac12$ whose vacuum the drive keeps (C15). Falsifiers: P2, P10.",
      "tag": "D",
-     "source": "\\S\\ref{sec:weak},\\,\\ref{sec:matter}",
+     "source": "Def.~\\ref{def:frame}",
      "key": "p27054",
      "name": null
     },
     {
      "label": "B11",
-     "predicate": "The class of the colour action: the action is a sum over single plaquettes of class functions $f$ of the holonomy with $f(U^{-1})=f(U)$ (the Wilson class), as $S_\\rho$ is. The class is declared, not derived. The differences $\\chi_\\rho(U)-\\chi_\\rho(U^{-1})$ and the term $\\Tr F\\widetilde F$ of the vacuum angle are odd under the Frobenius. A tally holds them only with a coupling outside the shell, such as the determinant $J$ of the commutator of the two quark mass matrices of B9 (C17). The declaration is that the coefficients of these products are $0$. Falsifier: a nonzero vacuum angle, read from the electric dipole moment of the neutron [import]; its prediction row is P9 and its exposure X11.",
+     "predicate": "The class of the colour action: a sum over single plaquettes of class functions $f$ of the holonomy with $f(U^{-1})=f(U)$, the Wilson class, as $S_\\rho$ is. The class is declared, not derived: the coefficients of the terms odd under the Frobenius, among them $\\Tr F\\widetilde F$, are $0$ (C17). Falsifier: a nonzero vacuum angle [import] (P9, X11).",
      "tag": "D",
      "source": "Prop.~\\ref{prop:strongcp}",
      "key": "p27055",
@@ -153,9 +153,9 @@
     },
     {
      "label": "B12",
-     "predicate": "The reading of vectors, frame moves and counts. A vector of rank $n$ over $K$ is $n$ components in $K$, and a change of frame is a frame move. The paper forms no set of the vectors or of the frame moves of a Subject, and its enumerations run on laboratory models that are no Subject's frames. What a Subject observes is an invariant of the frame. A count is read as a residue of the shell. The order of a Subject's unitary frame reads $0$, and a quotient by it has no reading. A count of frame moves above $\\Om$ is the chart's \\citep{akhtman2026yangmills}, and the paper reads every count above $\\Om$ so. The reading states no cost of a readout and proves no registration.",
+     "predicate": "The reading of vectors, frame moves and counts: a vector over $K$ is its components, and a change of frame is a frame move. The paper forms no set of the vectors or frame moves of a Subject, which observes invariants of the frame. A count is a residue of the shell, and one above $\\Om$ is the chart's \\citep{akhtman2026yangmills}.",
      "tag": "D",
-     "source": "\\S\\ref{sec:primer}",
+     "source": "Def.~\\ref{def:reading}",
      "key": "p27056",
      "name": null
     }
@@ -199,7 +199,7 @@
     },
     {
      "label": "C5",
-     "predicate": "The mass form of the doublet and custodial $\\rho=1$. On the Subject's extension, with the Frobenius as conjugation, the mass form of the template's covariant term (A4) at the unit vacuum of the alignment field (B10) and the invariant form of the generators take values in the shell. The mass operator has the photon as kernel and the values $g^2/4$, twice, and $(g^2+g'^2)/4$, with four independent eigenvectors exactly when $g^2+g'^2\\neq0$. Then, for $g\\neq0$, $\\rho=1$, and $M_W^2/M_Z^2$ is $5/8$ at the frame's rational $3/8$. The scale $v$ enters on the chart [chart]. The spectrum is the chart's reading of the windings of Theorem~\\ref{thm:break}.",
+     "predicate": "The mass form of the doublet and custodial $\\rho=1$: the mass form of the template's covariant term (A4) at the unit vacuum of the alignment field (B10) takes values in the shell. The mass operator has the photon as kernel and the values $g^2/4$, twice, and $(g^2+g'^2)/4$. For $g\\neq0$ and $g^2+g'^2\\neq0$, $\\rho=1$, and $M_W^2/M_Z^2$ is $5/8$ at the frame's rational.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:rho}; rests on A4, B3, B10, C4\\newline \\pywit{fields}{p27017}{C5}, \\leanwit{FrcCore}{p27017}{C5} \\lean{FRC.Chirality.mass\\_form, FRC.Chirality.mass\\_spectrum, FRC.Chirality.mass\\_independent, FRC.Chirality.mass\\_block\\_square, FRC.Chirality.invariant\\_form, FRC.Interactions.neutral\\_block, FRC.Interactions.five\\_eighths}",
      "key": "p27017",
@@ -215,7 +215,7 @@
     },
     {
      "label": "C7",
-     "predicate": "The strong sector: the colour frame $\\SU(3,\\F_q)$ over the Subject's extension, its centre of order $\\gcd(3,q+1)$ (on the Subject $173$, not on $13$ or $1549$), the gluon connection, and the area law at strong coupling [chart], with the string tension $\\sigma(\\beta)=-\\ln c_1(\\beta)$ in closed form on $2T$ and the colour series $c_1^{\\SU(3)}=\\tfrac\\beta{18}+\\tfrac{\\beta^2}{216}+\\cdots$, the frame's invariants the compact ones through degree $2\\p-1$, and the coefficients of the formal series built from their counts the compact ones below order $\\beta^{\\p}$ \\citep{akhtman2026yangmills}.",
+     "predicate": "The strong sector: the colour frame $\\SU(3,\\F_q)$ over the Subject's extension, its centre of order $\\gcd(3,q+1)$, the gluon connection, and the area law at strong coupling [chart], with the tension $\\sigma(\\beta)=-\\ln c_1(\\beta)$ in closed form on $2T$ and the colour series $c_1^{\\SU(3)}=\\tfrac\\beta{18}+\\tfrac{\\beta^2}{216}+\\cdots$; the frame's invariants are the compact ones through degree $2\\p-1$ \\citep{akhtman2026yangmills}.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:su3}, Prop.~\\ref{prop:gluon}, Prop.~\\ref{prop:corrarea}; rests on A2, B4\\newline \\pywit{fields}{p27019}{C7}, \\leanwit{FrcCore}{p27019}{C7}, \\leanwit{FrcMathlib}{p27019}{C7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
      "key": "p27019",
@@ -279,7 +279,7 @@
     },
     {
      "label": "C15",
-     "predicate": "The diagonal torus and its two cycles. Over $K$ a matrix commutes with the transport of two chronons $\\mathrm{diag}(\\gen,\\gen^{-1})$ exactly when it is diagonal. The torus of the diagonal matrices has split cycles over the shell, of order $\\p-1$, and unitary cycles, of order $\\p+1$ \\citep{akhtman2026spacetime}, and the two kinds meet in $\\pm1$. A split point has $a^{\\p-1}=1$ and a unitary point has $w^{\\p+1}=1$. No exponent $0<m<\\p-1$ is a period of the split cycle, and no exponent $0<d<\\p+1$ of the unitary cycle. Each cycle has a generator. The entries of both cycles are units of $K$: the square of a unit is its norm, a split point, times the quotient $x/\\sigma(x)$, a unitary point. The quotient is $1$ exactly on the split points, and every unitary point is such a quotient. A weight $n<\\p^{2}-1$ reads $n$ modulo $\\p-1$ on a split cycle and $n$ modulo $\\p+1$ on a unitary cycle. Two readings are the readings of a weight exactly when their difference is even. The Frobenius fixes a split point and inverts a unitary point. The frame of the doublet holds the split cycles $R(a)$, rotations with entries of the shell. A unitary point keeps the Hermitian form, and the pair $(\\mathrm{diag}(w,\\sigma(w)),w)$ fixes the vacuum. The directions $E$ and $F$ have the weights $\\pm2$, and every point fixes the diagonal generators. The lift $\\mathrm{diag}(\\eta,\\eta^{-1})$ of one chronon has the square $\\mathrm{diag}(\\gen,\\gen^{-1})$, the weights $\\gen^{\\pm1}$ on $E$ and $F$ and the norms $-\\gen^{\\pm1}$ of its entries. A ray $[x:y]$ that one chronon keeps has $xy=0$. Neither the lift nor its square is a unitary point.",
+     "predicate": "The diagonal torus and its two cycles: over $K$ a matrix commutes with $\\mathrm{diag}(\\gen,\\gen^{-1})$ exactly when it is diagonal. The torus has split cycles of order $\\p-1$ and unitary cycles of order $\\p+1$, meeting in $\\pm1$. Two readings are a weight's exactly when their difference is even. The Frobenius fixes a split point and inverts a unitary point.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:break}; rests on B10\\newline \\pywit{fields}{p27057}{C15}, \\leanwit{FrcCore}{p27057}{C15} \\lean{FRC.Unitary.torus\\_cycles, FRC.Unitary.cycle\\_orders, FRC.Unitary.unit\\_cycle, FRC.Unitary.drive\\_lift, FRC.Unitary.fixed\\_rays}",
      "key": "p27057",
@@ -287,7 +287,7 @@
     },
     {
      "label": "C16",
-     "predicate": "One charge system. In the frame of rank five the hypercharge cycle $\\mathrm{diag}(w^{-2},w^{-2},w^{-2},w^{3},w^{3})$ and the charge cycle $\\mathrm{diag}(u,u,u,u^{-3},1)$ are unitary cycles of determinant one, with the integer weights $6Y$ and $-3Q$ on the sixteen states. The hypercharge cycle is faithful, and it acts on the doublet as the scalar $w^{3}$. These scalars are every unitary scalar exactly when $3$ does not divide $\\p+1$. The charge cycle fixes the vacuum, and it acts on the doublet as the identity exactly at $u^{3}=1$, the centre of the colour frame. For a divisor $d>1$ of $\\p+1$ some unitary point is no $d$-th power, so the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup. The classes of the block-diagonal subgroup modulo these products are the classes of the determinant on the doublet modulo the sixth powers of the unitary cycle. They are $\\gcd(6,\\p+1)$ in number: $2$ on the Subjects $13$ and $1549$, and $6$ on $173$. The points of the charge cycle are exactly the block-diagonal frame moves that fix the vacuum and commute with every one that does. A point of the charge cycle is one of the products exactly when $u$ is a square. A triple of a hypercharge point and frame moves of determinant one of the two blocks gives the identity exactly on a cycle of order $\\gcd(6,\\p+1)$.",
+     "predicate": "One charge system: in the rank-five frame the hypercharge cycle $\\mathrm{diag}(w^{-2},w^{-2},w^{-2},w^{3},w^{3})$ and the charge cycle $\\mathrm{diag}(u,u,u,u^{-3},1)$ are unitary cycles, with the weights $6Y$ and $-3Q$ on the sixteen states. The charge cycle is the centre of the block-diagonal frame moves that fix the vacuum. The block-diagonal subgroup has $\\gcd(6,\\p+1)$ classes modulo the hypercharge cycle and the two unitary blocks.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:onecharge}; rests on B5, B10, C8, C15\\newline \\pywit{fields}{p27058}{C16}, \\leanwit{FrcCore}{p27058}{C16} \\lean{FRC.Unitary.one\\_charge\\_system, FRC.Unitary.power\\_classes, FRC.Unitary.sixth\\_powers, FRC.Unitary.det\\_scale, FRC.Unitary.charge\\_squares, FRC.Unitary.commutant\\_scalar, FRC.Unitary.product\\_kernel, FRC.Unitary.sixth\\_roots}",
      "key": "p27058",
@@ -295,7 +295,7 @@
     },
     {
      "label": "C17",
-     "predicate": "The Frobenius parity of a tally. An expression formed from the frame's data with coefficients of the shell commutes with the Frobenius, so a tally takes equal values on a configuration and on its Frobenius conjugate. For a frame move $U$ of determinant one, $\\Tr U^{-1}=\\sigma(\\Tr U)$, and the difference $\\Tr U-\\Tr U^{-1}$ lies in $\\eta\\Fp$. The determinant of an anti-Hermitian matrix of three rows lies in $\\eta\\Fp$, and the commutator of the two quark mass matrices of B9 is such a matrix. The product of two elements of $\\eta\\Fp$ is a residue of the shell.",
+     "predicate": "The Frobenius parity of a tally: an expression in the frame's data with coefficients of the shell commutes with the Frobenius, so a tally is equal on a configuration and on its Frobenius conjugate. For a frame move $U$ of determinant one, $\\Tr U-\\Tr U^{-1}$ lies in $\\eta\\Fp$, as does the determinant of the commutator of the quark mass matrices of B9.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:strongcp}; rests on B9, C13\\newline \\pywit{fields}{p27060}{C17}, \\leanwit{FrcCore}{p27060}{C17} \\lean{FRC.Unitary.tally\\_even, FRC.Unitary.orientation\\_odd, FRC.Unitary.antihermitian\\_det, FRC.Unitary.odd\\_product}",
      "key": "p27060",
@@ -309,7 +309,7 @@
    "rows": [
     {
      "label": "X1",
-     "predicate": "\\textbf{The gauge group} $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. On a Subject the products of the hypercharge cycle with the unitary frames of the two blocks are not all of the block-diagonal subgroup that B10 declares (C16). On the chart the subgroup is the quotient of the product by $\\Z_6$ [chart] (P10).",
+     "predicate": "\\textbf{The gauge group} $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. On a Subject it is the block-diagonal subgroup that B10 declares (C16), and on the chart the quotient of the product by $\\Z_6$ [chart] (P10).",
      "tag": "T",
      "source": "\\S\\ref{sec:em},\\,\\ref{sec:weak},\\,\\ref{sec:strong}; rests on B10, C2, C4, C7, C16\\newline \\pywit{fields}{p27024}{X1}, \\leanwit{FrcCore}{p27024}{X1} \\lean{FRC.Interactions.gauge\\_flux\\_invariant, FRC.Interactions.drive\\_adjoint, FRC.Interactions.gluon\\_commutator}",
      "key": "p27024",
@@ -389,7 +389,7 @@
     },
     {
      "label": "X11",
-     "predicate": "\\textbf{The strong-CP angle} reads $0$ on the chart with no axion, on one declaration and one theorem: the colour action is declared of the Wilson class, which holds no term $\\Tr F\\widetilde F$ (B11), and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell. Where no mass reads $0$ the determinants are positive on the chart [chart].",
+     "predicate": "\\textbf{The strong-CP angle} reads $0$ on the chart with no axion, on one declaration and one theorem: the colour action is declared of the Wilson class, which holds no term $\\Tr F\\widetilde F$ (B11), and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:strongcp}; rests on A3, B9, B11\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11} \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.gram\\_det, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
      "key": "p27034",
@@ -411,7 +411,7 @@
     },
     {
      "label": "P2",
-     "predicate": "\\textbf{A desert to the substrate scale} \\emph{[forced]}. The gauge group is the block-diagonal subgroup of the frame of rank five (B10), the quotient of $\\SU(3)\\times\\SU(2)\\times\\U(1)$ by $\\Z_6$ on the chart [chart], until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$--$10^{19}\\,$GeV) scales. \\emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios.",
+     "predicate": "\\textbf{A desert to the substrate scale} \\emph{[forced]}. The gauge group is the block-diagonal subgroup of the frame of rank five (B10) until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$--$10^{19}\\,$GeV) scales. \\emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:unify}; rests on B1, B5, B6, B7, B10, C8, C9, C10, C16\\newline \\pywit{fields}{p27036}{P2}, \\leanwit{FrcCore}{p27036}{P2} \\lean{FRC.Interactions.one\\_generation}",
      "key": "p27036",
@@ -427,7 +427,7 @@
     },
     {
      "label": "P4",
-     "predicate": "\\textbf{The proton is effectively stable at a substrate-scale mass} \\emph{[sector]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (the $\\Omega$-hard scale of Z1) the lifetime exceeds $10^{45}$ years, orders beyond the reach of Hyper-Kamiokande. At $10^{16}\\,$GeV it already exceeds the Super-Kamiokande bound. The mass is not derived, and the lifetime is the chart's dimensional estimate at that mass [chart]. \\emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years.",
+     "predicate": "\\textbf{The proton is effectively stable at a substrate-scale mass} \\emph{[sector]}. The $X,Y$ leptoquarks are the twelve colour--isospin off-block generators. With their mass at the substrate scale (Z1) the lifetime exceeds $10^{45}$ years; the mass is not derived, and the lifetime is the chart's dimensional estimate [chart]. \\emph{Falsifier:} an observed proton decay near $10^{34}$--$10^{35}$ years.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:unify}; rests on A3, A6, B7, C9, Z1\\newline \\pywit{fields}{p27038}{P4}, \\leanwit{FrcCore}{p27038}{P4}, \\leanwit{FrcMathlib}{p27038}{P4} \\lean{FRC.Interactions.unification\\_counts, Fields.proton\\_lifetime}",
      "key": "p27038",
@@ -435,7 +435,7 @@
     },
     {
      "label": "P5",
-     "predicate": "\\textbf{No sterile state beyond the singlet of each generation} \\emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass (A4); the paper derives neither that mass nor its scale, and a zero mass is not excluded. With the mass at the unification scale the seesaw places the light masses in the observed band, for singlet masses of $10^{14}$--$10^{15}\\,$GeV [chart]. The declared content (B6) holds no further gauge-singlet state. \\emph{Falsifier:} a light gauge-singlet fermion that is not the singlet $\\nu^c$ of one of the three generations.",
+     "predicate": "\\textbf{No sterile state beyond the singlet of each generation} \\emph{[sector]}. Exactly one of the sixteen states is a full singlet, the right-handed neutrino. It admits a Majorana mass (A4), not derived here. The declared content (B6) holds no further gauge-singlet state. \\emph{Falsifier:} a light gauge-singlet fermion that is not the singlet $\\nu^c$ of one of the three generations.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}; rests on A4, B5, B6, C8\\newline \\pywit{fields}{p27039}{P5}, \\leanwit{FrcCore}{p27039}{P5}, \\leanwit{FrcMathlib}{p27039}{P5} \\lean{FRC.Interactions.one\\_generation, Fields.seesaw\\_band}",
      "key": "p27039",
@@ -459,7 +459,7 @@
     },
     {
      "label": "P8",
-     "predicate": "\\textbf{The charged-lepton Koide relation is exactly $2/3$} \\emph{[structural]}: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the Koide form on the characters of the generation cycle at the named value $\\rho^2=\\tfrac12$ (B8) --- $Q=\\tfrac13+\\tfrac23\\rho^2$ exact. The form is a theorem and the value a naming; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual \\citep{akhtman2026flavour}. \\emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the tolerance of the $\\tau$ mass \\citep{akhtman2026flavour}.",
+     "predicate": "\\textbf{The charged-lepton Koide relation is exactly $2/3$} \\emph{[structural]}: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the Koide form $Q=\\tfrac13+\\tfrac23\\rho^2$ at the named value $\\rho^2=\\tfrac12$ (B8). The form is a theorem and the value a naming. \\emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the tolerance of the $\\tau$ mass \\citep{akhtman2026flavour}.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:koide}; rests on B5, B8\\newline \\pywit{fields}{p27042}{P8}, \\leanwit{FrcCore}{p27042}{P8} \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half}",
      "key": "p27042",
@@ -467,7 +467,7 @@
     },
     {
      "label": "P9",
-     "predicate": "\\textbf{No strong-CP angle and no axion} \\emph{[structural]}. The vacuum angle reads $\\bar\\theta=0$ on the chart with no axion: the colour action is declared of the Wilson class (B11), so the bare $\\theta=0$, and the quark mass matrices, squares of Hermitian amplitude matrices by the naming B9, have determinants that are squares of the shell, positive on the chart where no mass reads $0$, so $\\arg\\det M_q=0$ [chart], while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
+     "predicate": "\\textbf{No strong-CP angle and no axion} \\emph{[structural]}. The vacuum angle reads $\\bar\\theta=0$ on the chart: the colour action is declared of the Wilson class (B11), so $\\theta=0$, and the quark mass matrices of B9 have determinants that are squares of the shell, so $\\arg\\det M_q=0$ [chart]. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:strongcp}; rests on A3, A6, B4, B9, B11, C7\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9} \\lean{FRC.Unitary.wilson\\_orientation\\_even, FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.gram\\_det, FRC.Unitary.hermitian\\_det\\_shell}",
      "key": "p27043",
@@ -475,7 +475,7 @@
     },
     {
      "label": "P10",
-     "predicate": "\\textbf{No fractional charge without colour} \\emph{[sector]}. Every state built from the vectors of the internal frame and their conjugates has the weight $-3Q$ congruent modulo $3$ to its net number of colour indices (C16). A state of fewer than $\\p+1$ indices that the colour frame fixes has that number a multiple of three, and so an integer charge. On a shell where the colour frame has its centre the same holds for every number of indices. On the chart the group is the quotient of $\\SU(3)\\times\\SU(2)\\times\\U(1)$ by $\\Z_6$, one of the four quotients that the continuum theory leaves open [chart] \\citep{tong2017}. \\emph{Falsifier:} a colourless particle of fractional charge.",
+     "predicate": "\\textbf{No fractional charge without colour} \\emph{[sector]}. Every state built from the vectors of the internal frame and their conjugates has the weight $-3Q$ congruent modulo $3$ to its net number of colour indices (C16), so a state of fewer than $\\p+1$ indices that the colour frame fixes has an integer charge. \\emph{Falsifier:} a colourless particle of fractional charge.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:colourless}; rests on B5, B6, B10, C7, C16\\newline \\pywit{fields}{p27059}{P10}, \\leanwit{FrcCore}{p27059}{P10} \\lean{FRC.Unitary.charge\\_weights, FRC.Unitary.product\\_kernel, FRC.Unitary.sixth\\_roots, FRC.Unitary.centre\\_weight, FRC.Unitary.colourless\\_indices}",
      "key": "p27059",
@@ -542,9 +542,6 @@
   ],
   "C6": [
    "G2"
-  ],
-  "Y1": [
-   "G3"
   ],
   "Z1": [
    "G3",

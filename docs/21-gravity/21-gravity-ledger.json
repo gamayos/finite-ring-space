@@ -3,7 +3,7 @@
  "tree": "21-gravity-20260623",
  "title": "Gravitation as the Relaxation of Frame Drift over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1018.v3",
- "generated": "21 November 2026",
+ "generated": "22 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -21,7 +21,7 @@
      "label": "A2",
      "predicate": "The three frame freedoms: the frame space is a torsor under $\\mathrm{SL}_2(\\F_\\Omega)$, the spatial chart three-dimensional per frame, its continuum shadow the $3$-sphere.",
      "tag": "I",
-     "source": "\\citep{dickson}; declared in \\S\\ref{sec:primer}",
+     "source": "\\citep{dickson}; Prop.~\\ref{prop:imports}",
      "key": "p21002",
      "name": null
     },
@@ -59,9 +59,9 @@
     },
     {
      "label": "A8",
-     "predicate": "Measured quantities used for comparison only: the GRAVITY mass--distance and EHT shadow for Sgr~A$^*$, the SPARC acceleration scale, the classical-test values, and $H_0$.",
+     "predicate": "Measured quantities used for comparison only: the GRAVITY mass--distance and EHT shadow for Sgr~A$^*$, the SPARC acceleration scale, the classical-test values, $H_0$, and the distance to last scattering with the low-$\\ell$ temperature spectrum \\citep{planck}.",
      "tag": "I",
-     "source": "measured \\citep{gravity,eht,mcgaugh,will}",
+     "source": "measured \\citep{gravity,eht,mcgaugh,will,planck}",
      "key": "p21008",
      "name": null
     },
@@ -83,7 +83,7 @@
      "label": "B1",
      "predicate": "Gravity is the relaxation of forced frame drift: a field has no proper ideals, so every embedded massive shell is non-ideal and its frame drifts (7-spacetime F1); reducing the mutual drift (raising coherence) is identically motion toward smaller separation (00:D3). Its prediction rows are P1--P4.",
      "tag": "D",
-     "source": "\\S\\ref{sec:intro},\\,\\ref{sec:premises}",
+     "source": "Def.~\\ref{def:namings}",
      "key": "p21010",
      "name": null
     },
@@ -115,7 +115,7 @@
      "label": "B5",
      "predicate": "The objects we weigh are coherent composites: the naming behind the coefficient $m$ (C1). Falsifier: the $\\sqrt m$ coupling of an incoherent source; its prediction rows are 22-quantum's P1 and C22.",
      "tag": "D",
-     "source": "\\S\\ref{sec:premises}",
+     "source": "Def.~\\ref{pre:mass}",
      "key": "p21014",
      "name": null
     },
@@ -131,7 +131,7 @@
      "label": "B7",
      "predicate": "The count of the registration set at the operational cut is the coordinate area in Planck cells, $|R_\\partial|=4\\pi r_f^{2}/\\ell_P^{2}$ up to the solid-angle recalibration of the chart: the count of C13 read in the unit $\\ell_P^{2}$ (00:D7). Falsifier: a collapsed object whose externally resolvable capacity is measured at the Bekenstein--Hawking value.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:area}; rests on C13; \\href{https://finitering.space/ledger.html#D7}{00:D7}",
+     "source": "Rem.~\\ref{rem:entropy}; rests on C13; \\href{https://finitering.space/ledger.html#D7}{00:D7}",
      "key": "p21065",
      "name": null
     },
@@ -139,7 +139,7 @@
      "label": "B8",
      "predicate": "The cosmological constant is the curvature of the wrapped finite chart (one key with 32-dark B7). Falsifier: $w\\neq-1$, or a negative or scale-varying $\\Lambda$; its prediction rows are C14 and 14-entropy's P4.",
      "tag": "D",
-     "source": "\\S\\ref{sec:discussion}, App.~\\ref{app:floor}",
+     "source": "Def.~\\ref{def:namings}",
      "key": "p32014",
      "name": null
     },
@@ -158,6 +158,22 @@
      "source": "Prop.~\\ref{prop:afloor}",
      "key": "p21069",
      "name": null
+    },
+    {
+     "label": "B11",
+     "predicate": "A static configuration of link offsets acts on a cell by one multiplier common to its winding sectors, the composed capacity renormalisation of the cell's clock, the character $\\gen^{-\\Delta n}$ of C8 and C11 (the cell-wise action of static offsets); and the demand of a cell in several winding sectors is its registered winding rate $\\sum_m m\\,w_m$ over the normalised registered weights of \\cite{quantum}, read per tick of the cell's own clock. Falsifier: a static redshift that differs between the winding sectors of one cell at a fixed clock.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:mass}",
+     "key": "p21070",
+     "name": null
+    },
+    {
+     "label": "B12",
+     "predicate": "The far window's readout of a clock: a window of $\\lfloor\\sqrt\\Omega\\rfloor$ far ticks, opened at a registered tick of the clock, registers the completed ticks $\\lfloor P\\lfloor\\sqrt\\Omega\\rfloor\\rfloor$ of a clock whose composed rate against the far cut is $P$, the unit-pulse sequence of Lemma~\\ref{lem:isopair} read at $k=\\lfloor\\sqrt\\Omega\\rfloor$, a tick counted whole (the window count of Lemma~\\ref{lem:windowrelax}(i) rounds a weight); the operational cut is the outermost cut whose clock registers no tick in a window.",
+     "tag": "D",
+     "source": "Prop.~\\ref{prop:operational}; Lem.~\\ref{lem:isopair}",
+     "key": "p21071",
+     "name": null
     }
    ]
   },
@@ -169,7 +185,7 @@
      "label": "C1",
      "predicate": "The linearised dynamics is the gradient flow of a coherence free energy --- its current derived from the pair tally conditional on channel unity (Lemma~\\ref{lem:pairtally}) --- and a locked cluster of $m$ unit-winding cells couples with coefficient exactly $m$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:gradient},~\\ref{lem:additivity},~\\ref{lem:pairtally}\\newline \\pywit{gravity}{p21016}{C1}, \\leanwit{FrcCore}{p21016}{C1}, \\leanwit{FrcMathlib}{p21016}{C1} \\lean{Gravity.locked\\_sum, FRC.Drift.locked\\_sum, FRC.Drift.pair\\_tally, FRC.Relaxation.tally\\_gradient, FRC.Relaxation.leakage\\_contraction}",
+     "source": "Lem.~\\ref{lem:gradient}, Lem.~\\ref{lem:pairtally}\\newline \\pywit{gravity}{p21016}{C1}, \\leanwit{FrcCore}{p21016}{C1}, \\leanwit{FrcMathlib}{p21016}{C1} \\lean{Gravity.locked\\_sum, FRC.Drift.locked\\_sum, FRC.Drift.pair\\_tally, FRC.Relaxation.tally\\_gradient, FRC.Relaxation.leakage\\_contraction}",
      "key": "p21016",
      "name": "linearised_gradient_flow"
     },
@@ -177,7 +193,7 @@
      "label": "C2",
      "predicate": "Newton's law $F=-Gm_1m_2/r^2$ with $G=1/4\\pi\\varkappa$ [chart] (register value $G=2S$): the exact balance $\\partial J+s=0$ on every closed region with the neutral return chain (the Gauss law), the product $m_1m_2$ from coherent additivity, the sign from the one drive; the $r^{-2}$ the chart's, the Coulomb asymptotics of the three frame freedoms in the decoherence distance (the isotropic inverse-correlation count, not the shortest-path count), the discrete Poisson equation solvable on the finite chart under the spanning-tree condition.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:newton}, Lem.~\\ref{lem:green}\\newline \\pywit{gravity}{p21017}{C2}, \\leanwit{FrcCore}{p21017}{C2}, \\leanwit{FrcMathlib}{p21017}{C2}; rests on A5, C1, C3 \\lean{Gravity.newton\\_register, FRC.Grav.newton\\_residue, FRC.Drift.gauss\\_law, FRC.Drift.locked\\_sum}",
+     "source": "Thm.~\\ref{thm:newton}\\newline \\pywit{gravity}{p21017}{C2}, \\leanwit{FrcCore}{p21017}{C2}, \\leanwit{FrcMathlib}{p21017}{C2}; rests on A5, C1, C3 \\lean{Gravity.newton\\_register, FRC.Grav.newton\\_residue, FRC.Drift.gauss\\_law, FRC.Drift.locked\\_sum}",
      "key": "p21017",
      "name": "newtons_law"
     },
@@ -193,7 +209,7 @@
      "label": "C4",
      "predicate": "The equivalence principle as an identity: the gravitational and the inertial coefficient are one cardinality, which cancels inside the two-shift law, $(m\\,g)/m=g$; the bias field is clock rate, giving the redshift $\\Delta f/f=Gm/rc^2$ [chart]; the turnaround radius against the Hubble drive [chart].",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:twoshift}, Cor.~\\ref{cor:equiv},~\\ref{cor:dilation},~\\ref{cor:turnaround}\\newline \\pywit{gravity}{p21019}{C4}, \\leanwit{FrcCore}{p21019}{C4}, \\leanwit{FrcMathlib}{p21019}{C4}; rests on C1, C20 \\lean{Gravity.redshift\\_linear, FRC.Relaxation.equivalence\\_cancel}",
+     "source": "Thm.~\\ref{thm:twoshift}, Cor.~\\ref{cor:equiv}, \\S\\ref{sec:newton}\\newline \\pywit{gravity}{p21019}{C4}, \\leanwit{FrcCore}{p21019}{C4}, \\leanwit{FrcMathlib}{p21019}{C4}; rests on C1, C20 \\lean{Gravity.redshift\\_linear, FRC.Relaxation.equivalence\\_cancel}",
      "key": "p21019",
      "name": "equivalence_principle_identity"
     },
@@ -201,7 +217,7 @@
      "label": "C5",
      "predicate": "The magnitude $G=\\hbar c/m_P^2$, frame-covariant (a relativity principle for scale); gravity's weakness is cardinality dilution.",
      "tag": "T",
-     "source": "\\S\\ref{sub:G}\\newline \\pywit{gravity}{p21020}{C5}, \\leanwit{FrcCore}{p21020}{C5}, \\leanwit{FrcMathlib}{p21020}{C5} \\lean{Gravity.hbar\\_register, Gravity.dilution, FRC.Grav.hbar\\_root}",
+     "source": "Prop.~\\ref{prop:G}\\newline \\pywit{gravity}{p21020}{C5}, \\leanwit{FrcCore}{p21020}{C5}, \\leanwit{FrcMathlib}{p21020}{C5} \\lean{Gravity.hbar\\_register, Gravity.dilution, FRC.Grav.hbar\\_root}",
      "key": "p21020",
      "name": "magnitude_of_g"
     },
@@ -217,7 +233,7 @@
      "label": "C7",
      "predicate": "Channel unity forces the spatial bias to equal the temporal one: the registered rate $M/B$ and the dwell per quantum are the two faces of one window count (the gaps of the Christoffel word take the two values $\\lfloor B/M\\rfloor$ and $\\lceil B/M\\rceil$), read as space and time through B4, so $\\gamma=1$ [chart], restoring the full light deflection $4Gm/c^2b$ [chart].",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:isopair}, Prop.~\\ref{prop:bending}\\newline \\pywit{gravity}{p21022}{C7}, \\leanwit{FrcCore}{p21022}{C7}, \\leanwit{FrcMathlib}{p21022}{C7}; rests on B4, C27 \\lean{Gravity.cover\\_forcing, Gravity.pn\\_series, FRC.Drift.cover\\_triangle, FRC.Relaxation.quiet\\_run, FRC.Relaxation.dwell\\_two\\_values}",
+     "source": "Lem.~\\ref{lem:isopair}\\newline \\pywit{gravity}{p21022}{C7}, \\leanwit{FrcCore}{p21022}{C7}, \\leanwit{FrcMathlib}{p21022}{C7}; rests on B4, C27 \\lean{Gravity.cover\\_forcing, Gravity.pn\\_series, FRC.Drift.cover\\_triangle, FRC.Relaxation.quiet\\_run, FRC.Relaxation.dwell\\_two\\_values}",
      "key": "p21022",
      "name": "channel_unity_spatial_bias"
     },
@@ -225,7 +241,7 @@
      "label": "C8",
      "predicate": "The exponential isotropic metric by multiplicative composition (the character composition law $\\gen^{a+b}=\\gen^{a}\\gen^{b}$ on the shell), with $\\beta=\\gamma=1$: deflection, Shapiro delay, and perihelion at their observed values [chart].",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:ppn}, Lem.~\\ref{lem:multiplicative}\\newline \\pywit{gravity}{p21023}{C8}, \\leanwit{FrcCore}{p21023}{C8}, \\leanwit{FrcMathlib}{p21023}{C8}; rests on C7 \\lean{Gravity.cover\\_forcing, Gravity.pn\\_series, FRC.Drift.cover\\_triangle, FRC.Drift.pn\\_coefficients, FRC.Drift.character\\_composition}",
+     "source": "Thm.~\\ref{thm:ppn}\\newline \\pywit{gravity}{p21023}{C8}, \\leanwit{FrcCore}{p21023}{C8}, \\leanwit{FrcMathlib}{p21023}{C8}; rests on C7 \\lean{Gravity.cover\\_forcing, Gravity.pn\\_series, FRC.Drift.cover\\_triangle, FRC.Drift.pn\\_coefficients, FRC.Drift.character\\_composition}",
      "key": "p21023",
      "name": "exponential_isotropic_metric"
     },
@@ -247,41 +263,41 @@
     },
     {
      "label": "C11",
-     "predicate": "The nonlinear completion forced: the exact cut-flux law (transfer antisymmetry) and the winding grading (sectors multiply, an equivariant operation preserves the grade, an invariant configuration in a nonzero winding sector vanishes) forbid independent static self-sourcing, the clock-comparison cocycle makes the exponential reading unique (exactly the character $\\gen^{-\\Delta n}$, $e^{-u}$ its observer lift), and Deser's bootstrap does not apply because what gravitates is winding rate.",
+     "predicate": "The nonlinear completion forced: the exact cut-flux law (transfer antisymmetry) and the winding grading (sectors multiply, an equivariant operation preserves the grade, an invariant configuration in a nonzero winding sector vanishes) forbid independent static self-sourcing, the clock-comparison cocycle makes the exponential reading unique (exactly the character $\\gen^{-\\Delta n}$, $e^{-u}$ its observer lift), and Deser's bootstrap does not apply because what gravitates is winding rate; the demand of a cell is its registered winding rate over the sector weights, which the cell-wise action of static offsets (B11) leaves unchanged.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:branch}\\newline \\pywit{gravity}{p21026}{C11}, \\leanwit{FrcCore}{p21026}{C11}, \\leanwit{FrcMathlib}{p21026}{C11}; rests on B2, C6, C21 \\lean{Gravity.exponential\\_reading, FRC.Drift.gauss\\_law, FRC.Drift.character\\_composition, FRC.Drift.character\\_unique, FRC.Static.graded\\_mul, FRC.Static.equivariant\\_graded, FRC.Static.selection}",
+     "source": "Thm.~\\ref{thm:branch}\\newline \\pywit{gravity}{p21026}{C11}, \\leanwit{FrcCore}{p21026}{C11}, \\leanwit{FrcMathlib}{p21026}{C11}; rests on B2, B11, C6, C21 \\lean{Gravity.exponential\\_reading, Gravity.demand\\_invariant, FRC.Drift.gauss\\_law, FRC.Drift.character\\_composition, FRC.Drift.character\\_unique, FRC.Static.graded\\_mul, FRC.Static.equivariant\\_graded, FRC.Static.selection}",
      "key": "p21026",
      "name": "nonlinear_completion_forced"
     },
     {
      "label": "C12",
-     "predicate": "The exact static profile in cut form: on an equitable radial partition a static locked exterior exists exactly where the enclosed demand is within the capacity of every cut, $Q_r\\le\\varkappa A_r$ (the condition necessary on every chart), and ends at the first cut that fails, the slip core ($\\sqrt{m/30}\\le r_*\\le\\lceil\\sqrt{m/12}\\,\\rceil$ on the graph balls at unit capacity, $r_*=\\sqrt{Gm}$ in the isotropic chart with $4\\pi r^{2}$ its [chart] reading); horizonless, operationally black at $r_f=r_s/\\ln\\Omega$ [chart]; the $r_f$-anchored claims stated in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Omega/2)^{2}$ Planck masses.",
+     "predicate": "The exact static profile in cut form: on an equitable radial partition a static locked exterior exists exactly where the enclosed demand is within the capacity of every cut, $Q_r\\le\\varkappa A_r$ (the condition necessary on every chart), and ends at the first cut that fails, the slip core ($\\sqrt{m/30}\\le r_*\\le\\lceil\\sqrt{m/12}\\,\\rceil$ on the graph balls at unit capacity, $r_*=\\sqrt{Gm}$ in the isotropic chart with $4\\pi r^{2}$ its [chart] reading); horizonless, operationally black at $r_f=r_s/\\ln\\Omega$ [chart], the operational cut the outermost cut whose composed rate (the product of the per-cell ratios of counts) registers no tick in a window of $\\lfloor\\sqrt\\Omega\\rfloor$ far ticks, the window registering $\\lfloor P\\lfloor\\sqrt\\Omega\\rfloor\\rfloor$ ticks of a clock of rate $P$ (the readout of B12), a count decided on the laboratory Carrier, the first cut outside it registering exactly one tick when $2M\\le r_f(r_f+1)$; the $r_f$-anchored claims stated in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Omega/2)^{2}$ Planck masses.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:exactprofile},~\\ref{prop:operational}\\newline \\pywit{gravity}{p21027}{C12}, \\leanwit{FrcCore}{p21027}{C12}, \\leanwit{FrcMathlib}{p21027}{C12}; rests on B4, C2 \\lean{Gravity.operational\\_cut, FRC.Static.static\\_iff, FRC.Static.slip\\_of\\_exceeds, FRC.Static.exterior\\_of\\_sq, FRC.Static.slip\\_of\\_sq, FRC.Static.slip\\_instance, FRC.Drift.cut\\_ordering}",
+     "source": "Prop.~\\ref{prop:exactprofile},~\\ref{prop:operational}\\newline \\pywit{gravity}{p21027}{C12}, \\leanwit{FrcCore}{p21027}{C12}, \\leanwit{FrcMathlib}{p21027}{C12}; rests on B4, B12, C2 \\lean{Gravity.operational\\_cut, FRC.Static.static\\_iff, FRC.Static.slip\\_of\\_exceeds, FRC.Static.exterior\\_of\\_sq, FRC.Static.slip\\_of\\_sq, FRC.Static.slip\\_instance, FRC.Drift.cut\\_ordering, FRC.Relaxation.no\\_tick\\_iff, FRC.Relaxation.one\\_tick\\_outside}",
      "key": "p21027",
      "name": "exact_static_profile_cut"
     },
     {
      "label": "C13",
-     "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count \\citep{quantum}; an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip emission at the first-law temperature $T_{\\mathrm S}=\\ln^{2}\\Omega\\,T_H$, the Subject's registered value, luminosity $\\ln^{6}\\Omega$ times Hawking's, negligible.",
+     "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count \\citep{quantum}; an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; the first-law temperature $T_{\\mathrm S}=(r_s/r_f)^{2}T_H$ the thermometer of the counted entropy; the phase-slip emission registers at the floor, one event of energy $hf_{\\mathrm S}/\\lfloor\\sqrt\\Omega\\rfloor$ per slip of the first cut outside $r_f$ and nothing from the cut inward, at most one per link of that cut per window of $\\lfloor\\sqrt\\Omega\\rfloor$ far ticks, $L\\le(A_f/\\ell_P^{2})\\,hf_{\\mathrm S}^{2}/\\Omega$ [chart], no evaporation within the horizon time for any mass within the coherence horizon under the hypothesis that the registered mass changes only through registered transfers.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:area}, Rem.~\\ref{rem:entropy}, Prop.~\\ref{prop:capacity}\\newline \\pywit{gravity}{p21062}{C13}, \\leanwit{FrcCore}{p21062}{C13}, \\leanwit{FrcMathlib}{p21062}{C13}; rests on A1, B2, C12, 00:D15 \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, Gravity.capacity\\_ratio\\_numeral, FRC.Grav.count\\_identity, FRC.Grav.merger\\_area, FRC.Grav.merger\\_instance}",
+     "source": "Thm.~\\ref{thm:area}, Rem.~\\ref{rem:entropy}\\newline \\pywit{gravity}{p21062}{C13}, \\leanwit{FrcCore}{p21062}{C13}, \\leanwit{FrcMathlib}{p21062}{C13}; rests on A1, B2, C12, 00:D15 \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, Gravity.capacity\\_ratio\\_numeral, FRC.Grav.count\\_identity, FRC.Grav.merger\\_area, FRC.Grav.merger\\_instance}",
      "key": "p21062",
      "name": "area_law_entropy"
     },
     {
      "label": "C14",
-     "predicate": "The magnitude of dark energy, $\\Lambda\\sim1/\\Omega$ in Planck units, the curvature of the finite chart (B8), the fine-tuning problem unasked; the CMB large-angle anomaly the wrapped-chart signature (C18).",
+     "predicate": "The magnitude of dark energy, $\\Lambda\\sim1/\\Omega$ in Planck units, the curvature of the finite chart (B8), the fine-tuning problem unasked; the CMB large-angle anomaly read as the wrapped chart's cutoff, undecided (P9).",
      "tag": "T",
-     "source": "\\S\\ref{sec:discussion}, App.~\\ref{app:floor}\\newline \\pywit{gravity}{p21063}{C14}, \\leanwit{FrcMathlib}{p21063}{C14}; rests on A1, A2, B8, C18 \\lean{Gravity.curvature\\_datum}",
+     "source": "Cor.~\\ref{cor:explains}, App.~\\ref{app:floor}\\newline \\pywit{gravity}{p21063}{C14}, \\leanwit{FrcMathlib}{p21063}{C14}; rests on A1, A2, B8, C18 \\lean{Gravity.curvature\\_datum}",
      "key": "p21063",
      "name": "dark_energy_magnitude_planck"
     },
     {
      "label": "C15",
-     "predicate": "The radiative sector: the quarter-turn conjugate momentum makes the dynamics a wave equation: two helicity-$\\pm2$ gravitons at speed $c$, quadrupole radiation; gauge leaves two polarisations.",
+     "predicate": "The radiative sector: the quarter-turn conjugate momentum makes the dynamics a wave equation: two helicity-$\\pm2$ gravitons at speed $c$, quadrupole radiation; gauge leaves two polarisations; the symbols of the central complex on the odd cycle $C_\\p$ decided in the cyclotomic chart ($\\Z[\\zeta_\\p]$ and $\\C$), each vanishing at the zero mode alone, the $\\F_\\p$ character symbol the core's, and $K$ a quarter of the incidence Laplacian transported by $x\\mapsto2x$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:wave},~\\ref{prop:graviton}\\newline \\pywit{gravity}{p21030}{C15}, \\leanwit{FrcCore}{p21030}{C15}, \\leanwit{FrcMathlib}{p21030}{C15}; rests on A1, B1, B6, C9, 00:C9 \\lean{Gravity.dispersion\\_symbol, FRC.Lattice.laplacian\\_symbol}",
+     "source": "Prop.~\\ref{prop:graviton}\\newline \\pywit{gravity}{p21030}{C15}, \\leanwit{FrcCore}{p21030}{C15}, \\leanwit{FrcMathlib}{p21030}{C15}; rests on A1, B1, B6, C9, 00:C9 \\lean{Gravity.dispersion\\_symbol, Gravity.central\\_symbol\\_nonzero, FRC.Lattice.laplacian\\_symbol, FRC.Lattice.cdiff\\_symbol, FRC.Lattice.cdiff\\_symbol\\_zero\\_iff, FRC.Lattice.transport\\_symbol}",
      "key": "p21030",
      "name": "radiative_sector"
     },
@@ -289,7 +305,7 @@
      "label": "C16",
      "predicate": "The order-one constants are determined: $c_S'=\\tfrac14$ (the $Q_4$ gauge quotient, counted on an instantiated shell and carried by the Carrier identity), the floor's $2\\pi$ the full cycle of the angle--count dictionary \\citep{dimensions}, its threshold a realisation (Proposition~\\ref{prop:afloor}), the recurring constant the solid angle $4\\pi$, reducing in the Carrier register to the calibration congruence $(4S)^{2}\\equiv1$ (one residue relation).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:area}, Prop.~\\ref{prop:afloor}, App.~\\ref{app:face}\\newline \\pywit{gravity}{p21031}{C16}, \\leanwit{FrcCore}{p21031}{C16}, \\leanwit{FrcMathlib}{p21031}{C16}; rests on A1, C13, 00:L1, 00:N2 \\lean{Gravity.calibration\\_congruence, Gravity.newton\\_register, FRC.Grav.calibration, FRC.Grav.lab\\_register}",
+     "source": "Prop.~\\ref{prop:face}, Thm.~\\ref{thm:area}, Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21031}{C16}, \\leanwit{FrcCore}{p21031}{C16}, \\leanwit{FrcMathlib}{p21031}{C16}; rests on A1, C13, 00:L1, 00:N2 \\lean{Gravity.calibration\\_congruence, Gravity.newton\\_register, FRC.Grav.calibration, FRC.Grav.lab\\_register}",
      "key": "p21031",
      "name": "order_one_constants_determined"
     },
@@ -303,7 +319,7 @@
     },
     {
      "label": "C18",
-     "predicate": "The primordial spectrum: $n_s=1$ the scale-dilation fixed point; the tilt's committed form $-\\pi^{2}/\\ln\\Omega$, $\\ln\\Omega$ the e-fold count of the frame's scale range, a realisation with the measured tilt its falsifier ($\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$; the linearity condition undefined on a shell); the wrapped chart fixing the low large-angle power.",
+     "predicate": "The primordial spectrum: $n_s=1$ the scale-dilation fixed point; the tilt's committed form $-\\pi^{2}/\\ln\\Omega$, $\\ln\\Omega$ the e-fold count of the frame's scale range, a realisation with the measured tilt its falsifier ($\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$; the linearity condition undefined on a shell); the wrapped chart's cutoff at the low multipoles (P9).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:primordial}\\newline \\pywit{gravity}{p21033}{C18}, \\leanwit{FrcMathlib}{p21033}{C18}; rests on A1, 00:L8 \\lean{Gravity.scale\\_invariance\\_iff, Gravity.tilt\\_bracket}",
      "key": "p21033",
@@ -329,7 +345,7 @@
      "label": "C21",
      "predicate": "The defect chain: relative-cycle defect with exact recurrence; the compression identity (relaxation $=$ unresolved leakage, recurrence retained), the leakage over a window counted as the chronons at which the registered outcome fails to close; the pair-tally current (the current $z-z^{-1}$ derived, the sine its chart, conditional on channel unity); binding bookkeeping decided --- substrate winding sources the field, the defect registered-side, $\\eta_{\\mathrm{Nordtvedt}}=0$ on that bookkeeping, the three coefficients of a bound composite not derived separately.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:relcycle}, Prop.~\\ref{prop:compression}, Lem.~\\ref{lem:pairtally}\\newline \\pywit{gravity}{p21036}{C21}, \\leanwit{FrcCore}{p21036}{C21} \\lean{FRC.Drift.return\\_iff, FRC.Drift.defect\\_instance, FRC.Drift.pair\\_tally, FRC.Drift.compression, FRC.Static.leakage\\_add\\_returns, FRC.Static.leakage\\_eq}",
+     "source": "Lem.~\\ref{lem:chain}, Lem.~\\ref{lem:pairtally}\\newline \\pywit{gravity}{p21036}{C21}, \\leanwit{FrcCore}{p21036}{C21} \\lean{FRC.Drift.return\\_iff, FRC.Drift.defect\\_instance, FRC.Drift.pair\\_tally, FRC.Drift.compression, FRC.Static.leakage\\_add\\_returns, FRC.Static.leakage\\_eq}",
      "key": "p21036",
      "name": "defect_chain"
     },
@@ -345,7 +361,7 @@
      "label": "C23",
      "predicate": "The 1PN equivalence lemma: through first post-Newtonian order the two-body metric coefficients coincide with general relativity's isotropic form on the superposed potential, cross term included, so the static part of the Einstein--Infeld--Hoffmann sector is shared exactly; the velocity-dependent 1PN potentials are not compared.",
      "tag": "T",
-     "source": "App.~\\ref{app:pn}\\newline \\pywit{gravity}{p21038}{C23}, \\leanwit{FrcCore}{p21038}{C23}; rests on C8 \\lean{FRC.Drift.two\\_body\\_1pn, FRC.Drift.pn\\_coefficients}",
+     "source": "Lem.~\\ref{lem:1pn}\\newline \\pywit{gravity}{p21038}{C23}, \\leanwit{FrcCore}{p21038}{C23}; rests on C8 \\lean{FRC.Drift.two\\_body\\_1pn, FRC.Drift.pn\\_coefficients}",
      "key": "p21038",
      "name": "one_pn_equivalence_lemma"
     },
@@ -375,9 +391,9 @@
     },
     {
      "label": "C28",
-     "predicate": "The registered relaxation terminates: under the re-registration rule, with a transfer per window at every mismatch at or below the start (the basin below the antipode, where the current vanishes), the mismatch of a link never grows, moves by at most one quantum per chronon, reaches exact alignment within $\\sum_\\mu\\lceil B/M(\\mu)\\rceil$ chronons and stays there; the Kuramoto flow sampled at the quantum is its chart [chart].",
+     "predicate": "The registered relaxation terminates: under the re-registration rule, with a transfer per window at every mismatch at or below the start (the basin below the antipode, where the current vanishes), the mismatch of a link never grows, moves by at most one quantum per chronon, reaches exact alignment within $\\sum_\\mu\\lceil B/M(\\mu)\\rceil$ chronons and stays there; the Kuramoto flow sampled at the quantum is its chart [chart]; under a forcing of $d$ transfers per chronon below capacity, the counts rising strictly to the peak, the mismatch in transfer units, $\\Phi=B\\mu-a$, enters the level pair $\\{\\mu^{*}-1,\\mu^{*}\\}$ at the least level with $M(\\mu^{*})\\ge d$ within $\\sum\\lceil B/|M(\\mu)-d|\\rceil$ chronons, summed over the levels from the start to $\\mu^{*}$ whose count differs from $d$, from every start of count other than $d$ at or below the far edge; every level at the forcing fixed; the band $B(\\mu^{*}-1)-u<\\Phi\\le B(\\mu^{*}-1)+w$ ($u=M(\\mu^{*})-d$, $w=d-M(\\mu^{*}-1)$) invariant and a translation by $w$ on its $u+w$ values, every orbit of period $(u+w)/\\gcd(u,w)$ with $w/(u+w)$ of its chronons at $\\mu^{*}$; a start above the far edge the slip.",
      "tag": "T",
-     "source": "Def.~\\ref{def:reregistration}, Lem.~\\ref{lem:windowrelax}\\newline \\pywit{gravity}{p21067}{C28}, \\leanwit{FrcCore}{p21067}{C28}; rests on B4, C27, 22:B6, 22:C11 \\lean{FRC.Relaxation.terminates, FRC.Relaxation.terminates\\_basin, FRC.Relaxation.drops\\_within, FRC.Relaxation.run\\_aligned, FRC.Relaxation.step\\_mu\\_le, FRC.Relaxation.step\\_mu\\_ge}",
+     "source": "Lem.~\\ref{lem:windowrelax}\\newline \\pywit{gravity}{p21067}{C28}, \\leanwit{FrcCore}{p21067}{C28}; rests on B4, C27, 22:B6, 22:C11 \\lean{FRC.Relaxation.terminates, FRC.Relaxation.terminates\\_basin, FRC.Relaxation.drops\\_within, FRC.Relaxation.run\\_aligned, FRC.Relaxation.locks, FRC.Relaxation.locks\\_from\\_below, FRC.Relaxation.band\\_translation, FRC.Relaxation.band\\_iterate, FRC.Relaxation.band\\_return, FRC.Relaxation.band\\_balance, FRC.Relaxation.band\\_occupancy, FRC.Relaxation.band\\_occupancy\\_period, FRC.Relaxation.band\\_period, FRC.Relaxation.descends, FRC.Relaxation.band\\_invariant, FRC.Relaxation.falls\\_within, FRC.Relaxation.fstep\\_fixed, FRC.Relaxation.step\\_mu\\_le, FRC.Relaxation.step\\_mu\\_ge}",
      "key": "p21067",
      "name": "registered_relaxation_terminates"
     },
@@ -399,7 +415,7 @@
      "label": "X1",
      "predicate": "\\textbf{The cosmological-constant magnitude.} $\\Lambda\\sim1/\\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked.",
      "tag": "T",
-     "source": "\\S\\ref{sec:intro}\\newline \\pywit{gravity}{p21041}{X1}, \\leanwit{FrcCore}{p21041}{X1}; rests on A1, B8, C14 \\lean{FRC.Grav.closed\\_chart}",
+     "source": "Cor.~\\ref{cor:explains}\\newline \\pywit{gravity}{p21041}{X1}, \\leanwit{FrcCore}{p21041}{X1}; rests on A1, B8, C14 \\lean{FRC.Grav.closed\\_chart}",
      "key": "p21041",
      "name": "cosmological_constant_magnitude"
     },
@@ -407,7 +423,7 @@
      "label": "X2",
      "predicate": "\\textbf{No dark-matter particle.} The radial acceleration relation is a registration crossover of the resolution floor, not evidence for undetected mass: galactic dynamics require no dark sector beyond the floor already fixed by $\\Omega$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21042}{X2}, \\leanwit{FrcMathlib}{p21042}{X2}; rests on A1, B9, C19, 00:L1 \\lean{Gravity.crossover\\_deep\\_limit}",
+     "source": "Cor.~\\ref{cor:explains}; Cor.~\\ref{cor:rar}, Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21042}{X2}, \\leanwit{FrcMathlib}{p21042}{X2}; rests on A1, B9, C19, 00:L1 \\lean{Gravity.crossover\\_deep\\_limit}",
      "key": "p21042",
      "name": "no_dark_matter_particle"
     },
@@ -431,7 +447,7 @@
      "label": "X5",
      "predicate": "\\textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise.",
      "tag": "T",
-     "source": "\\S\\ref{sub:radiative}\\newline \\pywit{gravity}{p21045}{X5}, \\leanwit{FrcCore}{p21045}{X5}; rests on B1, C15 \\lean{FRC.Lattice.laplacian\\_symbol}",
+     "source": "Cor.~\\ref{cor:explains}; Prop.~\\ref{prop:graviton}\\newline \\pywit{gravity}{p21045}{X5}, \\leanwit{FrcCore}{p21045}{X5}; rests on B1, C15 \\lean{FRC.Lattice.laplacian\\_symbol}",
      "key": "p21045",
      "name": "no_graviton_quantisation_problem"
     },
@@ -439,7 +455,7 @@
      "label": "X7",
      "predicate": "\\textbf{The equivalence principle} is an identity, not a postulate.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:equiv}\\newline \\pywit{gravity}{p21047}{X7}, \\leanwit{FrcCore}{p21047}{X7}; rests on C4, C20 \\lean{FRC.Relaxation.equivalence\\_cancel}",
+     "source": "Cor.~\\ref{cor:explains}; Cor.~\\ref{cor:equiv}\\newline \\pywit{gravity}{p21047}{X7}, \\leanwit{FrcCore}{p21047}{X7}; rests on C4, C20 \\lean{FRC.Relaxation.equivalence\\_cancel}",
      "key": "p21047",
      "name": "equivalence_principle_not_postulate"
     },
@@ -447,7 +463,7 @@
      "label": "X8",
      "predicate": "\\textbf{The weakness of gravity} is cardinality dilution, not a hierarchy to be tuned.",
      "tag": "T",
-     "source": "\\S\\ref{sub:G}\\newline \\pywit{gravity}{p21048}{X8}, \\leanwit{FrcMathlib}{p21048}{X8} \\lean{Gravity.dilution}",
+     "source": "Cor.~\\ref{cor:explains}; Prop.~\\ref{prop:G}\\newline \\pywit{gravity}{p21048}{X8}, \\leanwit{FrcMathlib}{p21048}{X8} \\lean{Gravity.dilution}",
      "key": "p21048",
      "name": "weakness_gravity_cardinality_dilution"
     }
@@ -461,7 +477,7 @@
      "label": "P1",
      "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, eikonal ringdown $-4.4\\%$ (the $\\ell\\gg1$ limit, not the $(2,2,0)$ mode; that reading open, GW250114's $\\delta\\hat f_{220}=0.02\\pm0.02$ the bar), ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
      "tag": "T",
-     "source": "App.~\\ref{app:strongfield}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}\\newline \\pywit{gravity}{p21049}{P1}, \\leanwit{FrcMathlib}{p21049}{P1}; rests on B2, C11, C12, 00:E4 \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
+     "source": "Prop.~\\ref{prop:shadow}\\newline \\pywit{gravity}{p21049}{P1}, \\leanwit{FrcMathlib}{p21049}{P1}; rests on B2, C11, C12, 00:E4 \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
      "key": "p21049",
      "name": "strong_field_signatures"
     },
@@ -469,7 +485,7 @@
      "label": "P7",
      "predicate": "Floor-surface signatures: no prompt echoes (the exact profile horizonless with no reflecting surface, C12; the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; a reported echo detection at the stated precision falsifies the construction.",
      "tag": "T",
-     "source": "App.~\\ref{app:strongfield}, Rem.~\\ref{rem:fold},~\\ref{rem:hawking}\\newline \\pywit{gravity}{p21050}{P7}, \\leanwit{FrcMathlib}{p21050}{P7}; rests on C13, 00:E5 \\lean{Gravity.operational\\_cut}",
+     "source": "Prop.~\\ref{prop:echoes}\\newline \\pywit{gravity}{p21050}{P7}, \\leanwit{FrcMathlib}{p21050}{P7}; rests on C13, 00:E5 \\lean{Gravity.operational\\_cut}",
      "key": "p21050",
      "name": "floor_surface_signatures"
     },
@@ -482,10 +498,18 @@
      "name": "primordial_tilt"
     },
     {
+     "label": "P9",
+     "predicate": "\\textbf{The wrapped chart's cutoff.} The chart's Fourier dual has no character below $k_1=2\\pi/(\\sqrt\\Omega\\,\\ell_P)=\\sqrt{\\pi\\Lambda/3}$ [chart] (Remark~\\ref{rem:anomaly}): $3.3\\times10^{-4}\\,\\mathrm{Mpc^{-1}}$ at the measured $\\Lambda$ \\citep{planck}, no continuous parameter. Read as an isotropic cutoff of the primordial spectrum, the low multipoles fall to $0.13$, $0.44$, $0.78$, $0.94$ of the $\\Lambda$CDM values at $\\ell=2$--$5$ (Sachs--Wolfe [approx]). Confrontation: Planck 2018's low-$\\ell$ temperature spectrum, $\\Delta(-2\\ln L)=+0.3$ against $\\Lambda$CDM over $\\ell=2$--$10$ (cosmic-variance likelihood [approx]), undecided; a spatial identification at this period excluded by the matched-circles bound \\citep{plancktopology}. Falsifier: the low multipoles, in temperature and polarisation (the latter not computed here), at the unwrapped chart's values beyond cosmic variance.",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:anomaly}\\newline \\pywit{gravity}{p21046}{P9}; rests on A1, A8, C14, C18, 00:L8",
+     "key": "p21046",
+     "name": "wrapped_chart_cutoff"
+    },
+    {
      "label": "P2",
      "predicate": "Preferred-frame effects at $O(1/\\sqrt\\Omega)=O(10^{-62})$ ($3\\times10^{-62}$ at $\\Omega=1.3\\times10^{123}$): the drive's in-principle signature, far below current $10^{-5}$ bounds.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:dragging}\\newline \\pywit{gravity}{p21051}{P2}, \\leanwit{FrcMathlib}{p21051}{P2}; rests on A1, C10, 00:E5 \\lean{Gravity.preferred\\_frame\\_scale}",
+     "source": "Cor.~\\ref{cor:residual}\\newline \\pywit{gravity}{p21051}{P2}, \\leanwit{FrcMathlib}{p21051}{P2}; rests on A1, C10, 00:E5 \\lean{Gravity.preferred\\_frame\\_scale}",
      "key": "p21051",
      "name": "preferred_frame_effects"
     },
@@ -501,7 +525,7 @@
      "label": "P4",
      "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the barrier identification (B9), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:crossover}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcMathlib}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.crossover\\_newton\\_limit, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
+     "source": "Cor.~\\ref{cor:rar}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcMathlib}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.crossover\\_newton\\_limit, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
      "key": "p21053",
      "name": "radial_acceleration_relation"
     },
@@ -509,7 +533,7 @@
      "label": "P5",
      "predicate": "The floor tracks the expansion, $a_0(z)\\propto H(z)$ (BTFR zero-point $\\propto E(z)^{1/4}$); high-$z$ rotation curves decisive.",
      "tag": "T",
-     "source": "App.~\\ref{app:floor}\\newline \\pywit{gravity}{p21054}{P5}, \\leanwit{FrcMathlib}{p21054}{P5}; rests on 14:B4, 32:B3, 00:L1 \\lean{Gravity.running\\_floor}",
+     "source": "Prop.~\\ref{prop:running}\\newline \\pywit{gravity}{p21054}{P5}, \\leanwit{FrcMathlib}{p21054}{P5}; rests on 14:B4, 32:B3, 00:L1 \\lean{Gravity.running\\_floor}",
      "key": "p21054",
      "name": "floor_tracks_expansion"
     },
@@ -517,23 +541,9 @@
      "label": "P6",
      "predicate": "The 2PN periastron excess for PSR~J0737$-$3039: $\\delta\\dot\\omega/\\dot\\omega\\approx1.5\\times10^{-6}$ in the test-particle sector [approx], the comparable-mass terms ($\\nu=0.250$) not yet reduced; today degenerate with the mass refit; decisive either way once that sector is reduced and an independent observable fixes $M_{\\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \\citep{quantum}; the ledger carries both.",
      "tag": "T",
-     "source": "App.~\\ref{app:pn}\\newline \\pywit{gravity}{p21055}{P6}, \\leanwit{FrcCore}{p21055}{P6}, \\leanwit{FrcMathlib}{p21055}{P6}; rests on A8, C8, C23 \\lean{Gravity.pn\\_series, FRC.Drift.pn\\_coefficients}",
+     "source": "Prop.~\\ref{prop:periastron}\\newline \\pywit{gravity}{p21055}{P6}, \\leanwit{FrcCore}{p21055}{P6}, \\leanwit{FrcMathlib}{p21055}{P6}; rests on A8, C8, C23 \\lean{Gravity.pn\\_series, FRC.Drift.pn\\_coefficients}",
      "key": "p21055",
      "name": "two_pn_periastron_excess"
-    }
-   ]
-  },
-  {
-   "letter": "Y",
-   "title": "Hypotheses: a reading chosen by a datum, open until a derivation or an independent datum decides it",
-   "rows": [
-    {
-     "label": "Y1",
-     "predicate": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) read as the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. The datum chose the reading, so the same datum cannot confront it; a hypothesis until a derivation or an independent datum decides it. Falsifier: large-angle power at the unwrapped chart's value.",
-     "tag": "O",
-     "source": "Prop.~\\ref{prop:primordial}; rests on A2, C14, C18",
-     "key": "p21046",
-     "name": null
     }
    ]
   },
@@ -545,7 +555,7 @@
      "label": "Z1",
      "predicate": "The cross-scale running of $a_0$, the ratio $(\\Omega-1)/d$: reduces to the factorisation of $\\Omega-1$.",
      "tag": "Ω",
-     "source": "App.~\\ref{app:floor}",
+     "source": "Rem.~\\ref{rem:running-omega}",
      "key": "p21059",
      "name": null
     }
@@ -572,11 +582,6 @@
    "tag": "R",
    "name": "Realisation",
    "text": "States what a physical term denotes on the substrate: constitutive, not interpretive, and carrying its falsifier."
-  },
-  {
-   "tag": "O",
-   "name": "Open",
-   "text": "A hypothesis a theorem is conditioned on, which a datum chose: open until a derivation or an independent datum decides it (block Y)."
   },
   {
    "tag": "Ω",
@@ -748,7 +753,7 @@
    {
     "name": "FRC.Gravity.locked_sum",
     "module": "FrcMathlib/Gravity",
-    "line": 277,
+    "line": 287,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -946,7 +951,7 @@
    {
     "name": "FRC.Gravity.pn_series",
     "module": "FrcMathlib/Gravity",
-    "line": 294,
+    "line": 314,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1001,7 +1006,7 @@
    {
     "name": "FRC.Gravity.pn_series",
     "module": "FrcMathlib/Gravity",
-    "line": 294,
+    "line": 314,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1043,7 +1048,7 @@
    {
     "name": "FRC.Gravity.central_difference_adjoint",
     "module": "FrcMathlib/Gravity",
-    "line": 317,
+    "line": 337,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1056,7 +1061,7 @@
    {
     "name": "FRC.Lattice.central_difference_adjoint",
     "module": "FrcCore/Theme/Lattice",
-    "line": 44,
+    "line": 48,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1065,7 +1070,7 @@
    {
     "name": "FRC.Lattice.forward_difference_adjoint",
     "module": "FrcCore/Theme/Lattice",
-    "line": 63,
+    "line": 67,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1130,7 +1135,7 @@
    {
     "name": "FRC.Lattice.laplacian_symbol",
     "module": "FrcCore/Theme/Lattice",
-    "line": 84,
+    "line": 88,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1141,7 +1146,7 @@
    {
     "name": "FRC.Gravity.exponential_reading",
     "module": "FrcMathlib/Gravity",
-    "line": 283,
+    "line": 303,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1150,6 +1155,19 @@
     "tier": 2,
     "ok": true,
     "doc": "21:C11 — the exponential reading is the multiplicative one, `e^{−(a+b)} = e^{−a} e^{−b}`; the isotropic Schwarzschild factor `R(U) = (1 − U/2)/(1 + U/2)` is `e^{−2 artanh(U/2)}`, the exponential reading of the self-sourced `ψ = 2 artanh(U/2)`, and it violates the composition law: `R(1) = 1/3 ≠ 9/25 = R(1/2)²`. (`FRC.Strong.exponential_reading`, `Theme/Strong.lean`)."
+   },
+   {
+    "name": "FRC.Gravity.demand_invariant",
+    "module": "FrcMathlib/Gravity",
+    "line": 295,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C11 — the registered winding rate `Σ_m m w_m` over the normalised sector weights `w_m = a_m / Σ_k a_k` is invariant under one multiplier common to every sector: with each weight scaled by the same `c ≠ 0` (the squared modulus of the cell-wise multiplier, `|cψ_m|² = |c|²|ψ_m|²`), every normalised weight and the functional are unchanged. The statement over a field; the tally-ring instances `ℤ[ζ₈]`, `ℤ[ζ₁₂]`, `ℤ[ζ₁₃]` are the python check C4. (`FRC.Strong.demand_invariant`, `Theme/Strong.lean`)."
    },
    {
     "name": "FRC.Drift.gauss_law",
@@ -1273,6 +1291,24 @@
     "tier": 0,
     "ok": true,
     "doc": "00:E5, 00:E10, 21:C12 — the operational cut sits between the slip core and the mass, `r_* < r_f < M`, in the chart's own numbers: with `r_* = √M`, `r_f = 2M/L` (`L = ln Ω`) and `M > (L/2)²`, that is `L² < 4M`, the squares order as `L² M < (2M)²`; and `r_f < M` reads `2M < L M` once `2 < L`."
+   },
+   {
+    "name": "FRC.Relaxation.no_tick_iff",
+    "module": "FrcCore/Theme/Readout",
+    "line": 29,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C12 — the window registers no tick exactly when `a H < b`: the clock's rate against the far cut is below the floor `1/H`."
+   },
+   {
+    "name": "FRC.Relaxation.one_tick_outside",
+    "module": "FrcCore/Theme/Readout",
+    "line": 43,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C12 — one tick at the first cut outside the operational cut. The cut's clock registers no tick in the window (`a H < b`); the rate one cut out is the cut's divided by `1 − M/q`, with `q = r(r + 1)` the product of the cell's two decoherence counts, that is `a q / (b (q − M))`, and it registers at least one tick, the cut being the outermost with none. When `2 M ≤ q`, the per-cell change of the composed rate at most one half, it registers exactly one."
    }
   ],
   "C13": [
@@ -1384,13 +1420,53 @@
     "doc": "21:C15 — the dispersion symbol: the central second difference acts on the plane wave `e^{ikx}` by `−(2 − 2 cos k) = −4 sin²(k/2)`; the wave equation, its two polarisations and the speed `c` are the package's. (`FRC.Strong.dispersion_symbol`, `Theme/Strong.lean`)."
    },
    {
+    "name": "FRC.Gravity.central_symbol_nonzero",
+    "module": "FrcMathlib/Gravity",
+    "line": 279,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C15 — the cyclotomic zero set of the central-difference complex on the odd cycle `C_p`: for `ζ` a primitive `p`-th root of unity, `p` an odd prime and `0 < k < p`, the symbols `ζ^k − ζ^{−k}` of `D = (T − T⁻¹)/2` and `2 − ζ^{2k} − ζ^{−2k} = −(ζ^k − ζ^{−k})²` of `K = −D²` are nonzero (`ζ^{2k} = 1` forces `p ∣ 2k`, hence `p ∣ k`); the chart's statement (characteristic zero), the `𝔽_p` character symbol being the core's `FRC.Lattice.cdiff_symbol`. (`FRC.Strong.central_symbol_nonzero`, `Theme/Strong.lean`; 21 November 2026)."
+   },
+   {
     "name": "FRC.Lattice.laplacian_symbol",
     "module": "FrcCore/Theme/Lattice",
-    "line": 84,
+    "line": 88,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "21:C15, 21:C10, 21:X5 — on a character `g` with `gⁿ = 1`, the cycle Laplacian acts on `χ_k` as the symbol `g^k + g^{k(n−1)} − 2` (`g^{k(n−1)} = g^{−k}` on the cycle): `(Δ_Φ χ_k)(i) = (g^k + g^{−k} − 2) χ_k(i)`, the dispersion relation `2 − g^k − g^{−k}` of 8:F4, whose chart is `2 − 2 cos k = 4 sin²(k/2)`."
+   },
+   {
+    "name": "FRC.Lattice.cdiff_symbol",
+    "module": "FrcCore/Theme/Lattice",
+    "line": 108,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C15 — the central difference acts on the character `χ_k` as the symbol `g^k − g^{k(n−1)}` (`g^{−k}` on the cycle): `(Δχ_k)(i) = (g^k − g^{k(n−1)}) χ_k(i)` for `gⁿ = 1`. The `𝔽_p`-valued statement; the cyclotomic one is FrcMathlib's `FRC.Strong.central_symbol_nonzero`."
+   },
+   {
+    "name": "FRC.Lattice.cdiff_symbol_zero_iff",
+    "module": "FrcCore/Theme/Lattice",
+    "line": 133,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C15 — the zero set of the central-difference symbol: `g^k − g^{k(n−1)} = 0` exactly when `g^{2k} = 1` (for `gⁿ = 1`, `n > 0`)."
+   },
+   {
+    "name": "FRC.Lattice.transport_symbol",
+    "module": "FrcCore/Theme/Lattice",
+    "line": 158,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C15 — the transport identity at the symbol (the quarter of Proposition 7.5(ii); 21 November 2026): the square of the central-difference symbol at `k` is the Laplacian's symbol at `2k`, `(g^k − g^{−k})² = g^{2k} + g^{−2k} − 2` for `gⁿ = 1`. With the paper's central difference `D = (T − T⁻¹)/2`, which carries one half per step, this reads `K = −D² = ¼ P⁻¹ L P` for the relabelling `P : x ↦ 2x`: the quarter is the two halves."
    }
   ],
   "C16": [
@@ -1522,7 +1598,7 @@
    {
     "name": "FRC.Gravity.tilt_bracket",
     "module": "FrcMathlib/Gravity",
-    "line": 335,
+    "line": 355,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1587,7 +1663,7 @@
    {
     "name": "FRC.Gravity.shift_theorem",
     "module": "FrcMathlib/Gravity",
-    "line": 325,
+    "line": 345,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1850,6 +1926,123 @@
     "doc": "21:C28 — the aligned link stays aligned through every run."
    },
    {
+    "name": "FRC.Relaxation.locks",
+    "module": "FrcCore/Theme/Forced",
+    "line": 311,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — the forced relaxation locks. Let the lock level `m ≥ 1` have `M (m − 1) + w = d`, let every level `μ` from `m` to `n` have its count above the forcing by `u μ ≥ 1` with `k μ · u μ ≥ B`, and let a link's transfer count sit at a level between `m` and `n`. Then within `Σ_{μ = m}^{n} k μ` chronons the count enters the lock band `B m − u m ≤ Ψ ≤ B m + w − 1` and stays in it at every later chronon: the registered mismatch is `m − 1` or `m` from then on, the discrete lock-in of the locked state the cut form asserts, link by link. The counts beyond `n` (the far edge and the slip region, where the count falls below the forcing) are not hypothesised."
+   },
+   {
+    "name": "FRC.Relaxation.locks_from_below",
+    "module": "FrcCore/Theme/Forced",
+    "line": 579,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — the forced relaxation locks from below. Let the lock level `m ≥ 1` have `M m = d + u` (`u ≥ 1`) and every level below `m` have its count short of the forcing by `w μ ≥ 1` with `k μ · w μ ≥ B`. A link whose transfer count sits at a level at least `m − j` and below `m` enters the lock band `B m − u ≤ Ψ ≤ B m + w (m − 1) − 1` within `Σ_{μ = m − j}^{m − 1} k μ` chronons and stays in it at every later chronon."
+   },
+   {
+    "name": "FRC.Relaxation.band_translation",
+    "module": "FrcCore/Theme/Forced",
+    "line": 338,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — on the lock band the forced step is the translation by `w` on the `u + w` values: with `x = Ψ + u − B m` (`0 ≤ x < u + w`), the next count has `x' = (x + w) % (u + w)`. At level `m − 1` (`x < u`) the count rises by `w`; at level `m` (`x ≥ u`) it falls by `u`, which is `x + w − (u + w)`. Hence every orbit on the band has period `(u + w)/gcd(u, w)` and spends exactly `w/(u + w)` of its chronons at level `m`: the occupation is the fraction of the `u + w` residues that lie in the upper block of `w`."
+   },
+   {
+    "name": "FRC.Relaxation.band_iterate",
+    "module": "FrcCore/Theme/Forced",
+    "line": 393,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — `k` chronons on the band translate by `k w`: `x_k = (x + k w) % (u + w)`."
+   },
+   {
+    "name": "FRC.Relaxation.band_return",
+    "module": "FrcCore/Theme/Forced",
+    "line": 417,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — the band's orbits return: whenever `u + w` divides `k w`, `k` chronons bring every band value back to itself (the period `(u + w)/gcd(u, w)` is the least such `k`: `band_period` below)."
+   },
+   {
+    "name": "FRC.Relaxation.band_balance",
+    "module": "FrcCore/Theme/Forced",
+    "line": 620,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — the balance of the band: along a run on the band, the count rises by `w` at every chronon spent at level `m − 1` and falls by `u` at every chronon spent at level `m`, so after `t` chronons with `N₂` of them at level `m`, `Ψ_t + N₂ u = Ψ + (t − N₂) w`."
+   },
+   {
+    "name": "FRC.Relaxation.band_occupancy",
+    "module": "FrcCore/Theme/Forced",
+    "line": 670,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — the occupation over a return: whenever the run returns to its start after `p` chronons, the chronons spent at level `m` number `N₂` with `N₂ (u + w) = p w`, exactly the fraction `w/(u + w)` of the period."
+   },
+   {
+    "name": "FRC.Relaxation.band_occupancy_period",
+    "module": "FrcCore/Theme/Forced",
+    "line": 682,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — the exact occupation of the period: with `u = g a`, `w = g b` (`g ≥ 1`), `a + b` chronons return every band value to itself (`band_return`), and exactly `b` of them are spent at level `m`: the fraction `w/(u + w) = b/(a + b)`."
+   },
+   {
+    "name": "FRC.Relaxation.band_period",
+    "module": "FrcCore/Theme/Forced",
+    "line": 707,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — the period is least when `a` and `b` are coprime, in the framework's invertible form (`s b ≡ 1 mod a + b`): no chronon count `k` with `0 < k < a + b` returns a band value to itself, so `a + b = (u + w)/gcd(u, w)` is the period of every orbit of the band and `b/(a + b)` its exact occupation of level `m`."
+   },
+   {
+    "name": "FRC.Relaxation.descends",
+    "module": "FrcCore/Theme/Forced",
+    "line": 206,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — the descent to the lock: when every level from `m` up to `n` has its count above the forcing (`M μ = d + u μ`, `u μ ≥ 1`) and `k μ · u μ ≥ B`, a link whose transfer count sits at a level at most `n` reaches a level below `m` within `Σ_{μ = m}^{n} k μ` chronons. The hypotheses speak of the levels `m..n` alone: the counts beyond the far edge, which fall below the forcing, play no part. With `m = μ*` the lock level, the first chronon below `μ*` lands in the lock band, which `band_invariant` then keeps."
+   },
+   {
+    "name": "FRC.Relaxation.band_invariant",
+    "module": "FrcCore/Theme/Forced",
+    "line": 86,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — the lock band is invariant. With `M (m − 1) + w = d` and `M m = d + u` (`u, w ≥ 1`: the count below the forcing one quantum down, above it at `m`), the forced step keeps every transfer count of the band `B m − u ≤ Ψ ≤ B m + w − 1` in the band: at level `m` the count falls by `u` and stays at or above `B m − u`, at level `m − 1` it rises by `w` and stays at or below `B m + w − 1`. The registered mismatch moves between `m − 1` and `m` by the translation of `band_translation`, the discrete lock-in of the Kuramoto chart."
+   },
+   {
+    "name": "FRC.Relaxation.falls_within",
+    "module": "FrcCore/Theme/Forced",
+    "line": 147,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — at a level `m ≥ 1` whose count exceeds the forcing by `u ≥ 1`, the transfer count leaves the level downward within `k` chronons whenever `k · u ≥ B`: some chronon `j ≤ k` has its level below `m`. The dwell at a level above the lock is bounded by the window over the excess, `⌈B/(M m − d)⌉`, stated without division."
+   },
+   {
+    "name": "FRC.Relaxation.fstep_fixed",
+    "module": "FrcCore/Theme/Forced",
+    "line": 59,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C28 — a level whose count equals the forcing is fixed: the registered mismatch rests there."
+   },
+   {
     "name": "FRC.Relaxation.step_mu_le",
     "module": "FrcCore/Theme/Window",
     "line": 139,
@@ -1985,7 +2178,7 @@
    {
     "name": "FRC.Lattice.laplacian_symbol",
     "module": "FrcCore/Theme/Lattice",
-    "line": 84,
+    "line": 88,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -2091,7 +2284,7 @@
    {
     "name": "FRC.Gravity.tilt_bracket",
     "module": "FrcMathlib/Gravity",
-    "line": 335,
+    "line": 355,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -2106,7 +2299,7 @@
    {
     "name": "FRC.Gravity.preferred_frame_scale",
     "module": "FrcMathlib/Gravity",
-    "line": 302,
+    "line": 322,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -2130,7 +2323,7 @@
    {
     "name": "FRC.Gravity.floor_value",
     "module": "FrcMathlib/Gravity",
-    "line": 343,
+    "line": 363,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -2199,7 +2392,7 @@
    {
     "name": "FRC.Gravity.running_floor",
     "module": "FrcMathlib/Gravity",
-    "line": 354,
+    "line": 374,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -2214,7 +2407,7 @@
    {
     "name": "FRC.Gravity.pn_series",
     "module": "FrcMathlib/Gravity",
-    "line": 294,
+    "line": 314,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

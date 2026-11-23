@@ -15,7 +15,7 @@ fails if a key's axioms change (the axioms of Mathlib's hierarchy at most). Noth
 #print axioms FRC.LedgerML.p20008
 
 -- 20:B2 (p20009)
-/-- info: 'FRC.LedgerML.p20009' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'FRC.LedgerML.p20009' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms FRC.LedgerML.p20009
 
@@ -23,26 +23,6 @@ fails if a key's axioms change (the axioms of Mathlib's hierarchy at most). Noth
 /-- info: 'FRC.LedgerML.p20011' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms FRC.LedgerML.p20011
-
--- 20:B5 (p20012)
-/-- info: 'FRC.LedgerML.p20012' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms FRC.LedgerML.p20012
-
--- 20:B6 (p20013)
-/-- info: 'FRC.LedgerML.p20013' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms FRC.LedgerML.p20013
-
--- 20:B8 (p20015)
-/-- info: 'FRC.LedgerML.p20015' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms FRC.LedgerML.p20015
-
--- 20:B9 (p20016)
-/-- info: 'FRC.LedgerML.p20016' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms FRC.LedgerML.p20016
 
 -- 20:B10 (p20017)
 /-- info: 'FRC.LedgerML.p20017' depends on axioms: [propext, Classical.choice, Quot.sound] -/
@@ -58,3 +38,18 @@ fails if a key's axioms change (the axioms of Mathlib's hierarchy at most). Noth
 /-- info: 'FRC.LedgerML.p20044' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms FRC.LedgerML.p20044
+
+-- 20:D14 (p20113)
+/-- info: 'FRC.LedgerML.p20113' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p20113
+
+-- 20:D15 (p20114)
+/-- info: 'FRC.LedgerML.p20114' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p20114
+
+-- 20:D17 (p20117)
+/-- info: 'FRC.LedgerML.p20117' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p20117

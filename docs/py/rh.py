@@ -1,70 +1,71 @@
 """
 rh.py — the validation package of "Riemann Hypothesis over Finite Holographic Substrate" (Akhtman & Voether, 2026; Preprints
 doi 10.20944/preprints202606.0768.v1), the paper 20-rh of the FRC corpus (finite-ring-space/src/20-rh). One script since
-24 September 2026; rewritten with the paper on 17 October 2026 (reports/blueprint-20261017.md): the chart-side blocks of the
-earlier versions (the de-framing dictionary's density and residue, the prime-side spectrum, the GUE statistic, the χ-twist,
-Turing's count and certificate, the resonance) are gone with the rows they witnessed, and the exact checks of the shell carry
-the paper.
+24 September 2026; rewritten with the paper on 17 October 2026; revised with the paper on 21 November 2026: the count
+readout replaces the readout on the framed plane (the critical circle, rows G13 and G14, on 22 November). The checks of the rows that left are gone with them (A2 to A5, A15 to
+A18, A20, and the chart blocks B and C), and one check per row of the count readout and of the classical statements enters
+(blocks G and X).
 ========================================================================================================================
 
-Three blocks, 107 checks — 91 EXACT (integer-pinned: a pass is a proof on the tested instances), 5 [approx] (a floating-point
-reading of the chart's characters to a stated tolerance), 11 [chart] (a continuum reading of a finite object; notation.tex
-convention 6) — Python with numpy and matplotlib (the paper's two drawn figures are redrawn into figures/paper/ as the blocks run; Figure 1 is the dimensions paper's).
-Each check names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 20:XN), and the deciding
+Four blocks, 97 checks — 88 EXACT (integer-pinned: a pass is a proof on the tested instances) and 9 [approx] (floating-point
+readings to a stated tolerance: the chart's characters, and in block D the spectrum of the window's primes, the count of a window from its dual and the bound on its difference from the count) — Python with numpy, which block A's chart characters alone use.
+Each check cites the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 20:XN), and the deciding
 check's `# 20:XN (<key>)` marker is what the ledger's source column links (PREDICATES; finitering.space/py/rh.html#<key>).
-Master-ledger predicates reached through the paper's rows: 00:A2 (Finitude, 20:A2), 00:A3 (Completeness, 20:A3) and 00:A4
-(Observation, 20:A4).
+The records are those of the framework's ledger file frc/ledgers/p20_rh.py, check for check. The paper's Figures 2, 3 and 4
+are drawn by make_figures.py beside this script, from its functions.
 
-Block A  the shell, in exact arithmetic (EXACT, one [approx]; 20:A2, A3, A4, B1, B2, B4–B6, B8–B10, B12–B14, E12–E15, F7, F10, O9):
-         the zero-slot, slot complementarity, the Hermitian phase calculus, the critical line, the two agreement loci among all
-         affine lines, the Subject constants, the shell theorem's five clauses on random vectors, the Parseval identity, the
-         critical line as the energy domain, frame coincidence below the horizon and on the line, no zero off the line, the
-         closure, completeness, the generators that do not order the window, the drive theorem and the circle
-Block B  the chart ([chart]; 20:B8, F9, O9): the de-framing limit, the exhibit on the windows of depth 13, 39 and 173, the
-         pair agreement on (173, 30089) and (1549, 2408561), and the labels read in the cycle's own scale coordinate
-Block C  the chart at depth ([chart]; 20:F9): the window of depth 10⁶ and the first ten heights; the figure fig_primespec
+Block A  the shell, in exact arithmetic (EXACT, five [approx]; 20:A2, A3, A4, B1, B2, B4, B10, E12–E15, F7): the zero-slot, the
+         Subject constants, the shell theorem's clauses on random vectors, the Parseval identity, frame coincidence within the
+         observational horizon, the closure, completeness, the drive theorem
+Block D  the prime vector in the chart ([approx]; 20:D14, D15, D16, D17): the spectrum of the window's primes against the classical
+         heights, the deep window, the count of a window from its dual against π(x) and Riemann's formula, and the bound on its
+         difference from the count of the vector
+Block G  the count readout (EXACT; 20:G2, G3, G5–G7, G9, G10, G12–G14, F7): the count operator, the forced half, the generator, the
+         zeros, their centre and order, the cardinal modes, the Carrier's chart, the critical circle, on the pairs (13, 233), (173, 30089),
+         (1549, 2408561)
+Block X  the classical statements read on the shell (EXACT; 20:X1–X3): the ½ of the critical line, the pole and the functional
+         equation, the ½ of the dilation generator
 
-    python3 rh.py                every block in order, results.json written; exit 1 if a check fails (≈ 100 s on one core:
-                                 block A 75 s, block C 20 s)
-    python3 rh.py A B            the blocks named (A, B, C); no results.json
-    from frc_20_rh import predicate; predicate("20:B12")    one predicate: the blocks of the checks citing it run once per session
+    python3 rh.py                every block in order, results.json written; exit 1 if a check fails (≈ 25 s on one core)
+    python3 rh.py A G            the blocks named (A, D, G, X); no results.json
+    from frc_20_rh import predicate; predicate("20:G6")    one predicate: the blocks of the checks citing it run once per session
 """
-import os, json, sys, math, cmath, time, random
-from fractions import Fraction
+import os, json, sys, math, cmath, time, random, types
+from functools import lru_cache
 import numpy as np
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-from matplotlib.patches import FancyArrowPatch
 
 SCRIPT = os.path.splitext(os.path.basename(__file__))[0]        # "rh": the one script, the name results.json and the site pages carry
-FIGDIR = os.environ.get("RH_FIGDIR", "figures")
-os.makedirs(f"{FIGDIR}/paper", exist_ok=True)
 
 # ----------------------------------------------------------------------------- registry
 RESULTS = []
 
 # The paper's predicate ledger (20-rh Appendix A, predicates cited as 20:XN): the predicate(s) each check witnesses. The
 # ledger's source column cites these check ids in return. The check ids A8 and A9 are retired with their rows (the Lanczos
-# matrix, the Ramanujan sum; 17 October 2026) and are not reused.
+# matrix, the Ramanujan sum; 17 October 2026), and A2 to A5, A15 to A18, A20, B3 to B8 and C1 with theirs (21 November 2026).
+# None is reused.
 LEDGER = {
-    "A1": "20:B4", "A2": "20:B5", "A3": "20:B6", "A4": "20:B8", "A5": "20:B9", "A6": "20:B10", "A6b": "20:B10",
+    "A1": "20:B4", "A6": "20:B10", "A6b": "20:B10",
     "A7": "20:E12, 20:E14", "A7b": "20:E13", "A10": "20:B1", "A11": "20:B2", "A12": "20:A2, 20:A4, 20:F7", "A13": "20:A3",
-    "A14": "20:E13", "A15": "20:B12", "A16": "20:B13", "A17": "20:O9", "A18": "20:F10, 20:B9, 20:B13", "A19": "20:E15", "A20": "20:B14",
-    "B3": "20:B8", "B5": "20:F9", "B6": "20:F9", "B8": "20:O9",
-    "C1": "20:F9",
+    "A14": "20:E13", "A19": "20:E15",
+    "D14": "20:D14", "D15": "20:D15", "D16": "20:D16", "D17": "20:D17",
+    "G2": "20:G2", "G3": "20:G3", "G5": "20:G5", "G6": "20:G6, 20:F7", "G7": "20:G7", "G9": "20:G9", "G10": "20:G10", "G12": "20:G12", "G13": "20:G13", "G14": "20:G14",
+    "X1": "20:X1", "X2": "20:X2", "X3": "20:X3",
 }
 
-BLOCK = {"A": "the shell, in exact arithmetic: the zero-slot, the critical line, the agreement loci, the shell theorem, the Parseval identity, the energy domain, frame coincidence, the closure, completeness, the window's order, the drive theorem, the circle",
-         "B": "the chart: the de-framing limit, the exhibit on the windows 13, 39, 173, the pair agreement, the cycle's own scale coordinate",
-         "C": "the chart at depth: the window of depth 10⁶ and the first ten heights; the figure fig_primespec"}
+BLOCK = {"A": "the shell, in exact arithmetic: the zero-slot, the Subject constants, the shell theorem, the Parseval identity, frame coincidence, the closure, completeness, the drive theorem",
+         "D": "the prime vector in the chart: the spectrum of the window's primes against the classical heights, the deep window, and the count of a window from its dual with its bound",
+         "G": "the count readout: the count operator, the forced half, the generator, the zeros, their centre and order, the cardinal modes, the Carrier's chart, the critical circle",
+         "X": "the classical statements read on the shell: the ½ of the critical line, the pole and the functional equation, the ½ of the dilation generator"}
 
-# the deciding check of each python-witnessed predicate: the check the ledger's source column names (the other checks that
+# the deciding check of each python-witnessed predicate: the check the ledger's source column links (the other checks that
 # cite it are corroboration, listed by predicate() from the records)
 PREDICATES = {
-    "20:B1": "A10", "20:B2": "A11", "20:B4": "A1", "20:B5": "A2", "20:B6": "A3", "20:B8": "A4", "20:B9": "A5", "20:B10": "A6",
-    "20:B12": "A15", "20:B13": "A16", "20:A2": "A12", "20:A3": "A13", "20:A4": "A12", "20:F7": "A12",
-    "20:E12": "A7", "20:E13": "A14", "20:E14": "A7", "20:F9": "B5", "20:O9": "A17", "20:F10": "A18", "20:E15": "A19", "20:B14": "A20",
+    "20:B1": "A10", "20:B2": "A11", "20:B4": "A1", "20:B10": "A6",
+    "20:A2": "A12", "20:A3": "A13", "20:A4": "A12", "20:F7": "A12",
+    "20:E12": "A7", "20:E13": "A14", "20:E14": "A7", "20:E15": "A19",
+    "20:D14": "D14", "20:D15": "D15", "20:D16": "D16", "20:D17": "D17",
+    "20:G2": "G2", "20:G3": "G3", "20:G5": "G5", "20:G6": "G6", "20:G7": "G7", "20:G9": "G9", "20:G10": "G10", "20:G12": "G12", "20:G13": "G13", "20:G14": "G14",
+    "20:X1": "X1", "20:X2": "X2", "20:X3": "X3",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
 
@@ -126,10 +127,8 @@ def verify_all():
 
 # ----------------------------------------------------------------------------- the arithmetic of the shell (standard library)
 SHELLS = [13, 17, 29, 37, 41]          # in full
-BIG = 173                               # the laboratory Subject of (173, 30089): A1, A4, A6, A7, A14, A15
+BIG = 173                               # the laboratory Subject of (173, 30089): A1, A6, A7, A14, A19
 PAIRS = ((13, 233), (173, 30089), (1549, 2408561))      # the laboratory pairs (p, Ω), Ω the Carrier of the Subject p (Def. shells)
-HEIGHTS = [14.134725, 21.022040, 25.010858, 30.424876, 32.935062, 37.586178, 40.918719, 43.327073, 48.005151, 49.773832]
-# the first ten classical heights (Odlyzko's tables), validation markers of the chart blocks: never an input
 
 def is_prime(n):
     if n < 2: return False
@@ -159,10 +158,6 @@ def generator(p):
         if all(pow(g, (p - 1) // q, p) != 1 for q in prime_factors(p - 1)):
             return g
 
-def nonresidue(p):
-    sq = {(x * x) % p for x in range(1, p)}
-    return next(v for v in range(2, p) if v not in sq)
-
 def dlog_table(p, g):
     """The discrete logarithm λ_p to the generator g on F_p^×, as a list indexed by the residue (λ[g^m] = m)."""
     lam, x = [0] * p, 1
@@ -170,29 +165,7 @@ def dlog_table(p, g):
         lam[x] = m; x = x * g % p
     return lam
 
-# F_{p^2} = F_p(η), η² = ν: elements (a, b) = a + bη; the conjugation φ, the half-turn ρ, the trace and the norm
-def mul(z, w, nu, p):
-    return ((z[0] * w[0] + nu * z[1] * w[1]) % p, (z[0] * w[1] + z[1] * w[0]) % p)
-def frob(z, p):            # z ↦ z^p : a + bη ↦ a − bη
-    return (z[0], (-z[1]) % p)
-def half_turn(z, p):       # z ↦ 1 − z
-    return ((1 - z[0]) % p, (-z[1]) % p)
-def trace(z, p): return (2 * z[0]) % p
-def norm(z, nu, p): return (z[0] * z[0] - nu * z[1] * z[1]) % p
-def zpow(z, k, nu, p):
-    r, b = (1, 0), z
-    while k:
-        if k & 1: r = mul(r, b, nu, p)
-        b = mul(b, b, nu, p); k >>= 1
-    return r
-
-def affine_lines(p):
-    """The p(p+1) affine lines of the plane F_p² = {(a, b)}: the p lines H_b = {im = b} and the p² lines S_{c,a} = {re = a + c·im},
-    each as (name, frozenset of its p points)."""
-    out = [(("H", b), frozenset((a, b) for a in range(p))) for b in range(p)]
-    out += [(("S", c, a), frozenset(((a + c * b) % p, b) for b in range(p))) for c in range(p) for a in range(p)]
-    return out
-
+# F_{p^2} = F_p(η), η² = ν: elements (a, b) = a + bη; the conjugation φ, the reflection ρ, the trace and the norm
 def dual(v, p):
     """The dual of a vector v on F_p^× (v[x] for x = 1..p−1): v̂(k) = Σ_x v(x) x^k for k = 0..p−2, in F_p."""
     return [sum(v[x] * pow(x, k, p) for x in range(1, p)) % p for k in range(p - 1)]
@@ -201,180 +174,744 @@ def random_vectors(p, count, seed):
     rng = random.Random(seed)
     return [[0] + [rng.randrange(p) for _ in range(p - 1)] for _ in range(count)]
 
-# ----------------------------------------------------------------------------- the chart (numpy): the window's labels along the chart's scale
-def mangoldt(N):
-    """The prime-power labels n ≤ N with the chart's weight Λ(n) = log ℓ, as arrays (n, Λ(n))."""
-    sieve = np.ones(N + 1, dtype=bool); sieve[:2] = False
-    for i in range(2, int(N ** 0.5) + 1):
-        if sieve[i]: sieve[i * i::i] = False
-    ns, ls = [], []
-    for q in np.nonzero(sieve)[0]:
-        m = int(q)
-        while m <= N:
-            ns.append(m); ls.append(math.log(int(q))); m *= int(q)
-    return np.array(ns, dtype=float), np.array(ls)
+# ----------------------------------------------------------------------------- the count readout (the functions of the framework's count theme, frc/count.py)
+# The modes of a shell p are the powers x ↦ x^k on the nonzero residues, k = 0, …, p − 2. The count of a mode is k. For a
+# count k ≥ 1 the zero is k + 1 and the conjugate count is p − 1 − k. One function per theorem of lean/FrcCore/Theme/Count.lean
+# and Theme/Circle.lean, under its name; each returns True when the statement holds on the shell it is given. Blocks G and X call them as CT.<name>.
+def generators(p):
+    """The generators of the cycle of the shell p, ascending."""
+    qs = prime_factors(p - 1)
+    return [g for g in range(2, p) if all(pow(g, (p - 1) // q, p) != 1 for q in qs)]
 
-def energy(H, gammas):
-    """The exhibit's modulus |Σ_{n≤H} Λ(n)(1 − log n/log H) n^{−1/2−iγ}|, the square root of the intensity, along the chart's height γ [chart]."""
-    n, lam = mangoldt(H)
-    w = lam * (1 - np.log(n) / np.log(H)) * n ** -0.5
-    ln = np.log(n)
-    out = np.empty(len(gammas))
-    for i, g in enumerate(gammas):
-        out[i] = abs(np.sum(w * np.exp(-1j * g * ln)))
+
+def gram_table(p):
+    """P[n] = Σ_{x≠0} x^n for n = 0 … 2p − 4, by running powers; the Gram entry of two modes is P[k + m]."""
+    xs, cur, P = list(range(1, p)), [1] * (p - 1), []
+    for _ in range(2 * p - 3):
+        P.append(sum(cur) % p)
+        cur = [c * x % p for c, x in zip(cur, xs)]
+    return P
+
+
+def gram(p, k, m):
+    """The Gram entry ⟨x^k, x^m⟩ = Σ_{x≠0} x^k x^m, by the direct sum."""
+    return sum(pow(x, k, p) * pow(x, m, p) for x in range(1, p)) % p
+
+
+def frequency(p, kap, i, k):
+    """The frequency of the count k: γ_k = −i(k + 2⁻¹), with 2⁻¹ = 2κ + 1."""
+    return (-i * (k + 2 * kap + 1)) % p
+
+
+def quarter_turn(p, kap, g):
+    """The Subject's quarter-turn i = g^(−κ) = −g^κ."""
+    return (-pow(g, kap, p)) % p
+
+
+def mode_coefficients(p, v):
+    """c_k = −Σ_x v(x) x^{−k} for k = 0 … p − 2; v is indexed by x − 1."""
+    inv, cur, cs = [pow(x, p - 2, p) for x in range(1, p)], [1] * (p - 1), []
+    for _ in range(p - 1):
+        cs.append((-sum(a * b for a, b in zip(v, cur))) % p)
+        cur = [c * ix % p for c, ix in zip(cur, inv)]
+    return cs
+
+
+def mode_values(p, cs):
+    """The vector with the mode coefficients cs, at x = 1 … p − 1 (Horner)."""
+    out = []
+    for x in range(1, p):
+        acc = 0
+        for c in reversed(cs): acc = (acc * x + c) % p
+        out.append(acc)
     return out
 
-def peaks(H, lo, hi, step=0.02):
-    """The local maxima of the window's intensity on [lo, hi] at the grid step, as (γ, intensity), tallest first."""
-    gam = np.arange(lo, hi + step / 2, step)
-    e = energy(H, gam)
-    pk = [(float(gam[i]), float(e[i])) for i in range(1, len(gam) - 1) if e[i] > e[i - 1] and e[i] > e[i + 1]]
-    return sorted(pk, key=lambda t: -t[1])
 
-def five_peaks(H):
-    """The window's five peaks: the five tallest peaks on the range 10 to 36 of the chart's height, by height."""
-    return sorted(g for g, _ in peaks(H, 10, 36)[:5])
+def delta(p, y):
+    """The indicator of the residue y, indexed by x − 1."""
+    return [1 if x == y else 0 for x in range(1, p)]
 
-def resolution(H): return 2 * math.pi / math.log(H)
 
-# ----------------------------------------------------------------------------- the paper's figures
-# Drawn at the text width of the manuscript (452.97 pt = 6.29 in; a4, 1 in margins, 11 pt), so that \includegraphics scales
-# nothing and the 8–9 pt type prints as drawn; no titles (the captions carry them), panel letters above the axes.
-PURPLE, GREY, BLUE, GREEN, RED, INK = "#8e44ad", "#8a8f98", "#2b6fd6", "#2f9e44", "#d33b3b", "#1b1f24"
-TEXTWIDTH_IN = 452.97 / 72.27
-PAPER_RC = {"font.size": 8.5, "axes.labelsize": 9, "axes.titlesize": 9, "xtick.labelsize": 8, "ytick.labelsize": 8,
-            "legend.fontsize": 7.8, "legend.frameon": True, "legend.framealpha": 0.92, "legend.edgecolor": "0.8",
-            "axes.linewidth": 0.7, "xtick.major.width": 0.6, "ytick.major.width": 0.6, "lines.linewidth": 1.1,
-            "axes.grid": False, "pdf.fonttype": 42, "mathtext.fontset": "cm", "font.family": "DejaVu Sans"}
+def fixed_sequence(p, seed):
+    """A fixed integer sequence reduced mod p (s ↦ 1103515245 s + 12345 mod 2³¹): a test vector with no random source."""
+    out, s = [], seed
+    for _ in range(p - 1):
+        s = (1103515245 * s + 12345) % (1 << 31)
+        out.append(s % p)
+    return out
 
-def panel_letter(ax, s, x=-0.02, y=1.03):
-    """The panel letter above the axes' top-left corner, as the captions cite it."""
-    ax.text(x, y, s, transform=ax.transAxes, ha="right", va="bottom", fontsize=9)
 
-def _save(fig, name):
-    fig.savefig(f"{FIGDIR}/paper/{name}.pdf", bbox_inches="tight", pad_inches=0.02)
-    fig.savefig(f"{FIGDIR}/paper/{name}.png", dpi=220, bbox_inches="tight", pad_inches=0.02)
-    plt.close(fig)
-    print(f"    wrote {FIGDIR}/paper/{name}.pdf")
+def run_shifts(p, start):
+    """The values 2c that the nonconstant conjugate pairs of the run of counts [start, start + p − 1) ask for."""
+    n = p - 1
+    by_class = {a % n: a for a in range(start, start + n)}
+    return {(-(a + by_class[(n - cls) % n])) % p for cls, a in by_class.items() if cls}
 
-def figure_primespec():
-    """fig_primespec: (a) the intensity of the windows 13, 39, 173 along the chart's scale; (b) depth 10⁶ (Obs. exhibit) [chart]."""
-    gam = np.arange(10, 52, 0.02)
-    with plt.rc_context(PAPER_RC):
-        fig, axes = plt.subplots(2, 1, figsize=(TEXTWIDTH_IN, 4.2), gridspec_kw={"height_ratios": [1.2, 1]})
-        ax = axes[0]
-        for H, color, label in ((13, GREEN, r"$H=13$ (the window of $\mathbb{F}_{173}$)"), (39, BLUE, r"$H=39$ ($\mathbb{F}_{1549}$)"), (173, PURPLE, r"$H=173$ ($\mathbb{F}_{30089}$)")):
-            e = energy(H, gam)
-            ax.plot(gam, e / e.max(), color=color, lw=1.1, label=label)
-        ax.axvspan(10, 36, color="#eef2f8", zorder=0)                          # the range of the Observation's claims
-        for z in HEIGHTS:
-            ax.axvline(z, color=GREY, lw=0.6, ls="--", alpha=0.7)
-        ax.set_xlim(10, 52); ax.set_ylim(0, 1.32)
-        ax.set_ylabel("modulus (normalised)")
-        ax.legend(loc="upper left", ncol=3, columnspacing=1.0, handlelength=1.6)
-        panel_letter(ax, "(a)")
-        ax = axes[1]
-        e = energy(10 ** 6, gam)
-        ax.plot(gam, e / e.max(), color=PURPLE, lw=0.9)
-        for i, z in enumerate(HEIGHTS):
-            ax.axvline(z, color=GREY, lw=0.6, ls="--", alpha=0.7)
-            ax.annotate(f"{z:.2f}", (z, 1.0), xytext=(0, 3 + 7 * (i % 2)), textcoords="offset points", ha="center", fontsize=6, color=GREY)
-        ax.set_xlim(10, 52); ax.set_ylim(0, 1.3)
-        ax.set_xlabel(r"$\gamma$ (the chart's height)"); ax.set_ylabel("modulus (normalised)")
-        panel_letter(ax, "(b)")
-        fig.tight_layout(h_pad=1.0)
-        _save(fig, "fig_primespec")
 
-def figure_plane():
-    """fig_plane: the critical line is the energy domain, on F_13 (κ = 3, g = 2, η² = 2; Prop. line, Thm. drive). (a) The framed
-    plane K as the 13×13 lattice a + bη with the real line and the critical line, the modes at their labels θ_k = −2^k, one
-    conjugation pair, the first steps of the drive about the centre, a point off both lines with its two images; (b) the time
-    domain as a cycle, the residues by scale, coloured by phase; (c) the critical line in the drive's order with the same
-    residues in the same colours, θ_k = L_1(k + π)."""
-    p, kap, g, nu = 13, 3, 2, 2
-    n, pi_, half = p - 1, 6, 7
-    theta = [(-pow(g, k, p)) % p for k in range(n)]              # the readout of the mode k: minus its eigenvalue
-    scales = [pow(g, m, p) for m in range(n)]                    # the time domain in the drive's order: 1, 2, 4, 8, 3, 6, 12, ...
-    assert all(theta[k] == scales[(k + pi_) % n] for k in range(n))
-    with plt.rc_context(PAPER_RC):
-        _draw_plane(p, g, nu, n, pi_, half, theta, scales)
+# ---- one function per declaration of lean/FrcCore/Theme/Count.lean -----------------------------------------------------
 
-def _draw_plane(p, g, nu, n, pi_, half, theta, scales):
-    from matplotlib import cm
-    col = lambda m: cm.twilight(((m % n) + 0.5) / n)            # one colour per phase m on the time domain
-    dark = lambda m: 3 <= (m % n) <= 8
-    fig = plt.figure(figsize=(TEXTWIDTH_IN, 4.0))                     # (a) square at 0.6 text width, (b) and (c) stacked at its right
-    gs = fig.add_gridspec(2, 2, width_ratios=[1.55, 1], wspace=0.02, hspace=0.04, left=0.005, right=0.995, top=0.985, bottom=0.015)
-    axa, axb, axc = fig.add_subplot(gs[:, 0]), fig.add_subplot(gs[0, 1]), fig.add_subplot(gs[1, 1])
-    F = {"big": 8.5, "mid": 7.5, "small": 7, "tiny": 6.5}
-    box = dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.88)          # the annotations of (a) sit on the lattice
-    # (a) the framed plane K = F_13(η): the lattice, the real line with the window, the critical line with the modes
-    for a in range(p):
-        for b in range(p): axa.plot(a, b, "o", ms=2.0, color="#cfd4dc", zorder=1)
-    axa.plot([0, 0], [-0.3, p - 0.7], ls=(0, (2, 2)), color=GREY, lw=0.7, zorder=2)
-    axa.plot([-0.3, p - 0.7], [0, 0], color=BLUE, lw=1.6, zorder=3)
-    axa.plot([half, half], [-0.3, p - 0.7], color=PURPLE, lw=1.6, zorder=3)
-    for a in range(p): axa.plot(a, 0, "o", ms=3.6, color=BLUE, zorder=4)
-    axa.add_patch(plt.Rectangle((0.6, -0.42), 2.8, 0.84, color="#dbe7fb", zorder=0))
-    for q in (2, 3): axa.plot(q, 0, "o", ms=6, mfc="none", mec=BLUE, mew=1.1, zorder=5)
-    axa.text(2.0, -0.95, r"window $n\leq\sqrt{13}$: the primes 2, 3", color=BLUE, ha="center", fontsize=F["small"])
-    for k in range(n):
-        axa.plot(half, theta[k], "o", ms=4.8, color=PURPLE, zorder=5)
-        axa.text(half + 0.3, theta[k] - 0.1, f"$k={k}$", color=PURPLE, fontsize=F["small"], va="center")
-    axa.plot(half, 0, "o", ms=5.2, color=INK, zorder=6)
-    axa.text(half + 0.3, -0.85, r"$2^{-1}=7$, the centre", color=INK, fontsize=F["small"])
-    axa.text(half - 0.35, p - 0.45, r"$L_{1/2}=\{z: z+z^{13}=1\}$", color=PURPLE, ha="right", va="top", fontsize=F["small"], bbox=box, zorder=7)
-    axa.text(p - 0.6, 0.45, r"$\mathbb{F}_{13}$, the real line", color=BLUE, ha="right", fontsize=F["small"])
-    axa.text(-0.75, p - 0.6, r"$\eta\,\mathbb{F}_{13}$", color=GREY, fontsize=F["tiny"])
-    axa.add_patch(FancyArrowPatch((half - 0.2, theta[0]), (half - 0.2, theta[pi_]), connectionstyle="arc3,rad=0.14", arrowstyle="<->", mutation_scale=7, color=PURPLE, lw=0.8, zorder=6))
-    axa.text(3.0, 3.6, "the conjugation $z\\mapsto z^{13}$\nand the half-turn $z\\mapsto 1-z$:\n$k\\mapsto k+6$ on the line", color=PURPLE, fontsize=F["tiny"], ha="center", va="top", bbox=box, zorder=7)
-    for k in range(3):
-        axa.add_patch(FancyArrowPatch((half - 0.1, theta[k]), (half - 0.1, theta[k + 1]), connectionstyle="arc3,rad=0.22", arrowstyle="->", mutation_scale=6, color=PURPLE, lw=0.7, zorder=4))
-    axa.text(half + 2.1, 12.3, "the drive about the centre,\n$\\theta\\mapsto 2\\theta$: $k\\mapsto k+1$", color=PURPLE, fontsize=F["tiny"], va="top", bbox=box, zorder=7)
-    za = (1, 4); zc = (za[0], (-za[1]) % p); zh = ((1 - za[0]) % p, (-za[1]) % p)       # a point off both lines, its conjugate and its half-turn image
-    assert zc == (1, 9) and zh == (0, 9)
-    axa.plot(*za, "s", ms=4, color=GREY, zorder=5); axa.plot(*zc, "s", ms=4, mfc="none", mec=GREY, zorder=5); axa.plot(*zh, "s", ms=4, mfc="none", mec=GREY, zorder=5)
-    axa.add_patch(FancyArrowPatch((za[0], za[1] + 0.3), (zc[0], zc[1] - 0.3), arrowstyle="->", mutation_scale=6, color=GREY, lw=0.7, zorder=4))
-    axa.add_patch(FancyArrowPatch((za[0] - 0.15, za[1] + 0.25), (zh[0] + 0.1, zh[1] - 0.3), connectionstyle="arc3,rad=0.25", arrowstyle="->", mutation_scale=6, color=GREY, lw=0.7, zorder=4))
-    axa.text(0.3, 11.6, "a point off both lines,\nwith its conjugate and its\nhalf-turn image: on no\nline kept by both", color=GREY, fontsize=F["tiny"], va="top", bbox=box, zorder=7)
-    axa.set_xlim(-1.2, p + 0.2); axa.set_ylim(-1.4, p - 0.2); axa.set_aspect("equal"); axa.axis("off")
-    panel_letter(axa, "(a)", x=0.01, y=0.99)
-    # (b) the time domain as a cycle: the residues by scale, each with the colour of its phase m
-    ang = lambda m: np.pi / 2 - 2 * np.pi * m / n
-    axb.add_patch(plt.Circle((0, 0), 1, fill=False, color=GREEN, lw=1.3, zorder=2))
-    for m, x in enumerate(scales):
-        axb.plot(np.cos(ang(m)), np.sin(ang(m)), "o", ms=11, color=col(m), mec=INK, mew=0.5, zorder=5)
-        axb.text(np.cos(ang(m)), np.sin(ang(m)), str(x), ha="center", va="center", fontsize=F["small"], color="white" if dark(m) else INK, zorder=6)
-        axb.text(1.4 * np.cos(ang(m)), 1.4 * np.sin(ang(m)), f"$m={m}$", ha="center", va="center", fontsize=F["tiny"], color=GREY)
-    axb.plot(0, 0, "o", ms=3.5, color=INK, zorder=5); axb.text(0.1, 0.04, "0", fontsize=F["small"])
-    axb.annotate("", xy=(np.cos(ang(1)), np.sin(ang(1))), xytext=(np.cos(ang(0.4)), np.sin(ang(0.4))), arrowprops=dict(arrowstyle="->", color=GREEN, lw=1.2))
-    axb.text(0, 1.62, "the time domain $L_1=\\{2^m\\}$", color=GREEN, fontsize=F["tiny"], ha="center")
-    axb.set_xlim(-1.85, 1.85); axb.set_ylim(-1.7, 1.85); axb.set_aspect("equal"); axb.axis("off")
-    panel_letter(axb, "(b)", x=0.02, y=1.0)
-    # (c) the critical line in the drive's order: the same residues as labels, in the same colours, θ_k = L_1(k + π)
-    axc.add_patch(plt.Circle((0, 0), 1, fill=False, color=PURPLE, lw=1.3, zorder=2))
-    for k in range(n):
-        m = (k + pi_) % n
-        axc.plot(np.cos(ang(k)), np.sin(ang(k)), "o", ms=11, color=col(m), mec=INK, mew=0.5, zorder=5)
-        axc.text(np.cos(ang(k)), np.sin(ang(k)), str(theta[k]), ha="center", va="center", fontsize=F["small"], color="white" if dark(m) else INK, zorder=6)
-        axc.text(1.4 * np.cos(ang(k)), 1.4 * np.sin(ang(k)), f"$k={k}$", ha="center", va="center", fontsize=F["tiny"], color=PURPLE)
-    axc.plot(0, 0, "o", ms=3.5, color=INK, zorder=5); axc.text(0.1, 0.04, "$2^{-1}$", fontsize=F["small"])
-    axc.annotate("", xy=(np.cos(ang(1)), np.sin(ang(1))), xytext=(np.cos(ang(0.4)), np.sin(ang(0.4))), arrowprops=dict(arrowstyle="->", color=PURPLE, lw=1.2))
-    axc.text(0, 1.62, "the labels $\\theta_k=-2^k=L_1(k+6)$", color=PURPLE, fontsize=F["tiny"], ha="center")
-    axc.set_xlim(-1.85, 1.85); axc.set_ylim(-1.7, 1.85); axc.set_aspect("equal"); axc.axis("off")
-    panel_letter(axc, "(c)", x=0.02, y=1.0)
-    _save(fig, "fig_plane")
+def mode_stride(p, g):
+    """At x = g^m the mode of count k reads g^(km): (g^m)^k = (g^k)^m = g^(km), every m and k below p − 1."""
+    n = p - 1; tab = [pow(g, m, p) for m in range(n)]
+    return all(pow(tab[m], k, p) == pow(tab[k], m, p) == pow(g, k * m, p) for m in range(n) for k in range(n))
+
+
+def count_conjugate(p):
+    """The conjugate of a count 1 ≤ k ≤ p − 2 is p − 1 − k, again in 1 … p − 2, and the two counts add to −1."""
+    return all(1 <= p - 1 - k <= p - 2 and (k + (p - 1 - k) + 1) % p == 0 for k in range(1, p - 1))
+
+
+def count_adjoint(p, P, direct=False):
+    """(k + m + 1)·⟨x^k, x^m⟩ ≡ 0 for 1 ≤ k ≤ p − 2, 0 ≤ m ≤ p − 2; the Gram entries from the table P, or by direct sums."""
+    return all((k + m + 1) * (gram(p, k, m) if direct else P[k + m]) % p == 0 for k in range(1, p - 1) for m in range(p - 1))
+
+
+def gram_rows(p, P, ks):
+    """The table P against the direct Gram sums on the rows ks."""
+    return all(gram(p, k, m) == P[k + m] for k in ks for m in range(p - 1))
+
+
+def count_adjoint_vector(p, pairs):
+    """⟨Nv, w⟩ + ⟨v, Nw⟩ + ⟨v, w⟩ ≡ −c_0·d_0 on pairs of vectors given by their values; N acts on the mode coefficients.
+    pairs: [((name, v), (name, w))]; each vector is first read back from its mode coefficients."""
+    cache = {}
+
+    def prep(key, v):
+        if key not in cache:
+            c = mode_coefficients(p, v)
+            if mode_values(p, c) != v: return None
+            cache[key] = (v, c, mode_values(p, [k * ck % p for k, ck in enumerate(c)]))
+        return cache[key]
+
+    for (ka, va), (kb, vb) in pairs:
+        A, B = prep(ka, va), prep(kb, vb)
+        if A is None or B is None: return False
+        (v, c, Nv), (w, d, Nw) = A, B
+        lhs = (sum(a * b for a, b in zip(Nv, w)) + sum(a * b for a, b in zip(v, Nw)) + sum(a * b for a, b in zip(v, w))) % p
+        if lhs != (-c[0] * d[0]) % p: return False
+    return True
+
+
+def half_forced(p, ks=None):
+    """For every residue c: ((k + c) + (p − 1 − k + c) ≡ 0 for every count k) ⇔ 2c ≡ 1. ks: the counts tried (default all)."""
+    ks = range(1, p - 1) if ks is None else ks
+    return all(all(((k + c) + (p - 1 - k + c)) % p == 0 for k in ks) == (2 * c % p == 1) for c in range(p))
+
+
+def count_run(p, ms, ks=None):
+    """On the run of counts that starts at m(p − 1): its counts at k and at p − 1 − k add to −(2m + 1), for 0 ≤ k < p."""
+    ks = range(0, p) if ks is None else ks
+    return all(((m * (p - 1) + k) + (m * (p - 1) + (p - 1 - k)) + (2 * m + 1)) % p == 0 for m in ms for k in ks)
+
+
+def count_run_only(p, ms):
+    """A run of p − 1 consecutive counts has one skew shift exactly when it starts at m(p − 1) or at m(p − 1) + 1."""
+    for m in ms:
+        for r in range(0, p - 1):
+            need = run_shifts(p, m * (p - 1) + r)
+            if (need != {(2 * m + 1) % p}) if r in (0, 1) else (len(need) < 2): return False
+    return True
+
+
+def zero_count(p, kap, g):
+    """i² = −1 and 2⁻¹ + iγ_k = k + 1 for 0 ≤ k < 2p; for a count k ≥ 1 this residue is the zero of the mode."""
+    i = quarter_turn(p, kap, g); half = 2 * kap + 1
+    return i * i % p == p - 1 and all((half + i * frequency(p, kap, i, k)) % p == (k + 1) % p for k in range(0, 2 * p))
+
+
+def zeros_fill(p):
+    """The zeros k + 1 of the counts 1 ≤ k ≤ p − 2 are the residues other than 0 and 1."""
+    return {(k + 1) % p for k in range(1, p - 1)} == set(range(p)) - {0, 1}
+
+
+def zeros_fill_ends(p):
+    """The same statement on a large shell, by the number of counts and the two ends of the range."""
+    ks = range(1, p - 1)
+    return len(ks) == p - 2 and (ks[0] + 1) % p == 2 and (ks[-1] + 1) % p == p - 1
+
+
+def zero_conjugate(p, kap, g):
+    """For every k ≤ p − 1, (p − 1 − k) + 1 ≡ 1 − (k + 1) and γ_(p−1−k) = −γ_k as residues; for 1 ≤ k ≤ p − 2 these are the zero and the frequency of the conjugate mode."""
+    i = quarter_turn(p, kap, g)
+    return all((p - 1 - k + 1) % p == (1 - (k + 1)) % p and frequency(p, kap, i, p - 1 - k) == (-frequency(p, kap, i, k)) % p
+               for k in range(0, p))
+
+
+def generator_skew(p, kap, g, P):
+    """(γ_k + γ_m)·⟨x^k, x^m⟩ ≡ 0 unless both modes are constant."""
+    i = quarter_turn(p, kap, g); fr = [frequency(p, kap, i, k) for k in range(p - 1)]
+    return all((fr[k] + fr[m]) * P[k + m] % p == 0 for k in range(p - 1) for m in range(p - 1) if k > 0 or m > 0)
+
+
+def centre_mode(p, kap, g):
+    """The mode of count π = 2κ is its own conjugate, its zero is 2⁻¹, its frequency is 0, and it is the one such mode."""
+    i = quarter_turn(p, kap, g)
+    return (2 * kap + 2 * kap == p - 1 and 2 * (2 * kap + 1) % p == 1 and frequency(p, kap, i, 2 * kap) == 0
+            and [k for k in range(p - 1) if frequency(p, kap, i, k) == 0] == [2 * kap])
+
+
+def pair_invariant(p, kap, g):
+    """ρ(1 − ρ) = 2⁻² + γ² = −k(k + 1), the same for a count and its conjugate."""
+    i = quarter_turn(p, kap, g); half = 2 * kap + 1
+    for k in range(0, p):
+        inv = (-k * (k + 1)) % p; kd = p - 1 - k
+        if (k + 1) * (1 - (k + 1)) % p != inv or (half * half + frequency(p, kap, i, k) ** 2) % p != inv: return False
+        if kd * (kd + 1) % p != k * (k + 1) % p: return False
+    return True
+
+
+def energy_order(p, kap):
+    """The counts 2κ − j and 2κ + j are conjugate, their zeros are 2⁻¹ − j and 2⁻¹ + j, and the lesser count of the pair,
+    2κ − j, falls from 2κ to 1 as j runs from 0 to 2κ − 1."""
+    half = 2 * kap + 1
+    for j in range(0, 2 * kap + 1):
+        lo, hi = 2 * kap - j, 2 * kap + j
+        if lo + hi != p - 1 or (hi + 1) % p != (half + j) % p or (lo + 1 + j) % p != half % p or min(lo, hi) != lo: return False
+    return [min(2 * kap - j, 2 * kap + j) for j in range(0, 2 * kap)] == list(range(2 * kap, 0, -1))
+
+
+def cardinal_modes(p, kap, g):
+    """A mode has all its values in {1, −1, i, −i} exactly when its count is 0, κ, 2κ or 3κ."""
+    i = quarter_turn(p, kap, g); four = {1, p - 1, i, (-i) % p}; card = {0, kap, 2 * kap, 3 * kap}
+    return all(all(pow(x, k, p) in four for x in range(1, p)) == (k in card) for k in range(p - 1))
+
+
+def cardinal_zeros(p, kap):
+    """The zeros of the counts 0, κ, 2κ, 3κ are 1, 3·4⁻¹, 2⁻¹, 4⁻¹: 4(κ + 1) ≡ 3, 2(2κ + 1) ≡ 1, 4(3κ + 1) ≡ 1."""
+    return p == 4 * kap + 1 and 4 * (kap + 1) % p == 3 % p and 2 * (2 * kap + 1) % p == 1 and 4 * (3 * kap + 1) % p == 1
+
+
+def carrier_centre(p, S, ks=None):
+    """On a shell of cardinality 4S + 1, with no frame: twice 2S is −1, and k + (p − 1 − k) is twice 2S for every k < p;
+    for a count k ≥ 1 the second term is its conjugate."""
+    c2 = 2 * (2 * S) % p; ks = range(0, p) if ks is None else ks
+    return p == 4 * S + 1 and (c2 + 1) % p == 0 and all((k + (p - 1 - k)) % p == c2 for k in ks)
+
+
+def origin_unit_symmetry(p, pairs=None, xs=None):
+    """x ↦ a·x + b keeps the pair {0, 1} exactly for (a, b) = (1, 0) and (−1, 1); x = 1 − x exactly when 2x = 1.
+    pairs: the (a, b) tried (default every pair); xs: the residues tried for the fixed point (default every residue)."""
+    it = ((a, b) for a in range(p) for b in range(p)) if pairs is None else pairs
+    if any(({b % p, (a + b) % p} == {0, 1}) != ((a, b) in ((1, 0), (p - 1, 1))) for a, b in it): return False
+    half = (p + 1) // 2; xs = range(p) if xs is None else xs
+    return all((x == (1 - x) % p) == (2 * x % p == 1) for x in xs) and 2 * half % p == 1
+
+
+def zero_shared(p, om):
+    """Every label k + 1 below p is the same integer on the Subject p and on the chart of a larger shell om: the zero of a
+    nonconstant mode, and the label 1 of the constant mode."""
+    return p <= om and all((k + 1) % p == k + 1 == (k + 1) % om for k in range(0, p - 1))
+
+
+def zeros_collide(om, o, reading=None):
+    """A reading of the residues of the shell om into o < om − 2 states identifies two of the zeros 2, …, om − 1.
+    The reading is y ↦ y mod o when none is given; any reading into the states 0 … o − 1 may be passed."""
+    read = reading or (lambda y: y % o); seen = set()
+    if not o < om - 2: return False
+    for z in range(2, om):
+        r = read(z)
+        if not 0 <= r < o: return False
+        if r in seen: return True
+        seen.add(r)
+    return False
+
+
+def zeros_not_held(p, om, reading=None):
+    """For 2 ≤ p and p² < om the p states of a Subject are fewer than the om − 2 zeros of the chart of the shell om, and
+    the reading given, of its residues into p states, identifies two zeros."""
+    return 2 <= p and p * p < om and p + 2 <= p * p and p < om - 2 and zeros_collide(om, p, reading)
+
+
+def half_unique(p, kap):
+    """The inverse of 2 is unique: 2x ≡ 1 exactly when x = 2κ + 1."""
+    return [x for x in range(p) if 2 * x % p == 1] == [2 * kap + 1]
+
+
+# ---- one function per declaration of lean/FrcCore/Theme/Circle.lean: the critical circle (20:G13, G14) ------------------
+# The paper writes z for the residue t = ρ/(1 − ρ) of these functions and d for the sum c.
+
+def circle_points(p, g):
+    """The points of the critical circle of the frame (p, g): the pairs (a, m), 0 ≤ m < p − 1, with a·(g^m + g^{−m}) ≡ 1.
+    The pair (−a, m + 2κ) is the same point of the sphere."""
+    gi = pow(g, p - 2, p); out = []
+    for m in range(p - 1):
+        s = (pow(g, m, p) + pow(gi, m, p)) % p
+        if s: out.append((pow(s, p - 2, p), m))
+    return out
+
+
+def circle_pair(p, g):
+    """On the circle a point carries a zero ρ ≠ 0, 1, its mirror carries 1 − ρ, and a² = ρ(1 − ρ)."""
+    gi = pow(g, p - 2, p)
+    for a, m in circle_points(p, g):
+        r, rm = a * pow(g, m, p) % p, a * pow(gi, m, p) % p
+        if r in (0, 1) or rm != (1 - r) % p or a * a % p != r * (1 - r) % p: return False
+    return True
+
+
+def circle_frequency(p, kap, g):
+    """A zero and its reflection differ by 2iγ_k: (k + 1) − (1 − (k + 1)) ≡ 2iγ_k, for 0 ≤ k < 2p."""
+    i = quarter_turn(p, kap, g)
+    return all(((k + 1) - (1 - (k + 1))) % p == 2 * i * frequency(p, kap, i, k) % p for k in range(0, 2 * p))
+
+
+def circle_meridians(p, kap, g):
+    """No point of the circle on the momentum meridian (u² = −1) or at the origin; on the prime meridian the one point is
+    the centre 2⁻¹, of frequency 0."""
+    i = quarter_turn(p, kap, g)
+    for u in (i, (-i) % p):
+        v = pow(u, p - 2, p)
+        if u * u % p != p - 1 or any((a * u + a * v) % p == 1 for a in range(p)): return False
+    if any((0 * u + 0 * pow(u, p - 2, p)) % p == 1 for u in range(1, p)): return False
+    return [x for x in range(p) if (x + x) % p == 1] == [2 * kap + 1] and frequency(p, kap, i, 2 * kap) == 0
+
+
+def circle_point(p, g):
+    """A zero ρ has a point on the circle exactly when ρ(1 − ρ) is a square, and then the two pairs (a, m) and
+    (−a, m + 2κ), one point of the sphere."""
+    half = (p - 1) // 2; squares = {x * x % p for x in range(1, p)}; at = {}
+    for a, m in circle_points(p, g):
+        at.setdefault(a * pow(g, m, p) % p, []).append((a, m))
+    for r in range(2, p):
+        pts = at.get(r, [])
+        if (len(pts) > 0) != (r * (1 - r) % p in squares): return False
+        if pts and not (len(pts) == 2 and pts[1] == ((-pts[0][0]) % p, pts[0][1] + half)): return False
+    return True
+
+
+def circle_count(p, kap, g):
+    """The circle has a point at the phase m exactly when g^{2m} ≠ −1; among the phases below 2κ that excludes κ alone;
+    the phase m + 2κ gives the same point with the position −a; the 2κ − 1 points carry 2κ − 1 distinct zeros."""
+    pts = dict((m, a) for a, m in circle_points(p, g))
+    if any((m in pts) != (pow(g, 2 * m, p) != p - 1) for m in range(p - 1)): return False
+    if [m for m in range(2 * kap) if pow(g, 2 * m, p) == p - 1] != [kap]: return False
+    if any((-pts[m]) * pow(g, m + 2 * kap, p) % p != pts[m] * pow(g, m, p) % p or pts[m + 2 * kap] != (-pts[m]) % p
+           for m in range(2 * kap) if m != kap): return False
+    zeros = [pts[m] * pow(g, m, p) % p for m in range(2 * kap) if m != kap]
+    return len(zeros) == 2 * kap - 1 == len(set(zeros))
+
+
+def circle_places(p, kap, g):
+    """The places j of the latitude cycle, 0 ≤ j < p − 1, and the zero ρ_j = g^j/(1 + g^j) at each; the place j = 2κ,
+    where g^j = −1, carries none."""
+    return {j: pow(g, j, p) * pow(1 + pow(g, j, p), p - 2, p) % p for j in range(p - 1) if j != 2 * kap}
+
+
+def circle_place(p):
+    """Every zero ρ is t/(1 + t) for exactly one t, namely ρ/(1 − ρ), with t ≠ 0, −1; such a t gives a zero; the inverse
+    of t gives 1 − ρ."""
+    inv = lambda x: pow(x, p - 2, p)
+    for r in range(2, p):
+        ts = [t for t in range(p) if r * (1 + t) % p == t]
+        if ts != [r * inv(1 - r) % p] or ts[0] in (0, p - 1): return False
+        t = ts[0]
+        if (1 - r) * (1 + inv(t)) % p != inv(t): return False
+    return all((t * inv(1 + t) % p) not in (0, 1) for t in range(1, p - 1))
+
+
+def circle_place_cycle(p, kap, g):
+    """The zeros stand on the latitude cycle: t = g^j for one j < p − 1, never j = 2κ, where 1 + g^j ≡ 0; the p − 2 other
+    places carry the p − 2 zeros, once each; the centre 2⁻¹ is the place 0, and the place −j carries 1 − ρ_j."""
+    n = p - 1; rho = circle_places(p, kap, g)
+    return ((1 + pow(g, 2 * kap, p)) % p == 0 and sorted(rho.values()) == list(range(2, p)) and rho[0] == 2 * kap + 1
+            and all(rho[(-j) % n] == (1 - rho[j]) % p for j in rho))
+
+
+def circle_place_even(p, kap, g):
+    """The even places: g^j is a square exactly when j is even, exactly then ρ_j(1 − ρ_j) is a square, and the place 2m
+    is the point of the sphere on the circle at the phase m."""
+    n = p - 1; rho = circle_places(p, kap, g); squares = {x * x % p for x in range(1, p)}
+    if any((pow(g, j, p) in squares) != (j % 2 == 0) for j in range(n)): return False
+    if any((j % 2 == 0) != (r * (1 - r) % p in squares) for j, r in rho.items()): return False
+    return all(a * pow(g, m, p) % p == rho[2 * m % n] for a, m in circle_points(p, g))
+
+
+def circle_quarter_turn(p, kap, g):
+    """2ρ_j − 1 = (t − 1)/(t + 1) at t = g^j; the map x ↦ (x − 1)/(x + 1) has the square x ↦ −1/x, four steps return x
+    on the residues other than 0 and ±1, and its fixed points are the two roots ±i of x² = −1."""
+    inv = lambda x: pow(x, p - 2, p); i = quarter_turn(p, kap, g)
+    Q = lambda x: (x - 1) * inv(x + 1) % p
+    if any((2 * r - 1) % p != Q(pow(g, j, p)) for j, r in circle_places(p, kap, g).items()): return False
+    xs = [x for x in range(1, p) if (x + 1) % p and (Q(x) + 1) % p]
+    if any(Q(Q(x)) * x % p != p - 1 for x in xs): return False
+    return sorted(x for x in range(p) if x * (x + 1) % p == (x - 1) % p) == sorted((i, (-i) % p))
+
+
+def circle_counts(p, kap, g):
+    """The counts: for a point (a, m) of the circle with the zero ρ = k + 1, the point (−a, −m) carries the count k
+    and its mirror (−a, m) carries −ρ, the count of the conjugate mode; the two add to −1; on the prime meridian the
+    one point with x + x ≡ −1 is π = 2κ."""
+    gi = pow(g, p - 2, p)
+    for a, m in circle_points(p, g):
+        r = a * pow(g, m, p) % p; k = (r - 1) % p
+        far, mirror = (-a) * pow(gi, m, p) % p, (-a) * pow(g, m, p) % p
+        if far != k or mirror != (-r) % p or mirror != (p - 1 - k) % p or (far + mirror) % p != p - 1: return False
+    return [x for x in range(p) if (x + x) % p == p - 1] == [2 * kap]
+
+
+def circle_phase(p, g):
+    """One point of the circle at each phase: the position a with a·(g^m + g^{−m}) ≡ 1 is the one inverse of the sum,
+    found by search over every residue, and there is none where the sum vanishes; residues ρ and 1 − ρ of a point and
+    its mirror put the point on the circle."""
+    gi = pow(g, p - 2, p)
+    for m in range(p - 1):
+        u, v = pow(g, m, p), pow(gi, m, p); s = (u + v) % p
+        if [a for a in range(p) if a * s % p == 1] != ([pow(s, p - 2, p)] if s else []): return False
+        if any((a * u + a * v) % p != 1 for a in range(p) if a * v % p == (1 - a * u) % p): return False
+    return True
+
+
+def circle_parallels(p, kap, g):
+    """The sets of constant sum: for c ≠ 0 the pairs (a, m) with a·(g^m + g^{−m}) ≡ c are the pairs of the circle with
+    the position multiplied by c; the sum vanishes exactly at a = 0 and where g^{2m} ≡ −1; negating the position sends
+    the sum c to the sum −c; the sums 1 and −1 share no pair; on the prime meridian the sum c has the one residue
+    c·2⁻¹. Every pair (a, m) is sorted by its sum, so each set is found by search."""
+    gi = pow(g, p - 2, p); half = 2 * kap + 1; n = p - 1
+    s = [(pow(g, m, p) + pow(gi, m, p)) % p for m in range(n)]
+    level = [set() for _ in range(p)]
+    for m in range(n):
+        for a in range(p): level[a * s[m] % p].add((a, m))
+    C = level[1]
+    if any(level[c] != {(c * a % p, m) for a, m in C} for c in range(1, p)): return False
+    if level[0] != {(a, m) for m in range(n) for a in range(p) if a == 0 or pow(g, 2 * m, p) == p - 1}: return False
+    if any(((-a) % p, m) not in level[(p - c) % p] for c in (1, 2, p - 1) for a, m in level[c]): return False
+    return not (C & level[p - 1]) and all([x for x in range(p) if (x + x) % p == c] == [c * half % p] for c in range(p))
+
+
+def circle_place_phase(p, g):
+    """The phase of an even place: a point (a, m) of the circle carries g^{2m}/(1 + g^{2m}), the zero at the place 2m."""
+    return all(a * pow(g, m, p) * (1 + pow(g, 2 * m, p)) % p == pow(g, 2 * m, p) for a, m in circle_points(p, g))
+
+
+def circle_quarter_closes(p):
+    """With y = −1/x and w = −1/y, w = x: four steps of x ↦ (x − 1)/(x + 1) return x; and −1/x = x exactly when x² ≡ −1."""
+    inv = lambda x: pow(x, p - 2, p); neg_inv = lambda x: (p - 1) * inv(x) % p
+    return all(neg_inv(neg_inv(x)) == x and ((neg_inv(x) == x) == (x * x % p == p - 1)) for x in range(1, p))
+
+
+CT = types.SimpleNamespace(**{f.__name__: f for f in (generators, gram_table, gram, frequency, quarter_turn, mode_coefficients, mode_values, delta, fixed_sequence, run_shifts, mode_stride, count_conjugate, count_adjoint, gram_rows, count_adjoint_vector, half_forced, count_run, count_run_only, zero_count, zeros_fill, zeros_fill_ends, zero_conjugate, generator_skew, centre_mode, pair_invariant, energy_order, cardinal_modes, cardinal_zeros, carrier_centre, origin_unit_symmetry, zero_shared, zeros_collide, zeros_not_held, half_unique,
+                                                            circle_points, circle_pair, circle_frequency, circle_meridians, circle_point, circle_count, circle_places, circle_place,
+                                                            circle_place_cycle, circle_place_even, circle_quarter_turn, circle_counts, circle_phase, circle_parallels, circle_place_phase, circle_quarter_closes)})
+
+# ---- the spectrum of a window [chart] (Obs. exhibit; rows D13, D14, D15), 21 November 2026 -----------------------------
+# The labels 1..H of a window of depth H, the paper's q, carry a weight (1 on the primes, or log l on the prime powers l^a); its mean over the labels is removed;
+# the label n is read as n^(sigma + i t). Pure python; the constant part beyond `head` labels is summed by the
+# Euler-Maclaurin formula, so the depth 10^6 costs about 4 ms a height.
+def window_weights(H, kind="primes"):
+    """The labels n <= H with a nonzero weight, their weights, and the mean of the weight over the labels 1..H.
+    kind "primes": 1 on the primes; kind "mangoldt": log l on the prime powers l^a (the von Mangoldt weight)."""
+    sieve = bytearray([1]) * (H + 1); sieve[0:2] = b"\0\0"
+    for i in range(2, math.isqrt(H) + 1):
+        if sieve[i]: sieve[i * i::i] = bytearray(len(sieve[i * i::i]))
+    labels, weights = [], []
+    for l in range(2, H + 1):
+        if sieve[l]:
+            if kind == "primes":
+                labels.append(l); weights.append(1.0)
+            else:
+                q, w = l, math.log(l)
+                while q <= H:
+                    labels.append(q); weights.append(w); q *= l
+    return labels, weights, sum(weights) / H
+
+
+def power_tail(M, H, s):
+    """The sum of n^s over M <= n <= H by the Euler-Maclaurin formula with three corrections (no zeta is evaluated);
+    for |s| <= 60 and M >= 2000 the next correction is below 1e-13 of M^Re(s)."""
+    f = lambda x, e: cmath.exp(e * math.log(x))
+    out = (f(H, s + 1) - f(M, s + 1)) / (s + 1) + (f(H, s) + f(M, s)) / 2
+    out += s / 12 * (f(H, s - 1) - f(M, s - 1))
+    out -= s * (s - 1) * (s - 2) / 720 * (f(H, s - 3) - f(M, s - 3))
+    out += s * (s - 1) * (s - 2) * (s - 3) * (s - 4) / 30240 * (f(H, s - 5) - f(M, s - 5))
+    return out
+
+
+def spectrum(H, t0, dt, steps, kind="primes", sigma=-0.5, head=2000):
+    """E(t) = |sum over n <= H of (weight(n) - mean) n^(sigma + i t)| at t = t0 + j dt, j = 0..steps-1.
+    The weighted labels and the first labels of the constant part are summed term by term; beyond `head` labels the
+    constant part's sum is the Euler-Maclaurin tail."""
+    labels, weights, mean = window_weights(H, kind)
+    M = min(H, head)
+    ln = [math.log(n) for n in labels]
+    z = [w * math.exp(sigma * x) * cmath.exp(1j * t0 * x) for w, x in zip(weights, ln)]
+    r = [cmath.exp(1j * dt * x) for x in ln]
+    lh = [math.log(n) for n in range(1, M + 1)]
+    zh = [math.exp(sigma * x) * cmath.exp(1j * t0 * x) for x in lh]
+    rh = [cmath.exp(1j * dt * x) for x in lh]
+    out = []
+    for j in range(steps):
+        const = sum(zh)
+        if H > M:
+            const += power_tail(M + 1, H, complex(sigma, t0 + j * dt))
+        out.append(abs(sum(z) - mean * const))
+        z = [a * b for a, b in zip(z, r)]
+        zh = [a * b for a, b in zip(zh, rh)]
+    return out
+
+
+def maxima(t0, dt, es):
+    """The local maxima of a sampled spectrum, each refined by the parabola through its three samples: (t, height),
+    tallest first."""
+    out = []
+    for i in range(1, len(es) - 1):
+        a, b, c = es[i - 1], es[i], es[i + 1]
+        if b > a and b >= c:
+            d = (a - c) / (2 * (a - 2 * b + c))
+            out.append((t0 + (i + d) * dt, b - (a - c) * d / 4))
+    return sorted(out, key=lambda p: -p[1])
+
+
+def peaks(H, count, lo, hi, dt=0.01, kind="primes", sigma=-0.5):
+    """The `count` tallest maxima of the window's spectrum on lo <= t <= hi, by height: [(t, height)]."""
+    steps = int(round((hi - lo) / dt)) + 1
+    return sorted(maxima(lo, dt, spectrum(H, lo, dt, steps, kind, sigma))[:count])
+
+
+# The exhibit's readings (20:D14, D15): the windows with the bound of their five peaks, and the deep window's exponents.
+WINDOWS = ((13, 0.18), (39, 0.21), (173, 0.27), (1551, 0.21))
+DEEP_SIGMAS = (-0.5, -0.25, -0.75, 0.0, -1.0)
+
+
+def window_reading():
+    """The reading of 20:D14 on the windows of the laboratory Subjects 173 and 1549 (depth 13 and 39) and of the
+    laboratory Carriers 30089 and 2408561 (depth 173 and 1551): the prime vector with its mean removed sums to 0, the
+    spectrum is even in the height, and the five tallest peaks on 10 <= t <= 36 lie within the window's bound of the first
+    five heights. Returns (ok, detail)."""
+    ok, parts = True, []
+    for H, bound in WINDOWS:
+        labels, weights, mean = window_weights(H)
+        free = sum(weights) - mean * H                                   # the weights with their mean removed, summed over the H labels
+        up, down = spectrum(H, 14.0, 7.0, 4), spectrum(H, -14.0, -7.0, 4)    # E at 14, 21, 28, 35 and at their negatives
+        pk = peaks(H, 5, 10.0, 36.0)
+        d = max(abs(t - h) for (t, _), h in zip(pk, HEIGHTS))
+        ok &= abs(free) < 1e-9 and all(abs(a - b) < 1e-9 for a, b in zip(up, down)) and d <= bound
+        parts.append(f"{H}: {d:.3f}")
+    return ok, "largest distances " + ", ".join(parts)
+
+
+def subset_control(H=13, bound=0.18, nxt=0.26, lo=10.0, hi=36.0, dt=0.01):
+    """The control of 20:D14 at depth H: every proper nonempty subset of the labels 1..H read as the support of a vector,
+    by the protocol of the exhibit (mean removed, the five tallest maxima on lo <= t <= hi, sorted, against the first five
+    heights). A subset and its complement give the same spectrum, so the subsets without the label 1 list each pair once:
+    2^(H-1) - 1 pairs. A pair with fewer than five maxima on the range is counted and lies within no bound (13 pairs at
+    depth 13). The primes' pair alone lies within `bound`, it is the closest of all, and the next pair is at `nxt` to two
+    decimals. Returns (ok, detail)."""
+    steps = int(round((hi - lo) / dt)) + 1
+    ln = [math.log(n) for n in range(1, H + 1)]
+    cols = [[math.exp(-0.5 * x) * cmath.exp(1j * (lo + j * dt) * x) for j in range(steps)] for x in ln]
+    total = [sum(c[j] for c in cols) for j in range(steps)]
+    primes = set(window_weights(H)[0])
+    run, inside, size = [0j] * steps, [False] * (H + 1), 0
+    best, second, within, pairs, short, best_set = None, None, 0, 0, 0, None
+    for i in range(1, 2 ** (H - 1)):                                     # Gray code over the labels 2..H: one label changes at a step
+        n = 2 + ((i & -i).bit_length() - 1)
+        col = cols[n - 1]
+        if inside[n]:
+            run = [a - b for a, b in zip(run, col)]; size -= 1
+        else:
+            run = [a + b for a, b in zip(run, col)]; size += 1
+        inside[n] = not inside[n]
+        frac = size / H
+        five = sorted(maxima(lo, dt, [abs(a - frac * t) for a, t in zip(run, total)])[:5])
+        pairs += 1
+        if len(five) < 5:
+            short += 1; continue
+        d = max(abs(t - h) for (t, _), h in zip(five, HEIGHTS))
+        within += d <= bound
+        if best is None or d < best:
+            best, second, best_set = d, best, {m for m in range(2, H + 1) if inside[m]}
+        elif second is None or d < second:
+            second = d
+    ok = pairs == 2 ** (H - 1) - 1 and within == 1 and best_set == primes and best <= bound < second and abs(second - nxt) <= 0.005
+    ok &= short == 13 or H != 13                                             # at depth 13 thirteen pairs have fewer than five maxima on the range
+    return ok, f"{pairs} pairs of subsets: {within} within {bound}, the primes' pair at {best:.3f}, the next at {second:.3f}, {short} with fewer than five maxima"
+
+
+def deep_reading(H=10 ** 6):
+    """The reading of 20:D15 at depth H with the von Mangoldt weight: a label reads with the modulus n^sigma, the
+    spectrum is at most the sum of the moduli, the ten tallest peaks on 10 <= t <= 52 lie within 0.045 of the first ten
+    heights. Returns (ok, detail)."""
+    labels, weights, mean = window_weights(H, "mangoldt")
+    pk = peaks(H, 10, 10.0, 52.0, dt=0.02, kind="mangoldt")
+    d = max(abs(t - h) for (t, _), h in zip(pk, HEIGHTS))
+    weight = dict(zip(labels, weights))
+    cap = sum(abs(weight.get(n, 0.0) - mean) * n ** -0.5 for n in range(1, H + 1))    # the sum of the moduli at sigma = -1/2
+    ok = d <= 0.045 and max(h for _, h in pk) <= cap
+    ok &= all(abs(abs(n ** complex(s, t)) - n ** s) < 1e-9 * n ** s for n in (2, 13, H) for s in DEEP_SIGMAS for t in (HEIGHTS[0], HEIGHTS[9]))
+    return ok, f"largest distance {d:.3f}"
+
+
+# The emergence of the count (20:D16): the exponential integral, the step of a label, the count of a window from its
+# dual, and Riemann's formula cut at a height. The heights with the number of zeros below each and the three bounds:
+# the window's count against the count, Riemann's formula against the count, the two against each other.
+EULER = 0.5772156649015329                                               # Euler's constant, the constant term of the series of Ei
+MOBIUS = (0, 1, -1, -1, 0, -1, 1, -1)                                    # the Moebius function at 0..7: positions below 256
+EMERGENCE = ((35.0, 5, 0.38, 0.48, 0.14), (78.0, 20, 0.21, 0.22, 0.10), (202.0, 80, 0.11, 0.15, 0.10))
+
+
+def expint(z):
+    """The exponential integral Ei(z) of a complex z off the negative real axis: gamma + log z + the sum of z^k/(k k!)
+    for |z| <= 6 and in the sector |Im z| < Re z, and elsewhere the continued fraction of E1 at -z with
+    Ei(z) = -E1(-z) +- i pi, the sign that of Im z. The readings below use it on the positive reals up to 4 and on
+    arguments (1/2 + it) u with t >= 14, where it agrees with scipy.special.expi and exp1 and with mpmath.ei to 1e-14."""
+    z = complex(z)
+    if abs(z) <= 6.0 or abs(z.imag) < z.real:
+        out, term = EULER + cmath.log(z), 1.0 + 0j
+        for k in range(1, 400):
+            term *= z / k
+            out += term / k
+            if abs(term) < 1e-17 * max(1.0, abs(out)): break
+        return out
+    w = -z
+    b = w + 1.0; c = None; d = 1.0 / b; h = d
+    for i in range(1, 400):
+        a = -i * i; b += 2.0
+        d = 1.0 / (a * d + b); c = b if c is None else b + a / c
+        ratio_ = c * d; h *= ratio_
+        if abs(ratio_ - 1.0) < 1e-15: break
+    return -h * cmath.exp(-w) + (1j * math.pi if z.imag >= 0 else -1j * math.pi)
+
+
+def label_step(u, T):
+    """The step of one label in the count below the height T: (1/2 pi) times the integral over -T <= t <= T of
+    e^((1/2 - it) u)/(1/2 - it), with u = log(x/n). It is Im Ei((1/2 + iT) u)/pi, plus 1 for u < 0, and at the label
+    itself, u = 0, it is arctan(2T)/pi, the middle of the step."""
+    if u == 0: return math.atan(2.0 * T) / math.pi
+    return expint(complex(0.5, T) * u).imag / math.pi + (1.0 if u < 0 else 0.0)
+
+
+def window_count(H, T, x):
+    """The count of the window of depth H from its dual below the height T (20:D16), at a position x: (1/2 pi) times
+    the integral over -T <= t <= T of w^(t) x^(1/2 - it)/(1/2 - it), with w^(t) the sum of n^(-1/2 + it) over the
+    primes n of the window, its Dirichlet polynomial. Label by label it is the sum of the steps."""
+    return sum(label_step(math.log(x / n), T) for n in window_weights(H)[0])
+
+
+def riemann_counts(x, heights):
+    """Riemann's formula for the count of the primes up to x, cut at the zeros below each of the heights (20:A6):
+    the sum over n of mu(n)/n f(x^(1/n)), with f(y) = li(y) - the sum over the zeros of li(y^rho) - log 2 + the integral
+    of 1/(u (u^2 - 1) log u) over u >= y, and li(y^rho) = Ei(rho log y). The terms with x^(1/n) < 2 are left out, as in
+    the formula itself."""
+    out = [0.0] * len(heights)
+    for n in range(1, int(math.log2(x)) + 1):
+        if not MOBIUS[n]: continue
+        ly = math.log(x) / n
+        f = lambda s: 1.0 / (s * math.expm1(2.0 * s))                    # the integral, in s = log u, by Simpson's rule on [ly, ly + 12]
+        tail = (f(ly) + f(ly + 12.0) + sum((4 if j % 2 else 2) * f(ly + 0.02 * j) for j in range(1, 600))) * 0.02 / 3
+        base = expint(ly).real - math.log(2.0) + tail
+        zeros = [0.0] * len(heights)
+        for g in HEIGHTS:
+            e = expint(complex(0.5, g) * ly).real
+            for j, T in enumerate(heights):
+                if g < T: zeros[j] += e
+        for j in range(len(heights)): out[j] += MOBIUS[n] / n * (base - 2.0 * zeros[j])
+    return out
+
+
+def emergence_reading(H=39):
+    """The reading of 20:D16 on the window of the laboratory Subject 1549 (depth 39, twelve primes) at the heights 35,
+    78 and 202, which have 5, 20 and 80 zeros of positive height below them. At the half-integers 2.5 to 38.5 the count from the window's
+    dual lies within 0.38, 0.21 and 0.11 of the count of the primes, Riemann's formula within 0.48, 0.22 and 0.15, and
+    the two within 0.14, 0.10 and 0.10 of each other. At the twelve prime labels each reads the middle of the step, the
+    count less one half, within its own bound. The bounds between the two are for the half-integers: at the prime label
+    23 and the height 78 the two differ by 0.106. Returns (ok, detail)."""
+    primes = window_weights(H)[0]
+    xs = [n + 0.5 for n in range(2, H)]
+    true = [sum(1 for l in primes if l < x) for x in xs]
+    middle = [sum(1 for l in primes if l <= p) - 0.5 for p in primes]
+    heights = [e[0] for e in EMERGENCE]
+    formula = [riemann_counts(x, heights) for x in xs]
+    at_labels = [riemann_counts(float(p), heights) for p in primes]
+    ok, parts = len(primes) == 12, []
+    for j, (T, zeros, b_window, b_zeros, b_both) in enumerate(EMERGENCE):
+        w = [window_count(H, T, x) for x in xs]; r = [row[j] for row in formula]
+        dw = max(abs(a - c) for a, c in zip(w, true)); dr = max(abs(a - c) for a, c in zip(r, true)); db = max(abs(a - b) for a, b in zip(w, r))
+        lw = max(abs(window_count(H, T, p) - m) for p, m in zip(primes, middle)); lr = max(abs(row[j] - m) for row, m in zip(at_labels, middle))
+        ok &= sum(1 for g in HEIGHTS if g < T) == zeros and dw <= b_window and dr <= b_zeros and db <= b_both and lw <= b_window and lr <= b_zeros
+        parts.append(f"{T:.0f}: {dw:.3f}, {dr:.3f}, {db:.3f} ({lw:.3f}, {lr:.3f})")
+    gap = abs(window_count(H, 78.0, 23.0) - at_labels[primes.index(23)][heights.index(78.0)])
+    ok &= abs(gap - 0.106) < 0.0005 and gap > EMERGENCE[1][4]                # above the bound 0.10 that holds between the two at the half-integers
+    return ok, ("largest differences (the window's count, Riemann's formula, between the two; in brackets the first two at the prime labels, "
+                "from the count less one half) at the heights " + "; ".join(parts) + f"; at the label 23 and the height 78 the two differ by {gap:.3f}")
+
+
+# The bound of the count (20:D17): the count of a real vector on a list of labels below a height, and the bound
+# B(x)/T on its difference from the count of the vector below a position x that is no label.
+def vector_count(labels, T, x, weights=None):
+    """The count below the height T of a real vector on a list of labels, at a position x: the sum over the labels of
+    the weight times the step of the label. Without weights the vector is the indicator of the labels."""
+    weights = weights or [1.0] * len(labels)
+    return sum(w * label_step(math.log(x / n), T) for n, w in zip(labels, weights))
+
+
+def count_bound(labels, x, weights=None):
+    """B(x) of 20:D17 for a real vector on a list of labels, at a position x that is no label: (1/pi) times the sum
+    over the labels of |w(n)| sqrt(x/n)/|log(x/n)|. The count below the height T lies within B(x)/T of the count of the
+    vector below x (the theorem FRC.Chart.Perron.count_bound, on Mathlib)."""
+    weights = weights or [1.0] * len(labels)
+    return sum(abs(w) * math.sqrt(x / n) / abs(math.log(x / n)) for n, w in zip(labels, weights)) / math.pi
+
+
+def bound_reading(H=39):
+    """The reading of 20:D17. On the windows of depth 13 and H, at the half-integers and the heights 35, 67, 78 and
+    202, for the prime vector and for the indicator vector of all the labels, the count lies within B(x)/T of the count
+    of the vector below x; so it does for a signed vector on the labels of depth H at the quarter positions. For
+    H = 39 the prime vector has B(x) <= 33.14 at the half-integers 2.5 to 38.5: the bound is at most
+    0.95, 0.43 and 0.17 at the heights 35, 78 and 202 and below one half from the height 67 on, and the nearest integer
+    to the count at the height 67 is the count of the primes. Returns (ok, detail)."""
+    ok, worst = True, 0.0
+    heights = (35.0, 67.0, 78.0, 202.0)
+    for depth in (13, H):
+        xs = [n + 0.5 for n in range(2, depth)]
+        for labels in (window_weights(depth)[0], list(range(1, depth + 1))):
+            for T in heights:
+                for x in xs:
+                    ratio = abs(vector_count(labels, T, x) - sum(1 for n in labels if n < x)) * T / count_bound(labels, x)
+                    worst = max(worst, ratio); ok &= ratio <= 1.0
+    labels = list(range(1, H + 1)); signed = [(-1.0) ** n * (1 + n % 3) / 2 for n in labels]
+    for T in heights:
+        for x in [n + 0.25 for n in range(0, H + 1)]:
+            below = sum(w for n, w in zip(labels, signed) if n < x)
+            ratio = abs(vector_count(labels, T, x, signed) - below) * T / count_bound(labels, x, signed)
+            worst = max(worst, ratio); ok &= ratio <= 1.0
+    primes = window_weights(H)[0]; xs = [n + 0.5 for n in range(2, H)]
+    top = max(count_bound(primes, x) for x in xs)
+    ok &= top <= 33.14 and 33.14 / 67.0 < 0.5
+    ok &= all(math.ceil(100 * 33.14 / T) / 100 == b for T, b in ((35.0, 0.95), (78.0, 0.43), (202.0, 0.17)))
+    ok &= all(round(vector_count(primes, 67.0, x)) == sum(1 for n in primes if n < x) for x in xs)
+    return ok, f"largest B(x) at the half-integers of depth {H}: {top:.3f}; largest ratio of a difference to its bound: {worst:.3f}"
+
+
+HEIGHTS = [14.134725141734693, 21.022039638771555, 25.010857580145688, 30.424876125859513, 32.935061587739189,
+           37.586178158825671, 40.918719012147495, 43.327073280914999, 48.005150881167159, 49.773832477672302,
+           52.970321477714460, 56.446247697063394, 59.347044002602353, 60.831778524609809, 65.112544048081606,
+           67.079810529494173, 69.546401711173979, 72.067157674481907, 75.704690699083933, 77.144840068874805,
+           79.337375020249367, 82.910380854086030, 84.735492980517050, 87.425274613125229, 88.809111207634465,
+           92.491899270558484, 94.651344040519886, 95.870634228245309, 98.831194218193692, 101.317851005731392,
+           103.725538040478339, 105.446623052326094, 107.168611184276408, 111.029535543169675, 111.874659176992637,
+           114.320220915452713, 116.226680320857554, 118.790782865976217, 121.370125002420646, 122.946829293552588,
+           124.256818554345767, 127.516683879596495, 129.578704199956051, 131.087688530932657, 133.497737202997586,
+           134.756509753373871, 138.116042054533443, 139.736208952121389, 141.123707404021124, 143.111845807620633,
+           146.000982486765519, 147.422765342559602, 150.053520420784880, 150.925257612241467, 153.024693811198896,
+           156.112909294237868, 157.597591817594060, 158.849988171420499, 161.188964137596028, 163.030709687181987,
+           165.537069187900419, 167.184439978174513, 169.094515415568821, 169.911976479411699, 173.411536519591553,
+           174.754191523365726, 176.441434297710419, 178.377407776099977, 179.916484020256996, 182.207078484366462,
+           184.874467848387509, 185.598783677707471, 187.228922583501852, 189.416158656016937, 192.026656360713787,
+           193.079726603845704, 195.265396679529235, 196.876481840958317, 198.015309676251912, 201.264751943703789]   # the first eighty heights, 20:A6 [import]
+CR = types.SimpleNamespace(HEIGHTS=HEIGHTS, window_weights=window_weights, power_tail=power_tail, spectrum=spectrum, maxima=maxima, peaks=peaks,
+                           window_reading=window_reading, deep_reading=deep_reading, subset_control=subset_control,
+                           expint=expint, label_step=label_step, window_count=window_count, riemann_counts=riemann_counts, emergence_reading=emergence_reading,
+                           vector_count=vector_count, count_bound=count_bound, bound_reading=bound_reading)
 
 # ======================================================================================================================
 # block A — the shell, in exact arithmetic
-# The shells p = 13, 17, 29, 37, 41 in full; 173 for the checks that do not enumerate the plane; the laboratory pairs
-# (13, 233), (173, 30089), (1549, 2408561) for frame coincidence, the closure and completeness. The generator g is the least
-# primitive root, η² = ν the least nonresidue, as in the paper.
+# The shells p = 13, 17, 29, 37, 41 in full, and 173; the laboratory Carriers for the closure and the laboratory pairs
+# (13, 233), (173, 30089), (1549, 2408561) for completeness. The generator g is the least primitive root, as in the paper.
 def block_A():
-    """Block A — the shell, in exact arithmetic: 96 checks, 91 EXACT and 5 [approx] readings of the chart's characters (A7b, one per shell)."""
+    """Block A — the shell, in exact arithmetic: 54 checks, 49 EXACT and 5 [approx] readings of the chart's characters (A7b, one per shell)."""
     print("\n== block A: the shell ==")
     for p in SHELLS + [BIG]:
-        g, nu = generator(p), nonresidue(p)
+        g = generator(p)
         kappa = (p - 1) // 4; assert 4 * kappa + 1 == p
         # A1 zero-slot
         ok = all(sum(pow(x, k, p) for x in range(1, p)) % p == 0 for k in range(1, p - 1)) \
@@ -393,17 +930,6 @@ def block_A():
         # 20:B10 (p20017)
         check("A6", f"Subject constants on F_{p}: π=2κ, i=g^-κ, e=g^i (odd lift)", ok,
               f"g={g} κ={kappa} π={pi_} i={i_} e={e_}: 2π≡-1, i²≡-1, g^π≡-1, e^(iπ)≡-1, 2⁻¹=2κ+1=-π")
-        # A4 the finite critical line
-        inv2 = (2 * kappa + 1) % p
-        line = [(inv2, b) for b in range(p)]
-        quarter = pow(4, p - 2, p)
-        ok = all(trace(z, p) == 1 for z in line) and len(set(line)) == p \
-             and all(norm(z, nu, p) == (quarter - nu * z[1] * z[1]) % p for z in line)
-        if p != BIG:   # the converse on the full plane: Tr z = 1 only on the line
-            ok = ok and all(((2 * a) % p == 1) == (a == inv2) for a in range(p))
-        # 20:B8 (p20015)
-        check("A4", f"finite critical line on F_{p}: Tr z = 1 ⟺ z = 2⁻¹ + bη, |L| = p, N = ¼ − νb²", ok,
-              f"ν={nu}, 2⁻¹={inv2}")
         # A7 the shell theorem (Thm. hp) on F_p, every clause in F_p: (i) the dual inverts, the constant mode the mean term;
         # (iii) D x^k = g^k x^k on the power characters (the drive D : x ↦ g x), Tr D^r = (p−1)[(p−1)|r]; (iv) W² = −J, F² = J, F⁴ = 1 for W_mk = g^mk,
         # F = iW; (v) the explicit formula along the meridian, Σ_{y≤x} v(y) = −Σ_k v̂(k) S_k(x), S_0(x) = x; three random vectors
@@ -429,7 +955,7 @@ def block_A():
         check("A7", f"the shell theorem on F_{p}: (i) the dual inverts, v(y) = −Σ v̂(k) y^−k, v̂(0) the mean term; (iii) D x^k = g^k x^k, Tr D^r = (p−1)[(p−1)|r]; (iv) W² = −J, F² = J, F⁴ = 1; (v) the explicit formula along the meridian, S_0(x) = x",
               ok_i and ok_fp and ok_tr and ok_iv and ok_v, f"three random vectors; W of order {n_}")
         # A14 the Parseval identity (Thm. hp (ii)): Σ_k v̂(k) v̂(−k) = −Σ_x v(x)² in F_p, on random vectors and on the prime-power
-        # indicator of the whole shell (the window's prime vector of Def. vector is its restriction below √p; the identity holds for every vector)
+        # indicator of the whole shell (the window's prime vector of Def. vector is its restriction to the window; the identity holds for every vector)
         prime_vec = [0] + [1 if is_prime(x) or (len(prime_factors(x)) == 1 and x > 1) else 0 for x in range(1, p)]
         ok = True
         for v in vecs + [prime_vec]:
@@ -440,40 +966,6 @@ def block_A():
               f"prime-power indicator: {sum(prime_vec)} labels")
         if p == BIG:
             continue
-        # A2 slot complementarity
-        image = {(-pow(g, k, p)) % p for k in range(1, p - 1)}
-        # 20:B5 (p20012)
-        check("A2", f"Φ(k) = −g^k bijects the nonterminal slots onto F_{p}^× \\ {{−1}}", image == set(range(1, p - 1)),
-              f"|image| = {len(image)} = p−2")
-        # A3 Hermitian phase calculus
-        K = [(a, b) for a in range(p) for b in range(p)]
-        U = [z for z in K if norm(z, nu, p) == 1]
-        inv_ok = all(frob(z, p) == zpow(z, p, nu, p) and mul(z, frob(z, p), nu, p) == (1, 0) for z in U)
-        i2 = [(a, 0) for a in range(p) if (a * a) % p == p - 1]
-        ok = len(U) == p + 1 and inv_ok and len(i2) == 2 and all(frob(z, p) == z and norm(z, nu, p) == p - 1 for z in i2)
-        # 20:B6 (p20013)
-        check("A3", f"F_{p}²: |U_(p+1)| = p+1, Frobenius = inversion on it, i Frobenius-fixed with N(i) = −1", ok)
-        # A5 the two agreement loci (Thm. agree): among the p(p+1) affine lines of K exactly two are invariant as sets under both
-        # the conjugation φ and the half-turn ρ — the prime meridian F_p and the critical line; φ keeps p+1 lines, ρ keeps the
-        # p+1 lines through 2⁻¹; and the corollary, the Klein four-group with its fixed loci
-        phi = lambda z: frob(z, p)
-        rho = lambda z: half_turn(z, p)
-        sig = lambda z: rho(phi(z))
-        lines = affine_lines(p)
-        kept_phi = [name for name, L in lines if all(phi(z) in L for z in L)]
-        kept_rho = [name for name, L in lines if all(rho(z) in L for z in L)]
-        both = [name for name, L in lines if all(phi(z) in L and rho(z) in L for z in L)]
-        ok_lines = (len(lines) == p * (p + 1) and len(kept_phi) == p + 1 and len(kept_rho) == p + 1
-                    and sorted(both) == sorted([("H", 0), ("S", 0, inv2)])
-                    and all(("S", c, inv2) in kept_rho for c in range(p)) and ("H", 0) in kept_rho
-                    and all(("H", b) not in kept_rho for b in range(1, p)))
-        fix_phi = {z for z in K if phi(z) == z}; fix_rho = {z for z in K if rho(z) == z}; fix_sig = {z for z in K if sig(z) == z}
-        ok_klein = (all(phi(phi(z)) == z and rho(rho(z)) == z and phi(rho(z)) == rho(phi(z)) for z in K)
-                    and fix_phi == {(a, 0) for a in range(p)} and fix_sig == set(line) and fix_rho == {(inv2, 0)}
-                    and fix_phi & fix_sig == {(inv2, 0)})
-        # 20:B9 (p20016)
-        check("A5", f"the two agreement loci on F_{p}²: of the {p * (p + 1)} affine lines, φ keeps {p + 1}, ρ keeps {p + 1}, both keep exactly F_p and L_1/2; Klein four-group: Fix φ = F_p, Fix σ = L_1/2, Fix ρ = {{2⁻¹}}",
-              ok_lines and ok_klein, f"both: {both}")
         # A7b the chart's reading of the Parseval identity (Rem. parseval) [approx]: the complex characters χ_j(n) = ω^{jλ(n)} on
         # ℓ²(F_p^×) are orthogonal with ‖χ_j‖² = p−1, the dual inverts, and Σ_j |v̂_C(j)|² = (p−1) Σ |v|²; D χ_j = ω^j χ_j, the
         # drive's chart a unitary permutation matrix whose eigenvalues are the (p−1)-th roots of unity (Rem. chart-operator)
@@ -507,18 +999,18 @@ def block_A():
             check("A10", "Q₄ ⊂ both cycles; C_232 ↠ C_12 does not exist (12 ∤ 232) on the pair (13, 233)", ok, "the shells share the core, not a clock")
         else:
             check("A10", f"Q₄ = {{1, i, −1, −i}} ⊂ F_{p}^×, 4 | p−1", ok)
-    # A11 frame coincidence below the horizon (Prop. coincide): the Carrier chart Ω is the least prime ≡ 1 (mod 4) above p²
+    # A11 frame coincidence within the observational horizon (Prop. coincide): the Carrier chart Ω is the least prime ≡ 1 (mod 4) above p²
     for p in SHELLS + [1009, 10009]:
         Om = next_prime(p * p)
         while Om % 4 != 1:
             Om = next_prime(Om)
-        H = math.isqrt(p)
-        same = all(n % p == n % Om == n for n in range(1, H + 1))
-        prods = all((a * b) % p == (a * b) % Om == a * b for a in range(1, H + 1) for b in range(1, H + 1))
-        irreducible = {n for n in range(2, H + 1) if all(n % d for d in range(2, math.isqrt(n) + 1))}   # trial division inside the window
-        primes = {n for n in range(2, H + 1) if is_prime(n)}
+        q = max(n for n in range(1, p) if n * n < p)                # the observational horizon: the largest label with q² < p
+        same = all(n % p == n % Om == n for n in range(1, q + 1))
+        prods = all((a * b) % p == (a * b) % Om == a * b for a in range(1, q + 1) for b in range(1, q + 1))
+        irreducible = {n for n in range(2, q + 1) if all(n % d for d in range(2, math.isqrt(n) + 1))}   # trial division inside the window
+        primes = {n for n in range(2, q + 1) if is_prime(n)}
         # 20:B2 (p20009)
-        check("A11", f"frame coincidence below √{p} = {H} on the pair ({p}, {Om}): residues, window products and primality agree", same and prods and irreducible == primes,
+        check("A11", f"frame coincidence within the observational horizon q = {q} of F_{p}, q² < {p}, on the pair ({p}, {Om}): residues, products and primality agree", same and prods and irreducible == primes,
               f"Π_p = {sorted(primes)}")
     # A6b the odd-lift rule (Remark frame) on every admissible frame below 3000, least primitive root
     frames = [q for q in range(5, 3000) if q % 4 == 1 and is_prime(q)]
@@ -535,73 +1027,10 @@ def block_A():
     check("A6b", f"the odd-lift rule on all {len(frames)} frames p ≡ 1 (mod 4) below 3000: e^{{iπ}} ≡ −1 on the odd lift, ≡ +1 on the even member; F_17: g=3, i=4, lift 21, e=5", ok,
           f"frames {len(frames)}, failures {bad}; F_17 (i, e) = {f17}")
 
-    # A15 the critical line is the energy domain (Prop. line; row B12): z_k = 2⁻¹ − ηg^k. (i) k ↦ z_k bijects Z_{p−1} onto the
-    # line without its centre, z_k the readout of the mode k at θ = −g^k, k = 0 at θ = −1 and k = π at θ = 1; (ii) the dilation
-    # about the centre, z ↦ 2⁻¹ + g(z − 2⁻¹), carries z_k to z_{k+1}; (iii) the half-turn and the conjugation both carry z_k to
-    # z_{k+π} and fix the centre alone; (iv) N(z_k) = ¼ − νg^{2k}, even under k ↦ k + π; (v) the labels along the drive are the
-    # latitude L_a = {a g^m} shifted by π − log_g a for every base point a, by 0 for a = −1: θ_k = −g^k = L_{−1}(k)
-    for p in SHELLS + [53, BIG]:
-        g, nu = generator(p), nonresidue(p)
-        kappa = (p - 1) // 4; pi_ = 2 * kappa; inv2 = (2 * kappa + 1) % p; n_ = p - 1
-        quarter = pow(4, p - 2, p)
-        zk = [(inv2, (-pow(g, k, p)) % p) for k in range(n_)]
-        centre = (inv2, 0)
-        ok_i = len(set(zk)) == n_ and set(zk) == {(inv2, b) for b in range(1, p)} and all(trace(z, p) == 1 for z in zk) \
-               and zk[0] == (inv2, p - 1) and zk[pi_] == (inv2, 1)
-        dil = lambda z: (inv2, (g * z[1]) % p)                                   # 2⁻¹ + g(z − 2⁻¹) on the line
-        ok_ii = all(dil(zk[k]) == zk[(k + 1) % n_] for k in range(n_)) and dil(centre) == centre
-        ok_iii = all(half_turn(zk[k], p) == zk[(k + pi_) % n_] == frob(zk[k], p) for k in range(n_)) \
-                 and all(zk[(k + pi_) % n_] != zk[k] for k in range(n_)) and half_turn(centre, p) == centre == frob(centre, p)
-        ok_iv = all(norm(zk[k], nu, p) == (quarter - nu * pow(g, 2 * k, p)) % p == norm(zk[(k + pi_) % n_], nu, p) for k in range(n_))
-        # 20:B12 (p20085)
-        lam = dlog_table(p, g)
-        ok_v = all(zk[k][1] == (a * pow(g, (k + pi_ - lam[a]) % n_, p)) % p for a in range(1, p) for k in range(n_)) \
-               and all(zk[k][1] == ((p - 1) * pow(g, k, p)) % p for k in range(n_))      # (v): θ_k = L_a(k + π − log_g a); the shift 0 at a = −1
-        check("A15", f"the critical line is the energy domain on F_{p}: k ↦ z_k = 2⁻¹ − ηg^k bijects Z_{n_} onto L_1/2 \\ {{2⁻¹}}; the drive z_k ↦ z_{{k+1}}; half-turn and conjugation z_k ↦ z_{{k+π}}, the centre their only fixed point; N(z_k) even under k ↦ k+π; the labels along the drive are the latitude L_a shifted by π − log_g a, for every base point a, by 0 for a = −1",
-              ok_i and ok_ii and ok_iii and ok_iv and ok_v, f"g={g}, ν={nu}, π={pi_}: z_0 = 2⁻¹+η, z_π = 2⁻¹−η")
-
-    # A16 frame coincidence on the critical line (Prop. coincideline; row B13), on the laboratory pairs: for every nonzero label
-    # θ < p of the Subject, θ is the same integer in F_p and F_Ω (the Subject's residues are the Carrier's below p; B1); 2⁻¹ + ηθ
-    # has trace 1 in both frames with real part 2κ+1 and 2κ'+1 (the line's centre is the half-turn of each frame); the line
-    # {Tr = 1} is carried to itself by the half-turn and by the conjugation in both frames (B9, D11); the point is a mode in
-    # both — θ = −g^k in F_p and θ = −g'^{k'} in F_Ω — nontrivial in both for 1 ≤ θ ≤ p−2 (B12; the Subject's constant mode
-    # sits at θ = p−1 ≡ −1, where the Carrier has a zero), and the mode's slot is a zero-slot (B4), checked at the first prime
-    # labels; the Carrier's labels from p on are no residue of the Subject; the primes need the horizon and the zeros do not:
-    # at the first label above the horizon the products of the two frames disagree
-    for p, Om in PAIRS:
-        gp, gO = generator(p), generator(Om)
-        kp, kO = (p - 1) // 4, (Om - 1) // 4
-        H = math.isqrt(p)
-        same = all(t % p == t % Om == t for t in range(p))
-        tr = all(trace((2 * kp + 1, t), p) == 1 and trace((2 * kO + 1, t), Om) == 1 for t in range(p))
-        line_p = [((2 * kp + 1) % p, b) for b in range(p)]
-        inv_p = all(half_turn(z, p) in set(line_p) and frob(z, p) in set(line_p) for z in line_p)
-        line_O = set(((2 * kO + 1) % Om, b) for b in range(Om))
-        inv_O = all(half_turn(z, Om) in line_O and frob(z, Om) in line_O for z in line_O)
-        lam_p, lam_O = dlog_table(p, gp), dlog_table(Om, gO)
-        modes = {t: (lam_p[(-t) % p], lam_O[(-t) % Om]) for t in range(1, p)}
-        mode_ok = all(pow(gp, modes[t][0], p) == (-t) % p and pow(gO, modes[t][1], Om) == (-t) % Om for t in modes)
-        mode_ok &= all(1 <= modes[t][0] <= p - 2 and 1 <= modes[t][1] <= Om - 2 for t in range(1, p - 1))
-        mode_ok &= modes[p - 1][0] == 0 and 1 <= modes[p - 1][1] <= Om - 2                      # the constant mode's point: a Carrier zero
-        mode_ok &= len({modes[t][0] for t in modes}) == p - 1 and len({modes[t][1] for t in modes}) == p - 1
-        firsts = [t for t in range(2, H + 1) if is_prime(t)][:2]
-        slot_ok = all(sum(pow(x, modes[t][0], p) for x in range(1, p)) % p == 0 for t in firsts)
-        slot_ok &= sum(pow(x, modes[firsts[0]][1], Om) for x in range(1, Om)) % Om == 0
-        beyond = all(t % p != t for t in range(p, min(Om, p + 50))) and Om - 1 >= p
-        above = ((H + 1) * (H + 1)) % p != (H + 1) * (H + 1) and ((H + 1) * (H + 1)) % Om == (H + 1) * (H + 1)
-        eig = all(pow(gp, modes[t][0], p) == (-t) % p and pow(gO, modes[t][1], Om) == (-t) % Om for t in range(1, p - 1))   # the eigenvalue −θ in both frames (Thm. drive (vi))
-        N_ = Om - 1; (k1, kp1), (k2, kp2) = modes[1], modes[2]
-        affine = [(a, (kp1 - a * k1) % N_) for a in range(N_) if (a * k2 + kp1 - a * k1) % N_ == kp2]   # the maps fitting the labels 1 and 2
-        affine = [(a, b) for a, b in affine if all((a * modes[t][0] + b) % N_ == modes[t][1] for t in range(1, p - 1))]   # no affine k ↦ k' fits every label
-        # 20:B13 (p20086)
-        check("A16", f"frame coincidence on the line, pair ({p}, {Om}): every label θ < {p} the same integer in both; Tr(2⁻¹+ηθ) = 1 in both, centres {2 * kp + 1} and {2 * kO + 1}; the line kept by half-turn and conjugation in both; every 1 ≤ θ ≤ {p - 2} a nontrivial mode in both, the slot a zero-slot, θ = {p - 1} the Subject's constant mode and a Carrier zero; the labels from {p} on no Subject residue; at {H + 1} the products disagree; at every label the eigenvalue −θ under each frame's own drive, the indices k, k' each frame's own",
-              same and tr and inv_p and inv_O and mode_ok and slot_ok and beyond and above and eig and affine == [],
-              "modes (k, k'): " + ", ".join(f"θ={t}: {modes[t]}" for t in firsts) + f"; θ={p - 1}: {modes[p - 1]}; affine maps k ↦ k' fitting the labels: {len(affine)}")
-
     # A12 the closure of the zeros (Thm. closure; rows A2, A4, F7), on the four laboratory Carriers Ω = 13, 233, 30089,
     # 2408561: the largest embedded Subject p* with p*² < Ω < p'² (p' the next prime); the residues of a cycle are its labels
     # 0..q−1 and a Subject of cardinality p reads the residues y < p, its own residues, so an embedded Subject's cycle is shorter
-    # than the Carrier's and the Carrier's top residue is read from labels up to √Ω, beyond every embedded window √p*; the
+    # than the Carrier's and the Carrier's top residue is read from labels up to the horizon of Ω, beyond the horizon of every embedded Subject; the
     # wrap of the height reading, (T + Ω) ≡ T; the pigeonhole of 00:A2/00:A4 on the residues — a reading of the Ω residues into
     # o < Ω records identifies two residues (found by search for o = p* and o = Ω − 1), and an injective reading needs o ≥ Ω
     def largest_subject(Om):
@@ -613,22 +1042,26 @@ def block_A():
     for Om in (233, 30089, 2408561):
         ps = largest_subject(Om)
         ok = is_prime(Om) and Om % 4 == 1 and is_prime(ps) and ps % 4 == 1 and ps > 5 and ps * ps < Om
-        ok &= all(not (is_prime(q) and q % 4 == 1) for q in range(ps + 1, math.isqrt(Om - 1) + 1))   # no admissible Subject between p* and √Ω
-        ok &= ps < Om and math.isqrt(ps) < math.isqrt(Om)                   # the embedded cycle shorter; the top window's labels beyond √p*
+        ok &= all(not (is_prime(q) and q % 4 == 1) for q in range(ps + 1, math.isqrt(Om - 1) + 1))   # no larger admissible Subject with its square below Ω
+        ok &= ps < Om and math.isqrt(ps) < math.isqrt(Om)                   # the embedded cycle shorter; the top window's labels beyond the horizon of p*
         ok &= all((T + Om) % Om == T % Om for T in (0, 1, ps, Om - 1, Om, 7 * Om + 3))   # the wrap of the height reading
         collisions = {}
         for o in (ps, Om - 1):
             seen = {}
-            for y in range(Om):                                             # the residues of the Carrier's cycle, read into o records
+            for y in range(Om):                                             # the residues of the Carrier's cycle, read into o states
                 r = y % o
                 if r in seen:
                     collisions[o] = (seen[r], y); break
                 seen[r] = y
             ok &= o in collisions and collisions[o][0] != collisions[o][1] and collisions[o][0] % o == collisions[o][1] % o
-        ok &= len({y for y in range(Om)}) == Om                             # the identity reading into Ω records is injective: Ω ≤ Ω
+        ok &= len({y for y in range(Om)}) == Om                             # the identity reading into Ω states is injective: Ω ≤ Ω
+        ok &= CT.zeros_not_held(ps, Om) and CT.zeros_not_held(ps, Om, lambda y: (7 * y + 3) % ps)   # p* < Ω − 2: each reading tried identifies two zeros
+        spare = [max(0, y - 1) for y in range(Om)]                          # a reading into Ω − 1 states: its one collision is 0 with 1,
+        ok &= len(set(spare)) == Om - 1 and spare[0] == spare[1] and len(set(spare[2:])) == Om - 2   # and it keeps the Ω − 2 zeros apart
+        ok &= len({y - 2 for y in range(2, Om)}) == Om - 2                    # Ω − 2 states hold the zeros
         # 20:A2 (p00004), 20:A4 (p00197), 20:F7 (p20079)
-        check("A12", f"closure of the zeros on Ω = {Om}: the largest admissible Subject p* = {ps} ({ps}² < Ω, none between p* and √Ω = {math.isqrt(Om)}), the cycle's {Om} residues, an embedded Subject reads {ps} of them; readings into {ps} and {Om - 1} records collide", ok,
-              f"collisions {collisions}; √Ω = {math.isqrt(Om)}, √p* = {math.isqrt(ps)}")
+        check("A12", f"closure of the zeros on Ω = {Om}: the largest admissible Subject p* = {ps} ({ps}² < Ω, and no larger prime 4κ + 1 has its square below Ω), the cycle's {Om} residues, an embedded Subject reads {ps} of them; readings into {ps} and {Om - 1} states collide; the {Om - 2} zeros are more than the {ps} states, and every reading tried identifies two zeros; a reading into {Om - 1} states keeps the zeros apart and identifies 0 with 1 alone", ok,
+              f"collisions {collisions}; the horizons of the chart F_Ω and of p*: {math.isqrt(Om)}, {math.isqrt(ps)}")
 
     # A13 Completeness (row A3; 00:A3), on the laboratory pairs (p, Ω): the registration of a totality is onto its registered
     # Universe — the registered Universe is the set of residues at which some member registers, read back as a member for every
@@ -662,73 +1095,12 @@ def block_A():
         check("A13", f"completeness on the pair ({p}, {Om}): the registration of the cycle is onto its registered Universe ({Om} residues; {p} under the Subject's reading); F_{p} registers within F_{Om}, every reading of the {Om} residues into {p} records collides, one count only both ways", ok,
               "collisions " + ", ".join(f"{k}: {v}" for k, v in collisions.items()))
 
-    # A17 the open target's data (row O9; Section order): the cycle's scale coordinate is the discrete logarithm up to the choice
-    # of generator, and no generator of F_173, F_1549 or F_30089 orders the primes of the window (λ(2) < λ(3) < λ(5) < …); the
-    # longest ordered run of the window's primes is 5 of 6, 6 of 12 and 7 of 40. F_13, whose window holds the primes 2 and 3, is
-    # ordered by two of its four generators. Every generator is g₀^e with e a unit of Z_{p−1}, and λ_g = e·λ_{g₀}
-    stated = {13: (4, 2, 2, 2), 173: (84, 0, 5, 6), 1549: (504, 0, 6, 12), 30089: (15040, 0, 7, 40)}
-    for p in stated:
-        n_ = p - 1; H = math.isqrt(p); P = [n for n in range(2, H + 1) if is_prime(n)]
-        lam0 = dlog_table(p, generator(p))
-        units = [e for e in range(1, n_) if math.gcd(e, n_) == 1]
-        ordering, best = 0, 0
-        for e in units:
-            seq = [(e * lam0[n]) % n_ for n in P]
-            ordering += all(a < b for a, b in zip(seq, seq[1:]))
-            k = 0
-            while k + 1 < len(seq) and seq[k] < seq[k + 1]: k += 1
-            best = max(best, k + 1)
-        got = (len(units), ordering, best, len(P))
-        # 20:O9 (p20090)
-        check("A17", f"F_{p}: of its {len(units)} generators, {stated[p][1]} order the {len(P)} primes of the window 2..{H} by the discrete logarithm; the longest ordered run of primes is {stated[p][2]} of {len(P)}",
-              got == stated[p], f"(generators, ordering, longest run, primes) = {got}")
-
-    # A18 no zero off the line (Thm. noline; row F10), on the pairs (13, 233) and (173, 30089): (i) the lines kept by both the
-    # conjugation and the half-turn are exactly the meridian and the critical line — every one of the p(p+1) affine lines of the
-    # Subject's plane tested, and of the Carrier's on 233; on 30089 the two lines tested and 2000 other lines sampled (the
-    # exhaustive statement is the Lean theorem invariant_lines, for every shell); (ii) every label 1 ≤ θ ≤ p−2 of the Subject is
-    # a nontrivial mode on the critical line in both frames, the Subject's p−2 zeros (A16); (iii) a point off both lines lies on no line kept by both — every line
-    # through it fails — for every such point of the Subject's plane on 13 and for 200 sampled points on 173
-    rng = random.Random(2026)
-    for p, Om in PAIRS[:2]:
-        gp, gO = generator(p), generator(Om)
-        kp, kO = (p - 1) // 4, (Om - 1) // 4
-        inv2p, inv2O = (2 * kp + 1) % p, (2 * kO + 1) % Om
-        both_p = [name for name, L in affine_lines(p) if all(frob(z, p) in L and half_turn(z, p) in L for z in L)]
-        ok_i = sorted(both_p) == sorted([("H", 0), ("S", 0, inv2p)])
-        kept = lambda name, q: (lambda L: all(frob(z, q) in L and half_turn(z, q) in L for z in L))(
-            frozenset((a, name[1]) for a in range(q)) if name[0] == "H" else frozenset(((name[2] + name[1] * b) % q, b) for b in range(q)))
-        if Om < 1000:
-            both_O = [name for name, L in affine_lines(Om) if all(frob(z, Om) in L and half_turn(z, Om) in L for z in L)]
-            ok_i &= sorted(both_O) == sorted([("H", 0), ("S", 0, inv2O)]); carrier = f"every line of F_{Om}²"
-        else:
-            others = set()
-            while len(others) < 2000:
-                nm = ("H", rng.randrange(1, Om)) if rng.random() < 0.1 else ("S", rng.randrange(Om), rng.randrange(Om))
-                if nm not in (("H", 0), ("S", 0, inv2O)): others.add(nm)
-            ok_i &= kept(("H", 0), Om) and kept(("S", 0, inv2O), Om) and not any(kept(nm, Om) for nm in others); carrier = f"the two lines kept and 2000 sampled others not, on F_{Om}²"
-        lam_p, lam_O = dlog_table(p, gp), dlog_table(Om, gO)
-        ok_ii = all(pow(gp, lam_p[(-t) % p], p) == (-t) % p and pow(gO, lam_O[(-t) % Om], Om) == (-t) % Om
-                    and 1 <= lam_p[(-t) % p] <= p - 2 and 1 <= lam_O[(-t) % Om] <= Om - 2 for t in range(1, p - 1))
-        off = [(a, b) for a in range(p) for b in range(p) if b != 0 and a != inv2p]
-        if p > 20: off = rng.sample(off, 200)
-        def lines_through(z, q):
-            yield frozenset((a, z[1]) for a in range(q))
-            for c in range(q):
-                a0 = (z[0] - c * z[1]) % q
-                yield frozenset(((a0 + c * b) % q, b) for b in range(q))
-        ok_iii = all(not any(all(frob(w, p) in L and half_turn(w, p) in L for w in L) for L in lines_through(z, p)) for z in off)
-        # 20:F10 (p20093)
-        check("A18", f"no zero off the line, pair ({p}, {Om}): the lines kept by both involutions are F_p and L_1/2 and no other tested line (every line of F_{p}², {carrier}); every label 1 ≤ θ ≤ {p - 2} of F_{p} a nontrivial mode on the line in both frames, the Subject's {p - 2} zeros; {'every' if p <= 20 else '200 sampled'} point(s) off both lines on no line kept by both",
-              ok_i and ok_ii and ok_iii, f"both-invariant lines of F_{p}²: {both_p}")
-
     # A19 the drive theorem (Thm. drive; row E15), on every shell: the drive acts on vectors over F_p^× by (Dv)(x) = v(gx), one
     # chronon. (ii) D x^k = g^k x^k for every mode k (the eigenvector identity, FRC.Rh.shift_power_character) and the eigenvalues
     # g^k are the p−1 nonzero residues, each once: the spectrum is F_p^×, simple; (i) D is orthogonal for the pairing
     # ⟨v, w⟩ = Σ_x v(x) w(x), ⟨Dv, w⟩ = ⟨v, D⁻¹w⟩ on three random pairs, not symmetric, while D + D⁻¹ is symmetric; (iii) the
     # spectrum is real — every eigenvalue a residue of F_p, Frobenius-fixed — and the modes are isotropic, ⟨x^k, x^k⟩ = Z(2k) = 0
-    # for k ≠ 0, π and −1 there; (iv) the readout θ_k = −g^k of A15 is minus the eigenvalue; (v) the half-turn negates the
-    # eigenvalue, g^{k+π} = −g^k
+    # for k ≠ 0, π and −1 there; (iv) at x = g^m the mode of count k reads g^(km) (FRC.Horizon.mode_stride)
     for p in SHELLS + [BIG]:
         g = generator(p); n_ = p - 1; pi_ = n_ // 2; ginv = pow(g, p - 2, p); xs = range(1, p)
         D = lambda v: {x: v[(g * x) % p] for x in xs}
@@ -744,119 +1116,169 @@ def block_A():
         symmetric = lambda T: all(pair(T(v), w) == pair(v, T(w)) for v, w in pairs3)
         ok_sym = (not symmetric(D)) and symmetric(lambda v: {x: (D(v)[x] + Dinv(v)[x]) % p for x in xs})
         ok_iii = all(0 < s < p for s in spec) and all(pair(modes[k], modes[k]) == (p - 1 if k in (0, pi_) else 0) for k in range(n_))
-        ok_iv = all(((-pow(g, k, p)) % p) == (-spec[k]) % p for k in range(n_)) and (-spec[0]) % p == p - 1
-        ok_v = all(pow(g, k + pi_, p) == (-spec[k]) % p for k in range(n_))
+        ok_iv = CT.mode_stride(p, g)
         # 20:E15 (p20094)
-        check("A19", f"the drive theorem on F_{p}: D x^k = g^k x^k for every mode, the spectrum F_{p}^× simple; ⟨Dv, w⟩ = ⟨v, D⁻¹w⟩ on three random pairs, D not symmetric, D + D⁻¹ symmetric; the spectrum real and the modes isotropic (⟨x^k, x^k⟩ = 0 for k ≠ 0, π, −1 there); the readout minus the eigenvalue; the half-turn negates it",
-              ok_i and ok_ii and ok_sym and ok_iii and ok_iv and ok_v, f"g={g}, π={pi_}: eigenvalues g^k = {spec[:6]}…, labels −g^k = {[(-s) % p for s in spec[:6]]}…")
+        check("A19", f"the drive theorem on F_{p}: D x^k = g^k x^k for every mode, the spectrum F_{p}^× simple; ⟨Dv, w⟩ = ⟨v, D⁻¹w⟩ on three random pairs, D not symmetric, D + D⁻¹ symmetric; the spectrum real and the modes isotropic (⟨x^k, x^k⟩ = 0 for k ≠ 0, π, −1 there); at x = g^m the mode of count k reads g^(km)",
+              ok_i and ok_ii and ok_sym and ok_iii and ok_iv, f"g={g}, π={pi_}: eigenvalues g^k = {spec[:6]}…")
 
-    # A20 the energy domain is a circle (Rem. cayley; row B14), on the shells in full: w = z/(1 − z) carries the critical line
-    # {Tr z = 1} into the unit circle U_{p+1} = {N(w) = 1}, the centre 2⁻¹ to 1, injectively, missing −1 alone (the line's
-    # point at infinity); the conjugation becomes the inversion, w(z^p) = w(z)^{−1}; the drive about the centre, read on the
-    # circle, fixes 1 and is no rotation: its orbit through the modes has p−1 points, while a rotation w ↦ uw by a point u of
-    # U_{p+1} agrees with it on no mode set; the exponents a_k of the modes on a generator of U_{p+1} negate under k ↦ k + π
-    # (the conjugation is the inversion), so no affine function of k fits them (an affine a_k would take at most two values)
-    for p in SHELLS:
-        g, nu = generator(p), nonresidue(p); n_ = p - 1; inv2 = (p + 1) // 2; pi_ = n_ // 2
-        one, mone = (1, 0), (p - 1, 0)
-        inv = lambda z: zpow(z, p * p - 2, nu, p)                                   # z^{−1} in F_{p²}
-        cayley = lambda z: mul(z, inv(((1 - z[0]) % p, (-z[1]) % p)), nu, p)      # w = z · (1 − z)^{−1}
-        line = [(inv2, b) for b in range(p)]
-        ws = [cayley(z) for z in line]
-        circle = {z for z in ((a, b) for a in range(p) for b in range(p)) if norm(z, nu, p) == 1}
-        ok_circle = len(circle) == p + 1 and all(w in circle for w in ws) and len(set(ws)) == p and cayley((inv2, 0)) == one and mone not in ws
-        ok_conj = all(cayley(frob(z, p)) == inv(cayley(z)) == frob(cayley(z), p) for z in line)
-        dil = lambda z: (inv2, (g * z[1]) % p)                                        # 2⁻¹ + g(z − 2⁻¹) on the line
-        orbit = {cayley(z) for z in line if z[1] != 0}
-        ok_fix = cayley(dil((inv2, 0))) == one and len(orbit) == n_ and orbit == set(ws) - {one}
-        rotations = [u for u in circle if all(cayley(dil(z)) == mul(u, cayley(z), nu, p) for z in line if z[1] != 0)]
-        ok_rot = rotations == []
-        u = next(w for w in sorted(circle) if all(zpow(w, j, nu, p) != one for j in range(1, p + 1)))   # a generator of U_{p+1}
-        log_u = {zpow(u, j, nu, p): j for j in range(p + 1)}
-        a = [log_u[ws[(-pow(g, k, p)) % p]] for k in range(n_)]                     # the mode k sits at b = −g^k
-        ok_neg = all((a[(k + pi_) % n_] + a[k]) % (p + 1) == 0 for k in range(n_))
-        alpha, beta = (a[1] - a[0]) % (p + 1), a[0]                                   # the one affine candidate, from k = 0, 1
-        affine_fails = [k for k in range(n_) if a[k] != (alpha * k + beta) % (p + 1)]
-        ok_aff = len(set(a)) == n_ and affine_fails != []
-        # 20:B14 (p20095)
-        check("A20", f"the energy domain is a circle on F_{p}: z/(1 − z) carries the {p} points of the critical line injectively into U_{p + 1} ({p + 1} points), the centre to 1, −1 not hit; the conjugation becomes the inversion; the drive fixes 1 and is no rotation of the circle; the modes' exponents on a generator of U_{p + 1} negate under k ↦ k + π and fit no affine function of k",
-              ok_circle and ok_conj and ok_fix and ok_rot and ok_neg and ok_aff, f"ν={nu}: the modes at the circle points {[ws[b] for b in range(1, 4)]}…; rotations matching the drive: {len(rotations)}; exponents {a[:6]}…, the affine fit from k = 0, 1 fails at k = {affine_fails[:3]}…")
-    figure_plane()
 
 # ======================================================================================================================
-# block B — the chart [chart]: the de-framing limit of the half-turn, the exhibit (Obs. exhibit; row F9) on the windows of the
-# laboratory Subjects, the pair agreement, and the labels read in the cycle's own scale coordinate (Section order; row O9).
-# Nothing here is a shell operation: the window's prime-power labels n ≤ H are read with the chart's weight Λ(n), the taper
-# 1 − log n/log H, the scale n^{−1/2} and the height γ, and the intensity is |Σ Λ(n)(1 − log n/log H) n^{−1/2−iγ}|² on a grid of
-# step 0.02. A window's five peaks are the five tallest peaks on the range 10 to 36 of the height; its resolution is 2π/log H.
-def block_B():
-    """Block B — the chart: 10 checks, all [chart]."""
-    print("\n== block B: the chart ==")
-    # B3 the de-framing limit of the half-turn (Prop. critical; row B8): 2⁻¹/p = (2κ+1)/p → ½ from above, in rationals
-    vals = [(p, Fraction(2 * ((p - 1) // 4) + 1, p)) for p in [13, 53, 101, 409, 1009, 10009]]
-    ok = all(v > Fraction(1, 2) for _, v in vals) and all(vals[i][1] > vals[i + 1][1] for i in range(len(vals) - 1)) \
-         and abs(vals[-1][1] - Fraction(1, 2)) < Fraction(1, 1000)
-    check("B3", "de-framing limit (2κ+1)/p → ½ from above", ok, "  ".join(f"{p}: {float(v):.5f}" for p, v in vals), kind="[chart]")
-    # B5 the exhibit (Obs. exhibit; row F9): the windows of depth 13, 39 and 173 — the windows of F_173, F_1549 and F_30089 —
-    # put their five peaks at the first five classical heights within the window's resolution; the peaks to one decimal
-    stated = {13: [14.5, 20.5, 25.7, 29.0, 34.9], 39: [14.2, 20.8, 25.4, 30.0, 33.5], 173: [14.2, 20.9, 25.1, 30.2, 33.2]}
-    labels = {13: 9, 39: 19, 173: 54}
-    got = {}
-    for H in stated:
-        n, _ = mangoldt(H)
-        pk = five_peaks(H)
-        got[H] = [round(x, 1) for x in pk]
-        ok = (len(n) == labels[H] and got[H] == stated[H] and all(abs(x - z) < resolution(H) for x, z in zip(pk, HEIGHTS[:5]))
-              and all(abs(x - z) <= 0.05 + 1e-9 for x, z in zip(got[H], stated[H])))
-        # 20:F9 (p20089)
-        check("B5", f"the exhibit, window of depth {H} ({labels[H]} prime-power labels): its five peaks {stated[H]} at the first five heights {[round(z, 1) for z in HEIGHTS[:5]]} within the resolution 2π/log {H} = {resolution(H):.1f}",
-              ok, f"peaks {got[H]}", kind="[chart]")
-    # B6 the pair agreement (row F9): the heights read from a Subject's window and from its Carrier's window agree within the
-    # Subject's resolution — on (173, 30089) the Carrier's five peaks lie 0.3, 0.4, 0.5, 1.1, 1.7 from the Subject's, against
-    # 2.4; on (1549, 2408561) they lie 0.0, 0.2, 0.3, 0.4, 0.4 apart, against 1.7; the Subject window of (13, 233), of depth 3,
-    # holds two prime-power labels, the taper leaves one, and the intensity has no peak
-    stated = {(173, 30089): [0.3, 0.4, 0.5, 1.1, 1.7], (1549, 2408561): [0.0, 0.2, 0.3, 0.4, 0.4]}
-    for (p, Om), d in stated.items():
-        Hp, HO = math.isqrt(p), math.isqrt(Om)
-        sub, car = five_peaks(Hp), five_peaks(HO)
-        dist = [round(abs(a - b), 1) for a, b in zip(sub, car)]
-        ok = dist == d and all(x < resolution(Hp) for x in dist)
-        check("B6", f"pair agreement on ({p}, {Om}): the Carrier's window {HO} reads its five peaks {d} from the Subject's window {Hp}, within the Subject's resolution {resolution(Hp):.1f}",
-              ok, f"Subject {[round(x, 1) for x in sub]}, Carrier {[round(x, 1) for x in car]}, distances {dist}", kind="[chart]")
-    n13, _ = mangoldt(math.isqrt(13))
-    e3 = energy(3, np.arange(10, 36, 0.02))
-    check("B6", "the pair (13, 233): the Subject's window, of depth 3, holds two prime-power labels, the taper leaves one, and the intensity is flat: no height", len(n13) == 2 and e3.max() - e3.min() < 1e-9,
-          f"labels {[int(x) for x in n13]}; the intensity on [10, 36] varies by {e3.max() - e3.min():.1e}", kind="[chart]")
-    # B8 the cycle's own scale coordinate (Section order; row O9): read in the discrete logarithm λ_p, the window's prime-power
-    # labels load the nontrivial modes like a random sum — on F_1549 the largest loading |Σ_{n∈P} e^{2πi k λ(n)/(p−1)}|² is 108
-    # against a mean of 19 (exactly |P| − |P|(|P|−1)/(p−2)) and a random-sum maximum of about |P| log(p−1) = 140 — and no mode
-    # stands out
-    stated = {173: (30, 9, 46), 1549: (108, 19, 140), 30089: (431, 54, 557)}
-    for p in stated:
-        n_ = p - 1; H = math.isqrt(p); P = [int(n) for n in mangoldt(H)[0]]
-        lam = dlog_table(p, generator(p))
-        ph = np.array([lam[n] for n in P])
-        ks = np.arange(1, n_)
-        load = np.abs(np.exp(2j * np.pi * np.outer(ks, ph) / n_).sum(axis=1)) ** 2
-        mx, mean, rnd = load.max(), load.mean(), len(P) * math.log(n_)
-        got = (round(mx), round(mean), round(rnd))
-        ok = got == stated[p] and mx < rnd and abs(mean - (len(P) - len(P) * (len(P) - 1) / (p - 2))) < 1e-6
-        check("B8", f"F_{p}: the {len(P)} prime-power labels of the window read in the discrete logarithm load the {n_ - 1} nontrivial modes at most {stated[p][0]}, mean {stated[p][1]}, a random-sum maximum about {stated[p][2]}: no mode stands out",
-              ok, f"(max, mean, random max) = ({mx:.1f}, {mean:.1f}, {rnd:.0f})", kind="[chart]")
+# block D — the prime vector in the chart [chart]
+# The spectrum of a window against the classical heights (rows D13, D14, D15), and the count of a window from its dual with its bound (rows D16, D17).
+# ======================================================================================================================
+def block_D():
+    """Block D — the prime vector in the chart: 4 floating-point readings, two against the classical heights, with the control over the subsets of the window of depth 13, and the count of a window from its dual with its bound, computed in the chart tier (the depth 10⁶ takes about 15 s)."""
+    ok, detail = CR.window_reading()
+    ok2, detail2 = CR.subset_control()
+    ok, detail = ok and ok2, detail + "; " + detail2
+    # 20:D14 (p20113)
+    check("D14", "the window's primes show the heights [chart]: on the windows of depth 13, 39, 173 and 1551 the prime vector with its mean removed sums to 0, E(−t) = E(t), and the five tallest peaks of E on 10 ≤ t ≤ 36 lie within 0.18, 0.21, 0.27 and 0.21 of the first five heights; of the 4095 pairs of complementary subsets of the 13 labels, read the same way, the primes' pair alone lies within 0.18, the closest of all, the next at 0.26; 13 pairs have fewer than five maxima on the range",
+            ok, detail, kind="[approx]")
+    ok, detail = CR.deep_reading()
+    # 20:D15 (p20114)
+    check("D15", "the deep window [chart]: a label reads with the modulus n^σ and E(t) ≤ Σ|λ(n) − λ̄| n^σ; with the von Mangoldt weight at depth 10⁶ the ten tallest peaks on 10 ≤ t ≤ 52 lie within 0.045 of the first ten heights",
+            ok, detail, kind="[approx]")
+    ok, detail = CR.emergence_reading()
+    # 20:D16 (p20116)
+    check("D16", "the count of a window from its dual [chart]: on the window of depth 39, the twelve primes of the Subject 1549, at the half-integers 2.5 to 38.5 and the heights 35, 78 and 202, the count C_T lies within 0.38, 0.21 and 0.11 of π(x), the count of the primes; Riemann's formula with the 5, 20 and 80 zeros of positive height below the same heights lies within 0.48, 0.22 and 0.15 of it, and the two lie within 0.14, 0.10 and 0.10 of each other; at the twelve prime labels each reads π(x) − 1/2, the middle of the step, within its own bound, and at the label 23 and the height 78 the two differ by 0.106",
+            ok, detail, kind="[approx]")
+    ok, detail = CR.bound_reading()
+    # 20:D17 (p20117)
+    check("D17", "the bound of the count [chart]: on the windows of depth 13 and 39, at the half-integers and the heights 35, 67, 78 and 202, for the prime vector and for the indicator vector of all the labels, and at the quarter positions for a signed vector on the labels of depth 39, the count C_T lies within B(x)/T of the count of the vector below x, with B(x) = (1/π) Σ |w(n)| √(x/n)/|log(x/n)|; on the window of depth 39 the prime vector has B(x) ≤ 33.14 at the half-integers, so the bound is at most 0.95, 0.43 and 0.17 at the heights 35, 78 and 202 and below one half from the height 67 on, and the nearest integer to the count at the height 67 is π(x)",
+            ok, detail, kind="[approx]")
+
 
 # ======================================================================================================================
-# block C — the chart at depth [chart]: the window of depth 10⁶ (the window of a shell with p > 10¹²) and the first
-# ten heights; the figure fig_primespec from the same arrays (about 20 s).
-def block_C():
-    """Block C — the chart at depth: 1 check [chart]; the figure fig_primespec."""
-    print("\n== block C: the chart at depth ==")
-    # C1 the depth 10⁶ (row F9): the ten tallest peaks on the range 10 to 52 are the first ten heights, each within 0.05
-    t = time.time()
-    pk = sorted(g for g, _ in peaks(10 ** 6, 10, 52, step=0.01)[:10])
-    dev = [abs(x - z) for x, z in zip(pk, HEIGHTS)]
-    check("C1", f"the window of depth 10⁶: its ten tallest peaks on the range 10 to 52 are the first ten heights, each within 0.05",
-          len(pk) == 10 and max(dev) < 0.05, f"peaks {[round(x, 2) for x in pk]}; max deviation {max(dev):.3f}; {time.time() - t:.0f} s", kind="[chart]")
-    figure_primespec()
+# blocks G and X: the count readout and the classical statements (20:G2, G3, G5–G7, G9, G10, G12–G14, X1–X3; the revision of
+# 21 November 2026, the critical circle's rows G13 and G14 on 22 November), on the laboratory pairs (13, 233), (173, 30089), (1549, 2408561). One check per row. A check is the
+# conjunction of the theorems of the row's Lean cell (lean/FrcCore/Theme/Count.lean and Theme/Circle.lean, and the horizon theme's zero-slot and
+# half), each computed by the count section's function of the same name and held once per pair in count_facts.
+# A statement with a generator runs on every generator of 13 and 173 and on the least three of 1549 (the cardinal modes on
+# the least one). A statement without a generator runs on the Carrier's chart too: in full on 233, and on 30089 and 2408561
+# in full or on the ranges that count_facts names.
+def conic_count(p, kap):
+    """Under X = 2ρ − 1 and Y = 2a the circle's relation a² = ρ(1 − ρ) is the conic X² + Y² = 1. Its count is the classical
+    one the paper cites, with no Lean declaration: p − 1 points on the shell. Two have Y = 0, at ρ = 0 and ρ = 1. The others
+    come in pairs ±Y, one pair for each of the 2κ − 1 zeros ρ ≠ 0, 1 with ρ(1 − ρ) a square."""
+    roots, h = {}, pow(2, p - 2, p)
+    for y in range(p): roots.setdefault(y * y % p, []).append(y)
+    pts = [(x, y) for x in range(p) for y in roots.get((1 - x * x) % p, [])]
+    zeros = {(x + 1) * h % p for x, y in pts if y}
+    squares = {y * y % p for y in range(1, p)}
+    return (len(pts) == p - 1 and sorted((x + 1) * h % p for x, y in pts if y == 0) == [0, 1]
+            and all(((y * h) ** 2 - (x + 1) * h * (1 - (x + 1) * h)) % p == 0 for x, y in pts)
+            and len(pts) - 2 == 2 * len(zeros) and len(zeros) == 2 * kap - 1
+            and zeros == {r for r in range(2, p) if r * (1 - r) % p in squares})
+
+
+@lru_cache(maxsize=None)
+def count_facts(p, Om):
+    """The count theme's statements on the pair (p, Ω): theorem name -> verdict; with them the generators and the vector pairs read."""
+    kap, S = (p - 1) // 4, (Om - 1) // 4
+    gs = CT.generators(p) if p < 1000 else CT.generators(p)[:3]
+    P = CT.gram_table(p)
+    if p < 1000: vecs = [(("delta", y), CT.delta(p, y)) for y in range(1, p)]                # every indicator
+    else: vecs = [(("delta", y), CT.delta(p, y)) for y in (1, 2, 3, 2 * kap, 2 * kap + 1, p - 2, p - 1)] + [(("sequence", s), CT.fixed_sequence(p, s)) for s in (1, 2, 3)]
+    pairs = [(a, b) for a in vecs for b in vecs]
+    near = [0, 1, 2, S, 2 * S, 2 * S + 1, Om - 2, Om - 1]                                    # the Carrier's residues tried where the full range is out of reach
+    affine = None if Om < 1000 else [(a, b) for a in near for b in near]
+    return {
+        "generators": len(gs), "pairs": len(pairs),
+        "zero_slot": P[0] == p - 1 and all(P[k] == 0 for k in range(1, p - 1)),
+        "half_inverse": 2 * (2 * kap + 1) % p == 1 and (2 * kap + 1 + 2 * kap) % p == 0 and 2 * (2 * S + 1) % Om == 1 and (2 * S + 1 + 2 * S) % Om == 0,
+        "half_unique": CT.half_unique(p, kap) and CT.half_unique(Om, S),
+        "count_conjugate": CT.count_conjugate(p) and CT.count_conjugate(Om),
+        "count_adjoint": CT.count_adjoint(p, P, direct=p < 100) and (p < 100 or CT.gram_rows(p, P, (1, 2, 2 * kap, p - 2))),
+        "count_adjoint_vector": CT.count_adjoint_vector(p, pairs),
+        "half_forced": CT.half_forced(p) and CT.half_forced(Om),
+        "count_run": CT.count_run(p, list(range(6)) + [p - 2, p - 1, p, 2 * p + 3]) and CT.count_run(Om, [0, 1, 2, Om - 1], None if Om < 10 ** 5 else near),
+        "count_run_only": CT.count_run_only(p, [0, 1, 2] if p > 1000 else [0, 1, 2, 3, 7]) and (Om > 1000 or CT.count_run_only(Om, [0, 1, 2])),
+        "zero_count": all(CT.zero_count(p, kap, g) for g in gs),
+        "zeros_fill": CT.zeros_fill(p) and (CT.zeros_fill(Om) if Om < 10 ** 5 else CT.zeros_fill_ends(Om)),
+        "zero_conjugate": all(CT.zero_conjugate(p, kap, g) for g in gs),
+        "constant_frequency": all((-CT.frequency(p, kap, CT.quarter_turn(p, kap, g), 0)) % p not in {CT.frequency(p, kap, CT.quarter_turn(p, kap, g), k) for k in range(p - 1)} for g in gs),
+        "generator_skew": all(CT.generator_skew(p, kap, g, P) for g in gs),
+        "centre_mode": all(CT.centre_mode(p, kap, g) for g in gs),
+        "pair_invariant": all(CT.pair_invariant(p, kap, g) for g in gs),
+        "energy_order": CT.energy_order(p, kap),
+        "cardinal_modes": all(CT.cardinal_modes(p, kap, g) for g in (gs if p < 1000 else gs[:1])),
+        "cardinal_zeros": CT.cardinal_zeros(p, kap) and CT.cardinal_zeros(Om, S),
+        "carrier_centre": CT.carrier_centre(p, kap) and CT.carrier_centre(Om, S),
+        "origin_unit_symmetry": CT.origin_unit_symmetry(p) and CT.origin_unit_symmetry(Om, affine),
+        "zero_shared": CT.zero_shared(p, Om),
+        "circle_pair": all(CT.circle_pair(p, g) for g in gs),
+        "circle_frequency": all(CT.circle_frequency(p, kap, g) for g in gs),
+        "circle_meridians": all(CT.circle_meridians(p, kap, g) for g in gs),
+        "circle_point": all(CT.circle_point(p, g) for g in gs),
+        "circle_count": all(CT.circle_count(p, kap, g) for g in gs),
+        "circle_counts": all(CT.circle_counts(p, kap, g) for g in gs),
+        "circle_conic": conic_count(p, kap),
+        "circle_place": CT.circle_place(p),
+        "circle_place_cycle": all(CT.circle_place_cycle(p, kap, g) for g in gs),
+        "circle_place_even": all(CT.circle_place_even(p, kap, g) for g in gs),
+        "circle_quarter_turn": all(CT.circle_quarter_turn(p, kap, g) for g in gs),
+        "circle_phase": all(CT.circle_phase(p, g) for g in (gs if p < 1000 else gs[:1])),
+        "circle_parallels": all(CT.circle_parallels(p, kap, g) for g in (gs if p < 1000 else gs[:1])),
+        "circle_place_phase": all(CT.circle_place_phase(p, g) for g in gs),
+        "circle_quarter_closes": CT.circle_quarter_closes(p),
+    }
+
+
+def block_G():
+    """Block G — the count readout: 30 exact checks, ten rows on the three laboratory pairs."""
+    print("\n== block G: the count readout ==")
+    for p, Om in PAIRS:
+        f = count_facts(p, Om); kap, S = (p - 1) // 4, (Om - 1) // 4
+        read = f"{f['generators']} generators" if p < 1000 else f"the least {f['generators']} generators"
+        # 20:G2 (p20097)
+        check("G2", f"the count operator on F_{p}: a count k ≥ 1 and its conjugate add to −1, on the chart of F_{Om} too; (k + m + 1)⟨x^k, x^m⟩ = 0 for every mode k ≥ 1 and every mode m; ⟨Nv, w⟩ + ⟨v, Nw⟩ + ⟨v, w⟩ = −c₀d₀ on {f['pairs']} pairs of vectors",
+                f["count_conjugate"] and f["count_adjoint"] and f["count_adjoint_vector"],
+                "every pair of indicators of a residue" if p < 1000 else "seven indicators and three fixed sequences, every pair")
+        # 20:G3 (p20098)
+        check("G3", f"the half is forced on F_{p}: N + c is skew on the nonconstant modes exactly when 2c ≡ 1, for every residue c, on the chart of F_{Om} too; the run of counts from m(p − 1) asks for 2c ≡ 2m + 1, and so does the run one above; a run from any other start has no such c",
+                f["half_forced"] and f["count_run"] and f["count_run_only"], f"2⁻¹ = {2 * kap + 1}; every start of a run for m = 0, 1, 2" + ("" if p > 1000 else ", 3, 7"))
+        # 20:G5 (p20100)
+        check("G5", f"the generator H = −i(N + 2⁻¹) on F_{p}: (γ_k + γ_m)⟨x^k, x^m⟩ = 0 unless both modes are constant; the conjugate of a nonconstant mode has the frequency −γ_k, and −γ_0 is the frequency of no mode",
+                f["generator_skew"] and f["zero_conjugate"] and f["constant_frequency"], read)
+        # 20:G6 (p20101)
+        check("G6", f"the zeros on F_{p}: 2⁻¹ + iγ_k = k + 1; the zeros of the nonconstant modes are the residues other than 0 and 1, on the chart of F_{Om} too; the conjugate mode has the zero 1 − ρ_k; x ↦ 1 − x is the one affine map besides the identity that keeps the pair of origin and unit",
+                f["zero_count"] and f["zeros_fill"] and f["zero_conjugate"] and f["origin_unit_symmetry"], f"{read}; every affine map of F_{p}")
+        # 20:G7 (p20102)
+        check("G7", f"the centre on F_{p}: the mode of count π = {2 * kap} is its own conjugate; its zero is 2⁻¹ = 2κ + 1 = −π = {2 * kap + 1}, the one residue with 2x ≡ 1 and the one fixed point of x ↦ 1 − x; its frequency is 0 and no other mode's; ρ(1 − ρ) = 2⁻² + γ² = −k(k + 1) for a count and its conjugate",
+                f["centre_mode"] and f["pair_invariant"] and f["half_inverse"] and f["half_unique"] and f["origin_unit_symmetry"], read)
+        # 20:G9 (p20104)
+        check("G9", f"the order of the zeros on F_{p}: the counts π − j and π + j are conjugate, with their zeros at 2⁻¹ − j and 2⁻¹ + j; the smaller count π − j falls from π = {2 * kap} to 1 as j runs from 0 to π − 1",
+                f["energy_order"] and f["pair_invariant"], f"{2 * kap} pairs")
+        # 20:G10 (p20105)
+        check("G10", f"the cardinal modes on F_{p}: a mode has all its values in {{1, i, −1, −i}} exactly when its count is 0, κ, 2κ or 3κ; these modes stand at 1, 3·4⁻¹, 2⁻¹, 4⁻¹ = 1, {kap + 1}, {2 * kap + 1}, {3 * kap + 1}",
+                f["cardinal_modes"] and f["cardinal_zeros"], read if p < 1000 else "the least generator")
+        # 20:G12 (p20107)
+        check("G12", f"the chart of the Carrier F_{Om}, with no generator: the conjugate of a count 1 ≤ k ≤ Ω − 2 is Ω − 1 − k and the two add to −1; the centre of the zeros is 2⁻¹ = 2S + 1 = −G = {2 * S + 1}, with G = 2S; the counts 0, S, 2S, 3S stand at 1, 3·4⁻¹, 2⁻¹, 4⁻¹; every zero of the Subject F_{p} is the same integer there, and its constant mode stands at 1 on both",
+                f["carrier_centre"] and f["cardinal_zeros"] and f["count_conjugate"] and f["zero_shared"], f"S = {S}; every count 1 … Ω − 2 of the chart")
+        # 20:G13 (p20111)
+        check("G13", f"the critical circle on F_{p}: a point a·g^m of the sphere and its mirror a·g^−m carry a zero and the zero of the conjugate mode exactly when a(g^m + g^−m) = 1, with a² = ρ(1 − ρ), and the two zeros differ by 2iγ_k; one point at each phase below π but κ, none on the momentum meridian or at the origin, the centre 2⁻¹ = {2 * kap + 1} alone on the prime meridian; a zero has a point exactly when ρ(1 − ρ) is a square, and then one: {2 * kap - 1} points with distinct zeros; under X = 2ρ − 1, Y = 2a the relation a² = ρ(1 − ρ) is the conic X² + Y² = 1, with its classical count of {p - 1} points, two at a = 0 and the others in pairs ±a on those zeros; the points with a(g^m + g^−m) = d are the circle with its positions multiplied by d, and the sum 0 is the momentum meridian with the origin; the half-turn of the drive gives the points with the sum −1, which carry the counts, π = {2 * kap} on the prime meridian, and share no point with the circle",
+                f["circle_pair"] and f["circle_frequency"] and f["circle_meridians"] and f["circle_point"] and f["circle_count"] and f["circle_counts"] and f["circle_conic"] and f["circle_phase"] and f["circle_parallels"],
+                read if p < 1000 else f"{read}; the parallels and the phases on the least generator")
+        # 20:G14 (p20115)
+        check("G14", f"the zeros on the latitude cycle of F_{p}: every zero is z/(1 + z) for one z = ρ/(1 − ρ) ≠ 0, −1; with z = g^j the {p - 2} zeros stand at the places j ≠ π of C_{p - 1}, the centre at the place 0 and the conjugate zero at −j; the point of the sphere on the circle at the phase m is the even place 2m; 2ρ − 1 = (z − 1)/(z + 1); the map x ↦ (x − 1)/(x + 1) has the square x ↦ −1/x, four steps return x where they are defined, and its fixed points are ±i",
+                f["circle_place"] and f["circle_place_cycle"] and f["circle_place_even"] and f["circle_quarter_turn"] and f["circle_place_phase"] and f["circle_quarter_closes"], read)
+
+
+def block_X():
+    """Block X — the classical statements read on the shell: 9 exact checks, three rows on the three laboratory pairs."""
+    print("\n== block X: the classical statements ==")
+    for p, Om in PAIRS:
+        f = count_facts(p, Om); kap, S = (p - 1) // 4, (Om - 1) // 4
+        # 20:X1 (p20108)
+        check("X1", f"the ½ of the critical line on the pair ({p}, {Om}): the centre of the zeros is the inverse of 2, which is −π = {2 * kap + 1} on the Subject and −G = {2 * S + 1} on the Carrier's chart",
+                f["half_inverse"] and f["carrier_centre"], f"π = {2 * kap}, G = {2 * S}")
+        # 20:X2 (p20109)
+        check("X2", f"the pole and the functional equation on F_{p}: Z_p vanishes at every nonconstant mode and is −1 at the constant mode, which stands at 1 and is no zero; a mode and its conjugate have the zeros ρ and 1 − ρ, and x ↦ 1 − x is the symmetry of origin and unit",
+                f["zero_slot"] and f["zero_conjugate"] and f["origin_unit_symmetry"])
+        # 20:X3 (p20110)
+        check("X3", f"the ½ of the dilation generator on F_{p}: the shift that makes the count operator skew on the nonconstant modes is forced, 2c ≡ 1; with H = −i(N + 2⁻¹), (γ_k + γ_m)⟨x^k, x^m⟩ = 0 unless both modes are constant",
+                f["half_forced"] and f["generator_skew"], f"2⁻¹ = {2 * kap + 1}")
+
 
 if __name__ == "__main__":
     want = [a.upper() for a in sys.argv[1:]] or sorted(BLOCK)

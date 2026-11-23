@@ -80,7 +80,7 @@ BLOCK = {"A": "the registrations of the unitary frame: the norm-one cycle withou
          "B": "the Casimirs of the frame, the window rational b₀ and the two rationals of the one-loop coefficient",
          "C": "the drive exponent: every registered scale is one power of the drive",
          "D": "the tension's coefficient: the single-plaquette coefficient to order ϑ⁷ with rational coefficients, the series' window — the corollary of A9 on the orders the frame fixes — and the frame's window through degree 2p − 1 with the Frobenius tensor that ends it by degree 4p − 3; the multiplicities of the frame (A9) are decided with the window",
-         "E": "the chart: the LEP colour factors, the one-loop run between laboratory scales, the lattice anchors, the chart's cells",
+         "E": "the chart: the LEP colour factors, the one-loop run between laboratory scales, the lattice anchors, the chart's cell",
          "F": "the minimal wrap: the adjoint plaquette coefficient is the square of the fundamental one up to the factor 9/8, with the ratio computed to order ϑ⁴; the chart's operator family against the three lattice determinations; the chart's tension ratio; the operator form's radial ratio against the lattice and the nucleon",
          "G": "the two routes of the former task T01: the short-range term collapses at the declared coupling and is the cutoff's number with the running one; the plaquette channel's series gives 4.8 or more where its orders agree",
          "H": "the spectral amplitude of a plaquette: its finite properties and singular values, its values and moments on the 216 elements of the instance, the transfer tally, the step of one plaquette with the frame's mean, with its exact spectrum 2/3, 1/6, 0, −1/3 and its annihilated trivial channel, and on the Subjects the amplitude's character expansion w = χ₁ + χ₂ − χ₃ from the generic character table with the tally's three eigenvalues 1/(q²−q+1), 1/(q³+1), −1/((q+1)²(q−1)), the tally of the ring and the gap 1/(q+1) of the transfer tally"}
@@ -442,7 +442,7 @@ def block_D():
     ok = s3 == [Q(0), Q(1, 3), Q(1, 6), Q(0), Q(-5, 72), Q(-1, 24), Q(7, 720), Q(59, 2160)] and sum(s3) == Q(23, 54)
     # 46:C7 (p46016)
     R.check("D1", "the tension's coefficient to order ϑ⁷: the fundamental plaquette coefficient of SU(3) in the stiffness of the connection (A16), "
-            "c₃(ϑ) = ϑ/3 + ϑ²/6 + 0·ϑ³ − 5ϑ⁴/72 − ϑ⁵/24 + 7ϑ⁶/720 + 59ϑ⁷/2160 modulo ϑ⁸, summing to 23/54 at channel unity, every coefficient a rational built from "
+            "c₃(ϑ) = ϑ/3 + ϑ²/6 + 0·ϑ³ − 5ϑ⁴/72 − ϑ⁵/24 + 7ϑ⁶/720 + 59ϑ⁷/2160 modulo ϑ⁸, summing to 23/54 at ϑ = 1, every coefficient a rational built from "
             "the singlet multiplicities of the tensor powers of the triplet (the constant terms of the Weyl character polynomial; the "
             "frame's own multiplicities agree in the degrees that enter through ϑ³, block F); 27-fields C7's β/18 + β²/216, in Wilson's coupling β = 6ϑ, continued", ok,
             ", ".join(str(c) for c in s3[1:]))
@@ -557,7 +557,7 @@ def block_D():
 
     # D6 the series on the shell (D119, 12 November 2026; the push on T25). d_R c_R = Σ h_k ϑ^k/k! with integers h_k, whose recursion
     #    h_k = n_k − Σ_j C(k, j) d_j h_{k−j} has no division and runs on residues at every order. In the series' arithmetic every f with
-    #    f(0) = 0 has f^p = 0 on the shell, so a reading that respects sums and products sends ϑ to 0; three finite expressions at channel unity differ
+    #    f(0) = 0 has f^p = 0 on the shell, so a reading that respects sums and products sends ϑ to 0; three finite expressions at the stiffness 1 differ
     c3, c8 = Y.c1_series(3, 25), Y.c_adj_series(24)
     h3 = [3 * Y._fact(k) * c for k, c in enumerate(c3)]; h8 = [8 * Y._fact(k) * c for k, c in enumerate(c8)]
     ok = all(x.denominator == 1 for x in h3 + h8) and h3[:8] == [0, 1, 1, 0, -5, -15, 21, 413] and h8[:8] == [0, 0, 2, 4, 0, -40, -148, 252]
@@ -578,7 +578,7 @@ def block_D():
             "0, 0, 2, 4, 0, −40, −148, 252 for c₈); on the Subject 13 the recursion h_k = n_k − Σ_j C(k, j) d_j h_{k−j}, which has no division, gives on "
             "residues the residues of these integers through the order 24, beyond ϑ¹³, and the 13th power of 3c₃ under the binomial convolution has no "
             "nonzero coefficient; the factor Π_{i ≤ p} C(ik, k) of the p-th power of ϑ^k/k!, k = 1, 2, 3, reads 0 on 13, 173 and 1549 with its last "
-            "term C(kp, k), and for k = 1 it is p!, so a reading that respects sums and products sends ϑ to 0; at channel unity on 13 the sum of the terms of c₃ below ϑ¹³ reads 6, the quotient of the two truncated sums reads 4 and "
+            "term C(kp, k), and for k = 1 it is p!, so a reading that respects sums and products sends ϑ to 0; at the stiffness 1 on 13 the sum of the terms of c₃ below ϑ¹³ reads 6, the quotient of the two truncated sums reads 4 and "
             "the sum 23/54 of the computed terms through ϑ⁷ reads 5", ok,
             f"h(c₃) {[int(x) for x in h3[:8]]}, h(c₈) {[int(x) for x in h8[:8]]}; on 13 h_k reads {s['h']}; sums {sums}")
 
@@ -625,21 +625,25 @@ def block_E():
             "readings of λ_gb² = Δ²c³/(ħσ), are 13.7(4), 13.2(7) and 11.59(14)", ok,
             f"m(0⁺⁺)/√σ = {CY.fmt(v)}({CY.fmt(dv, 2)}), {CY.fmt(r)}({CY.fmt(dr, 2)}), {CY.fmt(d)}({CY.fmt(dd)}); ladder {CY.fmt(t)}, {CY.fmt(pm)}", kind="CHART")
 
-    # E4 the chart's cells (D111 and D112, 12 November 2026). The one-loop law is a law of powers: with W = e^{−8π²ϑ} a scale lower by gⁿ
-    #    has W higher by g^{b₀n}, and W = e^{−8π²} at channel unity. The stiffness is the chart's logarithm of 1/W in the unit 8π²
+    # E4 the chart's cell (D111 and D112, 12 November 2026; the stiffness of channel unity by the task T4 of 21 November 2026). The one-loop
+    #    law is a law of powers: with W = e^{−8π²ϑ} a scale lower by gⁿ has W higher by g^{b₀n}. At channel unity ϑ = 1/24 (46:A16), so
+    #    W = e^{−π²/3}; one step of the drive lowers the stiffness by more than 1/24, so the chart has no cell below channel unity
     cc = CY.chart_cells(); th = {n: Q(repr(x)) for n, x in cc["cells"].items()}; step = Q(repr(cc["step"]))
-    ok = cc["law"] and th[0] == 1 and Q("0.09656") < step < Q("0.09658") and th[10] > 0 > 1 - 11 * step
-    ok &= Q("10.35") < Q(repr(cc["steps_to_one"])) < Q("10.36") and all(Y.drive_exponents_unique(p)[1] == 2 for p, _ in LAB)
-    ok &= all((11 * n) < p - 1 for n in range(11) for p in (173, 1549)) and (11 * 10) // 12 == 9           # the exponent b₀n within one window, and its wraps on 13
-    size = {n: Q(repr(cc["size"][n])) for n in (9, 0)}
-    ok &= abs(size[9] - Q("1.75")) < Q("0.005") and abs(size[0] - Q("0.92")) < Q("0.005")
+    ok = cc["law"] and CY.UNITY == Q(1, 24) and abs(th[0] - Q(1, 24)) < Q(1, 10 ** 15) and Q("0.09656") < step < Q("0.09658")
+    ok &= step > CY.UNITY and th[1] < 0 and all(Y.drive_exponents_unique(p)[1] == 2 for p, _ in LAB)   # no cell below channel unity; the drive g = 2
+    ok &= Q("0.0372") < Q(repr(cc["W"])) < Q("0.0374") and Q("0.431") < Q(repr(cc["steps_to_one"])) < Q("0.432")
+    ok &= Q("0.741") < Q(repr(cc["scale_ratio"])) < Q("0.742") and abs(Q(repr(cc["scale_ratio"])) - Q(repr(cc["scale_closed"]))) < Q(1, 10 ** 12)
+    ok &= cc["u"] == Q(140458562483, 9906778275840) and Q("0.01417") < cc["u"] < Q("0.01418")
+    size = Q(repr(cc["size"]))
+    ok &= abs(size - Q("2.063")) < Q("0.0005")
     # 46:B6 (p46070)
-    R.check("E4", "[chart] the chart's cells: the one-loop law is a law of powers, W(w₂)/W(w₁) = (w₁/w₂)^{b₀} with W = e^{−8π²ϑ}, so a scale n "
-            "drive steps below channel unity has W higher by g^{b₀n} and the stiffness ϑ_n = 1 − n b₀ ln g/8π², the chart's logarithm of 1/W in the "
-            "unit 8π²; with b₀ = 11 and the drive g = 2 of the three laboratory Subjects one step is 0.0966, the stiffness is positive through n = 10 "
-            "and W reaches 1 after 10.36 steps; the exponent 11n stays within one window of the drive on 173 and 1549 and wraps on 13; the cell's "
-            "size a√σ on the computed terms is 1.75 at n = 9 and 0.92 at channel unity", ok,
-            f"step {CY.fmt(step, 5)}; ϑ_n: " + ", ".join(f"{n}: {CY.fmt(th[n], 4)}" for n in sorted(th)) + f"; a√σ {CY.fmt(size[9])}, {CY.fmt(size[0])}", kind="CHART")
+    R.check("E4", "[chart] the chart's cell: the one-loop law is a law of powers, W(w₂)/W(w₁) = (w₁/w₂)^{b₀} with W = e^{−8π²ϑ}, so a scale n "
+            "drive steps below channel unity has W higher by g^{b₀n} and the stiffness ϑ_n = 1/24 − n b₀ ln g/8π², the chart's logarithm of 1/W in the "
+            "unit 8π²; at channel unity ϑ = 1/24 and W = e^{−π²/3} = 0.037; with b₀ = 11 and the drive g = 2 of the three laboratory Subjects one step "
+            "is 0.0966, more than 1/24, so the chart has no cell below channel unity; W reaches 1 after 0.43 steps, at the ratio of scales "
+            "e^{−π²/33} = 0.74; the computed terms of c₃ sum to u = 140458562483/9906778275840 = 0.0142 and the cell's size a√σ is 2.06", ok,
+            f"step {CY.fmt(step, 5)}; ϑ₀ {CY.fmt(th[0], 5)}, ϑ₁ {CY.fmt(th[1], 5)}; W {CY.fmt(Q(repr(cc['W'])), 4)}; steps to W = 1: "
+            f"{CY.fmt(Q(repr(cc['steps_to_one'])), 4)}; a√σ {CY.fmt(size)}", kind="CHART")
 
 
 # ------------------------------------------------------------------------------------------------------------
@@ -695,16 +699,14 @@ def block_F():
             f"E = {[CY.fmt(e, 4) for e in spec]}, family {[CY.fmt(row['E0']) for row in f['table']]}, E₁/E₀ = {CY.fmt(r1, 4)} vs "
             f"{CY.fmt(rl)} ± {CY.fmt(drl)}, ϰ_eff(a=1) {', '.join(CY.fmt(ke[k][1]) for k in ('via_Tc', 'via_r0', 'direct'))}", kind="CHART")
 
-    # F3 the chart's tension ratio: σ₈/σ₃ = ln c₈ / ln c₃ at the chart's cells n = 10 to 5 (46:B6) lies between 1.97 and 2.03 and
-    #    equals 2 at no cell — the chart reading of F1's exact ratio; the logarithm belongs here, not in F1
-    vals = {n: Q(repr(v)) for n, v in CY.adjoint_ratio_table().items()}                  # the chart tier forms the floats
-    ok = all(Q("1.97") < v < Q("2.03") for v in vals.values()) and all(v != 2 for v in vals.values())
-    ok &= vals[9] < vals[10] and vals[9] < vals[8] < vals[7] < vals[6] < vals[5]
-    ok &= all(abs(vals[n] - Q(x)) < Q("0.0005") for n, x in ((10, "1.976"), (9, "1.976"), (8, "1.982"), (7, "1.992"), (6, "2.006"), (5, "2.022")))
-    R.check("F3", "[chart] the chart's tension ratio σ₈/σ₃ = ln c₈(ϑ)/ln c₃(ϑ), read on the computed terms at the chart's cells "
-            "n = 10, 9, 8, 7, 6, 5 (B6): 1.976, 1.976, 1.982, 1.992, 2.006, 2.022 — within 2 % of two fundamental wraps and equal to "
-            "2 at none of the six; the chart's reading of F1's ratio (9/8)(1 − ϑ/3 + …)", ok,
-            ", ".join(f"n={n}: {CY.fmt(v, 4)}" for n, v in vals.items()), kind="CHART")
+    # F3 the chart's tension ratio: σ₈/σ₃ = ln c₈ / ln c₃ at channel unity, ϑ = 1/24 (46:B6), lies between 1.97 and 1.98 and
+    #    is not 2 — the chart reading of F1's exact ratio; the logarithm belongs here, not in F1
+    val = Q(repr(CY.adjoint_ratio_unity()))                                              # the chart tier forms the float
+    ok = Q("1.97") < val < Q("1.98") and val != 2 and abs(val - Q("1.976")) < Q("0.0005")
+    R.check("F3", "[chart] the chart's tension ratio σ₈/σ₃ = ln c₈(ϑ)/ln c₃(ϑ), read on the computed terms at channel unity, "
+            "ϑ = 1/24 (B6): 1.976 — within 2 % of two fundamental wraps and not 2; the chart's reading of F1's ratio "
+            "(9/8)(1 − ϑ/3 + …)", ok,
+            f"channel unity: {CY.fmt(val, 4)}", kind="CHART")
 
     # F4 the radial ratio of the operator form (T03 resolved, 8 November 2026): E₁/E₀ and E₂/E₀ of a|p| + ϰr are free of a and ϰ (the dilation
     #    symmetry); E₁/E₀ = 1.49 against the lattice 0⁺⁺*/0⁺⁺ = 1.54(11) (Morningstar–Peardon, r₀ masses) and the nucleon's N(1440)/N(939) = 1.53;
@@ -802,28 +804,18 @@ def block_G():
             ", ".join(f"r_c={rc}: " + (f"E₀={CY.fmt(v[0])} (C={CY.fmt(v[1])})" if v else "none") for rc, v in fp.items()), kind="CHART")
 
     # G2 route (b): the 0⁺⁺ channel of the strong-coupling expansion (the plaquette, the closed fundamental loop) with Münster's series
-    #    to u⁷ and the tension at leading order, with u the sum of the computed terms of the frame's c₃ through ϑ⁷ at the chart's cells (46:B6). The orders 3, 5, 7 agree within 1 %
-    #    at the cells n = 9 to 6; at n = 3 and at n = 2 one order alone lies in the lattice bracket 3.4–3.7; at channel unity the terms sum to u = 23/54
-    pc = CY.plaquette_channel(); T = pc["table"]; U = pc["unity"]
-    v = {n: {o: Q(repr(T[n]["orders"][o])) for o in (3, 5, 7)} for n in T}; sp = {n: Q(repr(T[n]["spread"])) / v[n][7] for n in T}
-    u = {n: Q(repr(T[n]["u"])) for n in T}
-    ok = all(abs(u[n] - Q(x)) < Q("0.00005") for n, x in ((9, "0.0465"), (8, "0.0842"), (7, "0.1246"), (6, "0.1671"), (4, "0.2553"), (3, "0.2994"), (2, "0.3425")))                              # the cells' u to four decimals
-    ok &= Q("6.85") < v[9][7] < Q("6.95") and Q("6.15") < v[8][7] < Q("6.25") and Q("5.55") < v[7][7] < Q("5.65") and Q("5.05") < v[6][7] < Q("5.15")
-    ok &= all(sp[n] < Q("0.01") for n in (9, 8, 7, 6)) and all(min(v[n].values()) > Q("3.7") for n in (9, 8, 7, 6, 4))
-    inb = lambda x: Q("3.4") < x < Q("3.7")
-    ok &= [inb(v[3][o]) for o in (3, 5, 7)] == [False, True, False] and [inb(v[2][o]) for o in (3, 5, 7)] == [True, False, False]
-    ok &= all(abs(v[4][o] - Q(x)) < Q("0.05") for o, x in ((3, "4.3"), (5, "4.2"), (7, "4.2")))
-    ok &= all(abs(v[n][o] - Q(x)) < Q("0.005") for n, o, x in ((3, 3, "3.98"), (3, 5, "3.60"), (3, 7, "3.79"), (2, 3, "3.64"), (2, 5, "2.87"), (2, 7, "3.36")))
-    vu = {o: Q(repr(U["orders"][o])) for o in (3, 5, 7)}
-    ok &= U["exact"] == Q(23, 54) and all(abs(vu[o] - Q(x)) < Q("0.005") for o, x in ((3, "2.95"), (5, "0.45"), (7, "2.82")))
+    #    to u⁷ and the tension at leading order, with u the sum of the computed terms of the frame's c₃ through ϑ⁷ at channel unity,
+    #    ϑ = 1/24 (46:B6): u = 0.0142, deep inside the series, and the orders 3, 5, 7 agree to six digits at 8.23, above the lattice bracket 3.4–3.7
+    pc = CY.plaquette_channel()
+    v = {o: Q(repr(pc["orders"][o])) for o in (3, 5, 7)}; sp = Q(repr(pc["spread"])) / v[7]
+    ok = pc["exact"] == Q(140458562483, 9906778275840) and abs(Q(repr(pc["u"])) - Q("0.0142")) < Q("0.00005")
+    ok &= all(Q("8.23") < v[o] < Q("8.24") for o in (3, 5, 7)) and all(abs(v[o] - Q("8.2323")) < Q("0.00005") for o in (3, 5, 7))
+    ok &= sp < Q(1, 10 ** 6) and min(v.values()) > Q("3.7")                              # the orders agree within 10⁻⁶; all above the lattice bracket
     # 46:C11 (p46071)
-    R.check("G2", "[chart] the plaquette channel of the chart fails: with the imported 0⁺⁺ series to u⁷ and u the sum of the computed terms of the frame's c₃ through ϑ⁷ at the chart's cells (B6), "
-            "m/√σ = 6.9, 6.2, 5.6, 5.1 at the cells n = 9, 8, 7, 6 (u = 0.046, 0.084, 0.125, 0.167), the orders 3, 5, 7 agreeing within 1 %; at n = 4 "
-            "the orders give 4.3, 4.2, 4.2, above the lattice bracket 3.4–3.7; at n = 3 (u = 0.299) they give 3.98, 3.60, 3.79 and at n = 2 they give "
-            "3.64, 2.87, 3.36, one order alone inside and not the same one; at channel unity the terms sum to u = 23/54 and the orders give 2.95, 0.45, 2.82: the series' tail "
-            "is not bounded", ok,
-            ", ".join(f"n={n}: u={CY.fmt(u[n], 4)}, {CY.fmt(v[n][7])} (spread {CY.fmt(sp[n] * 100, 1)} %)" for n in sorted(T, reverse=True))
-            + f"; channel unity by order: {CY.fmt(vu[3])}, {CY.fmt(vu[5])}, {CY.fmt(vu[7])}", kind="CHART")
+    R.check("G2", "[chart] the plaquette channel of the chart fails: with the imported 0⁺⁺ series to u⁷ and u the sum of the computed terms of the frame's c₃ through ϑ⁷ at channel unity, "
+            "ϑ = 1/24 (B6), u = 140458562483/9906778275840 = 0.0142 and m/√σ = 8.23 at the orders 3, 5 and 7, which agree within 10⁻⁶ of the seventh, "
+            "against the lattice bracket 3.4–3.7", ok,
+            f"u = {CY.fmt(Q(repr(pc['u'])), 5)}; by order: {CY.fmt(v[3], 4)}, {CY.fmt(v[5], 4)}, {CY.fmt(v[7], 4)}; relative spread {CY.fmt(sp * 10 ** 8, 1)} × 10⁻⁸", kind="CHART")
 
 
 # ------------------------------------------------------------------------------------------------------------

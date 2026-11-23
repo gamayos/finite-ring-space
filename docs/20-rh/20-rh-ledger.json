@@ -3,7 +3,7 @@
  "tree": "20-rh-20260608",
  "title": "Riemann Hypothesis over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0768.v1",
- "generated": "21 November 2026",
+ "generated": "22 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -11,57 +11,57 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The framed substrate: the Carrier $\\F_\\Omega$, $\\Omega=4\\dS+1$, the Subject $\\Fp(\\chron;0,1,\\gen)$, $\\p=4\\kp+1$, with $\\pi=2\\kp$, $\\im=\\gen^{-\\kp}$, $\\E=\\gen^{\\,\\im}$; the four cardinal domains, labelled in the Carrier register (space, time, momentum, energy) and read by the Subject as counts (wavenumber, frequency); the orbital sphere with its latitudes, the shell Fourier transform on the phase cycle; time as scale-dilation.",
+     "predicate": "The framed substrate: the Carrier's chart $\\F_\\Omega$, $\\Omega=4\\dS+1$, the Subject $\\Fp(\\chron;0,1,\\gen)$, $\\p=4\\kp+1$, with $\\pi=2\\kp$, $\\im=\\gen^{-\\kp}$, $\\E=\\gen^{\\,\\im}$; the four cardinal domains, labelled in the Carrier register and read by the Subject as counts; the orbital sphere with its latitudes; the shell Fourier transform on the phase cycle; time as the drive.",
      "tag": "I",
-     "source": "\\citep{akhtman2025algebra,akhtman2026geometry,akhtman2026fourier,akhtman2025lorentzian,akhtman2026dimensions}",
+     "source": "\\citep{akhtman2025algebra,akhtman2026fourier,akhtman2026spacetime,akhtman2026dimensions}",
      "key": "p20001",
      "name": null
     },
     {
      "label": "A2",
-     "predicate": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$. A theorem of the master ledger (00:A2), proved in the core, cited as the closure's first premise (F7).",
+     "predicate": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$.",
      "tag": "T",
-     "source": "00:A2; \\S\\ref{sec:closure}\\newline \\pywit{rh}{p00004}{A2}, \\leanwit{FrcCore}{p00004}{A2} \\lean{FRC.Foundation.registered\\_finite, FRC.Foundation.no\\_unlimited\\_supply, FRC.Foundation.agent\\_bound}",
+     "source": "\\S\\ref{sec:closure}\\newline \\pywit{rh}{p00004}{A2}, \\leanwit{FrcCore}{p00004}{A2} \\lean{FRC.Foundation.registered\\_finite, FRC.Foundation.no\\_unlimited\\_supply, FRC.Foundation.agent\\_bound}",
      "key": "p00004",
      "name": "finitude"
     },
     {
      "label": "A3",
-     "predicate": "Completeness: whatever exists is registered within, the registration of any totality being onto its registered Universe, so there is no outside and no host; two totalities each registered whole within the other have one count. A theorem of the master ledger (00:A3), proved in the core; cited by Definition~\\ref{def:existence} (D12).",
+     "predicate": "Completeness: whatever exists is registered within, the registration of any totality being onto its registered Universe, so there is no outside and no host; two totalities each registered whole within the other have one count.",
      "tag": "T",
-     "source": "00:A3; \\S\\ref{sec:noline}\\newline \\pywit{rh}{p00003}{A3}, \\leanwit{FrcCore}{p00003}{A3} \\lean{FRC.Foundation.registration\\_onto, FRC.Foundation.mutual\\_registration\\_count}",
+     "source": "\\S\\ref{sec:closure}\\newline \\pywit{rh}{p00003}{A3}, \\leanwit{FrcCore}{p00003}{A3} \\lean{FRC.Foundation.registration\\_onto, FRC.Foundation.mutual\\_registration\\_count}",
      "key": "p00003",
      "name": "completeness_of_totality"
     },
     {
      "label": "A4",
-     "predicate": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each. A theorem of the master ledger (00:A4), proved in the core, cited as the closure's second premise (F7).",
+     "predicate": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each.",
      "tag": "T",
-     "source": "00:A4; \\S\\ref{sec:closure}\\newline \\pywit{rh}{p00197}{A4}, \\leanwit{FrcCore}{p00197}{A4} \\lean{FRC.Foundation.observer\\_part, FRC.Foundation.complete\\_needs\\_whole, FRC.Foundation.translation\\_torsor}",
+     "source": "\\S\\ref{sec:closure}\\newline \\pywit{rh}{p00197}{A4}, \\leanwit{FrcCore}{p00197}{A4} \\lean{FRC.Foundation.observer\\_part, FRC.Foundation.complete\\_needs\\_whole, FRC.Foundation.translation\\_torsor}",
      "key": "p00197",
      "name": "incompleteness_of_observation"
     },
     {
      "label": "A5",
-     "predicate": "The Carrier: a timeless torsor of $\\Omega$ elements, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0$, $1$, $-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Omega$, never the Carrier (00:A6). A finite holographic substrate: capacity $\\dS$ the horizon entropy, $\\Omega=4\\dS+1$ its exact content (00:A7, 10:A2), the Subject embedded under $\\p^{2}<\\Omega$.",
+     "predicate": "The Carrier: a timeless torsor of $\\Omega$ elements, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0$, $1$, $-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Omega$, never the Carrier. Its capacity $\\dS$ is the horizon entropy, $\\Omega=4\\dS+1$, and a Subject is embedded under $\\p^{2}<\\Omega$.",
      "tag": "D",
-     "source": "00:A6; Rem.~\\ref{rem:holographic}, Def.~\\ref{def:shells}",
+     "source": "Rem.~\\ref{rem:holographic}, Def.~\\ref{def:shells}",
      "key": "p00008",
      "name": null
     },
     {
      "label": "A6",
-     "predicate": "The classical apparatus, as the chart of Theorem~\\ref{thm:hp}: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$, the logarithmic derivative $-\\zeta'/\\zeta(s)=\\sum\\Lambda(n)n^{-s}$, the Riemann--Siegel length $\\sqrt{T/2\\pi}$ as the scale of the window; the first zeros to twelve digits from the primes alone by harmonic inversion; the dilation generator $-i(x\\partial_x+\\tfrac12)$ of Berry--Keating with the heights as its generalised eigenvalues [chart].",
+     "predicate": "The classical apparatus, as the chart of the shell: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$; the line $\\Real s=\\half$, the pole at $1$ and the symmetry $s\\mapsto1-s$; the dilation generator $-i(x\\partial_x+\\tfrac12)$ of Berry--Keating; the first eighty heights of the zeros of $\\zeta$; Riemann's formula for the count $\\pi(x)$ of the primes and Perron's formula; the Riemann spectrum of the primes [chart].",
      "tag": "I",
-     "source": "\\citep{edwards1974,titchmarsh1986,main1998,berry1999}; \\S\\ref{sec:dual}, \\S\\ref{sec:drive}, \\S\\ref{sec:order}",
+     "source": "\\citep{riemann1859,edwards1974,titchmarsh1986,berry1999,mazurstein2016,odlyzkotables}; \\S\\ref{sec:dual}, \\S\\ref{sec:drive}, \\S\\ref{sec:exhibit}, \\S\\ref{sec:discussion}",
      "key": "p20003",
      "name": null
     },
     {
      "label": "A8",
-     "predicate": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with the functional equation and no Euler product, has marks off the line, the first pair at $0.8085171825+85.6993484854\\,i$ and $1-\\bar s$ [chart]. The paper claims nothing about the marks of a chart function.",
+     "predicate": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with the functional equation and no Euler product, has marks off the line, the first pair at $0.8085171825+85.6993484854\\,i$ and $1-\\bar s$ [chart].",
      "tag": "I",
-     "source": "\\citep{davenport1936,titchmarsh1986}; \\S\\ref{sec:noline}",
+     "source": "\\citep{davenport1936,titchmarsh1986}; \\S\\ref{sec:discussion}",
      "key": "p20078",
      "name": null
     }
@@ -69,11 +69,11 @@
   },
   {
    "letter": "B",
-   "title": "The shell: the frames, the primes, the modes, the critical line and its circle",
+   "title": "The shell: the frames, the primes, the zeta of the shell",
    "rows": [
     {
      "label": "B1",
-     "predicate": "The two frames and their alignment: the Carrier chart $\\F_\\Omega$, held by no embedded observer, and the Subject $\\Fp$, $\\p^{2}<\\Omega$; shared: the unit and the rules of arithmetic, agreeing on the window, the Subject's residues the Carrier's below $\\p$, whence the half-turn and the conjugation; not shared: generator, $\\eta$; the cycles share the core $Q_4$, not a clock ($12\\nmid232$).",
+     "predicate": "The two frames and their alignment: the Carrier's chart $\\F_\\Omega$, held by no embedded observer, and the Subject $\\Fp$, $\\p^{2}<\\Omega$. Shared: the origin, the unit and the rules of arithmetic, so the labels of the window and the counts of the modes. Not shared: the generator and the drive; the cycles admit no projection ($12\\nmid232$).",
      "tag": "D",
      "source": "Def.~\\ref{def:shells}, Def.~\\ref{def:alignment}\\newline \\pywit{rh}{p20008}{B1}, \\leanwit{FrcCore}{p20008}{B1}, \\leanwit{FrcMathlib}{p20008}{B1} \\lean{Rh.lab\\_pair, Rh.no\\_cycle\\_projection, FRC.Rh.lab\\_pair}",
      "key": "p20008",
@@ -81,15 +81,15 @@
     },
     {
      "label": "B2",
-     "predicate": "Frame coincidence below the horizon: for $n\\le\\sqrt \\p$ the residue $n$ is the same integer in $\\Fp$ and $\\F_\\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\\Pi_\\p$ are the primes to $\\sqrt \\p$. A prime is a label on the prime meridian below the horizon.",
+     "predicate": "Frame coincidence within the observational horizon $\\q$, the largest label with $\\q^{2}<\\p$: for $n\\le\\q$ the residue $n$ is the same integer in $\\Fp$ and $\\F_\\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\\Pi_\\p$ are the primes to $\\q$. A prime is a label on the prime meridian within the horizon.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:coincide}\\newline \\pywit{rh}{p20009}{B2}, \\leanwit{FrcCore}{p20009}{B2}, \\leanwit{FrcMathlib}{p20009}{B2} \\lean{Rh.window\\_readback, Rh.prime\\_iff\\_window\\_irreducible, Rh.sqrt\\_sq\\_lt\\_prime, FRC.Rh.window\\_readback, FRC.Rh.factorisation\\_iff, FRC.Rh.frame\\_coincidence}",
+     "source": "Prop.~\\ref{prop:coincide}\\newline \\pywit{rh}{p20009}{B2}, \\leanwit{FrcCore}{p20009}{B2}, \\leanwit{FrcMathlib}{p20009}{B2} \\lean{Rh.window\\_readback, Rh.prime\\_iff\\_window\\_irreducible, FRC.Rh.window\\_readback, FRC.Rh.factorisation\\_iff, FRC.Rh.frame\\_coincidence}",
      "key": "p20009",
      "name": "frame_coincidence_below_horizon"
     },
     {
      "label": "B3",
-     "predicate": "The prime vector: the $\\Fp$-valued indicator of the prime powers in the window, one residue per nonzero residue; the chart's weight $\\log\\ell$ of the same labels is the von Mangoldt function [chart], and $\\psi(x)$ its cumulative reading; the horizon is a property of the reading, not of the vector.",
+     "predicate": "The prime vector: the $\\Fp$-valued indicator of the primes in the window, one residue per nonzero residue; the chart weights the prime powers of a deep window by $\\log\\ell$, the von Mangoldt function [chart]; the horizon is a property of the reading, not of the vector.",
      "tag": "D",
      "source": "Def.~\\ref{def:vector}",
      "key": "p20010",
@@ -97,43 +97,11 @@
     },
     {
      "label": "B4",
-     "predicate": "Zero-slot: $Z_\\Omega(k)=\\sum_{x\\in\\Fx{\\Omega}}x^{k}$ vanishes on every nonterminal exponent $1\\le k\\le\\Omega-2$ and equals $-1$ on the full cycle; the nonterminal slots are the universal mode basis, and a zero of the shell is a mode read on the critical line.",
+     "predicate": "Zero-slot: on every shell $Z_\\p(k)=\\sum_{x\\in\\Fx{\\p}}x^{k}$ vanishes at every nonconstant mode, $1\\le k\\le\\p-2$, and equals $-1$ at the constant mode; it uses no generator and holds on the chart of the Carrier.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:zeroslot}, Def.~\\ref{def:zero}\\newline \\pywit{rh}{p20011}{B4}, \\leanwit{FrcCore}{p20011}{B4}, \\leanwit{FrcMathlib}{p20011}{B4} \\lean{Rh.zero\\_slot, FRC.Rh.zero\\_slot}",
+     "source": "Thm.~\\ref{thm:zeroslot}\\newline \\pywit{rh}{p20011}{B4}, \\leanwit{FrcCore}{p20011}{B4}, \\leanwit{FrcMathlib}{p20011}{B4} \\lean{Rh.zero\\_slot, FRC.Rh.zero\\_slot}",
      "key": "p20011",
      "name": "zero_slot_vanishing"
-    },
-    {
-     "label": "B5",
-     "predicate": "Slot complementarity: $\\Phi(k)=-\\gen^{\\,k}$ bijects the nontrivial spectral slots onto the nonterminal additive slots $\\Fx{\\Omega}\\setminus\\{-1\\}$, the two removed points being $\\mu_2$, the intertwiner the half-cycle element.",
-     "tag": "T",
-     "source": "Thm.~\\ref{thm:compl}\\newline \\pywit{rh}{p20012}{B5}, \\leanwit{FrcCore}{p20012}{B5}, \\leanwit{FrcMathlib}{p20012}{B5} \\lean{Rh.slot\\_complementarity, FRC.Rh.slot\\_complementarity}",
-     "key": "p20012",
-     "name": "slot_complementarity_bijection"
-    },
-    {
-     "label": "B6",
-     "predicate": "Hermitian phase calculus on $K=\\F_{\\p^{2}}$: norm and trace $\\Fp$-valued, the phase circle $U_{\\p+1}$ of order $\\p+1$ with Frobenius as inversion, the quarter-turn $\\im$ Frobenius-fixed and off the circle ($\\Nm(\\im)=-1$), the trace-zero $\\eta$ with $\\eta^{2}=\\nu$ a nonsquare, $\\Tr(a+b\\eta)=2a$, $\\Nm=a^{2}-\\nu b^{2}$.",
-     "tag": "T",
-     "source": "Lem.~\\ref{lem:K}\\newline \\pywit{rh}{p20013}{B6}, \\leanwit{FrcCore}{p20013}{B6}, \\leanwit{FrcMathlib}{p20013}{B6} \\lean{Rh.phase\\_circle, Rh.frobenius\\_eq\\_star, Rh.norm\\_eq\\_pow, Rh.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.mul\\_conj, FRC.Rh.Ext.conj\\_inv\\_of\\_norm\\_one, FRC.Rh.Ext.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.circle13}",
-     "key": "p20013",
-     "name": "hermitian_phase_calculus"
-    },
-    {
-     "label": "B8",
-     "predicate": "The finite critical line: the half-turn $2^{-1}=2\\kp+1=-\\pi$; $\\Tr(z)=1$ exactly on the $\\p$ points $z=2^{-1}+\\eta\\theta$, with norm $\\Nm(z)=\\tfrac14-\\nu\\theta^{2}$; de-framed, $2^{-1}/\\p=(2\\kp+1)/\\p\\to\\half$ from above [chart].",
-     "tag": "T",
-     "source": "Prop.~\\ref{prop:critical}\\newline \\pywit{rh}{p20015}{B8}, \\leanwit{FrcCore}{p20015}{B8}, \\leanwit{FrcMathlib}{p20015}{B8} \\lean{Rh.half\\_turn, Rh.trace\\_eq\\_one\\_iff, Rh.card\\_critical\\_line, Rh.norm\\_on\\_line, FRC.Rh.half\\_inverse, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.norm\\_on\\_line}",
-     "key": "p20015",
-     "name": "finite_critical_line"
-    },
-    {
-     "label": "B9",
-     "predicate": "The two agreement loci: among the $\\p(\\p+1)$ affine lines of $K$ exactly two are invariant under both conjugation and the half-turn, the prime meridian and the critical line (conjugation keeps $\\p+1$ lines, the half-turn the $\\p+1$ lines through $2^{-1}$); as a corollary the Klein four-group fixes pointwise $\\Fp$, $L_{1/2}$ and their meeting $\\{2^{-1}\\}$.",
-     "tag": "T",
-     "source": "Thm.~\\ref{thm:agree}\\newline \\pywit{rh}{p20016}{B9}, \\leanwit{FrcCore}{p20016}{B9}, \\leanwit{FrcMathlib}{p20016}{B9} \\lean{Rh.klein\\_four, Rh.fixed\\_frobenius, Rh.trace\\_eq\\_one\\_iff, Rh.fixed\\_half\\_turn, FRC.Rh.Ext.klein\\_four, FRC.Rh.Ext.fixed\\_conj, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.fixed\\_half\\_turn, FRC.Horizon.invariant\\_lines}",
-     "key": "p20016",
-     "name": "two_agreement_loci"
     },
     {
      "label": "B10",
@@ -142,86 +110,78 @@
      "source": "\\S\\ref{sub:frc}, Rem.~\\ref{rem:frame}\\newline \\pywit{rh}{p20017}{B10}, \\leanwit{FrcCore}{p20017}{B10}, \\leanwit{FrcMathlib}{p20017}{B10} \\lean{Rh.subject\\_constants, Rh.constants13, FRC.Rh.subject\\_constants, FRC.Rh.constants13, FRC.Shell.frame13}",
      "key": "p20017",
      "name": "subject_constants_shell"
-    },
-    {
-     "label": "B12",
-     "predicate": "The critical line is the energy domain: $k\\mapsto z_k=2^{-1}-\\eta\\gen^{k}$ bijects the frequency cycle onto the line without its centre, one orbit of the drive about the centre, $z_k\\mapsto z_{k+1}$, its labels $\\theta_k=\\gen^{k+\\pi}$ the time domain read from $-1=\\gen^{\\pi}$; the half-turn and the conjugation carry $z_k$ to $z_{k+\\pi}$, fixing the centre alone; the norm depends on $k$ alone and is even.",
-     "tag": "T",
-     "source": "Prop.~\\ref{prop:line}, Fig.~\\ref{fig:line}\\newline \\pywit{rh}{p20085}{B12}, \\leanwit{FrcCore}{p20085}{B12} \\lean{FRC.Horizon.readout\\_slot\\_index, FRC.Horizon.readout\\_on\\_line, FRC.Horizon.drive\\_on\\_line, FRC.Horizon.half\\_turn\\_negates, FRC.Horizon.reflection\\_on\\_line, FRC.Horizon.line\\_energy\\_even}",
-     "key": "p20085",
-     "name": "critical_line_energy_domain"
-    },
-    {
-     "label": "B13",
-     "predicate": "Frame coincidence on the critical line: under B1, for every label $1\\le\\theta\\le\\p-2$ the Subject's zero and the Carrier's zero at that label are one zero: the label the same integer in both frames, the line the same registered line (B9, D11), the point a nontrivial mode in both (B4, B12); the Carrier's zeros from $\\p-1$ on are not the Subject's.",
-     "tag": "T",
-     "source": "Prop.~\\ref{prop:coincideline}\\newline \\pywit{rh}{p20086}{B13}, \\leanwit{FrcCore}{p20086}{B13} \\lean{FRC.Horizon.critical\\_line, FRC.Horizon.zero\\_slot, FRC.Horizon.mode\\_at\\_label, FRC.Horizon.line\\_coincidence\\_all}",
-     "key": "p20086",
-     "name": "frame_coincidence_critical_line"
-    },
-    {
-     "label": "B14",
-     "predicate": "The energy domain is a circle: $z\\mapsto z/(1-z)$ carries the critical line (norm nonzero there) into $U_{\\p+1}$, the centre to $1$, never to $-1$, the conjugation to the inversion; injectively, the $\\p$ points filling $U_{\\p+1}$ minus $-1$, the modes $U_{\\p+1}\\setminus\\{\\pm1\\}$, the drive fixing $1$, no rotation, their exponents no affine function of $k$. The finite form of $|s/(1-s)|=1$ on $\\Real s=\\tfrac12$ [chart].",
-     "tag": "T",
-     "source": "Rem.~\\ref{rem:cayley}\\newline \\pywit{rh}{p20095}{B14}, \\leanwit{FrcCore}{p20095}{B14} \\lean{FRC.Horizon.norm\\_ne\\_zero\\_on\\_line, FRC.Horizon.cayley\\_norm\\_one, FRC.Horizon.cayley\\_centre, FRC.Horizon.cayley\\_ne\\_neg\\_one, FRC.Horizon.cayley\\_injective, FRC.Horizon.cayley\\_conj}",
-     "key": "p20095",
-     "name": "energy_domain_circle"
     }
    ]
   },
   {
    "letter": "D",
-   "title": "Definitions of the reading",
+   "title": "The chart: a mode, the spectrum of a window, the count of a window and its bound",
    "rows": [
     {
      "label": "D1",
-     "predicate": "The chart's scale [chart]: the window's labels read with the scale coordinate $\\log n$ and the weight $n^{-1/2}$ at the half-turn, the horizon $\\sqrt\\p$ the Riemann--Siegel length $\\sqrt{T/2\\pi}$ at $T=2\\pi\\p$, the half-turn $2^{-1}$ the exponent $-\\half$; the dual of a vector becomes its Dirichlet series on the line and its intensity at a height the modulus squared.",
+     "predicate": "The chart of a mode: the count of a mode is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart reads it as the exponent $-\\half+it$, with $t$ a free real variable, the height [chart]. A mode reads at a label $n$ as $n^{-1/2+it}$. With a vector's values read as labels, $0$ and $1$ for the prime vector, the dual becomes their Dirichlet polynomial [chart].",
      "tag": "D",
      "source": "Def.~\\ref{def:deframe}",
      "key": "p20025",
      "name": null
     },
     {
-     "label": "D10",
-     "predicate": "The intensity of a vector at a mode, $e_v(k)=\\hat v(k)\\hat v(-k)$, a residue summing to $-\\sum v^{2}$ (E13); the zeros of a vector are its nontrivial modes, each with its intensity; on the shell the intensity is a label with no size, in the chart the complex characters give it a size [chart].",
+     "label": "D13",
+     "predicate": "The spectrum of a window [chart]: for the labels $1,\\dots,\\q$ with real weights $\\lambda$ of mean $\\bar\\lambda$, $E(t)=\\bigl|\\sum_{n\\le\\q}(\\lambda(n)-\\bar\\lambda)\\,n^{\\sigma+it}\\bigr|$, $\\sigma$ and $t$ real. The exhibit takes the prime vector at $\\sigma=-\\half$, and the deep window the von Mangoldt weight. The five peaks of a window are the five tallest maxima of $E$ on $10\\le t\\le36$.",
      "tag": "D",
-     "source": "Def.~\\ref{def:energy}, Rem.~\\ref{rem:parseval}",
-     "key": "p20087",
+     "source": "Obs.~\\ref{obs:exhibit}",
+     "key": "p20112",
      "name": null
     },
     {
-     "label": "D11",
-     "predicate": "The registered line: a line of the framed plane is registered between Subject and Carrier when it is invariant as a set under the conjugation and the half-turn, the involutions, the same rule in both frames (B1); its labels are the shared labels, frame-exact with their products on the window (B2); a line needing $\\eta$ or $\\gen$ is one frame's.",
+     "label": "D14",
+     "predicate": "The window's primes show the heights [chart]: for every window and weight the mean-removed weights sum to $0$, and $E(-t)=E(t)$. Reading [approx]: the five peaks at depth $13$, $39$, $173$ and $1551$ lie within $0.18$, $0.21$, $0.27$ and $0.21$ of the first five heights (A6); at depth $13$ no other of the $4095$ pairs of complementary subsets lies within $0.18$.",
+     "tag": "T",
+     "source": "Obs.~\\ref{obs:exhibit}\\newline \\pywit{rh}{p20113}{D14}, \\leanwit{FrcMathlib}{p20113}{D14} \\lean{Rh.mean\\_free, Rh.spectrum\\_even}",
+     "key": "p20113",
+     "name": "window_heights"
+    },
+    {
+     "label": "D15",
+     "predicate": "The deep window [chart]: a label reads with the modulus $n^{\\sigma}$, and $E(t)\\le\\sum_{n\\le\\q}|\\lambda(n)-\\bar\\lambda|\\,n^{\\sigma}$. Reading [approx], von Mangoldt weight, depth $10^{6}$: the ten tallest peaks on $10\\le t\\le52$ lie within $0.045$ of the first ten heights (A6).",
+     "tag": "T",
+     "source": "Obs.~\\ref{obs:exhibit}\\newline \\pywit{rh}{p20114}{D15}, \\leanwit{FrcMathlib}{p20114}{D15} \\lean{Rh.mode\\_norm, Rh.spectrum\\_le}",
+     "key": "p20114",
+     "name": "deep_window"
+    },
+    {
+     "label": "D16",
+     "predicate": "The count of a window from its dual [chart] (E14): $C_T(x)=\\frac1{2\\pi}\\int_{-T}^{T}\\hat w(t)\\,x^{1/2-it}/(\\half-it)\\,dt$, $\\hat w$ the Dirichlet polynomial of the window (D1). Reading [approx], depth $39$, heights $35$, $78$, $202$, half-integers: $C_T$ within $0.38$, $0.21$, $0.11$ of $\\pi(x)$; Riemann's formula (A6) within $0.48$, $0.22$, $0.15$; the two within $0.14$, $0.10$, $0.10$. At the prime labels each reads $\\pi(x)-\\half$ within its own bound.",
      "tag": "D",
-     "source": "Def.~\\ref{def:registered}, \\S\\ref{sec:noline}",
-     "key": "p20088",
+     "source": "Obs.~\\ref{obs:emergence}\\newline \\pywit{rh}{p20116}{D16}",
+     "key": "p20116",
      "name": null
     },
     {
-     "label": "D12",
-     "predicate": "The existence of a reading: a reading by an embedded frame, a label on a line of its framed plane, exists when it is registered within the totality, the line a registered line (D11) and the label the Carrier's label too (B1); the paper's reading of Completeness and Realisation (00:A3, 00:A8), owned as a definition.",
-     "tag": "D",
-     "source": "Def.~\\ref{def:existence}, \\S\\ref{sec:noline}",
-     "key": "p20091",
-     "name": null
+     "label": "D17",
+     "predicate": "The bound of the count [chart]: for every window, every real vector $w$ on its labels, every position $x>0$ that is no label and every height $T>0$, $|C_T(x)-\\sum_{n<x}w(n)|\\le B(x)/T$ with $B(x)=\\frac1\\pi\\sum_{n\\le\\q}|w(n)|\\sqrt{x/n}/|\\log(x/n)|$ (D16). Reading [approx], prime vector, depth $39$, half-integers: $B(x)\\le33.14$, so the bound is below one half from the height $67$ on.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:countbound}\\newline \\pywit{rh}{p20117}{D17}, \\leanwit{FrcMathlib}{p20117}{D17} \\lean{Rh.step\\_bound, Rh.count\\_bound}",
+     "key": "p20117",
+     "name": "bound_of_count"
     }
    ]
   },
   {
    "letter": "E",
-   "title": "The dual and the drive: the shell theorem, the parity, the explicit formula, the spectrum",
+   "title": "The dual and the drive: the shell theorem, the parity, the explicit formula",
    "rows": [
     {
      "label": "E12",
-     "predicate": "\\textbf{The shell theorem.} On every shell, for every vector, in $\\Fp$: (i) the dual $\\hat v(k)=\\sum v(x)x^{k}$ inverts exactly, $v(y)=-\\sum\\hat v(k)y^{-k}$, the constant mode the mean term; (ii) the Parseval identity (E13); (iii) every mode on the critical line, an eigenvector of the drive (E15); (iv) the parity and (v) the explicit formula along the meridian (E14).",
+     "predicate": "\\textbf{The shell theorem.} On every shell, for every vector, in $\\Fp$: (i) the dual $\\hat v(k)=\\sum v(x)x^{k}$ inverts exactly, $v(y)=-\\sum\\hat v(k)y^{-k}$, the constant mode the mean term; (ii) the Parseval identity (E13); (iii) every mode is an eigenvector of the drive (E15), each nonconstant one with its zero at $k+1$ (G1); (iv) the parity and (v) the explicit formula along the meridian (E14).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hp}\\newline \\pywit{rh}{p20043}{E12}, \\leanwit{FrcCore}{p20043}{E12}, \\leanwit{FrcMathlib}{p20043}{E12} \\lean{Rh.chi\\_inversion, Rh.chi\\_shift, Rh.scale\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace, Rh.readout\\_on\\_line, Rh.readout\\_slot\\_index, FRC.Rh.Ext.readout\\_on\\_line, FRC.Rh.Ext.readout\\_slot\\_index, FRC.Horizon.mode\\_expansion, FRC.Horizon.inversion\\_res}",
+     "source": "Thm.~\\ref{thm:hp}\\newline \\pywit{rh}{p20043}{E12}, \\leanwit{FrcCore}{p20043}{E12}, \\leanwit{FrcMathlib}{p20043}{E12} \\lean{Rh.chi\\_inversion, Rh.chi\\_shift, Rh.scale\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace, FRC.Horizon.mode\\_expansion, FRC.Horizon.inversion\\_res}",
      "key": "p20043",
      "name": "shell_theorem"
     },
     {
      "label": "E13",
-     "predicate": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ in place of the complex norm; in the chart the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity reads $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
+     "predicate": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity reads $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
      "tag": "T",
      "source": "Thm.~\\ref{thm:hp} (ii), Rem.~\\ref{rem:parseval}\\newline \\pywit{rh}{p20044}{E13}, \\leanwit{FrcCore}{p20044}{E13}, \\leanwit{FrcMathlib}{p20044}{E13} \\lean{FRC.Horizon.parseval\\_cycle, Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion}",
      "key": "p20044",
@@ -229,7 +189,7 @@
     },
     {
      "label": "E14",
-     "predicate": "The parity and the explicit formula: (iv) $W^{2}=-J$, $F^{2}=J$, $F^{4}=1$, the half-turn $k\\mapsto k+\\pi$ on the line; (v) for every vector and every $x\\le\\p-1$, $\\sum_{y\\le x}v(y)=-\\sum_k\\hat v(k)S_k(x)$ with $S_k(x)=\\sum_{y\\le x}y^{-k}$ and $S_0(x)=x$, along the meridian, from the inversion on the residues with the self-pairing $-1$.",
+     "predicate": "The parity and the explicit formula: (iv) $W^{2}=-J$, $F^{2}=J$, $F^{4}=1$; (v) for every vector and every $x\\le\\p-1$, $\\sum_{y\\le x}v(y)=-\\sum_k\\hat v(k)S_k(x)$ with $S_k(x)=\\sum_{y\\le x}y^{-k}$ and $S_0(x)=x$, along the meridian, from the inversion on the residues with the self-pairing $-1$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:hp} (iv), (v)\\newline \\pywit{rh}{p20092}{E14}, \\leanwit{FrcCore}{p20092}{E14} \\lean{FRC.Horizon.transform\\_square, FRC.Horizon.geom\\_sum\\_unit, FRC.Horizon.inversion\\_res, FRC.Horizon.explicit\\_formula\\_meridian, FRC.Horizon.explicit\\_formula\\_cycle}",
      "key": "p20092",
@@ -237,9 +197,9 @@
     },
     {
      "label": "E15",
-     "predicate": "\\textbf{The drive theorem.} The drive $(Dv)(x)=v(\\gen x)$ permutes the residues, orthogonal for the pairing of E12 (i); its eigenvectors are the modes $x^{k}$ and their nonzero multiples, eigenvalue $\\gen^{k}$, the spectrum $\\Fx{\\p}$, simple, in $\\Fp$, the modes isotropic for $k\\ne0,\\pi$; the readout is minus the eigenvalue; the half-turn negates it; at a shared label both frames' modes have eigenvalue $-\\theta$ (B13).",
+     "predicate": "\\textbf{The drive theorem.} The drive $(Dv)(x)=v(\\gen x)$ permutes the residues and is orthogonal for the pairing of E12 (i); its eigenvectors are the modes $x^{k}$ and their nonzero multiples, eigenvalue $\\gen^{k}$, the spectrum $\\Fx{\\p}$, simple; the modes are isotropic for $k\\ne0,\\pi$; at $x=\\gen^{m}$ the mode $k$ reads $\\gen^{km}$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:drive}\\newline \\pywit{rh}{p20094}{E15}, \\leanwit{FrcCore}{p20094}{E15} \\lean{FRC.Rh.shift\\_power\\_character, FRC.Horizon.drive\\_orthogonal, FRC.Horizon.spectrum\\_simple, FRC.Horizon.readout\\_eigen, FRC.Horizon.half\\_turn\\_negates, FRC.Horizon.modes\\_isotropic}",
+     "source": "Thm.~\\ref{thm:drive}\\newline \\pywit{rh}{p20094}{E15}, \\leanwit{FrcCore}{p20094}{E15} \\lean{FRC.Rh.shift\\_power\\_character, FRC.Horizon.drive\\_orthogonal, FRC.Horizon.spectrum\\_simple, FRC.Horizon.modes\\_isotropic, FRC.Horizon.mode\\_stride}",
      "key": "p20094",
      "name": "drive_theorem"
     }
@@ -247,59 +207,163 @@
   },
   {
    "letter": "F",
-   "title": "The closure, the exhibit, no zero off the line",
+   "title": "The closure",
    "rows": [
     {
      "label": "F7",
-     "predicate": "\\textbf{The closure.} The zeros of a shell are its residues read on the critical line, and there are no others; the largest shell is the Carrier's, and ``all the zeros'' of the Carrier is one complete list, $\\Omega-2$ nontrivial modes among $\\Omega$ labels (A2); no embedded Subject holds it whole (A4): it reads below $\\sqrt\\p$, frame-exact (B2, B13).",
+     "predicate": "\\textbf{The closure.} The zeros of a shell are its residues other than $0$ and $1$, and there are no others (G6). ``All the zeros'' of the Carrier is one complete list, the $\\Omega-2$ residues of its chart other than $0$ and $1$ (A2, A3). No embedded Subject holds it whole (A4): every reading into its $\\p<\\Omega-2$ states identifies two zeros.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:closure}\\newline \\pywit{rh}{p20079}{F7}, \\leanwit{FrcCore}{p20079}{F7} \\lean{FRC.Horizon.closure, FRC.Horizon.closure\\_lab}",
+     "source": "Thm.~\\ref{thm:closure}\\newline \\pywit{rh}{p20079}{F7}, \\leanwit{FrcCore}{p20079}{F7} \\lean{FRC.Horizon.closure, FRC.Horizon.closure\\_lab, FRC.Horizon.zeros\\_fill, FRC.Horizon.zeros\\_not\\_held}",
      "key": "p20079",
      "name": "zeros_closure"
-    },
-    {
-     "label": "F9",
-     "predicate": "The exhibit [chart]: the prime-power labels of the windows of depth $13$, $39$, $173$, read along the chart's height, put their five tallest peaks on $10$ to $36$ at the first five classical heights, within $2\\pi/\\log H$; Subject and Carrier windows agree within the Subject's; at depth $10^{6}$ the ten tallest on $10$ to $52$ are the ten heights, within $0.05$.",
-     "tag": "T",
-     "source": "Obs.~\\ref{obs:exhibit}, Fig.~\\ref{fig:primespec}\\newline \\pywit{rh}{p20089}{F9}",
-     "key": "p20089",
-     "name": null
-    },
-    {
-     "label": "F10",
-     "predicate": "\\textbf{No zero off the line.} Under B1, D11, D12: the registered lines are the prime meridian and the critical line (B9); the Subject's zeros that exist are its nontrivial modes on the critical line, each the Carrier's zero at that label (B13); a point off both lines is on no registered line, and no embedded frame's reading of it exists.",
-     "tag": "T",
-     "source": "Thm.~\\ref{thm:noline}\\newline \\pywit{rh}{p20093}{F10}, \\leanwit{FrcCore}{p20093}{F10} \\lean{FRC.Horizon.invariant\\_lines, FRC.Horizon.off\\_line\\_unregistered, FRC.Horizon.line\\_coincidence\\_all, FRC.Horizon.mode\\_at\\_label, FRC.Horizon.readout\\_on\\_line}",
-     "key": "p20093",
-     "name": "no_zero_off_line"
     }
    ]
   },
   {
-   "letter": "Z",
-   "title": "Horizon: the index of a Carrier mode",
+   "letter": "G",
+   "title": "The count: the generator, the zeros, the critical circle, their order, the Carrier's chart",
    "rows": [
     {
-     "label": "Z2",
-     "predicate": "The index of a Carrier mode: the index of a mode on the Carrier's frequency cycle (B12) lies beyond every embedded window; a Subject reads the modes its labels reach, and the exact index of a Carrier mode is a value read by the totality and by no embedded part.",
-     "tag": "Ω",
-     "source": "Rem.~\\ref{rem:physical}",
-     "key": "p20060",
+     "label": "G1",
+     "predicate": "The modes and their counts: the modes are the powers $x^{k}$ on the nonzero residues, $0\\le k\\le\\p-2$, with $k$ the count and $k=0$ the constant mode. The conjugate of the mode $k\\ge1$ is $x^{-k}$, of count $\\p-1-k$. The zero of the mode $k\\ge1$ is the residue $k+1$. The constant mode stands at $1$.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:zero}",
+     "key": "p20096",
      "name": null
+    },
+    {
+     "label": "G2",
+     "predicate": "The count operator: $N$ multiplies the mode of count $k$ by $k$. A count $k\\ge1$ and its conjugate add to $-1$. For all vectors $\\langle Nv,w\\rangle+\\langle v,Nw\\rangle+\\langle v,w\\rangle=-c_0d_0$, with $c_0$, $d_0$ the constant parts. So the adjoint of $N$ is $-1-N$ on the vectors with no constant part. Rests on B4, G1.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:count}\\newline \\pywit{rh}{p20097}{G2}, \\leanwit{FrcCore}{p20097}{G2} \\lean{FRC.Horizon.count\\_conjugate, FRC.Horizon.count\\_adjoint, FRC.Horizon.count\\_adjoint\\_vector}",
+     "key": "p20097",
+     "name": "count_operator"
+    },
+    {
+     "label": "G3",
+     "predicate": "The half is forced: $N+c$ is skew on the nonconstant modes exactly when $2c\\equiv1$. In a run of $\\p-1$ consecutive counts that starts at $m(\\p-1)$ or one above, the condition holds exactly for $c=2^{-1}+m$; in every other run it holds for no $c$. Rests on G2.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:half}\\newline \\pywit{rh}{p20098}{G3}, \\leanwit{FrcCore}{p20098}{G3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.count\\_run, FRC.Horizon.count\\_run\\_only}",
+     "key": "p20098",
+     "name": "forced_half"
+    },
+    {
+     "label": "G4",
+     "predicate": "The generator and the frequency: $H=-\\im\\,(N+2^{-1})$, with $\\im$ the Subject's quarter-turn. The frequency of the mode $k$ is $\\gamma_k=-\\im\\,(k+2^{-1})$, the eigenvalue of $H$ on that mode.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:generator}",
+     "key": "p20099",
+     "name": null
+    },
+    {
+     "label": "G5",
+     "predicate": "The generator: $H$ and $\\im H=N+2^{-1}$ are skew for the pairing on the vectors with no constant part, $(\\gamma_k+\\gamma_m)\\langle x^{k},x^{m}\\rangle=0$ unless both modes are constant, and the conjugate of a nonconstant mode has the frequency $-\\gamma_k$. Rests on G2, G3, G4.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:generator}\\newline \\pywit{rh}{p20100}{G5}, \\leanwit{FrcCore}{p20100}{G5} \\lean{FRC.Horizon.generator\\_skew, FRC.Horizon.zero\\_conjugate}",
+     "key": "p20100",
+     "name": "skew_generator"
+    },
+    {
+     "label": "G6",
+     "predicate": "The zeros: the zero of the nonconstant mode $k$ is $2^{-1}+\\im\\gamma_k=k+1$. The zeros of the nonconstant modes are the residues other than $0$ and $1$, one each. The conjugate mode has the zero $1-\\rho_k$, and $\\rho\\mapsto1-\\rho$ is the one affine map besides the identity that keeps the pair of origin and unit. Rests on B4, G1, G4, G5.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:zeros}\\newline \\pywit{rh}{p20101}{G6}, \\leanwit{FrcCore}{p20101}{G6} \\lean{FRC.Horizon.zero\\_count, FRC.Horizon.zeros\\_fill, FRC.Horizon.zero\\_conjugate, FRC.Horizon.origin\\_unit\\_symmetry}",
+     "key": "p20101",
+     "name": "zeros_critical_line"
+    },
+    {
+     "label": "G7",
+     "predicate": "The centre: the mode of count $\\pi$ is its own conjugate. Its zero is $2^{-1}=2\\kp+1=-\\pi$, the one fixed point of $\\rho\\mapsto1-\\rho$. Its frequency is $0$, alone among the modes. For a conjugate pair $\\rho(1-\\rho)=2^{-2}+\\gamma^{2}=-k(k+1)$. Rests on G6.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:centre}\\newline \\pywit{rh}{p20102}{G7}, \\leanwit{FrcCore}{p20102}{G7} \\lean{FRC.Horizon.centre\\_mode, FRC.Horizon.pair\\_invariant, FRC.Rh.half\\_inverse, FRC.Horizon.half\\_unique, FRC.Horizon.origin\\_unit\\_symmetry}",
+     "key": "p20102",
+     "name": "centre_of_zeros"
+    },
+    {
+     "label": "G8",
+     "predicate": "The energy of a mode and its conjugate is the smaller of their two counts, $c=\\min(k,\\p-1-k)$. The mode of count $\\pi$ has the energy $\\pi$.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:pairenergy}",
+     "key": "p20103",
+     "name": null
+    },
+    {
+     "label": "G9",
+     "predicate": "The order of the zeros: the pair of energy $\\pi-j$ has its zeros at $2^{-1}\\pm j$, for $j=0,\\dots,\\pi-1$. From the centre outward the energy falls by one at each step. Rests on G7, G8.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:order}\\newline \\pywit{rh}{p20104}{G9}, \\leanwit{FrcCore}{p20104}{G9} \\lean{FRC.Horizon.energy\\_order, FRC.Horizon.pair\\_invariant}",
+     "key": "p20104",
+     "name": "order_of_zeros"
+    },
+    {
+     "label": "G10",
+     "predicate": "The cardinal domains: a mode takes all its values in $\\{1,\\im,-1,-\\im\\}$ exactly when its count is $0$, $\\kp$, $2\\kp$ or $3\\kp$. These modes stand at $1$, $3\\cdot4^{-1}$, $2^{-1}$ and $4^{-1}$. So the energy latitude $L_{\\kp+1}$ is the time latitude $L_1$ one quarter-turn of the count on. Rests on G1.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:cardinal}\\newline \\pywit{rh}{p20105}{G10}, \\leanwit{FrcCore}{p20105}{G10} \\lean{FRC.Horizon.cardinal\\_modes, FRC.Horizon.cardinal\\_zeros}",
+     "key": "p20105",
+     "name": "cardinal_domains"
+    },
+    {
+     "label": "G11",
+     "predicate": "The registered domain: a domain of a shell is registered between Subject and Carrier when it is defined from the origin and the unit alone. The positions on the prime meridian and the counts with their zeros are registered. The scales and the phases need the drive and are the Subject's own.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:registered}",
+     "key": "p20106",
+     "name": null
+    },
+    {
+     "label": "G12",
+     "predicate": "The Carrier's chart, with $\\Omega$, $\\dS$, $G=2\\dS$ for $\\p$, $\\kp$, $\\pi$: the conjugate of a count $1\\le k\\le\\Omega-2$ is $\\Omega-1-k$, the centre of the zeros is $2^{-1}=2\\dS+1=-G$, and the counts $0$, $\\dS$, $2\\dS$, $3\\dS$ stand at $1$, $3\\cdot4^{-1}$, $2^{-1}$, $4^{-1}$. A Subject's nonconstant mode has the same count and zero there. Rests on G2, G6, G10, G11.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:carrier}\\newline \\pywit{rh}{p20107}{G12}, \\leanwit{FrcCore}{p20107}{G12} \\lean{FRC.Horizon.carrier\\_centre, FRC.Horizon.cardinal\\_zeros, FRC.Horizon.count\\_conjugate, FRC.Horizon.zero\\_shared}",
+     "key": "p20107",
+     "name": "carrier_chart"
+    },
+    {
+     "label": "G13",
+     "predicate": "The critical circle $\\mathcal C$, the points $(a,m)$ of the orbital sphere with $a\\,(\\gen^{m}+\\gen^{-m})=1$: a point and its mirror carry a zero and its conjugate exactly there, with $a^{2}=\\rho(1-\\rho)$. $\\mathcal C$ has one point at each phase $m<\\pi$ but $\\kp$, and the centre alone on the prime meridian. Its half-turn, the points with $a\\,(\\gen^{m}+\\gen^{-m})=-1$, carries the counts, disjoint from it.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:circle}\\newline \\pywit{rh}{p20111}{G13}, \\leanwit{FrcCore}{p20111}{G13} \\lean{FRC.Horizon.circle\\_pair, FRC.Horizon.circle\\_frequency, FRC.Horizon.circle\\_meridians, FRC.Horizon.circle\\_point, FRC.Horizon.circle\\_count, FRC.Horizon.circle\\_counts, FRC.Horizon.circle\\_phase, FRC.Horizon.circle\\_parallels}",
+     "key": "p20111",
+     "name": "critical_circle"
+    },
+    {
+     "label": "G14",
+     "predicate": "The places of the zeros: every zero is $z/(1+z)$ for one $z=\\rho/(1-\\rho)\\ne0,-1$. With $z=\\gen^{j}$ the zeros stand on the latitude cycle $C_{\\p-1}$, one at each place but $j=\\pi$: the centre at $0$, the conjugate at $-j$, the points of the circle at the even places $j=2m$. $2\\rho-1=(z-1)/(z+1)$, and $x\\mapsto(x-1)/(x+1)$ has the square $x\\mapsto-1/x$ and fixes $\\pm\\im$.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:circle}\\newline \\pywit{rh}{p20115}{G14}, \\leanwit{FrcCore}{p20115}{G14} \\lean{FRC.Horizon.circle\\_place, FRC.Horizon.circle\\_place\\_cycle, FRC.Horizon.circle\\_place\\_even, FRC.Horizon.circle\\_quarter\\_turn, FRC.Horizon.circle\\_place\\_phase, FRC.Horizon.circle\\_quarter\\_closes}",
+     "key": "p20115",
+     "name": "zeros_on_latitude_cycle"
     }
    ]
   },
   {
-   "letter": "O",
-   "title": "Open",
+   "letter": "X",
+   "title": "Explicability",
    "rows": [
     {
-     "label": "O9",
-     "predicate": "The open target: a finite scale coordinate on the window, respecting its order and products, under which the intensity of the prime vector's modes puts the classical heights first. Data: the chart's $\\log n$ puts the five tallest peaks on $10$ to $36$ at the first five heights [chart]; the discrete logarithm of $173$, $1549$, $30\\,089$ does not, under any generator.",
-     "tag": "O",
-     "source": "\\S\\ref{sec:order}\\newline \\pywit{rh}{p20090}{O9}",
-     "key": "p20090",
-     "name": null
+     "label": "X1",
+     "predicate": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the half-period read backwards: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; read against A6.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:xhalf}\\newline \\pywit{rh}{p20108}{X1}, \\leanwit{FrcCore}{p20108}{X1} \\lean{FRC.Rh.half\\_inverse, FRC.Horizon.carrier\\_centre}",
+     "key": "p20108",
+     "name": "half_of_critical_line"
+    },
+    {
+     "label": "X2",
+     "predicate": "The pole and the functional equation: the constant mode stands at $1$ and is no zero, the shell's form of the pole at $1$. The symmetry $s\\mapsto1-s$ is the exchange of a mode with its conjugate, the symmetry of origin and unit. Rests on B4, G6; read against A6.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:xpole}\\newline \\pywit{rh}{p20109}{X2}, \\leanwit{FrcCore}{p20109}{X2} \\lean{FRC.Rh.zero\\_slot, FRC.Horizon.zero\\_conjugate, FRC.Horizon.origin\\_unit\\_symmetry}",
+     "key": "p20109",
+     "name": "pole_and_functional_equation"
+    },
+    {
+     "label": "X3",
+     "predicate": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it reads as $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; read against A6.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:xgenerator}\\newline \\pywit{rh}{p20110}{X3}, \\leanwit{FrcCore}{p20110}{X3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.generator\\_skew}",
+     "key": "p20110",
+     "name": "half_of_dilation_generator"
     }
    ]
   }
@@ -313,22 +377,12 @@
   {
    "tag": "D",
    "name": "Definition",
-   "text": "A naming, a declared alignment, or a set-up move, carrying no empirical content."
+   "text": "A naming, a declared alignment, or a set-up move, carrying no empirical content. D16 adds a reading [approx] of what it defines and of Riemann's formula (A6), with a python check."
   },
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Derived within the framework from the rows above it, or an exact instance check in integer arithmetic; a predicate whose content is a chart computation carries its figures as declared [chart] and is a theorem in the weaker sense that the linked witness reproduces them on the stated instances --- the closing paragraph lists the two grades separately."
-  },
-  {
-   "tag": "Ω",
-   "name": "$\\Omega$-hard",
-   "text": "A value decided by the totality, in no embedded reader's window; a demarcation of where the value is read, not an open item and not a claim that no proof exists."
-  },
-  {
-   "tag": "O",
-   "name": "Open",
-   "text": "A question the paper poses and does not answer, with its computed data points; neither a claim nor a conjecture."
+   "text": "Derived within the framework from the rows it cites, with a python check and a Lean proof of the general statement: in the core, without axioms, or on Mathlib for the three chart rows D14, D15 and D17."
   }
  ],
  "master": {
@@ -431,7 +485,7 @@
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcMathlib/Rh",
-    "line": 287,
+    "line": 325,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -443,7 +497,7 @@
    {
     "name": "FRC.Rh.no_cycle_projection",
     "module": "FrcMathlib/Rh",
-    "line": 292,
+    "line": 330,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -456,7 +510,7 @@
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcCore/Rh",
-    "line": 184,
+    "line": 185,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -467,7 +521,7 @@
    {
     "name": "FRC.Rh.window_readback",
     "module": "FrcMathlib/Rh",
-    "line": 267,
+    "line": 305,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -479,7 +533,7 @@
    {
     "name": "FRC.Rh.prime_iff_window_irreducible",
     "module": "FrcMathlib/Rh",
-    "line": 273,
+    "line": 311,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -489,22 +543,9 @@
     "doc": "20:B2 — 20-rh's name; the theorem is `FRC.HorizonML.prime_iff_window_irreducible` (task LM36)."
    },
    {
-    "name": "FRC.Rh.sqrt_sq_lt_prime",
-    "module": "FrcMathlib/Rh",
-    "line": 279,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B2 — 20-rh's name; the theorem is `FRC.HorizonML.sqrt_sq_lt_prime` (task LM36)."
-   },
-   {
     "name": "FRC.Rh.window_readback",
     "module": "FrcCore/Rh",
-    "line": 165,
+    "line": 166,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -513,7 +554,7 @@
    {
     "name": "FRC.Rh.factorisation_iff",
     "module": "FrcCore/Rh",
-    "line": 172,
+    "line": 173,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -522,7 +563,7 @@
    {
     "name": "FRC.Rh.frame_coincidence",
     "module": "FrcCore/Rh",
-    "line": 178,
+    "line": 179,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -546,305 +587,11 @@
    {
     "name": "FRC.Rh.zero_slot",
     "module": "FrcCore/Rh",
-    "line": 94,
+    "line": 95,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B4 — the zero-slot (20-rh's name; the theorem is `FRC.Horizon.zero_slot`, LM26)."
-   }
-  ],
-  "B5": [
-   {
-    "name": "FRC.Rh.slot_complementarity",
-    "module": "FrcMathlib/Rh",
-    "line": 42,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B5 — 20-rh's name; the theorem is `FRC.HorizonML.slot_complementarity` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.slot_complementarity",
-    "module": "FrcCore/Rh",
-    "line": 119,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B5 — slot complementarity (20-rh's name; the theorem is `FRC.Horizon.slot_complementarity`, LM36)."
-   }
-  ],
-  "B6": [
-   {
-    "name": "FRC.Rh.phase_circle",
-    "module": "FrcMathlib/Rh",
-    "line": 158,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B6 — 20-rh's name; the theorem is `FRC.HorizonML.phase_circle` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.frobenius_eq_star",
-    "module": "FrcMathlib/Rh",
-    "line": 147,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B6 — 20-rh's name; the theorem is `FRC.HorizonML.frobenius_eq_star` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.norm_eq_pow",
-    "module": "FrcMathlib/Rh",
-    "line": 153,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B6 — 20-rh's name; the theorem is `FRC.HorizonML.norm_eq_pow` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.quarter_turn_off_circle",
-    "module": "FrcMathlib/Rh",
-    "line": 166,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B6 — 20-rh's name; the theorem is `FRC.HorizonML.quarter_turn_off_circle` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.Ext.mul_conj",
-    "module": "FrcCore/Rh",
-    "line": 222,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B6 — `z z̄ = N(z)`: conjugation is inversion on the norm-one circle."
-   },
-   {
-    "name": "FRC.Rh.Ext.conj_inv_of_norm_one",
-    "module": "FrcCore/Rh",
-    "line": 226,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B6 — on the circle `N(z) = 1` the conjugate is the inverse: `z z̄ = 1`."
-   },
-   {
-    "name": "FRC.Rh.Ext.quarter_turn_off_circle",
-    "module": "FrcCore/Rh",
-    "line": 266,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B6 — the quarter-turn off the circle (20-rh's name; the theorem is `FRC.Horizon.quarter_turn_off_circle`, LM36)."
-   },
-   {
-    "name": "FRC.Rh.Ext.circle13",
-    "module": "FrcCore/Rh",
-    "line": 273,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B6 [value] — the circle of `𝔽₁₃(√2)` (20-rh's name; the theorem is `FRC.Horizon.circle13`, LM36)."
-   }
-  ],
-  "B8": [
-   {
-    "name": "FRC.Rh.half_turn",
-    "module": "FrcMathlib/Rh",
-    "line": 66,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B8, 20:B10 — 20-rh's name; the theorem is `FRC.HorizonML.half_turn` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.trace_eq_one_iff",
-    "module": "FrcMathlib/Rh",
-    "line": 102,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B8, 20:B9 — 20-rh's name; the theorem is `FRC.HorizonML.trace_eq_one_iff` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.card_critical_line",
-    "module": "FrcMathlib/Rh",
-    "line": 125,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B8 — 20-rh's name; the theorem is `FRC.HorizonML.card_critical_line` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.norm_on_line",
-    "module": "FrcMathlib/Rh",
-    "line": 112,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B8 — 20-rh's name; the theorem is `FRC.HorizonML.norm_on_line` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.half_inverse",
-    "module": "FrcCore/Rh",
-    "line": 100,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B8 — `2⁻¹ = 2κ + 1 = −π` (20-rh's name; the theorem is `FRC.Horizon.half_inverse`, LM26)."
-   },
-   {
-    "name": "FRC.Rh.Ext.critical_line",
-    "module": "FrcCore/Rh",
-    "line": 246,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B8, 20:B9 — the finite critical line (20-rh's name; the theorem is `FRC.Horizon.critical_line`, LM36)."
-   },
-   {
-    "name": "FRC.Rh.Ext.norm_on_line",
-    "module": "FrcCore/Rh",
-    "line": 259,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B8 — the energy on the critical line (20-rh's name; the theorem is `FRC.Horizon.norm_on_line`, LM36)."
-   }
-  ],
-  "B9": [
-   {
-    "name": "FRC.Rh.klein_four",
-    "module": "FrcMathlib/Rh",
-    "line": 93,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B9 — 20-rh's name; the theorem is `FRC.HorizonML.klein_four` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.fixed_frobenius",
-    "module": "FrcMathlib/Rh",
-    "line": 98,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B9 — 20-rh's name; the theorem is `FRC.HorizonML.fixed_frobenius` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.trace_eq_one_iff",
-    "module": "FrcMathlib/Rh",
-    "line": 102,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B8, 20:B9 — 20-rh's name; the theorem is `FRC.HorizonML.trace_eq_one_iff` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.fixed_half_turn",
-    "module": "FrcMathlib/Rh",
-    "line": 107,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:B9 — 20-rh's name; the theorem is `FRC.HorizonML.fixed_half_turn` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.Ext.klein_four",
-    "module": "FrcCore/Rh",
-    "line": 240,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B9 — the Klein four-group (20-rh's name; the theorem is `FRC.Horizon.klein_four`, LM36)."
-   },
-   {
-    "name": "FRC.Rh.Ext.fixed_conj",
-    "module": "FrcCore/Rh",
-    "line": 230,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B9 — the fixed locus of conjugation is the prime meridian: `z̄ = z ⟺ b = 0`."
-   },
-   {
-    "name": "FRC.Rh.Ext.critical_line",
-    "module": "FrcCore/Rh",
-    "line": 246,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B8, 20:B9 — the finite critical line (20-rh's name; the theorem is `FRC.Horizon.critical_line`, LM36)."
-   },
-   {
-    "name": "FRC.Rh.Ext.fixed_half_turn",
-    "module": "FrcCore/Rh",
-    "line": 253,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B9 — the fixed locus of the half-turn (20-rh's name; the theorem is `FRC.Horizon.fixed_half_turn`, LM36)."
-   },
-   {
-    "name": "FRC.Horizon.invariant_lines",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 151,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B9, 20:F10, the invariant-line form — the affine lines of the extension are `H_b = {Im z = b}` (`p` lines) and `S_{c,a} = {Re z = a + c·Im z}` (`p²` lines). Conjugation keeps `H_b` exactly when `b = 0` (the meridian) and `S_{c,a}` exactly when `c = 0` (the lines of direction `η`); the half-turn keeps `H_b` exactly when `b = 0` and `S_{c,a}` exactly when `a = 2⁻¹` (the lines through the centre). Hence a line kept by both is the meridian `H_0` or the critical line `S_{0,2⁻¹}`: exactly two."
+    "doc": "20:B4, 20:X2 — the zero-slot (20-rh's name; the theorem is `FRC.Horizon.zero_slot`, LM26)."
    }
   ],
   "B10": [
@@ -876,7 +623,7 @@
    {
     "name": "FRC.Rh.subject_constants",
     "module": "FrcCore/Rh",
-    "line": 130,
+    "line": 131,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -885,7 +632,7 @@
    {
     "name": "FRC.Rh.constants13",
     "module": "FrcCore/Rh",
-    "line": 137,
+    "line": 138,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -901,154 +648,88 @@
     "doc": "00:C1, 20:B10 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided). Moved here from `Instances.lean` under its name (task LM36), so that the horizon theme takes it without the orbits."
    }
   ],
-  "B12": [
+  "D14": [
    {
-    "name": "FRC.Horizon.readout_slot_index",
-    "module": "FrcCore/Theme/Horizon",
-    "line": 175,
-    "axioms": [],
-    "tier": 0,
+    "name": "FRC.Rh.mean_free",
+    "module": "FrcMathlib/Rh",
+    "line": 238,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
-    "doc": "20:E12, 20:B12 (i) — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` is neither `0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent), on every shell and with no axioms."
+    "doc": "20:D14 — 20-rh's name; the theorem is `FRC.Chart.mean_free` (21 November 2026)."
    },
    {
-    "name": "FRC.Horizon.readout_on_line",
-    "module": "FrcCore/Theme/Horizon",
-    "line": 166,
-    "axioms": [],
-    "tier": 0,
+    "name": "FRC.Rh.spectrum_even",
+    "module": "FrcMathlib/Rh",
+    "line": 243,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
-    "doc": "20:E12 (iii), 20:B12 (i), 20:F10, Z10 — every readout lies on the self-dual line `Tr z = 1`, its real part the half-turn `2⁻¹ = 2κ + 1`, and `θ ↦ z(θ)` is injective: no off-line mode."
-   },
-   {
-    "name": "FRC.Horizon.drive_on_line",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 110,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B12 (ii) — the drive about the centre: on the critical line the dilation `z ↦ 2⁻¹ + g (z − 2⁻¹)` carries the readout of the mode `k` to the readout of the mode `k + 1`."
-   },
-   {
-    "name": "FRC.Horizon.half_turn_negates",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 456,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:E15 (v), 20:B12 — the half-turn of the cycle negates the eigenvalue: `g^{k+π} = −g^k`, `π = 2κ`; the labels of the critical line are the time domain read from `−1 = g^π` (Proposition line (v))."
-   },
-   {
-    "name": "FRC.Horizon.reflection_on_line",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 119,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B12 (iii) — the half-turn `ρ : z ↦ 1 − z` and the conjugation agree on the critical line and carry the readout of the mode `k` to the readout of the mode `k + π`, `π = 2κ`: the half-turn of the frequency cycle."
-   },
-   {
-    "name": "FRC.Horizon.line_energy_even",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 138,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B12 (iv) — the norm on the critical line (the paper's `N(z)`, the Hermitian form) is a function of the frequency coordinate alone and is even under the half-turn: `N(z_k) = N(z_{k+π})`; the declaration keeps its name."
+    "doc": "20:D14 — 20-rh's name; the theorem is `FRC.Chart.spectrum_even` (21 November 2026)."
    }
   ],
-  "B13": [
+  "D15": [
    {
-    "name": "FRC.Horizon.critical_line",
-    "module": "FrcCore/Theme/Horizon",
-    "line": 311,
-    "axioms": [],
-    "tier": 0,
+    "name": "FRC.Rh.mode_norm",
+    "module": "FrcMathlib/Rh",
+    "line": 248,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
-    "doc": "20:B8, 20:B9, 20:B13 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹ = 2κ + 1`; it is the fixed locus of `σ = ρ ∘ φ`; every `2⁻¹ + bη` lies on it, one point per residue `b` — `p` points."
+    "doc": "20:D15 — 20-rh's name; the theorem is `FRC.Chart.mode_norm` (21 November 2026)."
    },
    {
-    "name": "FRC.Horizon.zero_slot",
-    "module": "FrcCore/Theme/Horizon",
-    "line": 77,
-    "axioms": [],
-    "tier": 0,
+    "name": "FRC.Rh.spectrum_le",
+    "module": "FrcMathlib/Rh",
+    "line": 253,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
-    "doc": "20:B4, 20:B13, Z10 — the finite zeta on every shell: over the nonzero residues `x = l + 1`, `l < p − 1`, `Σ x^k = 0` for every nonterminal exponent `0 < k < p − 1`, and `Σ x^{p−1} = −1` on the full cycle."
-   },
-   {
-    "name": "FRC.Horizon.mode_at_label",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 362,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B13, 20:F10 — every label other than `0` and `−1` is the readout of a nontrivial mode: `θ ≠ 0, −1` is `−g^k` for some `1 ≤ k ≤ p − 2`; the label `−1` carries the constant mode `k = 0` and `0` is the centre."
-   },
-   {
-    "name": "FRC.Horizon.line_coincidence_all",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 380,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B13, 20:F10 — frame coincidence on the critical line for every zero of the Subject: on two shells `p ≤ Ω` (the Subject's residues the Carrier's residues below `p`), every label `1 ≤ θ ≤ p − 2` reads back as the integer `θ` in both frames, the point `2⁻¹ + ηθ` has trace one in both with the half-turn as its real part, and it is the readout of a nontrivial mode in both: the Subject's zero at `θ` and the Carrier's zero at `θ` are one zero."
+    "doc": "20:D15 — 20-rh's name; the theorem is `FRC.Chart.spectrum_le` (21 November 2026)."
    }
   ],
-  "B14": [
+  "D17": [
    {
-    "name": "FRC.Horizon.norm_ne_zero_on_line",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 505,
-    "axioms": [],
-    "tier": 0,
+    "name": "FRC.Rh.step_bound",
+    "module": "FrcMathlib/Rh",
+    "line": 258,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
-    "doc": "20:B14 — on the critical line the norm does not vanish when `ν` is a nonsquare: `N(z) = c² − ν θ²` with `c = 2⁻¹`, and `c² = ν θ²` forces `θ = c = 0` (`aniso_tx`), against `Tr z = 2c = 1`."
+    "doc": "20:D17 — 20-rh's name; the theorem is `FRC.Chart.Perron.step_bound` (22 November 2026)."
    },
    {
-    "name": "FRC.Horizon.cayley_norm_one",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 586,
-    "axioms": [],
-    "tier": 0,
+    "name": "FRC.Rh.count_bound",
+    "module": "FrcMathlib/Rh",
+    "line": 263,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
-    "doc": "20:B14 (ii) — the Cayley image of a point of nonzero norm has norm one: `N(w) = N(z)^{2(p−2)} N(z)^2 = 1`; on the critical line every point has a Cayley image on the unit circle `U_{p+1}` (`norm_ne_zero_on_line`)."
-   },
-   {
-    "name": "FRC.Horizon.cayley_centre",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 598,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B14 (iii) — the centre `2⁻¹` goes to `1`: the readout of the label `0` is the real point `2⁻¹`, of norm `4⁻¹`, and its Cayley image is `N^{p−2} · N = 1`."
-   },
-   {
-    "name": "FRC.Horizon.cayley_ne_neg_one",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 570,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B14 — the Cayley image of a point of the critical line is never `−1`: `w · (1 − z) = z` with `w = −1` reads `−1 + z = z`, so `−1 = 0`."
-   },
-   {
-    "name": "FRC.Horizon.cayley_injective",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 530,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B14 — the Cayley map is injective on the critical line: two points with one image `w` satisfy `z · (1 − z') = w · (1 − z) · (1 − z') = z' · (1 − z)`, whose coordinates reduce to `z = z'`."
-   },
-   {
-    "name": "FRC.Horizon.cayley_conj",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 618,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:B14 (iv) — the conjugation becomes the inversion: the Cayley image of `z̄` is the conjugate of the Cayley image of `z`, and on the circle the conjugate is the inverse, `w · w̄ = 1`."
+    "doc": "20:D17 — 20-rh's name; the theorem is `FRC.Chart.Perron.count_bound` (22 November 2026)."
    }
   ],
   "E12": [
@@ -1094,7 +775,7 @@
    {
     "name": "FRC.Rh.shift_power_character",
     "module": "FrcCore/Rh",
-    "line": 106,
+    "line": 107,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1103,55 +784,11 @@
    {
     "name": "FRC.Rh.shift_trace",
     "module": "FrcCore/Rh",
-    "line": 111,
+    "line": 112,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "20:E12, 20:E1 — the fixed-point count of the scale-shift (20-rh's name; the theorem is `FRC.Horizon.shift_trace`, LM26)."
-   },
-   {
-    "name": "FRC.Rh.readout_on_line",
-    "module": "FrcMathlib/Rh",
-    "line": 117,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:E12, 20:B8 — 20-rh's name; the theorem is `FRC.HorizonML.readout_on_line` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.readout_slot_index",
-    "module": "FrcMathlib/Rh",
-    "line": 131,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:E12 — 20-rh's name; the theorem is `FRC.HorizonML.readout_slot_index` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.Ext.readout_on_line",
-    "module": "FrcCore/Rh",
-    "line": 290,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:E12 (ii) — every readout on the trace-one line (20-rh's name; the theorem is `FRC.Horizon.readout_on_line`, LM26)."
-   },
-   {
-    "name": "FRC.Rh.Ext.readout_slot_index",
-    "module": "FrcCore/Rh",
-    "line": 296,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:E12 — the slot index of a nontrivial slot (20-rh's name; the theorem is `FRC.Horizon.readout_slot_index`, LM26)."
    },
    {
     "name": "FRC.Horizon.mode_expansion",
@@ -1273,7 +910,7 @@
    {
     "name": "FRC.Rh.shift_power_character",
     "module": "FrcCore/Rh",
-    "line": 106,
+    "line": 107,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1298,24 +935,6 @@
     "doc": "20:E15 (ii) — the spectrum of the drive is simple: the eigenvalues `g^0, …, g^{n−1}` of the `n` modes are distinct (`pow_inj`, 26:B3); with `shift_power_character` (the modes are eigenvectors, `D x^k = g^k x^k`) the spectrum is the `n = p − 1` nonzero residues, each once."
    },
    {
-    "name": "FRC.Horizon.readout_eigen",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 452,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:E15 (iv) — the readout is the spectral map: the mode `k` is read on the critical line at the label `−g^k`, minus its eigenvalue under the drive."
-   },
-   {
-    "name": "FRC.Horizon.half_turn_negates",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 456,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "20:E15 (v), 20:B12 — the half-turn of the cycle negates the eigenvalue: `g^{k+π} = −g^k`, `π = 2κ`; the labels of the critical line are the time domain read from `−1 = g^π` (Proposition line (v))."
-   },
-   {
     "name": "FRC.Horizon.modes_isotropic",
     "module": "FrcCore/Theme/Zeros",
     "line": 483,
@@ -1323,6 +942,15 @@
     "tier": 0,
     "ok": true,
     "doc": "20:E15 (iii) — the modes are isotropic for the pairing: the self-pairing of the mode `k`, `Σ_{l<n} (g^l)^k (g^l)^k = Σ_{l<n} (g^{2k})^l`, vanishes when `g^{2k} ≠ 1` (`mode_square_ne_one`: every mode but `0` and `π`); so the reality of the spectrum is not a consequence of the orthogonality, it is the drive being a scaling by a residue."
+   },
+   {
+    "name": "FRC.Horizon.mode_stride",
+    "module": "FrcCore/Theme/Count",
+    "line": 82,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E15 — at `x = g^m` the mode of count `k` reads `g^{km}`: the latitude `L_1` read at every `k`-th step."
    }
   ],
   "F7": [
@@ -1343,53 +971,464 @@
     "tier": 0,
     "ok": true,
     "doc": "20:F7, 20:F2, the laboratory instances: for each laboratory Carrier `Ω = 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the largest admissible Subject `p* = 13, 173, 1549` — a prime `p = 4κ + 1` with `κ > 1` and `p² < Ω`, no admissible Subject between `p*` and `√Ω` (`largestSubject`) — so every embedded Subject's cycle is shorter than the Carrier's and the Carrier's top cell is read from labels up to `√Ω`, beyond every embedded window `√p*`. The largest prime below `√Ω` is not in general a Subject: on `Ω = 401` it is `19`, against the Subject `17`; and `Ω = 13` has no admissible Subject. Primality by trial division to the root (`isPrime_of_bounded`), the bounded quantifiers decided by the kernel."
+   },
+   {
+    "name": "FRC.Horizon.zeros_fill",
+    "module": "FrcCore/Theme/Count",
+    "line": 179,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G6, 20:F7 — the zeros `ρ_k = k + 1`, `1 ≤ k ≤ p − 2`, are the residues other than `0` and `1`. No generator."
+   },
+   {
+    "name": "FRC.Horizon.zeros_not_held",
+    "module": "FrcCore/Theme/Count",
+    "line": 629,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:F7 (iii) — no embedded Subject holds the Carrier's list of zeros whole: for `2 ≤ p` and `p² < Ω`, every reading of the Carrier's residues into `p` states identifies two zeros `k + 1` and `m + 1` of distinct counts `1 ≤ k < m ≤ Ω − 2`. The Subject has `p < Ω − 2` states, fewer than the zeros."
    }
   ],
-  "F10": [
+  "G2": [
    {
-    "name": "FRC.Horizon.invariant_lines",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 151,
+    "name": "FRC.Horizon.count_conjugate",
+    "module": "FrcCore/Theme/Count",
+    "line": 90,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B9, 20:F10, the invariant-line form — the affine lines of the extension are `H_b = {Im z = b}` (`p` lines) and `S_{c,a} = {Re z = a + c·Im z}` (`p²` lines). Conjugation keeps `H_b` exactly when `b = 0` (the meridian) and `S_{c,a}` exactly when `c = 0` (the lines of direction `η`); the half-turn keeps `H_b` exactly when `b = 0` and `S_{c,a}` exactly when `a = 2⁻¹` (the lines through the centre). Hence a line kept by both is the meridian `H_0` or the critical line `S_{0,2⁻¹}`: exactly two."
+    "doc": "20:G2, 20:G12 — the conjugate of a count `1 ≤ k ≤ p − 2` is `p − 1 − k`, again in `1, …, p − 2`, and the two counts add to `−1`: `k + (p − 1 − k) + 1 ≡ 0`. No generator."
    },
    {
-    "name": "FRC.Horizon.off_line_unregistered",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 216,
+    "name": "FRC.Horizon.count_adjoint",
+    "module": "FrcCore/Theme/Count",
+    "line": 97,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:F10 (iii) — a point of the framed plane off both lines (`Im z ≠ 0` and `Re z ≠ 2⁻¹`) lies on no line kept by both involutions: a horizontal line `H_b` through it kept by both has `b = 0`, against `Im z ≠ 0`; a line `S_{c,a}` through it kept by both has `c = 0` and `a = 2⁻¹`, so `Re z = 2⁻¹`, against the hypothesis. The clause of Theorem noline that the python check A18 tests point by point, derived from `invariant_lines`."
+    "doc": "20:G2 — the count operator on the nonconstant modes: `⟨N x^k, x^m⟩ + ⟨x^k, N x^m⟩ = −⟨x^k, x^m⟩`, in the form `(k + m + 1)·Σ_{x≠0} x^k·x^m = 0` for `1 ≤ k, m ≤ p − 2`. So the adjoint of `N` is `−1 − N` there."
    },
    {
-    "name": "FRC.Horizon.line_coincidence_all",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 380,
+    "name": "FRC.Horizon.count_adjoint_vector",
+    "module": "FrcCore/Theme/Count",
+    "line": 427,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B13, 20:F10 — frame coincidence on the critical line for every zero of the Subject: on two shells `p ≤ Ω` (the Subject's residues the Carrier's residues below `p`), every label `1 ≤ θ ≤ p − 2` reads back as the integer `θ` in both frames, the point `2⁻¹ + ηθ` has trace one in both with the half-turn as its real part, and it is the readout of a nontrivial mode in both: the Subject's zero at `θ` and the Carrier's zero at `θ` are one zero."
+    "doc": "20:G2 — the count operator on vectors. With `N` acting on the mode coefficients by `c_k ↦ k·c_k`: `⟨Nv, w⟩ + ⟨v, Nw⟩ + ⟨v, w⟩ = −c_0·d_0`. So `N* = −1 − N` on the vectors with no constant part."
+   }
+  ],
+  "G3": [
+   {
+    "name": "FRC.Horizon.half_forced",
+    "module": "FrcCore/Theme/Count",
+    "line": 124,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G3, 20:X3 — the shift is forced: `N + c` is skew on the nonconstant modes exactly when `2c = 1`. No generator."
    },
    {
-    "name": "FRC.Horizon.mode_at_label",
-    "module": "FrcCore/Theme/Zeros",
-    "line": 362,
+    "name": "FRC.Horizon.count_run",
+    "module": "FrcCore/Theme/Count",
+    "line": 141,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B13, 20:F10 — every label other than `0` and `−1` is the readout of a nontrivial mode: `θ ≠ 0, −1` is `−g^k` for some `1 ≤ k ≤ p − 2`; the label `−1` carries the constant mode `k = 0` and `0` is the centre."
+    "doc": "20:G3 — the run of counts that starts at `m(p − 1)`: its counts at `k` and at `p − 1 − k` add to `−(2m + 1)`, so the skew shift of the run is `½ + m`. No generator."
    },
    {
-    "name": "FRC.Horizon.readout_on_line",
-    "module": "FrcCore/Theme/Horizon",
-    "line": 166,
+    "name": "FRC.Horizon.count_run_only",
+    "module": "FrcCore/Theme/Count",
+    "line": 491,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:E12 (iii), 20:B12 (i), 20:F10, Z10 — every readout lies on the self-dual line `Tr z = 1`, its real part the half-turn `2⁻¹ = 2κ + 1`, and `θ ↦ z(θ)` is injective: no off-line mode."
+    "doc": "20:G3 — the runs without a skew shift. A run of `p − 1` consecutive counts that starts at `m(p − 1) + r` with `2 ≤ r ≤ p − 2` has no shift `c` that makes `N + c` skew on its nonconstant modes: the classes `1` and `p − 2` ask for `2c = 2m + 2`, and the self-conjugate class `2κ` asks for `2c = 2m + 1` or `2m + 3`."
+   }
+  ],
+  "G5": [
+   {
+    "name": "FRC.Horizon.generator_skew",
+    "module": "FrcCore/Theme/Count",
+    "line": 468,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G5, 20:X3 — the generator `H = −i(N + ½)` on the modes: `(γ_k + γ_m)·⟨x^k, x^m⟩ = 0` unless both modes are constant. `H` is skew for the pairing, as `N + ½` is."
+   },
+   {
+    "name": "FRC.Horizon.zero_conjugate",
+    "module": "FrcCore/Theme/Count",
+    "line": 205,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G5, 20:G6, 20:X2 — for every `k ≤ p − 1`, `(p − 1 − k) + 1 = 1 − (k + 1)` and `γ_{p−1−k} = −γ_k` as residues; for `1 ≤ k ≤ p − 2` these are the zero and the frequency of the conjugate mode."
+   }
+  ],
+  "G6": [
+   {
+    "name": "FRC.Horizon.zero_count",
+    "module": "FrcCore/Theme/Count",
+    "line": 172,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G6 — `½ + iγ_k = k + 1` for every count `k`; for `k ≥ 1` this residue is the zero of the mode."
+   },
+   {
+    "name": "FRC.Horizon.zeros_fill",
+    "module": "FrcCore/Theme/Count",
+    "line": 179,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G6, 20:F7 — the zeros `ρ_k = k + 1`, `1 ≤ k ≤ p − 2`, are the residues other than `0` and `1`. No generator."
+   },
+   {
+    "name": "FRC.Horizon.zero_conjugate",
+    "module": "FrcCore/Theme/Count",
+    "line": 205,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G5, 20:G6, 20:X2 — for every `k ≤ p − 1`, `(p − 1 − k) + 1 = 1 − (k + 1)` and `γ_{p−1−k} = −γ_k` as residues; for `1 ≤ k ≤ p − 2` these are the zero and the frequency of the conjugate mode."
+   },
+   {
+    "name": "FRC.Horizon.origin_unit_symmetry",
+    "module": "FrcCore/Theme/Count",
+    "line": 570,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G6, 20:G7, 20:X2 — the symmetry of origin and unit. An affine map `x ↦ a·x + b` of the shell keeps the pair `{0, 1}` exactly when it is the identity or `x ↦ 1 − x`, and `x ↦ 1 − x` fixes `x` exactly when `2x = 1`. No generator."
+   }
+  ],
+  "G7": [
+   {
+    "name": "FRC.Horizon.centre_mode",
+    "module": "FrcCore/Theme/Count",
+    "line": 223,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G7 — the mode of count `π = 2κ` is its own conjugate, its zero is `2⁻¹`, its frequency is `0`, and it is the only count below `p − 1` with the frequency `0`."
+   },
+   {
+    "name": "FRC.Horizon.pair_invariant",
+    "module": "FrcCore/Theme/Count",
+    "line": 250,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G7, 20:G9 — the invariant of a conjugate pair: `ρ(1 − ρ) = ¼ + γ² = −k(k + 1)`, the same for a count and its conjugate."
+   },
+   {
+    "name": "FRC.Rh.half_inverse",
+    "module": "FrcCore/Rh",
+    "line": 101,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G7, 20:X1 — `2⁻¹ = 2κ + 1 = −π` (20-rh's name; the theorem is `FRC.Horizon.half_inverse`, LM26)."
+   },
+   {
+    "name": "FRC.Horizon.half_unique",
+    "module": "FrcCore/Theme/Count",
+    "line": 168,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G7 — the inverse of `2` is unique: `2x = 1` exactly when `x = 2κ + 1`."
+   },
+   {
+    "name": "FRC.Horizon.origin_unit_symmetry",
+    "module": "FrcCore/Theme/Count",
+    "line": 570,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G6, 20:G7, 20:X2 — the symmetry of origin and unit. An affine map `x ↦ a·x + b` of the shell keeps the pair `{0, 1}` exactly when it is the identity or `x ↦ 1 − x`, and `x ↦ 1 − x` fixes `x` exactly when `2x = 1`. No generator."
+   }
+  ],
+  "G9": [
+   {
+    "name": "FRC.Horizon.energy_order",
+    "module": "FrcCore/Theme/Count",
+    "line": 274,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G9 — the order: the counts `2κ − j` and `2κ + j` are conjugate, their zeros are `2⁻¹ − j` and `2⁻¹ + j`, and the smaller of the two is `2κ − j`, the energy of the pair. No generator: the statement takes the cardinality `p = 4κ + 1` alone."
+   },
+   {
+    "name": "FRC.Horizon.pair_invariant",
+    "module": "FrcCore/Theme/Count",
+    "line": 250,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G7, 20:G9 — the invariant of a conjugate pair: `ρ(1 − ρ) = ¼ + γ² = −k(k + 1)`, the same for a count and its conjugate."
+   }
+  ],
+  "G10": [
+   {
+    "name": "FRC.Horizon.cardinal_modes",
+    "module": "FrcCore/Theme/Count",
+    "line": 322,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G10 — a mode has all its values in `{1, −1, i, −i}` exactly when its count is `0`, `κ`, `2κ` or `3κ`."
+   },
+   {
+    "name": "FRC.Horizon.cardinal_zeros",
+    "module": "FrcCore/Theme/Count",
+    "line": 339,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G10, 20:G12 — the zeros of the counts `0`, `κ`, `2κ`, `3κ` are `1`, `¾`, `½`, `¼`. No generator: the statement takes the cardinality `p = 4κ + 1` alone, a Subject's or a Carrier's."
+   }
+  ],
+  "G12": [
+   {
+    "name": "FRC.Horizon.carrier_centre",
+    "module": "FrcCore/Theme/Count",
+    "line": 367,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G12, 20:X1 — on a shell of cardinality `4S + 1`, with no frame: the centre of the counts is `−½ = 2S`, in the form `2·(2S) + 1 = 0`, and `k + (p − 1 − k)` is twice the centre for every `k ≤ p − 1`; for a count `k ≥ 1` the second term is its conjugate."
+   },
+   {
+    "name": "FRC.Horizon.cardinal_zeros",
+    "module": "FrcCore/Theme/Count",
+    "line": 339,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G10, 20:G12 — the zeros of the counts `0`, `κ`, `2κ`, `3κ` are `1`, `¾`, `½`, `¼`. No generator: the statement takes the cardinality `p = 4κ + 1` alone, a Subject's or a Carrier's."
+   },
+   {
+    "name": "FRC.Horizon.count_conjugate",
+    "module": "FrcCore/Theme/Count",
+    "line": 90,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G2, 20:G12 — the conjugate of a count `1 ≤ k ≤ p − 2` is `p − 1 − k`, again in `1, …, p − 2`, and the two counts add to `−1`: `k + (p − 1 − k) + 1 ≡ 0`. No generator."
+   },
+   {
+    "name": "FRC.Horizon.zero_shared",
+    "module": "FrcCore/Theme/Count",
+    "line": 604,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G12 — a zero below `p` is the same integer on every larger shell: the Subject's zero `k + 1` and the zero `k + 1` on a Carrier's chart are one label. At `k = 0` the label is `1`, where the constant mode stands on both. No generator."
+   }
+  ],
+  "G13": [
+   {
+    "name": "FRC.Horizon.circle_pair",
+    "module": "FrcCore/Theme/Circle",
+    "line": 36,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G13 — on the critical circle a point carries a zero, a residue other than `0` and `1`; its mirror carries the reflection `1 − ρ`, the zero of the conjugate mode; and `a² = ρ(1 − ρ)`."
+   },
+   {
+    "name": "FRC.Horizon.circle_frequency",
+    "module": "FrcCore/Theme/Circle",
+    "line": 53,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G13 — the frequency on the circle: a zero and its reflection differ by `2iγ_k`."
+   },
+   {
+    "name": "FRC.Horizon.circle_meridians",
+    "module": "FrcCore/Theme/Circle",
+    "line": 62,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G13 — the circle has no point on the momentum meridian, where `u² = −1`, and none at the origin; on the prime meridian, where a point is its own mirror, its one point is the centre `2⁻¹`, of frequency `0`."
+   },
+   {
+    "name": "FRC.Horizon.circle_point",
+    "module": "FrcCore/Theme/Circle",
+    "line": 81,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G13 — a zero `ρ` has a point on the circle exactly when `ρ(1 − ρ)` is a square; two points with one zero are `(a, u)` and `(−a, −u)`, one point of the sphere."
+   },
+   {
+    "name": "FRC.Horizon.circle_count",
+    "module": "FrcCore/Theme/Circle",
+    "line": 126,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G13 — the count. At the phase `m` with mirror phase `m'`, `m + m' = p − 1`, the circle has a point exactly when `g^{2m} ≠ −1`; among the phases `m < 2κ` that excludes `m = κ` alone; the phase `m + 2κ` gives the same point with the position `−a`; and two points at phases below `2κ` with one zero are at one phase. So the circle has `2κ − 1` points, with `2κ − 1` distinct zeros."
+   },
+   {
+    "name": "FRC.Horizon.circle_counts",
+    "module": "FrcCore/Theme/Circle",
+    "line": 313,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G13 — the counts. Negating the position negates both residues of a point of the circle, so they add to `−1`; the point `(−a, −m)` carries `ρ − 1`, the count of the zero that `(a, m)` carries, and its mirror carries `−ρ`; the zero of the count `k` less one is `k`; and on the prime meridian the one point with `x + x = −1` is `π = 2κ`."
+   },
+   {
+    "name": "FRC.Horizon.circle_phase",
+    "module": "FrcCore/Theme/Circle",
+    "line": 351,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G13 — one point at each phase: two positions on the critical circle with one phase are equal; and residues `ρ` and `1 − ρ` of a point and its mirror put the point on the circle, the converse of `circle_pair`. No frame is used."
+   },
+   {
+    "name": "FRC.Horizon.circle_parallels",
+    "module": "FrcCore/Theme/Circle",
+    "line": 367,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G13 — the sets of constant sum. For `c ≠ 0` the points with the sum `c` are the points of the critical circle with the position multiplied by `c`. Negating the position negates the sum, so the half-turn of the drive exchanges the sums `c` and `−c`. The sum vanishes exactly at the origin and on the momentum meridian, where `u² = −1`. On the prime meridian the sum `c` has the one point `c·2⁻¹`. The sums `1` and `−1` share no point."
+   }
+  ],
+  "G14": [
+   {
+    "name": "FRC.Horizon.circle_place",
+    "module": "FrcCore/Theme/Circle",
+    "line": 176,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G14 — the places of the zeros. A zero `ρ` is `t/(1 + t)` for exactly one `t`, namely `ρ/(1 − ρ)`, and that `t` is neither `0` nor `−1`; such a `t` gives a zero; and the inverse of `t` gives the reflection `1 − ρ`, the zero of the conjugate mode."
+   },
+   {
+    "name": "FRC.Horizon.circle_place_cycle",
+    "module": "FrcCore/Theme/Circle",
+    "line": 222,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G14 — the places on the latitude cycle: `t = g^j` for one `j < p − 1`, and never `j = 2κ`, where `g^j = −1`; the centre is the place `0`."
+   },
+   {
+    "name": "FRC.Horizon.circle_place_even",
+    "module": "FrcCore/Theme/Circle",
+    "line": 236,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G14 — the even places. For a zero `ρ = t/(1 + t)`, `t` is a square exactly when `ρ(1 − ρ)` is, that is when `ρ` has a point of the sphere on the circle; and `g^j` is a square exactly when `j` is even."
+   },
+   {
+    "name": "FRC.Horizon.circle_quarter_turn",
+    "module": "FrcCore/Theme/Circle",
+    "line": 276,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G14 — the quarter-turn. For a zero `ρ = t/(1 + t)`: `(2ρ − 1)(t + 1) = t − 1`. Two steps of the map `x ↦ (x − 1)/(x + 1)` are `x ↦ −1/x`, and its fixed points are the two roots of `x² = −1` (`circle_quarter_closes` closes the four steps)."
+   },
+   {
+    "name": "FRC.Horizon.circle_place_phase",
+    "module": "FrcCore/Theme/Circle",
+    "line": 428,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G14 — the phase of an even place: a point of the critical circle with the phase residue `u` carries the zero `u²/(1 + u²)`, the zero at the place of `t = u²`."
+   },
+   {
+    "name": "FRC.Horizon.circle_quarter_closes",
+    "module": "FrcCore/Theme/Circle",
+    "line": 440,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G14 — the quarter-turn closes: with `z = −1/x` and `w = −1/z`, `w = x`, so four steps of the map `x ↦ (x − 1)/(x + 1)` return every residue on which they are defined; and two steps move every residue but the roots of `x² = −1`."
+   }
+  ],
+  "X1": [
+   {
+    "name": "FRC.Rh.half_inverse",
+    "module": "FrcCore/Rh",
+    "line": 101,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G7, 20:X1 — `2⁻¹ = 2κ + 1 = −π` (20-rh's name; the theorem is `FRC.Horizon.half_inverse`, LM26)."
+   },
+   {
+    "name": "FRC.Horizon.carrier_centre",
+    "module": "FrcCore/Theme/Count",
+    "line": 367,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G12, 20:X1 — on a shell of cardinality `4S + 1`, with no frame: the centre of the counts is `−½ = 2S`, in the form `2·(2S) + 1 = 0`, and `k + (p − 1 − k)` is twice the centre for every `k ≤ p − 1`; for a count `k ≥ 1` the second term is its conjugate."
+   }
+  ],
+  "X2": [
+   {
+    "name": "FRC.Rh.zero_slot",
+    "module": "FrcCore/Rh",
+    "line": 95,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B4, 20:X2 — the zero-slot (20-rh's name; the theorem is `FRC.Horizon.zero_slot`, LM26)."
+   },
+   {
+    "name": "FRC.Horizon.zero_conjugate",
+    "module": "FrcCore/Theme/Count",
+    "line": 205,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G5, 20:G6, 20:X2 — for every `k ≤ p − 1`, `(p − 1 − k) + 1 = 1 − (k + 1)` and `γ_{p−1−k} = −γ_k` as residues; for `1 ≤ k ≤ p − 2` these are the zero and the frequency of the conjugate mode."
+   },
+   {
+    "name": "FRC.Horizon.origin_unit_symmetry",
+    "module": "FrcCore/Theme/Count",
+    "line": 570,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G6, 20:G7, 20:X2 — the symmetry of origin and unit. An affine map `x ↦ a·x + b` of the shell keeps the pair `{0, 1}` exactly when it is the identity or `x ↦ 1 − x`, and `x ↦ 1 − x` fixes `x` exactly when `2x = 1`. No generator."
+   }
+  ],
+  "X3": [
+   {
+    "name": "FRC.Horizon.half_forced",
+    "module": "FrcCore/Theme/Count",
+    "line": 124,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G3, 20:X3 — the shift is forced: `N + c` is skew on the nonconstant modes exactly when `2c = 1`. No generator."
+   },
+   {
+    "name": "FRC.Horizon.generator_skew",
+    "module": "FrcCore/Theme/Count",
+    "line": 468,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G5, 20:X3 — the generator `H = −i(N + ½)` on the modes: `(γ_k + γ_m)·⟨x^k, x^m⟩ = 0` unless both modes are constant. `H` is skew for the pairing, as `N + ½` is."
    }
   ]
  }

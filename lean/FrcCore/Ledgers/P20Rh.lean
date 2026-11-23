@@ -1,3 +1,4 @@
+import FrcCore.Keys.Count
 import FrcCore.Keys.Foundation
 import FrcCore.Keys.Horizon
 
@@ -39,45 +40,10 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 #guard_msgs in
 #print axioms FRC.Ledger.p20011
 
--- 20:B5 (p20012)
-/-- info: 'FRC.Ledger.p20012' does not depend on any axioms -/
-#guard_msgs in
-#print axioms FRC.Ledger.p20012
-
--- 20:B6 (p20013)
-/-- info: 'FRC.Ledger.p20013' does not depend on any axioms -/
-#guard_msgs in
-#print axioms FRC.Ledger.p20013
-
--- 20:B8 (p20015)
-/-- info: 'FRC.Ledger.p20015' does not depend on any axioms -/
-#guard_msgs in
-#print axioms FRC.Ledger.p20015
-
--- 20:B9 (p20016)
-/-- info: 'FRC.Ledger.p20016' does not depend on any axioms -/
-#guard_msgs in
-#print axioms FRC.Ledger.p20016
-
 -- 20:B10 (p20017)
 /-- info: 'FRC.Ledger.p20017' does not depend on any axioms -/
 #guard_msgs in
 #print axioms FRC.Ledger.p20017
-
--- 20:B12 (p20085)
-/-- info: 'FRC.Ledger.p20085' does not depend on any axioms -/
-#guard_msgs in
-#print axioms FRC.Ledger.p20085
-
--- 20:B13 (p20086)
-/-- info: 'FRC.Ledger.p20086' does not depend on any axioms -/
-#guard_msgs in
-#print axioms FRC.Ledger.p20086
-
--- 20:B14 (p20095)
-/-- info: 'FRC.Ledger.p20095' does not depend on any axioms -/
-#guard_msgs in
-#print axioms FRC.Ledger.p20095
 
 -- 20:E12 (p20043)
 /-- info: 'FRC.Ledger.p20043' does not depend on any axioms -/
@@ -104,7 +70,67 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 #guard_msgs in
 #print axioms FRC.Ledger.p20079
 
--- 20:F10 (p20093)
-/-- info: 'FRC.Ledger.p20093' does not depend on any axioms -/
+-- 20:G2 (p20097)
+/-- info: 'FRC.Ledger.p20097' does not depend on any axioms -/
 #guard_msgs in
-#print axioms FRC.Ledger.p20093
+#print axioms FRC.Ledger.p20097
+
+-- 20:G3 (p20098)
+/-- info: 'FRC.Ledger.p20098' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20098
+
+-- 20:G5 (p20100)
+/-- info: 'FRC.Ledger.p20100' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20100
+
+-- 20:G6 (p20101)
+/-- info: 'FRC.Ledger.p20101' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20101
+
+-- 20:G7 (p20102)
+/-- info: 'FRC.Ledger.p20102' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20102
+
+-- 20:G9 (p20104)
+/-- info: 'FRC.Ledger.p20104' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20104
+
+-- 20:G10 (p20105)
+/-- info: 'FRC.Ledger.p20105' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20105
+
+-- 20:G12 (p20107)
+/-- info: 'FRC.Ledger.p20107' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20107
+
+-- 20:G13 (p20111)
+/-- info: 'FRC.Ledger.p20111' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20111
+
+-- 20:G14 (p20115)
+/-- info: 'FRC.Ledger.p20115' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20115
+
+-- 20:X1 (p20108)
+/-- info: 'FRC.Ledger.p20108' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20108
+
+-- 20:X2 (p20109)
+/-- info: 'FRC.Ledger.p20109' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20109
+
+-- 20:X3 (p20110)
+/-- info: 'FRC.Ledger.p20110' does not depend on any axioms -/
+#guard_msgs in
+#print axioms FRC.Ledger.p20110

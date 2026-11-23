@@ -623,6 +623,34 @@ theorem dispersion_symbol (k : ℝ) : 2 - 2 * cos k = 4 * sin (k / 2) ^ 2 := by
   rw [show 2 * (k / 2) = k by ring] at h
   rw [h, Real.cos_sq']; ring
 
+/-- 21:C15 — the cyclotomic zero set of the central-difference complex on the odd cycle `C_p` (the review of
+21 November 2026): for `ζ` a primitive `p`-th root of unity, `p` an odd prime and `0 < k < p`, the symbol of
+`D = (T − T⁻¹)/2`, `ζ^k − ζ^{−k}`, and the symbol of `K = −D²`, `2 − ζ^{2k} − ζ^{−2k} = −(ζ^k − ζ^{−k})²`, are both
+nonzero: `ζ^{2k} = 1` forces `p ∣ 2k`, hence `p ∣ k`. The statement is the chart's (characteristic zero); the
+`𝔽_p`-valued character symbol is the core's `FRC.Lattice.cdiff_symbol`. -/
+theorem central_symbol_nonzero {p : ℕ} (hp : p.Prime) (hodd : p ≠ 2) {ζ : ℂ} (hζ : IsPrimitiveRoot ζ p)
+    {k : ℕ} (hk0 : 0 < k) (hkp : k < p) :
+    ζ ^ k - ζ⁻¹ ^ k ≠ 0 ∧ 2 - ζ ^ (2 * k) - ζ⁻¹ ^ (2 * k) ≠ 0 := by
+  have hζ0 : ζ ≠ 0 := hζ.ne_zero hp.ne_zero
+  have hunit : ζ ^ k * ζ⁻¹ ^ k = 1 := by rw [← mul_pow, mul_inv_cancel₀ hζ0, one_pow]
+  have h1 : ζ ^ k - ζ⁻¹ ^ k ≠ 0 := by
+    intro h
+    have hsq : ζ ^ (2 * k) = 1 := by
+      have e : ζ ^ k = ζ⁻¹ ^ k := sub_eq_zero.mp h
+      calc ζ ^ (2 * k) = ζ ^ k * ζ ^ k := by rw [two_mul, pow_add]
+        _ = ζ ^ k * ζ⁻¹ ^ k := by rw [← e]
+        _ = 1 := hunit
+    have hdvd : p ∣ 2 * k := (hζ.pow_eq_one_iff_dvd (2 * k)).mp hsq
+    rcases (Nat.Prime.dvd_mul hp).mp hdvd with h2 | hk
+    · exact hodd ((Nat.prime_dvd_prime_iff_eq hp Nat.prime_two).mp h2)
+    · exact (Nat.ne_of_gt hk0) (Nat.eq_zero_of_dvd_of_lt hk hkp)
+  refine ⟨h1, ?_⟩
+  have e2 : 2 - ζ ^ (2 * k) - ζ⁻¹ ^ (2 * k) = -(ζ ^ k - ζ⁻¹ ^ k) ^ 2 := by
+    have a : ζ ^ (2 * k) = (ζ ^ k) ^ 2 := by rw [← pow_mul, mul_comm]
+    have b : ζ⁻¹ ^ (2 * k) = (ζ⁻¹ ^ k) ^ 2 := by rw [← pow_mul, mul_comm]
+    rw [a, b]; linear_combination (-2 : ℂ) * hunit
+  rw [e2]; exact neg_ne_zero.mpr (pow_ne_zero 2 h1)
+
 /-- 21:C1 — the coherent coefficient: a locked cluster of `m` cells with one phase sums with
 coefficient exactly `m`, `‖Σ_{j<m} z‖ = m ‖z‖`; the incoherent `O(√m)` and the gradient flow are not formal
 content. -/
@@ -713,5 +741,21 @@ theorem preferred_frame_scale : (2.7e-62 : ℝ) < 1 / √(1.3e123) ∧ 1 / √(1
   · rw [one_div_lt hs (by norm_num), Real.lt_sqrt (by norm_num)]; norm_num
 
 end series
+
+/-! ## The demand functional (21:C11; 21 November 2026) -/
+section demand
+
+/-- 21:C11 — the registered winding rate `Σ_m m w_m` over the normalised sector weights `w_m = a_m / Σ_k a_k` is
+invariant under one multiplier common to every sector: with each weight scaled by the same `c ≠ 0` (the squared modulus
+of the cell-wise multiplier, `|cψ_m|² = |c|²|ψ_m|²`), every normalised weight and the functional are unchanged. The
+statement over a field; the tally-ring instances `ℤ[ζ₈]`, `ℤ[ζ₁₂]`, `ℤ[ζ₁₃]` are the python check C4. -/
+theorem demand_invariant {K : Type*} [Field K] {ι : Type*} [Fintype ι] (a m : ι → K) (c : K) (hc : c ≠ 0) :
+    (∀ i, (c * a i) / (∑ k, c * a k) = a i / ∑ k, a k) ∧
+    (∑ i, m i * ((c * a i) / (∑ k, c * a k))) = ∑ i, m i * (a i / ∑ k, a k) := by
+  have h : ∀ i, (c * a i) / (∑ k, c * a k) = a i / ∑ k, a k := by
+    intro i; rw [← Finset.mul_sum, mul_div_mul_left _ _ hc]
+  exact ⟨h, by simp_rw [h]⟩
+
+end demand
 
 end FRC.Strong

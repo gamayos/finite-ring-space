@@ -5964,7 +5964,7 @@ division an inverse on the shell), the `SU(2)` series beside the instance `2T = 
 (`c2_lab`). The adjoint wrap's two plaquette layers (`adjoint_two_sheets`, 46:C9). The chains of the logarithm (the artanh
 chain with its geometric majorant, `lnBr`) and the six-place bracket of `π` (`piBr`), both in `Theme/Brackets.lean`, read the chart's constants as
 brackets of window fractions, and decide: the declared coupling against the Herbst value, `π² > 6 ln 2`
-(`herbst_comparison`, 46:C10); the plaquette channel's ratios and spreads at the chart's cells (`plaquette_cells`, 46:C11); the
+(`herbst_comparison`, 46:C10); the plaquette channel's ratio and spread at channel unity (`plaquette_cells`, 46:C11); the
 one-loop run from `M_Z` to `m_τ` (`running_one_loop`, 46:P2). The family of the minimal wrap against the lattice in
 thousandths (`wrap_family`, 46:C12) and the colour factors against LEP in hundredths (`colour_factors_within`, 46:P1, X4)
 are integer comparisons. The adjoint without an invariant line (`adjoint_no_invariant`, 46:X1). The two rationals of the
@@ -6476,59 +6476,52 @@ def munster : List WF :=
 def polyP (o : Nat) (u : WF) : WF :=
   (List.range o).foldl (fun s k => WF.add s (WF.mul (nth (0, 1) munster (k + 1)) (WF.pow u (k + 1)))) (0, 1)
 
-/-- The bracket of `x = −ln u = ln(1/u)` by the chain. -/
-def xBr (u : WF) : BR := lnBr (WF.inv u) 12
+/-- The bracket of `x = −ln u = ln(1/u)` by the chain at stage `n`. -/
+def xBr (u : WF) (n : Nat) : BR := lnBr (WF.inv u) n
 
 /-- `(4x + P)² / x`, the square of the ratio `m/√σ`. -/
 def ratioSq (P x : WF) : WF :=
   let s := WF.add (WF.mul (WF.ofNat 4) x) P
   WF.div (WF.mul s s) x
 
-/-- The ratio at order `o` lies in `(lo, hi)`: `4 x_lo + P > 0`, `lo² < (4x_lo + P)²/x_lo` and `(4x_hi + P)²/x_hi < hi²`. -/
-def ratioWithin (o : Nat) (u lo hi : WF) : Bool :=
-  let P := polyP o u; let x := xBr u
+/-- The ratio at order `o` lies in `(lo, hi)`, with the chain at stage `n`: `4 x_lo + P > 0`, `lo² < (4x_lo + P)²/x_lo` and
+`(4x_hi + P)²/x_hi < hi²`. -/
+def ratioWithin (n o : Nat) (u lo hi : WF) : Bool :=
+  let P := polyP o u; let x := xBr u n
   WF.lt (0, 1) (WF.add (WF.mul (WF.ofNat 4) x.1) P) &&
   WF.lt (WF.mul lo lo) (ratioSq P x.1) && WF.lt (ratioSq P x.2) (WF.mul hi hi)
 
 /-- An upper bound of the relative spread of the orders `3, 5, 7`, `(max P − min P)/(4 x_lo + P₇)`. -/
-def spreadHi (u : WF) : WF :=
+def spreadHi (n : Nat) (u : WF) : WF :=
   let a := polyP 3 u; let b := polyP 5 u; let c := polyP 7 u
-  WF.div (WF.sub (WF.max a (WF.max b c)) (WF.min a (WF.min b c))) (WF.add (WF.mul (WF.ofNat 4) (xBr u).1) c)
+  WF.div (WF.sub (WF.max a (WF.max b c)) (WF.min a (WF.min b c))) (WF.add (WF.mul (WF.ofNat 4) (xBr u n).1) c)
 
 /-- A lower bound of the same spread, with `x_hi`. -/
-def spreadLo (u : WF) : WF :=
+def spreadLo (n : Nat) (u : WF) : WF :=
   let a := polyP 3 u; let b := polyP 5 u; let c := polyP 7 u
-  WF.div (WF.sub (WF.max a (WF.max b c)) (WF.min a (WF.min b c))) (WF.add (WF.mul (WF.ofNat 4) (xBr u).2) c)
+  WF.div (WF.sub (WF.max a (WF.max b c)) (WF.min a (WF.min b c))) (WF.add (WF.mul (WF.ofNat 4) (xBr u n).2) c)
 
-/-- The sum of the computed terms of `c₃` through `ϑ⁷` at channel unity, `ϑ = 1`: the sum of the fractions of `c3_fractions`. -/
-def uAtUnity : WF :=
+/-- The sum of the computed terms of `c₃` through `ϑ⁷` at the stiffness `ϑ`: the fractions of `c3_fractions` against the
+powers of `ϑ`. -/
+def uAt (th : WF) : WF :=
   let c := c3WF [1, 0, 2, 2, 12, 30, 130, 462] [0, 1, 1, 6, 15, 65, 231, 973] 8
-  (List.range 8).foldl (fun s k => WF.add s (wsCoeff c k)) (0, 1)
+  (List.range 8).foldl (fun s k => WF.add s (WF.mul (wsCoeff c k) (WF.pow th k))) (0, 1)
 
-/-- 46:C11 — the plaquette channel at the chart's cells (46:B6), at the cells' `u` to four decimals, `u = 0.0465, 0.0842,
-0.1246, 0.1671` for `n = 9, 8, 7, 6`: at order `7`, `m/√σ ∈ (6.85, 6.95), (6.15, 6.25), (5.55, 5.65), (5.05, 5.15)`, with the
-orders `3, 5, 7` within `1 %`; at `n = 4` (`u = 0.2553`) the three orders lie above `3.7`; at `n = 3` (`u = 0.2994`) the
-order-`5` value lies in `(3.4, 3.7)` and the orders `3` and `7` above `3.7`; at `n = 2` (`u = 0.3425`) the order-`3` value
-lies in `(3.4, 3.7)` and the orders `5` and `7` below `3.4`; at channel unity `u = 23/54` exactly, and the orders `3, 5, 7`
-lie in `(2.9, 3.0), (0.4, 0.5), (2.8, 2.9)`. That the abscissae are the cells' `u`, the sums of the computed terms of `c₃` through `ϑ⁷` at the cells' stiffness, is the chart check of the
-ledger file and a theorem on Mathlib (`FRC.YangMillsML.plaquette_cells_values`). -/
+/-- 46:C7 — the computed terms of `c₃` through `ϑ⁷` sum to `23/54` at the stiffness `ϑ = 1`. -/
+theorem c3_sum_at_one : uAt (WF.ofNat 1) = WF.frac 23 54 := by
+  decide +kernel
+
+/-- 46:C11 — the plaquette channel at channel unity (46:B6), where the stiffness is `ϑ = 1/24` (46:A16). The computed terms of
+`c₃` through `ϑ⁷` sum there to `u = 140458562483/9906778275840`, between `0.0141` and `0.0142`. At the abscissa `0.0142`, the
+row's `u`, with the chain of the logarithm at stage `2`, the orders `3, 5, 7` of `m/√σ` lie in `(8.2, 8.3)`, above the lattice
+bracket `(3.4, 3.7)`, and their relative spread is below `10⁻⁶`. The stage `2` keeps every integer that the comparisons form
+below `10¹⁰⁷`. The ratio at the exact `u` over the reals, in `(8.23, 8.24)`, is a theorem on Mathlib
+(`FRC.YangMillsML.plaquette_cells_values`) and the chart check of the ledger file. -/
 theorem plaquette_cells :
-    ratioWithin 7 (WF.frac 465 10000) (WF.frac 685 100) (WF.frac 695 100) = true ∧
-    ratioWithin 7 (WF.frac 842 10000) (WF.frac 615 100) (WF.frac 625 100) = true ∧
-    ratioWithin 7 (WF.frac 1246 10000) (WF.frac 555 100) (WF.frac 565 100) = true ∧
-    ratioWithin 7 (WF.frac 1671 10000) (WF.frac 505 100) (WF.frac 515 100) = true ∧
-    ([WF.frac 465 10000, WF.frac 842 10000, WF.frac 1246 10000, WF.frac 1671 10000].all fun u => WF.lt (spreadHi u) (WF.frac 1 100)) = true ∧
-    ([3, 5, 7].all fun o => ratioWithin o (WF.frac 2553 10000) (WF.frac 37 10) (WF.frac 5 1)) = true ∧
-    ratioWithin 3 (WF.frac 2994 10000) (WF.frac 37 10) (WF.frac 41 10) = true ∧
-    ratioWithin 5 (WF.frac 2994 10000) (WF.frac 34 10) (WF.frac 37 10) = true ∧
-    ratioWithin 7 (WF.frac 2994 10000) (WF.frac 37 10) (WF.frac 4 1) = true ∧
-    ratioWithin 3 (WF.frac 3425 10000) (WF.frac 34 10) (WF.frac 37 10) = true ∧
-    ratioWithin 5 (WF.frac 3425 10000) (WF.frac 25 10) (WF.frac 34 10) = true ∧
-    ratioWithin 7 (WF.frac 3425 10000) (WF.frac 3 1) (WF.frac 34 10) = true ∧
-    uAtUnity = WF.frac 23 54 ∧
-    ratioWithin 3 (WF.frac 23 54) (WF.frac 29 10) (WF.frac 3 1) = true ∧
-    ratioWithin 5 (WF.frac 23 54) (WF.frac 4 10) (WF.frac 5 10) = true ∧
-    ratioWithin 7 (WF.frac 23 54) (WF.frac 28 10) (WF.frac 29 10) = true := by
+    uAt (WF.frac 1 24) = WF.frac 140458562483 9906778275840 ∧
+    (WF.lt (WF.frac 141 10000) (uAt (WF.frac 1 24)) && WF.lt (uAt (WF.frac 1 24)) (WF.frac 142 10000)) = true ∧
+    ([3, 5, 7].all fun o => ratioWithin 2 o (WF.frac 142 10000) (WF.frac 82 10) (WF.frac 83 10)) = true ∧
+    WF.lt (spreadHi 2 (WF.frac 142 10000)) (WF.frac 1 1000000) = true := by
   decide +kernel
 
 /-! ## The family of the minimal wrap against the lattice (46:C12)
@@ -6573,12 +6566,13 @@ theorem colour_factors_within :
 
 `1/α_s(μ)` is linear in `ln μ` with slope `b₀/2π` between thresholds (the window rational `b₀ = 23/3` for five flavours,
 `25/3` for four, C5): `1/α(m_τ) = 1/α(M_Z) − (23/3) ln(M_Z/m_b)/(2π) − (25/3) ln(m_b/m_τ)/(2π)` with `α(M_Z) = 0.1180`,
-`M_Z = 91.1876`, `m_b = 4.18`, `m_τ = 1.77686` (A3). The logarithms are chains, `π` the six-place bracket. -/
+`M_Z = 91.1876`, `m_b = 4.18`, `m_τ = 1.77686` (A3). The logarithms are chains at stage `3`, which keeps every integer of the
+comparisons below `10⁸⁰`; `π` is the six-place bracket. -/
 
 /-- The subtracted term `T = ((23/3) ℓ₁ + (25/3) ℓ₂)/(2π)` as a bracket, `ℓ₁ = ln(M_Z/m_b)`, `ℓ₂ = ln(m_b/m_τ)`. -/
 def runTerm : BR :=
-  let l1 := lnBr (WF.frac 911876 41800) 12
-  let l2 := lnBr (WF.frac 418000 177686) 12
+  let l1 := lnBr (WF.frac 911876 41800) 3
+  let l2 := lnBr (WF.frac 418000 177686) 3
   let s : BR := BR.add (BR.smul 23 l1) (BR.smul 25 l2)
   (WF.div s.1 (WF.mul (WF.ofNat 6) piBr.2), WF.div s.2 (WF.mul (WF.ofNat 6) piBr.1))
 
@@ -7451,9 +7445,9 @@ theorem p46014 : (FRC.YangMills.threeB0 (3 : Nat) = (27 : Int) ∧ FRC.YangMills
 /-- p46015 — 46:C6. The drive exponent. On every shell of the totality the powers of the drive permute the nonzero elements: each registered scale has one exponent below $\p-1$, and exponents add modulo $\p-1$ --- the discrete logarithm on the shell. The ledger file decides it on the Subjects and the sweep. -/
 theorem p46015 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {w : FRC.Shell p}, w ≠ (0 : FRC.Shell p) → ∃ n, n < p - (1 : Nat) ∧ g ^ n = w) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m n : Nat}, m < p - (1 : Nat) → n < p - (1 : Nat) → g ^ m = g ^ n → m = n) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m n : Nat), g ^ m * g ^ n = g ^ ((m + n) % (p - (1 : Nat))) :=
   And.intro @FRC.YangMills.drive_exponent (And.intro @FRC.YangMills.drive_exponent_unique (@FRC.YangMills.drive_exponent_add))
-/-- p46016 — 46:C7. The tension's coefficient to order $\stf^{7}$: the fundamental plaquette coefficient of $\SU(3)$ in the stiffness (A16) is $c_3=\stf/3+\stf^{2}/6-5\stf^{4}/72-\dots$ modulo $\stf^{8}$, every coefficient a rational built from the singlet multiplicities, the frame's in the degrees used (A9); the computed terms sum to $\frac{23}{54}$ at channel unity. The instance $2T$ agrees with $\SU(2)$'s series through $\stf^{3}$, first differing at $\stf^{5}$. -/
-theorem p46016 : (List.map FRC.YangMills.ex (List.range (8 : Nat)) = [(1 : Nat), (0 : Nat), (2 : Nat), (2 : Nat), (12 : Nat), (30 : Nat), (130 : Nat), (462 : Nat)] ∧ List.map FRC.YangMills.exc (List.range (8 : Nat)) = [(0 : Nat), (1 : Nat), (1 : Nat), (6 : Nat), (15 : Nat), (65 : Nat), (231 : Nat), (973 : Nat)]) ∧ FRC.YangMills.c3WF [(1 : Nat), (0 : Nat), (2 : Nat), (2 : Nat), (12 : Nat), (30 : Nat), (130 : Nat), (462 : Nat)] [(0 : Nat), (1 : Nat), (1 : Nat), (6 : Nat), (15 : Nat), (65 : Nat), (231 : Nat), (973 : Nat)] (8 : Nat) = [((0 : Int), (1 : Nat)), FRC.YangMills.WF.frac (1 : Int) (3 : Nat), FRC.YangMills.WF.frac (1 : Int) ((2 : Nat) * (3 : Nat)), ((0 : Int), (1 : Nat)), FRC.YangMills.WF.frac (-5 : Int) ((2 : Nat) ^ (3 : Nat) * (3 : Nat) ^ (2 : Nat)), FRC.YangMills.WF.frac (-1 : Int) ((2 : Nat) ^ (3 : Nat) * (3 : Nat)), FRC.YangMills.WF.frac (7 : Int) ((2 : Nat) ^ (4 : Nat) * (3 : Nat) ^ (2 : Nat) * (5 : Nat)), FRC.YangMills.WF.frac (59 : Int) ((2 : Nat) ^ (4 : Nat) * (3 : Nat) ^ (3 : Nat) * (5 : Nat))] ∧ (FRC.YangMills.c3Check (13 : Nat) = true ∧ FRC.YangMills.c3Check (173 : Nat) = true ∧ FRC.YangMills.c3Check (1549 : Nat) = true ∧ [(13 : Nat), (17 : Nat), (29 : Nat), (37 : Nat), (41 : Nat), (53 : Nat), (61 : Nat), (73 : Nat), (89 : Nat), (97 : Nat), (101 : Nat), (109 : Nat), (113 : Nat), (137 : Nat), (149 : Nat), (157 : Nat), (173 : Nat), (181 : Nat), (193 : Nat), (197 : Nat)].all FRC.YangMills.c3Check = true ∧ (2 : FRC.Shell (5 : Nat)) ^ (4 : Nat) * (3 : FRC.Shell (5 : Nat)) ^ (2 : Nat) * (5 : FRC.Shell (5 : Nat)) = (0 : FRC.Shell (5 : Nat))) ∧ FRC.YangMills.c2Check (13 : Nat) = true ∧ FRC.YangMills.c2Check (173 : Nat) = true ∧ FRC.YangMills.c2Check (1549 : Nat) = true :=
-  And.intro @FRC.YangMills.moments (And.intro @FRC.YangMills.c3_fractions (And.intro @FRC.YangMills.c3_readback (@FRC.YangMills.c2_lab)))
+/-- p46016 — 46:C7. The tension's coefficient to order $\stf^{7}$: the fundamental plaquette coefficient of $\SU(3)$ in the stiffness (A16) is $c_3=\stf/3+\stf^{2}/6-5\stf^{4}/72-\dots$ modulo $\stf^{8}$, every coefficient a rational built from the singlet multiplicities, the frame's in the degrees used (A9); the computed terms sum to $\frac{23}{54}$ at $\stf=1$. The instance $2T$ agrees with $\SU(2)$'s series through $\stf^{3}$, first differing at $\stf^{5}$. -/
+theorem p46016 : (List.map FRC.YangMills.ex (List.range (8 : Nat)) = [(1 : Nat), (0 : Nat), (2 : Nat), (2 : Nat), (12 : Nat), (30 : Nat), (130 : Nat), (462 : Nat)] ∧ List.map FRC.YangMills.exc (List.range (8 : Nat)) = [(0 : Nat), (1 : Nat), (1 : Nat), (6 : Nat), (15 : Nat), (65 : Nat), (231 : Nat), (973 : Nat)]) ∧ FRC.YangMills.c3WF [(1 : Nat), (0 : Nat), (2 : Nat), (2 : Nat), (12 : Nat), (30 : Nat), (130 : Nat), (462 : Nat)] [(0 : Nat), (1 : Nat), (1 : Nat), (6 : Nat), (15 : Nat), (65 : Nat), (231 : Nat), (973 : Nat)] (8 : Nat) = [((0 : Int), (1 : Nat)), FRC.YangMills.WF.frac (1 : Int) (3 : Nat), FRC.YangMills.WF.frac (1 : Int) ((2 : Nat) * (3 : Nat)), ((0 : Int), (1 : Nat)), FRC.YangMills.WF.frac (-5 : Int) ((2 : Nat) ^ (3 : Nat) * (3 : Nat) ^ (2 : Nat)), FRC.YangMills.WF.frac (-1 : Int) ((2 : Nat) ^ (3 : Nat) * (3 : Nat)), FRC.YangMills.WF.frac (7 : Int) ((2 : Nat) ^ (4 : Nat) * (3 : Nat) ^ (2 : Nat) * (5 : Nat)), FRC.YangMills.WF.frac (59 : Int) ((2 : Nat) ^ (4 : Nat) * (3 : Nat) ^ (3 : Nat) * (5 : Nat))] ∧ (FRC.YangMills.c3Check (13 : Nat) = true ∧ FRC.YangMills.c3Check (173 : Nat) = true ∧ FRC.YangMills.c3Check (1549 : Nat) = true ∧ [(13 : Nat), (17 : Nat), (29 : Nat), (37 : Nat), (41 : Nat), (53 : Nat), (61 : Nat), (73 : Nat), (89 : Nat), (97 : Nat), (101 : Nat), (109 : Nat), (113 : Nat), (137 : Nat), (149 : Nat), (157 : Nat), (173 : Nat), (181 : Nat), (193 : Nat), (197 : Nat)].all FRC.YangMills.c3Check = true ∧ (2 : FRC.Shell (5 : Nat)) ^ (4 : Nat) * (3 : FRC.Shell (5 : Nat)) ^ (2 : Nat) * (5 : FRC.Shell (5 : Nat)) = (0 : FRC.Shell (5 : Nat))) ∧ FRC.YangMills.uAt (FRC.YangMills.WF.ofNat (1 : Nat)) = FRC.YangMills.WF.frac (23 : Int) (54 : Nat) ∧ FRC.YangMills.c2Check (13 : Nat) = true ∧ FRC.YangMills.c2Check (173 : Nat) = true ∧ FRC.YangMills.c2Check (1549 : Nat) = true :=
+  And.intro @FRC.YangMills.moments (And.intro @FRC.YangMills.c3_fractions (And.intro @FRC.YangMills.c3_readback (And.intro @FRC.YangMills.c3_sum_at_one (@FRC.YangMills.c2_lab))))
 /-- p46018 — 46:X1. Why the gluon is massless yet never seen alone: under B1 a gluon is drive-invariant (massless, A6) and its space has no frame-invariant line (C1, C3), so no registration singles it out. The row explicates the form of the confinement rule; it does not derive confinement. -/
 theorem p46018 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν a b r : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → a * a + -(ν * (b * b)) = (1 : FRC.Shell p) → b ≠ (0 : FRC.Shell p) → r * r + -((a + a) * r) + (1 : FRC.Shell p) = (0 : FRC.Shell p) → False) ∧ FRC.YangMills.mult (1 : Nat) (1 : Nat) = (1 : Nat) ∧ FRC.YangMills.mult (1 : Nat) (1 : Nat) - (1 : Nat) = (0 : Nat) ∧ FRC.YangMills.lookup ((1 : Nat), (1 : Nat)) (FRC.YangMills.powers3 (2 : Nat)) = (0 : Nat) ∧ FRC.YangMills.lookup ((1 : Nat), (1 : Nat)) (FRC.YangMills.tensor3 [(((0 : Nat), (1 : Nat)), (1 : Nat))]) = (1 : Nat) :=
   And.intro @FRC.YangMills.no_shell_eigenvalue (@FRC.YangMills.adjoint_no_invariant)
@@ -7523,10 +7517,10 @@ theorem p46067 : ((6227020800 : Nat) = (2574 : Nat) * ((840 : Nat) * (120 : Nat)
 /-- p46068 — 46:C25. Three rings of $n$ plaquettes on $n$ common links. For every prime power $q\ge3$ the tally sums $\chi_i(h_1)\chi_j(h_2)\chi_k(h_3)$ on the boundary classes with the invariant counts of the triples of characters; the mean of $w^{3}$ is $6$. On every Subject, on split classes of the eigenvalues $x^{\pm1},1$, $y^{\pm1},1$, $z^{\pm1},1$, it reads $1+N_{122}(c(x)c(y)+c(x)c(z)+c(y)c(z))$, $c(m)=m+m^{-1}$, $N_{122}=2$ or $4$. -/
 theorem p46068 : ((8 : Nat) * (5 : Nat) % (13 : Nat) = (1 : Nat) ∧ (8 : Nat) * (65 : Nat) % (173 : Nat) = (1 : Nat) ∧ (8 : Nat) * (581 : Nat) % (1549 : Nat) = (1 : Nat)) ∧ ((13 : Nat) % (13 : Nat) = (0 : Nat) ∧ (3 : Nat) * (173 : Nat) % (173 : Nat) = (0 : Nat) ∧ (1549 : Nat) % (1549 : Nat) = (0 : Nat)) ∧ FRC.YangMills.trValues (13 : Nat) (2 : Nat) (2 : Nat) (7 : Nat) (4 : Nat) (10 : Nat) (8 : Nat) (5 : Nat) (12 : Nat) (0 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) = [((1 : Nat), (6 : Nat)), ((5 : Nat), (9 : Nat)), ((7 : Nat), (9 : Nat)), ((11 : Nat), (6 : Nat))] ∧ (FRC.YangMills.trSweep (13 : Nat) (2 : Nat) (13 : Nat) (2 : Nat) (7 : Nat) (4 : Nat) (10 : Nat) (8 : Nat) (5 : Nat) (12 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) = true ∧ FRC.YangMills.trSweep (173 : Nat) (4 : Nat) (519 : Nat) (2 : Nat) (87 : Nat) (4 : Nat) (130 : Nat) (8 : Nat) (65 : Nat) (172 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) = true ∧ FRC.YangMills.trSweep (1549 : Nat) (2 : Nat) (1549 : Nat) (2 : Nat) (775 : Nat) (4 : Nat) (1162 : Nat) (8 : Nat) (581 : Nat) (1548 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) = true) ∧ FRC.YangMills.trReading (13 : Nat) (2 : Nat) (2 : Nat) (7 : Nat) (4 : Nat) (10 : Nat) (8 : Nat) (5 : Nat) = (6 : Nat) ∧ FRC.YangMills.trReading (173 : Nat) (4 : Nat) (2 : Nat) (87 : Nat) (4 : Nat) (130 : Nat) (8 : Nat) (65 : Nat) = (25 : Nat) ∧ FRC.YangMills.trReading (1549 : Nat) (2 : Nat) (2 : Nat) (775 : Nat) (4 : Nat) (1162 : Nat) (8 : Nat) (581 : Nat) = (616 : Nat) :=
   @FRC.YangMills.three_rings_reading
-/-- p46071 — 46:C11. [chart] The plaquette channel of the chart fails: with A11's series and $u$ the sum of $c_3$ through $\stf^{7}$ at B6's cells, $m/\sig=6.9$, $6.2$, $5.6$, $5.1$ for $n=9,\dots,6$, orders $3,5,7$ within $1\,\%$; at $n=3$: $3.98$, $3.60$, $3.79$, the fifth alone in $3.4$--$3.7$; at channel unity, $u=\frac{23}{54}$, $2.95$, $0.45$, $2.82$. -/
-theorem p46071 : FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (465 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (685 : Int) (100 : Nat)) (FRC.YangMills.WF.frac (695 : Int) (100 : Nat)) = true ∧ FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (842 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (615 : Int) (100 : Nat)) (FRC.YangMills.WF.frac (625 : Int) (100 : Nat)) = true ∧ FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (1246 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (555 : Int) (100 : Nat)) (FRC.YangMills.WF.frac (565 : Int) (100 : Nat)) = true ∧ FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (1671 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (505 : Int) (100 : Nat)) (FRC.YangMills.WF.frac (515 : Int) (100 : Nat)) = true ∧ ([FRC.YangMills.WF.frac (465 : Int) (10000 : Nat), FRC.YangMills.WF.frac (842 : Int) (10000 : Nat), FRC.YangMills.WF.frac (1246 : Int) (10000 : Nat), FRC.YangMills.WF.frac (1671 : Int) (10000 : Nat)].all fun u => (FRC.YangMills.spreadHi u).lt (FRC.YangMills.WF.frac (1 : Int) (100 : Nat))) = true ∧ ([(3 : Nat), (5 : Nat), (7 : Nat)].all fun o => FRC.YangMills.ratioWithin o (FRC.YangMills.WF.frac (2553 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (37 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (5 : Int) (1 : Nat))) = true ∧ FRC.YangMills.ratioWithin (3 : Nat) (FRC.YangMills.WF.frac (2994 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (37 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (41 : Int) (10 : Nat)) = true ∧ FRC.YangMills.ratioWithin (5 : Nat) (FRC.YangMills.WF.frac (2994 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (34 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (37 : Int) (10 : Nat)) = true ∧ FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (2994 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (37 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (4 : Int) (1 : Nat)) = true ∧ FRC.YangMills.ratioWithin (3 : Nat) (FRC.YangMills.WF.frac (3425 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (34 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (37 : Int) (10 : Nat)) = true ∧ FRC.YangMills.ratioWithin (5 : Nat) (FRC.YangMills.WF.frac (3425 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (25 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (34 : Int) (10 : Nat)) = true ∧ FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (3425 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (3 : Int) (1 : Nat)) (FRC.YangMills.WF.frac (34 : Int) (10 : Nat)) = true ∧ FRC.YangMills.uAtUnity = FRC.YangMills.WF.frac (23 : Int) (54 : Nat) ∧ FRC.YangMills.ratioWithin (3 : Nat) (FRC.YangMills.WF.frac (23 : Int) (54 : Nat)) (FRC.YangMills.WF.frac (29 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (3 : Int) (1 : Nat)) = true ∧ FRC.YangMills.ratioWithin (5 : Nat) (FRC.YangMills.WF.frac (23 : Int) (54 : Nat)) (FRC.YangMills.WF.frac (4 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (5 : Int) (10 : Nat)) = true ∧ FRC.YangMills.ratioWithin (7 : Nat) (FRC.YangMills.WF.frac (23 : Int) (54 : Nat)) (FRC.YangMills.WF.frac (28 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (29 : Int) (10 : Nat)) = true :=
+/-- p46071 — 46:C11. [chart] The plaquette channel of the chart fails: with A11's series and $u$ the sum of $c_3$ through $\stf^{7}$ at channel unity (B6), $u=0.0142$ and $m/\sig=8.23$, the orders $3,5,7$ agreeing to six digits, against the lattice bracket $3.4$--$3.7$. -/
+theorem p46071 : FRC.YangMills.uAt (FRC.YangMills.WF.frac (1 : Int) (24 : Nat)) = FRC.YangMills.WF.frac (140458562483 : Int) (9906778275840 : Nat) ∧ ((FRC.YangMills.WF.frac (141 : Int) (10000 : Nat)).lt (FRC.YangMills.uAt (FRC.YangMills.WF.frac (1 : Int) (24 : Nat))) && (FRC.YangMills.uAt (FRC.YangMills.WF.frac (1 : Int) (24 : Nat))).lt (FRC.YangMills.WF.frac (142 : Int) (10000 : Nat))) = true ∧ ([(3 : Nat), (5 : Nat), (7 : Nat)].all fun o => FRC.YangMills.ratioWithin (2 : Nat) o (FRC.YangMills.WF.frac (142 : Int) (10000 : Nat)) (FRC.YangMills.WF.frac (82 : Int) (10 : Nat)) (FRC.YangMills.WF.frac (83 : Int) (10 : Nat))) = true ∧ (FRC.YangMills.spreadHi (2 : Nat) (FRC.YangMills.WF.frac (142 : Int) (10000 : Nat))).lt (FRC.YangMills.WF.frac (1 : Int) (1000000 : Nat)) = true :=
   @FRC.YangMills.plaquette_cells
-/-- p46072 — 46:C26. The series on the shell: $d_R\,c_R=\sum_kh_k\stf^{k}/k!$ with integers $h_k$ ($0,1,1,0,-5,-15,21,413$ for $c_3$) from a recursion without division, on residues at every order. In the divided-power algebra on a Subject $f(0)=0$ gives $f^{\p}=0$, so a reading that respects sums and products sends $\stf$ to $0$; at channel unity on $\F_{13}$ the truncated sum reads $6$, the quotient of truncated sums $4$. -/
+/-- p46072 — 46:C26. The series on the shell: $d_R\,c_R=\sum_kh_k\stf^{k}/k!$ with integers $h_k$ ($0,1,1,0,-5,-15,21,413$ for $c_3$) from a recursion without division, on residues at every order. In the divided-power algebra on a Subject $f(0)=0$ gives $f^{\p}=0$, so a reading that respects sums and products sends $\stf$ to $0$; at the stiffness $1$ on $\F_{13}$ the truncated sum reads $6$, the quotient of truncated sums $4$. -/
 theorem p46072 : (FRC.YangMills.hurwitzH [(0 : Int), (1 : Int), (1 : Int), (6 : Int), (15 : Int), (65 : Int), (231 : Int), (973 : Int)] [(1 : Int), (0 : Int), (2 : Int), (2 : Int), (12 : Int), (30 : Int), (130 : Int), (462 : Int)] (8 : Nat) = [(0 : Int), (1 : Int), (1 : Int), (0 : Int), (-5 : Int), (-15 : Int), (21 : Int), (413 : Int)] ∧ FRC.YangMills.hurwitzH [(0 : Int), (0 : Int), (2 : Int), (4 : Int), (24 : Int), (80 : Int), (372 : Int), (1512 : Int)] [(1 : Int), (0 : Int), (2 : Int), (2 : Int), (12 : Int), (30 : Int), (130 : Int), (462 : Int)] (8 : Nat) = [(0 : Int), (0 : Int), (2 : Int), (4 : Int), (0 : Int), (-40 : Int), (-148 : Int), (252 : Int)]) ∧ (FRC.YangMills.wrFact (13 : Nat) (13 : Nat) = (0 : Nat) ∧ FRC.YangMills.wrFact (173 : Nat) (173 : Nat) = (0 : Nat) ∧ FRC.YangMills.wrFact (1549 : Nat) (1549 : Nat) = (0 : Nat)) ∧ List.foldl (fun s x => s + x) (0 : FRC.Shell (13 : Nat)) (FRC.YangMills.c3Series [(1 : Nat), (0 : Nat), (2 : Nat), (2 : Nat), (12 : Nat), (30 : Nat), (130 : Nat), (462 : Nat), (1946 : Nat), (7980 : Nat), (34776 : Nat), (153120 : Nat), (694056 : Nat)] [(0 : Nat), (1 : Nat), (1 : Nat), (6 : Nat), (15 : Nat), (65 : Nat), (231 : Nat), (973 : Nat), (3990 : Nat), (17388 : Nat), (76560 : Nat), (347028 : Nat), (1597167 : Nat)] (13 : Nat)) = (6 : FRC.Shell (13 : Nat)) ∧ (FRC.YangMills.truncSums [(1 : Nat), (0 : Nat), (2 : Nat), (2 : Nat), (12 : Nat), (30 : Nat), (130 : Nat), (462 : Nat), (1946 : Nat), (7980 : Nat), (34776 : Nat), (153120 : Nat), (694056 : Nat)] [(0 : Nat), (1 : Nat), (1 : Nat), (6 : Nat), (15 : Nat), (65 : Nat), (231 : Nat), (973 : Nat), (3990 : Nat), (17388 : Nat), (76560 : Nat), (347028 : Nat), (1597167 : Nat)] (13 : Nat)).fst * FRC.YangMills.invS (FRC.YangMills.truncSums [(1 : Nat), (0 : Nat), (2 : Nat), (2 : Nat), (12 : Nat), (30 : Nat), (130 : Nat), (462 : Nat), (1946 : Nat), (7980 : Nat), (34776 : Nat), (153120 : Nat), (694056 : Nat)] [(0 : Nat), (1 : Nat), (1 : Nat), (6 : Nat), (15 : Nat), (65 : Nat), (231 : Nat), (973 : Nat), (3990 : Nat), (17388 : Nat), (76560 : Nat), (347028 : Nat), (1597167 : Nat)] (13 : Nat)).snd = (4 : FRC.Shell (13 : Nat)) :=
   @FRC.YangMills.shell_series_readings
 /-- p46076 — 46:P4. No state of residue $0$ is registered in isolation: on every Subject the triplet and the adjoint of the unitary frame have no invariant line (A9), so there is no free quark and no free gluon. Falsifier: a confirmed free particle that carries colour, such as a fractional electric charge. Confrontation: the searches for free quarks are negative (A19). -/

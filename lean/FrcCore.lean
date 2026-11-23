@@ -65,6 +65,8 @@ import FrcCore.Theme.Lattice
 import FrcCore.Theme.Drift
 import FrcCore.Theme.Relaxation
 import FrcCore.Theme.Window
+import FrcCore.Theme.Forced
+import FrcCore.Theme.Readout
 import FrcCore.Theme.Static
 import FrcCore.Theme.Quantum
 import FrcCore.Theme.Observation
@@ -81,6 +83,8 @@ import FrcCore.Theme.Charge
 import FrcCore.Theme.Horizon
 import FrcCore.Theme.Zeros
 import FrcCore.Theme.Ladder
+import FrcCore.Theme.Count
+import FrcCore.Theme.Circle
 import FrcCore.Theme.Flavour
 import FrcCore.Theme.Dark
 import FrcCore.Theme.Hadrons
@@ -107,6 +111,7 @@ import FrcCore.Keys.Relaxation
 import FrcCore.Keys.Quantum
 import FrcCore.Keys.Interactions
 import FrcCore.Keys.Horizon
+import FrcCore.Keys.Count
 import FrcCore.Keys.Flavour
 import FrcCore.Keys.Dark
 import FrcCore.Keys.Hadrons

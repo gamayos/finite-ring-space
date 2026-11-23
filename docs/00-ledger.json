@@ -1904,7 +1904,7 @@
     }
    ],
    "lean_name": null,
-   "statement": "\\textbf{Weak} (scale): the lone scale is the non-split saturation scale, $v=m_P e^{-\\mathcal B}$, the exponent $\\mathcal B$ the cross-scale $\\beta$-function of the non-split channel, not the $\\mathrm{SU}(2)$ gauge coefficient ($b_2=19/6$ gives $10^{8}$~GeV). Value tagged: $v$, $\\Om$-hard as $\\Lambda_{\\mathrm{QCD}}$ (G6); the failing computation sums the $\\beta$-function over the $\\Om$-hard masses (Z6). Relation, $\\Om$-blind: the transmutation form."
+   "statement": "\\textbf{Weak} (scale): the lone scale is the non-split saturation scale, $v=m_P e^{-\\mathcal B}$, the exponent $\\mathcal B$ the cross-scale $\\beta$-function of the non-split channel, not the $\\mathrm{SU}(2)$ gauge coefficient ($b_2=19/6$ gives $4\\times10^{18}$~GeV). Value tagged: $v$, $\\Om$-hard as $\\Lambda_{\\mathrm{QCD}}$ (G6); the failing computation sums the $\\beta$-function over the $\\Om$-hard masses (Z6). Relation, $\\Om$-blind: the transmutation form."
   },
   {
    "label": "G4",

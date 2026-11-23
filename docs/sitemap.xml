@@ -193,6 +193,10 @@
     <lastmod>2026-11-21</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Keys.Count.html</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Keys.Dark.html</loc>
     <lastmod>2026-11-21</lastmod>
   </url>
@@ -389,8 +393,16 @@
     <lastmod>2026-11-21</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Theme.Circle.html</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Theme.Composite.html</loc>
     <lastmod>2026-11-21</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Theme.Count.html</loc>
+    <lastmod>2026-11-22</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Dark.html</loc>
@@ -1027,6 +1039,10 @@
   <url>
     <loc>https://finitering.space/py/rh.html</loc>
     <lastmod>2026-11-21</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/py/rh.make_figures.html</loc>
+    <lastmod>2026-11-22</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/py/rh.make_notebook.html</loc>
