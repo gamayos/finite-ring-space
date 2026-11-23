@@ -99,6 +99,8 @@ class ChartTest(unittest.TestCase):
         self.assertEqual(round(abs(CR.window_count(39, 78.0, 23.0) - CR.riemann_counts(23.0, [78.0])[0]), 3), 0.106)        # at a prime label the two counts differ by more than 0.10
         self.assertLess(abs(CR.vector_count([2, 3, 5], 50.0, 4.5) - 2.0), CR.count_bound([2, 3, 5], 4.5) / 50.0)        # the bound of 20:D17
         self.assertLess(abs(CR.vector_count([2, 3, 5], 50.0, 4.5, [1.5, -2.0, 4.0]) + 0.5), CR.count_bound([2, 3, 5], 4.5, [1.5, -2.0, 4.0]) / 50.0)        # a signed vector
+        self.assertTrue(all(CR.polynomial_exact(B) for B in (1, 2, 7, 21)))        # the polynomial of 20:D18
+        self.assertLess(CR.nearest_mode(CR.mode_table(13, [1, 4]), [0.3, 2.9]), 10 * 2 / 5)        # the primes 2 and 3 on the shell 13 (g = 2): B = 1
         self.assertAlmostEqual(CR.count_bound([2], 2.0 * math.e), math.sqrt(math.e) / math.pi, places=12)        # one label: √(x/n)/(π |log(x/n)|)
         self.assertLessEqual(max(CR.spectrum(3, 10.0, 0.5, 20, sigma=0.0)), 4 / 3 + 1e-12)   # depth 3 at σ = 0: E ≤ Σ|λ − λ̄| = 4/3
         self.assertTrue(all(CR.characters_parseval(13, 2, H.prime_power_base)[:4]))
@@ -147,7 +149,7 @@ class LedgerTest(unittest.TestCase):
         with redirect_stdout(io.StringIO()):
             L.R.verify_all()
         mine = L.R.results
-        self.assertEqual(len(records), 97)        # the package of 22 November 2026: blocks A, D, G and X, with the circle's rows G13 and G14 and the count's rows D16 and D17
+        self.assertEqual(len(records), 99)        # the package of 23 November 2026: blocks A, D, G and X, with the circle's rows G13 and G14, the count's rows D16 and D17 and the rows D18 and D19 of the modes near the heights
         self.assertEqual([(r["id"], r["rows"], r["ok"], _ALIAS.get(r["kind"], r["kind"]), r["label"]) for r in records],
                          [(r["id"], r["rows"], r["ok"], r["kind"], r["label"]) for r in mine])
 

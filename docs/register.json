@@ -2,11 +2,11 @@
  "header": {
   "generated": "23 November 2026",
   "schema": "frc-register/2",
-  "rows": 1250,
-  "theorems": 1190,
+  "rows": 1252,
+  "theorems": 1192,
   "counts": {
-   "keys": 1190,
-   "rows": 1250,
+   "keys": 1192,
+   "rows": 1252,
    "shared": 55,
    "by_tag": {
     "D": 224,
@@ -14,7 +14,7 @@
     "I": 150,
     "O": 21,
     "R": 9,
-    "T": 758,
+    "T": 760,
     "Ω": 27
    }
   },
@@ -797,7 +797,7 @@
      },
      {
       "letter": "D",
-      "title": "The chart: a mode, the spectrum of a window, the count of a window and its bound"
+      "title": "The chart: a mode, a mode near every height, a window's spectrum, its count and its bound"
      },
      {
       "letter": "E",
@@ -830,10 +830,10 @@
      {
       "tag": "T",
       "name": "Theorem",
-      "text": "Derived within the framework from the rows it cites, with a python check and a Lean proof of the general statement: in the core, without axioms, or on Mathlib for the three chart rows D14, D15 and D17."
+      "text": "Derived within the framework from the rows it cites, with a python check and a Lean proof of the general statement: in the core, without axioms, or on Mathlib for the four chart rows D14, D15, D17 and D18."
      }
     ],
-    "rows": 40
+    "rows": 42
    },
    {
     "key": "21-grav",
@@ -4781,7 +4781,7 @@
    "check": {
     "href": "py/rh.html#p20043",
     "script": "rh.py",
-    "line": 954,
+    "line": 1060,
     "verdict": "pass"
    },
    "declarations": [
@@ -19256,7 +19256,7 @@
   {
    "key": "p20003",
    "origin": "20",
-   "statement": "The classical apparatus, as the chart of the shell: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$; the line $\\Real s=\\half$, the pole at $1$ and the symmetry $s\\mapsto1-s$; the dilation generator $-i(x\\partial_x+\\tfrac12)$ of Berry--Keating; the first eighty heights of the zeros of $\\zeta$; Riemann's formula for the count $\\pi(x)$ of the primes and Perron's formula; the Riemann spectrum of the primes [chart].",
+   "statement": "The classical apparatus, as the chart of the shell: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$; the line $\\Real s=\\half$, the pole at $1$ and the symmetry $s\\mapsto1-s$; the dilation generator $-i(x\\partial_x+\\tfrac12)$ of Berry--Keating; the first eighty heights of the zeros of $\\zeta$; Riemann's formula for the count $\\pi(x)$ of the primes and Perron's formula; the Riemann spectrum of the primes.",
    "origin_row": "20:A6",
    "tag": "I",
    "name": null,
@@ -19271,7 +19271,7 @@
   {
    "key": "p20078",
    "origin": "20",
-   "statement": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with a functional equation under $s\\mapsto1-s$ and no Euler product, has zeros off the line, the first pair $s=0.8085171825+85.6993484854\\,i$ and $1-\\bar s$ [chart].",
+   "statement": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with a functional equation under $s\\mapsto1-s$ and no Euler product, has zeros off the line, the first pair $s=0.8085171825+85.6993484854\\,i$ and $1-\\bar s$.",
    "origin_row": "20:A8",
    "tag": "I",
    "name": null,
@@ -19294,7 +19294,7 @@
    "check": {
     "href": "py/rh.html#p20008",
     "script": "rh.py",
-    "line": 998,
+    "line": 1104,
     "verdict": "pass"
    },
    "declarations": [
@@ -19330,7 +19330,7 @@
    "check": {
     "href": "py/rh.html#p20009",
     "script": "rh.py",
-    "line": 1012,
+    "line": 1118,
     "verdict": "pass"
    },
    "declarations": [
@@ -19369,7 +19369,7 @@
   {
    "key": "p20010",
    "origin": "20",
-   "statement": "The prime vector: the $\\Fp$-valued indicator of the primes in the window, one residue per nonzero residue; the chart weights the prime powers of a deep window by $\\log\\ell$, the von Mangoldt function [chart]; the horizon is a property of the reading, not of the vector.",
+   "statement": "The prime vector: the $\\Fp$-valued indicator of the primes in the window, one residue per nonzero residue; the chart weights the prime powers of a deep window by $\\log\\ell$, the von Mangoldt function; the horizon is a property of the reading, not of the vector.",
    "origin_row": "20:B3",
    "tag": "D",
    "name": null,
@@ -19392,7 +19392,7 @@
    "check": {
     "href": "py/rh.html#p20011",
     "script": "rh.py",
-    "line": 919,
+    "line": 1025,
     "verdict": "pass"
    },
    "declarations": [
@@ -19424,7 +19424,7 @@
    "check": {
     "href": "py/rh.html#p20017",
     "script": "rh.py",
-    "line": 930,
+    "line": 1036,
     "verdict": "pass"
    },
    "declarations": [
@@ -19463,7 +19463,7 @@
   {
    "key": "p20025",
    "origin": "20",
-   "statement": "The chart of a mode: the count of a mode is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart represents it by the exponent $-\\half+it$, with $t$ a free real variable, the height [chart]. At a label $n$ a mode is $n^{-1/2+it}$. With a vector's values represented by labels, $0$ and $1$ for the prime vector, the dual becomes their Dirichlet polynomial [chart].",
+   "statement": "The chart of a mode: a mode's count is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart represents the count of a nonconstant mode by the exponent $-\\half+it$, $t$ a free real variable, the height. At a label $n$ that mode is $n^{-1/2+it}$. With a vector's values as labels, the dual becomes their Dirichlet polynomial [chart]. The constant mode keeps the exponent $0$.",
    "origin_row": "20:D1",
    "tag": "D",
    "name": null,
@@ -19501,7 +19501,7 @@
    "check": {
     "href": "py/rh.html#p20113",
     "script": "rh.py",
-    "line": 1134,
+    "line": 1282,
     "verdict": "pass"
    },
    "declarations": [
@@ -19533,7 +19533,7 @@
    "check": {
     "href": "py/rh.html#p20114",
     "script": "rh.py",
-    "line": 1138,
+    "line": 1286,
     "verdict": "pass"
    },
    "declarations": [
@@ -19565,7 +19565,7 @@
    "check": {
     "href": "py/rh.html#p20116",
     "script": "rh.py",
-    "line": 1142,
+    "line": 1290,
     "verdict": "pass"
    },
    "declarations": [],
@@ -19585,7 +19585,7 @@
    "check": {
     "href": "py/rh.html#p20117",
     "script": "rh.py",
-    "line": 1146,
+    "line": 1294,
     "verdict": "pass"
    },
    "declarations": [
@@ -19607,9 +19607,63 @@
    "realisations": []
   },
   {
+   "key": "p20118",
+   "origin": "20",
+   "statement": "A mode near every height [chart]: on every framed shell, for distinct primes $\\ell_1,\\dots,\\ell_m$ of the window with $(\\ell_1\\cdots\\ell_m)^{B}<\\p$, $B\\ge1$, and every height $t$ (D1), a mode $k$ has $\\sum_j|\\chi_k(\\ell_j)-\\ell_j^{\\,it}|^{2}\\le10m/((B+1)^{2}+1)$ (E13). Evaluation [approx], primes $2$ and $3$, Subject $\\F_{1549}$: $B=4$, bound $10/13$; at the heights $0.5,1,\\dots,100$ the smallest sum is at most $0.01$.",
+   "origin_row": "20:D18",
+   "tag": "T",
+   "name": "heights_near_modes",
+   "tier": 2,
+   "check": {
+    "href": "py/rh.html#p20118",
+    "script": "rh.py",
+    "line": 1299,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcMathlib",
+     "module": "FrcMathlib/Rh",
+     "name": "FRC.Rh.mode_near_height"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "20:D18"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p20119",
+   "origin": "20",
+   "statement": "The value of a mode at one label: on every framed shell, for a label $\\ell\\ge2$ and integers $M\\ge1$ with $\\ell^{M}<\\p$ and $V\\ge1$ with $MV\\ge\\p-1$, every nonzero residue is $\\ell^{k}\\gen^{\\,r}$ with a count $k$ (G1) and $r<V$ (E15): $r$ steps of the drive after the mode's value. For the label $3$ on the Subject $\\F_{1549}$: largest $M=6$, least $V=258$.",
+   "origin_row": "20:D19",
+   "tag": "T",
+   "name": "steps_after_mode",
+   "tier": 0,
+   "check": {
+    "href": "py/rh.html#p20119",
+    "script": "rh.py",
+    "line": 1303,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Steps",
+     "name": "FRC.Horizon.label_steps"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "20:D19"
+   ],
+   "realisations": []
+  },
+  {
    "key": "p20044",
    "origin": "20",
-   "statement": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity becomes $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
+   "statement": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity becomes $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$.",
    "origin_row": "20:E13",
    "tag": "T",
    "name": "parseval_identity",
@@ -19617,7 +19671,7 @@
    "check": {
     "href": "py/rh.html#p20044",
     "script": "rh.py",
-    "line": 964,
+    "line": 1070,
     "verdict": "pass"
    },
    "declarations": [
@@ -19659,7 +19713,7 @@
    "check": {
     "href": "py/rh.html#p20092",
     "script": "rh.py",
-    "line": 954,
+    "line": 1060,
     "verdict": "pass"
    },
    "declarations": [
@@ -19706,7 +19760,7 @@
    "check": {
     "href": "py/rh.html#p20094",
     "script": "rh.py",
-    "line": 1120,
+    "line": 1226,
     "verdict": "pass"
    },
    "declarations": [
@@ -19753,7 +19807,7 @@
    "check": {
     "href": "py/rh.html#p20079",
     "script": "rh.py",
-    "line": 1062,
+    "line": 1168,
     "verdict": "pass"
    },
    "declarations": [
@@ -19810,7 +19864,7 @@
    "check": {
     "href": "py/rh.html#p20097",
     "script": "rh.py",
-    "line": 1233,
+    "line": 1390,
     "verdict": "pass"
    },
    "declarations": [
@@ -19847,7 +19901,7 @@
    "check": {
     "href": "py/rh.html#p20098",
     "script": "rh.py",
-    "line": 1237,
+    "line": 1394,
     "verdict": "pass"
    },
    "declarations": [
@@ -19899,7 +19953,7 @@
    "check": {
     "href": "py/rh.html#p20100",
     "script": "rh.py",
-    "line": 1240,
+    "line": 1397,
     "verdict": "pass"
    },
    "declarations": [
@@ -19931,7 +19985,7 @@
    "check": {
     "href": "py/rh.html#p20101",
     "script": "rh.py",
-    "line": 1243,
+    "line": 1400,
     "verdict": "pass"
    },
    "declarations": [
@@ -19973,7 +20027,7 @@
    "check": {
     "href": "py/rh.html#p20102",
     "script": "rh.py",
-    "line": 1246,
+    "line": 1403,
     "verdict": "pass"
    },
    "declarations": [
@@ -20035,7 +20089,7 @@
    "check": {
     "href": "py/rh.html#p20104",
     "script": "rh.py",
-    "line": 1249,
+    "line": 1406,
     "verdict": "pass"
    },
    "declarations": [
@@ -20067,7 +20121,7 @@
    "check": {
     "href": "py/rh.html#p20105",
     "script": "rh.py",
-    "line": 1252,
+    "line": 1409,
     "verdict": "pass"
    },
    "declarations": [
@@ -20114,7 +20168,7 @@
    "check": {
     "href": "py/rh.html#p20107",
     "script": "rh.py",
-    "line": 1255,
+    "line": 1412,
     "verdict": "pass"
    },
    "declarations": [
@@ -20156,7 +20210,7 @@
    "check": {
     "href": "py/rh.html#p20111",
     "script": "rh.py",
-    "line": 1258,
+    "line": 1415,
     "verdict": "pass"
    },
    "declarations": [
@@ -20218,7 +20272,7 @@
    "check": {
     "href": "py/rh.html#p20115",
     "script": "rh.py",
-    "line": 1262,
+    "line": 1419,
     "verdict": "pass"
    },
    "declarations": [
@@ -20270,7 +20324,7 @@
    "check": {
     "href": "py/rh.html#p20108",
     "script": "rh.py",
-    "line": 1272,
+    "line": 1429,
     "verdict": "pass"
    },
    "declarations": [
@@ -20302,7 +20356,7 @@
    "check": {
     "href": "py/rh.html#p20109",
     "script": "rh.py",
-    "line": 1275,
+    "line": 1432,
     "verdict": "pass"
    },
    "declarations": [
@@ -20331,7 +20385,7 @@
   {
    "key": "p20110",
    "origin": "20",
-   "statement": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; compared with A6.",
+   "statement": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$. Rests on G3, G5; compared with A6.",
    "origin_row": "20:X3",
    "tag": "T",
    "name": "half_of_dilation_generator",
@@ -20339,7 +20393,7 @@
    "check": {
     "href": "py/rh.html#p20110",
     "script": "rh.py",
-    "line": 1278,
+    "line": 1435,
     "verdict": "pass"
    },
    "declarations": [
@@ -63714,7 +63768,7 @@
     "py": {
      "href": "py/rh.html#p00004",
      "script": "rh.py",
-     "line": 1062,
+     "line": 1168,
      "verdict": "pass"
     },
     "lean": [
@@ -63764,7 +63818,7 @@
     "py": {
      "href": "py/rh.html#p00003",
      "script": "rh.py",
-     "line": 1094,
+     "line": 1200,
      "verdict": "pass"
     },
     "lean": [
@@ -63806,7 +63860,7 @@
     "py": {
      "href": "py/rh.html#p00197",
      "script": "rh.py",
-     "line": 1062,
+     "line": 1168,
      "verdict": "pass"
     },
     "lean": [
@@ -63869,7 +63923,7 @@
    "tag": "I",
    "name": null,
    "lean_name": null,
-   "statement": "The classical apparatus, as the chart of the shell: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$; the line $\\Real s=\\half$, the pole at $1$ and the symmetry $s\\mapsto1-s$; the dilation generator $-i(x\\partial_x+\\tfrac12)$ of Berry--Keating; the first eighty heights of the zeros of $\\zeta$; Riemann's formula for the count $\\pi(x)$ of the primes and Perron's formula; the Riemann spectrum of the primes [chart].",
+   "statement": "The classical apparatus, as the chart of the shell: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$; the line $\\Real s=\\half$, the pole at $1$ and the symmetry $s\\mapsto1-s$; the dilation generator $-i(x\\partial_x+\\tfrac12)$ of Berry--Keating; the first eighty heights of the zeros of $\\zeta$; Riemann's formula for the count $\\pi(x)$ of the primes and Perron's formula; the Riemann spectrum of the primes.",
    "source": "\\citep{riemann1859,edwards1974,titchmarsh1986,berry1999,mazurstein2016,odlyzkotables}; \\S\\ref{sec:dual}, \\S\\ref{sec:drive}, \\S\\ref{sec:exhibit}, \\S\\ref{sec:discussion}",
    "page": "20-rh/index.html#A6",
    "witness": {
@@ -63877,7 +63931,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The classical apparatus, as the chart of the shell: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$; the line $\\Real s=\\half$, the pole at $1$ and the symmetry $s\\mapsto1-s$; the dilation generator $-i(x\\partial_x+\\tfrac12)$ of Berry–Keating; the first eighty heights of the zeros of $\\zeta$; Riemann's formula for the count $\\pi(x)$ of the primes and Perron's formula; the Riemann spectrum of the primes [chart]. [riemann1859,edwards1974,titchmarsh1986,berry1999,mazurstein2016,odlyzkotables]; \\Ssec:dual, \\Ssec:drive, \\Ssec:exhibit, \\Ssec:discussion"
+   "text": "The classical apparatus, as the chart of the shell: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$; the line $\\Real s=\\half$, the pole at $1$ and the symmetry $s\\mapsto1-s$; the dilation generator $-i(x\\partial_x+\\tfrac12)$ of Berry–Keating; the first eighty heights of the zeros of $\\zeta$; Riemann's formula for the count $\\pi(x)$ of the primes and Perron's formula; the Riemann spectrum of the primes. [riemann1859,edwards1974,titchmarsh1986,berry1999,mazurstein2016,odlyzkotables]; \\Ssec:dual, \\Ssec:drive, \\Ssec:exhibit, \\Ssec:discussion"
   },
   {
    "paper": "20-rh",
@@ -63889,7 +63943,7 @@
    "tag": "I",
    "name": null,
    "lean_name": null,
-   "statement": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with a functional equation under $s\\mapsto1-s$ and no Euler product, has zeros off the line, the first pair $s=0.8085171825+85.6993484854\\,i$ and $1-\\bar s$ [chart].",
+   "statement": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with a functional equation under $s\\mapsto1-s$ and no Euler product, has zeros off the line, the first pair $s=0.8085171825+85.6993484854\\,i$ and $1-\\bar s$.",
    "source": "\\citep{davenport1936,titchmarsh1986,spira1994}; Prop.~\\ref{prop:classical}",
    "page": "20-rh/index.html#A8",
    "witness": {
@@ -63897,7 +63951,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The chart's known off-line case: the Davenport–Heilbronn series, a Dirichlet series with a functional equation under $s\\mapsto1-s$ and no Euler product, has zeros off the line, the first pair $s=0.8085171825+85.6993484854 i$ and $1-\\bar s$ [chart]. [davenport1936,titchmarsh1986,spira1994]; Prop. prop:classical"
+   "text": "The chart's known off-line case: the Davenport–Heilbronn series, a Dirichlet series with a functional equation under $s\\mapsto1-s$ and no Euler product, has zeros off the line, the first pair $s=0.8085171825+85.6993484854 i$ and $1-\\bar s$. [davenport1936,titchmarsh1986,spira1994]; Prop. prop:classical"
   },
   {
    "paper": "20-rh",
@@ -63916,7 +63970,7 @@
     "py": {
      "href": "py/rh.html#p20008",
      "script": "rh.py",
-     "line": 998,
+     "line": 1104,
      "verdict": "pass"
     },
     "lean": [
@@ -63968,7 +64022,7 @@
     "py": {
      "href": "py/rh.html#p20009",
      "script": "rh.py",
-     "line": 1012,
+     "line": 1118,
      "verdict": "pass"
     },
     "lean": [
@@ -64027,7 +64081,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The prime vector: the $\\Fp$-valued indicator of the primes in the window, one residue per nonzero residue; the chart weights the prime powers of a deep window by $\\log\\ell$, the von Mangoldt function [chart]; the horizon is a property of the reading, not of the vector.",
+   "statement": "The prime vector: the $\\Fp$-valued indicator of the primes in the window, one residue per nonzero residue; the chart weights the prime powers of a deep window by $\\log\\ell$, the von Mangoldt function; the horizon is a property of the reading, not of the vector.",
    "source": "Def.~\\ref{def:vector}",
    "page": "20-rh/index.html#B3",
    "witness": {
@@ -64035,7 +64089,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The prime vector: the $\\Fp$-valued indicator of the primes in the window, one residue per nonzero residue; the chart weights the prime powers of a deep window by $\\log\\ell$, the von Mangoldt function [chart]; the horizon is a property of the reading, not of the vector. Def. def:vector"
+   "text": "The prime vector: the $\\Fp$-valued indicator of the primes in the window, one residue per nonzero residue; the chart weights the prime powers of a deep window by $\\log\\ell$, the von Mangoldt function; the horizon is a property of the reading, not of the vector. Def. def:vector"
   },
   {
    "paper": "20-rh",
@@ -64054,7 +64108,7 @@
     "py": {
      "href": "py/rh.html#p20011",
      "script": "rh.py",
-     "line": 919,
+     "line": 1025,
      "verdict": "pass"
     },
     "lean": [
@@ -64096,7 +64150,7 @@
     "py": {
      "href": "py/rh.html#p20017",
      "script": "rh.py",
-     "line": 930,
+     "line": 1036,
      "verdict": "pass"
     },
     "lean": [
@@ -64155,7 +64209,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The chart of a mode: the count of a mode is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart represents it by the exponent $-\\half+it$, with $t$ a free real variable, the height [chart]. At a label $n$ a mode is $n^{-1/2+it}$. With a vector's values represented by labels, $0$ and $1$ for the prime vector, the dual becomes their Dirichlet polynomial [chart].",
+   "statement": "The chart of a mode: a mode's count is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart represents the count of a nonconstant mode by the exponent $-\\half+it$, $t$ a free real variable, the height. At a label $n$ that mode is $n^{-1/2+it}$. With a vector's values as labels, the dual becomes their Dirichlet polynomial [chart]. The constant mode keeps the exponent $0$.",
    "source": "Def.~\\ref{def:deframe}",
    "page": "20-rh/index.html#D1",
    "witness": {
@@ -64165,7 +64219,7 @@
    "refs": [
     "p20099"
    ],
-   "text": "The chart of a mode: the count of a mode is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart represents it by the exponent $-\\half+it$, with $t$ a free real variable, the height [chart]. At a label $n$ a mode is $n^{-1/2+it}$. With a vector's values represented by labels, $0$ and $1$ for the prime vector, the dual becomes their Dirichlet polynomial [chart]. Def. def:deframe"
+   "text": "The chart of a mode: a mode's count is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart represents the count of a nonconstant mode by the exponent $-\\half+it$, $t$ a free real variable, the height. At a label $n$ that mode is $n^{-1/2+it}$. With a vector's values as labels, the dual becomes their Dirichlet polynomial [chart]. The constant mode keeps the exponent $0$. Def. def:deframe"
   },
   {
    "paper": "20-rh",
@@ -64204,7 +64258,7 @@
     "py": {
      "href": "py/rh.html#p20113",
      "script": "rh.py",
-     "line": 1134,
+     "line": 1282,
      "verdict": "pass"
     },
     "lean": [
@@ -64248,7 +64302,7 @@
     "py": {
      "href": "py/rh.html#p20114",
      "script": "rh.py",
-     "line": 1138,
+     "line": 1286,
      "verdict": "pass"
     },
     "lean": [
@@ -64292,7 +64346,7 @@
     "py": {
      "href": "py/rh.html#p20116",
      "script": "rh.py",
-     "line": 1142,
+     "line": 1290,
      "verdict": "pass"
     },
     "lean": []
@@ -64321,7 +64375,7 @@
     "py": {
      "href": "py/rh.html#p20117",
      "script": "rh.py",
-     "line": 1146,
+     "line": 1294,
      "verdict": "pass"
     },
     "lean": [
@@ -64351,6 +64405,80 @@
   {
    "paper": "20-rh",
    "no": 20,
+   "rid": "20:D18",
+   "key": "p20118",
+   "label": "D18",
+   "block": "D",
+   "tag": "T",
+   "name": null,
+   "lean_name": "heights_near_modes",
+   "statement": "A mode near every height [chart]: on every framed shell, for distinct primes $\\ell_1,\\dots,\\ell_m$ of the window with $(\\ell_1\\cdots\\ell_m)^{B}<\\p$, $B\\ge1$, and every height $t$ (D1), a mode $k$ has $\\sum_j|\\chi_k(\\ell_j)-\\ell_j^{\\,it}|^{2}\\le10m/((B+1)^{2}+1)$ (E13). Evaluation [approx], primes $2$ and $3$, Subject $\\F_{1549}$: $B=4$, bound $10/13$; at the heights $0.5,1,\\dots,100$ the smallest sum is at most $0.01$.",
+   "source": "Thm.~\\ref{thm:pointwise}\\newline \\pywit{rh}{p20118}{D18}, \\leanwit{FrcMathlib}{p20118}{D18} \\lean{Rh.mode\\_near\\_height}",
+   "page": "20-rh/index.html#D18",
+   "witness": {
+    "py": {
+     "href": "py/rh.html#p20118",
+     "script": "rh.py",
+     "line": 1299,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcMathlib",
+      "module": "FrcMathlib/Rh",
+      "name": "FRC.Rh.mode_near_height",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Rh.html#FRC.Rh.mode_near_height"
+     }
+    ]
+   },
+   "refs": [
+    "p20025",
+    "p20044"
+   ],
+   "text": "A mode near every height [chart]: on every framed shell, for distinct primes $\\ell_1,\\dots,\\ell_m$ of the window with $(\\ell_1\\cdots\\ell_m)^{B}<\\p$, $B\\ge1$, and every height $t$ (D1), a mode $k$ has $\\sum_j|\\chi_k(\\ell_j)-\\ell_j^{ it}|^{2}\\le10m/((B+1)^{2}+1)$ (E13). Evaluation [approx], primes $2$ and $3$, Subject $\\F_{1549}$: $B=4$, bound $10/13$; at the heights $0.5,1,\\dots,100$ the smallest sum is at most $0.01$. Thm. thm:pointwise p20118, FrcMathlib{D18} Rh.mode_near_height"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
+   "rid": "20:D19",
+   "key": "p20119",
+   "label": "D19",
+   "block": "D",
+   "tag": "T",
+   "name": null,
+   "lean_name": "steps_after_mode",
+   "statement": "The value of a mode at one label: on every framed shell, for a label $\\ell\\ge2$ and integers $M\\ge1$ with $\\ell^{M}<\\p$ and $V\\ge1$ with $MV\\ge\\p-1$, every nonzero residue is $\\ell^{k}\\gen^{\\,r}$ with a count $k$ (G1) and $r<V$ (E15): $r$ steps of the drive after the mode's value. For the label $3$ on the Subject $\\F_{1549}$: largest $M=6$, least $V=258$.",
+   "source": "Thm.~\\ref{thm:label}\\newline \\pywit{rh}{p20119}{D19}, \\leanwit{FrcCore}{p20119}{D19} \\lean{FRC.Horizon.label\\_steps}",
+   "page": "20-rh/index.html#D19",
+   "witness": {
+    "py": {
+     "href": "py/rh.html#p20119",
+     "script": "rh.py",
+     "line": 1303,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Steps",
+      "name": "FRC.Horizon.label_steps",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.label_steps"
+     }
+    ]
+   },
+   "refs": [
+    "p20094",
+    "p20096"
+   ],
+   "text": "The value of a mode at one label: on every framed shell, for a label $\\ell\\ge2$ and integers $M\\ge1$ with $\\ell^{M}<\\p$ and $V\\ge1$ with $MV\\ge\\p-1$, every nonzero residue is $\\ell^{k}\\gen^{ r}$ with a count $k$ (G1) and $r<V$ (E15): $r$ steps of the drive after the mode's value. For the label $3$ on the Subject $\\F_{1549}$: largest $M=6$, least $V=258$. Thm. thm:label p20119, FrcCore{D19} FRC.Horizon.label_steps"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
    "rid": "20:E12",
    "key": "p20043",
    "label": "E12",
@@ -64365,7 +64493,7 @@
     "py": {
      "href": "py/rh.html#p20043",
      "script": "rh.py",
-     "line": 954,
+     "line": 1060,
      "verdict": "pass"
     },
     "lean": [
@@ -64446,14 +64574,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "parseval_identity",
-   "statement": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity becomes $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
+   "statement": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity becomes $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$.",
    "source": "Thm.~\\ref{thm:hp} (ii), Rem.~\\ref{rem:parseval}\\newline \\pywit{rh}{p20044}{E13}, \\leanwit{FrcCore}{p20044}{E13}, \\leanwit{FrcMathlib}{p20044}{E13} \\lean{FRC.Horizon.parseval\\_cycle, Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion}",
    "page": "20-rh/index.html#E13",
    "witness": {
     "py": {
      "href": "py/rh.html#p20044",
      "script": "rh.py",
-     "line": 964,
+     "line": 1070,
      "verdict": "pass"
     },
     "lean": [
@@ -64492,7 +64620,7 @@
     ]
    },
    "refs": [],
-   "text": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity becomes $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart]. Thm. thm:hp (ii), Rem. rem:parseval p20044, FrcCore{E13}, FrcMathlib{E13} FRC.Horizon.parseval_cycle, Rh.chi_orthogonal, Rh.chi_parseval, Rh.chi_inversion"
+   "text": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity becomes $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$. Thm. thm:hp (ii), Rem. rem:parseval p20044, FrcCore{E13}, FrcMathlib{E13} FRC.Horizon.parseval_cycle, Rh.chi_orthogonal, Rh.chi_parseval, Rh.chi_inversion"
   },
   {
    "paper": "20-rh",
@@ -64511,7 +64639,7 @@
     "py": {
      "href": "py/rh.html#p20092",
      "script": "rh.py",
-     "line": 954,
+     "line": 1060,
      "verdict": "pass"
     },
     "lean": [
@@ -64577,7 +64705,7 @@
     "py": {
      "href": "py/rh.html#p20094",
      "script": "rh.py",
-     "line": 1120,
+     "line": 1226,
      "verdict": "pass"
     },
     "lean": [
@@ -64645,7 +64773,7 @@
     "py": {
      "href": "py/rh.html#p20079",
      "script": "rh.py",
-     "line": 1062,
+     "line": 1168,
      "verdict": "pass"
     },
     "lean": [
@@ -64728,7 +64856,7 @@
     "py": {
      "href": "py/rh.html#p20097",
      "script": "rh.py",
-     "line": 1233,
+     "line": 1390,
      "verdict": "pass"
     },
     "lean": [
@@ -64781,7 +64909,7 @@
     "py": {
      "href": "py/rh.html#p20098",
      "script": "rh.py",
-     "line": 1237,
+     "line": 1394,
      "verdict": "pass"
     },
     "lean": [
@@ -64853,7 +64981,7 @@
     "py": {
      "href": "py/rh.html#p20100",
      "script": "rh.py",
-     "line": 1240,
+     "line": 1397,
      "verdict": "pass"
     },
     "lean": [
@@ -64899,7 +65027,7 @@
     "py": {
      "href": "py/rh.html#p20101",
      "script": "rh.py",
-     "line": 1243,
+     "line": 1400,
      "verdict": "pass"
     },
     "lean": [
@@ -64962,7 +65090,7 @@
     "py": {
      "href": "py/rh.html#p20102",
      "script": "rh.py",
-     "line": 1246,
+     "line": 1403,
      "verdict": "pass"
     },
     "lean": [
@@ -65050,7 +65178,7 @@
     "py": {
      "href": "py/rh.html#p20104",
      "script": "rh.py",
-     "line": 1249,
+     "line": 1406,
      "verdict": "pass"
     },
     "lean": [
@@ -65095,7 +65223,7 @@
     "py": {
      "href": "py/rh.html#p20105",
      "script": "rh.py",
-     "line": 1252,
+     "line": 1409,
      "verdict": "pass"
     },
     "lean": [
@@ -65159,7 +65287,7 @@
     "py": {
      "href": "py/rh.html#p20107",
      "script": "rh.py",
-     "line": 1255,
+     "line": 1412,
      "verdict": "pass"
     },
     "lean": [
@@ -65222,7 +65350,7 @@
     "py": {
      "href": "py/rh.html#p20111",
      "script": "rh.py",
-     "line": 1258,
+     "line": 1415,
      "verdict": "pass"
     },
     "lean": [
@@ -65312,7 +65440,7 @@
     "py": {
      "href": "py/rh.html#p20115",
      "script": "rh.py",
-     "line": 1262,
+     "line": 1419,
      "verdict": "pass"
     },
     "lean": [
@@ -65386,7 +65514,7 @@
     "py": {
      "href": "py/rh.html#p20108",
      "script": "rh.py",
-     "line": 1272,
+     "line": 1429,
      "verdict": "pass"
     },
     "lean": [
@@ -65432,7 +65560,7 @@
     "py": {
      "href": "py/rh.html#p20109",
      "script": "rh.py",
-     "line": 1275,
+     "line": 1432,
      "verdict": "pass"
     },
     "lean": [
@@ -65479,14 +65607,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "half_of_dilation_generator",
-   "statement": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; compared with A6.",
+   "statement": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$. Rests on G3, G5; compared with A6.",
    "source": "Prop.~\\ref{prop:xgenerator}\\newline \\pywit{rh}{p20110}{X3}, \\leanwit{FrcCore}{p20110}{X3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.generator\\_skew}",
    "page": "20-rh/index.html#X3",
    "witness": {
     "py": {
      "href": "py/rh.html#p20110",
      "script": "rh.py",
-     "line": 1278,
+     "line": 1435,
      "verdict": "pass"
     },
     "lean": [
@@ -65513,7 +65641,7 @@
     "p20098",
     "p20100"
    ],
-   "text": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im (N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; compared with A6. Prop. prop:xgenerator p20110, FrcCore{X3} FRC.Horizon.half_forced, FRC.Horizon.generator_skew"
+   "text": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im (N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$. Rests on G3, G5; compared with A6. Prop. prop:xgenerator p20110, FrcCore{X3} FRC.Horizon.half_forced, FRC.Horizon.generator_skew"
   },
   {
    "paper": "21-grav",

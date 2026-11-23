@@ -979,6 +979,7 @@ import FrcMathlib
 #print axioms FRC.LedgerML.p20113
 #print axioms FRC.LedgerML.p20114
 #print axioms FRC.LedgerML.p20117
+#print axioms FRC.LedgerML.p20118
 #print axioms FRC.LedgerML.p21016
 #print axioms FRC.LedgerML.p21019
 #print axioms FRC.LedgerML.p21020
@@ -1372,6 +1373,7 @@ import FrcMathlib
 #print axioms FRC.Rh.spectrum_le
 #print axioms FRC.Rh.step_bound
 #print axioms FRC.Rh.count_bound
+#print axioms FRC.Rh.mode_near_height
 #print axioms FRC.Rh.vonMangoldt_moebius
 #print axioms FRC.Rh.zeros_in_strip
 #print axioms FRC.Rh.zero_of_sign_change
@@ -1387,6 +1389,7 @@ import FrcMathlib
 #print axioms FRC.Rh.window_heights
 #print axioms FRC.Rh.deep_window
 #print axioms FRC.Rh.bound_of_count
+#print axioms FRC.Rh.heights_near_modes
 #print axioms FRC.Rh.shell_theorem
 #print axioms FRC.Rh.parseval_identity
 #print axioms FRC.S13.ppn_faces
@@ -2085,6 +2088,21 @@ import FrcMathlib
 #print axioms FRC.HadronsML.register_levels
 #print axioms FRC.HadronsML.em_magnitude
 #print axioms FRC.HadronsML.airy_ratio
+#print axioms FRC.Chart.Heights.geom_root
+#print axioms FRC.Chart.Heights.parseval_roots
+#print axioms FRC.Chart.Heights.parseval_prod
+#print axioms FRC.Chart.Heights.prod_ite_single
+#print axioms FRC.Chart.Heights.sq_bound_aux
+#print axioms FRC.Chart.Heights.sq_bound
+#print axioms FRC.Chart.Heights.poly_identity
+#print axioms FRC.Chart.Heights.poly_sq
+#print axioms FRC.Chart.Heights.diff_sq
+#print axioms FRC.Chart.Heights.norm_sq_ofReal
+#print axioms FRC.Chart.Heights.sq_bound_roots
+#print axioms FRC.Chart.Heights.prime_exponents
+#print axioms FRC.Chart.Heights.mode_near_height
+#print axioms FRC.Chart.Heights.chart_exists
+#print axioms FRC.Chart.Heights.label_nonzero
 #print axioms FRC.HorizonML.zero_slot
 #print axioms FRC.HorizonML.slot_complementarity
 #print axioms FRC.HorizonML.ramanujan_sum

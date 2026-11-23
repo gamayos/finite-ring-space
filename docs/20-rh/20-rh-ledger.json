@@ -51,7 +51,7 @@
     },
     {
      "label": "A6",
-     "predicate": "The classical apparatus, as the chart of the shell: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$; the line $\\Real s=\\half$, the pole at $1$ and the symmetry $s\\mapsto1-s$; the dilation generator $-i(x\\partial_x+\\tfrac12)$ of Berry--Keating; the first eighty heights of the zeros of $\\zeta$; Riemann's formula for the count $\\pi(x)$ of the primes and Perron's formula; the Riemann spectrum of the primes [chart].",
+     "predicate": "The classical apparatus, as the chart of the shell: the explicit formula $\\psi(x)=x-\\sum_\\rho x^{\\rho}/\\rho-\\dots$; the line $\\Real s=\\half$, the pole at $1$ and the symmetry $s\\mapsto1-s$; the dilation generator $-i(x\\partial_x+\\tfrac12)$ of Berry--Keating; the first eighty heights of the zeros of $\\zeta$; Riemann's formula for the count $\\pi(x)$ of the primes and Perron's formula; the Riemann spectrum of the primes.",
      "tag": "I",
      "source": "\\citep{riemann1859,edwards1974,titchmarsh1986,berry1999,mazurstein2016,odlyzkotables}; \\S\\ref{sec:dual}, \\S\\ref{sec:drive}, \\S\\ref{sec:exhibit}, \\S\\ref{sec:discussion}",
      "key": "p20003",
@@ -59,7 +59,7 @@
     },
     {
      "label": "A8",
-     "predicate": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with a functional equation under $s\\mapsto1-s$ and no Euler product, has zeros off the line, the first pair $s=0.8085171825+85.6993484854\\,i$ and $1-\\bar s$ [chart].",
+     "predicate": "The chart's known off-line case: the Davenport--Heilbronn series, a Dirichlet series with a functional equation under $s\\mapsto1-s$ and no Euler product, has zeros off the line, the first pair $s=0.8085171825+85.6993484854\\,i$ and $1-\\bar s$.",
      "tag": "I",
      "source": "\\citep{davenport1936,titchmarsh1986,spira1994}; Prop.~\\ref{prop:classical}",
      "key": "p20078",
@@ -89,7 +89,7 @@
     },
     {
      "label": "B3",
-     "predicate": "The prime vector: the $\\Fp$-valued indicator of the primes in the window, one residue per nonzero residue; the chart weights the prime powers of a deep window by $\\log\\ell$, the von Mangoldt function [chart]; the horizon is a property of the reading, not of the vector.",
+     "predicate": "The prime vector: the $\\Fp$-valued indicator of the primes in the window, one residue per nonzero residue; the chart weights the prime powers of a deep window by $\\log\\ell$, the von Mangoldt function; the horizon is a property of the reading, not of the vector.",
      "tag": "D",
      "source": "Def.~\\ref{def:vector}",
      "key": "p20010",
@@ -115,11 +115,11 @@
   },
   {
    "letter": "D",
-   "title": "The chart: a mode, the spectrum of a window, the count of a window and its bound",
+   "title": "The chart: a mode, a mode near every height, a window's spectrum, its count and its bound",
    "rows": [
     {
      "label": "D1",
-     "predicate": "The chart of a mode: the count of a mode is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart represents it by the exponent $-\\half+it$, with $t$ a free real variable, the height [chart]. At a label $n$ a mode is $n^{-1/2+it}$. With a vector's values represented by labels, $0$ and $1$ for the prime vector, the dual becomes their Dirichlet polynomial [chart].",
+     "predicate": "The chart of a mode: a mode's count is $k=-2^{-1}+\\im\\gamma_k$ (G4). The chart represents the count of a nonconstant mode by the exponent $-\\half+it$, $t$ a free real variable, the height. At a label $n$ that mode is $n^{-1/2+it}$. With a vector's values as labels, the dual becomes their Dirichlet polynomial [chart]. The constant mode keeps the exponent $0$.",
      "tag": "D",
      "source": "Def.~\\ref{def:deframe}",
      "key": "p20025",
@@ -164,6 +164,22 @@
      "source": "Thm.~\\ref{thm:countbound}\\newline \\pywit{rh}{p20117}{D17}, \\leanwit{FrcMathlib}{p20117}{D17} \\lean{Rh.step\\_bound, Rh.count\\_bound}",
      "key": "p20117",
      "name": "bound_of_count"
+    },
+    {
+     "label": "D18",
+     "predicate": "A mode near every height [chart]: on every framed shell, for distinct primes $\\ell_1,\\dots,\\ell_m$ of the window with $(\\ell_1\\cdots\\ell_m)^{B}<\\p$, $B\\ge1$, and every height $t$ (D1), a mode $k$ has $\\sum_j|\\chi_k(\\ell_j)-\\ell_j^{\\,it}|^{2}\\le10m/((B+1)^{2}+1)$ (E13). Evaluation [approx], primes $2$ and $3$, Subject $\\F_{1549}$: $B=4$, bound $10/13$; at the heights $0.5,1,\\dots,100$ the smallest sum is at most $0.01$.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:pointwise}\\newline \\pywit{rh}{p20118}{D18}, \\leanwit{FrcMathlib}{p20118}{D18} \\lean{Rh.mode\\_near\\_height}",
+     "key": "p20118",
+     "name": "heights_near_modes"
+    },
+    {
+     "label": "D19",
+     "predicate": "The value of a mode at one label: on every framed shell, for a label $\\ell\\ge2$ and integers $M\\ge1$ with $\\ell^{M}<\\p$ and $V\\ge1$ with $MV\\ge\\p-1$, every nonzero residue is $\\ell^{k}\\gen^{\\,r}$ with a count $k$ (G1) and $r<V$ (E15): $r$ steps of the drive after the mode's value. For the label $3$ on the Subject $\\F_{1549}$: largest $M=6$, least $V=258$.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:label}\\newline \\pywit{rh}{p20119}{D19}, \\leanwit{FrcCore}{p20119}{D19} \\lean{FRC.Horizon.label\\_steps}",
+     "key": "p20119",
+     "name": "steps_after_mode"
     }
    ]
   },
@@ -181,7 +197,7 @@
     },
     {
      "label": "E13",
-     "predicate": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity becomes $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$ [chart].",
+     "predicate": "The Parseval identity: $\\sum_k\\hat v(k)\\hat v(-k)=-\\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\\p-1$ complex characters are an orthogonal basis with $\\lVert\\chi_j\\rVert^{2}=\\p-1$ and the same identity becomes $\\sum_j|\\hat v_{\\mathbb C}(j)|^{2}=(\\p-1)\\sum|v|^{2}$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:hp} (ii), Rem.~\\ref{rem:parseval}\\newline \\pywit{rh}{p20044}{E13}, \\leanwit{FrcCore}{p20044}{E13}, \\leanwit{FrcMathlib}{p20044}{E13} \\lean{FRC.Horizon.parseval\\_cycle, Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion}",
      "key": "p20044",
@@ -359,7 +375,7 @@
     },
     {
      "label": "X3",
-     "predicate": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; compared with A6.",
+     "predicate": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$. Rests on G3, G5; compared with A6.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:xgenerator}\\newline \\pywit{rh}{p20110}{X3}, \\leanwit{FrcCore}{p20110}{X3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.generator\\_skew}",
      "key": "p20110",
@@ -382,7 +398,7 @@
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Derived within the framework from the rows it cites, with a python check and a Lean proof of the general statement: in the core, without axioms, or on Mathlib for the three chart rows D14, D15 and D17."
+   "text": "Derived within the framework from the rows it cites, with a python check and a Lean proof of the general statement: in the core, without axioms, or on Mathlib for the four chart rows D14, D15, D17 and D18."
   }
  ],
  "master": {
@@ -485,7 +501,7 @@
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcMathlib/Rh",
-    "line": 325,
+    "line": 337,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -497,7 +513,7 @@
    {
     "name": "FRC.Rh.no_cycle_projection",
     "module": "FrcMathlib/Rh",
-    "line": 330,
+    "line": 342,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -521,7 +537,7 @@
    {
     "name": "FRC.Rh.window_readback",
     "module": "FrcMathlib/Rh",
-    "line": 305,
+    "line": 317,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -533,7 +549,7 @@
    {
     "name": "FRC.Rh.prime_iff_window_irreducible",
     "module": "FrcMathlib/Rh",
-    "line": 311,
+    "line": 323,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -574,7 +590,7 @@
    {
     "name": "FRC.Rh.zero_slot",
     "module": "FrcMathlib/Rh",
-    "line": 35,
+    "line": 36,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -598,7 +614,7 @@
    {
     "name": "FRC.Rh.subject_constants",
     "module": "FrcMathlib/Rh",
-    "line": 72,
+    "line": 73,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -611,7 +627,7 @@
    {
     "name": "FRC.Rh.constants13",
     "module": "FrcMathlib/Rh",
-    "line": 79,
+    "line": 80,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -652,7 +668,7 @@
    {
     "name": "FRC.Rh.mean_free",
     "module": "FrcMathlib/Rh",
-    "line": 238,
+    "line": 239,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -665,7 +681,7 @@
    {
     "name": "FRC.Rh.spectrum_even",
     "module": "FrcMathlib/Rh",
-    "line": 243,
+    "line": 244,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -680,7 +696,7 @@
    {
     "name": "FRC.Rh.mode_norm",
     "module": "FrcMathlib/Rh",
-    "line": 248,
+    "line": 249,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -693,7 +709,7 @@
    {
     "name": "FRC.Rh.spectrum_le",
     "module": "FrcMathlib/Rh",
-    "line": 253,
+    "line": 254,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -708,7 +724,7 @@
    {
     "name": "FRC.Rh.step_bound",
     "module": "FrcMathlib/Rh",
-    "line": 258,
+    "line": 259,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -721,7 +737,7 @@
    {
     "name": "FRC.Rh.count_bound",
     "module": "FrcMathlib/Rh",
-    "line": 263,
+    "line": 264,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -732,11 +748,37 @@
     "doc": "20:D17 — 20-rh's name; the theorem is `FRC.Chart.Perron.count_bound` (22 November 2026)."
    }
   ],
+  "D18": [
+   {
+    "name": "FRC.Rh.mode_near_height",
+    "module": "FrcMathlib/Rh",
+    "line": 271,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:D18 — 20-rh's name; the theorem is `FRC.Chart.Heights.mode_near_height` (23 November 2026)."
+   }
+  ],
+  "D19": [
+   {
+    "name": "FRC.Horizon.label_steps",
+    "module": "FrcCore/Theme/Steps",
+    "line": 278,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:D19 — the value of a mode at one label. Let `ℓ ≥ 2` be a label with `ℓ^N < p`, and let `p − 1 ≤ N · W`. Then every nonzero residue is `ℓ^k · g^r` with a count `k < p − 1` and `r < W`: the mode of count `k` has the value `ℓ^k` at the label `ℓ`, and the residue is `r` steps of the drive after that value."
+   }
+  ],
   "E12": [
    {
     "name": "FRC.Rh.chi_inversion",
     "module": "FrcMathlib/Rh",
-    "line": 215,
+    "line": 216,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -749,7 +791,7 @@
    {
     "name": "FRC.Rh.chi_shift",
     "module": "FrcMathlib/Rh",
-    "line": 209,
+    "line": 210,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -762,7 +804,7 @@
    {
     "name": "FRC.Rh.scale_shift",
     "module": "FrcMathlib/Rh",
-    "line": 178,
+    "line": 179,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -822,7 +864,7 @@
    {
     "name": "FRC.Rh.chi_orthogonal",
     "module": "FrcMathlib/Rh",
-    "line": 204,
+    "line": 205,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -835,7 +877,7 @@
    {
     "name": "FRC.Rh.chi_parseval",
     "module": "FrcMathlib/Rh",
-    "line": 221,
+    "line": 222,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -848,7 +890,7 @@
    {
     "name": "FRC.Rh.chi_inversion",
     "module": "FrcMathlib/Rh",
-    "line": 215,
+    "line": 216,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

@@ -8,6 +8,7 @@ import FrcMathlib.Theme.Horizon
 import FrcMathlib.Theme.Chart
 import FrcMathlib.Theme.Strong
 import FrcMathlib.Theme.Circle
+import FrcMathlib.Theme.Heights
 import FrcMathlib.Theme.Gravity
 import FrcMathlib.Theme.Quantum
 import FrcMathlib.Theme.Lorentz

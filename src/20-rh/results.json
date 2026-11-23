@@ -580,6 +580,26 @@
   "kind": "[approx]"
  },
  {
+  "id": "D18",
+  "rows": "20:D18",
+  "block": "D",
+  "script": "rh",
+  "label": "a mode near every height [chart]: on the Subjects 13, 173 and 1549, for the first primes of the window with product^B < p, the smallest sum over the modes of the squared distances |\u03c7_k(\u2113_j) \u2212 \u2113_j^{it}|\u00b2 is at most 10m/((B+1)\u00b2+1) at each of the heights 0.5, 1, \u2026, 100; for the primes 2 and 3 on the Subject 1549, B = 4, the bound is 10/13 and the smallest sum is at most 0.01 at each of these heights; the polynomial of the proof and the distinct monomials in exact integers",
+  "ok": true,
+  "detail": "primes 2 and 3 on the Subject 1549: B = 4, bound 0.7692, largest of the smallest sums at the 200 heights: 0.009777; largest ratio of a smallest sum to its bound over 9 cases: 0.318",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D19",
+  "rows": "20:D19",
+  "block": "D",
+  "script": "rh",
+  "label": "the value of a mode at one label: for every label \u2113 \u2265 2 of the windows of the Subjects 13, 173 and 1549, every nonzero residue is \u2113^k g^r with r < V, at the largest M with \u2113^M < p and the least V with MV \u2265 p \u2212 1; for the label 3 on the Subject 1549, M = 6 and V = 258, and the powers of 3 stand 6 places apart",
+  "ok": true,
+  "detail": "52 labels on three Subjects",
+  "kind": "EXACT"
+ },
+ {
   "id": "G2",
   "rows": "20:G2",
   "block": "G",

@@ -360,7 +360,7 @@
    "key": "p20110",
    "tag": "T",
    "lean_name": "half_of_dilation_generator",
-   "predicate": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$ [chart]. Rests on G3, G5; compared with A6.",
+   "predicate": "The $\\half$ of the dilation generator: the shift that makes the count operator skew on the nonconstant modes is forced, $2c\\equiv1$, and the generator is $H=-\\im\\,(N+2^{-1})$. In the continuum chart it takes the form $-i(x\\partial_x+\\half)$. Rests on G3, G5; compared with A6.",
    "source": "Prop.~\\ref{prop:xgenerator}\\newline \\pywit{rh}{p20110}{X3}, \\leanwit{FrcCore}{p20110}{X3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.generator\\_skew}",
    "master": [],
    "restated": [],

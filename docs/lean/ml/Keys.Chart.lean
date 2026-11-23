@@ -8,6 +8,7 @@ import FrcMathlib.Theme.Flavour
 import FrcMathlib.Theme.Dark
 import FrcMathlib.Theme.Circle
 import FrcMathlib.Theme.Gauge
+import FrcMathlib.Theme.Heights
 
 /-!
 # FrcMathlib.Keys.Chart — the keyed theorems of the chart theme (ledger migration, task LM19)
@@ -56,7 +57,7 @@ theorem p14038 : (∀ (t H0 HΛ Ω : ℝ), t * HΛ = Real.pi / (4 : ℝ) → HΛ
 set_option linter.defProp false in
 /-- p20043 — 20:E12, 00:Z10. \textbf{The shell theorem.} On every shell, for every vector, in $\Fp$: (i) the dual $\hat v(k)=\sum v(x)x^{k}$ inverts exactly, $v(y)=-\sum\hat v(k)y^{-k}$, the constant mode the mean term; (ii) the Parseval identity (E13); (iii) every mode is an eigenvector of the drive (E15), each nonconstant one with its zero at $k+1$ (G1); (iv) the parity and (v) the explicit formula along the meridian (E14). -/
 def p20043 := And.intro @FRC.Chart.chi_inversion (And.intro @FRC.Chart.chi_shift (@FRC.HorizonML.scale_shift))
-/-- p20044 — 20:E13. The Parseval identity: $\sum_k\hat v(k)\hat v(-k)=-\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\p-1$ complex characters are an orthogonal basis with $\lVert\chi_j\rVert^{2}=\p-1$ and the same identity becomes $\sum_j|\hat v_{\mathbb C}(j)|^{2}=(\p-1)\sum|v|^{2}$ [chart]. -/
+/-- p20044 — 20:E13. The Parseval identity: $\sum_k\hat v(k)\hat v(-k)=-\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\p-1$ complex characters are an orthogonal basis with $\lVert\chi_j\rVert^{2}=\p-1$ and the same identity becomes $\sum_j|\hat v_{\mathbb C}(j)|^{2}=(\p-1)\sum|v|^{2}$. -/
 theorem p20044 : (∀ {n : ℕ} [NeZero n] (j k : ZMod n), ∑ m, FRC.Chart.chi j m * (starRingEnd ℂ) (FRC.Chart.chi k m) = if j = k then ↑n else (0 : ℂ)) ∧ (∀ {n : ℕ} [NeZero n] (v : ZMod n → ℂ), ∑ j, Complex.normSq (FRC.Chart.coef v j) = ↑n * ∑ m, Complex.normSq (v m)) ∧ ∀ {n : ℕ} [NeZero n] (v : ZMod n → ℂ), (∀ (m : ZMod n), v m = (↑n)⁻¹ * ∑ j, FRC.Chart.coef v j * FRC.Chart.chi j m) ∧ FRC.Chart.coef v (0 : ZMod n) = ∑ m, v m ∧ ∀ (m : ZMod n), v m - (↑n)⁻¹ * ∑ m', v m' = (↑n)⁻¹ * ∑ j ∈ Finset.univ.erase (0 : ZMod n), FRC.Chart.coef v j * FRC.Chart.chi j m :=
   And.intro @FRC.Chart.chi_orthogonal (And.intro @FRC.Chart.chi_parseval (@FRC.Chart.chi_inversion))
 /-- p20113 — 20:D14. The window's primes show the heights [chart]: for every window and weight the mean-removed weights sum to $0$, and $E(-t)=E(t)$. Evaluation [approx]: the five peaks at depth $13$, $39$, $173$ and $1551$ lie within $0.18$, $0.21$, $0.27$ and $0.21$ of the first five heights (A6); at depth $13$ no other of the $4095$ pairs of complementary subsets lies within $0.18$. -/
@@ -68,6 +69,9 @@ theorem p20114 : And (∀ {n : Nat}, @LT.lt Nat instLTNat (@OfNat.ofNat Nat (nat
 set_option linter.defProp false in
 /-- p20117 — 20:D17. The bound of the count [chart]: for every window, every real vector $w$ on its labels, every position $x>0$ that is no label and every height $T>0$, $|C_T(x)-\sum_{n<x}w(n)|\le B(x)/T$ with $B(x)=\frac1\pi\sum_{n\le\q}|w(n)|\sqrt{x/n}/|\log(x/n)|$ (D16). Evaluation [approx], prime vector, depth $39$, half-integers: $B(x)\le33.14$, so the bound is below one half from the height $67$ on. -/
 def p20117 := And.intro @FRC.Chart.Perron.step_bound (@FRC.Chart.Perron.count_bound)
+set_option linter.defProp false in
+/-- p20118 — 20:D18. A mode near every height [chart]: on every framed shell, for distinct primes $\ell_1,\dots,\ell_m$ of the window with $(\ell_1\cdots\ell_m)^{B}<\p$, $B\ge1$, and every height $t$ (D1), a mode $k$ has $\sum_j|\chi_k(\ell_j)-\ell_j^{\,it}|^{2}\le10m/((B+1)^{2}+1)$ (E13). Evaluation [approx], primes $2$ and $3$, Subject $\F_{1549}$: $B=4$, bound $10/13$; at the heights $0.5,1,\dots,100$ the smallest sum is at most $0.01$. -/
+def p20118 := @FRC.Chart.Heights.mode_near_height
 set_option linter.defProp false in
 /-- p21016 — 21:C1. The linearised dynamics is the gradient flow of a coherence free energy --- its current derived from the pair tally conditional on channel unity (Lemma~\ref{lem:pairtally}) --- and a locked cluster of $m$ unit-winding cells couples with coefficient exactly $m$. -/
 def p21016 := @FRC.Strong.locked_sum

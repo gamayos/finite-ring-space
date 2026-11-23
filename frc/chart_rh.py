@@ -23,6 +23,10 @@ frc/horizon.py.
     vector_count(labels, T, x, weights), count_bound(labels, x, weights), bound_reading()
                                      the count of a real vector on a list of labels below a height and the bound on its
                                      difference from the count of the vector below a position (20:D17)
+    polynomial_exact(B), mode_table(p, scales), nearest_mode(table, angles), heights_reading(cases)
+                                     the polynomial of the proof in exact integers, the modes at given labels in the chart of the
+                                     cycle, and the smallest sum over the modes of the squared distances to complex numbers
+                                     of modulus one (20:D18)
     power_tail(M, H, s)              Σ n^s over M ≤ n ≤ H by the Euler–Maclaurin formula
     characters_parseval(p, g, base)  the chart's characters on ℓ²(F_p^×): orthogonality, Parseval, inversion, the shift
     dlog_loading(p, labels, lam)     the window's labels read in the discrete logarithm: the loadings of the nontrivial modes
@@ -568,6 +572,61 @@ def bound_reading(H=39):
     ok &= all(math.ceil(100 * 33.14 / T) / 100 == b for T, b in ((35.0, 0.95), (78.0, 0.43), (202.0, 0.17)))
     ok &= all(round(vector_count(primes, 67.0, x)) == sum(1 for n in primes if n < x) for x in xs)
     return ok, f"largest B(x) at the half-integers of depth {H}: {top:.3f}; largest ratio of a difference to its bound: {worst:.3f}"
+
+
+# A mode near every height (20:D18): the polynomial of the proof in exact integers, and the smallest sum over the modes
+# of the squared distances to given complex numbers of modulus one [chart].
+def polynomial_exact(B):
+    """The polynomial of 20:D18 in exact integers: (1 - x) * sum_{s<B} (s+1)(B-s) x^s = sum_{s<=B} (B-2s) x^s, and the
+    sums of the squared coefficients are B(B+1)(B+2)((B+1)^2+1)/30 and B(B+1)(B+2)/3, of ratio 10/((B+1)^2+1)."""
+    a = [(s + 1) * (B - s) for s in range(B)]
+    prod = [0] * (B + 1)
+    for s, c in enumerate(a):
+        prod[s] += c; prod[s + 1] -= c
+    return (prod == [B - 2 * s for s in range(B + 1)]
+            and 30 * sum(c * c for c in a) == B * (B + 1) * (B + 2) * ((B + 1) ** 2 + 1)
+            and 3 * sum(c * c for c in prod) == B * (B + 1) * (B + 2))
+
+
+def mode_table(p, scales):
+    """The modes at labels of given scales, in the chart of the cycle: for each mode k < p - 1 the cosine and the sine
+    of the angle 2 pi (k * scale mod (p - 1))/(p - 1) of its value at each label."""
+    n = p - 1
+    cols = []
+    for a in scales:
+        ang = [2 * math.pi * ((k * a) % n) / n for k in range(n)]
+        cols += [[math.cos(x) for x in ang], [math.sin(x) for x in ang]]
+    return list(zip(*cols))
+
+
+def nearest_mode(table, angles):
+    """The smallest sum over the modes of the squared distances |chi_k(l_j) - u_j|^2 to the complex numbers
+    u_j = e^{i angle_j} of modulus one: 2m minus twice the largest sum over j of cos(angle of the mode - angle_j)."""
+    w = []
+    for a in angles: w += [math.cos(a), math.sin(a)]
+    return 2 * len(angles) - 2 * max(sum(x * y for x, y in zip(row, w)) for row in table)
+
+
+def heights_reading(cases):
+    """The evaluation of 20:D18. A case is (p, primes, B, scales): distinct primes of the window of the shell p with
+    product^B < p, and their scales on the latitude cycle. For each case, at each of the heights t = 0.5, 1, ..., 100
+    (u_j = l_j^{it}), the smallest sum over the modes of |chi_k(l_j) - u_j|^2 is at most 10 m/((B + 1)^2 + 1) (the
+    theorem FRC.Chart.Heights.mode_near_height, on Mathlib). For the primes 2 and 3 on the Subject 1549: B = 4, the
+    bound is 10/13, and at each of these heights the smallest sum is at most 0.01. Returns (ok, detail)."""
+    heights = [0.5 * i for i in range(1, 201)]
+    ok, ratio, stated = True, 0.0, None
+    for p, primes, B, scales in cases:
+        m, table = len(primes), mode_table(p, scales)
+        bound = 10 * m / ((B + 1) ** 2 + 1)
+        worst = max(nearest_mode(table, [t * math.log(l) for l in primes]) for t in heights)
+        ok &= worst <= bound + 1e-9
+        ratio = max(ratio, worst / bound)
+        if (p, tuple(primes)) == (1549, (2, 3)):
+            stated = (B, bound, worst)
+            ok &= B == 4 and abs(bound - 10 / 13) < 1e-12 and worst <= 0.01
+    ok &= stated is not None
+    return ok, (f"primes 2 and 3 on the Subject 1549: B = {stated[0]}, bound {stated[1]:.4f}, largest of the smallest sums at the 200 heights: {stated[2]:.6f}; "
+                f"largest ratio of a smallest sum to its bound over {len(cases)} cases: {ratio:.3f}")
 
 
 def characters_parseval(p, g, base):

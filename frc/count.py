@@ -1,6 +1,6 @@
 """frc.count — the count readout of a shell (the count theme; 20-rh's revision of 21 November 2026).
 
-The python side of `lean/FrcCore/Theme/Count.lean` and `lean/FrcCore/Theme/Circle.lean`. The modes of a shell p are the powers x ↦ x^k on the nonzero
+The python side of `lean/FrcCore/Theme/Count.lean`, `lean/FrcCore/Theme/Circle.lean` and `lean/FrcCore/Theme/Steps.lean`. The modes of a shell p are the powers x ↦ x^k on the nonzero
 residues, k = 0, …, p − 2. The count of a mode is k. For a count k ≥ 1 the zero is ρ_k = k + 1 and the conjugate count is
 p − 1 − k. The pairing is ⟨v, w⟩ = Σ_{x≠0} v(x) w(x), the count operator N acts on the mode coefficients by c_k ↦ k c_k,
 and on a frame (p = 4κ + 1, g a drive, i = −g^κ) the frequency of the count k is γ_k = −i(k + 2⁻¹), 2⁻¹ = 2κ + 1.
@@ -37,6 +37,15 @@ The paper writes z for the residue t = ρ/(1 − ρ) of these functions and d fo
     circle_phase, circle_parallels                                                                        (20:G13)
     circle_place, circle_place_cycle, circle_place_even, circle_quarter_turn,
     circle_place_phase, circle_quarter_closes                                                             (20:G14)
+
+The value of a mode at one label (Theme/Steps.lean, 23 November 2026). A nonzero residue y is x^k·g^r with r < W when y is
+fewer than W steps of the drive after a power of x on the latitude cycle.
+
+    scale_table(p, g)                   the scale of every nonzero residue on the latitude cycle
+    step_width(p, g, x)                 the least W for the residue x, by marking its powers and one pass along the cycle
+    label_pair(p, l)                    (N, W) for a label: the largest N with l^N < p, the least W with N·W ≥ p − 1
+
+    power_steps, label_steps                                                                              (20:D19)
 """
 from frc import arith
 
@@ -447,3 +456,52 @@ def circle_quarter_closes(p):
     """With y = −1/x and w = −1/y, w = x: four steps of x ↦ (x − 1)/(x + 1) return x; and −1/x = x exactly when x² ≡ −1."""
     inv = lambda x: pow(x, p - 2, p); neg_inv = lambda x: (p - 1) * inv(x) % p
     return all(neg_inv(neg_inv(x)) == x and ((neg_inv(x) == x) == (x * x % p == p - 1)) for x in range(1, p))
+
+
+# The value of a mode at one label (20:D19; Theme/Steps.lean, 23 November 2026). A nonzero residue y is x^k·g^r with
+# r < W when y is fewer than W steps of the drive after a power of x on the latitude cycle.
+def scale_table(p, g):
+    """The scale of every nonzero residue on the latitude cycle: table[x] = m with g^m = x, 0 ≤ m < p − 1."""
+    table, x = [0] * p, 1
+    for m in range(p - 1):
+        table[x] = m; x = x * g % p
+    return table
+
+
+def step_width(p, g, x, table=None):
+    """The least W for which every nonzero residue is x^k·g^r with r < W: the powers of x are marked at their places
+    of the latitude cycle, and one pass along the cycle counts the steps of the drive from a marked place."""
+    n = p - 1
+    table = table or scale_table(p, g)
+    marked, y = [False] * n, 1
+    while not marked[table[y]]:
+        marked[table[y]] = True; y = y * x % p
+    worst = run = 0
+    for place in range(1, n + 1):                               # the place 0 is marked: x^0 = 1
+        run = 0 if marked[place % n] else run + 1
+        if run > worst: worst = run
+    return worst + 1
+
+
+def power_steps(p, g, x, M, table=None):
+    """A residue x with the distinct powers x^0, …, x^M, M ≥ 1: every nonzero residue is x^k·g^r with r < W, for the
+    least W with M·W ≥ p − 1 (and so for every larger W)."""
+    powers, y = set(), 1
+    for _ in range(M + 1):
+        powers.add(y); y = y * x % p
+    return M >= 1 and len(powers) == M + 1 and step_width(p, g, x, table) <= -(-(p - 1) // M)
+
+
+def label_pair(p, l):
+    """The pair (N, W) of 20:D19 for a label l ≥ 2 (the paper's M and V): N the largest exponent with l^N < p, W the
+    least number of steps with N·W ≥ p − 1. Every N' ≤ N and every W' with N'·W' ≥ p − 1 has W' ≥ W, so the statement at (N, W)
+    gives it at (N', W')."""
+    N = 0
+    while l ** (N + 1) < p: N += 1
+    return N, -(-(p - 1) // N)
+
+
+def label_steps(p, g, l, table=None):
+    """20:D19 at the label l, 2 ≤ l < p: every nonzero residue is l^k·g^r with r < W, at the largest N and the least W."""
+    N, W = label_pair(p, l)
+    return N >= 1 and power_steps(p, g, l, N, table) and step_width(p, g, l, table) <= W

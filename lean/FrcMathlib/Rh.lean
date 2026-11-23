@@ -1,6 +1,7 @@
 import Mathlib
 import FrcMathlib.Theme.Horizon
 import FrcMathlib.Theme.Chart
+import FrcMathlib.Theme.Heights
 import FrcMathlib.Keys.Chart
 import FrcMathlib.Keys.Horizon
 
@@ -266,6 +267,17 @@ theorem count_bound (s : Finset ℕ) (w : ℕ → ℝ) {T x : ℝ} (hT : 0 < T) 
       1 / (Real.pi * T) * ∑ n ∈ s, |w n| * (Real.sqrt (x / n) / |Real.log (x / n)|) :=
   FRC.Chart.Perron.count_bound s w hT hx hs hne
 
+/-- 20:D18 — 20-rh's name; the theorem is `FRC.Chart.Heights.mode_near_height` (23 November 2026). -/
+theorem mode_near_height {p : ℕ} [Fact p.Prime] {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (ψ : (ZMod p)ˣ →* ℂˣ) (hψ : Function.Injective ψ)
+    (ℓ : ι → ℕ) (hℓ : ∀ i, (ℓ i).Prime) (hinj : Function.Injective ℓ)
+    (x : ι → (ZMod p)ˣ) (hx : ∀ i, ((x i : (ZMod p)ˣ) : ZMod p) = (ℓ i : ZMod p))
+    (B : ℕ) (hB : 0 < B) (hpow : (∏ i, ℓ i) ^ B < p)
+    (u : ι → ℂ) (hu : ∀ i, ‖u i‖ = 1) :
+    ∃ k < p - 1, (∑ i, ‖((ψ (x i) : ℂˣ) : ℂ) ^ k - u i‖ ^ 2) * ((B + 1 : ℝ) ^ 2 + 1)
+      ≤ 10 * Fintype.card ι :=
+  FRC.Chart.Heights.mode_near_height ψ hψ ℓ hℓ hinj x hx B hB hpow u hu
+
 end window
 
 section resonance
@@ -356,9 +368,12 @@ set_option linter.defProp false in
 /-- 20:D17 (p20117) — The bound of the count [chart]: for every window, every real vector $w$ on its labels, every position $x>0$ that is no label and every height $T>0$, $|C_T(x)-\sum_{n<x}w(n)|\le B(x)/T$ with $B(x)=\frac1\pi\sum_{n\le\q}|w(n)|\sqrt{x/n}/|\log(x/n)|$ (D16). Evaluation [approx], prime vector, depth $39$, half-integers: $B(x)\le33.14$, so the bound is below one half from the height $67$ on. -/
 def bound_of_count := @FRC.LedgerML.p20117
 set_option linter.defProp false in
+/-- 20:D18 (p20118) — A mode near every height [chart]: on every framed shell, for distinct primes $\ell_1,\dots,\ell_m$ of the window with $(\ell_1\cdots\ell_m)^{B}<\p$, $B\ge1$, and every height $t$ (D1), a mode $k$ has $\sum_j|\chi_k(\ell_j)-\ell_j^{\,it}|^{2}\le10m/((B+1)^{2}+1)$ (E13). Evaluation [approx], primes $2$ and $3$, Subject $\F_{1549}$: $B=4$, bound $10/13$; at the heights $0.5,1,\dots,100$ the smallest sum is at most $0.01$. -/
+def heights_near_modes := @FRC.LedgerML.p20118
+set_option linter.defProp false in
 /-- 20:E12 (p20043) — \textbf{The shell theorem.} On every shell, for every vector, in $\Fp$: (i) the dual $\hat v(k)=\sum v(x)x^{k}$ inverts exactly, $v(y)=-\sum\hat v(k)y^{-k}$, the constant mode the mean term; (ii) the Parseval identity (E13); (iii) every mode is an eigenvector of the drive (E15), each nonconstant one with its zero at $k+1$ (G1); (iv) the parity and (v) the explicit formula along the meridian (E14). -/
 def shell_theorem := @FRC.LedgerML.p20043
-/-- 20:E13 (p20044) — The Parseval identity: $\sum_k\hat v(k)\hat v(-k)=-\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\p-1$ complex characters are an orthogonal basis with $\lVert\chi_j\rVert^{2}=\p-1$ and the same identity becomes $\sum_j|\hat v_{\mathbb C}(j)|^{2}=(\p-1)\sum|v|^{2}$ [chart]. -/
+/-- 20:E13 (p20044) — The Parseval identity: $\sum_k\hat v(k)\hat v(-k)=-\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\p-1$ complex characters are an orthogonal basis with $\lVert\chi_j\rVert^{2}=\p-1$ and the same identity becomes $\sum_j|\hat v_{\mathbb C}(j)|^{2}=(\p-1)\sum|v|^{2}$. -/
 theorem parseval_identity : (∀ {n : ℕ} [NeZero n] (j k : ZMod n), ∑ m, FRC.Chart.chi j m * (starRingEnd ℂ) (FRC.Chart.chi k m) = if j = k then ↑n else (0 : ℂ)) ∧ (∀ {n : ℕ} [NeZero n] (v : ZMod n → ℂ), ∑ j, Complex.normSq (FRC.Chart.coef v j) = ↑n * ∑ m, Complex.normSq (v m)) ∧ ∀ {n : ℕ} [NeZero n] (v : ZMod n → ℂ), (∀ (m : ZMod n), v m = (↑n)⁻¹ * ∑ j, FRC.Chart.coef v j * FRC.Chart.chi j m) ∧ FRC.Chart.coef v (0 : ZMod n) = ∑ m, v m ∧ ∀ (m : ZMod n), v m - (↑n)⁻¹ * ∑ m', v m' = (↑n)⁻¹ * ∑ j ∈ Finset.univ.erase (0 : ZMod n), FRC.Chart.coef v j * FRC.Chart.chi j m :=
   @FRC.LedgerML.p20044
 -- end ledger predicates

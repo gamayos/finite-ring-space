@@ -85,6 +85,7 @@ import FrcCore.Theme.Zeros
 import FrcCore.Theme.Ladder
 import FrcCore.Theme.Count
 import FrcCore.Theme.Circle
+import FrcCore.Theme.Steps
 import FrcCore.Theme.Flavour
 import FrcCore.Theme.Dark
 import FrcCore.Theme.Hadrons

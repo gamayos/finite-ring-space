@@ -7,7 +7,7 @@ A18, A20, and the chart blocks B and C), and one check per row of the count read
 (blocks G and X).
 ========================================================================================================================
 
-Four blocks, 97 checks — 88 EXACT (integer-pinned: a pass is a proof on the tested instances) and 9 [approx] (floating-point
+Four blocks, 99 checks — 89 EXACT (integer-pinned: a pass is a proof on the tested instances) and 10 [approx] (floating-point
 readings to a stated tolerance: the chart's characters, and in block D the spectrum of the window's primes, the count of a window from its dual and the bound on its difference from the count) — Python with numpy, which block A's chart characters alone use.
 Each check cites the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 20:XN), and the deciding
 check's `# 20:XN (<key>)` marker is what the ledger's source column links (PREDICATES; finitering.space/py/rh.html#<key>).
@@ -17,9 +17,9 @@ are drawn by make_figures.py beside this script, from its functions.
 Block A  the shell, in exact arithmetic (EXACT, five [approx]; 20:A2, A3, A4, B1, B2, B4, B10, E12–E15, F7): the zero-slot, the
          Subject constants, the shell theorem's clauses on random vectors, the Parseval identity, frame coincidence within the
          observational horizon, the closure, completeness, the drive theorem
-Block D  the prime vector in the chart ([approx]; 20:D14, D15, D16, D17): the spectrum of the window's primes against the classical
+Block D  the prime vector in the chart ([approx], D19 EXACT; 20:D14, D15, D16, D17, D18, D19): the spectrum of the window's primes against the classical
          heights, the deep window, the count of a window from its dual against π(x) and Riemann's formula, and the bound on its
-         difference from the count of the vector
+         difference from the count of the vector, a mode near every height, and the value of a mode at one label
 Block G  the count readout (EXACT; 20:G2, G3, G5–G7, G9, G10, G12–G14, F7): the count operator, the forced half, the generator, the
          zeros, their centre and order, the cardinal modes, the Carrier's chart, the critical circle, on the pairs (13, 233), (173, 30089),
          (1549, 2408561)
@@ -47,13 +47,13 @@ LEDGER = {
     "A1": "20:B4", "A6": "20:B10", "A6b": "20:B10",
     "A7": "20:E12, 20:E14", "A7b": "20:E13", "A10": "20:B1", "A11": "20:B2", "A12": "20:A2, 20:A4, 20:F7", "A13": "20:A3",
     "A14": "20:E13", "A19": "20:E15",
-    "D14": "20:D14", "D15": "20:D15", "D16": "20:D16", "D17": "20:D17",
+    "D14": "20:D14", "D15": "20:D15", "D16": "20:D16", "D17": "20:D17", "D18": "20:D18", "D19": "20:D19",
     "G2": "20:G2", "G3": "20:G3", "G5": "20:G5", "G6": "20:G6, 20:F7", "G7": "20:G7", "G9": "20:G9", "G10": "20:G10", "G12": "20:G12", "G13": "20:G13", "G14": "20:G14",
     "X1": "20:X1", "X2": "20:X2", "X3": "20:X3",
 }
 
 BLOCK = {"A": "the shell, in exact arithmetic: the zero-slot, the Subject constants, the shell theorem, the Parseval identity, frame coincidence, the closure, completeness, the drive theorem",
-         "D": "the prime vector in the chart: the spectrum of the window's primes against the classical heights, the deep window, and the count of a window from its dual with its bound",
+         "D": "the prime vector in the chart: the spectrum of the window's primes against the classical heights, the deep window, the count of a window from its dual with its bound, a mode near every height, and the value of a mode at one label",
          "G": "the count readout: the count operator, the forced half, the generator, the zeros, their centre and order, the cardinal modes, the Carrier's chart, the critical circle",
          "X": "the classical statements on the shell: the ½ of the critical line, the pole and the functional equation, the ½ of the dilation generator"}
 
@@ -63,7 +63,7 @@ PREDICATES = {
     "20:B1": "A10", "20:B2": "A11", "20:B4": "A1", "20:B10": "A6",
     "20:A2": "A12", "20:A3": "A13", "20:A4": "A12", "20:F7": "A12",
     "20:E12": "A7", "20:E13": "A14", "20:E14": "A7", "20:E15": "A19",
-    "20:D14": "D14", "20:D15": "D15", "20:D16": "D16", "20:D17": "D17",
+    "20:D14": "D14", "20:D15": "D15", "20:D16": "D16", "20:D17": "D17", "20:D18": "D18", "20:D19": "D19",
     "20:G2": "G2", "20:G3": "G3", "20:G5": "G5", "20:G6": "G6", "20:G7": "G7", "20:G9": "G9", "20:G10": "G10", "20:G12": "G12", "20:G13": "G13", "20:G14": "G14",
     "20:X1": "X1", "20:X2": "X2", "20:X3": "X3",
 }
@@ -589,9 +589,59 @@ def circle_quarter_closes(p):
     return all(neg_inv(neg_inv(x)) == x and ((neg_inv(x) == x) == (x * x % p == p - 1)) for x in range(1, p))
 
 
+# The value of a mode at one label (20:D19; Theme/Steps.lean, 23 November 2026). A nonzero residue y is x^k·g^r with
+# r < W when y is fewer than W steps of the drive after a power of x on the latitude cycle.
+def scale_table(p, g):
+    """The scale of every nonzero residue on the latitude cycle: table[x] = m with g^m = x, 0 ≤ m < p − 1."""
+    table, x = [0] * p, 1
+    for m in range(p - 1):
+        table[x] = m; x = x * g % p
+    return table
+
+
+def step_width(p, g, x, table=None):
+    """The least W for which every nonzero residue is x^k·g^r with r < W: the powers of x are marked at their places
+    of the latitude cycle, and one pass along the cycle counts the steps of the drive from a marked place."""
+    n = p - 1
+    table = table or scale_table(p, g)
+    marked, y = [False] * n, 1
+    while not marked[table[y]]:
+        marked[table[y]] = True; y = y * x % p
+    worst = run = 0
+    for place in range(1, n + 1):                               # the place 0 is marked: x^0 = 1
+        run = 0 if marked[place % n] else run + 1
+        if run > worst: worst = run
+    return worst + 1
+
+
+def power_steps(p, g, x, M, table=None):
+    """A residue x with the distinct powers x^0, …, x^M, M ≥ 1: every nonzero residue is x^k·g^r with r < W, for the
+    least W with M·W ≥ p − 1 (and so for every larger W)."""
+    powers, y = set(), 1
+    for _ in range(M + 1):
+        powers.add(y); y = y * x % p
+    return M >= 1 and len(powers) == M + 1 and step_width(p, g, x, table) <= -(-(p - 1) // M)
+
+
+def label_pair(p, l):
+    """The pair (N, W) of 20:D19 for a label l ≥ 2 (the paper's M and V): N the largest exponent with l^N < p, W the
+    least number of steps with N·W ≥ p − 1. Every N' ≤ N and every W' with N'·W' ≥ p − 1 has W' ≥ W, so the statement at (N, W)
+    gives it at (N', W')."""
+    N = 0
+    while l ** (N + 1) < p: N += 1
+    return N, -(-(p - 1) // N)
+
+
+def label_steps(p, g, l, table=None):
+    """20:D19 at the label l, 2 ≤ l < p: every nonzero residue is l^k·g^r with r < W, at the largest N and the least W."""
+    N, W = label_pair(p, l)
+    return N >= 1 and power_steps(p, g, l, N, table) and step_width(p, g, l, table) <= W
+
+
 CT = types.SimpleNamespace(**{f.__name__: f for f in (generators, gram_table, gram, frequency, quarter_turn, mode_coefficients, mode_values, delta, fixed_sequence, run_shifts, mode_stride, count_conjugate, count_adjoint, gram_rows, count_adjoint_vector, half_forced, count_run, count_run_only, zero_count, zeros_fill, zeros_fill_ends, zero_conjugate, generator_skew, centre_mode, pair_invariant, energy_order, cardinal_modes, cardinal_zeros, carrier_centre, origin_unit_symmetry, zero_shared, zeros_collide, zeros_not_held, half_unique,
                                                             circle_points, circle_pair, circle_frequency, circle_meridians, circle_point, circle_count, circle_places, circle_place,
-                                                            circle_place_cycle, circle_place_even, circle_quarter_turn, circle_counts, circle_phase, circle_parallels, circle_place_phase, circle_quarter_closes)})
+                                                            circle_place_cycle, circle_place_even, circle_quarter_turn, circle_counts, circle_phase, circle_parallels, circle_place_phase, circle_quarter_closes,
+                                                            scale_table, step_width, power_steps, label_pair, label_steps)})
 
 # ---- the spectrum of a window [chart] (Obs. exhibit; rows D13, D14, D15), 21 November 2026 -----------------------------
 # The labels 1..H of a window of depth H, the paper's q, carry a weight (1 on the primes, or log l on the prime powers l^a); its mean over the labels is removed;
@@ -882,6 +932,61 @@ def bound_reading(H=39):
     return ok, f"largest B(x) at the half-integers of depth {H}: {top:.3f}; largest ratio of a difference to its bound: {worst:.3f}"
 
 
+# A mode near every height (20:D18): the polynomial of the proof in exact integers, and the smallest sum over the modes
+# of the squared distances to given complex numbers of modulus one [chart].
+def polynomial_exact(B):
+    """The polynomial of 20:D18 in exact integers: (1 - x) * sum_{s<B} (s+1)(B-s) x^s = sum_{s<=B} (B-2s) x^s, and the
+    sums of the squared coefficients are B(B+1)(B+2)((B+1)^2+1)/30 and B(B+1)(B+2)/3, of ratio 10/((B+1)^2+1)."""
+    a = [(s + 1) * (B - s) for s in range(B)]
+    prod = [0] * (B + 1)
+    for s, c in enumerate(a):
+        prod[s] += c; prod[s + 1] -= c
+    return (prod == [B - 2 * s for s in range(B + 1)]
+            and 30 * sum(c * c for c in a) == B * (B + 1) * (B + 2) * ((B + 1) ** 2 + 1)
+            and 3 * sum(c * c for c in prod) == B * (B + 1) * (B + 2))
+
+
+def mode_table(p, scales):
+    """The modes at labels of given scales, in the chart of the cycle: for each mode k < p - 1 the cosine and the sine
+    of the angle 2 pi (k * scale mod (p - 1))/(p - 1) of its value at each label."""
+    n = p - 1
+    cols = []
+    for a in scales:
+        ang = [2 * math.pi * ((k * a) % n) / n for k in range(n)]
+        cols += [[math.cos(x) for x in ang], [math.sin(x) for x in ang]]
+    return list(zip(*cols))
+
+
+def nearest_mode(table, angles):
+    """The smallest sum over the modes of the squared distances |chi_k(l_j) - u_j|^2 to the complex numbers
+    u_j = e^{i angle_j} of modulus one: 2m minus twice the largest sum over j of cos(angle of the mode - angle_j)."""
+    w = []
+    for a in angles: w += [math.cos(a), math.sin(a)]
+    return 2 * len(angles) - 2 * max(sum(x * y for x, y in zip(row, w)) for row in table)
+
+
+def heights_reading(cases):
+    """The evaluation of 20:D18. A case is (p, primes, B, scales): distinct primes of the window of the shell p with
+    product^B < p, and their scales on the latitude cycle. For each case, at each of the heights t = 0.5, 1, ..., 100
+    (u_j = l_j^{it}), the smallest sum over the modes of |chi_k(l_j) - u_j|^2 is at most 10 m/((B + 1)^2 + 1) (the
+    theorem FRC.Chart.Heights.mode_near_height, on Mathlib). For the primes 2 and 3 on the Subject 1549: B = 4, the
+    bound is 10/13, and at each of these heights the smallest sum is at most 0.01. Returns (ok, detail)."""
+    heights = [0.5 * i for i in range(1, 201)]
+    ok, ratio, stated = True, 0.0, None
+    for p, primes, B, scales in cases:
+        m, table = len(primes), mode_table(p, scales)
+        bound = 10 * m / ((B + 1) ** 2 + 1)
+        worst = max(nearest_mode(table, [t * math.log(l) for l in primes]) for t in heights)
+        ok &= worst <= bound + 1e-9
+        ratio = max(ratio, worst / bound)
+        if (p, tuple(primes)) == (1549, (2, 3)):
+            stated = (B, bound, worst)
+            ok &= B == 4 and abs(bound - 10 / 13) < 1e-12 and worst <= 0.01
+    ok &= stated is not None
+    return ok, (f"primes 2 and 3 on the Subject 1549: B = {stated[0]}, bound {stated[1]:.4f}, largest of the smallest sums at the 200 heights: {stated[2]:.6f}; "
+                f"largest ratio of a smallest sum to its bound over {len(cases)} cases: {ratio:.3f}")
+
+
 HEIGHTS = [14.134725141734693, 21.022039638771555, 25.010857580145688, 30.424876125859513, 32.935061587739189,
            37.586178158825671, 40.918719012147495, 43.327073280914999, 48.005150881167159, 49.773832477672302,
            52.970321477714460, 56.446247697063394, 59.347044002602353, 60.831778524609809, 65.112544048081606,
@@ -901,7 +1006,8 @@ HEIGHTS = [14.134725141734693, 21.022039638771555, 25.010857580145688, 30.424876
 CR = types.SimpleNamespace(HEIGHTS=HEIGHTS, window_weights=window_weights, power_tail=power_tail, spectrum=spectrum, maxima=maxima, peaks=peaks,
                            window_reading=window_reading, deep_reading=deep_reading, subset_control=subset_control,
                            expint=expint, label_step=label_step, window_count=window_count, riemann_counts=riemann_counts, emergence_reading=emergence_reading,
-                           vector_count=vector_count, count_bound=count_bound, bound_reading=bound_reading)
+                           vector_count=vector_count, count_bound=count_bound, bound_reading=bound_reading,
+                           polynomial_exact=polynomial_exact, mode_table=mode_table, nearest_mode=nearest_mode, heights_reading=heights_reading)
 
 # ======================================================================================================================
 # block A — the shell, in exact arithmetic
@@ -1122,12 +1228,54 @@ def block_A():
               ok_i and ok_ii and ok_sym and ok_iii and ok_iv, f"g={g}, π={pi_}: eigenvalues g^k = {spec[:6]}…")
 
 
+def heights_cases():
+    """The cases of 20:D18, in exact integers, on the Subjects 13, 173 and 1549: the first primes of the window while
+    their product is below p; the largest B with product^B < p; the scales of the primes on the latitude cycle. The
+    monomials with exponents up to B are below p and distinct, and the polynomial identities hold for B up to 60.
+    Returns (ok, cases) for CR.heights_reading."""
+    ok = all(CR.polynomial_exact(B) for B in range(1, 61))
+    cases = []
+    for p in (13, 173, 1549):
+        g = generator(p); table = CT.scale_table(p, g); q = math.isqrt(p - 1)
+        primes, P = [], 1
+        for l in (2, 3, 5, 7):
+            if l > q or P * l >= p: break
+            primes.append(l); P *= l
+            B = 1
+            while P ** (B + 1) < p: B += 1
+            tuples, values = [()], set()
+            for _ in primes: tuples = [r + (e,) for r in tuples for e in range(B + 1)]
+            for r in tuples:
+                v = 1
+                for x, e in zip(primes, r): v *= x ** e
+                ok &= v < p; values.add(v)
+            ok &= len(values) == (B + 1) ** len(primes)
+            cases.append((p, list(primes), B, [table[x] for x in primes]))
+    return ok, cases
+
+
+def label_cases():
+    """The cases of 20:D19: every label from 2 of the windows of the Subjects 13, 173 and 1549; and the residues g^j,
+    j = 2, 3, 4, 6, 12, with all their powers. For the label 3 on the Subject 1549 the pair (N, W) is (6, 258), and the
+    powers of 3 stand 6 places apart. Returns (ok, the number of labels)."""
+    ok, count = True, 0
+    for p in (13, 173, 1549):
+        g = generator(p); table = CT.scale_table(p, g)
+        for l in range(2, math.isqrt(p - 1) + 1):
+            ok &= CT.label_steps(p, g, l, table); count += 1
+        for j in (2, 3, 4, 6, 12):
+            x = pow(g, j, p)
+            if x != 1: ok &= CT.power_steps(p, g, x, (p - 1) // math.gcd(j, p - 1) - 1, table)
+    g = generator(1549)
+    return ok and CT.label_pair(1549, 3) == (6, 258) and CT.step_width(1549, g, 3) == 6, count
+
+
 # ======================================================================================================================
 # block D — the prime vector in the chart [chart]
-# The spectrum of a window against the classical heights (rows D13, D14, D15), and the count of a window from its dual with its bound (rows D16, D17).
+# The spectrum of a window against the classical heights (rows D13, D14, D15), the count of a window from its dual with its bound (rows D16, D17), a mode near every height (row D18) and the value of a mode at one label (row D19).
 # ======================================================================================================================
 def block_D():
-    """Block D — the prime vector in the chart: 4 floating-point evaluations, two compared with the classical heights, with the control over the subsets of the window of depth 13, and the count of a window from its dual with its bound, computed in the chart tier (the depth 10⁶ takes about 15 s)."""
+    """Block D — the prime vector in the chart: 5 floating-point evaluations, two compared with the classical heights, with the control over the subsets of the window of depth 13, the count of a window from its dual with its bound, and a mode near every height, computed in the chart tier (the depth 10⁶ takes about 15 s); and the value of a mode at one label, in exact integers."""
     ok, detail = CR.window_reading()
     ok2, detail2 = CR.subset_control()
     ok, detail = ok and ok2, detail + "; " + detail2
@@ -1146,6 +1294,15 @@ def block_D():
     # 20:D17 (p20117)
     check("D17", "the bound of the count [chart]: on the windows of depth 13 and 39, at the half-integers and the heights 35, 67, 78 and 202, for the prime vector and for the indicator vector of all the labels, and at the quarter positions for a signed vector on the labels of depth 39, the count C_T lies within B(x)/T of the count of the vector below x, with B(x) = (1/π) Σ |w(n)| √(x/n)/|log(x/n)|; on the window of depth 39 the prime vector has B(x) ≤ 33.14 at the half-integers, so the bound is at most 0.95, 0.43 and 0.17 at the heights 35, 78 and 202 and below one half from the height 67 on, and the nearest integer to the count at the height 67 is π(x)",
             ok, detail, kind="[approx]")
+    ok, cases = heights_cases()
+    ok2, detail = CR.heights_reading(cases)
+    # 20:D18 (p20118)
+    check("D18", "a mode near every height [chart]: on the Subjects 13, 173 and 1549, for the first primes of the window with product^B < p, the smallest sum over the modes of the squared distances |χ_k(ℓ_j) − ℓ_j^{it}|² is at most 10m/((B+1)²+1) at each of the heights 0.5, 1, …, 100; for the primes 2 and 3 on the Subject 1549, B = 4, the bound is 10/13 and the smallest sum is at most 0.01 at each of these heights; the polynomial of the proof and the distinct monomials in exact integers",
+            ok and ok2, detail, kind="[approx]")
+    ok, count = label_cases()
+    # 20:D19 (p20119)
+    check("D19", "the value of a mode at one label: for every label ℓ ≥ 2 of the windows of the Subjects 13, 173 and 1549, every nonzero residue is ℓ^k g^r with r < V, at the largest M with ℓ^M < p and the least V with MV ≥ p − 1; for the label 3 on the Subject 1549, M = 6 and V = 258, and the powers of 3 stand 6 places apart",
+            ok, f"{count} labels on three Subjects")
 
 
 # ======================================================================================================================
