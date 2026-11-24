@@ -408,8 +408,8 @@ const PUBLICATIONS = [
     "status": {
       "kind": "preprint"
     },
-    "doi": "https://doi.org/10.20944/preprints202606.0768.v1",
-    "doiLabel": "pp202606.0768.v1",
+    "doi": "https://www.alphaxiv.org/abs/2611.riemann-hypothesis-finite-substrate",
+    "doiLabel": "2611.riemann-hypothesis-finite-substrate",
     "ledger": "20-rh/index.html",
     "schema": true,
     "links": [
@@ -866,4 +866,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "23 November 2026";
+const GENERATED = "24 November 2026";
