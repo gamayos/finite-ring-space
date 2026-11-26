@@ -614,7 +614,7 @@
   "rows": "20:G3",
   "block": "G",
   "script": "rh",
-  "label": "the half is forced on F_13: N + c is skew on the nonconstant modes exactly when 2c \u2261 1, for every residue c, on the chart of F_233 too; the run of counts from m(p \u2212 1) asks for 2c \u2261 2m + 1, and so does the run one above; a run from any other start has no such c",
+  "label": "the half is forced on F_13: N + c is skew on the nonconstant modes exactly when 2c \u2261 1, for every residue c, on the chart of F_233 too; the run of counts from m(p \u2212 1) asks for 2c \u2261 2m + 1, and so does the run one above; a run from any other start has no such c; in a run that has one, N + c has the eigenvalue k + 2\u207b\u00b9 at the class k",
   "ok": true,
   "detail": "2\u207b\u00b9 = 7; every start of a run for m = 0, 1, 2, 3, 7",
   "kind": "EXACT"
@@ -710,6 +710,46 @@
   "kind": "EXACT"
  },
  {
+  "id": "G17",
+  "rows": "20:G17",
+  "block": "G",
+  "script": "rh",
+  "label": "the modes on the window of F_13, the labels up to 3: every nonzero residue is \u00b1a\u00b7b\u207b\u00b9 for two labels of the window, on F_233 too; the values at the primes of the window fix a mode; they are all \u00b11 exactly for the counts 0 and \u03c0 = 6, and \u00b1\u2113^j exactly for the counts j and \u03c0 + j",
+  "ok": true,
+  "detail": "every count j",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G18",
+  "rows": "20:G18",
+  "block": "G",
+  "script": "rh",
+  "label": "the primes and the modes on F_13: products of primes of the window below 13 with different exponents are different residues, on F_233 too, and two products with one residue are never both below the cardinality; the primes are the one generating set of labels with distinct products; residues at the primes that satisfy the relations between the primes are the values of a mode",
+  "ok": true,
+  "detail": "every set of labels; every assignment of residues to the primes against every relation",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G19",
+  "rows": "20:G19",
+  "block": "G",
+  "script": "rh",
+  "label": "the two squares on F_13: the cardinality is a\u00b2 + b\u00b2 for two labels of the window in one way, 13 = 2\u00b2 + 3\u00b2 and 233 = 8\u00b2 + 13\u00b2; the square roots of \u22121 are \u00b1a\u00b7b\u207b\u00b9",
+  "ok": true,
+  "detail": "every label of the window, every residue",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G20",
+  "rows": "20:G20",
+  "block": "G",
+  "script": "rh",
+  "label": "the reflected pairing on F_13: R(k, m) = \u03a3 x^k(1 \u2212 x)^m over x \u2260 0, 1 is \u2212(\u22121)^k\u00b7C(m, p \u2212 1 \u2212 k) for two nonconstant modes, 0 when k + m < p \u2212 1 and not 0 otherwise; a mode and its conjugate have \u2212(\u22121)^k; for k + m \u2260 p \u2212 1 exactly one of R(k, m) and the pairing of the conjugates is 0",
+  "ok": true,
+  "detail": "121 pairs of modes, 24 pairs on F_233",
+  "kind": "EXACT"
+ },
+ {
   "id": "G2",
   "rows": "20:G2",
   "block": "G",
@@ -724,7 +764,7 @@
   "rows": "20:G3",
   "block": "G",
   "script": "rh",
-  "label": "the half is forced on F_173: N + c is skew on the nonconstant modes exactly when 2c \u2261 1, for every residue c, on the chart of F_30089 too; the run of counts from m(p \u2212 1) asks for 2c \u2261 2m + 1, and so does the run one above; a run from any other start has no such c",
+  "label": "the half is forced on F_173: N + c is skew on the nonconstant modes exactly when 2c \u2261 1, for every residue c, on the chart of F_30089 too; the run of counts from m(p \u2212 1) asks for 2c \u2261 2m + 1, and so does the run one above; a run from any other start has no such c; in a run that has one, N + c has the eigenvalue k + 2\u207b\u00b9 at the class k",
   "ok": true,
   "detail": "2\u207b\u00b9 = 87; every start of a run for m = 0, 1, 2, 3, 7",
   "kind": "EXACT"
@@ -820,6 +860,46 @@
   "kind": "EXACT"
  },
  {
+  "id": "G17",
+  "rows": "20:G17",
+  "block": "G",
+  "script": "rh",
+  "label": "the modes on the window of F_173, the labels up to 13: every nonzero residue is \u00b1a\u00b7b\u207b\u00b9 for two labels of the window, on F_30089 too; the values at the primes of the window fix a mode; they are all \u00b11 exactly for the counts 0 and \u03c0 = 86, and \u00b1\u2113^j exactly for the counts j and \u03c0 + j",
+  "ok": true,
+  "detail": "every count j",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G18",
+  "rows": "20:G18",
+  "block": "G",
+  "script": "rh",
+  "label": "the primes and the modes on F_173: products of primes of the window below 173 with different exponents are different residues, on F_30089 too, and two products with one residue are never both below the cardinality; the primes are the one generating set of labels with distinct products; residues at the primes that satisfy the relations between the primes are the values of a mode",
+  "ok": true,
+  "detail": "every set of labels; the relations between two primes on every mode",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G19",
+  "rows": "20:G19",
+  "block": "G",
+  "script": "rh",
+  "label": "the two squares on F_173: the cardinality is a\u00b2 + b\u00b2 for two labels of the window in one way, 173 = 2\u00b2 + 13\u00b2 and 30089 = 67\u00b2 + 160\u00b2; the square roots of \u22121 are \u00b1a\u00b7b\u207b\u00b9",
+  "ok": true,
+  "detail": "every label of the window, every residue",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G20",
+  "rows": "20:G20",
+  "block": "G",
+  "script": "rh",
+  "label": "the reflected pairing on F_173: R(k, m) = \u03a3 x^k(1 \u2212 x)^m over x \u2260 0, 1 is \u2212(\u22121)^k\u00b7C(m, p \u2212 1 \u2212 k) for two nonconstant modes, 0 when k + m < p \u2212 1 and not 0 otherwise; a mode and its conjugate have \u2212(\u22121)^k; for k + m \u2260 p \u2212 1 exactly one of R(k, m) and the pairing of the conjugates is 0",
+  "ok": true,
+  "detail": "29241 pairs of modes, 24 pairs on F_30089",
+  "kind": "EXACT"
+ },
+ {
   "id": "G2",
   "rows": "20:G2",
   "block": "G",
@@ -834,7 +914,7 @@
   "rows": "20:G3",
   "block": "G",
   "script": "rh",
-  "label": "the half is forced on F_1549: N + c is skew on the nonconstant modes exactly when 2c \u2261 1, for every residue c, on the chart of F_2408561 too; the run of counts from m(p \u2212 1) asks for 2c \u2261 2m + 1, and so does the run one above; a run from any other start has no such c",
+  "label": "the half is forced on F_1549: N + c is skew on the nonconstant modes exactly when 2c \u2261 1, for every residue c, on the chart of F_2408561 too; the run of counts from m(p \u2212 1) asks for 2c \u2261 2m + 1, and so does the run one above; a run from any other start has no such c; in a run that has one, N + c has the eigenvalue k + 2\u207b\u00b9 at the class k",
   "ok": true,
   "detail": "2\u207b\u00b9 = 775; every start of a run for m = 0, 1, 2",
   "kind": "EXACT"
@@ -927,6 +1007,46 @@
   "label": "the Hilbert\u2013P\u00f3lya operator on F_1549: for the pairing [v, w] = \u03a3 v(x)w(x\u207b\u00b9) over the nonzero residues the modes are orthogonal, [x^k, x^m] = \u22121 for k = m and 0 otherwise; \u03b3_k[x^k, x^m] = \u03b3_m[x^k, x^m] for every two modes; [Hv, w] = [v, Hw] on 9 pairs of vectors",
   "ok": true,
   "detail": "the least 3 generators",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G17",
+  "rows": "20:G17",
+  "block": "G",
+  "script": "rh",
+  "label": "the modes on the window of F_1549, the labels up to 39: every nonzero residue is \u00b1a\u00b7b\u207b\u00b9 for two labels of the window, on F_2408561 too; the values at the primes of the window fix a mode; they are all \u00b11 exactly for the counts 0 and \u03c0 = 774, and \u00b1\u2113^j exactly for the counts j and \u03c0 + j",
+  "ok": true,
+  "detail": "ten counts j",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G18",
+  "rows": "20:G18",
+  "block": "G",
+  "script": "rh",
+  "label": "the primes and the modes on F_1549: products of primes of the window below 1549 with different exponents are different residues, on F_2408561 too, and two products with one residue are never both below the cardinality; the primes are the one generating set of labels with distinct products; residues at the primes that satisfy the relations between the primes are the values of a mode",
+  "ok": true,
+  "detail": "the relations between two primes on ten modes",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G19",
+  "rows": "20:G19",
+  "block": "G",
+  "script": "rh",
+  "label": "the two squares on F_1549: the cardinality is a\u00b2 + b\u00b2 for two labels of the window in one way, 1549 = 18\u00b2 + 35\u00b2 and 2408561 = 1031\u00b2 + 1160\u00b2; the square roots of \u22121 are \u00b1a\u00b7b\u207b\u00b9",
+  "ok": true,
+  "detail": "every label of the window, every residue",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G20",
+  "rows": "20:G20",
+  "block": "G",
+  "script": "rh",
+  "label": "the reflected pairing on F_1549: R(k, m) = \u03a3 x^k(1 \u2212 x)^m over x \u2260 0, 1 is \u2212(\u22121)^k\u00b7C(m, p \u2212 1 \u2212 k) for two nonconstant modes, 0 when k + m < p \u2212 1 and not 0 otherwise; a mode and its conjugate have \u2212(\u22121)^k; for k + m \u2260 p \u2212 1 exactly one of R(k, m) and the pairing of the conjugates is 0",
+  "ok": true,
+  "detail": "106 pairs of modes",
   "kind": "EXACT"
  },
  {

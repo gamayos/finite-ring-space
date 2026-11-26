@@ -7,7 +7,7 @@ A18, A20, and the chart blocks B and C), and one check per row of the count read
 (blocks G and X).
 ========================================================================================================================
 
-Four blocks, 102 checks — 92 EXACT (integer-pinned: a pass is a proof on the tested instances) and 10 [approx] (floating-point
+Four blocks, 114 checks — 104 EXACT (integer-pinned: a pass is a proof on the tested instances) and 10 [approx] (floating-point
 readings to a stated tolerance: the chart's characters, and in block D the spectrum of the window's primes, the count of a window from its dual and the bound on its difference from the count) — Python with numpy, which block A's chart characters alone use.
 Each check cites the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 20:XN), and the deciding
 check's `# 20:XN (<key>)` marker is what the ledger's source column links (PREDICATES; finitering.space/py/rh.html#<key>).
@@ -20,7 +20,7 @@ Block A  the shell, in exact arithmetic (EXACT, five [approx]; 20:A2, A3, A4, B1
 Block D  the prime vector in the chart ([approx], D19 EXACT; 20:D14, D15, D16, D17, D18, D19): the spectrum of the window's primes against the classical
          heights, the deep window, the count of a window from its dual against π(x) and Riemann's formula, and the bound on its
          difference from the count of the vector, a mode near every height, and the value of a mode at one label
-Block G  the count readout (EXACT; 20:G2, G3, G5–G7, G9, G10, G12–G15, F7): the count operator, the forced half, the generator, the
+Block G  the count readout (EXACT; 20:G2, G3, G5–G7, G9, G10, G12–G15, G17–G20, F7): the count operator, the forced half, the generator, the
          zeros, their centre and order, the cardinal modes, the Carrier's chart, the critical circle, on the pairs (13, 233), (173, 30089),
          (1549, 2408561)
 Block X  the classical statements on the shell (EXACT; 20:X1–X3): the ½ of the critical line, the pole and the functional
@@ -48,7 +48,7 @@ LEDGER = {
     "A7": "20:E12, 20:E14", "A7b": "20:E13", "A10": "20:B1", "A11": "20:B2", "A12": "20:A2, 20:A4, 20:F7", "A13": "20:A3",
     "A14": "20:E13", "A19": "20:E15",
     "D14": "20:D14", "D15": "20:D15", "D16": "20:D16", "D17": "20:D17", "D18": "20:D18", "D19": "20:D19",
-    "G2": "20:G2", "G3": "20:G3", "G5": "20:G5", "G6": "20:G6, 20:F7", "G7": "20:G7", "G9": "20:G9", "G10": "20:G10", "G12": "20:G12", "G13": "20:G13", "G14": "20:G14", "G15": "20:G15",
+    "G2": "20:G2", "G3": "20:G3", "G5": "20:G5", "G6": "20:G6, 20:F7", "G7": "20:G7", "G9": "20:G9", "G10": "20:G10", "G12": "20:G12", "G13": "20:G13", "G14": "20:G14", "G15": "20:G15", "G17": "20:G17", "G18": "20:G18", "G19": "20:G19", "G20": "20:G20",
     "X1": "20:X1", "X2": "20:X2", "X3": "20:X3",
 }
 
@@ -64,7 +64,7 @@ PREDICATES = {
     "20:A2": "A12", "20:A3": "A13", "20:A4": "A12", "20:F7": "A12",
     "20:E12": "A7", "20:E13": "A14", "20:E14": "A7", "20:E15": "A19",
     "20:D14": "D14", "20:D15": "D15", "20:D16": "D16", "20:D17": "D17", "20:D18": "D18", "20:D19": "D19",
-    "20:G2": "G2", "20:G3": "G3", "20:G5": "G5", "20:G6": "G6", "20:G7": "G7", "20:G9": "G9", "20:G10": "G10", "20:G12": "G12", "20:G13": "G13", "20:G14": "G14", "20:G15": "G15",
+    "20:G2": "G2", "20:G3": "G3", "20:G5": "G5", "20:G6": "G6", "20:G7": "G7", "20:G9": "G9", "20:G10": "G10", "20:G12": "G12", "20:G13": "G13", "20:G14": "G14", "20:G15": "G15", "20:G17": "G17", "20:G18": "G18", "20:G19": "G19", "20:G20": "G20",
     "20:X1": "X1", "20:X2": "X2", "20:X3": "X3",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
@@ -386,6 +386,212 @@ def generator_selfadjoint_vector(p, kap, g, pairs):
     return True
 
 
+def run_eigenvalue(p, ms, ks=None, cs=None):
+    """In the run of counts from m(p − 1) the class k is listed as m(p − 1) + k, and N + (c + m) has the eigenvalue k + c at it, for every residue c tried."""
+    ks = range(1, p - 1) if ks is None else ks
+    cs = (0, 1, (p + 1) // 2, p - 1) if cs is None else cs
+    return all(((m * (p - 1) + k) + (c + m)) % p == (k + c) % p for m in ms for k in ks for c in cs)
+
+
+def window(p):
+    """The window of the shell: the largest label q with q² < p, and the primes up to q."""
+    q = math.isqrt(p - 1)
+    return q, [n for n in range(2, q + 1) if all(n % d for d in range(2, math.isqrt(n) + 1))]
+
+
+def thue_ne_zero(p):
+    """Thue's lemma: every nonzero residue is ±a·b⁻¹ for two labels a, b of the window."""
+    q, _ = window(p); seen = set()
+    for b in range(1, q + 1):
+        bi = pow(b, -1, p)
+        for a in range(1, q + 1):
+            r = a * bi % p; seen.add(r); seen.add(p - r)
+    return len(seen) == p - 1
+
+
+def prime_values(p):
+    """The values of the modes at the primes of the window: row k holds ℓ^k for the primes ℓ ≤ q, for the counts k < p − 1."""
+    _, primes = window(p)
+    return [tuple(pow(l, k, p) for l in primes) for k in range(p - 1)]
+
+
+def mode_fixed(p, T=None):
+    """The values at the primes of the window fix a mode: no two counts below p − 1 have the same values."""
+    T = prime_values(p) if T is None else T
+    return len(set(T)) == p - 1
+
+
+def mode_sign(p, kap, T=None):
+    """The values at the primes of the window are all ±1 exactly for the counts 0 and π = 2κ."""
+    T = prime_values(p) if T is None else T
+    return [k for k in range(p - 1) if all(v in (1, p - 1) for v in T[k])] == [0, 2 * kap]
+
+
+def mode_signed_power(p, kap, js=None, T=None):
+    """The values at the primes of the window are all ±ℓ^j exactly for the counts j and π + j, for every count j tried (default all)."""
+    T = prime_values(p) if T is None else T
+    for j in (range(p - 1) if js is None else js):
+        hit = {k for k in range(p - 1) if all(v == w or v == p - w for v, w in zip(T[k], T[j]))}
+        if hit != {j, (j + 2 * kap) % (p - 1)}: return False
+    return True
+
+
+def square_pairs(p):
+    """The pairs of labels a ≤ b of the window with a² + b² = p."""
+    q, _ = window(p)
+    return [(a, b) for a in range(1, q + 1) for b in (math.isqrt(p - a * a),) if a <= b <= q and a * a + b * b == p]
+
+
+def two_squares(p):
+    """p = a² + b² for two labels of the window, and the square roots of −1 on the shell are ±a·b⁻¹."""
+    S = square_pairs(p)
+    if not S: return False
+    a, b = S[0]; r = a * pow(b, -1, p) % p
+    return r * r % p == p - 1 and [x for x in range(1, p) if x * x % p == p - 1] == sorted((r, p - r))
+
+
+def two_squares_unique(p):
+    """The two squares are unique up to their order."""
+    return len(square_pairs(p)) == 1
+
+
+def binomial_mod(m, d, p):
+    """C(m, d) mod p for m < p."""
+    if d < 0 or d > m: return 0
+    d = min(d, m - d); num = den = 1
+    for i in range(1, d + 1): num = num * (m - d + i) % p; den = den * i % p
+    return num * pow(den, -1, p) % p
+
+
+def reflected_table(p, pairs=None):
+    """The reflected pairing R(k, m) = Σ_{x≠0,1} x^k (1 − x)^m on F_p: (k, m) -> R(k, m), for every two nonconstant modes, or for the pairs given, each with (k, p − 1 − k) and (p − 1 − k, p − 1 − m)."""
+    if pairs is None:
+        xs = range(2, p)
+        A = [[pow(x, k, p) for x in xs] for k in range(1, p - 1)]
+        B = [[pow(1 - x, m, p) for x in xs] for m in range(1, p - 1)]
+        return {(k + 1, m + 1): sum(a * b for a, b in zip(ra, rb)) % p for k, ra in enumerate(A) for m, rb in enumerate(B)}
+    want = set()
+    for k, m in pairs: want |= {(k, m), (k, p - 1 - k), (p - 1 - k, p - 1 - m)}
+    return {(k, m): sum(pow(x, k, p) * pow(1 - x, m, p) for x in range(2, p)) % p for k, m in sorted(want)}
+
+
+def reflected_value(p, T):
+    """R(k, m) = −(−1)^k·C(m, p − 1 − k) for two nonconstant modes."""
+    return all(r == (-1 if k % 2 == 0 else 1) * binomial_mod(m, p - 1 - k, p) % p for (k, m), r in T.items())
+
+
+def reflected_zero(p, T):
+    """R(k, m) = 0 when k + m < p − 1."""
+    return all(r == 0 for (k, m), r in T.items() if k + m < p - 1)
+
+
+def reflected_ne_zero(p, T):
+    """R(k, m) ≠ 0 when k + m ≥ p − 1."""
+    return all(r != 0 for (k, m), r in T.items() if k + m >= p - 1)
+
+
+def reflected_conjugate(p, T):
+    """A mode and its conjugate have the reflected pairing −(−1)^k."""
+    return all(T[(k, p - 1 - k)] == (-1 if k % 2 == 0 else 1) % p for (k, m) in T if (k, p - 1 - k) in T)
+
+
+def reflected_exclusive(p, T):
+    """For k + m ≠ p − 1 exactly one of R(k, m) and R(p − 1 − k, p − 1 − m) is 0: the first when k + m < p − 1."""
+    return all((r == 0) == (k + m < p - 1) and (T[(p - 1 - k, p - 1 - m)] == 0) == (k + m > p - 1)
+               for (k, m), r in T.items() if k + m != p - 1 and (p - 1 - k, p - 1 - m) in T)
+
+
+def products_below(bound, S):
+    """The products below the bound of members of S (each ≥ 2), one for each choice of exponents."""
+    S = sorted(S); out = [1]; stack = [(1, 0)]
+    while stack:
+        n, i = stack.pop()
+        for j in range(i, len(S)):
+            m = n * S[j]
+            if m >= bound: break
+            out.append(m); stack.append((m, j))
+    return out
+
+
+def prime_products_distinct(p, S=None):
+    """Products below p of primes of the window (or of the members of S) with different exponents are different residues."""
+    out = products_below(p, window(p)[1] if S is None else S)
+    return len(set(out)) == len(out)
+
+
+def relation_wrapped(p, factor=4):
+    """Every relation between primes of the window has wrapped: among their products below factor·p, two with one residue are never both below p; and two with one residue exist."""
+    seen = {}; found = False
+    for n in products_below(factor * p, window(p)[1]):
+        r = n % p
+        if r in seen:
+            found = True
+            if max(n, seen[r]) < p: return False
+            seen[r] = min(n, seen[r])
+        else: seen[r] = n
+    return found
+
+
+def generates(q, S):
+    """Every label 1 ≤ n ≤ q is a product of members of S."""
+    got = {1}
+    for n in range(2, q + 1):
+        if any(n % s == 0 and n // s in got for s in S): got.add(n)
+    return len(got) == q
+
+
+def generating_free_sets(p):
+    """Exhaustive over the sets of labels 2 ≤ s ≤ q: those that generate the labels of the window and whose products below p with different exponents are different."""
+    q, _ = window(p); labels = list(range(2, q + 1)); out = []
+    for mask in range(1 << len(labels)):
+        S = [s for i, s in enumerate(labels) if mask >> i & 1]
+        if generates(q, S) and prime_products_distinct(p, S): out.append(S)
+    return out
+
+
+def primes_unique_generators(p, exhaustive=False):
+    """The primes of the window are the one generating set of labels with distinct products. The primes generate and have distinct products; a set without a prime ℓ does not generate, since no smaller label divides ℓ; a set with the primes and a composite label c has two products c. exhaustive: every set of labels is tried as well."""
+    q, primes = window(p)
+    if not (generates(q, primes) and prime_products_distinct(p)): return False
+    if any(l % s == 0 for l in primes for s in range(2, l)): return False
+    for c in range(2, q + 1):
+        if c not in primes:
+            n, fac = c, []
+            for l in primes:
+                while n % l == 0: n //= l; fac.append(l)
+            if n != 1 or len(fac) < 2 or prime_products_distinct(c + 1, [c] + primes): return False
+    return not exhaustive or generating_free_sets(p) == [primes]
+
+
+def tuples(vals, r):
+    """Every r-tuple over vals."""
+    out = [()]
+    for _ in range(r): out = [t + (v,) for t in out for v in vals]
+    return out
+
+
+def mode_iff_relations(p):
+    """Exhaustive: residues X at the primes of the window satisfy every relation ∏ℓ^e = 1, 0 ≤ e < p − 1, exactly when they are the values of a mode."""
+    _, primes = window(p); r = len(primes)
+    rel = [e for e in tuples(range(p - 1), r) if math.prod(pow(l, a, p) for l, a in zip(primes, e)) % p == 1]
+    modes = set(prime_values(p))
+    return all(all(math.prod(pow(x, a, p) for x, a in zip(X, e)) % p == 1 for e in rel) == (X in modes) for X in tuples(range(1, p), r))
+
+
+def mode_relations_two_primes(p, g, ks=None):
+    """On the relations ℓ_i^{d_j} = ℓ_j^{d_i} between two primes of the window, with d the logarithms to the base g: the logarithms and p − 1 have no common factor, the values of every mode tried satisfy the relations, and the values with one of them multiplied by g do not."""
+    _, primes = window(p); log = {}; x = 1
+    for t in range(p - 1): log[x] = t; x = x * g % p
+    d = [log[l] for l in primes]; c = p - 1
+    for t in d: c = math.gcd(c, t)
+    if c != 1: return False
+    ok = lambda X: all(pow(X[i], d[j], p) == pow(X[j], d[i], p) for i in range(len(d)) for j in range(i + 1, len(d)))
+    for k in (range(p - 1) if ks is None else ks):
+        X = [pow(l, k, p) for l in primes]
+        if not ok(X) or any(ok(X[:i] + [X[i] * g % p] + X[i + 1:]) for i in range(len(X))): return False
+    return True
+
+
 def centre_mode(p, kap, g):
     """The mode of count π = 2κ is its own conjugate, its zero is 2⁻¹, its frequency is 0, and it is the one such mode."""
     i = quarter_turn(p, kap, g)
@@ -685,7 +891,11 @@ CT = types.SimpleNamespace(**{f.__name__: f for f in (generators, gram_table, gr
                                                             circle_points, circle_pair, circle_frequency, circle_meridians, circle_point, circle_count, circle_places, circle_place,
                                                             circle_place_cycle, circle_place_even, circle_quarter_turn, circle_counts, circle_phase, circle_parallels, circle_place_phase, circle_quarter_closes,
                                                             scale_table, step_width, power_steps, label_pair, label_steps,
-                                                            pairing_entry, modes_orthogonal, generator_selfadjoint, generator_selfadjoint_vector)})
+                                                            pairing_entry, modes_orthogonal, generator_selfadjoint, generator_selfadjoint_vector,
+                                                            run_eigenvalue, window, thue_ne_zero, prime_values, mode_fixed, mode_sign, mode_signed_power, square_pairs, two_squares, two_squares_unique,
+                                                            binomial_mod, reflected_table, reflected_value, reflected_zero, reflected_ne_zero, reflected_conjugate, reflected_exclusive,
+                                                            products_below, prime_products_distinct, relation_wrapped, generates, generating_free_sets, primes_unique_generators, tuples,
+                                                            mode_iff_relations, mode_relations_two_primes)})
 
 # ---- the spectrum of a window [chart] (Obs. exhibit; rows D13, D14, D15), 21 November 2026 -----------------------------
 # The labels 1..H of a window of depth H, the paper's q, carry a weight (1 on the primes, or log l on the prime powers l^a); its mean over the labels is removed;
@@ -1384,6 +1594,9 @@ def count_facts(p, Om):
     step = 1 if p < 100 else 7 if p < 1000 else 4; hp = [(a, b) for a in vecs[::step] for b in vecs[::step]]                # the pairs of vectors of 20:G15
     near = [0, 1, 2, S, 2 * S, 2 * S + 1, Om - 2, Om - 1]                                    # the Carrier's residues tried where the full range is out of reach
     affine = None if Om < 1000 else [(a, b) for a in near for b in near]
+    MT = CT.prime_values(p); js = None if p < 1000 else [0, 1, 2, 3, kap, 2 * kap - 1, 2 * kap, 2 * kap + 1, p - 3, p - 2]                # the counts of 20:G17 and G18
+    rk = [1, 2, 3, kap, 2 * kap, 2 * kap + 1, p - 3, p - 2]; RT = CT.reflected_table(p, None if p < 1000 else [(k, m) for k in rk for m in rk])   # the pairs of modes of 20:G20
+    RO = None if Om > 10 ** 5 else CT.reflected_table(Om, [(k, m) for k in (1, 2, 2 * S, Om - 2) for m in (1, 2, 2 * S, Om - 2)])
     return {
         "generators": len(gs), "pairs": len(pairs),
         "zero_slot": P[0] == p - 1 and all(P[k] == 0 for k in range(1, p - 1)),
@@ -1402,6 +1615,17 @@ def count_facts(p, Om):
         "generator_skew": all(CT.generator_skew(p, kap, g, P) for g in gs),
         "modes_orthogonal": CT.modes_orthogonal(p, P), "generator_selfadjoint": all(CT.generator_selfadjoint(p, kap, g, P) for g in gs),
         "generator_selfadjoint_vector": CT.generator_selfadjoint_vector(p, kap, gs[0], hp), "hp_pairs": len(hp),
+        "run_eigenvalue": CT.run_eigenvalue(p, list(range(6)) + [p - 2, p - 1, p, 2 * p + 3]) and CT.run_eigenvalue(Om, [0, 1, 2, Om - 1], None if Om < 10 ** 5 else near),
+        "thue_ne_zero": CT.thue_ne_zero(p) and CT.thue_ne_zero(Om), "window": CT.window(p)[0],
+        "mode_fixed": CT.mode_fixed(p, MT) and (Om > 10 ** 5 or CT.mode_fixed(Om)), "mode_sign": CT.mode_sign(p, kap, MT) and (Om > 10 ** 5 or CT.mode_sign(Om, S)),
+        "mode_signed_power": CT.mode_signed_power(p, kap, js, MT),
+        "prime_products_distinct": CT.prime_products_distinct(p) and CT.prime_products_distinct(Om), "relation_wrapped": CT.relation_wrapped(p) and (Om > 10 ** 5 or CT.relation_wrapped(Om)),
+        "primes_unique_generators": CT.primes_unique_generators(p, p < 1000) and CT.primes_unique_generators(Om, Om < 1000),
+        "mode_iff_relations": (p > 100 or CT.mode_iff_relations(p)) and CT.mode_relations_two_primes(p, gs[0], js),
+        "two_squares": CT.two_squares(p) and CT.two_squares(Om), "two_squares_unique": CT.two_squares_unique(p) and CT.two_squares_unique(Om),
+        "squares": CT.square_pairs(p)[0] + CT.square_pairs(Om)[0], "reflected_pairs": len(RT),
+        **{name: f(p, RT) and (RO is None or f(Om, RO)) for name, f in (("reflected_value", CT.reflected_value), ("reflected_zero", CT.reflected_zero), ("reflected_ne_zero", CT.reflected_ne_zero),
+                                                                      ("reflected_conjugate", CT.reflected_conjugate), ("reflected_exclusive", CT.reflected_exclusive))},
         "centre_mode": all(CT.centre_mode(p, kap, g) for g in gs),
         "pair_invariant": all(CT.pair_invariant(p, kap, g) for g in gs),
         "energy_order": CT.energy_order(p, kap),
@@ -1429,7 +1653,7 @@ def count_facts(p, Om):
 
 
 def block_G():
-    """Block G — the count readout: 33 exact checks, eleven rows on the three laboratory pairs."""
+    """Block G — the count readout: 45 exact checks, fifteen rows on the three laboratory pairs."""
     print("\n== block G: the count readout ==")
     for p, Om in PAIRS:
         f = count_facts(p, Om); kap, S = (p - 1) // 4, (Om - 1) // 4
@@ -1439,8 +1663,8 @@ def block_G():
                 f["count_conjugate"] and f["count_adjoint"] and f["count_adjoint_vector"],
                 "every pair of indicators of a residue" if p < 1000 else "seven indicators and three fixed sequences, every pair")
         # 20:G3 (p20098)
-        check("G3", f"the half is forced on F_{p}: N + c is skew on the nonconstant modes exactly when 2c ≡ 1, for every residue c, on the chart of F_{Om} too; the run of counts from m(p − 1) asks for 2c ≡ 2m + 1, and so does the run one above; a run from any other start has no such c",
-                f["half_forced"] and f["count_run"] and f["count_run_only"], f"2⁻¹ = {2 * kap + 1}; every start of a run for m = 0, 1, 2" + ("" if p > 1000 else ", 3, 7"))
+        check("G3", f"the half is forced on F_{p}: N + c is skew on the nonconstant modes exactly when 2c ≡ 1, for every residue c, on the chart of F_{Om} too; the run of counts from m(p − 1) asks for 2c ≡ 2m + 1, and so does the run one above; a run from any other start has no such c; in a run that has one, N + c has the eigenvalue k + 2⁻¹ at the class k",
+                f["half_forced"] and f["count_run"] and f["count_run_only"] and f["run_eigenvalue"], f"2⁻¹ = {2 * kap + 1}; every start of a run for m = 0, 1, 2" + ("" if p > 1000 else ", 3, 7"))
         # 20:G5 (p20100)
         check("G5", f"the generator H = −i(N + 2⁻¹) on F_{p}: (γ_k + γ_m)⟨x^k, x^m⟩ = 0 unless both modes are constant; the conjugate of a nonconstant mode has the frequency −γ_k, and −γ_0 is the frequency of no mode",
                 f["generator_skew"] and f["zero_conjugate"] and f["constant_frequency"], read)
@@ -1469,6 +1693,21 @@ def block_G():
         # 20:G15 (p20120)
         check("G15", f"the Hilbert–Pólya operator on F_{p}: for the pairing [v, w] = Σ v(x)w(x⁻¹) over the nonzero residues the modes are orthogonal, [x^k, x^m] = −1 for k = m and 0 otherwise; γ_k[x^k, x^m] = γ_m[x^k, x^m] for every two modes; [Hv, w] = [v, Hw] on {f['hp_pairs']} pairs of vectors",
                 f["modes_orthogonal"] and f["generator_selfadjoint"] and f["generator_selfadjoint_vector"], read)
+        # 20:G17 (p20122)
+        check("G17", f"the modes on the window of F_{p}, the labels up to {f['window']}: every nonzero residue is ±a·b⁻¹ for two labels of the window, on F_{Om} too; the values at the primes of the window fix a mode; they are all ±1 exactly for the counts 0 and π = {2 * kap}, and ±ℓ^j exactly for the counts j and π + j",
+                f["thue_ne_zero"] and f["mode_fixed"] and f["mode_sign"] and f["mode_signed_power"], "every count j" if p < 1000 else "ten counts j")
+        # 20:G18 (p20123)
+        check("G18", f"the primes and the modes on F_{p}: products of primes of the window below {p} with different exponents are different residues, on F_{Om} too, and two products with one residue are never both below the cardinality; the primes are the one generating set of labels with distinct products; residues at the primes that satisfy the relations between the primes are the values of a mode",
+                f["prime_products_distinct"] and f["relation_wrapped"] and f["primes_unique_generators"] and f["mode_iff_relations"],
+                ("every set of labels; " if p < 1000 else "") + ("every assignment of residues to the primes against every relation" if p < 100 else
+                 "the relations between two primes on " + ("every mode" if p < 1000 else "ten modes")))
+        # 20:G19 (p20125)
+        check("G19", f"the two squares on F_{p}: the cardinality is a² + b² for two labels of the window in one way, {p} = {f['squares'][0]}² + {f['squares'][1]}² and {Om} = {f['squares'][2]}² + {f['squares'][3]}²; the square roots of −1 are ±a·b⁻¹",
+                f["two_squares"] and f["two_squares_unique"], "every label of the window, every residue")
+        # 20:G20 (p20126)
+        check("G20", f"the reflected pairing on F_{p}: R(k, m) = Σ x^k(1 − x)^m over x ≠ 0, 1 is −(−1)^k·C(m, p − 1 − k) for two nonconstant modes, 0 when k + m < p − 1 and not 0 otherwise; a mode and its conjugate have −(−1)^k; for k + m ≠ p − 1 exactly one of R(k, m) and the pairing of the conjugates is 0",
+                f["reflected_value"] and f["reflected_zero"] and f["reflected_ne_zero"] and f["reflected_conjugate"] and f["reflected_exclusive"],
+                f"{f['reflected_pairs']} pairs of modes" + ("" if Om > 10 ** 5 else f", 24 pairs on F_{Om}"))
 
 
 def block_X():

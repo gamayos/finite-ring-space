@@ -1,20 +1,20 @@
 {
  "header": {
-  "generated": "23 November 2026",
+  "generated": "26 November 2026",
   "schema": "frc-register/2",
-  "rows": 1253,
-  "theorems": 1193,
+  "rows": 1259,
+  "theorems": 1199,
   "counts": {
-   "keys": 1193,
-   "rows": 1253,
+   "keys": 1199,
+   "rows": 1259,
    "shared": 55,
    "by_tag": {
-    "D": 224,
+    "D": 225,
     "G": 1,
-    "I": 150,
+    "I": 151,
     "O": 21,
     "R": 9,
-    "T": 761,
+    "T": 765,
     "Ω": 27
    }
   },
@@ -833,7 +833,7 @@
       "text": "Derived within the framework from the rows it cites, with a python check and a Lean proof of the general statement: in the core, without axioms, or on Mathlib for the four chart rows D14, D15, D17 and D18."
      }
     ],
-    "rows": 43
+    "rows": 49
    },
    {
     "key": "21-grav",
@@ -4781,7 +4781,7 @@
    "check": {
     "href": "py/rh.html#p20043",
     "script": "rh.py",
-    "line": 1104,
+    "line": 1314,
     "verdict": "pass"
    },
    "declarations": [
@@ -19284,6 +19284,21 @@
    ]
   },
   {
+   "key": "p20124",
+   "origin": "20",
+   "statement": "The bounded forms [chart]: Lagarias's inequality $\\sigma(n)\\le H_n+\\exp(H_n)\\log H_n$ holds at every $n\\le\\Omega$, by the verified range of Robin's inequality with Lagarias's lemma. Schoenfeld's inequality $|\\pi(x)-\\mathrm{li}(x)|<\\sqrt{x}\\log x/8\\pi$ holds for $2657\\le x\\le1.101\\cdot10^{26}$. With no bound Lagarias's form is equivalent to the classical formulation.",
+   "origin_row": "20:A13",
+   "tag": "I",
+   "name": null,
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "20:A13"
+   ]
+  },
+  {
    "key": "p20008",
    "origin": "20",
    "statement": "The two frames and their alignment: the Carrier's chart $\\F_\\Omega$, held by no embedded observer, and the Subject $\\Fp$, $\\p^{2}<\\Omega$. Shared: the origin, the unit and the rules of arithmetic, so the labels of the window and the counts of the modes. Not shared: the generator and the drive; the cycles admit no projection ($12\\nmid232$).",
@@ -19294,7 +19309,7 @@
    "check": {
     "href": "py/rh.html#p20008",
     "script": "rh.py",
-    "line": 1148,
+    "line": 1358,
     "verdict": "pass"
    },
    "declarations": [
@@ -19330,7 +19345,7 @@
    "check": {
     "href": "py/rh.html#p20009",
     "script": "rh.py",
-    "line": 1162,
+    "line": 1372,
     "verdict": "pass"
    },
    "declarations": [
@@ -19392,7 +19407,7 @@
    "check": {
     "href": "py/rh.html#p20011",
     "script": "rh.py",
-    "line": 1069,
+    "line": 1279,
     "verdict": "pass"
    },
    "declarations": [
@@ -19424,7 +19439,7 @@
    "check": {
     "href": "py/rh.html#p20017",
     "script": "rh.py",
-    "line": 1080,
+    "line": 1290,
     "verdict": "pass"
    },
    "declarations": [
@@ -19501,7 +19516,7 @@
    "check": {
     "href": "py/rh.html#p20113",
     "script": "rh.py",
-    "line": 1326,
+    "line": 1536,
     "verdict": "pass"
    },
    "declarations": [
@@ -19533,7 +19548,7 @@
    "check": {
     "href": "py/rh.html#p20114",
     "script": "rh.py",
-    "line": 1330,
+    "line": 1540,
     "verdict": "pass"
    },
    "declarations": [
@@ -19565,7 +19580,7 @@
    "check": {
     "href": "py/rh.html#p20116",
     "script": "rh.py",
-    "line": 1334,
+    "line": 1544,
     "verdict": "pass"
    },
    "declarations": [],
@@ -19585,7 +19600,7 @@
    "check": {
     "href": "py/rh.html#p20117",
     "script": "rh.py",
-    "line": 1338,
+    "line": 1548,
     "verdict": "pass"
    },
    "declarations": [
@@ -19617,7 +19632,7 @@
    "check": {
     "href": "py/rh.html#p20118",
     "script": "rh.py",
-    "line": 1343,
+    "line": 1553,
     "verdict": "pass"
    },
    "declarations": [
@@ -19644,7 +19659,7 @@
    "check": {
     "href": "py/rh.html#p20119",
     "script": "rh.py",
-    "line": 1347,
+    "line": 1557,
     "verdict": "pass"
    },
    "declarations": [
@@ -19671,7 +19686,7 @@
    "check": {
     "href": "py/rh.html#p20044",
     "script": "rh.py",
-    "line": 1114,
+    "line": 1324,
     "verdict": "pass"
    },
    "declarations": [
@@ -19713,7 +19728,7 @@
    "check": {
     "href": "py/rh.html#p20092",
     "script": "rh.py",
-    "line": 1104,
+    "line": 1314,
     "verdict": "pass"
    },
    "declarations": [
@@ -19760,7 +19775,7 @@
    "check": {
     "href": "py/rh.html#p20094",
     "script": "rh.py",
-    "line": 1270,
+    "line": 1480,
     "verdict": "pass"
    },
    "declarations": [
@@ -19807,7 +19822,7 @@
    "check": {
     "href": "py/rh.html#p20079",
     "script": "rh.py",
-    "line": 1212,
+    "line": 1422,
     "verdict": "pass"
    },
    "declarations": [
@@ -19864,7 +19879,7 @@
    "check": {
     "href": "py/rh.html#p20097",
     "script": "rh.py",
-    "line": 1437,
+    "line": 1661,
     "verdict": "pass"
    },
    "declarations": [
@@ -19901,7 +19916,7 @@
    "check": {
     "href": "py/rh.html#p20098",
     "script": "rh.py",
-    "line": 1441,
+    "line": 1665,
     "verdict": "pass"
    },
    "declarations": [
@@ -19919,6 +19934,11 @@
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Count",
      "name": "FRC.Horizon.count_run_only"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Count",
+     "name": "FRC.Horizon.run_eigenvalue"
     }
    ],
    "aliases": [],
@@ -19953,7 +19973,7 @@
    "check": {
     "href": "py/rh.html#p20100",
     "script": "rh.py",
-    "line": 1444,
+    "line": 1668,
     "verdict": "pass"
    },
    "declarations": [
@@ -19985,7 +20005,7 @@
    "check": {
     "href": "py/rh.html#p20101",
     "script": "rh.py",
-    "line": 1447,
+    "line": 1671,
     "verdict": "pass"
    },
    "declarations": [
@@ -20027,7 +20047,7 @@
    "check": {
     "href": "py/rh.html#p20102",
     "script": "rh.py",
-    "line": 1450,
+    "line": 1674,
     "verdict": "pass"
    },
    "declarations": [
@@ -20089,7 +20109,7 @@
    "check": {
     "href": "py/rh.html#p20104",
     "script": "rh.py",
-    "line": 1453,
+    "line": 1677,
     "verdict": "pass"
    },
    "declarations": [
@@ -20121,7 +20141,7 @@
    "check": {
     "href": "py/rh.html#p20105",
     "script": "rh.py",
-    "line": 1456,
+    "line": 1680,
     "verdict": "pass"
    },
    "declarations": [
@@ -20168,7 +20188,7 @@
    "check": {
     "href": "py/rh.html#p20107",
     "script": "rh.py",
-    "line": 1459,
+    "line": 1683,
     "verdict": "pass"
    },
    "declarations": [
@@ -20210,7 +20230,7 @@
    "check": {
     "href": "py/rh.html#p20111",
     "script": "rh.py",
-    "line": 1462,
+    "line": 1686,
     "verdict": "pass"
    },
    "declarations": [
@@ -20272,7 +20292,7 @@
    "check": {
     "href": "py/rh.html#p20115",
     "script": "rh.py",
-    "line": 1466,
+    "line": 1690,
     "verdict": "pass"
    },
    "declarations": [
@@ -20324,7 +20344,7 @@
    "check": {
     "href": "py/rh.html#p20120",
     "script": "rh.py",
-    "line": 1469,
+    "line": 1693,
     "verdict": "pass"
    },
    "declarations": [
@@ -20351,6 +20371,184 @@
    "realisations": []
   },
   {
+   "key": "p20121",
+   "origin": "20",
+   "statement": "The observed label and value: the Subject observes the labels of its window. At a label $n$ of the window it observes the value of a mode that is $\\pm n^{j}$ or $\\pm n^{-j}$ with $j\\ge0$ and $n^{j}<\\p$, a power that neither frame reduces.",
+   "origin_row": "20:G16",
+   "tag": "D",
+   "name": null,
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "20:G16"
+   ]
+  },
+  {
+   "key": "p20122",
+   "origin": "20",
+   "statement": "The modes on the window: every nonzero residue is $\\pm ab^{-1}$ for two labels of the window. The values at the primes of the window fix a mode. They are all $\\pm1$ exactly for the counts $0$ and $\\pi$, and $\\pm n^{j}$ exactly for the counts $j$ and $\\pi+j$. Rests on B2, G7, G9, G10, G16.",
+   "origin_row": "20:G17",
+   "tag": "T",
+   "name": "modes_on_the_window",
+   "tier": 0,
+   "check": {
+    "href": "py/rh.html#p20122",
+    "script": "rh.py",
+    "line": 1696,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Thue",
+     "name": "FRC.Horizon.thue_ne_zero"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/WindowModes",
+     "name": "FRC.Horizon.mode_fixed"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/WindowModes",
+     "name": "FRC.Horizon.mode_sign"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/WindowModes",
+     "name": "FRC.Horizon.mode_signed_power"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "20:G17"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p20123",
+   "origin": "20",
+   "statement": "The primes and the modes: products of primes of the window below $\\p$ with different exponents are different residues, so every relation $\\prod\\ell_i^{e_i}=1$ has wrapped. The primes are the one generating set of labels with this property. Residues $X_i$ are a mode's values at the primes exactly when they satisfy the relations. Rests on B2, G17.",
+   "origin_row": "20:G18",
+   "tag": "T",
+   "name": "primes_and_modes",
+   "tier": 0,
+   "check": {
+    "href": "py/rh.html#p20123",
+    "script": "rh.py",
+    "line": 1699,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Primes",
+     "name": "FRC.Horizon.prime_products_distinct"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Primes",
+     "name": "FRC.Horizon.relation_wrapped"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Primes",
+     "name": "FRC.Horizon.primes_unique_generators"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Primes",
+     "name": "FRC.Horizon.mode_iff_relations"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "20:G18"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p20125",
+   "origin": "20",
+   "statement": "The two squares: the cardinality is $\\p=a^{2}+b^{2}$ for two labels $a$, $b$ of the window, in one way up to their order, and the square roots of $-1$ on the shell are $\\pm a\\,b^{-1}$. Rests on G17.",
+   "origin_row": "20:G19",
+   "tag": "T",
+   "name": "two_squares",
+   "tier": 0,
+   "check": {
+    "href": "py/rh.html#p20125",
+    "script": "rh.py",
+    "line": 1704,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Thue",
+     "name": "FRC.Horizon.two_squares"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Thue",
+     "name": "FRC.Horizon.two_squares_unique"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "20:G19"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p20126",
+   "origin": "20",
+   "statement": "The reflected pairing $R(k,m)=\\sum_{x\\ne0,1}x^{k}(1-x)^{m}$ of two nonconstant modes is $0$ when $k+m<\\p-1$ and $-(-1)^{k}\\binom{m}{\\p-1-k}\\ne0$ otherwise. A mode and its conjugate have $-(-1)^{k}$. For $k+m\\ne\\p-1$ exactly one of $R(k,m)$ and the pairing of the conjugates is $0$. Rests on B4.",
+   "origin_row": "20:G20",
+   "tag": "T",
+   "name": "reflected_pairing",
+   "tier": 0,
+   "check": {
+    "href": "py/rh.html#p20126",
+    "script": "rh.py",
+    "line": 1707,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pairing",
+     "name": "FRC.Horizon.reflected_value"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pairing",
+     "name": "FRC.Horizon.reflected_zero"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pairing",
+     "name": "FRC.Horizon.reflected_ne_zero"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pairing",
+     "name": "FRC.Horizon.reflected_conjugate"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pairing",
+     "name": "FRC.Horizon.reflected_exclusive"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "20:G20"
+   ],
+   "realisations": []
+  },
+  {
    "key": "p20108",
    "origin": "20",
    "statement": "The $\\half$ of the critical line: the centre of the zeros of a shell is the inverse of $2$, the negative of the half-period: $2^{-1}=-\\pi$ on a Subject and $-G$ on the Carrier's chart. Rests on G7, G12; compared with A6.",
@@ -20361,7 +20559,7 @@
    "check": {
     "href": "py/rh.html#p20108",
     "script": "rh.py",
-    "line": 1479,
+    "line": 1718,
     "verdict": "pass"
    },
    "declarations": [
@@ -20393,7 +20591,7 @@
    "check": {
     "href": "py/rh.html#p20109",
     "script": "rh.py",
-    "line": 1482,
+    "line": 1721,
     "verdict": "pass"
    },
    "declarations": [
@@ -20430,7 +20628,7 @@
    "check": {
     "href": "py/rh.html#p20110",
     "script": "rh.py",
-    "line": 1485,
+    "line": 1724,
     "verdict": "pass"
    },
    "declarations": [
@@ -63805,7 +64003,7 @@
     "py": {
      "href": "py/rh.html#p00004",
      "script": "rh.py",
-     "line": 1212,
+     "line": 1422,
      "verdict": "pass"
     },
     "lean": [
@@ -63855,7 +64053,7 @@
     "py": {
      "href": "py/rh.html#p00003",
      "script": "rh.py",
-     "line": 1244,
+     "line": 1454,
      "verdict": "pass"
     },
     "lean": [
@@ -63897,7 +64095,7 @@
     "py": {
      "href": "py/rh.html#p00197",
      "script": "rh.py",
-     "line": 1212,
+     "line": 1422,
      "verdict": "pass"
     },
     "lean": [
@@ -63993,6 +64191,26 @@
   {
    "paper": "20-rh",
    "no": 20,
+   "rid": "20:A13",
+   "key": "p20124",
+   "label": "A13",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "lean_name": null,
+   "statement": "The bounded forms [chart]: Lagarias's inequality $\\sigma(n)\\le H_n+\\exp(H_n)\\log H_n$ holds at every $n\\le\\Omega$, by the verified range of Robin's inequality with Lagarias's lemma. Schoenfeld's inequality $|\\pi(x)-\\mathrm{li}(x)|<\\sqrt{x}\\log x/8\\pi$ holds for $2657\\le x\\le1.101\\cdot10^{26}$. With no bound Lagarias's form is equivalent to the classical formulation.",
+   "source": "\\citep{robin1984,morrill2021,lagarias2002,schoenfeld1976,johnston2022}; Prop.~\\ref{prop:bounded}",
+   "page": "20-rh/index.html#A13",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The bounded forms [chart]: Lagarias's inequality $\\sigma(n)\\le H_n+\\exp(H_n)\\log H_n$ holds at every $n\\le\\Omega$, by the verified range of Robin's inequality with Lagarias's lemma. Schoenfeld's inequality $|\\pi(x)-\\mathrm{li}(x)|<\\sqrt{x}\\log x/8\\pi$ holds for $2657\\le x\\le1.101\\cdot10^{26}$. With no bound Lagarias's form is equivalent to the classical formulation. [robin1984,morrill2021,lagarias2002,schoenfeld1976,johnston2022]; Prop. prop:bounded"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
    "rid": "20:B1",
    "key": "p20008",
    "label": "B1",
@@ -64007,7 +64225,7 @@
     "py": {
      "href": "py/rh.html#p20008",
      "script": "rh.py",
-     "line": 1148,
+     "line": 1358,
      "verdict": "pass"
     },
     "lean": [
@@ -64059,7 +64277,7 @@
     "py": {
      "href": "py/rh.html#p20009",
      "script": "rh.py",
-     "line": 1162,
+     "line": 1372,
      "verdict": "pass"
     },
     "lean": [
@@ -64145,7 +64363,7 @@
     "py": {
      "href": "py/rh.html#p20011",
      "script": "rh.py",
-     "line": 1069,
+     "line": 1279,
      "verdict": "pass"
     },
     "lean": [
@@ -64187,7 +64405,7 @@
     "py": {
      "href": "py/rh.html#p20017",
      "script": "rh.py",
-     "line": 1080,
+     "line": 1290,
      "verdict": "pass"
     },
     "lean": [
@@ -64295,7 +64513,7 @@
     "py": {
      "href": "py/rh.html#p20113",
      "script": "rh.py",
-     "line": 1326,
+     "line": 1536,
      "verdict": "pass"
     },
     "lean": [
@@ -64339,7 +64557,7 @@
     "py": {
      "href": "py/rh.html#p20114",
      "script": "rh.py",
-     "line": 1330,
+     "line": 1540,
      "verdict": "pass"
     },
     "lean": [
@@ -64383,7 +64601,7 @@
     "py": {
      "href": "py/rh.html#p20116",
      "script": "rh.py",
-     "line": 1334,
+     "line": 1544,
      "verdict": "pass"
     },
     "lean": []
@@ -64412,7 +64630,7 @@
     "py": {
      "href": "py/rh.html#p20117",
      "script": "rh.py",
-     "line": 1338,
+     "line": 1548,
      "verdict": "pass"
     },
     "lean": [
@@ -64456,7 +64674,7 @@
     "py": {
      "href": "py/rh.html#p20118",
      "script": "rh.py",
-     "line": 1343,
+     "line": 1553,
      "verdict": "pass"
     },
     "lean": [
@@ -64493,7 +64711,7 @@
     "py": {
      "href": "py/rh.html#p20119",
      "script": "rh.py",
-     "line": 1347,
+     "line": 1557,
      "verdict": "pass"
     },
     "lean": [
@@ -64530,7 +64748,7 @@
     "py": {
      "href": "py/rh.html#p20043",
      "script": "rh.py",
-     "line": 1104,
+     "line": 1314,
      "verdict": "pass"
     },
     "lean": [
@@ -64618,7 +64836,7 @@
     "py": {
      "href": "py/rh.html#p20044",
      "script": "rh.py",
-     "line": 1114,
+     "line": 1324,
      "verdict": "pass"
     },
     "lean": [
@@ -64676,7 +64894,7 @@
     "py": {
      "href": "py/rh.html#p20092",
      "script": "rh.py",
-     "line": 1104,
+     "line": 1314,
      "verdict": "pass"
     },
     "lean": [
@@ -64742,7 +64960,7 @@
     "py": {
      "href": "py/rh.html#p20094",
      "script": "rh.py",
-     "line": 1270,
+     "line": 1480,
      "verdict": "pass"
     },
     "lean": [
@@ -64810,7 +65028,7 @@
     "py": {
      "href": "py/rh.html#p20079",
      "script": "rh.py",
-     "line": 1212,
+     "line": 1422,
      "verdict": "pass"
     },
     "lean": [
@@ -64893,7 +65111,7 @@
     "py": {
      "href": "py/rh.html#p20097",
      "script": "rh.py",
-     "line": 1437,
+     "line": 1661,
      "verdict": "pass"
     },
     "lean": [
@@ -64940,13 +65158,13 @@
    "name": null,
    "lean_name": "forced_half",
    "statement": "The half is forced: $N+c$ is skew on the nonconstant modes exactly when $2c\\equiv1$. In a run of $\\p-1$ consecutive counts that starts at $m(\\p-1)$ or one above, the condition holds exactly for $c=2^{-1}+m$; in every other run it holds for no $c$. Rests on G2.",
-   "source": "Thm.~\\ref{thm:half}\\newline \\pywit{rh}{p20098}{G3}, \\leanwit{FrcCore}{p20098}{G3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.count\\_run, FRC.Horizon.count\\_run\\_only}",
+   "source": "Thm.~\\ref{thm:half}\\newline \\pywit{rh}{p20098}{G3}, \\leanwit{FrcCore}{p20098}{G3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.count\\_run, FRC.Horizon.count\\_run\\_only, FRC.Horizon.run\\_eigenvalue}",
    "page": "20-rh/index.html#G3",
    "witness": {
     "py": {
      "href": "py/rh.html#p20098",
      "script": "rh.py",
-     "line": 1441,
+     "line": 1665,
      "verdict": "pass"
     },
     "lean": [
@@ -64973,13 +65191,21 @@
       "tier": 0,
       "ok": true,
       "page": "lean/core/Theme.html#FRC.Horizon.count_run_only"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Count",
+      "name": "FRC.Horizon.run_eigenvalue",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.run_eigenvalue"
      }
     ]
    },
    "refs": [
     "p20097"
    ],
-   "text": "The half is forced: $N+c$ is skew on the nonconstant modes exactly when $2c\\equiv1$. In a run of $\\p-1$ consecutive counts that starts at $m(\\p-1)$ or one above, the condition holds exactly for $c=2^{-1}+m$; in every other run it holds for no $c$. Rests on G2. Thm. thm:half p20098, FrcCore{G3} FRC.Horizon.half_forced, FRC.Horizon.count_run, FRC.Horizon.count_run_only"
+   "text": "The half is forced: $N+c$ is skew on the nonconstant modes exactly when $2c\\equiv1$. In a run of $\\p-1$ consecutive counts that starts at $m(\\p-1)$ or one above, the condition holds exactly for $c=2^{-1}+m$; in every other run it holds for no $c$. Rests on G2. Thm. thm:half p20098, FrcCore{G3} FRC.Horizon.half_forced, FRC.Horizon.count_run, FRC.Horizon.count_run_only, FRC.Horizon.run_eigenvalue"
   },
   {
    "paper": "20-rh",
@@ -65018,7 +65244,7 @@
     "py": {
      "href": "py/rh.html#p20100",
      "script": "rh.py",
-     "line": 1444,
+     "line": 1668,
      "verdict": "pass"
     },
     "lean": [
@@ -65064,7 +65290,7 @@
     "py": {
      "href": "py/rh.html#p20101",
      "script": "rh.py",
-     "line": 1447,
+     "line": 1671,
      "verdict": "pass"
     },
     "lean": [
@@ -65127,7 +65353,7 @@
     "py": {
      "href": "py/rh.html#p20102",
      "script": "rh.py",
-     "line": 1450,
+     "line": 1674,
      "verdict": "pass"
     },
     "lean": [
@@ -65215,7 +65441,7 @@
     "py": {
      "href": "py/rh.html#p20104",
      "script": "rh.py",
-     "line": 1453,
+     "line": 1677,
      "verdict": "pass"
     },
     "lean": [
@@ -65260,7 +65486,7 @@
     "py": {
      "href": "py/rh.html#p20105",
      "script": "rh.py",
-     "line": 1456,
+     "line": 1680,
      "verdict": "pass"
     },
     "lean": [
@@ -65324,7 +65550,7 @@
     "py": {
      "href": "py/rh.html#p20107",
      "script": "rh.py",
-     "line": 1459,
+     "line": 1683,
      "verdict": "pass"
     },
     "lean": [
@@ -65387,7 +65613,7 @@
     "py": {
      "href": "py/rh.html#p20111",
      "script": "rh.py",
-     "line": 1462,
+     "line": 1686,
      "verdict": "pass"
     },
     "lean": [
@@ -65477,7 +65703,7 @@
     "py": {
      "href": "py/rh.html#p20115",
      "script": "rh.py",
-     "line": 1466,
+     "line": 1690,
      "verdict": "pass"
     },
     "lean": [
@@ -65551,7 +65777,7 @@
     "py": {
      "href": "py/rh.html#p20120",
      "script": "rh.py",
-     "line": 1469,
+     "line": 1693,
      "verdict": "pass"
     },
     "lean": [
@@ -65591,6 +65817,263 @@
   {
    "paper": "20-rh",
    "no": 20,
+   "rid": "20:G16",
+   "key": "p20121",
+   "label": "G16",
+   "block": "G",
+   "tag": "D",
+   "name": null,
+   "lean_name": null,
+   "statement": "The observed label and value: the Subject observes the labels of its window. At a label $n$ of the window it observes the value of a mode that is $\\pm n^{j}$ or $\\pm n^{-j}$ with $j\\ge0$ and $n^{j}<\\p$, a power that neither frame reduces.",
+   "source": "Def.~\\ref{def:observed}",
+   "page": "20-rh/index.html#G16",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The observed label and value: the Subject observes the labels of its window. At a label $n$ of the window it observes the value of a mode that is $\\pm n^{j}$ or $\\pm n^{-j}$ with $j\\ge0$ and $n^{j}<\\p$, a power that neither frame reduces. Def. def:observed"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
+   "rid": "20:G17",
+   "key": "p20122",
+   "label": "G17",
+   "block": "G",
+   "tag": "T",
+   "name": null,
+   "lean_name": "modes_on_the_window",
+   "statement": "The modes on the window: every nonzero residue is $\\pm ab^{-1}$ for two labels of the window. The values at the primes of the window fix a mode. They are all $\\pm1$ exactly for the counts $0$ and $\\pi$, and $\\pm n^{j}$ exactly for the counts $j$ and $\\pi+j$. Rests on B2, G7, G9, G10, G16.",
+   "source": "Thm.~\\ref{thm:window}\\newline \\pywit{rh}{p20122}{G17}, \\leanwit{FrcCore}{p20122}{G17} \\lean{FRC.Horizon.thue\\_ne\\_zero, FRC.Horizon.mode\\_fixed, FRC.Horizon.mode\\_sign, FRC.Horizon.mode\\_signed\\_power}",
+   "page": "20-rh/index.html#G17",
+   "witness": {
+    "py": {
+     "href": "py/rh.html#p20122",
+     "script": "rh.py",
+     "line": 1696,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Thue",
+      "name": "FRC.Horizon.thue_ne_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.thue_ne_zero"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/WindowModes",
+      "name": "FRC.Horizon.mode_fixed",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.mode_fixed"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/WindowModes",
+      "name": "FRC.Horizon.mode_sign",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.mode_sign"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/WindowModes",
+      "name": "FRC.Horizon.mode_signed_power",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.mode_signed_power"
+     }
+    ]
+   },
+   "refs": [
+    "p20009",
+    "p20102",
+    "p20104",
+    "p20105",
+    "p20121"
+   ],
+   "text": "The modes on the window: every nonzero residue is $\\pm ab^{-1}$ for two labels of the window. The values at the primes of the window fix a mode. They are all $\\pm1$ exactly for the counts $0$ and $\\pi$, and $\\pm n^{j}$ exactly for the counts $j$ and $\\pi+j$. Rests on B2, G7, G9, G10, G16. Thm. thm:window p20122, FrcCore{G17} FRC.Horizon.thue_ne_zero, FRC.Horizon.mode_fixed, FRC.Horizon.mode_sign, FRC.Horizon.mode_signed_power"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
+   "rid": "20:G18",
+   "key": "p20123",
+   "label": "G18",
+   "block": "G",
+   "tag": "T",
+   "name": null,
+   "lean_name": "primes_and_modes",
+   "statement": "The primes and the modes: products of primes of the window below $\\p$ with different exponents are different residues, so every relation $\\prod\\ell_i^{e_i}=1$ has wrapped. The primes are the one generating set of labels with this property. Residues $X_i$ are a mode's values at the primes exactly when they satisfy the relations. Rests on B2, G17.",
+   "source": "Thm.~\\ref{thm:coordinates}\\newline \\pywit{rh}{p20123}{G18}, \\leanwit{FrcCore}{p20123}{G18} \\lean{FRC.Horizon.prime\\_products\\_distinct, FRC.Horizon.relation\\_wrapped, FRC.Horizon.primes\\_unique\\_generators, FRC.Horizon.mode\\_iff\\_relations}",
+   "page": "20-rh/index.html#G18",
+   "witness": {
+    "py": {
+     "href": "py/rh.html#p20123",
+     "script": "rh.py",
+     "line": 1699,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Primes",
+      "name": "FRC.Horizon.prime_products_distinct",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.prime_products_distinct"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Primes",
+      "name": "FRC.Horizon.relation_wrapped",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.relation_wrapped"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Primes",
+      "name": "FRC.Horizon.primes_unique_generators",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.primes_unique_generators"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Primes",
+      "name": "FRC.Horizon.mode_iff_relations",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.mode_iff_relations"
+     }
+    ]
+   },
+   "refs": [
+    "p20009",
+    "p20122"
+   ],
+   "text": "The primes and the modes: products of primes of the window below $\\p$ with different exponents are different residues, so every relation $\\prod\\ell_i^{e_i}=1$ has wrapped. The primes are the one generating set of labels with this property. Residues $X_i$ are a mode's values at the primes exactly when they satisfy the relations. Rests on B2, G17. Thm. thm:coordinates p20123, FrcCore{G18} FRC.Horizon.prime_products_distinct, FRC.Horizon.relation_wrapped, FRC.Horizon.primes_unique_generators, FRC.Horizon.mode_iff_relations"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
+   "rid": "20:G19",
+   "key": "p20125",
+   "label": "G19",
+   "block": "G",
+   "tag": "T",
+   "name": null,
+   "lean_name": "two_squares",
+   "statement": "The two squares: the cardinality is $\\p=a^{2}+b^{2}$ for two labels $a$, $b$ of the window, in one way up to their order, and the square roots of $-1$ on the shell are $\\pm a\\,b^{-1}$. Rests on G17.",
+   "source": "Thm.~\\ref{thm:squares}\\newline \\pywit{rh}{p20125}{G19}, \\leanwit{FrcCore}{p20125}{G19} \\lean{FRC.Horizon.two\\_squares, FRC.Horizon.two\\_squares\\_unique}",
+   "page": "20-rh/index.html#G19",
+   "witness": {
+    "py": {
+     "href": "py/rh.html#p20125",
+     "script": "rh.py",
+     "line": 1704,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Thue",
+      "name": "FRC.Horizon.two_squares",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.two_squares"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Thue",
+      "name": "FRC.Horizon.two_squares_unique",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.two_squares_unique"
+     }
+    ]
+   },
+   "refs": [
+    "p20122"
+   ],
+   "text": "The two squares: the cardinality is $\\p=a^{2}+b^{2}$ for two labels $a$, $b$ of the window, in one way up to their order, and the square roots of $-1$ on the shell are $\\pm a b^{-1}$. Rests on G17. Thm. thm:squares p20125, FrcCore{G19} FRC.Horizon.two_squares, FRC.Horizon.two_squares_unique"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
+   "rid": "20:G20",
+   "key": "p20126",
+   "label": "G20",
+   "block": "G",
+   "tag": "T",
+   "name": null,
+   "lean_name": "reflected_pairing",
+   "statement": "The reflected pairing $R(k,m)=\\sum_{x\\ne0,1}x^{k}(1-x)^{m}$ of two nonconstant modes is $0$ when $k+m<\\p-1$ and $-(-1)^{k}\\binom{m}{\\p-1-k}\\ne0$ otherwise. A mode and its conjugate have $-(-1)^{k}$. For $k+m\\ne\\p-1$ exactly one of $R(k,m)$ and the pairing of the conjugates is $0$. Rests on B4.",
+   "source": "Thm.~\\ref{thm:pairing}\\newline \\pywit{rh}{p20126}{G20}, \\leanwit{FrcCore}{p20126}{G20} \\lean{FRC.Horizon.reflected\\_value, FRC.Horizon.reflected\\_zero, FRC.Horizon.reflected\\_ne\\_zero, FRC.Horizon.reflected\\_conjugate, FRC.Horizon.reflected\\_exclusive}",
+   "page": "20-rh/index.html#G20",
+   "witness": {
+    "py": {
+     "href": "py/rh.html#p20126",
+     "script": "rh.py",
+     "line": 1707,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pairing",
+      "name": "FRC.Horizon.reflected_value",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.reflected_value"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pairing",
+      "name": "FRC.Horizon.reflected_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.reflected_zero"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pairing",
+      "name": "FRC.Horizon.reflected_ne_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.reflected_ne_zero"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pairing",
+      "name": "FRC.Horizon.reflected_conjugate",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.reflected_conjugate"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pairing",
+      "name": "FRC.Horizon.reflected_exclusive",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.reflected_exclusive"
+     }
+    ]
+   },
+   "refs": [
+    "p20011"
+   ],
+   "text": "The reflected pairing $R(k,m)=\\sum_{x\\ne0,1}x^{k}(1-x)^{m}$ of two nonconstant modes is $0$ when $k+m<\\p-1$ and $-(-1)^{k}\\binom{m}{\\p-1-k}\\ne0$ otherwise. A mode and its conjugate have $-(-1)^{k}$. For $k+m\\ne\\p-1$ exactly one of $R(k,m)$ and the pairing of the conjugates is $0$. Rests on B4. Thm. thm:pairing p20126, FrcCore{G20} FRC.Horizon.reflected_value, FRC.Horizon.reflected_zero, FRC.Horizon.reflected_ne_zero, FRC.Horizon.reflected_conjugate, FRC.Horizon.reflected_exclusive"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
    "rid": "20:X1",
    "key": "p20108",
    "label": "X1",
@@ -65605,7 +66088,7 @@
     "py": {
      "href": "py/rh.html#p20108",
      "script": "rh.py",
-     "line": 1479,
+     "line": 1718,
      "verdict": "pass"
     },
     "lean": [
@@ -65651,7 +66134,7 @@
     "py": {
      "href": "py/rh.html#p20109",
      "script": "rh.py",
-     "line": 1482,
+     "line": 1721,
      "verdict": "pass"
     },
     "lean": [
@@ -65705,7 +66188,7 @@
     "py": {
      "href": "py/rh.html#p20110",
      "script": "rh.py",
-     "line": 1485,
+     "line": 1724,
      "verdict": "pass"
     },
     "lean": [

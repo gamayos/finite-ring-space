@@ -1,6 +1,6 @@
 """frc.count — the count readout of a shell (the count theme; 20-rh's revision of 21 November 2026).
 
-The python side of `lean/FrcCore/Theme/Count.lean`, `lean/FrcCore/Theme/Circle.lean` and `lean/FrcCore/Theme/Steps.lean`. The modes of a shell p are the powers x ↦ x^k on the nonzero
+The python side of `lean/FrcCore/Theme/Count.lean`, `lean/FrcCore/Theme/Circle.lean`, `lean/FrcCore/Theme/Steps.lean`, `Theme/Thue.lean`, `Theme/WindowModes.lean`, `Theme/Pairing.lean` and `Theme/Primes.lean`. The modes of a shell p are the powers x ↦ x^k on the nonzero
 residues, k = 0, …, p − 2. The count of a mode is k. For a count k ≥ 1 the zero is ρ_k = k + 1 and the conjugate count is
 p − 1 − k. The pairing is ⟨v, w⟩ = Σ_{x≠0} v(x) w(x), the count operator N acts on the mode coefficients by c_k ↦ k c_k,
 and on a frame (p = 4κ + 1, g a drive, i = −g^κ) the frequency of the count k is γ_k = −i(k + 2⁻¹), 2⁻¹ = 2κ + 1.
@@ -52,7 +52,25 @@ fewer than W steps of the drive after a power of x on the latitude cycle.
     label_pair(p, l)                    (N, W) for a label: the largest N with l^N < p, the least W with N·W ≥ p − 1
 
     power_steps, label_steps                                                                              (20:D19)
+
+The window (Theme/Thue.lean, Theme/WindowModes.lean, Theme/Primes.lean, Theme/Pairing.lean; 26 November 2026). The window of a
+shell is its labels 1, …, q, with q the largest label with q² < p. A product of primes is a choice of exponents.
+
+    window(p)                           (q, the primes up to q)
+    prime_values(p)                     the values of every mode at the primes of the window
+    square_pairs(p)                     the labels a ≤ b of the window with a² + b² = p
+    reflected_table(p, pairs)           R(k, m) = Σ_{x≠0,1} x^k(1 − x)^m
+    products_below(bound, S)            the products of members of S below the bound, one for each choice of exponents
+
+    run_eigenvalue                                                                                        (20:G3)
+    thue_ne_zero, mode_fixed, mode_sign, mode_signed_power                                                (20:G17)
+    prime_products_distinct, relation_wrapped, primes_unique_generators, mode_iff_relations,
+    mode_relations_two_primes                                                                             (20:G18)
+    two_squares, two_squares_unique                                                                       (20:G19)
+    reflected_value, reflected_zero, reflected_ne_zero, reflected_conjugate, reflected_exclusive          (20:G20)
 """
+import math
+
 from frc import arith
 
 
@@ -261,6 +279,212 @@ def generator_selfadjoint_vector(p, kap, g, pairs):
         if A is None or B is None: return False
         (v, Hv), (w, Hw) = A, B
         if pairing(Hv, w) != pairing(v, Hw): return False
+    return True
+
+
+def run_eigenvalue(p, ms, ks=None, cs=None):
+    """In the run of counts from m(p − 1) the class k is listed as m(p − 1) + k, and N + (c + m) has the eigenvalue k + c at it, for every residue c tried."""
+    ks = range(1, p - 1) if ks is None else ks
+    cs = (0, 1, (p + 1) // 2, p - 1) if cs is None else cs
+    return all(((m * (p - 1) + k) + (c + m)) % p == (k + c) % p for m in ms for k in ks for c in cs)
+
+
+def window(p):
+    """The window of the shell: the largest label q with q² < p, and the primes up to q."""
+    q = math.isqrt(p - 1)
+    return q, [n for n in range(2, q + 1) if all(n % d for d in range(2, math.isqrt(n) + 1))]
+
+
+def thue_ne_zero(p):
+    """Thue's lemma: every nonzero residue is ±a·b⁻¹ for two labels a, b of the window."""
+    q, _ = window(p); seen = set()
+    for b in range(1, q + 1):
+        bi = pow(b, -1, p)
+        for a in range(1, q + 1):
+            r = a * bi % p; seen.add(r); seen.add(p - r)
+    return len(seen) == p - 1
+
+
+def prime_values(p):
+    """The values of the modes at the primes of the window: row k holds ℓ^k for the primes ℓ ≤ q, for the counts k < p − 1."""
+    _, primes = window(p)
+    return [tuple(pow(l, k, p) for l in primes) for k in range(p - 1)]
+
+
+def mode_fixed(p, T=None):
+    """The values at the primes of the window fix a mode: no two counts below p − 1 have the same values."""
+    T = prime_values(p) if T is None else T
+    return len(set(T)) == p - 1
+
+
+def mode_sign(p, kap, T=None):
+    """The values at the primes of the window are all ±1 exactly for the counts 0 and π = 2κ."""
+    T = prime_values(p) if T is None else T
+    return [k for k in range(p - 1) if all(v in (1, p - 1) for v in T[k])] == [0, 2 * kap]
+
+
+def mode_signed_power(p, kap, js=None, T=None):
+    """The values at the primes of the window are all ±ℓ^j exactly for the counts j and π + j, for every count j tried (default all)."""
+    T = prime_values(p) if T is None else T
+    for j in (range(p - 1) if js is None else js):
+        hit = {k for k in range(p - 1) if all(v == w or v == p - w for v, w in zip(T[k], T[j]))}
+        if hit != {j, (j + 2 * kap) % (p - 1)}: return False
+    return True
+
+
+def square_pairs(p):
+    """The pairs of labels a ≤ b of the window with a² + b² = p."""
+    q, _ = window(p)
+    return [(a, b) for a in range(1, q + 1) for b in (math.isqrt(p - a * a),) if a <= b <= q and a * a + b * b == p]
+
+
+def two_squares(p):
+    """p = a² + b² for two labels of the window, and the square roots of −1 on the shell are ±a·b⁻¹."""
+    S = square_pairs(p)
+    if not S: return False
+    a, b = S[0]; r = a * pow(b, -1, p) % p
+    return r * r % p == p - 1 and [x for x in range(1, p) if x * x % p == p - 1] == sorted((r, p - r))
+
+
+def two_squares_unique(p):
+    """The two squares are unique up to their order."""
+    return len(square_pairs(p)) == 1
+
+
+def binomial_mod(m, d, p):
+    """C(m, d) mod p for m < p."""
+    if d < 0 or d > m: return 0
+    d = min(d, m - d); num = den = 1
+    for i in range(1, d + 1): num = num * (m - d + i) % p; den = den * i % p
+    return num * pow(den, -1, p) % p
+
+
+def reflected_table(p, pairs=None):
+    """The reflected pairing R(k, m) = Σ_{x≠0,1} x^k (1 − x)^m on F_p: (k, m) -> R(k, m), for every two nonconstant modes, or for the pairs given, each with (k, p − 1 − k) and (p − 1 − k, p − 1 − m)."""
+    if pairs is None:
+        xs = range(2, p)
+        A = [[pow(x, k, p) for x in xs] for k in range(1, p - 1)]
+        B = [[pow(1 - x, m, p) for x in xs] for m in range(1, p - 1)]
+        return {(k + 1, m + 1): sum(a * b for a, b in zip(ra, rb)) % p for k, ra in enumerate(A) for m, rb in enumerate(B)}
+    want = set()
+    for k, m in pairs: want |= {(k, m), (k, p - 1 - k), (p - 1 - k, p - 1 - m)}
+    return {(k, m): sum(pow(x, k, p) * pow(1 - x, m, p) for x in range(2, p)) % p for k, m in sorted(want)}
+
+
+def reflected_value(p, T):
+    """R(k, m) = −(−1)^k·C(m, p − 1 − k) for two nonconstant modes."""
+    return all(r == (-1 if k % 2 == 0 else 1) * binomial_mod(m, p - 1 - k, p) % p for (k, m), r in T.items())
+
+
+def reflected_zero(p, T):
+    """R(k, m) = 0 when k + m < p − 1."""
+    return all(r == 0 for (k, m), r in T.items() if k + m < p - 1)
+
+
+def reflected_ne_zero(p, T):
+    """R(k, m) ≠ 0 when k + m ≥ p − 1."""
+    return all(r != 0 for (k, m), r in T.items() if k + m >= p - 1)
+
+
+def reflected_conjugate(p, T):
+    """A mode and its conjugate have the reflected pairing −(−1)^k."""
+    return all(T[(k, p - 1 - k)] == (-1 if k % 2 == 0 else 1) % p for (k, m) in T if (k, p - 1 - k) in T)
+
+
+def reflected_exclusive(p, T):
+    """For k + m ≠ p − 1 exactly one of R(k, m) and R(p − 1 − k, p − 1 − m) is 0: the first when k + m < p − 1."""
+    return all((r == 0) == (k + m < p - 1) and (T[(p - 1 - k, p - 1 - m)] == 0) == (k + m > p - 1)
+               for (k, m), r in T.items() if k + m != p - 1 and (p - 1 - k, p - 1 - m) in T)
+
+
+def products_below(bound, S):
+    """The products below the bound of members of S (each ≥ 2), one for each choice of exponents."""
+    S = sorted(S); out = [1]; stack = [(1, 0)]
+    while stack:
+        n, i = stack.pop()
+        for j in range(i, len(S)):
+            m = n * S[j]
+            if m >= bound: break
+            out.append(m); stack.append((m, j))
+    return out
+
+
+def prime_products_distinct(p, S=None):
+    """Products below p of primes of the window (or of the members of S) with different exponents are different residues."""
+    out = products_below(p, window(p)[1] if S is None else S)
+    return len(set(out)) == len(out)
+
+
+def relation_wrapped(p, factor=4):
+    """Every relation between primes of the window has wrapped: among their products below factor·p, two with one residue are never both below p; and two with one residue exist."""
+    seen = {}; found = False
+    for n in products_below(factor * p, window(p)[1]):
+        r = n % p
+        if r in seen:
+            found = True
+            if max(n, seen[r]) < p: return False
+            seen[r] = min(n, seen[r])
+        else: seen[r] = n
+    return found
+
+
+def generates(q, S):
+    """Every label 1 ≤ n ≤ q is a product of members of S."""
+    got = {1}
+    for n in range(2, q + 1):
+        if any(n % s == 0 and n // s in got for s in S): got.add(n)
+    return len(got) == q
+
+
+def generating_free_sets(p):
+    """Exhaustive over the sets of labels 2 ≤ s ≤ q: those that generate the labels of the window and whose products below p with different exponents are different."""
+    q, _ = window(p); labels = list(range(2, q + 1)); out = []
+    for mask in range(1 << len(labels)):
+        S = [s for i, s in enumerate(labels) if mask >> i & 1]
+        if generates(q, S) and prime_products_distinct(p, S): out.append(S)
+    return out
+
+
+def primes_unique_generators(p, exhaustive=False):
+    """The primes of the window are the one generating set of labels with distinct products. The primes generate and have distinct products; a set without a prime ℓ does not generate, since no smaller label divides ℓ; a set with the primes and a composite label c has two products c. exhaustive: every set of labels is tried as well."""
+    q, primes = window(p)
+    if not (generates(q, primes) and prime_products_distinct(p)): return False
+    if any(l % s == 0 for l in primes for s in range(2, l)): return False
+    for c in range(2, q + 1):
+        if c not in primes:
+            n, fac = c, []
+            for l in primes:
+                while n % l == 0: n //= l; fac.append(l)
+            if n != 1 or len(fac) < 2 or prime_products_distinct(c + 1, [c] + primes): return False
+    return not exhaustive or generating_free_sets(p) == [primes]
+
+
+def tuples(vals, r):
+    """Every r-tuple over vals."""
+    out = [()]
+    for _ in range(r): out = [t + (v,) for t in out for v in vals]
+    return out
+
+
+def mode_iff_relations(p):
+    """Exhaustive: residues X at the primes of the window satisfy every relation ∏ℓ^e = 1, 0 ≤ e < p − 1, exactly when they are the values of a mode."""
+    _, primes = window(p); r = len(primes)
+    rel = [e for e in tuples(range(p - 1), r) if math.prod(pow(l, a, p) for l, a in zip(primes, e)) % p == 1]
+    modes = set(prime_values(p))
+    return all(all(math.prod(pow(x, a, p) for x, a in zip(X, e)) % p == 1 for e in rel) == (X in modes) for X in tuples(range(1, p), r))
+
+
+def mode_relations_two_primes(p, g, ks=None):
+    """On the relations ℓ_i^{d_j} = ℓ_j^{d_i} between two primes of the window, with d the logarithms to the base g: the logarithms and p − 1 have no common factor, the values of every mode tried satisfy the relations, and the values with one of them multiplied by g do not."""
+    _, primes = window(p); log = {}; x = 1
+    for t in range(p - 1): log[x] = t; x = x * g % p
+    d = [log[l] for l in primes]; c = p - 1
+    for t in d: c = math.gcd(c, t)
+    if c != 1: return False
+    ok = lambda X: all(pow(X[i], d[j], p) == pow(X[j], d[i], p) for i in range(len(d)) for j in range(i + 1, len(d)))
+    for k in (range(p - 1) if ks is None else ks):
+        X = [pow(l, k, p) for l in primes]
+        if not ok(X) or any(ok(X[:i] + [X[i] * g % p] + X[i + 1:]) for i in range(len(X))): return False
     return True
 
 

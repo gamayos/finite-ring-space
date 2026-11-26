@@ -45,7 +45,7 @@ for r in witnessed:
 md("""## Summary
 
 The cells above are the paper's python-witnessed predicates; the whole script, block by block, is `python3 rh.py`
-(102 checks: 92 exact, 10 [approx]; `results.json`), `python3 -m frc_20_rh` once installed.""", "summary")
+(114 checks: 104 exact, 10 [approx]; `results.json`), `python3 -m frc_20_rh` once installed.""", "summary")
 code(f"""{INSTALL}
 from frc_20_rh import verify_all
 assert verify_all(), "a check failed"

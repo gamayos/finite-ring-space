@@ -154,6 +154,16 @@ theorem count_run (m : Nat) {k : Nat} (hk : k ≤ p - 1) :
   rw [e, hd]
   exact neg_add 1
 
+/-- 20:G3 — in the run of counts that starts at `m(p − 1)` the class `k` is listed as `m(p − 1) + k`, and the operator
+`N + (c + m)` has the eigenvalue `k + c` at it: the skew operator is the same in every run. No generator. -/
+theorem run_eigenvalue (m k : Nat) (c : Shell p) :
+    (ofNat (m * (p - 1) + k) : Shell p) + (c + ofNat m) = ofNat k + c := by
+  have hN : (ofNat (p - 1) : Shell p) = -1 := eq_neg_of_add_eq_zero count_top
+  rw [← ofNat_add (m * (p - 1)) k, ← ofNat_mul m (p - 1), hN]
+  exact RE.sound (look [ofNat m, ofNat k, c])
+    (.add (.add (.mul (.var 0) (.neg .one)) (.var 1)) (.add (.var 2) (.var 0)))
+    (.add (.var 1) (.var 2)) (by decide +kernel)
+
 /-! ## The zeros -/
 
 /-- 20:G4 — the frequency of the count `k`: `γ_k = −i(k + ½)`, with `i` the Subject's quarter-turn and

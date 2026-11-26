@@ -68,6 +68,13 @@ class StatementsTest(unittest.TestCase):
             self.assertTrue(CT.zeros_fill(p)); self.assertTrue(CT.zeros_fill_ends(p)); self.assertTrue(CT.energy_order(p, kap))
             self.assertTrue(CT.cardinal_zeros(p, kap)); self.assertTrue(CT.carrier_centre(p, kap)); self.assertTrue(CT.half_unique(p, kap))
             self.assertTrue(CT.origin_unit_symmetry(p)); self.assertTrue(CT.zero_shared(p, 233 if p < 233 else 30089))
+            MT = CT.prime_values(p); RT = CT.reflected_table(p, None if p < 30 else [(1, 2), (2, p - 2), (kap, 2 * kap), (p - 2, p - 2)])
+            self.assertTrue(CT.run_eigenvalue(p, [0, 1, 5])); self.assertTrue(CT.thue_ne_zero(p)); self.assertTrue(CT.mode_fixed(p, MT))
+            self.assertTrue(CT.mode_sign(p, kap, MT)); self.assertTrue(CT.mode_signed_power(p, kap, [0, 1, kap, p - 2], MT))
+            self.assertTrue(CT.two_squares(p)); self.assertTrue(CT.two_squares_unique(p))
+            for f in (CT.reflected_value, CT.reflected_zero, CT.reflected_ne_zero, CT.reflected_conjugate, CT.reflected_exclusive): self.assertTrue(f(p, RT), f.__name__)
+            self.assertTrue(CT.prime_products_distinct(p)); self.assertTrue(CT.relation_wrapped(p)); self.assertTrue(CT.primes_unique_generators(p, True))
+            self.assertTrue(CT.mode_relations_two_primes(p, gs[0], [0, 1, kap, p - 2])); self.assertTrue(p > 20 or CT.mode_iff_relations(p))
             for g in gs:
                 self.assertTrue(CT.mode_stride(p, g) if p < 100 else True)
                 for f in (CT.zero_count, CT.zero_conjugate, CT.centre_mode, CT.pair_invariant, CT.cardinal_modes): self.assertTrue(f(p, kap, g), f.__name__)
@@ -113,6 +120,13 @@ class StatementsTest(unittest.TestCase):
         self.assertFalse(CT.circle_parallels(p, 2, g))                              # a wrong capacity: the prime meridian's residue is not c·(2κ + 1)
         self.assertFalse(CT.generator_skew(p, kap, g, [1] * len(P)))
         self.assertFalse(CT.modes_orthogonal(p, [1] * len(P))); self.assertFalse(CT.generator_selfadjoint(p, kap, g, [1] * len(P)))
+        MT = CT.prime_values(p); RT = CT.reflected_table(p)
+        self.assertFalse(CT.mode_sign(p, 2, MT)); self.assertFalse(CT.mode_signed_power(p, 2, [1], MT)); self.assertFalse(CT.mode_fixed(p, MT[:6] * 2))
+        self.assertFalse(CT.two_squares(21)); self.assertFalse(CT.two_squares_unique(65))            # 21 is no sum of two squares; 65 = 1 + 64 = 16 + 49
+        self.assertFalse(CT.prime_products_distinct(p, [2, 3, 4])); self.assertFalse(CT.relation_wrapped(p, 1)); self.assertFalse(CT.generates(3, [2]))
+        self.assertEqual(CT.generating_free_sets(p), [[2, 3]]); self.assertEqual(CT.reflected_table(p, [(5, 7)])[(5, 7)], RT[(5, 7)])
+        for f, key, v in ((CT.reflected_value, (3, 4), 1), (CT.reflected_zero, (3, 4), 1), (CT.reflected_ne_zero, (6, 7), 0), (CT.reflected_conjugate, (5, 7), 0), (CT.reflected_exclusive, (3, 4), 1)):
+            self.assertTrue(f(p, RT), f.__name__); self.assertFalse(f(p, {**RT, key: v}), f.__name__)
         self.assertFalse(CT.zeros_not_held(13, 169)); self.assertFalse(CT.zeros_not_held(1, 233))   # 13² is not below 169; a shell of one state
         self.assertEqual(len({max(0, y - 2) for y in range(2, 233)}), 231)          # 231 states hold the 231 zeros of the shell 233
         self.assertFalse(CT.zeros_collide(233, 13, lambda y: y))                    # no reading into 13 states

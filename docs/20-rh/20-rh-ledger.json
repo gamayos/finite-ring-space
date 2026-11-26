@@ -3,7 +3,7 @@
  "tree": "20-rh-20260608",
  "title": "Riemann Hypothesis over Finite Holographic Substrate",
  "doi": "https://www.alphaxiv.org/abs/2611.riemann-hypothesis-finite-substrate",
- "generated": "24 November 2026",
+ "generated": "26 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -63,6 +63,14 @@
      "tag": "I",
      "source": "\\citep{davenport1936,titchmarsh1986,spira1994}; Prop.~\\ref{prop:classical}",
      "key": "p20078",
+     "name": null
+    },
+    {
+     "label": "A13",
+     "predicate": "The bounded forms [chart]: Lagarias's inequality $\\sigma(n)\\le H_n+\\exp(H_n)\\log H_n$ holds at every $n\\le\\Omega$, by the verified range of Robin's inequality with Lagarias's lemma. Schoenfeld's inequality $|\\pi(x)-\\mathrm{li}(x)|<\\sqrt{x}\\log x/8\\pi$ holds for $2657\\le x\\le1.101\\cdot10^{26}$. With no bound Lagarias's form is equivalent to the classical formulation.",
+     "tag": "I",
+     "source": "\\citep{robin1984,morrill2021,lagarias2002,schoenfeld1976,johnston2022}; Prop.~\\ref{prop:bounded}",
+     "key": "p20124",
      "name": null
     }
    ]
@@ -259,7 +267,7 @@
      "label": "G3",
      "predicate": "The half is forced: $N+c$ is skew on the nonconstant modes exactly when $2c\\equiv1$. In a run of $\\p-1$ consecutive counts that starts at $m(\\p-1)$ or one above, the condition holds exactly for $c=2^{-1}+m$; in every other run it holds for no $c$. Rests on G2.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:half}\\newline \\pywit{rh}{p20098}{G3}, \\leanwit{FrcCore}{p20098}{G3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.count\\_run, FRC.Horizon.count\\_run\\_only}",
+     "source": "Thm.~\\ref{thm:half}\\newline \\pywit{rh}{p20098}{G3}, \\leanwit{FrcCore}{p20098}{G3} \\lean{FRC.Horizon.half\\_forced, FRC.Horizon.count\\_run, FRC.Horizon.count\\_run\\_only, FRC.Horizon.run\\_eigenvalue}",
      "key": "p20098",
      "name": "forced_half"
     },
@@ -358,6 +366,46 @@
      "source": "Thm.~\\ref{thm:generator} (iii)\\newline \\pywit{rh}{p20120}{G15}, \\leanwit{FrcCore}{p20120}{G15} \\lean{FRC.Horizon.gram\\_conj\\_self, FRC.Horizon.gram\\_conj\\_ne, FRC.Horizon.generator\\_selfadjoint}",
      "key": "p20120",
      "name": "hilbert_polya_operator"
+    },
+    {
+     "label": "G16",
+     "predicate": "The observed label and value: the Subject observes the labels of its window. At a label $n$ of the window it observes the value of a mode that is $\\pm n^{j}$ or $\\pm n^{-j}$ with $j\\ge0$ and $n^{j}<\\p$, a power that neither frame reduces.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:observed}",
+     "key": "p20121",
+     "name": null
+    },
+    {
+     "label": "G17",
+     "predicate": "The modes on the window: every nonzero residue is $\\pm ab^{-1}$ for two labels of the window. The values at the primes of the window fix a mode. They are all $\\pm1$ exactly for the counts $0$ and $\\pi$, and $\\pm n^{j}$ exactly for the counts $j$ and $\\pi+j$. Rests on B2, G7, G9, G10, G16.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:window}\\newline \\pywit{rh}{p20122}{G17}, \\leanwit{FrcCore}{p20122}{G17} \\lean{FRC.Horizon.thue\\_ne\\_zero, FRC.Horizon.mode\\_fixed, FRC.Horizon.mode\\_sign, FRC.Horizon.mode\\_signed\\_power}",
+     "key": "p20122",
+     "name": "modes_on_the_window"
+    },
+    {
+     "label": "G18",
+     "predicate": "The primes and the modes: products of primes of the window below $\\p$ with different exponents are different residues, so every relation $\\prod\\ell_i^{e_i}=1$ has wrapped. The primes are the one generating set of labels with this property. Residues $X_i$ are a mode's values at the primes exactly when they satisfy the relations. Rests on B2, G17.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:coordinates}\\newline \\pywit{rh}{p20123}{G18}, \\leanwit{FrcCore}{p20123}{G18} \\lean{FRC.Horizon.prime\\_products\\_distinct, FRC.Horizon.relation\\_wrapped, FRC.Horizon.primes\\_unique\\_generators, FRC.Horizon.mode\\_iff\\_relations}",
+     "key": "p20123",
+     "name": "primes_and_modes"
+    },
+    {
+     "label": "G19",
+     "predicate": "The two squares: the cardinality is $\\p=a^{2}+b^{2}$ for two labels $a$, $b$ of the window, in one way up to their order, and the square roots of $-1$ on the shell are $\\pm a\\,b^{-1}$. Rests on G17.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:squares}\\newline \\pywit{rh}{p20125}{G19}, \\leanwit{FrcCore}{p20125}{G19} \\lean{FRC.Horizon.two\\_squares, FRC.Horizon.two\\_squares\\_unique}",
+     "key": "p20125",
+     "name": "two_squares"
+    },
+    {
+     "label": "G20",
+     "predicate": "The reflected pairing $R(k,m)=\\sum_{x\\ne0,1}x^{k}(1-x)^{m}$ of two nonconstant modes is $0$ when $k+m<\\p-1$ and $-(-1)^{k}\\binom{m}{\\p-1-k}\\ne0$ otherwise. A mode and its conjugate have $-(-1)^{k}$. For $k+m\\ne\\p-1$ exactly one of $R(k,m)$ and the pairing of the conjugates is $0$. Rests on B4.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:pairing}\\newline \\pywit{rh}{p20126}{G20}, \\leanwit{FrcCore}{p20126}{G20} \\lean{FRC.Horizon.reflected\\_value, FRC.Horizon.reflected\\_zero, FRC.Horizon.reflected\\_ne\\_zero, FRC.Horizon.reflected\\_conjugate, FRC.Horizon.reflected\\_exclusive}",
+     "key": "p20126",
+     "name": "reflected_pairing"
     }
    ]
   },
@@ -1025,7 +1073,7 @@
    {
     "name": "FRC.Horizon.zeros_fill",
     "module": "FrcCore/Theme/Count",
-    "line": 179,
+    "line": 189,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1034,7 +1082,7 @@
    {
     "name": "FRC.Horizon.zeros_not_held",
     "module": "FrcCore/Theme/Count",
-    "line": 629,
+    "line": 639,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1063,7 +1111,7 @@
    {
     "name": "FRC.Horizon.count_adjoint_vector",
     "module": "FrcCore/Theme/Count",
-    "line": 427,
+    "line": 437,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1092,18 +1140,27 @@
    {
     "name": "FRC.Horizon.count_run_only",
     "module": "FrcCore/Theme/Count",
-    "line": 491,
+    "line": 501,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "20:G3 — the runs without a skew shift. A run of `p − 1` consecutive counts that starts at `m(p − 1) + r` with `2 ≤ r ≤ p − 2` has no shift `c` that makes `N + c` skew on its nonconstant modes: the classes `1` and `p − 2` ask for `2c = 2m + 2`, and the self-conjugate class `2κ` asks for `2c = 2m + 1` or `2m + 3`."
+   },
+   {
+    "name": "FRC.Horizon.run_eigenvalue",
+    "module": "FrcCore/Theme/Count",
+    "line": 159,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G3 — in the run of counts that starts at `m(p − 1)` the class `k` is listed as `m(p − 1) + k`, and the operator `N + (c + m)` has the eigenvalue `k + c` at it: the skew operator is the same in every run. No generator."
    }
   ],
   "G5": [
    {
     "name": "FRC.Horizon.generator_skew",
     "module": "FrcCore/Theme/Count",
-    "line": 468,
+    "line": 478,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1112,7 +1169,7 @@
    {
     "name": "FRC.Horizon.zero_conjugate",
     "module": "FrcCore/Theme/Count",
-    "line": 205,
+    "line": 215,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1123,7 +1180,7 @@
    {
     "name": "FRC.Horizon.zero_count",
     "module": "FrcCore/Theme/Count",
-    "line": 172,
+    "line": 182,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1132,7 +1189,7 @@
    {
     "name": "FRC.Horizon.zeros_fill",
     "module": "FrcCore/Theme/Count",
-    "line": 179,
+    "line": 189,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1141,7 +1198,7 @@
    {
     "name": "FRC.Horizon.zero_conjugate",
     "module": "FrcCore/Theme/Count",
-    "line": 205,
+    "line": 215,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1150,7 +1207,7 @@
    {
     "name": "FRC.Horizon.origin_unit_symmetry",
     "module": "FrcCore/Theme/Count",
-    "line": 570,
+    "line": 580,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1161,7 +1218,7 @@
    {
     "name": "FRC.Horizon.centre_mode",
     "module": "FrcCore/Theme/Count",
-    "line": 223,
+    "line": 233,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1170,7 +1227,7 @@
    {
     "name": "FRC.Horizon.pair_invariant",
     "module": "FrcCore/Theme/Count",
-    "line": 250,
+    "line": 260,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1188,7 +1245,7 @@
    {
     "name": "FRC.Horizon.half_unique",
     "module": "FrcCore/Theme/Count",
-    "line": 168,
+    "line": 178,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1197,7 +1254,7 @@
    {
     "name": "FRC.Horizon.origin_unit_symmetry",
     "module": "FrcCore/Theme/Count",
-    "line": 570,
+    "line": 580,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1208,7 +1265,7 @@
    {
     "name": "FRC.Horizon.energy_order",
     "module": "FrcCore/Theme/Count",
-    "line": 274,
+    "line": 284,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1217,7 +1274,7 @@
    {
     "name": "FRC.Horizon.pair_invariant",
     "module": "FrcCore/Theme/Count",
-    "line": 250,
+    "line": 260,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1228,7 +1285,7 @@
    {
     "name": "FRC.Horizon.cardinal_modes",
     "module": "FrcCore/Theme/Count",
-    "line": 322,
+    "line": 332,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1237,7 +1294,7 @@
    {
     "name": "FRC.Horizon.cardinal_zeros",
     "module": "FrcCore/Theme/Count",
-    "line": 339,
+    "line": 349,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1248,7 +1305,7 @@
    {
     "name": "FRC.Horizon.carrier_centre",
     "module": "FrcCore/Theme/Count",
-    "line": 367,
+    "line": 377,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1257,7 +1314,7 @@
    {
     "name": "FRC.Horizon.cardinal_zeros",
     "module": "FrcCore/Theme/Count",
-    "line": 339,
+    "line": 349,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1275,7 +1332,7 @@
    {
     "name": "FRC.Horizon.zero_shared",
     "module": "FrcCore/Theme/Count",
-    "line": 604,
+    "line": 614,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1416,7 +1473,7 @@
    {
     "name": "FRC.Horizon.gram_conj_self",
     "module": "FrcCore/Theme/Count",
-    "line": 649,
+    "line": 659,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1425,7 +1482,7 @@
    {
     "name": "FRC.Horizon.gram_conj_ne",
     "module": "FrcCore/Theme/Count",
-    "line": 653,
+    "line": 663,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1434,11 +1491,154 @@
    {
     "name": "FRC.Horizon.generator_selfadjoint",
     "module": "FrcCore/Theme/Count",
-    "line": 674,
+    "line": 684,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "20:G15 — the generator `H = −i(N + ½)` is self-adjoint for the pairing of a vector with the conjugate of another: on the modes, `γ_k·⟨x^k, x^m'⟩ = γ_m·⟨x^k, x^m'⟩` with `x^m'` the conjugate of `x^m`; the modes are orthogonal for it (`gram_conj_self`, `gram_conj_ne`)."
+   }
+  ],
+  "G17": [
+   {
+    "name": "FRC.Horizon.thue_ne_zero",
+    "module": "FrcCore/Theme/Thue",
+    "line": 221,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G17 — every nonzero residue is a signed quotient of two labels of the window: with `q² < p < (q + 1)²` and `r ≠ 0` there are labels `0 < a, b ≤ q` with `a = r·b` or `a = −r·b`."
+   },
+   {
+    "name": "FRC.Horizon.mode_fixed",
+    "module": "FrcCore/Theme/WindowModes",
+    "line": 229,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G17 — the values at the primes of the window fix a mode: two modes with the same values there have one count."
+   },
+   {
+    "name": "FRC.Horizon.mode_sign",
+    "module": "FrcCore/Theme/WindowModes",
+    "line": 168,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G17 — the values of a mode at the primes of the window are all `±1` exactly for the counts `0` and `π = 2κ`."
+   },
+   {
+    "name": "FRC.Horizon.mode_signed_power",
+    "module": "FrcCore/Theme/WindowModes",
+    "line": 238,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G17 — the values of a mode at the primes of the window are all `±ℓ^j` exactly for the counts `j` and `π + j`. For two counts `k`, `j` below `p − 1` that is `k = j`, `k = j + 2κ` or `j = k + 2κ`."
+   }
+  ],
+  "G18": [
+   {
+    "name": "FRC.Horizon.prime_products_distinct",
+    "module": "FrcCore/Theme/Primes",
+    "line": 227,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G18 — products of primes below `p` with different exponents are different residues: two lists of primes whose products are below `p` and are one residue hold every prime the same number of times."
+   },
+   {
+    "name": "FRC.Horizon.relation_wrapped",
+    "module": "FrcCore/Theme/Primes",
+    "line": 234,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G18 — every relation between primes has wrapped: when two lists of primes with different exponents have one product on the shell, one of the two products has passed `p`."
+   },
+   {
+    "name": "FRC.Horizon.primes_unique_generators",
+    "module": "FrcCore/Theme/Primes",
+    "line": 247,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G18 — the primes are the one generating set of labels with this property. Let `S` be a set of labels `2 ≤ s ≤ q` such that every label of the window is a product of members of `S`, and two products of members of `S` below `p` that are one residue have the same exponents. Then `S` is the set of the primes of the window."
+   },
+   {
+    "name": "FRC.Horizon.mode_iff_relations",
+    "module": "FrcCore/Theme/Primes",
+    "line": 357,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G18 — residues `X` at the primes of the window are the values of a mode exactly when they satisfy every relation between those primes: whenever two products of primes of the window are one residue, the two products of the `X` are one residue."
+   }
+  ],
+  "G19": [
+   {
+    "name": "FRC.Horizon.two_squares",
+    "module": "FrcCore/Theme/Thue",
+    "line": 271,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G19 — the two squares. With `q² < p < (q + 1)²` the cardinality is `a² + b²` for two labels `0 < a, b ≤ q` of the window, and the quarter-turn is their signed quotient: `a = i·b` or `a = −i·b` on the shell."
+   },
+   {
+    "name": "FRC.Horizon.two_squares_unique",
+    "module": "FrcCore/Theme/Thue",
+    "line": 331,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G19 — the two squares are unique up to their order: `p = a² + b² = c² + d²` with positive integers gives `(c, d) = (a, b)` or `(c, d) = (b, a)`."
+   }
+  ],
+  "G20": [
+   {
+    "name": "FRC.Horizon.reflected_value",
+    "module": "FrcCore/Theme/Pairing",
+    "line": 183,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G20 — the value of the reflected pairing of two nonconstant modes: `R(k, m) = −(−1)^k · C(m, p − 1 − k)`."
+   },
+   {
+    "name": "FRC.Horizon.reflected_zero",
+    "module": "FrcCore/Theme/Pairing",
+    "line": 190,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G20 — the reflected pairing of two nonconstant modes is `0` when `k + m < p − 1`."
+   },
+   {
+    "name": "FRC.Horizon.reflected_ne_zero",
+    "module": "FrcCore/Theme/Pairing",
+    "line": 201,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G20 — the reflected pairing of two nonconstant modes is not `0` when `k + m ≥ p − 1`."
+   },
+   {
+    "name": "FRC.Horizon.reflected_conjugate",
+    "module": "FrcCore/Theme/Pairing",
+    "line": 210,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G20 — a nonconstant mode and its conjugate have the reflected pairing `−(−1)^k`."
+   },
+   {
+    "name": "FRC.Horizon.reflected_exclusive",
+    "module": "FrcCore/Theme/Pairing",
+    "line": 219,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:G20 — for two nonconstant modes with `k + m ≠ p − 1` exactly one of `R(k, m)` and the pairing of the conjugates `R(p − 1 − k, p − 1 − m)` is `0`: the first when `k + m < p − 1`, the second when `k + m > p − 1`."
    }
   ],
   "X1": [
@@ -1454,7 +1654,7 @@
    {
     "name": "FRC.Horizon.carrier_centre",
     "module": "FrcCore/Theme/Count",
-    "line": 367,
+    "line": 377,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1474,7 +1674,7 @@
    {
     "name": "FRC.Horizon.zero_conjugate",
     "module": "FrcCore/Theme/Count",
-    "line": 205,
+    "line": 215,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1483,7 +1683,7 @@
    {
     "name": "FRC.Horizon.origin_unit_symmetry",
     "module": "FrcCore/Theme/Count",
-    "line": 570,
+    "line": 580,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1503,7 +1703,7 @@
    {
     "name": "FRC.Horizon.generator_skew",
     "module": "FrcCore/Theme/Count",
-    "line": 468,
+    "line": 478,
     "axioms": [],
     "tier": 0,
     "ok": true,

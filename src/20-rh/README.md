@@ -2,7 +2,7 @@
 
 Validation package of *Riemann Hypothesis over Finite Holographic Substrate* (Akhtman, 2026; the first version of the
 preprint, *Riemann Hypothesis over the Holographic Substrate: a Finite-Field Dictionary and the Screen Reading*), `20-rh` of the
-FRC corpus. One script, `rh.py`, four blocks, 102 checks (92 EXACT, 10 [approx]), driven by `frc-20-rh.ipynb`
+FRC corpus. One script, `rh.py`, four blocks, 114 checks (104 EXACT, 10 [approx]), driven by `frc-20-rh.ipynb`
 (Google Colab: one cell per python-witnessed ledger predicate, any cell on its own, or *Runtime → Run all*, under a minute) or run
 whole.
 
@@ -15,13 +15,13 @@ entered, one check per row of the count readout and of the classical statements.
 (rows 20:G13 and G14, checks G13 and G14), the labels of A11 and A12 took the observational horizon q, the largest label with
 q² < p, and `make_figures.py` draws the paper's Figures 2 and 3. Since the same day the count of a window from its dual
 has its row 20:D16 and its check D16, its bound has the row 20:D17 and the check D17, and `make_figures.py` draws Figure 4. On 23 November a mode near every height and the value of a mode
-at one label entered (rows 20:D18 and D19, checks D18 and D19), and the Hilbert–Pólya operator (row 20:G15, check G15).
+at one label entered (rows 20:D18 and D19, checks D18 and D19), and the Hilbert–Pólya operator (row 20:G15, check G15). On 26 November the rows of the window entered (20:G17 to G20, checks G17 to G20).
 
 Every check cites the predicate(s) of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine
 verification", predicates cited as `20:XN`; public copy `docs/20-rh/index.html`); the ledger's source column links, for each
 machine-verified predicate, the script at the deciding check's marker (`docs/py/rh.html#<key>`) and the Lean module at the predicate's
-declaration. Every python-witnessed predicate but one is proved in Lean: 27 in the core, with no axioms (the predicate module `lean/FrcCore/Rh.lean` on the theme files
-`FrcCore/Theme/Horizon.lean`, `Theme/Zeros.lean`, `Theme/Count.lean`, `Theme/Circle.lean` and `Theme/Steps.lean`), six of those also on Mathlib in `lean/FrcMathlib/Rh.lean`
+declaration. Every python-witnessed predicate but one is proved in Lean: 31 in the core, with no axioms (the predicate module `lean/FrcCore/Rh.lean` on the theme files
+`FrcCore/Theme/Horizon.lean`, `Theme/Zeros.lean`, `Theme/Count.lean`, `Theme/Circle.lean`, `Theme/Steps.lean`, `Theme/Thue.lean`, `Theme/WindowModes.lean`, `Theme/Pairing.lean` and `Theme/Primes.lean`), six of those also on Mathlib in `lean/FrcMathlib/Rh.lean`
 (B1, B2, B4, B10, E12, E13), and D14, D15, D17 and D18 on Mathlib alone. The exception is 20:D16, a definition with its numerical evaluation [approx]
 and no Lean predicate (its definitions `dual` and `count` stand with the proof of 20:D17 in the chart theme). The check here is the instance the reader can run.
 
@@ -37,7 +37,7 @@ chart's characters of block A (A7b, one per shell) and the five evaluations of b
 |---|---|---|
 | `A` | A1, A6, A6b, A7, A7b, A10–A14, A19: 54 (49 EXACT, 5 [approx]) | predicates 20:A2–A4, 20:B1, B2, B4, B10, 20:E12–E15, 20:F7: the zero-slot (A1), the Subject constants π = 2κ, i = g^{−κ}, e = g^i on the odd lift (A6; the lift rule on every frame below 3000, A6b), the shell theorem's clauses (i), (iii), (iv), (v) on random vectors in F_p (A7, EXACT; rows 20:E12 and 20:E14) and the Parseval identity (A14; its chart reading on the complex characters, A7b, [approx]; row 20:E13), the shared quarter-turn core and no projection of the cycles on (13, 233) (A10), frame coincidence within the observational horizon (A11), the closure on the Carriers 233, 30089, 2408561 (A12), completeness on the laboratory pairs (A13), the drive theorem with the stride of a mode (A19) |
 | `D` | D14, D15, D16, D17, D18, D19: 6 (5 [approx], 1 EXACT) | predicates 20:D14, D15, D16, D17, D18, D19: the spectrum of the window's primes against the first classical heights, the deep window, the count of a window from its dual against the count of the primes and Riemann's formula, the bound of the count, a mode near every height [approx], and the value of a mode at one label (EXACT) |
-| `G` | G2, G3, G5, G6, G7, G9, G10, G12, G13, G14, G15: 33 (EXACT) | predicates 20:G2, G3, G5–G7, G9, G10, G12–G15 (and 20:F7 by G6), on the pairs (13, 233), (173, 30089), (1549, 2408561): the count operator and its adjoint (G2), the forced half and the runs of counts (G3), the generator H = −i(N + 2⁻¹) (G5), the zeros ρ_k = k + 1 and the symmetry of origin and unit (G6), the centre 2⁻¹ = −π (G7), the order of the zeros (G9), the cardinal modes at 1, 3·4⁻¹, 2⁻¹, 4⁻¹ (G10), the Carrier's chart with the centre −G (G12), the critical circle on the orbital sphere, its parallels and the counts on its half-turn (G13), the places of the zeros on the latitude cycle (G14), the generator's self-adjointness for the pairing [v, w] = Σ v(x)w(x⁻¹) (G15) |
+| `G` | G2, G3, G5, G6, G7, G9, G10, G12, G13, G14, G15, G17, G18, G19, G20: 45 (EXACT) | predicates 20:G2, G3, G5–G7, G9, G10, G12–G15, G17–G20 (and 20:F7 by G6), on the pairs (13, 233), (173, 30089), (1549, 2408561): the count operator and its adjoint (G2), the forced half and the runs of counts (G3), the generator H = −i(N + 2⁻¹) (G5), the zeros ρ_k = k + 1 and the symmetry of origin and unit (G6), the centre 2⁻¹ = −π (G7), the order of the zeros (G9), the cardinal modes at 1, 3·4⁻¹, 2⁻¹, 4⁻¹ (G10), the Carrier's chart with the centre −G (G12), the critical circle on the orbital sphere, its parallels and the counts on its half-turn (G13), the places of the zeros on the latitude cycle (G14), the generator's self-adjointness for the pairing [v, w] = Σ v(x)w(x⁻¹) (G15), the modes on the window (G17), the primes and the modes (G18), the two squares (G19), the reflected pairing (G20) |
 | `X` | X1, X2, X3: 9 (EXACT) | predicates 20:X1–X3, on the same pairs: the ½ of the critical line (X1), the pole and the functional equation (X2), the ½ of the dilation generator (X3) |
 
 The registry (`LEDGER` check → predicates, `BLOCK`, `PREDICATES`, `check()`, `results.json`), the shell's arithmetic (the least
@@ -58,7 +58,7 @@ and is no figure of the paper since 21 November.
 
 ## Predicate ledger
 
-The paper has its predicate ledger as Appendix A (43 predicates in blocks A, B, D, E, F, G, X: 3 imported, 10 declared, 30
+The paper has its predicate ledger as Appendix A (49 predicates in blocks A, B, D, E, F, G, X: 4 imported, 11 declared, 34
 theorems). Every check of this package cites the ledger predicate(s) it witnesses (`LEDGER` in `rh.py`; the
 `rows` field of each record in `results.json`, a machine field kept under that name; the check line prints it), and the ledger's
 source column links, for each python-witnessed predicate, the check that decides it (`PREDICATES`: B4 ← A1, E15 ← A19, F7 ← A12,
