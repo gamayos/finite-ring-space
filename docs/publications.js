@@ -576,14 +576,14 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p27_fields.ipynb",
         "label": "python",
-        "count": 39,
-        "title": "39 predicates checked, all passing: the notebook p27_fields.ipynb on Google Colab, one cell per predicate"
+        "count": 44,
+        "title": "44 predicates checked, all passing: the notebook p27_fields.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Fields.lean",
         "label": "lean",
-        "count": 37,
-        "title": "37 predicates proved in the core (no axioms), 7 of them also on Mathlib: the core module Fields as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 41,
+        "title": "41 predicates proved in the core (no axioms), 7 of them also on Mathlib: the core module Fields as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Fields.lean",

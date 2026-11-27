@@ -2,11 +2,11 @@
  "header": {
   "generated": "26 November 2026",
   "schema": "frc-register/2",
-  "rows": 1259,
-  "theorems": 1199,
+  "rows": 1264,
+  "theorems": 1204,
   "counts": {
-   "keys": 1199,
-   "rows": 1259,
+   "keys": 1204,
+   "rows": 1264,
    "shared": 55,
    "by_tag": {
     "D": 225,
@@ -14,7 +14,7 @@
     "I": 151,
     "O": 21,
     "R": 9,
-    "T": 765,
+    "T": 770,
     "Ω": 27
    }
   },
@@ -1170,7 +1170,7 @@
       "text": "A value read at the scale of the Carrier, in no embedded reader's window."
      }
     ],
-    "rows": 57
+    "rows": 62
    },
    {
     "key": "28-flav",
@@ -3856,7 +3856,7 @@
    "check": {
     "href": "py/fields.html#p27043",
     "script": "p27_fields.py",
-    "line": 1557,
+    "line": 1725,
     "verdict": "pass"
    },
    "declarations": [
@@ -3989,7 +3989,7 @@
    "check": {
     "href": "py/fields.html#p27020",
     "script": "p27_fields.py",
-    "line": 1362,
+    "line": 1530,
     "verdict": "pass"
    },
    "declarations": [
@@ -27427,7 +27427,7 @@
   {
    "key": "p27010",
    "origin": "27",
-   "statement": "The colour frame gauged is the strong interaction: confinement is the saturation that closes the channel at the ladder's $5\\!\\to\\!1$ return (C10); colour itself is the Carrier's triality \\citep{akhtman2026yangmills}, this row its gauging (C7), with the rank three declared as the minimal rank that holds the triality; its prediction row is P9.",
+   "statement": "The colour frame gauged is the strong interaction: confinement is the saturation that closes the channel at the ladder's $5\\!\\to\\!1$ return (C10); colour itself is the Carrier's triality \\citep{akhtman2026yangmills}, this row its gauging (C7). The colour frame is the part of the internal frame that the drive fixes (B10). Its rank is declared a multiple of three, with the Carrier's relation $3\\mid\\Omega+1$ (C11). C20 states the frame move of the triality, and the rank three is C22's. Its prediction row is P9, and the colour factors of \\citep{akhtman2026yangmills} test the rank.",
    "origin_row": "27:B4",
    "tag": "D",
    "name": null,
@@ -27442,7 +27442,7 @@
   {
    "key": "p27011",
    "origin": "27",
-   "statement": "One fermion generation is the spinor $\\mathbf{16}$ of the rank-five internal frame $K^3\\oplus K^2$ (B10). The generation is assigned to one root of the drive (C13) and its conjugate to the other, which is the left-handed weak current. Falsifier: a right-handed charged current, inside P2. Its prediction rows are P2, P5, P6, P7 and P8.",
+   "statement": "One fermion generation is one chirality of the spinor of the internal frame, its even exterior algebra (B10); the frame $K^3\\oplus K^2$ and the $\\mathbf{16}$ are C22's. The generation is assigned to one root of the drive (C13) and its conjugate to the other, which is the left-handed weak current. Falsifier: a right-handed charged current, inside P2. Its prediction rows are P2, P5, P6, P7 and P8.",
    "origin_row": "27:B5",
    "tag": "D",
    "name": null,
@@ -27489,7 +27489,7 @@
   {
    "key": "p27054",
    "origin": "27",
-   "statement": "The internal frame: each cell has a Hermitian frame of rank five over $K$. Its rank-two part is the spinor frame (B3) and its rank-three part the colour frame (B4), and the three interactions act by its block-diagonal frame moves (C16). The alignment field is a doublet of hypercharge $\\tfrac12$ whose vacuum the drive keeps (C15). Falsifiers: P2, P10.",
+   "statement": "The internal frame: each cell has a Hermitian frame over $K$. Its rank-two part is the spinor frame (B3), a second copy of the spinor plane that the drive moves, and the drive fixes its orthogonal complement, the colour frame (B4). The ranks three and five are C22's. The three interactions act by its block-diagonal frame moves (C16). The alignment field is a doublet of hypercharge $\\tfrac12$ whose vacuum the drive keeps (C15). Falsifiers: P2, P10.",
    "origin_row": "27:B10",
    "tag": "D",
    "name": null,
@@ -27542,7 +27542,7 @@
    "check": {
     "href": "py/fields.html#p27013",
     "script": "p27_fields.py",
-    "line": 380,
+    "line": 389,
     "verdict": "pass"
    },
    "declarations": [
@@ -27584,7 +27584,7 @@
    "check": {
     "href": "py/fields.html#p27014",
     "script": "p27_fields.py",
-    "line": 245,
+    "line": 254,
     "verdict": "pass"
    },
    "declarations": [
@@ -27621,7 +27621,7 @@
    "check": {
     "href": "py/fields.html#p27015",
     "script": "p27_fields.py",
-    "line": 217,
+    "line": 226,
     "verdict": "pass"
    },
    "declarations": [
@@ -27648,7 +27648,7 @@
    "check": {
     "href": "py/fields.html#p27016",
     "script": "p27_fields.py",
-    "line": 490,
+    "line": 499,
     "verdict": "pass"
    },
    "declarations": [
@@ -27700,7 +27700,7 @@
    "check": {
     "href": "py/fields.html#p27017",
     "script": "p27_fields.py",
-    "line": 596,
+    "line": 605,
     "verdict": "pass"
    },
    "declarations": [
@@ -27757,7 +27757,7 @@
    "check": {
     "href": "py/fields.html#p27018",
     "script": "p27_fields.py",
-    "line": 513,
+    "line": 522,
     "verdict": "pass"
    },
    "declarations": [
@@ -27794,7 +27794,7 @@
    "check": {
     "href": "py/fields.html#p27019",
     "script": "p27_fields.py",
-    "line": 1331,
+    "line": 1376,
     "verdict": "pass"
    },
    "declarations": [
@@ -27836,7 +27836,7 @@
    "check": {
     "href": "py/fields.html#p27053",
     "script": "p27_fields.py",
-    "line": 1382,
+    "line": 1550,
     "verdict": "pass"
    },
    "declarations": [
@@ -27873,7 +27873,7 @@
    "check": {
     "href": "py/fields.html#p27022",
     "script": "p27_fields.py",
-    "line": 1415,
+    "line": 1583,
     "verdict": "pass"
    },
    "declarations": [
@@ -27900,7 +27900,7 @@
    "check": {
     "href": "py/fields.html#p27023",
     "script": "p27_fields.py",
-    "line": 1436,
+    "line": 1604,
     "verdict": "pass"
    },
    "declarations": [
@@ -27932,7 +27932,7 @@
    "check": {
     "href": "py/fields.html#p27049",
     "script": "p27_fields.py",
-    "line": 395,
+    "line": 404,
     "verdict": "pass"
    },
    "declarations": [],
@@ -27953,7 +27953,7 @@
    "check": {
     "href": "py/fields.html#p27051",
     "script": "p27_fields.py",
-    "line": 734,
+    "line": 743,
     "verdict": "pass"
    },
    "declarations": [
@@ -28010,7 +28010,7 @@
    "check": {
     "href": "py/fields.html#p27052",
     "script": "p27_fields.py",
-    "line": 771,
+    "line": 780,
     "verdict": "pass"
    },
    "declarations": [
@@ -28077,7 +28077,7 @@
    "check": {
     "href": "py/fields.html#p27057",
     "script": "p27_fields.py",
-    "line": 824,
+    "line": 833,
     "verdict": "pass"
    },
    "declarations": [
@@ -28124,7 +28124,7 @@
    "check": {
     "href": "py/fields.html#p27058",
     "script": "p27_fields.py",
-    "line": 982,
+    "line": 991,
     "verdict": "pass"
    },
    "declarations": [
@@ -28186,7 +28186,7 @@
    "check": {
     "href": "py/fields.html#p27060",
     "script": "p27_fields.py",
-    "line": 1132,
+    "line": 1141,
     "verdict": "pass"
    },
    "declarations": [
@@ -28218,6 +28218,190 @@
    "realisations": []
   },
   {
+   "key": "p27061",
+   "origin": "27",
+   "statement": "Commutation and the internal frame: a matrix over $K$ that commutes with the two unipotent frame moves on the frame plane $V$, or on its symmetric square, which is space, is a scalar. On $V\\otimes K^{r}$ and on $\\mathrm{Sym}^{2}(V)\\otimes K^{r}$ a commuting matrix is $1\\otimes A$, for every $r$. Commutation separates the internal frame from the plane and from space, and it fixes no rank.",
+   "origin_row": "27:C18",
+   "tag": "T",
+   "name": "commutation_internal_frame",
+   "tier": 0,
+   "check": {
+    "href": "py/fields.html#p27061",
+    "script": "p27_fields.py",
+    "line": 1209,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Unitary.plane_commutant"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Unitary.space_commutant"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "27:C18"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p27062",
+   "origin": "27",
+   "statement": "The drive and the blocks of the internal frame: on a frame of rank $m+2$ the lift of one chronon is $\\mathrm{diag}(1,\\dots,1,\\eta,\\eta^{-1})$ in the basis of the vacuum, with three distinct values. The vectors it fixes are exactly those of the colour frame (B10). A matrix over $K$ commutes with it exactly when it has the blocks of rank $m$, $1$ and $1$, and the same holds for two chronons.",
+   "origin_row": "27:C19",
+   "tag": "T",
+   "name": "drive_blocks_internal_frame",
+   "tier": 0,
+   "check": {
+    "href": "py/fields.html#p27062",
+    "script": "p27_fields.py",
+    "line": 1407,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Unitary.offblock_zero"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "27:C19"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p27063",
+   "origin": "27",
+   "statement": "The exact constraints on the colour rank $m$, for an internal frame of rank $m+2$. The conjugate of the $k$-th exterior power is the $(m+2-k)$-th, so a generation distinct from its conjugate needs $m$ odd. On a Subject with $3\\mid\\p+1$ the triality scalar is a frame move of determinant one of the colour frame exactly when $3\\mid m$. One generation holds every exterior power of the colour frame twice, with the index sum $2^{m-2}$, on the ranks $2$ to $408$. The two constraints leave the colour ranks congruent to $3$ modulo $6$.",
+   "origin_row": "27:C20",
+   "tag": "T",
+   "name": "rank_exact_constraints",
+   "tier": 0,
+   "check": {
+    "href": "py/fields.html#p27063",
+    "script": "p27_fields.py",
+    "line": 1462,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Interactions.conj_parity"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Unitary.triality_rank"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Interactions.exact_ranks"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Interactions.index_sum"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "27:C20"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p27064",
+   "origin": "27",
+   "statement": "The integers of the one-loop form on the colour ranks $2$ to $408$: $11m-3\\cdot2^{m-1}$ is positive for $m$ from $2$ to $5$ and not positive from $6$ to $408$; $11m-2^{m-1}$ is positive from $2$ to $7$ and not positive from $8$ to $408$. On this range a multiple of three with the first positive is three, and so is an odd multiple of three with the second positive.",
+   "origin_row": "27:C21",
+   "tag": "T",
+   "name": "one_loop_integers",
+   "tier": 0,
+   "check": {
+    "href": "py/fields.html#p27064",
+    "script": "p27_fields.py",
+    "line": 1479,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Interactions.heavy_three"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Interactions.heavy_one"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Interactions.light_three"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Interactions.light_one"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Interactions.bound_three"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Interactions.bound_one"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Interactions.colour_rank_three"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rank",
+     "name": "FRC.Interactions.colour_rank_three_chiral"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "27:C21"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p27065",
+   "origin": "27",
+   "statement": "The colour rank: in the imported one-loop law (A3), read on the compact group $\\SU(m)$, three times the coefficient of the colour coupling is an integer of C21 [chart]. Asymptotic freedom (A3) makes the first positive for the three generations (C10), and with the triality (B4), $m=3$. The strength of the force in the infrared (A3) makes the second positive, and with the triality and the odd rank (C20), again $m=3$. The internal frame has rank five and a generation sixteen states. The exact rows do not exclude the colour rank nine.",
+   "origin_row": "27:C22",
+   "tag": "T",
+   "name": "colour_rank_three",
+   "tier": null,
+   "check": {
+    "href": "py/fields.html#p27065",
+    "script": "p27_fields.py",
+    "line": 1499,
+    "verdict": "pass"
+   },
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "27:C22"
+   ],
+   "realisations": []
+  },
+  {
    "key": "p27035",
    "origin": "27",
    "statement": "\\textbf{No fourth generation and no fifth interaction} \\emph{[forced]}. The role ladder closes and the fifth step returns to counting. Given the naming B6, which declares the content exhaustive, a fourth chiral family and a fifth fundamental force are excluded. \\emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction.",
@@ -28228,7 +28412,7 @@
    "check": {
     "href": "py/fields.html#p27035",
     "script": "p27_fields.py",
-    "line": 1415,
+    "line": 1583,
     "verdict": "pass"
    },
    "declarations": [
@@ -28255,7 +28439,7 @@
    "check": {
     "href": "py/fields.html#p27036",
     "script": "p27_fields.py",
-    "line": 1415,
+    "line": 1583,
     "verdict": "pass"
    },
    "declarations": [
@@ -28282,7 +28466,7 @@
    "check": {
     "href": "py/fields.html#p27037",
     "script": "p27_fields.py",
-    "line": 1466,
+    "line": 1634,
     "verdict": "pass"
    },
    "declarations": [
@@ -28314,7 +28498,7 @@
    "check": {
     "href": "py/fields.html#p27038",
     "script": "p27_fields.py",
-    "line": 1376,
+    "line": 1544,
     "verdict": "pass"
    },
    "declarations": [
@@ -28346,7 +28530,7 @@
    "check": {
     "href": "py/fields.html#p27039",
     "script": "p27_fields.py",
-    "line": 1476,
+    "line": 1644,
     "verdict": "pass"
    },
    "declarations": [
@@ -28378,7 +28562,7 @@
    "check": {
     "href": "py/fields.html#p27040",
     "script": "p27_fields.py",
-    "line": 1415,
+    "line": 1583,
     "verdict": "pass"
    },
    "declarations": [
@@ -28405,7 +28589,7 @@
    "check": {
     "href": "py/fields.html#p27041",
     "script": "p27_fields.py",
-    "line": 1415,
+    "line": 1583,
     "verdict": "pass"
    },
    "declarations": [
@@ -28432,7 +28616,7 @@
    "check": {
     "href": "py/fields.html#p27042",
     "script": "p27_fields.py",
-    "line": 1534,
+    "line": 1702,
     "verdict": "pass"
    },
    "declarations": [
@@ -28474,7 +28658,7 @@
    "check": {
     "href": "py/fields.html#p27059",
     "script": "p27_fields.py",
-    "line": 1030,
+    "line": 1039,
     "verdict": "pass"
    },
    "declarations": [
@@ -28521,7 +28705,7 @@
    "check": {
     "href": "py/fields.html#p27024",
     "script": "p27_fields.py",
-    "line": 245,
+    "line": 254,
     "verdict": "pass"
    },
    "declarations": [
@@ -28558,7 +28742,7 @@
    "check": {
     "href": "py/fields.html#p27025",
     "script": "p27_fields.py",
-    "line": 210,
+    "line": 219,
     "verdict": "pass"
    },
    "declarations": [
@@ -28590,7 +28774,7 @@
    "check": {
     "href": "py/fields.html#p27026",
     "script": "p27_fields.py",
-    "line": 265,
+    "line": 274,
     "verdict": "pass"
    },
    "declarations": [
@@ -28627,7 +28811,7 @@
    "check": {
     "href": "py/fields.html#p27027",
     "script": "p27_fields.py",
-    "line": 513,
+    "line": 522,
     "verdict": "pass"
    },
    "declarations": [
@@ -28654,7 +28838,7 @@
    "check": {
     "href": "py/fields.html#p27028",
     "script": "p27_fields.py",
-    "line": 596,
+    "line": 605,
     "verdict": "pass"
    },
    "declarations": [
@@ -28696,7 +28880,7 @@
    "check": {
     "href": "py/fields.html#p27029",
     "script": "p27_fields.py",
-    "line": 734,
+    "line": 743,
     "verdict": "pass"
    },
    "declarations": [
@@ -28730,7 +28914,7 @@
   {
    "key": "p27030",
    "origin": "27",
-   "statement": "\\textbf{The colour sector}: three colours is the declared minimal rank that holds the triality (B4), the Wilson loop obeys the area law at strong coupling, and asymptotic freedom is the gluon self-coupling.",
+   "statement": "\\textbf{The colour sector}: three colours is the one rank that the triality (B4), the three generations (C10) and asymptotic freedom (A3) leave on the chart (C22), the Wilson loop obeys the area law at strong coupling, and the positive term of the one-loop coefficient is the gluon self-coupling.",
    "origin_row": "27:X7",
    "tag": "T",
    "name": "colour_sector_fixed",
@@ -28738,7 +28922,7 @@
    "check": {
     "href": "py/fields.html#p27030",
     "script": "p27_fields.py",
-    "line": 1265,
+    "line": 1310,
     "verdict": "pass"
    },
    "declarations": [
@@ -28780,7 +28964,7 @@
    "check": {
     "href": "py/fields.html#p27031",
     "script": "p27_fields.py",
-    "line": 1362,
+    "line": 1530,
     "verdict": "pass"
    },
    "declarations": [
@@ -28812,7 +28996,7 @@
    "check": {
     "href": "py/fields.html#p27032",
     "script": "p27_fields.py",
-    "line": 1415,
+    "line": 1583,
     "verdict": "pass"
    },
    "declarations": [
@@ -28839,7 +29023,7 @@
    "check": {
     "href": "py/fields.html#p27033",
     "script": "p27_fields.py",
-    "line": 1527,
+    "line": 1695,
     "verdict": "pass"
    },
    "declarations": [
@@ -28881,7 +29065,7 @@
    "check": {
     "href": "py/fields.html#p27034",
     "script": "p27_fields.py",
-    "line": 1557,
+    "line": 1725,
     "verdict": "pass"
    },
    "declarations": [
@@ -28928,7 +29112,7 @@
    "check": {
     "href": "py/fields.html#p27047",
     "script": "p27_fields.py",
-    "line": 1187,
+    "line": 1230,
     "verdict": "pass"
    },
    "declarations": [],
@@ -76301,7 +76485,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The colour frame gauged is the strong interaction: confinement is the saturation that closes the channel at the ladder's $5\\!\\to\\!1$ return (C10); colour itself is the Carrier's triality \\citep{akhtman2026yangmills}, this row its gauging (C7), with the rank three declared as the minimal rank that holds the triality; its prediction row is P9.",
+   "statement": "The colour frame gauged is the strong interaction: confinement is the saturation that closes the channel at the ladder's $5\\!\\to\\!1$ return (C10); colour itself is the Carrier's triality \\citep{akhtman2026yangmills}, this row its gauging (C7). The colour frame is the part of the internal frame that the drive fixes (B10). Its rank is declared a multiple of three, with the Carrier's relation $3\\mid\\Omega+1$ (C11). C20 states the frame move of the triality, and the rank three is C22's. Its prediction row is P9, and the colour factors of \\citep{akhtman2026yangmills} test the rank.",
    "source": "Def.~\\ref{def:colour}",
    "page": "27-fields/index.html#B4",
    "witness": {
@@ -76311,9 +76495,13 @@
    "refs": [
     "p27019",
     "p27022",
-    "p27043"
+    "p27023",
+    "p27043",
+    "p27054",
+    "p27063",
+    "p27065"
    ],
-   "text": "The colour frame gauged is the strong interaction: confinement is the saturation that closes the channel at the ladder's $5\\!\\to\\!1$ return (C10); colour itself is the Carrier's triality [akhtman2026yangmills], this row its gauging (C7), with the rank three declared as the minimal rank that holds the triality; its prediction row is P9. Def. def:colour"
+   "text": "The colour frame gauged is the strong interaction: confinement is the saturation that closes the channel at the ladder's $5\\!\\to\\!1$ return (C10); colour itself is the Carrier's triality [akhtman2026yangmills], this row its gauging (C7). The colour frame is the part of the internal frame that the drive fixes (B10). Its rank is declared a multiple of three, with the Carrier's relation $3\\mid\\Omega+1$ (C11). C20 states the frame move of the triality, and the rank three is C22's. Its prediction row is P9, and the colour factors of [akhtman2026yangmills] test the rank. Def. def:colour"
   },
   {
    "paper": "27-fld",
@@ -76325,7 +76513,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "One fermion generation is the spinor $\\mathbf{16}$ of the rank-five internal frame $K^3\\oplus K^2$ (B10). The generation is assigned to one root of the drive (C13) and its conjugate to the other, which is the left-handed weak current. Falsifier: a right-handed charged current, inside P2. Its prediction rows are P2, P5, P6, P7 and P8.",
+   "statement": "One fermion generation is one chirality of the spinor of the internal frame, its even exterior algebra (B10); the frame $K^3\\oplus K^2$ and the $\\mathbf{16}$ are C22's. The generation is assigned to one root of the drive (C13) and its conjugate to the other, which is the left-handed weak current. Falsifier: a right-handed charged current, inside P2. Its prediction rows are P2, P5, P6, P7 and P8.",
    "source": "Def.~\\ref{def:generation}",
    "page": "27-fields/index.html#B5",
    "witness": {
@@ -76341,9 +76529,10 @@
     "p27041",
     "p27042",
     "p27051",
-    "p27054"
+    "p27054",
+    "p27065"
    ],
-   "text": "One fermion generation is the spinor $\\mathbf{16}$ of the rank-five internal frame $K^3\\oplus K^2$ (B10). The generation is assigned to one root of the drive (C13) and its conjugate to the other, which is the left-handed weak current. Falsifier: a right-handed charged current, inside P2. Its prediction rows are P2, P5, P6, P7 and P8. Def. def:generation"
+   "text": "One fermion generation is one chirality of the spinor of the internal frame, its even exterior algebra (B10); the frame $K^3\\oplus K^2$ and the $\\mathbf{16}$ are C22's. The generation is assigned to one root of the drive (C13) and its conjugate to the other, which is the left-handed weak current. Falsifier: a right-handed charged current, inside P2. Its prediction rows are P2, P5, P6, P7 and P8. Def. def:generation"
   },
   {
    "paper": "27-fld",
@@ -76447,7 +76636,7 @@
    "tag": "D",
    "name": null,
    "lean_name": null,
-   "statement": "The internal frame: each cell has a Hermitian frame of rank five over $K$. Its rank-two part is the spinor frame (B3) and its rank-three part the colour frame (B4), and the three interactions act by its block-diagonal frame moves (C16). The alignment field is a doublet of hypercharge $\\tfrac12$ whose vacuum the drive keeps (C15). Falsifiers: P2, P10.",
+   "statement": "The internal frame: each cell has a Hermitian frame over $K$. Its rank-two part is the spinor frame (B3), a second copy of the spinor plane that the drive moves, and the drive fixes its orthogonal complement, the colour frame (B4). The ranks three and five are C22's. The three interactions act by its block-diagonal frame moves (C16). The alignment field is a doublet of hypercharge $\\tfrac12$ whose vacuum the drive keeps (C15). Falsifiers: P2, P10.",
    "source": "Def.~\\ref{def:frame}",
    "page": "27-fields/index.html#B10",
    "witness": {
@@ -76460,9 +76649,10 @@
     "p27036",
     "p27057",
     "p27058",
-    "p27059"
+    "p27059",
+    "p27065"
    ],
-   "text": "The internal frame: each cell has a Hermitian frame of rank five over $K$. Its rank-two part is the spinor frame (B3) and its rank-three part the colour frame (B4), and the three interactions act by its block-diagonal frame moves (C16). The alignment field is a doublet of hypercharge $\\tfrac12$ whose vacuum the drive keeps (C15). Falsifiers: P2, P10. Def. def:frame"
+   "text": "The internal frame: each cell has a Hermitian frame over $K$. Its rank-two part is the spinor frame (B3), a second copy of the spinor plane that the drive moves, and the drive fixes its orthogonal complement, the colour frame (B4). The ranks three and five are C22's. The three interactions act by its block-diagonal frame moves (C16). The alignment field is a doublet of hypercharge $\\tfrac12$ whose vacuum the drive keeps (C15). Falsifiers: P2, P10. Def. def:frame"
   },
   {
    "paper": "27-fld",
@@ -76525,7 +76715,7 @@
     "py": {
      "href": "py/fields.html#p27013",
      "script": "p27_fields.py",
-     "line": 380,
+     "line": 389,
      "verdict": "pass"
     },
     "lean": [
@@ -76586,7 +76776,7 @@
     "py": {
      "href": "py/fields.html#p27014",
      "script": "p27_fields.py",
-     "line": 245,
+     "line": 254,
      "verdict": "pass"
     },
     "lean": [
@@ -76644,7 +76834,7 @@
     "py": {
      "href": "py/fields.html#p27015",
      "script": "p27_fields.py",
-     "line": 217,
+     "line": 226,
      "verdict": "pass"
     },
     "lean": [
@@ -76683,7 +76873,7 @@
     "py": {
      "href": "py/fields.html#p27016",
      "script": "p27_fields.py",
-     "line": 490,
+     "line": 499,
      "verdict": "pass"
     },
     "lean": [
@@ -76760,7 +76950,7 @@
     "py": {
      "href": "py/fields.html#p27017",
      "script": "p27_fields.py",
-     "line": 596,
+     "line": 605,
      "verdict": "pass"
     },
     "lean": [
@@ -76847,7 +77037,7 @@
     "py": {
      "href": "py/fields.html#p27018",
      "script": "p27_fields.py",
-     "line": 513,
+     "line": 522,
      "verdict": "pass"
     },
     "lean": [
@@ -76902,7 +77092,7 @@
     "py": {
      "href": "py/fields.html#p27019",
      "script": "p27_fields.py",
-     "line": 1331,
+     "line": 1376,
      "verdict": "pass"
     },
     "lean": [
@@ -76965,7 +77155,7 @@
     "py": {
      "href": "py/fields.html#p27020",
      "script": "p27_fields.py",
-     "line": 1362,
+     "line": 1530,
      "verdict": "pass"
     },
     "lean": [
@@ -77004,7 +77194,7 @@
     "py": {
      "href": "py/fields.html#p27053",
      "script": "p27_fields.py",
-     "line": 1382,
+     "line": 1550,
      "verdict": "pass"
     },
     "lean": [
@@ -77058,7 +77248,7 @@
     "py": {
      "href": "py/fields.html#p27022",
      "script": "p27_fields.py",
-     "line": 1415,
+     "line": 1583,
      "verdict": "pass"
     },
     "lean": [
@@ -77096,7 +77286,7 @@
     "py": {
      "href": "py/fields.html#p27023",
      "script": "p27_fields.py",
-     "line": 1436,
+     "line": 1604,
      "verdict": "pass"
     },
     "lean": [
@@ -77141,7 +77331,7 @@
     "py": {
      "href": "py/fields.html#p27049",
      "script": "p27_fields.py",
-     "line": 395,
+     "line": 404,
      "verdict": "pass"
     },
     "lean": []
@@ -77169,7 +77359,7 @@
     "py": {
      "href": "py/fields.html#p27051",
      "script": "p27_fields.py",
-     "line": 734,
+     "line": 743,
      "verdict": "pass"
     },
     "lean": [
@@ -77251,7 +77441,7 @@
     "py": {
      "href": "py/fields.html#p27052",
      "script": "p27_fields.py",
-     "line": 771,
+     "line": 780,
      "verdict": "pass"
     },
     "lean": [
@@ -77349,7 +77539,7 @@
     "py": {
      "href": "py/fields.html#p27057",
      "script": "p27_fields.py",
-     "line": 824,
+     "line": 833,
      "verdict": "pass"
     },
     "lean": [
@@ -77417,7 +77607,7 @@
     "py": {
      "href": "py/fields.html#p27058",
      "script": "p27_fields.py",
-     "line": 982,
+     "line": 991,
      "verdict": "pass"
     },
     "lean": [
@@ -77512,7 +77702,7 @@
     "py": {
      "href": "py/fields.html#p27060",
      "script": "p27_fields.py",
-     "line": 1132,
+     "line": 1141,
      "verdict": "pass"
     },
     "lean": [
@@ -77559,6 +77749,272 @@
   {
    "paper": "27-fld",
    "no": 27,
+   "rid": "27:C18",
+   "key": "p27061",
+   "label": "C18",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "commutation_internal_frame",
+   "statement": "Commutation and the internal frame: a matrix over $K$ that commutes with the two unipotent frame moves on the frame plane $V$, or on its symmetric square, which is space, is a scalar. On $V\\otimes K^{r}$ and on $\\mathrm{Sym}^{2}(V)\\otimes K^{r}$ a commuting matrix is $1\\otimes A$, for every $r$. Commutation separates the internal frame from the plane and from space, and it fixes no rank.",
+   "source": "Prop.~\\ref{prop:commute}; rests on A1; \\citep{akhtman2026spacetime}\\newline \\pywit{fields}{p27061}{C18}, \\leanwit{FrcCore}{p27061}{C18} \\lean{FRC.Unitary.plane\\_commutant, FRC.Unitary.space\\_commutant}",
+   "page": "27-fields/index.html#C18",
+   "witness": {
+    "py": {
+     "href": "py/fields.html#p27061",
+     "script": "p27_fields.py",
+     "line": 1209,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Unitary.plane_commutant",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.plane_commutant"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Unitary.space_commutant",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.space_commutant"
+     }
+    ]
+   },
+   "refs": [
+    "p27001"
+   ],
+   "text": "Commutation and the internal frame: a matrix over $K$ that commutes with the two unipotent frame moves on the frame plane $V$, or on its symmetric square, which is space, is a scalar. On $V\\otimes K^{r}$ and on $\\mathrm{Sym}^{2}(V)\\otimes K^{r}$ a commuting matrix is $1\\otimes A$, for every $r$. Commutation separates the internal frame from the plane and from space, and it fixes no rank. Prop. prop:commute; rests on A1; [akhtman2026spacetime] p27061, FrcCore{C18} FRC.Unitary.plane_commutant, FRC.Unitary.space_commutant"
+  },
+  {
+   "paper": "27-fld",
+   "no": 27,
+   "rid": "27:C19",
+   "key": "p27062",
+   "label": "C19",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "drive_blocks_internal_frame",
+   "statement": "The drive and the blocks of the internal frame: on a frame of rank $m+2$ the lift of one chronon is $\\mathrm{diag}(1,\\dots,1,\\eta,\\eta^{-1})$ in the basis of the vacuum, with three distinct values. The vectors it fixes are exactly those of the colour frame (B10). A matrix over $K$ commutes with it exactly when it has the blocks of rank $m$, $1$ and $1$, and the same holds for two chronons.",
+   "source": "Prop.~\\ref{prop:drivefix}; rests on B10, C15\\newline \\pywit{fields}{p27062}{C19}, \\leanwit{FrcCore}{p27062}{C19} \\lean{FRC.Unitary.offblock\\_zero}",
+   "page": "27-fields/index.html#C19",
+   "witness": {
+    "py": {
+     "href": "py/fields.html#p27062",
+     "script": "p27_fields.py",
+     "line": 1407,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Unitary.offblock_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.offblock_zero"
+     }
+    ]
+   },
+   "refs": [
+    "p27054",
+    "p27057"
+   ],
+   "text": "The drive and the blocks of the internal frame: on a frame of rank $m+2$ the lift of one chronon is $\\mathrm{diag}(1,\\dots,1,\\eta,\\eta^{-1})$ in the basis of the vacuum, with three distinct values. The vectors it fixes are exactly those of the colour frame (B10). A matrix over $K$ commutes with it exactly when it has the blocks of rank $m$, $1$ and $1$, and the same holds for two chronons. Prop. prop:drivefix; rests on B10, C15 p27062, FrcCore{C19} FRC.Unitary.offblock_zero"
+  },
+  {
+   "paper": "27-fld",
+   "no": 27,
+   "rid": "27:C20",
+   "key": "p27063",
+   "label": "C20",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "rank_exact_constraints",
+   "statement": "The exact constraints on the colour rank $m$, for an internal frame of rank $m+2$. The conjugate of the $k$-th exterior power is the $(m+2-k)$-th, so a generation distinct from its conjugate needs $m$ odd. On a Subject with $3\\mid\\p+1$ the triality scalar is a frame move of determinant one of the colour frame exactly when $3\\mid m$. One generation holds every exterior power of the colour frame twice, with the index sum $2^{m-2}$, on the ranks $2$ to $408$. The two constraints leave the colour ranks congruent to $3$ modulo $6$.",
+   "source": "Prop.~\\ref{prop:rank}\\ref{rk:chiral}--\\ref{rk:content}; rests on B4, B5, B10\\newline \\pywit{fields}{p27063}{C20}, \\leanwit{FrcCore}{p27063}{C20} \\lean{FRC.Interactions.conj\\_parity, FRC.Unitary.triality\\_rank, FRC.Interactions.exact\\_ranks, FRC.Interactions.index\\_sum}",
+   "page": "27-fields/index.html#C20",
+   "witness": {
+    "py": {
+     "href": "py/fields.html#p27063",
+     "script": "p27_fields.py",
+     "line": 1462,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Interactions.conj_parity",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.conj_parity"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Unitary.triality_rank",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.triality_rank"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Interactions.exact_ranks",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.exact_ranks"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Interactions.index_sum",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.index_sum"
+     }
+    ]
+   },
+   "refs": [
+    "p27010",
+    "p27011",
+    "p27054"
+   ],
+   "text": "The exact constraints on the colour rank $m$, for an internal frame of rank $m+2$. The conjugate of the $k$-th exterior power is the $(m+2-k)$-th, so a generation distinct from its conjugate needs $m$ odd. On a Subject with $3\\mid\\p+1$ the triality scalar is a frame move of determinant one of the colour frame exactly when $3\\mid m$. One generation holds every exterior power of the colour frame twice, with the index sum $2^{m-2}$, on the ranks $2$ to $408$. The two constraints leave the colour ranks congruent to $3$ modulo $6$. Prop. prop:rankrk:chiral–rk:content; rests on B4, B5, B10 p27063, FrcCore{C20} FRC.Interactions.conj_parity, FRC.Unitary.triality_rank, FRC.Interactions.exact_ranks, FRC.Interactions.index_sum"
+  },
+  {
+   "paper": "27-fld",
+   "no": 27,
+   "rid": "27:C21",
+   "key": "p27064",
+   "label": "C21",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "one_loop_integers",
+   "statement": "The integers of the one-loop form on the colour ranks $2$ to $408$: $11m-3\\cdot2^{m-1}$ is positive for $m$ from $2$ to $5$ and not positive from $6$ to $408$; $11m-2^{m-1}$ is positive from $2$ to $7$ and not positive from $8$ to $408$. On this range a multiple of three with the first positive is three, and so is an odd multiple of three with the second positive.",
+   "source": "Prop.~\\ref{prop:rank}\\ref{rk:bound}\\newline \\pywit{fields}{p27064}{C21}, \\leanwit{FrcCore}{p27064}{C21} \\lean{FRC.Interactions.heavy\\_three, FRC.Interactions.heavy\\_one, FRC.Interactions.light\\_three, FRC.Interactions.light\\_one, FRC.Interactions.bound\\_three, FRC.Interactions.bound\\_one, FRC.Interactions.colour\\_rank\\_three, FRC.Interactions.colour\\_rank\\_three\\_chiral}",
+   "page": "27-fields/index.html#C21",
+   "witness": {
+    "py": {
+     "href": "py/fields.html#p27064",
+     "script": "p27_fields.py",
+     "line": 1479,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Interactions.heavy_three",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.heavy_three"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Interactions.heavy_one",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.heavy_one"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Interactions.light_three",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.light_three"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Interactions.light_one",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.light_one"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Interactions.bound_three",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.bound_three"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Interactions.bound_one",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.bound_one"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Interactions.colour_rank_three",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.colour_rank_three"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rank",
+      "name": "FRC.Interactions.colour_rank_three_chiral",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.colour_rank_three_chiral"
+     }
+    ]
+   },
+   "refs": [],
+   "text": "The integers of the one-loop form on the colour ranks $2$ to $408$: $11m-3\\cdot2^{m-1}$ is positive for $m$ from $2$ to $5$ and not positive from $6$ to $408$; $11m-2^{m-1}$ is positive from $2$ to $7$ and not positive from $8$ to $408$. On this range a multiple of three with the first positive is three, and so is an odd multiple of three with the second positive. Prop. prop:rankrk:bound p27064, FrcCore{C21} FRC.Interactions.heavy_three, FRC.Interactions.heavy_one, FRC.Interactions.light_three, FRC.Interactions.light_one, FRC.Interactions.bound_three, FRC.Interactions.bound_one, FRC.Interactions.colour_rank_three, FRC.Interactions.colour_rank_three_chiral"
+  },
+  {
+   "paper": "27-fld",
+   "no": 27,
+   "rid": "27:C22",
+   "key": "p27065",
+   "label": "C22",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "lean_name": "colour_rank_three",
+   "statement": "The colour rank: in the imported one-loop law (A3), read on the compact group $\\SU(m)$, three times the coefficient of the colour coupling is an integer of C21 [chart]. Asymptotic freedom (A3) makes the first positive for the three generations (C10), and with the triality (B4), $m=3$. The strength of the force in the infrared (A3) makes the second positive, and with the triality and the odd rank (C20), again $m=3$. The internal frame has rank five and a generation sixteen states. The exact rows do not exclude the colour rank nine.",
+   "source": "Prop.~\\ref{prop:rank}\\ref{rk:three}; rests on A3, B4, B5, B10, C10, C20, C21\\newline \\pywit{fields}{p27065}{C22}",
+   "page": "27-fields/index.html#C22",
+   "witness": {
+    "py": {
+     "href": "py/fields.html#p27065",
+     "script": "p27_fields.py",
+     "line": 1499,
+     "verdict": "pass"
+    },
+    "lean": []
+   },
+   "refs": [
+    "p27003",
+    "p27010",
+    "p27011",
+    "p27022",
+    "p27054",
+    "p27063",
+    "p27064"
+   ],
+   "text": "The colour rank: in the imported one-loop law (A3), read on the compact group $\\SU(m)$, three times the coefficient of the colour coupling is an integer of C21 [chart]. Asymptotic freedom (A3) makes the first positive for the three generations (C10), and with the triality (B4), $m=3$. The strength of the force in the infrared (A3) makes the second positive, and with the triality and the odd rank (C20), again $m=3$. The internal frame has rank five and a generation sixteen states. The exact rows do not exclude the colour rank nine. Prop. prop:rankrk:three; rests on A3, B4, B5, B10, C10, C20, C21 p27065"
+  },
+  {
+   "paper": "27-fld",
+   "no": 27,
    "rid": "27:P1",
    "key": "p27035",
    "label": "P1",
@@ -77573,7 +78029,7 @@
     "py": {
      "href": "py/fields.html#p27035",
      "script": "p27_fields.py",
-     "line": 1415,
+     "line": 1583,
      "verdict": "pass"
     },
     "lean": [
@@ -77612,7 +78068,7 @@
     "py": {
      "href": "py/fields.html#p27036",
      "script": "p27_fields.py",
-     "line": 1415,
+     "line": 1583,
      "verdict": "pass"
     },
     "lean": [
@@ -77657,7 +78113,7 @@
     "py": {
      "href": "py/fields.html#p27037",
      "script": "p27_fields.py",
-     "line": 1466,
+     "line": 1634,
      "verdict": "pass"
     },
     "lean": [
@@ -77706,7 +78162,7 @@
     "py": {
      "href": "py/fields.html#p27038",
      "script": "p27_fields.py",
-     "line": 1376,
+     "line": 1544,
      "verdict": "pass"
     },
     "lean": [
@@ -77755,7 +78211,7 @@
     "py": {
      "href": "py/fields.html#p27039",
      "script": "p27_fields.py",
-     "line": 1476,
+     "line": 1644,
      "verdict": "pass"
     },
     "lean": [
@@ -77802,7 +78258,7 @@
     "py": {
      "href": "py/fields.html#p27040",
      "script": "p27_fields.py",
-     "line": 1415,
+     "line": 1583,
      "verdict": "pass"
     },
     "lean": [
@@ -77842,7 +78298,7 @@
     "py": {
      "href": "py/fields.html#p27041",
      "script": "p27_fields.py",
-     "line": 1415,
+     "line": 1583,
      "verdict": "pass"
     },
     "lean": [
@@ -77882,7 +78338,7 @@
     "py": {
      "href": "py/fields.html#p27042",
      "script": "p27_fields.py",
-     "line": 1534,
+     "line": 1702,
      "verdict": "pass"
     },
     "lean": [
@@ -77944,7 +78400,7 @@
     "py": {
      "href": "py/fields.html#p27043",
      "script": "p27_fields.py",
-     "line": 1557,
+     "line": 1725,
      "verdict": "pass"
     },
     "lean": [
@@ -78010,7 +78466,7 @@
     "py": {
      "href": "py/fields.html#p27059",
      "script": "p27_fields.py",
-     "line": 1030,
+     "line": 1039,
      "verdict": "pass"
     },
     "lean": [
@@ -78082,7 +78538,7 @@
     "py": {
      "href": "py/fields.html#p27024",
      "script": "p27_fields.py",
-     "line": 245,
+     "line": 254,
      "verdict": "pass"
     },
     "lean": [
@@ -78139,7 +78595,7 @@
     "py": {
      "href": "py/fields.html#p27025",
      "script": "p27_fields.py",
-     "line": 210,
+     "line": 219,
      "verdict": "pass"
     },
     "lean": [
@@ -78185,7 +78641,7 @@
     "py": {
      "href": "py/fields.html#p27026",
      "script": "p27_fields.py",
-     "line": 265,
+     "line": 274,
      "verdict": "pass"
     },
     "lean": [
@@ -78239,7 +78695,7 @@
     "py": {
      "href": "py/fields.html#p27027",
      "script": "p27_fields.py",
-     "line": 513,
+     "line": 522,
      "verdict": "pass"
     },
     "lean": [
@@ -78277,7 +78733,7 @@
     "py": {
      "href": "py/fields.html#p27028",
      "script": "p27_fields.py",
-     "line": 596,
+     "line": 605,
      "verdict": "pass"
     },
     "lean": [
@@ -78338,7 +78794,7 @@
     "py": {
      "href": "py/fields.html#p27029",
      "script": "p27_fields.py",
-     "line": 734,
+     "line": 743,
      "verdict": "pass"
     },
     "lean": [
@@ -78394,14 +78850,14 @@
    "tag": "T",
    "name": null,
    "lean_name": "colour_sector_fixed",
-   "statement": "\\textbf{The colour sector}: three colours is the declared minimal rank that holds the triality (B4), the Wilson loop obeys the area law at strong coupling, and asymptotic freedom is the gluon self-coupling.",
-   "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea},~\\ref{prop:af}\\newline \\pywit{fields}{p27030}{X7}, \\leanwit{FrcCore}{p27030}{X7}, \\leanwit{FrcMathlib}{p27030}{X7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
+   "statement": "\\textbf{The colour sector}: three colours is the one rank that the triality (B4), the three generations (C10) and asymptotic freedom (A3) leave on the chart (C22), the Wilson loop obeys the area law at strong coupling, and the positive term of the one-loop coefficient is the gluon self-coupling.",
+   "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea}, \\ref{prop:rank},~\\ref{prop:af}; rests on A3, B4, C7, C10, C22\\newline \\pywit{fields}{p27030}{X7}, \\leanwit{FrcCore}{p27030}{X7}, \\leanwit{FrcMathlib}{p27030}{X7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
    "page": "27-fields/index.html#X7",
    "witness": {
     "py": {
      "href": "py/fields.html#p27030",
      "script": "p27_fields.py",
-     "line": 1265,
+     "line": 1310,
      "verdict": "pass"
     },
     "lean": [
@@ -78442,9 +78898,13 @@
    "refs": [
     "p00069",
     "p00070",
-    "p27010"
+    "p27003",
+    "p27010",
+    "p27019",
+    "p27022",
+    "p27065"
    ],
-   "text": "The colour sector: three colours is the declared minimal rank that holds the triality (B4), the Wilson loop obeys the area law at strong coupling, and asymptotic freedom is the gluon self-coupling. Prop. prop:su3, prop:corrarea, prop:af p27030, FrcCore{X7}, FrcMathlib{X7} FRC.Interactions.su3_centre, FRC.Interactions.gluon_commutator, FRC.Interactions.rank_tower, Fields.area_law_positive"
+   "text": "The colour sector: three colours is the one rank that the triality (B4), the three generations (C10) and asymptotic freedom (A3) leave on the chart (C22), the Wilson loop obeys the area law at strong coupling, and the positive term of the one-loop coefficient is the gluon self-coupling. Prop. prop:su3, prop:corrarea, prop:rank, prop:af; rests on A3, B4, C7, C10, C22 p27030, FrcCore{X7}, FrcMathlib{X7} FRC.Interactions.su3_centre, FRC.Interactions.gluon_commutator, FRC.Interactions.rank_tower, Fields.area_law_positive"
   },
   {
    "paper": "27-fld",
@@ -78463,7 +78923,7 @@
     "py": {
      "href": "py/fields.html#p27031",
      "script": "p27_fields.py",
-     "line": 1362,
+     "line": 1530,
      "verdict": "pass"
     },
     "lean": [
@@ -78511,7 +78971,7 @@
     "py": {
      "href": "py/fields.html#p27032",
      "script": "p27_fields.py",
-     "line": 1415,
+     "line": 1583,
      "verdict": "pass"
     },
     "lean": [
@@ -78547,7 +79007,7 @@
     "py": {
      "href": "py/fields.html#p27033",
      "script": "p27_fields.py",
-     "line": 1527,
+     "line": 1695,
      "verdict": "pass"
     },
     "lean": [
@@ -78608,7 +79068,7 @@
     "py": {
      "href": "py/fields.html#p27034",
      "script": "p27_fields.py",
-     "line": 1557,
+     "line": 1725,
      "verdict": "pass"
     },
     "lean": [
@@ -78678,7 +79138,7 @@
     "py": {
      "href": "py/fields.html#p27047",
      "script": "p27_fields.py",
-     "line": 1187,
+     "line": 1230,
      "verdict": "pass"
     },
     "lean": []

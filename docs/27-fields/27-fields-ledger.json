@@ -3,7 +3,7 @@
  "tree": "27-fields-20260625",
  "title": "Standard-Model Interactions over Finite Holographic Substrate",
  "doi": "https://www.alphaxiv.org/abs/2611.finite-holographic-standard-model-interactions",
- "generated": "23 November 2026",
+ "generated": "27 November 2026",
  "blocks": [
   {
    "letter": "A",
@@ -89,7 +89,7 @@
     },
     {
      "label": "B4",
-     "predicate": "The colour frame gauged is the strong interaction: confinement is the saturation that closes the channel at the ladder's $5\\!\\to\\!1$ return (C10); colour itself is the Carrier's triality \\citep{akhtman2026yangmills}, this row its gauging (C7), with the rank three declared as the minimal rank that holds the triality; its prediction row is P9.",
+     "predicate": "The colour frame gauged is the strong interaction: confinement is the saturation that closes the channel at the ladder's $5\\!\\to\\!1$ return (C10); colour itself is the Carrier's triality \\citep{akhtman2026yangmills}, this row its gauging (C7). The colour frame is the part of the internal frame that the drive fixes (B10). Its rank is declared a multiple of three, with the Carrier's relation $3\\mid\\Omega+1$ (C11). C20 states the frame move of the triality, and the rank three is C22's. Its prediction row is P9, and the colour factors of \\citep{akhtman2026yangmills} test the rank.",
      "tag": "D",
      "source": "Def.~\\ref{def:colour}",
      "key": "p27010",
@@ -97,7 +97,7 @@
     },
     {
      "label": "B5",
-     "predicate": "One fermion generation is the spinor $\\mathbf{16}$ of the rank-five internal frame $K^3\\oplus K^2$ (B10). The generation is assigned to one root of the drive (C13) and its conjugate to the other, which is the left-handed weak current. Falsifier: a right-handed charged current, inside P2. Its prediction rows are P2, P5, P6, P7 and P8.",
+     "predicate": "One fermion generation is one chirality of the spinor of the internal frame, its even exterior algebra (B10); the frame $K^3\\oplus K^2$ and the $\\mathbf{16}$ are C22's. The generation is assigned to one root of the drive (C13) and its conjugate to the other, which is the left-handed weak current. Falsifier: a right-handed charged current, inside P2. Its prediction rows are P2, P5, P6, P7 and P8.",
      "tag": "D",
      "source": "Def.~\\ref{def:generation}",
      "key": "p27011",
@@ -137,7 +137,7 @@
     },
     {
      "label": "B10",
-     "predicate": "The internal frame: each cell has a Hermitian frame of rank five over $K$. Its rank-two part is the spinor frame (B3) and its rank-three part the colour frame (B4), and the three interactions act by its block-diagonal frame moves (C16). The alignment field is a doublet of hypercharge $\\tfrac12$ whose vacuum the drive keeps (C15). Falsifiers: P2, P10.",
+     "predicate": "The internal frame: each cell has a Hermitian frame over $K$. Its rank-two part is the spinor frame (B3), a second copy of the spinor plane that the drive moves, and the drive fixes its orthogonal complement, the colour frame (B4). The ranks three and five are C22's. The three interactions act by its block-diagonal frame moves (C16). The alignment field is a doublet of hypercharge $\\tfrac12$ whose vacuum the drive keeps (C15). Falsifiers: P2, P10.",
      "tag": "D",
      "source": "Def.~\\ref{def:frame}",
      "key": "p27054",
@@ -300,6 +300,46 @@
      "source": "Prop.~\\ref{prop:strongcp}; rests on B9, C13\\newline \\pywit{fields}{p27060}{C17}, \\leanwit{FrcCore}{p27060}{C17} \\lean{FRC.Unitary.tally\\_even, FRC.Unitary.orientation\\_odd, FRC.Unitary.antihermitian\\_det, FRC.Unitary.odd\\_product}",
      "key": "p27060",
      "name": "tally_frobenius_parity"
+    },
+    {
+     "label": "C18",
+     "predicate": "Commutation and the internal frame: a matrix over $K$ that commutes with the two unipotent frame moves on the frame plane $V$, or on its symmetric square, which is space, is a scalar. On $V\\otimes K^{r}$ and on $\\mathrm{Sym}^{2}(V)\\otimes K^{r}$ a commuting matrix is $1\\otimes A$, for every $r$. Commutation separates the internal frame from the plane and from space, and it fixes no rank.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:commute}; rests on A1; \\citep{akhtman2026spacetime}\\newline \\pywit{fields}{p27061}{C18}, \\leanwit{FrcCore}{p27061}{C18} \\lean{FRC.Unitary.plane\\_commutant, FRC.Unitary.space\\_commutant}",
+     "key": "p27061",
+     "name": "commutation_internal_frame"
+    },
+    {
+     "label": "C19",
+     "predicate": "The drive and the blocks of the internal frame: on a frame of rank $m+2$ the lift of one chronon is $\\mathrm{diag}(1,\\dots,1,\\eta,\\eta^{-1})$ in the basis of the vacuum, with three distinct values. The vectors it fixes are exactly those of the colour frame (B10). A matrix over $K$ commutes with it exactly when it has the blocks of rank $m$, $1$ and $1$, and the same holds for two chronons.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:drivefix}; rests on B10, C15\\newline \\pywit{fields}{p27062}{C19}, \\leanwit{FrcCore}{p27062}{C19} \\lean{FRC.Unitary.offblock\\_zero}",
+     "key": "p27062",
+     "name": "drive_blocks_internal_frame"
+    },
+    {
+     "label": "C20",
+     "predicate": "The exact constraints on the colour rank $m$, for an internal frame of rank $m+2$. The conjugate of the $k$-th exterior power is the $(m+2-k)$-th, so a generation distinct from its conjugate needs $m$ odd. On a Subject with $3\\mid\\p+1$ the triality scalar is a frame move of determinant one of the colour frame exactly when $3\\mid m$. One generation holds every exterior power of the colour frame twice, with the index sum $2^{m-2}$, on the ranks $2$ to $408$. The two constraints leave the colour ranks congruent to $3$ modulo $6$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:rank}\\ref{rk:chiral}--\\ref{rk:content}; rests on B4, B5, B10\\newline \\pywit{fields}{p27063}{C20}, \\leanwit{FrcCore}{p27063}{C20} \\lean{FRC.Interactions.conj\\_parity, FRC.Unitary.triality\\_rank, FRC.Interactions.exact\\_ranks, FRC.Interactions.index\\_sum}",
+     "key": "p27063",
+     "name": "rank_exact_constraints"
+    },
+    {
+     "label": "C21",
+     "predicate": "The integers of the one-loop form on the colour ranks $2$ to $408$: $11m-3\\cdot2^{m-1}$ is positive for $m$ from $2$ to $5$ and not positive from $6$ to $408$; $11m-2^{m-1}$ is positive from $2$ to $7$ and not positive from $8$ to $408$. On this range a multiple of three with the first positive is three, and so is an odd multiple of three with the second positive.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:rank}\\ref{rk:bound}\\newline \\pywit{fields}{p27064}{C21}, \\leanwit{FrcCore}{p27064}{C21} \\lean{FRC.Interactions.heavy\\_three, FRC.Interactions.heavy\\_one, FRC.Interactions.light\\_three, FRC.Interactions.light\\_one, FRC.Interactions.bound\\_three, FRC.Interactions.bound\\_one, FRC.Interactions.colour\\_rank\\_three, FRC.Interactions.colour\\_rank\\_three\\_chiral}",
+     "key": "p27064",
+     "name": "one_loop_integers"
+    },
+    {
+     "label": "C22",
+     "predicate": "The colour rank: in the imported one-loop law (A3), read on the compact group $\\SU(m)$, three times the coefficient of the colour coupling is an integer of C21 [chart]. Asymptotic freedom (A3) makes the first positive for the three generations (C10), and with the triality (B4), $m=3$. The strength of the force in the infrared (A3) makes the second positive, and with the triality and the odd rank (C20), again $m=3$. The internal frame has rank five and a generation sixteen states. The exact rows do not exclude the colour rank nine.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:rank}\\ref{rk:three}; rests on A3, B4, B5, B10, C10, C20, C21\\newline \\pywit{fields}{p27065}{C22}",
+     "key": "p27065",
+     "name": "colour_rank_three"
     }
    ]
   },
@@ -357,9 +397,9 @@
     },
     {
      "label": "X7",
-     "predicate": "\\textbf{The colour sector}: three colours is the declared minimal rank that holds the triality (B4), the Wilson loop obeys the area law at strong coupling, and asymptotic freedom is the gluon self-coupling.",
+     "predicate": "\\textbf{The colour sector}: three colours is the one rank that the triality (B4), the three generations (C10) and asymptotic freedom (A3) leave on the chart (C22), the Wilson loop obeys the area law at strong coupling, and the positive term of the one-loop coefficient is the gluon self-coupling.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea},~\\ref{prop:af}\\newline \\pywit{fields}{p27030}{X7}, \\leanwit{FrcCore}{p27030}{X7}, \\leanwit{FrcMathlib}{p27030}{X7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
+     "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea}, \\ref{prop:rank},~\\ref{prop:af}; rests on A3, B4, C7, C10, C22\\newline \\pywit{fields}{p27030}{X7}, \\leanwit{FrcCore}{p27030}{X7}, \\leanwit{FrcMathlib}{p27030}{X7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
      "key": "p27030",
      "name": "colour_sector_fixed"
     },
@@ -1264,6 +1304,149 @@
     "tier": 0,
     "ok": true,
     "doc": "27:C17 — the product of two elements that the Frobenius negates is fixed by it, and its imaginary part is `2`-torsion: on an odd shell the product lies in the shell."
+   }
+  ],
+  "C18": [
+   {
+    "name": "FRC.Unitary.plane_commutant",
+    "module": "FrcCore/Theme/Rank",
+    "line": 34,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C18 — a matrix of rank two over the extension that commutes with the two unipotent frame moves of the frame plane is a scalar."
+   },
+   {
+    "name": "FRC.Unitary.space_commutant",
+    "module": "FrcCore/Theme/Rank",
+    "line": 77,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C18 — a matrix of rank three over the extension that commutes with the images of the two unipotent frame moves on the symmetric square of the frame plane is a scalar, on a shell where `1 + 1` has an inverse `k`."
+   }
+  ],
+  "C19": [
+   {
+    "name": "FRC.Unitary.offblock_zero",
+    "module": "FrcCore/Theme/Rank",
+    "line": 194,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C19 — an entry `x` of a matrix that commutes with a diagonal matrix, between a direction of value `a` (its row) and a direction of value `b` (its column), is zero when `a − b` is invertible. On the internal frame the drive has the values `1`, `η` and `η⁻¹`, so a commuting matrix has the blocks of the colour part and of the two lines of the doublet."
+   }
+  ],
+  "C20": [
+   {
+    "name": "FRC.Interactions.conj_parity",
+    "module": "FrcCore/Theme/Rank",
+    "line": 220,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C20 — the complement of an exterior power of even degree has the parity of the rank: the conjugate of the even exterior algebra is the even one for an even rank and the odd one for an odd rank."
+   },
+   {
+    "name": "FRC.Unitary.triality_rank",
+    "module": "FrcCore/Theme/Rank",
+    "line": 208,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C20 — the triality scalar on a colour frame of rank `m`. On a shell without zero divisors whose base has no root of `x² + x + 1`, a root `ω` of it in the extension has `ω̄ ω = 1`, so the scalar `ω I_m` is unitary. Its determinant `ω^m` is one exactly when `3 ∣ m` (`triality_scalar`)."
+   },
+   {
+    "name": "FRC.Interactions.exact_ranks",
+    "module": "FrcCore/Theme/Rank",
+    "line": 307,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C20 — the two exact constraints, the triality and the odd rank, hold together exactly at the ranks congruent to `3` modulo `6`."
+   },
+   {
+    "name": "FRC.Interactions.index_sum",
+    "module": "FrcCore/Theme/Rank",
+    "line": 365,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C20 — the index sum of one generation: twice the index of the `k`-th exterior power of the colour frame of rank `m` is `binom (m − 2) (k − 1)`, and each power occurs twice, so the indices sum to the row sum of `m − 2`, which is `2^(m−2)`. For the rows up to `406`, the ranks up to `408`."
+   }
+  ],
+  "C21": [
+   {
+    "name": "FRC.Interactions.heavy_three",
+    "module": "FrcCore/Theme/Rank",
+    "line": 229,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C21 — from the rank six to the rank `408` the matter of three generations outweighs the gluons: `11 (k+6) ≤ 3·2^(k+5)` for `k ≤ 402`. The largest integer formed is `3·2^407`, below `Ω`."
+   },
+   {
+    "name": "FRC.Interactions.heavy_one",
+    "module": "FrcCore/Theme/Rank",
+    "line": 243,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C21 — from the rank eight to the rank `408` the matter of one generation outweighs the gluons: `11 (k+8) ≤ 2^(k+7)` for `k ≤ 400`."
+   },
+   {
+    "name": "FRC.Interactions.light_three",
+    "module": "FrcCore/Theme/Rank",
+    "line": 257,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C21 — the integers of the one-loop form for three generations, `11 m − 3·2^(m−1)`: positive for the ranks `2, 3, 4, 5` (the values `16, 21, 20, 7`)."
+   },
+   {
+    "name": "FRC.Interactions.light_one",
+    "module": "FrcCore/Theme/Rank",
+    "line": 261,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C21 — the integers of the one-loop form for one generation, `11 m − 2^(m−1)`: positive for the ranks `2` to `7`."
+   },
+   {
+    "name": "FRC.Interactions.bound_three",
+    "module": "FrcCore/Theme/Rank",
+    "line": 266,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C21 — for three generations the integer is not positive at any rank from six to `408`."
+   },
+   {
+    "name": "FRC.Interactions.bound_one",
+    "module": "FrcCore/Theme/Rank",
+    "line": 274,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C21 — for one generation the integer is not positive at any rank from eight to `408`."
+   },
+   {
+    "name": "FRC.Interactions.colour_rank_three",
+    "module": "FrcCore/Theme/Rank",
+    "line": 283,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C21 — on the ranks up to `408`, a multiple of three at which the integer of three generations is positive is three."
+   },
+   {
+    "name": "FRC.Interactions.colour_rank_three_chiral",
+    "module": "FrcCore/Theme/Rank",
+    "line": 294,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "27:C21 — on the ranks up to `408`, an odd multiple of three at which the integer of one generation is positive is three."
    }
   ],
   "X1": [

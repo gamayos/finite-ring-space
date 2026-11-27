@@ -681,8 +681,8 @@
    "key": "p27030",
    "tag": "T",
    "lean_name": "colour_sector_fixed",
-   "predicate": "\\textbf{The colour sector}: three colours is the declared minimal rank that holds the triality (B4), the Wilson loop obeys the area law at strong coupling, and asymptotic freedom is the gluon self-coupling.",
-   "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea},~\\ref{prop:af}\\newline \\pywit{fields}{p27030}{X7}, \\leanwit{FrcCore}{p27030}{X7}, \\leanwit{FrcMathlib}{p27030}{X7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
+   "predicate": "\\textbf{The colour sector}: three colours is the one rank that the triality (B4), the three generations (C10) and asymptotic freedom (A3) leave on the chart (C22), the Wilson loop obeys the area law at strong coupling, and the positive term of the one-loop coefficient is the gluon self-coupling.",
+   "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea}, \\ref{prop:rank},~\\ref{prop:af}; rests on A3, B4, C7, C10, C22\\newline \\pywit{fields}{p27030}{X7}, \\leanwit{FrcCore}{p27030}{X7}, \\leanwit{FrcMathlib}{p27030}{X7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
    "master": [
     "G4",
     "G5"

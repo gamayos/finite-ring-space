@@ -19,7 +19,7 @@ from frc.registry import MARKER
 ROOT = Path(__file__).resolve().parents[2]
 
 # the checks of 16 October 2026 that are continuum readings, and the chart clauses split from an exact parent
-CHART_CHECKS = {"A3", "A4", "A11", "A12", "B1c", "B3", "B4c", "C8c", "D1", "E2", "E5c", "E7", "F3", "F6c",
+CHART_CHECKS = {"A3", "A4", "A11", "A12", "B1c", "B3", "B4c", "C8c", "D1", "E2", "E5c", "E7", "E12", "F3", "F6c",
                 "G2", "G3", "G4", "H2"}
 SPLIT = ("B1c", "B4c", "C8c", "E5c", "F6c")
 # the rows the ledger file decides or corroborates beyond the package's records (16 October 2026)
@@ -118,6 +118,27 @@ class AlgebraTest(unittest.TestCase):
         self.assertEqual([I.su3_moment(k, k) for k in range(4)], [1, 1, 2, 6])
         self.assertEqual((I.su3_moment(3, 0), I.su3_moment(2, 1), I.su3_moment(1, 0)), (1, 0, 0))
 
+    def test_rank_helpers(self):
+        """The helpers of the rows 27:C18 to C22 (27 November 2026), each against a second computation."""
+        p = 13; A, B = [[2, 3], [5, 8]], [[1, 4], [7, 3]]                # two frame moves of determinant one mod 13
+        mm = lambda X, Y: [[sum(a * b for a, b in zip(r, c)) % p for c in zip(*Y)] for r in X]
+        self.assertEqual(I.sym2_move(mm(A, B), p), mm(I.sym2_move(A, p), I.sym2_move(B, p)))   # the symmetric square of a product
+        e = lambda r: [[int(i == j) for j in range(r)] for i in range(r)]
+        self.assertEqual(I.kron(e(2), e(3), p), e(6))
+        self.assertEqual(I.kron(A, e(1), p), A)
+        self.assertEqual(I.commutant_dim([e(4)], p), 16)                  # every matrix commutes with the identity
+        self.assertEqual(I.commutant_dim([[[1, 0, 0], [0, 2, 0], [0, 0, 3]]], p), 3)   # distinct values: the diagonal matrices
+        self.assertEqual(I.commutant_dim([[[1, 0, 0], [0, 1, 0], [0, 0, 3]]], p), 5)   # blocks of rank two and one
+        for n in range(1, 8):
+            w = I.even_weights(n)
+            self.assertEqual(len(w), 2 ** (n - 1))
+            self.assertTrue(all(v[-1] == 0 for v in w))
+        for m in range(2, 9):
+            for k in range(m + 1):
+                self.assertEqual(I.exterior_index(m, k), Fraction(math.comb(m - 2, k - 1), 2) if 1 <= k <= m - 1 else 0)
+        self.assertEqual([I.one_loop_integer(3, G) for G in (1, 3)], [29, 21])
+        self.assertEqual(I.one_loop_integer(408, 3), 11 * 408 - 3 * 2 ** 407)
+
 
 class ChartFieldsTest(unittest.TestCase):
     def test_axis(self):
@@ -145,13 +166,13 @@ class LedgerTest(unittest.TestCase):
         for lab in L.LEAN: self.assertIn(f"27:{lab}", L.PREDICATES, lab)
         for lab in L.R.predicates:                                          # "27:C1" -> C1
             lab = lab.split(":")[1]
-            if lab[0] in "CXP" and lab != "C12":                              # C12 is R (python only)
+            if lab[0] in "CXP" and lab not in ("C12", "C22"):                 # C12 is R, C22 a chart row (python only)
                 self.assertEqual(L.LEAN[lab].split(", ")[0], "core", lab)
         self.assertEqual({lab for lab, v in L.LEAN.items() if "ml" in v}, {"C1", "C6", "C7", "X7", "P3", "P4", "P5"})
         self.assertEqual(sorted(L.FAMILY), sorted(L.LEDGER))
-        # the kinds: EXACT or CHART, one per check, 63 checks, the chart ones labelled [chart]
+        # the kinds: EXACT or CHART, one per check, 68 checks, the chart ones labelled [chart]
         kinds = {r["id"]: r["kind"] for r in L.R.results}
-        self.assertEqual(len(kinds), 63)
+        self.assertEqual(len(kinds), 68)
         self.assertEqual(sorted(kinds), sorted(L.LEDGER))
         self.assertEqual(set(kinds.values()), {"EXACT", "CHART"})
         self.assertEqual({pid for pid, k in kinds.items() if k == "CHART"}, CHART_CHECKS)

@@ -80,6 +80,7 @@ import FrcCore.Theme.Fields
 import FrcCore.Theme.Chirality
 import FrcCore.Theme.Torus
 import FrcCore.Theme.Charge
+import FrcCore.Theme.Rank
 import FrcCore.Theme.Horizon
 import FrcCore.Theme.Zeros
 import FrcCore.Theme.Ladder

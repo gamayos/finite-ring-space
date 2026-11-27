@@ -20,10 +20,12 @@ uniqueness of Maxwell's action on the periodic cube, the quadratic extension wit
 tetrahedral group and the single-plaquette coefficient c₁. Their index stands at the head of that section below. Since
 the 27-fields migration (16 October 2026) it also holds the exact side of the finite gauge correspondence: the M-th roots
 of unity as the embedding Z/M → U(1) with the Wilson weight, 2T as the 24 unit quaternions over Fraction with its
-traces, and the area law's rational function with its positivity beyond x = 1 (the last section below).
+traces, and the area law's rational function with its positivity beyond x = 1. Since 27 November 2026 it holds
+the commuting matrices of a set of frame moves, the frame move on the symmetric square of the frame plane, the weights
+and the indices of the exterior powers and the integers of the one-loop form (27:C18 to C22; the last section below).
 """
 from fractions import Fraction
-from itertools import permutations, product
+from itertools import combinations, permutations, product
 from math import comb
 
 
@@ -856,3 +858,60 @@ def area_law_rational(x=None):
     x = Fraction(x)
     value = sum(c * x ** k for k, c in enumerate(N)) / sum(c * x ** k for k, c in enumerate(D))
     return N, D, positive, value
+
+
+# ---- commutation, the drive and the rank of the internal frame (27:C18 to C22; 27 November 2026) ----------------------
+#   kron(A, B, p)              the Kronecker product of two integer matrices mod p
+#   sym2_move(A, p)            the frame move A of the frame plane on its symmetric square
+#   commutant_dim(gens, p)     the dimension over F_p of the matrices that commute with every matrix of gens
+#   even_weights(n)            the weights of the even exterior algebra of a frame of rank n
+#   exterior_index(m, k)       the index of the k-th exterior power of a frame of rank m
+#   one_loop_integer(m, G)     11m − G·2^(m−1)
+def kron(A, B, p):
+    """The Kronecker product of two integer matrices, reduced mod p."""
+    return [[a * b % p for a in ra for b in rb] for ra in A for rb in B]
+
+
+def sym2_move(A, p):
+    """The frame move A = [[a, b], [c, d]] of the frame plane on its symmetric square, in the coordinates of e₁², e₁e₂,
+    e₂², reduced mod p. A frame move of determinant one keeps the form v² − 4uw at the point u e₁² + v e₁e₂ + w e₂²."""
+    (a, b), (c, d) = A
+    return [[a * a % p, a * b % p, b * b % p], [2 * a * c % p, (a * d + b * c) % p, 2 * b * d % p],
+            [c * c % p, c * d % p, d * d % p]]
+
+
+def commutant_dim(gens, p):
+    """The dimension over F_p of the d × d matrices X with gX = Xg for every integer matrix g of gens: d² less the rank
+    of the linear system."""
+    d = len(gens[0]); rows = []
+    for g in gens:
+        for i in range(d):
+            for j in range(d):
+                r = {}
+                for k in range(d):
+                    r[k * d + j] = r.get(k * d + j, 0) + g[i][k]
+                    r[i * d + k] = r.get(i * d + k, 0) - g[k][j]
+                rows.append(r)
+    return d * d - rank_mod(rows, d * d, p)
+
+
+def even_weights(n):
+    """The weights of the even exterior algebra of a frame of rank n on its diagonal frame moves of determinant one: the
+    subsets of even size as 0/1 vectors, each less its last entry, sorted."""
+    out = []
+    for k in range(0, n + 1, 2):
+        for c in combinations(range(n), k):
+            v = [int(i in c) for i in range(n)]
+            out.append(tuple(x - v[-1] for x in v))
+    return sorted(out)
+
+
+def exterior_index(m, k):
+    """The index of the k-th exterior power of a frame of rank m: ¼ Σ (μ₁ − μ₂)² over its weights μ, a Fraction."""
+    return Fraction(sum((int(0 in c) - int(1 in c)) ** 2 for c in combinations(range(m), k)), 4)
+
+
+def one_loop_integer(m, G):
+    """Three times the one-loop coefficient of the colour coupling of a frame of rank m with G generations, each of
+    index sum 2^(m−2): the integer 11m − G·2^(m−1)."""
+    return 11 * m - G * 2 ** (m - 1)
