@@ -1,5 +1,5 @@
 {
- "generated": "21 November 2026",
+ "generated": "27 November 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -187,7 +187,7 @@
    "tag": "T",
    "lean_name": "strong_field_signatures",
    "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, eikonal ringdown $-4.4\\%$ (the $\\ell\\gg1$ limit, not the $(2,2,0)$ mode; that reading open, GW250114's $\\delta\\hat f_{220}=0.02\\pm0.02$ the bar), ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
-   "source": "App.~\\ref{app:strongfield}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}\\newline \\pywit{gravity}{p21049}{P1}, \\leanwit{FrcMathlib}{p21049}{P1}; rests on B2, C11, C12, 00:E4 \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
+   "source": "Prop.~\\ref{prop:shadow}\\newline \\pywit{gravity}{p21049}{P1}, \\leanwit{FrcMathlib}{p21049}{P1}; rests on B2, C11, C12, 00:E4 \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
    "master": [
     "P5"
    ],
@@ -203,7 +203,7 @@
    "tag": "T",
    "lean_name": "preferred_frame_effects",
    "predicate": "Preferred-frame effects at $O(1/\\sqrt\\Omega)=O(10^{-62})$ ($3\\times10^{-62}$ at $\\Omega=1.3\\times10^{123}$): the drive's in-principle signature, far below current $10^{-5}$ bounds.",
-   "source": "Prop.~\\ref{prop:dragging}\\newline \\pywit{gravity}{p21051}{P2}, \\leanwit{FrcMathlib}{p21051}{P2}; rests on A1, C10, 00:E5 \\lean{Gravity.preferred\\_frame\\_scale}",
+   "source": "Cor.~\\ref{cor:residual}\\newline \\pywit{gravity}{p21051}{P2}, \\leanwit{FrcMathlib}{p21051}{P2}; rests on A1, C10, 00:E5 \\lean{Gravity.preferred\\_frame\\_scale}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -235,7 +235,7 @@
    "tag": "T",
    "lean_name": "radial_acceleration_relation",
    "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the barrier identification (B9), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
-   "source": "Prop.~\\ref{prop:crossover}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcMathlib}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.crossover\\_newton\\_limit, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
+   "source": "Cor.~\\ref{cor:rar}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcMathlib}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.crossover\\_newton\\_limit, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -249,7 +249,7 @@
    "tag": "T",
    "lean_name": "two_pn_periastron_excess",
    "predicate": "The 2PN periastron excess for PSR~J0737$-$3039: $\\delta\\dot\\omega/\\dot\\omega\\approx1.5\\times10^{-6}$ in the test-particle sector [approx], the comparable-mass terms ($\\nu=0.250$) not yet reduced; today degenerate with the mass refit; decisive either way once that sector is reduced and an independent observable fixes $M_{\\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \\citep{quantum}; the ledger carries both.",
-   "source": "App.~\\ref{app:pn}\\newline \\pywit{gravity}{p21055}{P6}, \\leanwit{FrcCore}{p21055}{P6}, \\leanwit{FrcMathlib}{p21055}{P6}; rests on A8, C8, C23 \\lean{Gravity.pn\\_series, FRC.Drift.pn\\_coefficients}",
+   "source": "Prop.~\\ref{prop:periastron}\\newline \\pywit{gravity}{p21055}{P6}, \\leanwit{FrcCore}{p21055}{P6}, \\leanwit{FrcMathlib}{p21055}{P6}; rests on A8, C8, C23 \\lean{Gravity.pn\\_series, FRC.Drift.pn\\_coefficients}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -263,7 +263,7 @@
    "tag": "T",
    "lean_name": "floor_surface_signatures",
    "predicate": "Floor-surface signatures: no prompt echoes (the exact profile horizonless with no reflecting surface, C12; the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; a reported echo detection at the stated precision falsifies the construction.",
-   "source": "App.~\\ref{app:strongfield}, Rem.~\\ref{rem:fold},~\\ref{rem:hawking}\\newline \\pywit{gravity}{p21050}{P7}, \\leanwit{FrcMathlib}{p21050}{P7}; rests on C13, 00:E5 \\lean{Gravity.operational\\_cut}",
+   "source": "Prop.~\\ref{prop:echoes}\\newline \\pywit{gravity}{p21050}{P7}, \\leanwit{FrcMathlib}{p21050}{P7}; rests on C13, 00:E5 \\lean{Gravity.operational\\_cut}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -281,6 +281,20 @@
    "master": [
     "Y10"
    ],
+   "restated": [],
+   "witnessed": false,
+   "page": "21-gravity/index.html"
+  },
+  {
+   "id": "21:P9",
+   "paper": "21-grav",
+   "label": "P9",
+   "key": "p21046",
+   "tag": "T",
+   "lean_name": "wrapped_chart_cutoff",
+   "predicate": "\\textbf{The wrapped chart's cutoff.} The chart's Fourier dual has no character below $k_1=2\\pi/(\\sqrt\\Omega\\,\\ell_P)=\\sqrt{\\pi\\Lambda/3}$ [chart] (Remark~\\ref{rem:anomaly}): $3.3\\times10^{-4}\\,\\mathrm{Mpc^{-1}}$ at the measured $\\Lambda$ \\citep{planck}, no continuous parameter. Read as an isotropic cutoff of the primordial spectrum, the low multipoles fall to $0.13$, $0.44$, $0.78$, $0.94$ of the $\\Lambda$CDM values at $\\ell=2$--$5$ (Sachs--Wolfe [approx]). Confrontation: Planck 2018's low-$\\ell$ temperature spectrum, $\\Delta(-2\\ln L)=+0.3$ against $\\Lambda$CDM over $\\ell=2$--$10$ (cosmic-variance likelihood [approx]), undecided; a spatial identification at this period excluded by the matched-circles bound \\citep{plancktopology}. Falsifier: the low multipoles, in temperature and polarisation (the latter not computed here), at the unwrapped chart's values beyond cosmic variance.",
+   "source": "Rem.~\\ref{rem:anomaly}\\newline \\pywit{gravity}{p21046}{P9}; rests on A1, A8, C14, C18, 00:L8",
+   "master": [],
    "restated": [],
    "witnessed": false,
    "page": "21-gravity/index.html"

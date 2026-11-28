@@ -1546,7 +1546,487 @@ theorem wall_exit (M R G c ρ₀ : ℝ) (hc : 0 < c) (hG : 0 < G) (hM : 0 < M)
 
 end triangle
 
+/-! ## The spectrum of a window (20:D13, D14, D15; 21 November 2026)
+
+The exhibit of 20-rh reads a vector on the labels `1, …, H` of a window in the chart of a mode (20:D1): the label `n` at
+the exponent `σ + it` is `n^{σ+it}`. With the vector's mean removed the modulus of the sum is the spectrum of the window.
+The statements here hold for every window, every real weight and every real `σ` and `t`; the readings of the paper
+against the classical heights are the python checks of `frc/ledgers/p20_rh.py`, block D. The depth `H` of a window is
+the paper's `q`. -/
+section spectrum
+open Complex Finset ComplexConjugate
+
+/-- 20:D13 — the sum of a window [chart]: the labels `1, …, H` carry the real weights `a`, and the label `n` is read
+at the exponent `σ + it` as `n^{σ+it}` (20:D1). -/
+noncomputable def windowSum (H : ℕ) (a : ℕ → ℝ) (σ t : ℝ) : ℂ :=
+  ∑ n ∈ Icc 1 H, (a n : ℂ) * (n : ℂ) ^ ((σ : ℂ) + (t : ℂ) * I)
+
+/-- 20:D13 — the spectrum of a window [chart]: the modulus of its sum. -/
+noncomputable def spectrum (H : ℕ) (a : ℕ → ℝ) (σ t : ℝ) : ℝ := ‖windowSum H a σ t‖
+
+/-- 20:D15 — the chart of a mode at a label has the modulus `n^σ`: `|n^{σ+it}| = n^σ`, whatever the height `t`. -/
+theorem mode_norm {n : ℕ} (hn : 0 < n) (σ t : ℝ) :
+    ‖(n : ℂ) ^ ((σ : ℂ) + (t : ℂ) * I)‖ = (n : ℝ) ^ σ := by
+  have h : (0 : ℝ) < (n : ℝ) := by exact_mod_cast hn
+  have key := Complex.norm_cpow_eq_rpow_re_of_pos h ((σ : ℂ) + (t : ℂ) * I)
+  simpa using key
+
+/-- 20:D15 — the spectrum of a window is at most the sum of the moduli: `E(t) ≤ Σ |a(n)| n^σ` at every height. -/
+theorem spectrum_le (H : ℕ) (a : ℕ → ℝ) (σ t : ℝ) :
+    spectrum H a σ t ≤ ∑ n ∈ Icc 1 H, |a n| * (n : ℝ) ^ σ := by
+  unfold spectrum windowSum
+  refine (norm_sum_le _ _).trans (le_of_eq (sum_congr rfl fun n hn => ?_))
+  have hn1 : 0 < n := (mem_Icc.mp hn).1
+  rw [norm_mul, mode_norm hn1, Complex.norm_real, Real.norm_eq_abs]
+
+/-- 20:D14 — the sum of a window at the height `−t` is the conjugate of its sum at `t`. -/
+theorem windowSum_neg (H : ℕ) (a : ℕ → ℝ) (σ t : ℝ) :
+    windowSum H a σ (-t) = conj (windowSum H a σ t) := by
+  unfold windowSum
+  rw [map_sum]
+  refine sum_congr rfl fun n _ => ?_
+  have harg : ((n : ℂ)).arg ≠ Real.pi := by
+    rw [Complex.natCast_arg]; exact Real.pi_ne_zero.symm
+  have key := Complex.cpow_conj (n : ℂ) ((σ : ℂ) + (t : ℂ) * I) harg
+  rw [Complex.conj_natCast] at key
+  rw [map_mul, Complex.conj_ofReal, ← key]
+  congr 2
+  simp
+
+/-- 20:D14 — the spectrum of a window is even in the height: `E(−t) = E(t)`. -/
+theorem spectrum_even (H : ℕ) (a : ℕ → ℝ) (σ t : ℝ) : spectrum H a σ (-t) = spectrum H a σ t := by
+  unfold spectrum
+  rw [windowSum_neg, Complex.norm_conj]
+
+/-- 20:D14 — a vector on the labels `1, …, H` with its mean removed sums to zero. -/
+theorem mean_free (H : ℕ) (hH : 0 < H) (w : ℕ → ℝ) :
+    ∑ n ∈ Icc 1 H, (w n - (∑ m ∈ Icc 1 H, w m) / H) = 0 := by
+  have hne : (H : ℝ) ≠ 0 := by exact_mod_cast hH.ne'
+  rw [sum_sub_distrib, sum_const, Nat.card_Icc]
+  simp
+  field_simp
+  ring
+
+end spectrum
+
 end FRC.Chart
+
+/-! ## The bound of the count of a window (20:D17; 22 November 2026)
+
+The count of a window from its dual below a height `T` (20:D16) is, label by label, a sum of steps, and each step is
+the integral of `e^{su}/s` over a segment of the line `Re s = 1/2`, `u = log (x/n)`: Perron's formula cut at the height
+`T`. For `u < 0` the rectangle to the right of the line holds no pole. For `u > 0` the rectangle about the origin holds
+the pole, with the residue 1. In both cases the step is the indicator of `u > 0` up to `e^{u/2}/(π T |u|)`
+(`step_bound`), and the count of every real vector at every position that is no label follows (`count_bound`). On the
+labels of a window the dual is the sum of the window of 20:D13 at `σ = -1/2` (`dual_eq_windowSum`).
+Classical (tier 2), on Mathlib's rectangle form of Cauchy's theorem. The reading on the paper's window is the python
+check D17 of `frc/ledgers/p20_rh.py`. -/
+namespace FRC.Chart.Perron
+
+open Complex MeasureTheory intervalIntegral Filter Topology
+
+/-- 20:D17 — The integrand of Perron's formula. -/
+noncomputable def F (u : ℝ) (s : ℂ) : ℂ := cexp (s * u) / s
+
+/-- 20:D17 — The integral over the segment of the line `Re s = 1/2` between the heights `-T` and `T`. -/
+noncomputable def Psi (T u : ℝ) : ℂ := ∫ y in (-T)..T, F u ((1 / 2 : ℝ) + y * I)
+
+theorem norm_F_le (u : ℝ) (s : ℂ) {c : ℝ} (hc : 0 < c) (h : c ≤ ‖s‖) :
+    ‖F u s‖ ≤ Real.exp (s.re * u) / c := by
+  unfold F
+  rw [norm_div, Complex.norm_exp]
+  have : (s * (u : ℂ)).re = s.re * u := by simp
+  rw [this]
+  exact div_le_div_of_nonneg_left (Real.exp_pos _).le hc h
+
+/-- 20:D17 — A horizontal side at the height `y`, `|y| = T`, from `a` to `b`. -/
+theorem horizontal_le {T u a b y : ℝ} (hT : 0 < T) (hy : |y| = T) (hab : a ≤ b) (hu : u ≠ 0) :
+    ‖∫ x in a..b, F u ((x : ℂ) + y * I)‖ ≤ (Real.exp (b * u) - Real.exp (a * u)) / (u * T) := by
+  have hbound : ∀ x : ℝ, ‖F u ((x : ℂ) + y * I)‖ ≤ Real.exp (x * u) / T := by
+    intro x
+    have h1 : T ≤ ‖(x : ℂ) + y * I‖ := by
+      have := Complex.abs_im_le_norm ((x : ℂ) + y * I)
+      simpa [hy] using this
+    have := norm_F_le u ((x : ℂ) + y * I) hT h1
+    simpa using this
+  have hint : IntervalIntegrable (fun x : ℝ => Real.exp (x * u) / T) volume a b :=
+    (by fun_prop : Continuous fun x : ℝ => Real.exp (x * u) / T).intervalIntegrable _ _
+  have h2 := intervalIntegral.norm_integral_le_of_norm_le (μ := volume) (a := a) (b := b)
+    (f := fun x : ℝ => F u ((x : ℂ) + y * I)) (g := fun x : ℝ => Real.exp (x * u) / T) hab
+    (Eventually.of_forall fun x _ => hbound x) hint
+  have h3 : ∫ x in a..b, Real.exp (x * u) / T = (Real.exp (b * u) - Real.exp (a * u)) / (u * T) := by
+    rw [intervalIntegral.integral_div, intervalIntegral.integral_comp_mul_right (fun x => Real.exp x) hu,
+      integral_exp]
+    simp only [smul_eq_mul]
+    field_simp
+  rw [h3] at h2
+  exact h2
+
+/-- 20:D17 — The segment far to the right, for `u < 0`. -/
+theorem far_le {T u R : ℝ} (hT : 0 < T) (hR : 0 < R) :
+    ‖∫ y in (-T)..T, F u ((R : ℂ) + y * I)‖ ≤ Real.exp (R * u) / R * (2 * T) := by
+  have h := intervalIntegral.norm_integral_le_of_norm_le_const (a := -T) (b := T)
+    (f := fun y : ℝ => F u ((R : ℂ) + y * I)) (C := Real.exp (R * u) / R) (by
+      intro y _
+      have h1 : R ≤ ‖(R : ℂ) + y * I‖ := by
+        have := Complex.abs_re_le_norm ((R : ℂ) + y * I)
+        simpa [abs_of_pos hR] using this
+      have := norm_F_le u ((R : ℂ) + y * I) hR h1
+      simpa using this)
+  have h2 : |T - -T| = 2 * T := by rw [abs_of_pos (by linarith)]; ring
+  rwa [h2] at h
+
+theorem differentiableOn_F (u : ℝ) (S : Set ℂ) (h0 : ∀ s ∈ S, s ≠ 0) : DifferentiableOn ℂ (F u) S := by
+  unfold F
+  exact DifferentiableOn.div (by fun_prop) differentiableOn_id h0
+
+/-- 20:D17 — The rectangle to the right of the line holds no pole: the segment is bounded by the three other sides. -/
+theorem norm_Psi_le_of_neg_aux {T u R : ℝ} (hT : 0 < T) (hu : u < 0) (hR : 1 / 2 ≤ R) :
+    ‖Psi T u‖ ≤ 2 * (Real.exp (u / 2) / (T * |u|)) + Real.exp (R * u) / R * (2 * T) := by
+  have hRpos : 0 < R := by linarith
+  have hrect := integral_boundary_rect_eq_zero_of_differentiableOn (F u)
+    (⟨1 / 2, -T⟩ : ℂ) (⟨R, T⟩ : ℂ) (differentiableOn_F u _ (by
+      rintro s ⟨hre, -⟩ h0
+      simp only [Set.mem_preimage, Set.uIcc_of_le hR, Set.mem_Icc] at hre
+      rw [h0] at hre
+      simp at hre
+      linarith))
+  simp only at hrect
+  have hbot := horizontal_le (T := T) (u := u) (a := 1 / 2) (b := R) (y := -T) hT (by simp [abs_of_pos hT]) hR hu.ne
+  have htop := horizontal_le (T := T) (u := u) (a := 1 / 2) (b := R) (y := T) hT (abs_of_pos hT) hR hu.ne
+  have hfar := far_le (u := u) hT hRpos
+  have hside : (Real.exp (R * u) - Real.exp (1 / 2 * u)) / (u * T) ≤ Real.exp (u / 2) / (T * |u|) := by
+    rw [abs_of_neg hu]
+    have h1 : (Real.exp (R * u) - Real.exp (1 / 2 * u)) / (u * T) =
+        (Real.exp (1 / 2 * u) - Real.exp (R * u)) / (T * -u) := by
+      rw [show T * -u = -(u * T) by ring, div_neg, ← neg_div]; ring_nf
+    rw [h1, show u / 2 = 1 / 2 * u by ring]
+    exact div_le_div_of_nonneg_right (by linarith [Real.exp_pos (R * u)]) (le_of_lt (by nlinarith : (0 : ℝ) < T * -u))
+  have hPsi : I • Psi T u = (∫ x in (1 / 2 : ℝ)..R, F u ((x : ℂ) + (-T : ℝ) * I)) -
+      (∫ x in (1 / 2 : ℝ)..R, F u ((x : ℂ) + (T : ℝ) * I)) + I • ∫ y in (-T)..T, F u ((R : ℂ) + y * I) := by
+    unfold Psi
+    have := hrect
+    simp only [Complex.ofReal_neg] at this ⊢
+    linear_combination (-1 : ℂ) * this
+  have hnorm : ‖Psi T u‖ = ‖I • Psi T u‖ := by simp
+  rw [hnorm, hPsi]
+  calc ‖(∫ x in (1 / 2 : ℝ)..R, F u ((x : ℂ) + (-T : ℝ) * I)) -
+      (∫ x in (1 / 2 : ℝ)..R, F u ((x : ℂ) + (T : ℝ) * I)) + I • ∫ y in (-T)..T, F u ((R : ℂ) + y * I)‖
+      ≤ ‖∫ x in (1 / 2 : ℝ)..R, F u ((x : ℂ) + (-T : ℝ) * I)‖ +
+        ‖∫ x in (1 / 2 : ℝ)..R, F u ((x : ℂ) + (T : ℝ) * I)‖ + ‖I • ∫ y in (-T)..T, F u ((R : ℂ) + y * I)‖ :=
+        (norm_add_le _ _).trans (add_le_add_left (norm_sub_le _ _) _)
+    _ ≤ Real.exp (u / 2) / (T * |u|) + Real.exp (u / 2) / (T * |u|) + Real.exp (R * u) / R * (2 * T) := by
+        have h3 : ‖I • ∫ y in (-T)..T, F u ((R : ℂ) + y * I)‖ = ‖∫ y in (-T)..T, F u ((R : ℂ) + y * I)‖ := by simp
+        rw [h3]
+        exact add_le_add (add_le_add (hbot.trans hside) (htop.trans hside)) hfar
+    _ = 2 * (Real.exp (u / 2) / (T * |u|)) + Real.exp (R * u) / R * (2 * T) := by ring
+
+/-- 20:D17 — For `u < 0` the segment is small: no label below the position is counted. -/
+theorem norm_Psi_le_of_neg {T u : ℝ} (hT : 0 < T) (hu : u < 0) :
+    ‖Psi T u‖ ≤ 2 * (Real.exp (u / 2) / (T * |u|)) := by
+  have hlim : Tendsto (fun R : ℝ => 2 * (Real.exp (u / 2) / (T * |u|)) + Real.exp (R * u) / R * (2 * T)) atTop
+      (𝓝 (2 * (Real.exp (u / 2) / (T * |u|)) + 0 * (2 * T))) := by
+    refine Tendsto.const_add _ (Tendsto.mul_const _ ?_)
+    have h1 : Tendsto (fun R : ℝ => Real.exp (R * u)) atTop (𝓝 0) :=
+      Real.tendsto_exp_atBot.comp (tendsto_id.atTop_mul_const_of_neg hu)
+    have h2 : Tendsto (fun R : ℝ => R⁻¹) atTop (𝓝 0) := tendsto_inv_atTop_zero
+    simpa [div_eq_mul_inv] using h1.mul h2
+  simp only [zero_mul, add_zero] at hlim
+  exact ge_of_tendsto hlim (eventually_atTop.mpr ⟨1 / 2, fun R hR => norm_Psi_le_of_neg_aux hT hu hR⟩)
+
+theorem continuous_F_horizontal (u : ℝ) {c : ℝ} (hc : c ≠ 0) :
+    Continuous fun x : ℝ => F u ((x : ℂ) + c * I) := by
+  unfold F
+  exact Continuous.div (by fun_prop) (by fun_prop) (fun x h0 => hc (by simpa using congrArg Complex.im h0))
+
+theorem continuous_F_vertical (u : ℝ) {r : ℝ} (hr : r ≠ 0) :
+    Continuous fun y : ℝ => F u ((r : ℂ) + y * I) := by
+  unfold F
+  exact Continuous.div (by fun_prop) (by fun_prop) (fun y h0 => hr (by simpa using congrArg Complex.re h0))
+
+theorem continuous_inv_horizontal {c : ℝ} (hc : c ≠ 0) : Continuous fun x : ℝ => ((x : ℂ) + c * I)⁻¹ :=
+  Continuous.inv₀ (by fun_prop) (fun x h0 => hc (by simpa using congrArg Complex.im h0))
+
+theorem continuous_inv_vertical {r : ℝ} (hr : r ≠ 0) : Continuous fun y : ℝ => ((r : ℂ) + y * I)⁻¹ :=
+  Continuous.inv₀ (by fun_prop) (fun y h0 => hr (by simpa using congrArg Complex.re h0))
+
+/-- 20:D17 — The inverse along a horizontal side off the real axis. -/
+theorem horizontal_inv {c a b : ℝ} (hc : c ≠ 0) :
+    ∫ x in a..b, ((x : ℂ) + c * I)⁻¹ = Complex.log ((b : ℂ) + c * I) - Complex.log ((a : ℂ) + c * I) := by
+  have hd : ∀ x ∈ Set.uIcc a b,
+      HasDerivAt (fun t : ℝ => Complex.log ((t : ℂ) + c * I)) (((x : ℂ) + c * I)⁻¹) x := by
+    intro x _
+    have h1 : HasDerivAt (fun t : ℝ => ((t : ℂ) + c * I)) 1 x := by
+      simpa using ((hasDerivAt_id (x : ℂ)).add_const ((c : ℂ) * I)).comp_ofReal
+    have h2 : ((x : ℂ) + c * I) ∈ slitPlane := by
+      rw [mem_slitPlane_iff]; right; simpa using hc
+    simpa using h1.clog_real h2
+  exact intervalIntegral.integral_eq_sub_of_hasDerivAt hd ((continuous_inv_horizontal hc).intervalIntegrable _ _)
+
+/-- 20:D17 — The inverse along a vertical side to the right of the origin. -/
+theorem vertical_inv {r a b : ℝ} (hr : 0 < r) :
+    I • ∫ y in a..b, ((r : ℂ) + y * I)⁻¹ = Complex.log ((r : ℂ) + b * I) - Complex.log ((r : ℂ) + a * I) := by
+  rw [← intervalIntegral.integral_smul]
+  have hd : ∀ y ∈ Set.uIcc a b,
+      HasDerivAt (fun t : ℝ => Complex.log ((r : ℂ) + t * I)) (I • ((r : ℂ) + y * I)⁻¹) y := by
+    intro y _
+    have h1 : HasDerivAt (fun t : ℝ => ((r : ℂ) + (t : ℂ) * I)) I y := by
+      simpa using (((hasDerivAt_id (y : ℂ)).mul_const I).const_add (r : ℂ)).comp_ofReal
+    have h2 : ((r : ℂ) + y * I) ∈ slitPlane := by
+      rw [mem_slitPlane_iff]; left; simpa using hr
+    simpa [div_eq_mul_inv] using h1.clog_real h2
+  exact intervalIntegral.integral_eq_sub_of_hasDerivAt hd
+    (((continuous_inv_vertical hr.ne').const_smul I).intervalIntegrable _ _)
+
+/-- 20:D17 — The four logarithms at the corners of the rectangle about the origin add to one turn. -/
+theorem log_sum {T : ℝ} (hT : 0 < T) :
+    Complex.log (((1 / 2 : ℝ) : ℂ) + (T : ℂ) * I) - Complex.log (((1 / 2 : ℝ) : ℂ) + ((-T : ℝ) : ℂ) * I) +
+      Complex.log (((-(1 / 2) : ℝ) : ℂ) + (T : ℂ) * I) - Complex.log (((-(1 / 2) : ℝ) : ℂ) + ((-T : ℝ) : ℂ) * I) =
+      2 * Real.pi * I := by
+  set z : ℂ := ((1 / 2 : ℝ) : ℂ) + (T : ℂ) * I with hz
+  have e1 : ((1 / 2 : ℝ) : ℂ) + ((-T : ℝ) : ℂ) * I = (starRingEnd ℂ) z := by
+    apply Complex.ext <;> simp [hz]
+  have e2 : ((-(1 / 2) : ℝ) : ℂ) + (T : ℂ) * I = -(starRingEnd ℂ) z := by
+    apply Complex.ext <;> simp [hz]
+  have e3 : ((-(1 / 2) : ℝ) : ℂ) + ((-T : ℝ) : ℂ) * I = -z := by
+    apply Complex.ext <;> simp [hz]
+  rw [e1, e2, e3]
+  have hre : z.re = 1 / 2 := by simp [hz]
+  have him : z.im = T := by simp [hz]
+  have harg : z.arg ≠ Real.pi := by
+    intro h
+    have := (Complex.arg_eq_pi_iff.mp h).1
+    rw [hre] at this; linarith
+  have h1 : (-z).arg = z.arg - Real.pi := Complex.arg_neg_eq_arg_sub_pi_of_im_pos (by rw [him]; exact hT)
+  have h2 : ((starRingEnd ℂ) z).arg = -z.arg := by rw [Complex.arg_conj]; simp [harg]
+  have h3 : (-(starRingEnd ℂ) z).arg = -z.arg + Real.pi := by
+    rw [Complex.arg_neg_eq_arg_add_pi_of_im_neg (by simp [him, hT]), h2]
+  apply Complex.ext
+  · simp [Complex.log_re]
+  · simp [Complex.log_im, h1, h2, h3]
+    ring
+
+/-- 20:D17 — The segment of the line `Re s = -1/2` is the reflected segment. -/
+theorem left_eq {T u : ℝ} :
+    (∫ y in (-T)..T, F u (((-(1 / 2) : ℝ) : ℂ) + y * I)) = -Psi T (-u) := by
+  have h : ∀ y : ℝ, F u (((-(1 / 2) : ℝ) : ℂ) + y * I) = -F (-u) (((1 / 2 : ℝ) : ℂ) + ((-y : ℝ) : ℂ) * I) := by
+    intro y
+    unfold F
+    have e1 : (((-(1 / 2) : ℝ) : ℂ) + y * I) = -(((1 / 2 : ℝ) : ℂ) + ((-y : ℝ) : ℂ) * I) := by push_cast; ring
+    have e2 : -(((1 / 2 : ℝ) : ℂ) + ((-y : ℝ) : ℂ) * I) * (u : ℂ) =
+        (((1 / 2 : ℝ) : ℂ) + ((-y : ℝ) : ℂ) * I) * ((-u : ℝ) : ℂ) := by push_cast; ring
+    rw [e1, e2, div_neg]
+  simp_rw [h]
+  have := intervalIntegral.integral_comp_neg (a := -T) (b := T) (fun y : ℝ => -F (-u) (((1 / 2 : ℝ) : ℂ) + (y : ℂ) * I))
+  simp only [neg_neg] at this
+  rw [this, intervalIntegral.integral_neg]
+  rfl
+
+theorem left_inv_eq {T : ℝ} :
+    (∫ y in (-T)..T, (((-(1 / 2) : ℝ) : ℂ) + y * I)⁻¹) = -∫ y in (-T)..T, (((1 / 2 : ℝ) : ℂ) + y * I)⁻¹ := by
+  have h : ∀ y : ℝ, (((-(1 / 2) : ℝ) : ℂ) + y * I)⁻¹ = -(((1 / 2 : ℝ) : ℂ) + ((-y : ℝ) : ℂ) * I)⁻¹ := by
+    intro y
+    rw [neg_inv]; congr 1; push_cast; ring
+  simp_rw [h]
+  have := intervalIntegral.integral_comp_neg (a := -T) (b := T) (fun y : ℝ => -(((1 / 2 : ℝ) : ℂ) + (y : ℂ) * I)⁻¹)
+  simp only [neg_neg] at this
+  rw [this, intervalIntegral.integral_neg]
+
+theorem g_horizontal (u : ℝ) {c a b : ℝ} (hc : c ≠ 0) (g : ℂ → ℂ) (hg : ∀ s : ℂ, s ≠ 0 → g s = F u s - s⁻¹) :
+    ∫ x in a..b, g ((x : ℂ) + c * I) =
+      (∫ x in a..b, F u ((x : ℂ) + c * I)) - ∫ x in a..b, ((x : ℂ) + c * I)⁻¹ := by
+  rw [← intervalIntegral.integral_sub ((continuous_F_horizontal u hc).intervalIntegrable _ _)
+    ((continuous_inv_horizontal hc).intervalIntegrable _ _)]
+  exact intervalIntegral.integral_congr (fun x _ => hg _ (fun h0 => hc (by simpa using congrArg Complex.im h0)))
+
+theorem g_vertical (u : ℝ) {r a b : ℝ} (hr : r ≠ 0) (g : ℂ → ℂ) (hg : ∀ s : ℂ, s ≠ 0 → g s = F u s - s⁻¹) :
+    ∫ y in a..b, g ((r : ℂ) + y * I) =
+      (∫ y in a..b, F u ((r : ℂ) + y * I)) - ∫ y in a..b, ((r : ℂ) + y * I)⁻¹ := by
+  rw [← intervalIntegral.integral_sub ((continuous_F_vertical u hr).intervalIntegrable _ _)
+    ((continuous_inv_vertical hr).intervalIntegrable _ _)]
+  exact intervalIntegral.integral_congr (fun y _ => hg _ (fun h0 => hr (by simpa using congrArg Complex.re h0)))
+
+/-- 20:D17 — For `u > 0` the segment is one turn, up to the two horizontal sides and the reflected segment: the label
+is counted. -/
+theorem norm_Psi_sub_le_of_pos {T u : ℝ} (hT : 0 < T) (hu : 0 < u) :
+    ‖Psi T u - 2 * Real.pi‖ ≤ 2 * (Real.exp (u / 2) / (T * |u|)) := by
+  set g : ℂ → ℂ := dslope (fun s : ℂ => cexp (s * u)) 0 with hg
+  have hgd : DifferentiableOn ℂ g Set.univ :=
+    (differentiableOn_dslope Filter.univ_mem).mpr
+      (by fun_prop : Differentiable ℂ fun s : ℂ => cexp (s * u)).differentiableOn
+  have hgs : ∀ s : ℂ, s ≠ 0 → g s = F u s - s⁻¹ := by
+    intro s hs
+    rw [hg, dslope_of_ne _ hs, slope_def_field]
+    unfold F
+    simp only [zero_mul, Complex.exp_zero, sub_zero]
+    field_simp
+  have hrect := integral_boundary_rect_eq_zero_of_differentiableOn g
+    (⟨-(1 / 2), -T⟩ : ℂ) (⟨1 / 2, T⟩ : ℂ) (hgd.mono (Set.subset_univ _))
+  simp only at hrect
+  rw [g_horizontal u (neg_ne_zero.mpr hT.ne') g hgs, g_horizontal u hT.ne' g hgs,
+    g_vertical u (by norm_num : (1 / 2 : ℝ) ≠ 0) g hgs, g_vertical u (by norm_num : (-(1 / 2) : ℝ) ≠ 0) g hgs,
+    horizontal_inv (neg_ne_zero.mpr hT.ne'), horizontal_inv hT.ne', left_eq, left_inv_eq] at hrect
+  have hright := vertical_inv (r := 1 / 2) (a := -T) (b := T) (by norm_num)
+  have hlog := log_sum hT
+  have hbot := horizontal_le (T := T) (u := u) (a := -(1 / 2)) (b := 1 / 2) (y := -T) hT
+    (by simp [abs_of_pos hT]) (by norm_num) hu.ne'
+  have htop := horizontal_le (T := T) (u := u) (a := -(1 / 2)) (b := 1 / 2) (y := T) hT
+    (abs_of_pos hT) (by norm_num) hu.ne'
+  have hneg := norm_Psi_le_of_neg (T := T) (u := -u) hT (by linarith)
+  have hid : I • (Psi T u - 2 * Real.pi) = (∫ x in (-(1 / 2) : ℝ)..(1 / 2), F u ((x : ℂ) + (T : ℝ) * I)) -
+      (∫ x in (-(1 / 2) : ℝ)..(1 / 2), F u ((x : ℂ) + (-T : ℝ) * I)) - I • Psi T (-u) := by
+    simp only [Psi, smul_eq_mul] at hrect hright ⊢
+    linear_combination hrect + 2 * hright + hlog
+  have hnorm : ‖Psi T u - 2 * Real.pi‖ = ‖I • (Psi T u - 2 * Real.pi)‖ := by simp
+  rw [hnorm, hid]
+  have e1 : Real.exp (1 / 2 * u) = Real.exp (u / 2) := by congr 1; ring
+  have e2 : Real.exp (-(1 / 2) * u) = Real.exp (-u / 2) := by congr 1; ring
+  rw [e1, e2] at hbot htop
+  rw [abs_neg, abs_of_pos hu] at hneg
+  rw [abs_of_pos hu]
+  have hI : ‖I • Psi T (-u)‖ = ‖Psi T (-u)‖ := by simp
+  calc ‖(∫ x in (-(1 / 2) : ℝ)..(1 / 2), F u ((x : ℂ) + (T : ℝ) * I)) -
+      (∫ x in (-(1 / 2) : ℝ)..(1 / 2), F u ((x : ℂ) + (-T : ℝ) * I)) - I • Psi T (-u)‖
+      ≤ ‖∫ x in (-(1 / 2) : ℝ)..(1 / 2), F u ((x : ℂ) + (T : ℝ) * I)‖ +
+        ‖∫ x in (-(1 / 2) : ℝ)..(1 / 2), F u ((x : ℂ) + (-T : ℝ) * I)‖ + ‖I • Psi T (-u)‖ :=
+        (norm_sub_le _ _).trans (add_le_add_left (norm_sub_le _ _) _)
+    _ ≤ (Real.exp (u / 2) - Real.exp (-u / 2)) / (u * T) + (Real.exp (u / 2) - Real.exp (-u / 2)) / (u * T) +
+        2 * (Real.exp (-u / 2) / (T * u)) := by
+        rw [hI]; exact add_le_add (add_le_add htop hbot) hneg
+    _ = 2 * (Real.exp (u / 2) / (T * u)) := by
+        field_simp; ring
+
+/-- 20:D17 — the step of one label in the count below the height `T`, at `u = log (x / n)` [chart]:
+`(1/2π) ∫_{-T}^{T} e^{(1/2 - it) u} / (1/2 - it) dt`. -/
+noncomputable def step (T u : ℝ) : ℂ :=
+  ((1 / (2 * Real.pi) : ℝ) : ℂ) * ∫ t in (-T)..T, cexp ((1 / 2 - (t : ℂ) * I) * u) / (1 / 2 - (t : ℂ) * I)
+
+theorem step_eq (T u : ℝ) : step T u = ((1 / (2 * Real.pi) : ℝ) : ℂ) * Psi T u := by
+  unfold step Psi
+  congr 1
+  have := intervalIntegral.integral_comp_neg (a := -T) (b := T) (fun y : ℝ => F u (((1 / 2 : ℝ) : ℂ) + (y : ℂ) * I))
+  simp only [neg_neg] at this
+  rw [← this]
+  refine intervalIntegral.integral_congr (fun t _ => ?_)
+  simp only [F]
+  push_cast
+  ring_nf
+
+/-- 20:D17 — **the truncation bound of Perron's formula for one label** [chart]. Below the height `T` the step of a label at
+`u = log (x / n) ≠ 0` is the indicator of `u > 0` up to `e^{u/2} / (π T |u|)`. -/
+theorem step_bound {T u : ℝ} (hT : 0 < T) (hu : u ≠ 0) :
+    ‖step T u - (if 0 < u then 1 else 0)‖ ≤ Real.exp (u / 2) / (Real.pi * T * |u|) := by
+  have hpi := Real.pi_pos
+  have hc : (0 : ℝ) < 1 / (2 * Real.pi) := by positivity
+  rw [step_eq]
+  rcases lt_or_gt_of_ne hu with hneg | hpos
+  · rw [show (if 0 < u then (1 : ℂ) else 0) = 0 from by simp [not_lt.mpr hneg.le], sub_zero, norm_mul,
+      Complex.norm_real, Real.norm_of_nonneg hc.le]
+    calc 1 / (2 * Real.pi) * ‖Psi T u‖ ≤ 1 / (2 * Real.pi) * (2 * (Real.exp (u / 2) / (T * |u|))) :=
+          mul_le_mul_of_nonneg_left (norm_Psi_le_of_neg hT hneg) hc.le
+      _ = Real.exp (u / 2) / (Real.pi * T * |u|) := by field_simp
+  · rw [show (if 0 < u then (1 : ℂ) else 0) = 1 from by simp [hpos]]
+    have h1 : ((1 / (2 * Real.pi) : ℝ) : ℂ) * Psi T u - 1 = ((1 / (2 * Real.pi) : ℝ) : ℂ) * (Psi T u - 2 * Real.pi) := by
+      push_cast; field_simp
+    rw [h1, norm_mul, Complex.norm_real, Real.norm_of_nonneg hc.le]
+    calc 1 / (2 * Real.pi) * ‖Psi T u - 2 * Real.pi‖ ≤ 1 / (2 * Real.pi) * (2 * (Real.exp (u / 2) / (T * |u|))) :=
+          mul_le_mul_of_nonneg_left (norm_Psi_sub_le_of_pos hT hpos) hc.le
+      _ = Real.exp (u / 2) / (Real.pi * T * |u|) := by field_simp
+
+/-- 20:D16 — the dual of a vector on a window in the chart of a mode [chart]: its Dirichlet polynomial at the height `t`,
+with `n^{-1/2 + it}` written as `e^{(-1/2 + it) log n}`. -/
+noncomputable def dual (s : Finset ℕ) (w : ℕ → ℝ) (t : ℝ) : ℂ :=
+  ∑ n ∈ s, (w n : ℂ) * cexp ((-(1 / 2) + (t : ℂ) * I) * (Real.log (n : ℝ) : ℂ))
+
+/-- 20:D16 — the count of a window from its dual below the height `T`, at the position `x` [chart]:
+`(1/2π) ∫_{-T}^{T} ŵ(t) x^{1/2 - it} / (1/2 - it) dt`. -/
+noncomputable def count (s : Finset ℕ) (w : ℕ → ℝ) (T x : ℝ) : ℂ :=
+  ((1 / (2 * Real.pi) : ℝ) : ℂ) *
+    ∫ t in (-T)..T, dual s w t * (cexp ((1 / 2 - (t : ℂ) * I) * (Real.log x : ℂ)) / (1 / 2 - (t : ℂ) * I))
+
+/-- 20:D17 — on the labels `1, …, H` of a window the dual is the sum of the window of 20:D13 at `σ = -1/2`. -/
+theorem dual_eq_windowSum (H : ℕ) (w : ℕ → ℝ) (t : ℝ) :
+    dual (Finset.Icc 1 H) w t = FRC.Chart.windowSum H w (-(1 / 2)) t := by
+  unfold dual FRC.Chart.windowSum
+  refine Finset.sum_congr rfl (fun n hn => ?_)
+  have hn0 : (n : ℂ) ≠ 0 := by
+    have h1 := (Finset.mem_Icc.mp hn).1
+    exact_mod_cast (by omega : n ≠ 0)
+  rw [Complex.cpow_def_of_ne_zero hn0, ← Complex.natCast_log]
+  congr 2
+  push_cast
+  ring
+
+/-- 20:D17 — Label by label the count is the sum of the steps. -/
+theorem count_eq_sum (s : Finset ℕ) (w : ℕ → ℝ) {T x : ℝ} (hx : 0 < x) (hs : ∀ n ∈ s, 0 < n) :
+    count s w T x = ∑ n ∈ s, (w n : ℂ) * step T (Real.log (x / n)) := by
+  unfold count dual step
+  have hcont : ∀ n ∈ s, IntervalIntegrable (fun t : ℝ =>
+      (w n : ℂ) * cexp ((-(1 / 2) + (t : ℂ) * I) * (Real.log (n : ℝ) : ℂ)) *
+      (cexp ((1 / 2 - (t : ℂ) * I) * (Real.log x : ℂ)) / (1 / 2 - (t : ℂ) * I))) volume (-T) T := by
+    intro n _
+    refine (Continuous.mul (by fun_prop) (Continuous.div (by fun_prop) (by fun_prop)
+      (fun t h0 => ?_))).intervalIntegrable _ _
+    have := congrArg Complex.re h0
+    simp at this
+  simp_rw [Finset.sum_mul]
+  rw [intervalIntegral.integral_finsetSum hcont, Finset.mul_sum]
+  refine Finset.sum_congr rfl (fun n hn => ?_)
+  have hn0 : (0 : ℝ) < n := by exact_mod_cast hs n hn
+  rw [Real.log_div hx.ne' hn0.ne']
+  have hterm : ∫ t in (-T)..T, (w n : ℂ) * cexp ((-(1 / 2) + (t : ℂ) * I) * (Real.log (n : ℝ) : ℂ)) *
+      (cexp ((1 / 2 - (t : ℂ) * I) * (Real.log x : ℂ)) / (1 / 2 - (t : ℂ) * I)) =
+      (w n : ℂ) * ∫ t in (-T)..T, cexp ((1 / 2 - (t : ℂ) * I) * ((Real.log x - Real.log (n : ℝ) : ℝ) : ℂ)) /
+        (1 / 2 - (t : ℂ) * I) := by
+    rw [← intervalIntegral.integral_const_mul]
+    refine intervalIntegral.integral_congr (fun t _ => ?_)
+    have : cexp ((1 / 2 - (t : ℂ) * I) * ((Real.log x - Real.log (n : ℝ) : ℝ) : ℂ)) =
+        cexp ((-(1 / 2) + (t : ℂ) * I) * (Real.log (n : ℝ) : ℂ)) * cexp ((1 / 2 - (t : ℂ) * I) * (Real.log x : ℂ)) := by
+      rw [← Complex.exp_add]; congr 1; push_cast; ring
+    rw [this]; ring
+  rw [hterm]; ring
+
+/-- 20:D17 — **the truncation bound of the count of a window** [chart]. For every finite set of labels, every real vector on it,
+every position `x` that is no label of the set and every height `T`, the count below the height `T` is the count of
+the vector below `x` up to `(1/πT) Σ |w(n)| √(x/n) / |log (x/n)|`. -/
+theorem count_bound (s : Finset ℕ) (w : ℕ → ℝ) {T x : ℝ} (hT : 0 < T) (hx : 0 < x)
+    (hs : ∀ n ∈ s, 0 < n) (hne : ∀ n ∈ s, (n : ℝ) ≠ x) :
+    ‖count s w T x - ((∑ n ∈ s.filter (fun n : ℕ => (n : ℝ) < x), w n : ℝ) : ℂ)‖ ≤
+      1 / (Real.pi * T) * ∑ n ∈ s, |w n| * (Real.sqrt (x / n) / |Real.log (x / n)|) := by
+  have hpi := Real.pi_pos
+  have hcast : ((∑ n ∈ s.filter (fun n : ℕ => (n : ℝ) < x), w n : ℝ) : ℂ) =
+      ∑ n ∈ s, if (n : ℝ) < x then (w n : ℂ) else 0 := by
+    rw [Finset.sum_filter, Complex.ofReal_sum]
+    refine Finset.sum_congr rfl (fun n _ => ?_)
+    split_ifs <;> simp
+  rw [count_eq_sum s w hx hs, hcast, ← Finset.sum_sub_distrib, Finset.mul_sum]
+  refine (norm_sum_le _ _).trans (Finset.sum_le_sum (fun n hn => ?_))
+  have hn0 : (0 : ℝ) < n := by exact_mod_cast hs n hn
+  have hq : 0 < x / n := div_pos hx hn0
+  have hu : Real.log (x / n) ≠ 0 := by
+    intro h0
+    rcases Real.log_eq_zero.mp h0 with h | h | h
+    · linarith
+    · exact hne n hn (by field_simp at h; linarith)
+    · linarith
+  have hiff : (0 < Real.log (x / n)) ↔ ((n : ℝ) < x) := by
+    rw [Real.log_pos_iff hq.le, lt_div_iff₀ hn0, one_mul]
+  have hstep := step_bound hT hu
+  have hsqrt : Real.exp (Real.log (x / n) / 2) = Real.sqrt (x / n) := by
+    rw [Real.sqrt_eq_rpow, Real.rpow_def_of_pos hq]; congr 1; ring
+  have hterm : (w n : ℂ) * step T (Real.log (x / n)) - (if (n : ℝ) < x then (w n : ℂ) else 0) =
+      (w n : ℂ) * (step T (Real.log (x / n)) - (if 0 < Real.log (x / n) then 1 else 0)) := by
+    by_cases h : (n : ℝ) < x
+    · simp [h, hiff.mpr h]; ring
+    · simp [h, mt hiff.mp h]
+  rw [hterm, norm_mul, Complex.norm_real, Real.norm_eq_abs]
+  calc |w n| * ‖step T (Real.log (x / n)) - (if 0 < Real.log (x / n) then 1 else 0)‖
+      ≤ |w n| * (Real.exp (Real.log (x / n) / 2) / (Real.pi * T * |Real.log (x / n)|)) :=
+        mul_le_mul_of_nonneg_left hstep (abs_nonneg _)
+    _ = 1 / (Real.pi * T) * (|w n| * (Real.sqrt (x / n) / |Real.log (x / n)|)) := by
+        rw [hsqrt]; field_simp
+
+end FRC.Chart.Perron
 
 /-! inlined: FrcMathlib/Theme/Strong.lean (verbatim, minus its import lines) -/
 
@@ -2172,6 +2652,34 @@ theorem dispersion_symbol (k : ℝ) : 2 - 2 * cos k = 4 * sin (k / 2) ^ 2 := by
   rw [show 2 * (k / 2) = k by ring] at h
   rw [h, Real.cos_sq']; ring
 
+/-- 21:C15 — the cyclotomic zero set of the central-difference complex on the odd cycle `C_p` (the review of
+21 November 2026): for `ζ` a primitive `p`-th root of unity, `p` an odd prime and `0 < k < p`, the symbol of
+`D = (T − T⁻¹)/2`, `ζ^k − ζ^{−k}`, and the symbol of `K = −D²`, `2 − ζ^{2k} − ζ^{−2k} = −(ζ^k − ζ^{−k})²`, are both
+nonzero: `ζ^{2k} = 1` forces `p ∣ 2k`, hence `p ∣ k`. The statement is the chart's (characteristic zero); the
+`𝔽_p`-valued character symbol is the core's `FRC.Lattice.cdiff_symbol`. -/
+theorem central_symbol_nonzero {p : ℕ} (hp : p.Prime) (hodd : p ≠ 2) {ζ : ℂ} (hζ : IsPrimitiveRoot ζ p)
+    {k : ℕ} (hk0 : 0 < k) (hkp : k < p) :
+    ζ ^ k - ζ⁻¹ ^ k ≠ 0 ∧ 2 - ζ ^ (2 * k) - ζ⁻¹ ^ (2 * k) ≠ 0 := by
+  have hζ0 : ζ ≠ 0 := hζ.ne_zero hp.ne_zero
+  have hunit : ζ ^ k * ζ⁻¹ ^ k = 1 := by rw [← mul_pow, mul_inv_cancel₀ hζ0, one_pow]
+  have h1 : ζ ^ k - ζ⁻¹ ^ k ≠ 0 := by
+    intro h
+    have hsq : ζ ^ (2 * k) = 1 := by
+      have e : ζ ^ k = ζ⁻¹ ^ k := sub_eq_zero.mp h
+      calc ζ ^ (2 * k) = ζ ^ k * ζ ^ k := by rw [two_mul, pow_add]
+        _ = ζ ^ k * ζ⁻¹ ^ k := by rw [← e]
+        _ = 1 := hunit
+    have hdvd : p ∣ 2 * k := (hζ.pow_eq_one_iff_dvd (2 * k)).mp hsq
+    rcases (Nat.Prime.dvd_mul hp).mp hdvd with h2 | hk
+    · exact hodd ((Nat.prime_dvd_prime_iff_eq hp Nat.prime_two).mp h2)
+    · exact (Nat.ne_of_gt hk0) (Nat.eq_zero_of_dvd_of_lt hk hkp)
+  refine ⟨h1, ?_⟩
+  have e2 : 2 - ζ ^ (2 * k) - ζ⁻¹ ^ (2 * k) = -(ζ ^ k - ζ⁻¹ ^ k) ^ 2 := by
+    have a : ζ ^ (2 * k) = (ζ ^ k) ^ 2 := by rw [← pow_mul, mul_comm]
+    have b : ζ⁻¹ ^ (2 * k) = (ζ⁻¹ ^ k) ^ 2 := by rw [← pow_mul, mul_comm]
+    rw [a, b]; linear_combination (-2 : ℂ) * hunit
+  rw [e2]; exact neg_ne_zero.mpr (pow_ne_zero 2 h1)
+
 /-- 21:C1 — the coherent coefficient: a locked cluster of `m` cells with one phase sums with
 coefficient exactly `m`, `‖Σ_{j<m} z‖ = m ‖z‖`; the incoherent `O(√m)` and the gradient flow are not formal
 content. -/
@@ -2262,6 +2770,22 @@ theorem preferred_frame_scale : (2.7e-62 : ℝ) < 1 / √(1.3e123) ∧ 1 / √(1
   · rw [one_div_lt hs (by norm_num), Real.lt_sqrt (by norm_num)]; norm_num
 
 end series
+
+/-! ## The demand functional (21:C11; 21 November 2026) -/
+section demand
+
+/-- 21:C11 — the registered winding rate `Σ_m m w_m` over the normalised sector weights `w_m = a_m / Σ_k a_k` is
+invariant under one multiplier common to every sector: with each weight scaled by the same `c ≠ 0` (the squared modulus
+of the cell-wise multiplier, `|cψ_m|² = |c|²|ψ_m|²`), every normalised weight and the functional are unchanged. The
+statement over a field; the tally-ring instances `ℤ[ζ₈]`, `ℤ[ζ₁₂]`, `ℤ[ζ₁₃]` are the python check C4. -/
+theorem demand_invariant {K : Type*} [Field K] {ι : Type*} [Fintype ι] (a m : ι → K) (c : K) (hc : c ≠ 0) :
+    (∀ i, (c * a i) / (∑ k, c * a k) = a i / ∑ k, a k) ∧
+    (∑ i, m i * ((c * a i) / (∑ k, c * a k))) = ∑ i, m i * (a i / ∑ k, a k) := by
+  have h : ∀ i, (c * a i) / (∑ k, c * a k) = a i / ∑ k, a k := by
+    intro i; rw [← Finset.mul_sum, mul_div_mul_left _ _ hc]
+  exact ⟨h, by simp_rw [h]⟩
+
+end demand
 
 end FRC.Strong
 

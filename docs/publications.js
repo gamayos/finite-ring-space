@@ -448,8 +448,8 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p21_gravity.ipynb",
         "label": "python",
-        "count": 45,
-        "title": "45 predicates checked, all passing: the notebook p21_gravity.ipynb on Google Colab, one cell per predicate"
+        "count": 46,
+        "title": "46 predicates checked, all passing: the notebook p21_gravity.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Gravity.lean",
@@ -866,4 +866,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "24 November 2026";
+const GENERATED = "27 November 2026";

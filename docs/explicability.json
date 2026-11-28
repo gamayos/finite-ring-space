@@ -1,5 +1,5 @@
 {
- "generated": "26 November 2026",
+ "generated": "27 November 2026",
  "rows": [
   {
    "id": "00:X1",
@@ -375,7 +375,7 @@
    "tag": "T",
    "lean_name": "cosmological_constant_magnitude",
    "predicate": "\\textbf{The cosmological-constant magnitude.} $\\Lambda\\sim1/\\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked.",
-   "source": "\\S\\ref{sec:intro}\\newline \\pywit{gravity}{p21041}{X1}, \\leanwit{FrcCore}{p21041}{X1}; rests on A1, B8, C14 \\lean{FRC.Grav.closed\\_chart}",
+   "source": "Cor.~\\ref{cor:explains}\\newline \\pywit{gravity}{p21041}{X1}, \\leanwit{FrcCore}{p21041}{X1}; rests on A1, B8, C14 \\lean{FRC.Grav.closed\\_chart}",
    "master": [],
    "restated": [
     "32:X9",
@@ -392,7 +392,7 @@
    "tag": "T",
    "lean_name": "no_dark_matter_particle",
    "predicate": "\\textbf{No dark-matter particle.} The radial acceleration relation is a registration crossover of the resolution floor, not evidence for undetected mass: galactic dynamics require no dark sector beyond the floor already fixed by $\\Omega$.",
-   "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21042}{X2}, \\leanwit{FrcMathlib}{p21042}{X2}; rests on A1, B9, C19, 00:L1 \\lean{Gravity.crossover\\_deep\\_limit}",
+   "source": "Cor.~\\ref{cor:explains}; Cor.~\\ref{cor:rar}, Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21042}{X2}, \\leanwit{FrcMathlib}{p21042}{X2}; rests on A1, B9, C19, 00:L1 \\lean{Gravity.crossover\\_deep\\_limit}",
    "master": [],
    "restated": [
     "32:X11"
@@ -438,7 +438,7 @@
    "tag": "T",
    "lean_name": "no_graviton_quantisation_problem",
    "predicate": "\\textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise.",
-   "source": "\\S\\ref{sub:radiative}\\newline \\pywit{gravity}{p21045}{X5}, \\leanwit{FrcCore}{p21045}{X5}; rests on B1, C15 \\lean{FRC.Lattice.laplacian\\_symbol}",
+   "source": "Cor.~\\ref{cor:explains}; Prop.~\\ref{prop:graviton}\\newline \\pywit{gravity}{p21045}{X5}, \\leanwit{FrcCore}{p21045}{X5}; rests on B1, C15 \\lean{FRC.Lattice.laplacian\\_symbol}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -452,7 +452,7 @@
    "tag": "T",
    "lean_name": "equivalence_principle_not_postulate",
    "predicate": "\\textbf{The equivalence principle} is an identity, not a postulate.",
-   "source": "Cor.~\\ref{cor:equiv}\\newline \\pywit{gravity}{p21047}{X7}, \\leanwit{FrcCore}{p21047}{X7}; rests on C4, C20 \\lean{FRC.Relaxation.equivalence\\_cancel}",
+   "source": "Cor.~\\ref{cor:explains}; Cor.~\\ref{cor:equiv}\\newline \\pywit{gravity}{p21047}{X7}, \\leanwit{FrcCore}{p21047}{X7}; rests on C4, C20 \\lean{FRC.Relaxation.equivalence\\_cancel}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -466,7 +466,7 @@
    "tag": "T",
    "lean_name": "weakness_gravity_cardinality_dilution",
    "predicate": "\\textbf{The weakness of gravity} is cardinality dilution, not a hierarchy to be tuned.",
-   "source": "\\S\\ref{sub:G}\\newline \\pywit{gravity}{p21048}{X8}, \\leanwit{FrcMathlib}{p21048}{X8} \\lean{Gravity.dilution}",
+   "source": "Cor.~\\ref{cor:explains}; Prop.~\\ref{prop:G}\\newline \\pywit{gravity}{p21048}{X8}, \\leanwit{FrcMathlib}{p21048}{X8} \\lean{Gravity.dilution}",
    "master": [],
    "restated": [
     "38:X1"

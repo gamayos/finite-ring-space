@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """The framework's gates G09, G10, G12, G13, G14, G15 and G19 (ledger migration, tasks LM14, LM20, LM21, LM33 and LM34,
-5–7 October 2026).
+5–7 October 2026), and G20 (task T138, 26 November 2026).
 
-    python3 ci/gates.py [all|g09|g10|g12|g13|g14|g15|g19] [--root=PATH] [--release=PAPER] [--tickets=FILE]
+    python3 ci/gates.py [all|g09|g10|g12|g13|g14|g15|g19|g20] [--root=PATH] [--release=PAPER] [--tickets=FILE]
 
 G09  imports follow the layers of the theme map (frc/themes.py): a file imports only files of lower rank, or the files
      listed before it in its own theme; a ledger file imports themes; nothing imports a ledger file. The exact tiers have
@@ -44,6 +44,16 @@ G19  no core statement asserts unboundedness: no theorem of FrcCore states a qua
      bounded below by a variable and above by nothing, or an existential over ℕ with no upper bound in its scope and no
      equation fixing it from bounded data; the audit's M11), and none names Infinite, Set.Infinite, Filter.atTop or
      Tendsto.
+G20  the core is plain source on a repaired kernel (26 November 2026). A file of FrcCore or FrcBridge imports files of
+     the two libraries only. Outside its comments it has no command that runs code at elaboration or extends the syntax
+     (elab, macro, syntax, notation, infix, prefix, postfix, run_cmd, run_elab, run_meta, initialize, #eval), no
+     compiled code under a proof (native_decide, bv_decide, unsafe, implemented_by, extern, csimp), no axiom, no sorry,
+     and no option but a linter's, maxRecDepth and maxHeartbeats. The build file is lakefile.toml alone, and it passes no
+     option, argument, plugin or library to Lean. lean/lean-toolchain names a release at or above v4.34.0. Lean's
+     release notes list the defects of the kernel that accepted a proof of False: v4.32.1, v4.33.0 and v4.34.0 repair
+     them, and each needs a metaprogram in the kernel's process or a constructed input, which the clauses above
+     exclude. A toolchain below v4.34.1 is reported: that release repairs the runtime's reference counts above 2^31,
+     which need 18 GB of memory to reach. A release manifest cut on a toolchain below the floor is reported.
 
 Exit 1 when a gated check fails. Standard library only.
 """
@@ -487,6 +497,56 @@ def g19(fw):
     return n
 
 
+# ---- G20 ------------------------------------------------------------------------------------------------------------
+KERNEL_FLOOR, RUNTIME_FLOOR = (4, 34, 0), (4, 34, 1)
+PLAIN_LIBS = ("FrcCore", "FrcBridge")
+COMMANDS = re.compile(r"^[ \t]*(?:@\[[^\]\n]*\][ \t]*)?(?:(?:local|scoped|private|protected|noncomputable)[ \t]+)*"
+                      r"(elab(?:_rules)?|macro(?:_rules)?|syntax|declare_syntax_cat|notation|infix[lr]?|prefix|postfix|run_cmd|run_elab|run_meta"
+                      r"|(?:builtin_)?initialize|#eval|axiom)(?![\w'])", re.M)
+WORDS = re.compile(r"(?<![\w.'])(native_decide|bv_decide|ofReduceBool|reduceBool|reduceNat|trustCompiler|unsafe|implemented_by|extern|csimp|sorry|admit)(?![\w'])")
+OPTIONS = re.compile(r"linter\.[\w.]+|maxRecDepth|maxHeartbeats")
+BUILD = re.compile(r"leanOptions|moreLeanArgs|weakLeanArgs|plugins|dynlibs|precompileModules")
+
+
+def plain_source(text):
+    """The reasons a file of the core is not plain source (gate G20): an import from outside the core, a command that
+    runs code at elaboration or extends the syntax, compiled code under a proof, an axiom, an unproved step, or an
+    option other than a linter's, maxRecDepth and maxHeartbeats. Comments are not read."""
+    body = strip_lean(text)
+    out = [f"imports {m}" for m in re.findall(r"^import\s+(\S+)", body, re.M) if m.split(".")[0] not in PLAIN_LIBS]
+    out += [f"the command {m.group(1)}" for m in COMMANDS.finditer(body)]
+    out += [f"the word {m.group(1)}" for m in WORDS.finditer(body)]
+    out += [f"the option {o}" for o in re.findall(r"set_option\s+(\S+)", body) if not OPTIONS.fullmatch(o)]
+    return out
+
+
+def lean_release(s):
+    """leanprover/lean4:v4.34.0 -> (4, 34, 0); None for a release candidate, a nightly or anything else."""
+    m = re.fullmatch(r"leanprover/lean4:v(\d+)\.(\d+)\.(\d+)", s.strip())
+    return tuple(int(x) for x in m.groups()) if m else None
+
+
+def g20():
+    import json
+    files = [p for lib in PLAIN_LIBS for p in sorted((ROOT / "lean" / lib).rglob("*.lean")) + [ROOT / "lean" / f"{lib}.lean"]
+             if p.exists() and "_to_delete" not in p.parts]
+    for p in files:
+        for why in plain_source(p.read_text(encoding="utf-8")): fail("G20", f"{p.relative_to(ROOT)}: {why}")
+    lake = ROOT / "lean" / "lakefile.toml"
+    if (ROOT / "lean" / "lakefile.lean").exists() or not lake.exists(): fail("G20", "lean: the build file is not lakefile.toml alone")
+    else:
+        for m in BUILD.finditer(re.sub(r"#[^\n]*", "", lake.read_text(encoding="utf-8"))): fail("G20", f"lean/lakefile.toml: {m.group(0)}")
+    v = lambda t: "v" + ".".join(map(str, t))
+    tc = (ROOT / "lean" / "lean-toolchain").read_text(encoding="utf-8").strip(); got = lean_release(tc)
+    if got is None: fail("G20", f"lean/lean-toolchain: {tc} is not a release")
+    elif got < KERNEL_FLOOR: fail("G20", f"lean/lean-toolchain: {tc} is below {v(KERNEL_FLOOR)}, the release that repairs the kernel")
+    elif got < RUNTIME_FLOOR: report("G20", f"lean/lean-toolchain: {tc} is below {v(RUNTIME_FLOOR)}, the release that repairs the runtime's reference counts above 2^31")
+    for f in sorted((ROOT / "releases").glob("frc-*.json")):
+        t = json.loads(f.read_text(encoding="utf-8")).get("lean", {}).get("toolchain", ""); w = lean_release(t)
+        if w is None or w < KERNEL_FLOOR: report("G20", f"{f.relative_to(ROOT)}: cut on {t or 'no recorded toolchain'}, below {v(KERNEL_FLOOR)}")
+    return len(files)
+
+
 PLANNED = {}
 
 def main():
@@ -500,10 +560,11 @@ def main():
     n14 = g14(next((a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--release=")), None)) if which in ("all", "g14") else 0
     n15 = g15() if which in ("all", "g15") else 0
     n19 = g19(fw) if which in ("all", "g19") else 0
+    n20 = g20() if which in ("all", "g20") else 0
     for r in REPORTS: print(r)
     for t in file_tickets(): print(t)
     for f in FAILS: print("FAIL", f)
-    print(f"gates {which}: {len(fw)} framework files; {n12} migrated ledger(s) checked (G12); {n13} notebook(s) executed (G13); {n14} bridge pair(s) covered (G14); {n15} pinned paper(s) (G15); {n19} core theorems scanned (G19); {len(REPORTS)} report(s); {len(TICKETS)} ticket(s); "
+    print(f"gates {which}: {len(fw)} framework files; {n12} migrated ledger(s) checked (G12); {n13} notebook(s) executed (G13); {n14} bridge pair(s) covered (G14); {n15} pinned paper(s) (G15); {n19} core theorems scanned (G19); {n20} plain core file(s) (G20); {len(REPORTS)} report(s); {len(TICKETS)} ticket(s); "
           + ("green" if not FAILS else f"{len(FAILS)} failure(s)"))
     sys.exit(1 if FAILS else 0)
 

@@ -845,7 +845,9 @@ import FrcMathlib
 #print axioms FRC.Gravity.interpolant_discriminant
 #print axioms FRC.Gravity.scale_invariance_iff
 #print axioms FRC.Gravity.dispersion_symbol
+#print axioms FRC.Gravity.central_symbol_nonzero
 #print axioms FRC.Gravity.locked_sum
+#print axioms FRC.Gravity.demand_invariant
 #print axioms FRC.Gravity.exponential_reading
 #print axioms FRC.Gravity.pn_series
 #print axioms FRC.Gravity.preferred_frame_scale
@@ -2225,10 +2227,12 @@ import FrcMathlib
 #print axioms FRC.Strong.interpolant_discriminant
 #print axioms FRC.Strong.scale_invariance_iff
 #print axioms FRC.Strong.dispersion_symbol
+#print axioms FRC.Strong.central_symbol_nonzero
 #print axioms FRC.Strong.locked_sum
 #print axioms FRC.Strong.exponential_reading
 #print axioms FRC.Strong.pn_series
 #print axioms FRC.Strong.preferred_frame_scale
+#print axioms FRC.Strong.demand_invariant
 #print axioms FRC.YangMillsML.sq
 #print axioms FRC.YangMillsML.sq_succ_succ
 #print axioms FRC.YangMillsML.faulhaber_third_all

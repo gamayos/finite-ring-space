@@ -16927,7 +16927,10 @@ On the cycle of `n` sites (`FRC.Cycle.cyc`, the fourier theme's `Theme/Shift.lea
 functional, whose symbol lines are `Theme/Symbol.lean`'s (00:E1); the one-sided difference's adjoint is the negative
 backward difference (`forward_difference_adjoint`); and the cycle Laplacian `f(i + 1) + f(i − 1) − 2f(i)` acts on the
 character `χ_k(i) = g^{ki}` as the symbol `g^k + g^{−k} − 2` (`laplacian_symbol`, 21:C15; the pattern of 8:F4). The
-sums are reindexed by the cycle's shift (`sum_shift`). No axioms.
+sums are reindexed by the cycle's shift (`sum_shift`). The central difference acts on the same character as the symbol
+`g^k − g^{−k}` (`cdiff_symbol`), which vanishes exactly when `g^{2k} = 1` (`cdiff_symbol_zero_iff`), and on an odd prime
+cycle `2k ≡ 0` forces `k ≡ 0` (`two_mul_mod_odd_prime`): the exponent face of the cyclotomic zero set of 21:C15, whose
+characteristic-zero statement is FrcMathlib's `FRC.Strong.central_symbol_nonzero` (21 November 2026). No axioms.
 -/
 
 namespace FRC.Lattice
@@ -17013,6 +17016,89 @@ theorem laplacian_symbol (n : Nat) (hn : 0 < n) {g : Shell p} (hg : g ^ n = 1) (
   show cyc n (chi n g k) (i + 1) + cyc n (chi n g k) (i + (n - 1)) + -((1 + 1) * cyc n (chi n g k) i) = _
   rw [e1, e2, chi_cyc n hn, right_distrib (g ^ k + g ^ (k * (n - 1))) (-(1 + 1)) (chi n g k i),
     right_distrib (g ^ k) (g ^ (k * (n - 1))) (chi n g k i), neg_mul]
+
+/-! ## The central difference on the character and its zero set (21:C15; 21 November 2026) -/
+
+/-- 21:C15 — the central difference acts on the character `χ_k` as the symbol `g^k − g^{k(n−1)}` (`g^{−k}` on the
+cycle): `(Δχ_k)(i) = (g^k − g^{k(n−1)}) χ_k(i)` for `gⁿ = 1`. The `𝔽_p`-valued statement; the cyclotomic one is
+FrcMathlib's `FRC.Strong.central_symbol_nonzero`. -/
+theorem cdiff_symbol (n : Nat) (hn : 0 < n) {g : Shell p} (hg : g ^ n = 1) (k i : Nat) :
+    cdiff n (chi n g k) i = (g ^ k + -(g ^ (k * (n - 1)))) * chi n g k i := by
+  have hk : (g ^ k) ^ n = 1 := by rw [pow_mul_comm, hg, one_pow]
+  have e1 : cyc n (chi n g k) (i + 1) = g ^ k * chi n g k i := by
+    rw [chi_cyc n hn]
+    show g ^ (k * ((i + 1) % n)) = g ^ k * g ^ (k * (i % n))
+    rw [pow_mul, pow_mul, ← pow_mod n hn hk (i + 1), ← pow_mod n hn hk i, pow_succ, mul_comm]
+  have e2 : cyc n (chi n g k) (i + (n - 1)) = g ^ (k * (n - 1)) * chi n g k i := by
+    rw [chi_cyc n hn]
+    show g ^ (k * ((i + (n - 1)) % n)) = g ^ (k * (n - 1)) * g ^ (k * (i % n))
+    rw [pow_mul, pow_mul, pow_mul, ← pow_mod n hn hk (i + (n - 1)), ← pow_mod n hn hk i, pow_add, mul_comm]
+  show cyc n (chi n g k) (i + 1) + -(cyc n (chi n g k) (i + (n - 1))) = _
+  rw [e1, e2, right_distrib, neg_mul]
+
+/-- `g^{k(n−1)} · g^k = 1` for `gⁿ = 1`, `n > 0`: the two factors of the symbol are inverse. -/
+theorem symbol_factors_inverse (n : Nat) (hn : 0 < n) {g : Shell p} (hg : g ^ n = 1) (k : Nat) :
+    g ^ (k * (n - 1)) * g ^ k = 1 := by
+  have e : k * (n - 1) + k = n * k := by
+    calc k * (n - 1) + k = k * (n - 1 + 1) := by rw [Nat.mul_succ]
+      _ = k * n := by rw [FRC.Nat.sub_add_cancel (Nat.succ_le_of_lt hn)]
+      _ = n * k := Nat.mul_comm k n
+  rw [← pow_add, e, pow_mul, hg, one_pow]
+
+/-- 21:C15 — the zero set of the central-difference symbol: `g^k − g^{k(n−1)} = 0` exactly when `g^{2k} = 1`
+(for `gⁿ = 1`, `n > 0`). -/
+theorem cdiff_symbol_zero_iff (n : Nat) (hn : 0 < n) {g : Shell p} (hg : g ^ n = 1) (k : Nat) :
+    g ^ k + -(g ^ (k * (n - 1))) = 0 ↔ g ^ (2 * k) = 1 := by
+  have hu := symbol_factors_inverse n hn hg k
+  have two : g ^ (2 * k) = g ^ k * g ^ k := by rw [Nat.two_mul, pow_add]
+  constructor
+  · intro h
+    have e : g ^ k = g ^ (k * (n - 1)) := by
+      have h' := eq_neg_of_add_eq_zero h
+      rw [h', neg_neg]
+    calc g ^ (2 * k) = g ^ k * g ^ k := two
+      _ = g ^ (k * (n - 1)) * g ^ k := congrArg (fun x => x * g ^ k) e
+      _ = 1 := hu
+  · intro h
+    have e : g ^ k = g ^ (k * (n - 1)) := by
+      calc g ^ k = g ^ k * 1 := (mul_one _).symm
+        _ = g ^ k * (g ^ (k * (n - 1)) * g ^ k) := by rw [hu]
+        _ = g ^ (k * (n - 1)) * (g ^ k * g ^ k) := mul_left_comm _ _ _
+        _ = g ^ (k * (n - 1)) * g ^ (2 * k) := by rw [← two]
+        _ = g ^ (k * (n - 1)) := by rw [h, mul_one]
+    rw [e]; exact add_neg _
+
+/-- 21:C15 — the transport identity at the symbol (the quarter of Proposition 7.5(ii); 21 November 2026): the square of
+the central-difference symbol at `k` is the Laplacian's symbol at `2k`, `(g^k − g^{−k})² = g^{2k} + g^{−2k} − 2` for
+`gⁿ = 1`. With the paper's central difference `D = (T − T⁻¹)/2`, which carries one half per step, this reads
+`K = −D² = ¼ P⁻¹ L P` for the relabelling `P : x ↦ 2x`: the quarter is the two halves. -/
+theorem transport_symbol (n : Nat) (hn : 0 < n) {g : Shell p} (hg : g ^ n = 1) (k : Nat) :
+    (g ^ k + -(g ^ (k * (n - 1)))) * (g ^ k + -(g ^ (k * (n - 1)))) =
+      g ^ (2 * k) + g ^ ((2 * k) * (n - 1)) + -(1 + 1) := by
+  have hu := symbol_factors_inverse n hn hg k
+  have hu' : g ^ k * g ^ (k * (n - 1)) = 1 := by rw [mul_comm]; exact hu
+  have e1 : g ^ k * g ^ k = g ^ (2 * k) := by rw [Nat.two_mul, pow_add]
+  have e2 : g ^ (k * (n - 1)) * g ^ (k * (n - 1)) = g ^ ((2 * k) * (n - 1)) := by
+    rw [FRC.Nat.mul_assoc, Nat.two_mul, pow_add]
+  calc (g ^ k + -(g ^ (k * (n - 1)))) * (g ^ k + -(g ^ (k * (n - 1))))
+      = g ^ k * g ^ k + g ^ k * -(g ^ (k * (n - 1))) + (-(g ^ (k * (n - 1))) * g ^ k + -(g ^ (k * (n - 1))) * -(g ^ (k * (n - 1)))) := by
+        rw [right_distrib, left_distrib, left_distrib]
+    _ = g ^ (2 * k) + -1 + (-1 + g ^ ((2 * k) * (n - 1))) := by
+        rw [e1, ← mul_neg, hu', ← neg_mul, hu, ← neg_mul, ← mul_neg, neg_neg, e2]
+    _ = g ^ (2 * k) + g ^ ((2 * k) * (n - 1)) + -(1 + 1) := by
+        rw [neg_add_rev, add_assoc, add_assoc, add_left_comm (-1) (-1) _, ← add_assoc (-1) (-1), add_comm (-1 + -1)]
+
+/-- 21:C15 — on an odd prime cycle the exponent `2k` vanishes exactly when `k` does: `(2k) % q = 0 ↔ k % q = 0` for
+`q` prime with `2 % q ≠ 0`. With `ζ` of order `q` this is the cyclotomic zero set `{k : ζ^{2k} = 1} = {k : q ∣ k}`. -/
+theorem two_mul_mod_odd_prime {q k : Nat} (hq : FRC.Nat.isPrime q) (h2 : 2 % q ≠ 0) : (2 * k) % q = 0 ↔ k % q = 0 := by
+  constructor
+  · intro h
+    rcases FRC.Nat.prime_mul_mod hq h with h2' | hk
+    · exact absurd h2' h2
+    · exact hk
+  · intro h
+    have hq0 : 0 < q := Nat.lt_of_lt_of_le (Nat.zero_lt_succ 1) hq.1
+    rw [Nat.mul_comm 2 k, FRC.Nat.mul_mod k 2 q hq0, h, Nat.zero_mul, FRC.Nat.zero_mod q]
 
 end FRC.Lattice
 
@@ -26092,9 +26178,9 @@ theorem p21023 : (∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.She
 /-- p21025 — 21:C10. No preferred-frame leakage: the Lense--Thirring precession at its observed value [chart], with $\alpha_1,\alpha_2=O(1/\sqrt\Omega)$; the exact face, that transport over the complete norm-one cycle closes with no residual and the dispersion symbol is even, so no secular term and no $O(k)\cdot n$ cross term. -/
 theorem p21025 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν), z.norm = (1 : FRC.Shell p) → ∀ (n : Nat), z ^ n * z.conj ^ n = (1 : FRC.Extension.Ext p ν)) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k i : Nat), FRC.Lattice.lap n (FRC.Lattice.chi n g k) i = (g ^ k + g ^ (k * (n - (1 : Nat))) + -((1 : FRC.Shell p) + (1 : FRC.Shell p))) * FRC.Lattice.chi n g k i :=
   And.intro @FRC.Drift.conj_branch (@FRC.Lattice.laplacian_symbol)
-/-- p21030 — 21:C15. The radiative sector: the quarter-turn conjugate momentum makes the dynamics a wave equation: two helicity-$\pm2$ gravitons at speed $c$, quadrupole radiation; gauge leaves two polarisations. -/
-theorem p21030 : ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k i : Nat), FRC.Lattice.lap n (FRC.Lattice.chi n g k) i = (g ^ k + g ^ (k * (n - (1 : Nat))) + -((1 : FRC.Shell p) + (1 : FRC.Shell p))) * FRC.Lattice.chi n g k i :=
-  @FRC.Lattice.laplacian_symbol
+/-- p21030 — 21:C15. The radiative sector: the quarter-turn conjugate momentum makes the dynamics a wave equation: two helicity-$\pm2$ gravitons at speed $c$, quadrupole radiation; gauge leaves two polarisations; the symbols of the central complex on the odd cycle $C_\p$ decided in the cyclotomic chart ($\Z[\zeta_\p]$ and $\C$), each vanishing at the zero mode alone, the $\F_\p$ character symbol the core's, and $K$ a quarter of the incidence Laplacian transported by $x\mapsto2x$. -/
+theorem p21030 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k i : Nat), FRC.Lattice.lap n (FRC.Lattice.chi n g k) i = (g ^ k + g ^ (k * (n - (1 : Nat))) + -((1 : FRC.Shell p) + (1 : FRC.Shell p))) * FRC.Lattice.chi n g k i) ∧ (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k i : Nat), FRC.Lattice.cdiff n (FRC.Lattice.chi n g k) i = (g ^ k + -g ^ (k * (n - (1 : Nat)))) * FRC.Lattice.chi n g k i) ∧ (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k : Nat), g ^ k + -g ^ (k * (n - (1 : Nat))) = (0 : FRC.Shell p) ↔ g ^ ((2 : Nat) * k) = (1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g : FRC.Shell p}, g ^ n = (1 : FRC.Shell p) → ∀ (k : Nat), (g ^ k + -g ^ (k * (n - (1 : Nat)))) * (g ^ k + -g ^ (k * (n - (1 : Nat)))) = g ^ ((2 : Nat) * k) + g ^ ((2 : Nat) * k * (n - (1 : Nat))) + -((1 : FRC.Shell p) + (1 : FRC.Shell p)) :=
+  And.intro @FRC.Lattice.laplacian_symbol (And.intro @FRC.Lattice.cdiff_symbol (And.intro @FRC.Lattice.cdiff_symbol_zero_iff (@FRC.Lattice.transport_symbol)))
 /-- p21031 — 21:C16. The order-one constants are determined: $c_S'=\tfrac14$ (the $Q_4$ gauge quotient, counted on an instantiated shell and carried by the Carrier identity), the floor's $2\pi$ the full cycle of the angle--count dictionary \citep{dimensions}, its threshold a realisation (Proposition~\ref{prop:afloor}), the recurring constant the solid angle $4\pi$, reducing in the Carrier register to the calibration congruence $(4S)^{2}\equiv1$ (one residue relation). -/
 theorem p21031 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((4 : Nat) * κ) = (-1 : FRC.Shell p) ∧ FRC.Shell.ofNat ((4 : Nat) * κ) * FRC.Shell.ofNat ((4 : Nat) * κ) = (1 : FRC.Shell p)) ∧ (4 : Nat) * (602140 : Nat) = (2408560 : Nat) ∧ (2408560 : FRC.Shell (2408561 : Nat)) = (-1 : FRC.Shell (2408561 : Nat)) ∧ (2408560 : FRC.Shell (2408561 : Nat)) * (2408560 : FRC.Shell (2408561 : Nat)) = (1 : FRC.Shell (2408561 : Nat)) ∧ (2 : FRC.Shell (2408561 : Nat)) * (1204280 : FRC.Shell (2408561 : Nat)) = (-1 : FRC.Shell (2408561 : Nat)) ∧ (-2 : FRC.Shell (2408561 : Nat)) * (1204280 : FRC.Shell (2408561 : Nat)) = (1 : FRC.Shell (2408561 : Nat)) ∧ (2 : FRC.Shell (2408561 : Nat)) * (2408560 : FRC.Shell (2408561 : Nat)) * (1204280 : FRC.Shell (2408561 : Nat)) = (1 : FRC.Shell (2408561 : Nat)) ∧ (18688 : FRC.Shell (2408561 : Nat)) * (18688 : FRC.Shell (2408561 : Nat)) = (-1 : FRC.Shell (2408561 : Nat)) ∧ (2 : FRC.Shell (2408561 : Nat)) * (9344 : FRC.Shell (2408561 : Nat)) = (18688 : FRC.Shell (2408561 : Nat)) ∧ (9344 : FRC.Shell (2408561 : Nat)) * (9344 : FRC.Shell (2408561 : Nat)) = (602140 : FRC.Shell (2408561 : Nat)) :=
   And.intro @FRC.Grav.calibration (@FRC.Grav.lab_register)
@@ -26122,7 +26208,7 @@ theorem p21052 : ∀ (a T H τ c : Nat), a * T = c → T * H = τ → a * τ = c
 /-- p21055 — 21:P6. The 2PN periastron excess for PSR~J0737$-$3039: $\delta\dot\omega/\dot\omega\approx1.5\times10^{-6}$ in the test-particle sector [approx], the comparable-mass terms ($\nu=0.250$) not yet reduced; today degenerate with the mass refit; decisive either way once that sector is reduced and an independent observable fixes $M_{\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \citep{quantum}; the ledger carries both. -/
 theorem p21055 : (6 : Int) * (-4 : Int) / (3 : Int) - (6 : Int) * (-3 : Int) / (2 : Int) = (1 : Int) ∧ (2 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (3 : Int) + (4 : Int) + (1 : Int) = (8 : Int) ∧ (-4 : Int) - (6 : Int) - (2 : Int) = (-12 : Int) ∧ (8 / 4 : Int) = (2 : Int) ∧ (-12 : Int) * (2 : Int) / (8 : Int) = (-3 : Int) :=
   @FRC.Drift.pn_coefficients
-/-- p21062 — 21:C13. Area-law entropy $S=c_S'A_f/\ell_P^2$: the $\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\kap/\p $ exactly), the Carrier identity $S=(\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count \citep{quantum}; an exact merger area law $\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip emission at the first-law temperature $T_{\mathrm S}=\ln^{2}\Omega\,T_H$, the Subject's registered value, luminosity $\ln^{6}\Omega$ times Hawking's, negligible. -/
+/-- p21062 — 21:C13. Area-law entropy $S=c_S'A_f/\ell_P^2$: the $\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\kap/\p $ exactly), the Carrier identity $S=(\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count \citep{quantum}; an exact merger area law $\Delta A=2M_1M_2$ on the count face of the mass; the first-law temperature $T_{\mathrm S}=(r_s/r_f)^{2}T_H$ the thermometer of the counted entropy; the phase-slip emission registers at the floor, one event of energy $hf_{\mathrm S}/\lfloor\sqrt\Omega\rfloor$ per slip of the first cut outside $r_f$ and nothing from the cut inward, at most one per link of that cut per window of $\lfloor\sqrt\Omega\rfloor$ far ticks, $L\le(A_f/\ell_P^{2})\,hf_{\mathrm S}^{2}/\Omega$ [chart], no evaporation within the horizon time for any mass within the coherence horizon under the hypothesis that the registered mass changes only through registered transfers. -/
 theorem p21062 : (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ (∀ (M₁ M₂ : Nat), (M₁ + M₂) * (M₁ + M₂ + (1 : Nat)) = M₁ * (M₁ + (1 : Nat)) + M₂ * (M₂ + (1 : Nat)) + (2 : Nat) * (M₁ * M₂)) ∧ (29407 : Nat) * ((29407 : Nat) + (1 : Nat)) = (27811 : Nat) * ((27811 : Nat) + (1 : Nat)) + (1596 : Nat) * ((1596 : Nat) + (1 : Nat)) + (88772712 : Nat) ∧ (2 : Nat) * ((27811 : Nat) * (1596 : Nat)) = (88772712 : Nat) ∧ (27811 : Nat) + (1596 : Nat) = (29407 : Nat) :=
   And.intro @FRC.Grav.count_identity (And.intro @FRC.Grav.merger_area (@FRC.Grav.merger_instance))
 /-- p21064 — 21:C19. The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\ref{thm:twoshift} with the registered-inertia identity); it rests on the masking barrier (B9) and the unified sampling clause of \citep{quantum}. -/
@@ -28701,9 +28787,9 @@ namespace FRC.Ledger
 theorem p20008 : (13 : Nat) * (13 : Nat) < (233 : Nat) ∧ (12 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (3 : Nat) ≠ (0 : Nat) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (89 : FRC.Shell (233 : Nat)) * (89 : FRC.Shell (233 : Nat)) = (-1 : FRC.Shell (233 : Nat)) ∧ (232 : Nat) % (12 : Nat) ≠ (0 : Nat) ∧ (3 : Nat) * (3 : Nat) < (13 : Nat) ∧ (3 : Nat) * (3 : Nat) < (233 : Nat) :=
   @FRC.Horizon.lab_pair
 set_option linter.defProp false in
-/-- p20009 — 20:B2. Frame coincidence below the horizon: for $n\le\sqrt \p$ the residue $n$ is the same integer in $\Fp$ and $\F_\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\Pi_\p$ are the primes to $\sqrt \p$. A prime is a label on the prime meridian below the horizon. -/
+/-- p20009 — 20:B2. Frame coincidence within the observational horizon $\q$, the largest label with $\q^{2}<\p$: for $n\le\q$ the residue $n$ is the same integer in $\Fp$ and $\F_\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\Pi_\p$ are the primes to $\q$. A prime is a label on the prime meridian within the horizon. -/
 def p20009 := And.intro @FRC.Horizon.window_readback (And.intro @FRC.Horizon.factorisation_iff (@FRC.Horizon.frame_coincidence))
-/-- p20011 — 20:B4. Zero-slot: on every shell $Z_\p(k)=\sum_{x\in\Fx{\p}}x^{k}$ vanishes at every nonconstant mode, $1\le k\le\p-2$, and equals $-1$ at the constant mode; it names no generator and holds on the chart of the Carrier. -/
+/-- p20011 — 20:B4. Zero-slot: on every shell $Z_\p(k)=\sum_{x\in\Fx{\p}}x^{k}$ vanishes at every nonconstant mode, $1\le k\le\p-2$, and equals $-1$ at the constant mode; it uses no generator and holds on the chart of the Carrier. -/
 theorem p20011 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
   @FRC.Horizon.zero_slot
 /-- p20017 — 20:B10. The Subject constants on the shell: $\pi=2\kp$, $2\pi\equiv-1$, $\im=\gen^{-\kp}$, $\im^{2}\equiv-1$, $\E=\gen^{\,\im}$ on the odd lift, $\gen^{\,\pi}\equiv-1$, $\E^{\,\im\pi}\equiv-1$; on $\F_{13}$: $\gen=2$, $\im=5$, $\E=6$, $\pi=6$. -/
@@ -28712,7 +28798,7 @@ theorem p20017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p20043 — 20:E12, 00:Z10. On every shell $\F_\p\subset\F_{\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:B4). Every mode of every vector lies on the self-dual line $\Tr=1$, an eigenvector of the scale-shift with a $(\p-1)$-th root of unity as eigenvalue: no off-line mode, $\Om$-blind. -/
 theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p) {j : Nat}, j < p - (1 : Nat) → v j = FRC.Shell.sumRange (fun k => FRC.Horizon.modeCoeff g v k * (g ^ j) ^ k) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Horizon.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Horizon.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Horizon.readout ν κ θ = FRC.Horizon.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
   And.intro @FRC.Horizon.zero_slot (And.intro @FRC.Horizon.mode_expansion (And.intro @FRC.Horizon.shift_power_character (And.intro @FRC.Horizon.eigenphase (And.intro @FRC.Horizon.shift_trace (And.intro @FRC.Horizon.readout_on_line (@FRC.Horizon.readout_slot_index))))))
-/-- p20044 — 20:E13. The Parseval identity: $\sum_k\hat v(k)\hat v(-k)=-\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ in place of the complex norm; in the chart the $\p-1$ complex characters are an orthogonal basis with $\lVert\chi_j\rVert^{2}=\p-1$ and the same identity reads $\sum_j|\hat v_{\mathbb C}(j)|^{2}=(\p-1)\sum|v|^{2}$ [chart]. -/
+/-- p20044 — 20:E13. The Parseval identity: $\sum_k\hat v(k)\hat v(-k)=-\sum_x v(x)^{2}$ on every shell, the finite Parseval identity of the cycle with the self-pairing $-1$ instead of the complex norm; in the chart of the cycle the $\p-1$ complex characters are an orthogonal basis with $\lVert\chi_j\rVert^{2}=\p-1$ and the same identity becomes $\sum_j|\hat v_{\mathbb C}(j)|^{2}=(\p-1)\sum|v|^{2}$. -/
 theorem p20044 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p), FRC.Shell.sumRange (fun k => FRC.Horizon.dual g v k * FRC.Horizon.modeCoeff g v k) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => v l * v l) (p - (1 : Nat)) :=
   @FRC.Horizon.parseval_cycle
 set_option linter.defProp false in

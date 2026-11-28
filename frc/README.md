@@ -16,7 +16,7 @@ and programme tiers are exact: integers and fractions, the standard library only
 chart tier alone. `ci/gates.py` enforces the map (gates G09, G10 and G19), checks the migrated ledgers' coverage (gate G12)
 and executes their notebooks (gate G13), and keeps the bridge inventory complete (gate G14; `ci/bridges.py` runs the bridged
 pairs' python witnesses), and checks that every published paper pins a served release (gate G15; `ci/release.py`
-cuts a release at a paper milestone and serves its archive, web copies and pinned sdists under `docs/releases/`); the workflow `framework` runs it with the tests on every push.
+cuts a release at a paper milestone and serves its archive, web copies and pinned sdists under `docs/releases/`), and checks that the core is plain source on a repaired kernel (gate G20); the workflow `framework` runs it with the tests on every push.
 
 **Run.** `python3 -m unittest discover -s frc/tests -t .` and `python3 ci/gates.py`, from the repository root.
 
